@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《主人与使者》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《主人与使者》<small>阅读指引与精华解析 · 2026-10-04</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 前置知识与目标读者</a>
+    <a href="#s2">2 全书骨架</a>
+    <a href="#s3">3 五个核心论点</a>
+    <a href="#s4">4 阅读建议</a>
+    <a href="#s5">5 配套资源</a>
+    <a href="#s6">6 中文译本怎么选</a>
+    <a href="#s7">7 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s8">8 导论（p.1）：为什么「脑分成两半」值得写一整本书</a>
+    <a href="#s9">9 第一部 分裂的大脑（p.15–238）：两个半球，两种注意</a>
+    <a href="#s10">10 第二部 大脑如何塑造我们的世界（p.239–427）：一部被重讲的西方文化史</a>
+    <a href="#s11">11 结论 被背叛的主人（p.428）：现代性的失衡与出路</a>
+    <div class="grp">附录</div>
+    <a href="#s12">A 关键定义与概念表</a>
+    <a href="#s13">B 常见卡点与提示</a>
+    <a href="#s14">C 来源清单</a>
+    <a href="#s15">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《主人与使者》阅读指引与精华解析</h1>
+  <div class="sub">The Master and His Emissary: The Divided Brain and the Making of the Western World</div>
+  <div class="meta">
+    <div><b>作者</b>伊恩·麦吉尔克里斯特（Iain McGilchrist，1953– ）—— 英国精神科医生、神经科学家、哲学家与文学学者；牛津新学院出身，1975 年起为万灵学院研究员；曾任伦敦莫兹利与贝思莱姆皇家医院顾问精神科医生与临床主任，并曾在约翰·霍普金斯大学做神经影像研究；现居苏格兰斯凯岛</div>
+    <div><b>英文初版</b>Yale University Press 2009-10-30 · 608 页 · ISBN 978-0-300-14878-7（精装）</div>
+    <div><b>扩增第二版</b>Yale University Press「Second Edition, New Expanded」2019（出版社与各渠道给出的日期为 2019-02／03）· 616 页 · ISBN 9780300245929（平装）／9780300247459（电子书）· 副题说明「附一篇十周年特别导言」</div>
+    <div><b>结构（据第二版官方目录）</b>导论 Introduction（p.1）／第一部 分裂的大脑 The Divided Brain（p.15）／第二部 大脑如何塑造我们的世界 How the Brain Has Shaped Our World（p.239）／结论 被背叛的主人 The Master Betrayed（p.428）／注释 Notes（p.463）／参考书目／索引</div>
+    <div><b>中译</b>★ 检索未发现正式的简体或台湾繁体译本（详见「中文译本怎么选」节与附录 D1）</div>
+    <div><b>荣誉</b>2009 年 Scientific and Medical Network 图书奖得主 · 2010 年 Bristol Festival of Ideas 图书奖入围 · 2010 年英国皇家学会科学图书奖长名单</div>
+    <div><b>销量</b>常见三个互相冲突的数字 —— 10 万／15 万／20 万册（三者并列，见附录 D4）</div>
+    <div><b>状态</b>未标注已读／想读 —— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有可定位文本支撑的段落 —— 含出版方与图书馆编目的版本信息、Google Books 可见的<b>带页码官方目录</b>，以及<b>带卷期页码的一手批评文献</b>（PLoS Biology 12(1): e1001767）</li>
+    <li><span class="tag t-talk">作者谈话</span> 出自作者本人的 RSA 讲稿与动画、BBC 广播访谈、短书《Ways of Attending》、续作《The Matter with Things》与出版社博客自述 —— 不在本书正文里</li>
+    <li><span class="tag t-rep">转述</span> 来自二手书评、媒体评价、百科或读者笔记，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    ★ 本书与本系列其他书<b>格局相反</b>：<b>批评材料比内容材料更硬</b> —— 一本 600 页的书我只拿得到目录与片段，而针对它的批评有<b>带卷期页码的期刊原文</b>。因此本报告把<b>批评面写实、下部刻意克制</b>，绝不冒充「读过正文」。本书<b>仍在版权期内</b>，我未持原书、也无纸质书或中译本。<b>未标页码处一律为二手转引</b>；带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-04 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书按 <b>B 级（带页码引文）</b>标注：有 <b>Google Books 可见的带页码官方目录</b>（导论 p.1／第一部 p.15／第二部 p.239／结论 p.428／注释 p.463），以及<b>带卷期页码的一手批评文献</b>（<i>PLoS Biology</i> <b>12(1): e1001767</b>, doi:10.1371/journal.pbio.1001767）。★ 需指出：<b>本书的下部只到「部分级」目录</b> —— 第二部内部的章节划分与页码我未取得，故下部<b>按书自身的四个部分展开、不逐章虚构</b>。<b>批评文献归入「原书」档</b>（有可定位文本＋卷期页码）；未标页码者为二手转引。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>它要论证的不是「左脑 vs 右脑」，而是一个更精细也更大的命题：两个半球以两种根本不同的「注意方式」面对世界——左半球窄而聚焦、把世界切成可操作的客体；右半球宽而开放、把世界经验为活的关系整体——而西方文明自近代以来日益偏向左侧，于是「使者」篡了「主人」的位。</strong></p>
+  <p>书名来自一则寓言（作者说源自尼采，但据论者考证<strong>可能并非</strong>尼采）：一位明智的主人国土太大，派使者去管理边远之地；使者忘记自己只是代理，认定既然能管好一部分就能管好全部，于是篡位，王国随之崩坏 <span class="tag t-rep">转述</span>。</p>
+  <p>一句话判断：<strong>这不是一本「关于大脑」的书，而是一本「用大脑当透镜，重讲西方思想史并批判现代性」的书。</strong> 它的一半是神经科学综述，另一半是文化史与形而上学；而它最受攻击的地方，恰恰是这两半之间的那一步跳。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>前置知识与目标读者</span><span class="caret">▾</span></h2>
+  <p><strong>需要什么底子</strong>：愿意读长篇论证（600 余页正文 ＋ 约 120 页小字注释）。对西方思想史、艺术、音乐有兴趣会大幅提高收益；能接受一本书<strong>同时是科学综述、文学批评与哲学论纲</strong>——这种杂糅既是它的魅力，也是学界不适的根源。</p>
+  <p><strong>不需要什么</strong>：不需要神经科学专业背景。作者面向的是受过教育的通才，全书把大量临床病例与研究都做了通俗化处理。</p>
+  <p><strong>这本书适合谁</strong>：</p>
+  <ul>
+    <li>对「现代性批判」「注意力／意义危机的根源」这类问题感兴趣的人。
+    </li>
+    <li>人文社科背景（哲学、文学、艺术、宗教、教育学）的读者——<strong>这本书在人文领域的接受度远高于在神经科学界</strong>。
+    </li>
+    <li>想把「注意力」当成一个严肃的哲学问题来想的人（这可能是本书最持久的贡献）。
+    </li>
+  </ul>
+  <p><strong>这本书不适合谁</strong>：</p>
+  <ul>
+    <li>想要<strong>已被学界确立的神经科学结论</strong>的人。本书的神经科学部分本身即争议所在。
+    </li>
+    <li>想要<strong>严格的经验科学证据链</strong>的人。第二部（文化史）基本不是经验科学，而是<strong>解释性的宏大叙事</strong>。
+    </li>
+    <li>只想找一句口号（「多用右脑」）的人——那正是作者反对的读法。
+    </li>
+  </ul>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>第二版的官方目录只有<strong>部分级</strong>标题（更细的章节名我未取得，故不虚构）。页码为第二版（616 页）。</p>
+  <table>
+    <thead><tr><th>部分</th><th>页</th><th>在回答什么</th><th>判断</th></tr></thead>
+    <tbody>
+      <tr><td>导论 Introduction</td><td>1</td><td>为什么「脑分成两半」这件事值得写一整本书</td><td>立场宣言；引用作者关于「半球之间有整整一个世界之差」的原话</td></tr>
+      <tr><td>第一部 分裂的大脑</td><td>15</td><td>两个半球到底在哪些方面不同——作者说：不是「做什么」，而是「怎么注意」</td><td><strong>全书最像科学的部分</strong>，也是批评最集中的部分</td></tr>
+      <tr><td>第二部 大脑如何塑造我们的世界</td><td>239</td><td>把「半球假说」用于重讲西方文化史（从古希腊到现代与后现代）</td><td><strong>批评火力最猛的部分</strong>：《经济学人》说它「脱离了脑科学的系泊」</td></tr>
+      <tr><td>结论 被背叛的主人</td><td>428</td><td>现代性的失衡如何发生、能否挽回</td><td>与书名寓言的收束</td></tr>
+      <tr><td>注释 Notes</td><td>463</td><td>逐条出处</td><td>约 120 页小字注释，本身就是一部文献综述</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>作者与出版方都强调「两部必须合读」。</strong> 他自述曾想把书拆成两本，编辑否决了，理由是「科学家会只读一本、人文的人会只读另一本，那样整幅图景就丢了」<span class="tag t-talk">作者谈话</span>。⇒ <strong>这句话也是给你的读法建议：单读第一部会误判它，单读第二部会误读它。</strong></p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>五个核心论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：两个半球不是「谁做什么」，而是「怎么注意」——这是作者二十年来反复公开澄清的地基</h3>
+  <p><strong>主张</strong>：左半球给出<strong>窄而锐利的聚焦注意</strong>（服务于操作与利用世界），右半球给出<strong>持续的、开放的、广域的警觉</strong>（服务于理解与关联世界）；在正常状态下两者<strong>协同</strong>工作。作者本人一再否认流行版「左脑理性／右脑感性」<span class="tag t-talk">作者谈话</span>。</p>
+  <p><strong>依据</strong>：BBC Radio 4《Today》（2009-11-14）里他说——「<strong>每一个脑功能都由两个半球共同完成</strong>。理性、情绪与想象，都取决于两个半球各自的贡献汇聚到一起。」RSA 讲稿进一步点题：「<strong>重要的不是每个半球『做什么』——它们什么都参与——而是它『怎么做』。</strong>」<span class="tag t-talk">作者谈话</span></p>
+  <p><strong>为什么重要</strong>：这一条决定了你手里这本书是哪一本。如果它讲的是「开发右脑」，那不是本书；作者在《Ways of Attending》开篇的原话即是「<strong>忘掉你以为知道的一切关于半球差异的东西，因为它基本是错的。</strong>」<span class="tag t-talk">作者谈话</span></p>
+  <h3>论点二：「主人与使者」讲的是「代理篡位」——最危险的不是能力不足，而是局部的成功以为自己可以接管整体</h3>
+  <p><strong>主张</strong>：书名来自一则寓言：一位明智的主人国土太大，派使者去管理边远之地；使者忘记自己只是代理，认定既然能管好一部分就能管好全部，于是篡位，王国随之崩坏 <span class="tag t-rep">转述</span>。</p>
+  <p><strong>依据</strong>：作者把这一结构对应为右半球（主人，宽、开放、为理解）与左半球（使者，窄、聚焦、为操作）；「被背叛的主人」正是他对现代性失衡的命名 <span class="tag t-rep">转述</span>。</p>
+  <p><strong>为什么重要</strong>：它把全书的靶子从「某个脑区」换成了「一种关系的失序」——问题不在使者本身，而在<strong>使者忘了自己是使者</strong>。这也是理解结论部分的关键 <span class="tag t-inf">推断</span>。</p>
+  <h3>论点三：西方文明史可以被读成「两种注意方式的此消彼长」——近代以来重心持续偏左</h3>
+  <p><strong>主张</strong>：第二部把从古代世界、经文艺复兴与宗教改革、启蒙运动、浪漫主义与工业革命，直到现代与后现代的历史，解读为<strong>半球平衡的一次次移动</strong>；每当重心过偏，文明就走向抽象、机械、控制与失义 <span class="tag t-rep">转述</span>。</p>
+  <p><strong>依据</strong>：作者的立场是公开的——他自认<strong>浪漫主义者</strong>，对启蒙「对理性与合理性的优先化」持批判态度；他最常被引用的文化论点是：现代性把<strong>活的关系与意义</strong>替换成了<strong>可操作的表征与模型</strong> <span class="tag t-rep">转述</span>。</p>
+  <p><strong>为什么重要</strong>：这是全书最「好看」也最不可检验的一层。作者自己把两部的分量看得很重（见论点五），但<strong>这一层不是经验科学，而是一种历史哲学</strong>——《经济学人》说它「脱离了脑科学的系泊」，针对的正是这一层 <span class="tag t-rep">转述</span>。</p>
+  <h3>论点四：它的主张不是「废除左半球」，而是让分析重新被更宽的理解所引导</h3>
+  <p><strong>主张</strong>：本书反对的是<strong>左半球独大</strong>，不是左半球本身；结论要求「<strong>让左半球回到为右半球服务的位置</strong>」——即分析必须被更宽的理解所引导 <span class="tag t-rep">转述</span>。</p>
+  <p><strong>依据</strong>：作者把同一套诊断延伸到当代技术与 AI，担心人类「把片面的、机器式的理性误认为真正的智慧」<span class="tag t-rep">转述</span>。</p>
+  <p><strong>为什么重要</strong>：这一条防止你把书读成反智或反科学。<strong>它要的不是「少用左脑」，而是「恢复两种注意方式之间的从属关系」</strong>——而这一步能否成立，取决于你是否接受论点三那个更大的历史判断 <span class="tag t-inf">推断</span>。</p>
+  <h3>论点五：作者坚持两部必须合读——单读一部，整幅图景就丢了</h3>
+  <p><strong>主张</strong>：作者自述曾想把书拆成两本，被编辑否决，理由是「<strong>科学家会只读一本、人文的人会只读另一本，那样整幅图景就丢了</strong>」<span class="tag t-talk">作者谈话</span>。</p>
+  <p><strong>依据</strong>：这句话把本书的结构讲成了它论点的一部分：第一部提供证据，第二部提供解释，而<strong>两半之间的那一步</strong>（从半球差异到文化史）正是全书最受攻击、也最不能被省略的地方。</p>
+  <p><strong>为什么重要</strong>：它同时是一句给你的读法建议——<strong>单读第一部会误判它，单读第二部会误读它</strong>。而那个「跳」，也正是 Corballis 那句「尽管广受赞誉，这本书远远超出了神经学事实」所指向的地方 <span class="tag t-src">原书</span>。</p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>作者／出版方给的路线（有据）</h3>
+  <ul>
+    <li><strong>合读两部</strong>（见上，作者自述）<span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li><strong>想快速了解他的思路，读那本小书。</strong> 《Ways of Attending: How Our Divided Brain Constructs the World》（Routledge，2019，约 44 页）是作者认可的短篇入口；它的开篇第一句就是本章第 7.1 节要引用的那句「忘掉你以为知道的半球差异，因为它基本是错的」<span class="tag t-talk">作者谈话</span>。
+    </li>
+  </ul>
+  <h3>我整理的通路</h3>
+  <p>以下路线均为我的整理，非作者所给 <span class="tag t-inf">推断</span>。</p>
+  <ul>
+    <li><strong>只读一部分：读第一部（p.15–238），但必须带着第 7 节的批评读。</strong> 第一部是全书的「证据层」，也是唯一能用脑科学标准检验的部分；单读第二部而不知其证据基础的强弱，很容易被说服得太快。
+    </li>
+    <li><strong>只想花二十分钟：先看 RSA 动画、再读导论与结论。</strong> RSA 的十一分钟动画《The Divided Brain》（2011）配的就是作者 2010 年在 RSA 的讲稿，作者本人授权；导论（p.1）＋结论（p.428）合起来就是全书的论点骨架 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>可以谨慎对待、甚至略读的部分：第二部的文化史叙事。</strong> 不是因为它无趣（它其实相当好看），而是因为<strong>它正是批评最集中、最缺可检验性的一层</strong>。把它当「一位博学作者的世界观」读，比当「结论」读安全。
+    </li>
+    <li><strong>读前必做一件事：先读第 7 节。</strong> 这本书的争议不是藏在角落里的技术细节，而是它的<strong>核心推论</strong>是否成立。带着这个问题读，你收获的是一个可以思考的框架；不带，你收获的是一套被说服了的信念。
+    </li>
+  </ul>
+  <h3>如果你是「已读」</h3>
+  <ul>
+    <li><strong>回头核一件事</strong>：你被说服的，是它的<strong>神经科学</strong>，还是它的<strong>文化批判</strong>？很多读者其实是被后者说服，却以为是在相信前者。把这两样分开评估，是重读本书最有价值的一步 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>补两样东西</strong>：① Corballis 那篇 PLoS Biology 专文（带卷期页码，见 6.2）——它是把「这本书超出了神经科学事实」这句话写成学术论证的范本；② 作者的续作《The Matter with Things》（2021，两卷）——看他把同一套框架推到形而上学时，<strong>你更买账还是更不买账</strong>。后者测的是你的哲学立场，而不只是他的科学可靠性 <span class="tag t-inf">推断</span>。
+    </li>
+  </ul>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5</span><span>配套资源</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>资源</th><th>类型</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>RSA 讲稿《The Divided Brain and the Making of the Western World》（2010-11-17）</td><td>演讲全文</td><td>作者亲讲，有完整未编辑记录稿；<strong>与书论点一致</strong> <span class="tag t-talk">作者谈话</span></td></tr>
+      <tr><td>RSA Animate《The Divided Brain》（2011）</td><td>动画短片</td><td>十一分钟，作者讲稿的动画版；<strong>最省时的入口</strong> <span class="tag t-rep">转述</span></td></tr>
+      <tr><td>《Ways of Attending: How Our Divided Brain Constructs the World》（Routledge，2019，约 44 页）</td><td>短书</td><td>作者认可的「极简版」；开篇即澄清流行误读 <span class="tag t-talk">作者谈话</span></td></tr>
+      <tr><td>《The Matter with Things: Our Brains, Our Delusions, and the Unmaking of the World》（Perspectiva，2021，两卷）</td><td>续作</td><td>第一卷副题《The Ways to Truth》、第二卷《What Then is True?》；把「半球假说」扩展为认识论与形而上学；约 1500 页 <span class="tag t-rep">转述</span></td></tr>
+      <tr><td>纪录片《The Divided Brain》（2019）</td><td>纪录片</td><td>加拿大出品，作者授权 <span class="tag t-rep">转述</span></td></tr>
+      <tr><td>作者与 Sam Harris、Rowan Williams、John Cleese 等人的对谈</td><td>播客／视频</td><td>大量思想对谈，是理解他书外立场的第一手材料 <span class="tag t-rep">转述</span></td></tr>
+      <tr><td>BBC Radio 4 Today（2009-11-14）</td><td>广播访谈</td><td>作者当场澄清「每个脑功能都靠两个半球共同完成」 <span class="tag t-talk">作者谈话</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s6">
+  <h2><span class="num">6</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节和本系列其他书很不一样：答案可能不是「选哪个译本」，而是「目前可能没有正式中译本」。</strong></p>
+  <p><strong>检索结论（截至本报告生成日）</strong>：我<strong>未发现</strong>《The Master and His Emissary》的正式<strong>简体中文或台湾繁体</strong>译本。中文世界里出现的相关书名——<strong>《大师和他的使者》</strong>（百度百科所用的译名）、<strong>《主人与使者》</strong>（新加坡《联合早报》2026 年一篇评论所用译名）——多为<strong>对英文书名与二手介绍的中文表述</strong>，<strong>不等于存在一本中文版图书</strong> <span class="tag t-rep">转述</span>。据百度百科，该书的<strong>西班牙语译本</strong>于 2025 年出版 <span class="tag t-rep">转述</span>——反过来也旁证：中文（简体／繁体）译本在检索中未见。</p>
+  <p>⇒ <strong>实务建议</strong>：若你只读中文，目前很可能<strong>读不到这本书</strong>；现实的选择是英文原版（2009 初版 608 页，或 2019 扩增版 616 页）。请<strong>不要</strong>因为看到中文封面或中文书评就以为买得到中译本——<strong>买之前先确认 ISBN 是否对应 Yale University Press 的版本</strong> <span class="tag t-inf">推断</span>。</p>
+  <p><strong>⚠ 两处提醒</strong>：</p>
+  <ol>
+    <li><strong>书名在中文世界不统一</strong>（《主人与使者》《大师和他的使者》《主人与他的使者》都有人用）。⇒ 若你在找这本书，<strong>用英文原名或 ISBN 去查</strong>最可靠。
+    </li>
+    <li><strong>别把它和作者的其他书弄混</strong>：作者还有更早的文学批评著作《Against Criticism》（1982），以及续作《The Matter with Things》（2021，两卷）——<strong>后面这本不是「同一个书名的新版」，而是另一本书</strong> <span class="tag t-rep">转述</span>。
+    </li>
+  </ol>
+  <p><strong>版本选择（若读英文）</strong>：优先 <strong>2019 扩增第二版（ISBN 9780300245929）</strong>——它多一篇为十周年写的特别导言，且是当前在售版本 <span class="tag t-src">原书</span>。第一版（2009，608 页）与第二版（2019，616 页）<strong>正文大体相同、页码不同</strong>，引用时务必注明你用的是哪一版 <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">7</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是全报告的重心。</strong> 理由有二：① 这本书的核心命题正是<strong>最容易被误读成「伪科学」</strong>的那一类；② <strong>它的批评材料比它的内容材料更硬</strong>——我拿得到针对它的<strong>带卷期页码的一手批评文献</strong>，却只拿得到原书的目录与片段。所以本节写得最实，下部逐章则刻意克制。</p>
+  <h3>7.1 ★★ 第一步：作者本人的澄清原话（不先摆这个，全书都会被读歪）</h3>
+  <p><strong>必须把这一节放在批评之前</strong>，因为麦吉尔克里斯特<strong>二十年来一直在公开、明确地否认</strong>流行版「左脑理性／右脑感性」：</p>
+  <ul>
+    <li><strong>BBC Radio 4《Today》节目（2009-11-14）</strong>：他说「<strong>每一个脑功能都由两个半球共同完成</strong>。理性、情绪与想象，都取决于两个半球各自的贡献汇聚到一起。」<span class="tag t-talk">作者谈话</span>
+    </li>
+    <li><strong>RSA 讲稿及动画（2010-11-17／2011）</strong>：开场就说——「<strong>一个半球负责理性、另一个负责情绪，这是不成立的；两者都深度参与两者。语言只存在于左半球，这也是不成立的……视觉意象只在右半球，也不成立。</strong>」紧接着是全篇的题眼：「<strong>重要的不是每个半球『做什么』——它们什么都参与——而是它『怎么做』。</strong>」<span class="tag t-talk">作者谈话</span>
+    </li>
+    <li><strong>《Ways of Attending》（2019）开篇</strong>：「<strong>忘掉你以为知道的一切关于半球差异的东西，因为它基本是错的。</strong>」<span class="tag t-talk">作者谈话</span>
+    </li>
+    <li><strong>《The Matter with Things》（2021）导论</strong>：他预先申明——「<strong>一个孤立的半球不能被说成在做只有『人』才能做的事</strong>：相信、意图、决定、喜欢……这类说法应当被理解为一种省事的简写。」<span class="tag t-talk">作者谈话</span>
+    </li>
+    <li><strong>耶鲁大学出版社博客（2020，作者自述）</strong>：「现在人们终于开始理解，<strong>半球理论与那个经由流行心理学进入公众意识的版本几乎没有共同之处</strong>。」<span class="tag t-talk">作者谈话</span>
+    </li>
+  </ul>
+  <p>⇒ <strong>结论（这一条决定了你怎么读这本书）</strong>：作者主张的是<strong>「注意方式」的差异</strong>（左：窄、聚焦、为操作；右：宽、开放、为理解），<strong>不是「功能分工」的流行版</strong>。如果你在网上看到有人把这本书当成「右脑开发」的背书，<strong>那个人没有读对，作者本人也不同意</strong>。<span class="tag t-inf">推断</span></p>
+  <h3>7.2 ★★ 第二步：剥离流行误读之后，神经科学界的实质性批评</h3>
+  <p>★ 即便承认作者讲的是「注意方式」而非「功能分工」，批评依然成立、而且相当硬。<strong>最硬的一条带卷期页码：</strong></p>
+  <p><strong>（一）Michael C. Corballis，〈Left Brain, Right Brain: Facts and Fantasies〉，<em>PLoS Biology</em> 12(1): e1001767，2014-01-21，doi:10.1371/journal.pbio.1001767</strong> <span class="tag t-src">原书</span></p>
+  <p>Corballis 是新西兰奥克兰大学心理学荣休教授，<strong>属于裂脑研究（Sperry／Gazzaniga）那一脉</strong>——也就是说，批评者不是外行。他在这篇开放获取的综述里，把本书作为「大脑不对称被过度诠释」的典型举出，原话是：</p>
+  <blockquote>
+    <p><strong>「Although widely acclaimed, this book goes far beyond the neurological facts.」</strong>（尽管广受赞誉，这本书远远超出了神经学事实。）</p>
+  </blockquote>
+  <p>同一段里他还指出：左右脑的种种对立「被广泛用于艺术、商业、教育、文学理论与文化之中，<strong>但它们更多倚仗的是神话的力量，而不是科学证据</strong>」，并顺带把本书与 Betty Edwards 那本《用右脑画画》归入同一类「被夸张或缺乏根据的推测」 <span class="tag t-src">原书</span>。</p>
+  <p><strong>（二）A. C. Grayling，〈In Two Minds〉，<em>Literary Review</em>，2009 年 12 月</strong> <span class="tag t-rep">转述</span></p>
+  <p>哲学家 Grayling 的评价是「文笔优美、博学、迷人且勇于冒险」，<strong>但</strong>：</p>
+  <blockquote>
+    <p><strong>「脑科学的发现，其精细程度还远远不足以支撑麦吉尔克里斯特所推出的那些心理学与文化上的宏大结论。」</strong></p>
+  </blockquote>
+  <p><strong>（三）《经济学人》，〈The human brain: Right and left〉，2009-11-26</strong> <span class="tag t-rep">转述</span></p>
+  <p>它批评本书诉诸「<strong>令人瞠目的泛化</strong>」，并说第二部「<strong>显然已经脱离了它在脑科学上的系泊</strong>」。</p>
+  <p><strong>（四）Owen Flanagan，〈The vast left-brain conspiracy〉，《新科学家》CultureLab 博客，2009-11-26</strong> <span class="tag t-rep">转述</span></p>
+  <p>哲学家 Flanagan 的批评最不客气：</p>
+  <blockquote>
+    <p><strong>「事实是，半球的差异并没有被很好地理解，2500 年西方史的模式也没有。用一个对前者的漫画去解释同样没被理解的后者，对两者都毫无启发。」</strong></p>
+  </blockquote>
+  <p>★ 附带一个有意思的细节：麦吉尔克里斯特对这条书评<strong>作了激烈回应</strong>，称「<strong>任何读过我的书、又读了那篇评论的人都会明白，那是一篇多么可耻的写作</strong>」，并指其肤浅与误读 <span class="tag t-rep">转述</span>。⇒ 这一幕说明：<strong>作者不接受「漫画化」的指控</strong>，他认为自己被误读了——这与 6.1 的澄清是同一种姿态。</p>
+  <p><strong>★ 把这些批评归纳成两层（<span class="tag t-inf">推断</span>）</strong>：</p>
+  <ol>
+    <li><strong>经验层</strong>：把<strong>临床脑损伤与裂脑病例</strong>外推到<strong>正常认知</strong>，是不成立的——正常大脑是高度整合的系统（胼胝体等连合纤维大量参与），不能按「一个半球＝一个心智」来读。
+    </li>
+    <li><strong>推论层</strong>：从「半球差异」跳到「2500 年西方文化史」，是一个<strong>范畴错误</strong>——前者的证据颗粒度，撑不起后者的结论力度（这正是 Grayling 与 Corballis 的共同点）。
+    </li>
+  </ol>
+  <p><strong>（五）一条必须点出的「伪独立」风险</strong> <span class="tag t-inf">推断</span>：网络上流传着一批把本书斥为「披着科学外衣的诱人幻想」「神经神话学（neuromythology）」的长文。<strong>其中不少是个人博客或评论文章，不是同行评议文献</strong>，且常<strong>互相转引</strong>。本报告<strong>不把它们计入独立来源</strong>；上述四家（Corballis／Grayling／Economist／Flanagan）才是可定位、可复核的一手批评。请勿把「网上一片骂声」当成「学界共识」——<strong>真正的学术批评是克制而具体的</strong>。</p>
+  <h3>7.3 ★ 第三步：作者书外的后续表态与立场发展</h3>
+  <p>以下均为作者书外的公开文本与自述 <span class="tag t-talk">作者谈话</span>：</p>
+  <ul>
+    <li><strong>《Ways of Attending》（2019，44 页）</strong>：把 600 页的东西压成一篇「注意力宣言」。它最有价值的一句仍是那声澄清（见 6.1）——<strong>如果只读作者一本书，读它</strong>。
+    </li>
+    <li><strong>《The Matter with Things》（2021，两卷，Perspectiva，ISBN 9781914568060）</strong>：这是他的<strong>立场发展</strong>。第一卷《The Ways to Truth》论「通向真理的途径」（感知、注意、判断、理性、想象），第二卷《What Then is True?》直攻<strong>科学唯物主义</strong>，主张关系在本体论上是首要的、事物是次要的。⇒ 在这里，<strong>「半球假说」从科学假说变成了形而上学纲领</strong>——支持者视为集大成，批评者视为越走越远。作者自述，这两本书都想表明「<strong>科学与人文彼此需要</strong>」<span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li><strong>在耶鲁博客上的回顾（2020）</strong>：他把本书的成功部分归功于<strong>神经科学界一些重量级人物的善意回应</strong>——他点名提到 Jaak Panksepp、V. S. Ramachandran、Howard Gardner、Norman Doidge、Colwyn Trevarthen <span class="tag t-talk">作者谈话</span>。⇒ <strong>这条很重要</strong>：本书<strong>并非</strong>「人文圈叫好、科学圈全盘否定」——它确实得到了<strong>部分神经科学家</strong>的支持，尽管这不能改变 6.2 那些批评的成立。
+    </li>
+    <li><strong>近年的公共立场（据中文媒体报道）</strong>：他把对 AI 的担忧定位为「<strong>人类把一种片面的、机器式的理性误认为真正的智慧</strong>」，认为现代文明已被「左脑式思维」过度支配 <span class="tag t-rep">转述</span>。⇒ 这是他把全书论点延伸到技术时代的典型用法。
+    </li>
+  </ul>
+  <h3>7.4 读者与媒体的两极，以及一个「落差」观察</h3>
+  <p><strong>正面（多为媒体与人文界）</strong>：《泰晤士报》Nicholas Shakespeare 称其「罕有地配得上经典地位」；《星期日泰晤士报》Bryan Appleyard 称「一座里程碑」；《卫报》哲学家 Mary Midgley 说「尽管神经学家可能不欢迎它，因为它提出了新问题，但我们其余人会觉得它极其发人深省」；<em>Standpoint</em> 的 Adam Zeman、<em>TLS</em> 的 W. F. Bynum、<em>Brain</em> 的 Andrew Scull 亦给予正面评价 <span class="tag t-rep">转述</span>。<strong>神经科学家 V. S. Ramachandran 与 Norman Doidge 也曾公开称赞</strong> <span class="tag t-rep">转述</span>。</p>
+  <p><strong>保留／负面</strong>：见 6.1–6.2（Grayling、Economist、Flanagan、Corballis）。</p>
+  <p>★ <strong>一个我自己的观察</strong> <span class="tag t-inf">推断</span>：本书的<strong>高分与高知名度</strong>，很大一部分来自它的<strong>现代性批判</strong>（「我们为什么活得越来越碎片化、机械化、无意义」），而非来自它的神经科学。也就是说，<strong>很多读者实际上是在接受一套文化诊断，却以为自己在接受科学结论</strong>。这正是它同时是「经典」和「被科学界质疑」的原因——<strong>两个评价说的根本不是同一件事</strong>。读的时候，务必分清自己在为什么鼓掌。</p>
+  <h3>7.5 ★ 一条跨书线索（本书单内部的对撞）</h3>
+  <p>★ <strong>《大脑的故事》中译第六章里，有一节的名字就叫「『左右脑分工说』靠谱吗」</strong> <span class="tag t-src">原书</span>。⇒ <strong>这两本书在最容易混淆的那一点上正面相撞</strong>：</p>
+  <ul>
+    <li>以伊格曼《大脑的故事》为代表的主流科普倾向：<strong>「左右脑分工」是流行误读，应当纠正</strong>（顺便一提：伊格曼自己的第六章就把它列为一个待澄清的问题）<span class="tag t-inf">推断</span>。
+    </li>
+    <li>麦吉尔克里斯特的立场：<strong>「流行版是错的——我同意；但真正的半球差异（注意力式样）是存在的，而且至关重要」</strong> <span class="tag t-talk">作者谈话</span>。
+    </li>
+  </ul>
+  <p>⇒ <strong>把这两本书并读，你会得到一个难得的机会：看同一个被公众误解的概念，被一位主流神经科学家和一位「反主流的文化批判者」分别如何处理。</strong> 结论不一定要选边——<strong>看清两人对『证据能推到多远』的分歧，本身就是收获</strong> <span class="tag t-inf">推断</span>。</p>
+  <p>结构说明：★ 依本批任务的要求，<strong>本书的下部刻意克制</strong>：我只有<strong>部分级目录（带页码）</strong>、作者书外文本与批评文献，<strong>没有逐章正文</strong>，因此<strong>不编造章节细节</strong>。下面按书自身的四个部分展开，每节分三块——<strong>这一部分在回答什么</strong>（问题）、<strong>关键点</strong>（带档位）、<strong>一句判断</strong>。凡我不想用一个二手概括去填的细节，留白并写明。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">8</span><span>导论（p.1）：为什么「脑分成两半」值得写一整本书</span><span class="caret">▾</span></h2>
+  <h3>这一部分在回答什么</h3>
+  <p>「脑分两半」这事，为什么不是一句科普八卦，而值得写 600 页？作者要在导论里立起立场：半球之间的差异<strong>「整整是一个世界之差」</strong>。</p>
+  <h3>关键点</h3>
+  <p><strong>作者在导论里的原话</strong>是：<strong>「两个半球之间，确实有整整一个世界之差（there is, literally, a world of difference between the hemispheres）。」</strong> 他随即说明，理解这件事需要穿越「许多表面上毫不相干的领域：不只是神经学与心理学，还有哲学、文学与艺术，甚至在一定程度上还有考古学与人类学」<span class="tag t-src">原书</span>。</p>
+  <p><strong>他要替换的那个「流行说法」也很明确</strong>：把两个半球说成「左逻辑、右创造」，是「肤浅的」；他要用<strong>「它们以根本不同的方式『注意』」</strong>来替换它 <span class="tag t-rep">转述</span>。</p>
+  <p><strong>他还交代了思想来源</strong>：主要受精神科医生 John Cutting（关于右半球的工作）与芝加哥心理学家 David McNeill（关于手势与语言）的影响，并说他看到的<strong>不是两半球「做什么」不同，而是「怎么做」不同</strong> <span class="tag t-talk">作者谈话</span>。</p>
+  <h3>一句判断</h3>
+  <p>导论是一篇<strong>立场宣言</strong>，不是论证：它先宣布「有一个世界之差」，再用全书去兑现。<strong>它自己也知道这一步跨度极大</strong>——所以导论读起来最激动人心，也最需要你带着 6.2 的怀疑继续往下。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">9</span><span>第一部 分裂的大脑（p.15–238）：两个半球，两种注意</span><span class="caret">▾</span></h2>
+  <h3>这一部分在回答什么</h3>
+  <p><strong>全书的证据层</strong>：神经科学究竟能不能支持「两个半球是两种『注意方式』」？作者要在这里，用研究一个接一个地替换掉流行版的「功能分工」。</p>
+  <h3>关键点</h3>
+  <ul>
+    <li><strong>核心主张</strong>：左半球给出<strong>窄而锐利的聚焦注意</strong>（为<strong>操作与利用</strong>世界），右半球给出<strong>持续的、开放的、广域的警觉</strong>（为<strong>理解与关联</strong>世界）；在正常状态下两者<strong>协同</strong>工作 <span class="tag t-talk">作者谈话</span>（这一表述在作者各处演讲中高度一致，见 RSA 讲稿）。
+    </li>
+    <li><strong>一个被反复引用的例子：鸟与种子。</strong> 鸟要在一堆砂石里啄出一粒种子，需要<strong>极窄的聚焦</strong>；同时又要<strong>广域警戒</strong>掠食者。作者说，鸟与许多动物<strong>可靠地</strong>用左半球做前者、右半球做后者——用一个跨物种的例子说明「差异是演化的、生存性的」<span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li><strong>关于结构的一个论点</strong>：他指出<strong>胼胝体等连合纤维的很大一部分作用是『抑制』另一半球</strong>，且脑是<strong>显著不对称</strong>的（左右前后各有偏心），并由此发问：若只是要更多脑容量，为何不对称？⇒ 他的答案是「因为两半球在做不同的事」<span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li><strong>他明确反对的东西</strong>（见 6.1）：反对「左逻辑／右创造」、反对「语言只在左半球」、反对「视觉意象只在右半球」 <span class="tag t-talk">作者谈话</span>。
+    </li>
+  </ul>
+  <h3>一句判断</h3>
+  <p>★ <strong>这是全书最值得认真读、也最该对照批评读的一层。</strong> 它的问题不在于「错了」，而在于<strong>从有限的、且部分仍具争议的神经科学证据，走向一个过于整齐的二分</strong>——Corballis 那句「远远超出了神经学事实」正是冲它来的。<strong>若读到这里你被说服了，请立刻翻回 6.2</strong> <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">10</span><span>第二部 大脑如何塑造我们的世界（p.239–427）：一部被重讲的西方文化史</span><span class="caret">▾</span></h2>
+  <h3>这一部分在回答什么</h3>
+  <p>如果两个半球真是两种「注意方式」，那么西方历史能不能看成<strong>这两种方式的此消彼长</strong>？</p>
+  <h3>关键点</h3>
+  <ul>
+    <li><strong>叙事骨架（据作者自述与官方文本）</strong>：他从古代世界写起，经<strong>文艺复兴与宗教改革</strong>、<strong>启蒙运动</strong>、<strong>浪漫主义与工业革命</strong>，一直到<strong>现代与后现代</strong>，把每一次文化转向解读为<strong>半球平衡的移动</strong>（向「左」偏得太多时，文明就走向抽象、机械、控制与失义）<span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>他的价值判断是公开的</strong>：他自认是<strong>浪漫主义者</strong>，对启蒙「对理性与合理性的优先化」持批判态度——有书评直接指出，他是在倒数第二章「把旗子插在桅杆上」、宣布自己是浪漫派 <span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>他最常被引用的文化论点</strong>：现代性把<strong>活的关系与意义</strong>替换成了<strong>可操作的表征与模型</strong>；他说这会带来异化、官僚化、失魅与生态破坏——<strong>这一层是他的读者最买账、也是学界最无法检验的一层</strong> <span class="tag t-rep">转述</span>。
+    </li>
+  </ul>
+  <h3>一句判断</h3>
+  <p>★ <strong>这是「好看但最不可验证」的一层。</strong> 它不像第一部那样有实验可对照；它更像一位博学作者的<strong>历史哲学</strong>。⇒ <strong>读它时，把「这是一位思想家的解释」与「这是科学结论」分开。</strong>《经济学人》说它「脱离了脑科学的系泊」，说的就是这一层 <span class="tag t-rep">转述</span>。</p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">11</span><span>结论 被背叛的主人（p.428）：现代性的失衡与出路</span><span class="caret">▾</span></h2>
+  <h3>这一部分在回答什么</h3>
+  <p>书名那则寓言的收束：使者（左半球）篡了主人（右半球）的位，现代世界因此失衡——<strong>怎么办</strong>？</p>
+  <h3>关键点</h3>
+  <ul>
+    <li><strong>他的核心主张不是「消灭左半球」</strong>，而是「<strong>让左半球回到为右半球服务的位置</strong>」——即分析必须被更宽的理解所引导 <span class="tag t-rep">转述</span>。这一点必须说清：他反对的是<strong>左半球独大</strong>，不是左半球本身。
+    </li>
+    <li><strong>作者在中译语境外的一个延伸</strong>：他把同一套诊断用于当代技术与 AI——担心人类「把片面的机器式理性误认为智慧」、「反主为客去听 AI 的话」 <span class="tag t-rep">转述</span>。
+    </li>
+  </ul>
+  <h3>一句判断</h3>
+  <p><strong>结论的力度，取决于你对「现代性是否真在失衡」这个判断的接受度——而这一点，脑科学帮不上忙。</strong> ⇒ 这也是本书最诚实、也最脆弱的地方：<strong>它的结论要成立，需要你不只接受它的科学，还要接受它的价值观</strong>。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">A</span><span>关键定义与概念表</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>概念</th><th>一句话</th><th>出处</th></tr></thead>
+    <tbody>
+      <tr><td>半球假说（hemisphere hypothesis）</td><td>两个半球不是「功能分工」，而是两种「注意方式」——这是本书与流行版的分野</td><td>第一部分</td></tr>
+      <tr><td>「主人」与「使者」</td><td>右半球＝主人（宽、开放、为理解），左半球＝使者（窄、聚焦、为操作）；失控时使者篡位</td><td>书名／导论／结论</td></tr>
+      <tr><td>注意（attention）</td><td>本书的核心变量：怎样注意，决定了世界以何种面貌出现</td><td>全书</td></tr>
+      <tr><td>左半球的「世界」</td><td>客体化、可操作、被切割、去语境、静态</td><td>第一部分</td></tr>
+      <tr><td>右半球的「世界」</td><td>关系性、具身、流动、语境化、活生生的整体</td><td>第一部分</td></tr>
+      <tr><td>「被背叛的主人」</td><td>现代性失衡的命名：左半球当政、右半球失位</td><td>结论</td></tr>
+      <tr><td>范畴错误（批评方用语）</td><td>从半球差异推到 2500 年文化史，被批评者视为推论越界</td><td>第 7.2 节</td></tr>
+      <tr><td>神经神话学（neuromythology，批评方用语）</td><td>批评者对「用吸引人的脑科学说法解释一切」的贬称</td><td>第 7.2 节</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s13">
+  <h2><span class="num">B</span><span>常见卡点与提示</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>★★ 最大的坑：把它当成「右脑开发」的书。</strong> 作者本人反复否认流行版（见 6.1）。若你在读的过程中开始觉得「原来我该多用右脑」，说明你正在读错它 <span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li><strong>★★ 第二大坑：把批评当「学界全盘否定」。</strong> 事实是「<strong>部分神经科学家支持、另一些明确批评</strong>」，而流行版的误读<strong>两边都反对</strong>。别用「网上一片骂声」代替学术判断 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>分清「科学」与「世界观」。</strong> 第一部有实验可对照，第二部没有。<strong>你被说服的到底是哪一半</strong>，决定了你应该对这本书抱多大信心 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>注意版本与页码。</strong> 初版 608 页、第二版 616 页，<strong>页码不同</strong>；引用时必须注明版本（第 6 节）。
+    </li>
+    <li><strong>想省时间就走短入口。</strong> RSA 动画（11 分钟）与《Ways of Attending》（44 页）是作者认可的极简版；用它们判断要不要投入 600 页 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>小心「二手转述里的书名与译名」。</strong> 中文世界书名不统一，且<strong>检索未发现正式中译本</strong>（第 6 节）；引用时用英文原名或 ISBN 最稳。
+    </li>
+  </ol>
+</section>
+
+<section id="s14">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>本报告的材料分布如下（完整清单、交叉验证记录与检索盲区见同目录的《主人与使者-来源清单.md》）：</p>
+  <ul>
+    <li><strong>出版方与图书馆编目</strong>：Yale University Press 官方书目页（第一版与第二版、ISBN、页数、获奖、背书）；英国 Yale 书目页（第二版出版日期与插图数）；Waterstones、The Nile、Bookshop.org 等零售渠道书目（交叉核对页数与 ISBN）；DBpedia／Wikipedia 条目（初版 608 页、ISBN、结构）。
+    </li>
+    <li><strong>带页码官方目录</strong>：Google Books 上第二版的内页目录（导论 p.1／第一部 p.15／第二部 p.239／结论 p.428／注释 p.463）。
+    </li>
+    <li><strong>一手批评文献（带卷期页码）</strong>：Michael C. Corballis, 〈Left Brain, Right Brain: Facts and Fantasies〉，<em>PLoS Biology</em> <strong>12(1): e1001767</strong>，2014，doi:10.1371/journal.pbio.1001767（开放获取全文）。
+    </li>
+    <li><strong>作者书外公开文本</strong>：RSA 讲稿（2010-11-17，含未编辑记录稿与网络整理稿）；RSA Animate（2011）；BBC Radio 4《Today》（2009-11-14）；《Ways of Attending》（Routledge，2019）封面文案；《The Matter with Things》（Perspectiva，2021）内容简介与导论澄清；耶鲁大学出版社博客（2020，作者自述）。
+    </li>
+    <li><strong>具名二手书评</strong>：A. C. Grayling（<em>Literary Review</em>，2009-12）；<em>The Economist</em>（2009-11-26）；Owen Flanagan（<em>New Scientist</em> CultureLab，2009-11-26）；Mary Midgley（<em>The Guardian</em>，2010-01-02）；Adam Zeman（<em>Standpoint</em>）；W. F. Bynum（<em>TLS</em>，2010-04-02，p.12）；Andrew Scull（<em>Brain</em>）；James Willis（<em>British Journal of General Practice</em>）；Lesley Rogers（<em>Laterality</em>）；<em>The Independent</em>（书评）；<em>The New Criterion</em>（2022-11，评《The Matter with Things》）。
+    </li>
+    <li><strong>中文语料</strong>：百度百科条目（作者与书名译法；西语译本信息）；新加坡《联合早报》2026 年评论（书名译法与作者 AI 观点）；台湾《财讯》专栏（概念梳理）。
+    </li>
+  </ul>
+</section>
+
+<section id="s15">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. ★★ 是否存在正式中译本（本报告最大的不确定项）</h3>
+  <p>我<strong>未检索到</strong>简体或台湾繁体译本，但<strong>不能断言它不存在</strong>——也可能存在未被命中的译本或已绝版的旧版。⇒ 若你确有该书中译本的实物，请以版权页为准；本报告所有「无中译本」的表述均为<strong>检索结论</strong>，非事实断言 <span class="tag t-inf">推断</span>。</p>
+  <h3>D2. ★ 扩增版的年份：2018 还是 2019</h3>
+  <p>本批任务提示为「2018 扩增版」，但 Yale 官方书目页、Amazon、The Nile、Waterstones、Bookshop.org 均给 <strong>2019</strong>（2019-02／03）。⇒ <strong>两个年份都列出</strong>；我未能取得 2018 年的版本记录，故以 <strong>2019 版（ISBN 9780300245929，616 页）</strong>为本报告页码依据 <span class="tag t-inf">推断</span>。</p>
+  <h3>D3. ★ 副标题是否曾被改动</h3>
+  <p>有论者称，本书初版副标题本作「…and the Making of the <strong>Modern</strong> World」，后悄悄改为「…the Making of the <strong>Western</strong> World」。但<strong>维基条目、耶鲁官网与所有零售书目均作「Western World」</strong>，我未找到「Modern World」版本的实物记录。⇒ <strong>存疑，不作为事实</strong> <span class="tag t-inf">推断</span>。</p>
+  <h3>D4. ★ 销量数字冲突</h3>
+  <p>我见到至少三个数字：<strong>10 万册</strong>（Perspectiva 页面）、<strong>15 万册</strong>（《The New Criterion》2022）、<strong>20 万册</strong>（Wikibooks/Wikipedia 相关条目）。⇒ <strong>三个都列出，不取平均、不选更像真的那个</strong>；引用时请说明出处 <span class="tag t-rep">转述</span>。</p>
+  <h3>D5. 第二部各章节的标题与页码</h3>
+  <p>Google Books 给出的官方目录只到<strong>部分级</strong>（导论／第一部／第二部／结论／注释）。⇒ 第二部内部的章节划分与页码我<strong>未取得</strong>，下部据此<strong>未逐章展开</strong>——这是<strong>取舍，不是遗漏</strong> <span class="tag t-inf">推断</span>。</p>
+  <h3>D6. 关于作者的「伪独立」网络材料</h3>
+  <p>检索中出现大量把本书斥为「伪科学」「神经神话学」的个人博客与评论长文。<strong>它们不是同行评议文献，且常互相转引</strong>。本报告<strong>不将其计入独立来源</strong>，只用可定位的期刊与具名书评（第 7.2 节）<span class="tag t-inf">推断</span>。</p>
+  <h3>D7. 我主动排除的来源</h3>
+  <p>检索过程中出现了盗版电子书站与将整本书 PDF 托管的非授权页面。按本项目契约，<strong>两者一律不使用，任何目的不例外</strong>。这构成本报告在「原文可得性」上的<strong>主动收缩</strong>：因此本报告只到 B 级，且<strong>下部不冒充「读过正文」</strong>。</p>
+</section>
+
+<footer>
+  生成于 2026-10-04 · 来源清单与交叉验证记录见同目录 <code>主人与使者-来源清单.md</code><br>
+  本页引文按<b>带页码引文（B 级）</b>处理：标页码者引自<b>带页码官方目录</b>，批评文字引自<b>带卷期页码的一手文献</b>（<i>PLoS Biology</i> 12(1): e1001767），<b>我未持原书</b>，页码请以原书复核；未标页码者仍是二手转引。★ 一句提醒：本书最容易被误读成<b>「左脑理性／右脑感性」</b>的背书 —— 作者本人<b>二十年里反复公开否认</b>那个流行版；把本书当「右脑开发」来读，正是作者反对的读法（见第 6.1 节）。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

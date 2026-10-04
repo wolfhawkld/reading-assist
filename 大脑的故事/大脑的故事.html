@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《大脑的故事》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《大脑的故事》<small>阅读指引与精华解析 · 2026-10-04</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 前置知识与目标读者</a>
+    <a href="#s2">2 全书骨架</a>
+    <a href="#s3">3 六个核心论点</a>
+    <a href="#s4">4 阅读建议</a>
+    <a href="#s5">5 配套资源</a>
+    <a href="#s6">6 中文译本怎么选</a>
+    <a href="#s7">7 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s8">8 引言：为什么脑科学和每个人有关</a>
+    <a href="#s9">9 第 1 章 我是谁（中译 p.001 起）</a>
+    <a href="#s10">10 第 2 章 我们如何感知世界（中译 p.043 起）</a>
+    <a href="#s11">11 第 3 章 谁说了算（中译 p.085 起）</a>
+    <a href="#s12">12 第 4 章 我怎样做决定（中译 p.125 起）</a>
+    <a href="#s13">13 第 5 章 我需要你吗（中译 p.165 起）</a>
+    <a href="#s14">14 第 6 章 我们会成为什么（中译 p.203 起）</a>
+    <div class="grp">附录</div>
+    <a href="#s15">A 关键定义与概念表</a>
+    <a href="#s16">B 常见卡点与提示</a>
+    <a href="#s17">C 来源清单</a>
+    <a href="#s18">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《大脑的故事》阅读指引与精华解析</h1>
+  <div class="sub">The Brain: The Story of You</div>
+  <div class="meta">
+    <div><b>作者</b>大卫·伊格曼（David Eagleman，1971– ）—— 神经科学家，斯坦福大学；早年任教于贝勒医学院，主持「知觉与行动实验室」，创办神经硬件公司 Neosensory；同名六集纪录片撰稿人与主持人</div>
+    <div><b>英文初版</b>Pantheon Books（美国）2015-10-06 · 218 页（馆藏编目；另有 224／240／256 页之说）· ISBN 9781101870532（精装）／9781101870549（电子书）· 英国由 Canongate Books 同步出版</div>
+    <div><b>配套纪录片</b>The Brain with David Eagleman（2015）· 六集 · Blink Films 制作 · PBS（美国）首播，BBC（英国）与 SBS（澳大利亚）播出 · 艾美奖提名 ·《纽约时报》2015 年度最佳电视节目之一</div>
+    <div><b>中译（现行）</b>《大脑的故事》· 闾佳 译 · 浙江教育出版社（湛庐文化策划）2019-04 · 275 页（另有书目记 300 页）· ISBN 9787553678399 · ¥69.90 · 版权页注「由作者授权出版，本书限中国大陆发行」</div>
+    <div><b>丛书定位</b>湛庐「自我进化」四部曲之一（另三本为《隐藏的自我》《飞奔的物种》《死亡的故事》）</div>
+    <div><b>荣誉与影响</b>纪录片获艾美奖提名并入选《纽约时报》2015 年度最佳电视节目；书与纪录片获广泛好评（Nature、Guardian 等）</div>
+    <div><b>状态</b>未标注已读／想读 —— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有可定位文本支撑的段落 —— 含出版方与图书馆编目的章节结构、带页码的中译目录，以及<b>带期刊卷期页码的一手书评</b>（Nature 526(7571), pp. 41–42）</li>
+    <li><span class="tag t-talk">作者谈话</span> 出自作者本人的 TED 演讲、访谈、专栏或个人站点自述 —— 不在本书里</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、书评、百科或读者读书笔记，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本书<b>仍在版权期内</b>，我未持原书、也无纸质书或中译本。本书有一个必须先说清的性质：<b>它是同名六集纪录片（PBS／BBC，Blink Films 制作）的配套书</b>，六章即六集，插图版权归 Blink Films —— 所以它天生是「为屏幕写的脚本的平面版」。<b>未标页码处一律为二手转引</b>；带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-04 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书按 <b>B 级（带页码引文）</b>标注：有<b>带页码的中译目录</b>（中译正文部件排到 p.273 的「译者后记」）、<b>带卷期页码的一手书评</b>（<i>Nature</i> <b>526(7571): 41–42</b>, doi:10.1038/526041a），以及作者官网可见的书外文本。★ 需要指出：<b>本书原理上可能达到 A 级</b>（出版方与纪录片提供了大量公开材料），但<b>我没有逐字核对全书</b>，且原书页数在各方来源间不一致（218／224／240／256），故按 B 级如实标注。<b>未标页码者为二手转引。</b></p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>这本书用六个问题——我是谁、什么是现实、谁在掌舵、我如何决定、我需要他人吗、我们会成为什么——把当代认知神经科学的主要结论串成一条「重新认识你自己」的线。</strong></p>
+  <p>它想做的不是教你脑解剖，而是让你承认一件反直觉的事：<strong>你并不像你以为的那样，直接经验着世界、清醒地知道自己在做什么。</strong> 全书反复出现的一组意象是——大脑是一座「由不同街区组成的城市」，意识只是其中一个街区；或者用作者更常说的一句话：<strong>意识是大脑里「最小的那个玩家」，通常是最后一个得知消息的人</strong> <span class="tag t-talk">作者谈话</span>。</p>
+  <p>一句话结论（也是全文最该记住的一条）：<strong>读这本书的正确期待是「建立直觉」，不是「获得论证」。</strong> 它给你的是六个可靠的反直觉画面——世界是大脑造的、记忆是重写的、情绪参与决策、自我靠他人成形——但它几乎不提供让你独立判断「这些结论有多硬」的东西。要后者，你得去看它的批评者（见第 7 节）。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>前置知识与目标读者</span><span class="caret">▾</span></h2>
+  <p><strong>需要什么底子</strong>：什么都不需要。作者在引言里明确说这本书「不预设任何专业知识，只要求好奇心和自我探索的胃口」<span class="tag t-src">原书</span>。全书几乎不出现公式（中文推荐语甚至拿《时间简史》「每加一个公式就损失一半读者」作类比），术语集中在书末术语表里。</p>
+  <p><strong>不需要什么</strong>：不需要神经科学背景，也不需要哲学训练。但反过来说——<strong>如果你已经有这两样，这本书对你的增量有限</strong>。</p>
+  <p><strong>这本书适合谁</strong>：</p>
+  <ul>
+    <li>想用<strong>一本书</strong>给脑科学建立一个整体直觉的人（这是它最对口的用途）。
+    </li>
+    <li>看过《西部世界》（作者是第二季科学顾问）或同名纪录片、想再补一遍文字版的人。
+    </li>
+    <li>关心「自由意志／神经科学进入法庭」这类议题、想要一个通俗入口的人（第 3 章）。
+    </li>
+  </ul>
+  <p><strong>这本书不适合谁</strong>：</p>
+  <ul>
+    <li>想要<strong>系统性教材</strong>的人。作者本人与 Jonathan Downar 合写过一本真正的教材《Brain and Behavior: A Cognitive Neuroscience Perspective》（牛津大学出版社，2016）——那才是教科书，本书不是 <span class="tag t-rep">转述</span>。
+    </li>
+    <li>想在<strong>哲学层面</strong>认真处理意识、自由意志的人。本书第 3、6 章的哲学讨论相当轻，多位批评者（见第 7 节）正是咬住这一点。
+    </li>
+    <li>想要<strong>「最新前沿」</strong>的人。它写于 2015 年，且是为大众电视节目而写——它对学界意味着「教科书里的共识」，不是「实验室里的争论」。
+    </li>
+  </ul>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>英文原书的结构极其简单：一段引言 ＋ 六个以问句命名的章节 ＋ 致谢／注释／术语表／图片来源。<strong>中译本的章节名不是直译，而是重新拟的</strong>（对照见下表）。中译页码取自公开书目给出的<strong>带页码中译目录</strong>，与英文页码不可直接换算。</p>
+  <table>
+    <thead><tr><th>#</th><th>英文章节（＝纪录片集名）</th><th>中译章节（含起始页）</th><th>这一章在回答什么</th></tr></thead>
+    <tbody>
+      <tr><td>—</td><td>Introduction</td><td>引言</td><td>为什么脑科学关系到每个人的生活</td></tr>
+      <tr><td>1</td><td>Who am I?</td><td>第一章 我是谁 001</td><td>大脑如何长出「你」：可塑性、记忆、青春期、意识</td></tr>
+      <tr><td>2</td><td>What is reality?</td><td>第二章 我们如何感知世界 043</td><td>你感知到的「现实」其实是大脑构建出来的</td></tr>
+      <tr><td>3</td><td>Who's in control?</td><td>第三章 谁说了算 085</td><td>无意识、习惯与自由意志</td></tr>
+      <tr><td>4</td><td>How do I decide?</td><td>第四章 我怎样做决定 125</td><td>决策：理智与情绪在大脑里怎么竞争</td></tr>
+      <tr><td>5</td><td>Do I need you?</td><td>第五章 我需要你吗 165</td><td>共情、镜像、社会性与「我们」</td></tr>
+      <tr><td>6</td><td>Who will we be?</td><td>第六章 我们会成为什么 203</td><td>感官替代、脑机接口、上传意识与未来</td></tr>
+      <tr><td>—</td><td>Acknowledgments / Endnotes / Glossary / Image credits</td><td>致谢 263／术语表 269／译者后记 273</td><td>附录部件</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法提示之一</strong>：<strong>「章」在这本书里约等于「集」</strong>。每章由十几个短问题小节组成（中译目录把它们逐条列出，例如第一章下有「人类大脑为什么不做预设 004」「你是怎样成为你的 005」「受到关爱的孩子更聪明吗 009」「青春期孩子的大脑是怎么想的 014」「成人的大脑定型了吗 020」「为什么记忆常常不靠谱 026」「不爱动脑的人老得快，是真的吗 031」「意识与大脑活跃度有什么关系 037」）<span class="tag t-src">原书</span>。⇒ 这意味着<strong>它天然适合跳读和碎片阅读</strong>，也意味着<strong>它没有一条必须按顺序推进的论证线</strong>。</p>
+  <p>★ <strong>读法提示之二</strong>：中译把章节名从「问句」改成了陈述式的短语（如 <em>What is reality?</em> → 「我们如何感知世界」，而不是「什么是现实」）<span class="tag t-rep">转述</span>。若你按英文原版标题去找章节，注意对照上表。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>六个核心论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：你并不直接经验世界——「现实」是大脑在颅骨里构建的模型</h3>
+  <p><strong>主张</strong>：全书最反直觉、也最反复出现的论断是——<strong>你感知到的从来不是世界本身，而是大脑为你在颅骨里造的一个模型</strong>。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：最硬的案例是<strong>迈克·梅（Mike May）</strong>：他三岁失明、四十多岁复明，但复明不是胜利——<strong>他无法认出自己孩子的脸</strong>，曾经赖以生存的滑雪也变得危险；因为他的视觉皮层在四十年失明里已被重新分配，<strong>他有能用的眼睛，却从没「学会看」</strong>。<span class="tag t-src">原书</span></p>
+  <p><strong>为什么重要</strong>：这个论断是整本书的支点，也顺带给第 6 章埋下伏笔——既然大脑只关心「信号里有什么信息」而不是「信号从哪来」，那么换一种输入（感官替代）原则上是成立的。<span class="tag t-inf">推断</span></p>
+  <h3>论点二：记忆不是回放，而是每次提取时被重写——因此不可靠</h3>
+  <p><strong>主张</strong>：全书拆掉的第一个日常直觉是「我的记忆像摄像机」——记忆<strong>不是回放，而是每次提取时被重写</strong>的。<span class="tag t-rep">转述</span></p>
+  <p><strong>依据</strong>：作者的招牌案例是「目击者证词不可靠」「闪光灯记忆并不比普通记忆更准」这一类发现；他在引言里就把「当然，我的记忆像摄像机」列为要被逐句拆掉的三个「当然」之一。<span class="tag t-rep">转述</span></p>
+  <p><strong>为什么重要</strong>：它直接通向本书的现实后果——司法系统对目击者证词的依赖，建立在一个认知科学上不成立的假设之上。<strong>记忆不可靠不是道德问题，是机制问题。</strong><span class="tag t-inf">推断</span></p>
+  <h3>论点三：自由意志「如果存在，空间也很小」——但本书的措辞比作者另一本书克制</h3>
+  <p><strong>主张</strong>：第 3 章把无意识、习惯与自由意志摆上台面。作者的核心立场是：<strong>意识只占大脑全部活动中极小的一段，且常常是最后一个知道消息的那一个</strong>；关于自由意志，他不说它是幻觉，而是说「如果存在，它可操作的空间很小」。<span class="tag t-talk">作者谈话</span></p>
+  <p><strong>依据</strong>：这里需要一处<strong>关键的版本区分</strong>：《Incognito》（2011）里写的是「我们不是自己行为的掌舵人」（p.129），而<strong>本书第 3 章更克制</strong>——它不主张「自由意志是幻觉」。报告因此特别提醒：<strong>别把《Incognito》的名言当成《大脑的故事》的原话。</strong><span class="tag t-src">原书</span></p>
+  <p><strong>为什么重要</strong>：作者长期推动「神经科学进入法律」，主张把司法从「向后看的惩罚」转向「向前看的风险评估与康复」。这一章正是这类主张的证据基础——<strong>证据的强度，决定了伦理结论能走多远。</strong><span class="tag t-inf">推断</span></p>
+  <h3>论点四：情绪不是理性的对立面，而是决策的必要组成</h3>
+  <p><strong>主张</strong>：第 4 章的答案是——决定不是「一个理性主体在权衡」，而是<strong>理智与情绪（以及短期奖励与长期目标）在大脑里竞争</strong>。作者站在达马西奥那个传统上：<strong>情绪是决策的必要组成，而不是它的敌人。</strong><span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：中译目录里可读到「电车困境：理智和情绪，大脑听谁的」「尤利西斯契约：未雨绸缪真的有用吗」等专节。作者的核心实用推论是：既然决策高度依赖情境，<strong>改变环境往往比强迫自己更有效</strong>。<span class="tag t-src">原书</span></p>
+  <p><strong>为什么重要</strong>：它给出本书中最可操作的一条——与其靠意志力，不如设计环境。但要留意：本章「自我损耗」（囚犯在饭后获假释的概率更高）背后的机制，<strong>在近年多项重复实验中未能复现</strong>，本书沿用了当时流行、如今存疑的结论。<span class="tag t-inf">推断</span></p>
+  <h3>论点五：自我是在与他人的连接里长出来的</h3>
+  <p><strong>主张</strong>：第 5 章的答案是——<strong>你一个人不能成其为人</strong>：自我在与他人连接的过程中成形，共情与协作不是文明的装饰，而是<strong>生存机制</strong>。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：中译目录里可读到「共情是生存必需，还是只是一种沟通策略」「为什么『适者生存』这一说法不完全正确」「非我族类，其心真的『必异』吗」等专节；一个被反复引用的实验是：给志愿者注射肉毒杆菌削弱面部肌肉后，他们识别他人情绪的能力下降。<span class="tag t-src">原书</span></p>
+  <p><strong>为什么重要</strong>：这条与作者的另一立场（去人性化是有神经与社会心理机制的，不是单纯的道德失败）合起来，把「我们／他们」的分界从道德问题推进成生物问题。但要当心：本章倚重的<strong>镜像神经元</strong>，在学界的地位近年已明显降温。<span class="tag t-inf">推断</span></p>
+  <h3>论点六：大脑「不挑输入端」——但由此跳到「上传意识」是巨大的推论跳跃</h3>
+  <p><strong>主张</strong>：第 6 章的核心论点是：既然大脑只关心「信号里有什么信息」而不关心「信号从哪来」，那么<strong>用另一种输入（如把声音变成背心的振动）原则上也能让人『听』</strong>——感官替代由此成立。<span class="tag t-talk">作者谈话</span></p>
+  <p><strong>依据</strong>：作者自己做了「感官背心」（VEST），并在 TED2015 演讲《Can we create new senses for humans?》里讲过；中译第 6 章亦有「我们的感官功能能否『更上一层楼』」一节。但有读者具体指出：所谓「新感官」其实仍建立在<strong>已有的躯体感觉</strong>之上，大脑并没有真的「学会一个新模态」，只是「从一种触觉里解出新意义」。<span class="tag t-src">原书</span></p>
+  <p><strong>为什么重要</strong>：这是全书<strong>最像科幻、也最该打折</strong>的一章——「感官替代」本身有实验支撑，但从「背心能传声」跳到「我们可以随意增加新感官、可以把意识上传」，中间是巨大的推论跳跃。<strong>把它当哲学随笔读，别当作科学判断。</strong><span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>作者本人给的路线（有据）</h3>
+  <p>作者在引言里自述的写法是「避开教科书模式，去照亮一个更深层的追问层次」，全书围绕六个问题组织，每个问题一章 <span class="tag t-src">原书</span>。他没有给出「先读哪章」的建议——因为<strong>这本书的设计本来就是「六集纪录片」，可以从任意一集进入</strong>。这一点从它的结构就能读出：六章之间是并列的，靠「你自己」这个主题串起来，而不是靠推导。</p>
+  <h3>我整理的通路</h3>
+  <p>以下路线均为我的整理，非作者所给 <span class="tag t-inf">推断</span>。</p>
+  <ul>
+    <li><strong>只读一章就读第 2 章「我们如何感知世界」（中译 p.043 起）。</strong> 理由：它是全书<strong>最能自证、也最容易向别人复述</strong>的一章——「你看到的不是世界，是大脑对世界的模型」。幻觉、迈克·梅重见光明却「不会看」、联觉、「你永远活在过去」（感知有几十毫秒延迟，大脑帮你把时间抹平）都在这里。它还顺带解释了本书第 6 章的伏笔：既然大脑不挑输入端，那么换一种输入（感官替代）就成立 <span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>想理解「这本书为什么被人批评」，必读第 3 章「谁说了算」（p.085）＋第 6 章后半（p.203 起）。</strong> 自由意志与「上传意识／永生」是全书<strong>推测性最强、也最容易说过头</strong>的两处。读完再对照第 7 节的批评，你能亲眼看到「哪些是实验、哪些是畅想」。
+    </li>
+    <li><strong>如果你只想要「已经确证的脑科学结论」</strong>：引言 ＋ 第 1、2、4 章。第 5 章（共情／镜像神经元）有一部分已在近年受到学界重新审视，第 6 章后半基本是作者的世界观，可以当「科技评论」而非「科学结论」来读 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>最优组合</strong>：先看纪录片任选一集 → 再读对应一章。因为书与片同源，这样读能最省力地获得「文字没传达出的画面」，也能最快判断这本书的调性合不合你。
+    </li>
+  </ul>
+  <h3>如果你是「已读」</h3>
+  <ul>
+    <li><strong>回头核一件事</strong>：你读完记住的是「脑科学事实」，还是「作者的态度」？这本书的说服力很大一部分来自它的<strong>语气</strong>（自信、金句多、案例戏剧化）。把语气剥掉，剩下的硬结论其实不多——这正是第 7 节批评的核心。
+    </li>
+    <li><strong>补两样东西</strong>：① 第 7 节的批评（尤其《卫报》对作者另一本书的评语，它把「神经傲慢」这个标签钉在了他的写作风格上）；② 作者 2020 年的《Livewired》——那是他把自己在本书第 1 章埋下的「可塑性」主题真正展开写的一本，可以看作本书的「单主题加长版」<span class="tag t-rep">转述</span>。
+    </li>
+  </ul>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5</span><span>配套资源</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>资源</th><th>类型</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>The Brain with David Eagleman（2015）</td><td>六集纪录片</td><td><strong>本书的「原形」</strong>。Blink Films 制作，PBS 首播、BBC 与 SBS 播出；六集即六章。艾美奖提名，《纽约时报》2015 年度最佳电视节目之一 <span class="tag t-rep">转述</span></td></tr>
+      <tr><td>TED2015「Can we create new senses for humans?」（2015-03）</td><td>演讲</td><td>作者本人讲的<strong>感官替代</strong>，即本书第 6 章「我们会成为什么」的核心案例（数据背心／VEST）<span class="tag t-talk">作者谈话</span></td></tr>
+      <tr><td>《Livewired: The Inside Story of the Ever-Changing Brain》（2020）</td><td>同作者专著</td><td>把本书第 1 章的「可塑性」主题展开；获 2020 年普利策奖提名（据多方书目）<span class="tag t-rep">转述</span></td></tr>
+      <tr><td>《Brain and Behavior: A Cognitive Neuroscience Perspective》（与 Jonathan Downar 合著，2016）</td><td>教材</td><td><strong>想要系统性知识时应当转向的书</strong>，牛津大学出版社 <span class="tag t-rep">转述</span></td></tr>
+      <tr><td>Neosensory</td><td>公司／产品</td><td>作者创办，做感官替代硬件（VEST 背心的商业化延续）<span class="tag t-rep">转述</span></td></tr>
+      <tr><td>作者个人网站 eagleman.com</td><td>一手文本</td><td>含各书介绍、访谈索引与演讲稿；本报告第 7 节引用其中数条 <span class="tag t-talk">作者谈话</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s6">
+  <h2><span class="num">6</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ 这本书<strong>只有一个正式的简体中文译本</strong>，但围绕它有一个<strong>真会让人买错的陷阱</strong>，所以这一节必须写。</p>
+  <p><strong>现行（也是唯一）简体译本</strong>：《大脑的故事》，闾佳 译，浙江教育出版社（湛庐文化策划），2019-04，ISBN 9787553678399，定价 ¥69.90。版权页注明「由作者授权出版，本书限中国大陆发行」<span class="tag t-src">原书</span>。<strong>关于页数存在两个数字</strong>：多数图书馆编目与书店记录为 <strong>275 页</strong>，百度百科条目记 <strong>300 页</strong>——按公开的中译目录，正文最后一个部件「译者后记」排到 273 页，故 <strong>275 页更可信</strong>，但两个数字都列出（见附录 D）<span class="tag t-rep">转述</span>。</p>
+  <p><strong>未发现台湾繁体正式译本。</strong> 检索中出现的繁体条目（如「天龍圖書」页面）实为<strong>在台湾销售的大陆简体版</strong>，不是独立译本 <span class="tag t-rep">转述</span>。</p>
+  <p><strong>⚠ 必须避开的陷阱：湛庐「自我进化」四部曲。</strong></p>
+  <p>这本书是湛庐打包的一套「四部曲」之一，四本都是伊格曼写的，<strong>但只有一本是 The Brain: The Story of You</strong>：</p>
+  <table>
+    <thead><tr><th>套装里的书名</th><th>对应英文原著</th><th>是什么</th></tr></thead>
+    <tbody>
+      <tr><td><strong>《大脑的故事》</strong></td><td><strong>The Brain: The Story of You（2015）</strong></td><td><strong>本书</strong>（纪录片配套书）</td></tr>
+      <tr><td>《隐藏的自我》</td><td>Incognito（2011）</td><td>讨论无意识与自由意志；<strong>作者另一本书</strong></td></tr>
+      <tr><td>《飞奔的物种》</td><td>The Runaway Species（2017，与 Anthony Brandt 合著）</td><td>讨论创造力；<strong>另一本书</strong></td></tr>
+      <tr><td>《死亡的故事》</td><td>Sum: Forty Tales from the Afterlives（2009）</td><td>虚构短篇集，关于死后的四十种设想；<strong>另一本书</strong></td></tr>
+    </tbody>
+  </table>
+  <p>⇒ <strong>买之前认准书名是《大脑的故事》</strong>。若你在二手平台或电子书渠道看到「伊格曼 著」，务必核对副题／原作名是否为 <em>The Brain: The Story of You</em>。注意《隐藏的自我》与《大脑的故事》主题有明显重叠（都谈无意识与自由意志），<strong>最容易混的就是这一对</strong> <span class="tag t-inf">推断</span>。</p>
+  <p><strong>怎么选，一句话</strong>：<strong>买浙江教育出版社 2019 年闾佳译本即可，没有别的选择，也不需要纠结。</strong> 它是目前唯一由作者授权的中文本，且译自与纪录片对应的完整英文原著 <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">7</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ 这一节是本书报告里<strong>最该读的部分</strong>。原因是：这本书本身<strong>批评面偏软</strong>——它得到的多是「好读、好看」的赞扬，围绕它的争议<strong>主要不在具体结论，而在作者的写作姿态与「神经科学能说多少」这个方法论问题</strong>上。而这些批评大多针对他的<strong>整体作品</strong>（尤其 2011 年的《Incognito》），需要你把它们<strong>迁移</strong>过来读。</p>
+  <h3>7.1 作者本人的立场（先把靶子认准）</h3>
+  <p>理解围绕这本书的争议，先要知道伊格曼站哪边。三条：</p>
+  <ol>
+    <li><strong>神经可塑性是他全部作品的底色。</strong> 他从「大脑终生在重写自己的线路」出发，推出一系列主张：身份是不断重塑的、感官可以不挑输入端（换一种输入大脑也能学会）。这条立场在本书第 1、6 章最集中，也是他最不引起争议的一条 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>意识是「团队的竞赛」，不是「一个总经理」。</strong> 他把大脑比作「竞争对手组成的团队」（team of rivals）或「神经议会」，不同系统争夺控制权，「你」是这个竞争的结果而非主导者 <span class="tag t-talk">作者谈话</span>（此说主要出自《Incognito》与作者访谈，精神贯穿本书第 3 章）。
+    </li>
+    <li><strong>「我们不是自己行为的掌舵人」——但这句话不是本书里的。</strong> 这句话出自《Incognito》（2011，p.129）：「We are not the ones driving the boat of our behavior, at least not nearly as much as we believe.」<span class="tag t-src">原书</span> 本书第 3 章讨论的是同一个问题（自由意志），但<strong>更克制</strong>：他不说自由意志是幻觉，而是说「如果存在，它可操作的空间很小」。⇒ <strong>别把《Incognito》的名言当成《大脑的故事》的原话。</strong>
+    </li>
+  </ol>
+  <h3>7.2 「Possibilianism」：作者在书外的元立场，也是一个被点名批评过的立场</h3>
+  <p>2009 年，伊格曼在 NPR 访谈中被问到宗教信仰，答曰「我称自己为一个 <strong>Possibilian</strong>（可能性主义者）」——既不站传统宗教，也不站强无神论，而是「把多种假说同时摆在桌上，用科学工具去筛」<span class="tag t-talk">作者谈话</span>。他 2010 年专门做了一场 TEDx 演讲《Why I am a Possibilian》，《纽约客》2011 年的人物专访即以《The Possibilian》为题（作者 Burkhard Bilger）<span class="tag t-rep">转述</span>。</p>
+  <p><strong>这条立场被一位名人当面开火过</strong>：新无神论者 Sam Harris 批评 possibilianism「<strong>在智识上不诚实</strong>」，说它把强无神论描述成稻草人，并称这个立场「<strong>说到底就是无神论</strong>」，要求伊格曼承认它「只是一件行为艺术，而不是一个严肃的论点」。伊格曼的回应是：这种「<strong>大放厥词</strong>」正是他不愿归入新无神论阵营的原因 <span class="tag t-talk">作者谈话</span>。</p>
+  <p>★ <strong>为什么这对读本书重要</strong>：伊格曼的「多假说并存」气质，正是本书第 3、6 章那种「我只说可能性、不下断言」的写法之源。<strong>你可以把它读成谦逊，也可以读成回避</strong>——这是本书评价分歧的一个深层原因 <span class="tag t-inf">推断</span>。</p>
+  <h3>7.3 批评面：一顶帽子 ——「神经傲慢」（neuro-hubris）</h3>
+  <p><strong>最锋利的一刀来自《卫报》，而且砍的正是他的写作风格。</strong> 2011 年 4 月 24 日，Alexander Linklater 在《卫报》评《Incognito》，给出的判词是：</p>
+  <blockquote>
+    <p>这本书属于一股「<strong>神经傲慢</strong>」（neuro-hubris）的潮流——「对一个仍在襁褓中的科学的种种推论，被疯狂地夸大」。</p>
+  </blockquote>
+  <p>同一篇里还有两句更刺人的：</p>
+  <blockquote>
+    <p><strong>「《Incognito》里其实没有那么多真正的神经科学。」</strong>（It isn't even that much actual neuroscience in Incognito.）</p>
+    <p>「伊格曼是最罕见的一类科学作家：<strong>相比于把知识解释成事实，他更擅长把它翻译成虚构</strong>。」（better at translating his knowledge into fiction than explaining it as fact.）<span class="tag t-rep">转述</span></p>
+  </blockquote>
+  <p>★ <strong>这条批评要这样迁移</strong>：它针对的是《Incognito》，但指向的写作倾向——<strong>推论被写得比证据更确定</strong>——是伊格曼的<strong>通病</strong>，在《大脑的故事》里同样可见（尤其第 6 章）。而且请注意一个常被忽略的事实：<strong>Linklater 那篇评的《Incognito》是他更「硬」的一本书</strong>；他后来那本《Sum》反而是虚构集。批评者真正不满的是：<strong>他的「硬」书也不够硬</strong> <span class="tag t-inf">推断</span>。</p>
+  <p><strong>另外两处常见批评</strong>（来自书评与读者，均可迁移）：</p>
+  <ul>
+    <li><strong>「过度简化／深度不足」</strong>。汇总类书评的共识是：它适合入门，但「资深读者会觉得它缺乏学术严谨性」「对一些复杂问题做了过度简化」<span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>「把世界说成只存在于感知里」</strong>。有读者与书评指出，作者说外部世界「无色、无味、无声」，<strong>低估了大脑重建出的那份现实其实是惊人地准确、可靠、可复现的</strong>——六位画师同画一景会画出几乎一致的画面，这本身就说明「现实」不是各人造各的幻觉。这条批评同时也是一句提醒：<strong>本书第 2 章最著名的那句「你从未直接经验世界」，是修辞，不是本体论结论</strong> <span class="tag t-rep">转述</span>。
+    </li>
+  </ul>
+  <p><strong>内容本身得到的一手肯定（也应当并置）</strong>：Nature 2015 年 10 月 1 日的书评（Daniel Bor 撰，<em>Nature</em> <strong>526(7571): 41–42</strong>，doi:10.1038/526041a）称这本书「<strong>对『我们颅骨里的血肉如何生成自我』做了一次有深度的研究</strong>」，并肯定它围绕「什么是现实」这类根本问题、调用经典与最新发现来展示神经科学的位置 <span class="tag t-src">原书</span>。</p>
+  <p>★ ⇒ <strong>一句话判断</strong>：<strong>这本书是「极好的入门，极弱的论证」。</strong> 它拿了入门书里最好的分，也拿了「别拿它当证据」的警告。两件事同时为真。</p>
+  <h3>7.4 一条跨书线索（本书单内部）</h3>
+  <p>★ <strong>给罗伯特·萨波斯基《行为》（Behave）写推荐语的人，正是伊格曼。</strong> 他的推荐语原文是：</p>
+  <blockquote>
+    <p>「<strong>As wide as it is deep, this book is colorful, electrifying, and moving.</strong> Sapolsky leverages his deep expertise to ask the most fundamental questions about being human—from acts of hate to acts of love, from our compulsion to dehumanize to our capacity to rehumanize.」<span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>⇒ <strong>这条线索值得记下的原因是它构成一个张力</strong>：伊格曼与萨波斯基都倾向「行为受生物学约束、法律应当据此重估责任」，但<strong>萨波斯基走得更远</strong>——他在《Determined》（2023）里主张<strong>彻底没有自由意志</strong>（strong determinism，不应有「应得」意义上的惩罚）；而伊格曼的立场更<strong>温和、更工程化</strong>：不说自由意志不存在，只说它的空间很小，并主张把司法从「向后看的惩罚」转向「向前看的风险评估与康复」<span class="tag t-inf">推断</span>。<strong>同一套脑科学证据，两个人得出了不同的伦理结论</strong>——这正是本书单里值得并读的一处。此外，伊格曼也写过一封公开的立场文（由 Mockingbird 等平台转载），称「许多成年人拥有同等决策能力的想法是善意但明显错误的」<span class="tag t-src">原书</span>。</p>
+  <p>结构说明：本章按<strong>引言 ＋ 六章</strong>展开，每节分三块——<strong>这一章在回答什么</strong>（问题）、<strong>关键论证与例证</strong>（内容）、<strong>可疑之处</strong>（我的保留意见或材料边界）。凡我没有直接材料支撑的具体叙事细节，我<strong>不编</strong>，宁可留白并写明。★ 再次提醒：我没有原书与中译本，凡标 <span class="tag t-src">原书</span> 者以「带页码目录／一手书评／作者官网可见文本」为限，其余为 <span class="tag t-rep">转述</span> 或 <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">8</span><span>引言：为什么脑科学和每个人有关</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>「我为什么要关心大脑？」——引言要在几页里把你从「大脑与我无关」推到「我的全部生活都发生在三磅湿组织里」。</p>
+  <h3>关键论证与例证</h3>
+  <p><strong>作者自述的写作动机是</strong>：脑科学进展太快，罕有人停下来「退后一步，看清这片地形的全貌」，说清这些研究对我们的生命意味着什么；这本书就是要「用一个平淡简单的方式」去做这件事 <span class="tag t-src">原书</span>。</p>
+  <p><strong>引言里最出名的比喻是「城市」</strong>：作者把大脑比作一座由不同街区组成的城市，神经回路在其中互相争夺主导权，而我们的行为常常发生在我们并不知晓、也未必能控制的层面上；同时他又说大脑是「一个讲故事的人」，为你构造出一套能让你在其中导航的叙事 <span class="tag t-src">原书</span>。</p>
+  <p><strong>一个反常识的自我定位</strong>：他写道，我们之所以很少谈论大脑，不是因为它不重要，而是因为<strong>我们被关在自己的现实里，以至于「很难意识到自己被关在什么东西里」</strong>——「当然，颜色存在于外面的世界里；当然，我的记忆像摄像机；当然，我知道我信念的真实理由」<span class="tag t-src">原书</span>。这三句「当然」是全书的靶子，后面六章逐句拆。</p>
+  <h3>可疑之处</h3>
+  <p>引言给出了立场（「你对现实的直觉是错的」）和方法（用六章拆六个直觉），但<strong>没有给出任何限定</strong>：它不区分「已被反复验证的」和「仍在争论的」。这是本书整体风格的第一处预演——<strong>先给你震撼，再（很少）给你边界</strong> <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">9</span><span>第 1 章 我是谁（中译 p.001 起）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>「你是谁」这个问题，如果拆到生物层面，答案是什么？答案是：<strong>你不是一个固定的东西，而是一段不断被重写的历史。</strong></p>
+  <h3>关键论证与例证</h3>
+  <p><strong>① 大脑不「预设」，它靠经验接线。</strong> 新生儿脑内的神经元彼此独立、缺乏连接，因此几乎不能动、也没有正常感官；随着外界信息涌入，神经元以突触形式迅速连接，<strong>两岁时突触数量超过一百万亿</strong>；此后逐步修剪，<strong>成年稳定在约五十万亿</strong>（即成年后连接数比两岁少一半）<span class="tag t-src">原书</span>。作者把这叫「大脑不做预设」——它留了大量的空白，等着世界来填。</p>
+  <p><strong>② 青春期、成年期不是同一台机器。</strong> 中译目录里能直接读到的相关小节包括「受到关爱的孩子更聪明吗」「青春期孩子的大脑是怎么想的」「成人的大脑定型了吗」<span class="tag t-src">原书</span>；大意是不同发育阶段起主导的脑区不同，青春期对社会评价格外敏感、成年后逐步让位于更理性的调控——这条线索也见于多篇二手概要 <span class="tag t-rep">转述</span>。</p>
+  <p><strong>③ 记忆不可靠——「你的记忆像摄像机」这个直觉是错的。</strong> 记忆不是回放，而是每次提取时被<strong>重写</strong>的。作者的招牌案例是「目击者证词不可靠」「闪光灯记忆并不比普通记忆准」这一类发现 <span class="tag t-rep">转述</span>。</p>
+  <p><strong>④ 最戏剧化的案例：查尔斯·惠特曼。</strong> 1966 年美国得州大学塔楼枪击案，凶手惠特曼在作案前留下便条，要求死后解剖其大脑；解剖发现一个肿瘤压迫到了<strong>杏仁核</strong>（与攻击性相关的结构）<span class="tag t-src">原书</span>。作者用这个案例指出：<strong>平时无害的人可能因为脑部病变而行为骤变</strong>。</p>
+  <h3>可疑之处</h3>
+  <ul>
+    <li><strong>惠特曼案是被过度使用的案例。</strong> 它确实存在（肿瘤压迫杏仁核是解剖事实），但它常被当作「坏人其实是病人」的简单证明；<strong>单个案例不能支撑一个普遍结论</strong>。读者评论里已有人指出这一点，认为它把一个复杂案件「简化成了一个脑区」<span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>「五十万亿 vs 一百万亿」这类数字</strong>在二手概要中广泛流传且彼此一致，但<strong>我未能核对原书给出的确切来源</strong>；数字方向（成年少于两岁）是学界共识，具体量级以原书为准 <span class="tag t-inf">推断</span>。
+    </li>
+  </ul>
+</section>
+
+<section id="s10">
+  <h2><span class="num">10</span><span>第 2 章 我们如何感知世界（中译 p.043 起）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>「我看到的、听到的，是真的吗？」——答案：<strong>你感知到的从来不是世界本身，而是大脑为你在颅骨里造的一个模型。</strong></p>
+  <h3>关键论证与例证</h3>
+  <p><strong>★ 全章最硬的案例是迈克·梅（Mike May）。</strong> 他三岁失明，四十多岁通过手术復明；但复明不是胜利——<strong>他无法认出自己孩子的脸</strong>，曾经赖以生存的滑雪也变危险了。作者的解释是：<strong>他的视觉皮层在四十年的失明里已被重新分配</strong>，他有能用的眼睛，却从没「学会看」<span class="tag t-src">原书</span>。⇒ 这个案例同时是第 1 章（可塑性）与第 2 章（感知是被构建的）的支点。</p>
+  <p><strong>「你永远活在过去」（感知有延迟）。</strong> 从外界刺激到达你的感官，到你意识到它，中间有一段时间差；大脑把这几十毫秒「抹平」了，制造出「我正处在当下」的感觉。中译目录里有专节「为什么说我们永远活在过去」<span class="tag t-src">原书</span>。</p>
+  <p><strong>联觉（synesthesia）。</strong> 约 4% 的人有某种形式的联觉（如「看到」声音、把字尝出味道）；作者是联觉研究的权威之一（早年与 Richard Cytowic 合著《Wednesday is Indigo Blue》）<span class="tag t-src">原书</span>。</p>
+  <p><strong>「看到」需要练习。</strong> 作者举婴儿视觉与「假肢视觉／换一种输入」的例子说明：<strong>感知是一种技能，不是一次成像</strong>。这为第 6 章的感官替代埋下逻辑伏笔——如果感知只是「大脑对某套信号的解释」，那么换一套信号（背心传声）原则上也能学会。</p>
+  <h3>可疑之处</h3>
+  <ul>
+    <li>★ <strong>这是全书最容易被「读过头」的一章。</strong> 「你从未直接经验世界」是一句<strong>认知科学的常识</strong>（感知的确是建构的），但它常被引伸成<strong>本体论怀疑论</strong>（「外面可能根本没什么」）。作者本人未必主张后者，但<strong>他的修辞给了这种引伸空间</strong>——这正是 6.3 那条「低估了大脑所造现实之可靠」的批评的落点 <span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>「所有人造的幻觉各各不同」这条推论要当心</strong>：感知既有建构性也有<strong>高度的跨个体一致性</strong>（六位画师画同一景会画出相近画面）。把「建构」等同于「主观任意」，是本章最典型的误读 <span class="tag t-inf">推断</span>。
+    </li>
+  </ul>
+</section>
+
+<section id="s11">
+  <h2><span class="num">11</span><span>第 3 章 谁说了算（中译 p.085 起）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>「是我在控制自己吗？」——这一章把无意识、习惯与自由意志摆上台面，也是全书<strong>争议密度最高</strong>的一章。</p>
+  <h3>关键论证与例证</h3>
+  <p><strong>① 无意识是大脑的「默认模式」。</strong> 中译目录里的章节名包括「无意识是大脑的一种自我保护吗」「『熟能生巧』是怎么一回事」「为什么有意做某事容易适得其反」「意识到底有什么用」「人类真的有自由意志吗」<span class="tag t-src">原书</span>。</p>
+  <p><strong>② 意识是「最小的玩家」。</strong> 作者反复强调：你意识到的部分，只是大脑全部活动中极小的一段，且往往是<strong>最后</strong>知道消息的那一个 <span class="tag t-talk">作者谈话</span>。</p>
+  <p><strong>③ 关于自由意志，本书的措辞比《Incognito》克制。</strong> 参见 6.1：他在《Incognito》里写下「我们不是自己行为的掌舵人」，在本书里则更多是「如果自由意志存在，它的空间很小」——<strong>他并不主张「自由意志是幻觉」</strong> <span class="tag t-inf">推断</span>。</p>
+  <p><strong>④ 与司法相连。</strong> 作者长期推动「神经科学进入法律」（创办 Initiative on Neuroscience and Law），主张把司法从「向后看的惩罚」转向「向前看」的<strong>风险评估与康复</strong>——因为行为的生物学根源使得「同等决策能力」这个法律假定站不住 <span class="tag t-src">原书</span>。</p>
+  <h3>可疑之处</h3>
+  <ul>
+    <li>★ <strong>这一章的科学与哲学被混在一起了。</strong> 「无意识先于意识做出决定」的实验（如 Libet 传统）在学界仍有<strong>解释争议</strong>——它能证明的比作者暗示的要少。本书通常不给这类限定，这正是 6.3 批评的适用区域 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>读者反应两极</strong>：多位读者指出，书中大量案例「似乎在否认自由意志」，而作者「又费很大力气否认自己在否认」——这种摇摆让本章的立场显得不够干净 <span class="tag t-rep">转述</span>。
+    </li>
+  </ul>
+</section>
+
+<section id="s12">
+  <h2><span class="num">12</span><span>第 4 章 我怎样做决定（中译 p.125 起）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>「决定是怎么做出的？」——答案：<strong>不是一个理性主体在权衡，而是理智与情绪（以及短期奖励与长期目标）在大脑里竞争，赢的那个说话。</strong></p>
+  <h3>关键论证与例证</h3>
+  <p><strong>① 电车困境：理智与情绪，大脑听谁的。</strong> 中译目录有专节「电车困境：理智和情绪，大脑听谁的」<span class="tag t-src">原书</span>。作者的立场是：<strong>情绪不是理性的对立面，而是决策的必要组成</strong>（这一点与达马西奥的传统一致）。</p>
+  <p><strong>② 「尤利西斯契约」：与未来的自己签约。</strong> 中译目录里的关键小节包括「我们为什么会出现选择障碍」「人类为什么要预测未来」「为什么我们有时『情愿』上当」「尤利西斯契约：未雨绸缪真的有用吗」「自我损耗：为什么囚犯在饭后获假释的概率更高」<span class="tag t-src">原书</span>。⇒ 「尤利西斯契约」指人<strong>预先限制未来的自己</strong>（如把工资自动存起来、让自己没法反悔），因为「未来的你」和「现在的你」其实是<strong>不同的利益主体</strong>。</p>
+  <p><strong>③ 环境比意志力更管用。</strong> 作者的核心实用推论是：既然决策高度依赖情境，<strong>改变环境往往比强迫自己更有效</strong>（想健身就约人、想少刷手机就把手机放远处）<span class="tag t-rep">转述</span>。</p>
+  <h3>可疑之处</h3>
+  <ul>
+    <li>★ <strong>「自我损耗」（ego depletion）这条要打折。</strong> 中译目录里那条「囚犯在饭后获假释的概率更高」，其背后的「血糖／自我损耗」机制在近年<strong>多项重复实验未能复现</strong>。本书成书于 2015 年，<strong>沿用了当时流行、如今存疑的结论</strong>——这是读一本「时效性科普」必须留的心 <span class="tag t-inf">推断</span>（并见附录 D）。
+    </li>
+    <li><strong>「尤利西斯契约」很不错，但它是策略，不是科学结论</strong>。把它当「大脑真有两个自我」的证据会过头。
+    </li>
+  </ul>
+</section>
+
+<section id="s13">
+  <h2><span class="num">13</span><span>第 5 章 我需要你吗（中译 p.165 起）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>「我一个人能不能成其为人？」——答案：<strong>不能。自我是在与他人的连接里长出来的。</strong></p>
+  <h3>关键论证与例证</h3>
+  <p><strong>① 为什么有真人电影还要看动画片。</strong> 中译目录的第一节就是「有真人电影，我们为什么还要看动画片」<span class="tag t-src">原书</span>——它其实是在讲<strong>大脑对面孔、对『像人的东西』的识别与反应</strong>，以及拟人化。</p>
+  <p><strong>② 镜像反应：模仿是人的天分。</strong> 中译有「镜像反应：模仿是人类自我完善的天分吗」<span class="tag t-src">原书</span>。一个被反复引用的实验是：<strong>给志愿者注射肉毒杆菌削弱面部肌肉</strong>后，他们识别他人情绪的能力下降——说明「模仿」参与「理解情绪」<span class="tag t-rep">转述</span>。</p>
+  <p><strong>③ 共情与利他：是策略还是必需。</strong> 中译有「共情是生存必需，还是只是一种沟通策略」「为什么『适者生存』这一说法不完全正确」<span class="tag t-src">原书</span>——作者主张共情与协作是<strong>生存机制</strong>，而非文明的装饰。</p>
+  <p><strong>④ 「非我族类」与「人以群分」。</strong> 中译有「非我族类，其心真的『必异』吗」「『人以群分』是保障还是障碍」<span class="tag t-src">原书</span>。作者用<strong>种族灭绝</strong>等案例说明：去人性化（把「他们」排除出「我们」）是有神经与社会心理机制的，不是单纯的道德失败 <span class="tag t-rep">转述</span>。</p>
+  <h3>可疑之处</h3>
+  <ul>
+    <li>★ <strong>「镜像神经元」在本书里被用得很重，但它在学界的地位已经降温。</strong> 中译目录直接出现「镜像神经元」，而学界近年对「镜像神经元＝共情／理解他人」这一强解释<strong>有不少质疑</strong>（镜像神经元是否存在、其功能是否被过度外推，仍有争论）。读本章时，把「镜像神经元」当作<strong>一个仍在讨论的概念</strong>，而不是已定论 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>这一章与第 6 章的「我们」有重叠</strong>：社会性既是「我为什么需要你」，也通向「我们会成为什么」。两章的边界略模糊。
+    </li>
+  </ul>
+</section>
+
+<section id="s14">
+  <h2><span class="num">14</span><span>第 6 章 我们会成为什么（中译 p.203 起）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>「技术会把『人』带向哪里？」——这是全书<strong>最像科幻、也最该打折</strong>的一章。</p>
+  <h3>关键论证与例证</h3>
+  <p><strong>① 感官替代：大脑不挑输入端。</strong> 作者的核心论点是：既然大脑只关心「信号里有什么信息」而不关心「信号从哪来」，那么<strong>用另一种输入（如把声音变成背心的振动）原则上也能让人『听』</strong>。他自己做了「感官背心」（VEST），并在 TED2015 演讲《Can we create new senses for humans?》里讲过 <span class="tag t-talk">作者谈话</span>。中译有「我们的感官功能能否『更上一层楼』」<span class="tag t-src">原书</span>。</p>
+  <p><strong>② 脑机接口。</strong> 中译目录里有「人类需要 AI，还是更需要自身 AI 化」；相关的著名案例是四肢瘫痪的 Jan Scheuermann 用<strong>植入电极直接控制机械臂</strong>（能自己拿巧克力吃）<span class="tag t-rep">转述</span>。</p>
+  <p><strong>③ 上传意识、永生、计算机能否思考。</strong> 中译目录里可读到「大脑中的信息能全部保存下来吗」「用计算机模拟人类意识，有没有意义」「人类能否创造出新智能」「计算机真的能思考吗」「意识能摆脱大脑独立存在吗」「我们距『超人类』时代还有多远」「『庄周梦蝶』还是『蝶梦庄周』」「我们是否可以不靠大脑存在」<span class="tag t-src">原书</span>。⇒ 这一串问题基本是<strong>畅想</strong>，不是已证结论。</p>
+  <h3>可疑之处</h3>
+  <ul>
+    <li>★ <strong>这是全书批评火力最应集中的地方。</strong> 「感官替代」本身是<strong>有实验支撑的</strong>（背心训练是真实研究）；但从「背心能传声」跳到「我们可以随意增加新感官、可以把意识上传」，中间是<strong>巨大的推论跳跃</strong>——这正是 6.3 那条「对一个襁褓中的科学的推论被夸大」的正面靶子。读者评论里也有人具体指出：所谓「新感官」其实仍建立在<strong>已有的躯体感觉</strong>之上，大脑并没有真的「学会一个新模态」，只是「从一种触觉里解出新意义」<span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>「是否可以不要大脑存在」这类问题</strong>在书里更像<strong>思想实验的引子</strong>，不是科学主张。<strong>把它当哲学随笔读，别当作科学判断</strong> <span class="tag t-inf">推断</span>。
+    </li>
+  </ul>
+</section>
+
+<section id="s15">
+  <h2><span class="num">A</span><span>关键定义与概念表</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>概念</th><th>一句话</th><th>首次集中出现</th></tr></thead>
+    <tbody>
+      <tr><td>大脑的可塑性</td><td>大脑终生在重写自己的神经连接，身份是这段重写的历史</td><td>第 1 章</td></tr>
+      <tr><td>突触修剪</td><td>两岁突触超一百万亿，成年修剪到约五十万亿——连接是被「选出来」的</td><td>第 1 章</td></tr>
+      <tr><td>记忆的重写</td><td>记忆不是回放而是每次提取时被重写，故不可靠</td><td>第 1 章</td></tr>
+      <tr><td>感知即构建</td><td>你经验的不是世界，是大脑为你在颅骨里造的模型</td><td>第 2 章</td></tr>
+      <tr><td>「你永远活在过去」</td><td>感知有延迟，大脑把延迟抹平，制造「当下」的感觉</td><td>第 2 章</td></tr>
+      <tr><td>联觉</td><td>一种感觉通道被触发时自动唤起另一种（约 4% 的人有）</td><td>第 2 章</td></tr>
+      <tr><td>无意识／意识是「最小玩家」</td><td>意识只占大脑活动极小一段，且常常最后一个知情</td><td>第 3 章</td></tr>
+      <tr><td>自由意志（本书立场）</td><td>不说它是幻觉，只说「若存在，空间很小」</td><td>第 3 章</td></tr>
+      <tr><td>尤利西斯契约</td><td>预先限制「未来的自己」，因为未来你与现在你是不同利益主体</td><td>第 4 章</td></tr>
+      <tr><td>环境胜过意志力</td><td>决策依赖情境，改环境比硬扛更有效</td><td>第 4 章</td></tr>
+      <tr><td>镜像反应</td><td>模仿他人在「理解他人情绪」中起作用</td><td>第 5 章</td></tr>
+      <tr><td>感官替代</td><td>换一种输入通道（如背心振动）大脑也能学会解出信息</td><td>第 6 章</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s16">
+  <h2><span class="num">B</span><span>常见卡点与提示</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>「你从未直接经验世界」不等于「世界不存在」。</strong> 认知科学的结论是「感知是被建构的」，不是「外部世界是幻觉」。别把第 2 章的修辞读成本体论 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>分不清「实验」和「畅想」。</strong> 读第 3 章和第 6 章时，随时问一句「这句话背后有实验吗，还是只是作者的世界观」。全书不给你这条界线，得你自己划 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>把《Incognito》的名言当成本书原话。</strong> 「我们不是自己行为的掌舵人」出自 2011 年的《Incognito》，不是本书；本书第 3 章的措辞更克制（见 6.1）<span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>把畅销／名人推荐当成论证成立的证据。</strong> 本书的背书阵容（Stephen Fry、Brian Greene 等）与纪录片奖项证明的是<strong>接受度</strong>，不是<strong>严谨度</strong>。别用「豆瓣高分」推断科学可靠性 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>时效性风险</strong>：本书写于 2015 年。凡涉及「自我损耗」「镜像神经元」「无意识先于意识」的段落，都可能落在<strong>此后被重新审视</strong>的区间里——读时留个心眼（附录 D）<span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>买书认准书名。</strong> 套装里另三本（《隐藏的自我》《飞奔的物种》《死亡的故事》）都是作者的其他书，不是这一本（第 6 节）<span class="tag t-src">原书</span>。
+    </li>
+  </ol>
+</section>
+
+<section id="s17">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>本报告的材料分布如下（完整清单、交叉验证记录与检索盲区见同目录的《大脑的故事-来源清单.md》）：</p>
+  <ul>
+    <li><strong>出版方与图书馆编目</strong>：Pantheon 书目信息（ISBN、页数、出版日期）；美国盐湖城公共图书馆（给出英文目录与 218 页）；Library Journal 2015-11-15 书评（Beth Dalton）；多家中文图书馆编目（对外经贸大学、中国海洋大学、中国人民大学等，给出中译本 ISBN、页数、译者）；百度百科条目（给出<strong>带页码的中译目录</strong>）。
+    </li>
+    <li><strong>一手书评（带卷期页码）</strong>：Daniel Bor, "Neuroscience: The mechanics of mind", <em>Nature</em>，<strong>526(7571): 41–42</strong>，2015-10-01，doi:10.1038/526041a（评本书）。
+    </li>
+    <li><strong>作者书外公开文本</strong>：TED2015 演讲《Can we create new senses for humans?》（2015-03）；关于「Possibilianism」的 NPR 访谈、TEDx 演讲与《纽约客》人物专访（Burkhard Bilger，2011-04-25）；作者个人网站 eagleman.com 上的书目与评论汇编。
+    </li>
+    <li><strong>纪录片信息</strong>：Wikipedia「The Brain with David Eagleman」（六集、Blink Films、PBS/BBC/SBS、导演与制片名单）；PBS 发行 DVD 的图书馆编目（分集与主创）。
+    </li>
+    <li><strong>二手书评与读者评论</strong>：《卫报》Alexander Linklater 对《Incognito》的书评（2011-04-24）；汇总类书评的「reception」段落；LibraryThing、Goodreads 读者评论（用于「读者反应分布」，不用于「书里写了什么」）。
+    </li>
+  </ul>
+</section>
+
+<section id="s18">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. ★ 原书页数与「两岁／成年突触数」的具体来源</h3>
+  <p>英文原书页数在不同来源间不一致（218／224／240／256 页）；中译本页数亦有 275／300 两说。「一百万亿→五十万亿」突触数<strong>方向可靠、量级以原书为准</strong>。⇒ 引用时请以你手上版本的版权页与正文为准 <span class="tag t-inf">推断</span>。</p>
+  <h3>D2. ★ 「自我损耗／血糖」相关结论的当代地位</h3>
+  <p>第 4 章涉及的「自我损耗」（ego depletion）与「囚犯饭后获假释概率更高」等结论，在本书出版后<strong>遭遇多个重复实验失败</strong>。我<strong>没有逐条核对本书原文是否引用这些研究、以及措辞有多强</strong>，故不替书下结论，只标出「此处有未复现风险」。⇒ <strong>请以原始论文与其后的重复研究为准。</strong></p>
+  <h3>D3. ★ 镜像神经元的地位</h3>
+  <p>第 5 章使用「镜像神经元」解释共情。学界对该概念的范围与解释力<strong>仍有相当争论</strong>。我未核对本书把它写到了多强的程度 <span class="tag t-inf">推断</span>。</p>
+  <h3>D4. 中译本的完整目录页码</h3>
+  <p>我拿到的是<strong>部分</strong>带页码的中译目录（截至「译者后记 273」）。英文原书有无更细的小节编号、以及中译是否<strong>逐节对应</strong>，我未逐项核对 <span class="tag t-inf">推断</span>。</p>
+  <h3>D5. 台湾是否有独立繁体译本</h3>
+  <p>检索未发现，但<strong>不能排除</strong>存在未被我命中的版本。若你手上有繁体版，请以版权页为准 <span class="tag t-inf">推断</span>。</p>
+  <h3>D6. 纪录片与书的对应关系细节</h3>
+  <p>六集与六章的<strong>一一对应</strong>有充分依据（集名与章名同源、插图版权归 Blink Films、作者同时是撰稿人与主持人）。但<strong>各集的剪辑与书中文字的增删差异</strong>我未逐集比对 <span class="tag t-inf">推断</span>。</p>
+  <h3>D7. 我主动排除的来源</h3>
+  <p>检索过程中出现了盗版电子书站（如 libgen／oceanofpdf 系）。按本项目契约，<strong>该来源一律不使用，任何目的不例外</strong>。这构成本报告在「原文可得性」上的一处<strong>主动收缩</strong>：因此我只把带页码目录与一手书评作为可定位证据，正文层一律不冒充「核对过原书」。</p>
+</section>
+
+<footer>
+  生成于 2026-10-04 · 来源清单与交叉验证记录见同目录 <code>大脑的故事-来源清单.md</code><br>
+  本页引文按<b>带页码引文（B 级）</b>处理：标注页码的条目引自公开的<b>带页码中译目录</b>与<b>带卷期页码的一手书评</b>，<b>我未持原书</b>，页码请以原书复核；未标页码者仍是二手转引。★ 一句提醒：本书与作者另一本书《Incognito》极易混淆 ——「我们不是自己行为的掌舵人」出自《Incognito》(p.129)，<b>不是本书原话</b>（见第 6.1 节与附录 D）。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《一个数学家的叹息》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《一个数学家的叹息》<small>阅读指引与精华解析 · 2026-10-04</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 前置知识与目标读者</a>
+    <a href="#s2">2 全书骨架</a>
+    <a href="#s3">3 五个核心论点</a>
+    <a href="#s4">4 阅读建议</a>
+    <a href="#s5">5 配套资源</a>
+    <a href="#s6">6 中文译本怎么选</a>
+    <a href="#s7">7 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s8">8 来历：从 25 页论文到 140 页的书</a>
+    <a href="#s9">9 上篇 · 悲歌：数学是什么，学校数学又是什么</a>
+    <a href="#s10">10 悲歌的靶心：几何课与那份「讽刺版课程表」</a>
+    <a href="#s11">11 下篇 · 鼓舞：把数学当艺术来教</a>
+    <a href="#s12">12 作者在书外说过什么（本书的「作者谈话」档）</a>
+    <div class="grp">附录</div>
+    <a href="#s13">A 关键概念与引用速查</a>
+    <a href="#s14">B 常见卡点与提示</a>
+    <a href="#s15">C 来源清单</a>
+    <a href="#s16">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《一个数学家的叹息》阅读指引与精华解析</h1>
+  <div class="sub">A Mathematician's Lament: How School Cheats Us Out of Our Most Fascinating and Imaginative Art Form</div>
+  <div class="meta">
+    <div><b>作者</b>保罗·洛克哈特（Paul Lockhart）—— 美国数学家；大学读一学期即退学自学，1990 年哥伦比亚大学博士，曾任 MSRI 研究员、布朗大学助理教授、加州大学圣克鲁斯分校任教，2000 年起在纽约布鲁克林圣安学校（Saint Ann's School）教 K–12 数学</div>
+    <div><b>英文初版</b>Bellevue Literary Press 2009 · 140 页 · ISBN 978-1-934137-17-8 · US$12.95</div>
+    <div><b>前身论文</b>A Mathematician's Lament（2002 年手稿，25 页）· 2008-03 由 Keith Devlin 在 MAA Online 专栏 “Devlin's Angle” 首次公开发表 · 同年由开放获取期刊 AntiMatters 重印</div>
+    <div><b>中译</b>高翠霜 译 · 上海社会科学院出版社（青豆书坊）· 2019-08（ISBN 9787552028218）· 2025-07 新版（ISBN 9787552047585 · 151 页 · ¥42.80）</div>
+    <div><b>状态</b>未标注已读／想读 —— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有可定位文本支撑的段落 —— 含 2002 年论文（经 MAA Online 2008-03 公开、AntiMatters 重印）的公开全文，以及<b>带期刊卷(期)年页码的一手书评</b>（凡引批评者观点，正文均写明出处）</li>
+    <li><span class="tag t-talk">作者谈话</span> 出自作者访谈、播客或专栏自述 —— 不在书里。本书作者极少受访，此档主要是 2021 年外滩教育的一次长访谈</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、书评、百科或读者读书笔记，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本书有一个罕见优势：<b>它的前身是一篇合法公开的论文</b>（2002 年那篇 25 页文章由 Keith Devlin 于 2008-03 在 MAA Online 全文发表，AntiMatters 同年重印）—— 因此<b>论文部分是 A 级（可全文核验）</b>；而 2009 年的<b>成书在版权期内，只到 B 级</b>（出版方目录 + 带卷期页码的一手书评 + 作者访谈）。<b>两处证据分开定级，不合并</b>。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-04 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书为<b>混合定级</b>：<b>论文＝A 级</b>（2002 年论文全文可查、可逐段核对）；<b>成书＝B 级</b>（有出版方与图书馆的<b>带页码目录</b>，另有<b>三篇带卷期页码的一手书评</b>：<i>Notices of the AMS</i> <b>60(4), 2013, pp. 461–462</b>；<i>The Mathematical Intelligencer</i> <b>36, 2014, pp. 68–69</b>；<i>Math Horizons</i> <b>22(4), 2015, pp. 16–17</b>）。★ 本书<b>批评面比内容面更硬</b>：批评来自专业书评与论文发表者本人（Devlin），有力且具体 —— 因此下部逐章刻意克制、不编细节。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>这本书讲的不是「怎么把数学学好」，而是「学校教的那门课，根本不是数学」——数学是一门艺术，而现行的 K–12 数学教育恰好系统地把它毁掉了。</strong></p>
+  <p>洛克哈特站在一个很老的传统里：数学是<strong>关于「模式」的创造性活动</strong>（他开篇引用哈代：「一位数学家，就像一位画家或诗人，是模式的创造者」）。由此推出的结论很硬：既然是艺术，那么<strong>以「有没有用」为目的、以「记不记得住公式」为考核的数学课，教的就不是数学</strong>。全书用「音乐家的噩梦」这个思想实验把这件事讲到刺痛：如果你把音乐课教成抄谱号、抠符干方向、考调号，学生当然会恨音乐——而这正是我们教数学的方式。<span class="tag t-src">原书</span></p>
+  <p>一句话结论（也是全书最该记住的一句）：<strong>「我抱怨的不是数学课上出现的事实与公式，我抱怨的是我们的数学课里没有数学。」</strong> <span class="tag t-src">原书</span></p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>前置知识与目标读者</span><span class="caret">▾</span></h2>
+  <ul>
+    <li><strong>要什么底子</strong>：几乎不需要。作者刻意不用符号、不列公式、不要求会做任何题。全书是散文式的（用他自己的话说是一首「悲歌」加一首「鼓舞」）。
+    </li>
+    <li><strong>不需要什么</strong>：不需要微积分、不需要会证明、也不需要你是数学老师。
+    </li>
+    <li><strong>真正的目标读者</strong>（按作者与推荐序的判断）<span class="tag t-rep">转述</span>：① 被数学课伤过的成年人（作者说这本书能让你明白「数学差不是你的错」）；② 数学老师与师范生；③ 家长；④ 教育政策的制定者。Devlin 的原话是：这本书「对于每一位要从事数学教育的人、每一位学龄孩子的家长、每一位负责数学教学的学校老师或政府官员，都应该是必读之作」<span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>★ 但有一类读者要提前打预防针</strong>：如果你要找的是<strong>提分方法</strong>或<strong>可落地的课堂方案</strong>，这本书会让你落空——它第二部分的例子是「示范一种精神」，不是「一套教案」。多篇书评都指出这一点（见第 7 节）。
+    </li>
+  </ul>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>★ <strong>页码说明</strong>：英文原书 140 页，<strong>我未能拿到完整的英文逐节页码</strong>（合法渠道只到出版社书目与书评，书在版权期内、无公开全文）；下表的中译页码来自书目转录（2025 新版），<strong>英文页码只在极少数处可得并逐条标注</strong>。凡「—」处即为我没拿到的页码，<strong>这是取舍不是遗漏</strong>（详见附录 D1）。</p>
+  <table>
+    <thead><tr><th>部分／节</th><th>中译页</th><th>英文页</th><th>在回答什么</th><th>判断</th></tr></thead>
+    <tbody>
+      <tr><td>推荐序一（Keith Devlin）</td><td>1</td><td>—</td><td>这篇论文怎么被发现、为什么值得读</td><td>一手背景，建议先读</td></tr>
+      <tr><td>推荐序二（洪万生）</td><td>5</td><td>—</td><td>数学史学者眼中的「大破大立」</td><td>中文语境的关键导言</td></tr>
+      <tr><td>推荐序三（郑国威）</td><td>14</td><td>—</td><td>「数学差，不是你的错」</td><td>与作者立场最贴合的一篇</td></tr>
+      <tr><td><strong>上篇 · 悲歌</strong>（Lamentation）</td><td>21</td><td>~15 起</td><td>学校数学为什么不是数学</td><td><strong>全书重心，最锋利</strong></td></tr>
+      <tr><td>├ 数学与文化</td><td>30</td><td>21</td><td>数学是什么（一门艺术）</td><td>名句集中处</td></tr>
+      <tr><td>├ 学校里的数学</td><td>46</td><td>—</td><td>「做数学」如何被换成「背数学」</td><td>批评的骨架</td></tr>
+      <tr><td>├ 数学课程</td><td>—</td><td>—</td><td>课程表如何变成一份「行刑清单」</td><td>讽刺力度最大</td></tr>
+      <tr><td>├ 中学几何：邪恶的工具</td><td>—</td><td>—</td><td>几何课是全书靶心</td><td>争议最集中的一节</td></tr>
+      <tr><td>└ 「标准」数学课程</td><td>—</td><td>—</td><td>那份嘲讽版的 K–12 课程表</td><td><strong>全书最出名的一段</strong></td></tr>
+      <tr><td><strong>下篇 · 鼓舞</strong>（Exultation）</td><td>—</td><td>—</td><td>如果数学是艺术，该怎么教</td><td>材料最薄，多为例题</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法提示</strong>：这本书<strong>不是论证链</strong>，而是<strong>一篇檄文加一组示范</strong>。上篇（悲歌）是控诉，下篇（鼓舞）是「换一种教法会是什么样」。两半的<strong>证据强度不对称</strong>：上篇有大量具体指控，下篇基本靠作者的示范与信念。<strong>这也是它被专业书评批评的结构性原因</strong>（见第 7 节）。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>五个核心论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：数学是一门艺术——而我们的文化不承认它是</h3>
+  <p><strong>主张</strong>：数学与其他艺术（音乐、绘画）在本质上没有区别，唯一的区别是<strong>我们的文化不承认它是一门艺术</strong>，把它塞进了「理科工具箱」的位置。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：作者开篇引哈代（「一位数学家，就像一位画家或诗人，是模式的创造者」），随即给出那句被引用最多的判断：「首先要明白的是：数学是一门艺术。数学与其他艺术——如音乐和绘画——的区别在于：我们的文化不承认它是艺术。」<span class="tag t-src">原书</span></p>
+  <p><strong>为什么重要</strong>：这是全书全部论证的地基。一旦把「数学」从工具箱移到艺术的位置上，现存的数学课立刻显形为一场灾难——所以这个论点若立不住，后面的一连串指控会全部落空。<span class="tag t-inf">推断</span></p>
+  <h3>论点二：学校的数学课里「没有数学」——问题不在公式，而在把「为什么」砍掉</h3>
+  <p><strong>主张</strong>：作者抱怨的<strong>不是</strong>数学课上出现了事实和公式，而是<strong>数学课里没有数学</strong>——把焦点放在「什么」（what）、砍掉「为什么」（why），数学就被降格成一个空壳。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：全书最锋利的一句正是这个区分的凝练：「我抱怨的不是数学课上出现的事实与公式，我抱怨的是我们的数学课里没有数学。」他用「音乐家的噩梦」把这件事讲到刺痛——如果你把音乐课教成抄谱号、抠符干方向、考调号，学生当然会恨音乐。<span class="tag t-src">原书</span></p>
+  <p><strong>为什么重要</strong>：这个区分把批评的靶子从「太难／太多」换成了「根本不是那回事」。它也是本书被专业书评接受的那一半——<strong>几乎所有的专业书评都承认这个诊断</strong>（见争议一节）。<span class="tag t-inf">推断</span></p>
+  <h3>论点三：数学的审美原则是「简单即美」，而数学家的活动本质是「玩」——并且刻意无用</h3>
+  <p><strong>主张</strong>：作者说，如果数学有一条统一的美学原则，那就是<strong>简单即美</strong>；数学家喜欢思考「最简单的可能性」，而这些可能性往往是<strong>想象的</strong>、未必现实存在，且<strong>没有实用目的</strong>——他们纯粹是在玩。「这就是数学——想知道（wondering）、游戏（playing）、用自己的想象力娱乐自己（amusing）。」<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：他还进而主张数学是<strong>最纯粹</strong>的艺术，因为它<strong>不依赖物理世界的属性</strong>（诗歌、绘画、音乐都还受物质媒介限制），因此也最被误解。<span class="tag t-src">原书</span></p>
+  <p><strong>为什么重要</strong>：这条直接与「数学有用」（提分、考大学）的通行立场对冲。读懂它，才能理解作者在书外那句「数学的有趣之处，就在于它与我们的生活完全无关」为什么不是反智，而是一个艺术立场。<span class="tag t-talk">作者谈话</span></p>
+  <h3>论点四：中学几何课是 K–12 课程里破坏性最强的一环——「邪恶的工具」</h3>
+  <p><strong>主张</strong>：作者对现行课程攻击最猛的一枪打在<strong>中学几何</strong>上：他称之为「邪恶的工具」（Instrument of the Devil），并说几何课是「整个 K–12 数学课程里，在智识与情感上破坏性最强的一个组成部分」。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：他反对的<strong>不是几何</strong>，而是「两列证明」（two-column proofs）这种格式——把证明塞进「陈述／理由」的固定模板，毁掉了几何证明本该有的东西。他的正面定义是：一篇好证明应当「像一捧清凉的水，像一座灯塔」，而且<strong>应当迷人（charming）</strong>。<span class="tag t-src">原书</span></p>
+  <p><strong>为什么重要</strong>：这是全书<strong>最容易被反驳、也最有传播力</strong>的一条——几何恰恰是课程里最接近「证明与创造」的部分。把「几何课」立为主靶是极聪明的传播选择，也暴露了本书「用修辞换力量」的写法。<span class="tag t-inf">推断</span></p>
+  <h3>论点五：这是一篇檄文，不是一份研究报告——诊断锋利，处方昂贵</h3>
+  <p><strong>主张</strong>：本书的价值落在<strong>诊断</strong>（「课里没有数学」）上，而它给出的<strong>处方</strong>（把数学课改成艺术课）是它最薄弱的一半——它善于拆毁，不善建设。</p>
+  <p><strong>依据</strong>：这不是我一个人的判断——<strong>三篇带卷期页码的专业书评</strong>都循同一方向：Schmidt 说他的批评「和我自己的研究一致」，却指出他对「普通学生能欣赏数学之美」的假设<strong>不现实</strong>；Tossavainen 说他「经常夸张，但通常说到了点子上」；而<strong>把它推上世界的 Devlin</strong> 更直接说这张处方「根本不可行」，理由是它需要一个「非常像洛克哈特本人的人」。<span class="tag t-src">原书</span></p>
+  <p><strong>为什么重要</strong>：把「诊断」与「处方」分开接受，是读这本书最省力的姿势——<strong>接受它对症状的准确描述，同时对它的解法保持怀疑</strong>。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <ul>
+    <li><strong>只读一章就读上篇的「学校里的数学」与「中学几何：邪恶的工具」。</strong> 理由是：全书的核心指控（「课里没有数学」）与最具争议的判断（几何课是「邪恶的工具」）都在这两节，读它们比读整本更快拿到这本书的全部分量。<span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>读之前先做一件事</strong>：回想你<strong>最恨</strong>的那节数学课，带着那个记忆读。作者的目标读者正是「被数学课伤过的人」——这是它的效力来源。<span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>可以跳过的部分</strong>：下篇（鼓舞）里的<strong>具体教学例子</strong>可以快速扫读。它们示范的是「精神」，不是「方法」；如果你已经认同「数学是艺术」，下篇的边际信息很小。<span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>把第 7 节（争议）放在开始读之前看。</strong> 它不长，但它会给你一副「什么地方该打折扣」的眼镜——尤其是「处方是否可行」这一问。<span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+  <h3>如果你是「已读」</h3>
+  <ul>
+    <li><strong>回头核一件事</strong>：你被说服的是<strong>诊断</strong>（学校数学不是数学），还是<strong>处方</strong>（把数学课改成艺术课）？这两者是可以分开的——<strong>几乎所有的专业书评都接受前者、质疑后者</strong>（第 7 节）。<span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>补上「可行性」这一路批评</strong>：Devlin 在 MAA 的续篇里直言「这不可行」，理由是教洛克哈特的方法需要「像他本人那样的老师」（他既是成功的研究者又是资深 K–12 教师）<span class="tag t-src">原书</span>。这条批评在中文读者视野里几乎从不出现。
+    </li>
+    <li><strong>注意本书的立场性质</strong>：它是一篇<strong>檄文</strong>（作者称自己的文章「充满热情、措辞激烈」）<span class="tag t-rep">转述</span>，不是一份研究报告。它善于拆毁，不善建设。
+    </li>
+  </ul>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5</span><span>配套资源</span><span class="caret">▾</span></h2>
+  <ul>
+    <li><strong>★ 前身论文（A 级，可全文核验）</strong>：<em>A Mathematician's Lament</em>（2002）。首次公开于 Keith Devlin 的 MAA Online 专栏「Devlin's Angle」2008 年 3 月号，以原貌全文刊出；同年重印于开放获取期刊 <em>AntiMatters</em>。★ <strong>注意：MAA 官网改版后，当年的 <code>maa.org/external_archive/devlin/...</code> 与 <code>maa.org/sites/default/files/pdf/devlin/LockhartsLament.pdf</code> 链接在我检索时均已 404</strong>（见附录 D2）；这篇论文目前更可靠的可及渠道是 <em>AntiMatters</em> 与 Internet Archive 的公开本。
+    </li>
+    <li><strong>Devlin 的续篇（含作者回应）</strong>：Keith Devlin，「Lockhart's Lament – The Sequel」，MAA Online「Devlin's Angle」<strong>2008 年 5 月号</strong>。内容包括读者的批评与<strong>洛克哈特本人的长篇回应</strong>。<span class="tag t-src">原书</span>（此文我读到的是转载本，未逐字通读全文——见附录 D3）
+    </li>
+    <li><strong>作者的另两本书</strong>：<em>Measurement</em>（2012，中译《度量》，Belknap/Harvard）与 <em>Arithmetic</em>（2017，中译《极简算术史》）。是他把「数学即艺术」的立场落到具体题材上的两本书。
+    </li>
+    <li><strong>作者更晚的一本</strong>：<em>The Mending of Broken Bones</em>（2025）。<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>作者接受中文媒体的一次长访谈</strong>：外滩教育（作者瞿逸冰）<strong>2021 年</strong>对洛克哈特的长篇对话，是本书作者在书外<strong>罕见</strong>的公开表态（详见第 12 节与「作者谈话」档）。<span class="tag t-talk">作者谈话</span>
+    </li>
+  </ul>
+</section>
+
+<section id="s6">
+  <h2><span class="num">6</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ 本书的<strong>中译本情况需要单列一节</strong>，因为它有一处<strong>会直接影响你把书买对</strong>的陷阱。</p>
+  <table>
+    <thead><tr><th>版本</th><th>译者</th><th>页数</th><th>出版社与年份</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>现行简体（较早）</td><td>高翠霜</td><td>168</td><td>上海社会科学院出版社（青豆书坊）· 2019-08 · ISBN 9787552028218 · 精装 · ¥42.00</td><td>首个简体中文版，译者来自台湾</td></tr>
+      <tr><td>现行简体（较新）</td><td>高翠霜（存疑，见下）</td><td>151</td><td>上海社会科学院出版社（青豆书坊）· 2025-07 · ISBN 9787552047585 · 平装 · ¥42.80</td><td>版权页 ISBN 与 2025 新版一致；<strong>译者署名在不同书目间存在冲突</strong></td></tr>
+    </tbody>
+  </table>
+  <p><strong>⚠ 陷阱一：别把《叹息》买成《辩白》。</strong> 本书（<em>Lament</em>，叹息）与哈代 1940 年的 <em>A Mathematician's Apology</em>（《一个数学家的辩白》）<strong>是两本完全不同的书</strong>，中文书名只差一个字、都带「数学家」。<strong>买之前核对：作者是不是保罗·洛克哈特（Paul Lockhart），标题是不是「叹</strong>息<strong>」。</strong></p>
+  <p><strong>⚠ 陷阱二：同一本书的两个署名/译者冲突。</strong> 2025 新版 ISBN 9787552047585 在<strong>电商页</strong>上被标为「<strong>王凌云</strong> 译」，而<strong>图书馆编目</strong>（针对同一 ISBN 区间 978-7-5520-4758-5）标为「<strong>高翠霜</strong> 译」。同时，青豆书坊 2021 年出版的<strong>另一本</strong>洛克哈特书《极简算术史》确由<strong>王凌云</strong>译——两本书在同一家品牌的推荐位里经常并排出现，<strong>署名很可能被电商页串了</strong>。<code>⚠ 单一/冲突来源，见附录 D4</code></p>
+  <p><strong>怎么选，一句话</strong>：<strong>买 2025 新版（ISBN 9787552047585，151 页）即可</strong>；它是目前在售版本，且增补了三篇推荐序（Devlin、洪万生、郑国威）。若你在意「译者是不是高翠霜」这一点，<strong>下单前看一眼实体书的版权页</strong>——因为这一点在公开书目里对不上。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">7</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ 这一节是本报告<strong>最该读的部分</strong>。原因：<strong>本书的批评面比内容面更硬</strong>——它有三篇<strong>带卷期页码</strong>的专业书评，外加主编本人（Devlin）在 MAA 专栏里的公开质疑。这在薄薄一本 140 页的论战小册子里是相当罕见的。</p>
+  <h3>7.1 ★★ 最硬的一条（带卷期页码）：他的批评成立，但他低估了「教师教育」与「公平」</h3>
+  <p><strong>发难者</strong>：William Schmidt（密歇根州立大学教育政策中心联席主任），书评载 <em>Notices of the AMS</em>（美国数学会通报）<strong>60(4), April 2013, pp. 461–462</strong>。<span class="tag t-src">原书</span></p>
+  <p>他的判词可以一句话概括：<strong>「这本书既现实，又不现实。」</strong> 他明确说洛克哈特对美国学校数学的描述「是现实的批评，而且和我自己的研究一致」；但接着指出：</p>
+  <blockquote>
+    <p>"he makes unrealistic assumptions about the typical student's appreciation of the beauty of mathematics as an art form, and this leads him to an unrealistic perspective on the implications for school mathematics."</p>
+    <p>（他对「普通学生能欣赏数学作为艺术形式之美」这一点的假设不现实，而这导致他对学校数学的含义持有一种不现实的看法。）<span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>★ 与 Schmidt 相关、由多个书目一致概括的第二条指控是：<strong>洛克哈特主张的方案会加剧已有的教育不平等</strong>（因为「把数学当艺术来教」最依赖好老师，而好老师恰恰在不占优势的学校最稀缺）。<span class="tag t-rep">转述</span></p>
+  <h3>7.2 ★ 第二条（带卷期页码）：他「忽略了教师教育在现实中能做到什么」</h3>
+  <p><strong>发难者</strong>：Timo Tossavainen（吕勒奥理工大学），书评载 <em>The Mathematical Intelligencer</em>（数学信使）<strong>36, 2014, pp. 68–69</strong>，DOI <strong>10.1007/s00283-013-9438-9</strong>。<span class="tag t-src">原书</span></p>
+  <blockquote>
+    <p>"Even a reader who agrees in principle with Lockhart's message may become annoyed with his excessive criticism that tends to overlook what is realistically possible in mathematics teachers' education."</p>
+    <p>（即便原则上同意洛克哈特信息的读者，也可能被他的过度批评惹恼——他的批评倾向于忽略「数学教师教育在现实中能做到什么」。）<span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>但他也给了很高的肯定，并留下了一句对全书最公道的话：<strong>「洛克哈特经常夸张，但他通常说到了点子上。」</strong>（"Lockhart often exaggerates, but he usually has a point."）<span class="tag t-src">原书</span> 他的结语是：这本书「是一个必要的提醒——如果做数学的快乐、以及学生体验这种快乐的权利，不被放在数学教育的中心，那么一切都会失掉」<span class="tag t-rep">转述</span>。</p>
+  <h3>7.3 ★ 第三条（主编本人）：这张处方「根本不可行」</h3>
+  <p><strong>发难者</strong>：Keith Devlin（斯坦福大学，MAA Online 专栏主笔、本文的发表者），「Lockhart's Lament – The Sequel」，MAA Online，<strong>2008 年 5 月</strong>。<span class="tag t-src">原书</span></p>
+  <p>Devlin 是<strong>把这篇论文推上世界舞台的人</strong>，但他在续篇里公开不同意它的可行性：</p>
+  <blockquote>
+    <p>"Though I would love to see every school student exposed to real mathematical thinking and stimulated the way Paul advocates, I think it is simply not feasible."</p>
+    <p>（尽管理想上我希望每个学生都像保罗主张的那样接触真正的数学思维、被那样激励，但我认为这根本不可行。）<span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>他的理由很具体：<strong>要按洛克哈特的方式教，需要「一个非常像他本人的人——一个热爱数学、并把数学掌握到专业水平的人」</strong>，而这远超「有数学学士学位」。他同时提醒：K–12 里的学生，<strong>能遇到一个修过哪怕一两门大学数学课的数学老师都算走运</strong>。<span class="tag t-src">原书</span></p>
+  <h3>7.4 第四条：一线教师的「两个目标」困境</h3>
+  <p>这是一类<strong>不带卷期页码、但流传很广的实践者批评</strong>（归 <span class="tag t-rep">转述</span>）：数学教育同时背两个常常打架的目标——<strong>（1）让学生喜欢数学、像创造者一样思考；（2）让学生具备进入大学理工科所需的「可操作」数学能力</strong>。洛克哈特只承认第一个目标，第二个被他在修辞上几乎抹掉；而现实里，「不会做换元积分的洛克哈特式学生」进大学物理课会立刻吃亏。<span class="tag t-rep">转述</span></p>
+  <h3>7.5 一条内部张力（本书自己留下的）</h3>
+  <ul>
+    <li><strong>作者身份本身就是批评的靶心</strong>。他最锋利的论证是「你不需要专业数学家才能教好数学」，但他给出的<strong>唯一完整样本就是他本人</strong>——一个<strong>哥伦比亚博士＋前布朗教授＋资深 K–12 教师</strong>。多篇书评（包括 Devlin）都指出：<strong>这套方法能在他手上成功，可能恰恰因为它是在一个不具代表性的条件下运行的</strong>。<span class="tag t-inf">推断</span>
+    </li>
+    <li>★ <strong>本报告读法</strong>：这些批评<strong>不是「他错了」，而是「他既对又不完整」</strong>——诊断锋利，处方昂贵。把这个区分记住，你就能同时接受这本书的力量和它的边界。
+    </li>
+  </ul>
+  <p>结构说明：因为<strong>本书的批评面比内容面更硬</strong>，下部按「来历 → 上篇 → 靶心 → 下篇 → 中文语境」组织，<strong>刻意克制、不编细节</strong>；凡我没有可定位材料的叙事细节，宁可留白并写明。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">8</span><span>来历：从 25 页论文到 140 页的书</span><span class="caret">▾</span></h2>
+  <h3>这一节在回答什么</h3>
+  <p>这本书是怎么来的？为什么它的「身份」很特殊？</p>
+  <h3>关键点</h3>
+  <ul>
+    <li><strong>它先是论文，后是书。</strong> 2002 年，洛克哈特写了一篇 25 页的文章，<strong>没有正式发表</strong>，而是<strong>以打字稿的形式在数学与数学教育圈子里私下流传</strong>。<span class="tag t-src">原书</span>（Devlin 专栏语）
+    </li>
+    <li><strong>是谁把它推上世界的</strong>：<strong>Keith Devlin</strong>（斯坦福大学，时任 MAA Online 月度专栏「Devlin's Angle」主笔）。按 Devlin 自述，他 <strong>2007 年下半年</strong>在一次演讲会上从一个听众手里拿到这份 25 页打印稿；他很喜欢，<strong>做了一件他此前从未做过的事</strong>：因为文章里<strong>没有联系方式</strong>，他设法找到了作者，并征得同意，<strong>2008 年 3 月在他的 MAA 专栏里以原貌全文转载</strong>。<span class="tag t-src">原书</span>
+    </li>
+    <li><strong>Devlin 当年给它的判词</strong>（也成了这本书此后最常用的推荐语）：<strong>「坦白说，对于当前 K–12 数学教育，这是我所见过写得最好的评论之一。」</strong><span class="tag t-src">原书</span>
+    </li>
+    <li><strong>反响</strong>：文章刊出后「引来燎原大火」，大量授权转载与翻译请求涌来；同年重印于 <em>AntiMatters</em>，2009 年由 Bellevue Literary Press 出成书（在论文基础上大幅扩写，并加了「下篇·鼓舞」）。<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>一个值得注意的翻译史细节</strong>：中文版的推荐序之一就是 Devlin 写的《数学教育的地标》，里面复述了上述「2007 年收到打印稿」的故事。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <h3>一句判断</h3>
+  <p><strong>这本书的「合法性」是它最大的资产</strong>：一篇在圈内自发流传、被 MAA 公开转载的论战文章，其原始文本至今可查——这让我们能把它的主张与它后来的演化分开看待。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">9</span><span>上篇 · 悲歌：数学是什么，学校数学又是什么</span><span class="caret">▾</span></h2>
+  <h3>这一节在回答什么</h3>
+  <p>「为什么大家都不喜欢数学？」答案是：<strong>因为课上那门课不是数学。</strong></p>
+  <h3>关键点</h3>
+  <ul>
+    <li><strong>「音乐家的噩梦」思想实验</strong>（全书最著名的论证）。作者请你想像：如果音乐成了学校里最重要的一门课，而专家决定「首要任务是让学生熟练掌握乐谱这门语言的规则」——于是小学到高中都在抄音符、抠符干方向、背调号与和声；而<strong>直到研究生阶段，学生才被允许真正欣赏和创作音乐</strong>。作者随即点破：<strong>这不是音乐教育的现实，这是数学教育的现实。</strong><span class="tag t-src">原书</span>
+    </li>
+    <li><strong>最能代表全书愤怒的一段</strong>（也是被引用最多的一段）：
+    </li>
+  </ul>
+  <blockquote>
+    <p>"if I had to design a mechanism for the express purpose of destroying a child's natural curiosity and love of pattern-making, I couldn't possibly do as good a job as is currently being done."</p>
+    <p>（如果我必须设计一台机器，专门用来摧毁孩子天生的好奇心与对「创造模式」的热爱，我也想不出比现行做法更好的方案。）<span class="tag t-src">原书</span></p>
+  </blockquote>
+  <ul>
+    <li><strong>立场声明</strong>：
+    </li>
+  </ul>
+  <blockquote>
+    <p>"The first thing to understand is that mathematics is an art. The difference between math and the other arts, such as music and painting, is that our culture does not recognize it as such."</p>
+    <p>（首先要明白的是：数学是一门艺术。数学与其他艺术——如音乐和绘画——的区别在于：我们的文化不承认它是艺术。）<span class="tag t-src">原书</span></p>
+  </blockquote>
+  <ul>
+    <li><strong>「数学是纯粹的艺术」</strong>：作者进而说，数学是<strong>最纯粹</strong>的艺术，因为它<strong>不依赖物理世界的属性</strong>（诗歌、绘画、音乐都还受物质媒介限制）；因此它也最被误解。<span class="tag t-src">原书</span>
+    </li>
+    <li><strong>一个关键区分（也是全书的核心批评）</strong>：问题<strong>不是</strong>「课上出现了事实和公式」，而是<strong>「课上没有数学」</strong>——因为把焦点放在「什么」（what）、砍掉「为什么」（why），数学就被降格成一个空壳。<span class="tag t-src">原书</span>
+    </li>
+    <li><strong>「简单即美」</strong>：作者说，如果数学有一条统一的美学原则，那就是<strong>简单即美</strong>——数学家喜欢思考「最简单的可能性」，而最简单的可能性往往是<strong>想象的</strong>、未必现实存在，且<strong>没有实用目的</strong>：他们纯粹是在玩。「这就是数学——想知道（wondering）、游戏（playing）、用自己的想象力娱乐自己（amusing）。」<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <h3>一句判断</h3>
+  <p>上篇的全部力量来自一个<strong>替换动作</strong>：把「数学」从「理科工具箱」的位置，移到「艺术」的位置上——一旦移过去，现存的数学课立刻显形为一场灾难。这是修辞上的巨大成功，也是它被批评「不现实」的起点。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">10</span><span>悲歌的靶心：几何课与那份「讽刺版课程表」</span><span class="caret">▾</span></h2>
+  <h3>这一节在回答什么</h3>
+  <p>如果只能挑一个「最该被拆掉的东西」，作者会挑什么？答案：中学几何。</p>
+  <h3>关键点</h3>
+  <ul>
+    <li><strong>「中学几何：邪恶的工具」</strong>（High School Geometry: Instrument of the Devil）。这是全书攻击最猛的靶子。Schmidt 的书评原样引用了这句：<strong>「几何课是整个 K–12 数学课程里，在智识与情感上破坏性最强的一个组成部分。」</strong><span class="tag t-src">原书</span>
+    </li>
+    <li><strong>他反对的不是几何，是「两列证明」</strong>（two-column proofs）这种格式。他认为把证明塞进「陈述／理由」两列的固定模板，<strong>毁掉了几何证明本该有的东西、也歪曲了数学家实际做证明的方式</strong>（数学家先玩、先猜、先画图，格式是最后才裹上的）。<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>他对「一个好证明」的定义</strong>（被多来源一致引用）：<strong>「一篇写得好的、精心构造的论证，应该像一捧清凉的水，像一座灯塔——它应当refresh精神、照亮心智。而且它应当迷人（charming）。」</strong><span class="tag t-src">原书</span>
+    </li>
+    <li><strong>「标准」数学课程</strong>：书里有一份<strong>嘲讽版的 K–12 课程表</strong>——从「低年级数学」开始逐段描述现行课程如何「让你学会数学是别人对你做的事，而不是你做的事」，一路嘲讽到中学几何与代数 II。这份课程表是全书<strong>传播最广</strong>的段落之一（常被整段转贴）。<span class="tag t-src">原书</span>
+    </li>
+    <li><strong>那句最著名的判词</strong>（本书开篇附近）：
+    </li>
+  </ul>
+  <blockquote>
+    <p>"Other math courses may hide the beautiful bird, or put it in a cage, but in geometry class, it is openly and cruelly tortured."</p>
+    <p>（别的数学课也许把这只美丽的鸟藏起来，或者关进笼子；但在几何课上，它是被公开、残忍地折磨。）<span class="tag t-src">原书</span></p>
+  </blockquote>
+  <h3>一句判断</h3>
+  <p>把「几何课」立为主靶是<strong>极聪明的传播选择</strong>（几乎所有人都有几何课的创伤记忆），但也是<strong>最容易被反驳的一节</strong>：几何恰恰是课程里最接近「证明与创造」的部分。洛克哈特的辩护是「它本可以更好，却被格式毁了」——这是<strong>可以争论</strong>的，而不是显然成立的。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">11</span><span>下篇 · 鼓舞：把数学当艺术来教</span><span class="caret">▾</span></h2>
+  <h3>这一节在回答什么</h3>
+  <p>如果数学是艺术，那么课堂该长什么样？</p>
+  <h3>关键点</h3>
+  <ul>
+    <li><strong>这一篇的性质是「示范」而非「方案」</strong>：它用数论、几何、图论里的<strong>几个具体例子</strong>，演示「玩数学」是什么感觉——抛出简单而直接的问题，让人自己发现模式，而不是先给定义与公式。<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>他给出的教学信条</strong>（书中原话）：<strong>「把愚蠢的课程表和教科书扔出窗外」</strong>，然后<strong>「随便编什么都行，只要它不无聊」</strong>。<span class="tag t-src">原书</span>
+    </li>
+    <li><strong>作者在书外补充的操作性说法</strong>（2021 年访谈）：真正该做的是——<strong>丢给学生一个好的问题，让他们花力气去解决、尝到挫折，看看能得到什么；直到他们亟须一个想法时，再给一些技巧，但不要给太多。</strong><span class="tag t-talk">作者谈话</span>
+    </li>
+    <li><strong>那段「低年级玩小石子」的例子</strong>（访谈里作者亲述他的课堂）：让孩子像古巴比伦人一样摆石子，自己发现「能不能两两排齐」是数的一种性质——<strong>他们可以自己给它命名，因为这是他们自己的发现</strong>（作者说：数学家最不在乎的就是概念的名字）。<span class="tag t-talk">作者谈话</span>
+    </li>
+  </ul>
+  <h3>一句判断</h3>
+  <p>下篇是全书<strong>最薄弱</strong>的一半：它证明「作者本人的课堂上数学可以很美」，但<strong>没有回答</strong>「这套东西能不能规模化」。<strong>第 7 节的四条批评，火力全部落在这里。</strong><span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">12</span><span>作者在书外说过什么（本书的「作者谈话」档）</span><span class="caret">▾</span></h2>
+  <p>★ 按本系列的做法，<strong>作者本人在书外的表态单列一节</strong>。洛克哈特<strong>极其低调、极少接受采访</strong>——中文世界里我找到的<strong>唯一一次长篇对话</strong>是外滩教育（作者瞿逸冰）<strong>2021 年</strong>的访谈。以下均出自该访谈 <span class="tag t-talk">作者谈话</span>：</p>
+  <ul>
+    <li><strong>「我从来没有享受过一节数学课。」</strong>（他说自己也不喜欢数学课。）
+    </li>
+    <li><strong>「数学课上根本没有数学。」</strong>（这是他对自己一生批评的一句话概括。）
+    </li>
+    <li><strong>关于家长</strong>：「三分之一的家长非常喜欢，三分之一非常不喜欢。」——他提到同事曾听到走廊外家长议论：「教这些东西，考试又不考，这些孩子将来能上藤校吗？」他的回答带着苦笑：「<strong>我就是藤校教授，上了藤校不是还是得和我学？</strong>」
+    </li>
+    <li><strong>关于「博士该不该去教中小学」</strong>：他说认识很多数学家「好像都不太适合教中小学」，因为「<strong>很多研究者都不会和人交流</strong>」；而教书的核心是<strong>人与人之间的联系</strong>。
+    </li>
+    <li><strong>他认为教学最大的美德是「热情和诚实」</strong>：老师应该展现「作为人的自我」，会好奇、会困惑、会承认自己不知道答案——这样才会对学生的思考更有耐心。
+    </li>
+    <li><strong>关于这本书的影响半径</strong>：他说<strong>教课只能影响很少一部分学生，但写书能影响很多人</strong>——这也是他「下一步准备做什么」的答案：「写书。」
+    </li>
+  </ul>
+  <h3>一句判断</h3>
+  <p><strong>这段访谈把作者的形象从「愤怒的檄文作者」变成「一个诚实的实践者」</strong>：他对自己的方法有多大适用范围是清醒的（「如果没有空间，那建议还是不要改变」）。<strong>读下册之前先读这一节，能少一层误读。</strong><span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">A</span><span>关键概念与引用速查</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>概念／说法</th><th>一句话</th><th>出处定位</th></tr></thead>
+    <tbody>
+      <tr><td>数学是一门艺术</td><td>全书地基：数学与其他艺术的区别，只在于文化不承认它是艺术</td><td>论文／书，上篇起句</td></tr>
+      <tr><td>音乐家的噩梦</td><td>用「把音乐课教成抄谱子」反衬数学课的死法</td><td>论文／书，上篇</td></tr>
+      <tr><td>「课里没有数学」</td><td>问题不在公式，而在把「为什么」砍掉</td><td>论文／书，上篇</td></tr>
+      <tr><td>简单即美</td><td>作者概括的数学统一美学原则</td><td>论文／书，数学与文化一节</td></tr>
+      <tr><td>两列证明（two-column proof）</td><td>几何课的具体靶子：格式毁掉了证明的精神</td><td>书，中学几何一节</td></tr>
+      <tr><td>「邪恶的工具」</td><td>作者对中学几何课的称号</td><td>书，中学几何一节</td></tr>
+      <tr><td>悲歌／鼓舞</td><td>全书两部分的名称：Lamentation / Exultation</td><td>全书结构</td></tr>
+    </tbody>
+  </table>
+  <p><strong>引文来源</strong>：上表引文凡标 <span class="tag t-src">原书</span> 者，出自 2002 年论文（经 MAA Online 2008 年 3 月公开、<em>AntiMatters</em> 重印），或出自书评中<strong>带卷期页码</strong>的原样引用；我<strong>未持纸质书</strong>，页码请以原书复核。</p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">B</span><span>常见卡点与提示</span><span class="caret">▾</span></h2>
+  <ul>
+    <li><strong>卡点一：把「诊断」当成「方案」</strong>。读完上篇容易热血，读完下篇容易失望——因为它没给方案。<strong>提示</strong>：把这本书当<strong>宣言</strong>读，而不是当<strong>教师手册</strong>读。<span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>卡点二：以为它在反对「数学有用」</strong>。作者并不否认数学有用，他反对的是<strong>用「有用」来定义数学是什么</strong>。<strong>提示</strong>：他在访谈里说得很清楚——「数学的有趣之处，就在于它与我们的生活完全无关」。<span class="tag t-talk">作者谈话</span>
+    </li>
+    <li><strong>卡点三：以为它是「反智」或「反标准」</strong>。<strong>提示</strong>：真正的批评点是<strong>可行性</strong>（Devlin）与<strong>公平性</strong>（Schmidt），不是「他不懂数学教育」。<span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>卡点四：买错书</strong>。见第 6 节的《叹息》 vs《辩白》。<span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+</section>
+
+<section id="s15">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>本报告材料分布（完整清单与检索记录见同目录《一个数学家的叹息-来源清单.md》）：</p>
+  <ul>
+    <li><strong>A 级（论文全文可及）</strong>：<em>A Mathematician's Lament</em>（2002），经 Keith Devlin 的 MAA Online「Devlin's Angle」<strong>2008 年 3 月号</strong>全文公开；<em>AntiMatters</em>（2008）重印；Internet Archive 公开本。
+    </li>
+    <li><strong>一手批评文献（带卷期页码）</strong>：
+    <ul>
+      <li>William Schmidt，书评，<em>Notices of the AMS</em> <strong>60(4), April 2013, pp. 461–462</strong>
+      </li>
+      <li>Timo Tossavainen，书评，<em>The Mathematical Intelligencer</em> <strong>36, 2014, pp. 68–69</strong>，DOI 10.1007/s00283-013-9438-9
+      </li>
+      <li>Daniel W. Farlow，书评，<em>Math Horizons</em> <strong>22(4), April 2015, pp. 16–17</strong>
+      </li>
+      <li>Keith Devlin，「Lockhart's Lament – The Sequel」，MAA Online，<strong>2008 年 5 月</strong>（含洛克哈特回应）
+      </li>
+    </ul>
+    </li>
+    <li><strong>出版方／图书馆编目</strong>：Bellevue Literary Press 书目；上海社会科学院出版社书目页；两家以上图书馆编目（提供中译的<strong>带页码目录</strong>）。
+    </li>
+    <li><strong>作者访谈（书外）</strong>：外滩教育（瞿逸冰）2021 年长访谈。
+    </li>
+    <li><strong>出版方试读／书评／读书笔记</strong>：多家书商与读书平台的摘录与书评（用于交叉验证）。
+    </li>
+  </ul>
+  <p><strong>核验级别：混合定级。</strong> ★ <strong>论文＝A 级</strong>（2002 年论文全文可查、可逐段核对其主张）；★ <strong>成书＝B 级</strong>（有出版方与图书馆的<strong>带页码目录</strong>、有<strong>三篇带卷期页码的一手书评</strong>，但书在版权期内、我未逐字核对全书）。<strong>两处证据分开，不合并。</strong></p>
+</section>
+
+<section id="s16">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. 英文原书逐节页码 —— 我没拿到（这是本报告最大的边界）</h3>
+  <p>本书在版权期内、无合法公开全文，合法渠道只到出版社书目与书评。因此<strong>英文 140 页的逐节页码我给不出</strong>。中译节的页码来自书目转录（2025 新版）。<strong>这是取舍，不是遗漏</strong>：唯一能给出英文逐节页码的渠道是未授权扫描件，按本项目契约<strong>一律不使用</strong>。</p>
+  <h3>D2. MAA 官方原文链接已 404 —— 需注意</h3>
+  <p>维基数据与多篇文献引用的两个 MAA 链接（<code>maa.org/external_archive/devlin/devlin_03_08.html</code>、<code>maa.org/sites/default/files/pdf/devlin/LockhartsLament.pdf</code>）在我检索时<strong>均已 404</strong>（MAA 网站改版所致）。<strong>这不改变论文的公开事实</strong>（论文仍可通过 <em>AntiMatters</em>、Internet Archive 合法获取），但<strong>直接引用 MAA 链接会失效</strong>——引用时请改用 <em>AntiMatters</em> 或 Internet Archive。</p>
+  <h3>D3. Devlin 续篇（含洛克哈特回应）我未逐字通读全文</h3>
+  <p>我确认它存在、确认其关键批评（「不可行」）与它包含<strong>洛克哈特的长篇回应</strong>，但<strong>我读到的是转载/摘要，未逐字通读回应全文</strong>。因此本报告<strong>不转述洛克哈特在该文里的具体论点</strong>——这一点是明确的缺口。</p>
+  <h3>D4. ★ 2025 新版的译者署名，在公开书目间对不上</h3>
+  <p>同一 ISBN 区间（978-7-5520-4758-5 / 9787552047585）的 2025 新版，<strong>电商页标「王凌云译」、图书馆编目标「高翠霜译」</strong>；而王凌云确为青豆书坊 2021 年另一本洛克哈特书《极简算术史》的译者。<strong>我无法判定哪一个正确</strong>，因此第 6 节把冲突原样列出，并建议读者<strong>看实体书版权页</strong>。</p>
+  <h3>D5. 「两处分级的 PDF 页 19–22」需谨慎</h3>
+  <p>本报告中「Paint-by-Numbers」与「数学是一门艺术」两段的<strong>页码（19–22）来自一份扫描件的运行页眉</strong>，我<strong>无法完全区分它是论文版（25 页）还是成书版（140 页）的页码</strong>。因此正文引用这两段时<strong>只给「论文／书，上篇」这样的定位，不给页码</strong>——宁可低估，不高估。</p>
+  <h3>D6. 我主动排除的来源</h3>
+  <p>检索中确实出现过未授权电子书站的链接。按本项目契约，<strong>该来源一律不使用，任何目的不例外</strong>。这构成本报告在「原文可得性」上的一处<strong>主动收缩</strong>：我因此少了「成书逐字核对」的可能，宁可降级到 B。</p>
+</section>
+
+<footer>
+  生成于 2026-10-04 · 来源清单与交叉验证记录见同目录 <code>一个数学家的叹息-来源清单.md</code><br>
+  本页引文按<b>混合定级</b>处理：论文引文出自 2002 年论文（2008-03 经 MAA Online 公开、AntiMatters 重印），属 <b>A 级</b>；成书相关引文与批评文献（<b>带卷期页码</b>）属 <b>B 级</b>，<b>我未持原书</b>，页码请以原书复核。未标页码者仍是二手转引。★ 本书常被与哈代《一个数学家的辩白》（<i>A Mathematician's Apology</i>）混淆 —— 买书前请核对是「叹息」还是「辩白」。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

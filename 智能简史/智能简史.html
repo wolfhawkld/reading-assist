@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《智能简史》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《智能简史》<small>阅读指引与精华解析 · 2026-10-04</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 五个核心论点</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s5">5 序曲：这本书要为「智能」立什么坐标（引言 ＋ 两章附录）</a>
+    <a href="#s6">6 第一次突破 · 转向：好与坏的诞生（第 1–4 章）</a>
+    <a href="#s7">7 第二次突破 · 强化：鱼类的时序差分学习（第 5–9 章）</a>
+    <a href="#s8">8 第三次突破 · 模拟：哺乳动物与新皮质（第 10–14 章）</a>
+    <a href="#s9">9 第四次突破 · 心智化：灵长类的政治脑（第 15–18 章）</a>
+    <a href="#s10">10 第五次突破 · 语言：人类的接口（第 19–22 章）</a>
+    <a href="#s11">11 结论：第六次突破，与全书的方法论风险</a>
+    <div class="grp">附录</div>
+    <a href="#s12">A 金句摘录</a>
+    <a href="#s13">B 延伸阅读</a>
+    <a href="#s14">C 来源清单</a>
+    <a href="#s15">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《智能简史》阅读指引与精华解析</h1>
+  <div class="sub">A Brief History of Intelligence: Evolution, AI, and the Five Breakthroughs That Made Our Brains</div>
+  <div class="meta">
+    <div><b>作者</b>麦克斯·班尼特（Max S. Bennett）—— AI 创业者（Bluecore 联合创始人兼首席产品官，后创办 Alby）；经济学＋数学学士，非神经科学科班；现为哥伦比亚大学博士生（神经记忆／皮质微回路）</div>
+    <div><b>英文初版</b>Mariner Books（美国）2023-10-24 · xii＋415 页 · ISBN 9780063286344（精装）；英版 William Collins 2023-10-26</div>
+    <div><b>平装／电子</b>Mariner 平装 2025-04（432 页）· ISBN 9780063286368（电子）· 版权已售 9 种语言</div>
+    <div><b>中译</b>《智能简史：进化、AI与人脑的突破》· 林桥津 译 · 中译出版社（中国出版集团）· ISBN 9787500181699 · 448 页 · ¥98</div>
+    <div><b>荣誉与评分</b>第二十一届文津图书奖（科普类，2026-04-23）· 豆瓣中文版 9.1／原版 9.4 · 亚马逊 4.7 · 樊登、万维钢等推荐</div>
+    <div><b>状态</b>未标注已读／想读 —— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有出版方公开节选、Google Books 预览或带页码引文可定位的段落；以及作者本人开放获取论文里对同一框架的表述</li>
+    <li><span class="tag t-talk">作者谈话</span> 出自作者访谈、播客或个人站点自述 —— 不在书里</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、书评或读者读书笔记，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本书<b>没有公开全文</b>。我未持原书，也没有纸质书；不过<b>作者本人的框架论文（Frontiers in Neuroanatomy 2021, PMC8418099）是开放获取全文</b>，书里的「五次突破」骨架可以在那篇论文里逐段核对。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-02 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书整体落在 <b>B 级（带页码引文）</b>：2023 年在版权期内、无公开全文，但有<b>出版方公开节选</b>、<b>Google Books 预览</b>与<b>带页码引文（p.104／106／109／113／117–118／301）</b>。★ 另有<b>一处例外</b>：全书骨架先以论文形式发表（Frontiers in Neuroanatomy 2021，开放获取），该部分可达 <b>A 级全文核验</b>。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p>AI 公司创业者班尼特认为：<strong>要造出类人智能，先得知道人脑这 10 亿年到底做了什么</strong>。他把这段历史压缩成五次「突破」，每一次都是「一个新脑区 ＋ 一个新算法」的配对，并逐次对照 AI 已有的对应物：转向对应扫地机器人、强化对应 TD-Gammon、模拟对应生成模型、心智化对应逆向强化学习、语言对应大语言模型。</p>
+  <p>一句话结论（也是全书最锋利、最容易记住的一句）：<strong>大语言模型是「通往心灵的一扇窗」，不是心灵本身</strong>——因为语言在人脑里是<strong>接口</strong>（把一个人的内部模拟装进另一个人的脑子），而不是智能的<strong>本体</strong> <span class="tag t-rep">转述</span>。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>突破</th><th>时间（书内口径；另说见附录 D4）</th><th>主角</th><th>新增的「器官 ＋ 算法」</th><th>作者对照的 AI</th></tr></thead>
+    <tbody>
+      <tr><td>第 1 次 · 转向（Steering）</td><td>约 6 亿年前</td><td>第一批两侧对称动物（蠕虫）</td><td>神经元 ＋ 效价（好／坏）＋ 转向决策</td><td>Roomba 式反射型机器人</td></tr>
+      <tr><td>第 2 次 · 强化（Reinforcing）</td><td>约 5 亿年前</td><td>第一批脊椎动物（鱼）</td><td>基底神经节 ＋ 多巴胺 ＋ 时序差分学习</td><td>TD-Gammon／无模型强化学习</td></tr>
+      <tr><td>第 3 次 · 模拟（Simulating）</td><td>约 2 亿年前</td><td>第一批哺乳动物</td><td>新皮质 ＋ 生成式世界模型</td><td>生成式模型／基于模型的强化学习</td></tr>
+      <tr><td>第 4 次 · 心智化（Mentalizing）</td><td>约 1500 万年前</td><td>第一批灵长类</td><td>颗粒状前额叶 ＋ 心智理论</td><td>逆向强化学习（吴恩达团队）</td></tr>
+      <tr><td>第 5 次 · 语言（Speaking）</td><td>约 10 万年前</td><td>智人</td><td>语言的神经／解剖基础 ＋ 心智化接口</td><td>大语言模型（GPT 系）</td></tr>
+      <tr><td>第 6 次（作者只做推测）</td><td>—</td><td>「生物智能挣脱生物限制」</td><td>—</td><td>超级智能</td></tr>
+    </tbody>
+  </table>
+  <p>书前的两章附录（《人类大脑的解剖学基础》《我们的进化谱系》）是<strong>工具页</strong>，不承担论证 <span class="tag t-src">原书</span>。正文 22 章 ＋ 引言 ＋ 结论。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>五个核心论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：智能不是一次发明，而是五次叠加 —— 每次都是「新脑区 ＋ 新算法」</h3>
+  <p><strong>主张</strong>：人类智能不是一块更大的通用硬件跑更聪明的软件，而是<strong>古老的旧系统一层层往上叠</strong>。蠕虫的效价系统、鱼的强化学习、哺乳动物的模拟、灵长类的心智化，今天全都还在你脑子里运行。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：书的组织方式本身就是论据——每一部分都先讲这一类动物<strong>多出了什么结构</strong>，再讲这个结构<strong>能算什么</strong>；作者反复强调「脑结构高度保守」（如基底神经节回路在人脑与七鳃鳗脑中「几乎一模一样」）<span class="tag t-rep">转述</span>。</p>
+  <p><strong>为什么重要</strong>：如果这个论点成立，那么「加大模型规模就能到 AGI」这条路的隐含前提（智能＝可统一扩充的单一能力）就是可疑的。</p>
+  <h3>论点二：强化学习不是 AI 的发明，是 5 亿年前鱼类祖先的发明</h3>
+  <p><strong>主张</strong>：多巴胺不是「快乐分子」，而是<strong>预测误差信号</strong>；基底神经节是 Sutton 意义上的「行动者」，多巴胺神经元是「评判者」。脊椎动物用这套 actor-critic 结构实现了时序差分（TD）学习。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：书里把三件事串成一条线——Sutton 与 Barto 的 TD 学习（以及 Tesauro 的 TD-Gammon）、Schultz 对多巴胺神经元的记录（多巴胺信号对应「比预期更好／更差」）、以及基底神经节在脊椎动物里的结构一致性。<span class="tag t-src">原书</span></p>
+  <p><strong>可以核对到什么程度</strong>：这条论断背后的机制在作者的开放获取论文 <strong>Bennett 2021, Frontiers in Neuroanatomy</strong> 里有可逐段核对的表述（论文图 2 专门画了「无模型强化学习在不同实现下的差别」，并提出脊椎动物的「状态＝异我中心位置、动作＝下一个目标位置」这一实现差异）<span class="tag t-src">原书</span>。</p>
+  <h3>论点三：哺乳动物的分水岭是「模拟」——新皮质是同一台机器兼做感知与想象</h3>
+  <p><strong>主张</strong>：新皮质是一台<strong>生成式预测机器</strong>，它重建动物周围整个三维世界，用来预测「接下来会发生什么」。感知与想象不是两套系统，而是<strong>同一台机器的两种模式</strong>。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：书中用「想象世界的老鼠」「洗碗机器人的秘密」两章讲这件事；作者的表述是：反射环路是反射预测机器、基底神经节里的评判者是奖励预测机器，而<strong>新皮质是现实世界预测机器</strong> <span class="tag t-rep">转述</span>。</p>
+  <p><strong>为什么这是全书最关键的一章</strong>：如果新皮质＝生成模型，那么 AI 的「世界模型」缺的不是参数，而是<strong>「模拟是行动的默认前置」</strong>这件事本身——哺乳动物在下手之前先在内部把这件事做一遍。<span class="tag t-inf">推断</span></p>
+  <h3>论点四：灵长类的心智化把「政治」变成了选择压力</h3>
+  <p><strong>主张</strong>：灵长类演化出<strong>模拟自己心智</strong>的能力，再把同一套机制外推到别人身上（心智理论），于是社交策略成了主要适应压力。<strong>关键推论</strong>：心智化<strong>切断了「体能优势＝繁殖成功」的链条</strong>——一个精于政治的雄性，可以压过更强壮的对手。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：书里用「政治智慧的军备竞赛」「猴锤和自动驾驶汽车」「为什么老鼠不能去杂货店买东西」三章讲这件事；镜像神经元作为「通过模拟来模仿」的神经基础被引为证据。<span class="tag t-rep">转述</span></p>
+  <p><strong>与 AI 的接口</strong>：作者在此处的实例最少、最薄（只提到逆向强化学习）——中文读者普遍注意到，这一部分与 AI 的对照<strong>明显弱于前两部分</strong> <span class="tag t-rep">转述</span>。</p>
+  <h3>论点五：语言是接口，不是智能本体</h3>
+  <p><strong>主张</strong>：人类语言真正独特的地方不在于语法或符号，而在于它<strong>把内部模拟挂到任意符号上</strong>，从而让一个人的模拟可以装进另一个人的脑子、并跨代累积。「人类没有几十万年前的祖先所不具备的新脑能力，我们有的是<strong>很多代人累积下来的知识</strong>。」<span class="tag t-src">原书</span></p>
+  <p><strong>由此得出的推断</strong>：LLM 擅长的是符号序列的预测，而<strong>符号在人脑里是指向模拟的指针</strong>——所以 LLM 缺的不是语言能力，是符号背后那台机器。<span class="tag t-src">原书</span> ＋ <span class="tag t-inf">推断</span></p>
+  <p><strong>作者的措辞</strong>：「我想大多数人都会同意，未来的类人人工智能不会是大语言模型，语言模型只是通往更高级智能的一扇窗。」<span class="tag t-rep">转述</span>（★ 这句话流传极广，但请注意它是<strong>转述</strong>，我未在原书核对到页码。）</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <ul>
+    <li><strong>只读一章</strong>：<strong>第 11 章《生成模型和新皮质的奥秘》</strong>。全书论证密度最高、也最不可替代的一章在这里。
+    </li>
+    <li><strong>四小时版</strong>：引言 ＋ 第 1 部分（第 1–4 章）＋ <strong>第 6 章《时序差分学习的进化》</strong> ＋ <strong>第 11 章</strong> ＋ <strong>第 13 章《基于模型的强化学习》</strong> ＋ 第 22 章 ＋ 结论。
+    </li>
+    <li><strong>AI 从业者路线</strong>：直接跳读<strong>第 6、7、13、22 章 ＋ 结论</strong>，再回头补第 3–4 章（效价与联想学习是最多人忽略、但决定「为什么 LLM 没有动机」的一环）。
+    </li>
+    <li><strong>神经科学背景路线</strong>：第 1–9 章对你可能是复习——可直接从<strong>第 10 章</strong>开始，把注意力放在「作者如何把已知结构翻译成算法」这一步上。
+    </li>
+    <li><strong>可以跳过的</strong>：书前的《人类大脑的解剖学基础》与《我们的进化谱系》两章——它们<strong>不是论证</strong>，是工具页，当字典查即可；<strong>第 10 章《神经的黑暗时代》</strong>与<strong>第 2–3 章</strong>的古生物学细节，对非专业读者的性价比明显偏低 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>一句提醒</strong>：<strong>别把「五次突破」读成「五个阶段」。</strong> 作者用的是「突破」（breakthrough）这个词，而这个措辞本身就招来了批评（见下节）。
+    </li>
+  </ul>
+  <h3>如果你是「已读」</h3>
+  <p>用四个问题给自己做一次体检：</p>
+  <ol>
+    <li><strong>你能不能说出「第六次突破为什么是开放问题」？</strong> 如果你只记住了「人与 AI 结合」这句话，那你丢掉的是作者的<strong>条件句</strong>：他说的是「生物智能挣脱生物限制」，而不是「会有一个超级大脑诞生」。
+    </li>
+    <li><strong>你的「五次突破」有没有变成「五个台阶」？</strong> 书里的顺序是<strong>结构先出现、算法才可能</strong>；如果你记成「越来越聪明的五个版本」，你把作者的因果方向读反了。
+    </li>
+    <li><strong>你分得清作者的两种语气吗？</strong> 「多巴胺＝预测误差」是有实验支撑的；「新皮质＝生成模型」是<strong>类比＋推断</strong>；「第六次突破是超级智能」是<strong>纯粹的推测</strong>。三者在他笔下语气相近，但证据等级差得很远 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>你能说出这本书最弱的地方吗？</strong> 如果你说不出来，重读第 15–18 章（心智化与 AI 的对照）——那是全书承诺了却没兑现的一段。
+    </li>
+  </ol>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <h3>4.1 最锋利的一条：这本书的中心类比可能根本不成立</h3>
+  <p><strong>威廉·伯恩斯坦（William Bernstein）</strong> 在 <em>Advisor Perspectives</em>（2024-06-17）的书评里，写了一句极不客气的开头：</p>
+  <blockquote>
+    <p>Spoiler alert: Bennett fails.（剧透：班尼特失败了。）<span class="tag t-rep">转述</span></p>
+  </blockquote>
+  <p>他的论证是：<strong>早期航空工程师学鸟，结果飞机和鸟的飞行机理几乎没关系</strong>；同理，「成功的人工智能的机制，也不会像我们那三磅胶状脑组织」。他同时点出：班尼特<strong>在生物与神经科学上没有受过正式训练</strong>——但他也承认这本书的价值：作者是「世界级自学者」，其综合工作发表在高层级同行评审期刊上，这本书「至少接近」人类演化叙事这一体裁的顶点，可与 Joseph Henrich 的 <em>The Secret of Our Success</em> 并列 <span class="tag t-rep">转述</span>。</p>
+  <p>★ <strong>这条批评值得单列，因为它攻击的不是细节，而是全书的前提</strong>：如果 AI 不必复刻大脑，那这本书从「历史」通向「AI 路线图」的那座桥就是搭在类比上的。<strong>读者至少要意识到：作者主张的是一条规范性路线（我们「应该」照着进化走），而不是一个已被证实的因果发现。</strong><span class="tag t-inf">推断</span></p>
+  <h3>4.2 进化生物学方向的两条方法论批评</h3>
+  <ul>
+    <li><strong>目的论语言（teleology）</strong>：书评人（hackscience.net）指出，班尼特常用「为了……」「从而能够……」这类措辞，读者会误以为那些突变是<strong>为了</strong>某个目的发生的。他的第二条相关意见更重：<strong>叙事的方向性会被误读成必然性</strong>——「如果回到第一个出现某项突破的生物，我们可能永远也走不到人类」。<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>「突破」这个词用错了</strong>：另一位书评人（blackjay.net.au）直接写：「他管这叫 breakthrough，可<strong>进化根本不是这么工作的</strong>——不是『我灵光一现到了』，那暗示了方向和目标。」他同时指出<strong>第一次突破其实是一系列步骤</strong>，不是一次跳变。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <p>★ 这两条不是吹毛求疵：<strong>它们决定了你该拿这本书当「史实」还是当「叙事框架」来读。</strong></p>
+  <h3>4.3 「没有兑现」的批评：类比很有力，但没有给出可执行的东西</h3>
+  <p><em>Artificiality Journal</em> 的书评（作者为 AI 研究者）说得最准：<strong>生物与人工之间真正有生产性的转移很少</strong>，TD 学习与多巴胺是<strong>例外而不是常态</strong>；「用隐喻说 AI 需要一个世界模型，有概念价值，但<strong>并没有提供设计或评估这种模型的具体方法</strong>」。它最后给出的追问是：<strong>「如果 AI 是我们进化的下一步，为什么我们要把它造得像我们？」</strong> <span class="tag t-rep">转述</span></p>
+  <p>同一篇还点出结论章节的具体缺口：我们拿到了「需要好奇心、想象力、元认知」这类<strong>概念指针</strong>，但没有<strong>由进化启发而来、又不被进化绑死的新基准测试</strong>。<span class="tag t-rep">转述</span></p>
+  <h3>4.4 结构与严谨度：前半本强、后半本弱</h3>
+  <p><strong>Goodreads 上被点赞最多的长评之一</strong>（自述有神经科学／遗传学研究生训练）给出的是「推荐，但要说清楚」：</p>
+  <ul>
+    <li><strong>前 2/3 明显更扎实</strong>，因为早期的 AI 技术确实只对应到较低的生物功能；
+    </li>
+    <li><strong>「他的洞见并非惊人地聪明或原创——每一个用功的进化生物学本科生，靠课程与阅读都会得出类似结论」</strong>；他的长处是<strong>组织与蒸馏</strong>（"shoe-leather science communication"）；
+    </li>
+    <li><strong>「这本书本该在引用与尾注上更严谨」</strong>；
+    </li>
+    <li><strong>「它本该在开头给『智能』一个精确定义，并在叙述中不断回到它」</strong>——这个缺失贯穿全书。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <p>中文读者的读感高度一致：后 1/3「分析篇幅少、程度浅，可以说是点到为止」；问题在于「<strong>追求体系自洽而简化科学事实、案例过度简化、解决方案虚化</strong>」，因此<strong>不适合当严谨学术结论</strong>，只适合当「<strong>思维脚手架</strong>」<span class="tag t-rep">转述</span>。</p>
+  <h3>4.5 还原论调门，与一个「缺席的词」</h3>
+  <p>一位读者笔记指出：全书几乎<strong>不使用「意识」（consciousness）这个词</strong>，「mind」也只在「theory of mind」里零星出现 <span class="tag t-rep">转述</span>。同时被引用最多的一段（<strong>p.301</strong>）调门相当还原：</p>
+  <blockquote>
+    <p>当我们谈论这些内部模拟，尤其是在谈到人的时候，我们倾向于给它们冠上概念、想法、思想这类词。但所有这些东西，<strong>不过是哺乳动物新皮质模拟中的一段渲染</strong>。当你「思考」一件过去或未来的事、当你琢磨「鸟」这个概念、当你有「想法」要造一件新工具时，你不过是在探索你的新皮质构建出来的那个丰富的三维模拟世界。<strong>原则上，这与一只老鼠在迷宫里琢磨该往哪边转没有区别。</strong> <span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>那段笔记的作者评论说：虽然我同意这些过程确实是大脑的运作，「但<strong>这里还有比班尼特所描述的更多的东西值得探讨</strong>」<span class="tag t-rep">转述</span>。★ 这是你在读时该自己拿捏的一处：<strong>同一个句子，可以读成「深刻的统一」，也可以读成「把问题消解掉了」。</strong></p>
+  <h3>4.6 立场问题</h3>
+  <p><strong>① 作者身份与读者对象有重叠。</strong> 班尼特是 AI 创业者（Bluecore 联合创始人兼首席产品官，公司估值逾 10 亿美元；后创办 Alby），书的英文副标题与宣传语都直接面向「想造 AI 的人」。<strong>把生物史当作 AI 路线图，是一个规范性主张</strong>——它的说服力部分来自作者的企业家身份，而这恰恰不是证据。<span class="tag t-inf">推断</span></p>
+  <p><strong>② 中文版的推荐语里，有一句需要打折。</strong> 樊登的推荐语是「这本书比《人类简史》还要牛」，万维钢则把它与《人类简史》《行为》相提并论。<strong>畅销与名人推荐是接受度证据，不是论证成立的证据。</strong><span class="tag t-inf">推断</span></p>
+  <p><strong>③ 中译本有附赠思维导图。</strong> 这在一本「框架型」著作上是有用的，但要注意：<strong>思维导图会强化「五个台阶」的误读</strong>——它是作者的框架，不是学界共识。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5</span><span>序曲：这本书要为「智能」立什么坐标（引言 ＋ 两章附录）</span><span class="caret">▾</span></h2>
+  <h3>这一部分在回答什么</h3>
+  <p>在讲历史之前先立一个判断标准：<strong>什么变化算「智能」的进步？</strong> 作者的答案是<strong>能力增加</strong>（能做的事变多），而不是「更接近人类」。这决定了他能一路从细菌讲到智人而不显得荒谬。<span class="tag t-src">原书</span></p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>开场用的是<strong>罗西（Rosie）</strong>——《杰森一家》里那个能做饭、带孩子、还有幽默感的机器人。作者用它问出全书的核心悖论：<strong>AI 能击败国际象棋大师，却摆不好洗碗机里的餐具。</strong><span class="tag t-src">原书</span>
+    </li>
+    <li>他把它归因于「<strong>我们没有真正理解自己的大脑</strong>」，并借 1800 年代发明家被送到未来看波音 747 的寓言说明：<strong>只看到外形的相似，会漏掉原理</strong>。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>「罗西」这个开场<strong>已经预设了答案</strong>：它把「AI 应该像人」当成默认目标。而 4.1／4.3 两节引的批评恰恰在攻这个预设。★ <strong>读者在这里就该把「它该像人吗」这个问题挂起来，而不是等到最后一章。</strong><span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">6</span><span>第一次突破 · 转向：好与坏的诞生（第 1–4 章）</span><span class="caret">▾</span></h2>
+  <h3>这一部分在回答什么</h3>
+  <p><strong>智能的最初形态是什么？</strong> 答案出人意料地朴素：<strong>能朝着对自己好的方向转过去、背着坏的方向转开</strong>。有了前后左右的身体轴，转向才有意义；有了「好／坏」，转向才有内容。<span class="tag t-src">原书</span></p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>第 1 章《大脑出现之前的世界》：从热液喷口的第一个细胞讲到多细胞、再到最早的神经元。作者反复强调的一个点很有力——<strong>把人与蚯蚓区分开的不是神经元本身，而是神经元怎么连</strong>（人脑 860 亿神经元、超过 100 万亿连接）<span class="tag t-rep">转述</span>。
+    </li>
+    <li>第 2 章《好与坏的诞生》提出核心概念<strong>效价（valence）</strong>：食物＝好、捕食者＝坏。作者认为<strong>情绪可能就是为了解决古蠕虫的导航问题而出现的</strong>——这是全书最有传播力的一个命题。<span class="tag t-src">原书</span>
+    </li>
+    <li>第 3 章《情感的起源》：效价进一步分化出<strong>唤醒度</strong>与<strong>慢性应激状态</strong>（作者用「麻木」这类状态举例）<span class="tag t-rep">转述</span>。
+    </li>
+    <li>第 4 章《关联、预测和学习的曙光》：<strong>效价一旦出现，就带来了「改变效价」的能力</strong>——能转向的生物才有压力去学。作者用「巴甫洛夫其实是在研究消化」的故事引入联想学习，并列出线虫式联想学习的几个「凑合办法」（刺激须在一秒内、须足够强、须不熟悉、且没有别的预测线索在竞争）。<span class="tag t-src">原书</span>
+    </li>
+    <li><strong>AI 对照</strong>：Roomba——不建地图、不识别物体，只能前进／后退＋原地转弯，靠找充电桩信号最强的方向回充。作者指出它的转向与学习<strong>是显式照着两侧对称动物的模板设计的</strong>。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ul>
+    <li>★ <strong>「突破」的措辞在这里最站不住</strong>：blackjay 的书评人指出，第一次突破其实是<strong>一连串步骤</strong>（多细胞性 → 两侧对称 → 神经元 → 效价 → 联想学习），把它压缩成一次「突破」，代价是抹掉了每一步各自的难度。<span class="tag t-rep">转述</span>
+    </li>
+    <li>第 2–3 章的<strong>古生物学与分子细节密度很高</strong>，但论证回报低——这里是「可以跳」的那一段。
+    </li>
+  </ul>
+</section>
+
+<section id="s7">
+  <h2><span class="num">7</span><span>第二次突破 · 强化：鱼类的时序差分学习（第 5–9 章）</span><span class="caret">▾</span></h2>
+  <h3>这一部分在回答什么</h3>
+  <p><strong>从「靠联想」到「靠试错」：当奖励延后、且路径很长时，怎么知道该强化哪个动作？</strong> 这就是<strong>信用分配问题（credit assignment）</strong>。作者的主张是：<strong>脊椎动物用它解决了，用的是和 1990 年代 AI 完全相同的算法。</strong><span class="tag t-src">原书</span></p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>第 5 章《寒武纪大爆发》：脊椎动物登场；作者强调<strong>所有脊椎动物胚胎早期脑发育相同</strong>（先分前／中／后脑，前脑再分为「皮质＋基底神经节」与「丘脑＋下丘脑」两条线）。<span class="tag t-rep">转述</span>
+    </li>
+    <li>第 6 章《时序差分学习的进化》是全书最硬的一章之一。核心链条：
+    <ul>
+      <li>Sutton 把强化学习拆成<strong>行动者（actor）＋ 评判者（critic）</strong>；
+      </li>
+      <li>被奖励的不是胜利，而是<strong>评判者对胜率预测的「时间差分」</strong>；
+      </li>
+      <li>「这听起来是循环论证，但两者<strong>同时训练</strong>时会发生一种神奇的自我提升（bootstrapping）」<span class="tag t-src">原书</span>；
+      </li>
+      <li>生物学证据两条：<strong>行动者＝基底神经节</strong>（结构在脊椎动物间高度一致，常态是「闸住」大多数动作，只有特定神经元关闭时才放行某个动作）；<strong>评判者＝多巴胺神经元</strong>（对猴子给糖水的实验显示，多巴胺对应的<strong>不是</strong>快乐、不是糖水、也不是惊讶，而是<strong>「比我上一刻预测的更好」</strong>）<span class="tag t-src">原书</span>。
+      </li>
+      <li>与 AI 的相互启发：Dayan 把它和大脑连上了；而<strong>先是神经科学家读了关于 Neurogammon／TD-Gammon 的论文，才意识到这类学习解释了他们在多巴胺实验里看到的行为</strong> <span class="tag t-src">原书</span>。
+      </li>
+    </ul>
+    </li>
+    <li>第 7 章《模式识别问题》：辨别与泛化的两难。书中对 CNN 的批评相当锋利——<strong>视觉处理并不像最初以为的那样分层</strong>（信息常跳过层级、也常同时分支到多层）；CNN 不理解三维旋转；CNN 依赖监督与反向传播，而皮质似乎能在没有这两者的情况下识别物体；而且 CNN 的灵感来自<strong>哺乳动物</strong>视觉皮质，可比它简单得多的<strong>鱼类</strong>皮质同样解决了不变性问题 <span class="tag t-rep">转述</span>。
+    </li>
+    <li>第 8 章《生命为何充满好奇》：作者把好奇心处理为<strong>内生的探索驱动</strong>——因为它解决的是「在复杂环境里探索效率太低」这个问题 <span class="tag t-rep">转述</span>。
+    </li>
+    <li>第 9 章《第一个世界模型》：从「刺激—反应」走到「空间与时间的内部表征」。鱼类能学会穿越多个隐藏出口，且记忆可保持数月甚至数年 <span class="tag t-rep">转述</span>。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ul>
+    <li>★ <strong>第 7 章对 CNN 的批评，是最容易在专业读者那里打折的一段</strong>。它读起来像「CNN 不像皮质，所以错了」，但反方可以立刻回应：<strong>CNN 从来不是皮质的仿真，而是一个工程类比</strong>；拿类比去指责一个工程方案「不准确」，是范畴混淆。<span class="tag t-inf">推断</span>
+    </li>
+    <li>「多巴胺＝预测误差」这条是<strong>强证据</strong>；「鱼类实现了标准 TD 学习」这条是<strong>较强的推断</strong>（作者的 2021 论文里，这被表述为一个<strong>待检验的实现假设</strong>：状态＝异我中心位置、动作＝下一个目标位置）。★ <strong>书里这两条的语气差别不大，这是你要自己补上的一层分辨。</strong><span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+</section>
+
+<section id="s8">
+  <h2><span class="num">8</span><span>第三次突破 · 模拟：哺乳动物与新皮质（第 10–14 章）</span><span class="caret">▾</span></h2>
+  <h3>这一部分在回答什么</h3>
+  <p><strong>为什么要「在脑子里先演一遍」？</strong> 因为试错成本太高。哺乳动物在恐龙统治的「黑暗时代」里演化出新皮质——一台能在内部重建世界、并在动手之前先把各种选择演一遍的机器。<span class="tag t-src">原书</span></p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>第 11 章《生成模型和新皮质的奥秘》是全书的核心。主张两条：
+    <ol>
+      <li><strong>新皮质是重复柱构成的结构</strong>（一大块同质硬件）；
+      </li>
+      <li><strong>感知与想象共用同一区域</strong>——「这正是我们对生成模型的预期：感知和想象不是两个独立系统，而是<strong>同一枚硬币的两面</strong>」<span class="tag t-rep">转述</span>。
+      </li>
+    </ol>
+    </li>
+    <li>作者的层级比喻被中文读者广泛摘录：<strong>反射环路是反射预测机器，基底神经节里的评判者是奖励预测机器，新皮质则是现实世界预测机器</strong> <span class="tag t-rep">转述</span>。
+    </li>
+    <li>第 12 章《想象世界的老鼠》＋ 第 13 章《基于模型的强化学习》：动物可以在行动前模拟不同选择的后果。作者指出<strong>基于模型的强化学习在 AI 里极难实现</strong>——「在大多数真实情境中，<strong>不可能搜索完所有可能选项</strong>」<span class="tag t-src">原书</span>。
+    </li>
+    <li>第 14 章《洗碗机器人的秘密》：为什么扫地机器人的经验<strong>迁移不到洗碗机</strong>？因为洗碗不是「转向」，它需要在杂乱、连续、部分可观测的三维场景里做规划——这正好是模拟能力的主场。<span class="tag t-inf">推断</span>（此章是全书对「罗西悖论」的正面回应。）
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ul>
+    <li>★ <strong>这一段最重要的一句，作者自己用的词是「在原则上可能有平行之处」</strong>：他把 AlphaZero 的搜索拿来类比哺乳动物的搜索，同时明确说两者有一个重要差别——<strong>AlphaZero 对每一步都用同一套搜索策略，而哺乳动物更可能是「有多种搜索策略可选」</strong><span class="tag t-src">原书</span>。<strong>书评人（AIPT）注意到这个措辞上的谨慎，读者更容易漏掉它。</strong>
+    </li>
+    <li>「新皮质＝生成模型」目前仍是<strong>一个研究纲领</strong>，不是已定论。作者自己也把它归入「提示」而非「配方」——见 4.3 的批评。
+    </li>
+  </ul>
+</section>
+
+<section id="s9">
+  <h2><span class="num">9</span><span>第四次突破 · 心智化：灵长类的政治脑（第 15–18 章）</span><span class="caret">▾</span></h2>
+  <h3>这一部分在回答什么</h3>
+  <p><strong>当同类之间的竞争变成「谁更懂谁在想什么」时，大脑要长成什么样？</strong> 答案是需要<strong>模拟自己、再把模型套到别人头上</strong>。<span class="tag t-src">原书</span></p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>第 15 章《政治智慧的军备竞赛》：群体生活带来的社交复杂度，成了新皮质（尤其前额叶）变大的主要推力。<strong>关键推论</strong>：心智化<strong>切断了体能优势与繁殖成功之间的绑定</strong> <span class="tag t-src">原书</span>。
+    </li>
+    <li>第 16 章《如何模拟他人心智》：心智理论（theory of mind）＋<strong>镜像神经元</strong>作为「通过模拟来模仿」的基础。作者由此解释灵长类能<strong>学到自己没做过的新技能</strong>，而不只是在既有库里挑 <span class="tag t-src">原书</span>。
+    </li>
+    <li>第 17 章《猴锤和自动驾驶汽车》：驾驶的难点不是「复制正确动作」，而是<strong>纠错</strong>——自动驾驶从没见过错误，就不知道如何纠错。解法被归纳为两条：手把手教（人类怎么纠错）、或逆向强化学习（识别预期轨迹与动作）<span class="tag t-rep">转述</span>。
+    </li>
+    <li>第 18 章《为什么老鼠不能去杂货店买东西》：把心智化与规划联系起来——理解「我明天会饿」这类<strong>未来自我状态</strong>，是自上而下规划的前提 <span class="tag t-inf">推断</span>（本章标题在目录中确认 <span class="tag t-src">原书</span>，内容我未核到原文）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ul>
+    <li>★★ <strong>这是全书与 AI 对照最薄的一段</strong>。中文读者一致指出：这一部分只提到逆向强化学习就带过，<strong>语焉不详</strong>；后文对 LLM 缺陷的分析也「篇幅少、程度浅」<span class="tag t-rep">转述</span>。如果你读这一部分感到「前面听着很有道理、到这里突然没劲」，那不是你的问题——<strong>是作者没有把这段兑现</strong>。
+    </li>
+    <li><strong>镜像神经元的地位争议</strong>：把「模仿学习」大量压在镜像神经元上，在神经科学内部一直有分歧（我未在本书中找到作者对该争议的正面处理）<span class="tag t-inf">推断</span>——列入附录 D。
+    </li>
+  </ul>
+</section>
+
+<section id="s10">
+  <h2><span class="num">10</span><span>第五次突破 · 语言：人类的接口（第 19–22 章）</span><span class="caret">▾</span></h2>
+  <h3>这一部分在回答什么</h3>
+  <p><strong>人与其它灵长类之间，到底差在哪一件东西上？</strong> 作者的答案不是新脑区，而是<strong>语言把内部模拟接上了符号</strong>，于是模拟可以跨人、跨代累积。他把这称作「<strong>最初的奇点（the original singularity）</strong>」。<span class="tag t-src">原书</span></p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>第 19 章《寻找人类的独特性》：作者引用的方向是——人类的独特之处<strong>可能不在于「多了哪些新皮质区域」，而在于演化出了支持学语言的基础本能</strong>（与婴儿的「原对话」、共同注意等），而这些本能是其它灵长类没有的 <span class="tag t-src">原书</span>。
+    </li>
+    <li>第 20 章《大脑中的语言》：语言是<strong>通往内部模拟的接口</strong>——先能模拟并推理他人心智，才能算出「哪些词会在对方心里产生我想要的模拟」<span class="tag t-rep">转述</span>。
+    </li>
+    <li>第 21 章《完美风暴》：语言 ＋ 心智化 ＋ 累积效应，三者叠加。
+    </li>
+    <li>第 22 章《ChatGPT 与心灵之窗》是全世界摘录最多的一章。核心实验性论证（出版社公开节选里有完整版）：
+    <ul>
+      <li>GPT-3 与语言皮质<strong>都在做预测</strong>，两者都能把过去经验总结后应用到没见过的句子上 <span class="tag t-src">原书</span>；
+      </li>
+      <li>但作者给出四道需要<strong>模拟</strong>的题（3x＋1＝3 求 x；在地下室抬头看天看到什么；能否接住头顶 100 英尺落下的棒球；从纽约开车去洛杉矶、一小时前经过芝加哥）——GPT-3（截至 2022-06）全部答错 <span class="tag t-src">原书</span>；
+      </li>
+      <li>他还引了认知反射测验的两道经典题（球棒与球、5 台机器 5 分钟造 5 个零件），<strong>GPT-3 给出的是与人类直觉相同的错误答案（10 美分／100 分钟），而不是正确答案（5 美分／5 分钟）</strong> <span class="tag t-src">原书</span>；
+      </li>
+      <li>由此得出的判断：<strong>人脑里同时有一个「单词预测系统」和一个「内部模拟系统」</strong>，而语言的力量不在于语法，<strong>在于它能给出必要的资讯去启动模拟</strong> <span class="tag t-src">原书</span>。
+      </li>
+    </ul>
+    </li>
+    <li>关于「学习方式」的对照：<strong>「ChatGPT 不能顺序地学习东西——它们一次学完，然后就停止学习了。」</strong> 因为存在灾难性遗忘与学错的风险 <span class="tag t-src">原书</span>。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ul>
+    <li><strong>GPT-3 的四道错题有保质期。</strong> 这些对照是 2022 年 6 月做的；到 2024–2026 年，同类题目在新模型上已经大量被答对。★ <strong>不要把这四道题当作「LLM 永远不行」的证据</strong>，它证明的是「当时的 LLM 没有模拟」，而不是「LLM 不会有模拟」。<span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>「语言模型只是一扇窗」是一个预言，不是一个结论。</strong> 它建立在一个前提上：<strong>「智能＝内部模拟」</strong>。这个前提本身是作者的理论选择（且如 4.1／4.3 所示，是有争议的）<span class="tag t-inf">推断</span>。
+    </li>
+  </ul>
+</section>
+
+<section id="s11">
+  <h2><span class="num">11</span><span>结论：第六次突破，与全书的方法论风险</span><span class="caret">▾</span></h2>
+  <h3>这一部分在回答什么</h3>
+  <p><strong>下一个突破会是什么？</strong> 作者的答案保留得很克制：<strong>「生物智能挣脱生物限制」</strong>——他称之为「我们后代在硅基中的涌现」，并明确说这<strong>不是</strong>超人类主义式的宣言 <span class="tag t-rep">转述</span>。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>他给出的是一个<strong>选择问题</strong>而不是预言：既然我们现在有能力「扮演上帝」造一种新智能，我们就得先决定<strong>目标是什么</strong>——是要走向宇宙，还是成为演化树上又一根没长出「人工智能」这一枝的枝条？<span class="tag t-src">原书</span>（AP 书评对该结尾的描述）
+    </li>
+    <li>全书最后一层论证是「<strong>知识累积</strong>」：现代人并不拥有几万年前祖先所不具备的脑能力，<strong>我们拥有的是许多代人的知识</strong> <span class="tag t-src">原书</span>。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>结论章的射程超过了证据的射程</strong>——这是我对全书最大的一条保留。</p>
+  <ul>
+    <li>前面 22 章能支撑的是：<strong>这五次结构创新各自解决了什么问题，而 AI 复刻到第几步</strong>。
+    </li>
+    <li>结论章要的主张是：<strong>沿着同样顺序走，是唯一／最优的通往类人智能的路</strong>。
+    </li>
+    <li>从前者到后者，正中间的论证（为什么<strong>必须</strong>是同样的顺序、为什么<strong>不能</strong>有别的路径）<strong>没有出现在书里</strong>。<em>Artificiality Journal</em> 的追问「为什么我们把它造得像我们」正好落在这个空档上。<span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+  <p>★ 用法建议：<strong>把结论章当作作者的一个立场声明来读，而不是当作前 22 章的推论。</strong> 那样读，它依然有意思；不那样读，你会被它的气势带走。</p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">A</span><span>金句摘录</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>引文</th><th>出处语境</th><th>可信度</th></tr></thead>
+    <tbody>
+      <tr><td>「不过这些（概念／想法／思想）<strong>都只是哺乳动物新皮质模拟中的渲染</strong>……原则上，这与一只老鼠在迷宫里琢磨该往哪边转没有区别。」</td><td>讲内部模拟的还原论段落（p.301，原文为英文，此为我译）</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>「语言模型只是通往更高级智能的一扇窗。」</td><td>关于 LLM 定位的核心判断</td><td><span class="tag t-rep">转述</span></td></tr>
+      <tr><td>「ChatGPT 不能顺序地学习东西——它们一次学完，然后就停止学习了。」</td><td>关于 AI 与生物学习方式的差别</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>「无颗粒状前额叶皮质<strong>通过展示而非命令</strong>来控制行为。」</td><td>讲前额叶如何影响基底神经节</td><td><span class="tag t-rep">转述</span></td></tr>
+      <tr><td>「想象本该可以由一个与识别系统分离的系统来完成。但在新皮质里并非如此——它们在同一区域进行。」</td><td>讲感知与想象共用硬件</td><td><span class="tag t-rep">转述</span></td></tr>
+      <tr><td>「我对大脑最喜欢的结构是基底神经节……<strong>对大多数脑结构，你学得越多就越不懂它</strong>。」</td><td>第 6 章讲基底神经节</td><td><span class="tag t-rep">转述</span></td></tr>
+      <tr><td>「（多巴胺）从一个近期食物的<strong>模糊平均值</strong>，被改造成了一个不断波动、被精确测量和计算出来的<strong>预测未来奖励信号</strong>。」</td><td>讲多巴胺＝预测误差</td><td><span class="tag t-rep">转述</span></td></tr>
+      <tr><td>「我们（现代人）并不拥有几万年前祖先所没有的脑能力，<strong>我们拥有的是许多代人的知识</strong>。」</td><td>全书收束处</td><td><span class="tag t-rep">转述</span></td></tr>
+      <tr><td>「Spoiler alert: Bennett fails.」</td><td>伯恩斯坦书评（攻击全书类比前提），<strong>不在书里</strong></td><td><span class="tag t-rep">转述</span></td></tr>
+    </tbody>
+  </table>
+  <p>★ 上表多数条目来自读者高亮与中文读书笔记（逐字但<strong>无页码</strong>），只有 p.301 一条带页码。<strong>请按可信度列取用。</strong></p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <h4>直接相关（本书自己的上下游）</h4>
+  <ul>
+    <li><strong>Joseph Henrich《The Secret of Our Success》（我们成功的秘密）</strong>——伯恩斯坦把这本书与本书并列，讲的是「文化累积」这一路径。想补足本书第 5 次突破的社会维度，从这里读。
+    </li>
+    <li><strong>Kevin Mitchell《Free Agents》</strong>——一位读者明确说想拿它和本书对照：同样走演化路径，但对「自由意志与心智」的处理比本书的还原论调门更细。
+    </li>
+    <li><strong>Max Bennett 2021, Frontiers in Neuroanatomy（开放获取）</strong>——本书骨架的原始论文版。★ <strong>读本书前先扫一遍它，是最省时的做法</strong>：你能立刻看到哪些是「模型」，哪些是「假说」。
+    </li>
+  </ul>
+  <h4>同一问题的其他路径</h4>
+  <ul>
+    <li><strong>Karl Friston 的「自由能原理」</strong>——Friston 本人为本书背书，但自由能原理是另一条把「预测」放到中心的路，其数学化程度远高于本书。
+    </li>
+    <li><strong>Jeff Hawkins《A Thousand Brains》</strong>——同样主张「皮质＝预测机器」，但对皮质柱给出的是一套具体得多的计算理论（作者是本书的背书人之一，且班尼特现在服务于 Thousand Brains Project 董事会 <span class="tag t-talk">作者谈话</span>）。
+    </li>
+    <li><strong>Richard Sutton &amp; Andrew Barto《Reinforcement Learning: An Introduction》</strong>——本书第 2 次突破的技术源头。想弄清 TD 学习到底解决了什么，读前几章就够。
+    </li>
+  </ul>
+  <h4>有助于批判性重读</h4>
+  <ul>
+    <li><strong>William Bernstein 的书评（Advisor Perspectives, 2024-06-17）</strong>——攻击全书前提的那一篇。
+    </li>
+    <li><strong>Artificiality Journal 的书评</strong>——把「隐喻 vs 可执行方法」这条界线划得最清楚。
+    </li>
+    <li><strong>hackscience.net 的书评</strong>——目的论与「必然性」两条批评。
+    </li>
+  </ul>
+</section>
+
+<section id="s14">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>完整版见同目录 <code>智能简史-来源清单.md</code>。主力来源：</p>
+  <table>
+    <thead><tr><th>来源</th><th>提供什么</th><th>手检可信度</th></tr></thead>
+    <tbody>
+      <tr><td>图书馆编目（University of Northern Colorado／Chinook Regional Library）</td><td>英文版 ISBN、页数、逐章目录</td><td>高</td></tr>
+      <tr><td>中译出版社／中国出版集团书讯、百度百科（中文版条目）</td><td>中译本 ISBN／译者／页数／中文逐章目录</td><td>中（宣传语与出版月有冲突）</td></tr>
+      <tr><td>Google Books／Google Play 图书</td><td>版本对照（精装 2023／平装 2025）、预览页数、高频词</td><td>高</td></tr>
+      <tr><td>出版社公开节选（网易转载，含版权声明）</td><td>第 22 章 GPT-3 四道题与 CRT 两题的完整论证</td><td>高</td></tr>
+      <tr><td>公开读书笔记（shafkatrahman.com；scyy.fi；mind-in-mind；Goodreads 笔记）</td><td>带页码引文（p.104/106/109/113/117-118/301）、章节归属</td><td>中（私人笔记，但内部一致）</td></tr>
+      <tr><td>AP 书评、AIPT 书评、hackscience、blackjay、Bernstein、Artificiality Journal、Goodreads 长评</td><td>接受度与批评</td><td>中—高（作者可辨识）</td></tr>
+      <tr><td>作者个人站点 abriefhistoryofintelligence.com ＋ Google Scholar</td><td>作者身份更新、四篇同行评审论文、开放获取线索</td><td>高</td></tr>
+      <tr><td>PubMed／PMC（Bennett 2021, Front Neuroanat）</td><td>框架论文的开放获取全文与图注</td><td>高</td></tr>
+      <tr><td>文津图书奖公示（图书馆转载）</td><td>获奖与豆瓣评分</td><td>中</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s15">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. 中译本的出版月份有三个说法 —— 影响你买哪一版</h3>
+  <p>豆瓣与唐山工职院图书馆书单记 <strong>2025-02</strong>；部分渠道（Actrace）记 <strong>2025-02</strong>；中译出版社书单与媒体书讯记 <strong>2025-05</strong>；百度百科与出版社宣传稿记 <strong>2025-06</strong>。★ <strong>2026 年有重印</strong>（福州图书馆编目注明「2026重印」）。<strong>如果你在意印次，买之前看版权页。</strong><span class="tag t-inf">推断</span></p>
+  <h3>D2. 页数有五个口径</h3>
+  <table>
+    <thead><tr><th>口径</th><th>数字</th></tr></thead>
+    <tbody>
+      <tr><td>英文精装（图书馆编目）</td><td>xii／xiv＋415 页</td></tr>
+      <tr><td>英文电子／平装（Google Books、书商）</td><td>432 页</td></tr>
+      <tr><td>AP 书评的算法</td><td>「365 页正文 ＋ 45 页术语表／注释／参考文献」</td></tr>
+      <tr><td>中译（豆瓣、Actrace）</td><td>448 页</td></tr>
+      <tr><td>中译（福州图书馆编目）</td><td>15＋416 页</td></tr>
+    </tbody>
+  </table>
+  <p>★ 这不是谁错，而是<strong>「正文页数」的定义不同</strong>（含不含前后附加页、术语表）。<strong>不做平均，都列出来。</strong><span class="tag t-src">原书</span></p>
+  <h3>D3. 英文版的出版日期有冲突</h3>
+  <p>主流编目、出版社与书商一致记 <strong>2023-10-24（精装）</strong>、英国版 <strong>2023-10-26</strong>；但百度百科「出版历史」一节写 <strong>2024-10-08（Mariner Books）</strong>，而 Google Books 显示的平装本是 <strong>2025-04</strong>。★ <strong>三者不能同时成立</strong>；我倾向「2024-10-08 是某次平装／再版的日期被误写成原版日期」，但<strong>我没有证据，因此三个都列</strong>。<span class="tag t-inf">推断</span></p>
+  <h3>D4. ★★ 五次突破的「时间」在各来源间对不上 —— 这条最值得你自己核</h3>
+  <table>
+    <thead><tr><th>突破</th><th>中文宣传口径</th><th>Bernstein 书评口径</th><th>另一份英文笔记</th></tr></thead>
+    <tbody>
+      <tr><td>转向</td><td>约 6 亿年前</td><td>约 6 亿年前</td><td>—</td></tr>
+      <tr><td>强化</td><td>约 5 亿年前</td><td>「紧接着」</td><td>5.3 亿年前</td></tr>
+      <tr><td>模拟</td><td>约 2 亿年前</td><td><strong>约 1 亿年前</strong></td><td>—</td></tr>
+      <tr><td>心智化</td><td>约 1500 万年前</td><td><strong>约 2000 万年前</strong></td><td>—</td></tr>
+      <tr><td>语言</td><td>约 10 万年前</td><td><strong>约 500 万年前</strong></td><td>—</td></tr>
+    </tbody>
+  </table>
+  <p>★ 语言这一项差了 <strong>50 倍</strong>（10 万 vs 500 万），这不是四舍五入能解释的——<strong>「语言的神经基础何时出现」和「现代语言行为何时出现」是两件不同的事</strong>，两个数字可能各指一个。<strong>我不做裁决；原书里应是分项限定的，读到时请留意。</strong><span class="tag t-inf">推断</span></p>
+  <h3>D5. 我没有做到的检索</h3>
+  <ul>
+    <li><strong>未接触原书</strong>（无电子版、无纸质）；Google Books 只给约 58 页预览，且无法稳定翻页取页码。
+    </li>
+    <li><strong>未逐条核对页码</strong>：p.301 与 p.104–118 两组页码分别来自一篇读者笔记与一份读书笔记，二者内部一致，但<strong>我没有第二组独立来源交叉验证它们</strong>。
+    </li>
+    <li><strong>未核到镜像神经元争议在书中的处理</strong>。
+    </li>
+    <li>中文版是否有<strong>推荐序／导读</strong>（万维钢、李希贵、龙志勇等推荐语是印在腰封还是正文），<strong>未核</strong>。
+    </li>
+  </ul>
+  <h3>D6. 一条要主动打折的宣传语</h3>
+  <p>樊登「这本书比《人类简史》还要牛」、中文版宣传里「神经科学的范式转移」这类说法，<strong>来自推荐方与营销语</strong>，不是学界的评价。★ 有意思的是，同一个中文页面里「范式转移」是被转述成<strong>读者评论</strong>的（「有人说」）——<strong>它连推荐语都不是</strong>。<span class="tag t-inf">推断</span></p>
+</section>
+
+<footer>
+  生成于 2026-10-04 · 来源清单与交叉验证记录见同目录 <code>智能简史-来源清单.md</code><br>
+  本页引文按<b>带页码引文（B 级）</b>处理：标注页码的条目引自公开读书笔记与书评，<b>我未持原书</b>，页码请以原书复核；未标页码者仍是二手转引。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

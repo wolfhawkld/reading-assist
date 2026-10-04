@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《AI 3.0》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《AI 3.0》<small>阅读指引与精华解析 · 2026-10-04</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 前置知识与目标读者</a>
+    <a href="#s2">2 全书骨架</a>
+    <a href="#s3">3 五个核心论点</a>
+    <a href="#s4">4 阅读建议</a>
+    <a href="#s5">5 配套资源</a>
+    <a href="#s6">6 中文译本怎么选</a>
+    <a href="#s7">7 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s8">8 序幕：侯世达的「恐惧」</a>
+    <a href="#s9">9 背景：三次浪潮与两条路线（第 1–3 章）</a>
+    <a href="#s10">10 看与见：视觉、ImageNet 与可信任的 AI（第 4–7 章）</a>
+    <a href="#s11">11 学会玩游戏：奖励、AlphaGo 与超越游戏（第 8–10 章）</a>
+    <a href="#s12">12 语言：词向量、机器翻译与「问我任何事」（第 11–13 章）</a>
+    <a href="#s13">13 意义的屏障：理解、常识与类比（第 14–16 章）</a>
+    <a href="#s14">14 跨书对撞：与《智能简史》的正面冲突</a>
+    <a href="#s15">15 批评面：这本书被怎么反驳</a>
+    <div class="grp">附录</div>
+    <a href="#s16">A 关键概念与人物速查</a>
+    <a href="#s17">B 常见卡点与延伸阅读</a>
+    <a href="#s18">C 来源清单</a>
+    <a href="#s19">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《AI 3.0》阅读指引与精华解析</h1>
+  <div class="sub">Artificial Intelligence: A Guide for Thinking Humans</div>
+  <div class="meta">
+    <div><b>作者</b>梅拉妮·米歇尔（Melanie Mitchell）—— 圣塔菲研究所（Santa Fe Institute）Davis 讲席教授、波特兰州立大学计算机科学教授；密歇根大学计算机科学博士，导师是认知科学家侯世达（Douglas Hofstadter）；两人共同开发了创造性类比程序 Copycat；另著《复杂》（Complexity: A Guided Tour）</div>
+    <div><b>英文初版</b>Farrar, Straus and Giroux（纽约）2019-10 · 精装 ISBN 9780374257835 · 电子书 ISBN 9780374715236 · 页数四说并存：336 / 352 / 313 / 约 317 页（见附录 D1）</div>
+    <div><b>英版（英国）</b>Pelican（Penguin UK）2019 · xxvi＋419 页 · ISBN 9780241404836</div>
+    <div><b>中译（现行）</b>《AI 3.0》· 王飞跃、李玉珂、王晓、张慧 译 · 四川科学技术出版社（湛庐「财富汇」系列）2021-02-04 · xxix＋350 页 · ISBN 9787572700378 · ¥99.90（2023 年重印）</div>
+    <div><b>书名提示</b>英文原名无任何版本号，「AI 3.0」是中文出版方另加的书名；作者在书里恰恰反对「版本递进」叙事 —— 见第 6 节与第 7.1 节</div>
+    <div><b>一手书评</b>Principia 27(3): 609–623 (2023，开放获取) · ORDO 2021, pp. 444–449 · Skeptic Vol. 25, No. 1 (2019)</div>
+    <div><b>状态</b>未标注已读／想读 —— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有可定位文本支撑的段落 —— 含出版方与图书馆编目的部分／章结构，以及<b>带期刊卷期页码的一手书评</b>（凡引批评者观点，正文均写明姓名、刊物、卷(期)、年、页码）</li>
+    <li><span class="tag t-talk">作者谈话</span> 出自作者书外的访谈、演讲、辩论、论文或博客 —— 不在书里</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、书评、百科或读者笔记，措辞可能与原书有出入；★ 本报告<b>凡「书里某句话说了什么」而无页码者，一律归此档</b></li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    ★ 本报告的一个特殊格局：<b>批评层硬／正文层软</b>。我没有原书全文，因此「书里说了什么」多为二手转述；但本书<b>有一本开放获取的学术书评</b>（<i>Principia</i> 27(3): 609–623）可逐部分、带页码地核对结构与案例，另有<b>作者本人的多篇带卷期／DOI 的书外文本</b>与<b>一场论文级的 AGI 论战</b>。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-04 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书落在 <b>B 级（带页码引文）</b>，且强弱分野清楚：<b>支持本级的材料</b>是开放获取书评 <i>Principia</i> <b>27(3): 609–623</b>（含对全书的带页码复述）、<i>ORDO</i> <b>2021, pp. 444–449</b>、<i>Skeptic</i> <b>25(1)</b>，以及作者的 <i>Science</i> <b>385(6710)</b>／<b>383(6689), eado7069</b>。<b>为什么没到 A 级</b>：本书仍在版权期内，我<b>没有原书全文或带页码引文</b> ⇒ 凡「书里某句话说了什么」，本报告一律标「转述」，<b>绝不从盗版件取用、绝不虚构页码</b>。未标「原书」处一律为二手转引。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>这本书讲的不是「AI 会不会统治人类」，而是「把那些惊人的 AI 成果拆开看，它们究竟做到了什么、又没做到什么；以及为什么『做到了』与『理解了』是两件不同的事」。</strong></p>
+  <p>作者用五个部分、十六章，把 2010 年代深度学习最耀眼的一批成果（图像识别、AlphaGo、机器翻译、问答）逐一拆开，指认它们的共同局限。全书的结论句被引用得最多，也最能代表它的立场：</p>
+  <blockquote>
+    <p>"Today's AI is far from general intelligence, and I don't believe that machine 'superintelligence' is anywhere on the horizon."</p>
+    <p>（今天的人工智能远非通用智能，我也不相信机器的「超级智能」出现在任何地方。）<span class="tag t-rep">转述</span></p>
+  </blockquote>
+  <p>另有一句是全书的题眼，也是中译本宣传语反复引用的：</p>
+  <blockquote>
+    <p>"We humans tend to overestimate AI advances and underestimate the complexity of our own intelligence."</p>
+    <p>（我们人类倾向于高估人工智能的进步，而低估我们自身智能的复杂性。）<span class="tag t-rep">转述</span></p>
+  </blockquote>
+  <p>★ 一句话判断：<strong>这是一本「圈内人的清醒剂」，而不是一本 AI 导论或未来预测。</strong> 它的价值在「拆解」，不在「展望」；在「诊断」，不在「开方」——后者恰恰是它最常被批评的地方（见第 7.2 节）。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>前置知识与目标读者</span><span class="caret">▾</span></h2>
+  <p><strong>需要什么底子</strong>：</p>
+  <ul>
+    <li><strong>不需要数学</strong>。作者用极少的公式讲清了神经网络、卷积、反向传播、强化学习、词向量这几个核心机制 <span class="tag t-src">原书</span>（Principia 27(3): 612–615 的第七节即逐层复述了她对神经网络训练过程的讲解）。
+    </li>
+    <li><strong>不需要编程</strong>。全书是概念性的，没有代码。
+    </li>
+    <li><strong>需要一点耐心</strong>：第一部分（第 1–3 章）是 AI 简史，节奏偏慢；如果你关心的是「AI 现在到底行不行」，可以直接跳到第二部分。
+    </li>
+  </ul>
+  <p><strong>不需要什么</strong>：</p>
+  <ul>
+    <li>不需要读过《复杂》或 GEB（虽然读过后会多一层趣味，见第 5 节）。
+    </li>
+    <li>不需要接受任何前提立场。这本书的写法是「先讲机制，再下判断」，判断随时可以被你反驳。
+    </li>
+  </ul>
+  <p><strong>目标读者</strong>（按作者自述与书评共识 <span class="tag t-rep">转述</span>）：</p>
+  <ol>
+    <li><strong>对「AI 即将超越人类」的头条将信将疑、想要一个技术性解释的人</strong>——这是最核心的读者。
+    </li>
+    <li><strong>需要向别人解释 AI 能力边界的从业者/管理者</strong>——书里对「基准测试的猫腻」的拆解（第 10 节）是最能直接拿来用的部分。
+    </li>
+    <li><strong>对「理解」「意义」「常识」这些词有哲学兴趣的人</strong>——第五部分是全书的思想重心。
+    </li>
+  </ol>
+  <p>★ <strong>不适合谁</strong>：想找「AGI 时间表」的人、想找「怎么用 AI 做产品」的人、想看「AI 如何改变社会」的宏观论述的人。这本书在这三件事上都刻意克制 <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>★ <strong>关于页码</strong>：本书在版权期内，我<strong>没有取得逐章页码</strong>（原因与取舍见附录 D2）。下表给出的是<strong>结构</strong>（部分／章），章名取自出版方与图书馆编目，并经一本<strong>开放获取的学术书评</strong>逐部分核对一致 <span class="tag t-src">原书</span>（Principia 27(3): 610 明确写「本书分为五个部分，共十六章」，并逐一列出各部分涵盖的章号）。</p>
+  <table>
+    <thead><tr><th>部分</th><th>章</th><th>章名（原题）</th><th>在回答什么</th><th>一句判断</th></tr></thead>
+    <tbody>
+      <tr><td>序幕</td><td>—</td><td>Terrified</td><td>侯世达为什么「害怕」；全书的问题意识从哪来</td><td>全书最好读、最被低估的一节</td></tr>
+      <tr><td>I 背景</td><td>1</td><td>The Roots of AI</td><td>AI 从哪来：符号主义与联结主义的分野</td><td>简史，可快速略读</td></tr>
+      <tr><td>I 背景</td><td>2</td><td>Neural Networks and the Ascent of Machine Learning</td><td>神经网络怎么看沉浮几十年后翻身</td><td>机制铺垫，重要</td></tr>
+      <tr><td>I 背景</td><td>3</td><td>AI Spring</td><td>「AI 之春」是怎么来的，又为什么可能再来一次冬天</td><td>与全书论旨关系最紧</td></tr>
+      <tr><td>II 看与见</td><td>4</td><td>Who, What, When, Where, Why</td><td>机器「看见」了什么</td><td>铺垫章</td></tr>
+      <tr><td>II 看与见</td><td>5</td><td>ConvNets and ImageNet</td><td>卷积网络与那场比赛</td><td>全书技术叙述最实的一章</td></tr>
+      <tr><td>II 看与见</td><td>6</td><td>A Closer Look at Machines That Learn</td><td>深度网络到底学到了什么、为什么会出错</td><td>全书技术核心之一</td></tr>
+      <tr><td>II 看与见</td><td>7</td><td>On Trustworthy and Ethical AI</td><td>可信任与伦理：偏见、隐私、不可解释</td><td>全书唯一的伦理专章</td></tr>
+      <tr><td>III 学会玩</td><td>8</td><td>Rewards for Robots</td><td>强化学习：奖励从哪来</td><td>机制章</td></tr>
+      <tr><td>III 学会玩</td><td>9</td><td>Game On</td><td>AlphaGo/AlphaZero 是怎么赢的</td><td>最著名的案例章</td></tr>
+      <tr><td>III 学会玩</td><td>10</td><td>Beyond Games</td><td>「赢了游戏」能迁移到别处吗</td><td>关键转折</td></tr>
+      <tr><td>IV 语言</td><td>11</td><td>Words, and the Company They Keep</td><td>词向量：「词的含义由它的同伴决定」</td><td>语言部分的地基</td></tr>
+      <tr><td>IV 语言</td><td>12</td><td>Translation as Encoding and Decoding</td><td>机器翻译是编码-解码，不是理解</td><td>案例章</td></tr>
+      <tr><td>IV 语言</td><td>13</td><td>Ask Me Anything</td><td>机器阅读理解与问答</td><td>拆「基准测试」最狠的一章</td></tr>
+      <tr><td>V 意义的屏障</td><td>14</td><td>On Understanding</td><td>什么叫「理解」</td><td>全书思想重心</td></tr>
+      <tr><td>V 意义的屏障</td><td>15</td><td>Knowledge, Abstraction, and Analogy in AI</td><td>知识、抽象与类比：人类智能的核心</td><td>作者的看家本领</td></tr>
+      <tr><td>V 意义的屏障</td><td>16</td><td>Questions, Answers, and Speculations</td><td>问题、答案与推测</td><td>收束，也是作者最「克制」的一章</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法提示</strong>：这本书<strong>是累积式的</strong>（与《混沌》那类并列式群像相反）。第一、二部分给机制，第三、四部分给案例，第五部分给判断。<strong>如果你只读一部分，读第五部分（第 14–16 章）</strong>——前四部分的所有案例，都是为这一部分的论断服务的。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>五个核心论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：窄 AI 已经很强，但「强」不等于「通用」</h3>
+  <p><strong>主张</strong>：当前 AI 在<strong>特定任务</strong>上可以超过人（图像分类、围棋、特定阅读理解基准），但这不等于它具备通用智能。用作者的话说，这不是「更大规模」的问题，而是<strong>种类</strong>的问题（a difference of kind, not of scale）<span class="tag t-rep">转述</span>。</p>
+  <p><strong>依据</strong>：AlphaGo 除了下围棋什么都不会，它甚至不知道「自己在下围棋」<span class="tag t-rep">转述</span>。IBM Watson 能在问答节目上碾压人类冠军，换到医疗诊断场景却频频出错，最后被大幅收摊 <span class="tag t-rep">转述</span>。作者自己用过一个更刻薄的比喻：<strong>「学校象棋俱乐部里最低等的幼儿园小朋友都比 AlphaGo 聪明」</strong><span class="tag t-rep">转述</span>。</p>
+  <p><strong>为什么重要</strong>：这是全书的地基。如果你接受「窄 AI 的胜利可以累加成通用 AI」，那么后面所有章节的保留意见都会显得像鸡蛋里挑骨头；反之，读完全书你大概率会接受作者的版本。</p>
+  <h3>论点二：机器「学到的是数据里有的东西，不是我们看到的东西」</h3>
+  <p><strong>主张</strong>：深度学习网络并不是在「识别对象」，而是在<strong>拟合训练数据中的像素模式</strong>。它没有关于世界的常识，因此一旦离开训练分布就会以荒谬的方式失败。</p>
+  <p><strong>依据</strong>（这几条都有页码可定位）：</p>
+  <ul>
+    <li><strong>狗与飞盘</strong>：一个被训练识别狗的网络，若训练集里大量出现「狗与飞盘同框」，它会把<strong>飞盘</strong>也识别成狗——说明它抓的是与类别相关但不特异的像素共现，而不是「狗」这个概念 <span class="tag t-src">原书</span>（Principia 27(3): 615）。
+    </li>
+    <li><strong>对抗样本</strong>：给一张「狗」的图片做<strong>人眼几乎不可察觉</strong>的微扰，网络就不再识别为狗；反过来，一张对人类而言纯粹是噪声的图，网络却会识别成狗 <span class="tag t-src">原书</span>（Principia 27(3): 615）。
+    </li>
+    <li><strong>长尾失败</strong>：即便有「大数据」，也总有一条<strong>罕见或一次性例外的长尾</strong>，会让深度网络以极其荒唐的方式失败——想一想自动驾驶车前方可能出现什么样奇怪的东西 <span class="tag t-rep">转述</span>。
+    </li>
+  </ul>
+  <p><strong>为什么重要</strong>：这条把「AI 很强」和「AI 值得信任」切开。作者由此引出一个核心概念——<strong>意义的屏障</strong>（the barrier of meaning）：机器处理的是符号的表面统计，而人类处理的是符号背后的意义。</p>
+  <h3>论点三：基准测试在系统性地抬高机器的成绩、压低人的成绩</h3>
+  <p><strong>主张</strong>：每当媒体宣布「AI 在某某任务上达到人类水平」时，几乎总有一套特定的测量安排<strong>同时</strong>让机器占便宜、让人吃亏。作者称之为「基准测试问题」（the benchmark problem）<span class="tag t-src">原书</span>（这一提法与其例证见 theorist.ai 的批评文转述，并由 Principia 27(3): 615 的 ImageNet 数据佐证）。</p>
+  <p><strong>三个可核查的例证</strong>：</p>
+  <ul>
+    <li><strong>ImageNet 的「98%」</strong>：2015 年冠军网络在<strong>每张图可以猜 5 次</strong>的规则下逼近 98% 准确率；一旦限制为<strong>只能猜 1 次</strong>，准确率跌到约 <strong>82%</strong>，就不足以宣称「超越人类」了 <span class="tag t-src">原书</span>（Principia 27(3): 615）。
+    </li>
+    <li><strong>SQuAD 的阅读理解</strong>：题目的答案被<strong>保证存在于给定段落里</strong>，机器做的其实是「抽取」，而不是「阅读并理解」<span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>微软「中英翻译达到人类水平」</strong>：评测用的是从<strong>经过精心编辑的新闻稿</strong>里抽出的<strong>孤立单句</strong>，而不是带有口语、习语、上下文纠缠的真实语言交流 <span class="tag t-rep">转述</span>。
+    </li>
+  </ul>
+  <p><strong>为什么重要</strong>：这是全书<strong>最可直接拿去用</strong>的一条。下次看到「AI 达到人类水平」的新闻，你可以问三句：任务是怎么定义的？基准是谁设的？人和机器是在同一条件下测的吗？</p>
+  <h3>论点四：人类智能的核心是「抽象与类比」，而机器做不到</h3>
+  <p><strong>主张</strong>：作者认为，人类之所以能从极少样本中学会新概念，靠的是<strong>抽象</strong>（抽出结构）与<strong>类比</strong>（把已有结构映射到新情境）。这正是「意义的屏障」的成因：机器的少样本学习不是在抽象，而是在插值 <span class="tag t-rep">转述</span>。</p>
+  <p><strong>依据</strong>：类比推理正是作者博士论文的主题（其博士工作发表为 <em>Analogy as Perception: A Computer Model</em>，即与侯世达共同开发的 <strong>Copycat</strong> 程序）<span class="tag t-rep">转述</span>。她在书里把「类比」抬到人类智能核心的位置，并在第 15 章专门讲机器在抽象与类比上的困境。</p>
+  <p><strong>作者后来的表述</strong>（更凝练）：在 2023 年 AAAS 年会访谈中，她说：<strong>"A concept is a fundamental unit of understanding."</strong>（概念是理解的基本单位），并说 <strong>"The essence of abstraction and analogy is few-shot learning."</strong>（抽象与类比的精髓就是少样本学习）<span class="tag t-talk">作者谈话</span>。</p>
+  <p><strong>为什么重要</strong>：这是全书<strong>最「作者个人的」</strong>一条，也是她与主流 AI 乐观派分歧的根。别人谈「规模」，她谈「概念」；别人谈「数据效率」，她谈「抽象」。<strong>如果你不同意这一条，你会不同意整本书。</strong></p>
+  <h3>论点五：真正该担心的不是「智能的机器」，而是「愚笨的机器」</h3>
+  <p><strong>主张</strong>：超级智能还很遥远，因此「机器人统治世界」式的恐惧缺乏依据；<strong>真正现实而迫近的风险</strong>是：我们因为这些机器的表面成绩，而<strong>高估了它们的可靠性</strong>，并把本不该交出去的决策交给它们 <span class="tag t-src">原书</span>（Principia 27(3): 621–622 明确将其列为 Mitchell 的「最大恐惧」）。</p>
+  <p><strong>依据</strong>：自动驾驶就是典型——因为底层网络不鲁棒，作者判断<strong>完全自动驾驶仍很遥远</strong>，更可能的是需要人类随时接管的半自动，或只在专门划定的区域内运行 <span class="tag t-src">原书</span>（Principia 27(3): 621）。Principia 的书评作者在此处补了一句很锋利的判断：<strong>在巴西这样的国家，司机这个职业在短中期内并不受威胁</strong>（因为道路环境的意外太多）<span class="tag t-src">原书</span>（Principia 27(3): 621）。</p>
+  <p><strong>为什么重要</strong>：这一条把全书的「悲观」重新定位了——它不是对技术悲观，而是对<strong>人的判断力</strong>悲观。用作者的原话意思说：<strong>该害怕的不是智能机器，而是愚笨的机器</strong> <span class="tag t-src">原书</span>（同处）。</p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <ul>
+    <li>★ <strong>只读一章，就读第 14 章（On Understanding）。</strong> 全书前十三章的所有案例（图像、围棋、翻译、问答）都是它的论据；读完它你会知道这本书到底在主张什么，再决定要不要回头补案例。
+    </li>
+    <li><strong>想要技术含量，先读第 5、6 章。</strong> 卷积网络、ImageNet、以及「网络到底学到了什么」（狗与飞盘、对抗样本）都在这两章，是全书写得最扎实的部分 <span class="tag t-src">原书</span>（Principia 27(3): 613–615 的复述可作导读）。
+    </li>
+    <li><strong>想要论点浓度最高的部分，直接读第五部分（第 14–16 章）。</strong> 这里是作者自己的领域（类比推理），也是全书立场最鲜明处。
+    </li>
+    <li><strong>可以跳过的</strong>：第 1 章（AI 简史）如果对你没新信息，可跳；第 7 章（伦理）如果只想读技术判断，可跳——但要记住作者是<strong>在技术判断之上</strong>才谈伦理的，跳过会丢掉她的推理链 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>带上第 7 节（争议）一起读。</strong> 它不长，但会给你一副「哪里该打折扣」的眼镜。
+    </li>
+  </ul>
+  <h3>如果你是「已读」</h3>
+  <ul>
+    <li>★ <strong>回头核一件事</strong>：你合上书记住的是「AI 还很笨」，还是「<strong>我们不知道自己怎么聪明</strong>」？前者是结论，后者才是这本书真正的论题。书里最关键的判断不是「机器不行」，而是「人类智能的复杂性被我们严重低估」<span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>补上作者 2019 年之后的两篇 <em>Science</em> 文章</strong>（见第 5 节）。尤其是 <strong>2024 年 8 月那篇讲图灵测试的</strong>（<em>Science</em> <strong>385(6710)</strong>）：它把书里散落的判断收拢成一个更锋利的论点——<strong>公众对「图灵测试被通过了」的种种宣告，几乎都是在测人类有多容易被骗</strong> <span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li><strong>注意一个时代坐标</strong>：书写于 2019 年（GPT-2 时代，ChatGPT 尚未出现）。你读到的案例一定「过时」，但作者给出的<strong>判断框架</strong>恰恰是为这种过时而准备的——这正是本报告第 10 节要做的事。
+    </li>
+  </ul>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5</span><span>配套资源</span><span class="caret">▾</span></h2>
+  <p><strong>作者本人的后续文本（★ 本书最值钱的一类补充）</strong>：</p>
+  <ul>
+    <li><strong>Melanie Mitchell, "Why AI is Harder Than We Think"</strong>：会议版见 <em>GECCO '21: Proceedings of the Genetic and Evolutionary Computation Conference</em>（ACM，Lille，DOI <strong>10.1145/3449639.3465421</strong>）<span class="tag t-src">原书</span>（该条书目见 Principia 27(3): 623）；开放获取预印本为 <strong>arXiv:2104.12871</strong>（2021-04-26；v2 04-28）<span class="tag t-talk">作者谈话</span>。★ 这篇把书里的判断提炼成<strong>四大谬误</strong>，是本报告下部第 14 节的主干。
+    </li>
+    <li><strong>Melanie Mitchell, "The Turing Test and our shifting conceptions of intelligence"</strong>，<em>Science</em>，2024-08-15，<strong>Vol. 385, Issue 6710</strong>，DOI 10.1126/science.adq9356 <span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li><strong>Melanie Mitchell, "Debates on the nature of artificial general intelligence"</strong>，<em>Science</em>，2024-03-21，<strong>383(6689), eado7069</strong>，DOI 10.1126/science.ado7069 <span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li><strong>作者的博客/通讯</strong>：Substack「AI: A Guide for Thinking Humans」（2023 年起），是书里论旨的持续更新版 <span class="tag t-talk">作者谈话</span>。
+    </li>
+  </ul>
+  <p><strong>公开演讲与辩论</strong>：</p>
+  <ul>
+    <li><strong>Quanta Magazine 长篇访谈</strong>（2021-04-19，由 Steven Strogatz 主持）：作者谈「意义的屏障」与复杂度 <span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li><strong>2023 年 Munk 辩论</strong>（多伦多，2023-06）：动议为「AI 研发构成生存威胁」。<strong>米歇尔与 Yann LeCun 持反方</strong>，Yoshua Bengio 与 Max Tegmark 持正方 <span class="tag t-talk">作者谈话</span>。★ 想最快看懂「她在辩论现场的立场」，看这一场。
+    </li>
+    <li><strong>EL PAÍS 专访</strong>（2024-04-14）：她给出的关键判断是——<strong>人工智能的下一次大跃迁，会发生在它被放进「像孩子一样体验世界的机器人」里的时候</strong> <span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li>TED/播客/学术访谈零散散布，主题集中在「具身智能」「类比」「通用智能的定义」。
+    </li>
+  </ul>
+  <p><strong>相关读物（同一问题域）</strong>：</p>
+  <ul>
+    <li><strong>侯世达《哥德尔、艾舍尔、巴赫》（GEB）</strong>：本书的知识母体。米歇尔的 Copycat 就是在这条脉络里长出来的（见第 5 节与附录 B）。
+    </li>
+    <li><strong>作者自己的《复杂》</strong>（Complexity: A Guided Tour）：理解她的「复杂系统」视角的背景。
+    </li>
+    <li><strong>Pedro Domingos, <em>The Master Algorithm</strong></em>：被本书多次引用，若想更系统地看「机器学习的各个流派」，可对照阅读 <span class="tag t-rep">转述</span>。
+    </li>
+  </ul>
+</section>
+
+<section id="s6">
+  <h2><span class="num">6</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ 本书<strong>只有一个中文全译本</strong>（湛庐 2021），所以「怎么选」的问题不是「选哪个译本」，而是<strong>「这个译本有什么你可能没料到的坑」</strong>。</p>
+  <table>
+    <thead><tr><th>版本</th><th>译者</th><th>页数</th><th>出版社与年份</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td><strong>唯一现行中译</strong></td><td>王飞跃、李玉珂、王晓、张慧</td><td>xxix＋350</td><td>四川科学技术出版社（湛庐「财富汇」）2021-02-04 · ISBN 9787572700378 · ¥99.90</td><td>译者王飞跃（中科院自动化所研究员）另撰<strong>长篇推荐序</strong>；版权页注明「作者授权出版 限中国大陆发行」</td></tr>
+      <tr><td>英文原版</td><td>—</td><td>（四说并存，见附录 D1）</td><td>Farrar, Straus and Giroux 2019 · ISBN 9780374257835</td><td>若你要核对「原话」，以英文版为准</td></tr>
+    </tbody>
+  </table>
+  <p><strong>★ 三个「买之前要知道」的点</strong>：</p>
+  <ol>
+    <li><strong>中文书名不是原书名，也不是作者的意思。</strong> 英文原名没有「3.0」。有中文读者专门写文章指出：<strong>「AI 第三波浪潮」不等于「AI 3.0」</strong>——三波浪潮（符号主义／联结主义／深度学习）的理论方向并不一致，谈不上「版本迭代」；而作者本人在书里形容 AI 长期处于某种「无政府状态」（中译本 p.57 的注释），「在无政府状态中，谈不上版本迭代」<span class="tag t-rep">转述</span>（中国人民大学刘永谋，2024-06-25）。
+    </li>
+    <li><strong>译者序不只是序，它本身是一篇</strong>独立的<strong>、立场与作者不同的评论。</strong> 王飞跃在推荐序里坦承：他当初听说侯世达怕 AI，<strong>「不以为然」</strong>，认为「一个对人工智能了解如此之深、认识如此之深刻的学者不应过度害怕智能技术」；他进而把侯世达的反应解释为「<strong>错构</strong>」（借用画家潘公凯的「错构」理论），并把它类比为<strong>柯洁输给 AlphaGo 后的应激反应</strong> <span class="tag t-src">原书</span>（中译本推荐序·王飞跃，经集智俱乐部/搜狐转载；完整原文见第 7.3 节）。⇒ <strong>这意味着你在中文版里读到的第一段长文，是译者对作者老师的反驳。</strong> 这不是缺点，但你得知道它是什么。
+    </li>
+    <li><strong>推荐的读法</strong>：<strong>用中译本读正文，用英文版核对你想引用的原话。</strong> 中译本的术语与长句处理整体是专业水准，但涉及「understanding / meaning / analogy」这几个核心词时，作者对它们的用法有细微层次，中文容易压平 <span class="tag t-inf">推断</span>。
+    </li>
+  </ol>
+</section>
+
+<section id="s7">
+  <h2><span class="num">7</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ 这一节按「批评的硬度」排序：<strong>7.1–7.3 是中文与英文书评的批评</strong>（英文侧至少两篇带卷期页码），<strong>7.4 是她与 AGI 学界的正面对撞</strong>，<strong>7.5 是「这本书在 LLM 时代是否过时」这个必须回答的问题</strong>。</p>
+  <h3>7.1 「3.0」是一个营销书名，且它逆着作者的论旨</h3>
+  <p><strong>发难者</strong>：刘永谋（中国人民大学吴玉章讲席教授），2024-06-25，微信公众号首发（腾讯网转载）<span class="tag t-rep">转述</span>。</p>
+  <p><strong>他的核心指控</strong>：书名里的「3.0」是<strong>商业推广的产物</strong>，暗示「当前的 AI 已突飞猛进、达到 3.0 版本、大幅超越 AI 1.0/2.0」。但<strong>「AI 第三波」与「AI 3.0」不是一回事</strong>：三波浪潮的方向与理念并不一致，「升级换代的迹象并不明显」；反倒是米歇尔形容的「无政府状态」更接近实情。</p>
+  <p><strong>他同时否定了中文版的另一条宣传口径</strong>：推荐序作者段永朝（其序题为《等那一口仙气儿》）认为「第三波人工智能浪潮已经大大突破了前两波……在哲学范式上捅开了一个突破口，不只是符号表征、计算问题，更多的是<strong>意义</strong>问题」。刘永谋明确反对：<strong>「考虑意义问题并不等于解决意义问题，深度学习与生成式 AI 在意义问题上并无本质上的突破。」</strong><span class="tag t-rep">转述</span></p>
+  <p><strong>为什么值得单列</strong>：这条批评的目标<strong>不是作者，而是中文出版方</strong>。但它对读者的实际影响很大——<strong>如果你是因为「3.0」三个字买的这本书，你很可能买错了书</strong>。作者在书里做的恰恰是<strong>否认</strong>存在这种版本迭代。</p>
+  <h3>7.2 ★★ 最锋利的一条：她是出色的诊断者，在「怎么办」上完全沉默</h3>
+  <p><strong>发难者</strong>：评论文章 «The Comfortable Pessimist Revisited: Mitchell, Meaning, and the Tier We Won't Teach»，发表于 Theorist AI（Substack 平台）<span class="tag t-rep">转述</span>。★ 这是一篇<strong>一手批评长文</strong>，立场是「拥护她的诊断，追问她的沉默」。（按本报告契约，因它<strong>不带期刊卷期页码</strong>，仍标 <span class="tag t-rep">转述</span>；但它是一份可独立定位、可复核的一手文本，分量高于普通书评。）</p>
+  <p><strong>它先毫无保留地肯定了这本书</strong>：</p>
+  <blockquote>
+    <p>"a scrupulously honest book about a field constitutionally prone to dishonesty about itself. Its central claim is correct... Its documentation of that claim is rigorous... This is important work."</p>
+    <p>（一本一丝不苟的诚实的书，写的是一个天生就容易对自己不诚实的领域。它的核心主张是对的……它对这一主张的举证是严谨的……这是重要的工作。）<span class="tag t-rep">转述</span></p>
+  </blockquote>
+  <p><strong>然后提出了全书最尖锐的一问</strong>：</p>
+  <blockquote>
+    <p>"if machines are genuinely poor at everything Mitchell identifies as important — plausibility auditing, causal reasoning, problem formulation, interpretive judgment — <strong>why are we not teaching those things?</strong> Why does the curriculum she implicitly defends remain untouched by the very analysis she provides? <strong>Mitchell is an excellent diagnostician. She is, on the question of remediation, entirely silent.</strong>"</p>
+    <p>（如果机器在米歇尔所指认的一切重要能力上都真的很差——可信度审查、因果推理、问题表述、解释性判断——<strong>那我们为什么不教这些？</strong>为什么她隐含维护的那套课程，丝毫没有被她自己提供的分析所触动？<strong>米歇尔是出色的诊断者。而在「补救」这个问题上，她完全沉默。</strong>）<span class="tag t-rep">转述</span></p>
+  </blockquote>
+  <p><strong>这篇批评里还留下了一批极具体的、可用作本书导读的事实</strong>（均为它对该书的转述）<span class="tag t-rep">转述</span>：</p>
+  <ul>
+    <li><strong>EMI 事件</strong>：一个叫 <strong>EMI</strong> 的程序（由音乐家 <strong>David Cope</strong> 制作）谱出的、模仿肖邦风格的玛祖卡，<strong>骗过了伊士曼音乐学院（Eastman School of Music）的专业音乐家</strong>。
+    </li>
+    <li><strong>侯世达的恐惧不是怕机器人</strong>，而是怕人类创造力可能是「<strong>一袋把戏</strong>」（a bag of tricks）。
+    </li>
+    <li><strong>Winograd 模式</strong>（指代消解常识题）上，机器得分约 <strong>61%</strong>——「一个需要知道容器有大小、东西会掉下来、『直到它空了』指的是瓶子而不是杯子的机器，并不接近人类水平的语言理解。」
+    </li>
+    <li><strong>图像识别的「人类基线」</strong>：ImageNet 上的「人类」成绩，来自<strong>一名研究生用 1500 张图自测</strong>，而且他承认测过前 200 张之后就觉得这活很无聊。
+    </li>
+  </ul>
+  <p><strong>为什么这条最该记住</strong>：它把「同意还是不同意米歇尔」这个二选一，换成了一个更有价值的问题——<strong>如果我们认同她的诊断，那么接下来该做什么？</strong> 这个问题在书里没有被回答，而它可能比诊断本身更重要。</p>
+  <h3>7.3 中文语境里的两条「立场性」保留</h3>
+  <p><strong>(a) 译者王飞跃：侯世达的恐惧是「错构」，不是理性反应。</strong></p>
+  <p>王飞跃在推荐序中给出一个与作者不同的解释框架。他提出「<strong>广义歌德尔定理</strong>」：智能分为<strong>算法智能（AI）、语言智能（LI）、想象智能（II）</strong>三层，且「算法智能无法超越语言智能，语言智能又无法超越想象智能」（他引爱因斯坦：「智能的真正标识不是知识，而是想象」）<span class="tag t-src">原书</span>（中译本推荐序·王飞跃）。据此，他认为：</p>
+  <ul>
+    <li>米歇尔所讲的「机器无法理解意义」，在这个框架里是<strong>结构性的</strong>（机器智能只能是 AI 层），因此<strong>不值得恐惧</strong>；
+    </li>
+    <li>他对柯洁输棋后称 AlphaGo 为「上帝」的反应，评价是「专业执着后的<strong>应激错构</strong>」；侯世达的反应「与柯洁是一样的」<span class="tag t-src">原书</span>（同处）。
+    </li>
+  </ul>
+  <p>⇒ <strong>这是本报告中「作者立场 vs 中文版解读」差异最大的地方</strong>：作者用整本书论证「我们该担心愚笨的机器」；译者序则把担忧本身解释为一种心理错构。<strong>两篇都印在同一本书里。</strong></p>
+  <p><strong>(b) 中文学界的「AI 泡沫」视角</strong>：刘永谋在批评书名的同时提出，AI 泡沫「5–10 年一波」，「轻易梭哈 AI 必定后悔」<span class="tag t-rep">转述</span>。这是对中国当下 AI 热潮的判断，与本书立场部分同向（都对「速胜论」存疑），但<strong>不是对本书内容的批评</strong>，读时请分开对待。</p>
+  <h3>7.4 ★★ 与 AGI 学界的正面对撞：一场有卷期页码的论文级交锋</h3>
+  <p><strong>起因</strong>：米歇尔 2024-03-21 在 <em>Science</em> 发表 «Debates on the nature of artificial general intelligence»（<strong>383(6689), eado7069</strong>）<span class="tag t-talk">作者谈话</span>。她在文中（据中文译介综述）主要提出五点：① 业界/研究者对 AGI 的理解五花八门；② 有人从「智能即奖励最大化」的定义出发，推断 AGI 极其危险；③ 生物智能与身体经验高度相关，故智能不能在机器中实现（该观点否定超级智能）；④ 呼吁建立「智能的一般性理论」；⑤ 「AGI」一词含义不清 <span class="tag t-rep">转述</span>（徐博文译介，2024-03-23，集智俱乐部/腾讯网）。</p>
+  <p><strong>回应的发起者</strong>：<strong>Ben Goertzel</strong>（与 Wang Pei 联署），题为 «Response to "Debates on the nature of artificial general intelligence"» <span class="tag t-rep">转述</span>。他给出的反驳要点：</p>
+  <ol>
+    <li><strong>「AGI」并非含义不清</strong>：「通用」强调的是<strong>领域无关</strong>（general-purpose），是对当年主流（专用系统）范式的反动——见 <strong>Wang &amp; Goertzel, 2007</strong>（<em>Proceedings of the 2007 Conference on Advances in Artificial General Intelligence: Concepts, Architectures and Algorithms</em>，即 AGI Workshop 2006，<strong>pp. 1–16</strong>）<span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>大部分 AGI 研究者会同意「AGI ≠ 超级智能」</strong>。
+    </li>
+    <li><strong>「回形针 AI」思想实验不适用于 AGI</strong>：按既有 AGI 工作（<strong>Wang &amp; Goertzel 2012</strong>，<em>Theoretical Foundations of Artificial General Intelligence</em>, Vol. 4, Atlantis Press），一个 AGI 系统应当有<strong>多个非预先确定的目标</strong>，目标的含义<strong>从环境中习得</strong>，目标之间可能冲突、资源受限——人也有这些约束 <span class="tag t-rep">转述</span>。
+    </li>
+    <li>他同意「我们需要一个智能的理论」，并称自己正在尝试给 AGI 一个正式定义 <span class="tag t-rep">转述</span>。
+    </li>
+  </ol>
+  <p>⇒ <strong>怎么读这场对撞</strong>：<strong>这不是「谁对谁错」，而是「谁有资格定义 AGI」之争。</strong> 米歇尔的主张是「AGI 这个词含混到无法承担它现在承载的政策重量」；Goertzel 的主张是「这个词在既有的 AGI 研究传统里有清晰含义，只是你们不做那个传统」。两个主张<strong>可以同时为真</strong>——这也解释了为什么它至今没有收敛 <span class="tag t-inf">推断</span>。</p>
+  <h3>7.5 「GPT 之后，这本书过时了吗？」</h3>
+  <p>这是关于本书最常被提出、也必须正面回答的问题。</p>
+  <p><strong>书的时代坐标</strong>：英文版 2019-10（GPT-2 时代），中译 2021-02（ChatGPT 尚未发布）<span class="tag t-src">原书</span>（版本信息见出版方/图书馆编目）。</p>
+  <p><strong>三方判断，分列如下</strong>：</p>
+  <ul>
+    <li><strong>「案例过时，框架不过时」</strong>（中文读者高赞书评的立场）：案例确实陈旧，「若想从中找 AI 最新动态，确实如此」；但「它的基础理论和对 AI 发展层级的判断，却从未过时」，因为大模型「依然跳脱不开书中提及的算法底层限制」<span class="tag t-rep">转述</span>（微信读书读者书评 Octapus）。
+    </li>
+    <li><strong>「它比 2019 年更值得读了」</strong>（Theorist AI 的立场）：书里对基准测试的拆解，在 LLM 时代<strong>恰好是最需要的工具</strong>——因为现在每一周都有新的「人类水平」宣告 <span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>作者自己的立场</strong>：她持续用 Substack 与 <em>Science</em> 文章更新论点，并明确表示<strong>推理系统「不像人那样推理」、其启发式更贫乏、依赖记忆</strong>，但<strong>不否认它们会继续进步</strong>——她呼吁的是「更多研究与更多审慎」，而不是「宣布它不可能」<span class="tag t-rep">转述</span>（The Algorithmic Bridge 对她的综述）。
+    </li>
+  </ul>
+  <p>★ <strong>本报告的建议</strong>：<strong>把它当作一本「测量工具手册」，而不是「结论清单」。</strong> 结论会过期（「完全自动驾驶仍很遥远」这类判断，时间已经在检验它）；但<strong>你怎么判断一个 AI 宣告是真进步还是基准幻觉</strong>，这套方法论至今没有更好的替代品 <span class="tag t-inf">推断</span>。</p>
+  <p>结构说明：下面按<strong>序幕 ＋ 五个部分</strong>展开。★ 本报告没有原书正文，所以这一部分的写法是<strong>刻意的克制</strong>：凡能定位的（结构、页码、作者原话、批评文献），我给出出处；凡只能靠二手概括的，我标 <span class="tag t-rep">转述</span> 并<strong>不编造细节</strong>。这符合本项目的「宁可短、不杜撰」纪律。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">8</span><span>序幕：侯世达的「恐惧」</span><span class="caret">▾</span></h2>
+  <h3>这一节在回答什么</h3>
+  <p>作者为什么要写这本书？——2014 年，她陪导师侯世达去 Google 开一场内部研讨会，目睹了导师当着一屋子 AI 工程师说「我害怕」。这个场面成了全书的引子 <span class="tag t-src">原书</span>（Principia 27(3): 610 复述了这一场景的机制）。</p>
+  <h3>关键论证与例证</h3>
+  <p><strong>场面本身</strong>：2014 年，侯世达在 Google 的一次 AI 研讨会上表示自己被 AI 的快速进步「吓坏了」（这一幕由多篇独立书评一致复述，并有学术书评带页码引用）<span class="tag t-src">原书</span>（Principia 27(3): 610）。</p>
+  <p><strong>他怕的到底是什么</strong>（这一点最容易误传，必须说清）<span class="tag t-rep">转述</span>（Theorist AI 对序幕的转述 + 中译本推荐序）：</p>
+  <ul>
+    <li><strong>不是</strong>怕机器人反过来统治人类，<strong>不是</strong>怕超级智能；
+    </li>
+    <li>而是怕<strong>人类创造力可能只是「一袋把戏」</strong>——即人类最珍视的东西，可能浅到能被机械操作复现。
+    </li>
+  </ul>
+  <p><strong>两件事把他推到这里</strong>：</p>
+  <ol>
+    <li><strong>EMI（Experiments in Musical Intelligence）</strong>：音乐家 <strong>David Cope</strong> 制作的程序，其仿肖邦风格的玛祖卡<strong>骗过了伊士曼音乐学院的专业音乐家</strong> <span class="tag t-src">原书</span>（Principia 27(3): 621 记载「Hofstadter 对 EMI 极为不安……这些作品逼真到连熟悉者也分辨不出」）。
+    </li>
+    <li><strong>国际象棋</strong>：侯世达曾在 GEB 里预测「计算机下棋赢不了人」，结果 1997 年 Deep Blue 击败 Kasparov——他自认<strong>「错得离谱」</strong>（dead wrong）<span class="tag t-rep">转述</span>。
+    </li>
+  </ol>
+  <p><strong>侯世达的原话</strong>（据中译本推荐序引述书中的两处）：</p>
+  <blockquote>
+    <p>「我被 EMI 吓坏了，完全吓坏了。我厌恶它，并感受到了极大的威胁——人工智能对我最珍视之人性的威胁。」<span class="tag t-src">原书</span>（中译本推荐序·王飞跃引述书中原文）</p>
+  </blockquote>
+  <blockquote>
+    <p>「从孩童时期开始，音乐就令我心潮澎湃……对最浅显的音节排序进行模式操纵，却能够产生听起来仿佛来自人类内心的音乐，一想到这里，我就非常非常不安。」<span class="tag t-src">原书</span>（同上）</p>
+  </blockquote>
+  <p><strong>那个房间里的分歧</strong>（★ 这才是序幕真正要立的问题）<span class="tag t-rep">转述</span>：</p>
+  <ul>
+    <li><strong>侯世达</strong>：AI 进展让他<strong>焦虑</strong>（因为它可能揭示人类并不特殊）；
+    </li>
+    <li><strong>Google 的年轻工程师们</strong>：他们大多相信通用 AI「在某种意义上即将到来」，且认为那将是<strong>社会的福音</strong>——侯世达的那种存在论焦虑，在他们的思维里<strong>根本没有位置</strong>。
+    </li>
+  </ul>
+  <h3>一句判断</h3>
+  <p>★ <strong>序幕的真正作用是立起一个「双盲」问题</strong>：同一批事实（EMI 能骗过专家、深蓝能赢棋），<strong>一个人读到的是「人类被祛魅」，另一个人读到的是「技术真棒」</strong>。作者用整本书来做这两者之间的裁判——而她的裁判是：<strong>两者都错</strong>。错的不是事实，是双方对「机器做到了什么」的解读 <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">9</span><span>背景：三次浪潮与两条路线（第 1–3 章）</span><span class="caret">▾</span></h2>
+  <h3>这一部分在回答什么</h3>
+  <p>AI 从哪来？为什么它会在几十年里反复「起—落」？这一次的「AI 之春」和前几次有什么不同？</p>
+  <h3>关键论证与例证</h3>
+  <p><strong>两条路线（全书反复使用的骨架）</strong><span class="tag t-rep">转述</span>：</p>
+  <ul>
+    <li><strong>符号主义（symbolic / 自上而下）</strong>：用显式的符号与规则来表征世界并推理。像<strong>有意识推理</strong>。代表人物：Newell、Simon、Minsky；最成功的产物是<strong>专家系统</strong><span class="tag t-src">原书</span>（Principia 27(3): 611）。
+    </li>
+    <li><strong>联结主义／亚符号（subsymbolic / 自下而上）</strong>：受生物（尤其大脑）启发的结构，从大量样本中<strong>学出</strong>模式。像<strong>无意识学习</strong>。当前深度学习就属于这一路 <span class="tag t-rep">转述</span>。
+    </li>
+  </ul>
+  <p><strong>早期符号主义为何碰壁</strong>（这段是理解全书的关键铺垫）<span class="tag t-src">原书</span>（Principia 27(3): 611–612）：</p>
+  <ul>
+    <li>用显式规则<strong>无法</strong>解决「识别物体」「在环境中导航」这类对人不难的事；
+    </li>
+    <li>哲学家 <strong>Hubert Dreyfus</strong>（《What Computers Can't Do》，1979）是这一时期推动暴露符号主义局限的重要人物；
+    </li>
+    <li>Minsky 那句名言概括了这一切：<strong>最容易的事反而最难</strong>；
+    </li>
+    <li>此后 AI 进入了第一个「冬天」（80 年代末到 90 年代），资金枯竭、兴趣消退 <span class="tag t-src">原书</span>（Principia 27(3): 612）。
+    </li>
+  </ul>
+  <p><strong>★ 一个多数读者会混淆的点</strong>：联结主义<strong>不是</strong>在符号主义垮台后才出现的。它从 AI 诞生之初就存在，只是被符号主义的光环压住了（Principia 27(3): 612 明确点出这一点）<span class="tag t-src">原书</span>。<strong>这直接关系到第 7.1 节</strong>：如果两条路线从来并行，那么「1.0 → 2.0 → 3.0」式的版本叙事就更站不住。</p>
+  <h3>一句判断</h3>
+  <p>★ 第 3 章（AI Spring）是全书中<strong>与当下最相关</strong>的背景章：它讲「为什么这次不一样」这个问题<strong>本身</strong>是怎么成为 AI 圈的口头禅的。<strong>每一次热潮都有一套「这次不一样」的理由；这本书的方法论，就是教你审这套理由。</strong><span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">10</span><span>看与见：视觉、ImageNet 与可信任的 AI（第 4–7 章）</span><span class="caret">▾</span></h2>
+  <h3>这一部分在回答什么</h3>
+  <p>机器「看见」了什么？「识别准确率超越人类」这句话，在测量上到底意味着什么？</p>
+  <h3>关键论证与例证</h3>
+  <p><strong>技术线</strong> <span class="tag t-src">原书</span>（Principia 27(3): 612–615 对这几章有相当详细的复述，可作导读）：</p>
+  <ul>
+    <li>神经网络的基本结构、<strong>反向传播</strong>（把误差沿层回传以调整权重/阈值）；用「识别手写数字」的经典例子讲解——训练集可达 <strong>6 万张</strong>图片 <span class="tag t-src">原书</span>（Principia 27(3): 613–614）。
+    </li>
+    <li><strong>如何设计网络层数/单元数「仍然是一门艺术」，靠大量试错</strong>——这一句是作者的原意 <span class="tag t-src">原书</span>（Principia 27(3): 614）。
+    </li>
+    <li><strong>卷积网络 + ImageNet</strong>：ImageNet 是超过 <strong>100 万</strong>张、多类别的巨型图像库；比赛允许多次猜测。<strong>首届冠军 72%</strong>，<strong>2012 年 85%</strong>，<strong>2015 年逼近 98%</strong> <span class="tag t-src">原书</span>（Principia 27(3): 614–615）。
+    </li>
+  </ul>
+  <p><strong>然后是全书的「拆解」示范</strong> <span class="tag t-src">原书</span>（Principia 27(3): 615）——这是本报告认为<strong>最值得带走的阅读样本</strong>：</p>
+  <ol>
+    <li><strong>98% 只在「可猜 5 次」下成立</strong>；限单次猜测，跌到约 <strong>82%</strong>。
+    </li>
+    <li><strong>背景干扰</strong>：目标单独出现或居于焦点时准确率高；<strong>多个物体、目标很小、或失焦时，网络容易出错</strong>——而人类不会。
+    </li>
+    <li><strong>对抗脆弱</strong>：<strong>微扰</strong>（人眼不可见）能骗过网络；甚至能把狗图变成人眼看到的纯噪声，网络仍识别为狗。
+    </li>
+  </ol>
+  <p><strong>一个「它到底学到了什么」的绝佳例子</strong> <span class="tag t-src">原书</span>（Principia 27(3): 615）：训练识别狗的网络，若训练集里常出现「狗＋飞盘」，网络会把<strong>飞盘</strong>也识别成狗。⇒ 作者据此下的判断是：<strong>这些网络没有「内在意向性」</strong>（intrinsic intentionality，一个哲学概念，其经典表述见 Adams &amp; Aizawa, <em>Philosophical Psychology</em> 14(1): 43–64, 2001，此处引其 p. 48）<span class="tag t-src">原书</span>（同处）。</p>
+  <p><strong>第 7 章（可信任与伦理 AI）</strong> 是全书唯一的伦理专章，覆盖偏见、隐私、可解释性等 <span class="tag t-rep">转述</span>。它把前三章的技术判断<strong>转换成「该不该信、该不该用」的问题</strong>，是第五部分的前置。</p>
+  <h3>一句判断</h3>
+  <p>★ 这一部分的写法值得学：作者<strong>先教你看懂机制，再带你数一遍「人类水平」这句宣称的代价</strong>。如果你想向别人解释「AI 的准确率数字为什么不可全信」，<strong>第 5、6 章的例子（98%/82%、狗与飞盘、对抗样本）就是最好的三张牌</strong> <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">11</span><span>学会玩游戏：奖励、AlphaGo 与超越游戏（第 8–10 章）</span><span class="caret">▾</span></h2>
+  <h3>这一部分在回答什么</h3>
+  <p>「机器在围棋上赢了人类」这件事，到底证明了什么？</p>
+  <h3>关键论证与例证</h3>
+  <p><strong>技术线</strong> <span class="tag t-rep">转述</span>（Goodreads 长评与多篇中文书评一致复述）：</p>
+  <ul>
+    <li><strong>强化学习</strong>：不靠标注数据，而靠<strong>奖励信号</strong>试错学习。
+    </li>
+    <li><strong>AlphaGo</strong> 是<strong>多种技术的组合</strong>：深度神经网络 ＋ 强化学习 ＋ <strong>蒙特卡洛树搜索</strong> <span class="tag t-rep">转述</span>。
+    </li>
+    <li>它的胜利在<strong>极窄的领域</strong>里。
+    </li>
+  </ul>
+  <p><strong>★ 这部分最该记住的一句</strong>（作者原话的转述）：</p>
+  <blockquote>
+    <p>「这么说可能有点奇怪，但是……学校象棋俱乐部里最低等的幼儿园小朋友都比 AlphaGo 聪明。」<span class="tag t-rep">转述</span></p>
+  </blockquote>
+  <p>⇒ 这句话的分量在于：它不是修辞，而是一个<strong>关于「通用性」的技术论断</strong>。AlphaGo 下围棋比人强得多，但它<strong>不会做其它任何事，也不知道自己在做什么</strong> <span class="tag t-rep">转述</span>。第 10 章（Beyond Games）就是把这个论断从「游戏」推广出去。</p>
+  <h3>一句判断</h3>
+  <p>★ 这一部分是全书的<strong>转折枢</strong>：前三部分还只是「AI 很强但有局限」，从这一部分开始，作者开始论证<strong>「强」与「智能」之间存在一道结构性的裂缝</strong>——而这道裂缝到了第五部分才有名字（意义的屏障）<span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">12</span><span>语言：词向量、机器翻译与「问我任何事」（第 11–13 章）</span><span class="caret">▾</span></h2>
+  <h3>这一部分在回答什么</h3>
+  <p>机器是「懂语言」，还是「在语言表面做统计」？</p>
+  <h3>关键论证与例证</h3>
+  <p><strong>第 11 章（Words, and the Company They Keep）</strong> <span class="tag t-rep">转述</span>：讲<strong>词向量</strong>——「一个词的含义由经常与它一起出现的词决定」。这既是语言技术的地基，也是「意义的屏障」论证的地基：<strong>统计共现 ≠ 理解</strong>。</p>
+  <p><strong>第 12 章（Translation as Encoding and Decoding）</strong> <span class="tag t-rep">转述</span>：把机器翻译拆成「编码—解码」，指出它产出的是<strong>统计上最可能的译文</strong>，而不是<strong>译者理解了原文之后的选择</strong>。</p>
+  <p><strong>第 13 章（Ask Me Anything）</strong>：这是全书<strong>拆解「基准测试」最集中的一章</strong> <span class="tag t-rep">转述</span>：</p>
+  <ul>
+    <li><strong>SQuAD 型阅读理解</strong>：答案<strong>保证在给定段落里</strong>，机器做的是<strong>抽取</strong>而非理解；
+    </li>
+    <li><strong>微软「中英互译达到人类水平」</strong>：评测样本是<strong>精心编辑的新闻稿中的孤立单句</strong>，而非真实对话；
+    </li>
+    <li><strong>Winograd 模式</strong>：机器约 <strong>61%</strong>，距人类水平甚远 <span class="tag t-rep">转述</span>。
+    </li>
+  </ul>
+  <p><strong>作者后来的收束</strong>（把这一部分推向锋利的版本）<span class="tag t-talk">作者谈话</span>：在 <em>Science</em> <strong>385(6710)</strong>（2024-08-15）里，她把「图灵测试被通过了」的种种宣告逐个拆开——从 2014 年皇家学会比赛的 <strong>Eugene Goostman</strong>（一个自称乌克兰少年的聊天机器人，骗过了 <strong>10/30 ≈ 33.3%</strong> 的评委，被主办方宣布「图灵测试首次通过」），到 Loebner 奖近三十年的记录，再到 <strong>ELIZA 效应</strong>（人会本能地把「能对话」当成「有智能」）。她的结论大意是：<strong>这些测试测出来的，主要是人类有多容易被骗，而不是机器有多聪明</strong> <span class="tag t-talk">作者谈话</span>。</p>
+  <h3>一句判断</h3>
+  <p>★ 这一部分把「意义的屏障」从一个<strong>技术判断</strong>变成一个<strong>测量学问题</strong>：只要「人类水平」的定义权在宣告者手里，<strong>每一条『AI 达到人类水平』的头条都值得先问三句</strong>。这也是第 7.5 节说「它不过时」的根据 <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">13</span><span>意义的屏障：理解、常识与类比（第 14–16 章）</span><span class="caret">▾</span></h2>
+  <h3>这一部分在回答什么</h3>
+  <p>什么叫「理解」？为什么人类能从极少样本学会新概念，而机器不能？——这是全书的思想重心。</p>
+  <h3>关键论证与例证</h3>
+  <p><strong>核心命题</strong> <span class="tag t-rep">转述</span>：作者认为当前机器<strong>本质上缺乏理解</strong>，缺的是四样东西——<strong>核心直觉知识（core intuitive knowledge）、心智模拟（mental simulation）、抽象（abstraction）、类比（analogy）</strong>。她称这道坎为<strong>意义的屏障</strong>（the barrier of meaning）/ 也有人译作「<strong>意义的障碍</strong>」（中译本第五部分即用此名）。</p>
+  <p><strong>作者的看家本事</strong> <span class="tag t-rep">转述</span>：<strong>类比推理正是她的博士论文主题</strong>（与侯世达共同开发的 <strong>Copycat</strong> 程序，其博士工作发表为 <em>Analogy as Perception: A Computer Model</em>）。⇒ <strong>全书第五部分不是「顺手一提」，而是作者毕生研究的落点。</strong> 这也是为什么它比其他部分更值得精读。</p>
+  <p><strong>一个把「理解」讲得最具体的例子</strong> <span class="tag t-rep">转述</span>：第 15 章用一张照片收束全书观点——<strong>奥巴马总统在同事称体重时偷偷用脚把秤压重了几磅</strong>。这张照片的幽默，任何 AI 程序都无法理解。它需要的是<strong>关于「恶作剧」「体重」「社交场合」的世界知识</strong>，而不是像素统计。</p>
+  <p><strong>一个被作者刻意保留的界限</strong> <span class="tag t-src">原书</span>（Principia 27(3): 619–620，这是批评者的指认）：书里<strong>只是「提出」了「身体（embodiment）对心智至关重要」这个想法，没有展开</strong>；批评者 Carvalho 认为这是全书的一处留白，并<strong>建议用「生成主义／生态学」路径补上</strong>：机器缺的不是一个被动的身体，而是一个<strong>主动探索</strong>的身体，能学到「我做什么」与「我的经验如何变化」之间的关联——这种<strong>感觉运动偶然性</strong>里嵌着对世界的<strong>因果知识</strong>，可能对鲁棒的识别能力是<strong>不可回避</strong>的。</p>
+  <p><strong>★ 一处作者没有处理的经典论证</strong> <span class="tag t-src">原书</span>（Principia 27(3): 619–620）：Carvalho 指出，米歇尔<strong>提到了 Searle 对「强人工智能」的批评，但没有讨论著名的「中文屋」论证</strong>——而这个论证本可以加固她的核心主张（机器没有理解、没有意向性）。他据此判断：<strong>这不是作者的疏忽，而是这本书「不打算全面重审图灵测试那场漫长讨论」的结果</strong>——它仍然是一份<strong>好的入门</strong>，但<strong>不是那场辩论的裁判</strong> <span class="tag t-src">原书</span>。</p>
+  <h3>一句判断</h3>
+  <p>★ 第五部分是全书<strong>唯一「作者亲自下场」</strong>的部分：前四部分她是<strong>解说者</strong>，这一部分她是<strong>当事人</strong>。<strong>如果你只读一章，读第 14 章；如果你只读一部分，读第五部分。</strong> 但也要接受一桩事实：<strong>她的哲学部分是有边界的</strong>——书里没有解决「身体」「意向性」「中文屋」这些硬问题，而是把它们标了出来 <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">14</span><span>跨书对撞：与《智能简史》的正面冲突</span><span class="caret">▾</span></h2>
+  <p>★ 本节是本报告的<strong>跨书增量</strong>。你的书单里上一本是 <strong>Max Bennett &amp; William Newsome 的《智能简史》（A Brief History of Intelligence, 2023）</strong>。两本书对「通用智能离我们有多远」给出了<strong>方向相反</strong>的判断，而它们又<strong>共享同一条技术直觉</strong>。把这一条对撞写清楚，比单独读任何一本都更有价值。</p>
+  <p><strong>两位作者的立场对照</strong>：</p>
+  <table>
+    <thead><tr><th></th><th>米歇尔（AI 3.0，2019）</th><th>Bennett（智能简史，2023）</th></tr></thead>
+    <tbody>
+      <tr><td>通用智能</td><td>仍很遥远；「机器超级智能不在任何地方的地平线上」<span class="tag t-rep">转述</span></td><td>认为路线图已经清楚，通用智能的到来被大幅低估</td></tr>
+      <tr><td>对 LLM 的判断</td><td>语言不是智能的本体；LLM 缺「理解」<span class="tag t-talk">作者谈话</span></td><td>语言是<strong>接口</strong>而不是智能本体，这一点与米歇尔<strong>同向</strong></td></tr>
+      <tr><td>核心机制</td><td>抽象与<strong>类比</strong>（few-shot）才是智能核心 <span class="tag t-talk">作者谈话</span></td><td>智能是<strong>一组演化模块</strong>（大脑的五次突破）叠加而成</td></tr>
+      <tr><td>对「基准胜利」的态度</td><td>系统性怀疑（基准测试问题）<span class="tag t-rep">转述</span></td><td>更看重能力是否真实增长</td></tr>
+    </tbody>
+  </table>
+  <p><strong>两条对撞线</strong>：</p>
+  <ol>
+    <li><strong>「类比」是不是智能的钥匙？</strong> 米歇尔的答案是<strong>是</strong>——她认为抽象与类比的精髓就是少样本学习 <span class="tag t-talk">作者谈话</span>（AAAS 2023）。Bennett 的框架里没有把「类比」单独抬到这么高的位置，他更关心<strong>模块的堆叠</strong>。⇒ <strong>这是一个可检验的分歧</strong>：如果通用智能主要靠模块堆叠，那么「类比能力」只是其中一个模块；如果靠类比，那么堆多少模块也不够 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>「窄 AI 的胜利能否累加」？</strong> 这是两本书<strong>真正的分水岭</strong>。米歇尔的整本书在论证「不能」；Bennett 的演化叙事在论证「能——只要把缺的模块补上」<span class="tag t-inf">推断</span>。
+    </li>
+  </ol>
+  <p><strong>两人罕见的共识</strong>（这一点最值得记）<span class="tag t-inf">推断</span>：<strong>他们都反对「LLM ＝ 通用智能」</strong>。差别在于<strong>理由不同</strong>：米歇尔说它<strong>没有意义</strong>（无理解），Bennett 说它<strong>只是接口</strong>（语言不等于智能本体）。⇒ <strong>如果你把《智能简史》读成了「AGI 即将到来」的乐观书，那么《AI 3.0》就是它最直接的反方陈述；而两本书放在一起读，你会得到一个比任何一本都更完整的坐标。</strong></p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">15</span><span>批评面：这本书被怎么反驳</span><span class="caret">▾</span></h2>
+  <p>★ 本节的写法与第 7 节互补：第 7 节按「硬度」列事实，这一节给<strong>判断</strong>。</p>
+  <p><strong>四条主要反驳，及各自的强弱</strong>：</p>
+  <ol>
+    <li><strong>「诊断强、药方弱」</strong>（Theorist AI）——<strong>最锋利、最难反驳</strong>。它承认书的所有优点，然后把问题转向「为什么不教那些能力」。这条之所以站得住，是因为它<strong>不与书的任何论断冲突</strong>，只是指出书的边界 <span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>「历史部分占比过大、举证不足」</strong>（eknowledger 等英文书评的常见批评）<span class="tag t-rep">转述</span>——<strong>中等强度</strong>。这条针对的是<strong>书的配比</strong>（第一部分是简史），而它对全书论旨（第五部分）<strong>不构成实质挑战</strong>。若你关心的是「AI 现在行不行」，确实可以跳过第 1 章直接读第五部分。
+    </li>
+    <li><strong>「惧怕 AI 是被误导的，不该恐惧」</strong>（译者王飞跃的「错构」框架）<span class="tag t-src">原书</span>——<strong>立场性反驳，非事实性反驳</strong>。它不否认书的事实，而是主张<strong>那些事实不值得恐惧</strong>。⇒ 这是<strong>价值观分歧</strong>，不是<strong>证据分歧</strong>，两边都无法用数据说服对方 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>「AGI 定义之争」（Goertzel/Wang vs 米歇尔）</strong> <span class="tag t-rep">转述</span>——<strong>技术性最强、最接近学术辩论</strong>，但也最难判定胜负：因为它争的是「谁有权定义 AGI」，而不是「AGI 是什么」。
+    </li>
+  </ol>
+  <p><strong>一条必须打的折扣</strong>：本书在中文语境里常被当作「<strong>反 AI 神书</strong>」传播，从而被两边过度使用——乐观派用它证明「不必担心」，悲观派用它证明「AI 不行」。<strong>两种用法都偏离了它。</strong> 它既没说不必担心（它说<strong>该担心愚笨的机器</strong>），也没说 AI 不行（它说<strong>窄 AI 已经很强</strong>）<span class="tag t-inf">推断</span>。</p>
+  <p><strong>一句判断</strong>：★ <strong>这本书最强的不是它给出的答案，是它示范的一种读法</strong>——看到「AI 达到人类水平」时，去问：<strong>任务是怎么定义的？基准是谁设的？人和机器是在同一条件下测的吗？</strong> 这个读法比它的任何结论都耐用 <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s16">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <p><strong>概念（按在本书中的重要性排序）</strong></p>
+  <table>
+    <thead><tr><th>概念</th><th>一句话</th><th>出现位置</th></tr></thead>
+    <tbody>
+      <tr><td><strong>意义的屏障</strong>（the barrier of meaning）</td><td>机器处理符号的表面统计，人处理符号背后的意义；这道坎是全书中心</td><td>第 14–16 章</td></tr>
+      <tr><td><strong>基准测试问题</strong>（the benchmark problem）</td><td>「人类水平」的宣告，常靠<strong>同时</strong>抬高机器、压低人类来制造</td><td>第 13 章（全书贯穿）</td></tr>
+      <tr><td>窄 AI vs 通用 AI</td><td>特定任务超人不等于通用智能；这是<strong>种类</strong>问题，不是<strong>规模</strong>问题</td><td>全书</td></tr>
+      <tr><td>对抗样本</td><td>人眼不可察觉的微扰即可骗过网络 ⇒ 它没在「理解」输入</td><td>第 6 章</td></tr>
+      <tr><td>「狗与飞盘」</td><td>网络抓的是与类别相关的像素共现，而非概念</td><td>第 6 章</td></tr>
+      <tr><td>内在意向性（intrinsic intentionality）</td><td>哲学概念：能否真正「指向」世界中的某物；作者判断网络没有</td><td>第 6、14 章</td></tr>
+      <tr><td>类比与抽象</td><td>作者认为这是人类智能（及少样本学习）的核心</td><td>第 15 章</td></tr>
+      <tr><td>符号主义 / 联结主义</td><td>两条从 AI 诞生之初就并行的路线（不是先后替代）</td><td>第 1 章</td></tr>
+      <tr><td>强化学习 / 蒙特卡洛树搜索</td><td>AlphaGo 组合拳中的两件；在窄领域极强</td><td>第 8–9 章</td></tr>
+    </tbody>
+  </table>
+  <p><strong>人物</strong></p>
+  <table>
+    <thead><tr><th>人物</th><th>身份</th><th>在本书中的位置</th></tr></thead>
+    <tbody>
+      <tr><td>侯世达（Douglas Hofstadter）</td><td>GEB 作者，米歇尔的博士导师</td><td>序幕的主角；「恐惧」的来源</td></tr>
+      <tr><td>Melanie Mitchell</td><td>本书作者</td><td>—</td></tr>
+      <tr><td>David Cope</td><td>音乐家，EMI 程序的制作者</td><td>让侯世达「吓坏」的两件事之一</td></tr>
+      <tr><td>Hubert Dreyfus</td><td>哲学家，《What Computers Can't Do》(1979)</td><td>暴露符号主义局限的关键人物（第 1 章）</td></tr>
+      <tr><td>Marvin Minsky / John McCarthy / Allen Newell / Herbert Simon</td><td>AI 奠基者（1956 达特茅斯会议）</td><td>第一部分的历史主线</td></tr>
+      <tr><td>Yann LeCun / Yoshua Bengio</td><td>深度学习代表人物</td><td>2023 Munk 辩论中分别站在米歇尔的<strong>同方/反方</strong></td></tr>
+      <tr><td>Ben Goertzel</td><td>AGI 研究者</td><td>与米歇尔就 AGI 定义正面交锋（第 7.4 节）</td></tr>
+      <tr><td>王飞跃</td><td>中译本译者，中科院自动化所研究员</td><td>撰长篇推荐序，提出「广义歌德尔定理」（第 7.3 节）</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s17">
+  <h2><span class="num">B</span><span>常见卡点与延伸阅读</span><span class="caret">▾</span></h2>
+  <p><strong>常见卡点</strong></p>
+  <ul>
+    <li><strong>卡点一：把书读成「AI 不行」。</strong> 书的论断是<strong>窄 AI 已经很强</strong>，问题在<strong>通用</strong>。若你读完只记住「AI 很笨」，你读反了。→ 回看第 3 节论点一、论点五。
+    </li>
+    <li><strong>卡点二：把「意义的屏障」当成一个待攻克的技术难题。</strong> 在作者那里，它是一个<strong>结构性</strong>的界线，不是「再大一点模型就能跨过」的坎。→ 回看第 13 节。
+    </li>
+    <li><strong>卡点三：以为书名「3.0」是作者的版本论。</strong> 英文原名没有版本号。→ 回看第 6 节、第 7.1 节。
+    </li>
+    <li><strong>卡点四：把译者序当成作者的话读。</strong> 中译本卷首的长序是<strong>译者王飞跃</strong>写的，立场与作者<strong>不同</strong>（他把侯世达的恐惧解释为「错构」）。→ 回看第 7.3 节。
+    </li>
+    <li><strong>卡点五：跳过第一部分直接读第五部分，结果读不懂论据。</strong> 第五部分的每个判断，前面都铺了案例。<strong>若只读一章，读第 14 章；若要读懂第 14 章，至少补第 5、6、13 章。</strong>
+    </li>
+  </ul>
+  <p><strong>延伸阅读（按三条线）</strong></p>
+  <h4>直接相关（本书自己的上下游）</h4>
+  <ul>
+    <li>侯世达《哥德尔、艾舍尔、巴赫（GEB）》——本书的思想母体；序幕里侯世达「怕 AI」的心结，可从 GEB 的最后「十大问题」读到 <span class="tag t-rep">转述</span>。
+    </li>
+    <li>作者自己的《复杂》（Complexity: A Guided Tour）——理解她「复杂系统」视角的背景。
+    </li>
+  </ul>
+  <h4>同一问题的其他路径</h4>
+  <ul>
+    <li>Max Bennett &amp; William Newsome《智能简史》（A Brief History of Intelligence）——本报告第 14 节的对撞对象；<strong>与本书记得配套读</strong>。
+    </li>
+    <li>Gary Marcus &amp; Ernest Davis 关于「深度学习局限」的写作——与本书同向，技术批评更硬 <span class="tag t-inf">推断</span>（本报告未逐条核对其具体论文，故此条只给方向）。
+    </li>
+  </ul>
+  <h4>有助于批判性重读</h4>
+  <ul>
+    <li><strong>Melanie Mitchell, "Why AI is Harder Than We Think"</strong>（arXiv:2104.12871 / GECCO '21）——书里判断的「理论化」版本，四大谬误 <span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li><strong>Eros Moreira de Carvalho 的书评</strong>（<em>Principia</em> <strong>27(3): 609–623</strong>, 2023，<strong>开放获取</strong>）——最有价值的一篇学术书评：既复述全书，又<strong>明确列出书没有处理的哲学问题</strong>（身体、意向性、中文屋）<span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>Theorist AI 的 «The Comfortable Pessimist Revisited»</strong>——「诊断强、药方弱」这条批评的出处 <span class="tag t-rep">转述</span>。
+    </li>
+  </ul>
+</section>
+
+<section id="s18">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>本报告的材料来源分布如下（完整清单、交叉验证记录与检索盲区见同目录的《AI 3.0-来源清单.md》）：</p>
+  <ul>
+    <li><strong>出版方与图书馆编目</strong>：Farrar, Straus and Giroux（含 Library Journal / Publishers Weekly / Kirkus 的书目信息）· 英国 Pelican 版 · 四川科学技术出版社（湛庐）中译本（含<strong>广州商学院图书馆</strong>与<strong>绵阳师范学院图书馆</strong>两家独立 MARC 编目）
+    </li>
+    <li><strong>一手书评（带卷期页码）</strong>：
+    <ul>
+      <li>Salvatore Genovese, «Comments on the book by Melanie Mitchell», <em>ORDO: Jahrbuch für die Ordnung von Wirtschaft und Gesellschaft</em>, <strong>2021, pp. 444–449</strong>，DOI 10.1515/ordo-2021-0028
+      </li>
+      <li><strong>Eros Moreira de Carvalho</strong>, review of Mitchell, <em>Principia: An International Journal of Epistemology</em>, <strong>27(3): 609–623 (2023)</strong>，DOI 10.5007/1808-1711.2023.e88209（<strong>开放获取全文，本报告下部的「原书」级结构与案例描述多出自此</strong>）
+      </li>
+      <li>Peter Kassan, «Ten Years Away…and Always Will Be», <em>Skeptic</em>, <strong>Vol. 25, No. 1, 2019-12-31</strong>
+      </li>
+    </ul>
+    </li>
+    <li><strong>作者书外自述与论文</strong>：<em>Science</em> <strong>385(6710)</strong>, 2024-08-15（图灵测试）· <em>Science</em> <strong>383(6689), eado7069</strong>, 2024-03-21（AGI 之辩）· <em>GECCO '21</em>（DOI 10.1145/3449639.3465421，即「四大谬误」的会议版）· arXiv:2104.12871 · Quanta 访谈 2021-04-19 · 2023 Munk 辩论 · EL PAÍS 专访 2024-04-14 · Substack 博客
+    </li>
+    <li><strong>中译本附属文本</strong>：<strong>王飞跃推荐序</strong>（经集智俱乐部/搜狐转载，含「广义歌德尔定理」与「广义杰文斯悖论」两节）
+    </li>
+    <li><strong>二手书评与读者反应</strong>：Theorist AI、eknowledger、Goodreads、The Algorithmic Bridge、微信读书读者书评、百度百科、刘永谋评论（腾讯网 2024-06-25）
+    </li>
+  </ul>
+  <p><strong>核验级别：B 级（带页码引文）—— 但在本书它有一个特定的格局：批评层硬／正文层软。</strong></p>
+  <ul>
+    <li><strong>支持 B 级的材料</strong>：① 一本<strong>开放获取的学术书评</strong>（<em>Principia</em> <strong>27(3): 609–623</strong>），我读到了<strong>全文</strong>，其中有<strong>逐部分、带页码</strong>的对全书结构的复述与对案例（ImageNet 98%/82%、狗与飞盘、对抗样本、EMI）的转述；② 另外两篇带卷期页码的书评（ORDO 2021 pp. 444–449；Skeptic <strong>25(1)</strong>）；③ 作者本人的<strong>多篇带卷期/DOI 的书外文本</strong>。
+    </li>
+    <li><strong>★ 为什么没到 A 级</strong>：<strong>本书仍在版权期内，我没有原书全文，也没有原书的带页码引文。</strong> ⇒ <strong>凡「书里某句话说了什么」的表述，本报告一律标 <span class="tag t-rep">转述</span></strong>（宁可低估，不高估）。
+    </li>
+    <li><strong>★ 为什么不是 C 级</strong>：结构与案例层面有多篇<strong>独立且相互印证</strong>的来源（三家出版/图书馆编目 ＋ 三篇带卷期页码书评），且批评面是<strong>一手文献</strong>（不是二手转引）。<strong>未标 <span class="tag t-src">原书</span> 的段落，请一律当作二手转引对待。</strong>
+    </li>
+  </ul>
+</section>
+
+<section id="s19">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. 英文原版页数有四个版本，我不裁决</h3>
+  <p>336 页（Library Journal）／352 页（Publishers Weekly）／313 页（ORDO 2021 书评）／约 317 页正文（维基系）。<strong>差额可能来自封面/附录计入方式不同</strong>，也可能其中某一个是错的。<strong>按本项目纪律：数字冲突时两个（此处四个）都列，不取平均、不取更像真的那个。</strong></p>
+  <h3>D2. ★ 我没有取得逐章页码 —— 这是本报告最大的边界，且是取舍不是遗漏</h3>
+  <p>本书在版权期内，我<strong>没有合法取得全文</strong>，因此<strong>无法给出「第 N 章起于第某某页」</strong>。⇒ 全书骨架表只列<strong>部分与章名</strong>（这些可由出版方/图书馆编目与开放获取书评三方确认），<strong>不虚构页码</strong>。若你需要精确页码，请以纸书或电子书为准。</p>
+  <h3>D3. ORDO 那篇书评我只读到首页预览</h3>
+  <p>Salvatore Genovese 的 <em>ORDO</em> 2021 书评（pp. 444–449），我只取得了<strong>首页预览</strong>（含书目信息与前两节），<strong>没有读到它对本书的批评段落</strong>。⇒ 本报告只把它用于<strong>结构交叉验证</strong>，<strong>没有引用它的任何批评意见</strong>（因为我没读到）<span class="tag t-src">原书</span>。</p>
+  <h3>D4. 「侯世达原话」的措辞，我给的是中译转引</h3>
+  <p>「我被 EMI 吓坏了……」「从孩童时期开始，音乐就令我心潮澎湃……」这两句我引自<strong>中译本推荐序（王飞跃）</strong>，而它是<strong>对书中英文的转译</strong>。⇒ <strong>若要引用英文原句，请以英文原书为准。</strong> 英文版措辞在英文书评中有出入（见 Theorist AI 的转述）。</p>
+  <h3>D5. 「61%」这个 Winograd 得分是转述，我未在书中核实</h3>
+  <p>该数字出自 Theorist AI 对本书的转述 <span class="tag t-rep">转述</span>，我<strong>没有在原书里核对</strong>。它与其他公开资料中 LLM 在 Winograd 模式上的成绩量级相符，但<strong>具体出处请以原书为准</strong>。</p>
+  <h3>D6. 中译本 350 页 vs 英文 313–352 页</h3>
+  <p>中译本为 xxix＋350 页。<strong>差额的主要来源我没有逐项比对</strong>（推测为排版与附录），<strong>不能排除个别小节增删</strong> <span class="tag t-inf">推断</span>。</p>
+  <h3>D7. 我主动排除的来源</h3>
+  <p>检索过程中出现过盗版电子书站（含中文版）的链接。按本项目契约，<strong>该来源一律不使用，任何目的不例外</strong>。这构成本报告在「原文可得性」上的一处<strong>主动收缩</strong>：我因此少了「全书逐字核对」的可能，<strong>宁可降级到 B，也不从盗版件取用</strong>。</p>
+  <h3>D8. 一条要主动打折的宣传语</h3>
+  <p>湛庐版的宣传语是「<strong>将掀起第三波人工智能热潮</strong>」「智能觉醒的启蒙」。<strong>这是营销口径，不是对内容的评价。</strong> 更有意思的是，这句话<strong>与作者本人的立场正好相反</strong>——她整本书都在说「热潮之下应保持冷静」。<strong>不要用它来推断这本书在说什么</strong>（见第 6 节、第 7.1 节）。</p>
+</section>
+
+<footer>
+  生成于 2026-10-04 · 来源清单与交叉验证记录见同目录 <code>AI 3.0-来源清单.md</code><br>
+  本页引文按<b>带页码引文（B 级）</b>处理：标注卷期页的条目引自带卷期页码的书评与作者书外文本，<b>我未持原书</b>，页码与英文原句请以原书复核；未标页码者仍是二手转引。★ 侯世达的两句著名原话本报告引自<b>中译本推荐序的转译</b>（见附录 D4），英文措辞请以英文原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《追寻记忆的痕迹》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《追寻记忆的痕迹》<small>阅读指引与精华解析 · 2026-10-04</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 五个关键论点</a>
+    <a href="#s3">3 三条读法路线</a>
+    <a href="#s4">4 中文译本怎么选</a>
+    <a href="#s5">5 评价与批评面</a>
+    <a href="#s6">6 坎德尔在书外：纪录片、荣休与续篇</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s7">7 第一部：一个人如何走到记忆面前（第 1–3 章）</a>
+    <a href="#s8">8 第二部：每次一个细胞（第 4–10 章）</a>
+    <a href="#s9">9 第三部（上）：短时记忆的分子（第 11–16 章）</a>
+    <a href="#s10">10 第三部（下）：长时记忆与基因的对话（第 17–19 章）</a>
+    <a href="#s11">11 第四部：回到复杂记忆（第 20–23 章）</a>
+    <a href="#s12">12 第五部：一颗小红药（第 24–28 章）</a>
+    <a href="#s13">13 第六部：斯德哥尔摩与维也纳（第 29–30 章）</a>
+    <a href="#s14">14 这本书在你书单里的位置</a>
+    <div class="grp">附录</div>
+    <a href="#s15">A 关键概念与术语表</a>
+    <a href="#s16">B 常见卡点与提示</a>
+    <a href="#s17">C 来源清单</a>
+    <a href="#s18">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《追寻记忆的痕迹》阅读指引与精华解析</h1>
+  <div class="sub">In Search of Memory: The Emergence of a New Science of Mind</div>
+  <div class="meta">
+    <div><b>作者</b>埃里克·坎德尔（Eric R. Kandel，1929– ）—— 生于维也纳，1939 年随家人逃离纳粹统治赴美；1952 年哈佛大学历史与文学专业毕业，1956 年纽约大学医学博士；1974 年起任教于哥伦比亚大学，曾任该校神经生物学与行为研究中心创始主任；<b>2000 年诺贝尔生理学或医学奖</b>；<b>2022-08-31 荣休</b></div>
+    <div><b>英文初版</b>W. W. Norton &amp; Company 2006-03-27 · xv＋510 页 · ISBN 9780393058635（精装）</div>
+    <div><b>英文平装</b>Norton 2007 · 510 页 · ISBN 9780393329377（另有 2007-03-17 印次，528 页 · ISBN 9780393070514）</div>
+    <div><b>中译（现行）</b>《追寻记忆的痕迹：新心智科学的开创历程》· 喻柏雅 译 · 中国友谊出版公司（后浪／智慧宫 002）2019-08 · 550 页 · ISBN 9787505747012 · ¥88（版权页注明「据 2006 年英文版译出」）</div>
+    <div><b>中译（旧）</b>罗跃嘉 等译校 · 中国轻工业出版社（万千心理／心理学导读系列）2007-01 · 323 页 · ISBN 9787501956500 · ¥35</div>
+    <div><b>荣誉</b>2006 年度《洛杉矶时报》图书奖（科技类）· 2007 年度美国国家学院知识传播奖 · 2007 年英国皇家学会科学图书奖决选</div>
+    <div><b>衍生</b>同名纪录片《Auf der Suche nach dem Gedächtnis – Der Hirnforscher Eric Kandel》（Petra Seeger 导演，2008，95 分钟，2010 巴伐利亚电影奖最佳纪录片）</div>
+    <div><b>状态</b>未标注已读／想读 —— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有可定位文本支撑的段落 —— 含出版方与图书馆编目的带页码目录、Google Books 官方预览页、<b>带期刊卷期页码的一手书评</b>，以及诺奖委员会等机构的公开原始文件（凡引批评者观点，正文均写明出处与页码）</li>
+    <li><span class="tag t-talk">作者谈话</span> 出自作者在书外的访谈、纪录片自述或公开表态 —— 不在书里</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、书评摘要、百科或读者读书笔记，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本书<b>仍在版权期内</b>，我未持原书、也无纸质书。但本书有一项特殊的材料优势：<b>英文原版与中译本的完整带页码目录都拿到了，且英文页码经两家独立编目与 Google Books 官方预览三方一致</b> —— 这使第 1 节的「英中页码对照表」与第 4 节的「两版中译体量分析」成为本报告最硬的两处。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-04 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书按 <b>B 级（带页码引文）</b>标注：有<b>两套独立交叉一致的带页码目录</b>（英文版 p.3–489）、<b>三篇带期刊页码的一手书评</b>（<i>The New York Times Book Review</i> 2006-04-09 p.14；<i>The Economist</i> 2006-03-04 p.78；<i>Publishers Weekly</i> 2006-02-06 p.62），以及<b>带页码的正文引语</b>（p.102、p.60、p.44）。★ 需要如实指出两点：① 那几处<b>正文引语的载体是二手读书笔记</b>，我采信其意思，<b>页码未独立复核</b>；② 作者自述的「五个原理」我<b>只读到两处独立转引、未核到原书页码</b>，故一律标 <b>【转述】</b>。以上两点均列入附录 D。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>这本书讲的不是「记忆是什么」，而是「一门学科是怎么被建立起来的」——而它的科学内核只有一句话：记忆不是存放在某个脑区里的东西，它是突触连接强度的改变；短期改变靠修改已有蛋白质，长期改变则必须启动基因、长出新的突触。</strong></p>
+  <p>坎德尔用六部三十章，把自己的生命史（维也纳—布鲁克林—哈佛—纽约—哥伦比亚—斯德哥尔摩）与心智生物学的学科史缝在一起。这条缝线的针脚，就是他在 2000 年诺奖演说与本书前言里给出的<strong>「新心智科学的五个原理」</strong>。</p>
+  <p>一句话结论（也是本书最该被记住、却最少被中文读者引用的一句）：<strong>「对心智的生物学研究，将如同基因生物学之于二十世纪那样，成为二十一世纪的核心学科。」</strong> 这句话出现在前言里，是作者对整门学科的赌注 —— 它不是结论，是宣言 <span class="tag t-rep">转述</span>。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>下表把<strong>英文原版页码</strong>与<strong>现行中译本页码</strong>并排。两套页码来自相互独立的来源（英文页码经两家独立编目与 Google Books 官方预览三方一致；中文页码来自中文编目的完整目录），见来源清单。</p>
+  <table>
+    <thead><tr><th>#</th><th>英文章节</th><th>英文页</th><th>中译章节</th><th>中译页</th><th>主体</th></tr></thead>
+    <tbody>
+      <tr><td>—</td><td>Preface</td><td>xi</td><td>译者序 ／ 前言</td><td>1 ／ 1</td><td>—</td></tr>
+      <tr><td><strong>一</strong></td><td><strong>Personal Memory and the Biology of Memory Storage</strong></td><td>—</td><td><strong>第一部 个体记忆与记忆存储的生物学</strong></td><td>—</td><td>—</td></tr>
+      <tr><td>1</td><td>Personal Memory and the Biology of Memory Storage</td><td>3</td><td>个体记忆与记忆存储的生物学</td><td>3</td><td>总纲：五个原理</td></tr>
+      <tr><td>2</td><td>A Childhood in Vienna</td><td>12</td><td>维也纳的童年时光</td><td>12</td><td>1938 年的维也纳</td></tr>
+      <tr><td>3</td><td>An American Education</td><td>33</td><td>美国的求学生涯</td><td>35</td><td>哈佛、精神分析、转向</td></tr>
+      <tr><td><strong>二</strong></td><td><strong>One Cell at a Time</strong></td><td>—</td><td><strong>第二部 每次一个细胞</strong></td><td>—</td><td>—</td></tr>
+      <tr><td>4</td><td>One Cell at a Time</td><td>53</td><td>每次一个细胞</td><td>57</td><td>从哺乳动物到无脊椎动物</td></tr>
+      <tr><td>5</td><td>The Nerve Cell Speaks</td><td>74</td><td>神经细胞在说话</td><td>79</td><td>动作电位</td></tr>
+      <tr><td>6</td><td>Conversation Between Nerve Cells</td><td>90</td><td>神经细胞之间的交流</td><td>95</td><td>突触、化学传递</td></tr>
+      <tr><td>7</td><td>Simple and Complex Neuronal Systems</td><td>103</td><td>简单与复杂的神经系统</td><td>110</td><td>选定海兔</td></tr>
+      <tr><td>8</td><td>Different Memories, Different Brain Regions</td><td>116</td><td>不同的记忆，不同的脑区</td><td>123</td><td>记忆的分类与脑区</td></tr>
+      <tr><td>9</td><td>Searching for an Ideal System to Study Memory</td><td>135</td><td>寻找一个理想系统来研究记忆</td><td>143</td><td>系统选择的全部逻辑</td></tr>
+      <tr><td>10</td><td>Neural Analogs of Learning</td><td>150</td><td>学习的神经性模拟</td><td>160</td><td>习惯化、敏感化</td></tr>
+      <tr><td><strong>三</strong></td><td><strong>Strengthening Synaptic Connections</strong></td><td>—</td><td><strong>第三部 突触联系的强化</strong></td><td>—</td><td>—</td></tr>
+      <tr><td>11</td><td>Strengthening Synaptic Connections</td><td>165</td><td>增强突触间的连接</td><td>177</td><td>突触易化的发现</td></tr>
+      <tr><td>12</td><td>A Center for Neurobiology and Behavior</td><td>180</td><td>神经生物学与行为研究中心</td><td>193</td><td>建制：把学科建起来</td></tr>
+      <tr><td>13</td><td>Even a Simple Behavior Can Be Modified by Learning</td><td>187</td><td>即便是简单的行为也能被学习修饰</td><td>201</td><td>缩鳃反射</td></tr>
+      <tr><td>14</td><td>Synapses Change with Experience</td><td>198</td><td>突触随经验而改变</td><td>212</td><td>可塑性的直接证据</td></tr>
+      <tr><td>15</td><td>The Biological Basis of Individuality</td><td>208</td><td>个性的生物学基础</td><td>222</td><td>同一个回路，不同的强度</td></tr>
+      <tr><td>16</td><td>Molecules and Short-Term Memory</td><td>221</td><td>分子与短时记忆</td><td>235</td><td>cAMP、PKA、共价修饰</td></tr>
+      <tr><td>17</td><td>Long-Term Memory</td><td>240</td><td>长时记忆</td><td>255</td><td>需要新蛋白质</td></tr>
+      <tr><td>18</td><td>Memory Genes</td><td>247</td><td>记忆的基因</td><td>263</td><td>CREB 与开关</td></tr>
+      <tr><td>19</td><td>A Dialogue Between Genes and Synapses</td><td>261</td><td>基因与突触的对话</td><td>278</td><td>全书科学主线的收束</td></tr>
+      <tr><td><strong>四</strong></td><td><strong>A Return to Complex Memory</strong></td><td>—</td><td><strong>第四部 回到复杂记忆</strong></td><td>—</td><td>—</td></tr>
+      <tr><td>20</td><td>A Return to Complex Memory</td><td>279</td><td>回到复杂记忆</td><td>297</td><td>从内隐到外显</td></tr>
+      <tr><td>21</td><td>Synapses Also Hold Our Fondest Memories</td><td>286</td><td>突触保留了我们最美好的记忆</td><td>304</td><td>空间记忆、海马</td></tr>
+      <tr><td>22</td><td>The Brain's Picture of the External World</td><td>295</td><td>外部世界的大脑图景</td><td>313</td><td>感觉地图</td></tr>
+      <tr><td>23</td><td>Attention Must Be Paid!</td><td>307</td><td>必须付出注意力！</td><td>326</td><td>注意与记忆的门槛</td></tr>
+      <tr><td><strong>五</strong></td><td><strong>A Little Red Pill</strong></td><td>—</td><td><strong>第五部 一颗小红药</strong></td><td>—</td><td>—</td></tr>
+      <tr><td>24</td><td>A Little Red Pill</td><td>319</td><td>红色小药丸</td><td>339</td><td>从实验室到药厂</td></tr>
+      <tr><td>25</td><td>Mice, Men, and Mental Illness</td><td>335</td><td>小鼠、人类与精神疾病</td><td>356</td><td>动物模型</td></tr>
+      <tr><td>26</td><td>A New Way to Treat Mental Illness</td><td>352</td><td>治疗精神疾病的新路子</td><td>373</td><td>药物与机制</td></tr>
+      <tr><td>27</td><td>Biology and the Renaissance of Psychoanalytic Thought</td><td>363</td><td>生物学与精神分析思想的复兴</td><td>384</td><td>回到弗洛伊德</td></tr>
+      <tr><td>28</td><td>Consciousness</td><td>376</td><td>意识</td><td>397</td><td>最难的那一步</td></tr>
+      <tr><td><strong>六</strong></td><td><strong>Rediscovering Vienna via Stockholm</strong></td><td>—</td><td><strong>第六部 通过斯德哥尔摩重新发现维也纳</strong></td><td>—</td><td>—</td></tr>
+      <tr><td>29</td><td>Rediscovering Vienna via Stockholm</td><td>393</td><td>通过斯德哥尔摩重新发现维也纳</td><td>415</td><td>诺奖与归乡</td></tr>
+      <tr><td>30</td><td>Learning from Memory: Prospects</td><td>416</td><td>从记忆中学习：展望</td><td>441</td><td>给年轻研究者的忠告</td></tr>
+      <tr><td>—</td><td>Glossary</td><td>431</td><td>术语表</td><td>456</td><td>20＋页，工具性极强</td></tr>
+      <tr><td>—</td><td>Notes and Sources</td><td>453</td><td>注释及参考文献</td><td>480</td><td>逐章出处</td></tr>
+      <tr><td>—</td><td>Acknowledgments ／ Index</td><td>485 ／ 489</td><td>致谢 ／ 译名对照表</td><td>539 ／ 542</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法提示一：这不是一本「累积式」的书。</strong> 六个部之间是<strong>人生阶段的推进</strong>，但科学内容可以独立阅读。第二部（第 4–10 章）讲的是「怎么选一个能回答问题的实验系统」，第三部（第 11–19 章）才是「答案本身」。</p>
+  <p>★ <strong>读法提示二：本书的页码结构本身是一份证据。</strong> 把上表的「英文页」与「中译页」相减，得到一个<strong>单调递增</strong>的数列：第 1 章差 0 页，第 2 章差 0 页，第 3 章差 2 页，第 10 章差 10 页，第 20 章差 18 页，第 30 章差 25 页。<strong>如果有整章被删节，这个差值会出现跳跃或倒退；它没有。</strong> 这是我判断「现行中译是全译」的主要依据 —— 详见第 4 节 <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>五个关键论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：心智与大脑不可分离 —— 这是全书的总纲，也是他离开精神分析的理由</h3>
+  <p><strong>主张</strong>：「心智是大脑执行的一套操作，就像行走是双腿执行的一套操作，只是复杂得多。」这是坎德尔在本书前言里给出的「新心智科学的五个原理」的第一条 <span class="tag t-rep">转述</span>。</p>
+  <p><strong>依据</strong>：完整五条是——① 心智与大脑不可分离；② 每一种心智功能都由大脑不同区域的<strong>特定神经回路</strong>执行；③ 所有这些回路都由同一种基本信号单元（神经细胞）构成；④ 神经回路使用<strong>特定分子</strong>在神经细胞内与细胞间产生信号；⑤ 这些信号分子在数百万年演化中<strong>高度保守</strong> <span class="tag t-rep">转述</span>。</p>
+  <p><strong>为什么重要</strong>：第 ⑤ 条是全书最容易被忽略、也最实用的一条。它意味着可以在<strong>蜗牛</strong>身上研究人类记忆的分子机制 —— 这不是类比，是同一套分子。坎德尔自己也承认，当年这么做的人很少。</p>
+  <h3>论点二：记忆不储存在脑区里，它储存在突触的强度里 —— 而且短时与长时用的是两套不同机制</h3>
+  <p><strong>主张</strong>：学习不改变神经回路的<strong>接线图</strong>，只改变特定连接点的<strong>强度</strong>。而短时记忆与长时记忆的区别，不是「量」的区别，是<strong>机制</strong>的区别：短时记忆靠对已有蛋白质的<strong>共价修饰</strong>（磷酸化），长时记忆<strong>必须</strong>有新基因表达与新蛋白质合成 <span class="tag t-src">原书</span>。</p>
+  <p><strong>依据</strong>：诺奖委员会对这项工作的官方表述是——「突触中的蛋白质磷酸化对一类短时记忆的产生很重要；而长时记忆的形成还需要蛋白质合成的改变，这可以导致突触的形状与功能改变」<span class="tag t-src">原书</span>。</p>
+  <p><strong>为什么重要</strong>：这是全书唯一一条<strong>可以拿来校验自己记忆体验</strong>的结论。同一条神经通路，反复刺激后如果只持续几分钟到几小时，那是修饰；如果持续数天以上，说明基因已经被打开、结构已经改了。<strong>「短期靠改零件，长期靠改图纸」这句话，可以记住十年。</strong></p>
+  <h3>论点三：学习可以打开基因 —— 这是当年最反直觉的一条</h3>
+  <p><strong>主张</strong>：基因不只是「决定」行为的蓝图；它同时也是<strong>环境的仆从</strong>。学习不产生突变，但可以改变一个基因被使用的<strong>水平</strong><span class="tag t-talk">作者谈话</span>。</p>
+  <p><strong>依据</strong>：坎德尔在书外访谈里的原话是——「长时记忆改变了基因的表达，这让我吃惊；而<strong>通过学习把基因打开有多容易</strong>，也同样让我吃惊 —— 随之触发新突触的生长。对我来说这是一个令人屏息的发现。」<span class="tag t-talk">作者谈话</span> 他还补了一句解释：「我最初证明这一点时，人们不理解它意味着什么。我的意思是，<strong>学习不会产生突变</strong>。你可以在不改变基因结构的前提下改变它发挥作用的水平。」<span class="tag t-talk">作者谈话</span></p>
+  <p><strong>为什么重要</strong>：这条把「先天／后天」的二分法拆掉了。它不是说「后天可以改基因」，而是说<strong>基因本来就是被后天调用的</strong>。</p>
+  <h3>论点四：方法论上真正可迁移的，是「不断缩小问题」，不是「坚持」</h3>
+  <p><strong>主张</strong>：坎德尔在本书里展示的科研方法，核心不是毅力，是<strong>对实验系统的取舍</strong>：选最简单的、能表现该现象的系统，哪怕它离人很远 <span class="tag t-inf">推断</span>。</p>
+  <p><strong>依据</strong>：官方传记记述他自己总结的一句话是——「作为一个科学家，你必须为你要回答的问题选择合适的系统。」他依次看过果蝇、蠕虫、甚至龙虾，最后选了海兔（<em>Aplysia californica</em>），理由是它神经元<strong>大且可逐一辨识</strong>，全神经系统只有约 <strong>2 万个</strong>细胞，而人脑估计有近 <strong>1000 亿</strong>。而他研究的行为本身，借的是巴甫洛夫的框架 <span class="tag t-src">原书</span>。</p>
+  <p><strong>为什么重要</strong>：这是本书对<strong>非科研读者</strong>也成立的一课。他放弃海马的理由不是「海马不重要」，而是「海马太复杂，问了也答不出来」——<strong>承认问题暂时不可回答，是一种能力</strong>。</p>
+  <h3>论点五：到 2006 年为止，人类只搞清了记忆的「底层管线」——这一点书里说得比读者以为的更克制</h3>
+  <p><strong>主张</strong>：本书确实解释清楚了短时／长时记忆在<strong>细胞与分子层面</strong>的开关；但它<strong>没有</strong>解释「记忆作为一幅图景、一整套数据，究竟是怎么被存下来并被重新调出来的」<span class="tag t-rep">转述</span>。</p>
+  <p><strong>依据</strong>：这是本书最尖锐的一条读者批评的核心 —— 一位亚马逊评论者写道：「如果你希望知道<strong>你自己的记忆是怎么工作的</strong>，你会失望。事实上没有多少可讲，因为到他的研究生涯结束时，止于本书所述的范围内，只发现了最初步的机制。」<span class="tag t-rep">转述</span></p>
+  <p><strong>为什么重要</strong>：这条不是否证，是<strong>定位</strong>。它把本书从「记忆说明书」归位到「一门学科青年期的亲历记」。带着这个预期读，本书的克制反而成了优点。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>三条读法路线</span><span class="caret">▾</span></h2>
+  <p>本书 30 章、510 页（英文）／550 页（现行中译），通读约 10–15 小时。下面三条路线按目的分。</p>
+  <p><strong>路线 A｜只想读故事（约 4 小时）</strong> 第 1–3 章（维也纳、逃难、哈佛转向）→ 第 29–30 章（诺奖与归乡、给年轻人的话）。<strong>跳过整个第三部。</strong> 这条路线的收益是：你会知道一个人如何在九岁时目睹邻居把自己家清空，然后把这个问题带了一辈子。</p>
+  <p><strong>路线 B｜想真懂记忆机制（约 8 小时，推荐）</strong> 第 4–10 章（怎么选系统：<strong>必读第 7、9 章</strong>）→ 第 13–19 章（<strong>这是全书科学主干</strong>：缩鳃反射 → 突触易化 → 短时记忆的分子 → 长时记忆需要新蛋白质 → CREB → 基因与突触的对话）→ 第 20–23 章（从内隐回到外显、海马与空间记忆）。<strong>第 21 章可以跳</strong>，它偏综述。</p>
+  <p><strong>路线 C｜研究者视角（约 6 小时）</strong> 第 9 章（怎么选问题）＋ 第 12 章（怎么把一个学科建制化：研究中心怎么建起来）＋ 第 24–26 章（研究怎么变成药物）＋ 第 30 章（他给年轻研究者的具体建议）＋ <strong>术语表</strong>（20 余页，全书最实用的部分）。</p>
+  <p>★ <strong>如果只读一章</strong>：读<strong>第 19 章《基因与突触的对话》</strong>（英文 p.261 ／ 中译 p.278）。理由：短时记忆与长时记忆之间那个「开关」在这里被完整讲清——<strong>前面 18 章的伏笔全部在这里收束</strong>，而后面 11 章转向复杂记忆与临床，术语密度明显上升。这是全书性价比最高的一章。</p>
+  <p>★ <strong>可以放心跳的三章</strong>：第 12 章（建制史，与科学内容无关）、第 21 章（空间记忆综述，与其说是实验不如说是总结）、第 27 章（精神分析的复兴，争议性最强、论证最弱的一章 —— 见第 5 节）。</p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本书的中译本有两个，都能买到，页数差 227 页。</strong> 这不是版本迭代的关系，是两个独立的翻译工程，而且<strong>差的恰好是「学术附录」</strong>。</p>
+  <table>
+    <thead><tr><th>项</th><th>2007 版（旧）</th><th>2019 版（现行，推荐）</th></tr></thead>
+    <tbody>
+      <tr><td>书名</td><td>《追寻记忆的痕迹》</td><td>《追寻记忆的痕迹：<strong>新心智科学的开创历程</strong>》</td></tr>
+      <tr><td>出版社</td><td>中国轻工业出版社（万千心理／心理学导读系列）</td><td>中国友谊出版公司（后浪／<strong>智慧宫 002</strong>）</td></tr>
+      <tr><td>出版时间</td><td>2007-01</td><td>2019-08</td></tr>
+      <tr><td>译者</td><td><strong>罗跃嘉 等译校</strong>（不同渠道另有署名「李新影／南云／曲琛／顾媛媛」，<strong>编目不一致</strong>）</td><td><strong>喻柏雅</strong>（单一译者）</td></tr>
+      <tr><td>页数</td><td><strong>323 页</strong> · 280 千字 · 16 开平装</td><td><strong>550 页</strong> · 32 开精装</td></tr>
+      <tr><td>ISBN</td><td>9787501956500</td><td>9787505747012</td></tr>
+      <tr><td>定价</td><td>¥35</td><td>¥88</td></tr>
+      <tr><td>是否含注释与术语表</td><td>目录止于「参考文献」</td><td><strong>含术语表（p.456）＋ 注释及参考文献（p.480）＋ 致谢（p.539）＋ 译名对照表（p.542）</strong></td></tr>
+      <tr><td>豆瓣</td><td>8.9 分（997 人评价）</td><td>后出，评价样本较少</td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>「323 页 vs 550 页」到底差在哪？我用页码算了一遍，结论是：两版都应是全译，差的是学术附录与排版密度。</strong></p>
+  <p>推理如下 <span class="tag t-inf">推断</span>：</p>
+  <ol>
+    <li><strong>英文原书正文（第 1–30 章）＝ p.3 到 p.430，共 428 页</strong>；附录（术语表＋注释＋致谢＋索引）另占 p.431–509，约 79 页。
+    </li>
+    <li><strong>2019 版</strong>：正文 p.3 到 p.441，共 439 页；附录另有约 100 页（术语表 456 起，译名对照表 542 止）。
+    </li>
+    <li><strong>2007 版的目录里，30 章一章不少</strong>（第一至第六卷，逐章名与英文原书一一对应），但<strong>目录止于「参考文献」</strong>，没有术语表与译名对照表。
+    </li>
+    <li>2007 版标注 <strong>280 千字</strong>。2019 版正文 439 页、32 开，粗估约 30 万字 —— <strong>两者正文体量相当</strong>。
+    </li>
+  </ol>
+  <p>⇒ 所以 323 与 550 的差额，主要来自 <strong>① 2007 版删去了术语表与译名对照表；② 2007 版是 16 开（大本、每页字多），2019 版是 32 开小精装。</strong></p>
+  <p>★ <strong>购买建议</strong>：</p>
+  <ul>
+    <li><strong>要读通、要查术语、要按原书页码找引文 ⇒ 买 2019 版</strong>（有注释、有术语表、译名对照表齐全，且单译者，术语一致性更好）。
+    </li>
+    <li><strong>只想读传记那条线（路线 A）、预算敏感 ⇒ 2007 版完全够用</strong>，正文不残，且它有一个意外优势：<strong>16 开大本，读起来不吃力</strong>。
+    </li>
+    <li>⚠ <strong>买二手前必须核对出版社与 ISBN</strong> —— 两版<strong>书名相同、作者相同、封面都素</strong>，唯一的区分标志是副标题「新心智科学的开创历程」（只有 2019 版有）与页数。<strong>这是本系列书目里最容易买错的一本。</strong>
+    </li>
+    <li>⚠ 另有签「罗跃嘉 著」的条目在售，那是<strong>同一本书</strong>，不是他写的。
+    </li>
+  </ul>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5</span><span>评价与批评面</span><span class="caret">▾</span></h2>
+  <p>本书的接受史很干净：<strong>主流媒体几乎一致好评，专业期刊不挑科学内容，真正的不满集中在「后半部的结构与情绪」。</strong></p>
+  <p><strong>一手书评（均带卷期页码，可直接定位）</strong> <span class="tag t-src">原书</span></p>
+  <table>
+    <thead><tr><th>出处</th><th>时间</th><th>判断</th></tr></thead>
+    <tbody>
+      <tr><td><em>The New York Times Book Review</em>，Sherwin B. Nuland，〈The Secret Life of the Mind〉，<strong>p.14</strong></td><td>2006-04-09</td><td><strong>最高评价</strong>：「如果还有另一本书，能更好地展示生物学研究是如何做的，或者更好地讲述一位杰出科学家的职业生涯，<strong>我不知道是哪一本</strong>。」</td></tr>
+      <tr><td><em>The Economist</em>，〈Proustian Moments; Science of the Mind〉，<strong>p.78</strong></td><td>2006-03-04</td><td>结构与叙事：「科学与回忆录的编织，在<strong>前半部</strong>尤其有效。<strong>后半部</strong>里关于生物技术产业与奥地利反犹主义的长段落打断了时间线，书变得<strong>更难跟随</strong>。」</td></tr>
+      <tr><td><em>Publishers Weekly</em>，<strong>p.62</strong></td><td>2006-02-06</td><td>「一个科学家<strong>形成过程</strong>的迷人肖像：学会相信自己对什么研究该做的直觉，学会怎样提出一个可研究的问题、设计一个实验。」</td></tr>
+    </tbody>
+  </table>
+  <p><strong>读者层面的主要不满（二手汇总）</strong> <span class="tag t-rep">转述</span></p>
+  <ol>
+    <li><strong>后半部技术密度陡增</strong>，非科学背景读者需要重读；术语表是必需而非可选。
+    </li>
+    <li><strong>个人史部分对一些读者过细</strong>，而<strong>科学部分对另一些读者过细</strong> —— 这恰好是双线结构的固有代价。
+    </li>
+    <li><strong>偶有概念重复</strong>。
+    </li>
+    <li>综合评分仍很高：Goodreads 约 <strong>4.2/5</strong>（5,800＋ 评价）、Amazon 约 <strong>4.5/5</strong>（300＋）、豆瓣 2007 版 <strong>8.9</strong>。
+    </li>
+  </ol>
+  <p>★ <strong>最尖锐的一条批评，值得单独看。</strong> 一位亚马逊评论者以〈Even the Best Minds are Fallible — Is There No Hope?〉为题，除了质疑「其实没多少机制可讲」之外，还指出一件事：<strong>坎德尔在倒数第二章谈论奥地利当年的罪责时，那种情绪化的口吻，本身就是他自己研究的「心智易错性」的一个例证</strong> —— 他说，以一位终身研究心智机制、并因此获诺奖的人的自我认知与好奇心，本应能超越部落式的情感反应，看到当年维也纳发生的事「不是一个关于奥地利纳粹与犹太人的问题，而是人性中一个特别恶劣的方面」<span class="tag t-rep">转述</span>。</p>
+  <p><strong>我对这条批评的判断</strong> <span class="tag t-inf">推断</span>：这是一条<strong>情绪化但有效</strong>的批评。它不构成对科学内容的否证，但它准确指出本书的结构弱点 —— <strong>第 29 章是全书写得最不像一本「科学书」的一章</strong>，也是 <em>The Economist</em> 说「打断时间线」的那一段。<strong>读的时候把它当作「作者的个人证词」而不是「分析」，冲突就消解了。</strong></p>
+  <p><strong>一处需要在读前知道的争议</strong>：第 27 章〈生物学与精神分析思想的复兴〉主张精神分析应当、也正在被神经科学「复兴」。这是全书<strong>论证最弱</strong>的一章，也被批评者视为作者早年的执念回潮。<strong>如果你的目的是了解记忆的机制，直接跳它。</strong></p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">6</span><span>坎德尔在书外：纪录片、荣休与续篇</span><span class="caret">▾</span></h2>
+  <p><strong>① 同名纪录片（作者亲自出镜）</strong> <span class="tag t-src">原书</span></p>
+  <ul>
+    <li>原名《Auf der Suche nach dem Gedächtnis – Der Hirnforscher Eric Kandel》，Petra Seeger 导演／编剧／制片，德国 FilmForm Köln 出品，与 WDR、ORF、ARTE 合作，<strong>95 分钟</strong>。
+    </li>
+    <li><strong>2008-05-26 奥地利首映，2009-06-25 德国公映</strong>（德国世界首映在 2008-10-31 莱比锡国际纪录片节）。
+    </li>
+    <li><strong>2010 年德国巴伐利亚电影奖最佳纪录片</strong>；另获 GlaxoSmithKline 基金会新闻奖（2010）、Intermedia-Globe Gold、雅典国际科学电影节 Athena 科学奖、FBW「特别有价值」评定等。
+    </li>
+    <li>结构是<strong>三条线索交替</strong>：① 坎德尔夫妇在结婚 50 周年之际重访与大屠杀相关的地方；② 坎德尔为外行解释记忆的物理结构；③ 他的助手与同事对他的评价。
+    </li>
+  </ul>
+  <p>★ <strong>作者本人对这部片子的反应，是极好的「作者谈话」样本</strong> <span class="tag t-talk">作者谈话</span>：他说第一次看片时「<strong>极其不适</strong>。一个人认不出自己。我是个相当快乐的人，但想到我在片子里总是那样大声地、驴叫似地笑！或者我竟然那么厚颜地闯进别人家里。」——然后他加了一句：「但导演 Petra Singer 也是一个艺术家，她挑她需要的细节，去讲她想要被讲的故事。」</p>
+  <p><strong>② 五个原理的出处</strong>：这五条印在<strong>英文版前言</strong>里。我读到的是<strong>两处相互独立的转引，措辞一致</strong>（一处是一篇学术论文，明确标注「以下我直接引用」；一处是神经科学方向的技术博客）<span class="tag t-rep">转述</span>。<strong>我没有核到原书页码</strong>，因此本报告对五原理一律标 <span class="tag t-rep">转述</span>，不作原文引用 —— 见附录 D1。</p>
+  <p><strong>③ 荣休与续篇（这两件事对读本书有直接影响）</strong> <span class="tag t-src">原书</span></p>
+  <ul>
+    <li><strong>2022-08-31，坎德尔正式荣休</strong>（哥伦比亚大学校长 Lee C. Bollinger 的公开信；校长在信里写：「要庆祝埃里克，就得惊叹于他对心智研究贡献的广度与规模。」）。他同时卸任 HHMI 资深研究员 —— 任期 <strong>1984–2022</strong>，共 38 年。
+    </li>
+    <li>★★ <strong>2026-08-04，他出了自传的续篇《There Is Life After the Nobel Prize》</strong>（哥伦比亚大学出版社，<strong>120 页</strong>，ISBN 9780231224208）。也就是说：<strong>本书第 30 章那个开放式结尾，二十年后有了官方续集。</strong> 如果你读完本书觉得「后来呢」，答案就是这一本。
+    </li>
+    <li>他此前的其他著作：《The Age of Insight》（2012）、《Reductionism in Art and Brain Science》（2016）、《The Disordered Mind》（2018）、《Essays on Art and Science》（2024），以及 <strong>《Principles of Neural Science》</strong>（合著，2021 年第 6 版）——<strong>这本才是神经科学的研究生标准教科书</strong>。
+    </li>
+  </ul>
+  <p>★ <strong>一句给中文读者的话</strong>：中文渠道普遍仍写他「现任哥伦比亚大学教授」，<strong>这是过时信息</strong> —— 他已于 2022 年荣休。</p>
+  <p>下部的记法：<strong>「在讲什么」一行是概览，「判断」一列的 ★ 表示必读、◻ 表示可跳、无标记表示按需。</strong> 页码为「英文 ／ 中译（2019 版）」。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">7</span><span>第一部：一个人如何走到记忆面前（第 1–3 章）</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>章</th><th>标题</th><th>页</th><th>在讲什么</th><th>判断</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>个体记忆与记忆存储的生物学</td><td>3 ／ 3</td><td><strong>全书总纲</strong>：五个原理、为什么要用生物学研究心智、这本书要讲什么</td><td>★</td></tr>
+      <tr><td>2</td><td>维也纳的童年时光</td><td>12 ／ 12</td><td>1938 年：邻居把家里清空、父亲被抓又放回、全家逃离。<strong>全书的问题起点就在这里</strong></td><td>★</td></tr>
+      <tr><td>3</td><td>美国的求学生涯</td><td>33 ／ 35</td><td>哈佛读历史与文学、遇见未来的妻子 Denise、转向医学、在 NYU 第一次接触精神分析</td><td>★</td></tr>
+    </tbody>
+  </table>
+  <p><strong>第 1 章的实际功能</strong>：它不是导论，是<strong>宣言</strong>。坎德尔在这里说了一句后来被反复引用的话 —— 心智生物学之于二十一世纪，将如同基因生物学之于二十世纪 <span class="tag t-rep">转述</span>。<strong>读这一章只需要抓住一件事：他在为「用分子生物学的手段研究心智」这件事争合法性</strong>，而 1970 年代这件事并不显然。</p>
+  <p><strong>第 2 章为什么不能跳</strong>：全书所有章节里，只有这一章解释了<strong>他为什么要研究记忆</strong>。九岁时他目睹一个纳粹邻居把家人赶出公寓，而他后来反复回到那个问题：「<strong>文明的人怎么会变得如此残暴？</strong>」这个问题把他推向精神分析，再推向神经生物学。<strong>没有这一章，后面 28 章都悬空。</strong></p>
+  <p><strong>第 3 章的隐藏价值</strong>：他讲了自己<strong>为什么离开精神分析</strong> —— 不是立场问题，是方法问题。他原话的意思是，精神分析与它之前的哲学，都把大脑当作一个<strong>「黑箱」，不直接研究大脑本身</strong> <span class="tag t-rep">转述</span>。这句话是理解他整条职业路径的钥匙。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">8</span><span>第二部：每次一个细胞（第 4–10 章）</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>章</th><th>标题</th><th>页</th><th>在讲什么</th><th>判断</th></tr></thead>
+    <tbody>
+      <tr><td>4</td><td>每次一个细胞</td><td>53 ／ 57</td><td>从完整行为退到单个细胞；第一次进实验室的失望</td><td>★</td></tr>
+      <tr><td>5</td><td>神经细胞在说话</td><td>74 ／ 79</td><td>动作电位、神经元学说（卡哈尔）</td><td>◻</td></tr>
+      <tr><td>6</td><td>神经细胞之间的交流</td><td>90 ／ 95</td><td>突触、化学传递 vs 电传递的「汤与电火花」之争</td><td>按需</td></tr>
+      <tr><td>7</td><td>简单与复杂的神经系统</td><td>103 ／ 110</td><td><strong>为什么必须选简单系统</strong>；海兔登场</td><td>★</td></tr>
+      <tr><td>8</td><td>不同的记忆，不同的脑区</td><td>116 ／ 123</td><td>记忆的多种分类、内隐／外显</td><td>★</td></tr>
+      <tr><td>9</td><td>寻找一个理想系统来研究记忆</td><td>135 ／ 143</td><td><strong>全书方法论的核心章</strong>：系统选择的全部判据</td><td>★</td></tr>
+      <tr><td>10</td><td>学习的神经性模拟</td><td>150 ／ 160</td><td>习惯化、敏感化、经典条件作用 —— 把行为学词汇翻译成神经语言</td><td>★</td></tr>
+    </tbody>
+  </table>
+  <p><strong>第 4 章的关键句</strong>：他第一次进实验室时，本想直接去找弗洛伊德「本我、自我、超我」的神经解剖学基础，结果<strong>什么也没找到</strong>。于是他退到「一次一个细胞」<span class="tag t-src">原书</span>。★ 这是他一生方法论的第一次收缩，也定下了后面 50 年的路线。</p>
+  <p><strong>第 7 与第 9 章是同一件事的两半</strong>：第 7 章讲<strong>原则</strong>（为你要问的问题选系统），第 9 章讲<strong>执行</strong>（他试过果蝇、蠕虫、龙虾，最后选海兔）。★ <strong>如果时间只够读下部里的两章，读这两章。</strong></p>
+  <p><strong>为什么是海兔</strong>：全神经系统约 <strong>2 万</strong>个神经元（人脑约 <strong>1000 亿</strong>），且神经元<strong>大、可逐一辨识</strong>，行为简单到可以完整追踪回路 <span class="tag t-src">原书</span>。他研究的行为框架借自<strong>巴甫洛夫</strong>：用轻触与轻度电击，观察鳃的收缩反应如何随经验改变 <span class="tag t-src">原书</span>。</p>
+  <p>★ <strong>这一部里还有两段值得单独记下的旁白</strong>（引语经读书笔记转引，页码待复核 —— 见附录 D2）<span class="tag t-src">原书</span></p>
+  <ul>
+    <li><strong>关于「科学争论为什么会变成人身攻击」</strong>：他写道，有些起初只是科学分歧的争论，会染上人身的、近乎报复性的色彩，「就像古尔基（Golgi）那次一样」。这类争论揭示出一件事：<strong>在科学家中，竞争所特有的那些品质——野心、骄傲、报复心——与慷慨和分享一样常见。</strong> 他引了霍奇金（Alan Hodgkin）自传文章里的话作结：「如果纯粹科学家只被好奇心驱动，那么当别人解决了他们正在研究的问题时，他们本该感到高兴 —— <strong>但通常不是这个反应</strong>。」
+    </li>
+    <li><strong>关于「被证伪无所谓」</strong>：他引波普尔说，<strong>站在某个解释的错误一边并不重要；科学方法最大的力量，恰恰在于它有能力证伪一个假说。</strong> 当人从这类限制性的教条中解放出来，科学探索就变成一场令人兴奋的冒险。
+    </li>
+  </ul>
+  <p><strong>第 8 章要抓住的一条</strong>：这一章确立了「<strong>不同的记忆由不同的脑区承担</strong>」。它是第四部（回到复杂记忆）的伏笔 —— 因为接下来的问题正是：海兔身上适用的机制，能不能推到海马？</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">9</span><span>第三部（上）：短时记忆的分子（第 11–16 章）</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>章</th><th>标题</th><th>页</th><th>在讲什么</th><th>判断</th></tr></thead>
+    <tbody>
+      <tr><td>11</td><td>增强突触间的连接</td><td>165 ／ 177</td><td><strong>突触易化的发现</strong>：记忆的物质对应物第一次被看到</td><td>★</td></tr>
+      <tr><td>12</td><td>神经生物学与行为研究中心</td><td>180 ／ 193</td><td>建制史：1970 年代他如何把学科建起来</td><td>◻</td></tr>
+      <tr><td>13</td><td>即便是简单的行为也能被学习修饰</td><td>187 ／ 201</td><td>缩鳃反射被学习改变 —— 可重复的行为范式</td><td>★</td></tr>
+      <tr><td>14</td><td>突触随经验而改变</td><td>198 ／ 212</td><td>突触可塑性的直接证据</td><td>★</td></tr>
+      <tr><td>15</td><td>个性的生物学基础</td><td>208 ／ 222</td><td><strong>同一个回路，不同的连接强度</strong> —— 个体差异的机制</td><td>按需</td></tr>
+      <tr><td>16</td><td>分子与短时记忆</td><td>221 ／ 235</td><td>cAMP → PKA → 离子通道：短时记忆的分子链条</td><td>★</td></tr>
+    </tbody>
+  </table>
+  <p><strong>这一段的叙事弧线</strong>：第 11 章看见现象，第 13–14 章证明现象可重复、可归因于突触，第 16 章把现象拆到分子。</p>
+  <p><strong>第 16 章的核心</strong>：短时记忆不需要造新东西，只需要<strong>给已有的蛋白质贴上一个化学标签</strong>（磷酸化）——而这条链的第一环是 <strong>cAMP</strong>，第二环是 <strong>PKA</strong>。★ 记住这个结构，第 17–19 章才有意义：长时记忆<strong>多了什么</strong>。</p>
+  <p><strong>第 12 章可以跳，但有一个读它的理由</strong> <span class="tag t-inf">推断</span>：它是全书的<strong>建制视角</strong>样本 —— 一门科学不是靠论文长出来的，是靠研究所、编制、经费长出来的。★ 顺带一处<strong>需要核实的矛盾</strong>：哥伦比亚大学 2000 年诺奖新闻稿写该中心<strong>1975 年</strong>成立，另有权威传记词典写他 <strong>1974–1983</strong> 年任创始主任。两个年份不一致，<strong>本报告不裁决</strong>，列入附录 D3。</p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">10</span><span>第三部（下）：长时记忆与基因的对话（第 17–19 章）</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这三章是全书科学主线的终点，也是本报告推荐「必读」的核心。</strong></p>
+  <table>
+    <thead><tr><th>章</th><th>标题</th><th>页</th><th>在讲什么</th><th>判断</th></tr></thead>
+    <tbody>
+      <tr><td>17</td><td>长时记忆</td><td>240 ／ 255</td><td><strong>需要新蛋白质合成</strong> —— 一个可被药物实验直接检验的判断</td><td>★★</td></tr>
+      <tr><td>18</td><td>记忆的基因</td><td>247 ／ 263</td><td>CREB：记忆的分子开关</td><td>★★</td></tr>
+      <tr><td>19</td><td>基因与突触的对话</td><td>261 ／ 278</td><td><strong>全书收束点</strong>：短时 → 长时的转换如何发生</td><td>★★</td></tr>
+    </tbody>
+  </table>
+  <p><strong>第 17 章的关键实验逻辑</strong> <span class="tag t-inf">推断</span>：如果长时记忆需要合成新蛋白质，那么<strong>阻断蛋白质合成</strong>应当选择性地破坏长时记忆而保留短时记忆 —— 这是一个干净、可证伪的判据。诺奖委员会的表述印证了这个结论：「长时记忆的形成还需要蛋白质合成的改变，这可以导致突触的形状与功能改变」<span class="tag t-src">原书</span>。</p>
+  <p><strong>第 18 章的核心</strong>：<strong>CREB</strong> 是那个把「短暂的信号」变成「持久的改变」的转录因子。★ 这一章解释了为什么学习能打开基因：信号从突触进入细胞核，在那里激活基因，基因产物再回到突触、让它生长。</p>
+  <p><strong>第 19 章值得单独读两遍</strong>：它是本书的智识高点。<strong>前 18 章所有伏笔——突触强度、cAMP、PKA、蛋白质合成、CREB——在这一章里汇成一条完整通路</strong>：短期改变靠修饰，长期改变靠基因表达与结构新生。★ 这也是为什么「只读一章」我推荐它。</p>
+  <p>★ <strong>一处需要记住的边界</strong>：这一整套机制是在<strong>海兔的简单回路</strong>上建立的。把它推广到人，是全书第四部与第五部要处理的问题，也是本领域至今仍在做的检验 <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">11</span><span>第四部：回到复杂记忆（第 20–23 章）</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>章</th><th>标题</th><th>页</th><th>在讲什么</th><th>判断</th></tr></thead>
+    <tbody>
+      <tr><td>20</td><td>回到复杂记忆</td><td>279 ／ 297</td><td>从内隐记忆转向外显记忆 —— 问题的难度跃升</td><td>★</td></tr>
+      <tr><td>21</td><td>突触保留了我们最美好的记忆</td><td>286 ／ 304</td><td>空间记忆与海马；从海兔回到哺乳动物</td><td>◻</td></tr>
+      <tr><td>22</td><td>外部世界的大脑图景</td><td>295 ／ 313</td><td>感觉地图：外部世界如何在大脑里有位置</td><td>按需</td></tr>
+      <tr><td>23</td><td>必须付出注意力！</td><td>307 ／ 326</td><td><strong>注意是记忆的门槛</strong></td><td>★</td></tr>
+    </tbody>
+  </table>
+  <p><strong>第 20 章的转折</strong>：内隐记忆（习惯化、敏感化、条件反射）是「不记得自己学过」的记忆；外显记忆（事实与事件）需要一个专门的脑区——<strong>海马</strong>。★ 坎德尔在哥伦比亚的同事 W. Alden Spencer 与他<strong>最早测量了小鼠海马的脑电活动</strong>，学会了神经元怎么工作，但<strong>没有学到记忆怎么工作</strong> —— 因为小鼠脑太复杂 <span class="tag t-src">原书</span>。★ 这是全书方法论主题的第二次重演。</p>
+  <p><strong>第 21 章为什么标可跳</strong> <span class="tag t-inf">推断</span>：它偏综述，信息密度低于第 20 与第 23 章，且内容是第 20 章的延伸而非新转折。</p>
+  <p><strong>第 23 章是全书被引用最多的实用结论之一</strong>：<strong>没有注意，就没有记忆</strong>。从「记忆的机制」到「记忆的门槛」，这一章把实验室的结论和日常经验接上了。</p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">12</span><span>第五部：一颗小红药（第 24–28 章）</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>章</th><th>标题</th><th>页</th><th>在讲什么</th><th>判断</th></tr></thead>
+    <tbody>
+      <tr><td>24</td><td>红色小药丸</td><td>319 ／ 339</td><td><strong>从实验室走到药厂</strong>：基础研究如何变成疗法；他参与的生物技术公司</td><td>★</td></tr>
+      <tr><td>25</td><td>小鼠、人类与精神疾病</td><td>335 ／ 356</td><td>动物模型能做到什么、不能做到什么</td><td>按需</td></tr>
+      <tr><td>26</td><td>治疗精神疾病的新路子</td><td>352 ／ 373</td><td>药物与机制：从靶点到临床</td><td>按需</td></tr>
+      <tr><td>27</td><td>生物学与精神分析思想的复兴</td><td>363 ／ 384</td><td>主张精神分析将被神经科学「复兴」</td><td>◻ ⚠</td></tr>
+      <tr><td>28</td><td>意识</td><td>376 ／ 397</td><td>最难的那一步；克制的收尾</td><td>★</td></tr>
+    </tbody>
+  </table>
+  <p><strong>第 24 章的实际位置</strong>：这一章常被读作「作者开了公司」（他与同事创办过记忆药物方向的公司）。★ 更值得读的是它展示的另一件事：<strong>从突触机制到一粒药，中间隔了多少不可控的东西。</strong> 它和第 12 章的建制视角是一对。</p>
+  <p><strong>第 27 章建议跳过，但要知道为什么</strong>：这是全书<strong>论证最弱</strong>的一章，主张精神分析会被神经科学「复兴」。它是作者早年执念的回潮，也常被当作本书的软肋。<strong>这不影响其余 29 章的价值。</strong></p>
+  <p><strong>第 28 章</strong>：书的正式收尾落在「意识」上，而坎德尔的态度是<strong>克制</strong>的 —— 他把它列为尚未解决的问题，而不是宣称已经解决 <span class="tag t-inf">推断</span>。★ 这个克制值得注意：本书出版于 2006 年，作者是刚拿诺奖、正当盛名的顶尖研究者。</p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">13</span><span>第六部：斯德哥尔摩与维也纳（第 29–30 章）</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>章</th><th>标题</th><th>页</th><th>在讲什么</th><th>判断</th></tr></thead>
+    <tbody>
+      <tr><td>29</td><td>通过斯德哥尔摩重新发现维也纳</td><td>393 ／ 415</td><td>诺奖典礼；归乡；面对奥地利当年的罪责</td><td>★</td></tr>
+      <tr><td>30</td><td>从记忆中学习：展望</td><td>416 ／ 441</td><td><strong>给年轻研究者的具体建议</strong></td><td>★</td></tr>
+    </tbody>
+  </table>
+  <p><strong>第 29 章是全书写得最不像科学书的一章</strong>，也是 <em>The Economist</em> 批评「打断了时间线」的那一段，还是那位亚马逊读者批评「情绪压过分析」的那一段 <span class="tag t-rep">转述</span>。★ 但它在全书结构上不可替代：<strong>它闭合了第 2 章那个问题</strong>。一个九岁被赶出家门的孩子，五十年后以诺奖得主的身份回到同一座城市。</p>
+  <p>★ 一处<strong>本报告最愿意保留的细节</strong> <span class="tag t-rep">转述</span>：他在筹办一场关于奥地利在大屠杀中的角色的研讨会时，收到华盛顿大屠杀纪念馆寄来的档案，其中有<strong>他父亲当年申请资金的信件</strong> —— 先付款送他和弟弟去美国，再付款送父母。他说自己此后一直觉得，<strong>他「欠自己的存在」于父母的慷慨，以及那些批准了这个请求的维也纳官员</strong>。★ 这个细节的力量不在情绪，在于<strong>它是一份带页码的历史文件，而不是一段回忆</strong>。</p>
+  <p><strong>第 30 章是全书最实用的一章</strong>。他对年轻研究者的建议里有一条特别具体，指向的是方法论而不是努力 —— <strong>要大胆，去碰困难的问题</strong>，尤其是那些<strong>一开始看起来很乱、没有结构</strong>的问题；不要害怕换领域，或在学科交界处工作 <span class="tag t-src">原书</span>。</p>
+  <p>★ <strong>书里另有一段关于「品味」的自述，是本报告最愿意单独抄下来的一段</strong>（引语经读书笔记转引，标注页码为 <strong>p.102</strong>，页码待复核 —— 见附录 D2）：</p>
+  <blockquote>
+    <p>「一个科学家走向成熟包含很多成分，但对我来说关键的一项，是<strong>品味</strong>的发展，就像在欣赏艺术、音乐、食物或葡萄酒时那样。一个人需要学会辨别<strong>哪些问题是重要的</strong>；我感觉到自己在发展品味，在区分什么有趣、什么不有趣 —— 而在有趣的那些里，我还学会了<strong>哪些是做得出来的</strong>。」<span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>★ 这段话值得抄下来，是因为它把「选题」从一个玄学问题变成了两个可操作的判断：<strong>重要吗？做得出来吗？</strong> 前者决定意义，后者决定生死。<strong>本书 30 章其实就是在反复演示这两个判断。</strong></p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">14</span><span>这本书在你书单里的位置</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>维度</th><th>本书的位置</th></tr></thead>
+    <tbody>
+      <tr><td><strong>学科</strong></td><td>神经科学 × 记忆研究 —— 你书单里「神经科学入门」与「记忆相关研究」两个方向的<strong>共同源头</strong></td></tr>
+      <tr><td><strong>形态</strong></td><td>科学家自传 ＋ 学科史（双线）。不是教材，不是综述</td></tr>
+      <tr><td><strong>难度</strong></td><td>前半轻松、后半技术密度陡增。<strong>无背景者请配术语表</strong></td></tr>
+      <tr><td><strong>与《神经科学：探索脑》的关系</strong></td><td>那本是<strong>教科书</strong>（Bear 等），本书是<strong>那本教科书里某一章的一手历史</strong>。<strong>建议顺序：先读本书后读教科书</strong> —— 有了人的故事，教科书的术语会挂得住</td></tr>
+      <tr><td><strong>与《认知天性》《记忆的七宗罪》的关系</strong></td><td>那两本讲<strong>记忆的表现与应用</strong>（怎么记、怎么忘），本书讲<strong>记忆的物质基础</strong>。三本不重叠，是三层</td></tr>
+      <tr><td><strong>与《行为》（Sapolsky）的关系</strong></td><td><strong>正好互补且部分对立</strong>：Sapolsky 强调整体行为与近期成因的复杂网；坎德尔是<strong>彻底还原论者</strong>，且做成了。<strong>并读有张力</strong> <span class="tag t-inf">推断</span></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一条跨书线索</strong>：本书与《混沌》共享两个人物坐标 —— <strong>Denise Kandel</strong>（坎德尔妻子，哥伦比亚社会医学教授，与他共同研究）出现在本书；而《混沌》里圣克鲁斯学派对「简约模型」的信念，与坎德尔选海兔的逻辑是<strong>同一种方法论信仰</strong>（<strong>在最简单的系统里看现象</strong>）。<strong>两本书一起读，你会看到 1970–1980 年代美国科学界的一种共同气质</strong> <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">A</span><span>关键概念与术语表</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>术语</th><th>一句话解释（本书语境）</th></tr></thead>
+    <tbody>
+      <tr><td><strong>海兔（<em>Aplysia californica</em>）</strong></td><td>一种大型海生软体动物。选它的理由：神经元<strong>大且可逐一辨识</strong>，全神经系统约 <strong>2 万</strong>个细胞（人脑约 <strong>1000 亿</strong>）<span class="tag t-src">原书</span></td></tr>
+      <tr><td><strong>缩鳃反射（gill-withdrawal reflex）</strong></td><td>海兔的防御行为：触碰其敏感部位，鳃会收缩。<strong>本书实验的主力范式</strong></td></tr>
+      <tr><td><strong>习惯化（habituation）</strong></td><td>重复无害刺激后反应减弱 —— 「学会了它没有危险」</td></tr>
+      <tr><td><strong>敏感化（sensitization）</strong></td><td>在厌恶刺激之后，对原本无害的刺激反应增强</td></tr>
+      <tr><td><strong>经典条件作用（classical conditioning）</strong></td><td>把中性刺激与有意义的刺激建立联结。本书的实验框架借自<strong>巴甫洛夫</strong> <span class="tag t-src">原书</span></td></tr>
+      <tr><td><strong>突触易化（synaptic facilitation）</strong></td><td>突触传递效率随经验增强 —— <strong>记忆的物质对应物的第一次直接观测</strong>（第 11 章）</td></tr>
+      <tr><td><strong>共价修饰 / 磷酸化</strong></td><td>给已有蛋白质加一个磷酸基团以改变其功能。<strong>短时记忆不需要造新分子，只需要改旧分子</strong></td></tr>
+      <tr><td><strong>cAMP / PKA</strong></td><td>短时记忆分子链条的两环：cAMP 是第二信使，PKA 是被它激活的蛋白激酶（第 16 章）</td></tr>
+      <tr><td><strong>CREB</strong></td><td>转录因子，被激活后启动基因表达。<strong>「记忆的分子开关」</strong>（第 18 章）</td></tr>
+      <tr><td><strong>短时记忆 vs 长时记忆（分子判据）</strong></td><td>短时：修饰已有蛋白质，持续数分钟到数小时。长时：<strong>必须</strong>有新的基因表达与蛋白质合成，并伴随突触的结构新生 <span class="tag t-src">原书</span></td></tr>
+      <tr><td><strong>内隐记忆 / 外显记忆</strong></td><td>内隐：不需要意识回忆的技能与习惯（第 11–19 章的对象）。外显：事实与事件，需要<strong>海马</strong>参与（第 20 章起）</td></tr>
+      <tr><td><strong>长时程增强（LTP）</strong></td><td>突触被高频刺激后传递效率持久增强 —— 外显记忆机制研究里的核心现象</td></tr>
+      <tr><td><strong>五个原理</strong></td><td>本书前言里作者对「新心智科学」的纲领：① 心智与大脑不可分离；② 心智功能由不同脑区的特定神经回路执行；③ 回路由同一种信号单元（神经细胞）构成；④ 回路用特定分子在细胞内与细胞间传递信号；⑤ 这些信号分子在数百万年演化中高度保守 <span class="tag t-rep">转述</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s16">
+  <h2><span class="num">B</span><span>常见卡点与提示</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>卡点：第五部之后读不下去。</strong>
+  <p>提示：这不是你的问题 —— <em>The Economist</em> 的书评也指出后半部「打断了时间线、更难跟随」。<strong>建议先走路线 B（第 4–23 章的核心），把第五、六部留到最后当「后记」读。</strong><span class="tag t-src">原书</span></p>
+    </li>
+  </ol>
+  <ol>
+    <li><strong>卡点：分不清「短时记忆」和「长时记忆」的区别为什么重要。</strong>
+  <p>提示：抓住一句话就够了 —— <strong>短期靠改零件（修饰已有蛋白质），长期靠改图纸（启动基因、长新突触）。</strong> 全书第 16–19 章就是在证明这半句话 <span class="tag t-src">原书</span>。</p>
+    </li>
+  </ol>
+  <ol>
+    <li><strong>卡点：查不到术语。</strong>
+  <p>提示：<strong>术语表是必需工具</strong>，不是可选项。★ 也因此：<strong>如果买的是 2007 版（无术语表），建议配一本神经科学基础读物或直接买 2019 版</strong> —— 见第 4 节。</p>
+    </li>
+  </ol>
+  <ol>
+    <li><strong>卡点：以为这本书能解释「我为什么记不住东西」。</strong>
+  <p>提示：不能。这是本书最尖锐的读者批评所指 —— 到 2006 年，人类只搞清了记忆的<strong>底层管线</strong>，没搞清「一幅图景是怎么被存下来又被调出来的」<span class="tag t-rep">转述</span>。<strong>要后者，去读《记忆的七宗罪》与《记忆决定你是谁》。</strong></p>
+    </li>
+  </ol>
+  <ol>
+    <li><strong>卡点：第 2 章与第 29 章的情绪打断了科学叙事。</strong>
+  <p>提示：把它们当作<strong>同一条线的两端</strong>读，而不是科学章节之间的插入。<strong>第 2 章提出问题，第 29 章回答它</strong> <span class="tag t-inf">推断</span>。</p>
+    </li>
+  </ol>
+  <ol>
+    <li><strong>卡点：第 27 章（精神分析的复兴）看不懂或不同意。</strong>
+  <p>提示：这是全书论证最弱的一章，<strong>直接跳不损失主线</strong>。它的存在说明作者与自己的起点之间仍未和解。</p>
+    </li>
+  </ol>
+  <ol>
+    <li><strong>卡点：引文查不到页码。</strong>
+  <p>提示：本报告的引文分两类 —— <strong>带页码目录</strong>（可靠，两套来源交叉一致）与<strong>经读书笔记转引的正文引语</strong>（页码未独立复核，见附录 D2）。★ 另有一处：<strong>「五个原理」我只有两处独立转引，没有原书页码</strong>（见 D1）。</p>
+    </li>
+  </ol>
+</section>
+
+<section id="s17">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>本书来源共 5 类、约 40 条，含 3 篇带卷期页码的一手书评、2 套独立页码目录与 1 次诺奖委员会原始文件。详见同目录下 <strong>《追寻记忆的痕迹-来源清单.md》</strong>（含交叉验证记录、检索盲区、第 ⑤ 路「原文可得性」检索，以及使用建议）。</p>
+</section>
+
+<section id="s18">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <p><strong>D1｜「五个原理」的原书页码未核到。</strong> 五条内容我读到<strong>两处相互独立的转引、措辞一致</strong>（一处学术论文明确标注「以下我直接引用」，一处神经科学方向技术博客），但<strong>都没有给出原书页码</strong>。本报告因此对五原理一律标 <span class="tag t-rep">转述</span>，不作原文引用。<strong>若需引用为原文，请核英文版前言页（Roman numeral 部）。</strong></p>
+  <p><strong>D2｜四处带页码的正文引语，页码未经独立复核。</strong> 本报告采信的正文引语共四处，其页码与措辞<strong>均来自同一份二手读书笔记</strong>（英文引文，标注页码）：<strong>p.102</strong>（「品味」／科学家走向成熟那段）、<strong>p.60</strong>（波普尔：科学方法最大的力量是能否证假设）、<strong>p.44</strong>（霍奇金：如果纯粹科学家只被好奇心驱动……但通常不是这个反应），以及同段关于古尔基争论的评述。★ <strong>我采信的是它们的「意思」，页码请以原书复核。</strong> 需要提醒：这几处页码集中在 p.44–102（即原书第一、二部范围内），与它们通常被当作「书末经验之谈」的印象不完全一致 —— <strong>这可能说明该笔记所依据的是另一种印次或另一个载体，我没有核实。</strong></p>
+  <p><strong>D3｜「神经生物学与行为研究中心」成立年份不一致</strong> —— 哥伦比亚大学 2000 年诺奖新闻稿作「<strong>1975 年</strong>成立，坎德尔任所长」；另有权威传记词典作他「<strong>1974–1983</strong> 年任创始主任」。两者不冲突（1974 到任、1975 挂牌），但<strong>本报告不裁决</strong>，两个年份都列出。★ 这一条恰好对应本书<strong>第 12 章</strong>。</p>
+  <p><strong>D4｜2007 版是否为全译，我没有逐字比对。</strong> 第 4 节「两版都应是全译」的结论由<strong>页码差值＋字数推算</strong>得出（30 章目录齐全；2007 版 280 千字 ≈ 2019 版正文体量；差额主要来自术语表与译名对照表、以及开本差异），标 <span class="tag t-inf">推断</span>。<strong>如需确认是否另有正文删节，须两版逐章对读。</strong></p>
+  <p><strong>D5｜诺奖理由的官方表述与中文常见说法重心不同。</strong> 诺奖委员会官方写的获奖理由是「<strong>for their discoveries concerning signal transduction in the nervous system</strong>」（关于神经系统信号转导的发现），合作者为 Arvid Carlsson 与 Paul Greengard，<strong>三人各得三分之一</strong> <span class="tag t-src">原书</span>。而中文资料多简述为「记忆存储的神经机制」「慢突触传递」。<strong>两者不冲突，但重心不同</strong> —— 前者是学科层面的框架，后者是具体贡献。<strong>引用时请用官方表述。</strong></p>
+  <p><strong>D6｜中文渠道的作者信息已过时。</strong> 中文百科多写「目前担任哥伦比亚大学教授和霍华德·休斯医学研究所资深研究员」；<strong>实际他已于 2022-08-31 荣休</strong>，HHMI 资深研究员任期止于 2022 <span class="tag t-src">原书</span>。另：2007 版译者署名在不同渠道不一致（罗跃嘉／李新影／南云／曲琛／顾媛媛），属<strong>编目层面的混乱</strong>，非实际有两个译本。</p>
+</section>
+
+<footer>
+  生成于 2026-10-04 · 来源清单与交叉验证记录见同目录 <code>追寻记忆的痕迹-来源清单.md</code><br>
+  本页引文按<b>带页码引文（B 级）</b>处理：带页码目录与一手书评的出处已逐条给出；<b>正文引语的页码来自二手读书笔记，我未持原书</b>，请以原书复核。★ 本报告的<b>第 4 节（中文译本怎么选）</b>含一处原创分析 —— 把英中两套页码逐章相减，得到一个<b>单调递增 0→25 页</b>的数列，据此判断现行中译为全译；该结论标<b>【推断】</b>，非逐字比对结果（见附录 D4）。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《神经科学：探索脑》学习路线图与章节地图</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《神经科学：探索脑》<small>学习路线图与章节地图 · 2026-10-04</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 前置知识与目标读者</a>
+    <a href="#s2">2 全书骨架</a>
+    <a href="#s3">3 学习路线</a>
+    <a href="#s4">4 配套资源</a>
+    <a href="#s5">5 版本怎么选：两个中文版 ＋ 两个英文版</a>
+    <div class="grp">下部 · 章节地图</div>
+    <a href="#s6"> 第 I 篇 基础（第 1–7 章 ＋ 第 7 章附录）</a>
+    <a href="#s7"> 第 II 篇 感觉和运动系统（第 8–14 章）</a>
+    <a href="#s8"> 第 III 篇 脑和行为（第 15–22 章）</a>
+    <a href="#s9"> 第 IV 篇 变化的脑（第 23–25 章）</a>
+    <a href="#s10"> 第 4 版 → 第 5 版 章名对照</a>
+    <div class="grp">附录</div>
+    <a href="#s11">A 关键定义与公式表</a>
+    <a href="#s12">B 常见卡点与提示</a>
+    <a href="#s13">C 来源清单</a>
+    <a href="#s14">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《神经科学：探索脑》学习路线图与章节地图</h1>
+  <div class="sub">Neuroscience: Exploring the Brain · 4th ed., Wolters Kluwer 2016 · 5th ed., Jones &amp; Bartlett 2025</div>
+  <div class="meta">
+    <div><b>作者</b>Mark F. Bear（MIT 皮考尔研究所）· Barry W. Connors（布朗大学）· Michael A. Paradiso（布朗大学）</div>
+    <div><b>本页锚定版本</b>第 4 版（2016）—— 篇属、章号、章名以第 4 版为准；附第 5 版章名对照</div>
+    <div><b>最新版</b>第 5 版 · 2025-07-25 · Jones &amp; Bartlett Learning · ISBN 9781284286878 · 官方页标 © 2026</div>
+    <div><b>中译</b>第 4 版中文版 2023（电子工业出版社，ISBN 9787121465109，954 页）；第 2 版中文版 2004（高教社）</div>
+    <div><b>形态</b>教材型 · 本页不是逐章精华，是「学习路线图 ＋ 章节地图」</div>
+    <div><b>原文核验级别</b>C（二手转引）—— 无公开全文；目录与版本事实取自出版方与图书馆编目（≥3 处一致）</div>
+    <div><b>状态</b>未标注已读／想读</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用三档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有出版方／图书馆编目转录的目录、版本与体例依据（≥3 个彼此独立的来源一致）</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理或整理，无直接原文支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本页是<b>教材型</b>（学习路线图 ＋ 章节地图），<b>不建议当逐章摘要读</b>。本书落在 <b>C 级（二手转引）</b>：<b>无公开全文，我未读过正文</b>；但<b>篇属、章号、章名与版本信息取自出版方与图书馆编目</b>（威斯康星、印第安纳、剑桥三一学院等编目与出版方目录一致），因此这几类事实标 <b>原书</b>。三条阅读路线、必读／可跳判断、卡点提示都是我的整理，标 <b>推断</b>，逐条见附录 D。
+  </p>
+  <h3>为什么这本书用另一种形态（2026-10-04）</h3>
+    <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">教材的价值在动手。给一本 975 页、4 篇 25 章的教材写「逐章要点」，合上书依然画不出一张神经元的信号通路图 —— 用 3b1b 的话说：<b>Mathematics is not a spectator sport.</b><br>所以本页只回答三个问题：<b>它训练什么能力 / 该按什么顺序读 / 哪些可以跳。</b></p>
+    <h3 style="margin:16px 0 0">本书不设「作者谈话」档</h3>
+    <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">三位作者均在世，但检索到的公开访谈谈的都是他们各自的研究（突触可塑性、脆性 X 综合征、视觉皮层），<b>没有一篇在谈「这本书该怎么读」</b>。作者对用法的原话在书内的 <b>User's Guide</b> 一节，那属「原书」而不属「作者谈话」。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>它是「用细胞与分子的语言，把行为解释一遍」的那本书。</strong> 25 章不是 25 个知识点，而是<strong>同一条因果链从下往上走</strong>： 离子通道 → 动作电位 → 突触 → 回路 → 感觉／运动 → 动机／情绪／睡眠／语言 → 发育与记忆。</p>
+  <p>出版方给它的定位是 <span class="tag t-src">原书</span>： 「<strong>emphasizing the biological basis of behavior</strong>」（把行为的生物学基础摆在中心）， 并且明确说它「适合各类院系的<strong>神经科学导论课或生物心理学课</strong>，从心理学到相关健康专业」。</p>
+  <p>⇒ <strong>对你的书单来说，这本的地位是</strong>：前面那些书（《枪炮》《人类简史》《第三种黑猩猩》）讲的是「人为什么是这样」的<strong>远端原因</strong>； 这本讲的是<strong>近端机制</strong>——同一套「近因／终极因」的追问，落到细胞层面。 它也是<strong>读得懂后续所有神经科学文献的最低门槛</strong>：读完第 I 篇，你就能看懂论文里的「膜电位」「突触可塑性」在说什么。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>前置知识与目标读者</span><span class="caret">▾</span></h2>
+  <ul>
+    <li><strong>目标读者</strong> <span class="tag t-src">原书</span>：<strong>本科入门课</strong>。「introductory neuroscience or biological psychology courses」
+  <p>—— 神经科学导论、生物心理学这两类课的主教材。</p>
+    </li>
+    <li><strong>门槛</strong> <span class="tag t-src">原书</span>：出版方对第 4 版的原话是「<strong>even for students without a strong background in science</strong>」
+  <p>（即使科学背景不强的学生也能读）；威斯康星大学编目转录的出版方简介进一步说， 它的<strong>内容深度「comparable to an introductory college text in general biology」</strong>（相当于普通生物学的大学入门教材）。</p>
+    </li>
+    <li><strong>不要求</strong>：不要求先修解剖、生理或生化 —— 那部分它自己铺。
+    </li>
+    <li><strong>真正的门槛在「量」不在「难」</strong>：975 页、25 章、每章附复习题与拓展阅读。<strong>它不难，它长。</strong>
+    </li>
+  </ul>
+  <p>★ <strong>一处要在开始前就想清楚的取舍</strong>：这本书给你的是<strong>系统</strong>，代价是<strong>要按顺序走</strong>。 如果你只想「知道大脑大概怎么回事」，去读叙事型的书（如 Kandel 之外的科普，或下面「配套资源」里的公开入门读物）； 如果你想<strong>拥有一张能自己往下查的地图</strong>，它的性价比几乎没有对手。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p><span class="tag t-src">原书</span> 以下篇属、章号、章名取自出版方（Jones &amp; Bartlett Learning）与多家图书馆编目（威斯康星、印第安纳、剑桥大学三一学院）的转录，三处一致。</p>
+  <table>
+    <thead><tr><th>篇</th><th>章</th><th>这一篇在做什么</th></tr></thead>
+    <tbody>
+      <tr><td>第 I 篇 · 基础 Foundations</td><td>1–7（＋第 7 章附录）</td><td>从「神经科学是什么」讲到单个神经元、膜电位、动作电位、突触、递质，最后搭出整个神经系统的结构；第 7 章附一份《人体神经解剖学图解指南》</td></tr>
+      <tr><td>第 II 篇 · 感觉和运动系统</td><td>8–14</td><td>化学感觉、眼、中枢视觉、听觉与前庭、躯体感觉、运动的脊髓控制与脑控制</td></tr>
+      <tr><td>第 III 篇 · 脑和行为</td><td>15–22</td><td>脑与行为的化学调控、动机、性与脑、情绪的脑机制、脑节律与睡眠、语言、静息态脑与注意及意识、精神疾病</td></tr>
+      <tr><td>第 IV 篇 · 变化的脑</td><td>23–25</td><td>脑连接的形成（发育）、记忆系统、学习与记忆的分子机制</td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>一处最容易看错的地方</strong>：<strong>第 7 章的附录不属于第 7 章的内容</strong>。 它是单独一份《人体神经解剖学图解指南》（An Illustrated Guide to Human Neuroanatomy）， 讲颅神经、脑干横切面那一套<strong>纯解剖</strong>的东西。它被装订在第 7 章之后，但<strong>可以完全独立地读</strong>—— 而且<strong>建议反复回来查</strong>，不要一次读完。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>学习路线</span><span class="caret">▾</span></h2>
+  <h3>3.1 出版方对使用者的定位 <span class="tag t-src">原书</span></h3>
+  <p>这本书最硬的「用法说明」不在外部，而在它自己的前置页里。<span class="tag t-src">原书</span> 前附部分依次是：</p>
+  <ol>
+    <li><strong>Preface（前言）</strong> —— 作者自述这一版改了什么；
+    </li>
+    <li><strong>User's Guide（使用指南）</strong> —— ★ <strong>这一节才是作者给的「怎么用这本书」</strong>；
+    </li>
+    <li><strong>Acknowledgements</strong>、<strong>Path of Discovery Authors</strong>（「发现之路」专栏作者名录）。
+    </li>
+  </ol>
+  <p>⇒ <strong>一句话</strong>：<strong>先用十分钟读 User's Guide，再决定路线。</strong> 本页给你的路线是外部整理，作者自己的那一节优先。</p>
+  <h3>3.2 三条路线（我整理）<span class="tag t-inf">推断</span></h3>
+  <p>★ 以下三条<strong>是我的整理，不是原书的路线图</strong>。原书的 <code>User's Guide</code> 我没读到（见附录 D）。</p>
+  <p><strong>路线 A · 完整读（一学期量）<span class="tag t-inf">推断</span></strong> 第 I 篇全读 → 第 II 篇全读 → 第 III 篇全读 → 第 IV 篇全读，顺序不动。 理由：这是这本书<strong>原本的设计顺序</strong>，每一篇都默认前面已铺好地基（第 III、IV 篇反复回指第 3–6 章的膜与突触）。</p>
+  <p><strong>路线 B · 只想懂「脑怎么工作」的最小集 <span class="tag t-inf">推断</span></strong></p>
+  <blockquote>
+    <p>第 1 → 2 → 3 → 4 → 5 → 7 章 ＋ 第 7 章附录 → 第 9 → 10 章 → 第 19 章 → 第 23 → 24 → 25 章</p>
+  </blockquote>
+  <p>理由：<strong>第 9–10 章（眼与中枢视觉）是全书写得最好、图示最完整的一组示范</strong>—— 它把「物理刺激 → 感受器 → 逐级回路 → 知觉」这条链条从头走完一遍，是理解所有其它感觉系统的模板。 末尾接第 23–25 章，把「脑是被经验改写的」这件事讲完，闭环。</p>
+  <p><strong>路线 C · 从行为／心理出发 <span class="tag t-inf">推断</span></strong></p>
+  <blockquote>
+    <p>第 1 → 2 → 5 → 7 章（地基压到最低）→ 第 III 篇选读 → 第 24 章（记忆系统）</p>
+  </blockquote>
+  <p>理由：如果你的兴趣在心理学一侧，先拿到「神经元怎么通信 ＋ 神经系统怎么布」这两块， 再进第 III 篇（动机、情绪、睡眠、语言、注意），最后用第 24 章落地。</p>
+  <h3>3.3 读书时的四条操作建议 <span class="tag t-inf">推断</span></h3>
+  <ol>
+    <li><strong>不要跳第 3 章。</strong> 静息膜电位是全书的第一个「真门槛」——它是一道物理题（扩散 ＋ 电场平衡）。
+  <p>这一章不过关，第 4 章的动作电位只能背下来，不能推出来。</p>
+    </li>
+    <li><strong>三处「换单位」的地方要主动停下来算一遍</strong>：第 3 章的平衡电位、第 4 章的通透性变化、第 5 章的突触电流。
+  <p>这三处是这本书里少数的定量节点，其余绝大部分是定性描述。</p>
+    </li>
+    <li><strong>每章末尾的「Concluding Remarks」当索引读</strong>：它是一章的收束段，适合在你<strong>忘了这章讲什么</strong>时回头看一页。
+    </li>
+    <li><strong>第 7 章附录不要一次读完</strong>：把它当字典，读到「这个核团在哪」时回来查。
+    </li>
+  </ol>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>配套资源</span><span class="caret">▾</span></h2>
+  <p><span class="tag t-src">原书</span> 第 5 版（2025）的出版方说明里列出的配套是：<strong>教师</strong>可申请讲义幻灯片、题库与章纲（<em>lecture slides, test questions, and chapter outlines</em>）； <strong>读者</strong>侧，第 4 版配套的是书内全彩插图与动画材料的访问权（随书授权，二手书不保证带）。 ⇒ <strong>对自学者</strong>：这些资源基本都要课程身份，<strong>不要把它们写进你的计划</strong>，正文与插图本身已经够用。</p>
+  <p><span class="tag t-rep">转述</span> 另有第三方页面称第 4 版中文版「配有译者注」、英文书另附网络彩图资源； 这两条来自非出版方页面，<strong>未核实</strong>（见附录 D）。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5</span><span>版本怎么选：两个中文版 ＋ 两个英文版</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本书专属的、也是最容易花冤枉钱的一节。</strong> <span class="tag t-src">原书</span> 版本信息如下：</p>
+  <table>
+    <thead><tr><th>版本</th><th>出版社 · 年份</th><th>ISBN</th><th>规模</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td><strong>中文第 4 版</strong></td><td>电子工业出版社 · 2023-10</td><td>9787121465109</td><td>xxxvii ＋ 954 页</td><td><strong>最新中文版</strong>；主译 朱景宁、王建军</td></tr>
+      <tr><td>中文第 2 版</td><td>高等教育出版社 · 2004-07</td><td>9787040121940</td><td>803 页</td><td>王建军主译；「国外优秀生命科学教材译丛」</td></tr>
+      <tr><td>第 3 版（影印版）</td><td>高等教育出版社 · 2011-02</td><td>9787040317268</td><td>857 页</td><td><strong>英文影印</strong>，不是中文翻译</td></tr>
+      <tr><td>英文第 4 版</td><td>Wolters Kluwer / Jones &amp; Bartlett · 2016</td><td>9781451109542 ／ 9780781778176</td><td>xlii ＋ 975 页</td><td>本页锚定版本</td></tr>
+      <tr><td>英文第 4 版（增强版）</td><td>Jones &amp; Bartlett · 2020</td><td>9781284211283</td><td>975 页</td><td>第 4 版的重新发行</td></tr>
+      <tr><td><strong>英文第 5 版</strong></td><td>Jones &amp; Bartlett Learning · 2025-07</td><td>9781284286878</td><td>975 页（正文）</td><td><strong>最新版</strong>；官方页标注 © 2026</td></tr>
+    </tbody>
+  </table>
+  <p><span class="tag t-inf">推断</span> <strong>怎么选</strong>：</p>
+  <ol>
+    <li><strong>要中文 → 直接买第 4 版中文版（2023）</strong>。理由：它是唯一的现代中文版，且对应的是本页锚定的第 4 版，
+  <p>章号能逐条对上；第 2 版中文版（2004）内容已落后 20 年，只适合二手极低价时考虑。</p>
+    </li>
+    <li><strong>要英文且在意「最新」→ 第 5 版（2025）</strong>。代价是<strong>章名有改动</strong>（见下部末尾的对照表），
+  <p>且市面上的课程讲义、习题集大多仍按第 4 版编排。</p>
+    </li>
+    <li><strong>要跟着公开课／现成讲义走 → 第 4 版（2016／2020 增强版）</strong>。这是过去十年绝大多数课程的版本。
+    </li>
+    <li><strong>别买「第 3 版」当中文版</strong>：它是<strong>影印版</strong>（英文原书影印），对中文读者是个常见的坑。
+    </li>
+  </ol>
+  <p>★ 下面四张表里：<strong>章名与篇属属 <span class="tag t-src">原书</span></strong>（取自出版方与图书馆编目，三处一致）； <strong>「这一章在回答什么」一列是我按章名与学科标准内容写的概括，属 <span class="tag t-inf">推断</span></strong>； <strong>判断标记</strong>：<code>★</code> 必读 ／ <code>○</code> 按需 ／ <code>◻</code> 可跳 —— <strong>也是我的整理，属 <span class="tag t-inf">推断</span></strong>。</p>
+</section>
+
+<section id="s6">
+  <h2><span class="num"></span><span>第 I 篇 基础（第 1–7 章 ＋ 第 7 章附录）</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>章</th><th>章名</th><th>这一章在回答什么 <span class="tag t-inf">推断</span></th><th>判断 <span class="tag t-inf">推断</span></th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Neuroscience: Past, Present, and Future</td><td>神经科学这门学问从哪来；今天的分析层次怎么分（分子／细胞／系统／行为／认知）；科学方法本身</td><td>★ 必读（层次划分是后面的坐标）</td></tr>
+      <tr><td>2</td><td>Neurons and Glia</td><td>神经元长什么样：胞体、树突、轴突、突触；胶质细胞做什么；怎么给神经元分类</td><td>★ 必读（全书名词表的地基）</td></tr>
+      <tr><td>3</td><td>The Neuronal Membrane at Rest</td><td>为什么神经元膜内外有电压差：扩散、电场、平衡电位、通透性</td><td>★★ 必读（第一个真门槛）</td></tr>
+      <tr><td>4</td><td>The Action Potential</td><td>动作电位怎么产生、怎么传导；电压门控钠／钾通道；髓鞘与跳跃传导</td><td>★★ 必读</td></tr>
+      <tr><td>5</td><td>Synaptic Transmission</td><td>一个神经元怎么把信号交给下一个：电突触与化学突触、递质释放、突触后电位</td><td>★★ 必读（神经科学的中心事件）</td></tr>
+      <tr><td>6</td><td>Neurotransmitter Systems</td><td>递质的种类、合成与清除；受体类型；递质系统怎么被药物影响</td><td>★ 必读（药理与精神科的入口）</td></tr>
+      <tr><td>7</td><td>The Structure of the Nervous System</td><td>神经系统怎么布：方向术语、脑膜、脑室、脊髓、脑的主要分区</td><td>★ 必读（空间坐标系）</td></tr>
+      <tr><td>7 附录</td><td>An Illustrated Guide to Human Neuroanatomy</td><td>人体神经解剖图谱：颅神经、脑干横切面、主要通路</td><td>○ 按需（当字典用）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>第 I 篇读完你应该能做到</strong>：用一张纸画出「一个信号从突触前末梢到突触后电位」的全过程，并说出每一步的离子与通道。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num"></span><span>第 II 篇 感觉和运动系统（第 8–14 章）</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>章</th><th>章名</th><th>这一章在回答什么 <span class="tag t-inf">推断</span></th><th>判断 <span class="tag t-inf">推断</span></th></tr></thead>
+    <tbody>
+      <tr><td>8</td><td>The Chemical Senses</td><td>味觉与嗅觉：受体细胞、换能机制、中枢通路</td><td>◻ 可跳（结构上独立，需要时再回）</td></tr>
+      <tr><td>9</td><td>The Eye</td><td>光是什么、眼怎么成像、视网膜怎么处理（视杆／视锥、暗适应、感受野）</td><td>★★ 必读（全书最好的示范之一）</td></tr>
+      <tr><td>10</td><td>The Central Visual System</td><td>从视网膜到初级视皮层再到两条通路：怎样从「点」走到「知觉」</td><td>★★ 必读</td></tr>
+      <tr><td>11</td><td>The Auditory and Vestibular Systems</td><td>声音的编码、耳蜗、声源定位；前庭系统与平衡</td><td>○ 按需</td></tr>
+      <tr><td>12</td><td>The Somatic Sensory System</td><td>触觉的机械感受器、痛觉与痒、温度觉，以及它们的上行通路</td><td>★ 必读（痛觉一节对「主观体验」问题特别有用）</td></tr>
+      <tr><td>13</td><td>Spinal Control of Movement</td><td>运动单位、肌肉、本体感觉、脊髓反射与步行程序</td><td>○ 按需</td></tr>
+      <tr><td>14</td><td>Brain Control of Movement</td><td>下行通路、运动皮层、基底节与小脑；运动怎么被「计划」出来</td><td>★ 必读</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>第 II 篇的读法</strong>：<strong>第 9–10 章连着读，一次读完</strong>。这两章合起来是「一个感觉系统被彻底讲透」的完整案例， 它的推理方式（刺激 → 感受器 → 逐级感受野 → 通路 → 皮层）在第 11、12 章会被整体复用。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num"></span><span>第 III 篇 脑和行为（第 15–22 章）</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>章</th><th>章名</th><th>这一章在回答什么 <span class="tag t-inf">推断</span></th><th>判断 <span class="tag t-inf">推断</span></th></tr></thead>
+    <tbody>
+      <tr><td>15</td><td>Chemical Control of the Brain and Behavior</td><td>下丘脑与内分泌、自主神经系统的两个分支、脑内弥散性调制系统；药物作用在这些系统上</td><td>★ 必读</td></tr>
+      <tr><td>16</td><td>Motivation</td><td>摄食与能量平衡的调节：激素、下丘脑、奖赏</td><td>○ 按需</td></tr>
+      <tr><td>17</td><td>Sex and the Brain</td><td>性分化与性行为的神经与内分泌机制</td><td>○ 按需</td></tr>
+      <tr><td>18</td><td>Brain Mechanisms of Emotion</td><td>情绪的神经环路（杏仁核一线）；情绪与身体反应的耦合</td><td>★ 必读</td></tr>
+      <tr><td>19</td><td>Brain Rhythms and Sleep</td><td>脑电节律从哪来、睡眠的分期与功能、昼夜节律</td><td>★ 必读（与你书单里的记忆主题直接咬合）</td></tr>
+      <tr><td>20</td><td>Language</td><td>语言功能的脑区、失语症给出的证据、两半球的不对称</td><td>★ 必读</td></tr>
+      <tr><td>21</td><td>The Resting Brain, Attention, and Consciousness</td><td>静息态网络、注意的机制、意识这条最难的问题目前的处境</td><td>★ 必读（全书最「开放」的一章）</td></tr>
+      <tr><td>22</td><td>Mental Illness</td><td>焦虑、情感障碍、精神分裂症的神经生物学基础</td><td>○ 按需</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>第 III 篇的读法</strong>：这一篇<strong>最不该顺着读</strong>。它的 8 章是按领域并列的，不是递进的。 按你的兴趣挑 3–4 章读，比从头读完更有收获。<strong>唯一建议全读的是第 15 章</strong>——它是这一篇的地基。</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num"></span><span>第 IV 篇 变化的脑（第 23–25 章）</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>章</th><th>章名</th><th>这一章在回答什么 <span class="tag t-inf">推断</span></th><th>判断 <span class="tag t-inf">推断</span></th></tr></thead>
+    <tbody>
+      <tr><td>23</td><td>Wiring the Brain</td><td>脑怎么长出来：神经元的发生、连接的建立与修剪、关键期为何会结束</td><td>★ 必读</td></tr>
+      <tr><td>24</td><td>Memory Systems</td><td>记忆不止一种：工作记忆、陈述性记忆、程序性记忆，以及它们各自的脑区与失忆症证据</td><td>★★ 必读（本页书单相关性最高的一章）</td></tr>
+      <tr><td>25</td><td>Molecular Mechanisms of Learning and Memory</td><td>记忆在分子层面怎么被写进去：获取与巩固、突触可塑性</td><td>★★ 必读</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>第 IV 篇是这本书的落点</strong>：前三篇讲「脑是什么」，这一篇讲「脑怎么会变」。 如果你的最终兴趣是<strong>记忆</strong>（你书单里的一个明确方向），<strong>第 24–25 章 ＋ 第 19 章（睡眠）</strong> 是最短的一条完整路径。</p>
+</section>
+
+<section id="s10">
+  <h2><span class="num"></span><span>第 4 版 → 第 5 版 章名对照</span><span class="caret">▾</span></h2>
+  <p><span class="tag t-src">原书</span> 表左列取自第 4 版目录，右列取自第 5 版出版方公布的目录（两者均有多处独立转录）。<strong>篇属与章号两版一致</strong>，只有章名有改动。</p>
+  <table>
+    <thead><tr><th>章</th><th>第 4 版章名</th><th>第 5 版章名</th></tr></thead>
+    <tbody>
+      <tr><td>8</td><td>The Chemical Senses</td><td>The Chemical Senses: Taste and Smell</td></tr>
+      <tr><td>11</td><td>The Auditory and Vestibular Systems</td><td>The Auditory and Vestibular Systems: Hearing and Balancing</td></tr>
+      <tr><td>12</td><td>The Somatic Sensory System</td><td>The Somatic Sensory System: Touch, Pain, and Itch</td></tr>
+      <tr><td>13</td><td>Spinal Control of Movement</td><td>Muscles and the Spinal Control of Movement</td></tr>
+      <tr><td>19</td><td>Brain Rhythms and Sleep</td><td>Sleep, Circadian Clocks, and Brain Rhythms</td></tr>
+      <tr><td>21</td><td>The Resting Brain, Attention, and Consciousness</td><td>The Resting Brain, Attention, and Consciousness</td></tr>
+    </tbody>
+  </table>
+  <p><span class="tag t-src">原书</span> 第 5 版另外把<strong>专栏体例</strong>改了，这一点<strong>直接影响你怎么买</strong>：</p>
+  <ul>
+    <li>第 4 版三类专栏：<strong>Path of Discovery</strong>（发现之路）／<strong>Of Special Interest</strong>（趣味话题）／<strong>Brain Food</strong>（脑的食粮）；
+    </li>
+    <li>第 5 版三类专栏：<strong>Neuroscience and Medicine</strong>（新增，把内容接到临床应用）／<strong>Path of Discovery</strong>／<strong>Brain Byte ＋ Brain Food</strong>。
+    </li>
+    <li>第 5 版另加<strong>每章学习目标（learning objectives）</strong>，第 4 版没有。
+    </li>
+  </ul>
+  <p>⇒ <span class="tag t-inf">推断</span> 读<strong>中文第 4 版</strong>时，你看到的三类框是「发现之路／趣味话题／脑的食粮」； 读<strong>英文第 5 版</strong>时，「趣味话题」这一类已被「Brain Byte」取代，并多了「Neuroscience and Medicine」。 <strong>对照讲义时会遇到这个错位。</strong></p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">A</span><span>关键定义与公式表</span><span class="caret">▾</span></h2>
+  <p><span class="tag t-rep">转述</span> 下表是我按本学科标准写法整理的<strong>入门核心量</strong>（不是对原书的抄录）； <span class="tag t-src">原书</span> 其中标注了「第 3 章 Box」的两项，其<strong>专栏标题可由图书馆编目转录证实存在于原书</strong>。</p>
+  <table>
+    <thead><tr><th>概念</th><th>式／定义（标准写法）<span class="tag t-rep">转述</span></th><th>首次出现的章 <span class="tag t-inf">推断</span></th></tr></thead>
+    <tbody>
+      <tr><td>平衡电位（Nernst 方程）</td><td>E_ion = (RT/zF) · ln([ion]_out / [ion]_in)</td><td>第 3 章（原书有专设专栏） <span class="tag t-src">原书</span></td></tr>
+      <tr><td>静息膜电位（多离子）</td><td>Goldman–Hodgkin–Katz 方程：由各离子通透性与浓度共同决定</td><td>第 3 章（原书有专设专栏） <span class="tag t-src">原书</span></td></tr>
+      <tr><td>膜的电学关系</td><td>I = g · (V − E)：电流 = 电导 × 驱动力</td><td>第 3–4 章</td></tr>
+      <tr><td>动作电位的产生</td><td>电压门控 Na⁺ 通道快速开放（去极化）→ 失活；K⁺ 通道延迟开放（复极化）</td><td>第 4 章</td></tr>
+      <tr><td>传导速度</td><td>随轴突直径增大而升高；有髓纤维经郎飞结「跳跃传导」，速度显著提高</td><td>第 4 章</td></tr>
+      <tr><td>突触整合</td><td>EPSP 与 IPSP 在时间与空间上总和，决定是否达到阈值</td><td>第 5 章</td></tr>
+      <tr><td>感受野</td><td>一个神经元「看」到的那一小块输入空间；中心–周边拮抗是视网膜的典型形态</td><td>第 9–10 章</td></tr>
+      <tr><td>突触可塑性</td><td>LTP／LTD：突触强度随活动历史被长效改变，是记忆的细胞层面候选机制</td><td>第 25 章</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一个提醒</strong>：这本书<strong>不是定量教材</strong>。上表里真正需要「算」的只有前两项， 其余都以定性描述为主 —— 这与 MacKay 那本（<code>《信息论、推断与学习算法》</code>）刚好是两极。</p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">B</span><span>常见卡点与提示</span><span class="caret">▾</span></h2>
+  <p><span class="tag t-inf">推断</span> 以下 6 条是我的整理，来自「这类教材的通用卡点 ＋ 本书的编排特征」，无直接原文支撑。</p>
+  <ol>
+    <li><strong>卡点：第 3 章的「平衡电位」。</strong> 大多数人在这里第一次卡住，因为它要求同时握住两个直觉（扩散要抹平浓度差、电场要拉开电荷）。
+  <p><strong>提示</strong>：先把「只对一种离子通透」的假想情况算清楚，再放第二种离子；不要一上来就记 Goldman 方程。</p>
+    </li>
+    <li><strong>卡点：第 4 章的现象与机制混在一起。</strong> 动作电位的「形状」是现象，通道的门控是机制。
+  <p><strong>提示</strong>：先只记形状（去极化—复极化—超极化），把通道当作「解释形状的工具」后置。</p>
+    </li>
+    <li><strong>卡点：把「通路」当「知识点」背。</strong> 第 II、III 篇有大量通路名称（背柱—内侧丘系、脊髓丘脑束……）。
+  <p><strong>提示</strong>：每条通路只记三件事——从哪起、在哪换元、到哪去。细节等要用时再查。</p>
+    </li>
+    <li><strong>卡点：第 III 篇读完什么也没剩下。</strong> 因为它 8 章并列，不是递进。
+  <p><strong>提示</strong>：进第 III 篇前先定一个主题（如「睡眠」「情绪」），只读相关章节。</p>
+    </li>
+    <li><strong>卡点：化学式与缩写。</strong> 第 5–6 章会出现大量递质缩写（ACh、GABA、谷氨酸、多巴胺、5-HT……）。
+  <p><strong>提示</strong>：做一张只写「缩写—中文—功能一句话」的卡片，别指望一次记住。</p>
+    </li>
+    <li><strong>卡点：以为附录要先读。</strong> 第 7 章附录是解剖图谱，<strong>先读它只会消耗耐心</strong>。
+  <p><strong>提示</strong>：留到读到「这个结构在哪」时再回来。</p>
+    </li>
+  </ol>
+</section>
+
+<section id="s13">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>本页所有来源、交叉验证记录、检索盲区与「原文可得性」检索，另见同目录 <strong><code>神经科学：探索脑-来源清单.md</code></strong>。 ★ 一句话概括：<strong>本书无公开全文，我未读正文；事实性内容全部落在「出版方与图书馆编目的转录」这一层。</strong></p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>⚠ 逐章页码没有采用。</strong> 本书无合法公开全文；我检索到的<strong>唯一</strong>能给出逐章页码的来源是<strong>盗版扫描件</strong>，
+  <p>按既定契约<strong>拒绝使用</strong>。所以本页的章节地图<strong>只有章号，没有页码</strong>。 需要页码时，请直接看纸质书目录 —— 这也是我不给页码的原因，不是漏了。</p>
+    </li>
+    <li><strong>原书 <code>User's Guide</code> 的内容我没读到。</strong> 我只从编目转录知道它<strong>存在</strong>于前附部分。
+  <p>作者对「怎么用这本书」的原话以该节为准，本页第 3.2 节的三条路线是我自己的整理。</p>
+    </li>
+    <li><strong>各篇的页码范围未知。</strong> 因此无法判断「第 III 篇可否只读一半」——只能按章判断。
+    </li>
+    <li><strong>两处二手说法未核实</strong>：① 中文第 4 版「配有译者注、可帮助理解术语」；
+  <p>② 豆瓣评分 9.3 且被称作「最佳神经科学入门教材」（评分属第三方读者众评，不是学术评价）。 两条均来自非出版方页面。</p>
+    </li>
+    <li><strong>第 5 版的页数口径不一</strong>：出版方与多数书店写 <strong>975 页</strong>，
+  <p>印第安纳大学编目写 <strong>xliv ＋ 1060 页</strong>，剑桥大学三一学院编目另给出<strong>参考文献 pp.1005–1038</strong>。 我倾向认为 975 为「正文页」口径，但<strong>未核实</strong>，两个数字都列在这里。</p>
+    </li>
+    <li><strong>第 5 版是否仍有 25 章、4 篇</strong>：出版方简要目录与三家图书馆编目一致为 25 章 4 篇，
+  <p>但<strong>我未见到第 5 版的正文页码区间</strong>，无法进一步核对。</p>
+    </li>
+  </ol>
+</section>
+
+<footer>
+  生成于 2026-10-04 · 来源清单与交叉验证记录见同目录 <code>神经科学：探索脑-来源清单.md</code><br>
+  本页篇属、章名与版本信息取自出版方目录与多家图书馆编目（<b>≥3 处彼此独立且一致</b>），故标<b>原书</b>；<b>无公开全文，我未读过正文，逐章页码因此未采用</b>（唯一给出逐章页码的来源是盗版扫描件，按契约拒绝使用）。三条阅读路线与卡点提示为我的整理，标<b>推断</b>。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

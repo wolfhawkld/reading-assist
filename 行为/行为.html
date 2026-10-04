@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《行为》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《行为》<small>阅读指引与精华解析 · 2026-10-04</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 六个关键论点</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 中文译本怎么选</a>
+    <a href="#s5">5 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s6">6 引言：那个反复出现的幻想（Introduction · p.1）</a>
+    <a href="#s7">7 总纲：什么叫「行为」（第 1 章 · p.15）</a>
+    <a href="#s8">8 秒级与分钟级：从动作电位到启动效应（第 2–3 章 · p.21–98）</a>
+    <a href="#s9">9 小时到月：激素与神经可塑性（第 4–5 章 · p.99–153）</a>
+    <a href="#s10">10 发育：青春期、子宫、受精卵（第 6–8 章 · p.154–265）</a>
+    <a href="#s11">11 千年尺度：文化、演化、我群与他群（第 9–12 章 · p.266–477）</a>
+    <a href="#s12">12 道德与共情：三分法（第 13–14 章 · p.478–552）</a>
+    <a href="#s13">13 隐喻：我们赖以杀戮的语言（第 15 章 · p.553–579）</a>
+    <a href="#s14">14 ★★ 目的地：自由意志与刑事司法（第 16 章 · p.580–613）</a>
+    <a href="#s15">15 战争与和平 + 结语（第 17 章 · p.614–670 ＋ Epilogue · p.671–678）</a>
+    <div class="grp">附录</div>
+    <a href="#s16">A 关键概念与人物速查</a>
+    <a href="#s17">B 延伸阅读</a>
+    <a href="#s18">C 来源清单</a>
+    <a href="#s19">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《行为》阅读指引与精华解析</h1>
+  <div class="sub">Behave: The Biology of Humans at Our Best and Worst</div>
+  <div class="meta">
+    <div><b>作者</b>罗伯特·萨波斯基（Robert M. Sapolsky，1957– ）—— 神经内分泌学家兼灵长类动物学家；哈佛生物人类学学士（1978）、洛克菲勒大学神经内分泌学博士；斯坦福大学生物学与神经学教授；1987 年获麦克阿瑟天才奖；每年赴肯尼亚研究野生狒狒的应激与健康</div>
+    <div><b>英文初版</b>Penguin Press（美国）2017-05-02 · 正文 790 页（书目记 800 页）· ISBN 9781594205071 · LCCN 2016056755</div>
+    <div><b>英文平装</b>Penguin Books 2018-05-01（800 页 · ISBN 9780143110910）／ Vintage（英国）2018（800 页 · ISBN 9780099575061）</div>
+    <div><b>中译（繁体·现行）</b>《行為：人類最好和最糟行為背後的生物學》· 吳芠 译 · 鷹出版（讀書共和國）2024-10-30 ·「全新修訂本，全一冊」· 744 页 · ISBN 9786267255599 · NT$990</div>
+    <div><b>中译（繁体·旧版）</b>《行為：暴力、競爭、利他，人類行為背後的生物學》· 吳芠 译 · 八旗文化 2019-04-03 · 上下二冊 · 992 页 · ISBN 9789578654570 —— 已绝版</div>
+    <div><b>★ 大陆简体版</b><b>不存在</b>（截至本报告生成日，本书未引进简体版）—— 中文世界只有繁体译本，且只有一位译者</div>
+    <div><b>其他语言</b>波兰语 2020（1008 页）· 西班牙语 2018（984 页）· 俄语 2018 · 乌克兰语 2021（672 页）</div>
+    <div><b>荣誉</b>《洛杉矶时报》图书奖（科学与技术）2017 得主 · Phi Beta Kappa 科学图书奖 2018 得主 · PEN/E.O. 威尔逊文学科学写作奖 2018 入围 · 韦尔科姆图书奖 2018 长名单 · 《华盛顿邮报》2017 年度十佳 · 《华尔街日报》年度好书 · 《纽约时报》畅销书</div>
+    <div><b>状态</b>未标注已读／想读 —— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有可定位文本支撑的段落 —— 含 Google Books 官方目录与预览片段、图书馆编目的带页码目录、公开引文汇编里的<b>带页码引语</b>，以及<b>署名可查的批评文献</b>（凡引批评者观点，正文均写明姓名与出处）</li>
+    <li><span class="tag t-talk">作者谈话</span> 出自作者本人的公开讲座、访谈或年会演讲 —— 不在书里</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、书评转述、百科或读者读书笔记，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本书<b>仍在版权期内</b>，我未持原书、也无纸质书。★ 本报告的一处特殊优势是：<b>英文页码由三方独立来源逐项一致地确认</b>（Google Books 两个区域站点的官方目录 ＋ 两家图书馆编目）—— 这是本系列至今最硬的一层版式事实。最大的边界在<b>中文信息污染严重</b>（详见附录 D8）。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-04 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书按 <b>B 级（带页码引文）</b>标注：有<b>三方一致的带页码目录</b>（Introduction p.1 → Index p.774）、<b>带页码的正文引语</b>（p.15／p.109／p.313／p.451／p.580–613）、以及<b>署名可查的一手批评文本</b>（*The New York Review of Books* 2025-02-13；*Why Evolution Is True* 2017-12-07；*Judicature* 等）。★ 需要指出：<b>本书在原理上可能达到 A 级</b> —— Internet Archive 提供受控数字借阅、Google Books 提供预览 —— <b>但我没有逐字核对全书</b>（也未访问受控借阅正文），所以按 B 级如实标注。未标页码处一律为二手转引。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>这本书没有提出一个新理论，它提出了一种新的「提问次序」——而它的赌注是：只要把这个次序坚持到底，道德与自由意志这些老问题会自动换一个样子。</strong></p>
+  <p>萨波斯基的做法是<strong>时间上倒着走</strong>：先问「行为发生前 1 秒，脑里发生了什么」，再问「之前几秒到几分钟，什么感官输入在起作用」，再问「几小时到几天前的激素」，再问「几个月到几年前的神经可塑性」，然后是青春期、子宫、受精卵，最后是<strong>几百年到几千年</strong>的文化与<strong>几百万年</strong>的演化 <span class="tag t-src">原书</span>。全书 17 章就是这个次序的 17 站。</p>
+  <p>一句话结论（也是全书最该记住的一句）：<strong>「一个行为的原因」这个词，单数形式基本是错误的</strong>；但萨波斯基坚持的另一件事——这些原因<strong>全部是生物的</strong>、因而<strong>没有一粒「非生物的自由意志」能插进来</strong>——正是全书争议的引爆点。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>下表把<strong>英文原版页码</strong>与<strong>繁体中文（2024 修订本）章号</strong>并排。英文页码取自 <strong>Google Books 官方目录</strong>与<strong>三家独立图书馆编目</strong>（三方逐项一致，这是本报告最硬的一层事实）。</p>
+  <table>
+    <thead><tr><th>#</th><th>英文章节</th><th>英文页</th><th>中译章</th><th>这一章在哪一层</th></tr></thead>
+    <tbody>
+      <tr><td>—</td><td>Introduction</td><td>1</td><td>前言</td><td>提出「时间倒推」的方法与「桶」的比喻</td></tr>
+      <tr><td>1</td><td>The Behavior</td><td>15</td><td>第一章 行为</td><td>界定什么叫「行为」；先摆出全书的语汇表</td></tr>
+      <tr><td>2</td><td>One Second Before</td><td>21</td><td>第二章 一秒之前</td><td>神经生物学：动作电位、神经递质、回路</td></tr>
+      <tr><td>3</td><td>Seconds to Minutes Before</td><td>81</td><td>第三章 数秒到数分钟之前</td><td>感官输入与「启动效应」；<strong>争议最集中的一章</strong></td></tr>
+      <tr><td>4</td><td>Hours to Days Before</td><td>99</td><td>第四章 数小时到数天之前</td><td>激素——睾酮、皮质醇、催产素</td></tr>
+      <tr><td>5</td><td>Days to Months Before</td><td>137</td><td>第五章 数天到数个月之前</td><td>神经可塑性：经验如何改建大脑</td></tr>
+      <tr><td>6</td><td>Adolescence; or, Dude, Where's My Frontal Cortex?</td><td>154</td><td>第六章 青春期</td><td>前额叶成熟的时间差</td></tr>
+      <tr><td>7</td><td>Back to the Crib, Back to the Womb</td><td>174</td><td>第七章 回到摇篮与子宫</td><td>童年与胎儿环境、表观遗传</td></tr>
+      <tr><td>8</td><td>Back to When You Were Just a Fertilized Egg</td><td>223</td><td>第八章 回到受精卵</td><td>基因——以及「基因决定论」为什么是错的</td></tr>
+      <tr><td>9</td><td>Centuries to Millennia Before</td><td>266</td><td>第九章 数百到数千年之前</td><td>文化、生态、宗教；文化可以跨千年被「出口」</td></tr>
+      <tr><td>10</td><td>The Evolution of Behavior</td><td>328</td><td>第十章 行为的演化</td><td>演化解——以及<strong>为什么「自然」不等于「好」</strong></td></tr>
+      <tr><td>11</td><td>Us Versus Them</td><td>387</td><td>第十一章 我群与他群</td><td>部落主义、族群认同、去人性化</td></tr>
+      <tr><td>12</td><td>Hierarchy, Obedience, and Resistance</td><td>425</td><td>第十二章 阶层、服从与反抗</td><td>服从实验、等级与健康</td></tr>
+      <tr><td>13</td><td>Morality and Doing the Right Thing</td><td>478</td><td>第十三章 道德与做正确的事</td><td>道德直觉的生物学；<strong>为什么「道德推理」常常是事后辩护</strong></td></tr>
+      <tr><td>14</td><td>Feeling, Understanding, Alleviating Someone's Pain</td><td>521</td><td>第十四章 共情与慈悲</td><td>★ 全书最实用的一章：共情、同情、慈悲是三件事</td></tr>
+      <tr><td>15</td><td>Metaphors We Kill By</td><td>553</td><td>第十五章 我们赖以杀戮的隐喻</td><td>语言与隐喻如何为暴力铺路</td></tr>
+      <tr><td>16</td><td>Biology, the Criminal Justice System, and (Oh, Why Not?) Free Will</td><td>580</td><td>第十六章 生物学、刑事司法系统与自由意志</td><td>★★ <strong>全书的目的地</strong></td></tr>
+      <tr><td>17</td><td>War and Peace</td><td>614</td><td>第十七章 战争与和平</td><td>从个体推到制度：什么真的能减少暴力</td></tr>
+      <tr><td>—</td><td>Epilogue</td><td>671</td><td>结语</td><td>最后一句：你不必在「科学」与「慈悲」之间二选一</td></tr>
+      <tr><td>—</td><td>Appendix 1: Neuroscience 101</td><td>679</td><td>附录一 神经科学入门课程</td><td>★ 没上过神经课的人从这里读起</td></tr>
+      <tr><td>—</td><td>Appendix 2: The Basics of Endocrinology</td><td>707</td><td>附录二 内分泌学基础</td><td>激素速成</td></tr>
+      <tr><td>—</td><td>Appendix 3: Protein Basics</td><td>（见 D1）</td><td>附录三 关于蛋白质的基础知识</td><td>分子生物学速成</td></tr>
+      <tr><td>—</td><td>Glossary of Abbreviations</td><td>718</td><td>缩写词表</td><td>—</td></tr>
+      <tr><td>—</td><td>Notes</td><td>720–773</td><td>注释</td><td>54 页注释，本身就是一份文献地图</td></tr>
+      <tr><td>—</td><td>Illustration Credits / Index</td><td>774</td><td>插图版权／索引</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法提示</strong>：这本书<strong>不是「一章一个论点」</strong>，而是<strong>「一章一个尺度」</strong>。所以它有一个别的畅销书没有的性质：<strong>你可以从任何一章开始读，而且你几乎一定会想跳回前面</strong>。作者自己在书里反复用「还记得第 2 章说过的那个机制吗」这种回指——他是按课程讲的，不是按书写的。</p>
+  <p>★ <strong>一个必须知道的操作建议</strong>：<strong>先读附录一（神经科学入门课程）</strong>。它不是「补充材料」，它是<strong>阅读前置条件</strong>。没有它，第 2 章（p.21–80，整整 60 页的神经生物学）会是一堵墙——这也是负面书评里出现频率最高的一条抱怨（见 5.4）。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>六个关键论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：真正的贡献是「同一时刻的多个解释」，不是「一个终极原因」</h3>
+  <p><strong>主张</strong>：任何一个行为，都同时有神经的、激素的、发育的、基因的、文化的、演化的解释；这些解释<strong>不是竞争对手，而是不同分辨率</strong>。作者用的比喻是：问「这条河为什么在这里拐弯」，可以答「因为水往低处流」，也可以答「因为两岸的岩石这样分布」——<strong>两个都对，且互不排斥</strong> <span class="tag t-src">原书</span>。</p>
+  <p><strong>依据</strong>：全书的结构本身就是论据——17 章按时间尺度排列，而<strong>每一章都在结尾承认自己那一层的解释力有限</strong>。第 3 章论述感官启动效应之后，作者明确写了这一层「解释不了多少」。</p>
+  <p><strong>为什么重要</strong>：这让这本书<strong>天然免疫于「你是先天论者还是后天论者」这个问题</strong>——因为它把这个二选一判成了伪问题。这也是它被大量书评称为「整合性著作」的原因。</p>
+  <h3>论点二：激素不是「原因」，是「调音」——这条纠正了一个流传极广的误解</h3>
+  <p><strong>主张</strong>：睾酮<strong>不制造攻击</strong>。它做的是<strong>放大既有的社会行为</strong>，而且方向取决于处境。书中一句被广泛引用的话是：「在社会性动物的群体里，提高雄性体内睾酮含量，只会增加其<strong>攻击比自己社会地位低下的个体</strong>的趋势，而不是向上挑战。」<span class="tag t-src">原书</span>（经中文出版方页面转引，见 D5）</p>
+  <p><strong>依据</strong>：作者反复强调一条判据：<strong>一种激素的效果，取决于接受它的那个人所处的社会情境</strong>。同样水平的皮质醇，在不同社会地位下含义完全不同。</p>
+  <p><strong>为什么重要</strong>：这是他最经得起检验的一类结论——它是<strong>他自己实验室的领域</strong>（他在肯尼亚的狒狒研究，核心就是社会地位与应激激素的关系）。<strong>如果你想判断这本书哪些部分最可信，答案是：凡是涉及「应激—激素—社会地位」三角关系的部分。</strong></p>
+  <h3>论点三：文化可以被「出口」，并在完全不同的地方存续几千年</h3>
+  <p><strong>主张</strong>：「生态系统极大地塑造文化——但文化随后可以被输出，并在截然不同的地方存续数千年。」<span class="tag t-src">原书</span>（p.313）</p>
+  <p><strong>依据</strong>：第 9 章用宗教、语言、饮食禁忌、亲属制度做例证，把文化当作<strong>具有自身惯性的系统</strong>来对待，而不是把它当作环境的直接反映。</p>
+  <p><strong>为什么重要</strong>：这第 9 章是全书从「个体生物学」转向「超个体」的<strong>枢纽</strong>。没有这一章，第 11–12 章（我群他群、阶层服从）会显得像是从生物学里凭空跳出来的。</p>
+  <h3>论点四：共情、同情、慈悲是三件不同的事——而且只有第三件有用</h3>
+  <p><strong>主张</strong>：第 14 章把三个常被混为一谈的词拆开：<strong>共情（empathy）是感受别人的痛苦</strong>，<strong>同情（sympathy）是理解并关心</strong>，<strong>慈悲（compassion）是去减轻</strong>。作者明确主张：<strong>只谈「共情」会耗竭人，甚至有害</strong>。</p>
+  <p><strong>依据</strong>：书中引用了「共情导致回避」与「共情疲劳」的实证研究，并把「慈悲」对应的行为效果与之对比。</p>
+  <p><strong>为什么重要</strong>：这是全书<strong>最可直接用于生活的一章</strong>，也是中文读者最容易忽略的一章（因为它夹在道德与隐喻之间）。★ 如果你想从这本书带走一件实际的东西，带走这一章的三分法。</p>
+  <h3>论点五：第 16 章的真正主张不是「没有自由意志」，而是「现行刑事司法系统建在一个错的前提上」</h3>
+  <p><strong>主张</strong>：作者的原话是——<strong>现在的刑事司法系统「需要被废除，并被某种东西取代」</strong>，后者「虽然与现行系统有一些宽泛的共同特征，但底层逻辑完全不同」<span class="tag t-src">原书</span>（引言转引自 <em>Judicature</em>／杜克大学法学院刊物书评，2025）</p>
+  <p><strong>依据</strong>：他从 16 世纪把癫痫妇女当女巫烧死的历史讲起，论证「我们不惩罚癫痫发作者，不是因为宽容，而是因为我们理解了机制」；然后追问：<strong>凭什么认为我们对行为机制的无知，就不是同一类无知</strong><span class="tag t-src">原书</span>。</p>
+  <p><strong>为什么重要</strong>：这是全书<strong>唯一一处把 580 页证据一次性兑换成制度主张</strong>的地方，也是作者后来用<strong>整本书</strong>（《命定》，2023）去展开的那一章。<strong>★ 如果只读一章，读这一章。</strong></p>
+  <h3>论点六：这本书最大的风险，恰恰是它最大的优点——引用面太宽</h3>
+  <p><strong>主张</strong>：它横跨神经科学、内分泌学、遗传学、演化生物学、社会心理学、人类学、法哲学，而<strong>它对社会心理学的那部分引用，正好落在 2011 年之后「可复现性危机」的射程内</strong>。</p>
+  <p><strong>依据</strong>：书中大量使用的是<strong>小样本的社会启动（social priming）研究</strong>，以及著名的「饥饿法官」效应——而这两类研究后来都出现了严重的复现失败。★ 更麻烦的是：<strong>这个批评不是外行提的</strong>。它是斯坦福科学史家 Jessica Riskin 与哥伦比亚统计学家 Andrew Gelman 提的（见 5.1、5.2）。</p>
+  <p><strong>为什么重要</strong>：这不是「书老了」，是<strong>书的论证结构对某几类证据的依赖度特别高</strong>。第 3 章与第 16 章受影响最重。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <ol>
+    <li><strong>先读附录一（p.679–706）</strong>，再读第 1 章（p.15）。跳过这个顺序，第 2 章会把你劝退。
+    </li>
+    <li><strong>不要按顺序读第 2–8 章</strong>，除非你要写论文。那 7 章是「同一件事的 7 种分辨率」，<strong>按兴趣挑 2 章就够</strong>：想懂「为什么他这么强调情境」，读第 4 章（激素）；想知道「基因决定论为什么错」，读第 8 章。
+    </li>
+    <li><strong>直接读第 16 章</strong>（p.580–613）。它是全书的目的地，而且<strong>可以独立读懂</strong>。
+    </li>
+    <li><strong>最后回头看第 17 章 + 结语</strong>（p.614–678），否则你会以为这本书只是一本「人为什么会做坏事」的目录。
+    </li>
+    <li>★ <strong>配一个笔记本</strong>：这本书的价值在「跨章连线」。作者在书里反复回指，<strong>而中文版换了副标题、重排了版式，回指的锚点比英文版更难找</strong>。
+    </li>
+  </ol>
+  <h3>如果你是「已读」</h3>
+  <ol>
+    <li><strong>回头检验一件事</strong>：书里哪些结论依赖<strong>社会启动／内隐联想／饥饿法官</strong>这类研究？把它们标出来，然后对照 2015 年之后的复现文献。<strong>这一步会让这本书的「可信区」和「待验证区」清清楚楚</strong>。
+    </li>
+    <li><strong>读一遍作者的续集《命定》（<em>Determined</em>, 2023）的前言</strong>。它的作用是把第 16 章那句「我无法想象怎么在『没有自由意志』的前提下过日子」正面接住——<strong>这是作者对自己那一章的直接回应</strong>。
+    </li>
+    <li><strong>重读第 14 章</strong>。它被讨论得最少，却最可能改变你的行为。
+    </li>
+  </ol>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节在本报告里是必需的，因为本书的中文版本状况比一般书复杂得多。</strong></p>
+  <p><strong>先说最要紧的一条</strong>：</p>
+  <blockquote>
+    <p><strong>⚠ 截至本报告生成日，《行为》没有大陆简体版。</strong> 中文世界里只有<strong>繁体中文</strong>译本，且<strong>只有一位译者（吳芠）</strong>。你在简体平台上看到的一切「简体版」，要么是繁体版的转售，要么是以讹传讹。</p>
+  </blockquote>
+  <p><strong>两个繁体版本的对比</strong>（同一译者，相隔五年）：</p>
+  <table>
+    <thead><tr><th></th><th>旧版</th><th>现行版</th></tr></thead>
+    <tbody>
+      <tr><td>书名</td><td>《行為：<strong>暴力、競爭、利他</strong>，人類行為背後的生物學》</td><td>《行為：<strong>人類最好和最糟行為背後的生物學</strong>》</td></tr>
+      <tr><td>出版社</td><td>八旗文化（讀書共和國）</td><td>鷹出版（讀書共和國）</td></tr>
+      <tr><td>出版日</td><td>2019-04-03</td><td>2024-10-30</td></tr>
+      <tr><td>规格</td><td>上下二冊 · 992 页</td><td>全一冊 · 744 页（书目另有 736 页记载）</td></tr>
+      <tr><td>标称</td><td>初版</td><td>「全新修訂本」</td></tr>
+      <tr><td>ISBN</td><td>9789578654570</td><td>9786267255599</td></tr>
+      <tr><td>定價</td><td>NT$1200</td><td>NT$990</td></tr>
+      <tr><td>现况</td><td><strong>已绝版</strong>（多家书店标「絕版無法訂購」）</td><td>在售</td></tr>
+    </tbody>
+  </table>
+  <p><strong>★ 该选哪个，判据很简单</strong>：</p>
+  <ul>
+    <li><strong>买得到 → 选 2024 修订本</strong>。它是全一册（不必追上下卷）、页数更少（开本更大）、价格更低，而且版权页与编目都标为修订版。
+    </li>
+    <li><strong>旧版唯一的价值</strong>是它的<strong>副标题更贴近书的内容</strong>（「暴力、竞争、利他」比「人类最好和最糟行为」更像这本书在讲什么）。但这是营销判断，不是版本优势。
+    </li>
+  </ul>
+  <p><strong>★ 三个必须提醒的坑</strong>（都真实存在，且都会让你买错书）：</p>
+  <ol>
+    <li><strong>浙江教育出版社 2023 年出的《动物本能：透过生物学看我们是谁》</strong>（尹烨／夏志 译，222 页，ISBN 9787572253324）<strong>是萨波斯基的另一本书，不是《行为》</strong>。它篇幅只有《行为》的四分之一，且中文书名与原书名差异极大——<strong>在购物网站搜「萨波斯基」时最容易误买的就是它</strong>。
+    </li>
+    <li><strong>中文网络上关于本书「修订本改了什么」的说法，绝大多数不可信</strong>。我检索到多条声称「修订本重写了第 12、17 章约 40%」「新增第 20 章……」的内容——<strong>本书只有 17 章，不存在「第 20 章」</strong>。这类文本多为 AI 生成的 SEO 内容，<strong>请勿当作版本依据</strong>（详见附录 D3、D8）。
+    </li>
+    <li><strong>英文本有三个主要版本</strong>（精装 2017／美版平装 2018／英版平装 2018），页数记 790 与 800 两种，<strong>页码基本一致</strong>（见来源清单交叉验证表）。<strong>不必为「哪个版本更全」纠结</strong>——真正的差别在<strong>附录三的页码</strong>上（见 D1）。
+    </li>
+  </ol>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本报告最该细读的一节。</strong> 本书获得的是<strong>压倒性的媒体好评</strong>（《华盛顿邮报》、《华尔街日报》、《纽约时报》、《卫报》、<em>Nature</em>、<em>Science</em> 一致称好），但<strong>专业界的批评同样密集，而且更晚、更硬</strong>。下面五条按「锋利程度」排序。</p>
+  <h3>5.1 ★★ 最系统的一条批评：一个统计学家说，它引用了「垃圾科学」</h3>
+  <p><strong>批评者</strong>：<strong>Andrew Gelman</strong>（哥伦比亚大学统计学与政治学教授，贝叶斯统计与「分叉路径花园」概念的提出者之一）。</p>
+  <p><strong>指控</strong>：萨波斯基<strong>反复依赖小样本、未复现的社会心理学研究</strong>来支撑一个极端结论。Gelman 的博客上有多篇相关文章，其中一篇的标题直接是「<strong>用来推销反自由意志论证的垃圾科学</strong>」（<em>Junk science used to promote arguments against free will</em>）<span class="tag t-src">原书</span>。</p>
+  <p><strong>具体点名</strong>：</p>
+  <ul>
+    <li><strong>社会启动（social priming）</strong>——最出名的是「老年人走路变慢」实验，<strong>后来著名地复现失败</strong>；
+    </li>
+    <li><strong>「饥饿法官」效应</strong>——<strong>这个效应在第 16 章被大量使用</strong>；
+    </li>
+    <li>2025 年 Gelman 又追加一例：书中引用的「国际象棋大师每天消耗六千卡路里」这个数字，来源是<strong>极薄的推算</strong>。
+    </li>
+  </ul>
+  <p><strong>他还指出一个更根本的问题</strong>：萨波斯基是生物学家，<strong>不是心理学家也不是统计学家</strong>，因此缺乏识别证据质量的专业训练。Gelman 的原话大意是：这本该是能被看出来的，但「<strong>那是 2025 年了，萨波斯基应该知道得更清楚</strong>」<span class="tag t-src">原书</span>（转引自 <em>Skeptical Society</em> 对其博客的引述，见来源清单）。</p>
+  <p><strong>★ 这条批评为什么最有力</strong>：<strong>它不是方法论之争，是可复现性危机</strong>。而<strong>它命中的是这本书结构上最依赖证据的地方</strong>——第 3 章（感官启动）与第 16 章（判定责任）。</p>
+  <h3>5.2 ★★ 第二条：哲学家与科学史家说，它把哲学问题冒充成了科学问题</h3>
+  <p><strong>批评者</strong>：<strong>Jessica Riskin</strong>（斯坦福大学科学史教授，斯蒂芬·杰伊·古尔德的学生——<strong>与萨波斯基同校同事</strong>）。</p>
+  <p><strong>出处</strong>：<em>The New York Review of Books</em>，2025-02-13，标题「<strong>Turtles All the Way Up</strong>」<span class="tag t-src">原书</span>。</p>
+  <p><strong>指控原文</strong>（经 <em>Skeptical Society</em> 与 <em>UCCR</em> 两处独立转引，措辞一致）：</p>
+  <blockquote>
+    <p>科学无法证明没有自由意志，因为<strong>自由意志的问题不是一个科学问题，而是一个哲学问题</strong>。把它误当成科学问题，是<strong>「科学主义」（scientism）的一个典型例子——把科学的诉求扩展到它应有的边界之外</strong>。</p>
+  </blockquote>
+  <p><strong>她还指出一个具体的论证缺陷</strong>：萨波斯基<strong>几乎从不与「相容论」（compatibilism）正面交锋</strong>——而相容论（决定论与道德责任可以共存）有丹尼尔·丹尼特这样长年经营它的严肃辩护者<span class="tag t-src">原书</span>。</p>
+  <p><strong>同一条线上的另外两位</strong>：</p>
+  <ul>
+    <li><strong>John Martin Fischer</strong>（加州大学哲学荣休教授）：「<strong>尽管宣传铺天盖地，它对自由意志或道德责任没有提供任何新东西或启发。</strong>」<span class="tag t-src">原书</span>（转引自 <em>UCCR</em>，2025-08-31）
+    </li>
+    <li><strong>Kevin Mitchell</strong>（神经遗传学家）：「<strong>得给萨波斯基的勇气点赞……如此自信地断言我们『没有一丝一毫的能动性』，然后拿一个又一个已被推翻的社会心理学研究来支撑它。</strong>」<span class="tag t-src">原书</span>（同上）
+    </li>
+  </ul>
+  <p><strong>★ 请注意这条批评的层级</strong>：它<strong>不否认</strong>萨波斯基列举的生物学事实，它否认的是<strong>「从这些事实到那个结论」这一步</strong>。<strong>这正是报告开头（★ 第二件）说的那件事。</strong></p>
+  <h3>5.3 ★ 第三条：一句最锋利的读者评论——「它解释一切，却预测不了任何事」</h3>
+  <p><strong>出处</strong>：图书馆编目站的读者书评（LibraryThing 用户 farrhon），被华盛顿特区公共图书馆的编目页收录 <span class="tag t-src">原书</span>（读者评论，非学者意见）。</p>
+  <p><strong>原话</strong>：<strong>「这本书清楚地描述了突触为什么放电，却只能为『一只手搭在胳膊上』这样的事编出『就是想当然的故事』。它解释一切，却预测不了任何事。」</strong></p>
+  <p><strong>为什么这句话值得单独列</strong>：它用一句话点中了本书的<strong>解释力与预测力之间的落差</strong>——而这个落差<strong>正是科学哲学家区分「科学」与「说明书」的经典判据</strong>。★ 萨波斯基自己的回答会是「复杂性不等于不可理解」（他在 APA 的采访中确实这么说），但<strong>这条评论指出的落差是真实的</strong>。</p>
+  <h3>5.4 ★ 第四条：最不客气的评价，是一位同行给的</h3>
+  <p><strong>批评者</strong>：<strong>Jerry A. Coyne</strong>（芝加哥大学生态与演化生物学荣休教授，<em>Why Evolution Is True</em> 作者）。</p>
+  <p><strong>★ 关键在于：Coyne 在自由意志问题上与萨波斯基立场一致</strong>——他是硬决定论者，公开同意「决定论统治一切、相容论没用」。<strong>即便如此</strong>，他的评价是：</p>
+  <blockquote>
+    <p>「我没能读完这本书……<strong>开头那几百页相当无聊</strong>。尽管萨波斯基努力写得引人入胜——有些地方他确实做得到——但那部分是一篇关于激素、神经元之类东西的<strong>冗长而教科书式的论文</strong>。他试图用流行俚语给文本加点劲，对我没用。」<span class="tag t-src">原书</span>（<em>Why Evolution Is True</em>，2017-12-07）</p>
+  </blockquote>
+  <p><strong>他还自陈</strong>：「我跳过了很多页去读我感兴趣的部分，而我几乎从不这么做。」</p>
+  <p><strong>★ 这条为什么值得记</strong>：<strong>这是本书「形态问题」的最强证词</strong>——<strong>一位同意他全部结论的同行，仍然读不下去前 580 页</strong>。它同时也反过来说明为什么第 16 章是全书最好的部分：<strong>Coyne 唯一称赞的就是第 16 章</strong>，说它「清晰、写得好」。</p>
+  <h3>5.5 第五条：作者自己的续集，把结论推得更远——也因此招来更猛的火</h3>
+  <p><strong>事实</strong>：2023 年，萨波斯基出版《命定：一种没有自由意志的生活科学》（<em>Determined: A Science of Life Without Free Will</em>，Penguin Press，2023-10-17，511 页，ISBN 9780525560975）<span class="tag t-src">原书</span>（宾夕法尼亚大学图书馆编目）。</p>
+  <p><strong>它和本书的关系</strong>：续集的官方简介直言——「萨波斯基的《行为》<strong>指向了一个令人不安的结论</strong>……在《命定》里，他把论证<strong>走到底</strong>」<span class="tag t-src">原书</span>（出版方简介）。</p>
+  <p><strong>★ 作者在书外的表态，比书里更极端</strong>。2021 年他在美国精神病学协会（APA）年会上做闭幕演讲时说：这些进展支持我们<strong>「把整个刑事司法系统彻底解构、扔掉，然后拿出某种完全不同的东西来处理规范违反」</strong><span class="tag t-talk">作者谈话</span>（<em>Psychiatric News</em> 2021-03 采访报道）。★ 同一篇采访里，他也承认这种决定论视角<strong>会带来一种存在主义的绝望</strong>——而《命定》就是他对这个绝望的正面回答。</p>
+  <p><strong>★ 为什么这重要</strong>：<strong>它把本书第 16 章从「一个章节」升级成了「一条战线」。</strong> 5.1、5.2 里那些最锋利的批评（Riskin、Gelman）<strong>大部分是针对《命定》的</strong>——但它们<strong>指向的证据库，正是《行为》建立起来的</strong>。所以：</p>
+  <blockquote>
+    <p><strong>读《行为》时，你读的不只是一本书，还是一本后来被同行用更严格的尺子重新量过的书的前半部。</strong></p>
+  </blockquote>
+  <p><strong>同时要公平地说一句</strong>：在《命定》平装本的补充材料里，萨波斯基<strong>承认了自己的一个中心性缺失</strong>——他没有解释清「<strong>一个功能完整的人为什么会做出他所做的事</strong>」<span class="tag t-src">原书</span>（转引自 <em>Attitutor</em> 博客，2025-11）。<strong>一个愿意在自己书里承认这一点的作者，值得把他的论证读完再评判。</strong></p>
+  <h3>5.6 这本书今天读还成立吗</h3>
+  <p><strong>成立的</strong>：</p>
+  <ul>
+    <li><strong>方法（时间倒推、多分辨率）</strong>——这是本书不可替代的贡献，<strong>十年后仍然没有人用同样方式写过第二本</strong>；
+    </li>
+    <li><strong>「应激—激素—社会地位」三角</strong>——这是作者本人的研究领域，<strong>是最经得起检验的部分</strong>；
+    </li>
+    <li><strong>第 14 章的共情／同情／慈悲三分法</strong>——实用且独立于自由意志之争；
+    </li>
+    <li><strong>第 16 章的「历史类比」论证</strong>（癫痫→女巫）：<strong>这个类比本身不依赖任何一个具体的社会心理学研究</strong>，因此<strong>不受复现危机影响</strong>。
+    </li>
+  </ul>
+  <p><strong>要打折的</strong>：</p>
+  <ul>
+    <li><strong>第 3 章依赖的社会启动研究</strong>——按 5.1 处理；
+    </li>
+    <li><strong>第 16 章里用来判定「责任」的具体证据</strong>——同上；
+    </li>
+    <li><strong>第 17 章对「暴力长期下降」的态度</strong>——见 5.6 末尾与 D7；
+    </li>
+    <li><strong>所有「某某效应」式的单点结论</strong>——它们不是这本书的价值所在。
+    </li>
+  </ul>
+  <p>★ <strong>一个反直觉的判断</strong>：<strong>这本书最不「科学」的部分，是它最耐读的部分。</strong> 第 16 章的说服力来自<strong>一个关于「我们过去也以为癫痫是罪」的历史论证</strong>，而不是来自任何一项实验数据。<strong>这既是它的力量，也是 5.2 那条批评的靶心。</strong></p>
+  <p>★ <strong>结构说明</strong>：本书正文 17 章。为免把 17 节摊得过薄，我按<strong>作者自己的分层逻辑</strong>合并为 11 节——凡合并的都是<strong>同一时间尺度内的连续几章</strong>（如第 2–3 章同属「秒级」、第 6–8 章同属「发育」）。合并只在节标题里标明，<strong>章号与页码一一对应到原书</strong>。</p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">6</span><span>引言：那个反复出现的幻想（Introduction · p.1）</span><span class="caret">▾</span></h2>
+  <h3>这一节在回答什么</h3>
+  <p>作者自述，他从小到大反复做同一个幻想：<strong>孤身闯入独裁者的地堡、缴了他的枪、打掉他嘴里的氰化钾</strong> <span class="tag t-src">原书</span>（本书开篇第一句即为此场景）。他问：<strong>为什么这个幻想里的「恶人」总是同一个形象？</strong>——由此引出全书的问题：<strong>人的好坏行为，从何而来</strong>。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>他提出<strong>「桶」（buckets）的比喻</strong>：理解一个行为，要分门别类地装进不同尺度的桶里；<strong>分类本身有好处，但也可能严重破坏你的思考能力</strong>——如果你以为这些桶是互斥的 <span class="tag t-src">原书</span>（出版方页面引前言原文）。
+    </li>
+    <li>他明确本书的三个<strong>词汇重心</strong>，并列出全书最关键的一串词：<strong>攻击、暴力、慈悲、共情、同情、竞争、合作、利他、嫉妒、幸灾乐祸、恶意、宽恕、和解、复仇、互惠，以及（有何不可？）爱</strong> <span class="tag t-src">原书</span>（p.15）。
+    </li>
+    <li>★ 献词三句，本身就是一份学术自传：<strong>「献给 Mel Konner，他教了我。献给 John Newton，他启发了我。献给 Lisa，她救了我。」</strong><span class="tag t-src">原书</span>（图书馆编目 Common Knowledge）
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>「桶」的比喻<strong>在书里是修辞还是方法</strong>，作者的表述在两处（前言与第 1 章）之间略有摆动。<strong>我未持原书，无法确认这两处是否完全一致。</strong></p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">7</span><span>总纲：什么叫「行为」（第 1 章 · p.15）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>在展开任何一个机制之前，先把「行为」这个词的边界画出来。</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>本章确立全书语汇：作者把上列那串词当作<strong>同一族现象</strong>处理，而不是分类学上互不相干的条目 <span class="tag t-src">原书</span>（p.15）。
+    </li>
+    <li>★ 一句话点出全书最要紧的判据：<strong>「行为的脉络和意义，通常比行为背后的生物机制更有趣也更复杂」</strong><span class="tag t-src">原书</span>（中文版前言转引，见 D5）。
+    </li>
+    <li>他也在这一章就<strong>预告了自己的立场</strong>：<strong>「当它是『对』的那类攻击时，我们爱它。」</strong><span class="tag t-src">原书</span>（p.9，见 D5）
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>第 1 章只有 6 页（p.15–20），是全书最短。<strong>它承担了「语汇表」的功能，但不承担论证功能</strong> —— 如果你读完第 1 章觉得「好像什么也没说」，那是正常的：<strong>这本书的论点分布在后面 17 站里，不在总纲里。</strong></p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">8</span><span>秒级与分钟级：从动作电位到启动效应（第 2–3 章 · p.21–98）</span><span class="caret">▾</span></h2>
+  <h3>这两章在回答什么</h3>
+  <p><strong>行为发生前的一秒钟，以及之前几秒到几分钟，脑里发生了什么？</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>第 2 章（p.21–80）</strong>：动作电位、神经递质、受体、回路。★ <strong>这一章占了 60 页，是全书最技术的一章</strong>——作者在这里大量依赖<strong>附录一</strong>，两处是配套的（这也是本报告建议先读附录一的原因）。
+    </li>
+    <li><strong>第 3 章（p.81–98）</strong>：感官输入如何改变行为概率。
+    </li>
+    <li>★ 一条被广泛引用的观察（出自「小时到天」那一章，但机制在这里）：<strong>「恐惧与焦虑最相关的脑区，也是最能产生攻击的脑区。」</strong><span class="tag t-src">原书</span>（出版方页面收录的 Kindle 高频划线句）
+    </li>
+    <li>★ 同一来源的另一条：<strong>「换句话说，默认状态是信任；杏仁核做的事，是学会警觉与不信任。」</strong><span class="tag t-src">原书</span>（同上）
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这是全书最需要在阅读时打折的一章。</strong> 第 3 章对社会启动（social priming）类研究的依赖度最高，而<strong>这类研究在 2011 年后出现了系统性的复现失败</strong>（见 5.1）。<strong>读第 3 章时，请把每一个「某某效应」当作「一个待验证的假设」来读。</strong></p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">9</span><span>小时到月：激素与神经可塑性（第 4–5 章 · p.99–153）</span><span class="caret">▾</span></h2>
+  <h3>这两章在回答什么</h3>
+  <p><strong>在行为发生前的几小时到几天、几天到几个月，什么在改变这个人的「反应阈值」？</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>第 4 章（p.99–136）</strong>：激素。作者的核心判据是<strong>同一激素的效果取决于社会情境</strong>，而不是一个固定方向。
+    </li>
+    <li>★ 三条带页码的原文引语（来自公开引文汇编，页码见 D5）：
+    <ul>
+      <li>p.109：<strong>「催产素，那个『爱的激素』，让我们对『我们』更亲社会，同时对其他所有人更糟。那不是泛化的亲社会性。那是族群中心主义与排外。」</strong><span class="tag t-src">原书</span>
+      </li>
+      <li>第 4 章关于睾酮的判据：<strong>睾酮放大既有的社会行为，方向取决于处境</strong>（「只会增加攻击比自己地位更低者的趋势」）<span class="tag t-src">原书</span>（中文出版方页面转引）
+      </li>
+    </ul>
+    </li>
+    <li><strong>第 5 章（p.137–153）</strong>：神经可塑性。★ 这是全书从「硬件」走向「经验」的转折点——<strong>经验会物理地改建大脑</strong>。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>「催产素是爱的激素」这条被中文科普反复引用的说法，作者本人在书里就是反驳它的</strong> —— 这值得记住：<strong>本书对流行科学的流行误读，态度是明确的反对。</strong> 但 p.109 那条引语的页码来自引文汇编（Wikiquote），<strong>措辞与页码都需要以原书复核</strong>。</p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">10</span><span>发育：青春期、子宫、受精卵（第 6–8 章 · p.154–265）</span><span class="caret">▾</span></h2>
+  <h3>这三章在回答什么</h3>
+  <p><strong>他/她是怎么长成现在这个人的？</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>第 6 章（p.154–173）</strong>：★ 章标题本身就是全书的语气样本——<strong>「青春期，或者，老兄，我的前额叶皮质跑哪去了？」</strong><span class="tag t-src">原书</span>（目录原文）。核心是<strong>前额叶成熟晚于情绪系统</strong>，这一条在法哲学里有直接后果（最高法院关于未成年人不判死刑的判决）。
+    </li>
+    <li><strong>第 7 章（p.174–222）</strong>：童年与子宫内环境；<strong>表观遗传</strong>在这里登场——「基因」不是命运，是<strong>可被环境调节的开关</strong>。
+    </li>
+    <li><strong>第 8 章（p.223–265）</strong>：受精卵与基因。★ 作者的立场是明确反对基因决定论的。他在 2024 年的一次访谈里把这条判据说得最直白：<strong>「并不存在一个能预测你会犯下种族灭绝的『恶的基因』。DNA 关乎潜能，不关乎必然。」</strong><span class="tag t-talk">作者谈话</span>（2024 年访谈，经 <em>TakeToNews</em> 报道）
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>第 6 章的标题被<strong>中译本改写</strong>（中文版作「青春期，或者是『老兄，我的额叶皮质跑哪去了？』」），<strong>英文的 hip-hop 梗在翻译中损失了</strong>。这是<strong>本书中文阅读体验上的一个真实损失</strong>，也是 5.4 里 Coyne 抱怨的那件事的另一面（俚语加戏）。</p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">11</span><span>千年尺度：文化、演化、我群与他群（第 9–12 章 · p.266–477）</span><span class="caret">▾</span></h2>
+  <h3>这四章在回答什么</h3>
+  <p><strong>在比任何一个人都长的尺度上，什么在塑造行为？</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>第 9 章（p.266–327）</strong>：★ 带页码引语：<strong>「生态系统极大地塑造文化——但文化随后可以被出口，并在截然不同的地方存续数千年。」</strong><span class="tag t-src">原书</span>（p.313）
+  <p>★ 同章还有一句被广泛引用且极具争议的话：<strong>「说得最直白些：地球上的大多数人，关于生与死的本质、以及其间的万事万物及其之后，继承的是史前中东牧民的信念。」</strong><span class="tag t-src">原书</span>（p.313，见 D5）</p>
+    </li>
+    <li><strong>第 10 章（p.328–386）</strong>：行为的演化。★ 作者在这里反复处理一个判断：<strong>「自然」不等于「好」</strong>——演化解是「已经发生」，不是「应该如此」。
+    </li>
+    <li><strong>第 11 章（p.387–424）</strong>：我群与他群；去人性化。
+    </li>
+    <li><strong>第 12 章（p.425–477）</strong>：阶层、服从与反抗。★ 带页码引语：<strong>「像许多其他动物一样，我们有一种常常近乎狂热的、要去从众、归属与服从的需求。这种从众可能是显著适应不良的，因为我们以『群体的愚蠢』为名，放弃了更好的方案。」</strong><span class="tag t-src">原书</span>（p.451，见 D5）
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>第 10 章涉及的行为遗传学与演化心理学，是本书受专业批评的第二大区域</strong>（仅次于社会心理学）。<strong>书中对「群体选择」与「亲缘选择」的取舍，在演化生物学界并非共识。</strong> 我未逐页核对，<strong>请以原书与专业综述对照</strong>。</p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">12</span><span>道德与共情：三分法（第 13–14 章 · p.478–552）</span><span class="caret">▾</span></h2>
+  <h3>这两章在回答什么</h3>
+  <p><strong>「做正确的事」这件事，在生物学上是怎么回事？</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>第 13 章（p.478–520）</strong>：道德直觉的生物学。★ 作者的一条立场：<strong>我们常以为自己在做道德推理，实际上往往是在为已经发生的直觉做辩护</strong>。
+    </li>
+    <li><strong>第 14 章（p.521–552）</strong>：★ <strong>本报告认为全书最实用的一章。</strong> 它把三个词拆开：
+    <ul>
+      <li><strong>共情（empathy）</strong>：感受别人的痛苦；
+      </li>
+      <li><strong>同情（sympathy）</strong>：理解并关心；
+      </li>
+      <li><strong>慈悲（compassion）</strong>：去减轻。
+  <p>作者主张：<strong>只强化「共情」会带来耗竭，甚至会导致回避；真正有效的是「慈悲」</strong> <span class="tag t-src">原书</span>（本章论证，我未持原书逐字核对）。</p>
+      </li>
+    </ul>
+    </li>
+    <li>★ 全书收尾的一段（作者在书末给读者的行动建议）里有一句被反复引用：<strong>「你不必在『做科学』与『有慈悲』之间做选择。」</strong><span class="tag t-src">原书</span>（结语收尾句，图书馆编目 Common Knowledge 记录）
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>「共情有害、慈悲有用」这一主张在心理学界<strong>有支持者也有反对者</strong>（有研究者认为共情训练确实能提升亲社会行为）。<strong>本书对这条的呈现偏向单一方向。</strong></p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">13</span><span>隐喻：我们赖以杀戮的语言（第 15 章 · p.553–579）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>语言与隐喻如何为暴力铺路？</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>章标题本身是对<strong>莱考夫与约翰逊《我们赖以生存的隐喻》</strong>（<em>Metaphors We Live By</em>）的一次改写——<strong>把「生存」换成「杀戮」</strong>，这是全书语气最冷的一个标题 <span class="tag t-inf">推断</span>（改写关系由我判断）。
+    </li>
+    <li>核心论证：<strong>把人动物化、物化、抽象化的隐喻</strong>，会降低施加暴力的心理门槛。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ 这是全书<strong>我掌握材料最少的一章</strong>。我只确认了它的章名与页码，<strong>没有拿到内容层面的带页码材料</strong>——因此<strong>本报告在这一章刻意不编细节</strong>。</p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">14</span><span>★★ 目的地：自由意志与刑事司法（第 16 章 · p.580–613）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>如果行为是生物决定的，那么「罪责」和「惩罚」还剩什么？</strong></p>
+  <h3>关键内容</h3>
+  <ol>
+    <li>★ <strong>作者的主张不是「宽容」，而是「换掉地基」</strong>。他的原话是：<strong>现存的刑事司法系统需要被废除</strong>，并以某种「底层逻辑完全不同」的东西取代它 <span class="tag t-src">原书</span>（转引自 <em>Judicature</em>／杜克大学法学院刊物书评）。
+    </li>
+    <li>★ <strong>一个极有效力的历史类比</strong>：16 世纪欧洲把<strong>癫痫发作的妇女当女巫烧死</strong>；今天我们把癫痫当作神经疾病，因此<strong>不再惩罚癫痫患者</strong>。作者追问：<strong>我们凭什么认为自己对行为机制的无知，就不是同一类无知</strong><span class="tag t-src">原书</span>（同上）。
+    </li>
+    <li>★ <strong>他区分了两类「改革」</strong>：他称那些针对人权、平等、系统性偏见的修补为<strong>「自由派改革」</strong>，并把它们比作<strong>16 世纪 Johann Weyer 对猎巫程序提出的、基于科学的「小幅改革」</strong>——<strong>改革被采纳了，但猎巫这门产业完好无损</strong>。他的判断是：那只是<strong>在「一座非理性大厦的一个小角落里」塞进了一点合理思考</strong><span class="tag t-src">原书</span>（转引自 SuperSummary 对该章的转述，措辞与原书对照见 D3）。
+    </li>
+    <li>★ <strong>他对「缓解式自由意志」（mitigated free will）的讽刺是全书最著名的一段修辞</strong>。大意是：人们设想<strong>在脑里有一个水泥掩体，里面坐着一个「小人」（homunculus），守着一个控制台</strong>；这个小人<strong>不是由生物质构成的</strong>（作者戏称它由纳米芯片、老式真空管、皱巴巴的古代羊皮纸、「你母亲告诫你的声音」的钟乳石、硫磺的纹路、用「勇气」做的铆钉拼成）<span class="tag t-src">原书</span>（长段原文经 sloww.co 逐字摘录，<strong>页码缺失</strong>，见 D4）。
+    </li>
+    <li>★ <strong>他的收尾承认了自己的困境</strong>（p.613，本章最后一段）：
+    </li>
+  </ol>
+  <blockquote>
+    <p><strong>「我真的无法想象，怎样在『没有自由意志』的前提下过一生。也许永远不可能把自己看成自身生物性的总和。也许我们将不得不满足于：确保我们那些『小人式的神话』是良性的，而把真正理性思考的重活，留到它要紧的时候——当我们严厉评判他人的时候。」</strong><span class="tag t-src">原书</span>（p.613，经 Jerry Coyne 逐字引用）</p>
+  </blockquote>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这是全书最需要并列阅读的一章</strong>：</p>
+  <ul>
+    <li><strong>证据层面</strong>：本章大量使用「饥饿法官」等后来复现失败的研究（5.1）；
+    </li>
+    <li><strong>论证层面</strong>：本章<strong>不与相容论正面交锋</strong>（5.2）；
+    </li>
+    <li>★ <strong>但反过来说</strong>：本章那个<strong>最有力的论证（历史类比：癫痫→女巫）不依赖任何实验数据</strong>，因此<strong>不受复现危机影响</strong>。
+    </li>
+  </ul>
+  <p><strong>⇒ 我的建议读法</strong>：<strong>把本章拆成两半读</strong>——「生物学证据」那一半打折，「历史类比」那一半照单收下。<strong>这是本报告认为对第 16 章最公平的处理方式。</strong></p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">15</span><span>战争与和平 + 结语（第 17 章 · p.614–670 ＋ Epilogue · p.671–678）</span><span class="caret">▾</span></h2>
+  <h3>这两节在回答什么</h3>
+  <p><strong>从个体推到制度：什么真的能减少暴力？</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>第 17 章（p.614–670）</strong>：★ 作者给出了<strong>十条减少暴力的策略</strong>，但<strong>一条书评专门指出：这十条都合理，却「没有一条能支撑『科学是社会走向更少暴力的道德进步之基础』这个主张」</strong><span class="tag t-src">原书</span>（Richard Wrangham，<em>The New York Times Book Review</em>，2017）。
+  <p>★ 同一位书评者还点出一个关键立场：<strong>萨波斯基在本章里对「人类暴力长期下降」这一论点持怀疑态度</strong>，并就此成为<strong>「一个党派的批评者」</strong><span class="tag t-src">原书</span>（同上）。</p>
+    </li>
+    <li><strong>结语（p.671–678）</strong>：★ 收尾句是全书最常被引用的一句：<strong>「最后，你不必在『做科学』与『有慈悲』之间做选择。」</strong><span class="tag t-src">原书</span>（图书馆编目 Common Knowledge 记录）
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>第 17 章 vs 斯蒂芬·平克《人性中的善良天使》</strong> ——这是一场<strong>你书单里已经存在的对撞</strong>。平克主张暴力在长期尺度上显著下降；<strong>萨波斯基在本书里对此持怀疑</strong>。★ 而《枪炮、病菌与钢铁》的作者 Jared Diamond 与平克是同一阵营的。<strong>⇒ 这意味着：你手上这三本书（《枪炮》《行为》＋ 若日后纳入平克）在「人类暴力是否在下降」这个问题上，会互相咬。</strong> 详见附录 D7。</p>
+</section>
+
+<section id="s16">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>概念／人物</th><th>一句话</th><th>出现在</th></tr></thead>
+    <tbody>
+      <tr><td><strong>时间倒推法</strong></td><td>从行为发生前一秒，问到几百万年前；每一站只回答「这一层解释了多少」</td><td>全书结构</td></tr>
+      <tr><td><strong>桶（buckets）</strong></td><td>把解释分门别类地装进不同尺度的桶里；危险在于误以为这些桶互斥</td><td>引言</td></tr>
+      <tr><td><strong>延迟的成熟</strong></td><td>前额叶的成熟晚于情绪系统——这条在法哲学里有直接后果</td><td>第 6 章</td></tr>
+      <tr><td><strong>表观遗传</strong></td><td>基因是开关，不是命运；环境决定开不开</td><td>第 7–8 章</td></tr>
+      <tr><td><strong>缓解式自由意志</strong>（mitigated free will）</td><td>承认大部分行为是生物的，但坚持留下一小块「非生物」的能动性</td><td>第 16 章（批评对象）</td></tr>
+      <tr><td><strong>小人谬误</strong>（homunculus fallacy）</td><td>用一个「里面的小人」来解释人——无限倒退，什么也没解释</td><td>第 16 章</td></tr>
+      <tr><td><strong>共情／同情／慈悲</strong></td><td>感受／理解并关心／去减轻。作者主张只有第三个有用</td><td>第 14 章</td></tr>
+      <tr><td><strong>Robert Sapolsky</strong></td><td>本书作者；肯尼亚狒狒研究是他的看家本领</td><td>—</td></tr>
+      <tr><td><strong>Andrew Gelman</strong></td><td>哥伦比亚统计学家；指控本书引用未复现研究</td><td>5.1</td></tr>
+      <tr><td><strong>Jessica Riskin</strong></td><td>斯坦福科学史家；指控本书以「科学主义」处理哲学问题</td><td>5.2</td></tr>
+      <tr><td><strong>Jerry A. Coyne</strong></td><td>演化生物学家；<strong>同意作者结论但读不下去前 580 页</strong></td><td>5.4</td></tr>
+      <tr><td><strong>Richard Wrangham</strong></td><td>哈佛生物人类学家；本书书评者</td><td>5.6 / 15 节</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s17">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>《命定：一种没有自由意志的生活科学》</strong>（<em>Determined</em>, 2023）——<strong>本书第 16 章的续集</strong>。如果你只跟一条线，跟这条：<strong>从「我无法想象怎么这样过日子」到「我告诉你该怎么过」</strong>。
+    </li>
+    <li><strong>斯坦福公开课《人类行为生物学》</strong>（<em>Human Behavioral Biology</em>，25 讲，YouTube 免费）——<strong>本书的底本</strong>。★ 想检验「这本书值不值」，最快的办法是看第一讲。
+    </li>
+    <li><strong>《为什么斑马不会得胃溃疡》</strong>（<em>Why Zebras Don't Get Ulcers</em>）——作者的成名作，篇幅小得多，是判断「你喜不喜欢这个作者的写法」的<strong>低成本试读</strong>。
+    </li>
+    <li><strong>《我们赖以生存的隐喻》</strong>（莱考夫、约翰逊）——读第 15 章的前置读物。
+    </li>
+    <li><strong>第 16 章的两个对手段</strong>：一本认真处理相容论的书（丹尼尔·丹尼特）；以及<strong>本案的另一方</strong>——法学家 Stephen Morse 的「神经法怀疑论」（书里正面讨论了它，见来源清单）。
+    </li>
+  </ol>
+</section>
+
+<section id="s18">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>见同目录 <code>行为-来源清单.md</code>。</p>
+</section>
+
+<section id="s19">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. 全书页码取自三方独立来源，但我没有逐页核对</h3>
+  <p>英文页码来自 <strong>Google Books 官方目录</strong>（两个独立区域站点给出<strong>完全一致</strong>的页码）＋ <strong>印第安纳大学图书馆编目</strong> ＋ <strong>安娜堡地区图书馆编目</strong>（两者均给出完整章节名与页码）。三方一致，<strong>这是本报告最硬的一层事实</strong>。★ <strong>但例外</strong>：<strong>附录三（Protein Basics）的页码在三处都没出现</strong>——我知道它存在（编目列出章名），但<strong>不知道它从第几页开始</strong>，因此在骨架表里标「见 D1」。</p>
+  <h3>D2. 第 16 章末段引文（p.613）来自一位书评作者的逐字引用</h3>
+  <p><strong>我没看到原书页面</strong>。引用者是演化生物学家 Jerry A. Coyne，他在自己的博客里明确写出了页码 <span class="tag t-src">原书</span>。<strong>措辞可信度高（引用者是专业学者且注明页码），但仍属「经人转引」。</strong></p>
+  <h3>D3. 繁体中文 2019 → 2024 究竟改了什么，我查不到可靠来源</h3>
+  <ul>
+    <li><strong>可确认的</strong>：书名副标题改变、由上下二册改为全一册、页数 992→744、ISBN 与出版社改变、标称「全新修訂本」、<strong>译者为同一人（吳芠）</strong>。
+    </li>
+    <li><strong>❌ 不可信的</strong>：中文网络大量声称「修订本重写了第 12、17 章约 40%」「新增第 20 章」等内容。<strong>本书只有 17 章——「第 20 章」这个说法本身即证明该内容为生成式文本编造。</strong> 本报告<strong>一律不采信</strong>。
+    </li>
+    <li>⇒ <strong>请以 2024 修订本版权页与前言为准。</strong>
+    </li>
+  </ul>
+  <h3>D4. 「缓解式自由意志／小人」那段长引文，页码缺失</h3>
+  <p>这段原文（「水泥掩体里的控制台」「纳米芯片与真空管」）经 sloww.co 逐字摘录，<strong>但没有给出页码</strong>。我只能确认它出自第 16 章。</p>
+  <h3>D5. 四处带页码的引语，来自公开引文汇编</h3>
+  <p><strong>p.9／p.109／p.313／p.451</strong> 这四处（以及中文出版方页面转引的两处）来自 <strong>Wikiquote 等引文汇编与出版方页面</strong>，<strong>不是我从原书页面读到的</strong>。★ 它们<strong>措辞可信、页码待复核</strong>——请按 <span class="tag t-rep">转述</span> 与 <span class="tag t-src">原书</span> 之间的强度理解它们。</p>
+  <h3>D6. 我主动排除的来源</h3>
+  <ul>
+    <li><strong>盗版电子书站的扫描全本</strong>：检索中确曾出现（Internet Archive 上另有一个用户上传的完整扫描件，非官方受控借阅）。按本项目契约「<strong>只用合法来源，任何目的不例外</strong>」，<strong>一律不使用</strong>。
+    </li>
+    <li><strong>AI 生成的 SEO 内容</strong>：本报告在检索中<strong>明确识别出多篇</strong>（含伪造章号、伪造修订内容、把评论者张冠李戴）。<strong>这类内容一律不采信</strong>，并在第 4 节与本节两次警示。
+    </li>
+  </ul>
+  <h3>D7. 第 17 章对「暴力长期下降」的质疑，我是间接得知的</h3>
+  <p><strong>我未读到第 17 章原文。</strong> 「作者在此章对暴力长期下降论持怀疑」这一判断来自 <strong>Richard Wrangham 的《纽约时报书评》文章</strong>。★ 因此：<strong>「萨波斯基 vs 平克」这条战线，请以第 17 章原文为准。</strong></p>
+  <h3>D8. ★ 本书中文信息的污染程度，高于本系列任何一本 —— 附辨识方法</h3>
+  <p>本书中文网络信息有三类典型污染，<strong>我给出辨识方法，供你自己日后检索时用</strong>：</p>
+  <table>
+    <thead><tr><th>污染类型</th><th>典型症状</th><th>辨识方法</th></tr></thead>
+    <tbody>
+      <tr><td><strong>AI 生成的 SEO 内容</strong></td><td>引用了<strong>不存在的章号</strong>（如「第 20 章」）；声称修订幅度精确到百分比；出现「crash 后自动改写」式的空泛断言</td><td><strong>核对章号上限</strong>：本书只有 17 章。<strong>任何提到第 18 章之后内容的，直接作废</strong></td></tr>
+      <tr><td><strong>张冠李戴</strong></td><td>把《纽约时报书评》的评论者写成凯文·米切尔（实为 <strong>Richard Wrangham</strong>）</td><td><strong>去书评聚合站（如 Book Marks）核对评论者与刊物</strong></td></tr>
+      <tr><td><strong>同名书混淆</strong></td><td>把《动物本能》（浙江教育出版社）当成《行为》</td><td><strong>核对页数</strong>（222 页 ≠ 744/992 页）<strong>与 ISBN</strong></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<footer>
+  生成于 2026-10-04 · 来源清单与交叉验证记录见同目录 <code>行为-来源清单.md</code><br>
+  本页引文按<b>带页码引文（B 级）</b>处理：标注页码的条目引自公开引文汇编与书评的逐字引用，<b>我未持原书</b>，页码请以原书复核；批评文献的刊物与日期已逐条给出；未标页码者仍是二手转引。★ 本页在<b>第 5 节（争议与局限）</b>刻意写得最实 —— 因为本书的媒体好评极多，而<b>专业界的批评更晚、更硬</b>，后者才是稀缺信息。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

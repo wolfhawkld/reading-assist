@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《无穷的开始》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《无穷的开始》<small>阅读指引与精华解析 · 2026-10-04</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 前置知识与目标读者</a>
+    <a href="#s2">2 全书骨架</a>
+    <a href="#s3">3 五个核心论点</a>
+    <a href="#s4">4 阅读建议</a>
+    <a href="#s5">5 配套资源</a>
+    <a href="#s6">6 中文译本怎么选</a>
+    <a href="#s7">7 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s8">8 第 1–2 章：解释的延伸 / 更接近现实（英文 p.1 / p.34）</a>
+    <a href="#s9">9 第 3–4 章：思想的火花 / 创造（英文 p.42 / p.78）</a>
+    <a href="#s10">10 第 5–6 章：抽象的现实 / 向通用性跳转（英文 p.107 / p.125）</a>
+    <a href="#s11">11 第 7–8 章：人工创造力 / 无穷的窗口（英文 p.148 / p.164）</a>
+    <a href="#s12">12 第 9–10 章：乐观主义 / 苏格拉底的梦（英文 p.196 / p.223）</a>
+    <a href="#s13">13 第 11–13 章：多重宇宙 / 坏哲学史 / 选择（英文 p.258 / p.305 / p.326）</a>
+    <a href="#s14">14 第 14–16 章：花儿为什么美丽 / 文化的进化 / 创造力进化（英文 p.353 / p.369 / p.398）</a>
+    <a href="#s15">15 第 17–18 章：不可维持 / 开始（英文 p.418 / p.443）</a>
+    <a href="#s16">16 作者立场的演化与跨书坐标</a>
+    <div class="grp">附录</div>
+    <a href="#s17">A 关键概念与人物速查</a>
+    <a href="#s18">B 常见卡点与延伸阅读</a>
+    <a href="#s19">C 来源清单</a>
+    <a href="#s20">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《无穷的开始》阅读指引与精华解析</h1>
+  <div class="sub">The Beginning of Infinity: Explanations That Transform the World</div>
+  <div class="meta">
+    <div><b>作者</b>戴维·多伊奇（David Deutsch，1953– ）—— 牛津大学克拉伦登实验室量子计算中心成员，1999 年起任牛津不领薪的物理学访问教授；量子计算奠基者之一（量子图灵机、量子并行性），多世界诠释的主要辩护者；1998 年英国物理学会狄拉克奖章，2002 年国际量子通信奖；前著《真实世界的脉络》（1997）</div>
+    <div><b>英文初版</b>Viking（纽约）2011-07 · vii＋487 页 · 精装 ISBN 9780670022755 · 电子书 ISBN 9781101549827 · Penguin 平装重印 2012-05-29 · ISBN 9780143121350</div>
+    <div><b>中译（现行）</b>《无穷的开始：世界进步的本源》· 王艳红、张韵 译 · 人民邮电出版社「科学新经典文丛」· 第 1 版 2014-11 · ISBN 9787115365385 · 530 页 · ¥59；第 2 版 2019 · ISBN 9787115505095 · 530 页 · ¥75.00</div>
+    <div><b>荣誉</b>《纽约时报》畅销书 · 《纽约时报》2011 年度值得注意图书 · 《新科学家》年度最佳科学书 · 入围英国皇家学会温顿奖</div>
+    <div><b>一手书评</b>Physics Today 65(12): 48–50 (2012，DOI 10.1063/PT.3.1823) · The New York Times Book Review 2011-08-12 · Times Higher Education 2011 · The Independent 2011-03-27 · The Wall Street Journal 2011-07-20</div>
+    <div><b>★ 阅读提示</b>中文版把全书核心概念 hard-to-vary 分别译作「难以修改」与「难以变动」两种 —— 遇到时按同一个概念处理，见第 6 节</div>
+    <div><b>状态</b>未标注已读／想读 —— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有可定位文本支撑的段落 —— 含出版方／发行商目录与图书馆编目的<b>逐章页码与结构</b>，以及<b>带期刊卷期页码的一手书评</b>（凡引批评者观点，正文均写明姓名、刊物、卷(期)、年、页码）</li>
+    <li><span class="tag t-talk">作者谈话</span> 出自作者书外的演讲、播客、访谈或论文 —— 不在书里</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、书评、百科或读者笔记，措辞可能与原书有出入；★ 本报告<b>凡「书里某句话说了什么」而无页码者，一律归此档</b></li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    ★ 本报告的一个特殊格局：<b>批评面比内容面硬得多</b>。本书正文我拿不到（版权期内、无合法全文），但拿到了<b>至少五篇带出处的一手书评</b>，其中 <i>Physics Today</i> <b>65(12): 48–50</b> 逐条对质了多伊奇的几个核心主张。⇒ 下部逐章<b>刻意克制、不编细节</b>，把力气让给第 7 节（争议与局限）。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-04 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书落在 <b>B 级（带页码引文）</b>：<b>支持本级的材料</b>是逐章英文页码（发行商 Ingram 目录，三家零售站点一致）与中文逐章页码（与版权页一致），以及五篇带出处的一手书评（<i>Physics Today</i> <b>65(12): 48–50</b> 带完整卷期页码与 DOI）。<b>为什么没到 A 级</b>：本书仍在版权期内，我<b>没有原书全文或带页码引文</b> ⇒ 凡「书里某句话说了什么」一律标「转述」。<b>为什么不是 C 级</b>：结构与批评层面都有独立、可复核、带卷期页码的一手来源。未标「原书」处一律为二手转引。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>这本书讲的是：人类文明的一切进步，都来自同一种活动——寻找「难以修改的好解释」；而这种能力一旦获得，就没有上限。</strong></p>
+  <p>多伊奇把这条主张推得很远：从量子力学到为什么花儿美丽，从政治制度到教育，都用同一根线索串起来。他的核心结论是：<strong>「解释」在宇宙中具有基础性的地位；解释的范围和改变世界的能力是无穷无尽的</strong>；在物理规律允许的范围内，<strong>进步没有限制</strong> <span class="tag t-rep">转述</span>（中译本内容提要）。</p>
+  <p>一句话总结（也是全书最著名的一句）：<strong>问题是不可避免的，但问题也是可以解决的</strong>（problems are inevitable, problems are soluble）<span class="tag t-rep">转述</span>。</p>
+  <p>★ 一句话判断：<strong>这是一本「元书」</strong>——它表面上在讲物理、数学、文化、政治，实际上从头到尾在讲<strong>一样东西：如何分辨一个好解释和一个坏解释</strong>。它更像一部<strong>认识论的宣言</strong>，而不是一本科普读物。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>前置知识与目标读者</span><span class="caret">▾</span></h2>
+  <p><strong>需要什么底子</strong>：</p>
+  <ul>
+    <li><strong>不需要高等数学</strong>。讲无穷、讲多世界、讲图灵，用的都是概念性语言。
+    </li>
+    <li><strong>需要一点哲学耐心</strong>。全书是<strong>论证式</strong>的（不是叙事式），第一、二章是全书的判据（好解释＝难以修改），<strong>如果这两章没过，后面会读得很别扭</strong>。
+    </li>
+    <li><strong>最好知道波普尔（Karl Popper）是谁</strong>。全书的认识论是波普尔式的：知识＝解释，科学＝可证伪的猜想。书里会反复出现「归纳主义」「工具主义」「证伪」这些词。
+    </li>
+  </ul>
+  <p><strong>不需要什么</strong>：</p>
+  <ul>
+    <li>不需要读过《真实世界的脉络》（前著），但读过会更容易进入。
+    </li>
+    <li>不需要同意他的多世界诠释。<strong>你可以完全跳过第 11 章（多重宇宙）仍然读懂这本书的主线</strong>（这一点很重要，见第 4 节）。
+    </li>
+  </ul>
+  <p><strong>目标读者</strong>：</p>
+  <ol>
+    <li><strong>对「科学为什么有效」「进步来自哪里」有真正兴趣的人</strong>——这是最核心的读者。
+    </li>
+    <li><strong>对「所有问题都可解」这种强主张既被吸引又不安的人</strong>——你会在这本书里得到最完整的陈述，以及第 7 节里最完整的反驳。
+    </li>
+    <li><strong>量子计算／量子力学基础的兴趣者</strong>——第 11 章是 MWI 最有名的通俗辩护之一。
+    </li>
+  </ol>
+  <p>★ <strong>不适合谁</strong>：想找「世界未来会怎样」的预言的人（这本书不是预言）；想找「可持续生活指南」的人（第 17 章恰恰反对「可持续」这个词）；<strong>不喜欢强断言的人</strong>——这本书从头到尾都是强断言 <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>★ <strong>页码说明</strong>：本书<strong>逐章页码我有</strong>，且来源很硬——英文页码出自<strong>发行商 Ingram 提供的目录</strong>，被三家独立零售站点逐字复现；中译页码出自中文书目页，与中译本版权页（书目 pp.497–499）一致。<strong>两套页码来自两个不同版本，不是简单平移</strong>（中译本为 530 页重排版）。</p>
+  <table>
+    <thead><tr><th>章</th><th>英文页</th><th>中译页</th><th>在回答什么</th><th>一句判断</th></tr></thead>
+    <tbody>
+      <tr><td>导论</td><td>vii</td><td>—</td><td>全书的问题：进步从哪来</td><td>全书总纲，务必读</td></tr>
+      <tr><td>1 解释的延伸</td><td>1</td><td>1</td><td>什么是「好解释」</td><td>★ 全书判据的源头</td></tr>
+      <tr><td>2 更接近现实</td><td>34</td><td>37</td><td>观察是不是知识的来源</td><td>反经验主义的关键一章</td></tr>
+      <tr><td>3 思想的火花</td><td>42</td><td>46</td><td>人类是怎么变成「通用解释者」的</td><td>人类学视角的转折</td></tr>
+      <tr><td>4 创造</td><td>78</td><td>84</td><td>创造力是什么</td><td>有争议的一章</td></tr>
+      <tr><td>5 抽象的现实</td><td>107</td><td>115</td><td>数学对象是不是真实的</td><td>抽象的性质</td></tr>
+      <tr><td>6 向通用性跳转</td><td>125</td><td>134</td><td>通用性意味着什么</td><td>★ 全书最「硬」的一章</td></tr>
+      <tr><td>7 人工创造力</td><td>148</td><td>158</td><td>通用 AI 是可能还是不可能</td><td>与今日 AI 争论直通</td></tr>
+      <tr><td>8 无穷的窗口</td><td>164</td><td>176</td><td>数学无穷到底是什么</td><td>概念章</td></tr>
+      <tr><td>9 乐观主义</td><td>196</td><td>209</td><td>为什么进步没有上限</td><td>★ 全书最有争议的一章</td></tr>
+      <tr><td>10 苏格拉底的梦</td><td>223</td><td>238</td><td>真理与美德的对话</td><td>文体特殊（对话体）</td></tr>
+      <tr><td>11 多重宇宙</td><td>258</td><td>280</td><td>量子力学该怎么读</td><td>★ 全书争议最大的物理章</td></tr>
+      <tr><td>12 一位物理学家的坏哲学史</td><td>305</td><td>330</td><td>20 世纪哲学错在哪</td><td>被批评最狠的一章</td></tr>
+      <tr><td>13 选择</td><td>326</td><td>353</td><td>自由意志与决定论</td><td>承接第 9、11 章</td></tr>
+      <tr><td>14 花儿为什么美丽</td><td>353</td><td>381</td><td>美是不是客观的</td><td>把判据推到美学</td></tr>
+      <tr><td>15 文化的进化</td><td>369</td><td>399</td><td>社会为什么会停滞或进步</td><td>政治制度分析</td></tr>
+      <tr><td>16 创造力进化</td><td>398</td><td>430</td><td>创造力本身如何进化</td><td>收束</td></tr>
+      <tr><td>17 不可维持</td><td>418</td><td>451</td><td>「可持续」为什么是个坏目标</td><td>被批评为「最弱」的章之一</td></tr>
+      <tr><td>18 开始</td><td>443</td><td>478</td><td>我们在宇宙中的位置</td><td>全书结尾</td></tr>
+      <tr><td>参考书目 / 索引 / 译后记</td><td>460 / 463</td><td>497 / 500 / 529</td><td>—</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法提示</strong>：这本书<strong>是螺旋式的，不是线性的</strong>。多伊奇自己说过（据一份结构分析）：十八章是<strong>互相勾连的主题在螺旋中反复加深</strong>，而不是一条直线论证 <span class="tag t-rep">转述</span>。⇒ 好处是<strong>可以跳读</strong>；代价是<strong>跳读会重复遇到同一个判据</strong>（「难以修改」），而这正是你要反复检查的地方。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>五个核心论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：好解释的标志是「难以修改」（hard to vary）</h3>
+  <p><strong>主张</strong>：判断一个解释好不好，不靠权威、不靠观察，而靠<strong>它经不经得起修改</strong>。一个能解释季节的神话，把细节随便换掉仍然说得通——<strong>它太容易改</strong>，所以是坏解释；「地球自转轴倾斜」这个解释，<strong>动一下角度或朝向就会崩</strong>，而且它顺带（不是专门为了解释而添加地）推出「南半球冬天与北半球夏天同时」——<strong>这种「伸得很远」的推论，就是解释的「延伸」（reach）</strong> <span class="tag t-rep">转述</span>。</p>
+  <p><strong>依据</strong>：这一节是全书的判据源头，也是<em>Physics Today</em> 书评作者 Barnum 复述得最清楚的：</p>
+  <blockquote>
+    <p>"According to Karl Popper... knowledge consists of explanations: conjectures about how the world is how it is that entail the phenomena to be explained. <strong>Good explanations are fragile in that it is difficult to perturb them and yet retain their explanatory power.</strong>"</p>
+    <p><span class="tag t-src">原书</span>（Howard Barnum，<em>Physics Today</em> <strong>65(12): 48</strong>，2012）</p>
+  </blockquote>
+  <p><strong>为什么重要</strong>：<strong>这是全书的钥匙。</strong> 后面所有论断（所有问题可解、乐观主义、多世界、美学客观性）都建立在这条判据上。⇒ 也就是说：<strong>对它的一切批评，本质上都是对这条判据的批评</strong>（见第 7.1 节）。</p>
+  <h3>论点二：知识不来自经验，来自猜想——因此「归纳主义」是错的</h3>
+  <p><strong>主张</strong>：经验不是理论的来源，它的主要作用是<strong>在已经被猜出来的理论之间做选择</strong>；「从经验中学习」不是归纳，而是证伪。既然归纳主义是假的，经验主义也必须跟着走 <span class="tag t-rep">转述</span>（书中原话大意如此，见 nateliason 的逐章摘录）。</p>
+  <p><strong>依据／延伸</strong>：多伊奇由此区分了两种认识论态度 <span class="tag t-rep">转述</span>：</p>
+  <ul>
+    <li><strong>确证主义（justificationism）</strong>：认为知识需要某个「权威来源」来担保其真实性——这是他要打倒的靶子。
+    </li>
+    <li><strong>可错主义（fallibilism）</strong>：承认<strong>没有权威的知识来源</strong>，我们最好的解释里也混着错，因此应当<strong>主动去改它</strong>。
+    </li>
+  </ul>
+  <p><strong>为什么重要</strong>：这一条是全书<strong>最被专业批评的一条</strong>。<em>Physics Today</em> 的 Barnum 明确写道：</p>
+  <blockquote>
+    <p>"Less appealing is Deutsch and Popper's denial of the validity of inductive reasoning; <strong>if this involves a denial that evidence can increase the probability of general statements such as scientific laws, it is deeply problematic.</strong>"</p>
+    <p><span class="tag t-src">原书</span>（Barnum，<em>Physics Today</em> <strong>65(12): 48</strong>，2012）</p>
+  </blockquote>
+  <h3>论点三：所有问题都可解；所有「恶」都源于知识不足</h3>
+  <p><strong>主张</strong>：物理规律是唯一的边界。<strong>凡不被物理定律禁止的，只要有了正确的知识就可以实现</strong>；问题是不可避免的，但<strong>没有哪个具体问题构成不可逾越的障碍</strong> <span class="tag t-rep">转述</span>。</p>
+  <p><strong>依据</strong>：Barnum 的复述是全书最简明的版本：</p>
+  <blockquote>
+    <p>"He argues that <strong>all regularities in nature have explanations, and therefore problems are solvable; if we do not solve them, it is because we failed to acquire the requisite knowledge.</strong> Yet he also argues that new problems will always arise."</p>
+    <p><span class="tag t-src">原书</span>（Barnum，<em>Physics Today</em> <strong>65(12): 48</strong>，2012）</p>
+  </blockquote>
+  <p><strong>为什么重要</strong>：这条主张直接导向第 9 章（乐观主义）与第 17 章（反「可持续」）。它也是<strong>批评最集中的地方</strong>：反对者指出，<strong>不可逆的过程不是「待解决的问题」而是「需要承受的困境」（predicament）</strong>；而且<strong>「原则上可能」与「何时能实现」是两回事</strong> <span class="tag t-rep">转述</span>。</p>
+  <h3>论点四：通用性（universality）是文明跃迁的关键</h3>
+  <p><strong>主张</strong>：某些系统一旦达到<strong>通用性</strong>——即能以有限规则覆盖无限多种任务——就跨过了一道门槛：通用图灵机、通用构造器、以及<strong>能理解任何可理解事物的通用解释者（人）</strong>。数字、文字、通用计算机都是这样的「通用系统」<span class="tag t-rep">转述</span>。</p>
+  <p><strong>依据／为什么重要</strong>：第 6 章（向通用性跳转）被 Barnum 与多位评论者列为<strong>全书最有力的部分之一</strong>；第 7 章（人工创造力）由此讨论「通用 AI」是否可能——<strong>这与今天关于 AGI 的争论直通</strong> <span class="tag t-inf">推断</span>。</p>
+  <h3>论点五：美、道德、政治——「难以修改」的判据可以走出科学</h3>
+  <p><strong>主张</strong>：客观的正确性<strong>不限于科学</strong>；美学、道德哲学、政治哲学里同样存在<strong>更好和更差的解释</strong> <span class="tag t-rep">转述</span>（中译本内容提要明确写「不仅是科学和数字，还有道德哲学、政治哲学和美学的」）。</p>
+  <p><strong>依据</strong>：Barnum 对此的评价是<strong>一半接受、一半保留</strong>：</p>
+  <blockquote>
+    <p>"The proposal that a good piece of music or art, like a scientific explanation, is 'hard to vary' is interesting, but <strong>I'm not fully convinced.</strong> In any case, the general point that similar criteria may be used to evaluate scientific hypotheses and works of art is a valuable one."</p>
+    <p><span class="tag t-src">原书</span>（Barnum，<em>Physics Today</em> <strong>65(12): 48</strong>，2012）</p>
+  </blockquote>
+  <p>⇒ <strong>这就是全书最受质疑的推论</strong>：从一个<strong>科学的</strong>判据，跳到<strong>美学与政治</strong>的判据。多位书评人（Independent、THES）都在这一点上踩了刹车 <span class="tag t-src">原书</span>（见第 7.3、7.4 节）。</p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <ul>
+    <li>★ <strong>必读第 1 章。</strong> 它是全书判据（好解释＝难以修改）的唯一源头。<strong>如果你只读一章，读第 1 章</strong>——不是因为它是精华，而是因为<strong>不读它，后面所有章节都读不成</strong>。
+    </li>
+    <li><strong>只想抓主线，读这条路线</strong>：第 1 章（判据）→ 第 6 章（通用性）→ 第 9 章（乐观主义）→ 第 18 章（开始）。四章读完，你拿到了全书的骨架。
+    </li>
+    <li><strong>可以跳过的</strong>：<strong>第 11 章（多重宇宙）可以不读</strong>。它是全书争议最大、也最独立的一章；跳过后主线不受影响。<strong>第 10 章（苏格拉底的梦）是对话体</strong>，跳读代价也低。<strong>第 12 章（坏哲学史）</strong> 被专业书评批为「近乎漫画化」，可以快速扫过 <span class="tag t-src">原书</span>（Barnum，<em>Physics Today</em> <strong>65(12): 48–50</strong>）。
+    </li>
+    <li><strong>读之前先看第 7 节（争议）。</strong> 它不长，但会给你一副「哪里该打折扣」的眼镜。<strong>对这本书，这一步的收益比读任何一本书都大</strong>——因为它的批评面特别硬。
+    </li>
+  </ul>
+  <h3>如果你是「已读」</h3>
+  <ul>
+    <li>★ <strong>回头核一件事</strong>：你接受的是「<strong>所有问题都可解</strong>」，还是「<strong>没有根本性障碍</strong>」？这两个命题<strong>不等价</strong>——前者是关于世界的强断言，后者是关于<strong>该怎么行动</strong>的方法论建议。多伊奇自己把它定位成后者，但书里常常读起来像前者 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>补上 <em>Physics Today</em> 那篇书评</strong>（Barnum，<strong>65(12): 48–50</strong>）。它可能是关于这本书<strong>最有用的一篇文本</strong>：既承认多伊奇在量子计算上的贡献，又逐条指出他「反归纳」这一步是「严重问题」。见第 7.1 节。
+    </li>
+    <li><strong>注意一个时间坐标</strong>：书写于 2011 年。多伊奇本人 2012 年之后的重心转向了<strong>构造理论（Constructor Theory）</strong>——那是这本书主张的<strong>后续工程化版本</strong>（见第 16 节）。
+    </li>
+  </ul>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5</span><span>配套资源</span><span class="caret">▾</span></h2>
+  <p><strong>作者本人的后续文本（★ 最值钱的一类）</strong>：</p>
+  <ul>
+    <li><strong>构造理论（Constructor Theory）</strong>：多伊奇与 Chiara Marletto 合著 «Constructor theory of information»，<em>Proceedings of the Royal Society A</em> <strong>471(2174)</strong>，2014-12，DOI 10.1098/rspa.2014.0540 <span class="tag t-talk">作者谈话</span>。这是本书物理主张的<strong>后续理论化</strong>。
+    </li>
+    <li><strong>«Why we need to reconstruct the universe»</strong>，<em>New Scientist</em>，2014-05-21，pp. 30–31 <span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li><strong>Edge.org 访谈</strong> «Constructor Theory: A Conversation with David Deutsch»（2012-10-22）<span class="tag t-talk">作者谈话</span>。
+    </li>
+  </ul>
+  <p><strong>公开演讲（TED，四场）</strong> <span class="tag t-talk">作者谈话</span>：</p>
+  <ul>
+    <li>2006 «Chemical scum that dream of distant quasars»
+    </li>
+    <li><strong>2009-10 «A new way to explain explanation»</strong> —— ★ 与本书第 1 章同题。他在演讲里把核心判据压缩成三句：<strong>"A bad explanation is easy to vary"</strong>；<strong>"The search for hard-to-vary explanations is the origin of all progress"</strong>；<strong>"That the truth consists of hard-to-vary assertions about reality is the most important fact about the physical world."</strong>（可作第 1 章的口语版导读）
+    </li>
+    <li>2018-10 与 Chris Anderson 对谈 «on the infinite reach of knowledge»
+    </li>
+    <li>2019-10 «After billions of years of monotony, the universe is waking up»
+    </li>
+  </ul>
+  <p><strong>播客</strong>：<strong>Joseph Walker, "Against Bayesianism" #139</strong> —— 多伊奇在此把「反归纳」讲得更直白：贝叶斯「对失败有一种无结构的看法」，而「认为确证性证据提高了信念度，这不过是归纳主义，而它是错的」<span class="tag t-talk">作者谈话</span>。</p>
+  <p><strong>前著</strong>：<strong>《真实世界的脉络》（The Fabric of Reality, 1997）</strong> —— 本书的四条线索（进化、量子物理、知识、计算）在前著里已提出；<strong>建议先读前著再读本书的人不多，但反过来读完本书再回读前著会很有收获</strong> <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">6</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ 本书<strong>只有一个中文全译本</strong>（人民邮电，王艳红／张韵译），但<strong>有两版</strong>，且<strong>核心术语的译法在全书中不一致</strong> —— 后者会实质影响你读懂主线，所以本报告<strong>必须单列这一节</strong>。</p>
+  <table>
+    <thead><tr><th>版本</th><th>译者</th><th>页数</th><th>出版社与年份</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>第 1 版</td><td>王艳红、张韵</td><td>530</td><td>人民邮电出版社（科学新经典文丛）2014-11 · ISBN 9787115365385 · ¥59</td><td>初版</td></tr>
+      <tr><td><strong>第 2 版（推荐）</strong></td><td>王艳红、张韵</td><td>530</td><td>人民邮电出版社（科学新经典文丛）2019-03/05 · ISBN 9787115505095 · ¥75.00</td><td>豆瓣约 8.0–8.1（229 人评价）；书目 pp.497–499，索引 p.500 起，译后记 p.529</td></tr>
+      <tr><td>英文原版</td><td>—</td><td>vii＋487</td><td>Viking 2011 · ISBN 9780670022755；Penguin 平装 2012 · ISBN 9780143121350</td><td>若要核对「原话」，以英文版为准</td></tr>
+    </tbody>
+  </table>
+  <p><strong>★ 一个必须知道的术语问题</strong>：本书的核心概念 <strong>hard-to-vary</strong>（「难以修改」），在中文版里<strong>被分别处理为「难以修改」与「难以变动」两种译法</strong>（不同章节用词不同）<span class="tag t-rep">转述</span>。⇒ 后果：</p>
+  <ul>
+    <li>你在读书时会以为遇到了<strong>两个不同的概念</strong>，其实是<strong>同一个</strong>；
+    </li>
+    <li>而它恰恰是<strong>全书的判据</strong>。⇒ <strong>如果你在某一章忽然读不懂论证，先检查是不是被这个词绊住了。</strong>
+    </li>
+  </ul>
+  <p><strong>怎么选，一句话</strong>：<strong>买人民邮电第 2 版（2019，ISBN 9787115505095）</strong>。理由：① 最容易买到；② 有译后记（p.529）；③ 第 2 版对第 1 版的译文有修订 <span class="tag t-inf">推断</span>。<strong>并把英文原版的「hard-to-vary」这个词记在心里，遇到「难以修改」「难以变动」都当成它。</strong></p>
+  <p><strong>一个实用差异</strong>：中译 530 页 vs 英文 487 页，多出的部分主要是重排与中文附录部件，<strong>不等于内容更多</strong>。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">7</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ 这一节是本报告的<strong>重心</strong>。本书的批评来自<strong>专业物理学家与哲学教授</strong>，而且<strong>至少四篇带出处的一手书评</strong>可以引用。<strong>如果你只读本报告的一节，读这一节的 7.1。</strong></p>
+  <h3>7.1 ★★ 最硬的一条：反归纳这一步「严重有问题」</h3>
+  <p><strong>发难者</strong>：<strong>Howard Barnum</strong>（新墨西哥大学／洛斯阿拉莫斯，量子信息与量子基础研究者），书评载 <strong><em>Physics Today</em> 65(12): 48–50（2012 年 12 月）</strong>，DOI <strong>10.1063/PT.3.1823</strong>。这是关于本书<strong>最彻底的一篇学术评论</strong> <span class="tag t-src">原书</span>。</p>
+  <p><strong>他先说足了肯定</strong>（这一点值得完整记下，因为它划出了批评的边界）：</p>
+  <blockquote>
+    <p>"Deutsch's idea of a universal quantum computer and his demonstration that quantum interference can give it more power than a classical one are <strong>major and lasting contributions to science.</strong>"</p>
+    <p>（多伊奇关于通用量子计算机的想法、以及他证明量子干涉能让它比经典计算机更强的论证，是<strong>对科学重大而持久的贡献</strong>。）<span class="tag t-src">原书</span>（Barnum，<em>Physics Today</em> <strong>65(12): 48</strong>）</p>
+  </blockquote>
+  <p><strong>然后是他最核心的反对</strong>：</p>
+  <blockquote>
+    <p>"Less appealing is Deutsch and Popper's denial of the validity of inductive reasoning; <strong>if this involves a denial that evidence can increase the probability of general statements such as scientific laws, it is deeply problematic.</strong>"</p>
+    <p>（较不可取的是多伊奇与波普尔对归纳推理有效性的否定；<strong>如果这包含「证据不能提高科学定律这类普遍陈述的概率」，那就有严重问题。</strong>）<span class="tag t-src">原书</span>（同上）</p>
+  </blockquote>
+  <p><strong>他给的补救读物</strong>（这是本报告认为<strong>最有操作价值</strong>的一句话）：要正确理解归纳的性质与作用，<strong>应当同时读</strong> Richard Jeffrey, <em>Subjective Probability: The Real Thing</em>（Cambridge University Press, <strong>2004</strong>）与 John Earman, <em>Bayes or Bust? A Critical Examination of Bayesian Confirmation Theory</em>（MIT Press, <strong>1992</strong>）<span class="tag t-src">原书</span>（同上）。</p>
+  <p><strong>他另外两条保留</strong>：</p>
+  <ul>
+    <li><strong>「难以修改」被推广到艺术</strong>：「有意思，但我没有被完全说服」<span class="tag t-src">原书</span>（同上，p. 48）。
+    </li>
+    <li><strong>第 12 章（一位物理学家的坏哲学史）</strong>：被批为「<strong>近乎漫画化</strong>」（close to caricature）<span class="tag t-rep">转述</span>（该判断经综述转引；Barnum 原文的这一措辞我见到的是二手概括，故降级）。
+    </li>
+  </ul>
+  <p><strong>★ 一条极罕见的「作者自述修订过程」</strong>：Barnum 在自己的博客上说明，<em>Physics Today</em> 编辑把他的代词改掉了——他原想泛指前文整段讨论，编辑改成了具体的「prematurity」与「fallibilism」，<strong>「并不如我所愿」</strong>；他还说「A broader, more balanced perspective...」里的「more balanced」是编辑加的，<strong>他勉强同意，但或许不该同意</strong> <span class="tag t-talk">作者谈话</span>（Barnum 博客，2012-12）。</p>
+  <p>⇒ <strong>为什么这条最值得记住</strong>：它把「<strong>书被批评了</strong>」变成「<strong>批评具体是什么、批得对不对</strong>」。<strong>这是一篇你自己读完就能判断的批评</strong>——它不靠权威，只靠一个可以检验的技术点：<strong>证据能不能提高普遍陈述的概率。</strong></p>
+  <h3>7.2 ★ 最著名的一条：它给你的不是假设，是一种「情绪」</h3>
+  <p><strong>发难者</strong>：<strong>David Albert</strong>（哥伦比亚大学物理学哲学教授），书评 «Explaining it All: How We Became the Center of the Universe»，载 <strong><em>The New York Times Sunday Book Review</em>，2011-08-12</strong> <span class="tag t-src">原书</span>。</p>
+  <p><strong>他的评价分两半</strong>：</p>
+  <ul>
+    <li><strong>肯定</strong>：这是一本「brilliant and exhilarating and profoundly eccentric」（才华横溢、令人振奋、深刻古怪）的书；
+    </li>
+    <li><strong>保留</strong>：它<strong>不是</strong>一个「tight, grand, cumulative system of ideas」（紧凑、宏大、可累积的观念体系），而是一场「great, wide, learned, meandering conversation」（宏大、广博、博学、漫无边际的谈话）。
+    </li>
+  </ul>
+  <p><strong>最锋利的一句判断</strong>：书中给读者的<strong>不是</strong>一个「live scientific hypothesis」（活生生的科学假说），而是一种「<strong>mood</strong>」（情绪/氛围）<span class="tag t-src">原书</span>（Albert，NYT，2011-08-12）。</p>
+  <p><strong>另一条</strong>：Albert 是<strong>最不买多世界诠释账的科学实在论者之一</strong>，他公开批评多伊奇关于「多世界是亚原子粒子行为的唯一解释」的说法是「<strong>explicit and outrageous falsehoods</strong>」（明白而离谱的假话）、「simply, wildly, wrong」<span class="tag t-rep">转述</span>（经 whyevolutionistrue 转引；<strong>原出处为该博客对 Albert 立场的转述，非 Albert 原刊文字，故降级</strong>）。</p>
+  <h3>7.3 ★ 一位物理学家说：把「闭嘴计算」叫作坏哲学，是不对的</h3>
+  <p><strong>发难者</strong>：<strong>Michael Berry</strong>（布里斯托大学物理学家，以几何相位闻名），书评载 <strong><em>Times Higher Education</em>，2011</strong> <span class="tag t-src">原书</span>。</p>
+  <p><strong>他先给了很强的推荐</strong>：</p>
+  <blockquote>
+    <p>"I enthusiastically recommend this rich, wide-ranging and elegantly written exposition... <strong>This is Deutsch at his most ambitious.</strong>"</p>
+    <p><span class="tag t-src">原书</span>（Berry，<em>THES</em>，2011）</p>
+  </blockquote>
+  <p><strong>但他在一个关键点上正面顶了回去</strong>：多伊奇把量子力学的「闭嘴计算」（shut up and calculate）一派斥为「坏哲学」，而<strong>Berry 本人就是这一派的支持者</strong>。他的反驳是：</p>
+  <blockquote>
+    <p>"The principles of any currently fundamental theory cannot be explained: they are simply postulated. <strong>That is what 'fundamental' means.</strong>"</p>
+    <p>（任何当前的基础理论的原理都<strong>无法被解释</strong>：它们只是被设定。<strong>这就是「基础」一词的含义。</strong>）<span class="tag t-src">原书</span>（Berry，<em>THES</em>，2011）</p>
+  </blockquote>
+  <p><strong>他还给了全书最形象的一句批评</strong>：多伊奇为了多世界诠释，<strong>假设了无穷多个我们无法与之交流的实体</strong>——这「是对奥卡姆剃刀<strong>最奢侈的</strong>违反」<span class="tag t-src">原书</span>（同上）。★ 这一句之所以值得单列，是因为它把「多世界」的争议从「对不对」转成了「<strong>代价值不值</strong>」。</p>
+  <h3>7.4 两条「用力过猛」的批评</h3>
+  <ul>
+    <li><strong>Doug Johnstone</strong>，书评 «Brain the size of Birmingham, ego bigger still»，<strong><em>The Independent</em>，2011-03-27</strong> <span class="tag t-src">原书</span>：他认为多伊奇<strong>讲多重宇宙的部分很棒</strong>，但当他<strong>把想法推广到美学、文化创造力与道德哲学</strong>时，「<strong>立足点明显不稳</strong>」（on shakier ground），说服力随之下降；他也批评书里有「<strong>大段几乎无法穿透的废话</strong>」（long passages of almost impenetrable waffle）<span class="tag t-src">原书</span>（同上）。★ 另有一条有趣的细节：在书末参考书目里，多伊奇在「<strong>Everyone should read these</strong>」（人人都该读这些）这个标题下，<strong>列了自己写的两本书</strong> <span class="tag t-src">原书</span>（同上）。
+    </li>
+    <li><strong>John Horgan</strong>，«To Err Is Progress»，<strong><em>The Wall Street Journal</em>，2011-07-20</strong> <span class="tag t-src">原书</span> —— 立场性批评，标题即态度（「犯错才是进步」）。
+    </li>
+  </ul>
+  <h3>7.5 ★★ 多世界与「玻恩规则」：一条有署名、有年份的争议链</h3>
+  <p>这是本书<strong>最技术、也最能检验「强断言 vs 实际共识差距」</strong>的一条线。它值得完整列出，因为它是读第 11 章时的<strong>必备背景</strong> <span class="tag t-rep">转述</span>（以下链条来自一份对各方文献的综述；我<strong>未逐篇核对原刊</strong>，故整体标 <span class="tag t-rep">转述</span>）：</p>
+  <ol>
+    <li><strong>多伊奇 1999</strong>：在 <em>Proceedings of the Royal Society A</em> 上用<strong>决策论</strong>推导出<strong>玻恩规则</strong>（量子概率法则），即从「理性主体」的公设推出概率。
+    </li>
+    <li><strong>David Wallace 的辩护与细化</strong>：后续（如 arXiv:quant-ph/0303050；《The Emergent Multiverse》，2012）继续为这条推导路线提供支持。
+    </li>
+    <li><strong>Barnum et al.（2000）</strong> 指出这条推导存在<strong>循环论证</strong>的问题。
+    </li>
+    <li><strong>Price、Albert、Kent</strong>（如 Kent, «Many Worlds?» 2010）质疑那些公设的<strong>唯一性</strong>。
+    </li>
+    <li><strong>Dawid &amp; Thébault（2014）</strong> 指出其<strong>经验上不可验证</strong>。
+    </li>
+  </ol>
+  <p>⇒ <strong>结论（也是多位书评人共同的保留）</strong>：<strong>多伊奇在书里把多世界诠释说成「唯一合理的读法」，但这套「唯一性」的论证至今没有解决</strong>。Barnum 在书评里对此的处理很克制：他尊重多伊奇的量子计算贡献，但对「结论的强」与「论证的完成度」之间的落差，<strong>用脚投了票</strong> <span class="tag t-inf">推断</span>。</p>
+  <h3>7.6 中文学界的两条意见</h3>
+  <ul>
+    <li><strong>术语一致性</strong>：中文学界（微信读书等读书社区）有一处被反复提到的意见——<strong>「中文译本（王艳红、张韵译，人民邮电出版社，2019 年第 2 版）在哲学术语的一致性上存在瑕疵」</strong> <span class="tag t-rep">转述</span>。这与第 6 节说的「hard-to-vary 被译成两个词」是同一件事。
+    </li>
+    <li><strong>立场性批评</strong>：中文科普平台上有文章明确写道：<strong>「戴维·多伊奇希望科学能够让世界越来越易于理解，这无疑就是一个妄想」</strong>，并援引 Martin Rees 的「黑猩猩不能理解量子理论」式类比；同时指出<strong>「很少有其他物理学家认同多世界」</strong>（认为他是唯一赞同者）<span class="tag t-rep">转述</span>（科普中国网系文章、作者为科学新闻记者）。★ <strong>本条属立场性批评</strong>（它反对的是乐观主义本身），不是事实性批评。
+    </li>
+  </ul>
+  <h3>7.7 这本书今天读还成立吗</h3>
+  <p><strong>成立，但要把它读对。</strong> 我的判断分三层 <span class="tag t-inf">推断</span>：</p>
+  <ol>
+    <li><strong>作为「认识论方法论」</strong>：<strong>仍然高度可用</strong>。「好解释＝难以修改」这个判据，在今天判断「某个 AI 宣告是不是真进步」「某个政策论证站不站得住」时，仍然比大多数替代判据好用。
+    </li>
+    <li><strong>作为「物理主张」</strong>：<strong>高度有争议</strong>。多世界的部分是他个人的强主张，不是物理学共识（第 7.3、7.5 节）。
+    </li>
+    <li><strong>作为「社会预言」</strong>：<strong>最弱的一层</strong>。第 17 章（反「可持续」）与第 15 章（文化进化）被多位评论者视为全书最弱的章 <span class="tag t-rep">转述</span>（其中一条英文读者短评直接点出「有些章非常弱，比如论社会选择的那一章」）。
+    </li>
+  </ol>
+  <p>★ <strong>一个来自时间的旁证</strong>：多伊奇本人 2012 年之后把重心放到了<strong>构造理论</strong>——一个试图把「解释」「可能/不可能」这类概念<strong>从哲学搬到物理学</strong>的纲领 <span class="tag t-talk">作者谈话</span>（<em>Proc. R. Soc. A</em> <strong>471(2174)</strong>, 2014）。⇒ <strong>这可以读作他对「书里的主张太像哲学」这一批评的正面回应</strong>：他后来的做法是<strong>把它做成物理</strong> <span class="tag t-inf">推断</span>。</p>
+  <p>结构说明：★ 我<strong>没有原书正文</strong>，因此下面<strong>不做细节复述</strong>。每一章只给：<strong>这一章在回答什么</strong> → <strong>读者最该带走的一点</strong> → <strong>一句判断</strong>。凡我未能核实的章节细节，一律留白并写明 —— 这是本项目的「宁可短、不杜撰」纪律。凡是带页码或卷期的判断，我都给出出处。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">8</span><span>第 1–2 章：解释的延伸 / 更接近现实（英文 p.1 / p.34）</span><span class="caret">▾</span></h2>
+  <h3>1 解释的延伸（The Reach of Explanations）</h3>
+  <p><strong>在回答什么</strong>：什么是「好解释」？为什么科学史上的关键转折，是从坏解释转向好解释？</p>
+  <p><strong>最该带走的一点</strong>：<strong>好解释的判据是「难以修改」</strong>。神话能解释季节，但把细节随便改掉仍然成立——<strong>它太容易改</strong>；「地球轴倾角」这个解释<strong>一改就崩</strong>，而且顺带推出「南北半球季节相反」，这不是为了解释季节而专门加上的，是它自己伸出来的——<strong>这个「伸出来」的能力就是解释的「延伸」（reach）</strong> <span class="tag t-rep">转述</span>。</p>
+  <p><strong>一句判断</strong>：★ <strong>这是全书的钥匙，也是全书最该被批评的假设。</strong> 多伊奇把「难以修改」放在波普尔「可证伪性」<strong>之前</strong>一步——因为一个可证伪但每次失手都能打补丁的理论，仍然是坏解释 <span class="tag t-rep">转述</span>。<strong>记住这个顺序，它决定了你怎么读后面十七章。</strong> 外部反驳见第 7.1 节。</p>
+  <h3>2 更接近现实（Closer to Reality）</h3>
+  <p><strong>在回答什么</strong>：观察是不是知识的来源？科学理论是在描述真实世界，还是只是「好用」？</p>
+  <p><strong>最该带走的一点</strong>：多伊奇的答案是<strong>两个「不」</strong>——他反对<strong>经验主义</strong>（观察不是理论来源），也反对<strong>工具主义</strong>（理论不只是预测工具，它关乎真实世界是什么样）。他的替代词是<strong>可错主义（fallibilism）</strong>：我们最好的理论也可能错，所以要主动去改 <span class="tag t-rep">转述</span>。</p>
+  <p><strong>一句判断</strong>：★ 这一章是<strong>全书认识论的收口处</strong>，也是与主流科学哲学的<strong>最大分歧点</strong>（尤其对归纳与贝叶斯的否定）<span class="tag t-src">原书</span>（Barnum，<em>Physics Today</em> <strong>65(12): 48</strong>）。<strong>读它时请把第 7.1 节放在旁边。</strong></p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">9</span><span>第 3–4 章：思想的火花 / 创造（英文 p.42 / p.78）</span><span class="caret">▾</span></h2>
+  <h3>3 思想的火花（The Spark）</h3>
+  <p><strong>在回答什么</strong>：人类是怎么从动物变成「通用解释者」的？</p>
+  <p><strong>最该带走的一点</strong>：多伊奇在此反转了一个流行的自我贬低——<strong>「平庸原理」（Principle of Mediocrity）</strong>（即「人类在宇宙尺度上无足轻重」）在他看来是<strong>反人类中心主义的过度延伸</strong>。他的判断是：人的特殊之处不在身体或感官，而在<strong>能创造并改进解释</strong>；而这种能力<strong>原则上不限于人</strong> <span class="tag t-rep">转述</span>。</p>
+  <p><strong>一句判断</strong>：★ 这一章是全书<strong>人类学／生物学转向</strong>的枢纽：从这里开始，「解释」不再只是认识论问题，而成了<strong>宇宙中一类真实的活动</strong> <span class="tag t-inf">推断</span>。</p>
+  <h3>4 创造（Creation）</h3>
+  <p><strong>在回答什么</strong>：创造力是什么？它是不是「变异＋选择」？</p>
+  <p><strong>最该带走的一点</strong>：多伊奇的立场是——<strong>创造是新解释的产生</strong>，不能还原为随机的变异加筛选；这正是他反对「把一切归结为演化机制」的地方 <span class="tag t-rep">转述</span>。</p>
+  <p><strong>一句判断</strong>：★ 这一章是<strong>全书最「个人立场」的两章之一</strong>（另一章是第 17 章）。**争议不在于事实，而在于「什么才算解释」<span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">10</span><span>第 5–6 章：抽象的现实 / 向通用性跳转（英文 p.107 / p.125）</span><span class="caret">▾</span></h2>
+  <h3>5 抽象的现实（The Reality of Abstractions）</h3>
+  <p><strong>在回答什么</strong>：数学对象——数字、无穷、证明——是「发明」还是「发现」？</p>
+  <p><strong>最该带走的一点</strong>：多伊奇的立场是<strong>抽象是真实的</strong>：数学对象并非约定，而是<strong>真实存在的抽象实体</strong>，物理理论正是在与它们打交道 <span class="tag t-rep">转述</span>。</p>
+  <p><strong>一句判断</strong>：★ 这是一章<strong>本体论</strong>的宣言。它支撑了第 6 章的「通用性」与第 8 章的「无穷」——<strong>如果你不接受「抽象是真实的」，你在第 6、8 章会一路别扭</strong> <span class="tag t-inf">推断</span>。</p>
+  <h3>6 向通用性跳转（The Jump to Universality）</h3>
+  <p><strong>在回答什么</strong>：为什么某些系统一旦跨过「通用性」门槛，就打开了无限？</p>
+  <p><strong>最该带走的一点</strong>：<strong>通用图灵机</strong>（能模拟任何图灵机）是「通用性」的原型；文字、数字、通用计算机都是这样的「通用系统」——<strong>一旦达到通用性，就再无任务上的上限</strong> <span class="tag t-rep">转述</span>。Barnum 称赞这一部分，并把它与「物理定律如何影响计算、乃至推理能力」联系起来 <span class="tag t-src">原书</span>（Barnum，<em>Physics Today</em> <strong>65(12): 48–50</strong>，2012）。</p>
+  <p><strong>一句判断</strong>：★ <strong>这是全书写得最「硬」的一章</strong>，也是它 2024 年仍然被拿来讨论 AI 的原因：<strong>「通用 AI 可不可能」这个问题，在这本书里的提法比大多数当代讨论都更清晰</strong> <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">11</span><span>第 7–8 章：人工创造力 / 无穷的窗口（英文 p.148 / p.164）</span><span class="caret">▾</span></h2>
+  <h3>7 人工创造力（Artificial Creativity）</h3>
+  <p><strong>在回答什么</strong>：通用 AI 是可能的吗？</p>
+  <p><strong>最该带走的一点</strong>：多伊奇认为<strong>没有原理性的障碍</strong>（这与他「不被物理定律禁止的都可实现」的立场一致）；Barnum 也确认他「对图灵测试的怀疑论证得很好，关于机器智能与创造力的讨论引人入胜」<span class="tag t-src">原书</span>（Barnum，<em>Physics Today</em> <strong>65(12): 48</strong>）。</p>
+  <p><strong>一句判断</strong>：★ 这一章是这本书与<strong>《AI 3.0》</strong>最直接的接触面：<strong>米歇尔说「通用 AI 仍很遥远，且我们不知道自己怎么聪明」；多伊奇说「没有原理障碍」</strong>。<strong>两人都反对「LLM ＝ AGI」，但理由完全不同</strong> <span class="tag t-inf">推断</span>（跨书对撞见第 16 节）。</p>
+  <h3>8 无穷的窗口（A Window on Infinity）</h3>
+  <p><strong>在回答什么</strong>：数学里的「无穷」到底是什么？</p>
+  <p><strong>最该带走的一点</strong>：多伊奇要破除的是把无穷当成「一个非常大的数」的直觉——<strong>无穷不是「很大」，它是另一类东西</strong> <span class="tag t-rep">转述</span>。Barnum 称这一段是「<strong>对无穷的标准讨论，如何自然地过渡到物理定律如何影响计算与推理能力的一个可爱例证</strong>」<span class="tag t-src">原书</span>（Barnum，<em>Physics Today</em> <strong>65(12): 48</strong>）。</p>
+  <p><strong>一句判断</strong>：★ 概念章，<strong>可以快速读</strong>；它的作用是给第 9–11 章的「无限进步」「多世界」提供数学直觉 <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">12</span><span>第 9–10 章：乐观主义 / 苏格拉底的梦（英文 p.196 / p.223）</span><span class="caret">▾</span></h2>
+  <h3>9 乐观主义（Optimism）</h3>
+  <p><strong>在回答什么</strong>：为什么进步没有上限？</p>
+  <p><strong>最该带走的一点</strong>：多伊奇的乐观主义是<strong>方法论</strong>而非预言——<strong>「没有问题是可以判定为不可解的」</strong>。Barnum 的复述最准确：他主张「自然的一切规律都有解释，因此问题可解；<strong>若我们解不出，是因为我们未能获得所需的知识</strong>」<span class="tag t-src">原书</span>（Barnum，<em>Physics Today</em> <strong>65(12): 48</strong>）。</p>
+  <p><strong>一句判断</strong>：★ <strong>全书最有争议的一章。</strong> 批评集中在两点：① 不可逆过程是「需要承受的困境」（predicament）而不是「待解决的问题」；② <strong>「原则上可能」与「何时实现」是两回事</strong> <span class="tag t-rep">转述</span>。⇒ <strong>读这一章时，请把「方法论建议」和「关于世界的断言」严格分开</strong> <span class="tag t-inf">推断</span>。</p>
+  <h3>10 苏格拉底的梦（A Dream of Socrates）</h3>
+  <p><strong>在回答什么</strong>：用对话体讲真理、美德与无限。</p>
+  <p><strong>最该带走的一点</strong>：这是全书<strong>文体最特殊的一章</strong>——虚构的苏格拉底式对话，把前面几章的论点放进一个对话框架里 <span class="tag t-rep">转述</span>。</p>
+  <p><strong>一句判断</strong>：★ <strong>风格章</strong>。它对主线是<strong>可选</strong>的：喜欢的人会认为是全书最有趣的一章，不喜欢的人会觉得是插入的岔路。<strong>时间紧可以跳。</strong> <span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">13</span><span>第 11–13 章：多重宇宙 / 坏哲学史 / 选择（英文 p.258 / p.305 / p.326）</span><span class="caret">▾</span></h2>
+  <h3>11 多重宇宙（The Multiverse）</h3>
+  <p><strong>在回答什么</strong>：量子力学该怎么读？</p>
+  <p><strong>最该带走的一点</strong>：多伊奇主张<strong>多世界诠释是唯一合理的读法</strong>；并试图用<strong>决策论</strong>推出概率法则（玻恩规则）<span class="tag t-rep">转述</span>。</p>
+  <p><strong>一句判断</strong>：★★ <strong>全书争议最大的一章，也是我建议「可以跳过」的一章。</strong> 理由：① 这套「唯一性」论证至今未决（见第 7.5 节的完整争议链）；② 它与全书主线的<strong>逻辑依赖最弱</strong>——你不接受多世界，也完全可以接受「好解释＝难以修改」。<strong>外部反驳请读第 7.2 节（Albert）与第 7.3 节（Berry，奥卡姆剃刀那句）。</strong></p>
+  <h3>12 一位物理学家的坏哲学史（A Physicist's History of Bad Philosophy）</h3>
+  <p><strong>在回答什么</strong>：20 世纪的哲学错在哪？</p>
+  <p><strong>最该带走的一点</strong>：多伊奇<strong>点名批评</strong>了 20 世纪的一系列哲学倾向（相对主义、把「可证伪性」当作科学的全部、以及他归为「坏哲学」的「闭嘴计算」派）<span class="tag t-rep">转述</span>。</p>
+  <p><strong>一句判断</strong>：★ <strong>这是全书被专业书评批得最狠的一章</strong>：Barnum 认为它「<strong>近乎漫画化</strong>」<span class="tag t-rep">转述</span>；Michael Berry 则从被批评者的位置正面反驳——「任何当前基础理论的原理都无法被解释，它们只是被设定，这就是『基础』的含义」<span class="tag t-src">原书</span>（Berry，<em>THES</em>，2011）。⇒ <strong>读这一章时，最好同时读第 7.3 节。</strong> <span class="tag t-inf">推断</span></p>
+  <h3>13 选择（Choices）</h3>
+  <p><strong>在回答什么</strong>：在决定论／多世界的图景里，自由意志还有位置吗？</p>
+  <p><strong>最该带走的一点</strong>：多伊奇试图把「选择」放进他的整体框架：<strong>如果不是一切都由初始条件决定，那么「人作为解释创造者」的能动性就是真实的</strong> <span class="tag t-rep">转述</span>。</p>
+  <p><strong>一句判断</strong>：★ 这一章是第 9 章（乐观主义）与第 11 章（多世界）的<strong>黏合层</strong>：它要回答的是「如果物理是那样的，人的选择算不算真」。<strong>它的说服力取决于你是否接受前面两章。</strong> <span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">14</span><span>第 14–16 章：花儿为什么美丽 / 文化的进化 / 创造力进化（英文 p.353 / p.369 / p.398）</span><span class="caret">▾</span></h2>
+  <h3>14 花儿为什么美丽（Why are Flowers Beautiful?）</h3>
+  <p><strong>在回答什么</strong>：美是不是客观的？</p>
+  <p><strong>最该带走的一点</strong>：多伊奇把「难以修改」这个<strong>科学</strong>判据，<strong>推广到了审美</strong>：一件好作品，也像好解释一样「难以修改」（硬到改不动）<span class="tag t-rep">转述</span>。</p>
+  <p><strong>一句判断</strong>：★ <strong>这是全书最受质疑的推论</strong>：Barnum 说「有意思，但我没有被完全说服」<span class="tag t-src">原书</span>（<em>Physics Today</em> <strong>65(12): 48</strong>）；Johnstone 说把想法推广到美学时「<strong>立足点明显不稳</strong>」<span class="tag t-src">原书</span>（<em>The Independent</em>，2011-03-27）。<strong>但 Barnum 也承认：「相似判据可用于评价科学假说与艺术作品」这个大方向是有价值的</strong> <span class="tag t-src">原书</span>。</p>
+  <h3>15 文化的进化（The Evolution of Culture）</h3>
+  <p><strong>在回答什么</strong>：为什么有些社会停滞，有些社会持续进步？</p>
+  <p><strong>最该带走的一点</strong>：多伊奇用<strong>静态社会 vs 动态社会</strong>这一对概念（斯巴达 vs 雅典式的对照）来解释文明的分岔 <span class="tag t-rep">转述</span>。</p>
+  <p><strong>一句判断</strong>：★ 这一章与第 17 章一起，被多位评论者视为<strong>全书最弱的部分</strong>——因为它从认识论跨到了政治与历史，<strong>证据强度与前面几章不成比例</strong> <span class="tag t-rep">转述</span>。<strong>读它时请要求自己：这里的证据够不够支撑这么大的结论？</strong> <span class="tag t-inf">推断</span></p>
+  <h3>16 创造力进化（The Evolution of Creativity）</h3>
+  <p><strong>在回答什么</strong>：创造力本身是怎么进化出来的？</p>
+  <p><strong>最该带走的一点</strong>：多伊奇在此把「创造」放回演化框架，但<strong>坚持它不能被还原为纯随机变异</strong> <span class="tag t-rep">转述</span>。</p>
+  <p><strong>一句判断</strong>：★ 这是第 4 章（创造）的<strong>回响与收束</strong>。<strong>它与第 15 章合看，才是他关于「文化如何进化」的完整主张</strong> <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">15</span><span>第 17–18 章：不可维持 / 开始（英文 p.418 / p.443）</span><span class="caret">▾</span></h2>
+  <h3>17 不可维持（Unsustainable）</h3>
+  <p><strong>在回答什么</strong>：为什么「可持续」是个坏目标？</p>
+  <p><strong>最该带走的一点</strong>：多伊奇的论证是：<strong>「可持续」在理论上是个虚幻概念，它的目标是静态——而静态意味着停滞以致死亡</strong>；相反，只要知识在增长，问题就会不断被解决并被新的问题取代，因此<strong>「维持现状」本身不是目标</strong> <span class="tag t-src">原书</span>（Barnum 的复述：「he concludes... 'sustainability,' theoretically speaking, is a chimerical notion, aimed at stasis that will lead to death」——<em>Physics Today</em> <strong>65(12): 48</strong>）。</p>
+  <p><strong>一句判断</strong>：★ <strong>这是全书最政治化、也最受批评的一章。</strong> 支持者举出臭氧层、空气污染被解决的实例；反对者则指出<strong>不可逆过程不是「问题」而是「困境」</strong>，且<strong>「原则上可能」与「来得及」是两码事</strong> <span class="tag t-rep">转述</span>。⇒ <strong>它是理解这本书「乐观主义」代价的最佳样本。</strong> <span class="tag t-inf">推断</span></p>
+  <h3>18 开始（The Beginning）</h3>
+  <p><strong>在回答什么</strong>：我们在宇宙中的位置是什么？</p>
+  <p><strong>最该带走的一点</strong>：全书的名字在这里落地——<strong>人类（以及任何能创造解释的存在）是宇宙「开始」理解自己的方式</strong>；而这个过程<strong>没有终点</strong>，因为解释的延伸是无穷的 <span class="tag t-rep">转述</span>。</p>
+  <p><strong>一句判断</strong>：★ 结尾章回答的是<strong>一个姿态问题</strong>，而不是一个事实问题：<strong>你愿不愿意把「无限进步」当作一个可行动的前景</strong>。多伊奇的答案是要；而这本书的批评者，通常不是不同意他的物理，而是<strong>不同意这个姿态</strong> <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s16">
+  <h2><span class="num">16</span><span>作者立场的演化与跨书坐标</span><span class="caret">▾</span></h2>
+  <h3>他后来做了什么：构造理论（Constructor Theory）</h3>
+  <p>★ 这是本书最重要的一条<strong>后续</strong>。多伊奇在 2012 年之后，与 <strong>Chiara Marletto</strong> 合作提出<strong>构造理论</strong>：一个试图<strong>把「可能／不可能」当作物理学的第一性概念</strong>的纲领 <span class="tag t-talk">作者谈话</span>。</p>
+  <ul>
+    <li><strong>Deutsch &amp; Marletto, «Constructor theory of information»</strong>，<em>Proceedings of the Royal Society A</em> <strong>471(2174)</strong>，2014-12，DOI 10.1098/rspa.2014.0540，PMID 25663803 <span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li><strong>«Why we need to reconstruct the universe»</strong>，<em>New Scientist</em>，2014-05-21，pp. 30–31 <span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li><strong>Edge.org 对谈</strong> «Constructor Theory: A Conversation with David Deutsch»（2012-10-22）<span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li>科普报道：Douglas Heaven, «Theory of everything says universe is a transformer»，<em>New Scientist</em>，2012-11-06。
+    </li>
+  </ul>
+  <p>⇒ <strong>怎么读这个变化</strong> <span class="tag t-inf">推断</span>：本书的很多主张（「一切不被禁止的都可实现」「所有问题都可解」）在书里<strong>读起来像哲学宣言</strong>——而 <strong>Albert 的批评正是「这不是一个科学假说，是一种情绪」</strong>（第 7.2 节）。<strong>构造理论可以读作他对这条批评的回应</strong>：既然你说它不像物理，那我就<strong>把它做成物理</strong>。⇒ 这是本报告认为<strong>理解多伊奇这个人最重要的一个线索</strong>。</p>
+  <h3>跨书坐标：他与《AI 3.0》《智能简史》的关系</h3>
+  <p>★ 你的书单里，这本书处在一个<strong>很特别的位置</strong>：</p>
+  <ul>
+    <li><strong>与《AI 3.0》（Mitchell）的对撞</strong>：<strong>两人都反对「LLM ＝ 通用智能」</strong>，但理由相反。<strong>多伊奇</strong>的框架是「<strong>没有原理性障碍</strong>——通用性是可以达到的，问题只是知识」；<strong>米歇尔</strong>的框架是「<strong>有原理性的界线</strong>——意义的屏障，机器缺的是理解，而不是规模」。⇒ <strong>两人实际上在争论同一个问题的两端</strong>：通用智能是「<strong>还差知识</strong>」还是「<strong>差一个种类</strong>」<span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>与《智能简史》（Bennett）的关系</strong>：Bennett 的路径是<strong>演化的模块堆叠</strong>；多伊奇的路径是<strong>通用解释者的跃迁</strong>。<strong>两者都在讲「一次跃迁」，但一个在生物史上找，一个在逻辑结构里找</strong> <span class="tag t-inf">推断</span>。
+    </li>
+  </ul>
+  <p><strong>一句判断</strong>：★ <strong>把这三本书放在一起读，你会得到你书单里关于「智能」最完整的三角坐标</strong>：多伊奇问「<strong>为什么原则上可行</strong>」，米歇尔问「<strong>为什么现在还差得远</strong>」，Bennett 问「<strong>它是怎么一步步长出来的</strong>」。<strong>三本书各自都对同一个问题的一部分给出最强陈述，而它们互不兼容——这正是它们值得一起读的理由。</strong> <span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s17">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <p><strong>概念（按在本书中的重要性排序）</strong></p>
+  <table>
+    <thead><tr><th>概念</th><th>一句话</th><th>出现位置</th></tr></thead>
+    <tbody>
+      <tr><td><strong>难以修改（hard to vary）</strong></td><td>好解释的标志：细节一改就崩；★ 全书判据</td><td>第 1 章（贯穿全书）</td></tr>
+      <tr><td><strong>解释的延伸（reach）</strong></td><td>一个好解释会顺带解释它本没打算解释的现象</td><td>第 1 章</td></tr>
+      <tr><td>可错主义（fallibilism）</td><td>没有权威的知识来源；最好的理论也可能错，要主动改</td><td>第 2 章</td></tr>
+      <tr><td>确证主义（justificationism）</td><td>认为知识需权威担保——被多伊奇当作主要靶子</td><td>第 2 章</td></tr>
+      <tr><td><strong>通用性（universality）</strong></td><td>通用图灵机／通用解释者：跨过门槛就没有任务上限</td><td>第 6 章</td></tr>
+      <tr><td><strong>问题可解（problems are soluble）</strong></td><td>「若解不出，是因为没拿到所需知识」；争议核心</td><td>第 9 章</td></tr>
+      <tr><td>静态社会 vs 动态社会</td><td>文明分岔的解释框架（斯巴达 vs 雅典式）</td><td>第 15 章</td></tr>
+      <tr><td>多世界诠释（MWI）</td><td>量子力学的「唯一合理读法」（多伊奇的强主张）</td><td>第 11 章</td></tr>
+      <tr><td>构造理论（Constructor Theory）</td><td>把「可能／不可能」当作物理第一性概念（2012 年后的纲领）</td><td>书外</td></tr>
+    </tbody>
+  </table>
+  <p><strong>人物</strong></p>
+  <table>
+    <thead><tr><th>人物</th><th>身份</th><th>在本书中的位置</th></tr></thead>
+    <tbody>
+      <tr><td>戴维·多伊奇</td><td>牛津，量子计算先驱</td><td>作者</td></tr>
+      <tr><td>Karl Popper</td><td>20 世纪科学哲学家</td><td>全书认识论的来源（证伪、解释）</td></tr>
+      <tr><td>Howard Barnum</td><td>量子信息／量子基础研究者</td><td>★ 最彻底的一手批评者（<em>Physics Today</em> <strong>65(12): 48–50</strong>）</td></tr>
+      <tr><td>David Albert</td><td>哥伦比亚物理学哲学教授</td><td>★ 最著名的一手批评者（NYT 2011-08-12）</td></tr>
+      <tr><td>Michael Berry</td><td>布里斯托物理学家</td><td>从「闭嘴计算」立场正面反驳（<em>THES</em> 2011）</td></tr>
+      <tr><td>Chiara Marletto</td><td>牛津物理学家</td><td>构造理论的合作者（书外）</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s18">
+  <h2><span class="num">B</span><span>常见卡点与延伸阅读</span><span class="caret">▾</span></h2>
+  <p><strong>常见卡点</strong></p>
+  <ul>
+    <li><strong>卡点一：把「hard to vary」当成两个概念。</strong> 中译本里它被译作「<strong>难以修改</strong>」和「<strong>难以变动</strong>」两种，其实是同一个词。→ 回看第 6 节。
+    </li>
+    <li><strong>卡点二：把「所有问题都可解」读成「问题会自己解决」。</strong> 多伊奇说的是<strong>方法论态度</strong>（不要预设不可解），不是<strong>预言</strong>（都会解决）。→ 回看第 12 节、第 7 节。
+    </li>
+    <li><strong>卡点三：被多世界卡住，于是放弃全书。</strong> <strong>第 11 章可以跳过</strong>，不影响主线。→ 回看第 13 节。
+    </li>
+    <li><strong>卡点四：以为这是一本科普书。</strong> 它更像一部<strong>认识论宣言</strong>：论证密度高、断言强、留白少。→ 回看第 0 节、第 1 节。
+    </li>
+    <li><strong>卡点五：把「乐观主义」当成「政治立场」。</strong> 第 17 章的政治推论是全书<strong>最弱</strong>的一环（多位评论者指出）；<strong>别用它来代表全书</strong>。→ 回看第 15 节。
+    </li>
+  </ul>
+  <p><strong>延伸阅读（按三条线）</strong></p>
+  <h4>直接相关（本书自己的上下游）</h4>
+  <ul>
+    <li>多伊奇《真实世界的脉络》（The Fabric of Reality, 1997）——本书四条线索的前著；读完本书再回读更顺 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>Deutsch &amp; Marletto, «Constructor theory of information»</strong>，<em>Proc. R. Soc. A</em> <strong>471(2174)</strong>, 2014 —— 本书物理主张的后续工程化版本 <span class="tag t-talk">作者谈话</span>。
+    </li>
+  </ul>
+  <h4>同一问题的其他路径</h4>
+  <ul>
+    <li><strong>Karl Popper《猜想与反驳》</strong>——本书认识论的直接来源 <span class="tag t-inf">推断</span>（我未核实具体版本，只给方向）。
+    </li>
+    <li><strong>Richard Jeffrey, <em>Subjective Probability: The Real Thing</em>（CUP, 2004）</strong> 与 <strong>John Earman, <em>Bayes or Bust?</em>（MIT Press, 1992）</strong>——★ <strong>Barnum 亲自推荐的、用于理解归纳与贝叶斯的两本书</strong>，是对「反归纳」的正面替代读物 <span class="tag t-src">原书</span>（<em>Physics Today</em> <strong>65(12): 48</strong>）。
+    </li>
+  </ul>
+  <h4>有助于批判性重读</h4>
+  <ul>
+    <li><strong>Howard Barnum 的书评</strong>（<em>Physics Today</em> <strong>65(12): 48–50</strong>, 2012）——<strong>如果你只读一篇关于这本书的批评，读这篇</strong>：它承认贡献、指出问题、给出替代读物，是「有建设性的批评」的范本 <span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>David Albert 的书评</strong>（<em>NYT Book Review</em>, 2011-08-12）——「它给你的是一种情绪而不是假说」这条判断的出处 <span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>Michael Berry 的书评</strong>（<em>THES</em>, 2011）——从被批评者的位置顶回「坏哲学」标签的那一篇 <span class="tag t-src">原书</span>。
+    </li>
+  </ul>
+</section>
+
+<section id="s19">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>本报告的材料来源分布如下（完整清单、交叉验证记录、检索盲区与第 ⑤ 路可得性见同目录的《无穷的开始-来源清单.md》）：</p>
+  <ul>
+    <li><strong>出版方与发行商目录</strong>：Viking 2011（ISBN 9780670022755）· Penguin 平装 2012（ISBN 9780143121350）；★ <strong>逐章英文页码出自发行商 Ingram 目录，被三家独立零售站点逐字复现</strong>
+    </li>
+    <li><strong>图书馆编目（中译本）</strong>：中国人民大学云书房 · 对外经济贸易大学图书馆 MARC（均为第 2 版，530 页，ISBN 9787115505095）
+    </li>
+    <li><strong>一手书评（带卷期页码）</strong>：
+    <ul>
+      <li><strong>Howard Barnum</strong>, review of <em>The Beginning of Infinity</em>, <strong><em>Physics Today</em> 65(12): 48–50</strong>（2012-12），DOI <strong>10.1063/PT.3.1823</strong>
+      </li>
+      <li><strong>David Albert</strong>, «Explaining it All», <strong><em>The New York Times Sunday Book Review</em>，2011-08-12</strong>
+      </li>
+      <li><strong>Michael Berry</strong>, review, <strong><em>Times Higher Education</em>，2011</strong>
+      </li>
+      <li><strong>Doug Johnstone</strong>, «Brain the size of Birmingham, ego bigger still», <strong><em>The Independent</em>，2011-03-27</strong>
+      </li>
+      <li><strong>John Horgan</strong>, «To Err Is Progress», <strong><em>The Wall Street Journal</em>，2011-07-20</strong>
+      </li>
+    </ul>
+    </li>
+    <li><strong>作者书外文本</strong>：<em>Proc. R. Soc. A</em> <strong>471(2174)</strong>, 2014（构造理论）· <em>New Scientist</em> 2014-05-21 pp. 30–31 · Edge.org 2012-10-22 · TED 四场（2006／2009／2018／2019）· Joseph Walker 播客 #139
+    </li>
+    <li><strong>二手书评与读者反应</strong>：note.com 的各方评价综述（<strong>AI 生成，仅作线索</strong>）· 豆瓣（第 2 版约 8.0–8.1，229 人）· 中文科普平台评论 · 中文内容提要（百度百科等）
+    </li>
+  </ul>
+  <p><strong>核验级别：B 级（带页码引文）。格局：结构层硬／正文层软／批评面最硬。</strong></p>
+  <ul>
+    <li><strong>支持 B 级的材料</strong>：① <strong>逐章英文页码</strong>（Ingram 目录，三家零售站点一致）与<strong>中文逐章页码</strong>（书目页，与版权页一致）；② <strong>五篇带出处的一手书评</strong>，其中 <em>Physics Today</em> 一篇带完整卷期页码与 DOI；③ 作者本人的多篇书外文本（含期刊论文卷期页码）。
+    </li>
+    <li><strong>★ 为什么没到 A 级</strong>：<strong>本书仍在版权期内，我没有原书全文，也没有原书的带页码引文。</strong> ⇒ 凡「书里某句话说了什么」，一律标 <span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>★ 为什么不是 C 级</strong>：结构与批评层面都有<strong>独立、可复核、带卷期页码的一手来源</strong>，不是二手转引。
+    </li>
+  </ul>
+</section>
+
+<section id="s20">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. ★ 我没有原书正文 —— 这是本报告最大的边界</h3>
+  <p>本书在版权期内，我<strong>没有合法取得全文</strong>。⇒ 凡「书里某句话说了什么」，本报告一律标 <span class="tag t-rep">转述</span>；<strong>下部逐章因此刻意只给「问题 + 一句判断」，不复述细节</strong>。这是<strong>取舍</strong>（不从盗版件取用），不是遗漏。</p>
+  <h3>D2. 英文逐章页码的来源只有一条线</h3>
+  <p>逐章英文页码出自<strong>发行商 Ingram 目录</strong>，被三家零售站点复现——<strong>它们同源</strong>，因此严格说只有 <strong>1 个独立来源</strong>（Ingram／出版方）。我<strong>未能再用一家图书馆的带页码编目交叉验证</strong>。⇒ 若你要引用具体页码，<strong>请以纸书复核</strong>。</p>
+  <h3>D3. 「第 12 章近乎漫画化」这句，我给的是二手概括</h3>
+  <p><em>Physics Today</em> 书评被指「把第 12 章批为『近乎漫画化』」——我见到的是<strong>综述的转引</strong>，<strong>未在 Barnum 原文中逐字核到这句</strong>。故降级为 <span class="tag t-rep">转述</span>。</p>
+  <h3>D4. 中译本「hard-to-vary 被译成两个词」</h3>
+  <p>该结论来自中文学界（读书社区）的转述，<strong>我未持中译本逐页核对</strong>。⇒ 但因为它影响主线理解，本报告仍单列第 6 节，并<strong>建议你遇到「难以修改／难以变动」时按同一个概念处理</strong>。</p>
+  <h3>D5. 多世界与玻恩规则的争议链，我未逐篇核对原刊</h3>
+  <p>第 7.5 节列出的文献链（多伊奇 1999／Barnum et al. 2000／Wallace／Kent 2010／Dawid &amp; Thébault 2014）来自一份<strong>综述性转述</strong>。⇒ 我<strong>没有逐篇核对原刊</strong>，故整体标 <span class="tag t-rep">转述</span>，仅供你按图索骥。</p>
+  <h3>D6. 「中译第 2 版对第 1 版有修订」是我的推断</h3>
+  <p>第 2 版（2019）与第 1 版（2014）页数相同（皆 530 页）、ISBN 不同。<strong>两者的具体差异我没有比对</strong>，故第 6 节里「有修订」标 <span class="tag t-inf">推断</span>。</p>
+  <h3>D7. 中译本出版日期有「2019-03」与「2019-05」两说</h3>
+  <p>豆瓣记 2019-03，天猫／发行页记 2019-05-01。<strong>两个都列，不取一个</strong>（版权页请以纸书为准）。</p>
+  <h3>D8. 我主动排除的来源</h3>
+  <p>检索中确曾出现该书的电子版链接。按本项目契约，<strong>一律不使用，任何目的不例外</strong>。这构成本报告在「原文可得性」上的一处<strong>主动收缩</strong>。</p>
+</section>
+
+<footer>
+  生成于 2026-10-04 · 来源清单与交叉验证记录见同目录 <code>无穷的开始-来源清单.md</code><br>
+  本页引文按<b>带页码引文（B 级）</b>处理：标注卷期页的条目引自带卷期页码的书评与作者书外文本，<b>我未持原书</b>，页码与英文原句请以原书复核；未标页码者仍是二手转引。★ 本书的批评面特别硬：<i>Physics Today</i> <b>65(12): 48–50</b>、<i>NYT Book Review</i> 2011-08-12、<i>THES</i> 2011 等 —— 见第 7 节。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

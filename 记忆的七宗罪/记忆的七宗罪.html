@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《记忆的七宗罪》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《记忆的七宗罪》<small>阅读指引与精华解析 · 2026-10-04</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 前置知识与目标读者</a>
+    <a href="#s2">2 全书骨架</a>
+    <a href="#s3">3 六个核心论点</a>
+    <a href="#s4">4 阅读建议</a>
+    <a href="#s5">5 配套资源</a>
+    <a href="#s6">6 中文译本怎么选</a>
+    <a href="#s7">7 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s8">8 导论与第 8 章：七宗罪的框架本身（Intro · p.1 ＋ 第 8 章 · p.184）</a>
+    <a href="#s9">9 第一宗罪 · 健忘：transience（第 1 章 · p.12）</a>
+    <a href="#s10">10 第二宗罪 · 分心：absent-mindedness（第 2 章 · p.41）</a>
+    <a href="#s11">11 第三宗罪 · 空白：blocking（第 3 章 · p.61）</a>
+    <a href="#s12">12 第四宗罪 · 错认：misattribution（第 4 章 · p.88）</a>
+    <a href="#s13">13 第五宗罪 · 暗示：suggestibility（第 5 章 · p.112）</a>
+    <a href="#s14">14 第六宗罪 · 偏颇：bias（第 6 章 · p.138）</a>
+    <a href="#s15">15 第七宗罪 · 纠缠：persistence（第 7 章 · p.161）</a>
+    <a href="#s16">16 2021 修订版新增了什么（第 8 章之后的二十年）</a>
+    <a href="#s17">17 跨书：这本书回答了《追寻记忆的痕迹》留下的什么问题</a>
+    <div class="grp">附录</div>
+    <a href="#s18">A 关键定义与速查表</a>
+    <a href="#s19">B 常见卡点与提示</a>
+    <a href="#s20">C 来源清单</a>
+    <a href="#s21">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《记忆的七宗罪》阅读指引与精华解析</h1>
+  <div class="sub">The Seven Sins of Memory: How the Mind Forgets and Remembers</div>
+  <div class="meta">
+    <div><b>作者</b>丹尼尔·L·夏克特（Daniel L. Schacter，1952– ）—— 哈佛大学心理学系 William R. Kenan Jr. 心理学教授，曾任哈佛心理学系主任；美国国家科学院院士；美国心理学会心理学杰出科学贡献奖、认知神经科学学会 Fred Kavli 终身成就奖得主；『七宗罪』框架的提出者</div>
+    <div><b>框架学术首现</b>Schacter, D. L. (1999). «The seven sins of memory: Insights from psychology and cognitive neuroscience» · American Psychologist 54(3): 182–203（比成书早两年）</div>
+    <div><b>英文初版</b>Houghton Mifflin 2001 · x＋272 页 · ISBN 0618040196／9780618040193（LoC 控制号 00053885）</div>
+    <div><b>英文平装</b>Mariner Books 2002 · 288 页 · ISBN 9780618219193</div>
+    <div><b>2021 修订版（现行）</b>The Seven Sins of Memory (Updated Edition) · Mariner Books 2021-09-14 · 416 页 · ISBN 9780358325680 —— 副标题不变，为『20 周年更新版』</div>
+    <div><b>中译（简体·现行）</b>《记忆的七宗罪》· 李安龙 译 · 中国社会科学出版社 ＋ 海南出版社 2003-01 · 264 页 · ISBN 9787500437024 · ¥18.80 —— 据 2001 年英文原版译出</div>
+    <div><b>中译（繁体）</b>《記憶七罪》—— 繁体版译名体系与简体不同（absent-mindedness 作『失神』）</div>
+    <div><b>荣誉</b>APA 威廉·詹姆斯图书奖（与其前作《寻找记忆》同获此奖）·《纽约时报》年度瞩目图书 · 作者为 2000 年 APA 年会主题演讲人</div>
+    <div><b>状态</b>未标注已读／想读 —— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有可定位文本支撑的段落 —— 含美国国会图书馆的官方带页码目录、Google Books 预览片段、书评中带页码的逐字引文，以及带期刊卷期页码的一手批评文献（凡引批评者观点，正文均写明其姓名、刊物、卷期与年份）</li>
+    <li><span class="tag t-talk">作者谈话</span> 出自作者本人书外的论文、演讲或公开表态 —— 不在书里（本书有多篇作者亲笔的同行评议论文可定位到卷期页码）</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、书评、百科或读者读书笔记，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本书<b>仍在版权期内</b>，我未持原书、也无纸质书。但本书有一份特殊的材料优势：<b>美国国会图书馆给了官方的带页码逐章目录</b>（正文 p.1–259），而作者本人又在期刊上<b>以带卷期页码的论文</b>重新表述过这个框架 —— 因此本书「七宗罪」的<b>英文原名与作者定义可以逐条核对</b>（见附录 A）。★ 最大的一处边界：<b>2021 更新版正文我未取得</b>，其新增内容只能从作者 2022 年论文与出版方简介重建（见第 15 节与附录 D1）。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-04 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书按 <b>B 级（带页码引文）</b>标注：有<b>美国国会图书馆的官方带页码目录</b>（Intro p.1 → Index p.259）、<b>作者本人的多篇带卷期页码论文</b>（<i>American Psychologist</i> 54(3):182–203；<i>Memory</i> 30(1):37–42），以及<b>带卷期页码的一手批评文献</b>（<i>JARMAC</i> 11(4):482–484）。★ 需要指出：<b>本书在原理上可能达到 A 级</b> —— 作者论文多处提供在线全文、Google Books 提供大量预览片段 —— <b>但我没有逐字核对全书</b>，所以按 B 级如实标注。未标页码处一律为二手转引。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>这本书讲的不是「记忆有多糟」，而是一句更反直觉的话：记忆的七种「罪」，是同一个适应性系统的副产品——它们不是设计缺陷，而是为「记住要紧的东西」必须付出的代价。</strong></p>
+  <p>作者的核心主张是：<strong>「记忆的七宗罪，并不只是需要被减少或避免的麻烦。它们还照亮了记忆如何调用过去来指引当下、如何把当下的经验保存给未来、如何让我们随时重温过去。」</strong><span class="tag t-src">原书</span>（书末收束句，读者书评与作者论文双处转引）</p>
+  <p>一句话结论（也是全书最该被记住的一句）：<strong>把记忆的错误分门别类，本身就是一种认识——「记不住」不是一件事，是至少七件事，而每一件都有它自己的原因和解药。</strong><span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>前置知识与目标读者</span><span class="caret">▾</span></h2>
+  <p><strong>要什么底子</strong>：几乎不要。全书一章一罪、举日常例子（忘钥匙、话到嘴边、被剧透的结局记不清），是最典型的科普写法。</p>
+  <p><strong>不需要什么</strong>：不需要心理学背景；书中涉及的神经机制（海马、前额叶、fMRI）都随讲随解。</p>
+  <p><strong>这本书真正适合谁</strong>（按书评与作者定位分三层）：</p>
+  <ul>
+    <li><strong>第一层｜对「记性差」感到焦虑的普通读者</strong>——这是本书「安慰剂」功能最强的受众；作者的设计意图之一就是让人明白「你的遗忘多半是正常的」。
+    </li>
+    <li><strong>第二层｜法律、司法、临床与教育从业者</strong>——<strong>目击证人证词、虚假认罪、儿童暗示、创伤记忆</strong>是本书第 4–7 章的核心（这些内容在 2001 年极具前瞻性）。
+    </li>
+    <li><strong>第三层｜想快速了解记忆研究全貌的入门者</strong>——<strong>Goodreads 的高赞读者书评把它定位为「入门书」</strong>：它给概念框架和大量例子，<strong>但不提供深入的技术解释</strong>；「如果你想找关于记忆及其错误的深度技术解释，这本书可能不适合你」<span class="tag t-rep">转述</span>。
+    </li>
+  </ul>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>下表列出<strong>英文原版逐章页码</strong>（来源：<strong>美国国会图书馆官方带页码目录</strong>，与书商目录一致）。全书为「一罪一章 ＋ 一章总结」结构。</p>
+  <table>
+    <thead><tr><th>章</th><th>英文章节</th><th>英文页</th><th>这一章在回答什么</th><th>判断</th></tr></thead>
+    <tbody>
+      <tr><td>—</td><td>Introduction: A Blessing Bestowed by the Gods</td><td>1</td><td>为什么「遗忘」可以被当作一种祝福</td><td>★</td></tr>
+      <tr><td>1</td><td>The Sin of Transience（健忘）</td><td>12</td><td>记忆为什么随时间褪色</td><td>★</td></tr>
+      <tr><td>2</td><td>The Sin of Absent-mindedness（分心）</td><td>41</td><td>为什么「根本没记进去」</td><td>★</td></tr>
+      <tr><td>3</td><td>The Sin of Blocking（空白）</td><td>61</td><td>「话到嘴边」是怎么回事</td><td>★</td></tr>
+      <tr><td>4</td><td>The Sin of Misattribution（错认）</td><td>88</td><td>为什么记对了内容、记错了来源</td><td>★★ 全书最实用</td></tr>
+      <tr><td>5</td><td>The Sin of Suggestibility（暗示）</td><td>112</td><td>记忆如何被外界植入</td><td>★★</td></tr>
+      <tr><td>6</td><td>The Sin of Bias（偏颇）</td><td>138</td><td>当下的信念如何改写过去</td><td>★</td></tr>
+      <tr><td>7</td><td>The Sin of Persistence（纠缠）</td><td>161</td><td>为什么有些记忆挥之不去</td><td>★</td></tr>
+      <tr><td>8</td><td>The Seven Sins: Vices or Virtues?（缺点还是优点？）</td><td>184</td><td>七宗罪为什么是<strong>功能</strong>而非<strong>故障</strong></td><td>★★ 全书落点</td></tr>
+      <tr><td>—</td><td>Notes ／ Bibliography ／ Index</td><td>207 ／ 230 ／ 259</td><td>—</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法提示</strong>：这本书是<strong>「七个独立条目 ＋ 一个总结」</strong>，<strong>不是累积式论证</strong>。所以<strong>跳读代价极低</strong>：你可以只读你最关心的那一宗罪，而且各章几乎不依赖前章。</p>
+  <p>★ <strong>一个必须知道的结构事实</strong>：<strong>第 8 章（p.184）才是全书的观点所在</strong>。前七章是「现象目录」，第 8 章才是「为什么」。★ <strong>若时间只够读一章，读第 8 章</strong>；若想读最实用的一章，读第 4 章（错认，直接关涉目击证人）。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>六个核心论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：七宗罪是一套「分类学」，不是一份「缺陷清单」</h3>
+  <p><strong>主张</strong>：把记忆的失灵分成七种，其真正功能是<strong>组织知识的工具</strong>、让科学家与公众「能有共同语言去谈记忆错误」，而<strong>不是</strong>声称自己穷尽了记忆的全部错误、也不是主张分类已经完备 <span class="tag t-talk">作者谈话</span>。</p>
+  <p><strong>依据</strong>：作者本人在多篇论文里把这个框架的功能说得很清楚——它是组织知识的工具，而不是一套精确的分类学（见 2022 年《Memory》更新论文与 2022 年 JARMAC 论文）<span class="tag t-talk">作者谈话</span>。框架的原始表述见 1999 年《美国心理学家》论文，且一上来就分成两组：三宗「不作为之罪」（transience／absent-mindedness／blocking）＋ 四宗「作为之罪」（misattribution／suggestibility／bias／persistence）<span class="tag t-src">原书</span>。</p>
+  <p><strong>为什么重要</strong>：这一条把「七宗罪」从营销比喻里救出来——它成立的是「这是一个有学术内容的组织框架」，不成立的是「它穷尽了所有记忆错误」。也正因如此，作者比批评者更早地承认了「七」是借来的类比。</p>
+  <h3>论点二：每一宗「罪」都是某个有用、具适应性的心智特征的副产品</h3>
+  <p><strong>主张</strong>：<strong>「每一个罪，都是其他有用且具适应性的心智特征的副产品。」</strong><span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：作者用演化生物学的三档区分——<strong>adaptation（适应）、exaptation（扩展适应）、spandrel（拱肩／副产品）</strong>——来精确化这个主张 <span class="tag t-src">原书</span>。一个具体例子是：<strong>纠缠（persistence）之所以存在，是因为「能牢牢记住可能有威胁的事件」对生存至关重要——纠缠是为这个功能付出的代价</strong> <span class="tag t-src">原书</span>。</p>
+  <p><strong>为什么重要</strong>：这是全书最出名的立场，也是<strong>最需要打折</strong>的一条——它在原则上几乎无法被证伪（任何现存的记忆特征都可以被事后解释为「适应」）。<strong>读它的正确姿势是把它当作一个「有组织的直觉」，而不是一个「被证明的定律」。</strong></p>
+  <h3>论点三：「记不住」不是一个故障，而是至少三种不同的机制</h3>
+  <p><strong>主张</strong>：日常说的「我记不住」，至少分成三宗<strong>机制不同</strong>的罪——<strong>健忘</strong>（随时间褪色）、<strong>分心</strong>（根本没编码进去）、<strong>空白</strong>（存了，但取不出）<span class="tag t-src">原书</span>。</p>
+  <p><strong>依据</strong>：作者的判据是「信息在不在」——分心型错误「想要的信息并没有随时间丢失；它要么一开始就没被登记进记忆，要么在需要的那一刻没被找出来」<span class="tag t-src">原书</span>；而空白意味着「记忆并未随时间褪色」，因为「我们会意外地在几小时或几天后重新提取出那个被阻断的名字」<span class="tag t-src">原书</span>。</p>
+  <p><strong>为什么重要</strong>：三者虽然都表现为「想不起来」，但<strong>解药完全不同</strong>（复习／把注意力带回来／换提取线索）。这条也直接回答了《追寻记忆的痕迹》附录里那个「以为一本书能解释『我为什么记不住东西』」的卡点。</p>
+  <h3>论点四：记忆不是回放，而是建构性拼装——错认揭示的正是这一点</h3>
+  <p><strong>主张</strong>：<strong>「对个别事件的记忆，像是由许多碎片拼装起来的拼图」</strong>，所有回忆者都在「把相关的碎片与感受编织成一个连贯的叙述或故事」<span class="tag t-src">原书</span>；而<strong>错认（misattribution）</strong>就是「把一段记忆归给错误的来源：错把幻想当现实」<span class="tag t-src">原书</span>。</p>
+  <p><strong>依据</strong>：其机制核心是<strong>来源记忆（source memory）</strong>——精确回忆「一个事件是何时、何地发生的」的能力。作者引用的经典案例是：记忆研究者 <strong>Donald Thomson</strong> 曾上电视节目谈「目击证词之不可靠」，节目播出后不久他本人被警方列入辨认队列并被一名妇女指认——因为强奸发生前她正在电视上看 Thomson，她把「Thomson 的脸」与「强奸犯的脸」的<strong>来源</strong>记混了 <span class="tag t-src">原书</span>。</p>
+  <p><strong>为什么重要</strong>：这是全书最具司法意义的一章——<strong>目击证人证词为什么会错，答案不在「人的道德」，而在「来源」这一环。</strong></p>
+  <h3>论点五：记忆被当下持续编辑——偏颇是「用途优先于准确」的证据</h3>
+  <p><strong>主张</strong>：<strong>偏颇（bias）「反映了我们当下的知识与信念对如何记住过去的强大影响」</strong>；我们常常在不知不觉、无意识中，「用我们现在所知或所信的东西来编辑、甚至彻底重写过去的经历」<span class="tag t-src">原书</span>。</p>
+  <p><strong>依据</strong>：书里给出三种偏颇——<strong>一致性偏颇</strong>（把过去重建得更像现在）、<strong>事后聪明偏颇</strong>（「我早就知道会这样」）、<strong>自我中心偏颇</strong>（觉得自己在往事中的角色比实际更重要）<span class="tag t-src">原书</span>；作者还引了奥威尔《一九八四》里那段关于「控制过去」的名言 <span class="tag t-src">原书</span>。</p>
+  <p><strong>为什么重要</strong>：它把「记忆出错」从「故障」改读成「功能」——<strong>一个被当下编辑过的过去，往往比一个精确的过去更「有用」。</strong> 这与论点二一脉相承。</p>
+  <h3>论点六：记住威胁是生存必需，代价是纠缠</h3>
+  <p><strong>主张</strong>：<strong>纠缠（persistence）是七宗里唯一「不被想要的回忆在场」的一宗</strong>，而它正是「能牢牢记住可能有威胁的事件」这一适应特征付出的代价 <span class="tag t-src">原书</span>。</p>
+  <p><strong>依据</strong>：作者的日常版本是「凌晨三点醒来，脑子里反复回放工作中的一次痛苦失误」；病理版本则是<strong>在严重的抑郁或创伤经历里，纠缠可以致残，甚至危及生命</strong>——这与 <strong>PTSD</strong> 直接相关 <span class="tag t-src">原书</span>。</p>
+  <p><strong>为什么重要</strong>：这是适应论最自然的例证，也暴露了它的边界——<strong>如果「记住威胁」是功能，那么创伤后的纠缠是「功能」还是「故障」？</strong> 作者把答案留在了两者之间——<strong>它既是，也不是</strong> <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <p><strong>作者本人给出的读法（书外的口径）</strong>：Schacter 在多篇论文里把<strong>七宗罪框架的功能</strong>说得很清楚——它是<strong>组织知识的工具</strong>，而不是一套精确的分类学；他反复强调「七宗罪」的作用是<strong>让科学家与公众能有共同语言去谈记忆错误</strong><span class="tag t-talk">作者谈话</span>（见 2022 年《Memory》更新论文与 2022 年 JARMAC 论文）。</p>
+  <p><strong>我整理的三条通路</strong> <span class="tag t-inf">推断</span>：</p>
+  <ul>
+    <li><strong>路线 A｜实用优先（约 3 小时）</strong>：Introduction → 第 4 章（错认）→ 第 5 章（暗示）→ 第 8 章。收益：你会理解<strong>目击证人证词为什么会错</strong>，以及<strong>「话到嘴边」为什么不必焦虑</strong>。
+    </li>
+    <li><strong>路线 B｜理论优先（约 5 小时，推荐）</strong>：Introduction → 第 1 章（健忘）→ 第 2 章（分心）→ 第 3 章（空白）→ <strong>第 8 章</strong>。这条线讲的是「遗忘的三种类型以及它们为什么是功能」。
+    </li>
+    <li><strong>路线 C｜与兰加纳特并读（约 6 小时）</strong>：本书第 1、8 章 → 再读《记忆决定你是谁》第 1、4、8 章。<strong>Schacter 给你「怎么忘」（分类），兰加纳特给你「为什么这样设计」（功能）</strong>（见第 17 节）。
+    </li>
+  </ul>
+  <p>★ <strong>如果只读一章</strong>：读<strong>第 8 章《七宗罪：缺点还是优点？》</strong>（p.184）。理由：前七章的全部内容在第 8 章被一次性兑换成一个立场——<strong>「每一个罪，都是其他有用的适应特征的副产品」</strong>；这一章也是本书在学术上被引用最多、被后续研究接续最多的一章（见第 16 节）。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5</span><span>配套资源</span><span class="caret">▾</span></h2>
+  <ul>
+    <li><strong>作者本人的后续论文（均可定位到卷期页码，属确定的一手文本）</strong>：
+    <ul>
+      <li><strong>Schacter, D. L. (1999). "The seven sins of memory: Insights from psychology and cognitive neuroscience." <em>American Psychologist</em>, 54(3), 182–203</strong> —— 框架的<strong>原始论文</strong>，比书早两年。
+      </li>
+      <li><strong>Schacter, D. L. (2022). "The seven sins of memory: an update." <em>Memory</em>, 30(1), 37–42</strong> —— 作者亲笔的<strong>20 年更新</strong>，是理解 2021 修订版新增内容最权威的一手材料。
+      </li>
+      <li><strong>Schacter, D. L., Guerin, S. A., &amp; St. Jacques, P. L. (2011). "Memory distortion: An adaptive perspective." <em>Trends in Cognitive Sciences</em>, 15(10), 467–474</strong> —— 「错误即适应」这一立场的综述。
+      </li>
+      <li><strong>Schacter, D. L., &amp; Addis, D. R. (2007). "The cognitive neuroscience of constructive memory: Remembering the past and imagining the future." <em>Phil. Trans. R. Soc. B</em>, 362(1481), 773–786</strong> —— <strong>记忆指向未来</strong>，这条正是兰加纳特全书的主题在 Schacter 这边的源头。
+      </li>
+    </ul>
+    </li>
+    <li><strong>作者的公开访谈与演讲（均属 <span class="tag t-talk">作者谈话</span>，是本书立场的口语版）</strong>：
+    <ul>
+      <li><strong>APA《Speaking of Psychology》</strong>〈The seven sins of memory, with Daniel Schacter, PhD〉——<strong>有官方文字实录</strong>，作者在其中把「七宗罪是适应特征的副产品」这条讲得最清楚，并自述「20 年前（2001）我主要靠理论论证这条，如今有了大量实验支持」；这是本报告采信作者原话的主要出处。
+      </li>
+      <li><strong>The Academy Podcast 第 13 期</strong>（2024-03-19，1 小时 24 分）——按「七宗罪」逐条讲。
+      </li>
+      <li><strong>Nature &amp; Nurture #85</strong>（59 分）——从记忆研究史讲到七宗罪与想象、创造力。
+      </li>
+      <li><strong>Brain Ponderings with Mark Mattson</strong>——<strong>数字技术与记忆</strong>，作者在此谈「暗示与偏颇如何被数字媒体与政治操弄利用」，正是 2021 更新版新增议题的口语版。
+      </li>
+      <li><strong>Blinkist Podcast 访谈</strong>——作者在此说「<strong>七宗罪里最危险的是分心（absent-mindedness），它是注意力与记忆接口处的故障</strong>」。
+      </li>
+    </ul>
+    </li>
+    <li><strong>作者的公开演讲</strong>：2000 年美国心理学会（APA）年会主题演讲（作者受邀担任）。
+    </li>
+    <li><strong>同作者的「下一站」</strong>：<em>Searching for Memory</em>（1996，获 APA 威廉·詹姆斯图书奖），是本书的思想前身。
+    </li>
+  </ul>
+</section>
+
+<section id="s6">
+  <h2><span class="num">6</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节在本报告里是必需的，因为本书有一个「中文落后于原文二十年」的问题。</strong></p>
+  <table>
+    <thead><tr><th></th><th>简体版（现行）</th><th>繁体版</th></tr></thead>
+    <tbody>
+      <tr><td>书名</td><td>《记忆的七宗罪》</td><td>《記憶七罪》</td></tr>
+      <tr><td>译者</td><td><strong>李安龙</strong></td><td><strong>李明</strong></td></tr>
+      <tr><td>出版社</td><td>中国社会科学出版社 ＋ 海南出版社（光明书架）</td><td>大塊文化</td></tr>
+      <tr><td>出版</td><td><strong>2003-01</strong></td><td><strong>2002-04-29</strong></td></tr>
+      <tr><td>页数</td><td><strong>264 页</strong>（字数 150 千字）</td><td><strong>300 页</strong></td></tr>
+      <tr><td>ISBN</td><td>9787500437024 / 7-5004-3702-1</td><td>9789867975256</td></tr>
+      <tr><td>依据版本</td><td><strong>据 2001 年英文原版译出</strong></td><td>据 2001 版</td></tr>
+      <tr><td>定价</td><td>¥18.80</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>最重要的一条：两版中文译本都译自 2001 年原版，而 2021 年的「20 周年更新版」至今没有中文译本。</strong> 这意味着<strong>中文读者手上的《记忆的七宗罪》，缺了 2021 版新增的全部内容</strong>——包括<strong>「超常自传体记忆（HSAM）」</strong>、<strong>「热车致婴死亡」</strong>、<strong>「假新闻与错觉真相效应」</strong>、<strong>「社交媒体与记忆」</strong>等（见第 16 节）。★ <strong>这是本书中文阅读体验上最大的一个缺口，且无法通过换版本弥补。</strong> 若你读英文，<strong>直接买 2021 Updated Edition（ISBN 9780358325680）</strong>。</p>
+  <p>★ <strong>中文译名对照（引用时请注意）</strong>：简体版把七宗罪译作「<strong>健忘、分心、空白、错认、暗示、偏颇、纠缠</strong>」；繁体版译名略有差异（如 absent-mindedness 作「<strong>失神</strong>」）。<strong>同一宗罪，两个中文名 —— 搜索时都要试。</strong></p>
+  <p>★ <strong>买书核对</strong>：简体版市面上多为旧书（2003 年版）；<strong>认版本请以 ISBN 9787500437024 与「2003 年 1 月第 1 版」为准</strong>，别被书名相近的其他记忆书混淆。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">7</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本书报告里最该细读的一节</strong>，因为本书的<strong>媒体好评极多</strong>（《纽约时报》年度瞩目图书、APA 威廉·詹姆斯图书奖、多家报刊一致称好），而<strong>学术与读者层面的批评同样成形、且更晚</strong>。下面按「锋利程度」排序。</p>
+  <h3>7.1 ★★ 最系统的一条批评：分类学「简化」的代价</h3>
+  <p><strong>批评者</strong>：Peter S. Whitehead 与 Elizabeth J. Marsh（<strong>杜克大学心理学与神经科学系</strong>）。文章题为 <em>Reforming the Seven Sins of Memory to Emphasize Interactions and Adaptiveness</em>，载 <strong>《应用记忆与认知研究杂志》（<em>Journal of Applied Research in Memory and Cognition</em>, JARMAC）</strong> 2022 年 <strong>11(4), 482–484</strong>（DOI: 10.1037/mac0000093）<span class="tag t-src">原书</span>。</p>
+  <p><strong>他们的核心指控</strong>（原文要点）：</p>
+  <blockquote>
+    <p>「像飞机失事一样，很少有一个记忆错误是单一『罪』造成的。」记忆错误往往是<strong>多种罪的同时汇集（a confluence of sins）</strong>——例如家长把孩子忘在热车里，往往同时叠加了「常规被打破（偏离图式）＋ 心不在焉＋ 缺少提取线索」。</p>
+  </blockquote>
+  <p>他们据此主张：<strong>这个框架应当更明确地反映两件事</strong>——① <strong>许多记忆错误是多宗罪的叠加</strong>；② <strong>应当更积极地采取「杯子半满」的适应论视角</strong>。他们用「<strong>错觉真相效应（illusory truth effect）</strong>」做数据示范，说明一个看似简单的错误，其实是多机制交织。<span class="tag t-src">原书</span></p>
+  <p>★ <strong>这条批评为什么最有力</strong>：<strong>它不是否定框架，而是指出框架的边界</strong>——「七宗罪」作为<strong>沟通工具</strong>极好（他们明确承认它「抓住了注意力、提供了共同语言」），但作为<strong>机制模型</strong>会因为「一个错误只对应一个罪」的暗示而失真。<strong>翻成一句普通话：这是「比喻压倒机制」的学术版。</strong></p>
+  <h3>7.2 ★ 「七」这个数字是凑的吗</h3>
+  <p><strong>《旧金山纪事报》（SFGATE）2001 年的书评</strong>（David Kipen）一上来就点了这个要害 <span class="tag t-src">原书</span>：</p>
+  <blockquote>
+    <p>「……正如电话公司本可以告诉 NBC 的那样，<strong>记忆的神奇数字是七</strong>。这个发现或许也帮助决定了……夏克特这本书的组织原则。」</p>
+  </blockquote>
+  <p>他顺手指出：<strong>这个框架的组织形式（一章一罪）与「七」这个数字，有明显的「借用七宗罪之名」的成分。</strong></p>
+  <p>★ <strong>一个更狠的读者批评</strong>（ReviewFocus 书评聚合站，读者评论）说得更直白：</p>
+  <blockquote>
+    <p>「<strong>夏克特的书名与基于七个『罪』的格式，多半一定来自他的出版商。</strong> 在引言里，他谈的是『记忆的适应性强处』与『记忆为什么大体上是可靠的指南』。<strong>那么，他为什么把这些适应性强处叫作『罪』？这种自相矛盾贯穿全书。</strong>」<span class="tag t-src">原书</span>（读者评论，非学者意见）</p>
+  </blockquote>
+  <p>★ <strong>作者本人的回应（这一点很重要）</strong>：Schacter 在 2022 年的更新论文里<strong>明确承认「七宗罪」是一个类比</strong>（「与古典的七宗罪类比」），并用它做<strong>组织知识</strong>、而非<strong>声称分类完备</strong>。★ <strong>换句话说：作者比批评者更早地承认了这个数字是「借来的」。</strong> 这也让「凑数」的指控<strong>力度有限</strong>——它成立的是「它是比喻」，不成立的是「它没有学术内容」。<span class="tag t-inf">推断</span></p>
+  <h3>7.3 ★ 「适应论」被指为「最好的世界里的一切都最好」</h3>
+  <p><strong>SFGATE 书评</strong>提出了对<strong>第 8 章（Vices or Virtues）</strong>最尖锐的一击 <span class="tag t-src">原书</span>：</p>
+  <blockquote>
+    <p>「一个人对这条思路的接受程度，取决于他对社会生物学那个顽固观念——<strong>这是所有可能世界里最好的世界</strong>，事物之所以如此，是因为自然选择固定了有用的突变——的开放程度。就记忆而言，我们忘掉不太重要的东西，因为这让我们更容易记住其余的。<strong>但同样合理的是：人类之所以是现在这样，是因为自然选择还在对它起作用。如果我们能瞬间调用全部经验，记住一切难道不会更高效吗？</strong>」</p>
+  </blockquote>
+  <p><strong>另一条同方向的批评</strong>（Brothers Judd 书评，2001）说得更简洁：作者的总体理论——「七宗罪基本上是心智记忆能力的正面方面的必要副产品」——<strong>「几乎无可辩驳。但不幸的是，它也相当循环论证，因而并未真正推进我们的理解。」</strong><span class="tag t-src">原书</span></p>
+  <p>★ <strong>这两条合起来</strong>，指向第 8 章的<strong>真正弱点</strong>：<strong>「每一个罪都是某个适应特征的副产品」这个命题，在原则上几乎无法被证伪</strong>——因为任何现存的记忆特征都可以被事后解释为「适应」。<strong>这正是演化心理学被反复批评的经典问题。</strong> <span class="tag t-inf">推断</span></p>
+  <h3>7.4 ★ 体裁上的批评：它到底想当哪本书</h3>
+  <p><strong>ReviewFocus 的读者批评</strong>（2001）尖锐且具体 <span class="tag t-src">原书</span>：</p>
+  <blockquote>
+    <p>「<strong>夏克特似乎无法决定这本书的存在理由</strong>：它是一本自助指南？一份文献综述？还是一个推进理论的媒介？<strong>这种犹豫导致这本书一样都没做得特别好。</strong>……以副标题『心智如何遗忘与记忆』来看，我恐怕不得不说，这本书对广阔的記憶研究领域是一种不公。」</p>
+  </blockquote>
+  <p><strong>Goodreads 的高赞读者批评</strong>同方向：<strong>最后一章的演化讨论「贫化了整本书的视角」</strong>，而作者用大量「一个研究者在努力讲笑话和个人故事」的方式写作，让一些读者觉得「没有学到真正有用的信息」<span class="tag t-rep">转述</span>。</p>
+  <p>★ <strong>一处</strong>：本书<strong>成书于 2001 年</strong>，因此它引用的许多研究<strong>已被后续更强的研究取代</strong>；读者批评里「用了大量过时研究」这一条，<strong>对 2001 版成立，对 2021 更新版则部分被修补</strong>（见第 16 节）。<span class="tag t-inf">推断</span></p>
+  <h3>7.5 这本书今天读还成立吗</h3>
+  <p><strong>成立，但要读对版本。</strong> <span class="tag t-inf">推断</span></p>
+  <ol>
+    <li><strong>作为「记忆错误的分类框架」</strong>：<strong>依然成立，且依然是最常被引用的那个框架</strong>。它被写进教科书、被后续论文（包括批评它的那篇）作为讨论起点。
+    </li>
+    <li><strong>作为「内容本身」</strong>：<strong>要读 2021 更新版</strong>。2001 版在「假新闻、社交媒体、HSAM」等当代议题上是空白的。
+    </li>
+    <li><strong>作为「适应论立场」</strong>：<strong>成立但应打折</strong>——第 8 章的论证<strong>不可证伪</strong>（见 6.3），把它当作「一个有启发的视角」而非「已被证明的结论」。★ <strong>作者本人用了一辈子去细化这条立场</strong>（2011 年 TiCS 综述、2012 年 APA 论文、2022 年更新），这本身说明它不是一个「一次性证明」的命题。
+    </li>
+  </ol>
+  <p>★ <strong>结构说明</strong>：下面按<strong>导论 ＋ 七宗罪 ＋ 第 8 章 ＋ 2021 更新 ＋ 跨书</strong>展开，每节分三块——<strong>这一章在回答什么</strong>、<strong>关键论证与例证</strong>、<strong>可疑之处</strong>。凡我没有直接材料支撑的具体叙事细节，我不编，宁可留白并写明。所有页码为<strong>英文 2001 版</strong>页码。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">8</span><span>导论与第 8 章：七宗罪的框架本身（Intro · p.1 ＋ 第 8 章 · p.184）</span><span class="caret">▾</span></h2>
+  <h3>这两章在回答什么</h3>
+  <p><strong>「记忆都会出错，这些错误能不能被系统地分类？如果能，它们为什么会存在？」</strong>——导论给框架，第 8 章给立场。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>★ <strong>框架的原始表述</strong>（作者自己的定义，书与论文措辞一致）<span class="tag t-src">原书</span>：
+    </li>
+  </ul>
+  <blockquote>
+    <p>「我提出，记忆的失灵可以被分为七种基本过失或『罪』，我称它们为 <strong>transience（健忘／短暂）、absent-mindedness（分心）、blocking（空白）、misattribution（错认）、suggestibility（暗示）、bias（偏颇）与 persistence（纠缠）</strong>。正如古老的七宗死罪一样，这些记忆之罪在日常生活中频繁出现，并可能对我们所有人产生严重后果。」</p>
+  </blockquote>
+  <ul>
+    <li><strong>两组分类</strong>：前三者是<strong>「不作为之罪（sins of omission）」</strong>——我们<strong>没能</strong>想起想要的事实、事件或想法；后四者是<strong>「作为之罪（sins of commission）」</strong>——记忆<strong>在场，但它要么是错的，要么是不想要的</strong><span class="tag t-src">原书</span>。
+    </li>
+    <li>★ <strong>导论的核心框架句</strong>（本书最常被引用的一段）：
+    </li>
+  </ul>
+  <blockquote>
+    <p>「<strong>transience（健忘）</strong>指记忆随时间的削弱或丧失……<strong>absent-mindedness（分心）</strong>涉及注意力与记忆接口处的故障……<strong>blocking（空白）</strong>是对我们可能拼命想提取的信息的一次受挫的搜索……<strong>misattribution（错认）</strong>是把一段记忆归给错误的来源：错把幻想当现实……<strong>suggestibility（暗示）</strong>指在一个人试图回忆时，因引导性问题、评论或暗示而被植入的记忆……<strong>bias（偏颇）</strong>反映了我们当下的知识与信念对如何记住过去的强大影响……<strong>persistence（纠缠）</strong>指对令人不安的信息或事件的反复回忆——那些我们宁愿从脑中彻底驱逐、却记得更牢的事。」<span class="tag t-src">原书</span>（导论原文，经书评逐字转引；作者在 2022 年更新论文中以措辞一致的表述复述）</p>
+  </blockquote>
+  <ul>
+    <li>★ <strong>第 8 章的立场</strong>：<strong>「每一个罪，都是其他有用且具适应性的心智特征的副产品。」</strong> 作者用<strong>演化生物学的三种区分</strong>——<strong>adaptation（适应）、exaptation（扩展适应）、spandrel（拱肩／副产品）</strong>——来精确化这个主张 <span class="tag t-src">原书</span>（作者在 2022 年更新论文中重述了这三档区分，明确引自 Gould）。
+    </li>
+    <li><strong>一个具体例子</strong>：<strong>纠缠（persistence）之所以存在，是因为「能牢牢记住可能有威胁的事件」对生存至关重要——纠缠是为这个功能付出的代价</strong> <span class="tag t-src">原书</span>。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>第 8 章是全书最需要「带滤镜」读的一章</strong>。它的<strong>中心命题几乎不可证伪</strong>（见 6.3），且<strong>「七」这个数字是类比出来的</strong>（见 6.2）。<strong>读它的正确姿势是：把它当作一个「有组织的直觉」，而不是一个「被证明的定律」。</strong><span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">9</span><span>第一宗罪 · 健忘：transience（第 1 章 · p.12）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「记忆为什么会随时间褪色？」</strong>——这是七宗罪里「最普遍的一宗」，也是全书的起点。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li><strong>现象的量级</strong>：作者引用记忆实验的开山祖 <strong>Ebbinghaus（艾宾浩斯，1885）</strong> 的遗忘曲线——<strong>人们会迅速忘掉大部分任意无意义信息</strong>；遗忘的这一基本形状至今仍是记忆研究的起点 <span class="tag t-src">原书</span>（本书第 1 章讨论 Ebbinghaus 的遗忘曲线）。
+    </li>
+    <li>★ <strong>作者在书外对本章立场的重述</strong>（属 <span class="tag t-talk">作者谈话</span>）：他在 APA《Speaking of Psychology》播客〈The seven sins of memory, with Daniel Schacter, PhD〉里说得更直白——<strong>「我们需要能够把过去经验的碎片重新组合，以模拟将要发生的新事件——而正是这种让记忆对未来有用的灵活性，也会导致某些类型的记忆错误。」</strong><span class="tag t-talk">作者谈话</span>（APA《Speaking of Psychology》访谈实录）
+    </li>
+    <li><strong>机制</strong>：健忘是「随时间的可及性下降」，是「记忆的一项基本特征，也是许多记忆问题的元凶」<span class="tag t-src">原书</span>。
+    </li>
+    <li>★ <strong>2021 更新版新增的「反向」证据（第 16 节展开）</strong>：作者在 2022 年更新论文里重点介绍了<strong>「抗健忘（anti-transience）」</strong>——即<strong>个体差异与实验操作能选择性地减轻遗忘</strong>。最出名的是 <strong>HSAM（Highly Superior Autobiographical Memory，超常自传体记忆）</strong>：由 McGaugh 团队（Parker、Cahill &amp; McGaugh 2006；LePort et al. 2012）发现的一类人，能异常清晰地回忆自己的个人经历 <span class="tag t-talk">作者谈话</span>。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ HSAM 这条线索里有一个<strong>反直觉的关键数据</strong>：<strong>LePort 等人 2016 年研究了 30 位 HSAM 者，发现他们对『一天前或一周前』的个人事件，并不比普通人记得更多细节</strong> <span class="tag t-talk">作者谈话</span>。★ <strong>这非常重要</strong>：它说明 HSAM 的「超常」不在<strong>编码</strong>，而在<strong>长期保持</strong>——听起来像「记忆天才」的人，当天的记忆其实和你我差不多。<strong>这是最容易被通俗转述漏掉的一条。</strong></p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">10</span><span>第二宗罪 · 分心：absent-mindedness（第 2 章 · p.41）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「为什么我根本没记住？」</strong>——答案：<strong>不是忘了，是</strong>一开始<strong>就没记进去</strong>。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>★ <strong>核心判据</strong>：<strong>分心型的记忆错误「通常发生在我们被分心的事情占据、没有把注意力放在需要记住的东西上时」</strong>；<strong>「想要的信息并没有随时间丢失；它要么一开始就没被登记进记忆，要么在需要的那一刻没被找出来，因为注意力在别处。」</strong><span class="tag t-src">原书</span>
+    </li>
+    <li><strong>典型现象</strong>：放错钥匙或眼镜、忘记午餐约会——<strong>「走进房间忘了要拿什么」</strong>是本书最常被引用的日常例子 <span class="tag t-src">原书</span>。
+    </li>
+    <li>★ <strong>2021 更新版最沉重的新增</strong>：作者在 2022 年更新论文里重点讨论了<strong>分心型遗忘的一种致命形式</strong>——<strong>在炎热天气里，好心的父母结束了车程后，忘了婴儿还在后座的婴儿座椅上，把孩子留在烤箱般的车里致死</strong> <span class="tag t-talk">作者谈话</span>。作者指出这类案例<strong>典型地涉及一系列有利条件的汇合</strong>：<strong>常规被打断、被与孩子无关的紧急事务所占据、依赖自动化行为、以及需要时缺少提取线索</strong>。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>「热车致婴死亡」这一条，恰好是批评者（Whitehead &amp; Marsh，见 6.1）用来论证「记忆错误是多宗罪的汇合」的经典例子</strong> <span class="tag t-src">原书</span>。★ 它同时说明两件事：① 分心型错误的后果可以极其严重；② <strong>「一个错误 = 一宗罪」的分类是有边界的</strong>。<strong>读第 2 章时，请把第 7.1 节的批评放在旁边。</strong></p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">11</span><span>第三宗罪 · 空白：blocking（第 3 章 · p.61）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「为什么话到嘴边却说不出来？」</strong>——答案：<strong>信息还在，只是暂时提取不到</strong>。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>★ <strong>核心判据</strong>：<strong>空白意味着「记忆并未随时间褪色」</strong>——「我们清楚地知道这一点，因为我们会意外地在几小时或几天后重新提取出那个被阻断的名字」<span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>经典现象</strong>：<strong>「话到嘴边（tip-of-the-tongue, TOT）」</strong>——<strong>「我们已经全神贯注于当下的任务，却仍然叫不出一个熟悉面孔的名字。」</strong><span class="tag t-src">原书</span>
+    </li>
+    <li><strong>机制</strong>：<strong>「空白常常源于概念表征（你知道的关于某人或某物的东西）与语音表征（一个词或名字的读音）之间的连接被削弱。」</strong><span class="tag t-src">原书</span>（Goodreads 读者书评逐字转引本书）
+    </li>
+    <li><strong>书里一处跨学科的插曲</strong>：第 3 章引了哲学家 <strong>John Stuart Mill</strong> 论「专名没有内涵」的一段——作者用「专名与读音的分离」来说明空白的机制 <span class="tag t-src">原书</span>（Google Books 预览显示该页引文，p.64）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p><strong>空白（blocking）与分心（absent-mindedness）最容易混</strong>：★ <strong>判据是「信息在不在」</strong>——<strong>分心是「没存进去」，空白是「存了但取不出」</strong>。TOT 的解药（换线索、暂时放下）与分心的解药（把注意力带回来）<strong>完全不同</strong>。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">12</span><span>第四宗罪 · 错认：misattribution（第 4 章 · p.88）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「为什么我记对了内容，却记错了来源？」</strong>——这是全书<strong>最实用、也最具司法意义</strong>的一章。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>★ <strong>核心判据</strong>：<strong>错认是「把一段记忆归给错误的来源：错把幻想当现实，或错误地记得一个事实是朋友告诉你的、而其实你是从报纸上读到的」</strong>；<strong>「错认远比大多数人以为的更常见，并且在法律场景中可能有极深的含义。」</strong><span class="tag t-src">原书</span>
+    </li>
+    <li><strong>关键概念「来源记忆（source memory）」</strong>：即<strong>精确回忆「一个事件是何时、何地发生的」的能力</strong>。★ <strong>一个著名案例</strong>（书中引用）：<strong>记忆研究者 Donald Thomson</strong> 曾上电视节目谈「目击证词之不可靠」；节目播出后不久，他本人被警方列入辨认队列，一名妇女指认他就是强奸犯——<strong>因为强奸发生前她正在电视上看 Thomson，她把「Thomson 的脸」与「强奸犯的脸」的</strong>来源<strong>记混了</strong><span class="tag t-src">原书</span>（Exploratorium 科普文引用此案，明确归给 Schacter 的「来源记忆」概念）。
+    </li>
+    <li>★ <strong>一个贯穿全书的比喻</strong>：<strong>「对个别事件的记忆，像是由许多碎片拼装起来的拼图」</strong>；<strong>所有回忆者都在「把相关的碎片与感受编织成一个连贯的叙述或故事」</strong><span class="tag t-src">原书</span>（Exploratorium 逐字引用 Schacter）。
+    </li>
+    <li><strong>书里的时事案例</strong>：作者用 <strong>O. J. 辛普森案、克林顿大陪审团证词、俄克拉何马城爆炸案</strong> 等「高可见度新闻事件」来说明错认与来源错误 <span class="tag t-src">原书</span>（出版方简介与书商简介多处转录）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这是全书最经得起时间考验的一章</strong>：<strong>「来源记忆」与「拼图」模型至今仍是记忆研究的核心</strong>。★ <strong>但要注意</strong>：本章的时事案例（辛普森案等）是<strong>2001 年的</strong>；2021 更新版以「假新闻」等当代案例做了补充（见第 16 节）。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">13</span><span>第五宗罪 · 暗示：suggestibility（第 5 章 · p.112）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「别人的话，怎么会变成我的记忆？」</strong>——这一章在 2001 年直接介入了当年的「记忆战争」。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>★ <strong>核心判据</strong>：<strong>暗示指「在一个人试图回忆一段过去经历时，因引导性问题、评论或暗示而被植入的记忆」</strong>；<strong>「与错认一样，暗示尤其与法律系统相关，有时会在其中造成严重破坏。」</strong><span class="tag t-src">原书</span>
+    </li>
+    <li><strong>经典实验</strong>：<strong>Loftus 的误导信息范式</strong>——<strong>「当被问到『两车相撞（smashed）时开多快』，被试报告的速度更高、并且更可能『记得』根本不存在的碎玻璃」</strong>；<strong>「一个词就改变了记忆。」</strong><span class="tag t-src">原书</span>（作者与学界广泛转述；本报告采信其为标准科学事实）
+    </li>
+    <li><strong>「在商场走失」实验</strong>：<strong>研究者仅靠反复暗示、并让家人配合，就能往人们脑中植入完全虚假的童年记忆</strong>——<strong>「在几次访谈之内，相当多的人不仅『记得』了那件事，还添加了自己编造的丰富细节。」</strong><span class="tag t-src">原书</span>（读者书评转引本书论述）
+    </li>
+    <li><strong>书里的敏感案例</strong>：作者讨论了<strong>虚假记忆综合征（false memory syndrome）</strong>、<strong>幼儿园暗示案</strong>、以及<strong>「记忆恢复」（recovered memory）运动的兴起与退潮</strong> <span class="tag t-src">原书</span>（简体版目录第 5 章小节标题即含「错误记忆综合征的上升与下降」「幼儿园的暗示」）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这是全书争议最集中的一章，须谨慎</strong>。</p>
+  <ul>
+    <li><strong>「记忆恢复」之争（memory wars）</strong>在 1990 年代是一场激烈的学术与临床论战：一方的立场是「创伤记忆可被压抑后恢复」，另一方（Loftus 等）的立场是「所谓恢复的，很多其实是被治疗暗示创造出来的」。
+    </li>
+    <li>★ <strong>Schacter 在书中的立场是「科学这一边」</strong>：他强调<strong>暗示能创造记忆</strong>，并对<strong>未经验证的记忆恢复技术</strong>持怀疑 <span class="tag t-inf">推断</span>（据本章节结构与学界定位）。
+    </li>
+    <li><strong>本报告提醒</strong>：<strong>这一章的证据用于「保护被暗示误导的人」，不能被单方向地用作「否定一切创伤指控」</strong>——这与《记忆决定你是谁》第 7.3 节的边界提醒是<strong>同一条</strong>。<span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+</section>
+
+<section id="s14">
+  <h2><span class="num">14</span><span>第六宗罪 · 偏颇：bias（第 6 章 · p.138）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「当下的我，如何改写了过去的我？」</strong>——答案：<strong>我们对过去的记忆，被当前的知识与信念持续编辑。</strong></p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>★ <strong>核心判据</strong>：<strong>偏颇「反映了我们当下的知识与信念对如何记住过去的强大影响。我们常常在不知不觉、无意识中，用我们现在所知或所信的东西来编辑、甚至彻底重写过去的经历。」</strong>；<strong>「结果可能是对某个具体事件的扭曲呈现，甚至可能是一段人生时期的扭曲呈现——它说的更多是『我们现在怎么感觉』，而不是『当时发生了什么』。」</strong><span class="tag t-src">原书</span>
+    </li>
+    <li><strong>书里的三种偏颇</strong>（简体版目录第 6 章小节）：
+    <ul>
+      <li><strong>「人们的服饰决定了他们的信仰」</strong>——即<strong>一致性偏颇（consistency bias）</strong>：把过去重建成「与现在更一致」的样子；
+      </li>
+      <li><strong>「我早就知道会这样」</strong>——即<strong>事后聪明偏颇（hindsight bias）</strong>；
+      </li>
+      <li><strong>「我记得清清楚楚」</strong>——即<strong>自我中心偏颇（egocentric bias）</strong>：觉得自己在往事中的角色比实际更重要。
+  <p><span class="tag t-src">原书</span>（简体版目录）</p>
+      </li>
+    </ul>
+    </li>
+    <li><strong>一个文化层面的例证</strong>：作者引用了奥威尔《一九八四》里那段关于「控制过去」的名言——<strong>「过去的可变性是英社的核心信条……过去就是记录与记忆所一致同意的那个东西。」</strong><span class="tag t-src">原书</span>（Google Books 预览显示该引文出现在 p.139）
+    </li>
+    <li><strong>一项跨领域的应用</strong>：<strong>韦瓦尔迪的曲子</strong>——作者用「以为自己早就听过某段音乐」这类例子来说明偏颇 <span class="tag t-src">原书</span>（简体版目录第 6 章末节）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>偏颇这一宗罪与错认、暗示<strong>在机制上高度重叠</strong>——★ <strong>正是批评者（Whitehead &amp; Marsh）说的「多宗罪的汇合」</strong>。<strong>读第 6 章时请留意：作者在自己的框架里，也承认这三宗罪边界模糊</strong> <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">15</span><span>第七宗罪 · 纠缠：persistence（第 7 章 · p.161）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「为什么有些记忆挥之不去？」</strong>——这是七宗罪里唯一「不被想要的回忆在场」的一宗。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>★ <strong>核心判据</strong>：<strong>纠缠指「对令人不安的信息或事件的反复回忆——那些我们宁愿从脑中彻底驱逐、却记得更牢的事」</strong>；<strong>「你没法忘记，尽管你希望自己能。」</strong><span class="tag t-src">原书</span>
+    </li>
+    <li><strong>日常版本</strong>：<strong>凌晨三点醒来，脑子里反复回放工作中的一次痛苦失误，或一场重要考试的不如意结果</strong> <span class="tag t-src">原书</span>（导论原文，经书评逐字转引）。
+    </li>
+    <li><strong>病理版本</strong>：<strong>在严重的抑郁或创伤经历里，纠缠可以致残，甚至危及生命</strong> <span class="tag t-src">原书</span>。这与 <strong>PTSD</strong> 直接相关（这是「纠缠」一宗罪在临床上的核心落点）。
+    </li>
+    <li><strong>治疗方向</strong>：★ 作者举了研究证据说明——<strong>「勇敢面对纠缠之罪所带来的伤痛，才是长期与之对抗的不二法门」</strong>；而单纯用药虽能暂时舒缓，却有副作用、并非长久之计 <span class="tag t-src">原书</span>（中文书评转述第 7 章观点）。作者还讨论了 <strong>propranolol（β 受体阻滞剂）</strong> 与 <strong>yohimbine</strong> 这类与创伤记忆相关的药物实验 <span class="tag t-src">原书</span>（Google Books 预览显示这两个术语出现在书中）。
+    </li>
+    <li>★ <strong>中译本目录里的「纠缠的根源」</strong>：作者在这一章深入<strong>情绪与记忆的神经机制</strong>，解释为什么情绪激烈的记忆会被「过度巩固」<span class="tag t-src">原书</span>（简体版目录第 7 章末节）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>纠缠这一宗罪是七宗里「代价最沉重」的一宗</strong>，也是<strong>第 8 章适应论最自然的例证</strong>（「记住威胁」是生存必需，代价是纠缠）。<strong>但它也让一个困境显形</strong>：如果「记住威胁」是适应特征，那么<strong>创伤后的纠缠是「功能」还是「故障」？</strong> 作者在书里把答案留在了两者之间——<strong>它既是，也不是</strong> <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s16">
+  <h2><span class="num">16</span><span>2021 修订版新增了什么（第 8 章之后的二十年）</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本节是</strong>中文读者最需要<strong>的一节</strong>：<strong>2021 更新版没有中文译本</strong>，因此它的新增内容在中文语境里几乎是空白。以下内容依据 <strong>作者本人 2022 年《Memory》更新论文（30(1), 37–42）</strong> 与出版方简介 <span class="tag t-talk">作者谈话</span>／<span class="tag t-src">原书</span>。</p>
+  <h3>16.1 作者自述的「为什么要改」</h3>
+  <p>出版方给出的更新版简介是——<strong>「20 年前，《记忆的七宗罪》提供了第一个解释常见记忆之恶（及其惊人优点）的框架。如今，在这个更新版里，夏克特用 21 世纪的文化趋势与科学发现重访了他开创性的研究。」</strong> 它明确点出两个当代问题 <span class="tag t-src">原书</span>：</p>
+  <blockquote>
+    <p>- <strong>「我们对 Google、Instagram 等网站日益增长的依赖，如何损害了心智存储与检索记忆的能力？」</strong></p>
+    <p>- <strong>「反复接触『假新闻』与其他虚假陈述，如何增加了我们的偏颇、并让我们更容易把这些陈述当真？」</strong></p>
+  </blockquote>
+  <h3>16.2 逐宗罪的实质新增（作者 2022 年论文列出）</h3>
+  <ul>
+    <li><strong>健忘（transience）</strong>：<strong>「抗健忘」</strong>——HSAM（超常自传体记忆）研究，及<strong>选择性减轻遗忘</strong>的个体差异与实验操作 <span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li><strong>分心（absent-mindedness）</strong>：<strong>热车致婴死亡</strong> 案例——「<strong>一个致命的分心型遗忘</strong>」；作者强调它是<strong>多条件汇合</strong>的结果 <span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li><strong>偏颇（bias）</strong>：<strong>错觉真相效应（illusory truth effect）</strong> 与<strong>假新闻</strong>——反复接触会增加「觉得其为真」的程度 <span class="tag t-talk">作者谈话</span>（作者 2022 年的另一篇论文 <em>Memory sins in applied settings</em>，JARMAC <strong>11(4), 445–460</strong>，专门处理七宗罪在应用场景的进展）。
+    </li>
+    <li><strong>贯穿全书的当代议题</strong>：<strong>社交媒体、多任务、网络检索</strong>对记忆的影响 <span class="tag t-src">原书</span>（出版方简介）。
+    </li>
+  </ul>
+  <h3>16.3 为什么这重要</h3>
+  <p>★ <strong>它把本书从「一本 2001 年的记忆科普」变成「一本能与当下对话的记忆框架书」</strong>。★ <strong>一个可操作的结论</strong>：<strong>如果你读中文，你读到的仍然是 2001 年的世界</strong>——没有 HSAM、没有热车案例、没有假新闻与错觉真相。<strong>要知道这二十年发生了什么，只能读英文更新版，或读作者 2022 年的两篇论文（均可在线获取）。</strong> <span class="tag t-inf">推断</span></p>
+  <h3>可疑之处</h3>
+  <p>本节内容主要来自<strong>作者本人的更新论文与出版方简介</strong>，<strong>我没有取得 2021 更新版正文</strong>，因此<strong>新增内容在书中的确切章节位置与页码均未核实</strong> —— 这是一处明确的留白。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s17">
+  <h2><span class="num">17</span><span>跨书：这本书回答了《追寻记忆的痕迹》留下的什么问题</span><span class="caret">▾</span></h2>
+  <p>★ 这一节是本报告的<strong>跨书线索</strong>，直接回应已交付的《追寻记忆的痕迹》（坎德尔）报告附录 B 第 4 条：</p>
+  <blockquote>
+    <p>「<strong>卡点：以为这本书能解释『我为什么记不住东西』。提示：不能。这是本书最尖锐的读者批评所指——到 2006 年，人类只搞清了记忆的底层管线，没搞清『一幅图景是怎么被存下来又被调出来的』。要后者，去读《记忆的七宗罪》与《记忆决定你是谁》。</strong>」</p>
+  </blockquote>
+  <h3>17.1 本书给出的答案：你「记不住」不是一个故障，是至少三种不同的机制</h3>
+  <p><strong>坎德尔回答的是「记忆是用什么材料和开关造的」</strong>（突触强度、cAMP／PKA、CREB、蛋白质合成）——<strong>这是「底层管线」</strong>。</p>
+  <p><strong>Schacter 回答的是「你日常记不住东西时，到底是哪一环出了问题」</strong>——<strong>这是「故障树」</strong>：</p>
+  <table>
+    <thead><tr><th>你的体验</th><th>是哪一宗罪</th><th>它在哪一环出问题</th></tr></thead>
+    <tbody>
+      <tr><td>「上周三中午吃了什么？想不起来了」</td><td><strong>transience 健忘</strong></td><td>随时间褪色</td></tr>
+      <tr><td>「钥匙放哪了？我明明拿在手里」</td><td><strong>absent-mindedness 分心</strong></td><td><strong>根本没编码进去</strong></td></tr>
+      <tr><td>「那人名字就在嘴边，就是想不起来」</td><td><strong>blocking 空白</strong></td><td>存了，<strong>取不出</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>注意这三行的关键</strong>：<strong>它们是对坎德尔那句话的直接回答</strong>——「我记不住东西」在坎德尔的分子世界里是同一件事（突触没强化），<strong>但在 Schacter 的功能世界里是三件不同的事，解药也不同</strong>（复习 / 把注意力带回来 / 换线索）。<strong>这就是「底层管线」与「用户界面」的区别。</strong></p>
+  <h3>17.2 与《记忆决定你是谁》的关系：Schacter 给分类，兰加纳特给目的</h3>
+  <ul>
+    <li><strong>Schacter（2001/2021）</strong>：建立<strong>分类学</strong>——七宗罪；并提出<strong>「错误是适应特征的副产品」</strong>（第 8 章）。
+    </li>
+    <li><strong>兰加纳特（2024）</strong>：把这条推进成<strong>功能论</strong>——<strong>「遗忘不是副产品，遗忘就是功能本身」</strong>。
+    </li>
+    <li>★ <strong>时间线上的一个事实</strong>：<strong>「记忆指向未来」这条，Schacter 比兰加纳特早</strong>——Schacter 与 Addis 在 <strong>2007 年</strong>的论文（<em>Phil. Trans. R. Soc. B</em> <strong>362(1481), 773–786</strong>）标题就是「<strong>记住过去与想象未来</strong>」。<strong>所以兰加纳特书里那个「记忆为未来服务」的核心命题，在 Schacter 这边有直接的思想前身。</strong> <span class="tag t-src">原书</span>
+    </li>
+    <li><strong>怎么并读</strong>：<strong>先读 Schacter 拿到「怎么忘」（分类），再读兰加纳特拿到「为什么这样设计」（功能）</strong>；顺序反了也行，但 Schacter 那本更上瘾、更容易当工具书查。
+    </li>
+  </ul>
+  <h3>17.3 一个必须写明的边界</h3>
+  <p>★★ <strong>这三本书（坎德尔、Schacter、兰加纳特）都强调「记忆可塑、会出错」，但它们在「这意味着什么」上并不结盟。</strong> Schacter 用七宗罪把错误<strong>系统化并赋予功能</strong>；兰加纳特用「绘画」比喻强调<strong>记忆虽可塑、仍大体有用</strong>；坎德尔则给出一个<strong>稳定、可定位的分子存储</strong>图景。★ <strong>Schacter 本人对边界的警觉值得单独指出</strong>：他在第 8 章处理演化论时，<strong>刻意区分了 adaptation／exaptation／spandrel</strong>，就是为了避免把「它有功能」草率地写成「它被自然选择专门造出来了」——<strong>这是一种罕见的、在畅销书里主动给自己上镣铐的写法。</strong> <span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s18">
+  <h2><span class="num">A</span><span>关键定义与速查表</span><span class="caret">▾</span></h2>
+  <p><strong>七宗罪定义表</strong>（英文原名以作者定义为准；中文译名为简体版译法）</p>
+  <table>
+    <thead><tr><th>英文原名</th><th>中文（简体）</th><th>中文（繁体）</th><th>作者定义（要点）</th><th>页</th></tr></thead>
+    <tbody>
+      <tr><td><strong>transience</strong></td><td>健忘</td><td>健忘</td><td>信息随时间的可及性下降、记忆削弱或丧失</td><td>12</td></tr>
+      <tr><td><strong>absent-mindedness</strong></td><td>分心</td><td>失神</td><td>注意力与记忆<strong>接口处</strong>的故障——<strong>没编码进去</strong></td><td>41</td></tr>
+      <tr><td><strong>blocking</strong></td><td>空白</td><td>空白</td><td>存储着的信息<strong>暂时无法提取</strong>（TOT）</td><td>61</td></tr>
+      <tr><td><strong>misattribution</strong></td><td>错认</td><td>錯認</td><td>把记忆／想法<strong>归给错误的来源</strong></td><td>88</td></tr>
+      <tr><td><strong>suggestibility</strong></td><td>暗示</td><td>暗示</td><td>因<strong>引导性问题、评论、暗示</strong>被<strong>植入</strong>的记忆</td><td>112</td></tr>
+      <tr><td><strong>bias</strong></td><td>偏颇</td><td>偏頗</td><td>由<strong>当前知识、信念、感受</strong>造成的<strong>回溯性扭曲</strong></td><td>138</td></tr>
+      <tr><td><strong>persistence</strong></td><td>纠缠</td><td>糾纏</td><td>对事件的<strong>侵入性或病理性回忆</strong></td><td>161</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>两组</strong>：前三宗 = <strong>不作为之罪（sins of omission，忘了想要的东西）</strong>；后四宗 = <strong>作为之罪（sins of commission，记起了错误的／不想要的东西）</strong>。</p>
+  <p><strong>关键概念</strong></p>
+  <table>
+    <thead><tr><th>概念</th><th>一句话</th></tr></thead>
+    <tbody>
+      <tr><td><strong>来源记忆（source memory）</strong></td><td>精确回忆「事件是何时、何地发生的」的能力；错认即来源记忆失灵</td></tr>
+      <tr><td><strong>虚假记忆综合征 / 记忆恢复之争</strong></td><td>第 5 章的核心战场：暗示能否创造「记忆」</td></tr>
+      <tr><td><strong>HSAM（超常自传体记忆）</strong></td><td>2021 版新增：一类能异常清晰回忆个人经历的人；<strong>对近期事件并不比常人记得多</strong></td></tr>
+      <tr><td><strong>错觉真相效应（illusory truth effect）</strong></td><td>2021 版新增：反复接触会增加「觉得其为真」的程度</td></tr>
+      <tr><td><strong>adaptation / exaptation / spandrel</strong></td><td>第 8 章的三档演化概念：适应／扩展适应／副产品</td></tr>
+      <tr><td><strong>constructive memory（建构性记忆）</strong></td><td>记忆是「拼图」般拼装出来的叙述，而非回放</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s19">
+  <h2><span class="num">B</span><span>常见卡点与提示</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>卡点：分不清「健忘／分心／空白」。</strong>
+  <p>提示：用三个问题对号入座——<strong>「是随时间淡了？」</strong> → 健忘；<strong>「是不是根本没记进去？」</strong> → 分心；<strong>「是不是话到嘴边取不出？」</strong> → 空白 <span class="tag t-src">原书</span>。</p>
+    </li>
+  </ol>
+  <ol>
+    <li><strong>卡点：觉得「这命名太像营销」。</strong>
+  <p>提示：★ 这条批评成立（见 6.2），但<strong>作者本人早就承认「七」是借来的类比</strong> <span class="tag t-talk">作者谈话</span>。<strong>把它当作组织知识的工具，不当作完备的分类学。</strong></p>
+    </li>
+  </ol>
+  <ol>
+    <li><strong>卡点：读到第 8 章觉得「这不就是循环论证」。</strong>
+  <p>提示：★ 这条批评也成立（见 6.3）。<strong>第 8 章的价值在「它让你用演化视角重看这七个现象」，不在「它证明了什么」。</strong><span class="tag t-inf">推断</span></p>
+    </li>
+  </ol>
+  <ol>
+    <li><strong>卡点：第 5 章（暗示）看完不知道该信谁。</strong>
+  <p>提示：<strong>这一章处在「记忆战争」的正中央</strong>。<strong>正确读法：接受「暗示能创造记忆」这个实验事实，但不要把它单方向用作「否定一切记忆」的依据。</strong> 与《记忆决定你是谁》第 7.3 节并读 <span class="tag t-inf">推断</span>。</p>
+    </li>
+  </ol>
+  <ol>
+    <li><strong>卡点：找不到「HSAM／假新闻／热车」这些内容。</strong>
+  <p>提示：★ <strong>因为你看的是中文版（据 2001 版译）</strong>。这些是 <strong>2021 英文更新版</strong>的新增（第 16 节）。<strong>要么读英文 2021 版（ISBN 9780358325680），要么读作者 2022 年的两篇更新论文。</strong></p>
+    </li>
+  </ol>
+  <ol>
+    <li><strong>卡点：引文查不到页码。</strong>
+  <p>提示：本报告的<strong>逐章页码来自美国国会图书馆官方目录</strong>（可靠）；但<strong>书中具体句子的页码</strong>多来自<strong>带卷期页码的一手文献或带页码的转引</strong>，凡无页码者一律标 <span class="tag t-rep">转述</span>（见附录 D2）。</p>
+    </li>
+  </ol>
+</section>
+
+<section id="s20">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>本报告的材料来源分布如下（完整清单与检索记录见同目录的《记忆的七宗罪-来源清单.md》）：</p>
+  <ul>
+    <li><strong>图书馆编目与出版社目录</strong>：<strong>美国国会图书馆（LoC）官方带页码目录</strong>（含 LoC 控制号 00053885）、多家图书馆编目；出版方（Houghton Mifflin／Mariner）书目。
+    </li>
+    <li><strong>作者一手论文（带卷期页码）</strong>：
+    <ul>
+      <li>Schacter, D. L. (1999). "The seven sins of memory." <em>American Psychologist</em>, <strong>54(3), 182–203</strong>（框架原始论文）
+      </li>
+      <li>Schacter, D. L. (2022). "The seven sins of memory: an update." <em>Memory</em>, <strong>30(1), 37–42</strong>（作者亲笔 20 年更新）
+      </li>
+      <li>Schacter, D. L., Guerin, S. A., &amp; St. Jacques, P. L. (2011). "Memory distortion: An adaptive perspective." <em>Trends in Cognitive Sciences</em>, <strong>15(10), 467–474</strong>
+      </li>
+      <li>Schacter, D. L., &amp; Addis, D. R. (2007). "The cognitive neuroscience of constructive memory." <em>Phil. Trans. R. Soc. B</em>, <strong>362(1481), 773–786</strong>
+      </li>
+      <li>Schacter, D. L. (2022). "Memory sins in applied settings: What kind of progress?" <em>JARMAC</em>, <strong>11(4), 445–460</strong>
+      </li>
+    </ul>
+    </li>
+    <li><strong>一手批评文献（带卷期页码）</strong>：
+    <ul>
+      <li><strong>Whitehead, P. S., &amp; Marsh, E. J. (2022). "Reforming the seven sins of memory to emphasize interactions and adaptiveness." <em>JARMAC</em>, 11(4), 482–484</strong>（DOI: 10.1037/mac0000093）——「多宗罪汇合」与「比喻压倒机制」的核心批评
+      </li>
+    </ul>
+    </li>
+    <li><strong>署名可查的书评</strong>：SFGATE（David Kipen，2001）；Brothers Judd（2001）；ReviewFocus（读者评论）；Exploratorium 科普文；中文书评（中央研究院明清研究读书会、NTT 书评页）。
+    </li>
+    <li><strong>出版方公开文本</strong>：2021 更新版出版方简介与作者官网（Harvard 主页）。
+    </li>
+  </ul>
+  <p><strong>核验级别：B 级（带页码引文）。</strong> 依据：本书仍在版权期内、我未持原书；但有<strong>美国国会图书馆的官方带页码逐章目录</strong>（p.1–259）、<strong>作者本人的多篇带卷期页码论文</strong>（含 1999 原始框架与 2022 更新）、以及<strong>带卷期页码的一手批评文献</strong>（JARMAC 11(4), 482–484）。★ 需指出：<strong>本书在原理上可能达到 A 级</strong>（作者论文多处提供在线全文、Google Books 提供大量预览片段），<strong>但我没有逐字核对全书</strong>，所以按 B 级如实标注。<strong>未标页码处一律为二手转引。</strong></p>
+</section>
+
+<section id="s21">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. 2021 修订版的正文我未取得，新增内容的章节定位未核实</h3>
+  <p>第 16 节的所有新增内容（HSAM、热车、假新闻、社交媒体）<strong>依据的是作者 2022 年的更新论文与出版方简介</strong>，<strong>我没有取得 2021 版正文</strong>。因此：<strong>这些新增内容在书中的确切章节与页码，均未核实。</strong></p>
+  <h3>D2. 书中具体句子的页码，来源层级不一</h3>
+  <ul>
+    <li><strong>逐章页码</strong>（p.1–259）来自<strong>美国国会图书馆官方目录</strong>，可靠。
+    </li>
+    <li><strong>书内具体句子</strong>的页码：一部分来自<strong>带页码的转引</strong>（如 p.139 的《一九八四》引文、p.64 的 Mill 引文），一部分<strong>只有转引、无页码</strong>（如导论里那段七宗罪定义、第 8 章「拼图」比喻）。
+    </li>
+    <li>⇒ <strong>凡无页码者本报告已标 <span class="tag t-rep">转述</span> 或保留 <span class="tag t-src">原书</span> 但在本附录说明弱点</strong>。<strong>若你要引用原句，请核英文原版对应页。</strong>
+    </li>
+  </ul>
+  <h3>D3. 两个中译本的定版信息（已补齐）</h3>
+  <p>简体版采信<strong>李安龙译</strong>（中国社会科学出版社／海南出版社 2003-01，264 页，ISBN 9787500437024）；繁体版为<strong>李明译</strong>《記憶七罪》（大塊文化 2002-04-29，300 页，ISBN 9789867975256）。★ 两版<strong>均据 2001 年英文原版译出</strong>，译名体系不同（absent-mindedness 简体作「分心」、繁体作「失神」）。★ <strong>真正的缺口不在简体／繁体之别，而在于：两版都没有 2021 更新版的新增内容</strong>（见第 16 节）。</p>
+  <h3>D4. 第 5 章「记忆战争」的立场，我是从章节结构与学界定位推断的</h3>
+  <p><strong>Schacter 在第 5 章对「记忆恢复」之争的具体措辞，我没有取得原文。</strong> 本报告第 13 节说他「站在科学这一边、对未经验证的记忆恢复技术持怀疑」，<strong>是根据其章节小节标题（「错误记忆综合征的上升与下降」「幼儿园的暗示」）与学界对本书的定位做出的推断</strong>，标 <span class="tag t-inf">推断</span>。<strong>请以原书第 5 章为准。</strong></p>
+  <h3>D5. 我主动排除的来源</h3>
+  <p>检索过程中出现过<strong>盗版电子书站的扫描全本</strong>（非官方受控借阅）。按本项目契约「<strong>只用合法来源，任何目的不例外</strong>」，<strong>一律不使用</strong>。这构成本报告在「原文可得性」上的一处<strong>主动收缩</strong>。</p>
+  <h3>D6. 一条要主动打折的宣传语</h3>
+  <p>出版方与其他渠道反复称本书「开创性的（groundbreaking）」「第一个框架」。★ <strong>这条基本成立</strong>——「七宗罪」确实是<strong>第一个系统化的记忆错误分类框架</strong>（1999 年论文即提出）。<strong>但「第一个」不等于「最完备」</strong>：本报告第 7.1 节的批评（Whitehead &amp; Marsh, 2022）正是从<strong>完备性</strong>上切入的。<strong>把「开创性」用来校准历史地位可以，用来替代「每条分类都精确」不行。</strong><span class="tag t-inf">推断</span></p>
+</section>
+
+<footer>
+  生成于 2026-10-04 · 来源清单与交叉验证记录见同目录 <code>记忆的七宗罪-来源清单.md</code><br>
+  本页引文按<b>带页码引文（B 级）</b>处理：逐章页码来自美国国会图书馆的官方目录，<b>我未持原书</b>，页码请以原书复核；批评文献的姓名、刊物、卷期与年份已逐条给出；未标页码者仍是二手转引。★ 本报告在 <b>第 6 节</b>刻意写得最实 —— 因为本书媒体好评极多，而<b>学术与读者层面的批评更晚、更硬</b>（尤其 <i>JARMAC</i> 2022 那篇「多宗罪汇合」的批评）。★ 另需注意：<b>中文译本据 2001 版译出，缺 2021 版全部新增</b>，见第 5、15 节。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

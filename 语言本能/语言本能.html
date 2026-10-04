@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《语言本能》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《语言本能》<small>阅读指引与精华解析 · 2026-10-04</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 六个核心论点</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 中文译本怎么选</a>
+    <a href="#s5">5 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s6">6 第一章：习得一门技艺的本能（第 1 章 · p.1）</a>
+    <a href="#s7">7 第二章：爱说话的动物（第 2 章 · p.12）</a>
+    <a href="#s8">8 第三章：心语（第 3 章 · p.44）</a>
+    <a href="#s9">9 第四章：语言如何运作（第 4 章 · p.74）</a>
+    <a href="#s10">10 第五章：词，词，词（第 5 章 · p.119）</a>
+    <a href="#s11">11 第六章：寂静的声音（第 6 章 · p.153）</a>
+    <a href="#s12">12 第七章：会说话的大脑（第 7 章 · p.190）</a>
+    <a href="#s13">13 第八章：巴别塔（第 8 章 · p.231）</a>
+    <a href="#s14">14 第九章：生来就会说话的婴儿，描绘天堂（第 9 章 · p.265）</a>
+    <a href="#s15">15 第十章：语言器官与语法基因（第 10 章 · p.302）</a>
+    <a href="#s16">16 第十一章：大爆炸（第 11 章 · p.340）</a>
+    <a href="#s17">17 第十二章：语言专家（第 12 章 · p.382）</a>
+    <a href="#s18">18 结语 / 第十三章：心智的设计（第 13 章 · p.419）</a>
+    <div class="grp">附录</div>
+    <a href="#s19">A 关键概念与人物速查</a>
+    <a href="#s20">B 延伸阅读</a>
+    <a href="#s21">C 来源清单</a>
+    <a href="#s22">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《语言本能》阅读指引与精华解析</h1>
+  <div class="sub">The Language Instinct: How the Mind Creates Language</div>
+  <div class="meta">
+    <div><b>作者</b>史蒂芬·平克（Steven Pinker，1954– ）—— 加拿大裔美国实验心理学家、认知科学家、科普作家；麦吉尔大学心理学学士（1976）、哈佛大学实验心理学博士（1979）；1982–2003 年任教于 MIT 脑与认知科学系并主持认知神经科学中心，2003 年起任哈佛大学心理学教授；以心智计算理论与演化心理学普及闻名</div>
+    <div><b>英文初版</b>William Morrow &amp;amp; Company（美国）1994 · 正文 483–494 页（口径不一，见附录 D1）· ISBN 0-688-12141-1／9780688121419 · LCCN 93031842</div>
+    <div><b>英文再版／平装</b>Harper Perennial 1995 平装（496 页 · ISBN 9780060976514）／ Harper Perennial 2000（ISBN 9780060958336）／ <b>Harper Perennial Modern Classics 2007（576 页 · ISBN 9780061336461，增收「P.S.」专栏：语言科学新进展、作者自述、写作缘起、问答、延伸阅读）</b>／ HarperCollins 电子版 2010（ISBN 9780062032522）／ Penguin（英国）平装（ISBN 0-14-017529-6 等）</div>
+    <div><b>中译（大陆·初版）</b>《语言本能：探索人类语言进化的奥秘》· 洪兰 译 · 汕头大学出版社 2004-01 · 490 页 · ISBN 9787810365888 · 定价 39.80 元 · 丛书「科学新视野」（沿用台湾译本）</div>
+    <div><b>中译（大陆·现行）</b>《语言本能：人类语言进化的奥秘》· 欧阳明亮 译 · 浙江人民出版社 2015-05 · 精装 · 472 页（另有 492／504 页口径，见 D4）· ISBN 9787213066559 · 定价 109.90 元 · 湛庐文化出品；2023 年另有浙江科学技术出版社重印本（ISBN 9787573905901 · 精装 504 页 · 149.90 元）</div>
+    <div><b>中译（繁体·台湾）</b>《語言本能：探索人類語言進化的奧祕》· 洪蘭 译 · 商業周刊出版（城邦文化發行）1998-05 初版 · ISBN 957-667-120-5／9789576671203 ·「科學新視野」系列；后由商周出版续出 2008 三版、<b>2015-12 四版「最新中文修訂版」（ISBN 9789862729373 · 565–576 页 · NT$500）</b></div>
+    <div><b>★ 大陆简体版</b><b>存在，且不止一种</b> —— 2004 汕头大学（洪兰译，源自台湾译本）→ 2015 浙江人民（<b>欧阳明亮新译，现行</b>）→ 2023 浙江科学技术出版社重印。★ 但 2015 简体版把英文第 1 章改称「引言」、第 13 章改称「结语」，<b>章号整体错位一章</b>，购书与检索时务必换算</div>
+    <div><b>中译章号对照</b>英文第 1→13 章 ＝ 简体 2015「引言 ＋ 01–11 ＋ 结语」＝ 繁体 1998「第一章–第十三章」（★ 简体与英文/繁体<strong>差一位</strong>）</div>
+    <div><b>其他语言</b>至少译成西班牙语（<i>El instinto del lenguaje</i>）、德语、意大利语等多国文字（具体语种数未能以 2–3 个独立来源核实，见 D5）</div>
+    <div><b>荣誉</b>美国心理学会（APA）<b>William James 图书奖 1995</b> 得主 · 美国语言学会（LSA）<b>Public Interest Award</b> 得主（1996–1997 两说，见 D5）· 《美国科学家》（<i>American Scientist</i>）<b>「二十世纪一百本科学好书」</b> · 《纽约时报书评》<b>1994 年度十佳（编辑之选）</b> · 罗纳–普朗克科学图书奖 1994 决选</div>
+    <div><b>状态</b>未标注已读／想读 —— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有可定位文本支撑的段落 —— 含 Google Books 官方目录、书店与图书馆编目的<b>带页码目录</b>、出版方页面与作者官网转引的正文引语，以及<b>署名可查的批评文献</b>（凡引批评者观点，正文均写明姓名与出处）</li>
+    <li><span class="tag t-talk">作者谈话</span> 出自作者本人<b>书外</b>的公开访谈 —— 本书特指 NPR《Fresh Air》（Terry Gross，1994）等<b>直接谈本书</b>的访谈；作者谈其他书（如 TED 2005 谈《思想本质》）不计入此档</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、书评转述、百科或读者笔记，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本书<b>仍在版权期内</b>，我未持原书，也未访问任何受控借阅或预览正文。★ 本报告的一处特殊优势是：<b>英文章节结构与页码由两处官方目录逐项一致地确认</b>（Google Books 2010 电子版 ＋ HarperCollins 平台 2000 平装本，Ch1 p.1 → Index p.517），且可与中译目录逐章对应。最大的边界在<b>三处带页码的正文引语全部经二手来源转引</b>（p.57／p.64–65，见附录 D3）与<b>首版页数口径不一</b>（483 vs 494，见 D1）。★ 另一个必须点出的实用事实：<b>2015 简体版章号整体错位一章</b>（英文第 1 章→「引言」，第 13 章→「结语」，见第 4 节与 D4）。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-04 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书按 <b>B 级（带页码引文）</b>标注：有<b>两处官方目录逐项一致的带页码目录</b>（An Instinct to Acquire an Art p.1 → Notes p.449 → References p.469 → Glossary p.503 → Index p.517）、<b>带页码的正文引语</b>（p.57／p.64–65，均注明转引来源）、以及<b>署名、刊物、卷期、日期齐全的一手批评与论战文本</b>（Tomasello, <i>Cognitive Development</i> 10(1):131–156, 1995；Sampson 1997；Fodor 2000；Hauser–Chomsky–Fitch, <i>Science</i> 298:1569–1579, 2002；Jackendoff–Pinker, <i>Cognition</i> 97:211–225, 2005；Gould, <i>NYRB</i> 1997-06-12／06-26；Boroditsky, <i>Cognitive Psychology</i> 43(1):1–22, 2001）。★ 需要指出：<b>本书在原理上可能达到 A 级</b> —— 有受控数字借阅与 Google Books 预览 —— <b>但我未逐字核对全书、也未访问受控借阅正文</b>，所以按 B 级如实标注。未标页码处一律为二手转引。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>这本书要说的是：语言不是人类发明的，是人脑里长出来的一件器官——就像蜘蛛会结网、蝙蝠会用声呐一样。</strong></p>
+  <p>它不回答「哪种语言更好」「语法该怎么用」这类问题；它回答的是：「为什么全世界的小孩都能在两三岁前、没人教就会把话说得合乎语法？」平克的答案是一个<strong>生物学答案</strong>：因为语言是一段被自然选择写进人脑的程序，儿童习得语言是这段程序按先天时间表启动的结果，而不是背诵或模仿的结果 <span class="tag t-src">原书</span>。</p>
+  <p>一句话结论（也是全书最该记住的一句）：<strong>「语言是人类的一种本能，被进化接线进我们的大脑，就像蜘蛛结网、蝙蝠用声呐一样。」</strong><span class="tag t-src">原书</span>（作者官网 / 出版方简介原文）。</p>
+  <p><strong>它不是什么</strong>：不是语言学教科书（没有系统音系、句法训练）；不是文笔指南（第 12 章恰恰在拆「文笔指南」）；也不是一本中立的综述——<strong>它是一份带着强烈立场的辩护词</strong>。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>下表把<strong>英文原版页码</strong>与<strong>两个中译本的章号</strong>并排。英文页码取自 <strong>Harper Perennial 系列版</strong>（2000 平装与 2010 电子版两处官方目录逐项一致）；★ <strong>注意</strong>：1994 年初版页码与此不同，本表不采用；<strong>2015 浙江人民版把英文第 1 章改称「引言」，故其中译章号整体比英文少 1</strong>。</p>
+  <table>
+    <thead><tr><th>#</th><th>英文章节</th><th>英文页</th><th>中译章（2015 浙江人民·欧阳明亮）</th><th>中译章（1998 台湾·洪兰）</th><th>这一章在哪一层</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>An Instinct to Acquire an Art</td><td>1</td><td>引言 语言是人的一种本能</td><td>第一章 语言习得的本能</td><td>提出核心命题：语言是本能，不是文化发明</td></tr>
+      <tr><td>2</td><td>Chatterboxes</td><td>12</td><td>01 有人类存在的地方，就有语言存在</td><td>第二章 喋喋不休</td><td>克里奥尔语、聋儿手语、语言普遍性</td></tr>
+      <tr><td>3</td><td>Mentalese</td><td>44</td><td>02 心语</td><td>第三章 思想的语言</td><td>★ 语言≠思维；驳沃尔夫假说</td></tr>
+      <tr><td>4</td><td>How Language Works</td><td>74</td><td>03 语言机制</td><td>第四章 语言的运作</td><td>生成语法、短语结构、心理语法</td></tr>
+      <tr><td>5</td><td>Words, Words, Words</td><td>119</td><td>04 每个人的头脑中都装着一套构词法</td><td>第五章 字，字，字</td><td>构词法、不规则动词、心理词典</td></tr>
+      <tr><td>6</td><td>The Sounds of Silence</td><td>153</td><td>05 语音的奥秘</td><td>第六章 寂静的声音</td><td>音位、发音、语音识别为何难</td></tr>
+      <tr><td>7</td><td>Talking Heads</td><td>190</td><td>06 会说话的大脑</td><td>第七章 说话的头脑</td><td>句法解析、语迹、理解机制</td></tr>
+      <tr><td>8</td><td>The Tower of Babel</td><td>231</td><td>07 为什么地球上会存在那么多不同的语言</td><td>第八章 巴别塔</td><td>语言为何多样、为何会消亡</td></tr>
+      <tr><td>9</td><td>Baby Born Talking—Describes Heaven</td><td>265</td><td>08 孩子天生会说话</td><td>第九章 描绘天堂——生来就会说话的婴儿</td><td>★ 儿童语言习得与关键期</td></tr>
+      <tr><td>10</td><td>Language Organs and Grammar Genes</td><td>302</td><td>09 语言器官和语法基因</td><td>第十章 语言器官和文法基因</td><td>★ 脑区、失语症、语法基因</td></tr>
+      <tr><td>11</td><td>The Big Bang</td><td>340</td><td>10 人类语言的起源</td><td>第十一章 大爆炸</td><td>★ 语言的演化；反对「突然出现」说</td></tr>
+      <tr><td>12</td><td>The Language Mavens</td><td>382</td><td>11 语言专家</td><td>第十二章 语言专家</td><td>★ 拆「语言退化论」</td></tr>
+      <tr><td>13</td><td>Mind Design</td><td>419</td><td>结语 语言，洞悉人性的一扇窗</td><td>第十三章 心智的结构</td><td>★ 全书收束：心智由多个模块构成</td></tr>
+      <tr><td>—</td><td>Notes</td><td>449</td><td>—</td><td>—</td><td>注释，本身就是一份文献地图</td></tr>
+      <tr><td>—</td><td>References</td><td>469</td><td>附录「语言本能」的研究进展</td><td>—</td><td>参考文献；中译「附录」另收 2007 版增补材料</td></tr>
+      <tr><td>—</td><td>Glossary</td><td>503</td><td>—</td><td>—</td><td>术语表</td></tr>
+      <tr><td>—</td><td>Index</td><td>517</td><td>—</td><td>—</td><td>索引</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法提示</strong>：这本书<strong>不是「一章一个论点」，而是「一章一场辩论」</strong>——每一章都在拆一个流行误解。所以它有一个别的畅销书没有的性质：<strong>它读起来像连续剧，不像教科书</strong>；你可以从任何一章切进去，也不会断线。</p>
+  <p>★ <strong>一个必须知道的操作建议</strong>：<strong>先读第 2 章（Chatterboxes，中译「01」）和第 3 章（Mentalese，中译「02」）。</strong> 前者给「语言是本能」摆事实（克里奥尔语、聋儿手语），后者给「语言不决定思维」摆道理（心语）。<strong>这两章是全书论点的承重墙</strong>；第 10、11 章（语言器官、大爆炸）是近年被同行争论最激烈的部分，可以带着第 5 节一起读。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>六个核心论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：语言不是文化发明，而是人类的生物本能</h3>
+  <p><strong>主张</strong>：平克把语言与<strong>蜘蛛结网、蝙蝠声呐、河狸筑坝</strong>并列，称三者都是「本能」<span class="tag t-src">原书</span>（出版方简介原文）。他的意思是：语言<strong>不属于</strong>「只有某些文化才有」的那类技术（如冶金、文字），而是<strong>所有文化都有</strong>；它是人脑里一段被进化接线好的程序。</p>
+  <p><strong>依据</strong>：所有已知人类社群都有语言；语言无须正式教导就会在儿童身上自发发展；即使没有可学的完整语言，儿童也会自己造出有语法的语言（见论点三）。</p>
+  <p><strong>为什么重要</strong>：这是全书的赌注。<strong>一旦承认语言是本能，「语言高低 / 文化优劣」就有了一半的答案；一旦否认，全书其余部分就全部塌掉。</strong> 也正因此，它成了这本书受攻击的靶心（见 5.1）。</p>
+  <h3>论点二：语言不等于思维——我们想事情用的是「心语」（mentalese）</h3>
+  <p><strong>主张</strong>：平克区分<strong>说话用的自然语言</strong>与<strong>思考用的「心语」</strong>（a language of thought）。他认为<strong>思维不依赖任何一种自然语言</strong>，语言只是把心语「翻译」成声音的一套输出系统 <span class="tag t-src">原书</span>（第 3 章主旨，见来源清单）。</p>
+  <p><strong>依据</strong>：存在非语言的思维（图像、婴儿与动物的认知）；同一个意思可以在不同语言里用完全不同的词表达；语言的歧义要靠「先想清楚」来消解。</p>
+  <p><strong>为什么重要</strong>：这一步直接推出了论点五——<strong>如果思维在心语里进行，那么「语言决定思维」就是错的</strong>。所以平克把沃尔夫假说称为一种「conventional absurdity」（约定俗成的谬见），并在第 3 章写下全书最锋利的一句：<strong>「著名的萨皮尔–沃尔夫假说……是错的，全错。」</strong><span class="tag t-src">原书</span>（p.57，经 Casasanto 转引，见 D3）</p>
+  <h3>论点三：儿童是「语法天才」——语言无须教，且有「关键期」</h3>
+  <p><strong>主张</strong>：三岁幼儿已能掌握母语的大部分语法；他们<strong>不是靠模仿</strong>学会的（孩子会说出从未听过、却合乎规则的句子），而是靠一部先天的「语言习得装置」在<strong>特定年龄窗口</strong>内把输入的语言「结晶」成语法 <span class="tag t-src">原书</span>（第 9 章主旨）。</p>
+  <p><strong>依据</strong>：① 克里奥尔语——由皮钦语社群中长大的下一代自发补全成有完整语法的语言；② 聋童手语——听不到声音的孩子会自行发明有真实语法的手语，而非「我泰山，你珍妮」式的指示；③ 「输入贫乏论证」——儿童接触到的语料不足以归纳出他们实际掌握的规则，所以规则必有一部分是先天给定的。</p>
+  <p><strong>为什么重要</strong>：这是全书<strong>最经得起检验、也最被广泛接受</strong>的一组论据。<strong>如果你想判断这本书哪些部分最可信，答案是：凡涉及「语言习得的时间窗与自发性」的部分。</strong></p>
+  <h3>论点四：语言是一个专门的心智模块（「语言器官」），可与一般智力分离</h3>
+  <p><strong>主张</strong>：语言不是「聪明」的副产品，而是人脑中一个<strong>独立、专门的系统</strong>；它可以在其他认知能力受损时保持完好，也可能在其完好的情况下受损 <span class="tag t-src">原书</span>（第 10 章主旨）。</p>
+  <p><strong>依据</strong>：失语症——布洛卡区（语言产出）与韦尼克区（语言理解）的损伤会导致不同类型的语言障碍，而其他能力不一定同步受损；「语法基因」的间接证据（如某一遗传谱系内的语言障碍聚集）。</p>
+  <p><strong>为什么重要</strong>：这条把平克和「语言=一般智力的表现」划清界限，也把他和<strong>福多（Fodor）的模块论</strong>连成一线——<strong>但福多随后又反对把他这套模块论推广成「大规模模块」</strong>（见 5.4）。</p>
+  <h3>论点五：语言是自然选择的产物——一座「大爆炸」式的突现说不通</h3>
+  <p><strong>主张</strong>：平克主张语言是<strong>通过自然选择、为交流而逐渐演化</strong>出来的适应，而不是人脑变大后顺手掉出来的副产品，也不是某个瞬间「大爆炸」式地冒出来的 <span class="tag t-src">原书</span>（第 11 章主旨）。</p>
+  <p><strong>依据</strong>：语言像眼睛、手一样，表现出「为完成明确任务而精密设计」的痕迹；复杂设计只能由自然选择逐步累积出来。</p>
+  <p><strong>为什么重要</strong>：<strong>这正是平克与乔姆斯基公开分道的地方。</strong> 平克在书里把对手的立场戏称为「飓风刮过废料场、组装出一架波音 747」式的荒谬；而乔姆斯基一派后来（2002）反过来说，语言的演化未必是为了交流、也未必是逐步适应。<strong>这一分歧至今没有定论。</strong></p>
+  <h3>论点六：「语言在退化」是错觉——语言专家（language mavens）多半说错了</h3>
+  <p><strong>主张</strong>：第 12 章点名挖苦一批「语言专家」（如 William Safire、Richard Lederer），认为他们把<strong>书面规范</strong>误当成<strong>语言本身的规则</strong>，并错误地断言语言正在被年轻人、外来语和俚语毁掉 <span class="tag t-src">原书</span>（第 12 章主旨；《出版人周刊》1994-01-31 书评亦如此概括）。</p>
+  <p><strong>依据</strong>：不规则的「错误」多半是方言或口语的正常变异；许多「禁用规则」（如不许介词收尾、不许分裂不定式）本就是 18 世纪人为加上的，与实际语言运作无关。</p>
+  <p><strong>为什么重要</strong>：这是全书<strong>最可独立成立、也最幽默</strong>的一章——它不需要你先接受「语言是本能」就能读懂。★ 但也要注意：<strong>这一章是「描述主义 vs 规定主义」之争</strong>，平克的立场在语言学界并非无人反对。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <ol>
+    <li><strong>先读第 2 章（中译「01」）与第 3 章（中译「02」）</strong>。承重墙在这里，不要在开头纠结术语。
+    </li>
+    <li><strong>把第 4、5、6、7 章当「工具箱」按需翻</strong>。这几章讲生成语法、构词法、语音、句法解析，是全书最技术、也最容易劝退的部分——<strong>除非你要写论文，挑你感兴趣的一两章即可</strong>。
+    </li>
+    <li><strong>第 9、10、11 章要连读</strong>（儿童习得 → 语言器官 → 语言演化），它们是「生物学论证」的主干。
+    </li>
+    <li><strong>第 12 章（语言专家）可以独立读</strong>，也最轻松；先读它能帮你理解平克的语气为什么那样「不好惹」。
+    </li>
+    <li>★ <strong>配一份「敌情简报」</strong>：读之前先知道平克在打谁（文化决定论、沃尔夫假说、语言退化论），第 5 节就是这份简报。<strong>带着它读，你会读出一个更清醒的平克。</strong>
+    </li>
+  </ol>
+  <h3>如果你是「已读」</h3>
+  <ol>
+    <li><strong>回头核对一件事</strong>：书里对<strong>沃尔夫假说</strong>的驳斥，有没有先如实呈现沃尔夫原本说了什么？<strong>当代学者（Casasanto 等）指出，平克攻击的是一个被夸大过的「强版本」，而沃尔夫本人并未主张「思维即语言」</strong>（见 5.2）。这一步会让这本书的「钢」和「稻草人」分开。
+    </li>
+    <li><strong>对照乔姆斯基一派的后续文本</strong>（Hauser–Chomsky–Fitch 2002；Fitch–Hauser–Chomsky 2005），看平克与 Jackendoff（2005）如何反驳。<strong>这是全书最前沿、也最可能在十年内被改写的一章。</strong>
+    </li>
+    <li><strong>重读第 12 章</strong>。它讨论的「规范化 vs 描述化」，在今天的「网络语言 / 错别字 / 缩写」争论里几乎原样重演——<strong>这一章比它写作的年代更相关</strong>。
+    </li>
+  </ol>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本报告必需的，因为本书的中文版本状况比一般书复杂，而且隐藏着一个「章号错位」的陷阱。</strong></p>
+  <p><strong>先说最要紧的三条</strong>：</p>
+  <blockquote>
+    <p><strong>⚠ ① 大陆简体版存在，且有两个不同译本。</strong> 洪兰译（2004 汕头大学，源自 1998 台湾译本）与<strong>欧阳明亮新译（2015 浙江人民，现行）</strong>是两套独立翻译。</p>
+    <p><strong>⚠ ② 现行简体版把章号整体错位了一章</strong>（英文第 1 章→「引言」，第 13 章→「结语」）。按英文/豆瓣章号找内容会错位。</p>
+    <p><strong>⚠ ③ 本书没有被「改名重出」为别的书名</strong>；中文世界统一叫《语言本能》，只换副标题（「探索人类语言进化的奥秘 / 奥祕 / 人类语言进化的奥秘」）。<strong>检索到的「语言天性」一名查无实据</strong>（见 D8）。</p>
+  </blockquote>
+  <p><strong>大陆简体版对比</strong>：</p>
+  <table>
+    <thead><tr><th></th><th>初版（洪兰 译）</th><th>现行（欧阳明亮 译）</th></tr></thead>
+    <tbody>
+      <tr><td>书名</td><td>《语言本能：探索人类语言进化的奥秘》</td><td>《语言本能：人类语言进化的奥秘》</td></tr>
+      <tr><td>出版社</td><td>汕头大学出版社</td><td>浙江人民出版社（湛庐文化出品）</td></tr>
+      <tr><td>出版日</td><td>2004-01</td><td>2015-05（2023 浙江科学技术出版社重印）</td></tr>
+      <tr><td>译者</td><td>洪兰（台湾译本沿用）</td><td>欧阳明亮（新译）</td></tr>
+      <tr><td>规格</td><td>490 页 · 平装 · ISBN 9787810365888</td><td>精装 · 472 页（另有 492／504 页口径）· ISBN 9787213066559</td></tr>
+      <tr><td>定价</td><td>39.80 元</td><td>109.90 元</td></tr>
+      <tr><td>章号体系</td><td>13 章（第 1–13 章）</td><td>引言 ＋ 01–11 ＋ 结语</td></tr>
+    </tbody>
+  </table>
+  <p><strong>繁体（台湾）版</strong>：<strong>1998 商業周刊（城邦）初版</strong>（洪兰 译，ISBN 9576671205）→ <strong>2008 商周三版</strong> → <strong>2015-12 商周四版「最新中文修訂版」</strong>（ISBN 9789862729373，NT$500）。台湾版的章名与英文<strong>一一对应</strong>（第一章即英文第 1 章），<strong>不存在简体那种整体错位</strong>。</p>
+  <p><strong>★ 该选哪个</strong>：</p>
+  <ul>
+    <li><strong>简体读者 → 选 2015 浙江人民·欧阳明亮译（现行本）</strong>。它是新译、在售、且据出版方标注为根据英文较新版译出；但你<strong>必须自己换算章号</strong>（把「引言」当第 1 章、把「01」当第 2 章，依次后推）。
+    </li>
+    <li><strong>繁体读者 → 选 2015 商周四版</strong>。版次最新，且章号与英文一致，最省心。
+    </li>
+    <li><strong>洪兰译本（1998／2004）的价值</strong>：它是<strong>中文世界最早、影响最大</strong>的译本，译笔生动；但它依据的是<strong>较早的英文版本</strong>，<strong>未必包含 2007 年英文 P.S. 版新增的「语言科学新进展」等材料</strong>。想要最新增补，优先 2015 简体版（其「专访」＋「附录：语言本能的研究进展」疑似译自新版增补）。
+    </li>
+  </ul>
+  <p><strong>★ 两个必须提醒的坑</strong>：</p>
+  <ol>
+    <li><strong>不要把《语言本能》和平克的其他中译书搞混</strong>。平克另有《心智探奇》（<em>How the Mind Works</em>）、《白板》（<em>The Blank Slate</em>）、《思想本质》（<em>The Stuff of Thought</em>）、《人性中的善良天使》（<em>The Better Angels of Our Nature</em>）等——<strong>它们都是不同的书</strong>，购物站搜「平克」时极易误买。
+    </li>
+    <li><strong>不要相信中文网络上「某某版删了第 X 章」「新增第 20 章」之类的说法</strong>。原书<strong>只有 13 章</strong>；任何提到「第 14 章之后」的正文内容，都值得怀疑（见附录 D）。
+    </li>
+  </ol>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本报告最该细读的一节。</strong> 本书获得的是<strong>压倒性的媒体好评</strong>（《纽约时报书评》《时代》《经济学人》《自然》《科学美国人》一致称好，乔姆斯基、道金斯、加德纳等联名推荐），<strong>但学术界的批评同样密集，而且更晚、更硬</strong>。下面五条按「锋利程度」排序，最后一条回答「今天读还成立吗」。</p>
+  <h3>5.1 ★★ 最根本的一条：这套「本能论 / 普遍语法」本身就不被多数语言学家接受</h3>
+  <p><strong>批评者与出处</strong>：</p>
+  <ul>
+    <li><strong>Michael Tomasello</strong>（时任 Emory 大学，后为 Max Planck 演化人类学研究所联席所长）：书评〈<strong>Language is Not an Instinct</strong>〉，<em>Cognitive Development</em> <strong>10(1): 131–156，1995 年</strong>（ERIC 编号 EJ501991）<span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>Geoffrey Sampson</strong>（Sussex 大学语言学家）：《<strong>Educating Eve: The 'Language Instinct' Debate</strong>》，Cassell <strong>1997</strong>；2005 年修订版改名《The 'Language Instinct' Debate》（Continuum，增一章）<span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>Michael Tomasello</strong>：《<strong>Constructing a Language: A Usage-Based Theory of Language Acquisition</strong>》，哈佛大学出版社 <strong>2003</strong>（平装 2005）<span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>Nicholas Evans &amp; Stephen C. Levinson</strong>：〈<strong>The Myth of Language Universals</strong>〉，<em>Behavioral and Brain Sciences</em> <strong>32(5): 429–448，2009 年</strong><span class="tag t-src">原书</span>。
+    </li>
+  </ul>
+  <p><strong>他们批什么</strong>：</p>
+  <ul>
+    <li>Tomasello 的第一句就是全书最扎人的：<strong>「这本书的问题在于，生成语法及其伴随的天生论，被当作已经确立的科学事实呈现给读者，连一丝『目前几乎所有问题上都正进行着激烈的理论与经验争论』的暗示都没有。」</strong>他还指出：<strong>「多数语言学家并不相信乔姆斯基式的那种普遍语法，而这一点在书的 430 页里从未被承认。」</strong><span class="tag t-src">原书</span>（Tomasello 1995，p.132）
+    </li>
+    <li>Sampson 的立场更直接：<strong>「没有理由相信」</strong>语言与其他知识结构是硬连线在基因里的；<strong>「语言的结构表明，它们纯粹是文化的创造物。」</strong><span class="tag t-src">原书</span>（Sampson 本人对其著作的概述页）
+    </li>
+    <li>Evans &amp; Levinson（2009）则从跨语言证据出发，主张「语言普遍性」在很大程度上是一个<strong>纲领性标签</strong>，而非已证成的发现。
+    </li>
+  </ul>
+  <p><strong>★ 这条批评为什么最有力</strong>：<strong>它不是说平克某个例子举错了，而是说他通篇把一场「进行中的辩论」写成了「已结案的科学」。</strong> 这对一本面向大众、又坚持「我讲的是 the science of language」的书来说，是结构性的。</p>
+  <h3>5.2 ★★ 第二条：平克对沃尔夫假说的驳斥，被指「打稻草人」；而当代语言相对论研究，确实对他构成部分挑战</h3>
+  <p><strong>这是本报告认为最需要说清的一条。</strong></p>
+  <p><strong>（a）「打稻草人」的指控</strong>：平克第 3 章驳沃尔夫的核心论据是——<strong>沃尔夫认为「思维即语言」</strong>，所以只要证明存在非语言的思维，沃尔夫就倒了。他的原话是：<strong>「认为思维与语言是同一回事，是所谓『约定俗成的谬见』的一个例子」</strong>，并断言萨皮尔–沃尔夫假说<strong>「是错的，全错」</strong><span class="tag t-src">原书</span>（p.57）。</p>
+  <blockquote>
+    <p><strong>但当代学者指出：沃尔夫从未主张「思维即语言」。</strong> 认知科学家 <strong>Daniel Casasanto</strong> 在为《剑桥语言科学百科全书》撰写的「Sapir–Whorf Hypothesis」条目中写道：<strong>「正如心理学家 Casasanto（2008）所指出的，沃尔夫从未主张『思维与语言是同一回事』；相反，沃尔夫认为人类思维有很大一部分是『非语言的』，但仍会受到语言的影响。因此，平克（1994）对沃尔夫的首要理论批评是无效的。」</strong><span class="tag t-src">原书</span>（Casasanto，剑桥百科条目，in press；另见 Casasanto 2008，<em>Language Learning</em> 58(s1): 63–79）</p>
+  </blockquote>
+  <p><strong>（b）当代语言相对论研究</strong>：</p>
+  <ul>
+    <li><strong>Lera Boroditsky</strong>，〈<strong>Does Language Shape Thought? Mandarin and English Speakers' Conceptions of Time</strong>〉，<em>Cognitive Psychology</em> <strong>43(1): 1–22，2001</strong>——现代语言相对论实验研究的代表作 <span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>Boroditsky, Schmidt &amp; Phillips</strong>，〈Sex, Syntax, and Semantics〉（2003）——著名的「语法性别影响对物体的描述」实验。
+    </li>
+    <li>综述：<strong>Regier &amp; Kay</strong>，〈Language, thought, and color: Whorf was half right〉，<em>Trends in Cognitive Sciences</em> <strong>13(10): 439–446，2009</strong><span class="tag t-src">原书</span>。
+    </li>
+  </ul>
+  <p><strong>★ 它是否构成有效反驳？——要分层回答，不能一刀切</strong>：</p>
+  <table>
+    <thead><tr><th>版本</th><th>内容</th><th>平克的攻击是否成立</th></tr></thead>
+    <tbody>
+      <tr><td><strong>强版本</strong>（语言决定论）</td><td>语言<strong>决定</strong>你只能想什么</td><td>平克攻击的主要是这个。<strong>多数语言学家认为强版本确实站不住</strong>——这一战平克大体赢</td></tr>
+      <tr><td><strong>弱版本</strong>（语言相对论）</td><td>语言<strong>影响</strong>（而非决定）某些认知过程</td><td>★ <strong>当代研究（Boroditsky 一派）在颜色、时间、空间、语法性别等领域找到了可测量的小效应；这一版块今天被多数语言学家接受</strong>。<strong>平克当年「全错」的断言下得过宽</strong></td></tr>
+      <tr><td><strong>方法论</strong></td><td>效应是否稳健、能否复现</td><td>⚠ <strong>Boroditsky 的语法性别实验被报告难以复现</strong>，因此「弱版本」的证据强度本身也有争议</td></tr>
+    </tbody>
+  </table>
+  <p><strong>⇒ 结论</strong>：<strong>对「强版本」的否定，平克是对的；对「弱版本」的否定，他下得太满，且被后来的实验部分挑战。</strong> 而 Casasanto 指出他的首要理论论据<strong>本身就没打中沃尔夫</strong>——这一条，<strong>是有效的方法论批评，不是派系之争</strong>。</p>
+  <h3>5.3 ★★ 第三条：与乔姆斯基的公开分歧——语言到底是不是自然选择造出来的？</h3>
+  <p><strong>这是「同侧盟友后来分手」的具体战场。</strong></p>
+  <p><strong>事件链</strong>（全部可查、有确切出处）：</p>
+  <ol>
+    <li><strong>Hauser, Chomsky &amp; Fitch</strong>，〈<strong>The Faculty of Language: What Is It, Who Has It, and How Did It Evolve?</strong>〉，<em>Science</em> <strong>298(5598): 1569–1579，2002-11-22</strong><span class="tag t-src">原书</span>。核心主张：语言机能分「广义（FLB）」与「狭义（FLN）」，<strong>狭义部分可能只有「递归」</strong>，而且<strong>它未必是为交流而演化</strong>——可能只是其他认知能力的副产物。
+    </li>
+    <li><strong>Pinker &amp; Jackendoff</strong>，〈The faculty of language: what's special about it?〉，<em>Cognition</em> <strong>95(2): 201–236，2005</strong><span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>Fitch, Hauser &amp; Chomsky</strong>，〈The evolution of the language faculty: Clarifications and implications〉，<em>Cognition</em> <strong>97(2)，2005</strong><span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>Jackendoff &amp; Pinker</strong>（回覆）：〈The nature of the language faculty and its implications for evolution of language〉，<em>Cognition</em> <strong>97(2): 211–225，2005</strong><span class="tag t-src">原书</span>。
+    </li>
+  </ol>
+  <p><strong>平克一方怎么反驳</strong>：他们主张「递归之外还有大量的语言专属、且为人类独有、却并非递归的东西——<strong>「音系学中的主要特征就是对『仅递归假设』的重大反例」</strong>」<span class="tag t-src">原书</span>（Cognition 97: 212），并指出「自然选择逐步塑造语言」比「一次突变产生递归」更有演化上的可信度。</p>
+  <p><strong>★ 这条为什么值得单列</strong>：<strong>它说明平克在书里那个笃定的「语言是自然选择造的适应」，从 2002 年起就不是学界的共识，而是一场持续至今的正面交火。</strong> ★ 但要说清楚：<strong>两人在「语言天生 / 普遍语法」这个底座上仍然同侧</strong>——分歧在「<strong>它是怎么来的</strong>」，不在「<strong>它是不是先天的</strong>」。所以「平克与乔姆斯基翻脸」这个流传说法，<strong>只对了一半</strong>。</p>
+  <h3>5.4 ★ 第四条：演化心理学的「适应主义」之争——古尔德、福多、迪肯从三个方向夹击</h3>
+  <p><strong>这不是针对某一章，而是针对这本书所代表的整个纲领。</strong></p>
+  <ul>
+    <li><strong>Stephen Jay Gould</strong>（哈佛古生物学家）：〈<strong>Darwinian Fundamentalism</strong>〉，<em>The New York Review of Books</em>，<strong>1997-06-12</strong>；及续篇〈Evolution: The Pleasures of Pluralism〉，<strong>1997-06-26</strong><span class="tag t-src">原书</span>。他指责平克等演化心理学家<strong>「在人类存在的每个角落都看见精调过的适应」</strong>，并把整个纲领讥为「达尔文原教旨主义」。★ 平克的回信与古尔德的回覆，见同刊〈<strong>Evolutionary Psychology: An Exchange</strong>〉，<strong>1997-10-09</strong><span class="tag t-src">原书</span>——<strong>这是一手论战原文，可以直接读到双方对骂的原话。</strong>
+    </li>
+    <li><strong>Jerry Fodor</strong>（罗格斯大学哲学家，《心智模块性》作者）：《<strong>The Mind Doesn't Work That Way: The Scope and Limits of Computational Psychology</strong>》，MIT Press / Bradford，<strong>2000</strong>（126–144 页，ISBN 0-262-06212-7）<span class="tag t-src">原书</span>。★ 关键的反讽在于：<strong>福多本是「模块论」的祖师，平克正是把模块论推广成「心智是瑞士军刀」的人</strong>；福多反过来论证「心智不可能大规模模块化」，因为<strong>「选择把哪些表征送进哪个模块」本身是一个全域性的过程，模块解决不了</strong>。平克的公开回应见〈So How Does the Mind Work?〉，<em>Mind &amp; Language</em> 20(1)，2005<span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li><strong>Terrence Deacon</strong>（生物人类学家）：《<strong>The Symbolic Species: The Co-Evolution of Language and the Brain</strong>》，W. W. Norton，<strong>1997</strong><span class="tag t-src">原书</span>。他主张<strong>语言与人脑是「共同演化」的</strong>——不是大脑先长出语言模块，而是<strong>语言作为一种文化发明，反过来选择了能学它的大脑</strong>。他的核心主张是：<strong>语言不是一种本能，人脑里也没有一个「基因安装好的语言黑箱」</strong><span class="tag t-rep">转述</span>（转引自 Mark Turner 对本书的书评〈Poetry for the Newborn Brain〉，<em>Bostonia</em>，Spring 1998；另见《纽约时报》<strong>1997-08-10</strong>书评〈Talking Heads〉，作者 William H. Calvin——该文把「平克所描述的『心语』本能」列为迪肯所针对的四种理论之一）
+    </li>
+  </ul>
+  <p><strong>★ 这一组的共同点</strong>：<strong>它们都不否认「语言有先天成分」，它们否认的是「把它叫作一个精调的、专门化的、由自然选择为交流而造的『本能』」。</strong> 这就是「语言本能」这个提法真正的战场。</p>
+  <h3>5.5 ★ 第五条：「语言本能」这个提法本身——它在多大程度上只是隐喻？</h3>
+  <p><strong>批评者</strong>：<strong>Geoffrey Sampson</strong> 的书名本身就是判决书——初版叫《<strong>Educating Eve: The 'Language Instinct' Debate</strong>》，修订版直接叫《<strong>The 'Language Instinct' Debate</strong>》，把「语言本能」四个字<strong>用引号括起来</strong>，暗示它只是一个待审的提法，而非事实 <span class="tag t-src">原书</span>。</p>
+  <p><strong>批什么</strong>：在行为学（ethology）里，「本能」通常指<strong>不学而会、刻板固定</strong>的行为（如某些鸟的求偶舞）。<strong>但语言显然需要大量的语言输入才会发展</strong>——没有输入，儿童不会自己「长」出一门自然语言。因此批评者说：<strong>「本能」在这里至多是隐喻。</strong></p>
+  <p><strong>这算不算有效批评？——它指出的是真问题，但未必推翻平克的立场</strong>：</p>
+  <ul>
+    <li><strong>平克其实早有防备</strong>。全书第 1 章的标题就自相矛盾地写着「<strong>An Instinct to Acquire an Art</strong>」（习得一门技艺的本能）——<strong>他自己就承认语言是一门「技艺」，需要习得</strong>。他用的「本能」，更接近「先天程序 + 关键期 + 需要环境触发」这个较弱的意思，而不是行为学里那个强意义的「本能」。
+    </li>
+    <li><strong>但批评仍有杀伤力</strong>：因为<strong>「本能」一词一旦加在书的标题上，公众读到的是强意义</strong>。<strong>当一个词在专业里是弱意义、在标题里是强意义时，它就同时是一句科学主张和一句宣传口号。</strong> 这就是为什么这本书最需要被「当作论战读」——<strong>它的书名本身就在选边站。</strong>
+    </li>
+  </ul>
+  <h3>5.6 这本书今天读还成立吗</h3>
+  <p><strong>大体成立的</strong>：</p>
+  <ul>
+    <li><strong>语言的普遍性与自发性</strong>（所有社群都有语言；儿童无需正式教导即可习得；克里奥尔语与聋儿手语现象）——<strong>这一组论据三十年基本没被推翻</strong>。
+    </li>
+    <li><strong>关键期</strong>（儿童早期是语言习得的敏感窗口）——<strong>今天仍是主流共识</strong>。
+    </li>
+    <li><strong>语言的生物基础</strong>（特定脑区与语言相关；语言可与一般智力分离）——<strong>方向正确</strong>，只是「模块化到什么程度」仍有争议。
+    </li>
+    <li><strong>第 12 章对「语言退化论」的拆解</strong>——<strong>几乎每一代人都能重新受益一次</strong>。
+    </li>
+  </ul>
+  <p><strong>要打折的</strong>：</p>
+  <ul>
+    <li><strong>「语言本能 = 自然选择为交流而造的专门适应」</strong>——按 5.3 处理（HCF 2002 起就有正面异议）。
+    </li>
+    <li><strong>「沃尔夫假说全错」这一断言</strong>——按 5.2 处理（强版本可否定，弱版本下得太满，且理论论据被指打空）。
+    </li>
+    <li><strong>「心智是瑞士军刀」式的大规模模块化</strong>——按 5.4 处理（福多的异议至今没被平克一方摆平）。
+    </li>
+    <li><strong>所有「某某语法规则天生」式的单点结论</strong>——它们不是这本书的价值所在。
+    </li>
+  </ul>
+  <p>★ <strong>一个反直觉的判断</strong>：<strong>这本书最耐读的部分，恰恰是它最「不生物学」的部分。</strong> 第 1 章对「语言是本能」的通俗铺陈、第 12 章对语言专家的挖苦、第 3 章论证「语言≠思维」的那些脑筋急转弯式的例子——它们<strong>不依赖任何一项可能被未来研究推翻的实证</strong>，靠的是清晰的区分和对流行谬见的拆解。<strong>而这，也正是它能畅销三十年的真正原因。</strong></p>
+  <p>★ <strong>结构说明</strong>：本书正文 13 章。本部分<strong>逐章</strong>对应，<strong>编号从 6 起连续到 18</strong>。章标题采用英文章名，页码锚定 <strong>Harper Perennial 系列版</strong>（2000 平装与 2010 电子版同页码）；<strong>中文读者请对照第 1 节骨架表换算章号</strong>（2015 简体版整体错位一章）。</p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">6</span><span>第一章：习得一门技艺的本能（第 1 章 · p.1）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「语言到底是什么东西？」——在展开任何证据之前，先把命题摆出来。</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>开篇用一段著名的语言实验：作者只用文字，就能让读者脑中浮现一群具体的、从未见过的画面（章鱼交配、樱桃酒洒在白西装上、肥皂剧式的情节）<span class="tag t-src">原书</span>（第 1 章开篇，内容概述见出版方页面与书评）。
+    </li>
+    <li>提出核心类比：<strong>语言像蜘蛛结网、蝙蝠声呐一样是「本能」</strong><span class="tag t-src">原书</span>（出版方简介原文）。
+    </li>
+    <li>把「语言」与「说话用的具体语言」「文字」「语法规范」区分开：文字是晚近的发明，语法规范是人为的规则。
+    </li>
+    <li>★ 章标题「<strong>An Instinct to Acquire an Art</strong>」本身就是全书最诚实的一句自白：<strong>他说的「本能」，是「习得一门技艺的本能」</strong>——不是不学而会。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一章是全书的「誓师词」，不是论证</strong>。它先给结论、再给故事、最后才是证据（第 2 章起）。<strong>如果你读完第 1 章觉得「好像没证明什么」，那是正常的</strong>——它在做的是「设定议题」。而<strong>章标题里那个「Art（技艺）」和书名里那个「Instinct（本能）」的张力，正是 5.5 那条批评的起点。</strong></p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">7</span><span>第二章：爱说话的动物（第 2 章 · p.12）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「语言是文化发明的吗？」——用事实反驳。</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>克里奥尔语</strong>：在只说皮钦语（无稳定语法的混合语）的社群里长大的下一代，会<strong>自发把皮钦语补全成语法完整的克里奥尔语</strong> <span class="tag t-src">原书</span>（第 2 章主旨；主要依据 Derek Bickerton 的研究）。
+    </li>
+    <li><strong>聋童手语</strong>：听不见声音的孩子会用双手「咿呀学语」，并自行发明<strong>有真实语法的手语</strong>，而不是「我泰山，你珍妮」式的指指点点 <span class="tag t-src">原书</span>（出版方简介概述；尼加拉瓜手语常被引作例证）。
+    </li>
+    <li><strong>语言的普遍性</strong>：所有已知人类社群都有语言；语言的复杂度与其「文明程度」无关。
+    </li>
+    <li>★ 平克在此章顺带拆了一个种族主义式的偏见：美国黑人英语（AAVE）在语法上<strong>不低于</strong>标准英语，某些方面甚至更规整 <span class="tag t-src">原书</span>（中译本章小节「黑人英语更高明」，目录原文）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>本章是最强的一章，但有一个常见的误读</strong>：克里奥尔语与手语的例子常被当作「语言完全不经学习」的证据。<strong>更准确的说法是：语言需要输入才会发展，但输入不必是完整的教育</strong>——这正是 Tomasello 反驳平克的着力点（他同样引用克里奥尔语和家庭手语，却得出「语言不是本能、是经验驱动的创造」的相反结论）<span class="tag t-src">原书</span>（Tomasello 1995, pp.148 附近）。<strong>同一批事实，两个方向的故事——这本书的价值，正在于让你看见两边的逻辑。</strong></p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">8</span><span>第三章：心语（第 3 章 · p.44）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「语言决定思维吗？」——全书最锋利、也最受争议的一章。</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>提出<strong>「心语」（mentalese）</strong>：思维在一个先于任何自然语言的表征系统里进行；自然语言只是它的「翻译输出」<span class="tag t-src">原书</span>（第 3 章主旨）。
+    </li>
+    <li>论证<strong>思维不等于语言</strong>：存在非语言的思维（图像、婴儿与动物的认知）；同一意思可在不同语言里用完全不同的词表达。
+    </li>
+    <li>点名攻击<strong>萨皮尔–沃尔夫假说</strong>：<strong>「著名的萨皮尔–沃尔夫假说……是错的，全错。」</strong>；<strong>「认为思维与语言是同一回事，是所谓『约定俗成的谬见』的一个例子。」</strong><span class="tag t-src">原书</span>（p.57，经 Casasanto 转引，见 D3）
+    </li>
+    <li>顺带清理了「<strong>爱斯基摩人有几百个表示雪的词</strong>」这个都市传说：<strong>「与流行的看法相反，爱斯基摩人并不比英语使用者有更多的雪词。」</strong><span class="tag t-src">原书</span>（p.64，经二手来源转引，见 D3）平克在此明确致敬语言学家 <strong>Geoffrey Pullum</strong> 的〈The Great Eskimo Vocabulary Hoax〉。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一章是全书最需要在阅读时「打问号」的一章。</strong> 两个问题：</p>
+  <ol>
+    <li><strong>平克攻击的是不是沃尔夫真正的主张？</strong> 当代学者（Casasanto 等）指出，<strong>沃尔夫从未说「思维即语言」</strong>，他认为大部分思维是非语言的、但仍受语言影响——<strong>若此说成立，平克的首要理论论据就打空了</strong>（见 5.2）。
+    </li>
+    <li><strong>「全错」这个断言下得过宽。</strong> 今天多数学者接受语言的<strong>弱影响</strong>（Boroditsky 一派的实验），而平克在书里对「弱版本」也一并否定了。
+  <p>★ <strong>读这一章的正确姿势</strong>：享受它的清晰与幽默，但<strong>把「全错」读成「强版本全错」</strong>，而不是「语言与思维毫无关系」。</p>
+    </li>
+  </ol>
+</section>
+
+<section id="s9">
+  <h2><span class="num">9</span><span>第四章：语言如何运作（第 4 章 · p.74）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「人脑里到底装着一套什么样的语法？」</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>引入<strong>生成语法</strong>的核心直觉：有限的词 + 有限的规则 → 无限的句子；句子不是词的线性串，而是<strong>分层的树状结构</strong>（短语结构）。
+    </li>
+    <li>强调<strong>「心理语法」</strong>（mental grammar）是<strong>内隐的</strong>：说话者能正确使用规则，却说不出规则本身——就像母语者从不需要知道「什么叫被动语态」。
+    </li>
+    <li>区分<strong>描述性</strong>（语言实际怎么运作）与<strong>规定性</strong>（某些人认为语言应该怎么用）——这条区分贯穿全书，也是第 12 章的伏笔。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ 本章是全书<strong>最技术、最依赖乔姆斯基框架</strong>的一章。<strong>它讲的「普遍语法」具体内容，正是 5.1、5.3 里争议最大的部分</strong>——今天的「生成语法」与 1994 年的形态已有多次改版。★ 如果这一章让你头大，<strong>跳过它不影响阅读其余各章</strong>（它是工具箱，不是承重墙）。</p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">10</span><span>第五章：词，词，词（第 5 章 · p.119）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「我们脑子里那本词典，是怎么组织和调用的？」</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>构词法（morphology）</strong>：词根、词干、词缀如何组合出新词；为什么英语的规则复数与不规则复数走两条不同的路。
+    </li>
+    <li>★ <strong>不规则动词</strong>是本章的明星证据：children 会说「goed」「breaked」，说明他们在<strong>主动套用规则</strong>，而不是复制听到的形式——<strong>这正是「语言不是模仿」的经典证据之一</strong> <span class="tag t-src">原书</span>（第 5 章主旨）。
+    </li>
+    <li>「<strong>Walkmen 还是 Walkmans？</strong>」这类问题，用来说明规则与例外如何共存 <span class="tag t-src">原书</span>（中译本章小节标题，目录原文）。
+    </li>
+    <li>这一章大量取材于平克本人的研究，是全书<strong>最有「作者自家实验室味道」</strong>的一章。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ 相对安全的一章——<strong>不规则动词的研究是平克最扎实的领域</strong>（他的《词与规则》即专论此题）。<strong>唯一的提醒</strong>：他把「规则计算 + 例外记忆」当成两套系统的证据，而<strong>连接主义（connectionist）研究者主张一套机制就够</strong>——这一争论（Elman 等《Rethinking Innateness》正是针对它）至今未定 <span class="tag t-rep">转述</span>（来源清单）。</p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">11</span><span>第六章：寂静的声音（第 6 章 · p.153）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「我们是怎么把气流变成语音、又把语音听成词的？」</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>音系学</strong>：辅音与元音的区别、发音器官的配合、语音的「模式」（哪些音在一种语言里能组合）。
+    </li>
+    <li>★ 核心谜题：<strong>「为什么语音识别这么难？」</strong>——连续语音里并没有清晰的词边界，同样的音素在不同语境下声学上并不相同；人脑要做的，是从连续信号里「猜」出离散的音位 <span class="tag t-src">原书</span>（第 6 章主旨）。
+    </li>
+    <li>隐含的论证：<strong>语音在人脑里是被当作「离散符号」处理的，而不是原始声波</strong>——这也为「语言是一个计算系统」提供旁证。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ 纯技术章，<strong>与全书的论战关系最远</strong>，也是最不容易受批评波及的一章。<strong>如果你对语音学没兴趣，完全可以跳过。</strong></p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">12</span><span>第七章：会说话的大脑（第 7 章 · p.190）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「一句话进来，我们的大脑在几百毫秒内做完了什么？」</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>句法解析（parsing）</strong>：大脑如何在瞬间处理歧义、分配结构（例如「The horse raced past the barn fell」这类「花园小径句」为什么让人卡壳）。
+    </li>
+    <li>提出一个贯穿性的判据：<strong>「记忆负担轻的语言，才是好语言」</strong>——语法结构往往倾向于减少当场记忆的负荷 <span class="tag t-src">原书</span>（中译本章小节标题，目录原文）。
+    </li>
+    <li><strong>「语迹」（trace）</strong>：理解「Wh-问句」等结构时，听者要在心理上「记住」一个被移走的成分，这种心理操作在神经上有可测的反应 <span class="tag t-src">原书</span>（第 7 章主旨）。
+    </li>
+    <li>论证<strong>语言理解是一个快速、自动、无意识的专门过程</strong>——你不是「慢慢分析」句子，而是「瞬间听懂」。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ 与第 6 章一样偏技术。★ 一个值得注意的张力：<strong>本章强调语言理解高度专门、自动，这支持「语言是模块」；但「记忆与加工资源」的证据，也常被反驳者用来说明语言依赖一般认知能力</strong>（Tomasello 一派）。<strong>同一个现象，两边都能用。</strong></p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">13</span><span>第八章：巴别塔（第 8 章 · p.231）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「既然语言是本能，为什么世界上有几千种语言？」</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>语言多样性由三股力量造成：<strong>变异（革新）· 遗传（代际传递）· 隔离</strong> <span class="tag t-src">原书</span>（中译本章小节「导致语言差异的三大原因（遗传、变异、隔离）」，目录原文）。
+    </li>
+    <li>讨论语言的源头（是否可能重建「世界最初的语言」——平克对此持谨慎态度）与语言的消亡。
+    </li>
+    <li>★ <strong>重要区分</strong>：语言的<strong>多样性</strong>不构成对「语言本能」的反驳——<strong>本能是「学会任何一门语言」的能力，而不是「内在装着某一门语言」</strong>。这一区分是本章的唯一论证功能。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ 本章相对平实，<strong>但「语言本能」与「普遍语法」的关系在这里最容易含混</strong>：如果只是「学会任何语言的能力」，那和 Tomasello 说的「人的一般学习能力」差别就不大了。<strong>平克要的显然更多（具体的内在结构限制），但这部分在本章并未展开</strong>——他把它留到了第 10 章。</p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">14</span><span>第九章：生来就会说话的婴儿，描绘天堂（第 9 章 · p.265）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「儿童是怎么在几年之内、没人教就把一门语言学会的？」——全书承重墙之二。</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>儿童语言能力的发展有<strong>大致固定的路线与时间表</strong>：三岁左右已掌握大部分语法。
+    </li>
+    <li><strong>「输入贫乏论证」</strong>：儿童听到的语料是零散的、充满错误的，不足以归纳出他们实际掌握的抽象规则，<strong>所以一部分规则必是先天给定的</strong> <span class="tag t-src">原书</span>（第 9 章主旨；中译「输入贫乏论证」见出版方目录）。
+    </li>
+    <li><strong>关键期</strong>：语言习得有一个敏感窗口；错过它（如「野孩子」案例）会造成难以弥补的损失 <span class="tag t-src">原书</span>（第 9 章主旨）。
+    </li>
+    <li>章名中的「生来就会说话、描绘天堂」指的是<strong>民间传说与一些可疑「证据」</strong>——平克对此类夸张保持警惕。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>本章的观察事实（时间表、关键期）大体可靠，但「输入贫乏论证」是全书争议最大的逻辑支柱之一。</strong> 反驳者（Tomasello 等）主张：<strong>儿童并非「输入贫乏」，而是带着极强的「意图解读」与「模式发现」能力，从输入里就能学到该学的东西</strong>——不需要额外假设一套先天语法 <span class="tag t-src">原书</span>（Tomasello 2003，哈佛大学出版社）。★ <strong>读这一章时，请把「输入贫乏论证」标成一个「有争议的推论」，而不是「已证成的事实」。</strong></p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">15</span><span>第十章：语言器官与语法基因（第 10 章 · p.302）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「语言在大脑里的『硬件』长什么样？有『语法基因』吗？」</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>脑区</strong>：语言功能主要位于<strong>左半球外侧裂周围区</strong>，包括<strong>布洛卡区</strong>（与语言产出相关）与<strong>韦尼克区</strong>（与语言理解相关）；不同脑区的损伤造成不同类型的<strong>失语症</strong> <span class="tag t-src">原书</span>（第 10 章主旨；中译本章小节见出版方目录）。
+    </li>
+    <li><strong>「语法基因」的间接证据</strong>：某些家族内语言障碍的高聚集，暗示存在与语言相关的遗传因素 <span class="tag t-src">原书</span>（第 10 章主旨）。★ 必须提醒：<strong>平克写作时（1994）还没有 FOXP2 的故事</strong>；他当时能给的只是「间接证据」。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这是全书最多证据被后续研究改写的一章。</strong></p>
+  <ol>
+    <li><strong>脑区-功能的一一对应被大幅软化</strong>：语言并非「布洛卡区管产出、韦尼克区管理解」这么干净；所谓「语言区」在<strong>所有灵长类</strong>身上都存在，人与之的差别更多在<strong>连接与发育</strong>上（迪肯在《The Symbolic Species》里正是这样批评的，见 5.4）<span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>「语法基因」</strong>：后来确证的 FOXP2 并不专管语法，它影响广泛的发声与运动控制——<strong>「语法基因」这个说法今天已被谨慎处理</strong> <span class="tag t-rep">转述</span>（来源清单）。
+  <p>★ <strong>读这一章的正确姿势</strong>：把「特定脑区与语言相关」当作可靠的方向，把「语言器官 = 一块专门脑区 / 一个专门基因」当作<strong>当时的强主张，而不是今天的共识</strong>。</p>
+    </li>
+  </ol>
+</section>
+
+<section id="s16">
+  <h2><span class="num">16</span><span>第十一章：大爆炸（第 11 章 · p.340）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「语言是怎么演化出来的？」——平克与乔姆斯基分道的那一章。</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>平克先驳「<strong>大爆炸说</strong>」——即认为语言是在距今约 3.5 万年后、突然一次性出现的（常引「洞穴壁画 / 突然的艺术」为证）。他认为那是错觉，语言的演化是<strong>渐进的</strong> <span class="tag t-src">原书</span>（第 11 章主旨；中译本章小节「语言能力『大爆炸』只是一种错觉」）。
+    </li>
+    <li>他主张语言是<strong>自然选择为交流而逐步造出的适应</strong>，像眼睛、手一样 <span class="tag t-src">原书</span>（第 11 章主旨）。
+    </li>
+    <li>用「<strong>大象的鼻子</strong>」作类比：一个多用途的专门器官，可以既专又灵活 <span class="tag t-src">原书</span>（中译本章小节「大象的鼻子」，目录原文）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★★ <strong>这是全书在学术上最不稳固的一章。</strong> 平克在此对「语言是自然选择的适应」的<strong>笃定断言</strong>，恰恰是 2002 年 Hauser–Chomsky–Fitch 在《Science》上正面挑战、2005 年平克与 Jackendoff 又逐条回击的对象（见 5.3）。<strong>注意：争论的不是「语言有没有生物基础」，而是「它是不是为交流而被自然选择雕出来的」。</strong> ★ 另外一个细节：本节关于「大爆炸说」的讨论，也牵涉到<strong>考古与古人类学的证据</strong>，而这部分在后续三十年里变化极大——<strong>请以较新的综述为准，不要以本书为准</strong>。</p>
+</section>
+
+<section id="s17">
+  <h2><span class="num">17</span><span>第十二章：语言专家（第 12 章 · p.382）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「那些说『语言正在被毁掉』的人，错在哪里？」——全书最轻松、也最独立的一章。</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>区分<strong>描述性规则</strong>（语法实际如何）与<strong>规定性规则</strong>（某些人认为应该如何）<span class="tag t-src">原书</span>（第 12 章主旨；中译本章小节「规定性规则与描述性规则」，目录原文）。
+    </li>
+    <li>拆解一批「禁用规则」的来历：不许拆分不定式、不许用介词收尾，这些规矩是<strong>18 世纪人为加上去的</strong>，与实际语言运作无关。
+    </li>
+    <li><strong>点名挖苦</strong>「语言专家」（language mavens），如 <strong>William Safire</strong> 与 <strong>Richard Lederer</strong>，认为他们<strong>严重低估了普通人的语言能力</strong> <span class="tag t-src">原书</span>（《出版人周刊》1994-01-31 书评原文概括；作者官网亦如此描述）。
+    </li>
+    <li>主张：语言的「变化」不是「退化」；方言与口语的变异是正常现象。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一章最容易被误解为「怎么说都行」</strong>——但平克并没有主张「没有对错」，他主张的是<strong>区分「语言本身的规则」与「社会约定 / 写作规范」</strong>。★ 同时也要提醒：<strong>这一章是「描述主义 vs 规定主义」之争</strong>，平克站在描述主义一侧，而这一立场在语言学界和公众中都有反对者 <span class="tag t-inf">推断</span>。<strong>读这章时，注意他在「拆规范的权威性」，而不是「拆规范本身」。</strong></p>
+</section>
+
+<section id="s18">
+  <h2><span class="num">18</span><span>结语 / 第十三章：心智的设计（第 13 章 · p.419）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「语言给了我们关于人脑的什么启示？」——全书的收束。</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>把语言放回更大的图景：<strong>心智不是一个通用计算机，而是由许多「本能 / 模块」组成的一套工具</strong>（平克的比喻：<strong>心智像一把瑞士军刀</strong>）<span class="tag t-src">原书</span>（作者官网对本书主旨的表述）。
+    </li>
+    <li>重申全书主线：语言是这一套「心智器官」中最清楚的样本——<strong>它既有生物学根源，又能被科学地拆解</strong>。
+    </li>
+    <li>★ 中文版（2015 浙江人民）把这一章改称「<strong>结语 语言，洞悉人性的一扇窗</strong>」，并把它与「从普遍语法到普遍人性」联系起来 <span class="tag t-src">原书</span>（中译目录，图书馆 OPAC 转录）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一章把全书从「语言学」升级成了「人性论」</strong>——而这一步跳跃，正是第 5.4 节里古尔德、福多、迪肯三方批评的靶心。<strong>「语言是模块」相对有据；「心智是瑞士军刀」则是一个远为宏大的主张</strong>，它把每个心理功能都想象成一个被自然选择精调的模块。<strong>读到这里，请务必和第 5.4 节一起读。</strong></p>
+</section>
+
+<section id="s19">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>概念／人物</th><th>一句话</th><th>出现在</th></tr></thead>
+    <tbody>
+      <tr><td><strong>语言本能</strong>（language instinct）</td><td>语言是人脑先天长出的能力，像蜘蛛结网</td><td>全书核心命题（全书标题）</td></tr>
+      <tr><td><strong>心语</strong>（mentalese）</td><td>思维用的「母语」，先于任何自然语言</td><td>第 3 章</td></tr>
+      <tr><td><strong>普遍语法</strong>（universal grammar）</td><td>一切人类语言共享的先天语法框架</td><td>第 4、10 章（乔姆斯基）</td></tr>
+      <tr><td><strong>输入贫乏论证</strong>（poverty of the stimulus）</td><td>儿童听到的语料不足以学出他们实际的语法，故规则必有一部分先天</td><td>第 9 章</td></tr>
+      <tr><td><strong>关键期</strong>（critical period）</td><td>语言习得的敏感窗口，错过难补</td><td>第 9、10 章</td></tr>
+      <tr><td><strong>克里奥尔语</strong>（creole）</td><td>皮钦语社群的下一代自发补全出的完整语言</td><td>第 2 章</td></tr>
+      <tr><td><strong>语言器官 / 语法基因</strong></td><td>把语言类比成一器官、把遗传因素类比成基因</td><td>第 10 章</td></tr>
+      <tr><td><strong>语言专家</strong>（language mavens）</td><td>平克挖苦的「语言卫士」</td><td>第 12 章</td></tr>
+      <tr><td><strong>Steven Pinker</strong></td><td>本书作者；以不规则动词与语言习得研究闻名</td><td>—</td></tr>
+      <tr><td><strong>Noam Chomsky</strong></td><td>普遍语法之父；本书同侧盟友，但在语言演化上与其分歧</td><td>5.3</td></tr>
+      <tr><td><strong>Derek Bickerton</strong></td><td>克里奥尔语研究的核心来源</td><td>第 2 章</td></tr>
+      <tr><td><strong>Geoffrey Sampson</strong></td><td>著有《The 'Language Instinct' Debate》，否认语言本能</td><td>5.1 / 5.5</td></tr>
+      <tr><td><strong>Michael Tomasello</strong></td><td>以「用法本位」理论主张语言不是本能</td><td>5.1</td></tr>
+      <tr><td><strong>Stephen Jay Gould</strong></td><td>指责演化心理学为「达尔文原教旨主义」</td><td>5.4</td></tr>
+      <tr><td><strong>Jerry Fodor</strong></td><td>模块论祖师，后反对「大规模模块化」</td><td>5.4</td></tr>
+      <tr><td><strong>Terrence Deacon</strong></td><td>主张语言与人脑「共同演化」，非先天模块</td><td>5.4</td></tr>
+      <tr><td><strong>Lera Boroditsky</strong></td><td>当代语言相对论实验研究的代表</td><td>5.2</td></tr>
+      <tr><td><strong>Daniel Casasanto</strong></td><td>指出平克对沃尔夫的批评打空</td><td>5.2</td></tr>
+      <tr><td><strong>Ray Jackendoff</strong></td><td>与平克联署反驳 Chomsky–Fitch–Hauser</td><td>5.3</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s20">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>乔姆斯基一方的立场</strong>：Hauser, Chomsky &amp; Fitch，〈The Faculty of Language〉，<em>Science</em> 298:1569–1579，<strong>2002-11-22</strong>——读第 11 章前的必备对手文本。
+    </li>
+    <li><strong>平克一方的回应</strong>：Jackendoff &amp; Pinker，〈The nature of the language faculty…〉，<em>Cognition</em> 97:211–225，<strong>2005</strong>——想看清这场辩论怎么打的，直接读这篇。
+    </li>
+    <li><strong>「语言不是本能」的代表作</strong>：Tomasello，〈Language is Not an Instinct〉，<em>Cognitive Development</em> 10:131–156，<strong>1995</strong>；以及 Tomasello，《Constructing a Language》，哈佛大学出版社，<strong>2003</strong>。
+    </li>
+    <li><strong>「共同演化」的替代方案</strong>：Deacon，《The Symbolic Species: The Co-Evolution of Language and the Brain》，W. W. Norton，<strong>1997</strong>——《纽约时报》1997-08-10 书评称它「广度惊人，会让普通读者和专家都惊喜」。
+    </li>
+    <li><strong>本书的续篇与平克的其他书</strong>：《词与规则》（<em>Words and Rules</em>，1999，专论不规则动词）、《心智探奇》（<em>How the Mind Works</em>，1997）、《思想本质》（<em>The Stuff of Thought</em>，2007）。
+    </li>
+  </ol>
+</section>
+
+<section id="s21">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>见同目录 <code>语言本能-来源清单.md</code>。</p>
+</section>
+
+<section id="s22">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. 英文初版页数与副标题，两种口径并存</h3>
+  <ul>
+    <li><strong>页数</strong>：<strong>维基百科记 483 页</strong>，而多家古旧书店与 Amazon 记 <strong>494 页</strong>（ISBN 均为 0-688-12141-1／9780688121419，LCCN 93031842）。★ 我未持原书，<strong>无法判断哪个是「正文页数」、哪个是「含前后附页的总页数」</strong>。
+    </li>
+    <li><strong>副标题</strong>：多个书商把 1994 首版标为 <em>The Language Instinct: How the Mind Creates the <strong>Gift of</strong> Language</em>，而通行副标题是 <em>How the Mind Creates Language</em>。这<strong>可能是不同印次 / 不同地区的副标题差异</strong>，也可能是书商著录错误。⇒ <strong>以你手中实物的书名页为准。</strong>
+    </li>
+  </ul>
+  <h3>D2. 章节页码锚定 Harper Perennial 系列版，未逐页核对</h3>
+  <p>英文带页码目录来自<strong>两处官方目录</strong>（ecommerce / HarperCollins 平台的 2000 平装本目录 ＋ Google Books 的 2010 电子版官方目录），<strong>两者逐项一致</strong>（Ch1 p.1 → Index p.517）。★ <strong>但</strong>：① 1994 年初版的页码与此<strong>不同</strong>（另有来源显示首版第 1 章约在 p.15 一带，但那处来源为盗版扫描件，按本项目契约<strong>不予采用</strong>）；② <strong>2007 年 P.S. 版在书末另加「P.S.」材料</strong>，正文页码是否与 2000／2010 完全一致，我<strong>未逐页核对</strong>。⇒ 本报告第 1 节的页码<strong>仅代表 Harper Perennial 系列版</strong>。</p>
+  <h3>D3. 三处带页码的正文引语，均为二手转引</h3>
+  <p><strong>p.57</strong>（「是错的，全错」／「约定俗成的谬见」）、<strong>p.64–65</strong>（爱斯基摩雪词）这三处，我<strong>没有读原书页面</strong>：p.57 的引文经 <strong>Daniel Casasanto 的剑桥百科条目</strong>逐字引用（注明 Pinker 1994:57）；p.64–65 的引文经<strong>公开的引文汇编与学术专著（Goddard 书）</strong>引用（注明 Pinker 1994:64–65）。<strong>措辞可信、页码可查，但均属「经人转引」。</strong></p>
+  <h3>D4. 2015 简体版的章号错位与是否删节</h3>
+  <ul>
+    <li><strong>可确认的</strong>：2015 浙江人民版目录为「<strong>引言 ＋ 01–11 ＋ 结语 ＋ 附录</strong>」，与英文 <strong>13 章</strong>一一对应但<strong>整体错位一章</strong>（英文第 1 章→引言，第 13 章→结语）。此判断有<strong>三方一致</strong>（图书馆 OPAC 转录、国有出版信息平台 CIP、书店目录）。
+    </li>
+    <li><strong>❌ 未核实的</strong>：该版<strong>是否删节</strong>、其「附录：语言本能的研究进展」与「专访」<strong>是否完整对应 2007 英文 P.S. 版</strong>的增补材料。⇒ <strong>请以实物版权页与目录为准。</strong>
+    </li>
+  </ul>
+  <h3>D5. 两个「荣誉数字」未能交叉验证到底</h3>
+  <ul>
+    <li><strong>「被译成多少种语言」</strong>：中文来源说「6 种文字」，英文聚合来源说「20 种以上」——<strong>两者都没有给出可核的权威清单</strong>，本报告<strong>不采用任何具体数字</strong>。
+    </li>
+    <li><strong>「二十世纪百本好书」</strong>：作者官网与英文资料作 <strong>《American Scientist》「One Hundred Best Science Books of the Century」</strong>；而多数中文来源写作 <strong>「《科学美国人》（Scientific American）1999 年」</strong>。★ <strong>American Scientist 与 Scientific American 是两本不同的杂志</strong>，中文来源很可能张冠李戴。本报告按作者官网口径记为 <strong>American Scientist</strong>，并在此标注中文来源的差异。
+    </li>
+  </ul>
+  <h3>D6. 我主动排除的来源</h3>
+  <ul>
+    <li>★ <strong>盗版整本书 PDF</strong>：检索中确曾出现（一个托管在个人站点上的 <em>The-Language-Instinct</em> 完整 PDF，即搜索命中的 <code>f.javier.io</code> 链接）。按本项目契约「<strong>只用合法来源，任何目的不例外</strong>」，<strong>一律不采用</strong>——即使它内含首版正文与页码。
+    </li>
+    <li><strong>AI 生成的 SEO / 聚合内容</strong>：本报告在检索中识别出多篇（如某些自动生成的百科页、聚合页），其特征是<strong>把 American Scientist 写成 Scientific American、把书名副标题张冠李戴、给出无法核实的「译成 N 种语言」</strong>。<strong>一律不采信</strong>。
+    </li>
+    <li><strong>高校课程页 / 个人主页托管的文本</strong>：本报告<strong>没有</strong>把任何「整本书 PDF」当依据；仅将一篇<strong>期刊论文</strong>（Tomasello 1995）的 PDF 用于核对<strong>该论文自身的页码与原文</strong>，并以 ERIC 编目独立佐证其存在。
+    </li>
+  </ul>
+  <h3>D7. 「平克与乔姆斯基翻脸」这个说法的边界</h3>
+  <p>本报告只采用<strong>有确切出处的一处科学分歧</strong>（Hauser–Chomsky–Fitch 2002 vs Jackendoff–Pinker 2005，均见 5.3）。★ <strong>网上流传的「二人交恶」「乔姆斯基骂平克」之类说法，本报告一律不采信</strong>——因为：① 乔姆斯基为本书写了公开好评；② 两人在「语言先天 / 普遍语法」这一底座上仍然同侧；③ 我未能找到任何一处署名、可核的「人身交恶」文本。<strong>分歧在「语言怎么来的」，不在「语言是不是先天的」。</strong></p>
+  <h3>D8. 「语言天性」这一中文译名查无实据</h3>
+  <p>检索未见任何以《语言天性》为名的本书中译本；中文世界统一作《语言本能》。⇒ 若你在某处见到「语言天性」被当作本书译名，<strong>很可能是转述错误</strong>。</p>
+  <h3>D9. 【作者谈话】档的口径说明（重要）</h3>
+  <p>本书作者平克书外言论极多，但<strong>大多数谈的是他别的书</strong>（TED 2005 演讲《What our language habits reveal》明确是<strong>《思想本质》的预告</strong>，不是《语言本能》）。因此本报告：</p>
+  <ul>
+    <li><strong>计入本书【作者谈话】档</strong>的，只有<strong>直接谈本书的公开访谈</strong>——NPR《Fresh Air》（主持人 Terry Gross，1994 年，节目标题即《Linguist Steven Pinker Discusses the Instinct for Language》）<span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li><strong>未计入该档</strong>但用作出处的：平克《So How Does the Mind Work?》（<em>Mind &amp; Language</em> 20(1)，2005）——那是他对福多<strong>关于《心智探奇》</strong>的回应，本报告按「作者书外公开文本」引用，并在正文标明其<strong>针对的是另一本书</strong>。
+    </li>
+  </ul>
+  <h3>D10. 两处中译著录细节，我标注但未完全核死</h3>
+  <ul>
+    <li><strong>2004 汕头大学版的译者属名</strong>：多个来源（百度百科、中文百科全书、Google Books 版本页）均标为「洪兰 译」，本报告据此著录；但该版为<strong>沿用台湾译本</strong>，<strong>具体的授权与属名方式我未能看到版权页</strong>。⇒ 以实物版权页为准。
+    </li>
+    <li><strong>2015 浙江人民版的页数</strong>：三个口径并存——<strong>472 页</strong>（人大云书房、当当、亚马逊中文）／<strong>492 页</strong>（国家出版发行信息平台 CIP）／<strong>504 页</strong>（2023 浙江科学技术出版社重印本）。本报告正文取 <strong>472 页</strong>并并列其余口径。★ 差异可能来自「正文页数 vs 含附录总页数」或不同印次，<strong>我无法判定</strong>。
+    </li>
+  </ul>
+</section>
+
+<footer>
+  生成于 2026-10-04 · 来源清单与交叉验证记录见同目录 <code>语言本能-来源清单.md</code><br>
+  本页引文按<b>带页码引文（B 级）</b>处理：标注页码的条目取自出版方页面、作者官网与署名二手来源的逐字引用，<b>我未持原书</b>，页码请以原书复核；批评文献的姓名、篇名、刊物、卷期与日期已逐条给出；未标页码者仍是二手转引。★ 本书<b>是一场论战的一部分</b>——平克在此书中系统反驳「语言是文化产物」与「语言决定思维（沃尔夫假说）」，与乔姆斯基在「普遍语法／语言本能」上同侧、却在其后的语言演化之争中公开分歧。因此<b>第 5 节（争议与局限）刻意写得最实</b>：本书媒体好评极多，而<b>来自专业语言学、哲学与生物学界的批评更晚、更硬</b>，后者才是稀缺信息。★ 另请留意 <b>2015 简体版章号整体错位一章</b>。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

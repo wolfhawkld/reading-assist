@@ -1,0 +1,22 @@
+{
+  "subtitle": "The Worlds I See: Curiosity, Exploration, and Discovery at the Dawn of AI",
+  "title_suffix": "阅读指引与精华解析",
+  "meta": [
+    ["作者", "李飞飞（Fei-Fei Li，1976— ）"],
+    ["初版", "2023-11-07 · Flatiron Books / A Moment of Lift Book · 336 页"],
+    ["中译", "赵灿译 · 中信出版集团 2024-04 · 432 页"],
+    ["结构", "12 章 · 个人史与 AI 学科史双线"],
+    ["荣誉", "《金融时报》2023 年度好书 · 奥巴马 AI 推荐书单"],
+    ["状态", "未标注已读／想读，两层结构同时满足"]
+  ],
+  "legend_title": "可信度标注说明（全文通用）",
+  "legend": [
+    ["t-src", "原书", "有页码，或 ≥2 个彼此独立的来源逐字一致的<strong>书中文字</strong>"],
+    ["t-talk", "作者谈话", "作者在访谈、演讲、听证会中的公开表述——<strong>不是书里的文字</strong>"],
+    ["t-rep", "转述", "来自二手概括，措辞可能与原书有出入"],
+    ["t-inf", "推断", "我的推理，无直接来源支撑"]
+  ],
+  "legend_note": "无公开全文；但<b>三处引文有书中页码可追</b>（p.229／p.275／p.284），其余为经二手来源转引。带 ⚠ 的条目见附录 C。",
+  "legend_extra": "<h3>引文核验级别（2026-10-02 补）</h3>\n  <p style=\"margin:8px 0 0;font-size:12.5px;color:var(--ink3)\">本书落在 <b>B 级（带页码引文）</b>：无公开全文，但已有三处带<b>书中页码</b>的可署名引文（<b>p.229／p.275／p.284</b>，出自 ACRL 同行评审期刊《College &amp; Research Libraries》的署名书评）。</p>",
+  "footer_note": "本页引文按<b>带页码引文（B 级）</b>处理：标注页码的条目引自有页码的公开书评／论文，<b>我未持原书</b>，页码请以原书复核；未标页码者仍是二手转引。请以原书为准。"
+}

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《瓦尔登湖》· 索引碎片</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+
+/* ===== 索引碎片页的版式覆盖（无侧栏，单列）===== */
+main{margin:0 auto;max-width:840px;padding:0 22px 90px}
+.hero{padding:40px 0 20px}
+.hero .kick{font-size:11.5px;letter-spacing:.08em;color:var(--ink3);font-weight:600;margin-bottom:6px}
+.frag{margin:20px 0 0;padding:20px 22px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.frag .row{margin:0 0 11px;font-size:14px;color:var(--ink2);line-height:1.75}
+.frag .row>b{color:var(--ink);font-weight:600;margin-right:2px}
+.frag ol.sub{margin:6px 0 0 0;padding-left:22px;font-size:13.5px;color:var(--ink2)}
+.frag ol.sub li{margin:4px 0}
+.frag code{background:var(--hover);padding:1px 5px;border-radius:4px;font-size:.92em}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+.chip{font-size:11.5px;padding:2px 9px;border-radius:5px;background:var(--hover);color:var(--ink2)}
+.cfoot{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
+.cfoot a{font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;text-decoration:none;
+  background:var(--accent-bg);color:var(--accent);border:1px solid var(--linkline)}
+.cfoot a:hover{background:var(--linkhover)}
+.cfoot a.ghost{background:var(--panel);color:var(--ink2);border-color:var(--line2)}
+ol.dir{list-style:none;margin:18px 0 0;padding:0}
+ol.dir li{padding:10px 14px;border:1px solid var(--line);border-radius:9px;background:var(--panel);margin:8px 0}
+ol.dir a{font-weight:600;color:var(--accent);text-decoration:none;font-size:14.5px}
+ol.dir a:hover{text-decoration:underline}
+ol.dir .m{font-size:12.5px;color:var(--ink3);margin-top:3px}
+</style>
+</head>
+<body>
+<div id="ctl"><button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button></div>
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+<header class="hero">
+  <div class="kick">索引碎片 · 瓦尔登湖</div>
+  <h1>《瓦尔登湖》</h1>
+<div class="chips"><span class="chip">状态：未标注（按两层结构同时满足已读／想读）</span><span class="chip">收录：2026-09-27</span></div>
+</header>
+<div class="frag">
+    <div class="row"><b>作者</b>亨利·戴维·梭罗（Henry David Thoreau，<em>Walden; or, Life in the Woods</em>, 1854）</div>
+    <div class="row"><b>状态</b>未标注（按两层结构同时满足已读／想读）</div>
+    <div class="row"><b>收录</b>2026-09-27</div>
+    <div class="row"><b>产出</b><code>瓦尔登湖/</code> — <code>.md</code>（57 KB）＋ <code>.html</code>（80 KB）＋ <code>-来源清单.md</code>（20 KB）</div>
+    <div class="row"><b>结构</b>18 章 ＋ 扉页题词，无前言、无自序 → 下部按<strong>四季结构</strong>分 8 节（§1–§8），覆盖全部 18 章；每节标题后附 <strong>Princeton 1971 版的真实页码区间</strong>作为路标</div>
+    <div class="row"><b>备注</b>★★ 本报告<strong>首次让引文核验达到「真·一手」</strong>——Walden 已入公有领域，全文可取得（Project Gutenberg #205）＋ 拿到了 <strong>Princeton 1971 版的 18 章起始页码</strong>。前四本从没有过这个条件。★ 也因此暴露了新问题：<strong>「原书」档内部其实有三个梯度</strong>（附录 D1），我如实标出来了，没有把「Wikiquote 分章引文」和「Gutenberg 全文」混为一档。★ 三条最有价值的发现：</div>
+    <ol class="sub">
+      <li>★★ <strong>「他生前被忽视、死后才被承认」是后世建构的神话。</strong> 真相是<strong>两件事被混为一谈</strong>：销量确实慢（5 年卖 2,000 册后绝版），但<strong>评论界看见了</strong>——目前已发现的 <strong>66 篇初期书评中 46 篇「强烈正面」</strong>，爱默生<strong>出版后不到三周</strong>就说「全美国的人都在为《瓦尔登湖》高兴，只是不敢说出来」。⇒ 拆掉了围绕这本书最常见的悲情滤镜。<strong>他的同代人看懂了他，只是没跟他走。</strong></li>
+      <li>★★ <strong>中文世界对这本书有独立于全球叙事的接受史，且造神与祛魅都发生在同一年。</strong> <strong>海子</strong>（1986 读、写《梭罗这人有脑子》、1989-03-26 卧轨时随身四本书之一）→ <strong>苇岸</strong>（1987 读两遍、因此从诗转向散文）造神；<strong>1996 年《读书》第 5 期程映红《瓦尔登湖的神话》</strong>→ 第 9 期汪跃华《两个瓦尔登湖》＋石鹏飞《文明不可拒绝》→ 何怀宏等反驳，完成祛魅；<strong>同年末徐迟（82 岁）坠楼</strong>。⇒ 报告明确拒绝了「海子带着它自杀、徐迟译完它也自杀，所以这书危险」这个<strong>因果误置</strong>叙事。</li>
+      <li>★★ <strong>中文译本问题进入第三层：不只是数量爆炸，而是书目本身是错的。</strong> 中文译本 <strong>40 种以上</strong>（各源 28／30+／35／35 条不一）。而几乎每个中文书目都列着「<strong>1978 年，吴明实译</strong>」——<strong>「吴明实」不是人，是港台盗印本给徐迟译本编的假名</strong>（「无名氏」谐音），盗印本同时把书名改成《湖滨散记》。另一条：曹仁雪译（2003）被书目标注「<strong>与徐迟版本一字不差</strong>」——<strong>抄袭被写进了书目</strong>。⇒ 通用判据：<strong>公版书的「书单」本身是不可信来源</strong>。★ 结构上最有用的一个数字：<strong>「经济篇」78 页 ＝ 全书 24%</strong>（我按 Princeton 版页码算的），而给方法论的第二章推到了第 81 页。⇒ <strong>「读不下去」是结构问题，不是读者的问题</strong>，报告因此明确给出「先读第 2 章和第 18 章，再回头跳读经济篇」的读法。★ 载体问题：<strong>《论公民的不服从》常被附录在《瓦尔登湖》后面，它不是本书的一部分</strong>（Gutenberg 版即如此）。★ 一处系统性误认：中文网络流传的「你能把你的心安静下来吗……」<strong>是徐迟写在译序里的话，不是梭罗的话</strong>。</li>
+    </ol>
+    <div class="row"><b>待核实</b>① ★ <strong>引文核验有三个梯度</strong>（Gutenberg 全文核验／Wikiquote 分章引文／二手转引），抓取 Gutenberg 时<strong>被截断在「经济篇」</strong>，故除第 1 章外逐字程度较弱；</div>
+    <ol class="sub">
+      <li>★ <strong>未取得《读书》1996 年论战的原文全文</strong>——<strong>这是本报告最大的短板</strong>，5.3 节基于第三方综述；</li>
+      <li><strong>未取得 Schulz《Pond Scum》英文全文</strong>，标【原书】的引文来自三篇回应的转引；</li>
+      <li><strong>Princeton 版总页数两说</strong>（409／418），未采信，只用「正文至 334 页、索引自 335 页起」；</li>
+      <li>湖深 <strong>102 英尺 vs 107 英尺</strong>未取信；⑥ 中文译本数量 <strong>28／30+／35／35 条</strong>四说并存；</li>
+      <li>火灾面积 <strong>300 vs 330 英亩</strong>；⑧ 「税案次日由姑母代缴」仅有自带 citation needed 的来源；</li>
+      <li>人民网一篇把火灾年份写作 <strong>1884</strong>（实为 <strong>1844-04-30</strong>）——<strong>中文来源的明确硬伤，已单列</strong>。</li>
+    </ol>
+    <div class="row"><b>通用判据（本报告新增两条）</b>★ <strong>「公版书的书单不可信」</strong>——当一本书的译本多到几十种，书目会自动混入 <strong>假译者名</strong>（盗印所致）与<strong>抄袭条目</strong>，且这些错误会被后续来源无限复制。凡是「某书有 N 个译本」这类清单，要问一句「这份清单是谁维护的」。★ <strong>「与书相关的非正常死亡」极易被绑成「这本书危险」</strong>——同一本书的两个著名读者先后自杀，与书之间没有任何可证因果；<strong>这类叙事应当被明确拆解，而不是含糊转述</strong>。</div>
+</div>
+<div class="cfoot">
+  <a href="../瓦尔登湖/瓦尔登湖.html">打开阅读页</a>
+  <a class="ghost" href="../瓦尔登湖/瓦尔登湖.md">内容正本</a>
+  <a class="ghost" href="../瓦尔登湖/瓦尔登湖-来源清单.md">来源清单</a>
+  <a class="ghost" href="瓦尔登湖.md">本页 Markdown</a>
+</div>
+</main>
+<script>/* 主题切换（本页自用的小脚本，不依赖书页主脚本） */
+(function(){var b=document.getElementById('themebtn');if(!b)return;
+function sync(){b.textContent=(document.documentElement.getAttribute('data-theme')==='dark')?'◐ 浅色':'◐ 深色';}
+b.addEventListener('click',function(){
+  var d=document.documentElement.getAttribute('data-theme')==='dark';
+  var n=d?'light':'dark';
+  document.documentElement.setAttribute('data-theme',n);
+  try{localStorage.setItem('ra-theme',n)}catch(e){}
+  sync();});
+sync();})();</script>
+</body>
+</html>

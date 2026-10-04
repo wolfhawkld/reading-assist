@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《思考，快与慢》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《思考，快与慢》<small>阅读指引与精华解析 · 2026-10-04</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 六个核心论点</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 中文译本怎么选</a>
+    <a href="#s5">5 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s6">6 引言：为什么是「水冷器旁的谈话」（Introduction · p.3–20）</a>
+    <a href="#s7">7 系统 1 与系统 2：两个角色登场（第 1–3 章 · p.21–56）</a>
+    <a href="#s8">8 联想的机器与认知放松（第 4–7 章 · p.57–102）</a>
+    <a href="#s9">9 判断如何发生：答案替换与 WYSIATI（第 8–9 章 · p.103–124）</a>
+    <a href="#s10">10 小数定律与锚定（第 10–11 章 · p.125–148）</a>
+    <a href="#s11">11 可得性、典型性与「因果压过统计」（第 12–16 章 · p.149–200）</a>
+    <a href="#s12">12 回归均值与驯服直觉预测（第 17–18 章 · p.201–228）</a>
+    <a href="#s13">13 理解错觉与有效性的错觉（第 19–22 章 · p.229–280）</a>
+    <a href="#s14">14 外部视角与资本家的引擎（第 23–24 章 · p.281–306）</a>
+    <a href="#s15">15 前景理论：伯努利的错误与一场革命（第 25–26 章 · p.307–329）</a>
+    <a href="#s16">16 禀赋效应、坏事件与四重模式（第 27–29 章 · p.330–366）</a>
+    <a href="#s17">17 罕见事件、风险政策与心理账户（第 30–32 章 · p.367–402）</a>
+    <a href="#s18">18 反转、框架与两个自我（第 33–38 章 · p.403–466）</a>
+    <a href="#s19">19 结论：三个区分（Conclusions · p.467–480）</a>
+    <div class="grp">附录</div>
+    <a href="#s20">A 关键概念与人物速查</a>
+    <a href="#s21">B 延伸阅读</a>
+    <a href="#s22">C 来源清单</a>
+    <a href="#s23">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《思考，快与慢》阅读指引与精华解析</h1>
+  <div class="sub">Thinking, Fast and Slow</div>
+  <div class="meta">
+    <div><b>作者</b>丹尼尔·卡尼曼（Daniel Kahneman，1934-03-05 – 2024-03-27）—— 以色列裔美国心理学家；希伯来大学心理学与数学学士（1954）、加州大学伯克利分校心理学博士（1961）；普林斯顿大学心理学与公共事务荣休教授（Eugene Higgins 讲席）；<b>2002 年诺贝尔经济学奖</b>（表彰他与 Amos Tversky 把心理学引入经济学、尤以「不确定状况下的决策」；Tversky 1996 年已故，未能共享）；2003 年 Grawemeyer 心理学奖（与 Tversky 共享）；2013 年获美国总统自由勋章</div>
+    <div><b>英文初版</b>Farrar, Straus and Giroux（纽约）2011-10-25 · 正文 499 页 · ISBN 9780374275631（精装 0374275637）· OCLC 706020998 · 书目（Bibliography）pp. 447–481</div>
+    <div><b>英文英版／平装</b>Allen Lane（伦敦）2011 · 499 页 · ISBN 9781846140556 ／ Penguin Books 2012 · 499 页 · ISBN 9780141033570 · <b>2024 重印（Reissued 2024）</b> —— ★ <b>本报告英文页码统一锚定 Penguin 版</b></div>
+    <div><b>中译（大陆·初版）</b>《思考，快与慢》· 胡晓姣、李爱民、何梦莹 译 · 中信出版社 2012-07 · 精装 · 424 页（另记 448 页）· ISBN 9787508633558 · 定价 69.00 元 · CIP 数据核字(2011)第 095938 号</div>
+    <div><b>中译（大陆·第二版）</b>《思考，快与慢（第二版）》· 江生、于华 译 · 赵佳颖 审校 · 中信出版集团 2025-04 · 平装 · xv + 442 页（另记 446 页）· ISBN 9787521766912 · 定价 98.00 元 · 291 千字 —— 为纪念卡尼曼而重译</div>
+    <div><b>中译（繁体·台湾）</b>《快思慢想》· 洪蘭 译 · 遠見天下文化 2012-10-31 · 軟精裝 · 576 页 · ISBN 9789863200611 · 定价 NT$500 —— ★ 该译本有<b>著名的公开翻译质量争议</b>，见正文第 4 节</div>
+    <div><b>★ 大陆简体版</b><b>存在，且有两个版本</b>（中信 2012 初版 → 2025 第二版）；买简体不必绕道繁体。另需注意台版《快思慢想》的译本争议</div>
+    <div><b>其他语言</b>据出版方与百科，已译成 <b>40 余种语言</b>；累计销量口径不一（260 万 / 700 万 / 1000 万册，为不同时点，见来源清单）</div>
+    <div><b>荣誉</b>美国国家科学院传播奖／年度最佳图书 <b>2012</b> ·《洛杉矶时报》图书奖（Current Interest）<b>2011</b> ·《纽约时报书评》2011 年度十佳 · 美国图书馆协会（ALA）2012 非虚构类推荐书 ·《经济学人》《华尔街日报》2011 年度好书</div>
+    <div><b>状态</b>未标注已读／想读 —— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有可定位文本支撑的段落 —— 含 <b>Penguin 官方试读 PDF</b>（版权页、带页码的完整目录、引言与第 1–3 章正文）、图书馆编目的<b>版本与目录</b>，以及<b>署名可查的复现／批评文献</b>（凡引批评者观点，正文均写明姓名、刊物、卷期页）</li>
+    <li><span class="tag t-talk">作者谈话</span> 出自作者本人<b>书外</b>的公开文本 —— 2012-09-26 关于启动效应的公开邮件、2017-02-14 在 Replicability-Index 博文下的公开承认、以及 2021-05-18 与 Ben Newell 的对谈。★ 三者均为可定位的一手原文</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、书评转述、百科或读者笔记，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本书<b>仍在版权期内</b>，我未持原书、也未访问受控借阅。★ 本报告的一处特殊优势是：<b>英文完整目录与页码取自出版方自有站点的官方试读 PDF</b>（Introduction p.3 → Index p.585），且该试读含引言与第 1–3 章正文，<b>可逐页核对</b>——故「引言＋第 1–3 章」这一截面达 A 级。最大的边界在<b>第 4–38 章正文未逐字核对</b>，且<b>页码锚定 Penguin 版</b>（与 FSG 版可能不同，见附录 D1）。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-04 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书按 <b>B 级（带页码引文）</b>标注，<b>分层看：引言与第 1–3 章对应截面达 A</b>。该截面的<b>带页码正文引语</b>（p.3／p.4／p.5–6／p.10／p.11／p.13／p.14／p.23／p.44–51／p.49）直接出自 <b>Penguin 官方试读 PDF</b>，不是二手转引。★ 需指出：<b>第 4–38 章我没有逐字读到</b>，相关表述以目录、出版方简介与署名文献为准，标 `【转述】` 或来源明确。批评文献的<b>姓名、篇名、刊物、卷期页</b>均已逐条给出（Doyen 2012 · <i>PLoS ONE</i> 7(1):e29081；Hagger 2016 · <i>Perspectives on Psychological Science</i> 11(4):546–573；Klein 2014 · <i>Social Psychology</i> 45(3):142–152；Gigerenzer 1996 · <i>Psychological Review</i> 103(3):592–596；Glöckner 2016 · <i>Judgment and Decision Making</i> 11(6):601–610）。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>这本书没有发明「人是不理性的」——它发明了一套给普通人的「错误命名系统」，并顺手重构了经济学对「选择」的理解。</strong></p>
+  <p>它讲的是：我们的心智有两个工作模式——<strong>System 1 快、自动、不费力、情绪化、总在编故事</strong>；<strong>System 2 慢、费力、讲逻辑、但天生懒惰</strong><span class="tag t-src">原书</span>（p.23）。大多数判断由 System 1 生成，System 2 通常只是「盖章」，只在被难住时才接管。由此产生的错误<strong>不是随机的，而是系统性的</strong>，因此可以被预测、命名、并（部分地）预防<span class="tag t-src">原书</span>（p.3）。</p>
+  <p>一句话结论（也是全书最该记住的一句）：<strong>「你以为是你在思考，其实多数时候是 System 1 替你答了一个更简单的问题，而你没有察觉。」</strong>——这句话的正式名字是<strong>答案替换（substitution）</strong>，是全书所有偏差的发动机<span class="tag t-src">原书</span>（p.14）。</p>
+  <p><strong>它不是什么</strong>：不是神经科学（「系统」是隐喻）；不是自助手册（卡尼曼反复承认，知道偏差<strong>几乎不能</strong>让你少犯）；也不是「理性 vs 非理性」的判决书——他自己是<strong>最反对用「非理性」形容人的那个人</strong>。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>下表把<strong>五个部分、38 章、结论与两篇附录</strong>一次列全。★ <strong>页码取自 Penguin 官方试读的完整目录</strong>（出版方一手，这是本报告最硬的一层版式事实）。</p>
+  <table>
+    <thead><tr><th>#</th><th>章节（英文原题）</th><th>页</th><th>这一部分在回答什么</th></tr></thead>
+    <tbody>
+      <tr><td>—</td><td>Introduction</td><td>3</td><td>用「水冷器旁的谈话」定调：这本书提供的是谈错误的<strong>词汇</strong></td></tr>
+      <tr><td><strong>I</strong></td><td><strong>Two Systems 两个系统</strong></td><td></td><td>心智如何「不假思索」地产生判断</td></tr>
+      <tr><td>1</td><td>The Characters of the Story</td><td>21</td><td>介绍两位「角色」：System 1 与 System 2</td></tr>
+      <tr><td>2</td><td>Attention and Effort</td><td>35</td><td>努力是有成本的；瞳孔是心智耗能的仪表</td></tr>
+      <tr><td>3</td><td>The Lazy Controller</td><td>44</td><td>★ <strong>自我损耗（ego depletion）与以色列假释法官</strong>——本报告 5.1 点名</td></tr>
+      <tr><td>4</td><td>The Associative Machine</td><td>57</td><td>★ <strong>联想记忆与启动效应（priming）</strong>——复制危机命中的核心</td></tr>
+      <tr><td>5</td><td>Cognitive Ease</td><td>68</td><td>认知放松：顺眼的东西更容易被信</td></tr>
+      <tr><td>6</td><td>Norms, Surprises, and Causes</td><td>82</td><td>心智如何自动建立「常态」并找因果</td></tr>
+      <tr><td>7</td><td>A Machine for Jumping to Conclusions</td><td>91</td><td>草率结论与 <strong>WYSIATI</strong>（所见即全部）</td></tr>
+      <tr><td>8</td><td>How Judgments Happen</td><td>103</td><td>基本判断如何被自动生成</td></tr>
+      <tr><td>9</td><td>Answering an Easier Question</td><td>112</td><td><strong>答案替换</strong>：难题被偷换成容易题</td></tr>
+      <tr><td><strong>II</strong></td><td><strong>Heuristics and Biases 启发式与偏差</strong></td><td></td><td>为什么我们这么难做统计式思考</td></tr>
+      <tr><td>10</td><td>The Law of Small Numbers</td><td>125</td><td>对随机性的误读；小数定律</td></tr>
+      <tr><td>11</td><td>Anchors</td><td>137</td><td>★ <strong>锚定效应</strong>——至今最稳固的偏差之一</td></tr>
+      <tr><td>12</td><td>The Science of Availability</td><td>149</td><td>可得性启发：容易想起＝更常见</td></tr>
+      <tr><td>13</td><td>Availability, Emotion, and Risk</td><td>158</td><td>可得性如何塑造风险感与政策</td></tr>
+      <tr><td>14</td><td>Tom W's Specialty</td><td>168</td><td>典型性与基础比率之冲突</td></tr>
+      <tr><td>15</td><td>Linda: Less is More</td><td>179</td><td>合取谬误；「琳达问题」</td></tr>
+      <tr><td>16</td><td>Causes Trump Statistics</td><td>191</td><td>因果叙事压过统计信息</td></tr>
+      <tr><td>17</td><td>Regression to the Mean</td><td>201</td><td>回归均值；飞行教官的故事</td></tr>
+      <tr><td>18</td><td>Taming Intuitive Predictions</td><td>213</td><td>如何把直觉预测拉回地面</td></tr>
+      <tr><td><strong>III</strong></td><td><strong>Overconfidence 过度自信</strong></td><td></td><td>我们对自己的判断有多不可靠</td></tr>
+      <tr><td>19</td><td>The Illusion of Understanding</td><td>229</td><td>叙事谬误与后见之明</td></tr>
+      <tr><td>20</td><td>The Illusion of Validity</td><td>240</td><td>★ 有效性错觉：面试与选股的「技能幻想」</td></tr>
+      <tr><td>21</td><td>Intuitions vs. Formulas</td><td>255</td><td>★ 公式预测常常胜过专家直觉</td></tr>
+      <tr><td>22</td><td>Expert Intuition: When can we trust it?</td><td>268</td><td>★ <strong>专家直觉只在「有效环境」里可信</strong></td></tr>
+      <tr><td>23</td><td>The Outside View</td><td>281</td><td>外部视角与参考类别预测</td></tr>
+      <tr><td>24</td><td>The Engine of Capitalism</td><td>292</td><td>乐观偏见与创业者的「引擎」</td></tr>
+      <tr><td><strong>IV</strong></td><td><strong>Choices 选择</strong></td><td></td><td>前景理论及其后果</td></tr>
+      <tr><td>25</td><td>Bernoulli's Errors</td><td>307</td><td>伯努利的效用理论错在哪里</td></tr>
+      <tr><td>26</td><td>Prospect Theory</td><td>317</td><td>★ <strong>前景理论</strong>——诺奖的核心，全书最硬的部分</td></tr>
+      <tr><td>27</td><td>The Endowment Effect</td><td>330</td><td>禀赋效应与市场交易</td></tr>
+      <tr><td>28</td><td>Bad Events</td><td>342</td><td>损失厌恶；「坏事件」的权重</td></tr>
+      <tr><td>29</td><td>The Fourfold Pattern</td><td>353</td><td>四重模式：偏好如何随概率翻转</td></tr>
+      <tr><td>30</td><td>Rare Events</td><td>367</td><td>罕见事件被过分看重</td></tr>
+      <tr><td>31</td><td>Risk Policies</td><td>381</td><td>用「风险政策」对抗逐次决策的偏差</td></tr>
+      <tr><td>32</td><td>Keeping Score</td><td>390</td><td>心理账户与处置效应</td></tr>
+      <tr><td>33</td><td>Reversals</td><td>403</td><td>偏好反转：联合评估 vs 单独评估</td></tr>
+      <tr><td>34</td><td>Frames and Reality</td><td>414</td><td>★ 框架效应：换一个说法，换一个选择</td></tr>
+      <tr><td><strong>V</strong></td><td><strong>Two Selves 两个自我</strong></td><td></td><td>幸福、记忆与「谁在替你过日子」</td></tr>
+      <tr><td>35</td><td>Two Selves</td><td>431</td><td>经验自我 vs 记忆自我</td></tr>
+      <tr><td>36</td><td>Life as a Story</td><td>441</td><td>记忆自我如何把人生讲成故事</td></tr>
+      <tr><td>37</td><td>Experienced Well-Being</td><td>447</td><td>经验幸福怎么测</td></tr>
+      <tr><td>38</td><td>Thinking About Life</td><td>455</td><td>生活满意度与「聚焦错觉」</td></tr>
+      <tr><td>—</td><td>Conclusions</td><td>467</td><td>三个区分：经验/记忆、System 1/2、以及「自由度」</td></tr>
+      <tr><td>—</td><td>Appendix A: Judgment Under Uncertainty</td><td>481</td><td>重印 Tversky &amp; Kahneman 1974 年 <em>Science</em> 原文</td></tr>
+      <tr><td>—</td><td>Appendix B: Choices, Values, and Frames</td><td>505</td><td>重印 Kahneman &amp; Tversky 1983 年 <em>American Psychologist</em> 原文</td></tr>
+      <tr><td>—</td><td>Notes / Acknowledgments / Index</td><td>531 / 583 / 585</td><td>注释、致谢、索引</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法提示一</strong>：这本书<strong>不是「一章一个论点」，而是「一章一个偏差」</strong>。<strong>五大部各有分工</strong>——第 I 部给你「机器」，第 II 部给你「偏差清单」，第 III 部讲「过度自信」，第 IV 部是<strong>前景理论</strong>（理论最硬），第 V 部转向幸福。★ <strong>如果你只读一部，读第 IV 部</strong>：它是最经得起时间检验、也最不依赖社会心理学小样本实验的部分。</p>
+  <p>★ <strong>读法提示二</strong>：<strong>不必按顺序读。</strong> 每章基本自足（约 10–15 页），卡尼曼自己说这本书是围绕「水冷器旁的谈话」写的。<strong>想快速判断值不值，读引言（p.3–20）＋ 第 9 章（答案替换，p.112）＋ 第 26 章（前景理论，p.317）</strong>，一小时足够。</p>
+  <p>★ <strong>读法提示三</strong>：<strong>附录 A、B 是真论文</strong>。Appendix A 就是那篇被引逾 5 万次的 1974 年 <em>Science</em> 文章，Appendix B 是 1983 年 <em>American Psychologist</em> 的「Choices, Values, and Frames」。★ 注意：<strong>网上常把「附录 B 当成 1979 年 Econometrica 的前景理论论文」，这是错的</strong>——前景理论原文是 1979 年，但<strong>书里重印的附录 B 是 1983 年那篇</strong><span class="tag t-src">原书</span>（Penguin 版权页逐字列出）。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>六个核心论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：真正的主角是 System 1，而全书交付的是一套「词汇表」，不是一个理论</h3>
+  <p><strong>主张</strong>：卡尼曼把心智生活描述成「一个只有两个人物的心理剧」——<strong>System 1 是「英雄」，System 2 自以为在掌控，其实常是配角</strong><span class="tag t-src">原书</span>（p.23）。他追求的不是新理论，而是「更丰富的词汇」，让水冷器旁的谈话能把错误<strong>叫出名字</strong>：halo effect、锚定、可得性、WYSIATI……</p>
+  <p><strong>依据</strong>：他在引言里说明，1974 年那篇文章之所以影响远超预期，一个重要原因是<strong>他们几乎总是把问卷原题全文附上</strong>，读者「亲眼看见自己栽了」<span class="tag t-src">原书</span>（p.10）。<strong>这是「词汇表」思路的原始版本</strong>：不是教你，是让你<strong>当场体验</strong>。</p>
+  <p><strong>为什么重要</strong>：★ 这决定了<strong>该怎么读这本书</strong>——把它当<strong>体验练习</strong>读（做题、认出自己），而不是当<strong>理论教材</strong>背。也决定了它为什么<strong>不设防</strong>：一个隐喻（两个系统）没法被「证伪」，只能被指出它掩盖了什么（见 5.4）。</p>
+  <h3>论点二：几乎所有系统性错误，都来自同一台发动机——「答案替换」</h3>
+  <p><strong>主张</strong>：面对难题，System 1 会<strong>偷偷换成一个更容易的问题</strong>，然后把那个答案当作原题的答案交上去，<strong>而你察觉不到这个替换</strong>。卡尼曼的原话是：<em>when faced with a difficult question, we often answer an easier one instead, usually without noticing the substitution</em><span class="tag t-src">原书</span>（p.14）。</p>
+  <p><strong>依据</strong>：书里那个投资经理的段子就是范例——你问他「该不该买福特股票」（难），他的 System 1 答的是「我喜不喜欢福特的车」（易），并据此下单<span class="tag t-src">原书</span>（p.13）。锚定、可得性、典型性、情感启发式，<strong>全都是答案替换的不同版本</strong>。</p>
+  <p><strong>为什么重要</strong>：这是全书<strong>唯一一个「总公式」</strong>。★ 如果你记不住 38 个偏差，就记住这一个：<strong>当你在一个难题上迅速有了确定感，先问「我真正回答的是哪个更容易的问题」。</strong></p>
+  <h3>论点三：损失厌恶／前景理论是全书最硬的部分，也最不依赖那些后来出问题的实验</h3>
+  <p><strong>主张</strong>：人对<strong>「参照点的变化」</strong>（而非财富总量）计价；同样大小的<strong>损失带来的痛，约是收益带来的爽的两倍</strong>。这是 1979 年前景理论的核心，也是卡尼曼拿诺贝尔奖的理由<span class="tag t-src">原书</span>（p.11、第 25–29 章）。</p>
+  <p><strong>依据</strong>：书里用最朴素的例子开场——「抛硬币，正面赢 130 美元、反面输 100 美元，你赌不赌？」多数人不赌，尽管期望值为正<span class="tag t-src">原书</span>（p.11）。★ 这正是前景理论要解释的：<strong>人不是最大化期望值，而是最大化「心理账户」里的得失感。</strong></p>
+  <p><strong>为什么重要</strong>：★★ <strong>这是本报告要你记住的第二条</strong>——因为<strong>在「哪些内容仍稳固」的切分里，前景理论／损失厌恶属于最稳固的一类</strong>（见 5.2）。复制危机打的是第 3、4 章那一类小样本社会心理学实验，<strong>没有打掉前景理论</strong>。所以<strong>第 IV 部是全书最值得当「当代科学」读的一部</strong>。</p>
+  <h3>论点四：过度自信（叙事谬误／有效性错觉／规划谬误）与「两个自我」是两处最实用的发现</h3>
+  <p><strong>主张</strong>：① 我们对「自己理解世界」的信心，多半来自<strong>故事的连贯</strong>而非证据，这就造出<strong>后见之明、有效性错觉、规划谬误</strong><span class="tag t-src">原书</span>（第 19–24 章）；② 我们体内有<strong>两个自我</strong>——在场体验的「经验自我」和事后叙事并替我们做决定的「记忆自我」，<strong>后者常为了一个更好的故事而牺牲前者的真实体验</strong><span class="tag t-src">原书</span>（第 35–38 章）。</p>
+  <p><strong>依据</strong>：卡尼曼用「冷水实验」「结肠镜实验」等说明：<strong>记忆遵循「峰终定律」，而不是时长</strong>；人宁愿要一段更短、但结尾不那么痛苦的过程。</p>
+  <p><strong>为什么重要</strong>：★ 这是全书<strong>最能直接改行为的两块</strong>。第 20–24 章对求职、招聘、投资、项目排期有近乎操作性的价值；第 35–38 章是<strong>理解「我为什么会为一段不好的回忆否定整段旅程」</strong>的钥匙。<strong>中文读者最容易略过第 V 部，其实它最值得单独一读。</strong></p>
+  <h3>论点五：直觉不是坏东西——专家直觉在「有效环境＋长期反馈」下是可信的</h3>
+  <p><strong>主张</strong>：★ <strong>这本书常被误读成「直觉不可靠」。</strong> 卡尼曼明确说：<strong>当环境有规律、且人能通过长期练习获得反馈时，专家直觉是真本事</strong>——消防队长、棋手、医生就是这样。他的判据是两条：<strong>环境是「有效」的（有可学习的规律）＋ 有充分练习的机会</strong><span class="tag t-src">原书</span>（第 22 章）。反之，<strong>股票选股、长期政治预测这类「低效度环境」里，专家直觉就是幻觉</strong>（第 20 章）。</p>
+  <p><strong>依据</strong>：第 22 章是卡尼曼与 Gary Klein（专研专家直觉的心理学家）<strong>合作写成的</strong>——两人最初立场相反，最后<strong>求同</strong>：把「直觉何时可信」写成了可操作的判据<span class="tag t-src">原书</span>（第 22 章）；引言里也引 Herbert Simon 的定论：<em>Intuition is nothing more and nothing less than recognition</em><span class="tag t-src">原书</span>（p.13）。</p>
+  <p><strong>为什么重要</strong>：★ <strong>这是对「人类非理性」这个流行误读的最有力纠正。</strong> 卡尼曼讨厌「非理性」这个词；他说自己真正想谈的是<strong>直觉思维的奇迹</strong>，只是缺陷更有戏、更受关注<span class="tag t-rep">转述</span>（《21 世纪经济报道》2024 年回顾引其访谈）。</p>
+  <h3>论点六：全书最脆弱的一环，恰恰是它最出名的部分——启动效应与自我损耗</h3>
+  <p><strong>主张</strong>：第 3 章的<strong>自我损耗</strong>与第 4 章的<strong>启动效应</strong>，大量依赖 1990–2000 年代的小样本社会心理学实验；<strong>其中多项在 2011 年后的复制危机中未能复现</strong>。★ 这不是「书老了」，是<strong>书的论证结构对某几类证据的依赖度特别高</strong>。</p>
+  <p><strong>依据</strong>：第 3 章用 Baumeister 的「饼干 vs 萝卜」「葡萄糖柠檬水」等实验支撑「意志力像燃料会耗尽」<span class="tag t-src">原书</span>（p.44–51）；第 4 章用 Bargh 的「老年人启动／佛罗里达效应」等支撑「无意识的线索能改变行为」。★ 这两条线<strong>后来都被大规模预注册复现实验削弱甚至推翻</strong>——其中「老年人走路变慢」的复现失败，正是卡尼曼 2012 年那封公开信的导火索（详见 5.1）。</p>
+  <p><strong>为什么重要</strong>：★★ <strong>这就是本报告第 5 节存在的理由。</strong> 把这本书的「稳固区」（前景理论、锚定、可得性、框架效应）与「待验证区」（启动、自我损耗）分开，是这份解读<strong>最值钱的一件事</strong>。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <ol>
+    <li><strong>先读引言（p.3–20）</strong>，它自带全书地图，并交代了「两个系统」只是隐喻。跳过它，你会把书读成一本「神经科学科普」。
+    </li>
+    <li><strong>别按顺序从第 1 章啃。</strong> 按「想解决什么问题」跳读：想抓自己的决策错误→ 第 11、12、19–24 章；想懂诺奖级理论→ 第 25–29 章；想理解幸福与记忆→ 第 35–38 章。
+    </li>
+    <li>★ <strong>把第 3、4 章当「有历史价值的章节」读</strong>，而不是当「当代科学结论」读（理由见第 5 节）。
+    </li>
+    <li><strong>配一支笔做书里的题。</strong> 这本书的价值在<strong>当场认出自己</strong>——1974 年那篇文章的成功就靠这一点（p.10）。
+    </li>
+    <li><strong>想省时间</strong>：引言 ＋ 第 9 章 ＋ 第 26 章 ＋ 附录 A（1974 年 <em>Science</em> 原文，6 页）≈ 全书精华的一小时版。
+    </li>
+  </ol>
+  <h3>如果你是「已读」</h3>
+  <ol>
+    <li><strong>回头做一次「稳固区／待验证区」标注</strong>：凡依赖<strong>启动效应、自我损耗</strong>的结论先打问号，其余（前景理论、锚定、可得性、框架、规划谬误）可放心留存。<strong>这一步会让这本书的价值立刻清晰</strong>。
+    </li>
+    <li><strong>读第 22 章</strong>。它被讨论得最少，却是对「直觉不可信」这一流行版解读最直接的纠偏。
+    </li>
+    <li><strong>读卡尼曼 2021 年与 Ben Newell 的对谈</strong>（UNSW），听他<strong>用第一人称复盘启动效应那段弯路</strong>——那是理解这本书「自我修正能力」的最佳一手材料<span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li><strong>顺手读《Noise》（2021，与 Sibony、Sunstein 合著）</strong>：它把本书「偏差」的框架，扩展成「噪声」——<strong>同一个判定在不同时间/不同人之间的随机差异</strong>，并承认噪声常比偏差更大。
+    </li>
+  </ol>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是必需的，因为本书的中文版本状况比一般书复杂：大陆有两种、台湾有一种，且台湾版有著名的翻译争议。</strong></p>
+  <p><strong>先说最要紧的一条</strong>：</p>
+  <blockquote>
+    <p><strong>中文版共有「一条大陆线、一条台湾线」</strong>。大陆是中信（2012 初版 → 2025 第二版），台湾是天下文化（2012《快思慢想》，洪蘭 译）。<strong>如果只买一本，选大陆中信 2025 第二版</strong>——它是唯一在卡尼曼去世后<strong>重新审校、重译</strong>的版本。</p>
+  </blockquote>
+  <p><strong>大陆两个版本对比</strong>：</p>
+  <table>
+    <thead><tr><th></th><th>中信 2012 初版</th><th>中信 2025 第二版</th></tr></thead>
+    <tbody>
+      <tr><td>书名</td><td>《思考，快与慢》</td><td>《思考，快与慢（第二版）》</td></tr>
+      <tr><td>译者</td><td>胡晓姣、李爱民、何梦莹</td><td><strong>江生、于华</strong>（赵佳颖 审校）</td></tr>
+      <tr><td>出版</td><td>2012-07</td><td><strong>2025-04</strong></td></tr>
+      <tr><td>规格</td><td>精装（有平装印次）· 424 页（另记 448）</td><td>平装 · xv + 442 页（另记 446）· 291 千字</td></tr>
+      <tr><td>ISBN</td><td>9787508633558</td><td>9787521766912</td></tr>
+      <tr><td>定价</td><td>69.00 元</td><td>98.00 元</td></tr>
+      <tr><td>定位</td><td>初版</td><td><strong>为纪念卡尼曼而全新审校、重译</strong></td></tr>
+    </tbody>
+  </table>
+  <p><strong>台湾版</strong>：《快思慢想》· 洪蘭 译 · 天下文化 2012-10-31 · 576 页 · ISBN 9789863200611 · NT$500<span class="tag t-src">原书</span>（书店编目）。</p>
+  <p>★ <strong>台湾版有一段必须知道的历史：2013 年的「洪蘭译本争议」。</strong> 读者与学者指出该译本<strong>错误密集</strong>——加州州立大学学者<strong>王偉雄</strong>逐句比对后撰文直斥其为「<strong>不要臉的劣譯</strong>」，举出的例子包括把 <em>could solve it, with paper and pencil, if not without</em>（大意为「就算不能心算，用纸笔也能算出来」）译成完全走样的中文<span class="tag t-src">原书</span>（台湾媒体报道；王偉雄原文经多篇转引）。台湾师范大学翻译所教授<strong>周中天</strong>评论说，「洪蘭譯本的現象，其實只是冰山一角」<span class="tag t-rep">转述</span>。<strong>后续结果</strong>：诚品 2013-08 率先接受读者退换书，博客来、金石堂等 9 月初跟进<span class="tag t-rep">转述</span>。译者本人回应「虛心接受批評」「做事憑良心」「並非逐字翻譯」<span class="tag t-src">原书</span>（媒体报道其原话）。</p>
+  <p><strong>★ 该怎么选，判据很简单</strong>：</p>
+  <ul>
+    <li><strong>读简体 → 选中信 2025 第二版</strong>（最新、经审校、纪念版）。
+    </li>
+    <li><strong>读繁体 → 该知道《快思慢想》的译本质量有公开争议</strong>；若在意译文准确，优先考虑大陆新版，或对照英文原版阅读。
+    </li>
+    <li><strong>不要为「哪个版本更全」纠结</strong>：英文本各版正文一致，差别主要在<strong>页码与前置材料</strong>，不影响内容（见 D1）。
+    </li>
+  </ul>
+  <p>★ <strong>两个必须提醒的坑</strong>：</p>
+  <ol>
+    <li><strong>本书中文网络上「章节导读」「精读笔记」极多，但相当一部分含 AI 生成的错误。</strong> 例如把<strong>附录 A／B</strong> 说成「1974 与 1979 两篇论文」——<strong>书里附录 B 实为 1983 年那篇</strong>（Penguin 版权页可证）。凡与官方目录对不上的「内容总结」，一律不采信。
+    </li>
+    <li><strong>「2.6 万册／700 万册／1000 万册」这类销量数字在中文页面里被互相抄错。</strong> 三个数字来自<strong>不同时点</strong>的不同来源（见来源清单），<strong>都不是编造，但不能并列当同一件事</strong>。
+    </li>
+  </ol>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本报告最该细读的一节。</strong> 本书获得的是<strong>压倒性的媒体好评</strong>（《纽约时报书评》《经济学人》《金融时报》《卫报》一致称好，Freeman Dyson 在《纽约书评》也给了长评），但<strong>专业界的批评同样密集，而且更晚、更硬</strong>——且<strong>最硬的一条来自作者自己</strong>。下面五条按「锋利程度」排序。</p>
+  <h3>5.1 ★★ 最系统的一条批评来自作者本人：他 2017 年公开承认「过于相信统计效力不足的研究」</h3>
+  <p><strong>事情的起点</strong>：2012 年 1 月，<strong>Doyen、Klein、Pichon 与 Cleeremans</strong> 在 <em>PLoS ONE</em> 发表论文，<strong>未能复现</strong> Bargh 等人 1996 年那个被写进书里的著名实验——「老年人启动后走路变慢」。★ 论文标题本身就是判决：<em>Behavioral Priming: It's All in the Mind, but Whose Mind?</em>（「行为启动：都在心里，但在谁心里？」），并指出走路速度效应<strong>只在实验者的预期被操纵时才出现</strong><span class="tag t-src">原书</span>（Doyen et al. 2012, <em>PLoS ONE</em> 7(1): e29081）。</p>
+  <p><strong>作者的第一反应（2012）</strong>：<strong>2012-09-26</strong>，卡尼曼给十几位社会心理学研究者发了一封<strong>后来被公开的邮件</strong>，标题是「A proposal to deal with questions about priming effects」。信里他写道：「<strong>我看到一场事故正在逼近（I see a train wreck looming）</strong>」「<strong>你们这个领域如今已成了心理学研究诚信问题的典型样本（poster child）</strong>」「<strong>你们应当集体为这团乱局做点什么</strong>」，并建议设一个「<strong>雏菊链（daisy chain）</strong>」式复现机制<span class="tag t-talk">作者谈话</span>（Nature 2012-09-26 邮件原文）。★ 此事由 <strong>Ed Yong 在 <em>Nature</em> 2012-10-03 报道</strong>（标题「Nobel laureate challenges psychologists to clean up their act」，DOI 10.1038/nature.2012.11535）<span class="tag t-src">原书</span>。</p>
+  <p><strong>作者的正式认领（2017）</strong>：2017-02-02，<strong>Ulrich Schimmack、Moritz Heene 与 Kamini Kesavan</strong> 在「Replicability-Index」博客发表 <strong>《Reconstruction of a Train Wreck: How Priming Research Went off the Rails》</strong>，用他们提出的 R-Index 逐条评估卡尼曼书里第 4 章引用的文献，结论是「<strong>令人瞠目的（eye-opening and jaw-dropping）</strong>：该章引用 12 篇文章，<strong>11 篇的 R-Index 低于 50%</strong>」<span class="tag t-src">原书</span>。</p>
+  <p><strong>卡尼曼于 2017-02-14 在博文下公开回复</strong>，原文第一句是：</p>
+  <blockquote>
+    <p><strong>「我接受这篇博客的基本结论……这篇博客绝对说对的一点是：我过于相信了统计效力不足的研究（I placed too much faith in underpowered studies）。」</strong><span class="tag t-talk">作者谈话</span></p>
+  </blockquote>
+  <p>他还点出一个<strong>残酷的自嘲</strong>：<strong>他和 Tversky 发表的第一篇论文，恰恰是关于「小数定律」的</strong>——研究的正是「研究者如何错误地相信小样本结果」。「那篇文章写于 1969 年，我却没能把它的讯息内化」<span class="tag t-talk">作者谈话</span>。★ <strong>这条回复经 <em>Retraction Watch</em>（2017-02-20）报道，并经该站向卡尼曼本人确认「他确实把这段回复发在了 Replicability-Index 博客上」</strong><span class="tag t-src">原书</span>。</p>
+  <p><strong>作者后来的复盘（2021）</strong>：在 UNSW 与 Ben Newell 的对谈中，卡尼曼说：「写《思考，快与慢》时，我对启动效应的文献印象极深……<strong>我认为自己当时是轻信的（gullible）</strong>……<strong>那真的很伤我，因为我曾对它寄予厚望</strong>」；又说这十年的收获是「心理学的方法学<strong>巨大地进步了</strong>——样本更大、预注册、更谨慎，<strong>换个说法，这是一次重要的自我欺骗，但这不是造假</strong>」<span class="tag t-talk">作者谈话</span>（UNSW Centre for Ideas，2021-05-18）。</p>
+  <p>★ <strong>这条批评为什么最有力</strong>：<strong>它不是外行指控，而是作者的自陈。</strong> 而且它精准命中了全书<strong>结构上最依赖小样本证据的两章</strong>（第 3、4 章）。 ★ <strong>但要公平</strong>：★ <strong>卡尼曼 2017 年的表态是有边界的</strong>——他明确写「<strong>我仍然相信行为可以被启动</strong>」，认为「语义启动、无意识加工、观念-动作激活」这些砖块都有充分证据；他反对的是<strong>「用简单花招反复地、持续地操纵人」这一强版本</strong><span class="tag t-talk">作者谈话</span>。<strong>把他的话读成「启动效应是假的」，是对他的又一次误读。</strong></p>
+  <h3>5.2 ★★ 第二件必须讲的事：哪些结论仍然稳固，哪些应当打折</h3>
+  <p>★ <strong>这是本节的真正核心。</strong> 复制危机<strong>不是把整本书打掉</strong>，而是<strong>划出了一条线</strong>。下表是本报告根据公开的复现文献整理的<strong>切分判断</strong><span class="tag t-inf">推断</span>（依据见右列来源）：</p>
+  <table>
+    <thead><tr><th>结论</th><th>今天的地位</th><th>依据</th></tr></thead>
+    <tbody>
+      <tr><td><strong>前景理论／损失厌恶</strong></td><td>✅ <strong>稳固</strong></td><td>诺奖核心；多年跨文化复现广泛支持</td></tr>
+      <tr><td><strong>锚定效应</strong></td><td>✅ <strong>稳固</strong>（尤其「被给出的锚」这一形）</td><td><strong>Many Labs 1（Klein et al. 2014）</strong> 在 <strong>36 个独立样本、6,344 人</strong>中成功复现（Jacowitz &amp; Kahneman 1995 版）；但<strong>「公然随机的锚」这类版本复现不佳</strong></td></tr>
+      <tr><td><strong>可得性启发</strong></td><td>✅ 稳固</td><td>认知心理学长期支持</td></tr>
+      <tr><td><strong>框架效应（如亚洲疾病问题）</strong></td><td>✅ 稳固</td><td>多次注册复现一致</td></tr>
+      <tr><td><strong>规划谬误 / 外部视角 / 参考类别预测</strong></td><td>✅ 稳固且实用</td><td>项目预测实务广泛应用</td></tr>
+      <tr><td><strong>峰终定律 / 经验自我 vs 记忆自我</strong></td><td>✅ 大体稳固</td><td>记忆与幸福研究领域持续支持</td></tr>
+      <tr><td><strong>「老年人走路变慢」启动效应</strong></td><td>⚠️ <strong>复现失败</strong></td><td>Doyen et al. 2012, <em>PLoS ONE</em> 7(1): e29081</td></tr>
+      <tr><td><strong>第 4 章整章的启动效应（含金钱启动等）</strong></td><td>⚠️ <strong>大体不可信</strong></td><td>Schimmack/Heene/Kesavan 2017；Many Labs 1 中「旗帜启动」「货币启动」<strong>未复现</strong></td></tr>
+      <tr><td><strong>自我损耗（意志力像燃料会耗尽）</strong></td><td>❌ <strong>基本被推翻</strong></td><td><strong>Hagger et al. 2016</strong> 预注册多实验室复现（23 实验室、N=2,141），效应量 <strong>d ≈ 0.04</strong>，与零无异；此前 Carter &amp; McCullough 2014/2015 元分析已指出发表偏倚</td></tr>
+      <tr><td><strong>以色列假释法官「饭前更严厉」</strong></td><td>⚠️ <strong>存疑，未撤回</strong></td><td>原研究 Danziger et al. 2011, <em>PNAS</em> 108(17):6889–6892；Weinshall-Margel &amp; Shapard 2011, <em>PNAS</em> 108(42):E833 指出<strong>案件排序非随机</strong>；Glöckner 2016, <em>Judgment and Decision Making</em> 11(6):601–610 显示<strong>仅排序伪影即可复现该图形</strong></td></tr>
+    </tbody>
+  </table>
+  <p><strong>一句话结论</strong>：★ <strong>这本书的「主菜」（前景理论、锚定、可得性、框架、过度自信）基本还在；被你记住的那几道「炫技小菜」（启动、自我损耗、假释法官）要打折。</strong> 而<strong>格外值得一提的是</strong>：<strong>「小数定律」这个方法论警告本身是对的</strong>——卡尼曼恰恰是<strong>没听自己的话</strong>才犯了错，这让 5.1 那条批评有了一种理论上的完美闭环。</p>
+  <h3>5.3 ★ 第三条：Gigerenzer 的「生态理性」——不是说你错了，是说你的前提错了</h3>
+  <p><strong>批评者</strong>：<strong>Gerd Gigerenzer</strong>（马克斯·普朗克人类发展研究所心理学家，「快速节俭启发式」与「生态理性」纲领的提出者）。</p>
+  <p><strong>指控</strong>：★ <strong>它不否认卡尼曼找到了偏差，它否认的是「把偏离概率论一律叫作错误」这个前提。</strong> Gigerenzer 主张：<strong>启发式是否理性，取决于它是否适配所处的环境</strong>。在<strong>噪声大、样本小</strong>的环境里，<strong>少用信息反而降低预测误差</strong>（这正是「偏差-方差权衡」的数学结果）。他的实验证据包括：<strong>识别启发式</strong>（德国学生在判断美国城市大小时<strong>胜过</strong>美国学生，因为他们「认得少」反而能用名字当有效线索）；<strong>取最佳启发式</strong>匹配甚至超过多元回归。</p>
+  <p><strong>原始出处</strong>：Gigerenzer, G. (1991). <em>How to make cognitive illusions disappear: Beyond "heuristics and biases"</em>. <strong>European Review of Social Psychology, 2(1): 83–115</strong>；以及著名的 1996 年 <strong>《Psychological Review》</strong> 对垒——<strong>Kahneman &amp; Tversky (1996), "On the reality of cognitive illusions", 103(3): 582–591</strong> 与 <strong>Gigerenzer (1996), "On narrow norms and vague heuristics: A reply to Kahneman and Tversky", 103(3): 592–596</strong><span class="tag t-src">原书</span>（两篇的卷期页由多来源一致确认）。</p>
+  <p><strong>卡尼曼的回应</strong>：在书中他其实<strong>吸收了</strong>一部分——他承认启发式「很有用」，并在第 2 章引入「认知放松」来解释「为什么用频率表述题会更容易」。但他在 1996 年的回应里坚持：<strong>改用「自然频率」只是让心算变容易，并未解决更深层的认知错觉</strong><span class="tag t-rep">转述</span>。★ <strong>这场争论至今没有定论</strong>，可以概括为「<strong>冷和平</strong>」——双方都承认对方有贡献，但<strong>对「这些发现到底意味着什么」根本分歧</strong>。</p>
+  <p><strong>为什么它对本书尤其重要</strong>：★ Gigerenzer 的靶心<strong>不是某一章，而是整本书的叙事语气</strong>——「人系统性地犯错」。<strong>如果你读完本书变得对人类判断力过度悲观，Gigerenzer 是必要的解药。</strong></p>
+  <h3>5.4 ★ 第四条：「两个系统」是一个好用的隐喻，但它掩盖了太多东西</h3>
+  <p><strong>批评者</strong>：包括 <strong>Keith Stanovich</strong> 与其他决策研究者。★ <strong>注意：Stanovich 恰恰是卡尼曼在书中明确借用「System 1 / System 2」术语来源的人</strong>——卡尼曼写的是「我采用 Stanovich 与 West 提出的术语」<span class="tag t-src">原书</span>（p.23）。</p>
+  <p><strong>指控</strong>：<strong>System 1 / System 2 这个二分，把许多彼此可分离的现象打包在了一起</strong>——自动 vs 受控、内隐 vs 外显、并行 vs 串行、快 vs 慢；而这些在实证文献里<strong>是可分离的</strong>，用一个「系统」概括会丢掉关键区别<span class="tag t-rep">转述</span>。</p>
+  <p><strong>卡尼曼自己的立场</strong>：★ <strong>他从不否认这一点，反而主动承认。</strong> 书里白纸黑字说这是「一个只有两个人物的心理剧」，是<strong>隐喻</strong>，不是解剖学<span class="tag t-src">原书</span>（p.14、p.23）。<strong>所以这条批评更像是对「读者误用」的提醒，而不是对作者的揭露。</strong> —— ★ <strong>但它值得记</strong>：中文世界大量二次解读把「系统 1/系统 2」当成<strong>大脑里的两个实体</strong>来讲，这是本书最普遍的误用。</p>
+  <p><strong>同向的另一条</strong>：<strong>Nassim Taleb</strong> 的「<strong>游戏谬误（ludic fallacy）</strong>」——前景理论的实验多用<strong>概率已知的赌局</strong>，而真实世界的概率<strong>未知甚至不可知</strong>；把「已知风险」下的发现外推到「奈特式不确定性」，是<strong>用对的方法研究了错的问题</strong><span class="tag t-rep">转述</span>。★ 卡尼曼在书里<strong>主动引用了 Taleb</strong>（第 III 部主题受其影响，p.15）<span class="tag t-src">原书</span>，这段对话因此更像是<strong>沿着同一方向的补强</strong>。</p>
+  <h3>5.5 这本书今天读还成立吗</h3>
+  <p><strong>成立的（可放心引用）</strong>：</p>
+  <ul>
+    <li><strong>前景理论 / 损失厌恶</strong>——诺奖级核心，复现广泛支持；
+    </li>
+    <li><strong>锚定效应</strong>——尤其「被给出的锚」这一形，Many Labs 1 大规模复现；
+    </li>
+    <li><strong>可得性启发、框架效应、规划谬误、过度自信三件套（叙事谬误／有效性错觉／后见之明）</strong>——长期稳固；
+    </li>
+    <li><strong>峰终定律与「两个自我」</strong>——幸福与记忆研究持续支持；
+    </li>
+    <li><strong>第 22 章「专家直觉何时可信」的判据（有效环境＋长期反馈）</strong>——不依赖任何单一争议实验，<strong>是全书最可直接使用的判断工具</strong>。
+    </li>
+  </ul>
+  <p><strong>要打折的（读时留个心眼）</strong>：</p>
+  <ul>
+    <li><strong>第 3 章</strong>（自我损耗、葡萄糖、假释法官）——按 5.1、5.2 处理；
+    </li>
+    <li><strong>第 4 章</strong>（整章的启动效应）——按 5.1、5.2 处理；
+    </li>
+    <li><strong>所有「某某启动效应」式的单点结论</strong>——它们不是这本书的价值所在；
+    </li>
+    <li><strong>任何把「两个系统」当神经实体的表述</strong>——按 5.4 处理。
+    </li>
+  </ul>
+  <p>★ <strong>一个反直觉的判断</strong>：<strong>这本书最经得起时间检验的部分，恰恰是最「不炫」的部分</strong>——前景理论用的是<strong>简单的赌局实验</strong>，专家直觉那章用的是<strong>与对手合作求同</strong>的论证；而它当年最抓眼球、被引用最多、被脱口秀讲了无数遍的「启动效应」，如今最站不住。<strong>这本身，就是卡尼曼在书里反复讲的那件事的又一个例证：故事越连贯，我们越容易信。</strong></p>
+  <p>★ <strong>结构说明</strong>：本书正文 38 章 + 结论 + 两篇附录。为免把 38 节摊得过薄，我按<strong>作者自己的五部分逻辑</strong>合并为 14 节——凡合并的都是<strong>同一部分内的连续章节</strong>。合并只在节标题里标明，<strong>章号与页码一一对应到 Penguin 版</strong>（页码取自官方目录）。</p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">6</span><span>引言：为什么是「水冷器旁的谈话」（Introduction · p.3–20）</span><span class="caret">▾</span></h2>
+  <h3>这一节在回答什么</h3>
+  <p>作者开篇就交代了这本书的目标读者与使用场景：<strong>不是讲台，而是办公室的饮水机旁</strong>——他希望丰富人们<strong>谈论别人判断与选择</strong>时的词汇<span class="tag t-src">原书</span>（p.3）。他解释<strong>为什么从「别人的错误」讲起</strong>：因为我们更容易指出别人的错，而「预期会有聪明的八卦」是一种比新年决心更管用的自我批评动力<span class="tag t-src">原书</span>（p.3）。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>全书的方法论起源</strong>：<strong>1969 年</strong>他请 Tversky 到希伯来大学代课，两人由此开始十余年合作；他们发现<strong>「连统计学家也不是好的直觉统计学家」</strong><span class="tag t-src">原书</span>（p.5–6）。
+    </li>
+    <li><strong>「演示优于实验」</strong>：他们的文章<strong>总是附上原题全文</strong>，让读者<strong>自己栽一次</strong>——这是它影响超出心理学的关键<span class="tag t-src">原书</span>（p.10）。
+    </li>
+    <li><strong>两个「新东西」</strong>：本书不是复述旧研究，而是加入了（a）<strong>情绪</strong>在直觉判断中的分量（「情感启发式」），（b）<strong>专家直觉</strong>的正面说法（第 22 章）<span class="tag t-src">原书</span>（p.12–14）。
+    </li>
+    <li><strong>对「非理性」的拒绝</strong>：他明确说聚焦错误<strong>不贬低人的智力</strong><span class="tag t-src">原书</span>（p.4）。
+    </li>
+    <li><strong>术语来源</strong>：System 1 / System 2 借用自 Stanovich 与 West<span class="tag t-src">原书</span>（p.23）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ 引言的<strong>叙事效率极高</strong>——它替全书设置了一个「我们在温和地自我反省」的框架。但要留意：<strong>这个框架本身对读者是一种「启动」</strong>（它让你以「找错」的心态读下去）。卡尼曼自己会承认这一点，只是他大概会说：这正是我想要的效果<span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">7</span><span>系统 1 与系统 2：两个角色登场（第 1–3 章 · p.21–56）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>第 1 章给出两位「主角」的定义；第 2 章用<strong>瞳孔实验</strong>证明「心智努力是真实的生理成本」；第 3 章提出「<strong>最省力法则</strong>」，并引入<strong>自我损耗</strong>与<strong>假释法官</strong>这两块后来争议最大的内容。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>两个系统</strong>：System 1「<strong>自动且快速，几乎不费力，没有自主控制感</strong>」；System 2「<strong>把注意力分配给需要努力的脑力活动，包括复杂运算</strong>」，常伴随<strong>主体感、选择感与专注</strong><span class="tag t-src">原书</span>（p.23）。
+    </li>
+    <li><strong>它们如何协作</strong>：System 1 不断生成印象与直觉，System 2 平时处于「低耗待机」，只在被难住时接管<span class="tag t-src">原书</span>（第 1 章）。
+    </li>
+    <li><strong>眼睛是仪表</strong>：瞳孔随脑力负荷放大——这是「努力可测量」的经典证据<span class="tag t-src">原书</span>（第 2 章）。
+    </li>
+    <li>★ <strong>自我损耗</strong>：Baumeister 的实验（看情感电影要抑制情绪 → 随后握力测试更差；萝卜 vs 饼干 → 随后放弃更早），以及<strong>葡萄糖柠檬水能消除损耗</strong><span class="tag t-src">原书</span>（p.44–51）。★ <strong>本报告 5.1、5.2 点名此节</strong>。
+    </li>
+    <li>★ <strong>假释法官</strong>：以色列 8 名假释法官，案件<strong>本应随机排序</strong>，平均每案 6 分钟，默认是拒绝（仅 35% 获批）；结果显示<strong>开饭前批准率趋近于零、饭后回升</strong><span class="tag t-src">原书</span>（p.49）。★ 这是第 3 章唯一一条<strong>「真实世界」证据</strong>，也是后来被质疑的一条（见 5.2）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>整个第 3 章的结论都建立在「意志力像会耗尽的燃料」这一模型上，而这一模型已被大规模预注册复现实验基本推翻</strong>（Hagger et al. 2016，d ≈ 0.04）<span class="tag t-src">原书</span>。<strong>「最省力法则」这一描述性观察仍然成立；「损耗」这一因果机制才是问题所在。</strong> ★ 请把「人倾向于省力」与「意志力是有限资源」<strong>分开读</strong>——前者稳固，后者存疑。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">8</span><span>联想的机器与认知放松（第 4–7 章 · p.57–102）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>这一组章节讲 System 1 的「引擎室」：<strong>联想记忆</strong>如何自动运转（第 4 章）、<strong>认知放松</strong>如何导致轻信（第 5 章）、心智如何自动建立「常态」并寻找因果（第 6 章）、以及<strong>草率下结论与 WYSIATI</strong>（第 7 章）。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>联想记忆即核心</strong>：观念是网络里的节点，一个被激活会点亮一片；<strong>「启动效应」是这一章的名字</strong><span class="tag t-src">原书</span>（第 4 章，p.57）。
+    </li>
+    <li><strong>佛罗里达效应</strong>：受「老年」相关词启动的受试者，走出实验室时<strong>走得更慢</strong>——这是被写进书里的<strong>招牌例子</strong><span class="tag t-src">原书</span>（第 4 章）。★ 它也正是 <strong>Doyen et al. 2012 未能复现</strong>的那一个（见 5.1）。
+    </li>
+    <li><strong>认知放松</strong>：<strong>顺眼、重复、押韵、字迹清晰</strong>都会提高「这是真的」的感觉；反之则触发 System 2 警觉<span class="tag t-src">原书</span>（第 5 章）。
+    </li>
+    <li><strong>常态与因果</strong>：心智自动把「意料之外」转译为「有原因的」，并偏好<strong>因果叙事</strong>（衔接第 16 章）<span class="tag t-src">原书</span>（第 6 章）。
+    </li>
+    <li><strong>WYSIATI</strong>（What You See Is All There Is，所见即全部）：System 1 只用手头信息构建<strong>最连贯的故事</strong>，而不管缺了什么<span class="tag t-src">原书</span>（第 7 章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这是全书受复制危机冲击最重的一章。</strong> 第 4 章的启动效应（含金钱启动、旗帜启动等）多数未能复现：<strong>Many Labs 1（Klein et al. 2014）在 36 个样本中，明确未复现「旗帜启动影响保守主义」与「货币启动影响系统正当化」</strong><span class="tag t-src">原书</span>。★ <strong>建议把第 4 章整体当作「该领域当年相信什么」的历史材料，而不是「现代结论」来读</strong>。而<strong>第 5、6、7 章（认知放松、常态、WYSIATI）更稳固</strong>——它们主要依赖认知心理学而非小样本社会心理学。</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">9</span><span>判断如何发生：答案替换与 WYSIATI（第 8–9 章 · p.103–124）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>第 8 章讲<strong>基本判断</strong>（basic assessments）如何被自动生成——见面就判断对方是敌是友、有没有威胁；第 9 章给出全书<strong>唯一的「总公式」</strong>：<strong>答案替换</strong>。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>判断常常是「一体的」</strong>：你看到一个人，System 1 同时给出可信度、地位、亲切感，而你并无意识<span class="tag t-src">原书</span>（第 8 章）。
+    </li>
+    <li>★ <strong>答案替换</strong>：当面对的是难以回答的「目标问题」，System 1 会改用较易的「启发式问题」，并<strong>把后者的答案当作前者的答案</strong>，且<strong>不提醒你它换过题</strong><span class="tag t-src">原书</span>（第 9 章，p.112 起）。引言的原始表述见 p.14。
+    </li>
+    <li><strong>实例</strong>：投资经理用「我喜不喜欢福特的车」回答「该不该买福特股票」<span class="tag t-src">原书</span>（p.13）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ 这一章<strong>几乎不受复制危机影响</strong>——「答案替换」更多是一种<strong>框架</strong>而非某个具体实验结论，其地基是<strong>联想记忆</strong>（第 5–7 章，较稳固）。<strong>它是全书性价比最高的一章</strong>：★ 如果只带走一个概念，带走它。</p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">10</span><span>小数定律与锚定（第 10–11 章 · p.125–148）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>第 10 章回到卡尼曼与 Tversky <strong>最早的那篇论文</strong>——<strong>「小数定律」</strong>：人错误地把小样本当成有代表性，并对随机性缺乏直觉；第 11 章讲<strong>锚定效应</strong>。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>小数定律</strong>：小样本也会被当成「有代表性」；<strong>「你研究做多了就会发现，奇怪的事就是会发生」</strong>。★ 这章与 5.1 那个自嘲直接相关——<strong>他们研究的就是「研究者为什么信任小样本」</strong><span class="tag t-src">原书</span>（第 10 章）。
+    </li>
+    <li>★ <strong>锚定</strong>：接受一个数字作为锚点后，后续估计会被它拉偏，<strong>哪怕锚是明显随意的</strong><span class="tag t-src">原书</span>（第 11 章，p.137）。
+    </li>
+    <li><strong>锚定为何难消除</strong>：即使提醒「这个数字是随机的」，锚定仍存在<span class="tag t-src">原书</span>（第 11 章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>锚定是本书最稳的结论之一</strong>：Many Labs 1（Klein et al. 2014）在 <strong>36 个独立样本</strong>中成功复现了「被给出的锚」这一形（Jacowitz &amp; Kahneman 1995 版）<span class="tag t-src">原书</span>。★ <strong>但要注意分层</strong>：<strong>「被直接给出的锚」稳固；「公然随机的锚（如转盘）」的复现存疑</strong>。第 10 章的小数定律本身是<strong>方法论洞察</strong>，不靠单个实验，属于<strong>稳固且今天更有现实意义</strong>的一章。</p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">11</span><span>可得性、典型性与「因果压过统计」（第 12–16 章 · p.149–200）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>这一组讲「为什么我们这么难做统计式思考」：<strong>可得性</strong>（第 12–13 章）、<strong>典型性 / 汤姆 W / 琳达问题</strong>（第 14–15 章）、<strong>因果叙事压过基础比率</strong>（第 16 章）。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>可得性启发</strong>：用「<strong>想起例子有多容易</strong>」代替频率判断；媒体曝光因此严重扭曲风险感<span class="tag t-src">原书</span>（第 12 章）。
+    </li>
+    <li><strong>可得性—情绪—风险</strong>：风险感被<strong>情绪与醒目度</strong>驱动，这直接决定了政策为何常抓错重点<span class="tag t-src">原书</span>（第 13 章）。引言里就有迈克尔·杰克逊去世后「几乎找不到别的新闻」的例子<span class="tag t-src">原书</span>（p.9–10）。
+    </li>
+    <li><strong>典型性</strong>：判断类别靠「像不像」，忽略<strong>基础比率</strong>；「汤姆 W 的专业」是范例<span class="tag t-src">原书</span>（第 14 章）。
+    </li>
+    <li><strong>琳达问题与合取谬误</strong>：「琳达更可能是银行出纳，还是银行出纳且是女权主义者？」多数人选后者——<strong>违反概率论</strong><span class="tag t-src">原书</span>（第 15 章）。
+    </li>
+    <li><strong>因果压过统计</strong>：生动的<strong>个案故事</strong>能压过<strong>统计事实</strong><span class="tag t-src">原书</span>（第 16 章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ 这一组<strong>基本稳固</strong>，是启发式-偏差纲领里最经久的部分（可得性、典型性、基础比率忽视已被大量认知研究支持）。<strong>唯一要留意的</strong>是 Gigerenzer 的提醒：<strong>「忽略基础比率」在改为「自然频率」表述后大幅减弱</strong>——这提示我们看到的「错误」<strong>部分是实验室任务形式的产物</strong><span class="tag t-rep">转述</span>（见 5.3）。★ 这不推翻结论，但提醒你别把「人不懂概率」讲得太满。</p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">12</span><span>回归均值与驯服直觉预测（第 17–18 章 · p.201–228）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>第 17 章讲<strong>回归均值</strong>——那个「飞行教官表扬后表现变差、责骂后变好」的经典悖论；第 18 章给出<strong>如何把直觉预测拉回地面</strong>的方法。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>回归均值</strong>：极端表现之后往往向均值回归，而人<strong>几乎必然把它误读为因果</strong>（表扬害了人 / 责骂起了作用）<span class="tag t-src">原书</span>（第 17 章）。
+    </li>
+    <li><strong>驯服直觉</strong>：先做<strong>外部视角</strong>（看同类项目的真实分布），再让直觉<strong>在受约束的范围内</strong>起作用<span class="tag t-src">原书</span>（第 18 章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>基本稳固</strong>——回归均值是统计学事实，不依赖心理学实验。★ 唯一的风险是<strong>误用</strong>：回归均值不是「凡波动都归因于均值」，<strong>只有在存在随机成分时才成立</strong>。卡尼曼自己也提醒，别把它当成万能的解释<span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">13</span><span>理解错觉与有效性的错觉（第 19–22 章 · p.229–280）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>这是「过度自信」四连章：<strong>叙事谬误与后见之明</strong>（第 19 章）、<strong>有效性错觉</strong>（第 20 章）、<strong>公式 vs 直觉</strong>（第 21 章）、<strong>专家直觉何时可信</strong>（第 22 章）。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>叙事谬误 / 后见之明</strong>：我们事后把已发生的事讲成「本来就会这样」，<strong>因此高估世界的可预测性</strong><span class="tag t-src">原书</span>（第 19 章）。
+    </li>
+    <li>★ <strong>有效性错觉</strong>：<strong>面试考官的「看人很准」、选股专家的「技能」，多半是错觉</strong>——连贯的故事被误认为预测能力<span class="tag t-src">原书</span>（第 20 章）。
+    </li>
+    <li>★ <strong>公式胜过直觉</strong>：在<strong>低效度</strong>任务上，<strong>简单统计规则（甚至等权打分）常常优于专家直觉</strong>——这是全书对实务最锋利的一条<span class="tag t-src">原书</span>（第 21 章）。
+    </li>
+    <li>★ <strong>专家直觉何时可信</strong>：<strong>条件是「环境有规律可学」＋「有长期练习与反馈」</strong>；消防队长可信，长期政治预测不可信<span class="tag t-src">原书</span>（第 22 章）。这一章由卡尼曼与 <strong>Gary Klein</strong>（持相反立场）<strong>合作</strong>写成，是「求同」的典范。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ 这四章<strong>大体不依赖启动/损耗那类小样本实验</strong>，因而<strong>稳固性较高</strong>。★ <strong>第 21 章要留一个余地</strong>：它常被引成「公式永远赢专家」，但卡尼曼的准确立场是<strong>「在低效度环境里」</strong>——<strong>在高有效度环境（如专家有稳定反馈的领域），专家直觉可以与之匹敌甚至更好</strong>。把限定条件删掉转述，就把它推成了一个它不主张的强结论<span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">14</span><span>外部视角与资本家的引擎（第 23–24 章 · p.281–306）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>第 23 章讲<strong>外部视角</strong>（用「别人做类似事的结果」而非「我这次的细节」来预测）；第 24 章讲<strong>乐观偏见</strong>——它既是创业的引擎，也是灾难的种子。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>规划谬误的解法</strong>：<strong>参考类别预测</strong>——先问「同类项目通常花多久、花多少」，再谈你这次的「特殊情况」<span class="tag t-src">原书</span>（第 23 章）。
+    </li>
+    <li><strong>乐观偏见</strong>：创业者普遍高估成功率；这既害人又<strong>是社会进步的动力</strong>——卡尼曼对它是<strong>既警惕又承认</strong>的态度<span class="tag t-src">原书</span>（第 24 章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>稳固且实用</strong>，是全书最适合直接搬进工作的一节。★ 但要留意<strong>语义陷阱</strong>：<strong>「外部视角」不是「闭眼不看细节」</strong>，而是先定基线再调整<span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">15</span><span>前景理论：伯努利的错误与一场革命（第 25–26 章 · p.307–329）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>★ <strong>这是全书的理论核心，也是卡尼曼拿诺奖的直接理由。</strong> 第 25 章先拆掉伯努利 1738 年的效用理论；第 26 章正式给出<strong>前景理论</strong>。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>伯努利的错误</strong>：他认为效用取决于<strong>财富总量</strong>；卡尼曼指出，人真正在意的是<strong>相对于参照点的变化（得与失）</strong><span class="tag t-src">原书</span>（第 25 章）。
+    </li>
+    <li>★ <strong>前景理论的两根支柱</strong>：（1）<strong>参照点</strong>——评价取决于相对变化；（2）<strong>损失厌恶</strong>——损失的痛约为等额收益的爽的<strong>两倍</strong><span class="tag t-src">原书</span>（第 26 章）。
+    </li>
+    <li><strong>起点例子</strong>：「正面赢 130、反面输 100，你赌吗？」——多数人不赌，尽管期望为正<span class="tag t-src">原书</span>（p.11）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>全书最稳固的一章。</strong> 前景理论是<strong>诺奖核心</strong>，几十年来跨情境、跨文化被广泛复现；损失厌恶的<strong>存在</strong>稳固（<strong>幅度</strong>在跨文化样本中差异较大，不宜当成固定常数）。★ <strong>如果你只能相信这本书的一章，相信这一章。</strong></p>
+</section>
+
+<section id="s16">
+  <h2><span class="num">16</span><span>禀赋效应、坏事件与四重模式（第 27–29 章 · p.330–366）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>第 27 章讲<strong>禀赋效应</strong>（你拥有的东西在你眼里更值钱）；第 28 章讲<strong>损失厌恶</strong>在生活中的后果（「坏事件」比好事更有分量）；第 29 章给出<strong>四重模式</strong>——人如何随「概率高低 × 得失」四种组合而改变风险偏好。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>禀赋效应</strong>：卖价常显著高于买价——<strong>拥有本身改变了参照点</strong><span class="tag t-src">原书</span>（第 27 章）。
+    </li>
+    <li><strong>坏事件</strong>：损失厌恶 + 负面事件权重更高 → 人们<strong>为避免损失愿意冒更大风险</strong><span class="tag t-src">原书</span>（第 28 章）。
+    </li>
+    <li>★ <strong>四重模式</strong>：在<strong>大概率得</strong>时风险厌恶、<strong>大概率失</strong>时风险寻求——这解释了<strong>保险与赌博并存</strong>这一看似矛盾的现象<span class="tag t-src">原书</span>（第 29 章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ 大体稳固（属于前景理论的直接推论）。<strong>禀赋效应</strong>在<strong>存在交易经验与市场环境</strong>时会减弱（这不违背理论，但要求你别把它当成恒定强度）<span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s17">
+  <h2><span class="num">17</span><span>罕见事件、风险政策与心理账户（第 30–32 章 · p.367–402）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>第 30 章讲<strong>罕见事件为何被过分看重</strong>（或忽视）；第 31 章提出对抗逐次决策偏差的<strong>风险政策</strong>；第 32 章讲<strong>心理账户</strong>与处置效应。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>★ <strong>罕见事件</strong>：<strong>生动的罕见事件被高估，平淡的常见事件被低估</strong>——这是四重模式里最反直觉的一格<span class="tag t-src">原书</span>（第 30 章）。
+    </li>
+    <li><strong>风险政策</strong>：把「每次都要拍板」改成「事先定一条规则并遵守」，用<strong>政策</strong>对抗 System 1 的临场波动<span class="tag t-src">原书</span>（第 31 章）。★ <strong>这是全书最实用的一条「制度解」，而非「意志解」。</strong>
+    </li>
+    <li><strong>心理账户</strong>：钱被分装进不同的心理「账户」，因此<strong>同一笔钱在不同口袋里的价值不同</strong>；由此产生<strong>处置效应</strong>（过早卖出赢家、死守输家）<span class="tag t-src">原书</span>（第 32 章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ 基本稳固。★ 但<strong>第 31 章要小心「过度自动化」</strong>：卡尼曼的建议是<strong>用规则防止临场偏差</strong>，不是<strong>取消所有判断</strong>。把「风险政策」读成「一根筋照章办事」，就又走偏了<span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s18">
+  <h2><span class="num">18</span><span>反转、框架与两个自我（第 33–38 章 · p.403–466）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>第 33 章讲<strong>偏好反转</strong>（联合评估 vs 单独评估会翻盘）；第 34 章讲<strong>框架效应</strong>；第 35–38 章转入全书的收束主题——<strong>经验自我与记忆自我</strong>。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>反转</strong>：在一起看时选 A，分开看时选 B——<strong>评价语境改变偏好</strong><span class="tag t-src">原书</span>（第 33 章）。
+    </li>
+    <li>★ <strong>框架效应</strong>：「90% 存活率」与「10% 死亡率」是同一个数字，却能改变选择<span class="tag t-src">原书</span>（第 34 章）。
+    </li>
+    <li>★ <strong>两个自我</strong>：<strong>经验自我</strong>活在当下；<strong>记忆自我</strong>事后叙事并<strong>替我们做人生决定</strong>。二者常冲突，<strong>记忆按「峰终定律」而非时长评分</strong><span class="tag t-src">原书</span>（第 35–36 章）。
+    </li>
+    <li><strong>经验幸福 vs 生活满意度</strong>：政策若只盯「生活满意度」，可能忽略<strong>真实体验</strong><span class="tag t-src">原书</span>（第 37–38 章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>框架效应与峰终定律稳固</strong>（后者在记忆与幸福研究里被持续支持）。★ <strong>「两个自我」是全书哲学意味最重的一块，也最容易被过度引申</strong>：卡尼曼说的是<strong>测量与政策层面的区分</strong>，不宜读成「人有两个灵魂」的形而上学主张<span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s19">
+  <h2><span class="num">19</span><span>结论：三个区分（Conclusions · p.467–480）</span><span class="caret">▾</span></h2>
+  <h3>这一节在回答什么</h3>
+  <p>结论把全书收成三条：<strong>经验自我／记忆自我</strong>、<strong>System 1／System 2</strong>，以及一句带自嘲的判断——<strong>「我对自己研究了一辈子的东西，并没有变得更聪明」</strong>。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>★ 卡尼曼<strong>亲口承认</strong>：这些知识<strong>几乎没能改善他自己的直觉判断质量</strong>；真正可行的是<strong>设计外部机制</strong>（清单、风险政策、外部视角），而不是指望内省变聪明<span class="tag t-src">原书</span>（Conclusions 主题，并见其生前多次访谈）。
+    </li>
+    <li><strong>对「自由」的温和留意</strong>：他提醒「System 1 的印象与 System 2 的意图」，以及「我们多大程度上能选择去想什么」——为后来《Noise》与自由意志讨论留了伏笔<span class="tag t-src">原书</span>（Conclusions）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ 无重大争议。★ 但<strong>「知道偏差也没用」这一点，是中文读者最容易忽略、也最重要的一条</strong>——它把全书从「自助」重新定位成「<strong>制度设计</strong>」：<strong>你改不了 System 1，但你能改环境</strong><span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s20">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>概念／人物</th><th>一句话</th><th>出现在</th></tr></thead>
+    <tbody>
+      <tr><td><strong>System 1 / System 2</strong></td><td>快、自动、情绪化／慢、费力、讲逻辑。<strong>是隐喻，不是脑区</strong></td><td>第 1 章（p.21、p.23）</td></tr>
+      <tr><td><strong>答案替换（substitution）</strong></td><td>被难题难住时，<strong>偷偷答一个更容易的问题</strong>——全书的总发动机</td><td>第 9 章（p.112）、引言 p.14</td></tr>
+      <tr><td><strong>WYSIATI</strong></td><td>What You See Is All There Is——只用现有信息编出最连贯的故事</td><td>第 7 章</td></tr>
+      <tr><td><strong>锚定效应</strong></td><td>先出现的数字会拉偏后续估计，即使锚很随意</td><td>第 11 章（p.137）</td></tr>
+      <tr><td><strong>可得性启发</strong></td><td>用「想起例子有多容易」代替频率判断</td><td>第 12–13 章</td></tr>
+      <tr><td><strong>典型性与合取谬误</strong></td><td>靠「像不像」分类，忽略基础比率；「琳达问题」</td><td>第 14–15 章</td></tr>
+      <tr><td><strong>回归均值</strong></td><td>极端之后向均值回归，人却误读为因果</td><td>第 17 章</td></tr>
+      <tr><td><strong>有效性错觉</strong></td><td>把「故事的连贯」误当成「预测的准」</td><td>第 20 章</td></tr>
+      <tr><td><strong>公式 vs 直觉</strong></td><td>低效度任务上，简单规则常胜过专家直觉</td><td>第 21 章</td></tr>
+      <tr><td><strong>专家直觉的判据</strong></td><td>有效环境 ＋ 长期反馈 → 直觉可信；否则是幻觉</td><td>第 22 章</td></tr>
+      <tr><td><strong>外部视角／参考类别预测</strong></td><td>先看同类项目的真实分布，再谈这次的特殊</td><td>第 23 章</td></tr>
+      <tr><td><strong>前景理论</strong></td><td>评价取决于<strong>参照点上的得失</strong>；损失厌恶（约 2:1）</td><td>第 26 章（p.317）</td></tr>
+      <tr><td><strong>禀赋效应 / 心理账户 / 处置效应</strong></td><td>拥有改变参照点；钱被分装进不同心理账户</td><td>第 27、32 章</td></tr>
+      <tr><td><strong>框架效应</strong></td><td>换一个说法，换一个选择</td><td>第 34 章</td></tr>
+      <tr><td><strong>经验自我 vs 记忆自我</strong></td><td>活在当下者 vs 事后叙事并替你决定者；峰终定律</td><td>第 35–36 章</td></tr>
+      <tr><td><strong>自我损耗（ego depletion）</strong></td><td>「意志力像燃料会耗尽」——★ <strong>已被大规模复现削弱</strong></td><td>第 3 章（p.44–51）</td></tr>
+      <tr><td><strong>启动效应（priming）</strong></td><td>无意识线索改变行为——★ <strong>多项复现失败</strong></td><td>第 4 章（p.57）</td></tr>
+      <tr><td><strong>Daniel Kahneman</strong></td><td>本书作者；2002 年诺奖；2024-03-27 去世，享年 90</td><td>—</td></tr>
+      <tr><td><strong>Amos Tversky</strong></td><td>卡尼曼的学术灵魂搭档（1937–1996）；本书题献对象</td><td>引言</td></tr>
+      <tr><td><strong>Gerd Gigerenzer</strong></td><td>「生态理性」批评者；1996 年 <em>Psych. Review</em> 与卡尼曼对垒</td><td>5.3</td></tr>
+      <tr><td><strong>Ulrich Schimmack</strong></td><td>2017 年发文批评第 4 章；卡尼曼在其博文下公开认错</td><td>5.1</td></tr>
+      <tr><td><strong>Keith Stanovich</strong></td><td>System 1/2 术语的原提出者之一，也是「隐喻太粗」的批评者</td><td>5.4</td></tr>
+      <tr><td><strong>Gary Klein</strong></td><td>专家直觉研究者；第 22 章与卡尼曼合写的「对手」</td><td>第 22 章</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s21">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>Tversky &amp; Kahneman (1974), "Judgment under Uncertainty: Heuristics and Biases", <em>Science</em> 185(4157): 1124–1131</strong>——★ <strong>就收录在本书附录 A（p.481）</strong>。6 页，全书的地基。
+    </li>
+    <li><strong>Kahneman &amp; Tversky (1983), "Choices, Values, and Frames", <em>American Psychologist</em> 39: 341–350</strong>——本书附录 B（p.505）。
+    </li>
+    <li><strong>《The Undoing Project》（Michael Lewis, 2016；中译可查《魔球》作者另一部）</strong>——卡尼曼与 Tversky 的合作史，理解「这本书为什么这么写」的关键。
+    </li>
+    <li><strong>《Noise: A Flaw in Human Judgment》（Kahneman, Sibony &amp; Sunstein, 2021）</strong>——本书的续篇方向：从「偏差」转向「噪声」，并承认两者都重要。
+    </li>
+    <li><strong>Gigerenzer (1991/1996) 与 Kahneman &amp; Tversky (1996) 那三篇 <em>Psychological Review</em> 对垒</strong>——想读完 5.3 那条线，这是最短路径。
+    </li>
+    <li><strong>Doyen et al. (2012), <em>PLoS ONE</em> 7(1): e29081</strong> 与 <strong>Hagger et al. (2016), <em>Perspectives on Psychological Science</em> 11(4): 546–573</strong>——第 5 节两份「体检报告」。
+    </li>
+  </ol>
+</section>
+
+<section id="s22">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>见同目录 <code>思考，快与慢-来源清单.md</code>。</p>
+</section>
+
+<section id="s23">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. 英文页码锚定 Penguin 版；FSG 版页码可能不同</h3>
+  <p>本报告全部英文页码取自 <strong>Penguin 官方试读 PDF 提供的目录与正文</strong>（Introduction p.3 → Index p.585）。★ <strong>我未逐页核对 FSG（美国）精装本</strong>——两版虽同为 499 页，但<strong>排版本不必一致</strong>，页码可能略有出入。<strong>引用前请以你手中版本核对。</strong> 另外，<strong>附录 A／B、Notes 的页码同样取自该目录</strong>。</p>
+  <h3>D2. 大陆初版的页数有两个数字（424 / 448）</h3>
+  <p><strong>中山大学图书馆编目</strong>记 424 页；<strong>360 百科</strong>记 448 页；<strong>CIP 页转录</strong>记「印张 28、401 千字」。★ 我采信<strong>图书馆编目的 424 页</strong>，但<strong>未能见到版权页原件</strong>，故并陈。2025 第二版也有 <strong>442 / 446</strong> 两个数字（图书馆记 xv+442，百科记 446）。</p>
+  <h3>D3. 首版 LCCN 号，我查不到</h3>
+  <p>FSG 2011 精装本我确认了 <strong>ISBN 9780374275631 / 0374275637、OCLC 706020998、书目分类号 BF441.K238 2011</strong>，但<strong>未查到确切的 LCCN 控制号</strong>。★ 因此头部<strong>不写 LCCN</strong>，仅保留 OCLC 与分类号。</p>
+  <h3>D4. 累计销量的三个口径，无法归一</h3>
+  <p><strong>Google Books（FSG 官方页）记「逾 260 万册」</strong>；<strong>UNSW 2021 活动页记「逾 700 万册」</strong>（并误写出版年为 2010）；<strong>Penguin 澳版页记「逾 1000 万册」</strong>。★ 三者来自<strong>不同时点</strong>，<strong>都不是编造，但不能并列当同一件事</strong>。本报告在头部<strong>并陈三源</strong>而不裁定。</p>
+  <h3>D5. 「哪些结论仍稳固」的分级，是我的判断</h3>
+  <p>第 5.2 节的表格<strong>综合了公开复现文献</strong>（Many Labs 1、Doyen 2012、Hagger 2016、Schimmack 2017 等），但<strong>「稳固／打折」的分档本身是我的整理</strong><span class="tag t-inf">推断</span>。★ <strong>具体某项研究能否复现，请以原始复现论文为准</strong>——本表是导航，不是判决。</p>
+  <h3>D6. 洪蘭译本争议的原文，我读的是转引</h3>
+  <p>「王偉雄逐字比对后撰文批评」一事，我据<strong>台湾媒体（自由时报等）报道</strong>与<strong>多篇转引</strong>确认；★ <strong>我未读到王偉雄原始博文全文</strong>，因此对其措辞标 <span class="tag t-src">原书</span>（媒体原话）与 <span class="tag t-rep">转述</span>（二手概括）之间。<strong>退换书的时间线（诚品 2013-08 起、博客来/金石堂 9 月初跟进）来自单一方向的转引，未获第二独立来源，标 <span class="tag t-rep">转述</span>。</strong></p>
+  <h3>D7. 我主动排除的来源</h3>
+  <ul>
+    <li><strong>盗版电子书站的整本扫描</strong>：检索中确曾出现（含若干「思考，快与慢.pdf」的中文全本）。按本项目契约「<strong>只用合法来源，任何目的不例外</strong>」，<strong>一律不使用</strong>，未从中取用任何正文。
+    </li>
+    <li><strong>高校／个人主页托管的整本书 PDF</strong>：检索中出现（如 Bard 教师主页的节选 PDF）。★ <strong>不作为依据</strong>——本报告只使用 <strong>Penguin 官方试点的试读 PDF</strong>（出版方自有站点）与公开编目。
+    </li>
+    <li><strong>AI 生成的 SEO 内容</strong>：本主题中文侧存在<strong>大量</strong>「精读」「导读」页面，特征为<strong>把附录 A／B 说成 1974 与 1979 两篇论文</strong>（实为 1974 与 1983）、或<strong>把「系统 1/2」当成神经实体</strong>。<strong>一律不采信。</strong>
+    </li>
+    <li><strong>Grokipedia（AI 生成百科）</strong>：检索中命中一条含大量具体数字（如「19 国 1 万人复现」）的条目。★ <strong>因其为 AI 生成、数字无法追溯到原始论文，我未采用其中任何特定数字</strong>，仅保留那些能在署名论文里找到出处的结论。
+    </li>
+  </ul>
+  <h3>D8. 「卡尼曼 2017 年表态」的传播版本很多，我锁定了一手</h3>
+  <p>中文与英文二手转述中，这条常被写成「卡尼曼在 Facebook 上发了公开信」「卡尼曼在采访中承认造假」等。★ <strong>一手出处是：Kahneman 于 2017-02-14 在 Replicability-Index 博客 Schimmack/Heene/Kesavan (2017-02-02) 一文下的评论</strong>，并经 <em>Retraction Watch</em>（2017-02-20）向卡尼曼本人确认。<strong>「Facebook 公开信」的说法我未能核到一手，故未采用。</strong> —— ★ <strong>这是我主动做的最重要一次「二手清洗」。</strong></p>
+</section>
+
+<footer>
+  生成于 2026-10-04 · 来源清单与交叉验证记录见同目录 <code>思考，快与慢-来源清单.md</code><br>
+  本页引文按<b>带页码引文（B 级）</b>处理：页码与正文引语取自 Penguin 官方试读 PDF，<b>我未持原书</b>，且页码锚定 Penguin 版，请以你手中版本复核；批评文献的姓名、篇名、刊物、卷期页已逐条给出；未标页码者仍是二手转引。★ 本页在<b>第 5 节（争议与局限）</b>刻意写得最实 —— 因为本书媒体好评极多，而<b>「哪些结论已被复制危机削弱」以及作者本人三次公开承认的原文，才是稀缺且值钱的信息</b>。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

@@ -193,15 +193,21 @@ body.nav-open #navscrim{opacity:1;pointer-events:auto}
   <div class="eyebrow">READING ROOM</div>
   <h1>读书精华 · 总入口</h1>
   <p class="sub">
-    每一本都是同一套三层产出：<strong>阅读指引 ＋ 精华解析</strong>（HTML 浏览版／Markdown 内容正本）＋ <strong>来源清单</strong>。
+    每一本都是同一套三层产出（书页 ＋ 内容正本 ＋ 来源清单）。<strong>叙事型</strong>给「阅读指引 ＋ 精华解析」；
+    <strong>教材型</strong>给「学习路线图 ＋ 章节地图」—— 教材不写逐章要点，只回答「按什么顺序读、哪些可以跳」。
     引用按可信度分档标注，查不到就写查不到。
   </p>
   <div class="stats">
-    <span class="stat"><b>10</b>本书</span>
-    <span class="stat"><b>30</b>份产出</span>
+    <span class="stat"><b id="nbooks">29</b>本书</span>
+    <span class="stat"><b id="nfiles">87</b>份产出</span>
     <span class="stat"><b>4</b>档可信度标注</span>
     <span class="stat">收录自 <b>2026-09-22</b></span>
   </div>
+
+  <p style="margin:16px 0 0;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+    <a class="btn" href="_书目索引/index.html">索引总目录</a>
+    <span style="color:var(--ink2);font-size:13px">每本一页 · 判断一本书有没有被收录，以这里为准</span>
+  </p>
 </header>
 
 <h2 class="sec">先挑一本开始<span class="line"></span></h2>
@@ -224,7 +230,13 @@ body.nav-open #navscrim{opacity:1;pointer-events:auto}
   </div>
   <div class="path">
     <div class="ph">想跟着一条争论链走</div>
-    <p>戴蒙德 → 赫拉利 → 反驳者：《第三种黑猩猩》→《枪炮、病菌与钢铁》→《人类简史》→《未来简史》→《人类新史》。<strong>五本同题</strong>（文明的差异从哪来），立场却逐本对撞；最后一本专门拆前四本的前提。</p>
+    <p>戴蒙德 → 赫拉利 → 反驳者：《第三种黑猩猩》→《枪炮、病菌与钢铁》→《人类简史》→《未来简史》→《人类新史》。<strong>五本同题</strong>（文明的差异从哪来），    立场却逐本对撞；最后一本专门拆前四本的前提。</p>
+  </div>
+  <div class="path">
+    <div class="ph">想动手学一门技术</div>
+    <p><strong>教材型两本，别当读物读。</strong>《神经科学：探索脑》给你「脑怎么工作」的完整链条（最小集 8 章）；
+       《信息论、推断与学习算法》给你「信息怎么被承载、怎么在有噪声的世界里活下来」（第 1–3 章 ＋ Part I 起步）。
+       两本都不写逐章要点 —— 它们回答的是<em>按什么顺序读、哪些可以跳</em>。</p>
   </div>
 </div>
 
@@ -234,7 +246,7 @@ body.nav-open #navscrim{opacity:1;pointer-events:auto}
   <button class="fbtn on" type="button" data-f="all">全部</button>
   <button class="fbtn" type="button" data-f="unread">未读</button>
   <button class="fbtn" type="button" data-f="read">已读</button>
-  <span class="prog">已读 <b id="rc">0</b> / 10</span>
+  <span class="prog">已读 <b id="rc">0</b> / <span id="ntot">29</span></span>
 </div>
 <div id="pbar"><i></i></div>
 
@@ -267,7 +279,7 @@ body.nav-open #navscrim{opacity:1;pointer-events:auto}
       <a class="btn primary" href="禅与摩托车维修艺术/禅与摩托车维修艺术.html">打开阅读页</a>
       <a class="btn" href="禅与摩托车维修艺术/禅与摩托车维修艺术.md">内容正本</a>
       <a class="btn" href="禅与摩托车维修艺术/禅与摩托车维修艺术-来源清单.md">来源清单</a>
-      <a class="btn" href="_书目索引/禅与摩托车维修艺术.md">索引</a>
+      <a class="btn" href="_书目索引/禅与摩托车维修艺术.html">索引</a>
     </div>
   </article>
 
@@ -298,7 +310,7 @@ body.nav-open #navscrim{opacity:1;pointer-events:auto}
       <a class="btn primary" href="逻辑哲学论/逻辑哲学论.html">打开阅读页</a>
       <a class="btn" href="逻辑哲学论/逻辑哲学论.md">内容正本</a>
       <a class="btn" href="逻辑哲学论/逻辑哲学论-来源清单.md">来源清单</a>
-      <a class="btn" href="_书目索引/逻辑哲学论.md">索引</a>
+      <a class="btn" href="_书目索引/逻辑哲学论.html">索引</a>
     </div>
   </article>
 
@@ -331,7 +343,7 @@ body.nav-open #navscrim{opacity:1;pointer-events:auto}
       <a class="btn primary" href="哲学研究/哲学研究.html">打开阅读页</a>
       <a class="btn" href="哲学研究/哲学研究.md">内容正本</a>
       <a class="btn" href="哲学研究/哲学研究-来源清单.md">来源清单</a>
-      <a class="btn" href="_书目索引/哲学研究.md">索引</a>
+      <a class="btn" href="_书目索引/哲学研究.html">索引</a>
     </div>
   </article>
 
@@ -363,7 +375,7 @@ body.nav-open #navscrim{opacity:1;pointer-events:auto}
       <a class="btn primary" href="我看见的世界/我看见的世界.html">打开阅读页</a>
       <a class="btn" href="我看见的世界/我看见的世界.md">内容正本</a>
       <a class="btn" href="我看见的世界/我看见的世界-来源清单.md">来源清单</a>
-      <a class="btn" href="_书目索引/我看见的世界.md">索引</a>
+      <a class="btn" href="_书目索引/我看见的世界.html">索引</a>
     </div>
   </article>
 
@@ -395,7 +407,7 @@ body.nav-open #navscrim{opacity:1;pointer-events:auto}
       <a class="btn primary" href="哥德尔、艾舍尔、巴赫/哥德尔、艾舍尔、巴赫.html">打开阅读页</a>
       <a class="btn" href="哥德尔、艾舍尔、巴赫/哥德尔、艾舍尔、巴赫.md">内容正本</a>
       <a class="btn" href="哥德尔、艾舍尔、巴赫/哥德尔、艾舍尔、巴赫-来源清单.md">来源清单</a>
-      <a class="btn" href="_书目索引/哥德尔、艾舍尔、巴赫.md">索引</a>
+      <a class="btn" href="_书目索引/哥德尔、艾舍尔、巴赫.html">索引</a>
     </div>
   </article>
 
@@ -427,7 +439,7 @@ body.nav-open #navscrim{opacity:1;pointer-events:auto}
       <a class="btn primary" href="瓦尔登湖/瓦尔登湖.html">打开阅读页</a>
       <a class="btn" href="瓦尔登湖/瓦尔登湖.md">内容正本</a>
       <a class="btn" href="瓦尔登湖/瓦尔登湖-来源清单.md">来源清单</a>
-      <a class="btn" href="_书目索引/瓦尔登湖.md">索引</a>
+      <a class="btn" href="_书目索引/瓦尔登湖.html">索引</a>
     </div>
   </article>
 
@@ -461,7 +473,7 @@ body.nav-open #navscrim{opacity:1;pointer-events:auto}
       <a class="btn primary" href="人类简史/人类简史.html">打开阅读页</a>
       <a class="btn" href="人类简史/人类简史.md">内容正本</a>
       <a class="btn" href="人类简史/人类简史-来源清单.md">来源清单</a>
-      <a class="btn" href="_书目索引/人类简史.md">索引</a>
+      <a class="btn" href="_书目索引/人类简史.html">索引</a>
     </div>
   </article>
 
@@ -494,7 +506,7 @@ body.nav-open #navscrim{opacity:1;pointer-events:auto}
       <a class="btn primary" href="未来简史/未来简史.html">打开阅读页</a>
       <a class="btn" href="未来简史/未来简史.md">内容正本</a>
       <a class="btn" href="未来简史/未来简史-来源清单.md">来源清单</a>
-      <a class="btn" href="_书目索引/未来简史.md">索引</a>
+      <a class="btn" href="_书目索引/未来简史.html">索引</a>
     </div>
   </article>
 
@@ -527,7 +539,7 @@ body.nav-open #navscrim{opacity:1;pointer-events:auto}
       <a class="btn primary" href="第三种黑猩猩/第三种黑猩猩.html">打开阅读页</a>
       <a class="btn" href="第三种黑猩猩/第三种黑猩猩.md">内容正本</a>
       <a class="btn" href="第三种黑猩猩/第三种黑猩猩-来源清单.md">来源清单</a>
-      <a class="btn" href="_书目索引/第三种黑猩猩.md">索引</a>
+      <a class="btn" href="_书目索引/第三种黑猩猩.html">索引</a>
     </div>
   </article>
 
@@ -560,9 +572,619 @@ body.nav-open #navscrim{opacity:1;pointer-events:auto}
       <a class="btn primary" href="枪炮病菌与钢铁/枪炮病菌与钢铁.html">打开阅读页</a>
       <a class="btn" href="枪炮病菌与钢铁/枪炮病菌与钢铁.md">内容正本</a>
       <a class="btn" href="枪炮病菌与钢铁/枪炮病菌与钢铁-来源清单.md">来源清单</a>
-      <a class="btn" href="_书目索引/枪炮病菌与钢铁.md">索引</a>
+      <a class="btn" href="_书目索引/枪炮病菌与钢铁.html">索引</a>
     </div>
   </article>
+
+  <!-- ============ 11 ============ -->
+  <article class="card" data-book="信息论、推断与学习算法" data-search="mackay 信息论 机器学习 香农 压缩 纠错码 贝叶斯 推断 神经网络 变分 mcmc 教材 剑桥 information theory inference learning">
+    <div class="chead">
+      <span class="idx">11</span>
+      <div class="cttl">
+        <h3><a href="信息论、推断与学习算法/信息论、推断与学习算法.html">信息论、推断与学习算法</a></h3>
+        <div class="byline">David J. C. MacKay · 2003 · <span style="color:var(--accent)">教材型</span></div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="信息论、推断与学习算法">未读</button>
+    </div>
+    <p class="onel">
+      <strong>把「信息论」和「机器学习」当成同一枚硬币的两面来教。</strong>
+      压缩、纠错码、聚类、神经网络、贝叶斯推断，在这本书里不是五门课，而是<strong>同一套工具</strong>（概率 ＋ 消息传递 ＋ 变分）的五种用法。
+      用作者自己的话：它们属于一起，因为<em>大脑就是终极的压缩与通信系统</em>。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p>作者在 p. vii–x 给了<strong>四条官方路线</strong>。<strong>别按顺序读</strong>：第 1–3 章<strong>不属于任何部分</strong>（排在 Part I 之前）；<strong>Part III 首读可整段跳过，唯一例外是第 16 章</strong>。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p><strong>教材型，不是科普。</strong>不要求先修信息论或机器学习，但需要微积分、概率论、线性代数；正文是不等式推导，<strong>必须动笔</strong>。只想「知道信息论说了什么」的话，这本书性价比很低。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：6 部分 50 章 ＋ 附录 A–C</span>
+      <span class="chip src">核验：A 级 · 作者官方全书 PDF</span>
+      <span class="chip rep">形态：学习路线图与章节地图</span>
+          <span class="chip">收录 2026-10-04</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="信息论、推断与学习算法/信息论、推断与学习算法.html">打开阅读页</a>
+      <a class="btn" href="信息论、推断与学习算法/信息论、推断与学习算法.md">内容正本</a>
+      <a class="btn" href="信息论、推断与学习算法/信息论、推断与学习算法-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/信息论、推断与学习算法.html">索引</a>
+    </div>
+  </article>
+
+  <!-- ============ 12 ============ -->
+  <article class="card" data-book="神经科学：探索脑" data-search="bear connors paradiso 神经科学 探索脑 脑 神经元 动作电位 突触 视觉 记忆 睡眠 情绪 教材 neuroscience exploring the brain">
+    <div class="chead">
+      <span class="idx">12</span>
+      <div class="cttl">
+        <h3><a href="神经科学：探索脑/神经科学：探索脑.html">神经科学：探索脑</a></h3>
+        <div class="byline">Bear · Connors · Paradiso · 1995／2025 · <span style="color:var(--accent)">教材型</span></div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="神经科学：探索脑">未读</button>
+    </div>
+    <p class="onel">
+      <strong>用细胞与分子的语言，把行为解释一遍。</strong>
+      25 章不是 25 个知识点，而是<strong>同一条因果链从下往上走</strong>：离子通道 → 动作电位 → 突触 → 回路 → 感觉／运动 → 动机／情绪／睡眠／语言 → 发育与记忆。
+      前面那些书讲「人为什么是这样」的远端原因，这本讲<strong>近端机制</strong>。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p>最小集：<strong>第 1→2→3→4→5→7 章 ＋ 第 7 章附录 → 第 9→10 章</strong>（眼与中枢视觉，全书写得最好的一组示范）。<strong>第 III 篇 8 章并列、最不该顺着读</strong>，但第 15 章要读。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p><strong>「第 3 版」是英文影印版，不是中文翻译</strong> —— 要中文请认第 4 版中文版（2023，电子工业出版社）。另有第 5 版（2025，英文）改了章名与专栏体例。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：4 篇 25 章（锚定第 4 版）</span>
+      <span class="chip rep">核验：C 级 · 无公开全文</span>
+      <span class="chip rep">⚠ 无逐章页码（盗版来源已拒用）</span>
+      <span class="chip">附第 4 版→第 5 版章名对照</span>
+          <span class="chip">收录 2026-10-04</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="神经科学：探索脑/神经科学：探索脑.html">打开阅读页</a>
+      <a class="btn" href="神经科学：探索脑/神经科学：探索脑.md">内容正本</a>
+      <a class="btn" href="神经科学：探索脑/神经科学：探索脑-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/神经科学：探索脑.html">索引</a>
+    </div>
+  </article>
+
+  <!-- ============ 13 ============ -->
+  <article class="card" data-book="智能简史" data-search="班尼特 bennett 智能简史 五次突破 转向 强化 模拟 心智化 语言 新皮质 生成模型 世界模型 多巴胺 时序差分 基底神经节 llm 大语言模型 一扇窗 神经科学 ai 进化">
+    <div class="chead">
+      <span class="idx">13</span>
+      <div class="cttl">
+        <h3><a href="智能简史/智能简史.html">智能简史</a></h3>
+        <div class="byline">麦克斯·班尼特 · 2023</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="智能简史">未读</button>
+    </div>
+    <p class="onel">
+      <strong>一份「为了让 AI 更像大脑，先去把人脑 10 亿年做了什么查清楚」的调查报告。</strong>
+      作者把这段历史压成<strong>五次突破</strong>：转向（蠕虫）、强化（鱼）、模拟（哺乳动物）、心智化（灵长类）、语言（人），
+      每一层都对照 AI 已有的对应物。它最锋利的一句话是：<em>大语言模型是「通往心灵的一扇窗」，不是心灵本身</em>。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p><strong>只读一章就读第 11 章《生成模型和新皮质的奥秘》</strong>——全书论证密度最高、也最不可替代的一章。AI 从业者路线：<em>第 6 → 7 → 13 → 22 章 ＋ 结论</em>。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p><strong>别把「五次突破」读成「五个台阶」。</strong>书的顺序是「结构先出现、算法才可能」；读成「越来越聪明的五个版本」就把因果方向读反了。另外它<em>不是</em>学术结论——中英批评者都指向同一句：<strong>当思维脚手架，别当证据</strong>。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：五次突破 → 6 节 ＋ 结论</span>
+      <span class="chip">引文：B 级 · 含 p.104–118／p.301</span>
+      <span class="chip src">框架：A 级 · 作者开放获取论文</span>
+      <span class="chip rep">⚠ 突破的年代各来源差 50 倍</span>
+          <span class="chip">收录 2026-10-04</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="智能简史/智能简史.html">打开阅读页</a>
+      <a class="btn" href="智能简史/智能简史.md">内容正本</a>
+      <a class="btn" href="智能简史/智能简史-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/智能简史.html">索引</a>
+    </div>
+  </article>
+
+  <!-- ============ 14 ============ -->
+  <article class="card" data-book="混沌" data-search="混沌 格雷克 gleick chaos 蝴蝶效应 洛伦兹 费根鲍姆 普适性 分形 曼德博 奇怪吸引子 相空间 马蹄铁 斯梅尔 非线性 初始条件 湍流 逻辑斯蒂映射 数学信使 批评 科学史">
+    <div class="chead">
+      <span class="idx">14</span>
+      <div class="cttl">
+        <h3><a href="混沌/混沌.html">混沌</a></h3>
+        <div class="byline">詹姆斯·格雷克 · 1987</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="混沌">未读</button>
+    </div>
+    <p class="onel">
+      <strong>一本把「确定性系统为何不可预测」讲成人物群像的报告文学。</strong>
+      从洛伦兹 1961 年冬天丢掉的那三位小数开始，十一章并列讲这门学问如何在气象学、数学、生态学、
+      几何学、实验物理、生理学里各自长出来。★ 它今天最独特的价值不在内容，而在
+      <em>1989 年两位数学家在《数学信使》上对它的拆解</em>——那场论战有完整的卷期页码，作者作了回应。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p><strong>只读一章就读第 6 章《普适性》</strong>——费根鲍姆常数 δ≈4.6692 是全书唯一一个<em>定量预言</em>，也是这门学问能被叫「科学」的立足点。而最流行的第 1 章「蝴蝶效应」恰恰是最容易被读错的一章。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p><strong>「蝴蝶效应」≠「小事引发大事」。</strong>它在混沌理论里的原始含义是<em>预报存在原理性上限</em>——两条几乎相同的轨迹以指数速度分离。这是个悲观的、定量的命题，大众版把它读成了励志故事。另：买中译本务必核对书名，<strong>《混沌学传奇》是编译本，不是这本书</strong>。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：楔子 ＋ 11 章 ＋ 补记（并列群像，可跳读）</span>
+      <span class="chip">引文：B 级 · 含 p.41–42 原文</span>
+      <span class="chip src">批评：1989《数学信使》两篇（带卷期页码）</span>
+      <span class="chip rep">⚠ 中译四版两译者 ＋ 一个编译本陷阱</span>
+      <span class="chip">收录 2026-10-04</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="混沌/混沌.html">打开阅读页</a>
+      <a class="btn" href="混沌/混沌.md">内容正本</a>
+      <a class="btn" href="混沌/混沌-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/混沌.html">索引</a>
+    </div>
+  </article>
+
+  <!-- ============ 15 ============ -->
+  <article class="card" data-book="追寻记忆的痕迹" data-search="追寻记忆的痕迹 坎德尔 kandel 记忆 in search of memory 神经科学 自传 海兔 aplysia 突触 突触可塑性 短时记忆 长时记忆 creb camp pka 基因表达 海马 诺贝尔奖 维也纳 精神分析 分子生物学 五原理 还原论">
+    <div class="chead">
+      <span class="idx">15</span>
+      <div class="cttl">
+        <h3><a href="追寻记忆的痕迹/追寻记忆的痕迹.html">追寻记忆的痕迹</a></h3>
+        <div class="byline">埃里克·坎德尔 · 2006</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="追寻记忆的痕迹">未读</button>
+    </div>
+    <p class="onel">
+      <strong>一位诺奖得主用自己的半生，串起「心智生物学」这门学科是怎么长出来的。</strong>
+      从九岁在维也纳被邻居赶出家门，到五十年后以诺奖得主身份回到同一座城市。它的科学内核只有一句：
+      <em>记忆不是存放在某个脑区里的东西，而是突触连接强度的改变</em>——短期靠改零件，长期靠改图纸。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p><strong>只读一章就读第 19 章《基因与突触的对话》</strong>——前 18 章所有伏笔在这里收束。想懂机制走<em>第 4–10 → 13–19 → 20–23 章</em>；只想读故事走<em>第 1–3 → 29–30 章</em>。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p><strong>这本书解释不了「我为什么记不住东西」。</strong>到 2006 年，人类只搞清了记忆的<em>底层管线</em>；最尖锐的读者批评正是指这一点。另外<strong>买中译本务必看页数</strong>：2007 轻工社 323 页（无术语表）／2019 友谊 550 页（含术语表、注释、译名对照表），<em>同名同作者，最容易买错</em>。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：6 部 30 章（自传 ＋ 学科史双线）</span>
+      <span class="chip">引文：B 级 · 英文页码三方一致</span>
+      <span class="chip src">一手文献：NYTBR p.14 ／ Economist p.78</span>
+      <span class="chip rep">⚠ 两个中译本差 227 页</span>
+      <span class="chip">收录 2026-10-04</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="追寻记忆的痕迹/追寻记忆的痕迹.html">打开阅读页</a>
+      <a class="btn" href="追寻记忆的痕迹/追寻记忆的痕迹.md">内容正本</a>
+      <a class="btn" href="追寻记忆的痕迹/追寻记忆的痕迹-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/追寻记忆的痕迹.html">索引</a>
+    </div>
+  </article>
+
+  <!-- ============ 16 ============ -->
+  <article class="card" data-book="行为" data-search="行为 萨波斯基 sapolsky behave 神经科学 暴力 利他 共情 同情 慈悲 自由意志 决定论 刑事司法 惩罚 睾酮 皮质醇 催产素 杏仁核 前额叶 青春期 表观遗传 基因 文化 演化 我群他群 阶层 服从 道德 隐喻 战争 和平 狒狒 斯坦福 麦克阿瑟">
+    <div class="chead">
+      <span class="idx">16</span>
+      <div class="cttl">
+        <h3><a href="行为/行为.html">行为</a></h3>
+        <div class="byline">罗伯特·萨波斯基 · 2017</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="行为">未读</button>
+    </div>
+    <p class="onel">
+      <strong>它没有提出新理论，它提出了一种新的提问次序：同一个行为，从一秒钟前问到几百万年前。</strong>
+      整本书就是这条时间轴的 17 站。★ 而它争议最大的一站是终点——第 16 章：
+      <em>如果我们已经不再因为癫痫发作而烧死女巫，凭什么认为自己对行为机制的无知就不是同一类无知？</em>
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p><strong>先读附录一（神经科学入门）</strong>，再读第 1 章；否则第 2 章那 60 页会把你劝退。<strong>只读一章就读第 16 章</strong>（p.580–613）——它是全书的目的地，且能独立读懂。想读实用来处就读<em>第 14 章</em>（共情／同情／慈悲三分法）。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p><strong>第 3 章与第 16 章的「证据」要打折</strong>：它们大量依赖<b>后来复现失败</b>的社会启动研究（哥伦比亚统计学家 Gelman 的指控）；斯坦福科学史家 Riskin 另指控它<b>把哲学问题当科学问题</b>。★ 但第 16 章最有用的那半边是<b>历史类比</b>，不依赖任何实验。另：<strong>本书没有大陆简体版</strong>，中文只有繁体，别买错《动物本能》。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：引言 ＋ 17 章 ＋ 结语 ＋ 3 附录</span>
+      <span class="chip">引文：B 级 · 英文页码三方一致</span>
+      <span class="chip src">一手批评：NYRB 2025-02-13 ／ Why Evolution Is True</span>
+      <span class="chip rep">⚠ 无简体版 · 中文信息污染重</span>
+      <span class="chip">收录 2026-10-04</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="行为/行为.html">打开阅读页</a>
+      <a class="btn" href="行为/行为.md">内容正本</a>
+      <a class="btn" href="行为/行为-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/行为.html">索引</a>
+    </div>
+  </article>
+
+  <!-- ============ 17–25 · 2026-10-04 批次 ============ -->
+
+  <article class="card" data-book="AI 3.0" data-search="AI 3.0 米歇尔 mitchell 人工智能 机器学习 深度学习 通用智能 AGI 侯世达 视觉 ImageNet 对抗样本 AlphaGo 词向量 类比 抽象 基准测试 圣塔菲 复杂">
+    <div class="chead">
+      <span class="idx">17</span>
+      <div class="cttl">
+        <h3><a href="AI 3.0/AI 3.0.html">AI 3.0</a></h3>
+        <div class="byline">梅拉妮·米歇尔 · 2019</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="AI 3.0">未读</button>
+    </div>
+    <p class="onel">
+      <strong>它不给答案，它给一副「该怕什么、不必怕什么」的眼镜。</strong>米歇尔——侯世达的学生——逐层拆开视觉、游戏、语言、常识，论证「窄 AI 的胜利不能累加」。★ 与《智能简史》正面冲突：Bennett 说智能是模块叠加，她说那不构成通用智能。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p>只读一章就读<strong>第 14 章（On Understanding）</strong>——前十三章的图像／围棋／翻译／问答案例，全都是它的论据。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p><strong>书名里那个「3.0」是中文出版方加的</strong>，英文原名没有任何版本号，人大刘永谋另有专文说「AI 第三波 ≠ AI 3.0」。★ 另：中译本卷首那篇长推荐序的立场<b>与作者相反</b>。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：五部分 ＋ 16 章</span>
+      <span class="chip">引文：B 级 · 批评层硬／正文层软</span>
+      <span class="chip">一手批评：Principia 27(3) 2023</span>
+      <span class="chip">⚠ 书名「3.0」非作者原意</span>
+      <span class="chip">收录 2026-10-04</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="AI 3.0/AI 3.0.html">打开阅读页</a>
+      <a class="btn" href="AI 3.0/AI 3.0.md">内容正本</a>
+      <a class="btn" href="AI 3.0/AI 3.0-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/AI 3.0.html">索引</a>
+    </div>
+  </article>
+
+  <article class="card" data-book="人机对齐" data-search="人机对齐 alignment problem 克里斯汀 christian 人工智能 机器学习 价值 对齐 公平 透明 强化学习 奖励塑形 好奇心 模仿 推断 不确定性 RLHF 树痴呆 转圈自行车 斯金纳 安全">
+    <div class="chead">
+      <span class="idx">18</span>
+      <div class="cttl">
+        <h3><a href="人机对齐/人机对齐.html">人机对齐</a></h3>
+        <div class="byline">布莱恩·克里斯汀 · 2020</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="人机对齐">未读</button>
+    </div>
+    <p class="onel">
+      <strong>它把「AI 变坏」这个问法换成了更准的一个：AI 太听话。</strong>从「转圈自行车」到「树痴呆」，全书讲的是——我们给出的目标，从来不是我们真正想要的东西。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p>只读一章就读 <strong>Part II 第 5 章《Shaping》</strong>——转圈的船、树痴呆、训鸽子倒保龄球，全书最好记、最能复述的证据都在这里。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p><strong>网传的「四部分结构」是错的</strong>——本书是三部分九章，<em>Uncertainty</em> 是第九章（p.277）。也别被《对齐问题》《人工智能对齐》这类书名带跑：正式中文名只有一个。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：三部分 ＋ 9 章</span>
+      <span class="chip">引文：B 级 · 版式层硬／正文层软</span>
+      <span class="chip">一手批评：Mind & Language 41:119–136</span>
+      <span class="chip">⚠ 中文名有多个讹传版本</span>
+      <span class="chip">收录 2026-10-04</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="人机对齐/人机对齐.html">打开阅读页</a>
+      <a class="btn" href="人机对齐/人机对齐.md">内容正本</a>
+      <a class="btn" href="人机对齐/人机对齐-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/人机对齐.html">索引</a>
+    </div>
+  </article>
+
+  <article class="card" data-book="无穷的开始" data-search="无穷的开始 多伊奇 deutsch 解释 难以修改 hard-to-vary 归纳 猜想 乐观主义 通用性 多重宇宙 量子 构造理论 constructor theory 苏格拉底 波普尔 文化进化 启蒙">
+    <div class="chead">
+      <span class="idx">19</span>
+      <div class="cttl">
+        <h3><a href="无穷的开始/无穷的开始.html">无穷的开始</a></h3>
+        <div class="byline">戴维·多伊奇 · 2011</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="无穷的开始">未读</button>
+    </div>
+    <p class="onel">
+      <strong>它只有一个判据，但用得很狠：好解释是「难以修改」的。</strong>从这个判据出发，多伊奇把知识、道德、美学、政治全推了一遍。★ 它的批评面比内容面硬得多——一位物理学家说它给的不是假说，是「一种情绪」。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p>只读一章就读<strong>第 1 章《解释的延伸》</strong>——它是全书判据「难以修改」的唯一源头；不读它，后面十七章会一路读不成。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p><strong>第 11 章《多重宇宙》可整章跳过</strong>，不影响主线。★ 另：中文版把全书核心词 hard-to-vary 分别译成「难以修改」与「难以变动」，会让人误以为是两个概念。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：18 章</span>
+      <span class="chip">引文：B 级 · 批评面最硬</span>
+      <span class="chip">一手批评：Physics Today 65(12) · NYTBR</span>
+      <span class="chip">⚠ 核心术语中译不一致</span>
+      <span class="chip">收录 2026-10-04</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="无穷的开始/无穷的开始.html">打开阅读页</a>
+      <a class="btn" href="无穷的开始/无穷的开始.md">内容正本</a>
+      <a class="btn" href="无穷的开始/无穷的开始-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/无穷的开始.html">索引</a>
+    </div>
+  </article>
+
+  <article class="card" data-book="一个数学家的叹息" data-search="一个数学家的叹息 洛克哈特 lockhart 数学 教育 艺术 悲歌 几何 课程 课表 圣安 布朗 MAA devlin 辩白 哈代 音乐 游戏 无用">
+    <div class="chead">
+      <span class="idx">20</span>
+      <div class="cttl">
+        <h3><a href="一个数学家的叹息/一个数学家的叹息.html">一个数学家的叹息</a></h3>
+        <div class="byline">保罗·洛克哈特 · 2009</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="一个数学家的叹息">未读</button>
+    </div>
+    <p class="onel">
+      <strong>它是一篇檄文，不是一份研究报告。</strong>「数学是一门艺术，而我们的文化不承认它是」——洛克哈特用一篇 25 页长文换掉了一整个课程标准；而把他推上世界的那个人，随后公开说这「根本不可行」。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p>只读两节就读<strong>《学校里的数学》＋《中学几何：邪恶的工具》</strong>——全书的核心指控与最具争议的判断都在这里。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p><strong>先看第 7 节（争议）再往下读</strong>：三篇带卷期页码的专业书评都接受它的「诊断」、质疑它的「处方」。★ 别买错——这本是《叹息》，不是哈代那本《一个数学家的<em>辩白</em>》。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：上篇 ＋ 下篇</span>
+      <span class="chip">引文：★ 混合定级 · 论文 A ／ 成书 B</span>
+      <span class="chip">一手批评：Notices of the AMS 60(4)</span>
+      <span class="chip">⚠ 易与哈代《辩白》混淆</span>
+      <span class="chip">收录 2026-10-04</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="一个数学家的叹息/一个数学家的叹息.html">打开阅读页</a>
+      <a class="btn" href="一个数学家的叹息/一个数学家的叹息.md">内容正本</a>
+      <a class="btn" href="一个数学家的叹息/一个数学家的叹息-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/一个数学家的叹息.html">索引</a>
+    </div>
+  </article>
+
+  <article class="card" data-book="大脑的故事" data-search="大脑的故事 伊格曼 eagleman 脑 神经科学 意识 我是谁 感知 决策 无意识 自由意志 可塑性 情绪 共情 自我 社会 纪录片 BBC PBS 上传 Livewired">
+    <div class="chead">
+      <span class="idx">21</span>
+      <div class="cttl">
+        <h3><a href="大脑的故事/大脑的故事.html">大脑的故事</a></h3>
+        <div class="byline">大卫·伊格曼 · 2015</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="大脑的故事">未读</button>
+    </div>
+    <p class="onel">
+      <strong>BBC 六集纪录片的平面版：六章＝六集。</strong>它给你六个可靠的反直觉画面——世界是大脑造的、记忆是重写的、情绪参与决策、自我靠他人成形。★ 但它几乎不提供让你独立判断「这些结论有多硬」的东西。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p>只读一章就读<strong>第 6 章</strong>——里面有一节「『左右脑分工说』靠谱吗」，正是它与《主人与使者》对撞的接口。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p>把期待设成「<strong>建立直觉</strong>」而不是「获得论证」：本书的哲学讨论相当轻（自由意志、上传意识是写得最放的两处），多位批评者咬的正是这一点。★ 网上流传那顶「neuro-hubris」的帽子，其实是针对作者<em>另一本书《Incognito》</em>的。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：6 章（＝BBC 六集）</span>
+      <span class="chip">引文：B 级</span>
+      <span class="chip">一手书评：Nature 526(7571):41–42</span>
+      <span class="chip">⚠ 多篇批评实为迁移自《Incognito》</span>
+      <span class="chip">收录 2026-10-04</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="大脑的故事/大脑的故事.html">打开阅读页</a>
+      <a class="btn" href="大脑的故事/大脑的故事.md">内容正本</a>
+      <a class="btn" href="大脑的故事/大脑的故事-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/大脑的故事.html">索引</a>
+    </div>
+  </article>
+
+  <article class="card" data-book="主人与使者" data-search="主人与使者 麦吉尔克里斯特 mcgilchrist 分裂大脑 左右脑 半球 注意 西方文化史 现代性 使者 主人 神经神话 裂脑 corballis 柏拉图 浪漫主义">
+    <div class="chead">
+      <span class="idx">22</span>
+      <div class="cttl">
+        <h3><a href="主人与使者/主人与使者.html">主人与使者</a></h3>
+        <div class="byline">伊恩·麦吉尔克里斯特 · 2009</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="主人与使者">未读</button>
+    </div>
+    <p class="onel">
+      <strong>★ 读它之前必须先知道：作者二十年来反复公开否认「左脑理性／右脑感性」。</strong>他讲的不是「谁做什么」，而是两个半球「<strong>怎么注意</strong>」世界。⇒ 把这本书当「右脑开发」的背书，正是作者本人反对的读法。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p>读<strong>第一部《分裂的大脑》(p.15–238)</strong>——它是全书唯一的证据层；<strong>但必须带着第 7 节的批评一起读</strong>。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p>剥离流行误读之后，它<strong>仍然</strong>被神经科学界严肃质疑——<em>PLoS Biology</em> 上的批评出自裂脑研究那一脉：「这本书远远超出了神经科学事实」。★ 另：<strong>检索未发现正式中译本</strong>，中文书名不统一，慎防买错。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：导论 ＋ 两部 ＋ 结论</span>
+      <span class="chip">引文：B 级 · 批评面比内容面硬</span>
+      <span class="chip">一手批评：PLoS Biology 12(1):e1001767</span>
+      <span class="chip">⚠ 尚无正式中译本</span>
+      <span class="chip">收录 2026-10-04</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="主人与使者/主人与使者.html">打开阅读页</a>
+      <a class="btn" href="主人与使者/主人与使者.md">内容正本</a>
+      <a class="btn" href="主人与使者/主人与使者-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/主人与使者.html">索引</a>
+    </div>
+  </article>
+
+  <article class="card" data-book="记忆决定你是谁" data-search="记忆决定你是谁 兰加纳特 ranganath memory 记忆 遗忘 预测 未来 想象 海马 事件边界 预测误差 重构 社会记忆 创伤 可塑性 卡尼曼 幻觉">
+    <div class="chead">
+      <span class="idx">23</span>
+      <div class="cttl">
+        <h3><a href="记忆决定你是谁/记忆决定你是谁.html">记忆决定你是谁</a></h3>
+        <div class="byline">查兰·兰加纳特 · 2024</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="记忆决定你是谁">未读</button>
+    </div>
+    <p class="onel">
+      <strong>它把「记忆是档案」这个前提直接换掉了：记忆是预测未来的工具。</strong>所以遗忘不是故障，是设计。★ 而作者本人对最流行的那句「记忆是可塑的」反复踩刹车——别把它读成「你的记忆基本不可信」。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p>只读一章就读<strong>第 1 章</strong>（记忆到底为谁而存在）；想接神经科学，走「第 1 → 5 → 7 章」这条线。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p>本书最容易被过度延伸的一句是「每次回忆都在改写」——<strong>而这恰是作者在书外反复画边界的地方</strong>。★ 另：繁简两版是否同一套译稿，公开书目未能裁决。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：导论 ＋ 10 章 ＋ 结语</span>
+      <span class="chip">引文：B 级 · 作者谈话档最厚</span>
+      <span class="chip">跨书三连：与《追寻记忆的痕迹》《七宗罪》</span>
+      <span class="chip">收录 2026-10-04</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="记忆决定你是谁/记忆决定你是谁.html">打开阅读页</a>
+      <a class="btn" href="记忆决定你是谁/记忆决定你是谁.md">内容正本</a>
+      <a class="btn" href="记忆决定你是谁/记忆决定你是谁-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/记忆决定你是谁.html">索引</a>
+    </div>
+  </article>
+
+  <article class="card" data-book="记忆的七宗罪" data-search="记忆的七宗罪 沙克特 schacter 七宗罪 健忘 分心 空白 错认 暗示 偏颇 纠缠 transience absent-mindedness blocking misattribution suggestibility bias persistence 哈佛 虚假记忆 记忆战争 HSAM">
+    <div class="chead">
+      <span class="idx">24</span>
+      <div class="cttl">
+        <h3><a href="记忆的七宗罪/记忆的七宗罪.html">记忆的七宗罪</a></h3>
+        <div class="byline">丹尼尔·L. 沙克特 · 2001</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="记忆的七宗罪">未读</button>
+    </div>
+    <p class="onel">
+      <strong>七宗罪是一套分类学，不是一份缺陷清单。</strong>健忘、分心、空白、错认、暗示、偏颇、纠缠——每一宗「罪」，都是某个<strong>有用</strong>的心智特征的副产品。★ 它还是《追寻记忆的痕迹》那个问题的正解：「你记不住不是故障，是至少三种不同的机制」。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p>只读一章就读<strong>第 8 章《七宗罪：缺点还是优点？》</strong>（p.184）——前七章的全部内容，在这一章被一次性兑换成一个立场。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p><strong>中文读者的最大缺口在这里</strong>：两版中译都译自 2001 年原版，<strong>2021 年 20 周年更新版至今没有中译本</strong>——缺了 HSAM、「热车致婴死亡」、「假新闻与错觉真相效应」等全部新增。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：导论 ＋ 7 宗罪 ＋ 第 8 章</span>
+      <span class="chip">引文：B 级</span>
+      <span class="chip">⚠ 2021 更新版无中译</span>
+      <span class="chip">收录 2026-10-04</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="记忆的七宗罪/记忆的七宗罪.html">打开阅读页</a>
+      <a class="btn" href="记忆的七宗罪/记忆的七宗罪.md">内容正本</a>
+      <a class="btn" href="记忆的七宗罪/记忆的七宗罪-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/记忆的七宗罪.html">索引</a>
+    </div>
+  </article>
+
+  <article class="card" data-book="认知天性" data-search="认知天性 make it stick 学习 检索 间隔 交错 合意困难 desirable difficulty 学习风格 learning styles 成长心态 复现危机 罗迪格 roediger 麦克丹尼尔 记忆 考试 教育心理学">
+    <div class="chead">
+      <span class="idx">25</span>
+      <div class="cttl">
+        <h3><a href="认知天性/认知天性.html">认知天性</a></h3>
+        <div class="byline">布朗 / 罗迪格三世 / 麦克丹尼尔 · 2014</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="认知天性">未读</button>
+    </div>
+    <p class="onel">
+      <strong>★ 中文书名把全书主张说反了。</strong>大陆版叫《认知天性：<em>让学习轻而易举</em>的心理学规律》，而这本书的中心论点恰恰是「<strong>有效的学习不轻松</strong>」——学习越费力，越深、越持久。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p>只读一章就读<strong>第 2 章《为了学会，先要检索》</strong>——「检索练习」是全书所有建议共同的根。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p><strong>中译第 6 章标题「选择适合自己的学习风格」与原题意思相反</strong>（原题是「<strong>走出</strong>学习风格」）。★ 作者不是推销学习风格的人，<strong>是拆它的人</strong>——麦克丹尼尔本人就是那篇权威否定综述的共同作者。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：8 章</span>
+      <span class="chip">引文：★ 混合定级 · 整体 B ／ 前言+第 1 章 A</span>
+      <span class="chip">一手文献：Science 319(5865)</span>
+      <span class="chip">⚠ 中文书名与第 6 章标题均误导</span>
+      <span class="chip">收录 2026-10-04</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="认知天性/认知天性.html">打开阅读页</a>
+      <a class="btn" href="认知天性/认知天性.md">内容正本</a>
+      <a class="btn" href="认知天性/认知天性-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/认知天性.html">索引</a>
+    </div>
+  </article>
+
+  <!-- ============ 26 ============ -->
+  <article class="card" data-book="费曼物理学讲义" data-search="费曼 费恩曼 费因曼 feynman 物理学讲义 力学 辐射 热 电磁学 量子力学 相对论 第一原理 最小作用量 lectures on physics Caltech 网络自学">
+    <div class="chead">
+      <span class="idx">26</span>
+      <div class="cttl">
+        <h3><a href="费曼物理学讲义/费曼物理学讲义.html">费曼物理学讲义</a></h3>
+        <div class="byline">费曼 · 莱顿 · 桑兹 · 1963</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="费曼物理学讲义">未读</button>
+    </div>
+    <p class="onel">
+      <strong>一套把物理学当作整体、从第一原理往下推的讲义——不是习题册，也不是科普。</strong>三卷共 115 章：卷一立力学、辐射与热的图像，卷二换成「场」重讲电磁学，卷三直接上量子。它难在密度、不难在起点——起点是高中物理加初等微积分。费曼自己说，这整件事「本质上是一次实验」。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p>先读《费曼自序》，他把「给谁讲、讲到哪、为什么这么讲」全交代了。自学者建议走卷一最小集：第 1、2、4、5、7、8、9、10、15、16、21、37、38、44、46 章——把能量守恒到量子行为这条主干走一遍。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p>别把它当「学完一门课」的教材照章刷，费曼说了他故意让最聪明的学生也吃不透。另注意《讲义》三卷 ≠ 《补编》 ≠ 《习题集》，是三本不同的书；官方在线版只读、不可下载，且不含印刷页码。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：三卷 115 章 · 本页锚定卷一 52 章</span>
+      <span class="chip">引文：A 级 · 版权方官方在线全文可逐章定位</span>
+      <span class="chip">收录 2026-10-04</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="费曼物理学讲义/费曼物理学讲义.html">打开阅读页</a>
+      <a class="btn" href="费曼物理学讲义/费曼物理学讲义.md">内容正本</a>
+      <a class="btn" href="费曼物理学讲义/费曼物理学讲义-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/费曼物理学讲义.html">索引</a>
+    </div>
+  </article>
+
+  <!-- ============ 27 ============ -->
+  <article class="card" data-book="科学革命的结构" data-search="科学革命的结构 库恩 范式 范式转换 常规科学 不可通约 科学哲学 科学史 Kuhn Structure of Scientific Revolutions paradigm normal science incommensurability">
+    <div class="chead">
+      <span class="idx">27</span>
+      <div class="cttl">
+        <h3><a href="科学革命的结构/科学革命的结构.html">科学革命的结构</a></h3>
+        <div class="byline">托马斯·S·库恩 · 1962</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="科学革命的结构">未读</button>
+    </div>
+    <p class="onel">
+      <strong>这本书没有证明「科学不客观」，它证明了「科学的客观性是有历史的」——顺手发明了 20 世纪被滥用最严重的那个词：「范式」。</strong>它讲的是科学怎么变：常规科学在范式内解谜、积累反常、陷入危机、然后整体换轨（革命）。它不是科普，是写给同行的科学史与科学哲学文本；也不是方法论手册——库恩反复强调自己写的是「描述」，不是「规范」。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p>先读「后记——1969」，它是库恩本人对本体的「使用说明」，会告诉你哪些词是含混的。再读第 1 章，然后直接跳第 9、10、13 章（革命的性质、世界观的改变、进步不等于逼近真理）——这三章才是全书真正的赌注。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p>「范式」和「不可通约」恰恰是本书被批评最狠的两个词：马斯特曼数出「范式」至少 21 种用法，库恩本人在后记里认账并另造「学科基质」「范例」修正。别把正文与后记当同一文本读。另外，简体主流旧版（北大 2003）不是最新底本，只买一本请选 2022 张卜天新译。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：13 章 + 后记 · 逐章 14 节</span>
+      <span class="chip">引文：B 级（带页码，经二手转引）</span>
+      <span class="chip">锚定版本：2012 第四版（含哈金导读）</span>
+      <span class="chip">争议：波普尔派 / 实在论者 / 史学界 / Fuller</span>
+      <span class="chip">收录 2026-10-04</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="科学革命的结构/科学革命的结构.html">打开阅读页</a>
+      <a class="btn" href="科学革命的结构/科学革命的结构.md">内容正本</a>
+      <a class="btn" href="科学革命的结构/科学革命的结构-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/科学革命的结构.html">索引</a>
+    </div>
+  </article>
+
+  <!-- ============ 28 ============ -->
+  <article class="card" data-book="思考，快与慢" data-search="思考快与慢 卡尼曼 系统1 系统2 认知偏差 前景理论 损失厌恶 锚定效应 可得性 复制危机 启动效应 自我损耗 行为经济学 Kahneman Thinking Fast and Slow System 1 System 2 prospect theory anchoring replication crisis priming ego depletion">
+    <div class="chead">
+      <span class="idx">28</span>
+      <div class="cttl">
+        <h3><a href="思考，快与慢/思考，快与慢.html">思考，快与慢</a></h3>
+        <div class="byline">丹尼尔·卡尼曼 · 2011</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="思考，快与慢">未读</button>
+    </div>
+    <p class="onel">
+      <strong>它没有发明「人是不理性的」——它发明了一套给普通人的「错误命名系统」，并顺手重构了经济学对「选择」的理解。</strong>全书讲两套心智模式：System 1 快、自动、爱编故事；System 2 慢、费力、但懒惰。它的价值是一套词汇表（锚定、可得性、WYSIATI、损失厌恶），不是神经科学——「两个系统」是隐喻。<em>最该注意的：</em>它和复制危机的关系，见「小心」一栏。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p>先读引言（p.3–20），它自带全书地图，并交代「两个系统」只是隐喻。然后跳读：想抓自己的决策错误读第 11、12、19–24 章；想懂诺奖级理论读第 25–29 章（★ 全书最硬）；想理解幸福与记忆读第 35–38 章。想一小时速览：引言 ＋ 第 9 章（答案替换）＋ 第 26 章（前景理论）。附录 A 就是 1974 年那篇 Science 原文。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p>★ 本书最出名、也最脆弱的是第 3 章（自我损耗）与第 4 章（启动效应）——大量小样本社会心理学实验，后来多项大规模复现失败。卡尼曼本人 2012、2017 两次公开认领，2017 年写道「我过于相信了统计效力不足的研究」。请把「稳固区」（前景理论、锚定、可得性、框架、规划谬误）与「待验证区」（启动、自我损耗、假释法官）分开读——两者不是同一可信度。只买一本，选大陆中信 2025 第二版。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：5 部分 38 章 + 结论 + 附录 A/B · 逐章 14 节</span>
+      <span class="chip">引文：B 级（带页码，引言与第 1–3 章截面 A）</span>
+      <span class="chip">锚定版本：Penguin 2012/2024（p.3 → p.585）</span>
+      <span class="chip">争议：复制危机 / Gigerenzer 生态理性 / 两个系统隐喻</span>
+      <span class="chip">收录 2026-10-04</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="思考，快与慢/思考，快与慢.html">打开阅读页</a>
+      <a class="btn" href="思考，快与慢/思考，快与慢.md">内容正本</a>
+      <a class="btn" href="思考，快与慢/思考，快与慢-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/思考，快与慢.html">索引</a>
+    </div>
+  </article>
+
+  <!-- ============ 29 ============ -->
+  <article class="card" data-book="语言本能" data-search="语言本能 平克 语言本能论 普遍语法 心语 语言器官 语法基因 语言相对论 沃尔夫假说 乔姆斯基 演化心理学 Pinker The Language Instinct universal grammar mentalese language instinct">
+    <div class="chead">
+      <span class="idx">29</span>
+      <div class="cttl">
+        <h3><a href="语言本能/语言本能.html">语言本能</a></h3>
+        <div class="byline">史蒂芬·平克 · 1994</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="语言本能">未读</button>
+    </div>
+    <p class="onel">
+      <strong>这本书要说的是：语言不是人类发明的，是人脑里长出来的一件器官——就像蜘蛛会结网、蝙蝠会用声呐一样。</strong>它不回答「哪种语言更好」，它回答的是「为什么两三岁的孩子没人教就会说合乎语法的话」。但它不是中立综述，而是一份辩护词：平克在书里同时反驳「语言是文化产物」与「语言决定思维（沃尔夫假说）」。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p>先读第 2 章（中译「01」，克里奥尔语与聋儿手语）和第 3 章（中译「02」，心语）——这两章是全书论点的承重墙。第 9、10、11 章（儿童习得/语言器官/语言演化）连读。第 12 章（挖苦「语言专家」）最轻松，可独立读。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p>① 这是一本论战书，读时随时问「他反驳的是不是对手真正的主张」——第 3 章对沃尔夫的驳斥被指打稻草人。② 2015 浙江人民版把英文第 1 章改称「引言」、第 13 章改称「结语」，<strong>章号整体错位一章</strong>，按英文或豆瓣章号找内容会错位。③ 「语言本能＝自然选择为交流而造的适应」在学界有正面异议（Chomsky 一派 2002 年起）。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：13 章 + 注释/参考/术语/索引 · 逐章 13 节</span>
+      <span class="chip">引文：B 级（带页码，部分经二手转引）</span>
+      <span class="chip">锚定版本：Harper Perennial 系列版（2000/2010 同页码）</span>
+      <span class="chip">争议：Tomasello / Sampson / Fodor / Gould / Deacon / 乔姆斯基一派</span>
+      <span class="chip">收录 2026-10-04</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="语言本能/语言本能.html">打开阅读页</a>
+      <a class="btn" href="语言本能/语言本能.md">内容正本</a>
+      <a class="btn" href="语言本能/语言本能-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/语言本能.html">索引</a>
+    </div>
+  </article>
+
 
 </div>
 
@@ -589,6 +1211,7 @@ body.nav-open #navscrim{opacity:1;pointer-events:auto}
   <h3>这一页怎么维护</h3>
   <ul>
     <li>本页是<strong>手写的静态页</strong>：新增一本书后，需要在这里加一张卡（约 30 行）。所有卡片都是独立块，互不影响。</li>
+    <li>顶部与底部的<strong>「N 本书／N 份产出／已读 x / N」是自动计算的</strong>（页面脚本按卡片数实时填）——新增卡片后不必再手改这几处，也不会因为书目增长而失真。</li>
     <li><strong>判断一本书有没有被收录</strong>，以目录 <code>_书目索引/</code> 为准——那里一本一个文件，是权威清单。</li>
     <li>所以：<strong>本页可能落后于实际书目</strong>。如果这里少了某本书，去 <a href="_书目索引/">_书目索引/</a> 找，或直接进对应书名目录读 HTML。</li>
     <li><strong>已读标记</strong>存在浏览器本地（localStorage），换浏览器或换设备不会同步；若浏览器限制本地文件存储，标记只在本次会话有效。</li>
@@ -597,7 +1220,7 @@ body.nav-open #navscrim{opacity:1;pointer-events:auto}
 
 <footer class="foot">
   <span>读书精华整理 · reading-assist</span>
-  <span>本页更新于 2026-10-02 · 收录 10 本</span>
+  <span>本页更新于 2026-10-04 · 收录 <span id="nfoot">29</span> 本</span>
 </footer>
 
 </div>
@@ -711,6 +1334,16 @@ body.nav-open #navscrim{opacity:1;pointer-events:auto}
   Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
     a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
   });
+})();
+
+;/* ===== 2026-10-04 · 统计条自动计算：新增一张卡之后，不必再手改数字 ===== */
+(function(){
+  var n = document.querySelectorAll('#cards .card').length;
+  function set(id, v){ var e = document.getElementById(id); if (e) { e.textContent = v; } }
+  set('nbooks', n);
+  set('nfiles', n * 3);
+  set('ntot', n);
+  set('nfoot', n);
 })();
 </script>
 </body>

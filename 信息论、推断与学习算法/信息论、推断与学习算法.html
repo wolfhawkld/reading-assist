@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《信息论、推断与学习算法》学习路线图与章节地图</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《信息论、推断与学习算法》<small>学习路线图与章节地图 · 2026-10-04</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 前置知识与目标读者</a>
+    <a href="#s2">2 全书骨架</a>
+    <a href="#s3">3 学习路线</a>
+    <a href="#s4">4 配套资源（全部在作者官方站点，合法公开）</a>
+    <div class="grp">下部 · 章节地图</div>
+    <a href="#s5"> 入场 · 第 1–3 章（p.3–64）</a>
+    <a href="#s6"> 第一部分 · Data Compression（第 4–7 章，p.65–136）</a>
+    <a href="#s7"> 第二部分 · Noisy-Channel Coding（第 8–11 章，p.137–190）</a>
+    <a href="#s8"> 第三部分 · Further Topics in Information Theory（第 12–19 章，p.191–280）</a>
+    <a href="#s9"> 第四部分 · Probabilities and Inference（第 20–37 章，p.281–466）</a>
+    <a href="#s10"> 第五部分 · Neural Networks（第 38–46 章，p.467–554）</a>
+    <a href="#s11"> 第六部分 · Sparse Graph Codes（第 47–50 章，p.555–596）</a>
+    <a href="#s12"> 附录（p.597–612）</a>
+    <div class="grp">附录</div>
+    <a href="#s13">A 关键定义与公式表</a>
+    <a href="#s14">B 常见卡点与提示</a>
+    <a href="#s15">C 来源清单</a>
+    <a href="#s16">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《信息论、推断与学习算法》学习路线图与章节地图</h1>
+  <div class="sub">Information Theory, Inference, and Learning Algorithms · Cambridge University Press, 2003 · 640 pp.</div>
+  <div class="meta">
+    <div><b>作者</b>David J. C. MacKay（1967–2016）· 剑桥大学物理系／卡文迪许实验室</div>
+    <div><b>初版</b>2003-09 · Cambridge University Press · 640 页 · ISBN 0521642981</div>
+    <div><b>页码依据</b>第四版印刷（fourth printing, 2005-03）—— 与作者官方站免费 PDF 一致</div>
+    <div><b>中译</b>无官方中译本（检索未见）</div>
+    <div><b>形态</b>教材型 · 本页不是逐章精华，是「学习路线图 ＋ 章节地图」</div>
+    <div><b>原文核验级别</b>A（全文核验）—— 作者官方站点提供全书 PDF／PS／DJVU／EPUB</div>
+    <div><b>状态</b>未标注已读／想读</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用三档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有出版方文本依据 —— 本书的目录、页码、习题编号均取自作者官方公开的全文</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理或整理，无直接原文支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本页是<b>教材型</b>（学习路线图 ＋ 章节地图），<b>不建议当逐章摘要读</b>。目录、页码、习题编号取自作者官方公开的<b>全书 PDF</b>（第四版印刷），因此这几类信息属 <b>A 级（全文核验）</b>；<b>三条阅读路线与卡点提示标为推断</b>，见附录 D。
+  </p>
+  <h3>为什么这本书用另一种形态（2026-10-04）</h3>
+    <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">教材的价值在动手。给一本 640 页、50 章、带 1–5 级习题的教材写「逐章要点」，读完依然不会做那道题 —— 用 3b1b 的话说：<b>Mathematics is not a spectator sport.</b><br>所以本页只回答三个问题：<b>它训练什么能力 / 该按什么顺序读 / 哪些可以跳。</b></p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>它把「信息论」和「机器学习」当成同一枚硬币的两面来教。</strong> 压缩、纠错码、聚类、神经网络、贝叶斯推断， 在这本书里不是五门课，而是<strong>同一套工具（概率 ＋ 消息传递 ＋ 变分）的五种用法</strong>。</p>
+  <p>作者的原话是 <span class="tag t-src">原书</span>：「<strong>Why unify information theory and machine learning? Because they are two sides of the same coin.</strong>」 他给的理由是一段历史：1960 年代控制论（cybernetics）这一个领域里， 信息论学者、计算机科学家、神经科学家研究的是同一批问题 —— 「<strong>信息论与机器学习仍然属于一起。大脑是终极的压缩与通信系统。</strong>」</p>
+  <p>⇒ <strong>对你的书单来说，这本的地位是</strong>：GEB 教你「形式系统的自指与怪圈」，这本教你「<strong>形式系统怎么承载信息、怎么在有噪声的世界里活下来</strong>」。 它是<strong>从数学到实现之间的那一段</strong>：说完香农，就接着说「所以机器怎么学」。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>前置知识与目标读者</span><span class="caret">▾</span></h2>
+  <ul>
+    <li><strong>目标读者</strong> <span class="tag t-src">原书</span>：「senior undergraduates and graduate students in <strong>Engineering, Science, Mathematics, and Computing</strong>」
+  <p>—— 工程／科学／数学／计算的<strong>高年级本科生与研究生</strong>。</p>
+    </li>
+    <li><strong>前置知识</strong> <span class="tag t-src">原书</span>：「<strong>微积分、概率论、线性代数</strong>」，程度＝「本科一二年级理工数学课」。
+    </li>
+    <li><strong>不要求</strong>：不先修信息论，也不先修机器学习 —— 这本书<strong>自己建立</strong>那套统一视角。
+    </li>
+    <li><strong>数学密度：高。</strong> 正文是不等式推导与「精确 / 近似」论证，<strong>不是科普</strong>。
+  <p>⇒ 想读同一主题的叙事版，那是另一本书（Gleick《The Information》或 Cover &amp; Thomas 的课本）。</p>
+    </li>
+  </ul>
+  <p>★ <strong>一处在借阅前就要想清楚的取舍</strong>：它给你的是<strong>框架</strong>，代价是<strong>必须动笔</strong>。 如果你只想「知道信息论说了什么」，这本书的性价比很低；如果你要的是<strong>能自己算、能读懂后续论文</strong>，它几乎是唯一一本把两边缝得这么紧的。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p><span class="tag t-src">原书</span> 以下结构、章号、页码均取自官方 PDF 的目录页（本文页＝第四版印刷）。</p>
+  <table>
+    <thead><tr><th>部分</th><th>章</th><th>页</th><th>这一部分在做什么</th></tr></thead>
+    <tbody>
+      <tr><td>（入场，不属于任何部分）</td><td>1–3</td><td>3–64</td><td>信息论与概率的入门；贝叶斯推断第一次登场</td></tr>
+      <tr><td>I Data Compression</td><td>4–7</td><td>65–136</td><td>源编码定理、符号码、流码、整数的编码</td></tr>
+      <tr><td>II Noisy-Channel Coding</td><td>8–11</td><td>137–190</td><td>相关随机变量、噪声信道、<strong>信道编码定理</strong>、纠错码</td></tr>
+      <tr><td>III Further Topics in IT</td><td>12–19</td><td>191–280</td><td>哈希码、二元码、<strong>消息传递</strong>、填字与破译、性与进化</td></tr>
+      <tr><td>IV Probabilities and Inference</td><td>20–37</td><td>281–466</td><td>聚类 → 精确推断 → MCMC → 变分 → 决策论（<strong>全书最长</strong>）</td></tr>
+      <tr><td>V Neural Networks</td><td>38–46</td><td>467–554</td><td>单神经元 → <strong>学习即推断</strong> → Hopfield／Boltzmann → 多层网络 → 高斯过程</td></tr>
+      <tr><td>VI Sparse Graph Codes</td><td>47–50</td><td>555–596</td><td>LDPC、Turbo、RA、数字喷泉码（现代纠错码）</td></tr>
+      <tr><td>VII Appendices</td><td>A–C</td><td>597–612</td><td>记号表、物理背景、数学摘要</td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>一处最容易看错的地方</strong>：<strong>第 1–3 章不在任何「部分」内</strong>，它们排在「Part I」<strong>之前</strong>。 所以「Part I」里只有第 4–7 章。别按「第 1 章属于 Part I」去理解这本书的骨架。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>学习路线</span><span class="caret">▾</span></h2>
+  <h3>3.1 作者本人给了四条路线 <span class="tag t-src">原书</span></h3>
+  <p>原书 <strong>p. vii–x</strong> 用四张图给了四种用法，<span class="tag t-src">原书</span> 前言里的原话是：</p>
+  <blockquote>
+    <p>「First, I give the roadmap for a course that I teach in Cambridge:『<strong>Information theory, pattern recognition, and neural networks</strong>』.</p>
+    <p>The book is also intended as a textbook for traditional courses in <strong>information theory</strong>.</p>
+    <p>The second roadmap shows the chapters for an <strong>introductory information theory</strong> course and</p>
+    <p>the third for a course aimed at an understanding of <strong>state-of-the-art error-correcting codes</strong>.</p>
+    <p>The fourth roadmap shows how to use the text in a conventional course on <strong>machine learning</strong>.」</p>
+  </blockquote>
+  <p>★ <strong>诚实交代边界</strong>：这四张图<strong>具体高亮了哪几章，我拿不到</strong> —— 我提取到的是图上文字层（章节名）， 高亮信息在图形里。⇒ 下面 <strong>3.2 的三条路线是我依据前言的明确文字 ＋ 章节依赖整理的，属 <span class="tag t-inf">推断</span></strong>， <strong>具体选择请以原书 p. vii–x 那四页为准</strong>。</p>
+  <h3>3.2 三条路线（我整理）<span class="tag t-inf">推断</span></h3>
+  <p>三条都基于前言里的<strong>三条硬信息</strong> <span class="tag t-src">原书</span>： ① 「<strong>Part III 全部章节首读都可跳过</strong>，唯一可能的例外是 <strong>第 16 章（Message Passing）</strong>」； ② 「Part I、II、IV、V 里，<strong>进阶／可选章都排在靠后</strong>」； ③ 「<strong>第 4 章要在 §4.5 前绕开，第 10 章要在 §10.4 前绕开</strong>」。</p>
+  <p><strong>路线 A · 最短主干（第一次读就走这条）</strong></p>
+  <table>
+    <thead><tr><th>步</th><th>读什么</th><th>为什么</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>第 1–3 章</td><td>建立「概率即推断」的框架——后面每一章都用它。<strong>别跳</strong></td></tr>
+      <tr><td>2</td><td>第 4–6 章</td><td>压缩三连（源编码定理／符号码／流码）。★ 第 4 章<strong>读到 §4.5 前先跳</strong></td></tr>
+      <tr><td>3</td><td>第 8–10 章</td><td>噪声信道。★ 第 10 章<strong>读到 §10.4 前先跳</strong></td></tr>
+      <tr><td>4</td><td>第 16 章 Message Passing</td><td>前言点名的「Part III 唯一例外」，也是后面所有解码算法的骨架</td></tr>
+      <tr><td>5</td><td>第 20–22 章</td><td>聚类三法（K-means／精确枚举／最大似然）——机器学习视角的入口</td></tr>
+      <tr><td>6</td><td>第 38–39、41 章</td><td>单神经元 → <strong>「学习即推断」</strong>这条主线收束</td></tr>
+    </tbody>
+  </table>
+  <p>⇒ 走完这六步，你拿到的是<strong>全书主干</strong>：压缩、信道、消息传递、聚类、学习即推断。</p>
+  <p><strong>路线 B · 只想要机器学习</strong> 第 1–2 章 → 第 20–23 章 → 第 24–28 章（精确推断／拉普拉斯／<strong>奥卡姆剃刀</strong>）→ 第 29–33 章（蒙特卡洛／变分）→ 第 38–45 章。 <strong>跳过 Part I、II、VI 全部。</strong></p>
+  <p><strong>路线 C · 只想要纠错码</strong> 第 1–2 章 → 第 6 章（流码）→ 第 9–11 章 → 第 13 章（二元码）→ 第 47–50 章（LDPC／Turbo／RA／Fountain）。 <strong>这是全书最「工程」的一条路</strong>，也是最贴近 2003 年之后真实产业的一条。</p>
+  <h3>3.3 读书时的四条操作建议 <span class="tag t-src">原书</span></h3>
+  <ul>
+    <li><strong>章内也有同样的规律</strong> <span class="tag t-src">原书</span>：「<strong>每章末尾的小节常是可跳过的进阶内容</strong>」——先读前面的。
+    </li>
+    <li><strong>两座山有逃生门</strong> <span class="tag t-src">原书</span>：第 4 章绕 §4.5、第 10 章绕 §10.4（原文说 the first-time reader should detour）。
+    </li>
+    <li><strong>习题有分级</strong> <span class="tag t-src">原书</span>：<strong>1–5 难度</strong>（1＝一分钟，2＝一刻钟，3＝中等，4＝难，<strong>5＝研究课题</strong>）；
+  <p>★ 标 <strong>C</strong> 的<strong>需要写代码</strong>；<strong>部分题在旁边印了解答页码</strong>。</p>
+    </li>
+    <li>★ <span class="tag t-src">原书</span> 作者的第一句话就是：「<strong>You can understand a subject only by creating it for yourself.</strong>」
+  <p>—— 书名的 "Learning Algorithms" 有一半的意思是「你要自己跑」。</p>
+    </li>
+  </ul>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>配套资源（全部在作者官方站点，合法公开）</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>资源</th><th>地址／说明</th></tr></thead>
+    <tbody>
+      <tr><td><strong>全书免费在线</strong>（PDF）</td><td><code>inference.org.uk/itprnn/book.pdf</code>（A4，第四版印刷，9M）</td></tr>
+      <tr><td>其他格式</td><td>PostScript（<code>.ps.gz</code>）、DJVU（<code>.djvu</code>）、实验性 EPUB（<code>.epub</code>）</td></tr>
+      <tr><td>分章单独下载</td><td><code>inference.org.uk/mackay/itprnn/ps/</code></td></tr>
+      <tr><td>全部插图</td><td><code>inference.org.uk/mackay/itprnn/figures.pdf</code>（作者注明「供教师使用」）</td></tr>
+      <tr><td><strong>教学／研究软件</strong></td><td>作者站点：perl、octave、tcl、C、gnuplot 写的代码，含若干动画</td></tr>
+      <tr><td>勘误</td><td>作者站点有 corrections 页</td></tr>
+      <tr><td>习题解答</td><td>书中给出<strong>一部分</strong>；其余面向用书的教师（<code>solutions@cambridge.org</code>）</td></tr>
+      <tr><td>全文检索</td><td>Google Books 可搜（ISBN 0521642981）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>版权边界</strong> <span class="tag t-src">原书</span>：书是 <strong>© Cambridge University Press</strong>。作者声明这些文件<strong>继续在网站上供在线查看</strong>， 但「<strong>同样的版权规则适用</strong>」，并举例「<strong>把整本书打印出来是不允许的</strong>」。 ⇒ 本页<strong>只把它当作合法核验来源</strong>（在线读），<strong>不下载复制、不再分发</strong>。</p>
+  <p>★ <strong>这本书与你书单里其它几本的接口</strong>：</p>
+  <ul>
+    <li>与 <strong>GEB</strong> 的接口在第 14 章（好码存在性的证明，用计数论证）与第 16 章（消息传递＝自指式的局部更新）；
+    </li>
+    <li>与 <strong>《逻辑哲学论》/《哲学研究》</strong> 的接口是第 2 章：「概率」的三种解释（频率／主观／组合）——正是「意义即用法」在数学里的对应物 <span class="tag t-inf">推断</span>；
+    </li>
+    <li>与 <strong>神经科学方向</strong>的接口是 Part V 与第 41 章：把「学习」重写成「推断」，这正好是记忆＝突触可塑性那条线的数学版本 <span class="tag t-inf">推断</span>。
+    </li>
+  </ul>
+  <p>（按 7 个部分组织。★＝主干必读；◻＝首读可跳过。页码＝第四版印刷。）</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>入场 · 第 1–3 章（p.3–64）</span><span class="caret">▾</span></h2>
+  <blockquote>
+    <p><strong>这一组在做什么</strong>：把全书要用的语言一次性建立起来 —— 概率、熵、互信息、贝叶斯。</p>
+  </blockquote>
+  <table>
+    <thead><tr><th>章</th><th>标题</th><th>页</th><th>在回答什么</th><th>判断</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Introduction to Information Theory</td><td>3</td><td>信息论要解决什么；用一个「猜数字」游戏引入熵</td><td>★ 必读</td></tr>
+      <tr><td>2</td><td>Probability, Entropy, and Inference</td><td>22</td><td>概率的三种含义；熵、相对熵、互信息；<strong>贝叶斯推断第一次登场</strong></td><td>★★ 必读（全书地基）</td></tr>
+      <tr><td>3</td><td>More about Inference</td><td>48</td><td>用「弯曲硬币」把推断、模型比较、证据讲一遍</td><td>★ 必读</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>第 2 章最容易被低估</strong>：它读起来像复习，但后面每一章的记号都从这儿来。<strong>不要跳。</strong></p>
+</section>
+
+<section id="s6">
+  <h2><span class="num"></span><span>第一部分 · Data Compression（第 4–7 章，p.65–136）</span><span class="caret">▾</span></h2>
+  <blockquote>
+    <p><strong>这一部分在回答什么</strong>：无损压缩的极限由什么决定？</p>
+  </blockquote>
+  <table>
+    <thead><tr><th>章</th><th>标题</th><th>页</th><th>在回答什么</th><th>判断</th></tr></thead>
+    <tbody>
+      <tr><td>4</td><td>The Source Coding Theorem</td><td>67</td><td>熵就是压缩极限；典型序列</td><td>★ 必读，<strong>但读到 §4.5 前先跳</strong></td></tr>
+      <tr><td>5</td><td>Symbol Codes</td><td>91</td><td>符号码（霍夫曼一类）</td><td>★ 必读</td></tr>
+      <tr><td>6</td><td>Stream Codes</td><td>110</td><td>算术编码、PPM、Lempel–Ziv</td><td>★ 必读（工程最常用）</td></tr>
+      <tr><td>7</td><td>Codes for Integers</td><td>132</td><td>整数怎么编码（后面到处要用）</td><td>◻ 短，可后补</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s7">
+  <h2><span class="num"></span><span>第二部分 · Noisy-Channel Coding（第 8–11 章，p.137–190）</span><span class="caret">▾</span></h2>
+  <blockquote>
+    <p><strong>这一部分在回答什么</strong>：有噪声时还能可靠传多少？代价是什么？</p>
+  </blockquote>
+  <table>
+    <thead><tr><th>章</th><th>标题</th><th>页</th><th>在回答什么</th><th>判断</th></tr></thead>
+    <tbody>
+      <tr><td>8</td><td>Dependent Random Variables</td><td>138</td><td>联合熵、互信息、马尔可夫链下的熵率</td><td>★ 必读</td></tr>
+      <tr><td>9</td><td>Communication over a Noisy Channel</td><td>146</td><td>信道容量；把「推断」用在信道上</td><td>★ 必读</td></tr>
+      <tr><td>10</td><td>The Noisy-Channel Coding Theorem</td><td>162</td><td><strong>信道编码定理</strong>（本书两大定理之一）</td><td>★ 必读，<strong>但读到 §10.4 前先跳</strong></td></tr>
+      <tr><td>11</td><td>Error-Correcting Codes and Real Channels</td><td>177</td><td>真实信道里纠错码怎么落地</td><td>可选</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s8">
+  <h2><span class="num"></span><span>第三部分 · Further Topics in Information Theory（第 12–19 章，p.191–280）</span><span class="caret">▾</span></h2>
+  <blockquote>
+    <p>★ <span class="tag t-src">原书</span> 前言明说：<strong>这一整部分首读都可跳过，唯一例外大概是第 16 章。</strong></p>
+  </blockquote>
+  <table>
+    <thead><tr><th>章</th><th>标题</th><th>页</th><th>在回答什么</th><th>判断</th></tr></thead>
+    <tbody>
+      <tr><td>12</td><td>Hash Codes: Codes for Efficient Information Retrieval</td><td>193</td><td>用哈希码做高效检索</td><td>◻</td></tr>
+      <tr><td>13</td><td>Binary Codes</td><td>206</td><td>二元码的距离性质、重量枚举、完美码</td><td>◻（走路线 C 时必读）</td></tr>
+      <tr><td>14</td><td>Very Good Linear Codes Exist</td><td>229</td><td>「好码存在」的证明——同时证了源编码与信道编码定理</td><td>◻</td></tr>
+      <tr><td>15</td><td>Further Exercises on Information Theory</td><td>233</td><td>纯习题章</td><td>◻</td></tr>
+      <tr><td>16</td><td><strong>Message Passing</strong></td><td>241</td><td><strong>消息传递</strong>：在图上做求和-求最大，解码与推断的公共骨架</td><td>★★ 必读（唯一例外）</td></tr>
+      <tr><td>17</td><td>Communication over Constrained Noiseless Channels</td><td>248</td><td>受约束的无噪信道</td><td>◻</td></tr>
+      <tr><td>18</td><td>Crosswords and Codebreaking</td><td>260</td><td>填字游戏、Enigma 与 Banburismus</td><td>◻ 有趣，非主干</td></tr>
+      <tr><td>19</td><td>Why have Sex? Information Acquisition and Evolution</td><td>269</td><td>用信息论算「有性繁殖为何值得」</td><td>◻ 全书最有意思的岔路</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>第 19 章值得单独一提</strong>：它是「信息论被拿去解释生物学」的一个完整示范 —— 和你书单里《第三种黑猩猩》《枪炮》那类「用一条机制解释一大片现象」的写法<strong>同构</strong> <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num"></span><span>第四部分 · Probabilities and Inference（第 20–37 章，p.281–466）</span><span class="caret">▾</span></h2>
+  <blockquote>
+    <p><strong>这一部分在回答什么</strong>：面对一个真实的推断问题，从「精确能算」到「只能近似」，有哪几件武器。</p>
+    <p>★ <strong>全书最长（18 章）</strong>，也是与机器学习重叠最大的一部分。</p>
+  </blockquote>
+  <table>
+    <thead><tr><th>章</th><th>标题</th><th>页</th><th>在回答什么</th><th>判断</th></tr></thead>
+    <tbody>
+      <tr><td>20</td><td>An Example Inference Task: Clustering</td><td>284</td><td>用聚类当样板，引出「隐变量 ＋ 参数」</td><td>★ 必读（ML 入口）</td></tr>
+      <tr><td>21</td><td>Exact Inference by Complete Enumeration</td><td>293</td><td>能枚举时就精确算</td><td>★ 必读</td></tr>
+      <tr><td>22</td><td>Maximum Likelihood and Clustering</td><td>300</td><td>最大似然、EM 的雏形，以及它的「致命缺陷」</td><td>★ 必读</td></tr>
+      <tr><td>23</td><td>Useful Probability Distributions</td><td>311</td><td>常用分布工具箱</td><td>★ 当手册查</td></tr>
+      <tr><td>24</td><td>Exact Marginalization</td><td>319</td><td>精确边缘化总论</td><td>★ 必读</td></tr>
+      <tr><td>25</td><td>Exact Marginalization in Trellises</td><td>324</td><td>网格图上的前向-后向（即 HMM 的算法）</td><td>★ 必读</td></tr>
+      <tr><td>26</td><td>Exact Marginalization in Graphs</td><td>334</td><td>图上的求和-乘积／最小-和／junction tree</td><td>★ 必读</td></tr>
+      <tr><td>27</td><td>Laplace's Method</td><td>341</td><td>第一种近似：高斯近似积分</td><td>★ 必读</td></tr>
+      <tr><td>28</td><td>Model Comparison and Occam's Razor</td><td>343</td><td>贝叶斯怎么自动长出「奥卡姆剃刀」；MDL</td><td>★★ 概念最漂亮的一章</td></tr>
+      <tr><td>29</td><td>Monte Carlo Methods</td><td>357</td><td>采样为什么能算积分</td><td>★ 必读</td></tr>
+      <tr><td>30</td><td>Efficient Monte Carlo Methods</td><td>387</td><td>Hybrid MC、模拟退火等</td><td>进阶</td></tr>
+      <tr><td>31</td><td>Ising Models</td><td>400</td><td>伊辛模型：从物理借来的推断样板</td><td>可选</td></tr>
+      <tr><td>32</td><td>Exact Monte Carlo Sampling</td><td>413</td><td>完美采样及其困难</td><td>可选</td></tr>
+      <tr><td>33</td><td>Variational Methods</td><td>422</td><td><strong>变分法</strong>（今天深度学习的核心工具之一）</td><td>★ 必读</td></tr>
+      <tr><td>34</td><td>Independent Component Analysis and Latent Variable Modelling</td><td>437</td><td>ICA 与隐变量模型</td><td>可选</td></tr>
+      <tr><td>35</td><td>Random Inference Topics</td><td>445</td><td>零散主题（含「无知时你知道什么」）</td><td>◻</td></tr>
+      <tr><td>36</td><td>Decision Theory</td><td>451</td><td>有损失函数时怎么决策</td><td>★ 必读（短而重要）</td></tr>
+      <tr><td>37</td><td>Bayesian Inference and Sampling Theory</td><td>457</td><td>贝叶斯 vs 频率派（含对 p 值的批判）</td><td>★ 必读（立场章）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>18 章连读极易失去方向</strong>。建议按「<strong>问题 → 武器</strong>」而不是按章号读： 先 20–22（问题），再 27–29（近似武器），最后回补 24–26（精确武器）。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s10">
+  <h2><span class="num"></span><span>第五部分 · Neural Networks（第 38–46 章，p.467–554）</span><span class="caret">▾</span></h2>
+  <blockquote>
+    <p><strong>这一部分在回答什么</strong>：把前面所有推断工具，用在神经网络上。</p>
+  </blockquote>
+  <table>
+    <thead><tr><th>章</th><th>标题</th><th>页</th><th>在回答什么</th><th>判断</th></tr></thead>
+    <tbody>
+      <tr><td>38</td><td>Introduction to Neural Networks</td><td>468</td><td>极短的开场</td><td>★ 必读</td></tr>
+      <tr><td>39</td><td>The Single Neuron as a Classifier</td><td>471</td><td>单神经元、感知机、正则化</td><td>★ 必读</td></tr>
+      <tr><td>40</td><td>Capacity of a Single Neuron</td><td>483</td><td>单神经元的容量</td><td>可选</td></tr>
+      <tr><td>41</td><td><strong>Learning as Inference</strong></td><td>492</td><td><strong>把「学习」重写成「推断」</strong>——全书主线在这里收束</td><td>★★ 必读</td></tr>
+      <tr><td>42</td><td>Hopfield Networks</td><td>505</td><td>霍普菲尔德网络</td><td>可选</td></tr>
+      <tr><td>43</td><td>Boltzmann Machines</td><td>522</td><td>玻尔兹曼机</td><td>可选</td></tr>
+      <tr><td>44</td><td>Supervised Learning in Multilayer Networks</td><td>527</td><td>多层网络与反向传播（<strong>2003 年的视角</strong>）</td><td>★ 必读，<strong>但要意识到这章已过时</strong></td></tr>
+      <tr><td>45</td><td>Gaussian Processes</td><td>535</td><td>高斯过程</td><td>可选</td></tr>
+      <tr><td>46</td><td>Deconvolution</td><td>549</td><td>去卷积</td><td>可选</td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>时代提示（这条比任何章节摘要都重要）</strong>：Part V 写于 <strong>2003 年，没有深度学习</strong>。 它的持久价值在「<strong>用信息论／贝叶斯看学习</strong>」这个视角，<strong>不在技术现状</strong>。 想要现代深度学习，<strong>这本书不覆盖</strong> —— 它的角色是「让你在 2026 年读得懂那些论文里的概率语言」。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s11">
+  <h2><span class="num"></span><span>第六部分 · Sparse Graph Codes（第 47–50 章，p.555–596）</span><span class="caret">▾</span></h2>
+  <blockquote>
+    <p><strong>这一部分在回答什么</strong>：现代纠错码 —— 恰好是 2003 年之后<strong>工程上最成功</strong>的一支。</p>
+  </blockquote>
+  <table>
+    <thead><tr><th>章</th><th>标题</th><th>页</th><th>判断</th></tr></thead>
+    <tbody>
+      <tr><td>47</td><td>Low-Density Parity-Check Codes</td><td>557</td><td>◻ 可选，但价值高</td></tr>
+      <tr><td>48</td><td>Convolutional Codes and Turbo Codes</td><td>574</td><td>◻ 可选</td></tr>
+      <tr><td>49</td><td>Repeat-Accumulate Codes</td><td>582</td><td>◻ 可选</td></tr>
+      <tr><td>50</td><td>Digital Fountain Codes</td><td>589</td><td>◻ 可选（作者本人的贡献之一）</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s12">
+  <h2><span class="num"></span><span>附录（p.597–612）</span><span class="caret">▾</span></h2>
+  <p><strong>A Notation</strong>（记号表，p.598）／<strong>B Some Physics</strong>（物理背景，p.601）／<strong>C Some Mathematics</strong>（数学摘要，p.605）。</p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">A</span><span>关键定义与公式表</span><span class="caret">▾</span></h2>
+  <p>这本书的记号是<strong>自洽</strong>的 —— 前置知识里没有「熵」，所有符号都在第 1–2 章现场建立。要查记号直接翻<strong>原书附录 A（p.598）</strong>。</p>
+  <table>
+    <thead><tr><th>符号</th><th>含义</th><th>主要出现</th></tr></thead>
+    <tbody>
+      <tr><td>H(X)</td><td>熵</td><td>第 2 章</td></tr>
+      <tr><td>H(X,Y)、H(X\</td><td>Y)</td><td>联合熵、条件熵</td><td>第 2、8 章</td></tr>
+      <tr><td>I(X;Y)</td><td>互信息</td><td>第 2 章</td></tr>
+      <tr><td>D_KL</td><td>相对熵（KL 散度）</td><td>第 2 章</td></tr>
+      <tr><td>C</td><td>信道容量</td><td>第 9 章</td></tr>
+      <tr><td>——</td><td>完整记号表见原书附录 A，p.598</td><td>——</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s14">
+  <h2><span class="num">B</span><span>常见卡点与提示</span><span class="caret">▾</span></h2>
+  <p>★ 这一节是教材型特有的。<strong>以下是我基于本书结构整理的判断，标 <span class="tag t-inf">推断</span>，非来自书评</strong>。</p>
+  <ol>
+    <li><strong>第 2 章被低估</strong>。它像复习，但全书记号从这儿来。<strong>跳它，后面每一章都要回头。</strong>
+    </li>
+    <li><strong>第 4 章与第 10 章是两座山</strong> <span class="tag t-src">原书</span>。作者自己给了逃生门（§4.5 / §10.4 前绕开）——
+  <p>作者会专门在书里写逃生门，<strong>说明这两章确实是分水岭</strong>，卡住是正常的。<span class="tag t-inf">推断</span></p>
+    </li>
+    <li><strong>Part IV 有 18 章，是放弃率最高的地方</strong>。按「问题 → 武器」读，别按章号线性读。<span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>习题 1–5 的难度差极大</strong> <span class="tag t-src">原书</span>（1＝一分钟，<strong>5＝研究课题</strong>）。别按序号做，
+  <p>先挑标「推荐」的；标 C 的<strong>要写代码</strong>，那才是这本书真正的入口。<span class="tag t-inf">推断</span></p>
+    </li>
+    <li><strong>别在 Part V 找深度学习</strong> <span class="tag t-inf">推断</span>。它是 2003 年的神经网络观 —— 读法是「看它怎么把学习写成推断」，
+  <p>不是「学现在的技术」。</p>
+    </li>
+    <li><strong>页码要对版次</strong>。本页页码＝<strong>第四版印刷</strong>；前言说明第 1、6、28 章在第 2–3 版之间有段落／图／公式挪动，
+  <p><strong>换版次页码可能对不上</strong>。<span class="tag t-src">原书</span></p>
+    </li>
+  </ol>
+</section>
+
+<section id="s15">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>完整版见同目录 <code>信息论、推断与学习算法-来源清单.md</code>。</p>
+</section>
+
+<section id="s16">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <ol>
+    <li>★ <strong>四条官方路线的具体章号</strong> —— 在书 <strong>p. vii–x</strong> 的四张图里，我提取到的是图上文字层，<strong>高亮信息拿不到</strong>。
+  <p>⇒ 本页 <strong>3.2 的三条路线是依据前言文字整理的 <span class="tag t-inf">推断</span></strong>，<strong>具体选择请以原书那四页为准</strong>。 <strong>这是本页最大的不确定项。</strong></p>
+    </li>
+    <li><strong>版次与页码的严格对应</strong> —— 本页页码依据<strong>第四版印刷（2005-03）</strong>；第 1、6、28 章在第 2–3 版印刷间有挪动。<span class="tag t-src">原书</span>
+    </li>
+    <li><strong>中译情况</strong> —— 检索未见官方中译本；本页标题用的是通用译名《信息论、推断与学习算法》。<span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>书的"当前"地位</strong> —— 2003 年出版，Part V 的神经网络内容已过时；本页已就此提示，但<strong>未逐章核对哪些结论被后续研究推翻</strong>。
+    </li>
+  </ol>
+</section>
+
+<footer>
+  生成于 2026-10-04 · 来源清单与交叉验证记录见同目录 <code>信息论、推断与学习算法-来源清单.md</code><br>
+  本页目录、页码与章节标题取自作者官方公开的全书 PDF（<b>第四版印刷，2005-03</b>），属 <b>A 级（全文核验）</b>；<b>三条阅读路线与卡点提示为我的整理，标为推断</b>，具体路线选择请以原书 p. vii–x 为准。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

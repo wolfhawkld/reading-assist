@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《记忆决定你是谁》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《记忆决定你是谁》<small>阅读指引与精华解析 · 2026-10-04</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 前置知识与目标读者</a>
+    <a href="#s2">2 全书骨架</a>
+    <a href="#s3">3 六个核心论点</a>
+    <a href="#s4">4 阅读建议</a>
+    <a href="#s5">5 配套资源</a>
+    <a href="#s6">6 中文译本怎么选</a>
+    <a href="#s7">7 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s8">8 导论与第 1 章：记忆到底为谁而存在（Intro · p.3 ＋ 第 1 章 · p.11）</a>
+    <a href="#s9">9 第 2 章：时空旅行者（Travelers of Time and Space · p.31）</a>
+    <a href="#s10">10 第 3 章：减量、再利用、再循环（Reduce, Reuse, Recycle · p.50）</a>
+    <a href="#s11">11 第 4 章：记忆与想象共用同一副引擎（Just My Imagination · p.69）</a>
+    <a href="#s12">12 第 5 章：记忆的感受 ≠ 记忆本身（More Than a Feeling · p.85）</a>
+    <a href="#s13">13 第 6 章：你记得的比你以为的多（All Around Me Are Familiar Faces · p.103）</a>
+    <a href="#s14">14 第 7 章：预测误差是学习的开关（Turn and Face the Strange · p.118）</a>
+    <a href="#s15">15 第 8 章：每回忆一次，就改写一次（Press Play and Record · p.139）</a>
+    <a href="#s16">16 第 9 章：犯错是学习的一部分（Some Pain, More Gain · p.157）</a>
+    <a href="#s17">17 第 10 章与结语：记忆是众人之事（When We Remember Together · p.175 ＋ Coda · p.191）</a>
+    <a href="#s18">18 跨书对撞：这本书与《追寻记忆的痕迹》《记忆的七宗罪》怎么接</a>
+    <div class="grp">附录</div>
+    <a href="#s19">A 关键定义与速查表</a>
+    <a href="#s20">B 常见卡点与提示</a>
+    <a href="#s21">C 来源清单</a>
+    <a href="#s22">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《记忆决定你是谁》阅读指引与精华解析</h1>
+  <div class="sub">Why We Remember: Unlocking Memory's Power to Hold On to What Matters</div>
+  <div class="meta">
+    <div><b>作者</b>查兰·兰加纳特（Charan Ranganath，1968– ）—— 加州大学戴维斯分校心理学教授，神经科学中心与心智与大脑研究中心研究员，动态记忆实验室（Dynamic Memory Lab）主任、「记忆与可塑性计划」主持人；古根海姆奖、Vannevar Bush 教职奖学金得主，剑桥大学利弗休姆访问教授；业余摇滚乐手（神经科学家乐队 Pavlov's Dogz）</div>
+    <div><b>英文初版</b>Doubleday（美国）2024-02-20 · viii＋291 页 · ISBN 9780385548632（精装）· ISBN 9780385548649（电子版）</div>
+    <div><b>美版平装</b>Doubleday 2024 · 320 页 · ISBN 9780385550802</div>
+    <div><b>英版</b>Faber &amp; Faber 2024 · «Why We Remember: The Science of Memory and How it Shapes Us» · 304 页 · ISBN 9780571374144（精装）／9780571374175（平装）</div>
+    <div><b>中译（简体·现行）</b>《记忆决定你是谁》· 陈召强 译 · 中信出版集团 2026-07 · 336 页（另有书目记 352 页）· ISBN 9787521788501 · ¥58</div>
+    <div><b>中译（繁体）</b>《記憶決定你是誰：探索心智基礎，學習如何記憶》· 姚若潔 译 · 遠見天下文化（科學文化丛书）2024 · 350 页 · ISBN 9786263558601</div>
+    <div><b>荣誉与影响</b>《纽约时报》畅销书 ·《洛杉矶时报》畅销书 ·《星期日泰晤士报》《金融时报》《史密森尼》等年度好书；Publishers Weekly 星级评论、New Scientist 力荐</div>
+    <div><b>状态</b>未标注已读／想读 —— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有可定位文本支撑的段落 —— 含出版方与图书馆编目的带页码目录、出版方与作者官网公开文本、书评中带页码的逐字引文，以及署名可查的书评批评文献（凡引批评者观点，正文均写明其姓名与出处）</li>
+    <li><span class="tag t-talk">作者谈话</span> 出自作者本人在书外的播客、访谈或公开演讲 —— 不在书里</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、书评、百科或读者读书笔记，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本书<b>仍在版权期内</b>，我未持原书、也无纸质书。但本书有一份材料优势：<b>英文原版的逐章页码拿到了</b>（书商带页码目录，正文 p.3–281，与图书馆编目相互印证），另有多处<b>带页码正文引文</b>。★ 需要如实指出：<b>两处最关键的引文（「错误的期待」「记忆如绘画」）我只有措辞一致的转引、未核到原书页码</b>，见附录 D1；<b>中译本的逐章页码未取得</b>，见附录 D2。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-04 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书按 <b>B 级（带页码引文）</b>标注：有<b>带页码的逐章目录</b>（英文 Intro p.3 → Index p.281）、<b>带页码的正文引文</b>（一处明确标注 <b>p.176</b>；另有多处经书评逐字转引）、以及<b>署名可查的批评文献</b>（<i>Perspective Media</i> 2024-04；<i>The Hindu</i>；<i>New Scientist</i>；<i>The Polyphony</i> 2024-04-17；<i>The Washington Post</i> 2024-02-23）。★ 需要指出：<b>本书在原理上可能达到 A 级</b> —— 作者官网与出版方有公开内容、国际渠道有电子版 —— <b>但我没有逐字核对全书</b>，所以按 B 级如实标注。未标页码处一律为二手转引。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>这本书讲的不是「记忆为什么靠不住」，而是「记忆被设计成不该靠得住」——它的工作不是回放过去，而是把过去揉碎了、重建成一个能用来预测未来的模型。</strong></p>
+  <p>作者用一条被反复引用的判据把这件事说透了：记忆不像照片，更像绘画——一幅画里既有忠于对象的细节，也有被夸张或美化的部分，还有连「真」和「假」都不适用的诠释与视角 <span class="tag t-src">原书</span>。由此推出全书最该记住的一句：<strong>「问题不在你的记忆，而在于我们一开始就对『记忆是干什么用的』抱了错误的期待。」</strong><span class="tag t-src">原书</span></p>
+  <p>一句话结论（也是全书最该被记住、却最少被中文读者引用的一句）：<strong>「记忆不是为了记录过去，而是为了用过去来指导你未来的行为。」</strong><span class="tag t-talk">作者谈话</span>（出自作者 2024 年在 Lex Fridman 播客第 430 期的原话）——这句话比书里任何一章都更能解释这本书的立场。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>前置知识与目标读者</span><span class="caret">▾</span></h2>
+  <p><strong>要什么底子</strong>：几乎不要。全书是科普，作者自述「能用大白话说清神经解剖」，同时不回避机制。读者只要对「人为什么记不住东西」这件事真好奇即可。</p>
+  <p><strong>不需要什么</strong>：不需要神经科学背景，不需要心理学学位。书中出现的脑区（前额叶、海马、杏仁核、伏隔核、鼻周皮层、默认模式网络）都在语境里随讲随解释。</p>
+  <p><strong>这本书真正适合谁</strong>（按作者的定位与书评口径分三层）：</p>
+  <ul>
+    <li><strong>第一层｜被「记性差」困扰的普通人</strong>：这部分读者会得到安慰——因为全书最核心的结论就是「你记不住大部分事，是设计如此」。
+    </li>
+    <li><strong>第二层｜想搞清「记忆与自我、与决策、与创伤」关系的人</strong>：这是本书最有分量的部分（第 4、8、10 章）。
+    </li>
+    <li><strong>第三层｜想找「记忆说明书」的人——会失望</strong>。★ <strong>Kirkus 书评明确说</strong>：本书「对专业读者的吸引力大于普通读者」，且「指望它是一本简单的『如何提高记忆力』指南的人，可能会失望」<span class="tag t-rep">转述</span>。这是读前最该知道的一条预期管理。
+    </li>
+  </ul>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>下表把<strong>英文原版逐章页码</strong>列出（页码来自书商的带页码目录，正文止于 p.191，其后为注与参考文献）。★ 章标题几乎<strong>全部是流行歌曲的歌名</strong>（Just My Imagination、More Than a Feeling、All Around Me Are Familiar Faces、Turn and Face the Strange…），这是本书「摇滚乐手作者」气质的直接证据 <span class="tag t-inf">推断</span>（对作者形象的推测，见附录 D）。</p>
+  <table>
+    <thead><tr><th>部分／章</th><th>英文页</th><th>在回答什么</th><th>判断</th></tr></thead>
+    <tbody>
+      <tr><td>导论 Introduction: Meet Your Remembering Self</td><td>3</td><td>认识你的「记忆自我」：为什么该问的不是「为什么忘」而是「为什么记」</td><td>★</td></tr>
+      <tr><td><strong>第一部分 记忆的基本原理</strong></td><td>—</td><td>记忆为谁而存在</td><td>—</td></tr>
+      <tr><td>1 Where Is My Mind?</td><td>11</td><td>为什么有些事记得、有些事忘了</td><td>★★ 全书地基</td></tr>
+      <tr><td>2 Travelers of Time and Space</td><td>31</td><td>回忆如何把你带回某个时间与地点</td><td>★</td></tr>
+      <tr><td>3 Reduce, Reuse, Recycle</td><td>50</td><td>如何「以少记多」——记忆复用的经济学</td><td>★ 实用</td></tr>
+      <tr><td><strong>第二部分 看不见的力量</strong></td><td>—</td><td>记忆背后的推手</td><td>—</td></tr>
+      <tr><td>4 Just My Imagination</td><td>69</td><td>为什么记忆与想象形影不离</td><td>★★ 全书最有原创性的一章</td></tr>
+      <tr><td>5 More Than a Feeling</td><td>85</td><td>为什么「对记忆的感受」≠「记忆本身」</td><td>★</td></tr>
+      <tr><td>6 All Around Me Are Familiar Faces</td><td>103</td><td>学过了却不记得，我们怎么还在学</td><td>按需</td></tr>
+      <tr><td>7 Turn and Face the Strange</td><td>118</td><td>记忆如何让你对「新的、意外的」东西更敏感</td><td>★（预测误差）</td></tr>
+      <tr><td><strong>第三部分 寓意</strong></td><td>—</td><td>记忆改变我们，我们也能改变记忆</td><td>—</td></tr>
+      <tr><td>8 Press Play and Record</td><td>139</td><td>回忆如何反过来改变记忆</td><td>★★</td></tr>
+      <tr><td>9 Some Pain, More Gain</td><td>157</td><td>为什么犯错能学得更多</td><td>★ 实用</td></tr>
+      <tr><td>10 When We Remember Together</td><td>175</td><td>记忆如何被社会互动塑造</td><td>★ 全书落点</td></tr>
+      <tr><td>结语 Coda: Dynamic Memories</td><td>191</td><td>动态记忆：一个开放式的收束</td><td>★</td></tr>
+      <tr><td>注 Notes ／ 参考文献 Bibliography ／ 索引 Index</td><td>199 ／ 239 ／ 281</td><td>—</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法提示</strong>：三部分是「原理 → 机制 → 应用」的漏斗结构，<strong>但彼此可独立阅读</strong>。若时间只够读一章，<strong>读第 1 章</strong>（它把全书那个反常识的立场一次性立住）；若想读作者最有原创贡献的部分，<strong>读第 4 章</strong>（记忆与想象同源，这是他实验室的看家成果）。</p>
+  <p>★ <strong>一处必须知道的目录事实</strong>：英文版<strong>逐章页码来自书商带页码目录</strong>，与图书馆编目相互印证；但<strong>中译本（中信 2026-07）我未取得其逐章页码</strong>，因此本节只给英文页码，中文页码请以中译版权页为准（见附录 D2）。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>六个核心论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：记忆不是记录过去的档案，而是预测未来的工具——因此「遗忘」是设计特性，不是缺陷</h3>
+  <p><strong>主张</strong>：全书只反复讲一句反常识的话：记忆的用处不在保存过去，而在<strong>用过去指导未来</strong>。作者在书外把这句话说得最直白：「<strong>记忆不是关于记录过去的，而是关于用过去来指导你未来的行为。</strong>」<span class="tag t-talk">作者谈话</span></p>
+  <p><strong>依据</strong>：第 1 章的判据是——「<strong>问题不在你的记忆，而在于我们一开始就对『记忆是干什么用的』抱了错误的期待。</strong>」<span class="tag t-src">原书</span> 与之配套的是：「<strong>遗忘是特性，不是缺陷。它让我们能提取普遍原则、聚焦重要的事。</strong>」<span class="tag t-talk">作者谈话</span></p>
+  <p><strong>为什么重要</strong>：这条立场把「健忘」从个人过失改判成了系统设计。<strong>你要读的不再是「我为什么记不住」，而是「记忆被造成这样，是为了什么」。</strong></p>
+  <h3>论点二：回忆不是回放，而是重建——记忆与想象共用同一套神经机制</h3>
+  <p><strong>主张</strong>：这是全书<strong>最有原创性</strong>的一章（第 4 章）。作者原话——「<strong>我们不是简单地回放一个过去事件，而是用少量上下文与检索到的信息作为起点，去想象过去本来可能是怎样的。</strong>」<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：记忆与想象<strong>同源</strong>——「<strong>虚假记忆揭示了想象与记忆用的是同一套神经机制，这既强大又危险。</strong>」<span class="tag t-talk">作者谈话</span> 他的实验室把这一机制命名为「想象性重建」，并留下一句形象的判语：<strong>记住不像播放一段录音，而更像重演一出戏</strong> <span class="tag t-src">原书</span>。</p>
+  <p><strong>为什么重要</strong>：全书最著名的比喻由此而来——<strong>记忆不像照片，更像绘画</strong>：一幅画里既有忠于对象的细节，也有被夸张或美化的部分，还有连「真」和「假」都不适用的诠释与视角 <span class="tag t-src">原书</span>。这个比喻解释力极好，但也最容易在司法与人际场合被滥用（见论点五）。</p>
+  <h3>论点三：记忆经济学的核心是「以少记多」——压缩与复用，而不是全存</h3>
+  <p><strong>主张</strong>：人不可能记住每一件事，记忆系统靠<strong>复用已有信息、提炼模式</strong>来维持效率。第 3 章把这个系统讲成一套「少即是多」的经济学 <span class="tag t-src">原书</span>（章标题 Reduce, Reuse, Recycle 即此意）。</p>
+  <p><strong>依据</strong>：作者给了一个量化对照——人脑功耗约 <strong>12–20 瓦</strong>，靠的正是「复用而非全存」<span class="tag t-talk">作者谈话</span>。</p>
+  <p><strong>为什么重要</strong>：它划清了一条界线：记忆竞赛选手用的<strong>记忆宫殿与意元集组</strong>确实有效，但作者强调<strong>这些技巧「反映的不是记忆在现实生活中如何工作」</strong><span class="tag t-talk">作者谈话</span>。<strong>能背下圆周率几千位，不等于你日常记得住钥匙放哪。</strong></p>
+  <h3>论点四：预测误差是学习的开关——大脑在「惊讶」处更新模型</h3>
+  <p><strong>主张</strong>：情景记忆<strong>不是一直编码</strong>，而是在「高预测误差、不确定性或惊讶」的时刻<strong>编码得最有效</strong>；海马在这些「事件边界」处活动增强 <span class="tag t-talk">作者谈话</span>。</p>
+  <p><strong>依据</strong>：作者的立场凝结成一句——「<strong>错误才是学习发生的地方。</strong>」这也是他把这条机制接到教育上的理由：最好的教育不只是奖励正确答案，而是允许、甚至鼓励犯错 <span class="tag t-src">原书</span>。</p>
+  <p><strong>为什么重要</strong>：它解释了「为什么单调的日子会被记忆吞掉」——缺少事件边界的生活，会被压缩成「日子过得慢、但一周过得快」的错觉 <span class="tag t-src">原书</span>。<strong>要让时间留下痕迹，就得制造预测误差。</strong></p>
+  <h3>论点五：每一次回忆都是一次改写——记忆随回忆更新，这既是它的灵活，也是虚假记忆的来源</h3>
+  <p><strong>主张</strong>：第 8 章的核心判据是——「<strong>每次你回忆一个事件，记忆就更新了一点。</strong>」<span class="tag t-src">原书</span> 作者的解释是：回忆时，「你正在重建这个经历时周围发生了什么」的信息，会被缝进原始记忆里 <span class="tag t-src">原书</span>。</p>
+  <p><strong>依据</strong>：由此推出「<strong>记忆不是刻在石头上的；它们随着我们刚学到、刚经历的东西不断更新。</strong>」<span class="tag t-src">原书</span> 极端案例是 Elizabeth Loftus 的「记忆清单」实验：一份三条真、一条假的清单，反复询问后被试会开始「记得」并润色那件假事 <span class="tag t-src">原书</span>。</p>
+  <p><strong>为什么重要</strong>：★ <strong>这是全书最容易被误用的一章</strong>。它的结论是「记忆会更新」，<strong>不是「记忆都不可信」</strong>；作者给的是一句来自内部的刹车——「<strong>并不存在所谓『真记忆』或『假记忆』；所有记忆都混杂着真实细节与推断。</strong>」他紧接着强调的是：记忆仍然「大体一致、大体有用」，只是它从来不是纯粹的记录 <span class="tag t-talk">作者谈话</span>。他还给了读者一件「自保工具」：<strong>现实监控</strong>——想象的事件更缺少真实记忆的感官质感 <span class="tag t-src">原书</span>。</p>
+  <h3>论点六：记忆从来不只属于一个人——社会互动塑造记忆，也会把它同质化</h3>
+  <p><strong>主张</strong>：全书的落点（第 10 章与结语）是——<strong>记忆是社会性的</strong>。作者引用研究显示：人在群体里回忆时往往<strong>记得更差</strong>，因为听别人的回忆会<strong>挤掉自己的记忆</strong>，不被共享的信息更容易被遗忘，产生「同质化」效应 <span class="tag t-src">原书</span>。</p>
+  <p><strong>依据</strong>：他也把这条用到治疗上——自己曾带过 PTSD 老兵的小组治疗，并相信「共享记忆」有巨大的治疗潜力：「<strong>我们在用群体的力量去更新每个人各自的记忆，集体地建构起以『疗愈与赋能』为核心的新叙事。</strong>」<span class="tag t-src">原书</span></p>
+  <p><strong>为什么重要</strong>：它把「记忆」从个人心智问题变成了公共问题——<strong>你记得什么，一部分取决于你和谁一起回忆。</strong> 而这条落点，也被批评者认为是全书写得最少、最该展开的一处 <span class="tag t-src">原书</span>。</p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <p><strong>作者本人给过的路线（书外的实用口径）</strong>：他在多个播客里反复讲同一句建议——<strong>「你不该想『记得更多』，而该想『记得更好』，办法是聚焦真正重要的东西。」</strong><span class="tag t-talk">作者谈话</span>（出自 Lex Fridman 第 430 期与 Modern Wisdom 第 939 期的同一主张）。</p>
+  <p><strong>我整理的三条通路</strong> <span class="tag t-inf">推断</span>：</p>
+  <ul>
+    <li><strong>路线 A｜只想被安慰 + 拿到能用的技巧（约 3 小时）</strong>：导论 → 第 1 章 → 第 3 章（以少记多）→ 第 9 章（犯错学习）。<strong>跳过第 4–7 章</strong>。收益：你会明白「健忘不是你的错」，并带走几个可操作的记忆策略。
+    </li>
+    <li><strong>路线 B｜想真懂「记忆与自我」（约 6 小时，推荐）</strong>：第 1 章 → <strong>第 4 章</strong>（记忆=想象，最核心）→ 第 8 章（回忆改写记忆）→ 第 10 章（集体记忆）。这条线讲的是「记忆如何定义你是谁」。
+    </li>
+    <li><strong>路线 C｜想接上神经科学（约 5 小时）</strong>：第 1 章 → 第 5 章（感受与记忆）→ 第 7 章（预测误差与事件边界）。<strong>读完这条线，再回头读坎德尔《追寻记忆的痕迹》，你会发现两本书讲的是同一台机器的两种图纸</strong>（见第 18 节）。
+    </li>
+  </ul>
+  <p>★ <strong>如果只读一章</strong>：读<strong>第 1 章</strong>。理由：全书所有后续章节都在为导论那句「记忆是为未来服务的」补细节；第 1 章是唯一一处作者把「为什么遗忘是特性不是缺陷」完整立起来的地方。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5</span><span>配套资源</span><span class="caret">▾</span></h2>
+  <ul>
+    <li><strong>播客访谈（均为作者本人，属 <span class="tag t-talk">作者谈话</span>）</strong>：
+    <ul>
+      <li><strong>TED《ReThinking》with Adam Grant，2024-03-29</strong>——有完整官方文字实录，是本书最好的一站式口语版；作者在其中自陈「我是一个非常健忘的人，是典型的『心不在焉的教授』」，并解释这正是他研究前额叶的原因。
+      </li>
+      <li><strong>Lex Fridman Podcast 第 430 期（2024-05-25）</strong>——最深的一期，两小时半，覆盖想象、既视感、虚假记忆、AI 记忆；本报告采信的多处作者原话出自此期。
+      </li>
+      <li><strong>Modern Wisdom 第 939 期</strong>——偏实用，其中提到一个作者自创的记忆因素口诀 <strong>MEDIC</strong>（Meaning 意义、Error 误差、Distinctiveness 独特性、Importance 重要性、Context 情境）<span class="tag t-talk">作者谈话</span>。
+      </li>
+    </ul>
+    </li>
+    <li><strong>作者官网</strong>：<code>charanranganath.com</code>——含书目页、访谈汇总与「年度好书」榜单。
+    </li>
+    <li><strong>作者实验室</strong>：UC Davis「动态记忆实验室 / 记忆与可塑性计划」的公开论文与介绍。
+    </li>
+    <li><strong>开放论文（作者本人的学术线）</strong>：作者在记忆与想象、预测误差、默认模式网络方向的同行评议论文散见，是本书科学内核的一手来源 <span class="tag t-inf">推断</span>。
+    </li>
+  </ul>
+</section>
+
+<section id="s6">
+  <h2><span class="num">6</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这本书的中文版本有一个「刚出版」的时间点问题，必须先说清楚。</strong></p>
+  <table>
+    <thead><tr><th></th><th>简体版（现行）</th><th>繁体版</th></tr></thead>
+    <tbody>
+      <tr><td>书名</td><td>《记忆决定你是谁》</td><td>《記憶決定你是誰：探索心智基礎，學習如何記憶》</td></tr>
+      <tr><td>译者</td><td><strong>陈召强</strong></td><td><strong>姚若潔</strong></td></tr>
+      <tr><td>出版社</td><td>中信出版集团</td><td>遠見天下文化（科學文化丛书）</td></tr>
+      <tr><td>出版</td><td><strong>2026-07</strong></td><td>2024</td></tr>
+      <tr><td>页数</td><td>336 页（另有书目记 352）</td><td>350 页</td></tr>
+      <tr><td>ISBN</td><td>9787521788501</td><td>9786263558601</td></tr>
+      <tr><td>定价</td><td>¥58</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <p><strong>怎么选，一句话</strong>：</p>
+  <ul>
+    <li><strong>读简体、图方便 ⇒ 买中信 2026-07 陈召强译本</strong>。它是目前唯一的大陆版本，且是<strong>新市场</strong>（上市不久），价格与可得性都最好。
+    </li>
+    <li><strong>要对照台湾译名或已在繁体渠道购书 ⇒ 遠見天下版</strong>，译名体系与简体不同（如人名、脑区名）。
+    </li>
+    <li>★ <strong>两条共同提醒</strong>：① <strong>两个中译本都据 2024 年英文初版译出</strong>，因此不存在「谁删了内容」的问题；差异主要在<strong>译名体系与排版</strong>。② <strong>这是一本大量引用英文歌名与流行文化的书</strong>（章标题、行文里的歌名与歌手梗），<strong>这部分在中文里基本会损失</strong>——这是本书中文阅读体验上一个真实、且无法回避的减分项 <span class="tag t-inf">推断</span>。（同类现象可参照你书单里《行为》中译丢失 hip-hop 梗与《追寻记忆的痕迹》的同类损失。）
+    </li>
+  </ul>
+  <p>★ <strong>买书核对</strong>：本书<strong>英文曲名标题</strong>在中文商品页常被译得五花八门；认版本请以 <strong>ISBN</strong> 为准，别以「某某译」或封面文案为准。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">7</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节本该短，因为这本书的媒体评价接近一致好评</strong>（Publishers Weekly 星级评论、New Scientist 力荐、BookBrowse 7 篇评论一致正面）。<strong>但把评价和批评分开看，有实质内容的主要是三类</strong>——本报告按「对读者的实用性」排序。</p>
+  <h3>7.1 ★ 最实用的一条：它可能不是你期望的那本书</h3>
+  <p><strong>Kirkus Reviews</strong> 的判词是全书最该先看的一句评价：本书「<strong>对专业读者的吸引力大于普通读者</strong>」，并且——<strong>「任何期待这是一本『如何提高记忆力』简易指南的人，都会失望。」</strong><span class="tag t-rep">转述</span></p>
+  <p>★ 这条不是「差评」，是<strong>定位</strong>。作者本人是记忆研究者，不是记忆教练；书里给的都是普适的机制性建议（注意力、意图、睡眠、犯错学习），<strong>没有「记忆宫殿速成」那类承诺</strong>。若你要的是后者，本书不对口。</p>
+  <h3>7.2 ★ 文风之辩：是「亲切」还是「滑头」</h3>
+  <p><strong>Ash Ranpura（书评人）在 <em>Perspective Media</em>（2024 年 4 月）</strong> 给出了一条具体而有分量的批评 <span class="tag t-src">原书</span>：</p>
+  <blockquote>
+    <p>作者回忆录有一段写苏联记忆大师舍列舍夫斯基（Luria《记忆大师的心灵》主角），「故事的细节都在……但 Luria 文字的优雅、敏感与灵魂不在」。Ranganath 「用一种加利福尼亚式的圆滑把我们绕进去」——「在 Snoop Dogg 和《星球大战》的段子里，那种『身临其境』的感觉反而没了」。</p>
+  </blockquote>
+  <p>他还点了两处<strong>具体的「掉书袋」</strong>：作者把诺奖经济学家 Kahneman 直呼为「Danny」，并「没来由地」提起 MIT 神经科学明星 Earl Miller 在他乐队里弹琴——<strong>「在他真正推进了人类对记忆的理解的前提下，这类自我放纵可以原谅。」</strong></p>
+  <p><strong>另一条同方向的读者批评</strong>（个人书评博客「The Resident Judge of Port Phillip」，2025-08-07，评分 7/10）说得更直白：作者「<strong>不是 Oliver Sacks</strong>」，书中「<strong>对每一个共事过的人都加以赞美，读起来有点腻（cloying）</strong>」，个人轶事「不如 Sacks 那样有共情」<span class="tag t-src">原书</span>。</p>
+  <p>★ <strong>这两条的价值</strong>：它们<strong>不是质疑科学，而是质疑文体</strong>——本书在「权威口吻」与「亲切口吻」之间来回切换，有些读者会觉得像推销。<strong>读的时候把它当作「作者的个人品牌副产物」，不影响正文内容。</strong></p>
+  <h3>7.3 ★ 最重要的学术级提醒：别把「记忆可塑」读成「记忆不可信」</h3>
+  <p><strong>这是本报告最想强调的一条，也是与本报告第 0 节呼应的边界。</strong></p>
+  <p>本书的核心命题——记忆是重建、是绘画而非照片、每次回忆都会更新——<strong>在科学上是成立的</strong>；但它在公共语境里<strong>极易被过度延伸</strong>，推出两个危险的结论：</p>
+  <ol>
+    <li><strong>「所以你的记忆基本不可信」</strong>——过度推广。
+    </li>
+    <li><strong>「所以创伤记忆可以被随意覆盖／所以指控者的记忆不算数」</strong>——把「可塑」当成了「可被任意改写」。
+    </li>
+  </ol>
+  <p><strong>作者本人对第一条的态度是明确的克制</strong>。他在 Lex Fridman 播客里给出一句关键平衡：<strong>「并不存在所谓『真记忆』或『假记忆』；所有记忆都混杂着真实细节与推断。」</strong><span class="tag t-talk">作者谈话</span>——<strong>注意，这句话常被引用来支持「记忆都不可信」，但作者紧接着强调的是：记忆仍然『大体一致、大体有用』，只是它从来不是纯粹的记录。</strong> 这不是相对主义，是「混合论」。</p>
+  <p><strong>第二条更敏感</strong>：作者花了大量篇幅讲<strong>虚假记忆、被植入的记忆、逼供导致的虚假认罪</strong>（第 8 章的核心案例），这本身<strong>是在为「记忆不可靠」提供证据</strong>；但<strong>这些证据的用途是「保护被诬告的人」，而不是「否定所有指控」</strong>。★ 本报告提醒读者：<strong>同一批实验（Loftus 的误导信息范式等），在「记忆战争」（memory wars）里被两个阵营各自引用</strong>；兰加纳特的书站<strong>科学</strong>这一边，不站任何一方司法立场 <span class="tag t-inf">推断</span>。</p>
+  <p><strong>一条独立书评给出的补充批评</strong>（<em>The Polyphony</em>，Andrea Holck，2024-04-17）：作者在结尾谈「共享记忆作为疗法」时<strong>点到即止，只用了很短的篇幅</strong>，而 Holck 认为这恰恰是对<strong>失智症患者</strong>最有价值的落点——「我承认我想要更多：想要一本不只写给『心智健全者／记忆健全者』的记忆之书」<span class="tag t-src">原书</span>。</p>
+  <h3>7.4 与《追寻记忆的痕迹》《记忆的七宗罪》的关系（本报告的一条跨书结论）</h3>
+  <ul>
+    <li><strong>与坎德尔《追寻记忆的痕迹》</strong>：<strong>互补甚至轻度对撞</strong>。坎德尔是彻底的还原论者，主张「记忆就是突触连接强度的改变」——一个<strong>稳定、可定位的物理存储</strong>；兰加纳特则强调<strong>每次回忆都重建、记忆是动态的</strong>。两者在事实层面不冲突（一个讲材料，一个讲功能），但<strong>在「记忆到底有多稳定」这个直觉上相互拉扯</strong>。详见第 18 节。
+    </li>
+    <li><strong>与 Schacter《记忆的七宗罪》</strong>：<strong>高度同源</strong>。Schacter 2001 年就提出「七宗罪是适应性系统的副产品」，兰加纳特 2024 年把这条从「记忆出错分类学」扩展成了「记忆功能论」。<strong>两本一起读，Schacter 给你分类，兰加纳特给你目的。</strong>
+    </li>
+  </ul>
+  <p>★ <strong>结构说明</strong>：下面按<strong>导论 ＋ 十章 ＋ 结语</strong>展开，每节分三块——<strong>这一章在回答什么</strong>、<strong>关键论证与例证</strong>、<strong>可疑之处</strong>。凡我没有直接材料支撑的具体叙事细节，我不编，宁可留白并写明。所有页码为<strong>英文初版</strong>页码（见第 2 节）。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">8</span><span>导论与第 1 章：记忆到底为谁而存在（Intro · p.3 ＋ 第 1 章 · p.11）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「为什么我们会记得某些事、忘掉另一些事？」</strong>——但作者真正要立的，是一个更前置的立场：<strong>问错了问题</strong>。该问的不是「为什么忘」，而是「为什么记」<span class="tag t-src">原书</span>。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li><strong>导论立起「记忆自我」这个角色</strong>：人有两个自我——<strong>正在经历的自我</strong>与<strong>事后记住并讲述的自我</strong>。这个区分借自诺奖经济学家 Daniel Kahneman。作者用它解释：我们对一段经历的判断（假期好不好、关系值不值），<strong>依据的是那个被压缩、被重建过的「记忆自我」的叙述，而不是完整体验</strong><span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li>★ <strong>第 1 章的核心判据</strong>：<strong>「问题不在你的记忆，而在于我们一开始就对『记忆是干什么用的』抱了错误的期待。」</strong><span class="tag t-src">原书</span>（书评转引，见附录 D1）
+    </li>
+    <li><strong>记忆的功能是预测而非记录</strong>：作者原话——<strong>「记忆不是关于记录过去的，而是关于用过去来指导你未来的行为。」</strong><span class="tag t-talk">作者谈话</span>（Lex Fridman 第 430 期）
+    </li>
+    <li><strong>遗忘是特性</strong>：<strong>「遗忘是特性，不是缺陷。它让我们能提取普遍原则、聚焦重要的事。」</strong><span class="tag t-talk">作者谈话</span>（同上）
+    </li>
+    <li>★ <strong>作者的自陈</strong>（极好的一处「作者谈话」）：<strong>「我是一个非常健忘的人，是典型的『心不在焉的教授』……这大概也是我对前额叶感兴趣的原因。」</strong><span class="tag t-talk">作者谈话</span>（TED《ReThinking》2024-03-29）——<strong>写「遗忘是功能」的人，自己就是一个健忘的人</strong>，这既是可信度，也是语气。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ul>
+    <li>第 1 章（p.11–30）只有约 20 页，<strong>它承担「立场宣言」的功能，不承担完整论证</strong>——论证分散在后面九章。<strong>读完第 1 章若觉得「好像什么也没证明」，那是正常的。</strong><span class="tag t-inf">推断</span>
+    </li>
+    <li>「记忆自我 vs 体验自我」是 <strong>Kahneman 的框架</strong>，作者是<strong>使用者与推广者</strong>，不是提出者。<strong>不要把这条算作本书的原创贡献。</strong><span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+</section>
+
+<section id="s9">
+  <h2><span class="num">9</span><span>第 2 章：时空旅行者（Travelers of Time and Space · p.31）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>回忆为什么能把人「带回」某一个具体的时间与地点？</strong>——答案是<strong>情景记忆（episodic memory）</strong>，这是人类区别于多数动物的一种能力。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li><strong>情景记忆 vs 语义记忆</strong>：作者把记忆分成两类——<strong>语义记忆</strong>（关于事实的知识，可在不同情境间迁移，如「巴黎有哪些地标」）与<strong>情景记忆</strong>（关于具体事件的记忆，带你重新体验过去的感官与情绪）。两者协同工作：例如「走熟悉的路线上班」用的是语义记忆，而「主路封了、改走哪条」需要情景记忆的灵活性 <span class="tag t-src">原书</span>（书评转述）。
+    </li>
+    <li><strong>情景记忆概念的来历</strong>：作者指出这是加拿大多伦多大学心理学家 <strong>Endel Tulving 1972 年</strong>提出的，用来挑战当时主流的行为主义——记忆不只是联想，而是更复杂的神经网络活动 <span class="tag t-src">原书</span>。
+    </li>
+    <li>★ <strong>一条与年龄有关的判据</strong>：作者说，<strong>情景记忆是随年龄衰退最明显的部分</strong>（因为它绑定具体的时空），而<strong>语义记忆（事实与知识）相对稳定</strong> <span class="tag t-src">原书</span>（《The Hindu》书评转述）。这解释了为什么老人可能记不住「昨天见了谁」，却仍记得一生的知识。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>本章的具体实验细节（哪些 fMRI 研究、样本量）<strong>我没有逐项核实</strong>，故只呈现概念骨架，不铺实验细节。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">10</span><span>第 3 章：减量、再利用、再循环（Reduce, Reuse, Recycle · p.50）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「如何以少记多？」</strong>——人不可能记住每一件事，那记忆系统靠什么维持效率？答案是<strong>复用</strong>。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li><strong>记忆的经济学</strong>：作者把大脑描述成一个「<strong>少即是多</strong>」的系统——它不存储一切，而是<strong>复用已有信息</strong>、提炼模式。他在播客里给了一个量化对照：人脑功耗约 <strong>12–20 瓦</strong>，靠的正是「复用而非全存」<span class="tag t-talk">作者谈话</span>（Lex Fridman 第 430 期）。
+    </li>
+    <li>★ <strong>对「记忆技巧」的清醒态度</strong>（这一条很重要）：作者承认记忆竞赛选手用的<strong>记忆宫殿（method of loci）与意元集组（chunking）</strong>确实有效，但<strong>他强调这些技巧「反映的不是记忆在现实生活中如何工作」</strong><span class="tag t-talk">作者谈话</span>。换句话说：<strong>能背下圆周率几千位，不代表你日常生活记得住钥匙放哪。</strong> 记忆竞赛是「专项技能」，不是「记忆力好」。
+    </li>
+    <li><strong>有效策略</strong>：作者主张的是<strong>间隔重复（spacing）</strong> 与 <strong>精细化（elaboration）</strong> 这类有实证支持的策略，而不是花哨的记忆术 <span class="tag t-src">原书</span>（New Scientist 书评转述）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>把本章读成「备考技巧」会窄化它。★ <strong>本章真正的论点是「记忆=压缩+复用」，而不是「背单词技巧」</strong>；后者的作用被作者刻意压低了。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">11</span><span>第 4 章：记忆与想象共用同一副引擎（Just My Imagination · p.69）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>为什么记忆与想象形影不离？</strong>——这是全书<strong>最有原创性</strong>的一章，也是<strong>与坎德尔对撞最明显</strong>的一章。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>★ <strong>核心命题</strong>：<strong>回忆不是重放过去，而是「想象过去可能是怎样的」</strong>。作者原话——<strong>「我们不是简单地回放一个过去事件，而是用少量上下文与检索到的信息作为起点，去想象过去本来可能是怎样的。」</strong><span class="tag t-src">原书</span>（《The Hindu》书评逐字转引）
+    </li>
+    <li><strong>机制同源</strong>：<strong>记忆与想象用的是同一套神经机制</strong>。作者原话——<strong>「虚假记忆揭示了想象与记忆用的是同一套神经机制，这既强大又危险。」</strong><span class="tag t-talk">作者谈话</span>（Lex Fridman 第 430 期）
+    </li>
+    <li><strong>作者的原创贡献</strong>：他的实验室<strong>首次系统阐明了被他称为「想象性重建（imaginative reconstruction）」的机制</strong>——「<strong>记住不像播放一段录音，而更像重演一出戏</strong>」<span class="tag t-src">原书</span>（<em>Perspective Media</em> 书评评价这是他「最重要的科学贡献」）。
+    </li>
+    <li><strong>「记忆=绘画」的比喻</strong>（全书最著名的一段）：<strong>「大多数绘画通常都混合了忠于对象的细节、被扭曲或美化的细节，以及那些既不绝对真、也不绝对假，而只是艺术家视角之反映的推断与诠释。记忆也是如此。」</strong><span class="tag t-src">原书</span>（书评与法律博客多处逐字转引，见附录 D1）
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这是全书最需要「带着边界」读的一章</strong>。</p>
+  <ul>
+    <li>「记忆像绘画」这个比喻<strong>在解释力上极好，但在司法与人际场合极易被滥用</strong>（见第 7.3 节的提醒）。
+    </li>
+    <li>作者在书里同时讲了<strong>虚假记忆的植入实验</strong>（Loftus 的经典范式：同一份「记忆清单」，三条真一条假，反复询问后人们会「记得」那件从没发生的事）<span class="tag t-src">原书</span>（Publishers Weekly 转述）。<strong>这些实验是真的，危险也是真的——但用途应是「保护被误导者」，不是「否定一切记忆」。</strong><span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+</section>
+
+<section id="s12">
+  <h2><span class="num">12</span><span>第 5 章：记忆的感受 ≠ 记忆本身（More Than a Feeling · p.85）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「为什么我们对记忆的感受，会和记忆本身不是一回事？」</strong>——「熟悉感」（familiarity）是一套独立的信号，它可以脱离记忆内容单飞。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>★ <strong>作者自己的「酒吧打赌」案例</strong>（书中最生动的科研自述之一）：他在一次学术会议的混乱里跟朋友打赌——<strong>「一种微弱的『熟悉感』，是不是就只是意味着你对那件事的记忆很弱？」</strong> 他主张「是」，同事主张「熟悉感和记忆强度是两套不同过程」。结果他做了实验，<strong>发现自己错了</strong><span class="tag t-src">原书</span>（<em>Perspective Media</em> 书评转述）。★ 这段既是「作者会认错」的证据，也是本书少有的「在场感」最强的一段。
+    </li>
+    <li><strong>熟悉感的实用价值</strong>：在戴维斯一家音像店遇到一位熟悉却叫不出名的店员，作者用它说明——<strong>即使记不住具体细节，熟悉感仍能触发记忆中的联结</strong>，且这是一种<strong>生存机制</strong>（帮你快速识别可能的盟友或潜在威胁）<span class="tag t-src">原书</span>（Readmoo 书评转述）。
+    </li>
+    <li><strong>似曾相识（déjà vu）</strong>：作者把 déjà vu 解释为<strong>「熟悉」信号与「新颖」信号之间的冲突</strong>；并提到约 <strong>75% 的人</strong>报告经历过 déjà vu，在部分癫痫患者身上它可能先于发作出现 <span class="tag t-talk">作者谈话</span>（Lex Fridman 第 430 期）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>déjà vu 的「75%」、「癫痫前兆」这类数字来自播客转述，<strong>我未在原书核对</strong>，请按 <span class="tag t-talk">作者谈话</span> 与 <span class="tag t-rep">转述</span> 之间的强度理解。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">13</span><span>第 6 章：你记得的比你以为的多（All Around Me Are Familiar Faces · p.103）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「如果我们记不得已经学过的东西，我们该如何学习？」</strong>——本章处理的是<strong>内隐记忆与无意识学习</strong>。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>本章与第 7 章合起来，讲的是<strong>「记忆不只有『我能复述出来』这一种形式」</strong>：很多时候你<strong>记不得学过，但行为已经改变</strong>（内隐记忆）。
+    </li>
+    <li>★ <strong>作者的核心建议落在这条线上</strong>：<strong>「你不该想『记得更多』，而该想『记得更好』，办法是聚焦真正重要的东西。」</strong><span class="tag t-talk">作者谈话</span>（Lex Fridman 第 430 期，落脚点在第 6–7 章）
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>本章是我掌握材料最薄的一章</strong>：我只确认了它的存在、标题与页码，<strong>没有取到内容层面的可核引文</strong>。因此本报告在<strong>这一章刻意不编细节</strong>——宁可短。若你需要精确的实验史，请以原书第 6 章为准。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">14</span><span>第 7 章：预测误差是学习的开关（Turn and Face the Strange · p.118）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「记忆如何引导我们面对新的、意想不到的事物？」</strong>——答案是<strong>预测误差（prediction error）</strong>：当现实与预期不符，大脑就更新模型。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>★ <strong>核心机制（本节是全书神经科学含量最高处之一）</strong>：<strong>情景记忆在「高预测误差、不确定性或惊讶」的时刻编码得最有效</strong>，而不是一直编码；海马在这些<strong>「事件边界（event boundary）」</strong>处活动增强 <span class="tag t-talk">作者谈话</span>（Lex Fridman 第 430 期，话题正是书里第 7 章）。
+    </li>
+    <li><strong>「预测误差就是学习发生的地方」</strong>：作者与主持人的一来一往里，这句被双方各说了一遍——<strong>「错误才是学习发生的地方。」</strong><span class="tag t-talk">作者谈话</span>
+    </li>
+    <li><strong>事件边界与时间感知</strong>：作者用疫情封锁做例子——单调、缺少「事件边界」的日子，会让人觉得<strong>「日子过得慢、但一周过得快」</strong>，因为能被记住的「独特事件」太少 <span class="tag t-src">原书</span>（Readmoo 书评转述）。
+    </li>
+    <li><strong>多巴胺的重新理解</strong>：作者的研究发现，与多巴胺回路相关的活动<strong>由「问题」驱动，而不是由「答案」驱动</strong>——即多巴胺关乎<strong>寻求的驱动力</strong>，而非单纯的快感 <span class="tag t-talk">作者谈话</span>（Lex Fridman 第 430 期）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>「多巴胺=寻求而非快感」是<strong>神经科学内的一个流行理论</strong>，并非定论 <span class="tag t-inf">推断</span>。作者在播客里用「据理论（theorized）」的口吻，本报告如实保留这一犹疑。</p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">15</span><span>第 8 章：每回忆一次，就改写一次（Press Play and Record · p.139）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「回忆如何反过来改变记忆本身？」</strong>——这是全书<strong>最直接回答「我为什么记不住东西／记住的东西为什么变了」的一章</strong>，也是<strong>最敏感</strong>的一章。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>★ <strong>核心判据</strong>：<strong>「每次你回忆一个事件，记忆就更新了一点。」</strong><span class="tag t-src">原书</span>（Publishers Weekly 逐字转引）作者的解释是——<strong>回忆时，「你正在重建这个经历时周围发生了什么」的信息，会被缝进原始记忆里</strong> <span class="tag t-src">原书</span>（同上）。
+    </li>
+    <li><strong>「不是刻在石头上」</strong>：<strong>「记忆不是刻在石头上的；它们随着我们刚学到、刚经历的东西不断更新。」</strong><span class="tag t-src">原书</span>（法律博客逐字转引）
+    </li>
+    <li>★ <strong>导致虚假记忆的机制</strong>：作者讲的核心案例是 <strong>Elizabeth Loftus 的「记忆清单」实验</strong>——研究者通过「可信的近亲」递上一份三条真、一条假的记忆清单，<strong>反复询问后，被试开始『记得』并润色那件假事</strong><span class="tag t-src">原书</span>（Publishers Weekly 转述）。
+    </li>
+    <li><strong>从实验到司法</strong>：作者还把这条线推到<strong>逼供导致的虚假认罪</strong>——<strong>「无辜的人如何在特定审讯技巧下，被引导到分不清想象与记忆，从而承认自己没做过的事」</strong><span class="tag t-talk">作者谈话</span>（Lex Fridman 第 430 期）。书里还出现了<strong>冒充的救助者「解救」虚假撒旦教邪教受害者</strong>这类极端案例 <span class="tag t-src">原书</span>（<em>Perspective Media</em> 书评转述）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这是全书最需要「读两遍」的一章，因为它同时是「证据」和「雷区」</strong>：</p>
+  <ul>
+    <li>它给出的<strong>「记忆每次都被改写」是科学结论</strong>；
+    </li>
+    <li>但<strong>它最常被误用的地方，正是把它当成「所以记忆都不可信」的依据</strong>（见第 7.3 节）。
+    </li>
+    <li>★ <strong>一个作者给出的「自保工具」</strong>：他在书里介绍<strong>现实监控（reality monitoring）</strong>的策略——<strong>想象的事件更聚焦于内在想法与感受、缺少真实记忆的感官质感；你能回忆起的感官细节越多，那件事真发生过的可能性越大</strong><span class="tag t-src">原书</span>（《The Hindu》书评转述）。<strong>这是本章唯一一处作者直接给读者的「防御性」建议，别漏读。</strong>
+    </li>
+  </ul>
+</section>
+
+<section id="s16">
+  <h2><span class="num">16</span><span>第 9 章：犯错是学习的一部分（Some Pain, More Gain · p.157）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「为什么我们在犯错时能学到更多？」</strong></p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li><strong>测试效应（testing effect）</strong>：<strong>主动回忆（自测）比被动学习更能带来长期保持</strong><span class="tag t-talk">作者谈话</span>（Lex Fridman 第 430 期提出「testing effect」）。
+    </li>
+    <li><strong>从错误中学习需要认知投入</strong>：作者把这条<strong>接到教育上</strong>——<strong>最好的教育方式不只是奖励正确答案，而是允许、甚至鼓励犯错</strong>，因为大脑正是靠<strong>预测误差</strong>来更新世界模型 <span class="tag t-src">原书</span>（New Scientist 书评转述）。
+    </li>
+    <li><strong>一条机制性的具体建议</strong>（结合第 7 章）：<strong>检索时的困难本身能强化记忆</strong>——<strong>「挣扎着回忆，会让记忆更稳固。」</strong><span class="tag t-talk">作者谈话</span>（Modern Wisdom 第 939 期 MEDIC 口诀中 Error 一项）
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>「犯错学习」在<strong>心理学界有强的支持证据</strong>（测试效应、生成效应），但<strong>它的适用范围有边界</strong>——对<strong>高度结构化的技能</strong>（如数学、语言）效果最明确，对<strong>开放式的价值判断</strong>则未必。本书没有细谈这个边界。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s17">
+  <h2><span class="num">17</span><span>第 10 章与结语：记忆是众人之事（When We Remember Together · p.175 ＋ Coda · p.191）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「社会互动如何塑造我们的记忆？」</strong>——全书的落点：记忆<strong>从来不只是一个人的事</strong>。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>★ <strong>集体记忆的机制与代价</strong>：作者引用研究显示——<strong>人在群体里回忆时，往往记得更差</strong>，因为<strong>听别人的回忆会挤掉自己的记忆</strong>，产生一种<strong>「同质化（homogenizing）」效应：不被共享的信息更容易被遗忘</strong><span class="tag t-src">原书</span>（Publishers Weekly 转述）。这是本章最反直觉、也最有公共意义的一条。
+    </li>
+    <li>★ <strong>共享记忆作为疗法（本章最动人的一段，也是最被批评「写得太少」的一段）</strong>：作者回忆自己曾在芝加哥一家退伍军人诊所当心理学实习生，带过 PTSD 老兵的小组治疗。他自陈当时<strong>怀疑这类项目的疗效</strong>，但发现<strong>「共享记忆」有巨大的治疗潜力</strong>。他的原话是——<strong>「我们在用群体的力量去更新每个人各自的记忆，集体地建构起以『疗愈与赋能』为核心的新叙事。」</strong><span class="tag t-src">原书</span>（<em>The Polyphony</em> 书评逐字转引，标注为 <strong>p.176</strong>）
+    </li>
+    <li><strong>一条跨文化的观察</strong>：作者指出，<strong>个人主义式的医疗模式是西方特有的</strong>；记忆的<strong>集体性与共享性</strong>可能提供一种新的治疗路径 <span class="tag t-src">原书</span>（Readmoo 书评转述）。
+    </li>
+    <li><strong>结语的开放式收束</strong>：作者没有给出「记忆疗法」的完整方案，而是把它留成一个<strong>正在进行的问题</strong>——这也正是批评者想要的更多（见第 7.3 节）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>本章是全书「批评密度最高」的一处</strong>：<em>The Polyphony</em> 的 Holck 明确说，<strong>作者对失智症患者这一群体几乎是缺席的</strong>，而这恰恰是「记忆不受自己控制」的人的处境——「<strong>我发现自己在想：记忆的用处，对那些医疗状况使『记忆应该是什么、能做什么』变得复杂的人，究竟意味着什么？</strong>」<span class="tag t-src">原书</span></p>
+</section>
+
+<section id="s18">
+  <h2><span class="num">18</span><span>跨书对撞：这本书与《追寻记忆的痕迹》《记忆的七宗罪》怎么接</span><span class="caret">▾</span></h2>
+  <p>★ 这一节是本报告的<strong>跨书线索</strong>，直接回应已交付的《追寻记忆的痕迹》报告在附录 B 第 4 条留下的提问：「<strong>以为这本书能解释『我为什么记不住东西』——不能。要后者，去读《记忆的七宗罪》与《记忆决定你是谁》。</strong>」</p>
+  <h3>18.1 与坎德尔《追寻记忆的痕迹》：一个讲材料，一个讲功能</h3>
+  <table>
+    <thead><tr><th>维度</th><th>坎德尔（2006）</th><th>兰加纳特（2024）</th></tr></thead>
+    <tbody>
+      <tr><td>核心问题</td><td>记忆<strong>储存在哪里</strong>（突触强度、分子开关）</td><td>记忆<strong>是干什么用的</strong>（预测未来）</td></tr>
+      <tr><td>立场</td><td>彻底还原论：记忆=突触连接强度的改变</td><td>功能主义：记忆=动态重建的预测模型</td></tr>
+      <tr><td>关键单位</td><td>海兔的一个突触、cAMP／PKA／CREB</td><td>一个「事件边界」、一次预测误差</td></tr>
+      <tr><td>对「遗忘」的态度</td><td>遗忘是<strong>需要解释的失败</strong></td><td>遗忘是<strong>设计特性</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>对撞点</strong>：坎德尔给你一个<strong>稳定、可定位的存储</strong>图景（记忆「在」突触里）；兰加纳特给你一个<strong>每次都在重写</strong>的图景（记忆不在任何固定地方，它是每次现搭的）。<strong>两者在事实层面不矛盾</strong>（一个讲分子基质，一个讲系统功能），<strong>但在「记忆到底有多可靠」这个直觉上，它们把你往两个方向拉。</strong> <span class="tag t-inf">推断</span></p>
+  <h3>18.2 与 Schacter《记忆的七宗罪》：分类学与功能论的同一件事</h3>
+  <ul>
+    <li><strong>Schacter（2001/2021）</strong>给出的是<strong>「记忆出错的七种分类」</strong>，并在最后一章主张「这些过错是适应性系统的副产品」；
+    </li>
+    <li><strong>兰加纳特（2024）</strong>把这个结论<strong>从分类学升级成了功能论</strong>——不只是「过错是副产品」，而是<strong>「过错本身就是功能」</strong>（遗忘=预测系统在压缩噪声）。
+    </li>
+    <li>★ <strong>两本一起读怎么读</strong>：<strong>先读《记忆的七宗罪》拿到分类（你「怎么」忘的），再读《记忆决定你是谁》拿到目的（你「为什么」要忘）</strong>。顺序反了也行，但分类那本更上瘾，功能那本更耐读。<span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+  <h3>18.3 一个必须写明的边界</h3>
+  <p><strong>这三本书（坎德尔、Schacter、兰加纳特）在「记忆可塑且会出错」上高度一致，但它们在「这意味着什么」上并不结盟。</strong> 坎德尔在书外感叹「学习能轻易打开基因」令人屏息；Schacter 用「七宗罪」把错误系统化；兰加纳特则一再强调<strong>「记忆虽可塑，但仍大体一致、大体有用」</strong>。★ <strong>若你只带走一句，带走兰加纳特这句平衡语——它是对本领域最容易被滥用的那个命题的、来自内部的刹车。</strong><span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s19">
+  <h2><span class="num">A</span><span>关键定义与速查表</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>术语</th><th>一句话解释（本书语境）</th></tr></thead>
+    <tbody>
+      <tr><td><strong>情景记忆（episodic memory）</strong></td><td>关于「具体事件」的记忆，绑定时间与地点，能带你重新体验；<strong>随年龄衰退明显</strong>。概念由 Tulving 1972 提出 <span class="tag t-src">原书</span></td></tr>
+      <tr><td><strong>语义记忆（semantic memory）</strong></td><td>关于「事实与知识」的记忆，可在情境间迁移；<strong>相对稳定</strong> <span class="tag t-src">原书</span></td></tr>
+      <tr><td><strong>记忆自我 vs 体验自我</strong></td><td>事后重建叙述的自我 vs 当下体验的自我；判断幸福与价值的是前者。框架借自 Kahneman <span class="tag t-talk">作者谈话</span></td></tr>
+      <tr><td><strong>事件边界（event boundary）</strong></td><td>情境发生切换的时点；此处海马活动增强、记忆编码更有效，也用于感知时间流逝 <span class="tag t-talk">作者谈话</span></td></tr>
+      <tr><td><strong>预测误差（prediction error）</strong></td><td>现实与预期不符的量；<strong>它是学习的开关</strong>（「错误才是学习发生的地方」）<span class="tag t-talk">作者谈话</span></td></tr>
+      <tr><td><strong>想象性重建（imaginative reconstruction）</strong></td><td>作者实验室的核心成果：<strong>记忆不是重放录音，而是重演一出戏</strong> <span class="tag t-src">原书</span></td></tr>
+      <tr><td><strong>熟悉感（familiarity）</strong></td><td>独立于记忆内容的一种信号；可与「记住（recollection）」分离 <span class="tag t-src">原书</span></td></tr>
+      <tr><td><strong>现实监控（reality monitoring）</strong></td><td>区分「真发生过」与「只是想象过」的能力；想象的事件缺少感官质感 <span class="tag t-src">原书</span></td></tr>
+      <tr><td><strong>同质化效应（homogenizing）</strong></td><td>群体一起回忆时，不被共享的信息更易被遗忘，记忆趋同 <span class="tag t-src">原书</span></td></tr>
+      <tr><td><strong>MEDIC</strong></td><td>作者自创的记忆因素口诀：意义、误差、独特性、重要性、情境 <span class="tag t-talk">作者谈话</span></td></tr>
+      <tr><td><strong>记忆宫殿 / 意元集组</strong></td><td>记忆竞赛选手的技巧；<strong>有效，但不反映日常记忆如何工作</strong> <span class="tag t-talk">作者谈话</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s20">
+  <h2><span class="num">B</span><span>常见卡点与提示</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>卡点：读了一半觉得「这不就是常识吗」。</strong>
+  <p>提示：本书的价值<strong>不在单条结论，而在一条论点的连锁</strong>——「记忆为未来服务」这一句，要贯穿十章才显出它的分量。<strong>若中途松动，回去重读第 1 章。</strong><span class="tag t-inf">推断</span></p>
+    </li>
+  </ol>
+  <ol>
+    <li><strong>卡点：以为能学会「过目不忘」。</strong>
+  <p>提示：作者<strong>明确不相信</strong>记忆竞赛式的技巧能迁移到日常 <span class="tag t-talk">作者谈话</span>。本书给的是机制性建议（注意力、意图、睡眠、犯错学习），<strong>不是记忆术</strong>。★ Kirkus 早就警告过这一点 <span class="tag t-rep">转述</span>。</p>
+    </li>
+  </ol>
+  <ol>
+    <li><strong>卡点：把「记忆可塑」读成「记忆不可信」。</strong>
+  <p>提示：★ 这是本书最大的误读风险。<strong>作者的原话是「不存在真记忆或假记忆，所有记忆都混杂真实细节与推断」——注意这是他强调『混合』，不是『全假』。</strong> 见第 6.3、14 节 <span class="tag t-talk">作者谈话</span>。</p>
+    </li>
+  </ol>
+  <ol>
+    <li><strong>卡点：分不清「情景记忆」和「语义记忆」，觉得章节在重复。</strong>
+  <p>提示：抓住一句话——<strong>「情景记忆带你去一个『时间与地点』，语义记忆给你一条『可迁移的知识』。」</strong> 全书第 2、5、10 章都在这条线上 <span class="tag t-src">原书</span>。</p>
+    </li>
+  </ol>
+  <ol>
+    <li><strong>卡点：第 6 章读起来像空转。</strong>
+  <p>提示：本章我掌握的材料最薄（见第 13 节）；<strong>若觉得空，可以先把精力放到第 4、7、8 章</strong>，这三章才是全书科学重心 <span class="tag t-inf">推断</span>。</p>
+    </li>
+  </ol>
+  <ol>
+    <li><strong>卡点：引文查不到中文页码。</strong>
+  <p>提示：本报告的<strong>逐章页码只有英文</strong>（来自书商带页码目录）；<strong>中译本（中信 2026-07）逐章页码我未取得</strong>。见附录 D2。</p>
+    </li>
+  </ol>
+</section>
+
+<section id="s21">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>本报告的材料来源分布如下（完整清单与检索记录见同目录的《记忆决定你是谁-来源清单.md》）：</p>
+  <ul>
+    <li><strong>出版方与图书馆编目</strong>：Doubleday 书目（ISBN、页数）、Ingram／Syndetics <strong>带页码目录</strong>、多家图书馆编目（章节结构与页码相互印证）。
+    </li>
+    <li><strong>作者官网与出版方公开文本</strong>：<code>charanranganath.com/book/</code>（含推荐语、年度好书、The New Yorker 评语）。
+    </li>
+    <li><strong>署名可查的书评批评文献</strong>：
+    <ul>
+      <li>Ash Ranpura，<em>Perspective Media</em>，2024 年 4 月
+      </li>
+      <li>Sanjay Sipahimalani，<em>The Hindu</em>，〈We are designed to forget〉
+      </li>
+      <li>Helen Phillips，<em>New Scientist</em>，〈Why We Remember review: A surprising and expert guide to memory〉
+      </li>
+      <li>Andrea Holck，<em>The Polyphony</em>，2024-04-17
+      </li>
+      <li>Bina Venkataraman，<em>The Washington Post</em>，〈Why You're Always Forgetting Things〉，2024-02-23
+      </li>
+      <li>个人书评博客 The Resident Judge of Port Phillip，2025-08-07（评分 7/10）
+      </li>
+    </ul>
+    </li>
+    <li><strong>作者本人在书外的公开表态</strong>：TED《ReThinking》with Adam Grant（2024-03-29，官方文字实录）；Lex Fridman Podcast 第 430 期（2024-05-25）；Modern Wisdom 第 939 期。
+    </li>
+  </ul>
+  <p><strong>核验级别：B 级（带页码引文）。</strong> 依据：本书仍在版权期内、我未持原书；但有<strong>带页码的逐章目录</strong>（英文 p.3–281）、<strong>带页码正文引文</strong>（p.176 一处，及多处书评逐字转引）、以及<strong>署名可查的批评文献</strong>。★ 需指出：<strong>本书在原理上可能达到 A 级</strong>（作者官网与出版方有公开内容、国际渠道有电子版），<strong>但我没有逐字核对全书</strong>，所以按 B 级如实标注。<strong>未标页码处一律为二手转引。</strong></p>
+</section>
+
+<section id="s22">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. 两处关键引文的「书内定位」未能核到页码</h3>
+  <ul>
+    <li><strong>「问题不在你的记忆，而在于我们一开始就对记忆是干什么用的抱了错误的期待」</strong>——我读到的是<strong>《The Hindu》书评的转引</strong>，<strong>未核到原书页码</strong>（据内容判断应在导论 p.3 附近）。
+    </li>
+    <li><strong>「记忆=绘画」那段长引文</strong>——我读到<strong>三处措辞一致的转引</strong>（Nautilus 访谈、法律博客 slaw.ca、Goodreads 书摘），<strong>三处都没有给出页码</strong>。
+    </li>
+    <li>⇒ 按本项目契约（<span class="tag t-src">原书</span> 的门槛是「可定位」），<strong>这两处严格说更接近「可信但不可定位」</strong>；我为它们保留了 <span class="tag t-src">原书</span> 档，但在此<strong>明确标注该定级的弱点</strong>。若你要引用原句，请核英文版导论页。
+    </li>
+  </ul>
+  <h3>D2. 中译本的逐章页码未取得</h3>
+  <p>本报告的<strong>逐章页码全为英文版</strong>（Doubleday，p.3–281）。<strong>中信 2026-07 与遠見天下 2024 版的逐章页码我都没拿到</strong>，因此第 2、5 节的页码不能直接平移到中文版。<strong>这是一处刻意的留白，不是遗漏。</strong></p>
+  <h3>D3. 中译本「合译者／译者」信息的编目不一致</h3>
+  <p>简体版译者我采信<strong>陈召强</strong>（当当、中信书目、百度百科一致）；繁体版译者采信<strong>姚若潔</strong>（屏东县图书馆编目）。★ 但<strong>繁体版与简体版是否为同一套译稿</strong>、以及<strong>简体版页数 336 与 352 两种记载哪个为准</strong>，我<strong>未能裁决</strong>，两处数字都保留（见第 6 节）。</p>
+  <h3>D4. 一段「身份背景」未逐项核实</h3>
+  <p>作者业余摇滚乐手身份（乐队 Pavlov's Dogz）出现在<strong>多家书评与作者官网</strong>中，其中「为电影《Henry: Portrait of a Serial Killer》续集录配乐」一条<strong>来自播客自述</strong>，未从独立来源核实 <span class="tag t-talk">作者谈话</span>。保留但标低。</p>
+  <h3>D5. 我主动排除的来源</h3>
+  <p>检索过程中出现过<strong>盗版电子书站</strong>对该书全文的下载页。按本项目契约，<strong>该来源一律不使用，任何目的不例外</strong>。这构成本报告在「原文可得性」上的一处<strong>主动收缩</strong>：我因此少了「全书逐字核对」的可能，宁可降级到 B。</p>
+  <h3>D6. 一条要主动打折的宣传语</h3>
+  <p>出版方的宣传把作者称为「一位屡获殊荣的神经科学家」「<strong>当前世界领先的记忆研究专家</strong>」，并列出古根海姆奖、剑桥利弗席尔访问教授、Laird Cermak 奖、Samuel Sutton 奖等头衔。★ <strong>这是营销口径</strong>：它证明了作者的学术地位，<strong>不证明本书每一条结论都同样硬</strong>。<strong>把荣誉用来校准「作者可信度」可以，用来代替「逐条证据」不行。</strong><span class="tag t-inf">推断</span></p>
+</section>
+
+<footer>
+  生成于 2026-10-04 · 来源清单与交叉验证记录见同目录 <code>记忆决定你是谁-来源清单.md</code><br>
+  本页引文按<b>带页码引文（B 级）</b>处理：逐章页码来自书商的带页码目录，<b>我未持原书</b>，页码请以原书复核；批评文献的书评人姓名与发表时间已逐条给出；未标页码者仍是二手转引。★ 本报告在 <b>第 6 节与第 14 节</b>刻意写明一件事：本书最流行的命题（「记忆可塑、每次回忆都在改写」）<b>极易被过度延伸</b>，而作者本人在书外对这条延伸是明确踩刹车的 —— 见附录 D 与正文第 6.3 节。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

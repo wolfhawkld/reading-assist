@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《费曼物理学讲义》学习路线图与章节地图</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《费曼物理学讲义》<small>学习路线图与章节地图 · 2026-10-04</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 前置知识与目标读者</a>
+    <a href="#s2">2 全书骨架</a>
+    <a href="#s3">3 学习路线</a>
+    <a href="#s4">4 配套资源</a>
+    <a href="#s5">5 版本怎么选：官方在线版 ＋ 三个印刷版本 ＋ 一个中译</a>
+    <div class="grp">下部 · 章节地图</div>
+    <a href="#s6"> 模块一 · 导论：物理学长什么样（第 1–3 章）</a>
+    <a href="#s7"> 模块二 · 能量与守恒（第 4 章）</a>
+    <a href="#s8"> 模块三 · 时空、概率与引力（第 5–7 章）</a>
+    <a href="#s9"> 模块四 · 牛顿力学与矢量（第 8–12 章）</a>
+    <a href="#s10"> 模块五 · 功、势能与狭义相对论（第 13–17 章）</a>
+    <a href="#s11"> 模块六 · 转动与振动（第 18–21 章）</a>
+    <a href="#s12"> 模块七 · 线性系统与光学（第 22–27 章）</a>
+    <a href="#s13"> 模块八 · 电磁辐射与光（第 28–34 章）</a>
+    <a href="#s14"> 模块九 · 视觉与量子行为（第 35–38 章）</a>
+    <a href="#s15"> 模块十 · 气体动理论与统计力学（第 39–43 章）</a>
+    <a href="#s16"> 模块十一 · 热力学（第 44–46 章）</a>
+    <a href="#s17"> 模块十二 · 波与对称性（第 47–52 章）</a>
+    <a href="#s18"> 卷次范围与二三卷说明</a>
+    <div class="grp">附录</div>
+    <a href="#s19">A 关键定义与公式表</a>
+    <a href="#s20">B 常见卡点与提示</a>
+    <a href="#s21">C 来源清单</a>
+    <a href="#s22">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《费曼物理学讲义》学习路线图与章节地图</h1>
+  <div class="sub">The Feynman Lectures on Physics · New Millennium Edition (Basic Books 2011) · 本页锚定卷一 Mainly Mechanics, Radiation, and Heat</div>
+  <div class="meta">
+    <div><b>原名</b>The Feynman Lectures on Physics</div>
+    <div><b>作者</b>Richard P. Feynman（1918–1988，加州理工，1965 年诺贝尔物理学奖）· Robert B. Leighton（1919–1997，加州理工）· Matthew Sands（1919–2014，加速器物理学家，《讲义》主要编辑者）</div>
+    <div><b>首版</b>Addison-Wesley；卷 I 1963-06 ／ 卷 II 1964-11 ／ 卷 III 1965</div>
+    <div><b>本页锚定版本</b>卷一《主要是力学、辐射和热》——New Millennium Edition（2011）／Caltech 官方在线版；卷二、卷三在本书范围内，但本页只给卷级说明，不逐模块展开</div>
+    <div><b>中译</b>上海科学技术出版社《费恩曼物理学讲义》（新千年版，2013-04，卷 I ISBN 978-7-5478-1636-3）；另有《补编》（2020）与《习题集》（2020）</div>
+    <div><b>形态</b>教材型 · 本页不是逐章精华，是「学习路线图 ＋ 章节地图」</div>
+    <div><b>原文核验级别</b>A（全文核验）——版权方 Caltech 官方免费在线全文，三卷正文可逐章逐节定位；在线版只读不可下载</div>
+    <div><b>状态</b>未标注已读／想读</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用三档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有可定位文本支撑：官方在线全文（可逐章逐节引用）、官方版权页与序言、出版方与图书馆编目</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的整理或判断，无直接原文支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本页是<b>教材型</b>（学习路线图 ＋ 章节地图），<b>不建议当逐章摘要读</b>。本书落在 <b>A 级（全文核验）</b>：版权方 Caltech 与 Basic Books 官方发布的<b>三卷免费在线全文</b>（feynmanlectures.caltech.edu）可逐章逐节定位，故卷次、章名、序言原话标 <b>原书</b>。但 <b>12 个模块的划分、三条路线、逐章「必读／按需／可跳」判断都是我的整理</b>，标 <b>推断</b>；中译旧版书目细节标 <b>转述</b>——逐条见附录 D。
+  </p>
+  <h3>为什么这套讲义用另一种形态（2026-10-04）</h3>
+    <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">教材的价值在动手。给一套三卷、115 章的讲义写「逐章要点」，合上书依然算不出一道题 —— 用 3b1b 的话说：<b>Mathematics is not a spectator sport.</b><br>所以本页只回答三个问题：<b>它训练什么能力 / 该按什么顺序读 / 哪些可以跳。</b></p>
+    <h3 style="margin:16px 0 0">原文核验的「辖区」</h3>
+    <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">官方在线版按「章—节」组织，<b>不含印刷页码</b>，故本页章节地图<b>只有章号没有页码</b>。本页详核的是<b>卷一</b>（52 章）；卷二（42 章）、卷三（21 章＋尾声）在线同样可读，但本页只作卷级说明。</p>
+    <h3 style="margin:16px 0 0">本书不设「作者谈话」档</h3>
+    <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">教材型契约只用三档。费曼本人有大量书外言论（康奈尔 Messenger Lectures、访谈、演讲），但它们谈的不是「这套讲义该怎么读」。作者对用法与定位的原话在<b>书内</b>《费曼自序》（Feynman's Preface），属「原书」而非「作者谈话」，故本页不设该档。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>它是「把物理学当作一个整体、从第一原理往下推一遍」的那套讲义。</strong> 三卷不是三个知识点仓库，而是<strong>同一次讲课的三段</strong>： 卷 I 立「力学 ＋ 辐射 ＋ 热」的物理图像，卷 II 换成「场」的语言重讲电磁学，卷 III 直接上量子行为。 <span class="tag t-src">原书</span> 在线版封面把三卷的副题逐一写明：<strong>Vol. I mainly mechanics, radiation, and heat ／ Vol. II mainly electromagnetism and matter ／ Vol. III quantum mechanics</strong>。</p>
+  <p>它<strong>不是</strong>习题册（习题另成《习题集》一书），<strong>不是</strong>考研辅导（它刻意避开繁琐的解题技巧），<strong>也不是</strong>通俗科普—— <span class="tag t-src">原书</span> 费曼在自序里明说：「<strong>The lectures here are not in any way meant to be a survey course, but are very serious.</strong>」 （这些讲演绝不是一门概览课，它们非常严肃。）</p>
+  <p>⇒ <strong>对你的书单来说，它的地位是</strong>：这是<strong>「物理学怎么想」的母本</strong>。你书单里的科普（《混沌》《无穷的开始》《AI 3.0》） 谈的是「物理学的结论与气质」，而这一套给的是<strong>结论被推出来的过程</strong>——为什么能量要守恒、为什么会有熵、 为什么量子力学只能这样写。它<strong>难在密度，不难在起点</strong>：起点是高中物理 ＋ 初等微积分。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>前置知识与目标读者</span><span class="caret">▾</span></h2>
+  <ul>
+    <li><strong>目标读者</strong> <span class="tag t-src">原书</span>：<strong>加州理工的一、二年级本科生</strong>。费曼自序原话：
+  <p>「<strong>These are the lectures in physics that I gave last year and the year before to the freshman and sophomore classes at Caltech.</strong>」 （这是我去年前年给加州理工一、二年级讲的物理课。）</p>
+    </li>
+    <li><strong>门槛</strong> <span class="tag t-src">原书</span>：费曼在自序里说他<strong>假设学生带着高中知识进来</strong>——
+  <p>「<strong>such things as geometrical optics, simple chemistry ideas, and so on</strong>」（几何光学、简单化学概念等等）。 ⇒ 所以真正的门槛是<strong>微积分 + 物理直觉</strong>，不是「学过大学物理」。</p>
+    </li>
+    <li><strong>规模</strong> <span class="tag t-src">原书</span>：<strong>180 名学生</strong>在大教室每周听两次，然后分成 <strong>15–20 人</strong>的小班由助教带习题课，<strong>每周一次实验</strong>。
+    </li>
+    <li><strong>它面向谁</strong> <span class="tag t-src">原书</span>：费曼说他<strong>故意对着班上最聪明的人讲</strong>，并且<strong>故意让他们也吃不透</strong>——
+  <p>「<strong>by putting in suggestions of applications of the ideas and concepts in various directions outside the main line of attack</strong>」 （在主线之外，四处埋下向各方向延伸的钩子）。同时他也给跟不上的人留了一条<strong>central core or backbone</strong>（核心主干）。</p>
+    </li>
+  </ul>
+  <p>★ <strong>一处要在开始前就想清楚的取舍</strong>：这套书<strong>不是为「学完一门课」设计的</strong>。 <span class="tag t-src">原书</span> 费曼自序自己承认：「<strong>I don't know how good the lectures really are. The whole thing was essentially an experiment.</strong>」 （我不知道这些讲演到底有多好。整件事本质上是一次实验。） ⇒ 它不是一份可靠的「课程地图」，而是一份<strong>极高质量的「物理图像集」</strong>。把它当「教材」照章刷，会失望； 把它当「把每个概念讲透的参照系」，它的性价比几乎没有对手。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p><span class="tag t-src">原书</span> 以下卷次、副题、章数取自 Caltech 官方在线版目录（三卷目录页 I_toc ／ II_toc ／ III_toc），与出版方 Basic Books 版权页一致。</p>
+  <table>
+    <thead><tr><th>卷</th><th>副题（官方英文）</th><th>章数</th><th>这一卷在做什么</th></tr></thead>
+    <tbody>
+      <tr><td><strong>卷 I</strong></td><td>Mainly Mechanics, Radiation, and Heat</td><td><strong>52 章</strong></td><td>从「原子」讲到力学、相对论、光与辐射、量子行为、气体动理论与热力学、波、对称性——本页锚定卷</td></tr>
+      <tr><td>卷 II</td><td>Mainly Electromagnetism and Matter</td><td><strong>42 章</strong></td><td>用「场」的语言重讲电磁学：静电、高斯定律、麦克斯韦方程组、场能场动量、介质、弹性、流体、弯曲时空</td></tr>
+      <tr><td>卷 III</td><td>Quantum Mechanics</td><td><strong>21 章 ＋ Epilogue</strong></td><td>量子力学：双态系统、自旋、概率幅、哈密顿矩阵、薛定谔方程、超导，最后是《费曼的尾声》</td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>一处最容易看错的地方</strong>：<strong>卷 I 不是「基础篇」、卷 II 不是「进阶篇」</strong>。 三卷是<strong>并行的三个视角</strong>，卷 I 里第 37–38 章就已经在讲量子行为，卷 II 里第 42 章已经在讲弯曲时空。 ⇒ 所以<strong>不存在「读通卷 I 再上手卷 II」这种线性安全感</strong>；每一卷内部都有从入门到很深的跨度。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>学习路线</span><span class="caret">▾</span></h2>
+  <h3>3.1 作者对使用者的定位 <span class="tag t-src">原书</span></h3>
+  <p>最硬的「用法说明」在书内。<span class="tag t-src">原书</span> 在线版前附部分依次是： <strong>About the Authors</strong> → <strong>Preface to the New Millennium Edition</strong> → <strong>Feynman's Preface</strong> → <strong>Foreword</strong>。</p>
+  <p>⇒ <strong>一句话</strong>：<strong>先读《费曼自序》（Feynman's Preface），再决定读到什么程度。</strong> 费曼在里面把「给谁讲、讲到哪、为什么这么讲」全交代了：</p>
+  <ul>
+    <li>他<strong>不按「先学会才能提」的顺序讲</strong>：「<strong>I also didn't see that there was any reason to make the lectures in a definite order</strong>」
+  <p>——他会<strong>提前抛出一个概念，日后再回来讲透</strong>（他自己的例子是「电感」和「能级」）。</p>
+    </li>
+    <li>他<strong>要求你分辨主幹与支线</strong>：讲演里塞了大量「侧翼应用」，他<strong>不指望你全懂</strong>，
+  <p>只指望你抓住 <strong>central and most direct features</strong>（最核心、最直接的东西）。</p>
+    </li>
+  </ul>
+  <h3>3.2 几条路线（我整理）<span class="tag t-inf">推断</span></h3>
+  <p>★ 以下三条<strong>是我的整理，不是原书的路线图</strong>。原书没有给自学者开路线。</p>
+  <p><strong>路线 A · 完整通读（一学年量）<span class="tag t-inf">推断</span></strong> 卷 I 全读 → 卷 II 全读 → 卷 III 全读。理由：这是三卷的<strong>出版顺序</strong>，也是绝大多数读者走的路。 代价：<strong>它很长</strong>（三卷 115 章），且卷 II、卷 III 会各有一处陡坡（卷 II 第 2–3 章的矢量微积分；卷 III 第 8 章起的双态系统）。</p>
+  <p><strong>路线 B · 只想拿到「物理图像」的最小集（推荐自学者）<span class="tag t-inf">推断</span></strong></p>
+  <blockquote>
+    <p>卷 I：第 1 → 2 → 4 → 5 → 7 → 8 → 9 → 10 → 15 → 16 → 21 → 37 → 38 → 44 → 46 章</p>
+  </blockquote>
+  <p>理由：这一串把<strong>「能量守恒 → 时间与距离 → 引力 → 运动与牛顿定律 → 动量守恒 → 狭义相对论 → 谐振子 → 量子行为 → 热力学」</strong> 这条主干走完一遍。<strong>第 37–38 章（量子行为）是关键节点</strong>：费曼在卷一就把量子力学的门槛立起来了，是卷三的引子。</p>
+  <p><strong>路线 C · 只读「费曼特色」的部分（有大学物理底子的人）<span class="tag t-inf">推断</span></strong></p>
+  <blockquote>
+    <p>卷 I：第 4（能量）、6（概率）、7（引力）、21（谐振子）、37–38（量子行为）、44–46（热力学）；</p>
+    <p>卷 II：第 18（麦克斯韦方程组）、19（最小作用量原理）、42（弯曲时空）；</p>
+    <p>卷 III：第 1–3（量子行为与概率幅）、7（振幅随时间变化）、21（超导）</p>
+  </blockquote>
+  <p>理由：这些章是<strong>别处见不到的费曼讲法</strong>（最小作用量原理、概率幅、超导的初等讲法）。 如果你已学过普通物理，通用内容可以跳，<strong>专挑这些才值回票价</strong>。</p>
+  <h3>3.3 读书时的操作建议 <span class="tag t-inf">推断</span></h3>
+  <ol>
+    <li><strong>第一遍不要抱着「读懂每一行」的目标。</strong> 费曼自己说了，他故意让最聪明的学生也吃不透；
+  <p>第一遍的任务是<strong>建立图像</strong>，不是消灭所有公式。</p>
+    </li>
+    <li><strong>每章先读「开头和结尾」，再决定读不读中段。</strong> 费曼的开头往往先讲「这章要回答什么」，
+  <p>中段会插入支线应用（他所说的 side applications）——<strong>支线可以整段跳过</strong>。</p>
+    </li>
+    <li><strong>不要跳卷 I 第 37–38 章。</strong> 这是全三卷里<strong>唯一在卷一就把量子的「反直觉」讲清楚</strong>的地方，
+  <p>也是判断你「要不要继续读卷三」的分水岭。</p>
+    </li>
+    <li><strong>公式要自己推一遍，尤其是「最小作用量」和「概率幅」两处。</strong> 这两处是费曼区别于所有教材的地方，
+  <p>只读结论等于没读。</p>
+    </li>
+  </ol>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>配套资源</span><span class="caret">▾</span></h2>
+  <p><span class="tag t-src">原书</span> 这是本书<strong>远好于绝大多数教材</strong>的地方——版权方自己把配套全放上线了。Caltech 官方在线版（feynmanlectures.caltech.edu）除三卷正文外，还提供：</p>
+  <ul>
+    <li><strong>Lecture Recordings 1961–64</strong>：<strong>122 段</strong>原课录音（可在对应章节内播放）；
+    </li>
+    <li><strong>Lecture Photos 1961–64</strong>：<strong>3043 张</strong>讲课照片；
+    </li>
+    <li><strong>Feynman's Notes</strong>：<strong>611 页</strong>讲义手稿；
+    </li>
+    <li><strong>Original Course Handouts 1961–63</strong>：<strong>744 页</strong>原始课程讲义（学生散页）；
+    </li>
+    <li><strong>Feynman's Messenger Lectures</strong>：费曼 1964 年在康奈尔 7 讲的<strong>高清视频</strong>；
+    </li>
+    <li><strong>Feynman's Tips on Physics</strong>：解题补编（见下节）。
+    </li>
+  </ul>
+  <p>⇒ <strong>对自学者</strong>：<strong>正文 ＋ 录音 ＋ 原始讲义</strong>三件套是免费的，这是把这本书「用起来」的最现实路径。 <span class="tag t-src">原书</span> 需注意：<strong>在线版只许在线阅读，不许下载</strong>——官方页脚注明确写道 「<strong>this edition is only free to read, look at and listen to online, and this posting does not transfer any right to download</strong>」。</p>
+  <p><span class="tag t-src">原书</span> <strong>两本必须与「讲义」分开买的配套书</strong>（这也是高频混淆点）：</p>
+  <table>
+    <thead><tr><th>书名</th><th>英文原名</th><th>是什么</th><th>与讲义的关系</th></tr></thead>
+    <tbody>
+      <tr><td>《费曼物理学讲义补编》</td><td>Feynman's Tips on Physics</td><td>讲解题思路的补编：含<strong>三讲解题课</strong>与<strong>一讲被遗漏的惯性导航</strong>，加桑兹的回忆与访谈、Leighton＆Vogt 编的习题</td><td><strong>不是讲义正文</strong>，是补充读物</td></tr>
+      <tr><td>《费曼物理学讲义习题集》</td><td>Exercises for the Feynman Lectures on Physics</td><td>三卷相关习题<strong>首次汇编成册</strong>（2014，Basic Books，LCCN 2014931781）</td><td><strong>不是讲义正文</strong>，是配套题集</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一句话防坑</strong>：《讲义》三卷 ≠ 《补编》 ≠ 《习题集》。<strong>在书店看到「费曼物理学讲义」后缀带「补编／习题集」的，是另外两本书。</strong></p>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5</span><span>版本怎么选：官方在线版 ＋ 三个印刷版本 ＋ 一个中译</span><span class="caret">▾</span></h2>
+  <p><span class="tag t-src">原书</span> 版本信息如下（ISBN 取自官方版权页与图书馆／发行编目）：</p>
+  <table>
+    <thead><tr><th>版本</th><th>出版社 · 年份</th><th>ISBN</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td><strong>官方在线版（HTML）</strong></td><td>Caltech ＋ Basic Books · 2013 起</td><td>——</td><td><strong>免费在线阅读三卷全文</strong>，LaTeX＋SVG 重排，<strong>可逐章逐节定位</strong>；2013 年上线，2022-03 更新了深缩放图</td></tr>
+      <tr><td>原版（初版）</td><td>Addison-Wesley · 卷 I 1963 ／ 卷 II 1964 ／ 卷 III 1965</td><td>——</td><td>红色布面；此后多次重印（初版印次据专业旧书商实物转录，属 <span class="tag t-rep">转述</span>）</td></tr>
+      <tr><td>Definitive Edition（2005）</td><td>Addison-Wesley（Pearson）· 2005</td><td>9780805390452</td><td>首印订正约 <strong>200</strong> 处，2006 年第 4 次印刷再订正 <strong>80</strong> 处</td></tr>
+      <tr><td><strong>New Millennium Edition（2011）</strong></td><td><strong>Basic Books</strong> · 精装 2011-01 ／ 平装 2011-10</td><td>卷 I 精装 978-0-465-02414-8 ／ 平装 978-0-465-02493-3 ／ 电子 978-0-465-04085-8</td><td>LCCN 2010938208 <span class="tag t-src">原书</span>；<strong>又订正 885 处</strong>（官方 info 页 <span class="tag t-src">原书</span>；分卷 332／263／200 见新千年版前言 <span class="tag t-rep">转述</span>）；本页锚定版本</td></tr>
+      <tr><td>中文版（新千年版）</td><td><strong>上海科学技术出版社</strong> · 2013-04</td><td>卷 I 978-7-5478-1636-3 ／ 卷 II 978-7-5478-1637-0 ／ 卷 III 978-7-5478-1638-7</td><td>译自新千年版；分卷译者见下</td></tr>
+      <tr><td>中文版（精装全 3 册）</td><td>上海科学技术出版社 · 2015</td><td>978-7-5478-2679-9</td><td>精装珍藏，3 册共（551＋587＋349）页</td></tr>
+    </tbody>
+  </table>
+  <p><span class="tag t-src">原书</span> <strong>中文版（上海科技·新千年版）的译者分工</strong>（据出版方分类页与图书馆编目）：</p>
+  <ul>
+    <li>卷 I：<strong>郑永令、华宏鸣、吴子仪</strong> 等译（557 页，定价 98 元）；
+    </li>
+    <li>卷 II：<strong>李洪芳、王子辅、钟万蘅</strong> 译（定价 98 元）；
+    </li>
+    <li>卷 III：<strong>潘笃武、李洪芳</strong> 译（定价 78 元）。
+    </li>
+  </ul>
+  <p><span class="tag t-inf">推断</span> <strong>怎么选</strong>：</p>
+  <ol>
+    <li><strong>首选官方在线版（免费、可定位、最新订正）。</strong> 它对应新千年版文本，是<strong>核验原文最可靠的一手来源</strong>。
+  <p>代价：<strong>只能在线看，不能下载</strong>（官方明令）。</p>
+    </li>
+    <li><strong>要中文纸质 → 上海科技「新千年版」三卷。</strong> 它译自订正后的新千年版，章号与在线版能逐条对上。
+  <p><span class="tag t-rep">转述</span> 需注意大陆书名有 <strong>「费曼」／「费恩曼」</strong> 两种写法（同一套书），书店检索两个词都试。</p>
+    </li>
+    <li><strong>不要买「旧版」当新千年版。</strong> 1989 年「纪念版」及更早版本含有约 <strong>1165</strong> 处后来才订正的错误；
+  <p>差别不小（含个别真实物理错误，如卷 II 第 5 章漏掉「接地」一词的那处，见附录 B／D）。</p>
+    </li>
+  </ol>
+  <p>★ 下面的模块划分<strong>是我的整理，属 <span class="tag t-inf">推断</span></strong>（卷 I 原书<strong>没有</strong>「篇」级划分）； <strong>章名与章号属 <span class="tag t-src">原书</span></strong>（取自 Caltech 官方目录 I_toc）。 判断标记：<code>★</code> 必读 ／ <code>○</code> 按需 ／ <code>◻</code> 可跳 —— <strong>也是我的整理，属 <span class="tag t-inf">推断</span></strong>。 每个模块末尾的「读完应能」是我的整理。</p>
+</section>
+
+<section id="s6">
+  <h2><span class="num"></span><span>模块一 · 导论：物理学长什么样（第 1–3 章）</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>章</th><th>章名（官方英文）<span class="tag t-src">原书</span></th><th>内容与判断 <span class="tag t-inf">推断</span></th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Atoms in Motion</td><td>从「物质由原子构成」立起整门课的基调</td><td>★ 必读（全书的第一个图像）</td></tr>
+      <tr><td>2</td><td>Basic Physics</td><td>1920 年前／量子／原子核与粒子：物理学的现状与边界</td><td>★ 必读（全书地图）</td></tr>
+      <tr><td>3</td><td>The Relation of Physics to Other Sciences</td><td>物理学与化学、生物、天文、地质、心理的关系</td><td>○ 按需（立场文，可略读）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读完应能</strong>：用一句话说清「物理学今天站在哪里、还缺什么」，并知道后面每一章是这张地图上的哪一块。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num"></span><span>模块二 · 能量与守恒（第 4 章）</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>章</th><th>章名（官方英文）<span class="tag t-src">原书</span></th><th>内容与判断 <span class="tag t-inf">推断</span></th></tr></thead>
+    <tbody>
+      <tr><td>4</td><td>Conservation of Energy</td><td>「能量」怎么被定义出来：从重力势能、动能到各种形式</td><td>★★ 必读（全书最重要的一个概念章）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读完应能</strong>：说清「能量守恒<strong>不是先验的</strong>」——它是一个<strong>被不断扩展定义</strong>才成立的经验规律。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num"></span><span>模块三 · 时空、概率与引力（第 5–7 章）</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>章</th><th>章名（官方英文）<span class="tag t-src">原书</span></th><th>内容与判断 <span class="tag t-inf">推断</span></th></tr></thead>
+    <tbody>
+      <tr><td>5</td><td>Time and Distance</td><td>时间与距离怎么被测量：极短、极长、极小的尺度</td><td>★ 必读（量纲与尺度的直觉）</td></tr>
+      <tr><td>6</td><td>Probability</td><td>几率、起伏、无规行走、几率分布、测不准原理</td><td>★ 必读（统计思维的地基）</td></tr>
+      <tr><td>7</td><td>The Theory of Gravitation</td><td>行星运动、开普勒、牛顿引力、卡文迪什实验；引力是什么</td><td>★★ 必读（全书最好的示范之一）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读完应能</strong>：把「引力 ＝ 一种平方反比力」讲到「相对论会怎样修改它」，并理解为什么费曼把它当作物理学的样板。</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num"></span><span>模块四 · 牛顿力学与矢量（第 8–12 章）</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>章</th><th>章名（官方英文）<span class="tag t-src">原书</span></th><th>内容与判断 <span class="tag t-inf">推断</span></th></tr></thead>
+    <tbody>
+      <tr><td>8</td><td>Motion</td><td>位置、速度、加速度；导数与积分</td><td>★ 必读</td></tr>
+      <tr><td>9</td><td>Newton's Laws of Dynamics</td><td>动量与力、动力学方程、数值解、行星运动</td><td>★★ 必读</td></tr>
+      <tr><td>10</td><td>Conservation of Momentum</td><td>牛顿第三定律与动量守恒</td><td>★ 必读</td></tr>
+      <tr><td>11</td><td>Vectors</td><td>矢量的代数与微积分</td><td>○ 按需（工具章，熟可跳）</td></tr>
+      <tr><td>12</td><td>Characteristics of Force</td><td>力的各种类型：摩擦、分子力、基本相互作用</td><td>○ 按需</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读完应能</strong>：把牛顿力学重新读成「动量守恒 ＋ 力是动量的变化率」这套更接近现代物理的表述。</p>
+</section>
+
+<section id="s10">
+  <h2><span class="num"></span><span>模块五 · 功、势能与狭义相对论（第 13–17 章）</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>章</th><th>章名（官方英文）<span class="tag t-src">原书</span></th><th>内容与判断 <span class="tag t-inf">推断</span></th></tr></thead>
+    <tbody>
+      <tr><td>13</td><td>Work and Potential Energy (A)</td><td>功与势能（一）</td><td>★ 必读</td></tr>
+      <tr><td>14</td><td>Work and Potential Energy (conclusion)</td><td>功与势能（续）</td><td>★ 必读</td></tr>
+      <tr><td>15</td><td>The Special Theory of Relativity</td><td>狭义相对论：洛伦兹变换、同时性的相对性</td><td>★★ 必读</td></tr>
+      <tr><td>16</td><td>Relativistic Energy and Momentum</td><td>相对论性能量与动量、E＝mc²</td><td>★★ 必读</td></tr>
+      <tr><td>17</td><td>Space-Time</td><td>时空四维几何</td><td>★ 必读（理解相对论的关键一步）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读完应能</strong>：用时空图解释「同时性的相对性」，并说清能量与质量为什么可以互换。</p>
+</section>
+
+<section id="s11">
+  <h2><span class="num"></span><span>模块六 · 转动与振动（第 18–21 章）</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>章</th><th>章名（官方英文）<span class="tag t-src">原书</span></th><th>内容与判断 <span class="tag t-inf">推断</span></th></tr></thead>
+    <tbody>
+      <tr><td>18</td><td>Rotation in Two Dimensions</td><td>二维转动、角动量、力矩</td><td>★ 必读</td></tr>
+      <tr><td>19</td><td>Center of Mass; Moment of Inertia</td><td>质心与转动惯量</td><td>★ 必读</td></tr>
+      <tr><td>20</td><td>Rotation in space</td><td>三维转动、陀螺、角动量守恒</td><td>○ 按需</td></tr>
+      <tr><td>21</td><td>The Harmonic Oscillator</td><td>谐振子：全书最通用的一个模型</td><td>★★ 必读</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读完应能</strong>：说清为什么「谐振子」是物理学里出现频率最高的模型（从弹簧到分子振动到量子场）。</p>
+</section>
+
+<section id="s12">
+  <h2><span class="num"></span><span>模块七 · 线性系统与光学（第 22–27 章）</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>章</th><th>章名（官方英文）<span class="tag t-src">原书</span></th><th>内容与判断 <span class="tag t-inf">推断</span></th></tr></thead>
+    <tbody>
+      <tr><td>22</td><td>Algebra</td><td>代数：线性方程组、复数、指数</td><td>○ 按需（数学插曲）</td></tr>
+      <tr><td>23</td><td>Resonance</td><td>共振</td><td>★ 必读</td></tr>
+      <tr><td>24</td><td>Transients</td><td>瞬态</td><td>○ 按需</td></tr>
+      <tr><td>25</td><td>Linear Systems and Review</td><td>线性系统与小结</td><td>★ 必读（把振动串成一整块）</td></tr>
+      <tr><td>26</td><td>Optics: The Principle of Least Time</td><td>光学：最短时间原理</td><td>★★ 必读（费曼招牌讲法之一）</td></tr>
+      <tr><td>27</td><td>Geometrical Optics</td><td>几何光学</td><td>○ 按需</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读完应能</strong>：用「最短时间原理」解释折射与反射，并理解「共振」为什么既通用又常被忽略。</p>
+</section>
+
+<section id="s13">
+  <h2><span class="num"></span><span>模块八 · 电磁辐射与光（第 28–34 章）</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>章</th><th>章名（官方英文）<span class="tag t-src">原书</span></th><th>内容与判断 <span class="tag t-inf">推断</span></th></tr></thead>
+    <tbody>
+      <tr><td>28</td><td>Electromagnetic Radiation</td><td>电磁辐射</td><td>★ 必读</td></tr>
+      <tr><td>29</td><td>Interference</td><td>干涉</td><td>★ 必读</td></tr>
+      <tr><td>30</td><td>Diffraction</td><td>衍射</td><td>★ 必读</td></tr>
+      <tr><td>31</td><td>The Origin of the Refractive Index</td><td>折射率的起源</td><td>★ 必读</td></tr>
+      <tr><td>32</td><td>Radiation Damping. Light Scattering</td><td>辐射阻尼与光散射</td><td>○ 按需</td></tr>
+      <tr><td>33</td><td>Polarization</td><td>偏振</td><td>○ 按需</td></tr>
+      <tr><td>34</td><td>Relativistic Effects in Radiation</td><td>辐射的相对论效应</td><td>○ 按需</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读完应能</strong>：说清「光是什么」在卷一的层次上（干涉、衍射、折射率），并知道这正是卷二电磁学的入口。</p>
+</section>
+
+<section id="s14">
+  <h2><span class="num"></span><span>模块九 · 视觉与量子行为（第 35–38 章）</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>章</th><th>章名（官方英文）<span class="tag t-src">原书</span></th><th>内容与判断 <span class="tag t-inf">推断</span></th></tr></thead>
+    <tbody>
+      <tr><td>35</td><td>Color Vision</td><td>颜色视觉</td><td>○ 按需（物理→生理的跨界章）</td></tr>
+      <tr><td>36</td><td>Mechanisms of Seeing</td><td>视觉的机制</td><td>○ 按需</td></tr>
+      <tr><td>37</td><td><strong>Quantum Behavior</strong></td><td>量子行为：子弹、波、电子双缝实验、测不准原理</td><td>★★ 必读（卷一的分水岭，卷三的引子）</td></tr>
+      <tr><td>38</td><td>The Relation of Wave and Particle Viewpoints</td><td>波动与粒子观点的关系</td><td>★★ 必读</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读完应能</strong>：用自己的话讲一遍「电子双缝实验为什么逼出了量子力学」，这是本书最值钱的一段。</p>
+</section>
+
+<section id="s15">
+  <h2><span class="num"></span><span>模块十 · 气体动理论与统计力学（第 39–43 章）</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>章</th><th>章名（官方英文）<span class="tag t-src">原书</span></th><th>内容与判断 <span class="tag t-inf">推断</span></th></tr></thead>
+    <tbody>
+      <tr><td>39</td><td>The Kinetic Theory of Gases</td><td>气体分子动理论</td><td>★ 必读</td></tr>
+      <tr><td>40</td><td>The Principles of Statistical Mechanics</td><td>统计力学原理</td><td>★ 必读</td></tr>
+      <tr><td>41</td><td>The Brownian Movement</td><td>布朗运动</td><td>★ 必读（统计与热之间的桥）</td></tr>
+      <tr><td>42</td><td>Applications of Kinetic Theory</td><td>动理论的应用</td><td>○ 按需</td></tr>
+      <tr><td>43</td><td>Diffusion</td><td>扩散</td><td>○ 按需</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读完应能</strong>：从「原子随机运动」推出宏观的气体规律，理解「熵」为什么是统计的。</p>
+</section>
+
+<section id="s16">
+  <h2><span class="num"></span><span>模块十一 · 热力学（第 44–46 章）</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>章</th><th>章名（官方英文）<span class="tag t-src">原书</span></th><th>内容与判断 <span class="tag t-inf">推断</span></th></tr></thead>
+    <tbody>
+      <tr><td>44</td><td>The Laws of Thermodynamics</td><td>热力学定律</td><td>★★ 必读</td></tr>
+      <tr><td>45</td><td>Illustrations of Thermodynamics</td><td>热力学的例证</td><td>★ 必读</td></tr>
+      <tr><td>46</td><td>Ratchet and pawl</td><td>棘轮与掣爪</td><td>★★ 必读（用一个小装置讲透第二定律与不可逆性）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读完应能</strong>：说清「热力学第二定律」和「可逆／不可逆」到底在讲什么，而不只是背一句话。</p>
+</section>
+
+<section id="s17">
+  <h2><span class="num"></span><span>模块十二 · 波与对称性（第 47–52 章）</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>章</th><th>章名（官方英文）<span class="tag t-src">原书</span></th><th>内容与判断 <span class="tag t-inf">推断</span></th></tr></thead>
+    <tbody>
+      <tr><td>47</td><td>Sound. The wave equation</td><td>声与波动方程</td><td>★ 必读</td></tr>
+      <tr><td>48</td><td>Beats</td><td>拍</td><td>○ 按需</td></tr>
+      <tr><td>49</td><td>Modes</td><td>模式</td><td>★ 必读</td></tr>
+      <tr><td>50</td><td>Harmonics</td><td>谐波</td><td>○ 按需</td></tr>
+      <tr><td>51</td><td>Waves</td><td>波</td><td>★ 必读</td></tr>
+      <tr><td>52</td><td>Symmetry in Physical Laws</td><td>物理定律中的对称性</td><td>★★ 必读（卷一的收束，也是现代物理的主线）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读完应能</strong>：说清「对称性 → 守恒律」这条现代物理的核心线索——这是卷一留给卷二的钥匙。</p>
+</section>
+
+<section id="s18">
+  <h2><span class="num"></span><span>卷次范围与二三卷说明</span><span class="caret">▾</span></h2>
+  <p><span class="tag t-src">原书</span> 本页的详细章节地图<strong>只覆盖卷一（52 章）</strong>。卷二、卷三<strong>在本书范围内</strong>，且同样可在线逐章定位，但<strong>不逐模块展开</strong>。要点：</p>
+  <ul>
+    <li><strong>卷二（42 章）</strong> 的三处陡坡：第 2–3 章（矢量场的微分与积分）、第 19 章（<strong>最小作用量原理</strong>，费曼招牌）、第 42 章（弯曲时空）。
+    </li>
+    <li><strong>卷三（21 章＋Epilogue）</strong> 的入口是双态系统：第 5–6 章（自旋 1 与自旋 1/2），第 8–9 章（哈密顿矩阵与氨分子微波激射器），
+  <p>第 16 章（薛定谔方程），第 21 章（超导的初等讲法＋约瑟夫森结），末尾是<strong>《费曼的尾声》（Feynman's Epilogue）</strong>。</p>
+    </li>
+    <li><span class="tag t-src">原书</span> 卷三目录明确列出<strong>两处「Added Note」</strong>（第 18 章 Added Note 1 关于转动矩阵的推导、Added Note 2 关于光子发射中的宇称守恒），
+  <p>这是新千年版／在线版在正文之外补充的材料，说明<strong>「讲义」并非只有 21 章正文</strong>。</p>
+    </li>
+  </ul>
+  <p>★ <span class="tag t-inf">推断</span> <strong>给自学者的取舍</strong>：<strong>先把卷一读透，比三卷各读三分之一强得多。</strong> 卷一自成一个完整的世界观（力学→相对论→光→量子→热→波→对称），卷二卷三是它的两次「换语言重讲」。</p>
+</section>
+
+<section id="s19">
+  <h2><span class="num">A</span><span>关键定义与公式表</span><span class="caret">▾</span></h2>
+  <p><span class="tag t-rep">转述</span> 下表是<strong>按物理学科标准写法整理</strong>的核心关系（<strong>不是对原书正文的抄录</strong>）； <span class="tag t-inf">推断</span> 「首次出现的章」一列，是我依据<strong>官方章名</strong>（<span class="tag t-src">原书</span>）与该章通行内容所作的定位。</p>
+  <table>
+    <thead><tr><th>概念</th><th>式／定义（标准写法）<span class="tag t-rep">转述</span></th><th>首次出现的章 <span class="tag t-inf">推断</span></th></tr></thead>
+    <tbody>
+      <tr><td>动能</td><td>E_k ＝ ½ m v²</td><td>第 4 章 Conservation of Energy</td></tr>
+      <tr><td>重力势能（地表附近）</td><td>E_p ＝ m g h</td><td>第 4 章</td></tr>
+      <tr><td>牛顿第二定律</td><td>F ＝ d p / d t</td><td>第 9 章 Newton's Laws of Dynamics</td></tr>
+      <tr><td>万有引力</td><td>F ＝ G m₁ m₂ / r²</td><td>第 7 章 The Theory of Gravitation</td></tr>
+      <tr><td>洛伦兹变换</td><td>x′ ＝ γ(x − v t)，t′ ＝ γ(t − v x / c²)，γ ＝ 1/√(1 − v²/c²)</td><td>第 15 章 The Special Theory of Relativity</td></tr>
+      <tr><td>质能关系</td><td>E ＝ m c²</td><td>第 16 章 Relativistic Energy and Momentum</td></tr>
+      <tr><td>简谐振子</td><td>m d²x/dt² ＝ −k x，ω₀ ＝ √(k/m)</td><td>第 21 章 The Harmonic Oscillator</td></tr>
+      <tr><td>双缝干涉（概率幅叠加）</td><td>P ＝ \</td><td>φ₁ ＋ φ₂\</td><td>²</td><td>第 37 章 Quantum Behavior</td></tr>
+      <tr><td>热力学第一定律</td><td>ΔU ＝ Q − W</td><td>第 44 章 The Laws of Thermodynamics</td></tr>
+      <tr><td>热力学第二定律（熵）</td><td>dS ≥ 0（孤立系）；ΔS ＝ Q/T（可逆过程）</td><td>第 44 章</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一个提醒</strong>：这套书<strong>不是以「给公式」为目的</strong>的。上表里的公式在任何普通物理书上都能查到； <strong>费曼的价值在公式周围的「为什么」</strong>——尤其是第 26 章（最短时间原理）、第 37 章（量子行为）、第 46 章（棘轮与掣爪）三处。</p>
+</section>
+
+<section id="s20">
+  <h2><span class="num">B</span><span>常见卡点与提示</span><span class="caret">▾</span></h2>
+  <p><span class="tag t-inf">推断</span> 以下 6 条是我的整理，来自「这类教材的通用卡点 ＋ 本书的编排特征」，无直接原文支撑。</p>
+  <ol>
+    <li><strong>卡点：以为要把每一行都读懂。</strong> 费曼在自序里明确说他<strong>故意</strong>让最聪明的学生也吃不透。
+  <p><strong>提示</strong>：第一遍只求「图像」，把侧翼应用整段跳过；第二遍再回来补。</p>
+    </li>
+    <li><strong>卡点：第 4 章的「能量到底是什么」。</strong> 大多数人期待一个定义，费曼却给了一个<strong>不断扩展的历史</strong>。
+  <p><strong>提示</strong>：不要问「能量是什么」，问「我们是怎么一步步发现它守恒的」。</p>
+    </li>
+    <li><strong>卡点：卷 II 第 2–3 章的矢量微积分。</strong> 很多人在这里掉队（散度、旋度、高斯／斯托克斯定理）。
+  <p><strong>提示</strong>：先把「场」的物理图像立起来，再补数学；卷 I 第 11 章（Vectors）可先垫一下。</p>
+    </li>
+    <li><strong>卡点：第 37–38 章的量子行为。</strong> 这是全卷最反直觉的地方，也是最容易被当成「科普」草草翻过的地方。
+  <p><strong>提示</strong>：老老实实把「子弹／波／电子」三个实验并列算一遍，比读十遍结论有用。</p>
+    </li>
+    <li><strong>卡点：把「讲义」和「习题集」混为一谈。</strong> 讲义本身<strong>题目很少</strong>，真正的练习在《习题集》里。
+  <p><strong>提示</strong>：想动手就买《习题集》；但<strong>先读讲义建立图像，再做习题</strong>，顺序反了会很痛苦。</p>
+    </li>
+    <li><strong>卡点：抱着「读完三卷就等于懂物理」的期望。</strong> 三卷是<strong>图像集</strong>，不是<strong>训练册</strong>。
+  <p><strong>提示</strong>：把它与真正的习题训练（《习题集》或任何一本普通物理题集）配对使用。</p>
+    </li>
+  </ol>
+</section>
+
+<section id="s21">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>本页所有来源、交叉验证记录、检索盲区与「原文可得性」检索，另见同目录 <strong><code>费曼物理学讲义-来源清单.md</code></strong>。 ★ 一句话概括：<strong>本书有版权方官方发布的免费在线全文，卷一可逐章逐节定位，故落在 A 级（全文核验）</strong>； 但<strong>在线版只许阅读、不许下载</strong>，且本页的模块划分、路线、必读／可跳判断都是我的整理，标 <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s22">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. 二、三卷的逐模块地图本页未做</h3>
+  <p>本页详细章节地图<strong>只覆盖卷一</strong>，这是任务给定的范围（锚定卷一），<strong>不是遗漏</strong>。 卷二、卷三在本页只给出「卷级说明 ＋ 几处关键章节」，其逐模块的必读／可跳判断<strong>未做</strong>。 需要时可另起一页，方法与本页相同（官方在线目录可逐章定位）。</p>
+  <h3>D2. 中文版旧版（1980 年代／2005 年版）的书目细节未核实</h3>
+  <p><span class="tag t-rep">转述</span> 检索中出现「上海科学技术出版社自 1982／1983 年起引进翻译中译本」「2005-06 出新版、ISBN 9787532378784、至 2010 年第 8 次印刷」等说法， 来源多为百科镜像页（搜狗百科、newton.com.tw 等），<strong>彼此可能同源，无法当作独立来源</strong>，故本页<strong>只列 2013 年新千年版的可核实信息</strong>， 旧版年份与 ISBN <strong>存疑，未采用</strong>。另：大陆书名「费曼」／「费恩曼」／「费因曼」三种写法并存，<strong>同一套书</strong>，本页目录名逐字用「费曼物理学讲义」。</p>
+  <h3>D3. 英文各卷的<strong>页数</strong>未取得可靠一手数据</h3>
+  <p>我未找到英文 New Millennium Edition 各卷<strong>页数</strong>的官方／编目一致口径（在线版不标页码）。 <span class="tag t-src">原书</span> 可核验的是<strong>中文版</strong>规模：2015 精装全 3 册为（551＋587＋349）页，2013 平装卷 I 为 557 页。 <strong>英文页数两说并存，未采用。</strong></p>
+  <h3>D4. 《补编》与《习题集》的中文版细节部分来自非出版方页面</h3>
+  <p><span class="tag t-src">原书</span>《补编》（Feynman's Tips on Physics）的存在与内容，可由<strong>官方</strong>（在线版 TOC 与 TIPS 版权页、Basic Books／Stanford 编目）核实； <span class="tag t-rep">转述</span> 但其中文版（上海科技 2020，潘笃武／李洪芳 译，161 页，ISBN 978-7-5478-5471-5，38 元）的<strong>页数与定价</strong>来自百科与电商页， <strong>未与出版方分类页逐一比对</strong>。《习题集》中文版（杨文超 译）的 ISBN 同样未逐一核实。</p>
+  <h3>D5. Grokipedia 等 AI 生成页面已主动排除</h3>
+  <p>检索中出现 <code>grokipedia.com</code> 的《The Feynman Lectures on Physics》整页，内容与事实大体相符， 但<strong>属 AI 自动生成、无作者无编目</strong>，按契约<strong>一律不采用</strong>，本页所有事实均另有多源（官方页面／编目）支撑。 同理，<code>archive.org</code> 上出现的<strong>中文版全文文本 dump</strong> 亦<strong>不作为依据</strong>（属未经授权上传）， 仅用于<strong>反证中文版 CIP 书目与出版方页面一致</strong>这一点——而该点已由出版方页面独立证实。</p>
+  <h3>D6. 「Modules 划分」与「路线／必读判断」全部是我的整理</h3>
+  <p>卷 I 原书<strong>没有「篇」级划分</strong>；本页的 12 个模块、三条路线、逐章「必读／按需／可跳」， 全部是 <span class="tag t-inf">推断</span>，<strong>没有任何原文或权威来源背书</strong>。它们是我依据官方章名与该章通行内容作出的<strong>读者视角整理</strong>。</p>
+  <h3>D7. 「分卷订正数 332／263／200」标 <span class="tag t-rep">转述</span> 的理由</h3>
+  <p><span class="tag t-src">原书</span> 新千年版<strong>共订正 885 处</strong>这一点，官方 info 页与 errata 页都写了，属一手。 <span class="tag t-rep">转述</span> 但<strong>分卷的 332／263／200</strong> 出自《新千年版前言》。该前言是官方内容， 可本次<strong>官方在线版前言页（I_90.html）在检索中未能直接渲染</strong>，我读到的是<strong>该前言的授权平台（掌阅）中文译文</strong>， 措辞与英文可能有出入，故这一分卷数<strong>标 <span class="tag t-rep">转述</span></strong>，不标 <span class="tag t-src">原书</span>。 另：初版印次（卷 I 1963-06 ／ 卷 II 1964-11 ／ 卷 III 1965）来自<strong>专业旧书商的实物转录</strong>，亦同属 <span class="tag t-rep">转述</span>。</p>
+</section>
+
+<footer>
+  生成于 2026-10-04 · 来源清单与交叉验证记录见同目录 <code>费曼物理学讲义-来源清单.md</code><br>
+  本页卷次、副题、章名与序言原话取自版权方官方免费在线全文 feynmanlectures.caltech.edu（可逐章逐节定位），故标<b>原书</b>，落 <b>A 级（全文核验）</b>。但官方在线版<b>不含印刷页码</b>，故章节地图<b>只有章号没有页码</b>。12 个模块的划分、三条路线与逐章必读／可跳判断都是我的整理，标<b>推断</b>。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

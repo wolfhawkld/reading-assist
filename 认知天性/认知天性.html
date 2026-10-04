@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《认知天性》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《认知天性》<small>阅读指引与精华解析 · 2026-10-04</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 前置知识与目标读者</a>
+    <a href="#s2">2 全书骨架</a>
+    <a href="#s3">3 六个核心论点</a>
+    <a href="#s4">4 阅读建议</a>
+    <a href="#s5">5 配套资源</a>
+    <a href="#s6">6 中文译本怎么选</a>
+    <a href="#s7">7 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s8">8 前言：这本书为谁写、证据来自哪里（Preface · 英文 p.ix–xi）</a>
+    <a href="#s9">9 第 1 章 学习被误解了（Learning Is Misunderstood · 英文 p.1）</a>
+    <a href="#s10">10 第 2 章 为了学会，先要检索（To Learn, Retrieve · 英文 p.23）</a>
+    <a href="#s11">11 第 3 章 打乱你的练习（Mix Up Your Practice · 英文 p.46）</a>
+    <a href="#s12">12 第 4 章 拥抱困难（Embrace Difficulties · 英文 p.67）</a>
+    <a href="#s13">13 第 5 章 避免「自以为知道」（Avoid Illusions of Knowing · 英文 p.102）</a>
+    <a href="#s14">14 第 6 章 走出「学习风格」（Get Beyond Learning Styles · 英文 p.131）</a>
+    <a href="#s15">15 第 7 章 提升你的能力（Increase Your Abilities · 英文 p.162）</a>
+    <a href="#s16">16 第 8 章 让它留下来（Make It Stick · 英文 p.200）</a>
+    <div class="grp">附录</div>
+    <a href="#s17">A 关键定义与公式表</a>
+    <a href="#s18">B 常见卡点与提示</a>
+    <a href="#s19">C 来源清单</a>
+    <a href="#s20">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《认知天性》阅读指引与精华解析</h1>
+  <div class="sub">Make It Stick: The Science of Successful Learning</div>
+  <div class="meta">
+    <div><b>作者</b>彼得·C. 布朗（Peter C. Brown，作家、前管理顾问）· 亨利·L. 罗迪格三世（Henry L. Roediger III，圣路易斯华盛顿大学心理学 James S. McDonnell 讲席教授，2017 年当选美国国家科学院院士，曾任美国心理科学学会主席）· 马克·A. 麦克丹尼尔（Mark A. McDaniel，圣路易斯华盛顿大学心理学教授，整合认知学习教育中心 CIRCLE 主任）</div>
+    <div><b>英文初版</b>The Belknap Press of Harvard University Press · 2014-04-14 · xi＋313 页 · ISBN 978-0-674-72901-8 · LCCN 2013038420 · 电子书 ISBN 978-0-674-41938-4</div>
+    <div><b>中译（大陆·现行）</b>《认知天性：让学习轻而易举的心理学规律》· 邓峰 译 · 中信出版集团 2018-09 第 1 版 · XVII＋302 页 · ISBN 978-7-5086-9467-2 · ¥58.00（版权页注「Published by arrangement with Harvard University Press through Bardon-Chinese Media Agency」）</div>
+    <div><b>中译（台湾）</b>《超牢記憶法：記憶管理專家教你過腦不忘的學習力》· 陳麗玉 译 · 遠見天下文化 2015 · 333 页 · ISBN 9789863209089（教育教養 25）—— 已绝版</div>
+    <div><b>荣誉与影响</b>国际畅销书；美国海军海豹突击队将其作为教官训练读物；出版十年后官网称「已影响数百万学习者」</div>
+    <div><b>状态</b>未标注已读／想读 —— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有可定位文本支撑的段落 —— 含出版方（Harvard UP）公开的<b>官方样章 PDF</b>（前言 pp.ix–xi、第 1 章、索引，可逐页核对）、图书馆编目的带页码目录，以及<b>带期刊卷(期)年页码的一手文献</b>（作者本人的实证论文与同期的批评文献；凡引批评者观点，正文均写明出处）</li>
+    <li><span class="tag t-talk">作者谈话</span> 出自作者本人在书外的公开表态（访谈、专栏、演讲）—— 不在书里</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、书评、百科或读者读书笔记，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本书<b>仍在版权期内</b>，我未持原书。★ 本报告的一处材料优势是：<b>出版方 Harvard UP 公开了官方样章 PDF</b>，含<b>前言、第 1 章全文与索引摘录</b>，可逐页核对 —— 这一截面在核验上可达 A 级；此外两位作者本人的实证论文与多组带卷期页码的一手批评文献构成本报告的另一支柱。★ 最大的坑在<b>中文译本</b>：大陆译本多处章节标题与内容不符（第 6 章标题甚至与本意相反），详见正文第 5 节。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-04 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书按 <b>B 级（带页码引文）</b>标注，并含一个 <b>A 级截面</b>：我拿到了出版方官方样章（前言 pp.ix–xi、第 1 章 pp.1–13、索引摘录），可逐段核对页码；另有多篇带卷期页码的一手文献（作者本人论文与批评文献）。<b>为什么不是整本 A</b>：第 2–8 章无合法全文可读，我未逐字核对全书，故整体如实标 B。<b>为什么不是 C</b>：核心论断都有期刊卷期或官方样章页码支撑。未标页码处一律为二手转引。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>这本书在回答一个问题：为什么「学得轻松」和「学得牢」是两件事——以及怎样才能真的学得牢。</strong></p>
+  <p>它不属于「高效学习技巧」那一类流行读物，而是一份<strong>认知心理学的通俗文献综述</strong>：两位作者用自己与同行的实验证据，逐条拆掉人们（包括大学生、医学生、甚至教师）最常用、最自信的几种学习习惯——反复阅读、划重点、集中突击（填鸭）、按「学习风格」定制教学——并给出有实证支撑的替代方案：<strong>检索练习、间隔练习、交错练习、多样化练习、生成、细化、校准</strong>。</p>
+  <p>一句话结论（我读完最想记住的一句）：<strong>「学习」和「当下的表现」是两回事——研究里反复出现的现象是，那些让练习阶段考得更好的做法，长期反而记得更少；而那些让练习阶段难受的做法，长期记得更多。</strong> 这条「表现与学习的分离」，是全书所有建议的共同地基 <span class="tag t-src">原书</span>。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>前置知识与目标读者</span><span class="caret">▾</span></h2>
+  <p><strong>这本书要什么底子</strong>：几乎不要。它写给「学生、教师、企业／军队培训者、教练，以及想保持学习力的中年以上终身学习者」<span class="tag t-src">原书</span>。全书刻意把研究细节压到最少，把实验放进故事里讲，非专业读者可以直接读。</p>
+  <p><strong>它不需要什么</strong>：不需要心理学或神经科学基础；它也不是一本需要做题、推导的教材——读完你会得到一整套可执行的策略与判断，而不是一门学科的推导能力。</p>
+  <p><strong>它最适合谁</strong>（我的判断 <span class="tag t-inf">推断</span>）：</p>
+  <ul>
+    <li><strong>正在用「反复读＋划重点」当主要方法、且觉得「明明很努力却记不住」的人</strong>——这本书对你冲击最大；
+    </li>
+    <li><strong>教师、培训者、教练</strong>（第 8 章有专门按对象分类的操作建议，英文 p.200 起）；
+    </li>
+    <li><strong>正在学一门需要长期留存的东西的人</strong>（医学、法律、语言、乐器、竞技）。
+    </li>
+  </ul>
+  <p><strong>它不适合谁</strong>：想知道「记忆的神经机制到底怎么运作」的读者——书里第 7 章只讲到「神经可塑性」这一层，作者自己在正文里也承认，用神经科学指导教学「我们离知道得很远」<span class="tag t-src">原书</span>。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>下表把<strong>英文原版的逐章页码</strong>列全（页码来自 Harvard UP 官方样章的目录页，与多家图书馆编目一致）。★ <strong>本报告没有可靠的中译逐章页码</strong>（见附录 D1），故不列中译页码；中译与英文版章名对应关系见第 6 节的对照表。</p>
+  <table>
+    <thead><tr><th>章</th><th>英文页</th><th>这一章在回答什么</th><th>判断</th></tr></thead>
+    <tbody>
+      <tr><td>前言 Preface</td><td>ix</td><td>这本书为谁写、证据来自哪里</td><td>十年 11 人协作项目的产物，作者自陈「策略不直觉」</td></tr>
+      <tr><td>1 Learning Is Misunderstood</td><td>1</td><td>我们对「学习」的直觉错在哪</td><td>全书总纲；核心主张在 pp.3–6 集中列出</td></tr>
+      <tr><td>2 To Learn, Retrieve</td><td>23</td><td>为什么「测验」本身就是学习</td><td>检索练习与测验效应；全书最硬的一条</td></tr>
+      <tr><td>3 Mix Up Your Practice</td><td>46</td><td>集中练习错在哪，间隔与交错强在哪</td><td>三条练习原则：间隔、交错、多样</td></tr>
+      <tr><td>4 Embrace Difficulties</td><td>67</td><td>困难为什么会帮上忙</td><td>「合意困难」；也是被过度推广最厉害的一章</td></tr>
+      <tr><td>5 Avoid Illusions of Knowing</td><td>102</td><td>为什么我们总是误判自己会不会</td><td>「流畅错觉」与元认知校准</td></tr>
+      <tr><td>6 Get Beyond Learning Styles</td><td>131</td><td>「学习风格」到底站不站得住</td><td>全书争议最集中处：结论是「站不住」</td></tr>
+      <tr><td>7 Increase Your Abilities</td><td>162</td><td>能力能不能被提高</td><td>神经可塑性、智商可变性、成长心态、刻意练习、记忆线索</td></tr>
+      <tr><td>8 Make It Stick</td><td>200</td><td>这些结论怎么落地</td><td>按学生／终身学习者／教师／培训者分类的操作清单</td></tr>
+      <tr><td>附注 Notes</td><td>257</td><td>逐章出处</td><td>想看原论文从这里查</td></tr>
+      <tr><td>延伸阅读 Suggested Reading</td><td>285</td><td>接续书目</td><td>—</td></tr>
+      <tr><td>索引 Index</td><td>295</td><td>关键词定位</td><td>本报告多处页码由中国读者很陌生的「索引」交叉验证</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法提示</strong>：作者在前言里明说，<strong>他们刻意让关键概念在全书反复出现（间隔）并把不同主题交叉着讲（交错）</strong>——「我们会毫不掩饰地把关键想法讲不止一遍」<span class="tag t-src">原书</span>。所以如果读起来觉得「怎么又说了一遍」，那不是注水，而是<strong>作者在用书本身演示书里的方法</strong>。这一点既是它有效的地方，也是它被读者诟病「啰嗦」的地方（见第 7 节）。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>六个核心论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：「检索练习」是全书所有建议共同的根</h3>
+  <p><strong>主张</strong>：从记忆中<strong>把信息取出来</strong>这件事本身会强化记忆、打断遗忘，效果优于反复重读——这就是<strong>检索练习（retrieval practice）</strong>，也叫<strong>测验效应（testing effect）</strong>；书中其余方法都可看作它的变形或辅助 <span class="tag t-src">原书</span>。</p>
+  <p><strong>依据</strong>：作者自己的关键实验给出了硬锚点——<strong>Karpicke, J. D., &amp; Roediger, H. L., III (2008), <em>The Critical Importance of Retrieval for Learning</em>, Science, 319(5865), 966–968</strong>，结论原话是「学完之后继续重学，对延迟回忆没有影响；而继续测验产生了很大的正向效果」<span class="tag t-src">原书</span>。第 1 章的主张清单也把检索练习列为对抗「反复阅读／填鸭」的核心替代方案 <span class="tag t-src">原书</span>。</p>
+  <p><strong>为什么重要</strong>：<strong>如果这本书你只带走一条，带走这条。</strong> 它的力量在于「反直觉但有实验」——<strong>考试不是学习的敌人，考试本身就是学习</strong>。（注意作者说的是「检索」而非「考试」：低风险的自测与高压计分的考试在书里是两件事。）</p>
+  <h3>论点二：有效的学习不轻松——「费力才有效」</h3>
+  <p><strong>主张</strong>：<strong>「学习越费力，就越深、越持久。轻松的学习像是在沙子上写字，今天写了，明天就没了。」</strong><span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：这是第 1 章「Claims We Make in This Book」清单里的第一条 <span class="tag t-src">原书</span>；书里用<strong>「合意困难」（desirable difficulties）</strong>这个框架（概念来自 Robert A. Bjork 1994）把这条通俗化 <span class="tag t-src">原书</span>。作者同时划了边界：<strong>根本克服不了的、与所学无关的困难是无益于学习的</strong> <span class="tag t-rep">转述</span>。</p>
+  <p><strong>为什么重要</strong>：这条<strong>有前提</strong>——Bjork 本人反复强调「desirable」这个词，若学习者缺乏背景知识或技能，合意困难就会变成<strong>有害</strong>的困难 <span class="tag t-src">原书</span>。<strong>正确读法是「拥抱你能克服的、与内容有关的困难」，不是「越难越好」。</strong></p>
+  <h3>论点三：「当下表现」不等于「长期学习」</h3>
+  <p><strong>主张</strong>：研究里反复出现的现象是——<strong>那些让练习阶段考得更好的做法，长期反而记得更少；而那些让练习阶段难受的做法，长期记得更多。</strong><span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：这条「表现与学习的分离」有权威出处——<strong>Soderstrom, N. C., &amp; Bjork, R. A. (2015), <em>Learning versus performance: An integrative review</em>, Perspectives on Psychological Science, 10(2), 176–199</strong> <span class="tag t-src">原书</span>。</p>
+  <p><strong>为什么重要</strong>：它是<strong>全书所有建议的共同地基</strong>，也是读者最容易误判自己「学没学会」的根源——你感觉「学会了」，可能只是「当下表现好」。</p>
+  <h3>论点四：间隔、交错、多样化——三条原则，同一套机制</h3>
+  <p><strong>主张</strong>：把练习<strong>间隔</strong>开、把不同题型<strong>交错</strong>练、变换练习条件（<strong>多样化</strong>），三者都会<strong>降低当下的检索强度</strong>（感觉更难、更没效率），却<strong>逼迫你练「辨认题型、选出正确解法」这个更重要的能力</strong> <span class="tag t-src">原书</span>。</p>
+  <p><strong>依据</strong>：三条原则在第 3 章依次展开；作者给出的标准例子是——打棒球时把不同球种（快球、曲线球、滑球）<strong>交错</strong>练，练出来的是「辨认来球并选择正确反应」的能力，而集中练一种球练不出它 <span class="tag t-rep">转述</span>。</p>
+  <p><strong>为什么重要</strong>：这三条是「怎么练」的操作核心，都有独立的一手文献支撑；但<strong>「交错」有明确边界</strong>——对还没建立基本概念的初学者，先集中、后交错往往更稳（见 6.3 节）。</p>
+  <h3>论点五：我们并不擅长判断自己学得好不好——所以需要外部校准</h3>
+  <p><strong>主张</strong>：作者明确主张<strong>「我们并不擅长判断自己什么时候学得好、什么时候学得不好」</strong><span class="tag t-src">原书</span>；反复阅读带来的「流畅」会被误当成「掌握」，这就是<strong>流畅错觉</strong>。</p>
+  <p><strong>依据</strong>：第 5 章展开流畅错觉，书中一句话被同行书评直接引作书名页码：<strong>「对你的确定性之可错性，保持开放」</strong>（<em>stay open to the fallibility of your certainties</em>，<strong>英文 p.112</strong>）<span class="tag t-src">原书</span>。校准的工具是测验、抽认卡、实际写出来、在模拟环境里实操、从同行与前辈拿反馈 <span class="tag t-rep">转述</span>。</p>
+  <p><strong>为什么重要</strong>：<strong>没有校准，检索练习也可能变成自我欺骗。</strong> 这一章回答的是「你怎么知道自己做对了」，是把前面几章落到自己身上的关键。</p>
+  <h3>论点六：「学习风格」是神话——作者是拆它的人，不是推销它的人</h3>
+  <p><strong>主张</strong>：认为「按个人偏好风格施教会学得更好」这一流行观念<strong>「没有得到实证研究支持」</strong><span class="tag t-src">原书</span>。</p>
+  <p><strong>依据</strong>：权威依据就是<strong>本书作者麦克丹尼尔本人参与</strong>的那篇综述——<strong>Pashler, H., McDaniel, M., Rohrer, D., &amp; Bjork, R. (2008), <em>Learning Styles: Concepts and Evidence</em>, Psychological Science in the Public Interest, 9(3), 105–119</strong>，该文判定符合严格实验标准（「交叉交互」）的验证<strong>「几乎不存在」</strong> <span class="tag t-src">原书</span>。★ 中文译本把第 6 章标题译成「选择适合自己的学习风格」，恰好把意思说反了。</p>
+  <p><strong>为什么重要</strong>：这条最容易被读成「作者在推销学习风格」的反面——<strong>恰恰相反，作者给的不是「按风格分组」，而是「让教学方式匹配学科本身的性质」</strong> <span class="tag t-src">原书</span>。区分「作者的主张」与「别人替他们主张的」，这一条是最好的样本。</p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <p><strong>作者本人给的路线</strong>（尽量忠实）：第 1 章先用一节（英文 pp.3–6）把全书所有主要主张列成一张清单，之后每一章再逐条展开，<strong>每章末尾都有「The Takeaway」小结</strong>。也就是说，作者的意图是：<strong>先读第 1 章拿到地图，再按兴趣选章，靠每章小结回收要点</strong><span class="tag t-src">原书</span>。</p>
+  <p><strong>我给的两条通路</strong>：</p>
+  <p><strong>如果你是「想读」——按这个顺序，大约 3 小时：</strong></p>
+  <ol>
+    <li><strong>第 1 章全文</strong>（英文 p.1–22）。这是全书唯一的「总纲＋自查」章。读完它，你已经拿到这本书 80% 的主张。
+    </li>
+    <li><strong>第 2 章</strong>（p.23）。全书科学分量最重的一章——「检索练习」是后面所有建议的根。<strong>如果只读一章，读这一章。</strong>
+    </li>
+    <li><strong>第 3 章 ＋ 第 4 章</strong>（p.46／p.67）。把「间隔／交错／多样化」和「合意困难」连起来读，这两章合起来才是「怎么练」。
+    </li>
+    <li><strong>第 5 章</strong>（p.102）。它讲的是「怎么知道自己会不会」——这是把前三章落到自己身上的关键。
+    </li>
+    <li>第 6、7、8 章按需：<strong>关心教育／培训话题再读 6、8；只想提高自己，7 可以快读</strong>。
+    </li>
+  </ol>
+  <p><strong>如果你是「已读」——回头三件事：</strong></p>
+  <ul>
+    <li><strong>核一件事</strong>：你记住的是「检索、间隔、交错」这套<strong>方法</strong>，还是「合意困难」这个<strong>口号</strong>？后者是这本书最容易被过度推广的部分（第 7.3 节讲了它怎么被推过头）。
+    </li>
+    <li><strong>补上第 6 章真正在说什么</strong>：它不是「教你怎么按学习风格学」，而是「告诉你按学习风格学没有证据」。<strong>如果你的中文版把这一章标题译成「选择适合自己的学习风格」，你很可能把它读反了</strong>（第 6 节）。
+    </li>
+    <li><strong>分清「作者的主张」与「别人替他们主张的」</strong>：成长心态一章（第 7 章）是重灾区（第 7.2 节）。
+    </li>
+  </ul>
+  <p><strong>可以跳过什么</strong>（必须给）：<strong>第 7 章可以快读或跳读</strong>——它讲神经可塑性、智商可变、成长心态、刻意练习，话题跨度大，而且其中两三条在 2014 年之后被复现研究削弱最多（第 7.2 节）。如果你时间紧，<strong>「检索＋间隔＋交错＋校准」这四条拿到手就够用了，其余可当延伸</strong>。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5</span><span>配套资源</span><span class="caret">▾</span></h2>
+  <ul>
+    <li><strong>作者官方网站</strong>：makeitstick.com —— 按「学生／终身学习者」「教师／培训者／教练」「家长」分组的可下载清单，是全书操作的免费补充 <span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>作者的核心论文（开放／可查）</strong>：
+    <ul>
+      <li>Roediger, H. L., III, &amp; Karpicke, J. D. (2006). <em>Test-Enhanced Learning: Taking Memory Tests Improves Long-Term Retention.</em> <strong>Psychological Science, 17(3), 249–255.</strong> <span class="tag t-src">原书</span>
+      </li>
+      <li>Karpicke, J. D., &amp; Roediger, H. L., III (2008). <em>The Critical Importance of Retrieval for Learning.</em> <strong>Science, 319(5865), 966–968.</strong> DOI 10.1126/science.1152408 <span class="tag t-src">原书</span>
+      </li>
+      <li>Roediger, H. L., III, &amp; Butler, A. C. (2011). <em>The critical role of retrieval practice in long-term retention.</em> <strong>Trends in Cognitive Sciences, 15(1), 20–27.</strong> <span class="tag t-src">原书</span>
+      </li>
+      <li>Karpicke, J. D., Butler, A. C., &amp; Roediger, H. L., III (2009). <em>Metacognitive strategies in student learning.</em> <strong>Memory, 17(4), 471–479.</strong>（学生实际用什么方法学的调查）<span class="tag t-src">原书</span>
+      </li>
+    </ul>
+    </li>
+    <li><strong>与学习风格一章直接相关的权威综述</strong>：Pashler, H., <strong>McDaniel, M.</strong>, Rohrer, D., &amp; Bjork, R. (2008). <em>Learning Styles: Concepts and Evidence.</em> <strong>Psychological Science in the Public Interest, 9(3), 105–119.</strong> —— ★ 注意：<strong>麦克丹尼尔本人就是这篇「否定学习风格」权威综述的作者之一</strong> <span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>作者的公开访谈</strong>：PNAS 的 <em>QnAs with Henry L. Roediger III</em>（<strong>PNAS, 117(14), 2020-03-16</strong>，Melissa Suran 访问）；<em>The Good Leadership Podcast</em> 与罗迪格、麦克丹尼尔的两集对话 <span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li><strong>一本被本报告推荐为「接续读物」的书</strong>：James M. Lang, <em>Small Teaching: Everyday Lessons from the Science of Learning</em>（Jossey-Bass, 2016）—— 2018 年一篇同行书评把它与本书并列为「同一谱系」的操作版 <span class="tag t-src">原书</span>。
+    </li>
+  </ul>
+</section>
+
+<section id="s6">
+  <h2><span class="num">6</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ 这本书<strong>必须给「怎么选」一节</strong>，理由不是版本多，而是<strong>大陆现行译本有系统性的标题误导</strong>——它会直接损害你的理解。</p>
+  <p><strong>两个中文本</strong>：</p>
+  <table>
+    <thead><tr><th>版本</th><th>译者</th><th>页数</th><th>出版社／年</th><th>ISBN</th><th>状态</th></tr></thead>
+    <tbody>
+      <tr><td><strong>大陆（现行）</strong></td><td>邓峰</td><td>XVII＋302</td><td><strong>中信出版集团 2018-09</strong></td><td>978-7-5086-9467-2</td><td>在售，最易得</td></tr>
+      <tr><td>台湾</td><td>陳麗玉</td><td>333</td><td>遠見天下文化 2015</td><td>9789863209089</td><td><strong>已绝版</strong></td></tr>
+    </tbody>
+  </table>
+  <p><strong>⚠ 大陆译本的核心问题：章节标题被「标题党化」，个别标题与内容相反。</strong> 有读者做了全书章节的中英对照并逐条指出问题 <span class="tag t-rep">转述</span>，其中最该知道的三处是：</p>
+  <ul>
+    <li><strong>书名本身</strong>：《认知天性：<strong>让学习轻而易举</strong>的心理学规律》。原书名是 <em>Make It Stick</em>（让它留下来），副标题 <em>The Science of Successful Learning</em>（成功学习的科学）。<strong>「让学习轻而易举」与全书论点相反</strong>——作者的主张是「有效的学习费力且不轻松」。
+    </li>
+    <li><strong>第 6 章</strong>：中译标题「<strong>选择适合自己的学习风格</strong>」，而英文是 <em>Get Beyond Learning Styles</em>（<strong>走出／超越</strong>学习风格）。<strong>这一章通篇在论证「按学习风格匹配教学没有实证支持」，中译标题恰好把它说反了。</strong>
+    </li>
+    <li><strong>第 2 章的两节</strong>：中译「只需 1 次自测，一周后回忆率从 28% 跃迁为 39%」对应原题 <em>Studying the Testing Effect in the Lab</em>；中译「如何成为一名主动学习者」对应 <em>Studying the Testing Effect "In the Wild"</em>。前者<strong>以一次实验的数字以偏概全</strong>，后者<strong>与本节内容（校园里的测验效应实验）几乎无关</strong>。
+    </li>
+  </ul>
+  <p><strong>怎么选，一句话</strong>：<strong>读大陆中信版即可，但要带着「英文原章名」读。</strong> 正文翻译普遍忠实原意 <span class="tag t-rep">转述</span>，问题集中在标题层——所以建议你在读每一章之前，先对照原章名（本报告第 2 节表、第 6 节）确认这一章到底讲什么。<strong>若你只记得住一件事：第 6 章讲的是「学习风格是神话」，不是「找到你的学习风格」。</strong> 台湾译本《超牢記憶法》已绝版，且书名同样偏离原意（「超牢記憶法」偏重记忆技巧，而原书讲的是学习科学），不作为首选。</p>
+  <p><strong>一个版本差异提示</strong>：中译本的<strong>章节被重新编号为 8 章、节标题重排</strong>，并且比对原书缺少「Notes / Suggested Reading / Acknowledgments」的完整中译呈现方式——<strong>想核对原始出处，请以英文版页码（本报告第 2 节）为准</strong>。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">7</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>这一节是全书报告里<strong>最该单独读的一节</strong>，因为本书的批评面分三层，性质完全不同：<strong>一层是它自己就在拆的神话（学习风格），一层是它引用但后来被复现研究削弱的结论（成长心态、脑力训练），一层是它推广的框架被用过头（合意困难）。</strong> 作者本人的后续表态另列。</p>
+  <h3>7.1 第一层：这本书到底和「学习风格」神话什么关系——必须分清「作者的主张」与「别人替他们主张的」</h3>
+  <p><strong>先说结论</strong>：<strong>这本书是「学习风格」神话最有力的拆解者之一，不是它的推销者。</strong> 但中文语境的传播把它和这个神话搅在了一起，原因有三：</p>
+  <ol>
+    <li><strong>作者的主张是明确的否定。</strong> 第 6 章正文写道，认为「按个人偏好风格施教会学得更好」这一流行观念「<strong>没有得到实证研究支持</strong>」；书中进一步引用 2008 年那篇权威综述，指出「<strong>没有证据</strong>」支持把教学方式与学习风格相匹配 <span class="tag t-src">原书</span>。英文第 6 章正文（约 p.143）甚至说，对学习风格的迷信「<strong>灌输了一种腐蚀性的、被误导的能力贬低感</strong>」<span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>「否定学习风格」的那篇权威综述，作者之一就是本书作者麦克丹尼尔。</strong> Pashler, McDaniel, Rohrer, &amp; Bjork (2008), <em>Learning Styles: Concepts and Evidence</em>, <strong>Psychological Science in the Public Interest, 9(3), 105–119</strong> —— 该文系统回顾了 50 年研究后判定：符合严格实验标准（需要「交叉交互」）的验证「<strong>几乎不存在</strong>」，且若按此框架把学生分类，「反而可能降低他们对较难学科的信心」<span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>★ 中文译本的标题把这一章说反了。</strong> 中译第 6 章标题作「选择适合自己的学习风格」（第 6 节）。<strong>一个只看中文目录的读者，会以为这本书在为学习风格背书——而它做的正好相反。</strong> 这是本报告认为中文读者最容易踩的一个坑，也是「标题党式翻译」最有实际危害的一处。
+    </li>
+  </ol>
+  <p><strong>所以这条误读该怎么防</strong>：记住一句话——<strong>「书中说学习风格是神话，是别人（和中文标题）让它看起来像在推销学习风格。」</strong> <span class="tag t-inf">推断</span></p>
+  <h3>7.2 第二层：作者引用、但后来被复现研究削弱的两条（成长心态、脑力训练）</h3>
+  <p>第 7 章 <em>Increase Your Abilities</em> 把「成长心态」列为「确实能提升能力」的三个方法之一 <span class="tag t-src">原书</span>。这一章是全书<strong>受后续研究冲击最大</strong>的部分。</p>
+  <ul>
+    <li><strong>成长心态</strong>：Sisk, V. F., Burgoyne, A. P., Sun, J., Butler, J. L., &amp; Macnamara, B. N. (2018). <em>To What Extent and Under Which Circumstances Are Growth Mind-Sets Important to Academic Achievement? Two Meta-Analyses.</em> <strong>Psychological Science, 29(4), 549–571</strong> —— 第一项元分析（273 项研究、约 36.6 万人）显示心态与学业成绩的相关<strong>极弱</strong>（约 r≈0.10）；第二项（29–43 项干预研究、约 5.7 万名学生）显示干预的平均效应量约 <strong>d≈0.08</strong>，仅在低社会经济地位／学业高风险学生中略大。作者结论是「从实务角度看，资源或许有更好的投放处」<span class="tag t-src">原书</span>。后续 Burgoyne, Hambrick, &amp; Macnamara (2020), <em>How Firm Are the Foundations of Mind-Set Theory?</em>, <strong>Psychological Science, 31(3), 258–267</strong> 进一步质疑其证据基础 <span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>脑力训练（大脑训练游戏）</strong>：本书第 7 章本身就指出，市面上号称能提高脑力的训练「缺乏实验证据、基本无效」<span class="tag t-rep">转述</span>——<strong>这一条上作者和后来的批评者是同一边的</strong>，请勿把它算成「书的漏洞」。
+    </li>
+    <li><strong>一个必须两边都说的点</strong>：成长心态的推广方（Dweck 一方）对元分析有回应——认为很多被纳入的干预是「低保真度的实施」，而非理论所描述的那种有针对性的项目；这场争论<strong>至今没有定论</strong>。<strong>本报告不替任何一方裁决。</strong> <span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+  <h3>7.3 第三层：全书被推广得最狠、也最需要打折的一个词——「合意困难」</h3>
+  <p>「合意困难」（desirable difficulties）这个概念<strong>不是本书作者提出的</strong>，而是 Robert A. Bjork 1994 年提出的（Bjork, R. A. (1994). <em>Memory and metamemory considerations in the training of human beings.</em> In <em>Metacognition: Knowing about Knowing</em>, MIT Press, pp. 185–205）<span class="tag t-src">原书</span>。本书第 4 章 <em>Embrace Difficulties</em> 把这个框架通俗化，也因此承担了它被过度推广的连带责任。</p>
+  <p><strong>最权威的「别推过头」提醒，来自 Bjork 本人</strong>：Bjork, R. A., &amp; Bjork, E. L. (2020). <em>Desirable difficulties in theory and practice.</em> <strong>Journal of Applied Research in Memory and Cognition, 9(4), 475–479</strong> —— 他们写道，<strong>「desirable」这个词很重要，许多困难在教学中和此后都是 undesirable（不可取的）</strong>；如果学习者<strong>缺乏背景知识或技能</strong>去应对，合意困难就变成非合意困难，效果反而<strong>有害</strong>；并承认自己和同行「<strong>一直忽视这类因素，以为只要把研究发现告诉师生就够</strong>」<span class="tag t-src">原书</span>。</p>
+  <p><strong>实证上的边界证据</strong>：</p>
+  <ul>
+    <li>Brunmair, M., &amp; Richter, T. (2019). <em>Similarity matters: A meta-analysis of interleaved learning and its moderators.</em> <strong>Psychological Bulletin, 145(11), 1029–1052</strong> —— 交错练习的效果有明确的调节变量，并非「越交错越好」<span class="tag t-src">原书</span>。
+    </li>
+    <li>Hwang, H.-B. (2025). <em>Undesirable difficulty of interleaved practice.</em> <strong>Language Learning, 75(1)</strong> —— 对<strong>低成就青少年学词汇</strong>，交错练习<strong>反而有害</strong>，他们需要先有一段集中练习来建立基本的形义联系 <span class="tag t-src">原书</span>。
+    </li>
+    <li>Soderstrom, N. C., &amp; Bjork, R. A. (2015). <em>Learning versus performance: An integrative review.</em> <strong>Perspectives on Psychological Science, 10(2), 176–199</strong> —— 系统梳理「操练时表现提升、长期却更差」与相反的情形，是「表现≠学习」这条地基的权威出处 <span class="tag t-src">原书</span>。
+    </li>
+  </ul>
+  <p><strong>一句话</strong>：<strong>「拥抱困难」的正确读法是「拥抱你能克服的、与内容有关的困难」，不是「越难越好」</strong>。作者在第 4 章也写了「无法克服的、与所学无关的困难无益」<span class="tag t-rep">转述</span>，但通俗传播里这句往往被省略。</p>
+  <h3>7.4 第四层：对「畅销化叙述」本身的批评</h3>
+  <ul>
+    <li><strong>「其实内容不多、且高度重复」</strong>：一篇流传较广的长书评认为，全书最有用的内容两段就能概括，「<strong>80% 都在那两段里</strong>」，书「刻意重复」（作者自陈的写作策略），前四章因此「<strong>冗长、让人打瞌睡</strong>」；并批评第 5 章选用的个别案例故事「<strong>非常不幸</strong>」<span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>「轶事太多」</strong>：有教师书评说，正是这些轶事让它对大众更友好，但「<strong>轶事让我起鸡皮疙瘩，太多了</strong>」<span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>「核心结论随复现研究走低」</strong>：一份 2026 年的摘要式书评写道，书的<strong>核心工具箱（检索、间隔、交错、生成、细化、校准）随时间「只会更牢」</strong>，但「成长心态」与「工作记忆训练」相关主张自 2014 年以来「<strong>经受了复现挑战</strong>」，「刻意练习」文献对「练习能解释多少专长」也「<strong>更有争议</strong>」<span class="tag t-rep">转述</span>。★ 本报告认为这个「分层判断」（哪条更硬、哪条更软）与第 7.2 节的证据一致。
+    </li>
+  </ul>
+  <p><strong>一个必须区分的原则</strong>（本项目纪律）：<strong>「影响大」（畅销、被海军海豹突击队采用、被数百万读者使用）只是接受度证据，不等于「论证成立」。</strong> 本书的<strong>核心</strong>（检索／间隔／交错）有大量独立复现，是硬的；<strong>外围</strong>（成长心态、个别轶事）要单独打折。</p>
+  <h3>7.5 ★ 作者书外表态：罗迪格本人对复现危机的反思</h3>
+  <p>这一栏是本书报告里最该单列的部分——<strong>因为作者之一在复现危机成为公共话题之前，就写过支持复现的公开文章</strong>。</p>
+  <ul>
+    <li><strong>罗迪格早在 2012 年就撰文谈心理学的复现问题</strong>：Roediger, H. L., III (2012). <em>Psychology's Woes and a Partial Cure: The Value of Replication.</em> <strong>APS Observer, 25(2), 9, 27–29</strong> —— 这是他在 APS 的专栏文章，主题是「复现的价值」，被后来的复现方法学文献反复引用 <span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li><strong>他 2020 年对「检索练习为何有效」的当众表述</strong>（PNAS, 117(14), 2020-03-16）：<strong>「检索某条信息，会提高我们日后再次检索到它的概率；而检索对日后回忆的提升，远大于重学这条信息。」</strong><span class="tag t-talk">作者谈话</span>
+    </li>
+    <li><strong>一个耐人寻味的对照</strong>：本书是「学习科学」最成功的畅销书之一，而它的作者之一恰是早期公开讨论「心理学结论有多少靠得住」的人之一。<strong>换句话说，用复现标准去要求这本书，是符合作者自己的科学立场的，而不是外行的挑刺。</strong> <span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+  <p>结构说明：下面按<strong>前言 ＋ 8 章</strong>展开，每节分三块——<strong>这一章在回答什么</strong>、<strong>关键点</strong>、<strong>一句判断</strong>。凡没有页码或期刊卷期支撑的具体叙事细节，我不编，宁可留白并写明材料边界。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">8</span><span>前言：这本书为谁写、证据来自哪里（Preface · 英文 p.ix–xi）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>在进入任何方法之前，作者要先交代两件事：<strong>这本书凭什么可信</strong>，以及<strong>它是不是一本「教育政策建议书」</strong>。</p>
+  <h3>关键点</h3>
+  <ul>
+    <li><strong>开篇第一句就是全书立场</strong>：「人们学习的方式普遍是错的。对学习和记忆的实证研究表明，我们当作金科玉律的许多学习方法，最终大多是白费力气。」接着是那句被引用最多的话：「<strong>但有个陷阱：最有效的学习策略并不直觉。</strong>」<span class="tag t-src">原书</span>
+    </li>
+    <li><strong>作者分工被明说</strong>：罗迪格与麦克丹尼尔是「把职业生涯献给学习与记忆研究的认知科学家」，布朗是「讲故事的人」<span class="tag t-src">原书</span>。这一点很重要——它解释了这本书的<strong>双重性格</strong>：论证靠两位科学家，叙事靠一位作家。
+    </li>
+    <li><strong>证据来源被点明</strong>：全书「部分源自 11 位认知心理学家的协作」；2002 年，圣路易斯的 James S. McDonnell 基金会给罗迪格、麦克丹尼尔及另外九人一笔题为「把认知心理学应用于提升教育实践」的研究经费，<strong>罗迪格是首席研究者</strong>；团队协作十年 <span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>作者主动声明了边界</strong>：「这不是一本讲教育政策或学校制度应如何改革的书。」学习的第一责任在每个个体身上 <span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>★ 一个关于写作方法的自述</strong>：作者说他们<strong>故意违背「一题讲完再讲下一题」的写法</strong>，而是把关键概念<strong>间隔地重复</strong>、并把不同主题<strong>交错</strong>着讲——「我们会毫不掩饰地把关键想法讲不止一遍」<span class="tag t-src">原书</span>。
+    </li>
+  </ul>
+  <h3>一句判断</h3>
+  <p><strong>前言最有价值的不是立场，而是「作者在用自己的书演示自己的方法」这句话</strong>——它让你在读这本书的时候就该警觉一件事：<strong>如果你觉得它啰嗦重复，先别急着怪作者，那可能是他有意为之，而且正是这本书主张的「间隔」与「交错」。</strong> 这不代表它就不啰嗦——本报告在第 7.4 节保留了这条批评——但它至少是<strong>有理论自觉的啰嗦</strong>，不是注水。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">9</span><span>第 1 章 学习被误解了（Learning Is Misunderstood · 英文 p.1）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>我们对「怎么学」的直觉，到底错在哪？</strong> 这一章是全书唯一的总纲，读完它等于拿到了整本书的地图。</p>
+  <h3>关键点</h3>
+  <p><strong>（一）开篇是一个故事，不是一个定义。</strong> 作者用飞行员 Matt Brown 的事——飞行途中右发动机油压下降，他凭记忆里的容限、检查清单和风挡外的情形，把飞机单发飞到备降场——来给出「学习」的作业定义：<strong>「我们说的学习，是获得知识和技能，并让它们在记忆中随时可取，以便你理解未来的问题和机会。」</strong><span class="tag t-src">原书</span>（英文 p.2）</p>
+  <p><strong>（二）关于学习，作者先立三条「大概人人都同意」的前提</strong>：① 要有用，学习就必须依赖记忆；② 我们要终生学习与记忆；③ <strong>学习是一项后天获得的技能，而最有效的策略往往反直觉</strong> <span class="tag t-src">原书</span>（英文 p.2）。</p>
+  <p><strong>（三）★★ 全书的核心主张，集中在英文 pp.3–6 的「Claims We Make in This Book」</strong>。这是<strong>读这一章唯一必须逐字读的部分</strong>。原书列的要点包括 <span class="tag t-src">原书</span>：</p>
+  <ul>
+    <li>「<strong>学习越费力，就越深、越持久。轻松的学习像是在沙子上写字，今天写了，明天就没了。</strong>」
+    </li>
+    <li>「<strong>我们并不擅长判断自己什么时候学得好、什么时候学得不好。</strong>」
+    </li>
+    <li>「反复阅读文本、以及对一项技能的集中练习（massed practice），是各类学习者最偏爱的方法，但也几乎是最无效的方法之一。填鸭式备考就是一例。」
+    </li>
+    <li>「<strong>检索练习——从记忆中回忆事实、概念或事件——比反复阅读复习更有效。抽认卡就是一个简单例子。</strong>」
+    </li>
+    <li>「当你在一个任务上把练习<strong>间隔</strong>开、在下一次之前有点生疏，或者把两个以上科目<strong>交错</strong>着练，检索会更难、感觉上更没效率，<strong>但这种努力带来更持久的学习</strong>。」
+    </li>
+    <li>「<strong>在被告知解法之前先尝试自己解决问题，会带来更好的学习，即使尝试中出了错。</strong>」
+    </li>
+    <li>「『按自己的偏好学习风格（如视觉型、听觉型）施教会学得更好』这一流行观念，<strong>没有得到实证研究支持</strong>。」
+    </li>
+    <li>「<strong>一切新学习都需要先前知识作为地基。</strong>」
+    </li>
+    <li>「<strong>细化（elaboration）就是用你自己的话表达新材料、并把它与你已知的东西连接起来</strong>，从而赋予它意义。」
+    </li>
+    <li>「<strong>犯错并改正它，是在为更高阶的学习搭桥。</strong>」
+    </li>
+  </ul>
+  <p><strong>（四）一个能代表全书「实证优先」姿态的细节</strong>：作者引用了几条<strong>学校官方网站上给出的错误学习建议</strong>（例如某大学网站写「把材料重复得越多、永久记住的机会就越大」），并说「事实上，学生被告知的往往是<strong>明显错误的</strong>」<span class="tag t-src">原书</span>（英文 p.12）。他们随后用「美分硬币记忆测试」和一个 UCLA 教授找了 25 年才发现灭火器就在自己门口的故事，说明<strong>反复接触不等于学会</strong><span class="tag t-src">原书</span>（英文 pp.12–13）。</p>
+  <p><strong>（五）第 1 章还交代了这本书的方法论边界</strong>：作者说他们引用的是「经过科学界评审后在专业期刊发表」的实验；<strong>当给出的是理论而非实证结果时，他们会明说</strong>；研究细节被压到最少，但注释里有出处 <span class="tag t-src">原书</span>（英文 p.9）。</p>
+  <h3>一句判断</h3>
+  <p><strong>如果这本书你只肯读一章，读这一章。</strong> 它既是全书主张的清单，也埋下了全书最容易被推广过头的那个种子——「费力＋不直觉＝更有效」这个等式，<strong>在作者那里是有前提的，但一旦离开这本书，前提常常就丢了</strong>（见第 7.3 节）。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">10</span><span>第 2 章 为了学会，先要检索（To Learn, Retrieve · 英文 p.23）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>测验/自测到底是「衡量学习的尺子」，还是「学习本身」？</strong> 作者的答案是后者——这是全书科学分量最重的一章。</p>
+  <h3>关键点</h3>
+  <ul>
+    <li><strong>核心机制是「检索练习」（retrieval practice），别名「测验效应」（testing effect）</strong>：从记忆中<strong>把信息取出来</strong>这件事本身会强化记忆、打断遗忘，效果优于反复重读 <span class="tag t-src">原书</span>（参见英文 p.3–4 的主张与第 2 章正文）。
+    </li>
+    <li><strong>作者自己的关键实验（硬锚点）</strong>：Karpicke, J. D., &amp; Roediger, H. L., III (2008). <em>The Critical Importance of Retrieval for Learning.</em> <strong>Science, 319(5865), 966–968</strong>。实验用斯瓦希里语—英语词对，一旦某词被试答对，就分别「继续学但不测」「继续测但不学」「既不停学也不停测」或「两者全停」。结论原话是：<strong>「学完之后继续重学，对延迟回忆没有影响；而继续测验产生了很大的正向效果。」</strong>并且「<strong>学生对自身表现的预测，与实际表现不相关</strong>」<span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>另一条硬锚点</strong>：Roediger, H. L., III, &amp; Karpicke, J. D. (2006). <em>Test-Enhanced Learning.</em> <strong>Psychological Science, 17(3), 249–255</strong> —— 把「学后测」的长期保持优势确立为可重复现象 <span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>一个「在野」（真实课堂）里的结果</strong>：作者报告在一所 K-12 学区的实验里，<strong>检索练习把学生成绩从 C+ 提到了 A−，且效果持续整学年</strong> <span class="tag t-rep">转述</span>。★ 这条数字来自二手摘要，<strong>我没有在原书里核到页码</strong>，故标 <span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>一个可操作的细节</strong>：作者主张<strong>反馈可以延迟</strong>——做完一整套题再看答案，比做一题对一题更利于长期记忆 <span class="tag t-rep">转述</span>（这一条在中文读后感里被反复提到，措辞一致）。
+    </li>
+  </ul>
+  <h3>一句判断</h3>
+  <p><strong>这是全书最硬、也最该先落地的一章。</strong> 它的力量在于「反直觉但有实验」：<strong>考试不是学习的敌人，考试本身就是学习</strong>。但也请注意作者的措辞是「检索」而非「考试」——<strong>高压计分的考试</strong>和<strong>低风险的自测</strong>在书里是两件事，推广时容易混为一谈。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">11</span><span>第 3 章 打乱你的练习（Mix Up Your Practice · 英文 p.46）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「练到会为止」式的高强度集中练习，为什么是低效的？</strong> 答案是三条练习原则：<strong>间隔、交错、多样化</strong>。</p>
+  <h3>关键点</h3>
+  <ul>
+    <li><strong>三条原则彼此相关但不同</strong> <span class="tag t-src">原书</span>（英文 pp.4、46 起）：
+    <ol>
+      <li><strong>间隔练习（spaced practice）</strong>：把练习分散到不同时间，等有点遗忘再练；
+      </li>
+      <li><strong>交错练习（interleaved practice）</strong>：把不同但相关的题型/主题混着练，而不是一种练到熟透再换下一种；
+      </li>
+      <li><strong>多样化练习（varied practice）</strong>：变换练习的条件与情境。
+      </li>
+    </ol>
+    </li>
+    <li><strong>它们共享同一套机制</strong>：这三种做法都会<strong>降低当下的检索强度</strong>（感觉更难、更没效率），但<strong>逼迫你练「辨认题型、选出正确解法」这个更重要的能力</strong><span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>作者给出的标准例子</strong>：打棒球时把不同球种（快球、曲线球、滑球）<strong>交错</strong>练，练出来的是「<strong>辨认来球并选择正确反应</strong>」的能力——而集中练一种球（先 20 个快球再 20 个曲线球）练不出这个能力 <span class="tag t-rep">转述</span>。几何题里交错练不同立体图形的体积计算，也是同一逻辑 <span class="tag t-src">原书</span>（英文 p.4）。
+    </li>
+    <li><strong>背景文献</strong>：间隔练习的权威元分析是 Cepeda, N. J. 等 (2006) 在 <strong>Psychological Bulletin</strong> 上的间隔效应元分析（综合 317 项实验）<span class="tag t-src">原书</span>；交错练习的效果则要看 Brunmair &amp; Richter (2019), <strong>Psychological Bulletin, 145(11), 1029–1052</strong>，该文强调「相似性是关键」，交错不是无条件越好 <span class="tag t-src">原书</span>。
+    </li>
+  </ul>
+  <h3>一句判断</h3>
+  <p><strong>这一章给的是「怎么练」的操作核心</strong>，而且它的三条原则都有独立的一手文献支撑，是全书仅次于第 2 章的硬章。<strong>唯一的坑在「交错」</strong>：它的效果有明确边界（第 7.3 节的 Hwang 2025），对<strong>还没建立基本概念的初学者</strong>，先集中、后交错往往更稳。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">12</span><span>第 4 章 拥抱困难（Embrace Difficulties · 英文 p.67）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>困难为什么会帮上忙、什么时候会帮倒忙？</strong> 这一章是全书最出名、也最容易读歪的一章。</p>
+  <h3>关键点</h3>
+  <ul>
+    <li><strong>「合意困难」（desirable difficulties）这个概念来自 Robert A. Bjork（1994），不是本书作者原创</strong> <span class="tag t-src">原书</span>（Bjork, R. A. (1994), In <em>Metacognition: Knowing about Knowing</em>, MIT Press, pp. 185–205）。
+    </li>
+    <li><strong>本章的站位</strong>：它把「有些困难是合意的」这个框架通俗化，并配上「生成学习」「先猜后学」「无错误学习是个神话」等例子 <span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>★ 作者在书里其实划了边界</strong>：中文读后感的概括是——<strong>「根本克服不了的困难、与所学无关的困难，是无益于学习的」</strong> <span class="tag t-rep">转述</span>。这一句极其关键，却在传播中常被省略。
+    </li>
+    <li><strong>★ 最权威的「别推过头」提醒来自 Bjork 本人</strong>：Bjork, R. A., &amp; Bjork, E. L. (2020). <em>Desirable difficulties in theory and practice.</em> <strong>Journal of Applied Research in Memory and Cognition, 9(4), 475–479</strong> —— 「desirable」这个词很重要，<strong>许多困难在教学中和此后都是不可取的</strong>；若学习者缺乏背景知识或技能，合意困难会变成<strong>有害</strong>的困难 <span class="tag t-src">原书</span>。
+    </li>
+  </ul>
+  <h3>一句判断</h3>
+  <p><strong>这一章是全书最需要「配上第 7.3 节一起读」的一章。</strong> 它本身没有错，错的是它被当成一句可以到处套的口号。<strong>正确的操作句是：「挑一个你能靠努力克服、且与内容直接相关的困难」</strong>——而不是「学习就该难受」。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">13</span><span>第 5 章 避免「自以为知道」（Avoid Illusions of Knowing · 英文 p.102）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>为什么我们总以为自己会了，其实没有？</strong> 这一章把注意力从「方法」转向「元认知」——你判断自己学得好不好的能力。</p>
+  <h3>关键点</h3>
+  <ul>
+    <li><strong>核心是「流畅错觉」（illusion of fluency）</strong>：反复阅读会让文本越来越<strong>流畅</strong>，而<strong>流畅被误当成了掌握</strong> <span class="tag t-src">原书</span>（英文 pp.3–5 的主张在第 5 章展开）。书中一句话被 2018 年一篇同行书评直接引用为书名页码：<strong>「对你的确定性之可错性，保持开放」</strong>（<em>stay open to the fallibility of your certainties</em>，<strong>英文 p.112</strong>）<span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>两个「认知系统」的框架</strong>：自动、瞬时、易受错觉影响的系统，与缓慢、费力、训练后更可靠的系统 <span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>校准（calibration）的工具</strong>：测验、抽认卡、实际写出来、在模拟环境里实操、从同行与前辈拿反馈——<strong>用外部工具替代主观自信</strong> <span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>一个跨书的呼应点</strong>：本章引用 Dunning-Kruger 效应（能力最差者最自信）来说明「不熟练且不知道自己不熟练」<span class="tag t-rep">转述</span>。★ 本报告提醒：<strong>Dunning-Kruger 本身近年也有统计批评</strong>（认为部分模式是测量假象），但「用外部工具校准判断」这个实务结论仍然成立 <span class="tag t-inf">推断</span>。
+    </li>
+  </ul>
+  <h3>一句判断</h3>
+  <p><strong>这一章常被低估，其实是全书最实用的一章之一。</strong> 因为前面几章给的是「该怎么做」，这一章给的是「你怎么知道自己做对了」——<strong>没有校准，检索练习也可能变成自我欺骗</strong>。中文标题「打造适合自己的心智模型」属于又一次偏题（原题是 <em>Avoid Illusions of Knowing</em>，避免「自以为知道」的错觉）。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">14</span><span>第 6 章 走出「学习风格」（Get Beyond Learning Styles · 英文 p.131）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「每个人都有适合自己的学习风格」这句话，有没有证据？</strong> 这一章的答案是：<strong>没有</strong>。它也是本报告认为中文读者最该单独留意的一章。</p>
+  <h3>关键点</h3>
+  <ul>
+    <li><strong>核心论断</strong>：「按你的偏好学习风格来教／学，会学得更好」——<strong>这一流行观念没有得到实证研究支持</strong> <span class="tag t-src">原书</span>（英文 p.4 主张、p.131 起展开）。
+    </li>
+    <li><strong>权威依据就是作者自己参与的那篇综述</strong>：Pashler, H., <strong>McDaniel, M.</strong>, Rohrer, D., &amp; Bjork, R. (2008). <em>Learning Styles: Concepts and Evidence.</em> <strong>Psychological Science in the Public Interest, 9(3), 105–119</strong>。该文指出，要证明「学习风格」有用，需要一种特定的「<strong>交叉交互</strong>」结果（某一风格的学生在某种教法下最好、另一风格的学生在另一种教法下最好），而<strong>这类严格研究几乎不存在</strong>，已有的几个「反而与流行的匹配假说直接矛盾」<span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>书里给出的替代方向</strong>：不是按「风格」分组，而是<strong>让教学方式匹配学科本身的性质</strong>——例如几何与地理更适合视觉呈现、诗歌更适合语言讲授 <span class="tag t-src">原书</span>（书中引自 Pashler 等，约英文 p.146–147）。
+    </li>
+    <li><strong>本章还引进了另一组更站得住的个体差异</strong>：语言流畅度与阅读能力、流体／晶体智力、以及斯滕伯格（Sternberg）的<strong>分析型／创造型／实践型</strong>三种智力，和「规则学习者 vs 案例学习者」的区分 <span class="tag t-src">原书</span>（英文 pp.141、147、150）。
+    </li>
+    <li><strong>★★ 中文译本把这一章的标题说反了</strong>：中译作「<strong>选择适合自己的学习风格</strong>」，原题是 <em>Get Beyond Learning Styles</em>（走出学习风格）。一个只看中文目录的读者会得到与本章结论完全相反的印象（第 6 节）。
+    </li>
+  </ul>
+  <h3>一句判断</h3>
+  <p><strong>这一章是本书的公共知识贡献最大的一处，也是中文传播里最容易被读反的一处。</strong> 它同时揭示了一个更普遍的问题：<strong>「畅销化」不总是发生在作者那一端——有时发生在译者、标题、和转述者的那一端。</strong> 区分「作者的主张」与「别人替他们主张的」，这一章是最好的样本。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">15</span><span>第 7 章 提升你的能力（Increase Your Abilities · 英文 p.162）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>智力与能力是固定的，还是可以提升的？提升靠什么？</strong> 这是全书话题跨度最大、也是<strong>受后续复现研究冲击最大</strong>的一章。</p>
+  <h3>关键点</h3>
+  <ul>
+    <li><strong>五个小节的主题</strong> <span class="tag t-src">原书</span>（英文 p.162 起）：神经可塑性（Neuroplasticity）；智商是否可变（Is IQ Mutable?）；脑力训练（Brain Training?）；<strong>成长心态（Growth Mindset）</strong>；<strong>刻意练习（Deliberate Practice）</strong>；记忆线索（Memory Cues）。
+    </li>
+    <li><strong>一个这本书里克制、务实的地方</strong>：它<strong>同时指出</strong>「市面上号称能提高脑力的训练缺乏实验证据、基本无效」<span class="tag t-rep">转述</span>——<strong>这一条上作者与后来的批评者同边</strong>。
+    </li>
+    <li><strong>★ 成长心态是本章最需要打折的一条</strong>：本书把它列为「提升能力」的三个方法之一 <span class="tag t-src">原书</span>，但 Sisk 等 (2018), <strong>Psychological Science, 29(4), 549–571</strong> 的两项元分析显示：心态与成绩的相关约 r≈0.10、干预的平均效应量约 <strong>d≈0.08</strong>，仅在低社经地位／高风险学生中略大 <span class="tag t-src">原书</span>；Burgoyne, Hambrick, &amp; Macnamara (2020), <strong>Psychological Science, 31(3), 258–267</strong> 进一步质疑其证据基础 <span class="tag t-src">原书</span>。★ 推广方（Dweck 一方）对元分析有回应，争论<strong>至今未定论</strong>（第 7.2 节）。
+    </li>
+    <li><strong>刻意练习</strong>：本章引用 Ericsson 的「刻意练习」框架 <span class="tag t-rep">转述</span>。★ 需提醒：<strong>「一万小时」是通俗化口号，Ericsson 本人的重点在「练习的质量」（目标明确、反馈丰富、处在能力边缘），不在小时数</strong> <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>记忆线索／记忆宫殿</strong>：书中强调记忆术不是「学习工具」，而是「检索与组织工具」——<strong>用于已经理解的材料</strong> <span class="tag t-rep">转述</span>。
+    </li>
+  </ul>
+  <h3>一句判断</h3>
+  <p><strong>这一章可以快读，但它里面藏着两个「分层信号」</strong>：作者对「脑力训练」是<strong>怀疑</strong>的（与学界一致），对「成长心态」是<strong>推荐</strong>的（后来被削弱最多）。<strong>把这两条分开看，你就知道这本书哪部分该信得更重。</strong> <span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s16">
+  <h2><span class="num">16</span><span>第 8 章 让它留下来（Make It Stick · 英文 p.200）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>前面七章的道理，怎么落成不同人的具体做法？</strong> 这一章是操作手册。</p>
+  <h3>关键点</h3>
+  <ul>
+    <li><strong>按对象分四组给建议</strong> <span class="tag t-src">原书</span>（英文 p.200 起）：学生（Learning Tips for Students）、<strong>终身学习者（Tips for Lifelong Learners）</strong>、教师（Tips for Teachers）、培训者（Tips for Trainers）。
+    </li>
+    <li><strong>学生的操作清单</strong>（来自多份摘要的一致归纳 <span class="tag t-rep">转述</span>）：练习从记忆中检索新学内容；把检索练习<strong>间隔</strong>开；<strong>交错</strong>学习不同题型；细化；生成（先猜后看）；反思；<strong>校准</strong>；记忆术用于已理解的材料。
+    </li>
+    <li><strong>教师部分的一个具体锚点</strong>：书中讨论「课堂结构对科学课程成绩的影响」与「缩小科学学科成就差距」的实验，索引把相关内容标在<strong>英文 pp.232–234</strong> <span class="tag t-src">原书</span>（索引页可见）。教师建议部分大致在<strong>英文 pp.225–239</strong> <span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>一个被书里引用、也很值得引用的教育框架</strong>：Bloom 的分类学把认知学习分六层（知识、理解、应用、分析、评价、综合），书中用它提醒教师「低风险小测验也能要求学生用到高阶层次」<span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>★ 一个中文译本的偏题</strong>：中译把「Tips for <em>Lifelong Learners</em>」译成「给<strong>职场人士</strong>的学习策略」<span class="tag t-rep">转述</span>——把「终身学习者」窄化成了「职场人士」，缩小了原意（第 6 节）。
+    </li>
+  </ul>
+  <h3>一句判断</h3>
+  <p><strong>这一章的价值不在新观点，而在「可执行」</strong>。它是把前七章从「知道」推向「做到」的桥。对已经读过前面章节的人，<strong>这一章的清单可以当行为实验的脚本用</strong>——但记住，作者全书的主张是「学习是每个个体自己的责任」，所以这一章真正要你做的，是<strong>设计一套自己的练习流程</strong>，而不是照抄一份通用清单。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s17">
+  <h2><span class="num">A</span><span>关键定义与公式表</span><span class="caret">▾</span></h2>
+  <p>下表的「定义」优先用可定位的原文表述；带具体数字的条目给出取数来源。</p>
+  <table>
+    <thead><tr><th>术语</th><th>一句话定义</th><th>出处／数值</th></tr></thead>
+    <tbody>
+      <tr><td>检索练习 / 测验效应</td><td>从记忆中主动取出信息，会强化记忆并打断遗忘，效果优于重读</td><td><span class="tag t-src">原书</span>（英文 pp.3–4；Karpicke &amp; Roediger 2008, Science 319(5865):966–968）</td></tr>
+      <tr><td>间隔练习</td><td>把练习分散到不同时间，等有点遗忘再练</td><td><span class="tag t-src">原书</span>（英文 p.4；Cepeda 等 2006, Psychological Bulletin）</td></tr>
+      <tr><td>交错练习</td><td>把不同但相关的题型混着练，训练「辨认题型」的能力</td><td><span class="tag t-src">原书</span>（英文 p.4；Brunmair &amp; Richter 2019, Psychological Bulletin 145(11):1029–1052）</td></tr>
+      <tr><td>集中练习（massed practice）</td><td>短时间内反复突击同一内容，如填鸭式备考</td><td><span class="tag t-src">原书</span>（英文 p.3）</td></tr>
+      <tr><td>合意困难（desirable difficulty）</td><td>能触发有效编码／检索、且学习者有能力克服的困难</td><td><span class="tag t-src">原书</span>（Bjork 1994；Bjork &amp; Bjork 2020, JARMAC 9(4):475–479）</td></tr>
+      <tr><td>生成（generation）</td><td>在被教之前先自己尝试解决问题</td><td><span class="tag t-src">原书</span>（英文 p.4）</td></tr>
+      <tr><td>细化（elaboration）</td><td>用你自己的话表达新材料，并与已知连接</td><td><span class="tag t-src">原书</span>（英文 p.5）</td></tr>
+      <tr><td>校准（calibration）</td><td>用外部工具（测验、模拟、反馈）替代主观自信</td><td><span class="tag t-rep">转述</span></td></tr>
+      <tr><td>流畅错觉</td><td>把「读起来流畅」误当成「已经掌握」</td><td><span class="tag t-src">原书</span>（英文 pp.3–5、p.112）</td></tr>
+      <tr><td>结构构建 / 心智模型</td><td>提取底层规则并组织成可迁移的心理结构</td><td><span class="tag t-rep">转述</span></td></tr>
+      <tr><td>成长心态</td><td>相信能力可通过努力提高</td><td><span class="tag t-src">原书</span>（英文 p.162 起）；★ 元分析效应量约 d≈0.08（Sisk 等 2018, Psychological Science 29(4):549–571）</td></tr>
+      <tr><td>测验效应效应量</td><td>测试 vs 重学的长期保持优势</td><td><span class="tag t-src">原书</span>（元分析 d≈0.50，Rowland 2014, Psychological Bulletin；d≈0.56，Adesope 等 2017 课堂研究）</td></tr>
+      <tr><td>学习风格 / 匹配假说</td><td>「按偏好风格施教更好」的假设</td><td><span class="tag t-src">原书</span>（Pashler, McDaniel, Rohrer &amp; Bjork 2008, PSPI 9(3):105–119；判定：无充分证据）</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s18">
+  <h2><span class="num">B</span><span>常见卡点与提示</span><span class="caret">▾</span></h2>
+  <ul>
+    <li><strong>卡点一：读中文版第 6 章时以为它在教你「找自己的学习风格」。</strong> 提示：原题是 <em>Get Beyond Learning Styles</em>，结论是「学习风格没有实证支持」。<strong>这一章你要带着「它在拆这个神话」的预期读</strong>（第 5、13 节）。
+    </li>
+    <li><strong>卡点二：把「拥抱困难」当成「越难越好」。</strong> 提示：请把第 4 章与第 7.3 节一起读；Bjork 本人反复强调「<strong>desirable</strong>」这个词——<strong>你克服不了的困难不是合意困难</strong>。
+    </li>
+    <li><strong>卡点三：读第 7 章时把「成长心态」和「脑力训练」当成同等可信。</strong> 提示：作者对「脑力训练」是怀疑的，对「成长心态」是推荐的；后者的复现证据明显更弱（第 6.2、14 节）。
+    </li>
+    <li><strong>卡点四：以为「检索练习＝考试」。</strong> 提示：书里要的是<strong>低风险的自测</strong>，不是高压计分考试；两者在书里是分开说的（第 10 节）。
+    </li>
+    <li><strong>卡点五：读着读着觉得「怎么又说了一遍」而放弃。</strong> 提示：作者<strong>刻意</strong>重复（间隔）并交叉（交错），这是设计不是注水；但也确实有读者认为它太啰嗦（第 7.4 节），<strong>你可以只读第 1 章总纲＋每章小结</strong>。
+    </li>
+    <li><strong>卡点六：想用这本书替代「学科知识」。</strong> 提示：书里明说「<strong>一切新学习都需要先前知识作为地基</strong>」<span class="tag t-src">原书</span>（英文 p.5）——它教的是<strong>怎么学</strong>，不是<strong>学什么</strong>。
+    </li>
+  </ul>
+</section>
+
+<section id="s19">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>本报告的材料来源分布如下（完整清单、交叉验证记录与第 ⑤ 路检索见同目录的《认知天性-来源清单.md》）：</p>
+  <ul>
+    <li><strong>出版方官方文本</strong>：Harvard University Press 公开的官方样章 PDF（含前言 pp.ix–xi、第 1 章 pp.1–13 及索引摘录）。<strong>这是本报告能逐段核对的唯一一手正文来源。</strong>
+    </li>
+    <li><strong>两位作者的核心实证论文</strong>（带卷期页码）：Karpicke &amp; Roediger 2008（Science 319(5865):966–968）；Roediger &amp; Karpicke 2006（Psychological Science 17(3):249–255）；Roediger &amp; Butler 2011（Trends in Cognitive Sciences 15(1):20–27）；Karpicke, Butler &amp; Roediger 2009（Memory 17(4):471–479）。
+    </li>
+    <li><strong>一手批评文献（带卷期页码）</strong>：
+    <ul>
+      <li>Pashler, McDaniel, Rohrer &amp; Bjork (2008), <em>Learning Styles: Concepts and Evidence</em>, <strong>Psychological Science in the Public Interest 9(3):105–119</strong>；
+      </li>
+      <li>Dunlosky 等 (2013), <em>Improving Students' Learning With Effective Learning Techniques</em>, <strong>Psychological Science in the Public Interest 14(1):4–58</strong>；
+      </li>
+      <li>Sisk 等 (2018), <em>Two Meta-Analyses</em>, <strong>Psychological Science 29(4):549–571</strong>；
+      </li>
+      <li>Burgoyne, Hambrick &amp; Macnamara (2020), <strong>Psychological Science 31(3):258–267</strong>；
+      </li>
+      <li>Bjork &amp; Bjork (2020), <em>Desirable difficulties in theory and practice</em>, <strong>Journal of Applied Research in Memory and Cognition 9(4):475–479</strong>；
+      </li>
+      <li>Brunmair &amp; Richter (2019), <strong>Psychological Bulletin 145(11):1029–1052</strong>；
+      </li>
+      <li>Soderstrom &amp; Bjork (2015), <strong>Perspectives on Psychological Science 10(2):176–199</strong>；
+      </li>
+      <li>Hwang (2025), <strong>Language Learning 75(1)</strong>。
+      </li>
+    </ul>
+    </li>
+    <li><strong>同行评议书评（带卷期页码）</strong>：Smith (2015), <em>The Journal of Educational Research</em> <strong>108(4):346</strong>；Warren (2016), <em>Education Review</em> <strong>23</strong>；Ekuni &amp; Pompeia (2016), <em>Ciências &amp; Cognição</em> <strong>21(2):198–201</strong>；Fox (2018), <em>AET</em> <strong>39(1)</strong>。
+    </li>
+    <li><strong>作者书外表态</strong>：Roediger (2012), <em>APS Observer</em> <strong>25(2):9, 27–29</strong>；PNAS <em>QnAs</em>（<strong>117(14), 2020-03-16</strong>）。
+    </li>
+    <li><strong>版本与编目</strong>：Harvard UP 书目；多家图书馆编目（含 ISBN 978-0-674-72901-8、xi＋313 页、Notes pp.257–288）；中信版权页（CIP 数据，ISBN 978-7-5086-9467-2、XVII＋302 页）；台湾国家图书馆编目（《超牢記憶法》，遠見天下文化 2015，ISBN 9789863209089）。
+    </li>
+    <li><strong>中译本标题问题</strong>：一篇系统整理全书章节中英对照的读者长文（署名 Werner，2020-03-02），逐条给出原题与中译的差异 <span class="tag t-rep">转述</span>。
+    </li>
+  </ul>
+  <p><strong>核验级别：B 级（带页码引文），并含一个 A 级截面。</strong> 依据：本书仍在版权期内、无公开全文，但我拿到了 ① <strong>出版方官方样章</strong>（前言＋第 1 章＋索引，可逐页核对 ⇒ 这一截面对应页可达 <strong>A 级</strong>）；② 两位作者<strong>带卷期页码的实证论文</strong>；③ 多组<strong>带期刊卷期页码的一手批评文献</strong>。<strong>为什么不是整本 A</strong>：我没有拿到第 2–8 章的合法全文，未逐字核对全书；<strong>为什么不是 C</strong>：核心论断都有期刊卷期或官方样章页码支撑。★ 本书属于<strong>「内容面与批评面都硬」</strong>的一类：作者自己的实验文献支撑内容，同期与后续的期刊文献构成批评。</p>
+</section>
+
+<section id="s20">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. 中文译本的逐章页码我拿不到 —— 这是本报告最大的边界</h3>
+  <p>中译本章节目录我查到了<strong>章名</strong>，但<strong>没有可靠来源给出「每章从第几页起」</strong>。因此第 2 节的骨架表只列<strong>英文页码</strong>（来自官方样章与多家编目，三方一致），不列中译页码。<strong>为什么拿不到</strong>：中译本的在线试读页多为脚本渲染，我只取到了目录与出版信息，未取到带页码的全目录。<strong>这是取舍，不是遗漏。</strong></p>
+  <h3>D2. 中译本的出版月份与页数各有两个说法 —— 影响你确认手上是哪一版</h3>
+  <ul>
+    <li><strong>出版月份</strong>：版权页（CIP 数据）作 <strong>2018 年 9 月第 1 版</strong>；部分图书平台作 <strong>2018 年 10 月</strong>。
+    </li>
+    <li><strong>页数</strong>：CIP 与四家图书馆编目作 <strong>XVII＋302 页</strong>；部分平台作 <strong>320 页</strong>。
+    </li>
+    <li><strong>本报告的处理</strong>：以<strong>版权页（CIP）与多家图书馆编目</strong>为准（302 页、2018-09），<strong>两个数都列出，不取平均</strong>。请以你手上那本的版权页为准。
+    </li>
+  </ul>
+  <h3>D3. 英文原版页数在不同来源间不一致</h3>
+  <p>lib 编目与多数来源作 <strong>xi＋313 页</strong>；Google Books 某版本作 <strong>268 页 / 329 页</strong>；《Library Journal》书评作 <strong>336 页</strong>；另有一篇书评也作 336 页。<strong>本报告采用 313 页</strong>（编目口径最一致），其余口径并存备查。</p>
+  <h3>D4. 第 2 章的「C+ 到 A−」数字我没核到页码</h3>
+  <p>作者在真实课堂里让成绩「从 C+ 提到 A−、效果持续整学年」这个说法，我拿到的是<strong>多处一致的二手摘要</strong>，<strong>但没能在原书里核到具体页码</strong>。故正文按 <span class="tag t-rep">转述</span> 处理。<strong>若你要引用这个数字，请以原书为准。</strong></p>
+  <h3>D5. 第 7 章正文的页码锚点较薄</h3>
+  <p>第 7 章的页码我只有<strong>章起始页（英文 p.162）</strong>与索引里的零星条目（如 neuroplasticity 在英文 p.164、growth mindset 约 pp.179–183）；<strong>逐小节的精确页码未逐条核实</strong>。相关论断我多以 <span class="tag t-rep">转述</span> 或「约」处理。</p>
+  <h3>D6. 台湾译本与大陆译本的关系，我只确认了「同原著、不同译者」</h3>
+  <p>两个中文本<strong>译者不同</strong>（陳麗玉／邓峰）、<strong>书名不同</strong>、<strong>页数不同</strong>（333／302）。我<strong>没有逐节比对</strong>两版译文，无法判断它们在正文层面的差异。仅确认：台湾版附参考文献 pp.307–333。</p>
+  <h3>D7. Internet Archive 的馆藏我没能确认</h3>
+  <p>我尝试检索 Internet Archive 是否有该书的受控数字借阅本，<strong>未取到结果</strong>（检索无返回）。因此本报告<strong>不声称</strong>通过 CDL 读过正文——<strong>唯一实际逐段读到的正文来自出版方官方样章</strong>。</p>
+  <h3>D8. 一条要主动打折的宣传语</h3>
+  <p>作者官网与图书宣传称本书「已帮助数百万人」「在美国海军海豹突击队中作为训练读物」，以及「剑桥一位研究生的相关视频播放量达 510 万次」。这些是<strong>接受度证据</strong>，<strong>不是「论证成立」的证据</strong>（本项目纪律第 6 条）。<strong>它们说明这本书影响大，不说明它对。</strong> 判断它对不对，要看第 7 节列的那些期刊文献。</p>
+</section>
+
+<footer>
+  生成于 2026-10-04 · 来源清单与交叉验证记录见同目录 <code>认知天性-来源清单.md</code><br>
+  本页引文按<b>带页码引文（B 级）＋一个 A 级截面</b>处理：标注页码的条目引自出版方官方样章（前言 pp.ix–xi、第 1 章 pp.1–13、索引），<b>我未持原书</b>，页码请以原书复核；批评文献与作者论文的卷期页码已逐条给出；未标页码者仍是二手转引。★ 请特别注意：<b>大陆中译本多处章节标题与英文原题不符</b>，第 6 章标题更是与本意相反 —— 读中文版时请对照本报告第 5 节。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>
