@@ -1,0 +1,1901 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《失控》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《失控》<small>阅读指引与精华解析 · 2026-10-04</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 核心论点</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 中文译本怎么选</a>
+    <a href="#s5">5 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s6">6 第一章：人造与天生（第 1 章 · ch1-a–c · 推算 p.1）</a>
+    <a href="#s7">7 第二章：蜂群思维（第 2 章 · ch2-a–g · 推算 p.4）</a>
+    <a href="#s8">8 第三章：有心智的机器（第 3 章 · ch3-a–g · 推算 p.31）</a>
+    <a href="#s9">9 第四章：组装复杂性（第 4 章 · ch4-a–e · 推算 p.61）</a>
+    <a href="#s10">10 第五章：共同进化（第 5 章 · ch5-a–e · 推算 p.74）</a>
+    <a href="#s11">11 第六章：自然之流变（第 6 章 · ch6-a–g · 推算 p.99）</a>
+    <a href="#s12">12 第七章：控制的兴起（第 7 章 · ch7-a–d · 推算 p.119）</a>
+    <a href="#s13">13 第八章：封闭系统（第 8 章 · ch8-a–f · 推算 p.136）</a>
+    <a href="#s14">14 第九章：「冒出」的生态圈（第 9 章 · ch9-a–e · 推算 p.161）</a>
+    <a href="#s15">15 第十章：工业生态（第 10 章 · ch10-a–f · 推算 p.178）</a>
+    <a href="#s16">16 第十一章：网络经济学（第 11 章 · ch11-a–e · 推算 p.199）</a>
+    <a href="#s17">17 第十二章：电子货币（第 12 章 · ch12-a–f · 推算 p.219）</a>
+    <a href="#s18">18 第十三章：上帝游戏（第 13 章 · ch13-a–i · 推算 p.243）</a>
+    <a href="#s19">19 第十四章：形式的图书馆（第 14 章 · ch14-a–g · 推算 p.275）</a>
+    <a href="#s20">20 第十五章：人工演化（第 15 章 · ch15-a–i · 推算 p.305）</a>
+    <a href="#s21">21 第十六章：控制的未来（第 16 章 · ch16-a–g · 推算 p.339）</a>
+    <a href="#s22">22 第十七章：开放宇宙（第 17 章 · ch17-a–h · 推算 p.361）</a>
+    <a href="#s23">23 第十八章：有组织的变化的结构（第 18 章 · ch18-a–e · 推算 p.386）</a>
+    <a href="#s24">24 第十九章：后达尔文主义（第 19 章 · ch19-a–j · 推算 p.402）</a>
+    <a href="#s25">25 第二十章：蝴蝶在沉睡（第 20 章 · ch20-a–e · 推算 p.433）</a>
+    <a href="#s26">26 第二十一章：上升之流（第 21 章 · ch21-a–d · 推算 p.453）</a>
+    <a href="#s27">27 第二十二章：预言机（第 22 章 · ch22-a–j · 推算 p.477）</a>
+    <a href="#s28">28 第二十三章：整体、空洞与空间（第 23 章 · ch23-a–e · 推算 p.499）</a>
+    <a href="#s29">29 第二十四章：上帝的九律（第 24 章 · ch24-a–b · 推算 p.516）</a>
+    <div class="grp">附录</div>
+    <a href="#s30">A 关键概念与人物速查</a>
+    <a href="#s31">B 延伸阅读</a>
+    <a href="#s32">C 来源清单</a>
+    <a href="#s33">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《失控》阅读指引与精华解析</h1>
+  <div class="sub">Out of Control: The New Biology of Machines, Social Systems, and the Economic World</div>
+  <div class="meta">
+    <div><b>作者</b>凯文·凯利（Kevin Kelly，1952– ，人称 KK）—— 《连线》（<i>Wired</i>）杂志<b>创始执行主编</b>（1993–1999）；此前是《全球概览》（<i>Whole Earth Catalog</i>）系列的编辑与出版人；1984 年发起第一届黑客大会。另有《科技想要什么》《必然》《新经济新规则》等</div>
+    <div><b>英文初版</b>Addison-Wesley（美国）1994 · 521 页 · ISBN 0-201-48340-8／9780201483406（★ 英文维基把首版出版者写作 Basic Books、年份写作 1992，均与 ISBN 前缀及官方全文不符，见附录 D2）</div>
+    <div><b>英文再版／平装</b>Fourth Estate（英国）1994，521 页（《新科学家》1994 年书评所依据的版本）；Perseus／Basic Books 平装本</div>
+    <div><b>★ 作者授权全文（本报告唯一底本）</b><b>KK 官网 kk.org/outofcontrol/ 逐章 HTML（149 个页面）＋ 全书 PDF kk.org/mt-files/books-mt/ooc-mf.pdf</b>。作者本人发布的合法全文，也是本批四本书里唯一做到「逐字核验」的一本</div>
+    <div><b>中译（大陆·初版）</b>《失控：全人类的最终命运和结局》· 译者署名「<b>东西文库</b>」（<b>众包翻译</b>：维基平台公开招募、认领章节分工；列名译者含陈新武、陈之宇、顾佩嵚、郝宜平、卢蔚然、陆丁、王钦、小青、袁璐、张鹃、张行舟等）· 新星出版社 2010-12 · 707 页 · 88 元 · ISBN 9787513300711</div>
+    <div><b>中译（大陆·现行）</b>同书名（「KK 三部曲」之一，丛书「东西文库」）· <b>张行舟、陈新武、王钦 译</b> · 电子工业出版社 2016-01 · xix + 739 页 · 89 元 · ISBN 9787121272295；2023／2024 年另有新版（ISBN 与页数口径混乱，见 D3）</div>
+    <div><b>★ 大陆简体版</b><b>存在，且有两个版本</b> —— 2010 新星（初版众包译）与 2016 电子工业（同一译者群体的「全新修订本，从头至尾全篇重新校对」）。★ <b>章号体系两版一致、也与英文 1—24 章一一对应</b>，不存在整体错位；但 2010 版目录疑缺「第二十二章 预言机」（见 4.2 与 D4）</div>
+    <div><b>荣誉／影响</b>英文版当年在美国<b>几乎没有书评</b>（KK 本人 2026 年确认）；中文版 2011 年进入深圳读书月「年度十大好书」50 强（据百科，见 D5）；《黑客帝国》「主演必读」之说<b>仅见于宣传语与百科，无片方一手证据</b>（见 D5）</div>
+    <div><b>状态</b>未标注「已读／想读」—— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 逐字取自<b>作者本人官网发布的合法全文</b>（kk.org/outofcontrol/ 的 149 个逐章 HTML 与官方 PDF）。定位用「官网小节号（如 <i>ch9-b</i>）＋按字数比例推算的页码」，★ <b>推算页码不是原书页码</b>（见附录 D1）。<b>A 级</b></li>
+    <li><span class="tag t-talk">作者谈话</span> 出自作者本人<b>书外</b>的公开表态 —— 本报告特指 KK 2026-06-08 的长篇回顾（<i>Still Out of Control</i>）：后悔书名、不收回内容、承认漏掉新闻信息系统与社交网络、把 LLM 列为唯一例外</li>
+    <li><span class="tag t-rep">转述</span> 来自二手材料：带卷期页码的署名书评与批评文章（Grassie、Stepney、Boisvert、Thieme、Mitchell）、图书馆编目、出版方页面、百科。★ <b>批评文献均写明姓名＋刊物＋卷期＋年份</b></li>
+    <li><span class="tag t-inf">推断</span> 我的推理与判断，无直接来源支撑（如预言打分、谱系判定、三十年后的检验）</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    ★ <b>本报告是本项目四本书里唯一一本 A 级</b>：英文原书 24 章<b>全部逐字读自作者官网发布的合法全文</b>（1,383,048 字符纯文本，按官网目录切为 24 章）。★ 最大的边界有三处：① <b>官网全文不分页</b>，故只有「官网小节号」是精确定位，「推算页码」仅供粗略导航（D1）；② <b>中译本不可得</b>，版本与章号判断依据目录与编目，属 B/C，不混入 A 级辖区；③ <b>Grassie 与 Stepney 的批评原文链接已失效</b>，只据 KK 官网书评页的标题／单位／出处转述（D6）。★ 另外请特别留意本书的性质：<b>它没有脚注</b>，证据几乎全部来自 1990—1993 年的实验室拜访与当面访谈，<b>每一条科学断言都带着 1993 年的时间戳</b>。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-04 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书按 <b>A 级（逐字核对合法全文）</b>标注。依据：<b>作者 Kevin Kelly 本人在自有域名发布的全书</b> —— 逐章 HTML <code>https://kk.org/outofcontrol/</code>（149 个页面，形如 <code>ch9-b.html</code>，抓取后清洗为 1,383,048 字符纯文本并按官网目录切为 24 章）＋ 官方全书 PDF <code>https://kk.org/mt-files/books-mt/ooc-mf.pdf</code>。这是作者／权利人公开发布，属于本项目明确允许的合法来源，<b>与盗版站、他人托管的整本书 PDF 是两回事</b>。<b>覆盖辖区</b>：英文原书正文 24 章的全部 <code>【原书】</code> 引文（<b>无一章降级</b>）、九律英文原文、以及全书关键词精确检索（Metcalfe 0 次／Christopher Alexander 0 次／Turing 仅 3 处且非思想祖先／《连线》作为杂志名 0 次）。<b>不覆盖（明确降级，不冒充 A）</b>：① 中译本 —— 未取得中译全文，版本与章号判断依据目录与编目，属 B/C；② 书后注释书目的原始文献 —— 只读了 KK 的评注，属 C；③ Grassie 与 Stepney 的批评原文链接失效，属 B/C（D6）；④ KK 1994 年之后的一切表态单列 <code>【作者谈话】</code>。★ <b>最重要的边界</b>：官网全文<b>不分页</b>，因此本报告所有「推算 p.」<b>均非原书页码</b>，请勿当作原书页码引用；精确定位请使用官网小节号（如 <code>ch22-i</code>）。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>这本书要说的是：当系统变得足够复杂，「控制」就必须从中央移到边缘——不是因为这样做更道德，而是因为只有这样做，系统才能继续变复杂而不垮掉。</strong></p>
+  <p>它是一个<strong>收敛命题</strong>：1990 年代初的六七个前沿领域（人工生命、混沌与复杂、机器人学、生态恢复、演化生物学、密码学、网络经济）<strong>同时</strong>得出了同一个结论——<strong>智能与秩序不是被设计出来的，是从大量愚蠢部件的自下而上互动里「冒」出来的</strong>。KK 做的事是把这六七个领域串成一张地图，并给它一个统一词汇：<strong>vivisystem（活系统）</strong>—— organism、ecology、robot、corporation、economy、computer circuit 归为一类。<strong>「蜂巢的精神、一个经济体的行为、一台超级计算机的思考、以及我体内的生命，都分布在大量更小的单元之上。」</strong><span class="tag t-src">原书</span></p>
+  <p><strong>书名里的「失控」不是警告，是规格说明</strong>：机器人学家把「fast, cheap, and out of control」当成产品目标；KK 把这个行话提升为整本书的哲学——<strong>「这是所有神必须接受的困境：他们再也无法对自己最出色的造物拥有完整主权」</strong><span class="tag t-src">原书</span>。</p>
+  <p><strong>它不是什么</strong>：不是学术著作（无脚注、无方法、无论文对话）；不是预测报告（它明确否认长期社会预测可行）；不是技术手册（九律是设计箴言，不是算法）；也不是一本中立的综述——<strong>它是一份立场鲜明的、带有准宗教热情的综合</strong>。KK 自己在第二十三章承认：<strong>「这本书建立在我对『自然与机器居然能运作』的惊讶之上。」</strong><span class="tag t-src">原书</span></p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>下表以<strong>作者官网目录</strong>（149 个小节）为准，与英文原书 24 章一一对应。<strong>推算页码按全文字数比例折算（全书正文按 521 页计），仅供粗略定位，不得当作原书页码引用</strong>（见 D1）。中文章名取 2016 电子工业版。</p>
+  <table>
+    <thead><tr><th>#</th><th>英文章名</th><th>中文章名（2016 电子工业版）</th><th>官网小节</th><th>推算页</th><th>这一章在哪一层</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>THE MADE AND THE BORN</td><td>人造与天生</td><td>ch1-a–c</td><td>p.1</td><td>誓师：机器正在生物化，生物正在工程化；「失控是划算的买卖」</td></tr>
+      <tr><td>2</td><td>HIVE MIND</td><td>蜂群思维</td><td>ch2-a–g</td><td>p.4</td><td>★ 核心章：蜂群选举、5000 人 Pong、「网络是二十一世纪的图标」</td></tr>
+      <tr><td>3</td><td>MACHINES WITH AN ATTITUDE</td><td>有心智的机器</td><td>ch3-a–g</td><td>p.31</td><td>布鲁克斯式包容架构：快速、廉价、失控；无躯体则无意识</td></tr>
+      <tr><td>4</td><td>ASSEMBLING COMPLEXITY</td><td>组装复杂性</td><td>ch4-a–e</td><td>p.61</td><td>草原恢复、火与种子、如何「同时做好一切」</td></tr>
+      <tr><td>5</td><td>COEVOLUTION</td><td>共同进化</td><td>ch5-a–e</td><td>p.74</td><td>★ 镜子上的变色龙；「生命之无法理喻之处」；岩石是节奏缓慢的生命</td></tr>
+      <tr><td>6</td><td>THE NATURAL FLUX</td><td>自然之流变</td><td>ch6-a–g</td><td>p.99</td><td>均衡即死亡；稳定性与多样性谁先出现；超有机体之争</td></tr>
+      <tr><td>7</td><td>EMERGENCE OF CONTROL</td><td>控制的兴起</td><td>ch7-a–d</td><td>p.119</td><td>控制如何从混沌里自发冒出来；为什么必须有「失控」</td></tr>
+      <tr><td>8</td><td>CLOSED SYSTEMS</td><td>封闭系统</td><td>ch8-a–f</td><td>p.136</td><td>生态球、封闭与开放、为什么密封系统必然走向崩溃或稳定</td></tr>
+      <tr><td>9</td><td>POP GOES THE BIOSPHERE</td><td>「冒出」的生态圈</td><td>ch9-a–e</td><td>p.161</td><td>★ Biosphere 2 现场：208→156 磅、熊蜂全灭、麻雀兴旺</td></tr>
+      <tr><td>10</td><td>INDUSTRIAL ECOLOGY</td><td>工业生态学</td><td>ch10-a–f</td><td>p.178</td><td>★ Weiser 普适计算；为拆解而设计；「生物学总是赢」</td></tr>
+      <tr><td>11</td><td>NETWORK ECONOMICS</td><td>网络经济学</td><td>ch11-a–e</td><td>p.199</td><td>★ 传真机效应；「我们真该叫它们连接器」；未来网络经济清单</td></tr>
+      <tr><td>12</td><td>E-MONEY</td><td>电子货币</td><td>ch12-a–f</td><td>p.219</td><td>★ 密码无政府主义、Chaum 盲签名、超分发、「加密总是赢」</td></tr>
+      <tr><td>13</td><td>GOD GAMES</td><td>上帝的游戏</td><td>ch13-a–i</td><td>p.243</td><td>SimCity、SimEarth、「我们是神，不如早点擅长」；海湾战争 SIMNET</td></tr>
+      <tr><td>14</td><td>IN THE LIBRARY OF FORM</td><td>在形式的图书馆中</td><td>ch14-a–g</td><td>p.275</td><td>Karl Sims、Dawkins 的 Biomorph、千美元圣杯、演化即搜索</td></tr>
+      <tr><td>15</td><td>ARTIFICIAL EVOLUTION</td><td>人工进化</td><td>ch15-a–i</td><td>p.305</td><td>★ Tom Ray 的 Tierra；Holland 遗传算法；Hillis 连接机；Ackley</td></tr>
+      <tr><td>16</td><td>THE FUTURE OF CONTROL</td><td>控制的未来</td><td>ch16-a–g</td><td>p.339</td><td>★ 皮克斯的反弹、米老鼠思想实验、A320 电传操纵、co-control</td></tr>
+      <tr><td>17</td><td>AN OPEN UNIVERSE</td><td>开放的宇宙</td><td>ch17-a–h</td><td>p.361</td><td>★ 开放基因组、Koza 遗传编程、Langton、「生命是动词不是名词」</td></tr>
+      <tr><td>18</td><td>THE STRUCTURE OF ORGANIZED CHANGE</td><td>有组织的变化之架构</td><td>ch18-a–e</td><td>p.386</td><td>★ Waddington 遗传同化、Baldwin 效应；「演化作为一种宗教」</td></tr>
+      <tr><td>19</td><td>POSTDARWINISM</td><td>后达尔文主义</td><td>ch19-a–j</td><td>p.402</td><td>★★ 全书争议最密集：Margulis、定向突变、化石记录、约束创造</td></tr>
+      <tr><td>20</td><td>THE BUTTERFLY SLEEPS</td><td>沉睡的蝴蝶</td><td>ch20-a–e</td><td>p.433</td><td>Kauffman 布尔网络、免费秩序、复杂性灾难、混沌边缘</td></tr>
+      <tr><td>21</td><td>RISING FLOW</td><td>水往高处流</td><td>ch21-a–d</td><td>p.453</td><td>★★ 全书最形而上学：球体模型、七种趋势、「演化朝着它自己移动」</td></tr>
+      <tr><td>22</td><td>PREDICTION MACHINERY</td><td>预言机</td><td>ch22-a–j</td><td>p.477</td><td>★★ 方法论最扎实：可预测性口袋、Operation Internal Look、拆《增长的极限》</td></tr>
+      <tr><td>23</td><td>WHOLES, HOLES, AND SPACES</td><td>整体，空洞，以及空间</td><td>ch23-a–e</td><td>p.499</td><td>★ 控制论为何消失；「我们不知道什么」清单；奥威尔与网络</td></tr>
+      <tr><td>24</td><td>THE NINE LAWS OF GOD</td><td>九律</td><td>ch24-a–b</td><td>p.516</td><td>★ 全书压缩版：九律；「新生物文明」；「more born than made」</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>四条读法提示</strong>：</p>
+  <ol>
+    <li><strong>这本书不是「一章一个论点」，而是「一章一次拜访」。</strong>几乎每一章都是 KK 跑到一个实验室／一处现场，把那里的人在做什么、为什么重要讲给你听。<strong>所以它的信息密度分布极不均匀</strong>：第九、十五、十九、二十二章厚得惊人，第一、二十四章几乎是散文。
+    </li>
+    <li><strong>真正的骨架是「2 → 11 → 15 → 24」这条线</strong>：蜂群思维（分布式的证据）→ 网络经济（分布式的经济学）→ 人工演化（分布式的创造）→ 九律（分布式的操作手册）。<strong>时间紧就读这四章加第十九章</strong>（后达尔文主义，争议最密集）。
+    </li>
+    <li><strong>第十九章与第二十二章是全书思想含量最高的两章</strong>，也恰恰是中文世界讨论最少的两章。<strong>只读「蜂群思维＋九律」会得到一个过于顺滑、缺乏摩擦力的 KK。</strong>
+    </li>
+    <li><strong>第一部分（1—8 章）讲「是什么」，第二部分（9—14 章）讲「在哪里发生」，第三部分（15—21 章）讲「怎么造」，第四部分（22—24 章）讲「我们还能知道什么、该怎么办」。</strong> 前三部分是观察，第四部分是方法。
+    </li>
+  </ol>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>核心论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：涌现——「没有一只蜜蜂掌舵，但蜂群做决定」</h3>
+  <p><strong>主张</strong>：智能、生命、秩序不是被某个中心设计出来的，而是<strong>从大量遵循简单局部规则的低级单元的并行互动中「冒」出来的</strong>。</p>
+  <p><strong>依据（原文定位）</strong>：第二章 ch2-a 的蜜蜂分群——蜂后不能决定去向，她只能跟随；少数侦察蜂查看候选巢址后回来<strong>跳舞</strong>，舞得越起劲代表地点越好，其他蜂复核后加入，形成正反馈。KK 的原话是全书被引用最多的一句：<strong>「这是一个由傻瓜组成、为傻瓜服务、靠傻瓜运转的选举大厅，而它运作得出奇地好。」</strong>（<em>It's an election hall of idiots, for idiots, and by idiots, and it works marvelously.</em>）<span class="tag t-src">原书</span> 他又用 1991 年电脑图形学会议上 <strong>Loren Carpenter 的 5000 人 Pong</strong>（每人一支红/绿翻牌，全场平均值驱动球拍）作为人类版的证明：5000 人立刻打起了像样的 Pong，随后集体「显影」出屏幕上的数字，最后<strong>集体驾驶飞行模拟器</strong>并一致决定翻了个 360 度滚转——<strong>「无人决定向左还是向右，甚至无人决定要不要转弯。无人在指挥。」</strong><span class="tag t-src">原书</span></p>
+  <p><strong>为什么重要</strong>：这是全书第一原理。<strong>但要注意论证强度</strong>：第二章给出的是<strong>存在性证明</strong>（分布式决策可行），不是<strong>排他性证明</strong>（它没证明集中式在别的场景下更差）。排他性的一半在第十一章补上：<strong>「当一切都与一切相连时，一切同时发生……广泛而快速移动的问题就会绕过任何中央权威。」</strong><span class="tag t-src">原书</span></p>
+  <p><strong>三十年后</strong>：<strong>应验得非常好</strong>，且是 KK 自己点名的那条——2026 年他说：<strong>「唯一的例外是对神经网络深度学习（也就是 LLM）的精化……而神经网络是自下而上、分布式、去中心化、涌现系统的首要范例。」</strong><span class="tag t-talk">作者谈话</span></p>
+  <h3>论点二：自下而上的控制——「失控」是一个褒义词</h3>
+  <p><strong>主张</strong>：<strong>「要从无中得到有，控制必须停留在底部，停留在简单之中。」</strong>（ch24-a）治理必须来自「最卑微的、局部并行完成的相互依赖的行为」，而不是中央指令。</p>
+  <p><strong>依据（原文定位）</strong>：第三章 ch3（<strong>「快速、廉价、失控（fast, cheap, and out of control）」</strong>本来就是机器人学家的行话）；第十六章 ch16（A320 电传操纵：设计师「往驾驶舱里放了一条狗」，飞行员从操作者变成「系统管理者」；KK 造词 <strong>co-control／共同控制</strong>）；以及全书最锋利的一句断言（第二十二章 ch22-j）：<strong>「在一个自造系统之外，不存在控制。」</strong><span class="tag t-src">原书</span></p>
+  <p><strong>为什么重要</strong>：这是书名反转的落点，也是本书对管理学、组织设计、软件架构影响最大的一条。<strong>KK 在这里做了一个真正的哲学动作</strong>：把「控制」重新定义为「引导」而不是「指令」。</p>
+  <p><strong>三十年后</strong>：架构层面<strong>应验</strong>（互联网、开源、分布式系统）；治理层面<strong>部分落空</strong>——见 5.4：<strong>去中心化的架构不等于去中心化的权力</strong>。</p>
+  <h3>论点三：共同演化——「放在镜子上的变色龙是什么颜色的？」</h3>
+  <p><strong>主张</strong>：<strong>不存在孤立的最优解</strong>。任何生物的适应都处在一张不断变化的他者之网里；适应本身会改变环境，从而改变下一轮适应的目标。KK 的表述：<strong>「生命之无法理喻之处」</strong>——你不能通过拆解单个物种来理解生态系统。</p>
+  <p><strong>依据（原文定位）</strong>：第五章 ch5-a 的变色龙悖论（镜子上的变色龙会陷入无限递归），以及把岩石纳入生物圈的激进主张：<strong>「岩石乃节奏缓慢的生命」</strong><span class="tag t-src">原书</span>；第十二章 ch12 的<strong>「加密是网络的阴，网络的阳」</strong>（加密技术与监控技术互为选择压力）。</p>
+  <p><strong>为什么重要</strong>：共同演化是本书把「生物学隐喻」真正外推到技术与经济的地方——<strong>技术标准战、平台与监管、病毒与免疫、AI 与 AI 安全</strong>都是共同演化结构。<strong>这是全书最耐用、最少过时的概念之一。</strong></p>
+  <h3>论点四：网络经济学与「传真机效应」——KK 版本的网络效应定律</h3>
+  <p><strong>主张</strong>：<strong>连接的价值不是线性相加，而是随节点数超线性增长；而一旦越过临界点，正反馈会锁定标准。</strong>KK 的表述：<strong>「在网络经济学里，多带来更多（In network economics, more brings more）。」</strong><span class="tag t-src">原书</span></p>
+  <p><strong>依据（原文定位）</strong>：第十一章 ch11 的 <strong>「传真机效应（the fax effect）」</strong>——第一台传真机价值为零，第二台让它值一点，第 N 台让所有已有的都更值钱；KK 由此推出<strong>收益递增、标准锁定、以及「网络经济学将催生一种新的唯灵论」</strong>这一奇特预言。同一章还有一句今天读来格外准确的命名：<strong>「我们不该叫它们计算机，我们真该叫它们连接器。」</strong><span class="tag t-src">原书</span></p>
+  <p>★ <strong>一个值得记下来的负面发现</strong>：<strong>全书从头到尾一次也没有出现「Metcalfe」或「梅特卡夫」</strong>。<span class="tag t-inf">推断</span> KK 的网络效应是<strong>自己从传真机例子推出来的</strong>，与梅特卡夫定律是两条独立的表述。中文世界常把《失控》说成「预言了梅特卡夫定律」，<strong>这个说法不成立</strong>——他没有引用它，也不需要它。</p>
+  <p><strong>三十年后</strong>：<strong>应验</strong>（平台经济、赢家通吃、标准锁定）；但 KK 1994 年<strong>没有预见到锁定的终点是寡头垄断而非开放网络</strong>（见 5.4）。</p>
+  <h3>论点五：电子货币与密码无政府主义——「加密总是赢」</h3>
+  <p><strong>主张</strong>：强加密使交易可以脱离国家与银行的许可；当信息可以自由复制，货币也将随之变成可编程、可微支付、可匿名的东西。</p>
+  <p><strong>依据（原文定位）</strong>：第十二章 ch12：Tim May 的 DAT 隐写术、<strong>1992 年 cypherpunk 首次聚会（Eric Hughes、Dean Tribble、Arthur Abraham）</strong>、<strong>「加密总是赢（Encryption always wins）」</strong>、Phil Zimmermann 的 <strong>「相当好的隐私意味着相当好的社会（Pretty good privacy means pretty good society）」</strong>、Brad Cox 的<strong>超分发（superdistribution）</strong>、以及 <strong>David Chaum 的盲签名（blind signatures）</strong>——它同时解决匿名性与双重支付悖论。KK 也诚实写下了自己的担忧：加密同样会服务于勒索与贿赂。<span class="tag t-src">原书</span></p>
+  <p>★ ★ <strong>最需要澄清的一条</strong>：<strong>《失控》没有预言比特币，也没有预言区块链。</strong>全书<strong>不含</strong>工作量证明、共识机制、分布式账本任何一个概念；Chaum 的盲签名方案里，货币仍由<strong>中心化的银行发行</strong>（银行签名、花出去时不可追踪），这与比特币的<strong>去中心化账本</strong>是相反的技术路线。<strong>「他预言了比特币」是中文世界最普遍的一处追认，必须打折。</strong><span class="tag t-inf">推断</span></p>
+  <p><strong>三十年后</strong>：<strong>应验了一半</strong>。微支付、可编程货币、稳定币、隐私币都出现了；但<strong>「加密总是赢」在政治上输了</strong>——三十年后主导跨境支付合规的是 KYC/AML 与旅行规则，而不是不可追踪性。</p>
+  <h3>论点六：人工演化——「你能造的愚蠢东西，比你能设计的聪明东西更聪明」</h3>
+  <p><strong>主张</strong>：当问题复杂到无法自上而下设计时，<strong>用演化（变异＋选择）去搜索解空间，比直接设计更有效</strong>——哪怕你完全不理解最终的解。</p>
+  <p><strong>依据（原文定位）</strong>：第十五章 ch15 的 <strong>Tom Ray 与 Tierra</strong>：一条 <strong>80 字节</strong>的祖先程序，在硅里演化出 <strong>22 字节的自我复制体</strong>、<strong>36 字节的骗子（the liar，通过移位谎报自己的体积）</strong>、<strong>45 字节的寄生者</strong>，进而演化出<strong>超寄生者</strong>与社会性欺骗，甚至出现 <strong>「与死人的性」</strong>（从已死亡基因组里回收代码）；第十七章 ch17 的 <strong>John Koza 遗传编程</strong>演化出的「双子螺旋分类」怪物方程——Koza 本人承认<strong>看不懂它为什么有效</strong>；KK 引他的一句话是全书最好的注脚：<strong>「简约性被高估了……它只是一种『人类审美』。」</strong><span class="tag t-src">原书</span> 以及 <strong>Danny Hillis</strong> 那句名言：<strong>「你给计算机的知识越多，它就越慢。」</strong></p>
+  <p><strong>为什么重要</strong>：这是本书对<strong>当代 AI 最直接的思想贡献</strong>：<strong>今天训练神经网络的方式（目标函数 + 海量参数 + 大量算力，让它自己找解，人类不解释解的结构），正是 1994 年 Tierra 与遗传编程的放大版。</strong></p>
+  <h3>论点七：九律——全书压缩成九条设计箴言</h3>
+  <p><strong>主张与原书定位</strong>：第二十四章 ch24-a，标题为 <strong>The Nine Laws of God</strong>。KK 的限定必须一起读：<strong>「我当然不是说它们是『从无造有』所需要的唯一定律；但在复杂性科学里积累起来的众多观察中，这些原则是最宽、最清晰、最有代表性的概括。」</strong></p>
+  <table>
+    <thead><tr><th>#</th><th>九律（英文原文）</th><th>中译（张行舟版，供对照）</th><th>原书一句话精义</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><strong>Distribute being</strong></td><td>分布式</td><td>蜂巢的精神、经济体、超级计算机与你体内的生命，都分布在大量更小的单元上；「部分之和能大于部分」的那部分存在，就分布在部件里</td></tr>
+      <tr><td>2</td><td><strong>Control from the bottom up</strong></td><td>自下而上的控制</td><td>一切都相连时一切同时发生，问题会绕过中央权威；<strong>「只有群氓能掌舵」</strong></td></tr>
+      <tr><td>3</td><td><strong>Cultivate increasing returns</strong></td><td>递增收益</td><td>每用一次就强化一次；「凡有的，还要加给他」；所有大型可持续系统都在玩这个游戏</td></tr>
+      <tr><td>4</td><td><strong>Grow by chunking</strong></td><td>模块化生长</td><td>造复杂系统唯一可行的路，是先造一个能工作的简单系统；<strong>装配一片草原需要时间</strong></td></tr>
+      <tr><td>5</td><td><strong>Maximize the fringes</strong></td><td>边界最大化</td><td>均质实体只能靠翻天覆地的革命适应，异质实体靠一千个日常小革命；<strong>边缘几乎总是创新的来源</strong></td></tr>
+      <tr><td>6</td><td><strong>Honor your errors</strong></td><td>鼓励犯错误</td><td>走出常规与犯错无从区分；<strong>「演化可以被视为系统化的错误管理」</strong></td></tr>
+      <tr><td>7</td><td><strong>Pursue no optima; have multiple goals</strong></td><td>不求最优化，但求多目标</td><td>复杂结构有许多主人，只能 satisficing；<strong>「忘掉优雅；只要它能工作，它就是美的」</strong></td></tr>
+      <tr><td>8</td><td><strong>Seek persistent disequilibrium</strong></td><td>谋求持久的不均衡态</td><td>均衡即死亡，但不停变化等于爆炸；<strong>「有」是永远在边缘上冲浪</strong></td></tr>
+      <tr><td>9</td><td><strong>Change changes itself</strong></td><td>变自生变</td><td>底层的相互作用会改写游戏规则；<strong>「你需要自我改变的规则」</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读九律的三条提醒</strong>：① <strong>它是设计箴言，不是科学定律</strong>——可证伪性极低（见第 29 节「可疑之处」）；② <strong>第 4 条（分块成长）与第 6 条（尊重错误）在三十年后最经得起检验</strong>，前者是现代软件工程与模型 scaling 的标准做法，后者几乎可以直接解释 LLM 幻觉与创造力同源；③ <strong>第 9 条「变自生变」是九律里最原创、也最容易被漏掉的一条</strong>——它把「元演化」写进了设计手册。</p>
+  <h3>论点八：这本书从哪来——KK 的谱系（★ 附三条负面发现）</h3>
+  <p>《失控》常被放进一条「《全球概览》→《连线》→ 赛博文化」的谱系里讲。我按英文全文逐词检索核对了一遍，结论是：<strong>这条谱系是真的，但它在原文里的密度远低于人们的想象。</strong></p>
+  <p><strong>在原文里确实存在的连接</strong>：</p>
+  <ul>
+    <li><strong>《全球概览》（Whole Earth Catalog）：2 处，都很关键。</strong>① 第五章 ch5：KK 讲「放在镜子上的变色龙」这个共同演化悖论的来源——<strong>「Stewart Brand，Bateson 的学生，本人是控制论整体论的传奇推广者。Brand 在 1974 年把这个变色龙公案发表在他的《全球概览》上。」</strong><span class="tag t-src">原书</span> ② 第二十三章 ch23-d：<strong>「1988 年，我参与开发了最早的商业超文本作品之一——《全球概览》的 Macintosh HyperCard 电子版。」</strong><span class="tag t-src">原书</span> 后者是 KK 与 Brand 谱系最直接的自述证据。
+    </li>
+    <li><strong>Stewart Brand 本人：全书出现 8 次（"Stewart Brand" 精确串）</strong>。除了变色龙公案，最重要的是第十三章 ch13 那句被反复引用的 <strong>「我们是神，不如早点擅长（We are as gods, and might as well get good at it）」</strong>——KK 明写它是 Brand 1968 年在《全球概览》创刊号上写的。<span class="tag t-src">原书</span>
+    </li>
+    <li><strong>控制论谱系：Wiener 出现 29 次、von Neumann 出现 18 次。</strong>第二十二章直接引 Wiener 1954 年的反馈定义；第十五章把「演化之所以长期被计算机科学忽视」归因于 von Neumann 的串行教条（KK 引 Danny Hillis：<strong>「你给计算机的知识越多，它就越慢」</strong>）；第二十三章则专写了 von Neumann 作为 Macy 会议核心成员的位置。<span class="tag t-src">原书</span>
+    </li>
+    <li><strong>Bateson</strong>：第二十一章与第二十二章各引一次，分别是演化与适应的两条关键引文（<strong>「适应是为不变服务的变化」</strong>）。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <p>★ ★ ★ <strong>三条负面发现（我认为这三条比上面四条更有价值，因为中文世界几乎没人提）</strong>：</p>
+  <ol>
+    <li><strong>Christopher Alexander：全书 0 次。</strong><span class="tag t-inf">推断</span> 中文论述常把《失控》的「自下而上／模块化生长」追溯到 Alexander 的《模式语言》与《形式综合纲要》。<strong>但原书从头到尾没有提到 Alexander。</strong>KK 的「分块成长（Grow by chunking）」是从 Sims 的受约束胚胎学、草原恢复与软件工程里归纳出来的，<strong>与 Alexander 是平行独立的关系，不是继承关系。</strong>
+    </li>
+    <li><strong>Alan Turing：全书只有 3 处，且没有一处是把他当作思想祖先来讲的。</strong>分别是：一封虚构的 2034 年求职信里的虚构地址「7777 Turing Blvd」、第二十三章的 <strong>Church/Turing 假说</strong>（KK 用它来反驳「生命可以脱离碳基硬件」的无限时间假设）、以及书后注释书目里一条关于图灵测试的文献评注。<strong>换言之，本书的思想祖先是 Wiener、von Neumann、Bateson、McCulloch 这一支（cybernetics／Macy 会议），而不是 Turing 这一支（符号计算／AI）。</strong>这与第十五章「AI 抽干了控制论的经费」的说法完全一致。<span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>《连线》（Wired）作为杂志名：全书 0 次。</strong><span class="tag t-inf">推断</span> 两处 "Wired" 分别是 "wired together"（连起来）与 "Wired-up at the casino"（穿戴设备）。<strong>KK 在书里完全没有引用自己在《连线》的工作，也没有提《连线》本身</strong>——这本书的素材几乎全部来自 1990—1993 年的实验室拜访，而不是杂志圈。
+    </li>
+  </ol>
+  <p>⇒ <strong>谱系结论</strong>：《失控》的真正学统是 <strong>1942—1959 年的 Macy 会议／控制论</strong>（KK 自己明说：<strong>「《失控》的一句话摘要就是：它是控制论研究现状的一次更新」</strong><span class="tag t-src">原书</span>）＋ <strong>Brand 的《全球概览》整体论</strong>＋ <strong>1990 年代初的人工生命与复杂性研究</strong>。<strong>它不属于 Turing–AI 学统，也不承袭 Alexander。</strong><span class="tag t-inf">推断</span></p>
+  <h3>附：1994 年预言，三十年后怎么算</h3>
+  <table>
+    <thead><tr><th>预言</th><th>原书位置</th><th>今天的判定</th></tr></thead>
+    <tbody>
+      <tr><td>涌现／分布式／自下而上的系统会主宰智能</td><td>ch2、ch24</td><td>★ <strong>应验</strong>（KK 本人以其在 2026 年确认神经网络是首要范例）<span class="tag t-talk">作者谈话</span></td></tr>
+      <tr><td>万物互联、网络是二十一世纪的图标</td><td>ch2-g、ch10、ch11</td><td>★ <strong>应验</strong>（物联网、移动网络、云）</td></tr>
+      <tr><td>普适计算／最深刻的技术是消失的技术</td><td>ch10（Mark Weiser）</td><td>★ <strong>应验</strong>（智能手机、传感器、Ambient computing；但 KK 引的 Weiser 属于转述，功劳归 Weiser 而非 KK）</td></tr>
+      <tr><td>电子货币、微支付、可编程货币</td><td>ch12</td><td><strong>部分应验</strong>（微支付未成为主流商业模式；可编程货币与稳定币已成现实；匿名性在监管下退败）</td></tr>
+      <tr><td>加密总是赢</td><td>ch12</td><td><strong>判断错误（政治上）</strong>——KYC/AML 与旅行规则主导了跨境支付合规</td></tr>
+      <tr><td>比特币／区块链</td><td>——</td><td>★ <strong>落空（后人追认）</strong>——书中无工作量证明、共识、分布式账本任何概念；Chaum 的盲签名是中心化发行路线</td></tr>
+      <tr><td>梅特卡夫定律</td><td>——</td><td>★ <strong>落空（后人追认）</strong>——全书 0 次出现 Metcalfe；KK 的网络定律是他自己的「传真机效应」</td></tr>
+      <tr><td>「五年之内，会有自主合成角色主演一部电影」</td><td>ch16</td><td>★ <strong>落空</strong>（这是全书最明确、最好打分的一条失败预测）</td></tr>
+      <tr><td>「下一个世纪不是硅的世纪」／生物学将盖过机械技术</td><td>ch10、ch24</td><td>★ <strong>判断错误</strong>——2020 年代最重要的技术是半导体、光刻、电池与火箭；而托起 KK 预言的 LLM 恰恰是硅</td></tr>
+      <tr><td>计算机是权威的终结，奥威尔《1984》错得最厉害</td><td>ch23-e</td><td>★ <strong>部分应验、部分落空</strong>——架构层面应验，权力与监控层面落空（见 5.4）</td></tr>
+      <tr><td>人工智能会聪明但不像人</td><td>ch23-e</td><td>★ <strong>应验</strong>（AlphaGo 第 37 手、LLM 的非人类推理路径）</td></tr>
+      <tr><td>「再过五十年，计算机化归纳会成为受尊敬的事业」</td><td>ch22-f</td><td><strong>应验，但严重低估速度</strong>（不到 20 年就成了金融业主流）</td></tr>
+      <tr><td>资源不会耗尽、学习会自动救场（对《增长的极限》的批评）</td><td>ch22-i</td><td><strong>部分落空</strong>——大宗商品周期与气候变化让 Meadows 的「过冲」重新可信；分布式学习在碳排放上没有自动发生</td></tr>
+      <tr><td>「上升之流」／生物学的第二定律</td><td>ch21</td><td><strong>未解决</strong>（KK 自己在 2026 年把它列为仍未解决的开放问题）<span class="tag t-talk">作者谈话</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <ul>
+    <li><strong>买 2016 电子工业版（张行舟译）</strong>，不买 2010 新星版——理由见第 4 节，三句话说完：<strong>两者是同一译者群体，2016 版是官方「全新修订、全篇重新校对」版，且目前仍在印</strong>。
+    </li>
+    <li><strong>不要从头读到尾。</strong>这本书 521 页、24 章、信息密度极不均匀，硬啃会在第 6—8 章（生态学部分）掉速。建议路线：<strong>2 → 11 → 15 → 19 → 22 → 24</strong>（蜂群 → 网络经济 → 人工演化 → 后达尔文主义 → 预言机 → 九律）＝ 全书的骨架加它最硬的两章；回头再补 1、9、13、17、21。
+    </li>
+    <li><strong>读的时候手里拿一支笔，做一件事</strong>：每读到一句「KK 说 X 一定会发生」，就在旁边写下今天的现状。<strong>这本书最好的读法不是接受，是打分。</strong>本报告 5.3 的成绩单可以直接当模板。
+    </li>
+    <li><strong>跳过书后的注释书目（Annotated Bibliography）第一次读不用看</strong>；但如果你对某个实验感兴趣（比如 Tierra、Biosphere 2、Tierra 的 22 字节），<strong>那份书目是本书质量最高的部分之一</strong>——KK 给它写了评注。
+    </li>
+  </ul>
+  <h3>如果你是「已读」</h3>
+  <ul>
+    <li><strong>去补第十九章与第二十二章。</strong>中文世界关于《失控》的讨论 90% 集中在「蜂群思维」与「九律」，而<strong>后达尔文主义（19）与预言机（22）恰恰是论证最硬、最不「布道」的两章</strong>——前者是对新达尔文主义最系统的质疑，后者包含对《增长的极限》的逐条拆解。<strong>这两章决定了你是「读过《失控》」还是「读过关于《失控》的文章」。</strong>
+    </li>
+    <li><strong>重读第二十三章，带着 2026 年的眼睛。</strong>那句<strong>「在『计算机化』这件事上，没有人比乔治·奥威尔《1984》错得更厉害」</strong>是本书最著名的断言，也是三十年后最需要重新结算的一句。
+    </li>
+    <li><strong>对照 KK 本人 2026 年的回顾</strong>（见 5.3 与附录 B）：<strong>后悔书名、不收回任何内容、承认漏掉了新闻信息系统与社交网络、并把 LLM 列为唯一需要补充的例外。</strong><span class="tag t-talk">作者谈话</span>
+    </li>
+    <li><strong>检验自己是否真懂了</strong>：「KK 说的『失控』和 2020 年代的『AI 失控』是同一件事吗？」<strong>不是</strong>——前者是设计原则（把控制放到底层以获得能力），后者是安全风险（系统目标与人类目标不一致）。<strong>这两个「失控」被混为一谈，是本书在中文世界被误用得最严重的一处。</strong><span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <h3>4.1 两个版本是什么关系</h3>
+  <p><strong>它们是同一个译者群体的两次出版，不是两个独立译本。</strong></p>
+  <ul>
+    <li><strong>2010-12 新星出版社版</strong>：译者署名「<strong>东西文库</strong>」。这是一次<strong>众包翻译</strong>——维基平台公开招募、按章认领协作完成，列名译者含陈新武、陈之宇、顾佩嵚、郝宜平、卢蔚然、陆丁、王钦、小青、袁璐、张鹃、张行舟等。<strong>这个翻译方式本身就是书里「分布式协作」的一次实践</strong>——一本讲蜂群思维的书，被一群互不相识的人用蜂群的方式译了出来。707 页，88 元，ISBN 9787513300711。
+    </li>
+    <li><strong>2016-01 电子工业出版社版</strong>：署「<strong>张行舟、陈新武、王钦 译</strong>」，丛书「东西文库」，xix + 739 页，89 元，ISBN 9787121272295。出版方称其为<strong>「全新修订本……从头至尾全篇重新校对」</strong>。
+    </li>
+  </ul>
+  <p>⇒ <strong>页数从 707 涨到 739</strong>，说明有实质修订。2016 版目录后另有<strong>「附录」「人名索引」「译后记《『失控』的协作与进化》」</strong>，为 2010 版所无。</p>
+  <h3>4.2 一处必须知道的目录瑕疵</h3>
+  <p><strong>2010 新星版的目录在多个书目源里显示为「……第二十一章 水往高处流／第二十二章 整体，空洞，以及空间／第二十四章 九律」——缺了「第二十二章 预言机」这一章名</strong>，导致第二十二至二十四章的编号在该目录串位。而 <strong>2016 电子工业版目录完整</strong>：第二十一章 水往高处流／<strong>第二十二章 预言机</strong>／第二十三章 整体，空洞，以及空间／第二十四章 九律。</p>
+  <p>我的判断：这<strong>更可能是书目著录／百科抄录时的脱漏，而不是 2010 版真的删掉了第 22 章</strong>（第 22 章「预言机」是全书方法论最核心的一章，删掉不合常理，且 2016 版明确是「修订校对」而非「补译」）。但<strong>我未能取得 2010 版实物或目录页一手扫描来定论</strong>（见 D3）。⇒ <strong>读者该以什么为准</strong>：<strong>以章名对照，不以章号对照</strong>——英文第 22 章 PREDICTION MACHINERY ＝ 中文「预言机」；如果你手上的目录跳过了它，那是目录错了，不是书少了。</p>
+  <h3>4.3 三句话结论</h3>
+  <ol>
+    <li><strong>买 2016 电子工业出版社版（张行舟译，ISBN 9787121272295）</strong>——它是官方修订校对版、有索引与译后记、且目前仍在流通。
+    </li>
+    <li><strong>如果你已经买了 2010 新星版，不用重买</strong>——两者是同一译者群体的前后版本，章号与英文一一对应，不存在《语言本能》那种整体错位，只在文字精度与附录上有差。
+    </li>
+    <li><strong>2010 版唯一不可替代的价值是它的「众包翻译」故事本身</strong>——如果你对网络协作感兴趣，译后记与这段出版史本身就是《失控》的一个案例。<strong>但读内容，用 2016 版。</strong>
+    </li>
+  </ol>
+  <p>★ <strong>补充提醒</strong>：2023／2024 年市面上另出现电子工业出版社新版（不同来源给出 ISBN 9787121458880 与 9787121473234，页数口径从 384 到 739 不一），<strong>信息混乱、未能确认其是重印、精装还是节编</strong>（见 D3）。<strong>下单前请核实物版权页的页数</strong>——若页数远低于 739，很可能是节编本。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <blockquote>
+    <p>这一节是本报告最花力气的部分。下面的批评每一条都带<strong>姓名＋出处＋年份</strong>；并且在写完后自问：这条批评<strong>是针对 KK 的论证，还是针对他的派系</strong>？我把两者分开写（5.1 是派系层面的，5.2 是论证层面的）。</p>
+  </blockquote>
+  <h3>5.1 「加州意识形态」：本书被视为一种硅谷意识形态的圣经</h3>
+  <p><strong>批评者</strong>：<strong>Richard Barbrook（英国西敏大学）与 Andy Cameron</strong>，〈The Californian Ideology〉，首发于 <em>Mute</em> 杂志 Vol.1 No.3（1995 年 9 月 1 日），随后发布于 nettime 邮件列表；<strong>修订版发表于 <em>Science as Culture</em>（1996）</strong>。</p>
+  <p><strong>他们说了什么</strong>：加州意识形态是<strong>「控制论、自由市场经济与反文化自由意志论的混合」</strong>，由《连线》（<em>Wired</em>）与 <em>Mondo 2000</em> 这类刊物传播，<strong>「并被 Stewart Brand、Kevin Kelly 等人的书所宣讲」</strong>。他们举出的核心意象是那句被广泛引用的：这是一种<strong>「旧金山文化波希米亚主义与硅谷高科技产业的奇异融合……加州意识形态放荡地把嬉皮的自由精神与雅皮的创业热忱混合在一起」</strong>。他们的关键指控不是「他们崇拜技术」，而是：<strong>把一种自由意志主义政治哲学自然化、并给予技术证明，从而宣告关于未来的社会与政治辩论已经变得没有意义。</strong><span class="tag t-rep">转述</span></p>
+  <p><strong>KK 在其中的位置</strong>：Barbrook 与 Cameron 把 KK 与 Brand 并列为这一意识形态的<strong>布道者</strong>，而《失控》正是它在 1994 年的集大成表述——一本同时拥抱嬉皮反文化、赛博netics、控制论、自由市场与准宗教目的论的书。<strong>注意：这条批评针对的是「派系与意识形态功能」，不是针对书中任何一条具体论证。</strong><span class="tag t-inf">推断</span></p>
+  <p><strong>另一边的回应</strong>：《连线》出版人 <strong>Louis Rossetto</strong> 在 <em>Mute</em> 上撰文反驳，称该文表现出<strong>「对经济学的深刻无知（profound ignorance of economics）」</strong>。而 <em>Salon</em> 的 <strong>Andrew Leonard</strong> 则称该文是<strong>「迄今发表的、对新保守主义数字炒作最犀利的批评之一」</strong>。社会学家 <strong>Thomas Streeter</strong>（佛蒙特大学）把加州意识形态归入一种<strong>浪漫个人主义</strong>的模式，并指出 <strong>Stewart Brand 是关键影响源</strong>；纪录片人 <strong>Adam Curtis</strong> 则把它追溯到安·兰德的客观主义。<span class="tag t-rep">转述</span></p>
+  <p>⇒ <strong>怎么读这条批评</strong>：<strong>它对《失控》是有效的，但要打折。</strong>有效在于：KK 确实把「分布式」这一<strong>技术属性</strong>直接滑向了「去中心」这一<strong>政治价值</strong>，中间缺少论证（第二十三章的奥威尔断言是典型）；打折在于：Barbrook–Cameron 的文章是一篇<strong>论战檄文</strong>，它把《连线》圈子的整体姿态当成一个统一对象，而 KK 本人在书中对垄断、监控、隐私（第十章明确说<strong>「网络文化离不开隐私技术」</strong><span class="tag t-src">原书</span>）都有警觉。<strong>他不是纯粹的 techno-libertarian，但他确实给那种意识形态提供了最漂亮的一套词汇。</strong><span class="tag t-inf">推断</span></p>
+  <h3>5.2 同时代的硬批评：来自同行与科学写作</h3>
+  <p>KK 官网的书评页（<code>kk.org/outofcontrol/reviews.php</code>）自己列出了批评性文章，<strong>这些是作者本人承认的、可定位的负面／保留意见</strong>：</p>
+  <table>
+    <thead><tr><th>批评者</th><th>出处（刊物、卷期、年份、页码）</th><th>性质</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Melanie Mitchell</strong>（复杂系统与遗传算法研究者，Santa Fe 背景）</td><td><em>Technology Review</em> vol. 98（1995 年 10 月）pp. 74–75</td><td>同行评议式书评</td></tr>
+      <tr><td><strong>Susan Stepney</strong>（约克大学计算机科学／人工生命学者）</td><td>1996 年 5 月的书评（KK 官网列出）</td><td>人工生命同行书评</td></tr>
+      <tr><td><strong>Bill Boisvert</strong></td><td><em>Voice Literary Supplement</em> vol. 148（1996 年 9 月）p. 14</td><td>文化与政治向批评</td></tr>
+      <tr><td><strong>Richard Thieme</strong></td><td><em>Enculturation</em> vol. 3, no. 1（2000 年春）</td><td>长文批评，直指「涌现」一词</td></tr>
+      <tr><td><strong>William Grassie</strong>（天普大学）</td><td>〈'The Nine Laws of God': Kevin Kelly's Out of Control — Techno-Utopic Program for a WIRED World〉</td><td><strong>标题即立场</strong>：把《失控》定性为「为《连线》世界准备的 techno-乌托邦纲领」</td></tr>
+    </tbody>
+  </table>
+  <p><strong>Richard Thieme 的批评（我认为最锋利的一条，且它直接针对论证）</strong>：他指出 <strong>「『涌现』是描述性的，不是解释性的（"emergent" is descriptive, not explanatory）」</strong>，并且正因为如此，它被广泛用于<strong>逃避真正的解释</strong>——<strong>「『涌现的现实』结果就是那些不知怎么就出现了、而我们解释不了的东西。」</strong> 他进一步说，读《失控》这类书<strong>「揭示了看见真正的新事物并把它说出来有多难」</strong>。<span class="tag t-rep">转述</span></p>
+  <p>⇒ <strong>这条批评直击本书的软肋</strong>：KK 全书用「涌现」解释了蜂群、经济、演化、心智、网络——但<strong>「涌现」在这些场合几乎是一个标签，而不是一个机制</strong>。KK 自己在第二十三章承认了这一点：<strong>「我试着把每次用到的 emergent 都换成 happened，发现居然都说得通……我们说涌现到底指的是什么？」</strong><span class="tag t-src">原书</span> <strong>这是作者与批评者罕见地站在同一边的一处：KK 知道这个词是空的，但仍然用它当全书的支柱。</strong></p>
+  <p><strong>William Grassie 的定位</strong>：他把九律本身作为批评对象（「Techno-Utopic Program」），指向本书的<strong>准宗教结构</strong>——「九律」这个命名、上帝游戏、演化作为一种宗教（KK 自己在第十八章专门写了「演化作为一种宗教」一节，并引 Mary Midgley《作为一种宗教的演化》）。<strong>这条批评针对的是本书的目的论与宗教性，而不是它的经验材料。</strong><span class="tag t-inf">推断</span>（★ Grassie 原文链接已失效，Wayback 有存档快照但本次抓取被限流未能取回全文，故此处只据 KK 官网列出的标题与作者单位转述，见 D6。）</p>
+  <p><strong>另一条来自《新科学家》同期书评的保留意见</strong>（1994 年，Fourth Estate 版 521 页）：书评在肯定 KK 选择生物系统作为复杂性概念来源的同时，明确指出<strong>「基于（生物系统）的人工系统可能很快就超出人类的理解范围」</strong>这一真实风险——这与 KK 的乐观形成对照。<span class="tag t-rep">转述</span></p>
+  <p><strong>Wikipedia 对批评的概括</strong>：<strong>「批评者主张，该书的立场使我们无法对政治与社会权力采取批判性的进路。」</strong><span class="tag t-rep">转述</span></p>
+  <h3>5.3 预言成绩单与 KK 自己的复盘</h3>
+  <p><strong>KK 本人在 2026 年的长篇回顾（"Still Out of Control"，post_date 2026-06-08）里给出了最难得的自我评估</strong>——这是任何第三方评价都比不上的材料：</p>
+  <ul>
+    <li><strong>「我在 32 年前（1994 年）出版了《失控》……」</strong>
+    </li>
+    <li>★ <strong>「我最大的遗憾是这本书的书名，它就是个错的书名。」</strong>
+    </li>
+    <li>★ <strong>「除了正文里的一些排版错误，我觉得没有任何需要收回或纠正的东西。」</strong>
+    </li>
+    <li>★ <strong>「这本书的过失在于它遗漏了什么……我没有探索或处理新闻与信息的系统，也没有处理社交网络，现在看来这是一个巨大的疏漏。」</strong>
+    </li>
+    <li>★ <strong>「唯一的例外是对神经网络深度学习（也就是 LLM）的精化……而神经网络是自下而上、分布式、去中心化、涌现系统的首要范例。」</strong>
+    </li>
+    <li><strong>「我特别感激有了一个中文版……它在美国几乎没有书评，当时被忽略了。」</strong>
+    </li>
+    <li><strong>「《失控》是一本很长的书，太长了。」</strong>
+    </li>
+  </ul>
+  <p>⇒ <strong>这份自评的价值在于它划出了三条边界</strong>：① <strong>他不收回任何实质论断</strong>（这是对本书科学内容的自信）；② <strong>他承认最大的结构性遗漏是「信息与新闻系统／社交网络」</strong>（这正是 5.4 的监控资本主义与平台垄断问题）；③ <strong>他后悔书名</strong>（因为「失控」在英语里天然读作负面，而他本意是规格说明）。</p>
+  <p>⇒ <strong>我的打分</strong>：见第 2 节末尾的成绩单。<strong>最稀缺的两条是</strong>：<strong>「五年之内自主合成角色主演电影」（明确落空）</strong>与<strong>「下一个世纪不是硅的世纪」（明确判断错误）</strong>——后者尤其重要，因为<strong>托起 KK 预言的 LLM 恰恰是硅的胜利</strong>。<span class="tag t-inf">推断</span></p>
+  <h3>5.4 它没有预见到的三件事</h3>
+  <ol>
+    <li><strong>监控资本主义。</strong>KK 在第二十二章写下<strong>「一旦连线，一个社会就能看见它自己」</strong>时，把「透明」默认为<strong>通向自我治理的能力</strong>。他没有想到同一套透明基础设施会变成<strong>对个体的行为提取与操纵</strong>。Shoshana Zuboff 后来把这套逻辑命名为 surveillance capitalism（本报告的中文表述，见附录 B）。<strong>KK 自己在 2026 年承认了这个盲区。</strong><span class="tag t-talk">作者谈话</span>
+    </li>
+    <li><strong>平台垄断。</strong>KK 的网络经济学正确预言了<strong>收益递增与标准锁定</strong>，但他假定锁定的结果是<strong>开放网络的繁荣</strong>，而不是<strong>少数平台对边缘的捕获与收割</strong>。第五律「最大化边缘」在 2020 年代的现实是：<strong>边缘创新更活跃了，但边缘获利更难了。</strong><span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>dot-com 泡沫与网络安全外部性。</strong>KK 1993—1994 年写书时正处在网络乐观主义的起点，全书几乎没有处理<strong>投机泡沫、系统性金融风险、以及互联带来的攻击面</strong>（第十二章谈加密与病毒，但没有谈「把一切连到一切」的安全代价）。第二十三章那句<strong>「把一切都连到一切的坏处是什么？」</strong>是他自己列出的问题——<strong>他没有回答。</strong><span class="tag t-src">原书</span>
+    </li>
+  </ol>
+  <h3>5.5 科学准确性：三条需要打折的断言</h3>
+  <ol>
+    <li><strong>盖亚假说（第九章、第十三章）</strong>：KK 用 Biosphere 2 与 SimEarth 支撑「地球是一个超有机体」的直觉。<strong>三十年后，强盖亚假说（地球是一个自我调节的有机体）仍未被主流生态学接受</strong>；弱版本（生命影响地球化学）是共识。更麻烦的是：<strong>KK 是在 B2 实验的失败被充分清算之前写的</strong>，而<strong>小型封闭生物圈的崩溃，其实更像是反对盖亚的证据</strong>（说明小尺度封闭系统的自我调节能力极差），而不是支持它的证据。<span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>定向突变（第十九章）</strong>：KK 用 Cairns（1988）与 Barry Hall 的实验为新达尔文主义的「随机突变」提出反例，并给出了自己的保留。<strong>这些结果在随后的重复实验与分子机制研究中大部分被解释为一般的突变与选择／应激反应的组合，而不是「定向突变」。</strong>KK 的保留是对的，但他给这组实验的篇幅超过了它后来的命运。<span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>「化石记录中中间类型的严重而明确的缺失是一个事实」（第十九章）</strong>：这是 1993 年的一个可辩护的说法，但<strong>三十年间大量过渡型化石的发现（如鱼类到四足类、恐龙到鸟类、鲸类的陆生祖先、早期人类）已经使这条断言过时</strong>。今天再把它当作对新达尔文主义的质疑之一，是不成立的。<span class="tag t-inf">推断</span>
+  <p>★ <strong>必须同时说清楚的另一面</strong>：<strong>第九章的 Margulis 共生路线是对的，而且被证实了</strong>——内共生学说（真核细胞的线粒体与叶绿体起源于细菌）今天已是教科书内容；「生命之丛」而非「生命之树」（水平基因转移）也被微生物基因组学证实。<strong>KK 在第十九章里押对的与押错的一样多。</strong><span class="tag t-inf">推断</span></p>
+    </li>
+  </ol>
+  <h3>5.6 体裁问题：这是一本「游记＋采访集＋布道」，不是论证书</h3>
+  <p>Richard Thieme 的说法最准确：他称《失控》是<strong>「一部视野开阔的访谈、观念与当时流行的技术词汇的汇编」</strong>，并指出<strong>「把一个那样的非书现实写成一本书，不可能不缺乏视角（it had to lack perspective）」</strong>。<span class="tag t-rep">转述</span></p>
+  <p>更深一层的结构性限制：<strong>全书没有脚注。</strong>它的证据基础是 1990—1993 年的<strong>当面访谈与实验室拜访</strong>（KK 去了 MIT 媒体实验室、迪士尼、Biosphere 2、中西部草原、洛斯阿拉莫斯、JPL、圣塔菲）。这带来：</p>
+  <ul>
+    <li><strong>优点</strong>：现场感、一手细节、对当时前沿的覆盖面——<strong>这是本书最不可替代的品质</strong>；
+    </li>
+    <li><strong>缺点</strong>：<strong>任何一条科学断言都不带可追溯的引用</strong>，读者无法区分「这是该领域共识」还是「这是被访者本人的乐观估计」。第十九章尤其如此。<strong>KK 自己在第十八章罕见地写了「我对这一切完全没有生物学证据」</strong>——这句话应该被印在书封上。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <h3>5.7 这本书今天读还成立吗</h3>
+  <p><strong>分领域回答，不一句「仍然经典」了事：</strong></p>
+  <ul>
+    <li><strong>作为「涌现／分布式／自下而上」的思想入门：仍然成立，而且比 1994 年更有说服力。</strong>神经网络的胜利是它最强的背书，KK 本人也这么认为。<span class="tag t-talk">作者谈话</span> ⇒ <strong>这一类内容今天读仍然值得。</strong>
+    </li>
+    <li><strong>作为设计哲学（九律）：成立，但要当箴言读，不要当定律读。</strong>第 4 条（分块成长）与第 6 条（尊重错误）在软件工程与 AI 训练里天天被验证；第 7 条（不求最优）在 AI 对齐时代需要重新提问；<strong>九律整体可证伪性太低，不适合当理论用。</strong><span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>作为经济学（第十一、十二章）：一半成立。</strong>网络效应与收益递增是今天平台经济的基础；但它对<strong>垄断、劳动、监管、金融风险</strong>的处理几乎为零。<strong>读这两章要配一本批判性的对照读物</strong>（见附录 B）。
+    </li>
+    <li><strong>作为生物学（第九、十八、十九、二十一章）：★ 要谨慎，这是全书最需要打折的部分。</strong>Margulis 的内共生押对了；盖亚、定向突变、「化石无中间类型」都过时或被推翻；第二十一章的「上升之流」是不可证伪的形而上学（KK 本人 2026 年把它列为未解决）。<strong>如果你是为了生物学知识拿起这本书，你会被误导。</strong><span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>作为技术预测：成立与否要看是哪一条</strong>，见 5.3 的成绩单。<strong>「他早就说中了」这句话，在多数情况下是后人追认，不是原书主张。</strong>
+    </li>
+    <li><strong>作为政治与社会理论：★ 这是本书今天最薄弱的一面。</strong>「去中心化架构 ⇒ 权力去中心」这个推论已被三十年历史证伪（见 5.4）。<strong>第二十三章的奥威尔断言今天读来是本书最刺眼的一页。</strong>
+    </li>
+    <li><strong>作为历史文献：★ 价值最高、也最不受争议的一种读法。</strong>它是对 1990—1993 年那批人（Langton、Ray、Sims、Koza、Hillis、Kauffman、Brooks、Weiser、Margulis、Farmer、Meadows、May）的一流现场记录。<strong>这些访谈本身不会过时。</strong>
+    </li>
+  </ul>
+  <p><strong>一句话总结</strong>：<strong>《失控》今天最该被读成一份「1993 年前沿的现场地图 ＋ 一套设计箴言」，而不是一本预言书或一本科普书。它的观察比它的理论耐用，它的问题比它的答案耐用。</strong></p>
+  <p>★ <strong>结构说明</strong>：本书正文 <strong>24 章</strong>（以作者官网 <code>kk.org/outofcontrol/contents.php</code> 的目录为准，与实际抓取到的 149 个章节目次完全对应）。本部分<strong>逐章</strong>展开，编号从 <code>6</code> 连续到 <code>29</code>。 ★ <strong>定位方式</strong>：作者官网的全文<strong>不分页</strong>，因此本章标注采用「官网小节号」（如 <code>ch3-b</code>）＋<strong>按全文字数比例推算的页码</strong>（全书正文按 521 页计，见附录 D1）。推算页码仅供粗略定位，<strong>不得当作原书页码引用</strong>。 ★ <strong>中文读者</strong>：新星 2010／电子工业 2016 两版的章号与英文<strong>一一对应</strong>（均为第 1—24 章），小节也基本对齐，可按章号直接对照（见第 4 节）。</p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">6</span><span>第一章：人造与天生（第 1 章 · ch1-a–c · 推算 p.1）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「造出来的」和「长出来的」，为什么正在变成同一件事？」</strong>——全书只有 3 个小节、约 9 千字，是全书的誓师词。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>开篇场景就是全书的方法论</strong>：KK 说自己在亚利桑那州的 <strong>Biosphere 2（生物圈二号）</strong> 里写下这篇序言——一个完全密闭的玻璃舱，人的呼吸、尿与粪便由植物与沼泽微生物回收成水和食物。「Neither the green plants alone nor the heavy machines alone are sufficient to keep me alive… it is the union of sun-fed life and oil-fed machinery that keeps me going.」<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>核心命题三句：<strong>「机器正在变得生物化，生物正在变得工程化」</strong>；<strong>「我们越是把自己造的世界机械化，它就越必须变得生物化才能运转」</strong>（<em>the more mechanical we make our fabricated environment, the more biological it will eventually have to be</em>）；未来不是灰色钢铁，而是<strong>「新生物文明」（neo-biological civilization）</strong>。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>★ 全书最重要的一句判词在章末</strong>：把生命的力量放进机器，我们就失去了对它们的控制——<strong>「这是所有神必须接受的困境：他们再也无法对自己最出色的造物拥有完整主权」</strong>；但 <strong>「我认为这是一笔很划算的买卖（a great bargain）」</strong>。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ 这一章的<strong>语气是布道，不是论证</strong>。「生物逻辑终将胜利」在这里是<strong>断言</strong>而非结论。★ 更要注意：它把「机器」和「生命」两个词的边界<strong>主动模糊化</strong>（KK 自己承认「部分是语义问题」（<em>part of this bionic convergence is a matter of words</em>）<span class="tag t-src">原书</span>）——这是后文一切「生物学隐喻是否过度外推」争议的源头（见第 5 节 5.1）。而它在章末无条件地宣称「失控是划算的」，<strong>没有讨论「谁来承担失控的代价」</strong>——这正是本书最被诟病之处。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">7</span><span>第二章：蜂群思维（第 2 章 · ch2-a–g · 推算 p.4）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「没有中心的群体，怎么会有智能？」</strong>——全书最长、也最著名的三章之一；<strong>「蜂群思维 / hive mind」与「网络是二十一世纪的图标」都出自这里。</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>蜜蜂分群是一次分布式选举</strong>：蜂后并不能决定去向，她只能跟随。少数侦察蜂去查看候选巢址，回来在蜂团表面<strong>跳舞</strong>；舞得越起劲，代表地点越好；其他蜂去复核后加入跳舞，形成正反馈。<strong>「这是一个由傻瓜组成、为傻瓜服务、靠傻瓜运转的选举大厅，而它运作得出奇地好。」</strong>（<em>It's an election hall of idiots, for idiots, and by idiots, and it works marvelously.</em>）<span class="tag t-src">原书</span>KK 明确称之为<strong>「这就是民主与一切分布式治理的真实本性」</strong>。
+    </li>
+  </ul>
+  <ul>
+    <li>引 <strong>William Morton Wheeler</strong>（1911 年〈The Ant Colony as an Organism〉）：昆虫群落<strong>不只是</strong>有机体的类比，<strong>它就是</strong>有机体。
+    </li>
+  </ul>
+  <ul>
+    <li><strong>Loren Carpenter 的 5000 人 Pong（1991 年电脑图形学会议）</strong>：每人一支红/绿翻牌，全场红绿平均值驱动球拍；5000 人立刻打起了像样的 Pong，随后又集体「显影」出屏幕上的数字 5、4、3，最后<strong>集体驾驶飞行模拟器</strong>——着陆失败、拉杆、复飞，然后<strong>没有一句话</strong>地一致决定翻了个 360 度滚转。KK 的原话：「无人决定向左还是向右，甚至无人决定要不要转弯。无人在指挥。」<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>Craig Reynolds 的 boids</strong>：《蝙蝠侠归来》里成群的蝙蝠与企鹅，是用三条局部规则（不撞邻居、跟上邻居、别离太远）生成的；逼真到<strong>生物学家回头去查高速摄影，认定真鸟的集群也是从类似简单规则中涌现的</strong>。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>涌现的定义</strong>：借用 C. Lloyd Morgan 的说法，涌现中的因果是 <strong>2 + 2 = 苹果</strong>，不是 4。蜂脑记忆 6 天，整个蜂巢记忆 3 个月。★ 全书金句：<strong>「在蜂巢里找不到任何不潜藏在蜜蜂身上的东西；然而你可以用回旋加速器和荧光镜搜遍一只蜜蜂，也永远找不到那个蜂巢。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>「More is different（多则不同）」</strong>：KK 用它命名分布式系统的性质，并列出<strong>群系统的五利五弊</strong>：可适应／可进化／有韧性／无边界／能出新；代价是<strong>非最优、不可控、不可预测、不可理解、非即时</strong>。★ 关键一句：<strong>「凡是『涌现』出现的地方，人的控制就消失了。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ 这一章的证据质量参差。<strong>蜜蜂选举、Reynolds 的 boids 是可复核的硬材料</strong>；但「5000 人玩 Pong」是<strong>一场演示秀</strong>（KK 自己在场，且 Carpenter 是图形学家而非群体行为学者），KK 把它当成了「群体心智」的证据，这在方法上是<strong>轶事级</strong>的。<span class="tag t-inf">推断</span></p>
+  <p>★ ★ 更要紧的一条：KK 在这一章把<strong>生物集群、市场、民主、神经网络</strong>放在同一条论证线上，中间<strong>没有给出任何区分判据</strong>。蚂蚁没有选票、没有财产权、没有言论；把「蜂群选举」直接接上「这就是民主的本性」，是全书最典型的<strong>隐喻跳跃</strong>（见 5.1、5.2）。</p>
+  <p>★ 另外，他写下「网络是二十一世纪的图标」时，<strong>世界上还没有万维网</strong>（全书通篇未出现 "World Wide Web" 与 "Metcalfe"，见附录 D2）。他说的 Net 是<strong>电话网、Usenet、局域网、互联网骨干</strong>这一层。今天读者极易把这句话读成「他预言了万维网」——<strong>这是被后人追认，不是他说对了</strong>（见 3 节预测清单）。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">8</span><span>第三章：有心智的机器（第 3 章 · ch3-a–g · 推算 p.31）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「机器怎么才能有智能？」——答案是：先给它身体，然后放弃从中央控制它。</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>★ <strong>书名出处在这一章</strong>：机器人学家 <strong>Rodney Brooks</strong> 1989 年的论文〈<strong>Fast, Cheap and Out of Control: A Robot Invasion of the Solar System</strong>〉——先做成工程师胸章上的口号，再进论文标题，最后成了这本书的名字。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>Mark Pauline 与 SRL（Survival Research Laboratories）</strong>：旧金山一台台互相撕咬的巨型机械兽。KK 引用他那句玩笑：观众「生活里没有天敌，所以这些机器的角色就是把捕食者重新注射进文明」。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>Brooks 的路线</strong>：卡内基梅隆的 <strong>Ambler</strong> 走变态——两吨重、花了几百万美元、走 100 英尺要「思考」每一步；而真正的蚂蚁 1/100 克、脑子里根本没有院子的地图，照样穿过去。<strong>Genghis</strong>（成吉思汗）六条腿、12 个马达 21 个传感器、<strong>根本没有中央大脑</strong>，走路从腿与腿的互相抑制中涌现；砍掉一条腿，其余五条自发换步态。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>包容架构（subsumption architecture）</strong>：行为分层（避障→漫游→探索→建图→注意变化→规划→修正），<strong>低层永不被改写，只被上层抑制</strong>（<em>Code was never altered, just ignored</em>）。KK 给出的通用配方：<strong>先做简单的事→做到无瑕疵→在其上加新层→别改底层→新层同样无瑕疵→无限重复。</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>用世界本身当通信介质</strong>：Brooks 的名言——<strong>「世界本身就是它自己很好的模型」</strong>（<em>the world really is a rather good model of itself</em>）；模块之间不互相发消息，而是<strong>各自去感知别的模块在世界上造成的结果</strong>。KK 立刻指出：这<strong>恰恰就是市场经济的描述</strong>——鸡蛋的价格是几千万个我从没见过的行为者发给我的消息。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>章末是一个 2034 年的玩笑信件：机器人公司为人写推荐信——「人是人道的」「每个人都是独特的」。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ 这一章是<strong>全书技术含量最高、也最经得起时间检验</strong>的一章：Brooks 的包容架构、去中心化、「世界即模型」这三条今天仍是机器人学与具身 AI 的正统。★ 但 KK 在此做了两次<strong>未经说明的扩张</strong>：① 把机器人学的工程结论直接推广到<strong>公司与国家</strong>（「苏联解体不是因为被中央命令窒息，而是因为任何中央控制的复杂性都不稳定」<span class="tag t-src">原书</span>）——这是把工程类比当成历史解释，<strong>没有给出因果证据</strong>；② 用 Dennett/Minsky 的「心智去中心」来支撑「社会也该去中心」，<strong>跨越了个体认知与社会制度两个层级</strong>（见 5.1）。</p>
+  <p>★ 另外，KK 在这一章明确站队：<strong>「我完全站在 Minsky 一边——站在『造物』一边。人会活下来，我们会训练机器服务我们。但我们要为机器做些什么？」</strong><span class="tag t-src">原书</span> 这句话是理解他后来《科技想要什么》的钥匙，也是「目的论」批评的源头（见 5.3）。</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">9</span><span>第四章：组装复杂性（第 4 章 · ch4-a–e · 推算 p.61）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「复杂的东西是造出来的，还是长出来的？」</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>Steve Packard 的芝加哥草原恢复</strong>：照 Aldo Leopold 1934 年的做法（犁地＋播种）二十年不成；缺的不是种子，是<strong>火</strong>。Packard 后来发现他要恢复的其实不是草原，而是<strong>稀树草原（savanna）</strong>——判定线索来自那些「不在书里」的怪种子：它们不是风媒的干草籽，而是<strong>一团团多色、黏糊糊的浆果与干果</strong>，靠动物和鸟传播（章名里的 "oozy seeds" 就是它）。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>Stuart Pimm 的微宇宙实验</strong>：与 Jim Drake 把 15—40 种藻类与微型动物<strong>按随机顺序</strong>投入烧瓶，10—15 天后都变成了稳定的自持系统。★ 意外结论：<strong>「随便凑一个稳定的生态系统非常容易——只要你不在乎凑出来的是哪一个。」</strong>而且这是<strong>「反混沌」</strong>（anti-chaos）：从完全随机出发，居然总是收敛到结构。但<strong>换一个物种的入场顺序，就会换一个终点</strong>。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>「Humpty Dumpty 效应」</strong>：能把破蛋拼回去吗？<strong>能——如果你还拥有所有碎片</strong>。可怕的是：<strong>脚手架物种（scaffold species）可能已经灭绝</strong>。Packard 的担心：也许没有猛犸象和野牛，草原就永远回不来了。<strong>「记住，你未必总能从此处到达彼处。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>Danny Hillis 的「拇指」比喻</strong>：对生拇指是<strong>演化出智能所必需的脚手架，却不是维持智能所必需的</strong>。<strong>「维持智能所需的装置，可能远少于锻炼和演化出智能所需的装置。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ 这一章的生态学材料（Pimm、Packard、Wingate）是全书<strong>最扎实、最可核查</strong>的部分之一，且三十年后的恢复生态学大体仍支持它。★ 但 KK 从「生态系统要慢慢组装」跳到「未来的机器人和软件也得这么长出来」，<strong>中间缺一环论证</strong>：生态系统之所以必须增量组装，是因为它的组件本身在共同演化；软件组件并不共生演化。这个类比<strong>在工程上确有启发（增量交付、 scaffolding），但不是同一个机制</strong>。<span class="tag t-inf">推断</span>★ 另外，他把《种树的男人》这个故事点了名——那是一篇法国人写给《Vogue》的虚构作品，却被全世界当真事转载——<strong>KK 用这个例子提醒读者别轻信漂亮故事，这对读他自己的书同样适用。</strong></p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">10</span><span>第五章：共同进化（第 5 章 · ch5-a–e · 推算 p.74）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「两个互相盯着对方变的系统，最后会变成什么？」</strong>——全书与《全球概览》谱系联系最直接的一章。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>★「镜子上的变色龙是什么颜色？」这个公案（koan）由 Stewart Brand 在 1970 年代初向 Gregory Bateson 提出</strong>，Brand 把它登在 1974 年的《全球概览》上。KK 把这个思想实验<strong>真的做了一遍</strong>（买了会变色的蜥蜴、做了个镜箱），结果稳定在一种「春天嫩叶的绿」，但他<strong>诚实地列了三条推翻自己实验的理由</strong>（那不是真变色龙而是安乐蜥、变色可能是恐惧反应、他自己探头看的时候把蓝眼睛红鼻子投进了蜥蜴的宇宙）。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>共同进化（coevolution）的谱系</strong>：Paul Ehrlich（Brand 在斯坦福的老师，也是《人口炸弹》作者）从<strong>帝王蝶与马利筋</strong>的军备竞赛里看到它；术语来自 C. J. Mode 1958 年的论文；Brand 拿它办了《<strong>CoEvolution Quarterly</strong>》，并定义：<strong>「进化是适应以满足自己的需要；共同进化是适应以满足彼此的需要。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>James Lovelock 与盖娅</strong>：Lovelock 用<strong>光谱</strong>判定火星没有生命（只需要望远镜，不需要探测器）；因为地球大气处于<strong>「持续失衡态」（persistent disequilibrium）</strong>——21% 的氧与甲烷本该互相烧光。<strong>「她从不坠落，却从未脱离坠落的状态」（She never falls, but never gets out of falling）。</strong>KK 把这句推广为<strong>一切活系统的标志</strong>。与 <strong>Lynn Margulis</strong> 1972 年联名发表。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>Vernadsky 的「岩石是慢速的生命」</strong>：生命是「不断更新的矿物」，矿物是「移动得最慢的那部分生命」。KK 说这两句异端合成了一个对称式。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>「尊重你的错误」（Honor thy error）</strong> 这一条九律，本章给了直接来源：<strong>任何被绝对遵守的纯粹策略，在共同进化的世界里都会被对手学会利用；反而是「一点随机噪声」能带来长期稳定。</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ 这一章是<strong>全书最需要带着怀疑读的几章之一</strong>，有两个明确问题：</p>
+  <ol>
+    <li><strong>盖娅假说的分量被写重了</strong>。KK 自己提了一句「许多生物学家（包括 Paul Ehrlich）不高兴，因为 Lovelock 未经他们同意就扩大了生命的定义」<span class="tag t-src">原书</span>——但他随后用「如果你把地球缩小到细菌大小再看，它难道比病毒更奇怪吗？」把反驳化解掉了。今天的主流看法是：<strong>「地球化学被生命深刻塑造」成立，「地球是一个自我调节的超有机体」不成立</strong>（见 5.4）。
+    </li>
+    <li><strong>博弈论被当成了自然的普遍语法</strong>。Tit-for-Tat 的胜利来自 Axelrod 的<strong>两次特定竞赛</strong>（参赛策略是别人提交的、只有 14 个），后来大量工作显示它对噪声、误判、种群结构极其敏感。<strong>KK 写的是「合作会自发涌现」，更准确的说法是「在特定条件下某些策略能维持合作」</strong>。<span class="tag t-inf">推断</span>
+    </li>
+  </ol>
+  <p>★ 最后，把「公开比保密好」直接推广到冷战终结，<strong>是本书「相关≠因果」风险最高的一处</strong>（见 5.5 与附录 D5）。</p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">11</span><span>第六章：自然之流变（第 6 章 · ch6-a–g · 推算 p.99）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「稳定是自然的常态，还是例外？」——KK 的答案是：均衡即死亡。</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>Tony Burgess</strong>（图森沙漠，连续观测 80 年的样地）：<strong>「变量降雨是沙漠的关键……如果降雨恒定，美丽的沙漠生态几乎总会坍缩成更简单的东西。」</strong> 并给出全书标题级的一句：<strong>「均衡不仅是死了，均衡就是死亡」（Equilibrium is not only dead, it is death）。</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>KK 给出一个<strong>科学社会学层面的解释</strong>（这是本书少见的自我反思）：生态学家和经济学家之所以偏爱均衡，<strong>是因为均衡的数学题能解</strong>；一旦你说系统是持续失衡的，你就等于说它服从一个你解不出来、因而无法研究的模型。<strong>廉价计算机改变了这一点。</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>稳定性从哪来</strong>：Gardner &amp; Ashby 1970、Robert May 1971 的模拟都指向「越复杂越不稳定」；Pimm 的补：<strong>「不断加物种、不断让它崩掉，令人惊讶的是，最后会到达一个不会崩掉的组合。突然间你就免费得到了秩序（order for free）。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>Clements vs Gleason</strong>：生态群落是超有机体（Clements 1916）还是「一场会议」——<strong>「含混、多元、宽容、恒在流变中」（an ecosystem is more like a conference than a community）</strong>（Gleason）？KK 的裁决是<strong>两人各对一半</strong>：紧耦合的进化是「大脑式的」，松耦合的生态是「身体式的」。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>★ 生命不可消灭</strong>：KK 提出「I 点」（不可逆点／不朽点）——一旦跨过，生命就无法被根除。<strong>「生命一直瞒着我们的大秘密是：一旦诞生，生命就是不死的。」</strong> 他甚至说核弹也消灭不了生命总体，「甚至可能增加非人类版本」。并对比：杀死一个人平均需要 621,960 小时的持续攻击，而最好的汽车 5,000 小时、喷气发动机 40,000 小时。<strong>「复杂系统的部件与整体有个契约：我们愿为整体牺牲，因为合起来我们大于我们的和。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ 这一章<strong>科学材料的年代感最明显</strong>，也最需要打折：</p>
+  <ul>
+    <li><strong>「多样性—稳定性」之争</strong>：May 1971 的「复杂导致不稳定」与后来大量经验研究之间的关系，比 KK 呈现的复杂得多；今天学界并不认为这个问题已经以「复杂最终产生免费秩序」结案。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>Extropian 段落是本书与硅谷意识形态最贴近的地方</strong>。KK 明确说自己要把他们的口号当作科学命题——这一步<strong>他并没有真的完成论证</strong>，只是把它与 Dyson、Fredkin 的 speculative 想法并置。★ 这段也是 Barbrook &amp; Cameron 1995 年那篇〈加州意识形态〉所要批评的对象的典型文本（见 5.2）。
+    </li>
+  </ul>
+  <ul>
+    <li>★ 顺带一个诚实之处：KK 在本章明确声明<strong>自己不是「后现代活力论」</strong>——生命是「一种非精神的、近乎数学的性质」，是「可检验的」。这句话要记住，因为第 5 节的「目的论」批评正是围绕它展开的。
+    </li>
+  </ul>
+</section>
+
+<section id="s12">
+  <h2><span class="num">12</span><span>第七章：控制的兴起（第 7 章 · ch7-a–d · 推算 p.119）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「『自我』这个东西，最早是怎么被造进机器里的？」</strong>——一部极简自动控制史。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>★ 全章的关键判断是：自动化史就是「控制从人转移到机器」的单向史</strong>，而<strong>「自动马力本身就是知识革命的第一阶段——把世界拖进信息时代的，是脏兮兮的蒸汽机，不是小小的芯片」</strong>。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>线索：中国唐代的<strong>指南车</strong>与<strong>自动限酒的银鱼竹管</strong>（KK 说它们「不是真自动，人在环里」）→ 公元前三世纪亚历山大城的<strong>Ktesibios 的锥形浮阀（regula）</strong>——<strong>「第一个在生物学之外诞生的自我」</strong> → <strong>抽水马桶</strong>（KK 说「在抽水马桶的内部，我们看到一切自主机械造物的原型」）→ Heron 的《气体力学》 → 17 世纪 <strong>Cornelis Drebbel 的恒温器</strong> → <strong>James Watt 的离心调速器（flyball governor）</strong>。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>Watt 的关键洞见</strong>：蒸汽机的驯服不是靠更多煤，而是靠<strong>信息</strong>。<strong>「汽车和一罐爆炸的汽油之间的差别，在于汽车的信息——它的设计——驯服了汽油的蛮力。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>「从粗糙中提取精度」</strong>：钢厂多年来无法轧出厚度均匀的钢板（六个互相干扰的变量），Wiener 之后工程师只加<strong>一个</strong>反馈环（测量成品厚度→调最后一个变量张力），全解决了。原理是：<strong>只要变量紧耦合，且你能真正操纵其中一个，你就能间接控制全部。</strong> 而 Latil 的原话更狠：<strong>「调节器不关心原因；它只检测偏差并纠正它。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ KK 立刻把这个工程发现与<strong>哈耶克和奥地利学派的「计算争论」</strong>对接：在命令经济里追踪所有反馈路径是徒劳的，<strong>用「价格」这一个变量去调节其余一切</strong>——自生自发秩序。这是<strong>本书与自由市场论最紧密的一次接合</strong>（见 5.2）。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ 这一章的<strong>技术史部分非常可靠</strong>（Ktesibios、Watt、Black、Wiener 都是标准史料），是全书最适合当作通识读的部分。★ 但有<strong>两处跳跃</strong>要标出来：</p>
+  <ol>
+    <li><strong>把 Wiener 的工程结论直接接到哈耶克的经济学</strong>。钢铁厂的反馈环与价格机制确实结构相似，但<strong>「结构相似」不等于「政治结论相同」</strong>；KK 用前者为后者背书，是本书最典型的一步「工程类比→政治主张」（见 5.2）。
+    </li>
+    <li><strong>「放手」的道德化</strong>。前一页还在讲伺服机构如何消除振荡，下一页就跳到「有尊严地放手」——<strong>工程上的「放弃中央控制」与政治上的「放弃控制」被当成同一件事</strong>。★ 而 KK 自己在本章承认了自动化的代价：反馈环会「颤振（flutter/chatter）」，长回路的延迟会造成过度补偿。他没有问：<strong>如果失控的代价由别人承担，「放手」还算不算美德？</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s13">
+  <h2><span class="num">13</span><span>第八章：封闭系统（第 8 章 · ch8-a–f · 推算 p.136）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「如果把生命彻底封进瓶子里，会发生什么？」</strong>——从珊瑚缸到生态球（Ecosphere）到 <strong>Biosphere 2</strong>，本书篇幅最长、也最有「时代标本」价值的一章。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>Steinhart 水族馆的人造珊瑚礁</strong>：Lloyd Gomez 在地下室用塑料盘把微生物一桶桶混起来试顺序，五年后才长出完整食物网、不再需要投喂。★ 两个意外：<strong>约 90% 最终把礁体「焊」在一起的微生物是当初看不见的偷渡者</strong>；而早期占优势的物种后来自己消失了。Gomez 说顺序有多关键——<strong>「像死亡一样关键」（As critical as death）</strong>。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>Clair Folsome 的密封菌瓶</strong>：1968 年封的一个瓶子到 KK 写作时已 25 年，从未加过空气、食物或养分。他的结论：<strong>「一切封闭生态的稳定基础，从根本上说是微生物的。」</strong> 而且封闭系统有 60—100 天的「混沌启动期」。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>★ 生态球（Ecosphere）</strong>：KK 自己桌上曾有一个编号 #58262，在 <strong>1989 年旧金山大地震</strong>中被书架上掉下来的一本生态学著作砸碎——他称之为一次不可逆的 Humpty Dumpty。球里是四只卤虫、一团藻类和看不见的微生物，只吃阳光。<strong>「死去的是个体，活着的是集体。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>★ 本章最反直觉的一条</strong>：<strong>杀死生态球的是静止，不是扰动</strong>。因为没有闪电、没有火、没有高氧，磷酸盐逐渐被锁死，蓝绿藻慢慢独占。<strong>「在动荡中才有世界的保存（In turbulence is the preservation of the world）。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>★ 全书最重要的一条「设计原则」出自这一章</strong>：Walter Adey 的<strong>「合成生态学原则」</strong>——<strong>「我们必须接受这样一个事实：一个生态系统所包含的信息量，远远超过我们头脑里的信息量。如果我们只去做我们能够理解和控制的事情，我们注定失败。」</strong> 以及 Warshall：<strong>「设计生物群区是一次像上帝那样思考的机会……你能做的只是把所有零件凑齐，让它们自组装成某个能运转的东西。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ 这一章是<strong>全书时代性最强、也最有价值的一手记录</strong>——KK 在 Biosphere 2 封闭前后实地采访，留下的是别处没有的细节（"你要照顾好你的龟，它们才能照顾好你"、为陆龟运沙丘沙、把佛罗里达红树林切成方块运到亚利桑那、生态学家为「蝙蝠到底吃多少蛾」吵架）。作为<strong>史料</strong>，它极有价值。</p>
+  <p>★ 但作为<strong>论证</strong>，它站不住的地方也很明显：KK 写这一章时（1993 年前后）<strong>Biosphere 2 第一次封闭运行（1991–1993）刚刚结束，而它的失败尚未被完整讨论</strong>——氧气下降到 14%、被迫注入外源氧、多数传粉昆虫灭绝、蚂蚁与蟑螂爆发、八人分成两派互相敌视。KK 在文中只提到 Adey 预计「首次两年运行会有 30–40% 的物种掉落」，把高灭绝率当成「必要的演化代价」来处理。<strong>这不是欺骗，但确实是选择性叙述</strong>：他把 Biosphere 2 当成「涌现自组织」的正面案例，而它更常被引为<strong>「复杂系统无法被自上而下设计」的反面案例</strong>。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">14</span><span>第九章：「冒出」的生态圈（第 9 章 · ch9-a–e · 推算 p.161）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>「既然封闭系统这么难，那 Biosphere 2 到底发生了什么？」——KK 用整整一章写 Biosphere 2 第一次封闭运行（1991-09-26 至 1993-09-26）的<strong>实测结果</strong>：八个人进去时 208 磅，出来时 156 磅；氧气从 21% 掉到 15%；二氧化碳在无日照的六天里冲到 3,800 ppm；所有的熊蜂死了，四只蜂鸟全死了，而三只偷渡进来的英国麻雀兴旺发达。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>人体 data</strong>：八人平均减重 <strong>208 磅 → 156 磅</strong>，衣服小了好几个号，长期饥饿。Roy Walford（UCLA 的衰老研究者、舱内随队医生）把这段当成「热量限制延缓衰老」的自然实验。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>饥饿的原因</strong>：原本设计的五种主粮作物大部分失败。八人成了<strong>「副驾驶」而非乘客</strong>——KK 借生态学术语说，人类在舱内是 <strong>keystone predator（关键种捕食者）</strong>，是「通往思想的大拇指」。
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>最反直觉的一条：舱里缺的是「扰动」</strong>。生态学家 Peter Warshall 的原话是：<strong>「Bio2 里什么都被控制住了，但自然需要野性……我们这儿一点扰动都没有。」</strong><span class="tag t-src">原书</span> 于是有人开玩笑在门口挂了块牌子：<strong>「请打扰（Please Disturb）」</strong>。KK 由此引出第八章那个论断——<strong>「动荡中存在世界的存续（In turbulence is the preservation of the world）」</strong>，在这里得到了实物印证：造浪机、风扇，都是用来<strong>人工制造湍流</strong>的。
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>琳·马古利斯的预言</strong>：她早就说过 <strong>「最后全都会变成城市杂草（It'll all go to Urban Weed）」</strong>。<span class="tag t-src">原书</span> 结果应验——<strong>所有熊蜂死了、四只蜂鸟全死了、蓝饰雀死了、一种珊瑚在当地灭绝</strong>，而<strong>三只偷渡进来的英国麻雀活得极好</strong>。KK 的评论是：城市化的本质就是<strong>边缘物种登场</strong>。他还顺手讲了个黑色幽默：一只弯嘴嘲鸫偷渡进舱，按《候鸟条约》它是受保护物种，理论上不该被关在玻璃罐里。
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>斯图尔特·布兰德的建议</strong>：他给舱内成员 Linda Leigh 的忠告是 <strong>「跟着成功走（go with success）」</strong>——别去救那些快死的，把资源投给已经繁盛的。这句话几乎是全书「放弃控制」伦理的操作手册。
+    </li>
+  </ul>
+  <ul>
+    <li><strong>氧气</strong>：<strong>从 21% 掉到 15%</strong>，相当于在海拔 4,000 米以上生活。KK 记录了当时的猜测（土壤碳酸盐、新鲜混凝土吸收），并引 Freeman Dyson 谈氧。应对办法是<strong>「有意季节（intentional season）」</strong>——把冬季当作 CO₂ 阀门。
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>章末的「生命即技术」</strong>：KK 在 1991 年春天独自站在空舱里的感觉是 <strong>「我像是站在一座大教堂里」</strong>；章末托 Dorion Sagan 的《Biospheres》收束：<strong>生命是一种技术；生命是终极的技术。</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一章是全书最锋利的自我反驳，而 KK 没有意识到。</strong> 他把「所有传粉昆虫灭绝、偷渡麻雀兴旺」读成「边缘物种的胜利」，但同一个事实也可以、而且更常被读成：<strong>一个耗资 1.5 亿美元、由顶尖生态学家设计的封闭系统，在两年内失控到需要外部输氧</strong>。这是对「自组织涌现」最有力的反例，KK 却把它写成了正面教材。<span class="tag t-inf">推断</span></p>
+  <p>★ <strong>氧气数据是后来才公开的（1993 年封闭结束后才逐步披露，且 1994 年曾有「是否人为输氧」的争议）。KK 在 1994 年成书时写下 21%→15%，是诚实的；但他没有追问这对盖娅假说的含义。</strong> 如果一个 3 英亩的微型生物圈都无法自我调节，凭什么认为 1.97 亿平方英里的地球能？这是本书最该被追问却没被追问的地方。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">15</span><span>第十章：工业生态（第 10 章 · ch10-a–f · 推算 p.178）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>第八章到第九章都在讲「封闭的生物圈」，这一章掉头讲<strong>人造世界</strong>：如果机器、工厂、家居都按生态的方式组织起来会怎样？KK 的答案是——<strong>「下一个世纪不是硅的世纪，而是生物学的世纪」</strong>，而且更准确地说，是<strong>「新生物学（neo-biological）」</strong>的世纪。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>★ <strong>开篇是高迪</strong>：巴塞罗那的圣家堂「像是长出来的，而不是造出来的」。KK 说未来的自适应建筑会更像<strong>一片丛林而不是一只狗</strong>——不是单一巨兽，而是一群生物的生态。
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>智能家居的 1994 版预言</strong>：「门铃响时会自动把吸尘器音量调低」「洗衣机洗完会在电视上闪一条消息」「沙发里的芯片感知到有人坐下，就把房间温度调高」。他准确描述了 <strong>Smart House Partnership（1984 年成立）</strong> 的通用插座：插上的设备会自报身份（"I am a toaster"）、状态和需求（"Give me 10 watts of 110"）。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>马克·维瑟（Mark Weiser）与普适计算</strong>：这是本章最值钱的一段。KK 实地采访了施乐 PARC 的 Weiser。Weiser 的层级图——<strong>100 个小东西 / 10 个中等东西 / 1 个大东西</strong>——就是「房间作为超级organism」。名句：
+    <ul>
+      <li><strong>「最深刻的技术是那些消失的技术。它们把自己织进日常生活的肌理，直到与之无法区分。」</strong><span class="tag t-src">原书</span>
+      </li>
+      <li><strong>「虚拟 reality 的前提是把你放进计算机世界里；我要做的正相反——我要把计算机世界放在你外面。」</strong><span class="tag t-src">原书</span>
+      </li>
+      <li>个人灯光控制、个人音量控制（在场者的口袋设备「投票」，音量取平均）。
+      </li>
+    </ul>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>Weiser 也给出了反例，KK 如实写了</strong>：PARC 参与试验的员工<strong>常常故意离开办公室，只为躲开那个「电话团块」——他们觉得「永远可被找到」是一种囚禁</strong>。KK 的结论：<strong>「网络文化离不开隐私技术。」</strong><span class="tag t-src">原书</span> 这句话在 1994 年写下，是全书最有先见之明的句子之一。
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>「坏狗房间」与「好狗房间」</strong>：本地适应的代价是<strong>外来者吃亏</strong>。「每一部电话都会不一样，因为它的行为取决于最常用它的人怎么用。」KK 由此推出：<strong>「适应性技术意味着在本地适应的技术；网络的逻辑会诱发地方性和局部性。换句话说，全球性的行为必然带来区域性的差异。」</strong><span class="tag t-src">原书</span> 接着引 Danny Hillis 的反驳：人类也需要<strong>共同的界面、共同的文化</strong>，否则就没法用彼此的终端。
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>「为拆解而设计」</strong>：德国立法要求汽车制造商设计易拆解的车。<strong>「你不能造一台收音机、一只跑鞋、一张沙发，而不交代它尸体的去处。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>「生物逻辑总是赢」是全书最典型的</strong>目的论<strong>表述。</strong> 它不是论证，是信念。KK 用的是「欧米伽点」(Teilhard de Chardin 的术语)——一个神学色彩浓厚的词，却用来描述技术演化。Barbrook 与 Cameron 后来批评的正是这种<strong>「技术体的意志」</strong>叙事。<span class="tag t-inf">推断</span></p>
+  <p>★ <strong>「生物学总是赢」在三十年后看，只对了一半。</strong> 对的一半：合成生物学、mRNA 疫苗、用酵母生产药物、细菌浸矿，都成了现实。错的一半：真正统治 2020 年代的是<strong>硅基的大语言模型</strong>——而 KK 在同一章里明确说过<strong>「下一个世纪不是硅的世纪」</strong>。KK 本人在 2026 年的回顾里承认，唯一的重大突破是<strong>神经网络深度学习</strong>，并称它是「自下而上、分布式、去中心化、涌现系统」的<strong>首要例证</strong>——这其实是在说：他押错了载体，但押对了原理。<span class="tag t-talk">作者谈话</span></p>
+</section>
+
+<section id="s16">
+  <h2><span class="num">16</span><span>第十一章：网络经济学（第 11 章 · ch11-a–e · 推算 p.199）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>前十一章讲的都是「生物逻辑」，这一章开始把生物逻辑<strong>套在经济上</strong>：一个由网络构成的经济体会有什么性质？这一章是全书被中文读者引用最多、也最容易被当成「预言」的一章——<strong>大规模定制、柔性制造、外包、众包、平台、数字经济</strong>这几个词，KK 在这里几乎都写到了。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>★ <strong>开篇是 John Perry Barlow</strong>（Grateful Dead 的 B 队词作者、怀俄明牧场主、后来的 EFF 联合创始人、〈赛博空间独立宣言〉作者）。KK 在 WELL 上认识他。Barlow 的名言：<strong>「没有什么比赛博空间更脱离肉体的了——那就像把你的全部都截肢了。」</strong> 又说赛博空间是 <strong>「一种奇特的房地产，它随着开发而扩张」</strong>。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>KK 自己的皈依时刻</strong>：他买第一台 Apple II 是为了跑邮件公司的数据库，但接上电话线的那一刻他「经历了一次宗教体验」——<strong>「我看到了计算机的未来不是数字，而是连接。」</strong> 名句：<strong>「我们不该叫它们计算机，我们真该叫它们连接器。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>「网络是信息的工厂」</strong>：<strong>「一件产品的价值因投入其中的知识而增加，而孕育知识的网络随之增值。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>网络化公司的四个特征</strong>：<strong>分布式 / 去中心化 / 协作 / 自适应</strong>。KK 预言纯网络公司会自然结晶为 <strong>8–12 人一组的团队</strong>。他虚构了一家「Upstart Car, Inc.」：12 人在帕洛阿托的一间办公室，引擎从新加坡买、零件从墨西哥和底特律来、机器人维护外包、前台外包、会计远程——<strong>约 100 名直接雇员</strong>。这是 1994 年写下的「虚拟公司」蓝图，今天的特斯拉、苹果、SHEIN 的供应链组织方式大体如此。
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>IBM 是生态系统，不是有机体</strong>：<strong>「把 IBM 当作一个有机体的比喻需要大修。IBM 是一个生态系统。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>「从产品转向服务是不可避免的」</strong>，因为自动化不断压低物理复制的成本——<strong>「复制一盘软件或一盒音乐带的成本只是产品价格的零头」</strong>。
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>三个担忧（KK 自己列的）</strong>：网络经济让人<strong>无法理解、控制更少、优化不好</strong>。他接着问：<strong>「电视机会崩溃吗？汽车会突然冻住吗？烤面包机会炸吗？」</strong>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>连续系统与离散系统</strong>（引 David Parnas 对星球大战计划的批评）：通用汽车试车，50/60/70 英里都过，就知道 55 英里也过——<strong>汽车是连续系统</strong>；<strong>「而软件、分布式网络和大多数 vivisystem 是离散系统」</strong>——你可能在某个精确取值（63.25 mph）上突然崩溃。<strong>「你无法依赖抽样，因为系统是离散的。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>Ted Kaehler（SmallTalk 与 HyperCard 的共同开发者）的反驳很有意思</strong>：<strong>「你可以做出零缺陷软件，代价是写出比实际需要长几千行的程序。」</strong> KK 的评论：<strong>「这就是自然所做的：它为可靠性牺牲优雅。」</strong> 小龙虾尾部神经回路冗余得不优雅，但零错误。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一章是「KK 神准」说法的主要来源，但必须逐条区分。</strong> 真说对的：柔性制造、大规模定制、外包/众包、实时供应链（Levi's/Benetton 的例子今天就是 Zara 和 SHEIN）、数字化服务化。部分说对的：递增回报——方向对，但 KK 完全没预见到它会走向<strong>赢家通吃的平台垄断</strong>，他写的是「正和」，现实是<strong>平台租金</strong>。</p>
+  <p>★ <strong>明确漏掉的</strong>：这一章<strong>没有预言「广告支撑的免费服务 + 数据榨取」这一 21 世纪最核心的商业模式</strong>。KK 的网络经济是「卖东西的网络」，不是「卖注意力和数据的网络」。他提到「免费带宽」时说的是<strong>连接免费、选择昂贵</strong>，而不是<strong>服务免费、用户被卖</strong>。这是本书最大的结构性盲区之一，也是 §5 要展开的核心。</p>
+  <p>★ <strong>「网络经济学将催生一种新的唯灵论」+ Barlow 引德日进（Teilhard de Chardin）的「欧米伽点」</strong>——这两处是全书<strong>目的论与神秘主义</strong>浓度最高的地方。批评者（尤其 Barbrook &amp; Cameron、Grassie）抓住的正是这个：KK 把<strong>市场网络</strong>写成了<strong>有意志、有方向、朝某个终点演进</strong>的东西。</p>
+</section>
+
+<section id="s17">
+  <h2><span class="num">17</span><span>第十二章：电子货币（第 12 章 · ch12-a–f · 推算 p.219）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>「网络经济的血液是什么？」——KK 的答案是<strong>加密的电子现金</strong>。这一章是全书<strong>被中国读者误读最深</strong>的一章：因为出现了 <strong>Tim May、密码朋克（cypherpunks）、加密无政府主义（crypto anarchy）、数字现金（digital cash）、David Chaum 的盲签名</strong>，很多人把它读成「KK 预言了比特币/区块链」。必须逐字核对。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>★ <strong>开篇就是 Tim May 与隐写术</strong>：一张 9.95 美元的 DAT 数字录音带能装约 1 万本书；把加密信息塞进音乐的第 16 位（人耳听不出的最低有效位），<strong>「任何人播放这盘带子，听到的都是迈克尔·杰克逊；任何人用计算机检查这盘带子，看到的只有数字音乐」</strong>。May 的结论：<strong>「阻止比特跨越国界已经完全无望。」</strong><span class="tag t-src">原书</span> 这是 1994 年写下的<strong>隐写术（steganography）</strong>说明，今天依然是真命题。
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>「加密无政府主义」（Crypto Anarchy）</strong>：KK 引了 May 的〈加密无政府主义宣言〉全文要点——<strong>「正如印刷术改变并削弱了中世纪行会和社−会权力结构的力量，密码学方法也将从根本上改变公司的性质和政府对经济交易的干预。」</strong> 以及那句著名的铁丝网比喻：<strong>「正如带刺铁丝网这样一个看似微小的发明使得圈占大牧场成为可能、从而永远改变了西部边疆的土地与产权概念，一个来自数学冷僻分支的看似微小的发现，将成为剪断知识产权周围铁丝网的剪线钳。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>KK 亲自参加了 1992 年秋帕洛阿托的密码朋克月会</strong>（约 15 人，主持人 Eric Hughes）。他记录下的场面极珍贵：Dean Tribble 讲<strong>「数字声誉」</strong>与<strong>「信任托管」</strong>，讲重复博弈中声誉如何改变支付矩阵；Arthur Abraham 穿皮衣讲密码学论文，全场只有一个数学背景的人，大家<strong>一句一句把证明啃下来</strong>。这段是赛博朋克史的一手材料。
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>名句集</strong>：
+    <ul>
+      <li><strong>「加密总是赢（Encryption always wins）。」</strong>（Tim May）
+      </li>
+      <li><strong>「加密就是经济学。加密永远是可能的，只是贵。」</strong>（Eric Hughes）
+      </li>
+      <li><strong>「我们一向珍视邮件的隐私。而现在，我们第一次不必信任它了——我们可以强制它。」</strong>（Ted Kaehler）
+      </li>
+      <li><strong>「不错的隐私意味着不错的社会（Pretty good privacy means pretty good society）。」</strong>（Phil Zimmermann）<span class="tag t-src">原书</span>
+      </li>
+    </ul>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>「传真效应」（The Fax Effect）与递增回报</strong>：<strong>「如果你拥有世界上唯一一台传真机，它一文不值。但世界上每多装一台传真机，你的传真机就增值。」</strong> KK 明说这就是<strong>「网络的逻辑，也称为递增回报定律」</strong>，并强调它<strong>「与基于均衡权衡的古典经济财富理论相反：那些理论说你不能无中生有。而真相是，你可以。」</strong><span class="tag t-src">原书</span> ★ 注意：这就是 KK 版本的「网络效应定律」，他用的是 <strong>Fax Effect</strong> 这个词，不是梅特卡夫定律。
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>「信息想要被复制」</strong>：KK 把 Stewart Brand 的名言 <strong>「信息想要自由（Information wants to be free）」</strong> 从「免费」重新解释为<strong>「无锁链、无监禁」</strong>——<strong>「信息想要自由地漫游和复制。」</strong> 并说：<strong>「复制或死亡（replicate or die）。信息想要被复制。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>超分发（superdistribution）</strong>：Brad Cox（把 OOP 对象卖给 Steve Jobs 的人）与日本 JEIDA 的 Ryoichi Mori 的方案——<strong>让拷贝自由流动，按使用付费</strong>。Cox 的原话：<strong>「复制保护对于软件这种无形的、易复制的商品来说恰恰是错误的主意。」</strong> 以及 <strong>「就像超导一样，它让信息无阻力地流动。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>最大的纠偏：这一章没有预言比特币，也没有预言区块链。</strong> 我在全文中检索过，KK 书里<strong>没有「工作量证明」「共识机制」「分布式账本」「去中心化账本」这些概念</strong>。Chaum 的方案是<strong>中心化银行发行 + 盲签名</strong>，与比特币<strong>「去中心化发行 + 公共账本」</strong>在架构上正好相反——比特币解决的正是<strong>Cha​um 方案里那家银行必须被信任</strong>的问题（双花检测）。所以：</p>
+  <ul>
+    <li>★ <strong>「加密总是赢」这个判断需要大幅打折。</strong> 三十年后看：<strong>密码学在技术上赢了（端到端加密、HTTPS、Signal 普及了），但在政治上输了</strong>——各国普遍推行实名制、KYC/AML、数据留存，欧盟的「聊天控制」提案至今在争论。匿名数字现金<strong>至今没有成为主流支付方式</strong>；Chaum 的 DigiCash 1998 年破产。KK 与 May 押的是「技术决定政治」，现实是<strong>政治反过来规制了技术</strong>。
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>「地下经济不可根除」是对的，但后果被严重低估了</strong>：KK 把它写成自由主义的小胜利，而现实是勒索软件、暗网市场、加密诈骗——<strong>「加密总是赢」的另一面是执法失效</strong>。<span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>KK 对 Chaum 的描写有一个技术判断失误</strong>：他说「64 字节一笔交易，计算开销 nano 小」，并推断银行现有主机算力够用。这个<strong>对</strong>，但他没有预见到<strong>去中心化账本</strong>会把这个问题重新变成瓶颈——因为他根本没设想去中心化账本。
+    </li>
+  </ul>
+</section>
+
+<section id="s18">
+  <h2><span class="num">18</span><span>第十三章：上帝游戏（第 13 章 · ch13-a–i · 推算 p.243）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>如果你要造一个活的系统，你就得像上帝一样：<strong>只能间接控制</strong>。这一章是全书结构最奇特的一章——它从《上帝也疯狂》（Populous）这款游戏讲到《模拟城市》《模拟地球》，再跳到 <strong>Jaron Lanier 的虚拟现实</strong>、<strong>鲍德里亚的拟像</strong>、<strong>海湾战争的军事仿真 SIMNET</strong>、<strong>MUD 多人文字世界</strong>，最后以《创世纪》收尾。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>★ <strong>核心论断（章末）</strong>：<strong>「要当上帝，至少当有创造力的上帝，就必须放弃控制、拥抱不确定性。绝对的控制是绝对的无聊。……上帝游戏的巨大反讽是：放手是唯一的取胜之道。」</strong><span class="tag t-src">原书</span> 这是全书第一次把「失控」这个书名正面解释出来。
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>SimCity 与 Will Wright</strong>：KK 亲自采访了 Wright。SimCity 的起源极关键——Wright 1985 年做射击游戏《Raid on Bungling Bay》，做了个「画岛工具」帮自己偷懒，<strong>「最后我完成了射击游戏的部分，但不知为什么我一直回去把建造工具做得越来越花哨……我发现我更喜欢建造岛屿而不是摧毁它们。」</strong><span class="tag t-src">原书</span> 而 SimCity 的理论骨架来自 <strong>Jay Forrester 1960 年代 MIT 的《城市动力学》（Urban Dynamics）</strong>——KK 的名言：<strong>「SimCity 就是一个配了用户界面的城市理论。同样的意义上，娃娃屋是一个关于家庭的理论，小说是一个作为故事讲出的理论，飞行模拟器是一个关于飞行的交互式理论。模拟生命就是一个放任自流的生物学理论。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>SimEarth 与盖娅</strong>：SimEarth 本意就是给 <strong>Lovelock 与 Margulis 的盖娅假说建模</strong>，而且「 remarkably 地成功了」——<strong>「把行星加热会增加生物量，生物量降低 CO₂，从而冷却行星。」</strong> KK 引游戏专家 Johnny Wilson：只有把地球自转轴扳成水平这种灾难性改动才能打破 SimEarth 的「包络」。并对比：<strong>「SimCity 作为游戏更令人满足，因为你得到的反馈更即时更清晰，而且你感觉自己更在控制之中。」</strong>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>斯图尔特·布兰德 1968 年的名言</strong>（KK 引）：<strong>「我们就是众神，不妨擅长于此（We are as gods, and might as well get good at it）。」</strong><span class="tag t-src">原书</span> 这是《全球概览》创刊号的第一句，也是理解 KK 精神谱系的关键一句。
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>KK 1989 年夏在 Jaron Lanier 的 VPL 实验室里进入虚拟现实的一手记录</strong>：<strong>「据我所知，1989 年夏天这次坠入一个人的白日梦，是人类第一次即时创造出一个幻想、并让其他人爬进去共享。」</strong> 他描述 Lanier 戴着电子潜水面罩在地上打滚、对着空气抓握，然后尖叫：<strong>「嘿，那些粉笔基座是空心的！你可以钻进去看红宝石的底部！」</strong> ——KK 的点题：<strong>「整个世界太复杂，没法装在一个人的头脑里。但仿真可以把这些复杂性演出来。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>鲍德里亚与艾柯</strong>：KK 引了鲍德里亚《拟像》（1983）开篇那段博尔赫斯地图寓言全文，以及艾柯的<strong>「超真实（hyperreality）」</strong>——<strong>「美国人的想象力要求真实之物，而为了获得它，必须伪造出绝对的假。」</strong> 还引了 Steven Levy《人工生命》的转述：<strong>「地图不是疆域，但地图是一片疆域。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一章是全书最「漫步式」的一章</strong>：从电脑游戏跳到虚拟现实、跳到法国后现代哲学、跳到海湾战争、跳到文字 MUD、跳到《圣经》。<strong>论证链条是隐喻串联，不是逻辑串联</strong>。这是本书魅力所在，也是它被学术批评者诟病的根源（§5 会展开）。</p>
+  <p>★ <strong>鲍德里亚和艾柯在这里被「招安」了。</strong> 这两位原本是<strong>批判</strong>拟像与超真实的（拟像取代真实是一种异化），KK 却把他们读成<strong>赞美</strong>——「超真实是一种新的创造」。这是明显的误读/挪用。<span class="tag t-inf">推断</span></p>
+  <p>★ <strong>军事仿真部分没有任何批判。</strong> KK 把 SIMNET、远程无人机的雏形、以及「从堪萨斯开着塑料盒子里的坦克穿过真实的伊拉克」的前景，写得兴致勃勃。他只在结尾引了《Ender's Game》——那本小说的核心恰恰是<strong>「孩子们在不知情的情况下指挥了真实的种族灭绝」</strong>，是个恐怖故事。KK 引用了它，却没有承接它的伦理。<span class="tag t-inf">推断</span></p>
+  <p>★ <strong>MUD 部分反而是本章最超前的</strong>：「玩家自己发明世界」「身份是workshop」「社群是分布式共识」——这几条精确预言了 Web 2.0。KK 自己没意识到这一点，他把 MUD 当成了通往 VR 的过渡，而历史证明 MUD 才是主干。</p>
+</section>
+
+<section id="s19">
+  <h2><span class="num">19</span><span>第十四章：形式的图书馆（第 14 章 · ch14-a–g · 推算 p.275）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>「演化到底在做什么？」——KK 的回答是：<strong>演化是在一个巨大的「所有可能形式」空间里做搜索</strong>。而这个空间就是<strong>博尔赫斯的《巴别图书馆》</strong>。这一章是全书文学性最高、也最容易读懂的一章，同时是理解 <strong>Karl Sims、Dawkins、Connection Machine</strong> 这几个关键名词的入口。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>★ <strong>开篇是 KK 假装采访博尔赫斯</strong>（他自己写的虚构访谈，只有最后 24 页「正确来说只能存在于我这本《失控》里」）。他走进巴别图书馆，想找到那本「已经写完、编辑好、校对好的《失控》」，好省掉一年的苦工。
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>「方法（The Method）」= 演化</strong>：随机抽样只能找到乱码；但如果你<strong>总是朝着「更有意义」的方向走（爬山法）</strong>，你就会到达可读之书的峰顶。KK 花了几天用这个方法找到一本名为 <em>Hadal</em> 的书——语法正确，但<strong>平淡、扁平、没有性格</strong>，只有一行闪着智慧：<strong>「当下对我们是隐藏的（The present is hidden from us）。」</strong> 他最终没找到《失控》，回家自己写完了。而结论是：<strong>「方法」不是人发明的，它就是演化。</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>Karl Sims 与 Connection Machine 5</strong>：KK 实地采访了 Thinking Machines 的 Sims。CM5（1993 年最强计算机）屏幕上 4×5 = 20 个小窗，每点一次就生出 20 个「孩子」，选最好的再生 20 个。<strong>「从一个简单的球体开始，通过累积选择，最后可以得到一座教堂。」</strong> Sims 的原话：<strong>「演化能想出什么，是没有限制的。它可以超越人类的设计能力。」</strong> 他的成果是动画 <strong>《Panspermia》（泛种论）</strong>——用演化培育出的外星植物铺满荒凉星球。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>「约束的胚胎学（constrained embryology）」</strong>：道金斯的关键洞见——<strong>基因不控制像素，基因控制生长规则</strong>。这直接把「所有可能形状」的图书馆缩小到「生物学上有意义的形状」，从而让演化搜索变得可行。KK 说：<strong>「这就像把博尔赫斯图书馆的每一格从『字母的可能排列』改成『单词的可能排列』。」</strong>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong> stagnation 与变异率旋钮</strong>：Sims 和 Latham 都撞到「局部高原」——<strong>「就像被困在一个巨大的局部沙漠盆地里，走一步和上一步完全一样，而有趣的山峰远在天边。」</strong> 解决法是<strong>先设高变异率跳着走，再调低变异率软着陆</strong>。
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>KK 自己的一手参与</strong>：他在奥地利林茨的 Ars Electronica 艺术节上亲自踩脚踏板选图，跑得满头大汗，<strong>「那种体力劳动感觉像园艺」</strong>。Sims 的装置<strong>整天、每天都在按博物馆参观者的趣味育种</strong>，并记录每一次选择——<strong>「Sims 现在拥有一个关于人类（至少是美术馆人类）觉得什么是美或有意思的数据库。」</strong><span class="tag t-src">原书</span> ★ 这句话在 2023 年后读来令人后背发凉：这就是今天 AI 图像生成（以及 RLHF）用人类审美做选择压力的逻辑原型。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一章的论证有一个隐含跳跃：KK 把「搜索」等同于「创造」，并以此来消解人类作者性。</strong> 道金斯那句被引用的话是<strong>「当搜索空间足够大时，有效的搜索程序就与真正的创造力无法区分」</strong>——这是一个关于<strong>结果</strong>的判断，KK 却把它读成了关于<strong>价值</strong>的判断。三十年后，生成式 AI 的版权与作者性争议，正是这个跳跃的直接后果。<span class="tag t-inf">推断</span></p>
+  <p>★ <strong>KK 对「审美可以成为选择压力」的乐观，在今天需要重新评估。</strong> 他写道：<strong>「也许我们会非常惊讶地发现，没有任何东西统一了选择标准。也许任何高度演化的形式都是美的。」</strong> 这个猜想没有被证实；而人类选择数据的实际用途，是<strong>把审美商品化</strong>（推荐系统、A/B 测试、AI 微调）。<span class="tag t-inf">推断</span></p>
+  <p>★ <strong>「方法 = 演化」的类比有个技术漏洞</strong>：KK 描述的爬山法（hill-climbing）是<strong>无交叉、单亲、靠变异</strong>的，它比真实生物演化简单得多（没有重组、没有中性漂变、没有生态位竞争）。他在本章后面补了「性」，但仍然没有处理<strong>适应度景观的可演化性</strong>问题。这是把复杂机制通俗化的必要代价，但要意识到它是代价。</p>
+</section>
+
+<section id="s20">
+  <h2><span class="num">20</span><span>第十五章：人工演化（第 15 章 · ch15-a–i · 推算 p.305）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>第十四章讲了「搜索所有可能形式」，这一章给出<strong>真正的引擎</strong>：让演化在计算机里跑起来会发生什么？这是全书技术密度最高的一章，也是 Tierra、遗传算法、Connection Machine、蚁群算法这几个名词的出处。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>★ <strong>Tom Ray 与 Tierra（本章主角）</strong>：Ray 原本是热带植物生态学家，哈佛本科时期为 <strong>E. O. Wilson</strong> 在哥斯达黎加采集切叶蚁群落。他讲了一个完美的共同进化故事：<strong>行军蚁扫荡 → 惊起飞虫 → 蚁鸟跟着捕食 → 蝴蝶跟着吃蚁鸟的粪便（氮源）</strong>。他因此觉得生态学「濒死」——<strong>「我想研究的不是演化的产物——藤蔓、蚂蚁、蝴蝶。我想研究演化本身。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>Tierra 的设计</strong>：一台虚拟计算机 + 一个 80 字节的手写祖先 + 两个关键机制：<strong>变异（bit flip）与死亡（Reaper，死神）</strong>。计算机科学家都说随机改代码只会崩溃，但 Ray 的解法是：<strong>「死神会杀掉最老的或者最搞砸的那个生物。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>演化出来的东西（这是本章最有价值的部分）</strong>：
+    <ul>
+      <li><strong>79</strong>（比 80 少一字节）迅速超越祖先；
+      </li>
+      <li><strong>45</strong>：一个<strong>寄生虫</strong>——它只有部分代码，靠「借用」80 的复制代码来繁殖。80 少了，45 也少了，<strong>「这对搭档跳着经典的共同进化探戈，来来回回，无休无止，就像北方森林里的狐狸和兔子。」</strong><span class="tag t-src">原书</span>
+      </li>
+      <li><strong>51</strong>：能感染 79 的<strong>第二代寄生虫</strong>——<strong>「来自未知之处的七条指令替换了 45 中间某处的一条指令。」</strong>
+      </li>
+      <li><strong>超寄生虫（hyperparasites）</strong>——寄生在寄生虫上的寄生虫。<strong>「超寄生虫就像从你的电线上偷电的邻居。你坐在黑暗里，他们用你的电，而你付账单。」</strong> 还有<strong>超超寄生虫</strong>和<strong>「社会作弊者」</strong>。
+      </li>
+      <li>★ <strong>22 字节的自我复制者</strong>：Ray 原本以为演化最多能把 80 优化到 75。结果<strong>跑了一夜，出现了一个只有 22 字节、完全自我复制、不偷代码的生物</strong>。MIT 一个计算机科学学生手工重写，最好只做到 31 条指令。<strong>Ray 的话：「认为你可以随机改一个计算机程序、得到比你精心手写更好的东西，这似乎荒谬至极——但这里有活的证据。」</strong><span class="tag t-src">原书</span>
+      </li>
+      <li>★ <strong>36：会撒谎的生物</strong>。Ray 把系统改成按体型分配 CPU 资源。跑到大約 110 亿个周期时，演化出一个 36 字节的家伙——<strong>它计算自己的真实大小，然后偷偷把测量值的二进制位左移一位（等于乘二），于是骗到了 72 的资源，拿到两倍 CPU 时间。</strong><span class="tag t-src">原书</span>
+      </li>
+      <li>★ <strong>性是自己长出来的</strong>。Ray 关掉变异功能做对照实验，结果<strong>演化照常进行</strong>——因为寄生虫「借用」宿主复制代码时，宿主被死神杀掉，后代就混用了两者的代码。<strong>「这相当于和死人发生性关系！」</strong><span class="tag t-src">原书</span>
+      </li>
+      <li>★ <strong>间断平衡（punctuated equilibrium）</strong>：Tierra 里出现了长时间的停滞与突然的爆发式变化——与化石记录的模式一致。
+      </li>
+    </ul>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>定向演化（directed evolution）与药物</strong>：Gerald Joyce（Scripps）的 RNA 世界——<strong>10^15 个并行微处理器</strong>。名单：Gilead、Ixsys、Nexagen、Osiris、Selectide、<strong>Darwin Molecule（主要专利持有人是复杂性研究者 Stuart Kauffman）</strong>。诺奖得主 Manfred Eigen 称定向演化是<strong>「生物技术的未来」</strong>。KK 的概括：<strong>「演化出来的药物和理性设计的药物在结果上无法区分。唯一的区别是：演化出来的药有效，而我们不知道它如何或为何有效。……我们管它叫『非理性设计（irrationally designed）』。」</strong><span class="tag t-src">原书</span> ★ 这句话在 2026 年是理解深度学习「黑箱」的完美预言。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一章是全书「演化万能论」最盛的一章，也是最需要打折的一章。</strong> 三十年后看：</p>
+  <ul>
+    <li><strong>说对的</strong>：定向演化确实成了生物技术的主流（2018 年诺贝尔化学奖授予 Frances Arnold 的酶的定向演化——KK 在这一章里写的方法）；蚁群算法、遗传算法成了标准工具箱；「非理性设计」（有效但不知为何）精确预言了深度学习的可解释性困境。
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>拉马克优于达尔文这个结论要小心。</strong> Ackley 与 Littman 的对照实验是在<strong>特定问题、特定参数</strong>下做的，KK 没有追问它的普适性；而且「拉马克式」在蚁群算法里的本质是<strong>信息共享</strong>，这在生物界其实以<strong>文化传递/表观遗传</strong>的形式少量存在。KK 把它写成了一个普适结论。<span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>「演化能造出比工程更复杂的东西」是一个未加限定的断言。</strong> 它成立的前提是<strong>你有可靠的选择压力</strong>。在有明确目标函数的问题上成立；在需要语义、意图、安全约束的系统上不成立——这也是 Hillis 的「演化飞行软件」从未落地的原因。
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>Merkle 关于纳米技术「性」的警告，是全书少有的对失控风险的正面讨论，但只有一页。</strong> 这个比例本身说明了本书的倾向。
+    </li>
+  </ul>
+</section>
+
+<section id="s21">
+  <h2><span class="num">21</span><span>第十六章：控制的未来（第 16 章 · ch16-a–g · 推算 p.339）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>上一章说「演化会带来失控」，这一章问：<strong>那我们到底怎么控制它？</strong> 答案不是「放弃」，而是 <strong>co-control（共同控制）</strong>。这一章的载体是<strong>动画与电影特效</strong>——1994 年最前沿的「人工生命」实验室其实是好莱坞。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>★ <strong>核心隐喻</strong>：《侏罗纪公园》的恐龙是<strong>僵尸</strong>——<strong>「它们有壮丽的仿真躯体，但缺乏自己的行为、自己的意志、自己的求生驱动。它们是被计算机动画师引导的幽灵木偶。但有一天，这些恐龙会变成匹诺曹——被赋予自己生命的木偶。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>物理引擎的诞生（Michael Kass，Apple）</strong>：<strong>「在传统动画里，所有物理知识都必须来自动画师的脑袋。」</strong> 米老鼠下楼梯时，迪士尼是在纸上画出他自己理解的重力。<strong>「这就是为什么侏罗纪恐龙那么逼真——它们抬起腿时，遇到了虚拟的肉的重量。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>L-系统与植物建模</strong>：<strong>Aristid Lindenmayer 1968 年</strong>提出的植物生长数学（今天叫 <strong>L-系统</strong>）；Przemyslaw Prusinkiewicz（卡尔加里大学）用几 KB 的「种子」长出一整株植物。<strong>「伪造一个生物最好的办法，是把它种出来。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>KK 的回答是预测</strong>：<strong>「特效和动画行业是一群控制狂。……他们是对的。但明天，他们就不再对了。如果计算能力继续以现在的速度增长，五年之内我们就会看到一个靠把合成行为释放进合成身体里而创造出来的角色主演一部电影。」</strong><span class="tag t-src">原书</span> ★ 这个预测<strong>错了三十年</strong>——到 2026 年，电影角色的表演核心仍然是<strong>人类演员（含动作捕捉与配音）</strong>，AI 生成角色仍未主演主流电影。这是本书最明确的落空预言之一。
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>Joseph Bates 的 Oz 与 woggles</strong>（卡内基梅隆）：三种颜色的软球，各有性格（羞怯、攻击性、跟随者）。Bates 的问题：<strong>「我研究的问题是：如何在不剥夺用户自由的前提下，把命运强加给用户？」</strong> 而 KK 把它反转成：<strong>「如何在不剥夺人工生命自由的前提下，把命运强加给它？」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ ★ <strong>米老鼠思想实验（全书最精彩的一段，也是本章真正的论点）</strong>：KK 直接写了一个虚构的编年史——2001 年冬，三个 24 岁的图形艺术家在迪士尼片场的拖车里拆解米老鼠；<strong>「1997 年之后，再也没有人画米老鼠了。」</strong> 到 2007 年，米老鼠成了大明星，会说话、会自己特技、幽默感极佳，<strong>「唯一的问题是，他是个很难伺候的混蛋。他会突然发脾气、暴走。导演们恨他。但他们忍了——因为他们见过更糟的——因为，好吧，因为他是米老鼠。」</strong> 而程序员的抱怨是：<strong>「这就像一个生态。你不能拿掉一样东西而不扰动所有东西。」</strong> 另一个说：<strong>「其实，这像一个心理。这只老鼠有真实的人格。你没法把它拆开。你只能绕着它工作。」</strong><span class="tag t-src">原书</span> ★ ★ <strong>这段是理解全书「失控」含义的最佳文本</strong>：失控不是「坏了」，是<strong>「它有性格了，你只能绕着它工作」</strong>。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>「五年之内会出现自主合成角色主演电影」这个预言彻底落空，而且落空的方式很有启发性。</strong> 原因是：<strong>难的不是身体物理，而是表演的语义与意图</strong>——Pixar 的 Guggenheim 在书里已经说清楚了，KK 听到了，但没有听进去。三十年后（生成式视频、Sora、数字人），这个判断依然基本成立：技术能伪造<strong>外表</strong>，但<strong>「演得好」</strong>仍然依赖人类的意图。<span class="tag t-inf">推断</span></p>
+  <p>★ <strong>「动物行为学 → 包容架构」这个类比有真实的洞见，但也有还原论风险。</strong> 把动物的行为还原成一组互相抑制的模块，在<strong>昆虫和鱼</strong>上成立，在<strong>哺乳动物（尤其灵长类）</strong>上要打大折扣。KK 借这个类比把「人格」也说成是模块组合（<strong>「抑郁、欢欣、暴怒都会成为生物操作系统的可加装模块」</strong>）——这是一个<strong>未经验证的强主张</strong>。<span class="tag t-inf">推断</span></p>
+  <p>★ <strong>A320 的例子是本章最诚实的部分，而它的后续恰恰验证了 KK 的担忧。</strong> 他指出 A320 <strong>不提供推翻自动系统的手段</strong>；2009 年法航 447 与 2018/2019 年 737 MAX 的两起空难，正是「人与自动化争夺控制权」这一问题的极端后果。KK 在 1994 年写下这个担忧，是本书最有预见性的段落之一。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s22">
+  <h2><span class="num">22</span><span>第十七章：开放宇宙（第 17 章 · ch17-a–h · 推算 p.361）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>第十四到十六章讲的是「演化能造出什么」，这一章问一个更根本的问题：<strong>演化的空间本身能不能变大？</strong> KK 的答案是——能，这就是<strong>开放宇宙（open universe）</strong>。而开放演化的最终形态，是 <strong>Chris Langton 的人工生命（artificial life）</strong>。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>★ <strong>开篇是养蜂</strong>：KK 自己养过蜂。分蜂群挂在树枝上，你在树下铺白床单、把蜂箱入口搭成斜坡，<strong>猛摇一下树枝</strong>——蜂群像黑色糖浆一样倒在床单上，然后开始<strong>排队走进蜂箱</strong>，因为你凑近能闻到<strong>玫瑰味</strong>——工蜂撅起屁股、狂扇翅膀，从尾部腺体释放信息素：<strong>「蜂后在这里。跟我来。」</strong> 五分钟后床单空了。
+    </li>
+  </ul>
+  <ul>
+    <li>★ ★ <strong>Koza 的双螺旋分类问题（本章最惊人、也最重要的实证）</strong>：给 200 个数据点，让演化找出一个方程式判断每个点落在两条互相缠绕的螺线中的哪一条。Koza 出门度假，机器跑了 10,000 个随机公式，回来时<strong>完美分类了双螺线</strong>。但那个方程式是一坨<strong>两三页长、完全无法理解的嵌套 IFLTE/SIN</strong>——而<strong>任何一个高中代数学生都能写出一行优雅的方程式描述两条螺线</strong>。
+    <ul>
+      <li>★ <strong>Koza 的结论（极重要）</strong>：<strong>「简约性（parsimony）被高估了。它只是一种『人类审美』。自然并不特别简约。」</strong> 他引 David Stork 对<strong>小龙虾尾部神经回路</strong>的分析：那个触发逃跑后翻的电路<strong>繁复得可以随手删掉几个多余回路</strong>，但<strong>这一团乱麻是管用的</strong>。
+      </li>
+      <li>KK 的引申：<strong>「人类追求 f=ma 这样简单的公式，是因为我们天生信仰宇宙底层有优雅的秩序。更重要的是，简单是一种人类的便利。……在计算器和计算机出现之前，简单的方程式更实用，因为更容易算对。但在一定范围内，自然和并行计算机都不为 convoluted 的逻辑所困。」</strong><span class="tag t-src">原书</span>
+      </li>
+    </ul>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>Tom Ray 的金句</strong>：<strong>「演化不在乎什么说得通；它在乎什么管用。」</strong>（Evolution doesn't care about what makes sense; it cares about what works.）<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ ★ <strong>Chris Langton 与人工生命（本章后半部，也是全书最需要批判阅读的部分）</strong>：KK 讲了一个极精彩的人物故事——Langton 越战期间的<strong>良心拒服兵役者</strong>，在麻省总医院做护工，<strong>推着尸体穿过地下通道时，尸体打了个嗝、坐了起来</strong>——<strong>「死物可以表现得像活着一样！生命是行为；这是第一课。」</strong> 后来他在夜班跑 <strong>Conway 的《生命游戏》</strong>，「突然感到房间里有什么活的东西在盯着他」；再后来他在北卡大烟山做悬挂滑翔表演时<strong>坠机，摔断 35 根骨头（包括头骨外所有的头骨）</strong>，康复时他感觉自己的大脑在<strong>「重启」</strong>，于是有了那个顿悟：<strong>「我有过一次『心智生长是什么感觉』的亲身体验。」</strong> 最后，他在 Apple II 上做出了当时已知最小的自复制机器——<strong>一个由 94 个符号组成的蓝色 Q 形循环</strong>。<strong>1987 年，他在洛斯阿拉莫斯发起了第一次人工生命会议。</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ ★ <strong>Langton 最有名的两句</strong>：
+    <ul>
+      <li><strong>「关于人工生命最要紧的一点是：人造的不是生命，而是材料。真实的事情在发生。我们观察到真实的现象。它是人工介质中的真实生命。」</strong><span class="tag t-src">原书</span>
+      </li>
+      <li><strong>「生命是动词，不是名词（Life is a verb not a noun）。」</strong><span class="tag t-src">原书</span>
+      </li>
+    </ul>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★★ <strong>这是全书目的论浓度最高的一章，也是批评者火力最集中的地方。</strong> 「生命在利用我们」「超生命想要进入存在」「我们是中转站」——这些句子把<strong>一个隐喻</strong>当成了<strong>一个主体</strong>。KK 没有提供任何机制说明「生命」如何能有意图。这就是 Barbrook &amp; Cameron 说的<strong>「硅谷意识形态」</strong>的神学内核：用演化论的语言包装了一种<strong>世俗的终末论</strong>。<span class="tag t-inf">推断</span></p>
+  <p>★ <strong>「生命是动词不是名词」这个命题在本体论上是可疑的。</strong> 它有效地打破了碳基沙文主义（这一点有价值），但它同时也把「生命」这个词稀释到几乎无内容——如果电话网络和 Michelangelo 病毒都是「生命」，那「生命」就不再能区分任何东西。KK 意识到了这个张力（他区分了「强 vivisystem」与「松散的」），但没有解决它。</p>
+  <p>★ <strong>Langton 的「我们需要第二个生命样本才能得出普遍原理」这个论证，三十年后看，其目标并未实现。</strong> 人工生命作为一个<strong>独立学科</strong>在 2000 年代后大幅萎缩（Langton 本人后来的学术产出远少于 1990 年代）；而真正改变生物学的也不是人工生命，而是<strong>基因组学、CRISPR 与蛋白质结构预测</strong>。KK 在 2026 年的回顾里列举的「仍未解决的问题」中，<strong>「人工生命的框架」</strong>赫然在列——等于自己承认这一支没走通。<span class="tag t-talk">作者谈话</span></p>
+</section>
+
+<section id="s23">
+  <h2><span class="num">23</span><span>第十八章：有组织的变化的结构（第 18 章 · ch18-a–e · 推算 p.386）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>「变化本身能不能被组织起来？」以及更尖锐的一个：<strong>演化是不是只往前看不到后？有没有可能把后天获得的东西传给基因？</strong> 这一章是全书<strong>理论野心最大、也最容易被批评的一章</strong>——它试图论证拉马克主义在某种意义上是真的，并给出一个「演化的演化」的六阶段史。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>★ <strong>开篇的洞见：演化绝大部分时间在不变。</strong> <strong>「翻开任何一本关于演化的书，书页里流淌的都是变化的故事。……但很少有演化理论的书讲述『不变』的故事。索引里不会列出停滞、固定性、稳定性——尽管演化的绝大部分时间几乎什么都没变。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>「革命」是技术特有的，自然里没有革命。</strong> <strong>「无序变化一直是技术的领域。无序变化的强词是『革命』——一种人造物特有的剧烈、不连续的变化。自然界中没有革命。」</strong> KK 的预测：<strong>「但我预言，日常的革命将被日常的演化所截断。技术领域的最后一场革命，就是拥抱演化式的变化。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ ★ <strong>绕过去的路：遗传同化 / 鲍德温效应</strong>。KK 讲了安第斯山村庄的例子：一批人搬到高原，<strong>身体先靠加快心率和血压去适应</strong>；几千年后，出现了一个<strong>血红蛋白更高效</strong>的突变体，这个突变因为降低了心肺压力而被自然选择扩散。<strong>「看起来这里只有经典的达尔文主义在起作用。但为了让达尔文式演化发生，这个生物首先必须在没有基因改变的情况下在那个生态位里存活很多代。因此，是身体的灵活性让种群存活得足够久，好让突变出现并固定在基因里。」</strong>
+    <ul>
+      <li><strong>C. H. Waddington</strong> 称之为 <strong>genetic assimilation（遗传同化）</strong>；
+      </li>
+      <li><strong>Gregory Bateson</strong> 称之为 <strong>somatic adaptation（躯体适应）</strong>，并把它比作立法——<strong>「明智的立法者很少会主动发起一条新的行为规则；更常见的是，他只限于在法律上确认那已经成为人民习惯的东西。」</strong><span class="tag t-src">原书</span>
+      </li>
+      <li>技术文献里又叫 <strong>Baldwin effect</strong>（J. M. Baldwin，1896 年作为《演化的一个新因素》发表）。
+      </li>
+    </ul>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>KK 引的实证</strong>：<strong>David Ackley 与 Michael Littman（1990）</strong>、<strong>Geoffrey Hinton 与 Steven Nowlan（1987）</strong> 都证明了<strong>会学习的种群演化得更快</strong>。Ackley 与 Littman 的原话：<strong>「我们发现，学习和演化合在一起，比单独任一者更成功。」</strong> 而 <strong>Parisi 与 Nolfi（1991 年欧洲人工生命大会）</strong> 更进一步：<strong>自我引导的学习</strong>（任务由种群自己选）产生了最优的学习速率。他们的大胆主张：<strong>「行为和学是基因演化的原因之一。」</strong><span class="tag t-src">原书</span> ★ 注意：Hinton 就是后来深度学习的三位奠基人之一（2018 年图灵奖）。这是 1987 年。
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>Hinton 与 Nowlan 的重要限定（KK 如实写了）</strong>：<strong>「鲍德温效应大概只在严重『崎岖』的问题上起作用。……有机体创造了它自己的可能性。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ ★ <strong>六阶段「演化的演化」（本章的核心框架）</strong>：
+    <ol>
+      <li>系统的自生成（auto-genesis）
+      </li>
+      <li>复制（replication）
+      </li>
+      <li>基因控制（genetic control）
+      </li>
+      <li>躯体可塑性（somatic plasticity）
+      </li>
+      <li>模因文化（memetic culture）
+      </li>
+      <li><strong>自我导向的演化（self-directed evolution）</strong>
+  <p>KK 说第六阶段<strong>「生物学家们没有讨论过」</strong>，但他认为演化迟早会撞上它。</p>
+      </li>
+    </ol>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★★ <strong>这一章是理解本书「争议」的钥匙，因为 KK 自己把最锋利的批评摆在了桌上，却没有正面回应它。</strong> 他引了 Midgley（演化论无法与其象征/宗教功能分离）、引了 Crosby（「我们看到演化」代替「看到上帝」）、引了德日进（一个天主教神父的神秘主义宇宙论）——这三个人都是<strong>把演化当宗教</strong>的证据。KK 引完就走了，只说<strong>「我不怀疑我们对深层演化隐秘本性的发现也会触动我们的灵魂。」</strong> 这等于承认了指控。<span class="tag t-inf">推断</span></p>
+  <p>★★ <strong>「演化想要……」「演化在寻找……」「演化的职责是……」——这些句子在这章反复出现，全都是目的论句式。</strong> KK 自己辩解说「不是因为它是拟人的」，但<strong>他没有给出非目的论的替代机制</strong>。一个严格的生物学表述应该是：<strong>「具有更高可演化性的谱系在长期中被过度代表」</strong>——这是一个选择结果，不是目标。KK 的写法把选择结果读成了意图。这是本书最容易被严肃批评者（尤其 Grassie、Barbrook &amp; Cameron）抓住的软肋。</p>
+  <p>★ 反过来，<strong>这一章里被低估的宝藏是 Waddington 与 Baldwin 这条线索</strong>。三十年后的<strong>表观遗传学、发育可塑性、以及「学习加速演化」的计算研究</strong>（Hinton &amp; Nowlan 1987 是奠基文献之一），证明 KK 抓的这条线是对的，只是他用了太多目的论语言来包装它。</p>
+</section>
+
+<section id="s24">
+  <h2><span class="num">24</span><span>第十九章：后达尔文主义（第 19 章 · ch19-a–j · 推算 p.402）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>前五章都在说「演化很厉害」，这一章掉头问：<strong>自然选择真的够了吗？</strong> KK 的答案是——不够。他给这批质疑者起了个名字：<strong>后达尔文主义者（postdarwinians）</strong>。这是全书<strong>科学上最冒险、也最需要今天重新核对的一章</strong>。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>★ <strong>开篇是 Lynn Margulis 的狠话</strong>：<strong>「它完全错了。它的错，就像巴斯德之前传染医学的错。它的错，就像颅相学的错。它的每一条主要信条都是错的。」</strong> ——骂的是达尔文主义。<span class="tag t-src">原书</span> KK 交代了她的战绩：1965 年提出<strong>真核细胞的共生起源</strong>（当时被视为荒谬），1974 年与 Lovelock 联合提出<strong>盖娅</strong>。
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>KK 的定性很重要</strong>：<strong>「Margulis 或任何一位后达尔文主义者都不否认自然选择的真实普遍性。他们的分歧在于达尔文论证过于笼统的性质、它最终解释不了多少东西，以及新出现的证据表明达尔文主义单独不足以解释我们看到的一切。」</strong>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>三个关键引用</strong>：
+    <ul>
+      <li><strong>Richard Lewontin</strong>（他本人是新达尔文主义者）：<strong>「自然选择什么也解释不了，因为它解释了一切。」</strong><span class="tag t-src">原书</span>
+      </li>
+      <li><strong>Karl Popper</strong>：新达尔文主义根本不是科学理论，因为它不可证伪——<strong>「无论达尔文还是任何达尔文主义者，迄今都没有对任何单一生物或任何单一器官的适应性演化给出过实际的因果解释。」</strong><span class="tag t-src">原书</span>
+      </li>
+      <li><strong>达尔文自己</strong>写给 Asa Gray：<strong>「关于弱点我同意。眼睛到今天还让我不寒而栗。」</strong>
+      </li>
+    </ul>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>模拟作为第三种科学方法（本章最重要的元观点）</strong>：<strong>「计算机催生了做科学的第三种方式：模拟。模拟同时是理论也是实验。……人工演化对于自然演化，既是一个理论，也是一个检验。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>「没有人在有记录的历史中目睹过新物种的涌现」</strong>：KK 列出了一个强观察——<strong>野外没有、驯养育种里也没有（果蝇研究里数亿代、软硬压力都加过），计算机生命里也没有。</strong> 而 Tom Ray 的 Tierra 也不例外：<strong>「大多数计算生命的运行很快就失去了新奇性。……基于朴素自然选择的计算生命，并没有出现它的创造者和我都渴望看到的开放演化的奇迹。」</strong> 引法国演化论者 Pierre Grassé：<strong>「变异是一回事，演化完全是另一回事……突变提供变化，但不提供进步。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>Margulis 的金句</strong>：<strong>「自然选择是编辑，不是作者。」</strong>（Natural selection is the editor, not the author.）以及：<strong>「哦，随机性只是无知的借口。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>定向突变（directed mutation）——本章科学上最脆弱的部分</strong>：KK 详述了 <strong>John Cairns（哈佛，1988）</strong> 与 <strong>Barry Hall</strong> 的大肠杆菌实验。Hall 的结果：<strong>「他培养的大肠杆菌产生所需突变的速率，比按概率随机出现高出约一亿倍。」</strong> 而且<strong>「当他测序解剖这些突变菌的基因时，他发现有突变的地方，只在有选择压力的那一个区域。」</strong> 甚至有些定向变异<strong>需要两个基因同时突变</strong>——Hall 称之为<strong>「不可能叠在极不可能之上」</strong>。<span class="tag t-src">原书</span>
+    <ul>
+      <li>★ <strong>但 KK 也如实写了学界的反应</strong>：<strong>「在他们能阐明一个愚蠢的细菌如何知道需要哪个突变的机制之前，很少有分子遗传学家准备放弃严格的达尔文主义。」</strong>
+      </li>
+    </ul>
+    </li>
+  </ul>
+  <ul>
+    <li>★ ★ <strong>KK 罕见地写了一段读者可能不爱听的话</strong>：<strong>「化石记录中中间类型的严重而明确的缺失是一个事实。神创论者为此幸灾乐祸，但这不该诱使其他人忽视它。」</strong> 他接着引 Stephen Stanley：<strong>「已知的化石记录未能记载任何一个渐变式（phyletic）演化完成重大形态转换的例子，因此没有提供证据支持渐变模型的有效性。」</strong> 以及 Gould 那段著名的两条：<strong>「1. 停滞。……2. 突然出现。……」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★★ <strong>这一章必须做一次「三十年后」的科学核对，因为它是全书最容易误导读者的一章。</strong></p>
+  <ul>
+    <li>✅ <strong>共生（Margulis）赢了，而且是彻底赢的。</strong> 真核细胞的内共生起源现在是教科书内容；<strong>水平基因转移</strong>在微生物中的普遍性也被完全证实（KK 1994 年就写对了）。
+    </li>
+  </ul>
+  <ul>
+    <li>⚠️ <strong>盖娅（Lovelock &amp; Margulis）没有赢。</strong> 强盖娅（地球是一个自我调节的超级organisms）从未被主流接受；弱版本（生物圈与地圈强耦合）以「地球系统科学」的形式存活下来。KK 在书里两种版本混用。
+    </li>
+  </ul>
+  <ul>
+    <li>❌ <strong>定向突变（Cairns / Hall）基本被否定了。</strong> 1990 年代的后续工作（尤其 <strong>John Roth、Susan Rosenberg</strong> 等）表明，Cairns 的实验结果可以用<strong>选择性的扩增 + 高突变率亚群（hypermutable subpopulations）</strong>来解释，<strong>不需要「细菌知道该突哪个基因」</strong>。这一支现在是<strong>表观遗传学与压力诱导突变</strong>（一个弱得多的命题）的领域，而不是拉马克主义的复活。KK 引用时已经加了限定，但<strong>他显然希望它是对的</strong>，读者要自己打折。<span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>KK 说「没有人在野外目睹过新物种形成」——这个说法在三十年后也需要更新。</strong> 现在已有不少<strong>实时观测到的物种形成</strong>案例（如加拉帕戈斯 finch 的「大鸟」谱系、伦敦地铁蚊子、苹果实蝇的寄主转移、Stewart &amp; Schluter 的刺鱼等）。KK 的观察反映 1994 年的知识状态。
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>本章真正的价值不在于它的结论，而在于它提出了正确的元问题</strong>：自然选择是<strong>必要但不充分</strong>的吗？这个问题三十年后依然是演化生物学的活跃议题（如「扩展演化综合 / Extended Evolutionary Synthesis」的争论）。KK 站对了问问题的位置，尽管他押的具体机制大多没中。
+    </li>
+  </ul>
+</section>
+
+<section id="s25">
+  <h2><span class="num">25</span><span>第二十章：蝴蝶在沉睡（第 20 章 · ch20-a–e · 推算 p.433）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>「如果自然选择不够，那秩序还从哪里来？」——KK 的答案是 <strong>Stuart Kauffman 的「免费秩序（order for free）」</strong>：复杂网络本身就会自发产生秩序，<strong>不需要自然选择，也不需要设计</strong>。章名「蝴蝶在沉睡」来自 KK 的一句话：当整个科学界都看到混沌的蝴蝶在到处扇动非线性效应时，<strong>Kauffman 问的是——也许混沌的蝴蝶是在睡觉的？</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>★ <strong>Kauffman 的顿悟时刻</strong>：三十年前他是达特茅斯学院的医学生，站在书店橱窗前发呆，想象一本写着自己名字的书——<strong>书页里画满了箭头连接箭头的网</strong>。他突然确信：<strong>从随机的混乱中会意外地生出秩序——一个organisms 的架构。从混沌中无缘无故地产生秩序：免费的秩序。</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>他的问题</strong>：<strong>「如果你只是把基因随机连起来，你会得到任何看起来有用的东西吗？」</strong> 以及那个更大胆的版本：<strong>「把果蝇的所有基因都换成随机基因，你不会得到果蝇，但你会得到与果蝇在自然过程中产生的同等级别的怪物和畸形突变。」</strong>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>Jacob 与 Monod 1961 年发现调节基因</strong>：<strong>「什么控制基因？别的基因！那什么控制那些基因？别的基因！那……」</strong> ——这个螺旋正是 Kauffman 图像里的箭头网。
+    </li>
+  </ul>
+  <ul>
+    <li>★ ★ <strong>「复杂性灾难（complexity catastrophe）」与最优连接度——本章最有现实穿透力的部分</strong>：
+    <ul>
+      <li>Kauffman 调节网络的<strong>连接度</strong>，画出一座山：连接太少 → 僵化停滞；<strong>连接太多 → 「复杂性灾难」——互相冲突的影响太多，整个区块陷入僵死的瘫痪</strong>；中间有一个<strong>「刚刚好」的峰值</strong>。
+      </li>
+      <li><strong>最反直觉的是那个数字：最优连接度非常低，「在个位数以内」</strong>。有数千个成员的大型网络，<strong>平均每个成员少于十条连线时适应得最好，有些网络每个节点平均不到两条就到顶了。</strong>
+      </li>
+      <li><strong>第二个意外</strong>：这个最优值<strong>几乎不随网络规模波动</strong>——<strong>「要演化得最快，就增加成员，但不要增加平均连接数。」</strong>（这印证了 Craig Reynolds 在 boids 里的发现。）
+      </li>
+    </ul>
+    </li>
+  </ul>
+  <ul>
+    <li>★ ★ <strong>KK 的即时应用（本书最被低估的先见之明之一）</strong>：<strong>「我们这些后现代的通信成瘾者也许该注意这一点。在网络社会中，我们同时在抬高连接的总人数（1993 年，全球网络的网络正以每月增加 15% 用户的速度扩张！），以及每个成员所连接的人与地的数量。传真、电话、直邮、商业和政府的大型交叉引用数据库，实际上都在增加每个人之间的连线。这两种扩张都不会特别提高我们这个系统（社会）整体的适应能力。」</strong> 以及结论：<strong>「断连是一种刹车，用来阻止系统过度连接，让我们的文化系统保持在最大可演化性的边缘。」</strong><span class="tag t-src">原书</span> ★ 这段话写在社交媒体出现前十年。
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>Mitch Waldrop《复杂》里的总结</strong>：<strong>「你会预期学习和演化使混沌边缘变得稳定。」</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>「免费秩序」这个主张三十年后仍然未被证实，也未被否证——它悬在那里。</strong> Kauffman 的布尔网络模型（NK 模型）在数学上是清晰的，但<strong>「基因数与细胞类型数的平方根关系」</strong>这个关键的经验对应，一直是有争议的；而<strong>「生命是必然的」</strong>这个最强主张，我们在<strong>只有一个样本</strong>的情况下无法检验。KK 把 Kauffman 的直觉当成了近乎确立的发现来写，读者的正确态度是<strong>「一个美丽而未证实的假说」</strong>。<span class="tag t-inf">推断</span></p>
+  <p>★ <strong>「细胞类型数量与选择无关」这个推论特别需要打折。</strong> 三十年后我们知道细胞类型的分化高度依赖<strong>具体的调控程序与选择历史</strong>，纯拓扑的解释力有限。KK 自己也写了 Kauffman 的谨慎：<strong>「你得说这只是一些人在想的疯狂念头。」</strong></p>
+  <p>★★ <strong>本章最有价值、也最被低估的，是「最优连接度很低」和「断连是一种刹车」这两条。</strong> 这不是预言，这是<strong>洞见</strong>——而 2020 年代的「信息过载」「注意力经济」「数字断食」「退出群聊」，都在验证它。本书真正历久弥新的部分就在这里，而不是在那些技术预言上。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s26">
+  <h2><span class="num">26</span><span>第二十一章：上升之流（第 21 章 · ch21-a–d · 推算 p.453）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>第二十章讲了「秩序从哪来」，这一章问一个更大的问题：<strong>生命违反热力学第二定律吗？有没有一个「生物学的第二定律」？</strong> 这是全书<strong>形而上学浓度最高的一章</strong>，也是 KK 最坦白地承认自己「可能是在做梦」的一章。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>★ <strong>「等待卡诺（Waiting for Carnot）」</strong>：KK 说复杂性研究者圈子里流传着一个笑话——<strong>「今天的生物科学在『等待卡诺』。」</strong> 1824 年法国军事工程师 Carnot 导出热力学第二定律，而<strong>生物学没有宏大理论</strong>。<strong>「理论生物学家觉得自己就像热力学出现之前的那批 19 世纪热学家。……正如卡诺用他的热寂与坠入无序的统摄性定律框定了物理学，一些理论生物学家希望有一条生物学的第二定律。」</strong> 而笑点在于：贝克特的《等待戈多》里，戈多<strong>永远不来</strong>。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>Waddington 的俏皮话</strong>：<strong>「生命可以被定义为『侥幸逃脱的艺术（the art of getting away with it）』。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ ★ <strong>KK 的自我辩护（本章最值得称赞的一段）</strong>：<strong>「生命可能以金字塔骗局的方式运作……」「进步散发着人类中心主义的味道。对某些人来说，它散发着宗教的味道。」</strong> 他接着指出：<strong>「达尔文理论最早的、最热忱的支持者中有一批新教神学家和神学院学生。这是人类统治地位的科学证据。达尔文主义为一个有序的行进提供了美丽的模型：从无感知的生命一路行进到已知完美的顶峰：人类男性。」</strong> 以及达尔文理论<strong>被滥用来支撑种族主义</strong>的历史。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ ★ <strong>KK 最重要的反驳：演化的球体模型（我读过的最好的反进步论证）</strong>：想象所有生命后代构成一个缓慢膨胀的球，<strong>半径是时间</strong>，每个物种是球面上的一个点。<strong>「球面上所有的点离最初的生命都是等距的；因此没有一个比另一个优越。在任一时刻，球面上的所有生物都是同等演化的。……说白了，人类并不比大多数细菌演化得更高级。」</strong> 而且：<strong>「盯着这个球形图看，很难想象人类这一个点怎么可能是整个球的顶点。也许其他三千万个共同演化的点中的任何一个——比如火烈鸟，或者毒葛——才是演化的全部意义所在。……在自然界中没有顶峰，只有一个十亿个点的球面。你做什么不重要，只要你能成。」</strong> 以及：<strong>「有些悲观主义者给大肠杆菌开出 100 比 1 的赔率，赌它比人类活得长——尽管大肠杆菌目前只能活在我们的肠子里。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>倒放生命录像带（KK 用 Gould 的《奇妙的生命》做思想实验）</strong>：如果倒着放，生命会<strong>从三千万种 collapse 成一个自我复制的小蛋白质斑点</strong>。KK 问来自 Thor 星的朋友：<strong>「这个小斑点是起点还是终点？」</strong> 答案是：生命有时间的方向，但<strong>「新达尔文主义者会争辩说，除此之外什么都不确定。」</strong>
+    </li>
+  </ul>
+  <ul>
+    <li>★ ★ <strong>「超演化的七种趋势（the Trends of Hyperevolution）」</strong>——本章的核心清单：
+    <ol>
+      <li><strong>不可逆性（Irreversibility，Dollo 定律）</strong>——<strong>「技术一旦被发明，就绝不会被『不发明』。」</strong> 引 Vernadsky：<strong>「原子一旦被卷入生命物质的洪流，就不会轻易离开它。」</strong>
+      </li>
+      <li><strong>复杂性的增加</strong>
+      </li>
+      <li><strong>多样性的增加</strong>
+      </li>
+      <li><strong>个体数量的增加</strong>
+      </li>
+      <li><strong>特化的增加</strong>
+      </li>
+      <li><strong>共依赖的增加</strong>
+      </li>
+      <li><strong>可演化性的增加</strong>
+      </li>
+    </ol>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★★ <strong>「上升之流」是全书最明确的形而上学主张，也是最缺乏证据的。</strong> KK 自己也反复标注了不确定性（「也许这个相当诗意的愿景只是我一个人的」），但整个章节的基调是<strong>信仰式的</strong>。三十年后看，<strong>「生物学的第二定律」仍然没有出现</strong>——最接近的候选是 <strong>Jeremy England 的「耗散适应（dissipative adaptation）」理论（2013 年起）</strong>，但它的适用范围和解释力都远小于热力学第二定律，且争议很大。KK 在 2026 年的回顾里把<strong>「为什么外熵系统能运作」和「复杂性的度量」</strong>列为<strong>仍未解决</strong>的问题——等于自己承认这一章的核心问题至今未解。<span class="tag t-talk">作者谈话</span></p>
+  <p>★★ <strong>「演化朝着它自己移动」这个命题在逻辑上是空的。</strong> 它无法被证伪：任何观察到的现象（更多物种、更少 disparity、停滞、爆发）都可以被解释为「演化在实现自己」。KK 在第十九章里引用了 Popper 批评新达尔文主义不可证伪——<strong>而他自己的「上升之流」同样不可证伪</strong>。这是本书最需要读者警惕的地方。<span class="tag t-inf">推断</span></p>
+  <p>★ <strong>七趋势中的每一条都需要打折。</strong> 尤其「复杂性增加」——<strong>三十年后这个问题仍然是开放的</strong>。Gould 的「必须先造简单的」这个反驳（它是一种左墙效应 / 被动趋势）现在被很多人认为是足够的解释，而不需要一个主动的「驱动」。KK 提出的九种驱动理论清单很有价值，但他没有在它们之间做裁决。</p>
+</section>
+
+<section id="s27">
+  <h2><span class="num">27</span><span>第二十二章：预言机（第 22 章 · ch22-a–j · 推算 p.477）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>前二十一章反复说「没有人掌舵」。这一章处理最自然的反驳：<strong>如果没有人掌舵，那还能不能预测？</strong> KK 的答案是分层的：<strong>长期社会预测基本没戏，短期「可预测性口袋（pockets of predictability）」不但可能而且必要</strong>——而预测本身就是一种控制方式（feedback 与 feed-forward）。这是全书<strong>方法论最扎实、也最实用的一章</strong>。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>★ <strong>开场：Doyne Farmer 在洛斯阿拉莫斯</strong>。KK 请他谈未来，Farmer 的回答把预测与控制绑在一起。<strong>John Holland 的话是本章的题眼</strong>：<strong>「预期（anticipation）就是复杂适应系统所做的事。」</strong> 也就是说，预测不是人类特有的奢侈品，而是任何活系统的基本运作。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ ★ <strong>接高飞球 vs f=ma（全书最好的认识论例子之一）</strong>：外野手接球<strong>不是</strong>靠解微分方程，而是靠一种<strong>归纳（induction）</strong>——跑动中不断微调，让球在视野里保持相对恒定的角度。<strong>KK 指出：托勒密的本轮（epicycles）也是归纳</strong>——它预测得很好，但「不理解」为什么。归纳法的力量与危险，在这一章里被讲得最清楚。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ ★ <strong>圣克鲁斯「混沌帮（Chaos Cabal）」的轮盘赌计算机（1977）</strong>：一群物理学家把电脑塞进鞋里，<strong>用脚趾按键</strong>，内存只有 <strong>4K</strong>，却能把轮盘球的落点预测出一个 <strong>约 15 秒的窗口</strong>。Farmer 总结的三条教训是本章的精华（大意）：① 必须在系统内部实时建模，② 预测窗口极短但足够，③ 你不能公开宣称成功否则赌场会改规则。这段是<strong>本书最像「黑客行动」的一节</strong>，也是后来《The Eudaemonic Pie》（KK 在书后的注释书目里推荐了这本书）讲的故事。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ ★ <strong>「正向近视（positive myopia）」</strong>——本章最有原创性的概念。Geanakoplos 与 Gray 造了一个<strong>国际象棋测试床</strong>：让程序在<strong>极短的时间视野</strong>内评估局面（只看眼前两步），结果打败了看重「长期局面」的程序。原因：<strong>特级大师的经验法则（rules of thumb）本来就是局部的</strong>。KK 把这类局部经验法则写成了一组 <strong>「给我女儿的便条（Notes to my daughters）」</strong>——这是全书最有人味的一段。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>David Berreby 的白水比喻</strong>：预测社会就像在激流里划船——你不需要预见每一朵浪花，只需要<strong>在下一个三秒内不翻船</strong>。
+    </li>
+  </ul>
+  <ul>
+    <li>★ ★ <strong>JPL 与「内部观察行动（Operation Internal Look）」——本章最惊人的真实故事</strong>：KK 去 JPL 参观一个坦克战模拟，JPL 的负责人紧张地拒绝给他看，理由是——<strong>他们一年前随手挑的一个「沙漠战争」想定，现在正在真实发生</strong>。KK 随后挖出更硬的一例：美军中央司令部的 <strong>Gary Ware</strong> 从 1989 年起按施瓦茨科普夫的直觉（<strong>「苏联这条狗不会去打猎。」</strong>）建了一个中东沙漠战争模型，收集了<strong>十万条细节</strong>数据，把科威特与沙特压进<strong>光盘</strong>（激光地图 + 卫星数字影像），跑在 <strong>TACWAR</strong> 上。<strong>1990 年 7 月</strong>，Ware 向长官汇报：如果伊拉克入侵沙特，战争大约 <strong>30 天</strong>。<strong>两周后，萨达姆入侵科威特。</strong> Ware 说：<strong>「如果我们在入侵时才从零开始，永远也赶不上。」</strong> 模拟还给出了关键结论：<strong>空中力量是决定性的，且美军伤亡可控</strong>——这直接塑造了后来的重空中战役。而预测也有偏差：模拟预期 6 天地面战，实际是 <strong>100 小时</strong>；且模拟高估了伊军抵抗——<strong>「兵棋手们打趣说：没有哪个模型把白旗当成一种武器系统。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ ★ <strong>图表派 vs 基本面派</strong>：基本面派要理论（<strong>f=ma</strong>），图表派要模式（不管为什么）。KK 站在图表派一边，并给出漂亮的辩护：<strong>「如果宇宙里有秩序，那么某处、某种方式，所有复杂性都会——至少是片刻地——显露出指向它未来路径的秩序。」</strong> 学术界的平反来自 <strong>Richard J. Sweeney 与 Blake LeBaron</strong>：图表规则虽然简陋（<strong>「涨了一阵就赌它继续涨；跌了一阵就赌它继续跌」</strong>），但<strong>胜过随机</strong>。Farmer 大方承认他们<strong>「统计上严格的图表派」</strong>。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★★ <strong>「一旦连线，一个社会就能看见它自己」——这一节是本书的荣耀，也是本书最大的盲区。</strong> KK 在 1994 年把「透明」默认理解为<strong>自上而下的透明度提升 = 更好的自我治理</strong>。他没有预见到：同一个透明介质会反过来支撑<strong>监控资本主义（surveillance capitalism）</strong>、平台垄断与算法权力。<strong>三十年后读，这一节必须从乐观调成双刃。</strong> KK 自己在 2026 年的回顾里点名了这一处：<strong>「这本书的过失在于它遗漏了什么……我没有探索或处理新闻与信息的系统，也没有处理社交网络，现在看来这是一个巨大的疏漏。」</strong><span class="tag t-talk">作者谈话</span></p>
+  <p>★★ <strong>《增长的极限》批评：一半对了，一半被时间打了折。</strong> KK 说资源没有耗尽、价格没有上涨——在 1994 年成立；但 2000 年代的大宗商品超级周期、稀有金属与磷的供应焦虑，以及<strong>气候变化把「污染随增长上升」这个 1992 年修订假设重新变成硬约束</strong>，让他的乐观显得草率。更关键的是：<strong>真实世界的运行轨迹更接近 Meadows 的「过冲」，而不是 KK 的「分布式学习会自动救场」</strong>——至少在碳排放这件事上，三十年来分布式学习并没有自动发生。这是本书<strong>最需要被点名打折的一条乐观主义</strong>。</p>
+  <p>★ <strong>Prediction Company 的业绩是本书少数几个 KK 主动标注为「无法核实」的断言。</strong> 他明写 Farmer 不肯透露具体数字，只肯说「统计上显著」。这值得称赞（诚实的边界感），也意味着读者不能把「他们赚了大钱」当成已证事实。</p>
+</section>
+
+<section id="s28">
+  <h2><span class="num">28</span><span>第二十三章：整体、空洞与空间（第 23 章 · ch23-a–e · 推算 p.499）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>倒数第二章，KK 收束两条线：<strong>一条是思想史（控制论从哪来、为什么消失），一条是认识论（我们不知道什么，以及「不知道」为什么重要）</strong>，最后落到<strong>超文本／网络如何重塑「知识的空间」</strong>。这是全书<strong>自反性最强的一章</strong>——KK 在这里坦白了自己的写作方法。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>★ ★ <strong>1959 年 5 月，芝加哥，「自组织系统」会议</strong>——本章开场是一段极好的历史复原。<strong>四百名</strong>来自心理学、语言学、工程、胚胎学、物理、信息论、数学、天文与社会科学的人聚在一起。海军研究办公室研究主任 <strong>Joachim Weyl</strong> 的开场白里已经点明了三件事：<strong>记忆（memory）</strong>、<strong>分化（differentiation，即突变 + 环境噪声作为触发机制）</strong>、<strong>从属／执行功能（subordination）</strong>。KK 的反应是全书最动人的一句自白：<strong>「一击之下，35 年前的 Weyl 博士就勾出了我整本 1994 年关于适应性分布式系统的书。」</strong> 但他紧接着给出反面：<strong>「35 年来我们对整体系统的知识进展得多么少」</strong>——那些关于自组织、分化与从属的基本问题<strong>仍然神秘</strong>。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ ★ <strong>「控制论到底怎么了？」——KK 给出三条解释（这是全书最扎实的一段思想史）</strong>：他先摆出困惑：这本书写的是复杂系统，可<strong>「控制论（cybernetics）」这个词在书里几乎不出现</strong>，而且老一辈控制论者没有一个在和年轻一代一起工作，<strong>「就好像有一整代失落的人，知识传递上有一个洞」</strong>。三条解释是：
+    <ol>
+      <li><strong>被 AI 抽干了经费。</strong> AI 只是控制论的一个面，却拿走了绝大部分政府与大学经费，研究生跑了过去，其余领域枯死；<strong>然后 AI 自己也停滞了</strong>。
+      </li>
+      <li><strong>死于批处理计算（batch-mode computing）。</strong> 控制论大多是「嘴上的东西」——验证它的实验需要<strong>一台全功率计算机长时间处于完全探索模式</strong>，而这恰恰是<strong>看管大型机的祭司阶层最不愿意给的</strong>。Langton 最早的人工生命实验是在<strong>Apple II</strong> 上做的；Farmer 他们靠<strong>自己造计算机</strong>发现了混沌。<strong>传统控制论需要的、却从未得到的，是对一台完整通用计算机的实时支配权。</strong>
+      </li>
+      <li><strong>被「把观察者放进盒子里」勒死。</strong> Heinz von Foerster 1960 年提出<strong>二阶控制论（Second Order Cybernetics，观察系统的系统）</strong>，在家庭治疗等领域有用，但滑向<strong>无限回退</strong>（治疗师录像、社会学家录治疗师看录像、再录自己看治疗师……）。到 1980 年代，<strong>美国控制论学会的名册里塞满了治疗师、社会学家和政治学家</strong>。
+  <p>KK 补一刀：<strong>「我不相信英语世界里曾经写出过一本正式的控制论教科书。」</strong> 而他也承认：<strong>《失控》的一句话摘要就是「它是控制论研究现状的一次更新」</strong>。<span class="tag t-src">原书</span></p>
+      </li>
+    </ol>
+    </li>
+  </ul>
+  <ul>
+    <li>★ ★ ★ <strong>全书最需要打折的一句断言</strong>：<strong>「在『计算机化』这件事上，没有人比乔治·奥威尔《1984》错得更厉害。到目前为止，计算机所创造的实际可能性空间几乎每一处都表明：它们是权威的终结，而不是权威的开端。」</strong> 紧接着：<strong>「批评者指责计算机助长同质化、通过自动化制造整齐划一，但电子阅读与写作的效果恰恰相反。」</strong> 计算机助长的是<strong>异质性、个体化与自主</strong>。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★★ <strong>「奥威尔错得最厉害」是本书最著名的判断，也是三十年后最需要打折的一句。</strong> KK 的推理链是：<strong>网络在架构上去中心 → 所以权力必然去中心 → 所以权威终结</strong>。这个推理跳了一步：<strong>架构的去中心化不等于权力的去中心化</strong>。2020 年代的互联网在<strong>协议层</strong>仍然是去中心、无中心的（这一点 KK 说对了），但在<strong>应用层与商业层</strong>高度集中于少数平台寡头；而同一个透明介质支撑的<strong>监控与行为操纵能力，远超《1984》的想象</strong>。KK 在 2026 年自承的盲区——<strong>「我没有处理新闻与信息的系统，也没有处理社交网络」</strong>——正是从这一章的乐观里长出来的。<span class="tag t-talk">作者谈话</span></p>
+  <p>★★ <strong>「AI 会是聪明的但不像人」——这条应验得非常漂亮。</strong> 从 AlphaGo 的「第 37 手」到 LLM 的思维链，2020 年代最有说服力的 AI 恰恰是<strong>不模仿人类推理路径</strong>的那些。同一段的后半句（<strong>「会有我们根本无法理解的思维方式，但我们仍然会使用它们」</strong>）几乎是对今天可解释性困境的精准预言。</p>
+  <p>★ <strong>「我不相信英语世界里曾经写出过一本正式的控制论教科书」——这是一条可核查、也几乎肯定是夸张的断言</strong>（Ashby《An Introduction to Cybernetics》1956、Wiener《Cybernetics》1948 都是标准教材级著作）。KK 的意思大概是「没有一本被共同体公认的标准教科书」，但字面陈述站不住。</p>
+</section>
+
+<section id="s29">
+  <h2><span class="num">29</span><span>第二十四章：上帝的九律（第 24 章 · ch24-a–b · 推算 p.516）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p>终章。KK 把整本书压成一张<strong>可操作的设计清单</strong>：<strong>如果你想从无中造出有（make something from nothing），照这九条办。</strong> 这是全书<strong>被引用最多、也最容易被当成「灵丹妙药」的一章</strong>，因此下面的逐条解释会同时给出<strong>原书定义</strong>与<strong>三十年后的检验</strong>。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>★ ★ <strong>开场的问题</strong>：<strong>「从无中，自然造出了有。先有坚硬的岩石行星；然后有生命，很多生命。先是荒山；然后是有鱼、有香蒲、有红翅黑鹂的小溪。先是一颗橡子；然后是一片橡树林。我想能做到这个。先是一块金属；然后是一个机器人。先是几根电线；然后是一个心智。先是一些古老的基因；然后是一只恐龙。」</strong> <strong>「你怎么从无中造出有？」</strong> KK 坦承：光看自然没学到多少，<strong>我们更多是从自己创造复杂性时的失败中学到的</strong>。于是他从计算机科学的前沿、生物学研究的边缘、跨学科实验的奇怪角落里，编出了 <strong>「上帝九律（The Nine Laws of God）， governing the incubation of somethings from nothing」</strong>。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ ★ ★ <strong>九律原文（kk.org 第二十四章 ch24-a，此处为完整逐字清单，本书全部核心主张的压缩版）</strong>：
+    <ol>
+      <li><strong>Distribute being（分布式存在）</strong>
+      </li>
+      <li><strong>Control from the bottom up（自下而上的控制）</strong>
+      </li>
+      <li><strong>Cultivate increasing returns（培养递增回报）</strong>
+      </li>
+      <li><strong>Grow by chunking（模块化／分块成长）</strong>
+      </li>
+      <li><strong>Maximize the fringes（最大化边缘）</strong>
+      </li>
+      <li><strong>Honor your errors（尊重你的错误）</strong>
+      </li>
+      <li><strong>Pursue no optima; have multiple goals（不求最优；多目标并行）</strong>
+      </li>
+      <li><strong>Seek persistent disequilibrium（追求持续的非均衡）</strong>
+      </li>
+      <li><strong>Change changes itself（变化本身在变化）</strong>
+  <p>KK 的限定（务必一起读）：<strong>「我当然不是说它们是『从无造有』所需要的唯一定律；但在复杂性科学里积累起来的众多观察中，这些原则是最宽、最清晰、最有代表性的概括。我相信，只要守住这九条，一个人作为上帝可以走得相当远。」</strong><span class="tag t-src">原书</span></p>
+      </li>
+    </ol>
+    </li>
+  </ul>
+  <h4>九律逐条</h4>
+  <ul>
+    <li><strong>① 分布式存在（Distribute being）</strong>：<strong>「蜂巢的精神、一个经济体的行为、一台超级计算机的思考、以及我体内的生命，都分布在大量更小的单元之上（而这些单元本身可能也是分布式的）。当部分之和能大于部分时，那多出来的『存在』（那个从无中来的某物）就分布在各个部分之中。每当我们发现『从无中来的某物』，我们都会发现它从一大片相互作用的小件中升起。我们觉得最有趣的那些谜——生命、智能、演化——都在大型分布式系统的土壤里。」</strong>
+  <p>→ <strong>位置</strong>：第二十四章 ch24-a；<strong>回指</strong>：第二章「蜂群思维」（hive mind）、第十一章网络经济。这是<strong>全书第一原理</strong>，也是「涌现」的操作性定义。</p>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>② 自下而上的控制（Control from the bottom up）</strong>：<strong>「当一切都与一切相连、形成一个分布式网络时，一切同时发生。当一切同时发生，广泛而快速移动的问题就会绕过任何中央权威。因此，整体的治理必须来自那些最卑微的、局部并行完成的相互依赖的行为，而不是来自一个中央指令。一个群氓（mob）可以自己掌舵；而在快速、大规模、异质变化的疆域里，只有群氓能够掌舵。要从无中得到有，控制必须停留在底部，停留在简单之中。」</strong>
+  <p>→ <strong>位置</strong>：ch24-a；<strong>回指</strong>：第二章「分布式治理」、第十六章「控制的未来：伙伴关系、共同控制」。</p>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>③ 培养递增回报（Cultivate increasing returns）</strong>：<strong>「你每使用一个观念、一种语言或一项技能，你就强化它、加固它，使它更可能被再次使用。这就是正反馈或滚雪球。成功孕育成功。在福音书里，这条社会动力学原则被称为：『凡有的，还要加给他。』任何改变自身环境以增加自身产出的东西，都在玩递增回报的游戏。而所有大型的、可持续的系统都在玩这个游戏。」</strong> KK 补：<strong>「地球上的生命改变地球以生出更多生命。信心建立信心。秩序产生更多秩序。有的，还要加给他。」</strong>
+  <p>→ <strong>位置</strong>：ch24-a；<strong>回指</strong>：第十一章「传真机效应（the fax effect）」——<strong>这是 KK 版本的「网络效应定律」，注意全书从头到尾一次也没提 Metcalfe</strong>。</p>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>④ 分块成长（Grow by chunking）</strong>：<strong>「造出一个能工作的复杂系统的唯一办法，是先造一个能工作的简单系统。试图一步到位地安装高度复杂的组织——比如智能或市场经济——而不经过成长，不可避免地导致失败。装配一片草原需要时间——哪怕你已经有了所有的部件。需要时间让每个部件与其他所有部件相互试炼。因此，复杂性是通过从可以独立运作的简单模块开始、 incremental 地组装出来的。」</strong>
+  <p>→ <strong>位置</strong>：ch24-a；<strong>回指</strong>：第四章「装配复杂性」、第十四章 Sims 的「受约束的胚胎学」。<strong>这是今天软件工程「模块化 + 持续集成 + 增量发布」的直系祖先表述。</strong></p>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>⑤ 最大化边缘（Maximize the fringes）</strong>：<strong>「异质性之中，有世界的创造。一个均质的实体只能靠偶尔翻天覆地的革命来适应世界，而其中必有一次会杀死它。相反，一个多样的、异质的实体可以用一千个日常的小革命来适应世界，停留在一种永久的、但从不致命的搅动状态中。多样性偏爱遥远的边界、郊区、隐蔽的角落、混沌的时刻与孤立的集群。在经济、生态、演化与制度的模型里，一个健康的边缘会加速适应、增加韧性，并且几乎总是创新的来源。」</strong>
+  <p>→ <strong>位置</strong>：ch24-a；<strong>回指</strong>：第十章「为拆解而设计」、第十九章后达尔文主义。<strong>今天的对应物是「边缘创新／创新者的窘境」，但也要警惕：边缘创新极易被平台收割。</strong></p>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>⑥ 尊重你的错误（Honor your errors）</strong>：<strong>「一个诀窍只会管用一阵子，直到所有人都在用它。要从平凡中前进，就需要一个新游戏，或一片新领地。但走出常规方法、常规游戏或常规领地的过程，与犯错无从区分。即便是最才华横溢的人类天才之举，归根到底也是试错之举。」</strong> 引 <strong>William Blake</strong>：<strong>「成为一个错误并被逐出，是上帝设计的一部分。」</strong> KK 的总结句：<strong>「错误，无论随机还是刻意，必须成为任何创造过程的组成部分。演化可以被视为系统化的错误管理（systematic error management）。」</strong>
+  <p>→ <strong>位置</strong>：ch24-a；<strong>回指</strong>：第十五章 Tom Ray 的 Tierra（寄生者、骗子、「与死人的性」）、David Ackley <strong>「死亡是最差的老师」</strong>。</p>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>⑦ 不求最优；多目标并行（Pursue no optima; have multiple goals）</strong>：<strong>「简单的机器可以是高效的，但复杂的适应性机械不可能。一个复杂的结构有许多主人，其中没有一个能被独占式地服务。与其追求任何单一功能的最优化，一个大系统只能靠对一大堆功能『satisficing』（做到够好）来存活。」</strong> 关键权衡：<strong>在「利用已知的成功路径」（优化当前策略）与「分出资源去探索新路径」（把能量浪费在较低效的方法上）之间取舍。</strong> 而结论是全书最反直觉的一句：<strong>「在从无中造出有的过程中，忘掉优雅；只要它能工作，它就是美的（if it works, it's beautiful）。」</strong>
+  <p>→ <strong>位置</strong>：ch24-a；<strong>回指</strong>：第十一章 Herbert Simon 的 satisficing、第二十章 Kauffman 的「复杂性灾难」。</p>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>⑧ 追求持续的非均衡（Seek persistent disequilibrium）</strong>：<strong>「恒定不变与无情的变化都支撑不了一个造物。一个好的造物，就像一段好的爵士乐，必须用频繁的、跑调的音符去平衡那个稳定的公式。均衡即死亡。然而，除非一个系统稳定到一个均衡点，它也不比一场爆炸好，并且一样快地死掉。因此，『无』既是均衡也是非均衡。而『有』是持续的非均衡——一种永远在边缘上冲浪的状态，永不停下，也永不坠落。锁定在那条流动的门槛上，是创造那仍然神秘的圣杯，是所有业余上帝的探求。」</strong>
+  <p>→ <strong>位置</strong>：ch24-a；<strong>回指</strong>：第二十章 Langton 的「混沌边缘（edge of chaos）」。<strong>「在边缘上冲浪」是全书留给读者的最后一个画面。</strong></p>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>⑨ 变化本身在变化（Change changes itself）</strong>：<strong>「变化是可以被结构化的。这正是大型复杂系统所做的事：它们协调变化。当极大的系统由复杂的系统层层搭建而成，那么每个系统就开始影响并最终改变其他系统的组织。也就是说，如果游戏的规则是自下而上组合出来的，那么在底层相互作用的力就很可能在游戏进行中改变游戏规则。随着时间推移，变化的规则本身被改变了。」</strong> 关键区分：<strong>「日常意义上的演化，是关于一个实体如何随时间被改变。更深的演化——如果可以正式定义的话——是关于『改变实体的规则』如何随时间被改变。」</strong> 结论：<strong>「要从无中得到最多，你需要自我改变的规则。」</strong>
+  <p>→ <strong>位置</strong>：ch24-a；<strong>回指</strong>：第十八章「演化的演化」六阶段、第二十一章「可演化性的增加」。<strong>这条是九律里最原创、也最容易被忽略的一条。</strong></p>
+    </li>
+  </ul>
+  <ul>
+    <li>★ ★ <strong>「新生物文明（neo-biological civilization）」——全书的收束段落（ch24-b）</strong>：<strong>「当技术（Technos）被生命（Bios）赋予生气，我们就得到能够适应、学习与演化的造物。当我们的技术能够适应、学习与演化，我们就会拥有一个新生物文明。」</strong> KK 给出<strong>五大影响</strong>：
+    <ol>
+      <li><strong>尽管世界日益技术化，有机生命——野生的与驯化的——在全球尺度上仍将是人类经验的首要基础设施。</strong>
+      </li>
+      <li><strong>机器将变得更具有生物学的性格。</strong>
+      </li>
+      <li><strong>技术网络将使人类文化更加生态化、更加演化化。</strong>
+      </li>
+      <li><strong>工程生物学与生物技术将盖过机械技术的重要性。</strong>
+      </li>
+      <li><strong>生物学的方式将被尊崇为理想的方式。</strong>
+  <p>而总结句是全书最后一句实质断言：<strong>「在即将到来的新生物时代，所有我们既依赖又惧怕的东西，都将更多地是『被生出来的』，而不是『被造出来的』（more born than made）。」</strong><span class="tag t-src">原书</span></p>
+      </li>
+    </ol>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>KK 对未来造物的一份清单（可作三十年核对表）</strong>：<strong>变异的建筑、活的硅聚合物、离线演化的软件程序、可适应的汽车、塞满共同演化家具的房间、打扫卫生的蚊蚋机器人（gnatbots）、能治病的 manufactured 生物病毒、神经接口、赛博格身体部件、设计食品作物、模拟人格、以及一个处于持续流变中的庞大的计算设备生态。</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★ <strong>KK 对「失控」的最终表态</strong>（呼应书名）：<strong>「生命在征服了地球上大部分惰性物质之后，会继续去征服技术，把它也置于持续演化、永久新奇、以及一个超出我们控制的议程之下，这不应该让我们惊讶。即便我们必须交出那份控制，一个新生物的技术也远比一个由钟表、齿轮与可预测的 simplicity 组成的世界更有回报。」</strong><span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★★ <strong>九律是「设计箴言（design heuristics）」，不是科学定律，而中文世界的传播几乎总是把它们当成定律。</strong> KK 自己已经加了限定（<strong>「我不认为它们是唯一需要的定律」「最宽、最清晰、最有代表性的概括」</strong>），并且这九条的<strong>可证伪性极低</strong>：几乎任何成功系统都能被事后解释为「分布式 + 自下而上 + 递增回报」，而任何失败系统都能被解释为「违反了某一条」。<strong>读这一章的正确姿势是：把它当 checklist，而不是当理论。</strong><span class="tag t-inf">推断</span></p>
+  <p>★★ <strong>九律本身在三十年后的检验参差不齐：</strong></p>
+  <ul>
+    <li><strong>应验得最好的：④ 分块成长。</strong> 现代软件工程（微服务、CI/CD、渐进式发布）、以及 LLM 的 scaling（先小模型跑通再放大）都严格符合。
+    </li>
+  </ul>
+  <ul>
+    <li><strong>应验得很好的：② 自下而上 + ① 分布式存在。</strong> 互联网协议层、开源、区块链（在架构意义上）、以及<strong>神经网络 / 深度学习本身</strong>——KK 在 2026 年回顾里亲自确认：<strong>「唯一的例外是对神经网络深度学习（也就是 LLM）的精化……而神经网络是自下而上、分布式、去中心化、涌现系统的首要范例。」</strong><span class="tag t-talk">作者谈话</span>
+    </li>
+  </ul>
+  <p>★★ <strong>「所有我们既依赖又惧怕的东西，都将更多地是被生出来的，而不是被造出来的」——这条一半应验、一半落空。</strong> 应验的部分：生物技术、合成生物学、mRNA 疫苗、基因编辑、AI 模型的「训练出来的」而非「写出来的」。落空的部分：<strong>机制造并未被生物学取代</strong>——2020 年代最重要的技术（半导体、光刻、电池、火箭）依然是<strong>精密机械 + 化学工程</strong>，而不是「生物化的」。KK 在第十五章说的<strong>「下一个世纪不是硅的世纪」</strong>是本书<strong>最明确的一条落空</strong>：三十年后，恰恰是<strong>硅</strong>（GPU、DRAM、先进封装）托起了他预言的一切。</p>
+  <p>★ <strong>这一章极短（kk.org 上只有 a、b 两节，加上注释书目），它更像一份「压缩版全书」而不是新内容。</strong> 如果你只有十分钟，读这一章加第二章（蜂群思维）就能拿到全书八成的骨架——但<strong>也会因此完全错过第十九章的后达尔文主义争议与第二十二章的《增长的极限》拆解</strong>，而那两章才是本书思想含量最高的部分。</p>
+</section>
+
+<section id="s30">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <h3>A1 概念</h3>
+  <table>
+    <thead><tr><th>概念</th><th>KK 的定义／用法</th><th>出现在</th></tr></thead>
+    <tbody>
+      <tr><td><strong>vivisystem（活系统）</strong></td><td>「有机体、生态这类我们知道的有机社群，与机器人、公司、经济、电路这类人造对应物之间共有的那个灵魂」</td><td>第 1 章</td></tr>
+      <tr><td><strong>hive mind（蜂群思维）</strong></td><td>由傻瓜组成、为傻瓜服务、靠傻瓜运转的决策结构；分布式治理的真实本性</td><td>第 2 章</td></tr>
+      <tr><td><strong>emergent（涌现）</strong></td><td>「由部件协同产生的那种组织」——★ KK 自己在第 23 章承认这个词近乎空洞（换成 happened 也成立）</td><td>全书；第 23 章自省</td></tr>
+      <tr><td><strong>negentropy／外熵</strong></td><td>生命局部逆着熵增堆积秩序的能力</td><td>第 20、21 章</td></tr>
+      <tr><td><strong>coevolution（共同演化）</strong></td><td>适应会改变环境，从而改变下一轮适应的目标；「放在镜子上的变色龙」</td><td>第 5 章</td></tr>
+      <tr><td><strong>the fax effect（传真机效应）</strong></td><td>★ KK 自己版本的网络效应定律：第一台传真机价值为零，第 N 台让所有已有的都更值钱。<strong>全书无 Metcalfe</strong></td><td>第 11、12 章</td></tr>
+      <tr><td><strong>increasing returns（递增回报）／收益递增</strong></td><td>「凡有的，还要加给他」；成功孕育成功；标准锁定</td><td>第 11 章；九律第 3 条</td></tr>
+      <tr><td><strong>satisficing（满意化）</strong></td><td>Herbert Simon 的概念：复杂系统只能「够好」，不能最优</td><td>第 11 章；九律第 7 条</td></tr>
+      <tr><td><strong>chunking（分块成长）</strong></td><td>先造一个能工作的简单系统，再增量组装</td><td>第 4 章；九律第 4 条</td></tr>
+      <tr><td><strong>edge of chaos（混沌边缘）</strong></td><td>Langton 的 λ 参数所指的那个临界带；「有」是永远在边缘上冲浪</td><td>第 20 章；九律第 8 条</td></tr>
+      <tr><td><strong>complexity catastrophe（复杂性灾难）</strong></td><td>Kauffman：连接度过高的布尔网络会锁死；断连是一种刹车</td><td>第 20 章</td></tr>
+      <tr><td><strong>poka-yoke（防呆）</strong></td><td>日本制造业的差错预防；「犯错是人的事，管理错误是系统的事」</td><td>第 11 章</td></tr>
+      <tr><td><strong>positive myopia（正向近视）</strong></td><td>只看极短视野反而赢；特级大师的局部经验法则</td><td>第 22 章</td></tr>
+      <tr><td><strong>pockets of predictability（可预测性口袋）</strong></td><td>长期社会预测不可行，但局部、短窗口的秩序可被捕获</td><td>第 22 章</td></tr>
+      <tr><td><strong>backcasting（回推）</strong></td><td>用模型去预测已经发生的过去，是模型的标准现实检验</td><td>第 22 章</td></tr>
+      <tr><td><strong>requisite complexity（必要复杂性）</strong></td><td>Ashby：模型的复杂度必须与被建模者同一量级（导弹 vs 喷气机）</td><td>第 22 章</td></tr>
+      <tr><td><strong>protoanomaly（原异常）</strong></td><td>KK 造词：那些「现在看起来不值得担心」、日后会成为范式转移引线的问题</td><td>第 23 章</td></tr>
+      <tr><td><strong>retrorecognition（回溯识别）</strong></td><td>Lightman &amp; Gingerich：异常不是范式转移的原因，而是它的结果</td><td>第 23 章</td></tr>
+      <tr><td><strong>hyperlife（超生命）</strong></td><td>生命可以脱离碳基硬件、在别的基体上运行</td><td>第 17 章</td></tr>
+      <tr><td><strong>neo-biological civilization（新生物文明）</strong></td><td>「所有我们既依赖又惧怕的东西，都将更多地是被生出来的，而不是被造出来的」</td><td>第 24 章</td></tr>
+      <tr><td><strong>The Nine Laws of God（九律）</strong></td><td>从无造有的九条设计箴言（完整清单见第 2 节论点七与第 29 节）</td><td>第 24 章</td></tr>
+    </tbody>
+  </table>
+  <h3>A2 人物与项目（「他做了什么／在哪一章／KK 怎么评价」）</h3>
+  <table>
+    <thead><tr><th>人物／项目</th><th>他做了什么</th><th>出现在</th><th>KK 的评价</th></tr></thead>
+    <tbody>
+      <tr><td><strong>John von Neumann</strong></td><td>自复制机器理论；串行计算教条</td><td>第 15、17、23 章</td><td>★ <strong>既是祖先也是障碍</strong>——KK 认为演化长期被计算机科学忽视，正是因为 von Neumann 的串行教条</td></tr>
+      <tr><td><strong>Norbert Wiener</strong></td><td>控制论、反馈</td><td>第 22、23 章</td><td>正面引用 1954 年的反馈定义；KK 把《失控》定位为「控制论研究现状的更新」</td></tr>
+      <tr><td><strong>Alan Turing</strong></td><td>——</td><td><strong>全书仅 3 处，且无一处作为思想祖先</strong></td><td>★ <strong>不属于本书学统</strong>（见第 2 节论点八）</td></tr>
+      <tr><td><strong>Christopher Alexander</strong></td><td>——</td><td><strong>全书 0 次</strong></td><td>★ <strong>中文世界常把本书追溯到他，原文无证据</strong>（见论点八）</td></tr>
+      <tr><td><strong>Stewart Brand</strong></td><td>《全球概览》创办人；变色龙公案；「我们是神，不如早点擅长」（1968）</td><td>第 5、13、23 章</td><td>正面、反复引用；是本书最直接的思想前辈</td></tr>
+      <tr><td><strong>The Whole Earth Catalog</strong></td><td>——</td><td>第 5、23 章</td><td>KK 1988 年做过它的 HyperCard 电子版（自述）</td></tr>
+      <tr><td><strong>《连线》（Wired）</strong></td><td>——</td><td><strong>全书 0 次（作为杂志名）</strong></td><td>★ 本书素材不来自杂志圈，而来自实验室拜访</td></tr>
+      <tr><td><strong>Margaret Mead／Gregory Bateson／McCulloch／Rosenblueth</strong></td><td>Macy 会议（1942—1959）核心成员</td><td>第 23 章</td><td>用一整节复原；KK 哀叹控制论的「失落的世代」</td></tr>
+      <tr><td><strong>Rodney Brooks</strong></td><td>包容架构（subsumption）、成吉思汗机器人、「快速、廉价、失控」</td><td>第 3、16 章</td><td><strong>全书最重要的一位被访者</strong>：「无躯体则无意识」</td></tr>
+      <tr><td><strong>Mark Weiser</strong>（PARC）</td><td>普适计算（ubiquitous computing）</td><td>第 10 章</td><td>★ <strong>本书最成功的转述之一</strong>：「最深刻的技术是那些消失的技术」</td></tr>
+      <tr><td><strong>Stuart Kauffman</strong></td><td>布尔网络、「免费秩序」、复杂性灾难</td><td>第 20 章</td><td>整章以他的书店橱窗愿景开场；「在个位数以内」的最优连接度</td></tr>
+      <tr><td><strong>Chris Langton</strong></td><td>人工生命命名者、Game of Life、λ 与混沌边缘、1987 年首次 ALife 会议</td><td>第 17、20 章</td><td>★ 用一整段传奇写他（滑翔伞事故、94 符号蓝色 Q 自复制体）</td></tr>
+      <tr><td><strong>Tom Ray／Tierra</strong></td><td>硅里的人工演化：80 字节祖先 → 22 字节自复制体 → 骗子 → 寄生者 → 超寄生者</td><td>第 15、17 章</td><td>★ <strong>本书最硬的一次实验复现</strong>；KK 用它证明「演化不需要设计者」</td></tr>
+      <tr><td><strong>John Holland</strong></td><td>遗传算法、1959 年 Holland Machine、分类器系统</td><td>第 15、22 章</td><td>指出演化被忽视的制度原因（书只卖了 2500 册）</td></tr>
+      <tr><td><strong>Danny Hillis</strong></td><td>连接机（64,000 处理器）、用演化排序找出未知算法</td><td>第 15 章</td><td>引他那句「你给计算机的知识越多，它就越慢」；KK 也提出了自己的时间反驳</td></tr>
+      <tr><td><strong>Karl Sims</strong></td><td>《Panspermia》、CM5 上的演化图像、受约束的胚胎学</td><td>第 14、17 章</td><td>★ 「Sims 现在拥有一个关于人类觉得什么是美的数据库」——这句话今天读来像 AI 生成艺术的预告</td></tr>
+      <tr><td><strong>Richard Dawkins</strong></td><td>Biomorph Land（1985）、《盲眼钟表匠》、可演化性（1987）、模因</td><td>第 14、18、21 章</td><td>大体正面；KK 用他的 Biomorph 讲「形式的图书馆」</td></tr>
+      <tr><td><strong>Lynn Margulis</strong></td><td>内共生学说、共生驱动演化、「生命之丛」</td><td>第 19 章</td><td>★ 用她的原话开场：<strong>「它完全错了……每一条主要信条都是错的」</strong></td></tr>
+      <tr><td><strong>Stephen Jay Gould</strong></td><td>间断平衡、《奇妙的生命》、disparity vs diversity</td><td>第 19、21 章</td><td><strong>既引为权威，又被 KK 用沙盒实验反驳</strong>（Gould 的斜坡比喻）</td></tr>
+      <tr><td><strong>John Koza</strong></td><td>遗传编程：扫帚滑板、迷宫、旅行商问题、双子螺旋分类</td><td>第 17 章</td><td>★ 用「简约性被高估了」一句把可解释性问题讲清楚了</td></tr>
+      <tr><td><strong>Will Wright／SimCity</strong></td><td>「SimCity 就是一个配了用户界面的城市理论」</td><td>第 13 章</td><td>把游戏当作世界建模的合法形式</td></tr>
+      <tr><td><strong>Tim May／cypherpunk</strong></td><td>「加密总是赢」、加密无政府主义</td><td>第 12 章</td><td>正面呈现，但 KK 也记下了自己的担忧（勒索、贿赂）</td></tr>
+      <tr><td><strong>David Chaum</strong></td><td>盲签名、不可追踪的电子现金</td><td>第 12 章</td><td>★ <strong>他不是比特币</strong>：盲签名仍是中心化银行发行（见第 2 节论点五）</td></tr>
+      <tr><td><strong>Doyne Farmer／Prediction Company</strong></td><td>混沌帮轮盘赌计算机（1977）、可预测性口袋</td><td>第 22 章</td><td>★ KK 明确写明 Farmer 拒绝透露具体业绩——本报告最该称赞的一处诚实</td></tr>
+      <tr><td><strong>Jay Forrester／Dennis &amp; Dana Meadows</strong></td><td>系统动力学、《增长的极限》</td><td>第 13、22 章</td><td>★ <strong>第 22 章用一整节系统拆解它</strong>，列了五大缺陷</td></tr>
+      <tr><td><strong>Theodore Modis</strong></td><td>《Predictions》（1992）：不变量／S 曲线／周期波</td><td>第 22 章</td><td>三种「可预测性口袋」直接来自他</td></tr>
+      <tr><td><strong>Lightman &amp; Gingerich</strong></td><td>《Science》1991：When Do Anomalies Begin?</td><td>第 23 章</td><td>★ 用作对库恩的反驳（异常是结果，不是原因）</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s31">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <h3>B1 批评与对照（★ 优先读这几条）</h3>
+  <ol>
+    <li><strong>Richard Barbrook &amp; Andy Cameron</strong>，〈The Californian Ideology〉，<em>Mute</em> Vol.1 No.3（<strong>1995-09-01</strong>）；修订版收入 <em>Science as Culture</em>（<strong>1996</strong>）——<strong>读《失控》必配的对手文本</strong>。它把 KK 与 Brand 点名为这一意识形态的布道者。
+    </li>
+    <li><strong>Louis Rossetto</strong>，对上文的回应，<em>Mute</em>（1995—1996）——称该文表现出「对经济学的深刻无知」。<strong>把正反两篇一起读，你会明白这场争论到底在争什么。</strong>
+    </li>
+    <li><strong>Andrew Leonard</strong>，<em>Salon</em>（1990 年代）——称该文是「迄今发表的、对新保守主义数字炒作最犀利的批评之一」，并记录了 Rossetto 的激烈反应。
+    </li>
+    <li><strong>Melanie Mitchell</strong>，书评，<em>Technology Review</em> vol. 98（<strong>1995-10</strong>）pp. 74–75——复杂系统与遗传算法同行写的书评，是本书最该被读却最难找的一条。
+    </li>
+    <li><strong>Richard Thieme</strong>，〈Kevin Kelly's Out of Control: Is the flag waving? or the wind? or the mind?〉，<em>Enculturation</em> vol. 3 no. 1（<strong>2000 年春</strong>）——<strong>我认为最锋利的一条</strong>：「『涌现』是描述性的，不是解释性的。」
+    </li>
+    <li><strong>William Grassie</strong>（天普大学），〈'The Nine Laws of God': Kevin Kelly's Out of Control — Techno-Utopic Program for a WIRED World〉——标题即立场（<strong>原文链接已失效，见 D6</strong>）。
+    </li>
+    <li><strong>Shoshana Zuboff</strong>，《The Age of Surveillance Capitalism》（<strong>2019</strong>）——<strong>补《失控》最大盲区的书</strong>（第 5 节 5.4）。
+    </li>
+    <li><strong>Adam Curtis</strong>，纪录片《All Watched Over by Machines of Loving Grace》（<strong>2011</strong>）——把加州意识形态追溯到安·兰德，是这套批评最流行的影像版本。
+    </li>
+  </ol>
+  <h3>B2 补科学背景（本书的第 19—21 章在这几本面前要打折）</h3>
+  <ol>
+    <li><strong>Lynn Margulis</strong>，《Symbiotic Planet》／《Symbiosis in Cell Evolution》——<strong>本书第 19 章里唯一押对的那条</strong>。
+    </li>
+    <li><strong>Richard Dawkins</strong>，《The Blind Watchmaker》（1986）——第 14 章 Biomorph Land 的书版。
+    </li>
+    <li><strong>Stephen Jay Gould</strong>，《Wonderful Life》（1989）——第 19、21 章的对手文本，KK 反复引用也反复反驳。
+    </li>
+    <li><strong>Mitch Waldrop</strong>，《Complexity》（1992）／<strong>Roger Lewin</strong>，《Complexity》（1992）——KK 在第 23 章抱怨过：「两本都没敢给一个可用的定义。」
+    </li>
+    <li><strong>Melanie Mitchell</strong>，《Complexity: A Guided Tour》（2009）——<strong>今天要理解「复杂性」到底测不测得出来，从这本进，不从《失控》进。</strong>
+    </li>
+    <li><strong>Steven Heims</strong>，《The Cybernetics Group》——第 23 章 Macy 会议那一节的历史底本。
+    </li>
+  </ol>
+  <h3>B3 作者本人（★ 必读一条）</h3>
+  <ol>
+    <li><strong>Kevin Kelly</strong>，<strong>"Still Out of Control"</strong>（KK 的 Substack／个人站，<strong>2026-06-08</strong>）——<strong>三十二年后的自评</strong>：后悔书名、不收回内容、承认漏掉了新闻信息系统与社交网络、把 LLM 列为唯一需要补充的例外。本报告中所有 <span class="tag t-talk">作者谈话</span> 均出自此文。
+    </li>
+    <li><strong>Kevin Kelly</strong>，官网《失控》页 <code>kk.org/outofcontrol/</code>——<strong>含全书合法全文、目录、注释书目（KK 逐条写了评注）、以及书评页</strong>。
+    </li>
+    <li>《失控》2016 中译本<strong>译后记〈「失控」的协作与进化〉</strong>（张行舟等）——讲 2010 年那次众包翻译是怎么发生的，<strong>本身就是书里「分布式协作」的一次实践</strong>。
+    </li>
+  </ol>
+</section>
+
+<section id="s32">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>见同目录 <code>失控-来源清单.md</code>（含五路检索来源总表、交叉验证记录、核验级别判定与主动排除的来源）。</p>
+  <p>★ <strong>一句话概括本报告的核验基础</strong>：<strong>英文原书 24 章全部逐字读自作者官网发布的合法全文</strong>（<code>kk.org/outofcontrol/</code>，149 个逐章 HTML ＋ 全书 PDF），故定 <strong>A 级</strong>；中译对比、批评文献与版本编目为 B/C 级，<strong>未混入 A 级辖区</strong>。</p>
+</section>
+
+<section id="s33">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. ★「推算页码」不是原书页码——本报告最大的定位妥协</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：作者官网的全文（逐章 HTML 与 PDF）<strong>不提供原书分页</strong>，也没有章节起始页码。
+    </li>
+    <li><strong>我做了什么</strong>：先把 149 个 HTML 按官网目录切成 24 章，再<strong>按各章字符数占全书正文的比例</strong>、乘以英文版 521 页，得出每章的「推算起始页」。
+    </li>
+    <li><strong>为什么没能定论</strong>：我<strong>没有原书纸本或带页码的官方目录</strong>来校准；且官网 PDF 的排版与 1994 年纸本未必一致。
+    </li>
+    <li>⇒ <strong>读者该以什么为准</strong>：<strong>把本报告里的「p.」一律当作「大约在第几章的第几成」，不要当作可引用的原书页码。</strong>可引用的是官网小节号（如 <code>ch9-b</code>），那是精确的。
+    </li>
+  </ul>
+  <h3>D2. 首版出版者（Addison-Wesley 还是 Basic Books）与出版年份（1994 还是 1992）</h3>
+  <ul>
+    <li><strong>我查到了什么</strong>：ISBN 0-201-48340-8／9780201483406 的前缀 <strong>0-201 属于 Addison-Wesley</strong>；《新科学家》1994 年的书评依据的是 <strong>Fourth Estate（英国）1994 年 521 页版</strong>。
+    </li>
+    <li><strong>矛盾在哪</strong>：<strong>英文维基百科把首版出版者写作 Basic Books、并把年份写作 1992</strong>；而 KK 官网与所有书评均指向 1994。
+    </li>
+    <li><strong>为什么没能定论</strong>：我未取得首版版权页的一手影像，也未查图书馆权威编目（MARC）记录。
+    </li>
+    <li>⇒ <strong>读者该以什么为准</strong>：<strong>以 1994 年、Addison-Wesley 为准</strong>；维基百科的 1992 与 Basic Books 视为著录错误（Basic Books 很可能是后来的平装再版出版者）。
+    </li>
+  </ul>
+  <h3>D3. 中译版本混乱：2016 版之外到底还有几个新版</h3>
+  <ul>
+    <li><strong>我查到了什么</strong>：① 2010-12 新星版（东西文库众包译，707 页，约 500 千字，88 元，ISBN 9787513300711）；② 2016-01 电子工业版（张行舟、陈新武、王钦 译，xix + 739 页，89 元，ISBN 9787121272295）——这两个有多个图书馆 OPAC 与书店编目互相印证，可信。
+    </li>
+    <li><strong>矛盾在哪</strong>：另有来源声称存在 <strong>2023 版（ISBN 9787121458880）</strong>与 <strong>2024-04 精装版（ISBN 9787121473234，页数 384）</strong>。<strong>两个 ISBN 的页数口径从 384 到 739 差了一倍</strong>，无法判断是重印、精装改版还是<strong>节编本</strong>。
+    </li>
+    <li><strong>为什么没能定论</strong>：这些新版只见于百科与书商著录，未找到出版社官方页面或 CIP 数据。
+    </li>
+    <li>⇒ <strong>读者该以什么为准</strong>：<strong>下单前核实物版权页的页数</strong>；若页数远低于 739，极可能是节编或另一种开本，<strong>不要买</strong>。
+    </li>
+  </ul>
+  <h3>D4. ★ 2010 新星版目录疑似缺「第二十二章 预言机」</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：多个书目源转录的 2010 新星版目录形如「……第二十一章 水往高处流／第二十二章 整体，空洞，以及空间／第二十四章 九律」，<strong>中间没有「预言机」</strong>；而 <strong>2016 电子工业版目录完整</strong>（第二十二章 预言机／第二十三章 整体，空洞，以及空间／第二十四章 九律）。
+    </li>
+    <li><strong>我的判断</strong>：<strong>更可能是著录／抄录脱漏，而不是 2010 版真的删掉了第 22 章</strong>——第 22 章是全书方法论最核心的一章，删掉不合常理，且 2016 版自称是「修订校对」而非「补译」。
+    </li>
+    <li><strong>为什么没能定论</strong>：<strong>我没有 2010 版的实物或目录页一手影像</strong>。
+    </li>
+    <li>⇒ <strong>读者该以什么为准</strong>：<strong>以章名对照，不以章号对照</strong>（英文 ch22 PREDICTION MACHINERY ＝ 中文「预言机」）；如果你手上的目录跳过了它，那是目录错了，不是书少了。
+    </li>
+  </ul>
+  <h3>D5. 两条宣传性说法缺一手证据</h3>
+  <ul>
+    <li><strong>①《黑客帝国》主演「必读《失控》」</strong>：该说法广泛见于出版社宣传语、百科与媒体，<strong>但我没有找到片方（华纳／沃卓斯基）或演员本人确认的一手来源</strong>。它在书商页面里被反复复制，属于典型的营销链循环引用。⇒ <strong>当作「中文世界的流行说法」处理，不要当作事实。</strong>
+    </li>
+    <li><strong>②「2011 年深圳读书月年度十大好书 50 强并列第一」</strong>：仅见于百科条目，未找到主办方官方名单。⇒ <strong>存疑。</strong>
+    </li>
+    <li>⇒ 相对可靠的是 KK 自己的说法：<strong>「它在美国几乎没有书评，当时被忽略了。」</strong><span class="tag t-talk">作者谈话</span> ——<strong>中文世界对本书的热情，与美国出版当时的冷遇，本身就是一件值得记录的事。</strong>
+    </li>
+  </ul>
+  <h3>D6. 两条批评文献的原文链接已失效</h3>
+  <ul>
+    <li><strong>William Grassie</strong>（天普大学）〈'The Nine Laws of God'…〉与 <strong>Susan Stepney</strong> 的书评（1996-05），<strong>KK 官网书评页仍列着条目与链接，但两个链接均已失效</strong>；Wayback Machine 存在快照（Grassie 2006-08-15、Stepney 2012-04-22），<strong>本次抓取被限流（429）未能取回全文</strong>。
+    </li>
+    <li>⇒ 本报告中关于这两条批评的转述，<strong>只依据 KK 官网给出的标题、作者单位与出处</strong>，<strong>未逐字核对批评原文</strong>。⇒ <strong>若要引用 Grassie 或 Stepney 的原话，请自行取回存档后再引。</strong>
+    </li>
+  </ul>
+  <h3>D7. 全文检索的边界（我用来下「0 次」结论的方法）</h3>
+  <ul>
+    <li>「Metcalfe 0 次」「Christopher Alexander 0 次」「Varela／autopoiesis 0 次」「World Wide Web 0 次」「Bitcoin／blockchain 0 次」「《连线》作为杂志名 0 次」这些结论，<strong>来自我对英文全文（1,383,048 字符，含注释书目）做的精确字符串检索</strong>。
+    </li>
+    <li><strong>边界</strong>：① 检索基于<strong>官网发布版本的纯文本</strong>，若该版本与纸本有出入则结论可能偏移；② 只检索了所列的那几个拼写形式，<strong>未做变形与中译回译检索</strong>；③ 「Turing 3 次」是我逐条看了上下文后判定的，不是机器统计的结论。
+    </li>
+    <li>⇒ <strong>这些「0 次」结论应表述为「在作者官网发布的英文全文中未出现」，而不是「书中绝无」。</strong>
+    </li>
+  </ul>
+  <h3>D8. 官网全文与 1994 年纸本之间可能的文本差异</h3>
+  <ul>
+    <li>KK 在 2026 年回顾中写道：<strong>「除了正文里的一些排版错误，我觉得没有任何需要收回或纠正的东西。」</strong><span class="tag t-talk">作者谈话</span> 这暗示<strong>纸本存在排版错误</strong>，但<strong>他没说官网版本是否做过订正</strong>。
+    </li>
+    <li>⇒ 若某条引文在中译与官网英文之间对不上，<strong>优先怀疑排版／转录差异</strong>，不要直接判定为译者错误。
+    </li>
+  </ul>
+</section>
+
+<footer>
+  生成于 2026-10-04 · 来源清单与交叉验证记录见同目录 <code>失控-来源清单.md</code><br>
+  本页引文按<b>逐字核对合法全文（A 级）</b>处理：所有 <code>【原书】</code> 引文逐字取自作者 Kevin Kelly 官网发布的全文（kk.org/outofcontrol/，149 个逐章 HTML ＋ 官方 PDF），定位以「官网小节号 ＋ 按字数比例推算的页码」给出，<b>推算页码不是原书页码</b>，请以原书复核；作者书外表态单列 <code>【作者谈话】</code>（KK 2026-06-08 的长篇回顾）；批评文献的姓名、篇名、刊物、卷期与年份已逐条给出。★ 本书<b>没有脚注</b>，证据几乎全部来自 1990—1993 年的实验室拜访与当面访谈 —— <b>它的现场感极强，但每一条科学断言都带着 1993 年的时间戳</b>；第十九章（后达尔文主义）、第九章（生物圈二号）与第二十二章（拆《增长的极限》）尤其要按当时的证据状态读。★ <b>本报告刻意把第 5 节（争议与局限）写得最实</b>：中文世界关于本书的好评与「他早就说中了」极多，而<b>落空与判断错误的那部分最稀缺</b> —— 请特别留意「五年之内自主合成角色主演电影」（落空）、「下一个世纪不是硅的世纪」（判断错误）、以及「他预言了比特币／梅特卡夫定律」（均为后人追认，原书无据）。★ 另请留意 <b>2010 新星版目录疑缺「第二十二章 预言机」</b>，对照时请以章名不以章号。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

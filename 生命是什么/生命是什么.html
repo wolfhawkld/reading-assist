@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《生命是什么》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《生命是什么》<small>阅读指引与精华解析 · 2026-10-04</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 六个核心论点</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 中文译本怎么选</a>
+    <a href="#s5">5 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s6">6 第一章：经典物理学家走近这个主题（第 1 章）</a>
+    <a href="#s7">7 第二章：遗传机制（第 2 章）</a>
+    <a href="#s8">8 第三章：突变（第 3 章）</a>
+    <a href="#s9">9 第四章：量子力学的证据（第 4 章）</a>
+    <a href="#s10">10 第五章：对德尔勃吕克模型的讨论和检验（第 5 章）</a>
+    <a href="#s11">11 第六章：有序、无序和熵（第 6 章）</a>
+    <a href="#s12">12 第七章：生命是以物理学定律为基础的吗（第 7 章）与后记</a>
+    <div class="grp">附录</div>
+    <a href="#s13">A 关键概念与人物速查</a>
+    <a href="#s14">B 延伸阅读</a>
+    <a href="#s15">C 来源清单</a>
+    <a href="#s16">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《生命是什么》阅读指引与精华解析</h1>
+  <div class="sub">What Is Life? The Physical Aspect of the Living Cell</div>
+  <div class="meta">
+    <div><b>作者</b>埃尔温·薛定谔（Erwin Schrödinger，1887–1961）—— 奥地利物理学家，1926 年提出<b>波动力学</b>（量子力学的标准形式之一），<b>1933 年与狄拉克同获诺贝尔物理学奖</b>；1933 年因抗议纳粹迫害犹太同事而离开柏林大学教职，1940 年应爱尔兰总理德瓦利埃拉之邀赴都柏林，任新成立的<b>都柏林高级研究院（DIAS）理论物理学院首任院长</b>，直至 1955 年退休</div>
+    <div><b>英文初版</b>Cambridge University Press，<b>1944</b> · 194 页 · ISBN 0-521-42708-8 · OCLC 24503223 · LC Class QH331</div>
+    <div><b>英文再版／平装</b><b>Canto edition（剑桥大学出版社，1992）</b>：*What is Life? with Mind and Matter and Autobiographical Sketches*，viii + 184 页，<b>罗杰·彭罗斯（Roger Penrose）作序</b> · 平装 ISBN 9781107604667／9780521427088 · 电子版 ISBN 9781107295629 · 另见 1948 年重印本、1969 年平装本</div>
+    <div><b>中译（大陆·初版）</b>湖南科学技术出版社「第一推动丛书·生命系列」· 罗来鸥、罗辽复 译 · <b>2003</b> · 190+7 页 · ISBN 7-5357-3722-6 · 定价 19.00 元（<b>合刊本</b>）</div>
+    <div><b>中译（大陆·现行）</b>湖南科学技术出版社「第一推动丛书·生命系列 02」· 罗来鸥、罗辽复 译 · <b>2018-01</b> · 19+201 页 · ISBN 9787535794987 · 定价 39.00 元（<b>合刊本</b>；2007-04 另有 ISBN 9787535737229 · 定价 25.00 元的印次）</div>
+    <div><b>★ 大陆简体版</b>主流是「<b>合刊本</b>」，但<b>各家合刊的范围不同</b>——湖南科技版＝《生命是什么》＋《意识和物质》＋<b>薛定谔自传</b>（三合一）；商务印书馆 2024 版（张卜天 译）＝《生命是什么？——活细胞的物理观》＋《心灵与物质》（<b>不含自传</b>）；另有重庆出版社 2022 版（何滟 译）等<b>单行本</b>。★ 购买前务必看清收入了哪几篇（详见第 4 节）</div>
+    <div><b>荣誉</b>被公认为<b>分子生物学诞生的思想源头之一</b>；20 世纪销量超过 10 万册的现象级科学读物（诺贝尔奖官网口径）；中译本入选<b>教育部《中小学生阅读指导目录》（高中段）</b></div>
+    <div><b>状态</b>未标注「已读／想读」—— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有可定位文本支撑的段落 —— 含出版方与图书馆编目确认的<b>逐章目录</b>（英文主书 7 章）、被官方页面（诺贝尔奖官网、都柏林高级研究院 DIAS）转引的<b>正文引语</b>数处，以及<b>署名、刊物、卷期、年份齐全的一手学术文献</b>中带引号的原书引文。凡引批评者观点，正文均写明姓名与出处</li>
+    <li><span class="tag t-talk">作者谈话</span> 出自作者及其同时代人<b>书外</b>的公开表态 —— 特指<b>沃森、克里克、威尔金斯的自述</b>与<b>克里克 1953 年致薛定谔的信</b>（DIAS 官方档案转录）、薛定谔当次讲座的公开告示语；他人转述的部分不计入</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、书评转述、百科或读者笔记，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    我<b>没有这本书的电子版，也没有纸质书</b>；1944 年剑桥版与 1992 Canto 版<b>均无合法公开全文</b>，中译本同样未取得，也未访问受控借阅或任何正版预览的正文。★ 本报告的可靠之处是：<b>主书 7 章的章名与顺序由剑桥大学出版社官方书目、美国国会图书馆（LoC）与中译 CIP 三处目录逐章对应一致</b>，成书背景有 DIAS 官方档案支撑，且<b>每一条批评文献的姓名、篇名、刊物、卷期与年份都逐条给出</b>。最大的边界在于<b>未逐页核对任何版本的页码、未逐字核对全书</b>（第 1 节「参考页」列仅供标示相对长度，不得当精确锚点），且<b>合刊的《意识和物质》与自传未逐章展开</b>（见附录 D6）。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-04 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书按 <b>B 级（带页码引文）</b>标注：有<b>三处目录逐章交叉一致的主书 7 章结构</b>、<b>CIP 官方目录确认的中译合刊范围与章号错位</b>、<b>被官方页面转引的正文引语数处</b>，以及<b>署名、刊物、卷期、年份齐全的一手批评文献</b>（Yoxen, <i>History of Science</i> 17(1):17–52, 1979；Kay, <i>Who Wrote the Book of Life?</i>, Stanford UP, 2000；Cobb, <i>Cell</i> 153(3):503–506, 2013；Jeffery–Pollack–Rovelli, <i>Entropy</i> 21(12):1211, 2019；Pauling 与 Perutz, 收于 Kilmister 编 <i>Schrödinger: Centenary Celebration of a Polymath</i>, CUP, 1987, pp.225 起／pp.234 起；Muller, <i>The American Naturalist</i> 56:32–50, 1922；Bohr, <i>Nature</i> 131:421–423, 1933）。★ 需要指出：<b>本书无合法公开全文</b>，<b>我未逐字核对全书</b>，故严格按 B 级标注；书内语句除官方转引的数处外，一律按二手转引处理。★ <b>本报告的最重要结论是一个否定</b>：这本书<b>没有提出 DNA</b>——它假定遗传物质是蛋白质，而 Avery 证明 DNA 是遗传物质是在 1944 年与本书同期。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>这本书问的是一个物理学家才能问出的问题：一个活细胞里，在空间和时间的边界内发生的事件，能不能用物理学和化学来算清楚？</strong></p>
+  <p>薛定谔的答案是：<strong>原则上能，但前提是你得先承认，遗传物质是一种物理学家此前没见过的物质结构。</strong> 他把它叫作「<strong>非周期晶体</strong>」，把写在它上面的东西叫作「<strong>密码本</strong>」（<em>code-script</em>）；他还说，生命之所以没有像热力学第二定律预言的那样滑向死亡，是因为它在「<strong>以负熵为食</strong>」。</p>
+  <p>一句话结论（也是全书最该记住的判断）：<strong>这本书的价值不在它给了什么答案，而在它把「基因是分子」这件事，用物理学家的语言讲得让一批年轻物理学家坐不住了。</strong><span class="tag t-src">原书</span>（作者自述，见诺贝尔奖官网与 DIAS 官方页面）</p>
+  <p><strong>它不是什么</strong>：不是分子生物学教科书（全书没有一个实验，没有一个碱基）；不是「DNA 的预言书」（它甚至没猜对遗传物质的化学身份）；也不是一本可以照搬结论的科学书——<strong>它是一份「问题清单」，不是一份「答案清单」</strong>。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>下表同时给出<strong>英文原书章节</strong>与<strong>中文合刊本的章序</strong>。★ 必须提请你注意两件事：</p>
+  <p><strong>其一，页码锚定问题。</strong> 本表「参考页」一列取自<strong>重庆出版社 2022 中译版（何滟 译）的公开目录</strong>，仅用于标示各章的<strong>相对长度</strong>。⚠ <strong>该目录页码与同一著录标注的「96 页」总页数自相矛盾</strong>（后记已标到 p.147），我<strong>未逐页核对</strong>任何版本，故<strong>请勿把这列数字当作精确锚点</strong>；不同版本（剑桥 1944／1992、湖南科技 2018）的页码<strong>各不相同</strong>。此矛盾已记入附录 D1。</p>
+  <p><strong>其二，章号错位问题（购买前必看）。</strong> 湖南科技 2018 版把<strong>《意识和物质》直接接在主书 7 章之后，编为「第 8–13 章」</strong>（见国家出版发行信息公共服务平台 CIP 目录）。所以「第 9 章」在这本书里<strong>不是《生命是什么》的第九章（它只有 7 章），而是《意识和物质》的第二章</strong>。<strong>若按「第 X 章」检索，极易找错</strong>。</p>
+  <table>
+    <thead><tr><th>#</th><th>主书章节（英／中）</th><th>参考页</th><th>这一章在哪一层</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>The Classical Physicist's Approach to the Subject／经典物理学家走近这个主题</td><td>1</td><td>立论：生命问题原则上可被物理化学解释；先讲清「原子为什么这么小」</td></tr>
+      <tr><td>2</td><td>The Hereditary Mechanism／遗传机制</td><td>26</td><td>事实层：染色体、有丝分裂、减数分裂、基因的大小；引出「密码本」</td></tr>
+      <tr><td>3</td><td>Mutations／突变</td><td>50</td><td>事实层：突变的「跳跃性」与「局域性」，X 射线诱变</td></tr>
+      <tr><td>4</td><td>The Quantum-Mechanical Evidence／量子力学的证据</td><td>74</td><td>理论层：用「量子跃迁」解释基因的持久性与突变的离散性</td></tr>
+      <tr><td>5</td><td>Delbrück's Model Discussed and Tested／对德尔勃吕克模型的讨论和检验</td><td>92</td><td>★ 核心理论章：提出「非周期固体」假说，用事实检验</td></tr>
+      <tr><td>6</td><td>Order, Disorder and Entropy／有序、无序和熵</td><td>114</td><td>★ 热力学章：「以负熵为食」「有序来自有序」</td></tr>
+      <tr><td>7</td><td>Is Life Based on the Laws of Physics?／生命是以物理学定律为基础的吗</td><td>130</td><td>★ 收束：有机体像钟表一样靠固体运转；可能涉及「未知的物理学定律」</td></tr>
+      <tr><td>—</td><td>Epilogue: On Determinism and Free Will／后记：决定论与自由意志</td><td>147</td><td>哲学尾巴：机械论与自由意志的矛盾；援引《奥义书》</td></tr>
+      <tr><td>—</td><td>关于后记的说明</td><td>155</td><td>作者对后记立场的补充说明</td></tr>
+      <tr><td>—</td><td><strong>《意识和物质》（Mind and Matter，1958）</strong></td><td>—</td><td>★ <strong>合刊部分，本报告不逐章展开</strong>。共 6 章，1958 年剑桥「塔纳讲座」，探讨意识、客观化原则、心身问题。见附录 D6</td></tr>
+      <tr><td>—</td><td><strong>薛定谔自传（Autobiographical Sketches）</strong></td><td>—</td><td>★ <strong>合刊部分，本报告不逐章展开</strong>。由其孙女 Verena 自德文译出，回忆家庭、玻尔兹曼的影响、波动力学的诞生与流亡生涯。见附录 D6</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一个必须知道的操作建议</strong>：<strong>先读第 1 章和第 6 章。</strong> 第 1 章给「生命能用物理讲吗」这个总问题，第 6 章给全书最著名、也最容易读懂的「负熵」。<strong>第 4、5 章是全书的承重墙，但也是全书最技术、最容易劝退的部分</strong>（大量讲量子跃迁、同分异构、能量阈值），劝退的话可以只抓「非周期晶体」这一个结论。<strong>第 7 章和后记，请带着第 5 节（争议）一起读</strong>——那里是这本书被后世批评得最集中的地方。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>六个核心论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：生命现象原则上可以用物理和化学解释，不需要「生命力」</h3>
+  <p><strong>主张</strong>：薛定谔开篇就把靶子立好了——他要回答的是那句贯穿全书的话：<strong>「一个活体在空间和时间的边界内发生的事件，如何用物理学和化学来加以解释？」</strong><span class="tag t-src">原书</span>（第 1 章主旨，见诺贝尔奖官网与剑桥官方书目转引）。他的态度是<strong>有底气的乐观</strong>：当前算不出来，不等于原则上算不出来。</p>
+  <p><strong>依据</strong>：他先花大量篇幅讲「<strong>为什么原子这么小</strong>」——即，与原子尺度相比，人的感官太粗，物理学家对原子世界的假设无法被直接检验。他要说明的是：<strong>一个活细胞的运作之所以显得神秘，部分原因只是我们习惯了用「宏观物体」的直觉去想象分子世界</strong>。</p>
+  <p><strong>为什么重要</strong>：这是全书的<strong>总闸门</strong>。如果他一开始就承认有「生命力」，后面所有的推理都没有必要。★ 但要注意：<strong>他在第 7 章又说生命「可能涉及迄今未知的其他物理学定律」</strong>——这两句话之间有一种张力，也是后世争议的起点（见 5.5、论点六）。</p>
+  <h3>论点二：遗传物质必须是一种「非周期晶体」，信息写在原子的排布里</h3>
+  <p><strong>主张</strong>：这是全书最重要的一个猜测。薛定谔说：小分子是「固体的胚芽」，而固体的长大有两种方式——<strong>一种是笨办法，在三个方向上反复重复同一结构（普通晶体）；另一种是不靠重复，把结构越堆越复杂，其中每一个原子、每一个原子团都扮演着各自的角色</strong>。他给后者取了个名字：<strong>「非周期晶体」</strong>（<em>aperiodic crystal</em>），并用一句后来被引用最多的话下了断言：<strong>「我们相信基因——或者也许整个染色体纤维——是一种非周期固体。」</strong><span class="tag t-src">原书</span>（第 5 章，<em>What is Life?</em>，1992 Canto 版 pp.60–61）</p>
+  <p><strong>依据</strong>：他做了一个数量级的估算——用「点、划」两种符号（摩尔斯电码的类比），在不超过 4 个符号的成组排列里能给出 30 种不同规定；如果允许第三种符号、成组不超过 10 个，就能组成 88,572 种不同的「字母」；五种符号、25 个一组，数目达到天文数字。<strong>他的用意是：只要原子数目不太大，就能排出几乎无限多种可能的结构</strong>，足以承载一套关于未来发育的「复杂规定」。</p>
+  <p><strong>为什么重要</strong>：这一步把「遗传信息」这件事<strong>从生物学问题变成了一个物理学的编码问题</strong>——这正是它对物理学家有吸引力的地方。★ 但它有两个要害：<strong>薛定谔想象的信息载体是「原子的三维排布」（同分异构），不是「线性序列」</strong>；而且他<strong>默认这个载体是蛋白质</strong>（见 5.3）。</p>
+  <h3>论点三：基因的稳定性来自量子力学保证的强化学键，突变是「量子跃迁」</h3>
+  <p><strong>主张</strong>：薛定谔反复强调，<strong>基因的持久性必须用量子力学才能说清</strong>。他指出，分子里把原子结合的力（Heitler–London 键，即共价键）与构成真正的固体的力是同一类；正因为这种键的能量阈值远高于常温热运动的平均能量（kT），基因才能抵抗热扰动而长期稳定。而<strong>突变</strong>，就是基因从一种相对稳定的分子构型「跳」到另一种（同分异构）构型——他把这叫作「<strong>量子跃迁</strong>」<span class="tag t-src">原书</span>（第 4、5 章主旨）。</p>
+  <p><strong>依据</strong>：他把化学里的「同分异构」现象当作模板：同一组原子能以不止一种方式结合成分子，分子越大，同分异构的可能性越多；两种构型之间的转变必须翻越一个更高的能量台阶（阈值），因此是稀有事件——<strong>这些稀有事件，就是自发突变</strong>。</p>
+  <p><strong>为什么重要</strong>：这是全书<strong>最「物理学」、也最自信</strong>的一段。薛定谔甚至说：<strong>「如果德尔勃吕克的图景失败了，我们就只能放弃进一步的尝试。」</strong><span class="tag t-src">原书</span>（第 5 章，<em>What is Life?</em>）★ 但这一段的机制<strong>后来被证明是错的</strong>：遗传信息不在三维异构里，而在碱基的<strong>线性顺序</strong>里（见 5.3、5.4）。</p>
+  <h3>论点四：德尔勃吕克模型——基因是一个「大分子」</h3>
+  <p><strong>主张</strong>：第 5 章整章是在讨论、检验一位德国物理学家<strong>马克斯·德尔勃吕克（Max Delbrück）</strong>的模型。这个模型的要点是：<strong>基因是一个巨大的分子，只能进行不连续的变化</strong>（分子的重新排布，得到一种同分异构分子）；这种变化的能量阈值足够高，因而罕见——<strong>这些罕见事件就是自发突变</strong><span class="tag t-src">原书</span>（第 5 章主旨）。</p>
+  <p><strong>依据</strong>：这一模型有直接的实验来源。1935 年，<strong>尼古拉·季莫费耶夫–列索夫斯基（Nikolay Timofeev-Ressovsky）、卡尔·齐默（Karl Zimmer）与德尔勃吕克</strong>在柏林合作发表了一篇长文（后来被称为「<strong>绿皮书</strong>」）《论基因突变与基因结构的本质》，首次给出了遗传的分子基础的实验证据。薛定谔知道德尔勃吕克（他们在柏林相识），并对这项工作「深感兴趣」。</p>
+  <p><strong>为什么重要</strong>：<strong>德尔勃吕克是这本书的「隐藏主角」</strong>。他把薛定谔的目光引向了「基因是一个分子」这个判断；而德尔勃吕克本人后来<strong>从物理学转向生物学</strong>，成为噬菌体研究小组（phage group）的领袖，并因此获得 <strong>1969 年诺贝尔生理学或医学奖</strong>。<strong>「物理学家转行做生物学」这条路径，在德尔勃吕克身上就已经跑通了一遍，薛定谔只是把它讲给了更多人听。</strong></p>
+  <h3>论点五：生命「以负熵为食」——用统计力学的语言讲，有序来自有序</h3>
+  <p><strong>主张</strong>：薛定谔说，活体不断产生正熵、趋向「最大熵」这个危险状态（那就是死亡），<strong>要摆脱死亡、活下去，唯一的办法就是从环境中不断吸取负熵</strong>；他还补了一句不那么悖谬的说法：<strong>「生物体所吃的，就是负熵。」</strong>（<em>What an organism feeds upon is negative entropy.</em>）<span class="tag t-src">原书</span>（第 6 章，<em>What is Life?</em>）</p>
+  <p><strong>依据</strong>：他从玻尔兹曼的熵公式出发，论证「负熵」其实就是「有序」的一个度量。他提出的核心区分是两条产生有序的路径：<strong>「有序来自无序」</strong>（物理学的统计机制）与<strong>「有序来自有序」</strong>（生命所依赖的机制）。他还打了一个著名的比方：<strong>普通晶体像墙纸（同一花纹反复重复），而遗传物质像拉斐尔挂毯（一种大师级的刺绣，每一处都不同）</strong><span class="tag t-src">原书</span>（第 6 章主旨，见诺贝尔奖官网转述）。</p>
+  <p><strong>为什么重要</strong>：★ <strong>这是全书被误读最深的一句。</strong> 薛定谔自己马上就用「不那么悖谬的说法」做了修正，还在注释里承认这个词不严谨（见 5.2）。<strong>中文网络上「生命逆熵而行」的说法，正是把一句他自己都打了折的隐喻，升级成了一条被他「证明」的定律。</strong> 结论：读到这句，正确姿势是「欣赏它的修辞，但不要把它当物理定律」。<span class="tag t-inf">推断</span></p>
+  <h3>论点六：生命可能涉及「迄今未知的其他物理学定律」</h3>
+  <p><strong>主张</strong>：全书快结束时，薛定谔写下了一句被引用最多的判断：<strong>「生命物质在不违背已知物理学定律的同时，很可能涉及至今未知的『其他物理学定律』；而这些定律一旦被发现，将和前者一样，构成这门科学的完整一部分。」</strong><span class="tag t-src">原书</span>（第 7 章，<em>What is Life?</em>；同一句在 Kilmister 1987 纪念文集 p.240 被 Perutz 引出）</p>
+  <p><strong>依据</strong>：他的论证是「<strong>构造不同</strong>」——有机体像一个工程师没见过的电机：铜还是铜、铁还是铁，服从同样的自然律，但<strong>绕成线圈之后，它按一套他还不理解的原理运转</strong>。他把这叫作「不是有新力，而是构造不同」。</p>
+  <p><strong>为什么重要</strong>：★ <strong>这是全书最著名、也最被后人质疑的一句。</strong> 它鼓舞了玻尔（Bohr）式的「生命需要新物理」的期待——事实上<strong>玻尔早在 1933 年〈Light and Life〉（<em>Nature</em> 131:421–423）里就说过类似的话</strong>。但从 1950 年代至今的共识是：<strong>解释生命并不需要新的物理学定律，需要的是化学</strong>（Perutz 1987 的说法）。这一句在今天更多被当作<strong>一种纲领性的提问</strong>，而不是一个可检验的预言。<strong>它也恰好呼应了论点一的张力</strong>：薛定谔同时在说「原则上能算」和「可能需要新定律」。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <ol>
+    <li><strong>先读第 1 章和第 6 章。</strong> 前者给总问题，后者给全书最著名的判断。两章加起来不到四十页，读完你就能决定要不要往下走。
+    </li>
+    <li><strong>把第 2、3 章当「历史事实包」读</strong>：它们讲的是 1943 年人们<strong>已经知道</strong>的东西（染色体、有丝分裂、突变的离散性、X 射线诱变）。<strong>你今天要知道的是：这些「事实」当时还只有一半是对的。</strong>
+    </li>
+    <li><strong>第 4、5 章是全书的承重墙，也是最硬的部分。</strong> 如果「同分异构」「量子跃迁」「能量阈值」让你头大，<strong>直接跳到第 5 章「非周期固体」一小节</strong>，抓住一个结论就够了：遗传物质是一种「不靠重复」的复杂结构。
+    </li>
+    <li><strong>第 7 章和后记请慢读、并对照第 5 节。</strong> 它们涉及「生命是否需要新物理」与「决定论 vs 自由意志」这两个至今没有结案的问题。
+    </li>
+    <li>★ <strong>配一份「误读纠正卡」</strong>：读之前先记住三句话——<strong>① 他没提出 DNA；② 他说的载体是蛋白质；③「负熵」是他自己都说不够严谨的隐喻。</strong> 带上它读，你会读出一个比营销号里清醒得多的薛定谔。
+    </li>
+  </ol>
+  <h3>如果你是「已读」</h3>
+  <ol>
+    <li><strong>回头核对一件事：书里那句「其他物理学定律」，你是怎么理解的？</strong> 如果当年读成了「生命违反物理学」，请回到 5.5——<strong>他的原话恰恰是「不违背已知定律」，只是「构造不同」</strong>。这是全书最容易被过度演绎的一句。
+    </li>
+    <li><strong>对照 Yoxen 1979 和 Kay 2000 的两份科学史研究</strong>（见 5.1）。它们会让你把这本书放回它真正的历史位置：<strong>它不是「分子生物学的地基」，而是「一批物理学家改行的集体转向」的一个标志性事件</strong>。
+    </li>
+    <li><strong>重读第 6 章，这次把「负熵」当成隐喻读。</strong> 然后读 Rovelli 等三人 2019 年那篇 <em>Entropy</em> 论文——<strong>它会告诉你：生命不是「对抗熵」，而恰恰是第二定律在开放系统里的一种现实表达</strong>。
+    </li>
+    <li><strong>读一遍德尔勃吕克这条线索</strong>（附录 A）：从 1935 年「绿皮书」到噬菌体小组到 1969 年诺奖。<strong>这本书最大的历史作用，其实是通过德尔勃吕克，把一群人从物理拉进了生物学。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本报告必需的，因为《生命是什么》的中文版本状况是「合刊／单行本混杂」，且存在一个「章号错位」陷阱。</strong></p>
+  <p><strong>先说最要紧的三句话结论</strong>：</p>
+  <blockquote>
+    <p><strong>⚠ ① 你要买的是「合刊」还是「单行本」，先想清楚。</strong> 如果你想读的<strong>只是《生命是什么》这 7 章</strong>，任何版本都可以；但如果你想连<strong>薛定谔的自传</strong>一起读，<strong>只有湖南科学技术出版社「第一推动」版有</strong>。</p>
+    <p><strong>⚠ ② 主流合刊本的「章号」是延续编号的，会让人找错章。</strong> 湖南科技 2018 版把《意识和物质》接在主书之后，<strong>编为「第 8–13 章」</strong>——所以这本书目录上的「第 9 章」是《意识和物质》的第二章，不是《生命是什么》的第九章。<strong>按英文版或豆瓣章号找内容会错位。</strong></p>
+    <p><strong>⚠ ③ 若只论「主书 7 章」的翻译质量与可读性，2024 商务印书馆（张卜天 译）是最新、也最被中文读者接受的一版</strong>；但它<strong>不含自传</strong>，且正文章节标题与湖南科技版略有出入（例如第七章译作「生命以物理定律为基础吗？」，并把《意识和物质》译作《心灵与物质》）。</p>
+  </blockquote>
+  <p><strong>三个主流版本对比</strong>：</p>
+  <table>
+    <thead><tr><th></th><th>湖南科技「第一推动」（现行）</th><th>商务印书馆「科学大师系列」</th><th>重庆出版社</th></tr></thead>
+    <tbody>
+      <tr><td>书名</td><td>《生命是什么》</td><td>《生命是什么？》</td><td>《生命是什么？》</td></tr>
+      <tr><td>译者</td><td>罗来鸥、罗辽复</td><td><strong>张卜天</strong></td><td>何滟</td></tr>
+      <tr><td>出版</td><td>2018-01（2003 初版，2007 印次）</td><td>2024-07（果麦文化出品）</td><td>2022-04</td></tr>
+      <tr><td>ISBN</td><td>9787535794987</td><td>9787100227179</td><td>9787229160586</td></tr>
+      <tr><td>页数</td><td>19＋201 页</td><td>240 页（另有 226 页口径）</td><td>96 页（★ 与目录页码矛盾，见 D1）</td></tr>
+      <tr><td>定价</td><td>39.00 元</td><td>48.00 元</td><td>—</td></tr>
+      <tr><td><strong>收入篇目</strong></td><td>《生命是什么》＋<strong>《意识和物质》</strong>＋<strong>自传</strong>（三合一）</td><td>《生命是什么？——活细胞的物理观》＋<strong>《心灵与物质》</strong>（<strong>无自传</strong>）</td><td>单行本（<strong>仅主书 7 章＋后记</strong>）</td></tr>
+      <tr><td>章号</td><td>主书 1–7 章，<strong>《意识和物质》续编为 8–13 章</strong></td><td>主书 1–7 章，《心灵与物质》<strong>另起 1–6 章</strong></td><td>主书 1–7 章</td></tr>
+    </tbody>
+  </table>
+  <p><strong>★ 该选哪个</strong>：</p>
+  <ul>
+    <li><strong>只想读《生命是什么》本体 → 商务印书馆 2024（张卜天 译）</strong>。它是最新译本、译者是专业的科学史学者、版式友好，且<strong>不带续编章号</strong>，最不容易混淆。★ 但它<strong>不含薛定谔自传</strong>。
+    </li>
+    <li><strong>想连自传一起读 → 湖南科学技术出版社「第一推动」合刊本（罗来鸥、罗辽复 译）</strong>。它是中文世界<strong>最经典的合刊形态</strong>（也是 CIP 著录里明确把三篇合为一卷的版本）；<strong>代价是续编章号</strong>，你必须自己换算。
+    </li>
+    <li><strong>想只要最薄的一册、快速读完主书 → 重庆出版社单行本</strong>。★ 提醒：它的页数著录有矛盾，<strong>买前请核对实物</strong>。
+    </li>
+  </ul>
+  <p><strong>★ 两个必须提醒的坑</strong>：</p>
+  <ol>
+    <li><strong>不要把《生命是什么》和薛定谔的其他书搞混。</strong> 薛定谔另有《波动力学论文集》《统计热力学》《自然与希腊人》《我的世界观》等，<strong>《意识和物质》与自传只在合刊本里</strong>。购物站搜「薛定谔」时极易误买。
+    </li>
+    <li><strong>不要相信「某版删了第 8 章」之类的说法。</strong> 原书<strong>只有 7 章</strong>；任何提到「第 8 章往后」的《生命是什么》正文，都是把<strong>合刊本里《意识和物质》的续编章号</strong>当成了主书（见附录 D4）。
+    </li>
+  </ol>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本报告最该细读的一节。</strong> 这本书的「好评」是压倒性的——诺贝尔奖官网称它「激励了一代物理学家转向生物学」，中文世界更把它捧成「分子生物学诞生的奠基之作」。<strong>但来自科学史与科学界内部的批评更晚、更硬，也更稀缺。</strong> 下面按「锋利程度」排序，最后一条回答「今天读还成立吗」。</p>
+  <h3>5.1 ★★ 最根本的一条：物理学家介入生物学，真的「推动」了分子生物学吗？</h3>
+  <p><strong>这是本报告最想让你带走的一条批评。</strong> 它针对的<strong>不是薛定谔的某一个例子，而是「薛定谔的书推动了分子生物学」这个流传了八十年的叙事本身</strong>。</p>
+  <p><strong>批评者与出处</strong>：</p>
+  <ul>
+    <li><strong>Edward J. Yoxen</strong>：〈<strong>Where Does Schrödinger's "What is Life?" Belong in the History of Molecular Biology?</strong>〉，<em>History of Science</em> <strong>17(1): 17–52，1979 年</strong>（DOI 10.1177/007327537901700102）<span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>Lily E. Kay</strong>：《<strong>Who Wrote the Book of Life? A History of the Genetic Code</strong>》，Stanford University Press，<strong>2000 年</strong>（"Writing Science" 系列，472 页，ISBN 9780804734172；2002 年获科学的社会研究学会 Ludwik Fleck 奖）<span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>Matthew Cobb</strong>：〈<strong>1953: When Genes Became "Information"</strong>〉，<em>Cell</em> <strong>153(3): 503–506，2013-04-25</strong>（DOI 10.1016/j.cell.2013.04.012）<span class="tag t-src">原书</span>。
+    </li>
+  </ul>
+  <p><strong>他们批什么</strong>：</p>
+  <ul>
+    <li><strong>Yoxen（1979）的「去神话化」</strong>：他系统检验了「这本书因提出了<strong>遗传密码本</strong>而成为分子生物学先声」这一「公认说法」（received view）。他的结论是：<strong>薛定谔真正的关切被后人遮蔽了。</strong> 他写道：<strong>「有证据表明，他更关心的是生物系统中『合规律性』（lawfulness）的问题，而不是基因的结构。没有理由认为他把自己关于『遗传密码本』的言论看得比论证的一个次要部分更重。」</strong><span class="tag t-src">原书</span>（Yoxen 1979, p.19；转引自 Jon Umerez，〈Where Does Pattee's "How Does a Molecule Become a Message?"…〉，<em>Biosemiotics</em> 2: 269–290，2009）<strong>换句话说：后人把薛定谔当成「密码本之父」，可能只是挑走了他书里最时髦的那一段。</strong>
+    </li>
+    <li><strong>Kay（2000）的「隐喻批判」</strong>：她论证，把 DNA 说成「信息」「密码」「生命的书」，本身是<strong>冷战时期控制论、信息论、密码学、语言学</strong>等一连串<strong>军事—工业语境</strong>的产物，而不是从证据中必然得出的结论。她的核心判断是：<strong>「严格说来，遗传密码不是密码，DNA 不是语言，基因组也不是信息系统。」</strong><span class="tag t-src">原书</span>（该书封底／出版方简介原文）<strong>这本书被频繁引用来质疑的，正是「薛定谔式的『密码本』隐喻被当成了本体」。</strong>
+    </li>
+    <li><strong>Cobb（2013）的实证检验</strong>：Cobb 直接去查了当年的一手反应。他的结论很关键：<strong>「薛定谔是用『密码』这个词没错，但他用的『密码』与 1953 年沃森和克里克的『密码』根本不是一回事——他并不认为基因的每一部分与精确的生化反应之间存在对应关系，而这正是『密码』一词所隐含的（Kay, 2000）。」</strong> 更扎心的是这一句：<strong>「但无论是沃森和克里克，还是当时的大多数人，似乎都</strong>没有<strong>被薛定谔的『密码本』想法打动。这个词在《自然》上被提到，不过是被当作『基因组』的同义词；在《纽约时报》上被提到，也不过是『发出命令并被执行的某种东西』。」</strong><span class="tag t-src">原书</span>（Cobb 2013, <em>Cell</em> 153(3): 503–506）
+    </li>
+  </ul>
+  <p><strong>★ 这条批评为什么最有力</strong>：<strong>它不否认「书影响很大」（沃森、克里克、威尔金斯都承认读过它），它否认的是「书提供了分子生物学的答案或方向」。</strong> 用本项目的话说（规范 7.5 陷阱一）：<strong>「影响大」只是接受度证据，不等于「论证成立」。</strong> Cobb 的判据尤其硬——<strong>如果连沃森和克里克都没有被「密码本」的想法打动，那么「这本书提出了遗传密码」就是一句站不住的历史归因。</strong></p>
+  <p><strong>★ 但要分清楚它在打谁</strong>：这条批评<strong>在打「史学叙事」，不在打「书的文本」</strong>。薛定谔书里<strong>确实</strong>写了「code-script」这个词，也<strong>确实</strong>有一批物理学家说受它影响。<strong>双方争的是「这件事该记多大的功」</strong>，而不是「书里有没有这句话」。<strong>读它的人要自己拿捏这个分寸。</strong></p>
+  <h3>5.2 ★★ 「负熵」的物理正当性：一句他自己都承认不严谨的话，被后人当成了定律</h3>
+  <p><strong>（a）薛定谔的原意，与他自己的「改口」</strong></p>
+  <p>薛定谔的原话是：<strong>「一个生物体不断地产生正熵，从而趋向那个危险的最大熵状态，那就是死亡。它只能靠不断从环境中吸取负熵来远离这一状态，而这（负熵）是非常实在的东西。我们马上就会看到。</strong>生物体所吃的，就是负熵。<strong>」</strong> 紧接着他自己就做了一次「不那么悖谬的改写」：<strong>「用不那么悖谬的话说，代谢的要害在于：生物体成功地使自己摆脱了它活着时不得不产生的全部熵。」</strong><span class="tag t-src">原书</span>（第 6 章；亦见 Kilmister 1987 卷 p.11 引文）</p>
+  <p><strong>★ 最要紧的一处：他在第六章的注释里，公开承认这个用法有问题。</strong> 原文是：<strong>「关于负熵的这些说法，受到了物理学家同行的怀疑和反对。让我先说一句：如果我是只写给他们看的，我就会让讨论转向自由能。在这个语境里，那是更熟悉的说法。但这个高度技术性的词，在语言上离『能量』太近，无法让普通读者体会到两者的差别。」</strong><span class="tag t-src">原书</span>（第 6 章注释；转引自 Wikipedia "Entropy and life" 与多篇学术文献对该注释的逐字引用）</p>
+  <p><strong>⇒ 翻译成一句话：他选「负熵」这个词，是因为它</strong>对普通读者更好懂<strong>，而不是因为它在物理上更正确。</strong> 他自己心里清楚，<strong>正确的说法是「自由能」</strong>。所以，「生命以负熵为食」<strong>从来不是一条物理定律，它是一句为了给门外汉讲清楚而做的修辞选择</strong>。</p>
+  <p><strong>（b）物理学界当时就反对，后来又被两轮研究重写</strong></p>
+  <ul>
+    <li><strong>当时的反对</strong>：<strong>莱纳斯·鲍林（Linus Pauling）</strong> 在 1987 年薛定谔百年诞辰纪念文集里直言，<strong>负熵是对生物学的「负」贡献</strong>，并批评薛定谔对生命热力学效应的处理<strong>「模糊而肤浅，其程度即使在通俗讲座中也不应被容忍」</strong><span class="tag t-src">原书</span>（Pauling，收于 C. W. Kilmister 编，<em>Schrödinger: Centenary Celebration of a Polymath</em>，Cambridge University Press，1987，pp.225 起）。
+    </li>
+    <li><strong>普里高津（Ilya Prigogine）的替代方案</strong>：1977 年诺贝尔化学奖得主普里高津用<strong>耗散结构</strong>给出了更严格的表述。他把总熵变拆成两项：<strong>dS = dₑS + dᵢS</strong>（dᵢS 是系统内部产生的熵，由第二定律保证永远为正；dₑS 是与环境交换的「熵流」，可以为负）。<strong>生命体的局部熵减，是靠一个足够强的负熵流去抵消内部熵产生，而不是靠「吃掉负熵」这种说法。</strong> ★ 值得注意的是：<strong>普里高津本人的立场是「负熵」这个提法没有解决生命问题，只是把问题换了个名字。</strong> 据 Isabelle Stengers 记述：<strong>「普里高津不能接受用负熵来解答生命问题，因为那不是解答，只是问题的另一个名字。」</strong><span class="tag t-rep">转述</span>（转引自 <em>Parrhesia</em> 第 12 期，〈Dissipative Individuation〉对 Stengers 的引述）
+    </li>
+    <li><strong>最新的重写（2019）</strong>：<strong>Kate Jeffery、Robert Pollack 与 Carlo Rovelli</strong> 三人在 <em>Entropy</em> <strong>21(12): 1211（2019）</strong> 发表〈<strong>On the Statistical Mechanics of Life: Schrödinger Revisited</strong>〉，把这个问题又翻了一遍。他们的核心主张是：<strong>「认为生命是『一场局部对抗熵的斗争』——一个把熵局部压低的把戏——这个广泛流传的想法是误导的。」</strong> 他们认为<strong>不需要任何新原理：生命是被第二定律直接驱动的</strong>；结构之所以被偏爱，是因为它<strong>为熵通过代谢而增长打开了通道</strong><span class="tag t-src">原书</span>（Jeffery, Pollack &amp; Rovelli, <em>Entropy</em> 21(12):1211, 2019，DOI 10.3390/e21121211）。★ 注意第一作者 Rovelli 是当今知名理论物理学家——<strong>这不是一篇外行挑刺，而是一次来自物理学内部的系统翻修。</strong>
+    </li>
+  </ul>
+  <p><strong>（c）★ 中文世界的误读：从「隐喻」升级成「人生哲学」</strong></p>
+  <p><strong>这是本报告认为最需要点破的一点。</strong> 薛定谔的原话是「以负熵为食」（<em>feeds upon</em>），而<strong>中文互联网大量把它转述成「生命逆熵而行」「生命是对熵增定律的局部突破」</strong>。一个典型样本是某省级媒体 2023 年的干部理论文章，其中写道：<strong>「薛定谔说生命不是在违反熵增定律，而是在巧妙地利用它……生命以负熵为生，人活着的意义，就是不断对抗熵增的过程。生命的存在是对熵增定律的『局部突破』。」</strong><span class="tag t-rep">转述</span>（见来源清单「中文误读样本」）</p>
+  <p><strong>这句话在三个层面上都是不准的</strong>：</p>
+  <ol>
+    <li><strong>字面层</strong>：薛定谔写的是「生命<strong>吃</strong>负熵」，不是「生命<strong>逆着</strong>熵走」。他自己紧接着就说这个说法「不那么悖谬」的版本是「摆脱自身产生的熵」。
+    </li>
+    <li><strong>物理层</strong>：如 Jeffery–Pollack–Rovelli（2019）所论证的，<strong>生命不是对抗第二定律，而是第二定律在开放系统里的一种表达</strong>；把它说成「局部突破」会掩盖「开放系统可以局部熵减而总熵仍增」这个关键机制。
+    </li>
+    <li><strong>引申层</strong>：<strong>薛定谔从没说过「人活着的意义就是对抗熵增」</strong>。那是把一句物理隐喻，硬接到了一套人生哲学上。⇒ <strong>这是一种典型的「把作者的话升级成作者没说过的话」，本报告在此明确标注。</strong><span class="tag t-inf">推断</span>
+    </li>
+  </ol>
+  <h3>5.3 ★★ 「非周期晶体」这个猜测：对在哪里、含糊在哪里</h3>
+  <p><strong>（a）对在哪里</strong></p>
+  <ul>
+    <li><strong>方向对了</strong>：遗传物质确实是<strong>一种「不靠重复」的复杂结构</strong>，它的信息确实写在<strong>单元的有序排列</strong>里，而不是写在单元的<strong>种类</strong>里。用今天的话说：<strong>信息在序列，不在组成。</strong> 这一条，薛定谔是抓对了。
+    </li>
+    <li><strong>「非周期性 = 能承载大信息量」这个直觉是对的</strong>：他反复强调「周期性结构（普通晶体）信息量很小，因为它是重复的」。<strong>今天我们知道：正因为 DNA 是「非重复」的，它才能编码几乎无限种序列。</strong>
+    </li>
+    <li><strong>「密码本」（code-script）这个词是超前的</strong>：Cobb（2013）承认，「薛定谔是 20 世纪<strong>第一个明确说出基因含有 a code-script</strong>」的人——<strong>即使他没猜对什么叫「码」。</strong>
+    </li>
+  </ul>
+  <p><strong>（b）含糊在哪里（★ 这一部分才是重点）</strong></p>
+  <table>
+    <thead><tr><th>薛定谔说的</th><th>后来的事实</th><th>差在哪</th></tr></thead>
+    <tbody>
+      <tr><td>载体是<strong>蛋白质</strong>（他默认如此）</td><td>载体是 <strong>DNA</strong></td><td>★ <strong>化学身份猜错了。</strong> 当时主流也猜蛋白；但<strong>1944 年 Avery 等人已发表转化实验，指向 DNA</strong>（Avery, MacLeod &amp; McCarty, <em>J. Exp. Med.</em> 79(2):137–158, 1944）</td></tr>
+      <tr><td>信息写在<strong>原子/原子团的三维排布（同分异构）</strong>里</td><td>信息写在<strong>核苷酸的线性序列</strong>里</td><td>★ <strong>机制错了。</strong> DNA 不是「靠原子异构重排」携带信息，而是<strong>靠四种碱基的一维排列顺序</strong>携带</td></tr>
+      <tr><td>载体是<strong>固体</strong>，靠强化学键「固定」其构型而长期稳定</td><td>DNA 是<strong>柔性聚合物</strong>，其稳定主要靠共价键＋碱基堆积＋氢键，并有<strong>修复酶</strong>维持</td><td>★ <strong>「固态、靠量子力学的刚性」这幅图像误导</strong>：DNA 的稳定性既有物理也有酶学的一面</td></tr>
+      <tr><td>突变是分子内部的<strong>同分异构/量子跃迁</strong></td><td>突变是<strong>碱基序列的改变</strong>（置换、插入、缺失）</td><td>★ 用「量子跃迁」解释突变<strong>不成立</strong>；突变的离散性是<strong>序列事件</strong>，不是异构化</td></tr>
+      <tr><td>「非周期晶体」是<strong>染色体纤维</strong>（他只能猜到「纤维」）</td><td>DNA 是<strong>双螺旋</strong>，且<strong>成对</strong>（双链互补）</td><td>★ 双链、互补复制是薛定谔<strong>完全没想到</strong>的（他连碱基配对都没有）</td></tr>
+    </tbody>
+  </table>
+  <p><strong>⇒ 一句话总结</strong>：<strong>薛定谔猜对了「问题的形状」（一种能承载大信息的非重复结构、一套密码），但猜错了「载体」与「机制」。</strong> 用本项目的语言说：<strong>这是「启发」而非「发现」</strong>——他甚至<strong>没有提供正确的问题表述</strong>（他要的是「原子的三维排布」，而真相是「一维序列」）。<strong>Crick 那句「你的『非周期晶体』一词看来会非常贴切」，是物理学家的客气，不是科学史的判词。</strong><span class="tag t-inf">推断</span></p>
+  <h3>5.4 ★ 逐条清点：哪些推测被证实、哪些被证伪</h3>
+  <p><strong>这是本报告认为最实用的一张表。</strong> 薛定谔在书里提出了多组性质完全不同的主张，<strong>过去八十年里它们各自的命运差别极大</strong>。请注意区分「<strong>方向对</strong>」「<strong>部分对</strong>」「<strong>错</strong>」「<strong>至今未决</strong>」四类。</p>
+  <table>
+    <thead><tr><th>#</th><th>薛定谔的主张</th><th>后来的检验</th><th>判定</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>基因是一个<strong>分子</strong>（大分子）</td><td>DNA 确为分子，其结构 1953 年被解出</td><td>✅ <strong>证实</strong>（当时已是主流判断）</td></tr>
+      <tr><td>2</td><td>遗传信息写在一种<strong>非周期（非重复）</strong>结构中</td><td>DNA 序列确为非重复的一维编码</td><td>✅ <strong>方向证实</strong></td></tr>
+      <tr><td>3</td><td>存在一套<strong>「密码本」（遗传密码）</strong></td><td>遗传密码 1961 年被破译（Nirenberg 等）</td><td>✅ <strong>方向证实</strong>（机制不同）</td></tr>
+      <tr><td>4</td><td>突变是<strong>离散、稀有</strong>的事件</td><td>突变确为离散事件；X 射线可诱发</td><td>✅ <strong>部分证实</strong>（但机制是序列改变，非异构化）</td></tr>
+      <tr><td>5</td><td>基因的持久性依赖<strong>强化学键</strong></td><td>共价键＋碱基堆积＋氢键＋修复系统</td><td>✅ <strong>部分证实</strong>（漏了酶学与碱基配对）</td></tr>
+      <tr><td>6</td><td>生命是<strong>远离平衡的开放系统</strong>，需持续「吸序」</td><td>耗散结构理论（Prigogine 1977）方向一致</td><td>✅ <strong>方向证实</strong></td></tr>
+      <tr><td>7</td><td>「<strong>有序来自有序</strong>」这一机制区别于「有序来自无序」</td><td>至今仍是描述生物组织的一个有用提法</td><td>🟡 <strong>仍在使用，但含义被精确化</strong></td></tr>
+      <tr><td>8</td><td>「生命可能涉及<strong>迄今未知的其他物理学定律</strong>」</td><td>主流共识：解释生命不需要新物理，需要化学</td><td>❌ <strong>大体证伪</strong>（作为「预言」而言）</td></tr>
+      <tr><td>9</td><td>「<strong>负熵</strong>」是一个物理上可用的量</td><td>非严格量；作者自认应用「自由能」</td><td>❌ <strong>作为物理量不成立</strong></td></tr>
+      <tr><td>10</td><td>遗传载体是<strong>蛋白质</strong></td><td>是 DNA</td><td>❌ <strong>证伪</strong>（他并未公开主张，但书里默认如此）</td></tr>
+      <tr><td>11</td><td>信息在<strong>原子三维排布（异构）</strong></td><td>在一维碱基序列</td><td>❌ <strong>证伪</strong></td></tr>
+      <tr><td>12</td><td>突变＝分子的<strong>量子跃迁/异构化</strong></td><td>突变＝序列改变</td><td>❌ <strong>证伪</strong></td></tr>
+      <tr><td>13</td><td>遗传物质是<strong>单链纤维</strong>（单体）</td><td>是<strong>双螺旋</strong>，双链互补</td><td>❌ <strong>证伪</strong>（未想到双链）</td></tr>
+      <tr><td>14</td><td>后记：<strong>决定论与自由意志</strong>的关系</td><td>一个至今未解的哲学问题</td><td>⚪<strong>未决</strong>（不是科学命题）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读这张表的方法</strong>：<strong>别去数「对了几条 vs 错了几条」</strong>（那个数字没有意义，因为「方向对」和「机制对」根本不是一个难度级别）。<strong>要看的是一条规律</strong>：<strong>薛定谔凡是活在「物理学的直觉」里的判断（非周期、有序、开放系统），大体都立得住；凡是他要去做「化学的猜想」（载体是什么、信息存在哪）的地方，几乎全错。</strong> 这正是 Perutz「你需要的是化学」那句批评的实证含义。</p>
+  <h3>5.5 ★ 来自实验室内部的批评：Pauling 1987、Perutz 1987、Muller</h3>
+  <p><strong>这一组批评与前几节不同：</strong> 前几节打的是「历史叙事」和「物理概念」，<strong>这一组打的是「这本书到底有没有真正的科学贡献」，而且批评者都是当时最好的化学家与生物学家</strong>。</p>
+  <ul>
+    <li><strong>莱纳斯·鲍林（Linus Pauling，1954 年诺贝尔化学奖、1962 年和平奖得主）</strong>：〈Schrödinger's contributions to chemistry and biology〉，收于 Kilmister 编 <em>Schrödinger: Centenary Celebration of a Polymath</em>，Cambridge University Press，<strong>1987</strong>，pp.225 起。他说：<strong>「当我四十多年前第一次读这本书时，我很失望。过去和现在我都认为：薛定谔对我们的理解生命没有作出任何贡献。」</strong><span class="tag t-src">原书</span>（转引自 <em>Genetics</em> 153(3): 1071，1999）他还批评薛定谔<strong>没有意识到关于生命本质的真正问题——生物独特性是如何实现的</strong>：<strong>「一个分子结构可以编码一套密码，这没什么大不了；真正稀罕的是编码是如何实现的。」</strong><span class="tag t-src">原书</span>（Pauling 1987，转引自科普中国 2018 年综述）
+    </li>
+  </ul>
+  <ul>
+    <li><strong>马克斯·佩鲁茨（Max Perutz，1962 年诺贝尔化学奖得主，血红蛋白结构解出者）</strong>：〈Erwin Schrödinger's What is Life? and molecular biology〉，同卷，pp.234 起。他写下了全书被批得最狠的一句：<strong>「遗憾的是，对他这本书及相关文献的仔细研究表明：他的书里正确的东西都不是原创的，而大多数原创的东西，即使在成书之时也已知是不成立的……生命与物理学的统计定律之间那个表面的矛盾，可以通过引入一门薛定谔很大程度上忽视了的科学来解决。那门科学就是化学。」</strong><span class="tag t-src">原书</span>（Perutz 1987，转引自 <em>Genetics</em> 153(3):1071 与 Nobel 论坛述评）★ <strong>但 Perutz 同时承认：这本书的功劳在于「唤起了对这门学科的兴趣，并把注意力引向季莫费耶夫–列索夫斯基、齐默和德尔勃吕克的工作」</strong><span class="tag t-src">原书</span>（<em>International Reviews in Physical Chemistry</em> 7 卷书评，1988）。
+    </li>
+  </ul>
+  <ul>
+    <li><strong>赫尔曼·J·穆勒（Hermann J. Muller，1946 年诺贝尔生理学或医学奖得主，X 射线诱变的发现者）</strong>：他早在 1922 年〈Variation due to Change in the Individual Gene〉（<em>The American Naturalist</em> 56:32–50）与 1929 年〈The Gene as the Basis of Life〉等文中，<strong>已经列出了「遗传分子」的全部基本性质（包括分子的「非周期性」）</strong>。据记载，他在 1960 年致一位记者的一封信里表示：<strong>这本书《生命是什么》凡是说对了的关于「遗传分子」的内容，1944 年之前都已发表过；薛定谔写的只是些错误的推测。</strong><span class="tag t-rep">转述</span>（此说见于多个百科入口，<strong>均标注 [citation needed]</strong>，本报告<strong>不单独采信</strong>，仅作线索记入附录 D3）
+    </li>
+  </ul>
+  <p><strong>★ 这条批评为什么杀伤力大</strong>：<strong>它不是说薛定谔讲得不够通俗，而是说这本书在科学上「没有原创的正确内容」。</strong> ★ <strong>但要说清楚：这三位的批评，有相当一部分是「学科口味之争」</strong>——鲍林、佩鲁茨要的是<strong>化学的机制</strong>，薛定谔给的是<strong>物理学的提问</strong>。<strong>一方觉得「你不懂化学」，另一方本来就不打算讲化学。</strong> (M. Cobb 也提到, Perutz 的批评与薛定谔「从物理学家的角度如何才算『解释』」这一取向有关。) <strong>所以这条批评「有效」的部分是「薛定谔的机制推测确实错了」；「见仁见智」的部分是「这种『提问』算不算贡献」。</strong><span class="tag t-inf">推断</span></p>
+  <h3>5.6 ★ 体裁问题：一本「给门外汉的通俗讲座」，装着大量未定论的推测</h3>
+  <p><strong>这是全书一个结构性、而非细节性的问题。</strong></p>
+  <p>薛定谔自己就声明过：<strong>「本讲題较难，不能算通俗讲座」</strong><span class="tag t-src">原书</span>（1943 年讲座公开告示语，见各图书馆与纪念机构转录）。但<strong>它仍然是一本写给非专业听众的小书</strong>——不到 100 页，几乎没有数学，作者自称「天真的物理学家」（<em>naïve physicist</em>）。<strong>问题就出在这里</strong>：</p>
+  <ul>
+    <li><strong>一本通俗书需要「确定的结论」才好读</strong>，而 1943 年的生物学<strong>还没有确定的结论</strong>。于是薛定谔<strong>只能用推测去填那些空缺</strong>——「非周期晶体」是推测，「其他物理学定律」是推测，「负熵」是一个他自己都知道不严谨的词。
+    </li>
+    <li><strong>他写作时的处境加剧了这一点</strong>：书成于<strong>二战期间的爱尔兰</strong>，作者是一个<strong>流亡中的物理学家</strong>，只能靠二手文献了解生物学。他因此<strong>错过了当时正在发生的关键实验</strong>——最典型的是：Cobb（2013）指出，<strong>薛定谔似乎并不知道比德尔和塔特姆（Beadle &amp; Tatum）关于「一个基因一个酶」的工作</strong>（该工作 1941 年发表、1958 年获诺奖）；而他 1943 年写作时，<strong>Avery 等人「DNA 是遗传物质」的实验也正在同期发表（1944）</strong>。
+    </li>
+    <li><strong>后果</strong>：<strong>这本书的大部分「原创推测」，都建立在一个错误的化学前提上（基因是蛋白质）。</strong> 这就是为什么它「猜对了问题的形状，却猜错了答案」。
+    </li>
+  </ul>
+  <p><strong>★ 一个更尖锐的观察</strong>：<strong>这本书的成功，恰恰部分来自它的「不精确」。</strong> 修辞学者 <strong>Leah Ceccarelli</strong> 研究后认为，这本书之所以影响巨大，<strong>主要归功于薛定谔的写作风格——他成功地连接了物理学与生物学，而没有偏袒任何一方</strong><span class="tag t-rep">转述</span>（转引自 <em>Nature</em> 述评〈In Retrospect: What Is Life?〉与科普中国 2018 综述）。<strong>换句话说：它的含糊，既是它被批评的理由，也是它迷人的理由。</strong></p>
+  <h3>5.7 ★ 一个反讽：书里最「出名」的句子，恰恰是最不物理的一句</h3>
+  <p><strong>把 5.2 和 5.6 放在一起看，会浮出一个反讽</strong>：</p>
+  <p><strong>这本书今天在中文世界流传最广的一句话，是「生命以负熵为食」；而这句话，恰恰是薛定谔自己在注释里承认「不够严谨」、并说「本该用自由能」的那一句。</strong></p>
+  <p><strong>它流行的原因，不是它在物理上最对，而是它在修辞上最响。</strong> 这正好是本书最好的一课：<strong>一部经典的影响力，与它的正确性是两条独立的曲线。</strong> 沃森、克里克、威尔金斯说受它影响，<strong>不代表它论证成立</strong>；「负熵」被千万人引用，<strong>不代表它是一个量</strong>。★ <strong>读经典时，请把「它有多出名」和「它对不对」分开打分。</strong><span class="tag t-inf">推断</span></p>
+  <h3>5.8 这本书今天读还成立吗</h3>
+  <p><strong>分领域回答，不一句「仍然经典」了事。</strong></p>
+  <p><strong>仍然成立的</strong>：</p>
+  <ul>
+    <li><strong>「基因是分子、遗传信息写在一种非重复结构里」这个大方向</strong>——<strong>今天依然是分子生物学的骨架</strong>（信息在序列，不在组成）。
+    </li>
+    <li><strong>第 1 章的那个总问题</strong>——「活细胞里的事件能不能用物理化学算清楚」——<strong>今天细胞生物物理学、系统生物学仍在回答它</strong>。
+    </li>
+    <li><strong>「生命是远离平衡的开放系统」这个框架</strong>——<strong>被耗散结构理论继承并精确化</strong>（Prigogine 1977）。
+    </li>
+    <li><strong>作为一种「把人吸引进生物学」的文体</strong>——它的说服力<strong>八十年来没有失效</strong>，这也是它至今在书店里活着的原因。
+    </li>
+  </ul>
+  <p><strong>要打大折扣的</strong>：</p>
+  <ul>
+    <li><strong>「遗传载体是蛋白质」</strong>——<strong>直接错</strong>，读的时候要替换成 DNA。
+    </li>
+    <li><strong>「信息写在原子的三维排布里」</strong>——<strong>直接错</strong>，<strong>这是全书机制层面的核心错误</strong>。
+    </li>
+    <li><strong>「负熵」</strong>——<strong>只能当隐喻</strong>；<strong>凡是要用它做实证论证的地方（包括许多中文科普），都应停手</strong>。
+    </li>
+    <li><strong>「生命需要迄今未知的物理学定律」</strong>——<strong>作为预言，大体被证伪</strong>；今天更接近共识的是 Perutz 的判断：<strong>需要的是化学</strong>。
+    </li>
+  </ul>
+  <p><strong>今天读者最该带走的三条</strong>：</p>
+  <ol>
+    <li><strong>这本书是「问题的书」，不是「答案的书」。</strong> 它最大的贡献<strong>不是任何一条具体结论，而是让一批人相信「生命可以用物理学问」</strong>。
+    </li>
+    <li><strong>「影响大」不等于「论证成立」。</strong> 这本书是本项目这条陷阱的<strong>教科书级样本</strong>——沃森承认读过它，<strong>和它猜对了没有，是两回事</strong>。
+    </li>
+    <li><strong>★ 读它要分清「提问」与「作答」。</strong> 薛定谔的<strong>提问</strong>（非周期结构能不能承载信息？生命能不能用物理讲清？）至今有效；他的<strong>作答</strong>（蛋白质、三维异构、负熵、新定律）<strong>大都已经过时</strong>。<strong>把它当一份 1943 年的提问清单读，你会很受益；把它当一本 2026 年的科普结论集读，你会被骗。</strong>
+    </li>
+  </ol>
+  <p>★ <strong>结构说明</strong>：本书主书正文 7 章，本部分<strong>逐章</strong>对应，<strong>编号从 6 起连续到 12</strong>。<strong>合刊本中的《意识和物质》（6 章）与《薛定谔自传》，按规范要求不逐章展开</strong>（见第 1 节骨架表与附录 D6）。★ 页码引用一律以<strong>章节与版本</strong>为准，<strong>不以某一版的阿拉伯数字页码为精确锚点</strong>（见第 1 节与附录 D1）。</p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">6</span><span>第一章：经典物理学家走近这个主题（第 1 章）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「一个物理学家，凭什么资格来过问生命？」——在讲任何生物学之前，先划定问题。</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>开篇抛出全书的总问题：<strong>「一个活体在空间和时间的边界内发生的事件，如何用物理学和化学来加以解释？」</strong><span class="tag t-src">原书</span>（第 1 章主旨，见诺贝尔奖官网与剑桥官方书目）
+    </li>
+    <li>薛定谔先做了一件很「物理学家」的事：<strong>论证「为什么原子这么小」</strong>。他的意思是，与原子尺度相比，人的感官太粗，我们无法直接看到、摸到、听到单个原子，因此关于原子的假设「与粗糙感官的直接发现相去甚远，无法接受直接检验」<span class="tag t-src">原书</span>（<em>What is Life?</em> 1992 Canto 版 pp.7–8）。
+    </li>
+    <li>由此引出统计物理学的根本特征：<strong>物理学的定律是「原子统计学」的定律，因此只是近似的</strong>；只有涉及大量原子时，统计规律才精确。他举了顺磁性、布朗运动与扩散、测量精确性的限度三个例子，并引入著名的<strong>「√n 律」</strong>。
+    </li>
+    <li>★ 这一章埋下了全书的核心张力：<strong>有机体里有些结构「原子数目很少」，却要表现出极其稳定的行为</strong>——这恰恰是「宏观统计律」解释不了的，也正是他想解决的问题。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一章不是论证，是「设陷阱」。</strong> 它用大量篇幅讲「原子为什么小」，看似跑题，实则是为了把读者逼到一个结论：<strong>如果遗传物质只由少数原子构成，那么它就不能靠「大数统计」来稳定，必然另有机制。</strong> 这正是第 4 章「量子力学证据」的伏笔。 ★ <strong>它可信度高的地方</strong>在于：这一章讲的物理（统计力学、布朗运动、√n 律）<strong>是薛定谔的专业，且是当时的成熟知识</strong>。它的问题不在物理，而在<strong>它把读者引向了一个后来被证明「地基错了」的方向</strong>——因为基因的稳定所依赖的，<strong>不只是「少数原子的量子刚性」，还有碱基配对与修复酶</strong>（见 5.3）。<strong>读这章要把它当一个漂亮的「问题装置」看，而不是一个已经落地的答案。</strong></p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">7</span><span>第二章：遗传机制（第 2 章）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「当时的人们对遗传知道些什么？」——把 1943 年的生物学事实摆上桌。</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>染色体的基本图景</strong>：他把染色体称作「遗传密码本」的物理载体。这一章系统介绍了<strong>有丝分裂</strong>（机体生长的基础，染色体可复制）、<strong>减数分裂与受精</strong>、<strong>单倍体</strong>、<strong>同源染色体交叉互换与性状定位</strong>等经典遗传学事实<span class="tag t-src">原书</span>（第 2 章，各小节标题见 2022 重庆版与商务印书馆版公开目录）。
+    </li>
+    <li>★ 最关键的两个估算：<strong>「基因的最大体积」</strong>与<strong>「基因所包含的原子数量」</strong>。薛定谔试图从基因的物理尺寸反推出它大约由多少个原子组成——<strong>这个数字，正是他后面论证「量子机制必要」的依据</strong>。他还论证「<strong>遗传物质具有持久性</strong>」。
+    </li>
+    <li>★ <strong>「密码本」（code-script）这个说法，本章已经出现</strong>。书里那段被引用最多的话是：<strong>「正是这些染色体，或者也许只是我们在显微镜下看到的染色体的某一中轴骨架纤维，以某种密码本的形式，包含着个体未来发育的整个蓝图及其在成熟状态下的功能。」</strong> 接着他补充：<strong>「当我们把染色体纤维的结构称作密码本时，我们的意思是：那个无所不知的心智（拉普拉斯曾经设想的、一切因果联系对它都立即敞开的心智），能从它们的结构判断出这颗卵在适当条件下会发育成一只黑公鸡还是一只花母鸡，发育成一只苍蝇还是一株玉米、一株杜鹃、一只甲虫、一只老鼠或一个女人。」</strong><span class="tag t-src">原书</span>（第 2 章，转引自 <em>The New Atlantis</em> 对本书的引述）
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>本章的「事实」有一半是「当时的事实」。</strong> 它讲的有丝分裂、减数分裂、连锁互换，<strong>今天仍然成立</strong>；但它关于「遗传物质是什么」的部分，<strong>建立在一个错误前提上——默认它是蛋白质</strong>（见 5.3）。 ★ <strong>一个最该注意的时间差</strong>：薛定谔在都柏林讲这三次课的 1943 年 2 月，<strong>Oswald Avery 等人「DNA 才是转化因子」的实验尚未发表</strong>（该文 1944 年才登在 <em>J. Exp. Med.</em> 79(2):137–158）。<strong>所以他的这一章，正好停在「DNA 即将被证明是遗传物质」的前夜。</strong> ★ <strong>这既解释了它的历史价值（它把问题问在了正确的时间点），也解释了它的局限（它的推论建立在一个即将被推翻的化学假设上）。</strong></p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">8</span><span>第三章：突变（第 3 章）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「基因会变，但它怎么变？——为什么突变是「跳」的，而不是「滑」的？」</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>「跳跃式」突变</strong>：薛定谔强调，突变不是连续的、渐进的，而是<strong>离散的、跳跃式的</strong>——他把这一点视为「自然选择的基础」<span class="tag t-src">原书</span>（第 3 章小节标题，见公开目录）。
+    </li>
+    <li><strong>隐性与显性基因、近亲繁殖的危害</strong>等经典遗传学术语与现象的系统介绍。
+    </li>
+    <li><strong>X 射线诱发的突变</strong>：他专门讨论了 X 射线能显著提高突变率这一事实（穆勒 1927 年的发现）。
+    </li>
+    <li>★ 他提炼出突变的两条「定律」：<strong>第一，突变的发生是单一性事件（single event）；第二，突变的发生具有局域性（localized）</strong><span class="tag t-src">原书</span>（第 3 章小节标题，见公开目录）。<strong>这两条是他后面「量子跃迁」图景的直接跳板。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>本章的「现象学」是对的，「解释」是错的。</strong> 「突变是离散事件」「突变是局域的」——<strong>今天依然成立</strong>；但薛定谔把「离散」归因于<strong>分子构型的量子跃迁</strong>，<strong>这是全书中后来被证伪得最彻底的机制之一</strong>（见 5.3、5.4）。 ★ <strong>一个容易被忽略的贡献</strong>：他说 X 射线能诱变，并试图解释「为什么 X 射线的效率不取决于自发突变」「为什么温度对不稳定基因的影响小于对稳定基因的影响」。<strong>这些「定量比较」的直觉是超前的</strong>——他已经在用「物理量」去逼问生物学现象。<strong>这一点值得肯定：他错在结论，不错在提问方式。</strong> ★ <strong>本章的「可疑」还在于它的推理链</strong>：他要用「突变的离散性」去<strong>反推</strong>「基因是一个分子」——<strong>这是「以现象定机制」的推理</strong>。严格说，<strong>离散的突变也可以由别的机制产生</strong>；薛定谔是<strong>先有了「基因是分子」的信念，再去找现象支持它</strong>。<strong>读这一章时，请把这句话记住：他是在为一幅已经画好的图景找证据。</strong></p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">9</span><span>第四章：量子力学的证据（第 4 章）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「经典物理学解释不了基因的持久性——那么量子力学能吗？」（薛定谔的答案：能。）</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>经典物理学的失败</strong>：如果基因是经典意义上的分子，那么热运动会不断扰动它，它不可能在千万年的尺度上保持稳定。薛定谔说：<strong>经典物理学家无法解释遗传物质的持久性。</strong>
+    </li>
+    <li><strong>量子力学的登场</strong>：他把「稳定性」解释为<strong>能量阈值</strong>问题——分子要从一种构型跳到另一种构型，必须翻越一个远高于常温热运动能量（kT）的能量台阶。<strong>正因为这个台阶高，这种跳跃才是稀有事件，基因才持久。</strong>
+    </li>
+    <li><strong>量子理论的核心概念</strong>：不连续状态、<strong>量子跃迁</strong>、分子的概念、<strong>分子的稳定性取决于温度</strong>。
+    </li>
+    <li>他插入了<strong>「穿插数学」</strong>一节（他曾在讲座告示里保证「数学推导几乎不会被使用」，此处算是破例），做了「分子理论的第一项修正」与「第二项修正」。
+    </li>
+    <li>★ 他说了一句全书最自信的话之一：<strong>「我们也许可以安全地断言：对于遗传物质的解释，没有别的替代方案。物理上不留任何其他可能来解释它的持久性。如果德尔勃吕克的图景失败了，我们就只能放弃进一步的尝试。」</strong><span class="tag t-src">原书</span>（第 5 章开篇，<em>What is Life?</em>；此语亦被诺贝尔奖官网引作「If the Delbrück picture should fail, we would have to give up further attempts」）
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>本章是全书最「物理学正确、生物学错误」的一章。</strong> 「能量阈值」「kT」「量子跃迁」<strong>在物理上都没错</strong>；<strong>错的是把它们套到「基因」这个他并不知道其化学身份的对象上</strong>。 ★ <strong>具体错在哪</strong>：</p>
+  <ol>
+    <li><strong>他把「稳定性」归给「构型跃迁的能量阈值」</strong>，而实际上基因的稳定性还有<strong>碱基配对（复制保真）与 DNA 修复酶</strong>这两大支柱——<strong>薛定谔完全没料到这两件事</strong>。
+    </li>
+    <li><strong>他把「突变」归给「分子内部的异构化」</strong>，而实际上是<strong>碱基序列的改变</strong>。
+    </li>
+    <li><strong>他断言「没有别的可能」</strong>——<strong>这句话本身下得太满</strong>。科学史上最危险的句式，就是「只有一种可能」。<strong>而这一次，唯一的可能恰恰被他排除了（正确答案是序列信息，不是构型信息）。</strong>
+  <p>★ <strong>一个方法论的提醒</strong>：薛定谔在这一章<strong>用「我们是物理学家」的权威，为一个当时没有实验支持、且后来被证伪的机制做了担保</strong>。<strong>这正是「把物理学的自信，误用到了生物学未定论之处」的典型样本。</strong></p>
+    </li>
+  </ol>
+</section>
+
+<section id="s10">
+  <h2><span class="num">10</span><span>第五章：对德尔勃吕克模型的讨论和检验（第 5 章）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「把德尔勃吕克的模型（基因＝大分子，突变＝其不连续变化）拿去和遗传学事实对照——它站得住吗？」（薛定谔的答案：站得住。）★ 这是全书的核心理论章。</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>引出一段拉丁文题记</strong>（斯宾诺莎《伦理学》：「正如光明既显现自身又显现黑暗，真理既是自身的标准，又是谬误的标准」）。
+    </li>
+    <li><strong>遗传物质的总图景</strong>：<strong>「我们将假定，基因的结构是一个巨大的分子，它只能进行不连续的变化；这种变化由原子的重新排布构成，并产生一种同分异构分子……这种变化所涉及的能量阈值必须足够高（与一个原子的平均热能相比），才能使这种改变成为稀有事件。这些稀有事件，我们将把它们认定为自发突变。」</strong><span class="tag t-src">原书</span>（第 5 章开篇）——<strong>并明确注明这一图景「主要归功于德国物理学家 M. 德尔勃吕克」。</strong>
+    </li>
+    <li><strong>「本设想具有独特性」</strong>：他论证，量子力学是第一个「从第一原理出发、说明自然界中实际遇到的各种原子聚集体」的理论；Heitler–London 键（共价键）是它「并非为解释化学键而发明」的独特特征。<strong>由此他得出结论：不存在别的可能。</strong>
+    </li>
+    <li><strong>「一些传统认识的误区」</strong>：他反驳「只有分子才是可持久的原子结构」这一印象——<strong>他说，分子、固体、晶体在本质上没有区别，三者其实是一回事</strong>（"molecule = solid = crystal"，而 "gas = liquid = amorphous"）。他用一块在墓里埋了两千年的金币、以及岩石中长期不变的晶体作例子。
+    </li>
+    <li>★★ <strong>「非周期性固体」这一节，是全书的命门</strong>。他说，从小分子这个「固体的胚芽」出发，固体长大有两条路：<strong>一条是笨办法——在三个方向上反复重复同一结构（普通晶体）；另一条是不靠重复，把结构越堆越复杂，其中每个原子、每个原子团都扮演各自的角色。</strong> 他写下了那句名言：<strong>「我们可以恰当地把它称为一种非周期晶体或固体，并用这样的话来表达我们的假说：我们相信基因——或者也许整个染色体纤维——是一种非周期固体。」</strong><span class="tag t-src">原书</span>（第 5 章，<em>What is Life?</em> 1992 Canto 版 pp.60–61）
+    </li>
+    <li>★ <strong>「在微型密码本中压缩的各种内容」</strong>：这一节是全书最著名的段落之一。他问：这颗受精卵的核这么小，怎么可能装得下未来发育的全部编码？<strong>答案是摩尔斯电码的类比</strong>：用两种符号（点、划），成组不超过 4 个，能给出 30 种不同规定；加第三种符号、成组不超过 10 个，能组成 88,572 种「字母」；五种符号、25 个一组，数目达到 372,529,029,846,191,405；即便只取「恰好 25 个符号、每种各 5 个」的组合，也有六万二千三百多亿种<span class="tag t-src">原书</span>（第 5 章，转引自被公开转引的本书节选）。<strong>他的结论：以分子的图景看，一个微型密码「恰好对应一个高度复杂、特定的发育蓝图」已不再是不可想象的。</strong>
+    </li>
+    <li><strong>「与事实比较」</strong>：他用大量遗传学事实去检验这一模型——基因的稳定性、突变的离散性、温度的效应、X 射线的效率、回复突变。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一章是全书最需要「打问号」的一章，也是最本报告中「启发 vs 发现」这条线的正面战场。</strong></p>
+  <ol>
+    <li><strong>「非周期固体」这个提法，Crick 后来专门在信里说「看来会非常贴切」——但这是个含糊的恭维。</strong> 因为<strong>「非周期」这个词可以同时描述很多东西</strong>：三层异构的蛋白、一维序列的 DNA、甚至任何不重复的结构。<strong>薛定谔并没有说清「非周期」到底指什么维度的不重复</strong>，而真相是<strong>一维序列</strong>——<strong>不是他想象的三维异构</strong>（见 5.3）。
+    </li>
+    <li><strong>「摩尔斯电码」的类比自己就露了馅。</strong> 他自己在那一节里承认：<strong>「我们的两种摩尔斯符号可以有不同的组成（如 .-- 和 .-），因此它们不是同分异构的好类比。为弥补这一缺陷，让我们改用第三个例子……」</strong><span class="tag t-src">原书</span>（第 5 章）★ <strong>这个「修正」恰好暴露了问题</strong>：他要用<strong>排列顺序</strong>来举例（这正是 DNA 的机制），却坚持把它解释成<strong>三维异构</strong>。<strong>他的比喻比他的理论更接近真相。</strong>这几乎是一句历史的黑色幽默。
+    </li>
+    <li><strong>严格说，「非周期晶体」这个词被中文世界说成「后来被 DNA 双螺旋结构所印证」——这不准确。</strong> 严格说：<strong>被印证的是「非重复结构能承载大信息量」这个抽象直觉</strong>；<strong>薛定谔的具体载体假设（蛋白质、三维异构、单链）全都被证伪</strong>（见 5.4）。<strong>「印证」这个词太重了，用它来描述「一个被推翻的机制所包含的一个正确直觉」，是不诚实的。</strong><span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>本章引用的德尔勃吕克模型，本身就是对「绿皮书」（1935）的一次通俗转述。</strong> 薛定谔<strong>不是这份工作的原创者</strong>——他是<strong>传播者</strong>。★ <strong>这一点至关重要</strong>：如果说这本书「推动了分子生物学」，那么真正提供物理问题的是 <strong>Timofeeff-Ressovsky–Zimmer–Delbrück 1935</strong>，薛定谔做的是<strong>把它讲给更大的听众</strong>（Yoxen 1979 正是要恢复这一层）。<strong>把功劳全记在薛定谔头上，是对德尔勃吕克团队的遮蔽。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s11">
+  <h2><span class="num">11</span><span>第六章：有序、无序和熵（第 6 章）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「生命为什么没有热寂？」——全书最著名、也最被误读的一章。</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>从德尔勃吕克模型得出的一个「值得注意的一般性结论」</strong>：遗传物质之所以能保持有序，是因为它不是靠「大数统计」，而是靠<strong>单个分子结构的稳定性</strong>。
+    </li>
+    <li>★ <strong>「基于秩序的秩序」</strong>：薛定谔提出全书最重要的概念区分——<strong>「有序来自无序」（order from disorder）</strong>（物理学统计机制产生规律性的方式）<strong>与「有序来自有序」（order from order）</strong>（生命所依赖的方式）。他的原话大意是：<strong>「与通常的信念相反，由物理学定律支配的、有规律的过程，从来不是某一个秩序良好的原子排布的结果——除非这个原子排布重复了非常多次（像周期晶体那样，或像液体、气体里的大量相同分子那样）。」</strong><span class="tag t-src">原书</span>（第 6 章，转引自 Kilmister 1987 卷 p.241 对薛定谔的引述）
+    </li>
+    <li>★★ <strong>「生命物质避免了趋于平衡的衰退」与「有机体以负熵为生」</strong>：这是全书最著名的一段。原文是：<strong>「一个生物体不断地产生正熵，从而趋向那个危险的最大熵状态，那就是死亡。它只能靠不断从环境中吸取负熵来远离它、维持活着——而这（负熵）是非常实在的东西，我们马上就会看到。</strong>生物体所吃的，就是负熵。<strong>」</strong> 紧接着是那句「不那么悖谬」的改写：<strong>「用不那么悖谬的话说，代谢的要害在于：生物体成功地使自己摆脱了它活着时不得不产生的全部熵。」</strong><span class="tag t-src">原书</span>（第 6 章）
+    </li>
+    <li><strong>「熵是什么」「熵的统计学意义」</strong>：他用玻尔兹曼的公式，把「负熵」解释为「有序」的一个度量：<strong>「若 D 是无序的度量，其倒数 1/D 就可视为有序的直接度量……因此，那个别扭的说法『负熵』，可以用一个更好的说法来代替：取负号的熵，本身就是有序的度量。」</strong> 于是他说：<strong>「生物体使自己维持在一个相当高的有序水平（＝相当低的熵）的办法，其实就是不断地从环境中吸取有序。」</strong><span class="tag t-src">原书</span>（第 6 章注释与正文）
+    </li>
+    <li><strong>★ 第六章的注释（全书最该被引的一句话）</strong>：<strong>「关于负熵的这些说法，受到了物理学家同行的怀疑和反对。让我先说一句：如果我是只写给他们看的，我就会让讨论转向自由能。在这个语境里，那是更熟悉的说法。但这个高度技术性的词，在语言上离『能量』太近，无法让普通读者体会到两者的差别。」</strong><span class="tag t-src">原书</span>（第 6 章注释）
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★★ <strong>这一章是全书被误读最深、也被后世热力学研究重写最彻底的一章。</strong></p>
+  <ol>
+    <li><strong>「负熵」不是一个物理量。</strong> 如前所述（5.2），薛定谔自己就承认应当用「<strong>自由能</strong>」。<strong>「以负熵为食」是一个修辞选择，不是一条守恒式的断言。</strong>
+    </li>
+    <li><strong>「有序来自有序」这个提法，今天需要重新表述。</strong> Jeffery–Pollack–Rovelli（<em>Entropy</em> 21(12):1211，2019）指出：<strong>「认为生命是『一场局部对抗熵的斗争』——一个把熵局部压低的把戏——这个广泛流传的想法是误导的。」</strong> 他们认为<strong>生命是被第二定律直接驱动的</strong>，<strong>结构之所以被「偏爱」，是因为它为熵的增长打开了通道</strong>。★ <strong>注意：他们同时替薛定谔说了一句公道话</strong>——<strong>「薛定谔的书是微妙的，我们所说的那个误解（生命靠局部对抗热力学耗散）并不是这本书的主要思想。薛定谔显然并不认为生命与第二定律相冲突，他只是认为生命中有某种别的东西，是非生命所没有的。」</strong><span class="tag t-src">原书</span>（同上）<strong>这句话请务必记住：连最严厉的现代批评者，也承认「生命对抗熵增」是对薛定谔的误读，而不是他自己的主张。</strong>
+    </li>
+    <li><strong>本章最容易被中文读者「接走」的地方</strong>：把「负熵」<strong>当成一条可以应用于人生、组织、社会的方法论</strong>。★ 本报告在此明确划线：<strong>薛定谔没有说「人活着就是对抗熵增」，也没有说「组织要打造耗散结构」。</strong> 这些引申<strong>不是他的原意</strong>（见 5.2c）。<span class="tag t-inf">推断</span>
+    </li>
+  </ol>
+</section>
+
+<section id="s12">
+  <h2><span class="num">12</span><span>第七章：生命是以物理学定律为基础的吗（第 7 章）与后记</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么</h3>
+  <p><strong>「如果生命里可能有新东西，那它到底是『新定律』还是『新构造』？」——全书收束，并接上一个哲学尾巴。</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>「在有机体内有望发现新定律」</strong>：薛定谔先谨慎地提出了这个可能——<strong>「生命物质在不违背迄今已确立的物理学定律的同时，很可能涉及至今未知的『其他物理学定律』；而这些定律一旦被发现，将和前者一样，构成这门科学的完整一部分。」</strong><span class="tag t-src">原书</span>（第 7 章；同一句在 Kilmister 1987 卷 p.240 与 p.236 被 Perutz 反复引出）
+    </li>
+    <li>★ <strong>「评述生物状况」与「明显的对比」</strong>：他把物理学家熟悉的「有序来自无序」与生命里的「有序来自有序」摆在一起对比——<strong>物理实验室里那些「有规律」的现象（气体、液体）都建立在大量相同单元的统计平均上；而有机体里，一个只存在一份的原子集团（基因），却能产生「与其他部分、与环境极其精细地协同」的有序事件</strong>。这几句话是他全书里最漂亮、也最超前的一段：
+    </li>
+  </ul>
+  <blockquote>
+    <p><strong>「单个原子集团，只存在一份，却产生出有序的事件，与其他分子以及与环境之间以最精细的定律彼此协调……既然我们知道这个小小的中央办公室在孤立细胞里的力量，它们难道不像散布在身体各处的、彼此通过一种对所有人都通用的密码而极方便地通信的地方政府吗？」</strong><span class="tag t-src">原书</span>（第 7 章，转引自诺贝尔奖官网与 LaSPA 学术引述）</p>
+  </blockquote>
+  <ul>
+    <li><strong>「产生有序的两种方式」</strong>：再次落到「有序来自无序」vs「有序来自有序」这条主线上。
+    </li>
+    <li><strong>「时钟的运动」「钟表装置属于统计学」「能斯特定律」「摆钟实际上可看作在绝对零度下工作」「钟表装置与有机体的关系」</strong>：他用<strong>钟表</strong>作类比收束全书——<strong>「钟表装置和有机体之间的相似之处，简单地说就是：后者也依赖于一个固体——构成遗传物质的非周期晶体，它很大程度上脱离了热运动的无序。」</strong><span class="tag t-src">原书</span>（第 7 章，转引自 Kilmister 1987 卷 p.240）
+    </li>
+    <li>★ <strong>后记：决定论与自由意志</strong>：这是全书的哲学尾巴（在合刊本里单列）。薛定谔摆出两个看似矛盾的命题——<strong>（1）身体作为一个纯粹机械装置在运作；（2）人从直接经验里知道自己能支配自己的运动</strong>——并推断：<strong>有意识的自我，就是那个「按自然律直接支配原子」的实体</strong>。他把它同<strong>古印度《奥义书》的教导</strong>联系起来——<strong>「个人自我＝宇宙自我」</strong>（即「梵我一如」）。★ <strong>这一段在全书中是完全独立于生物学的，它属于薛定谔一贯的哲学关怀</strong>（并于 1956 年由他本人的《我的世界观》进一步展开）。
+    </li>
+    <li><strong>「关于后记的说明」</strong>：作者对后记立场的补充与澄清。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一章的两半，一半被证伪、一半不属于科学。</strong></p>
+  <ol>
+    <li><strong>「可能需要迄今未知的物理学定律」——这是全书最著名、也最被后人质疑的一句。</strong> 主流共识是：<strong>解释生命并不需要新物理，需要的是化学</strong>（Perutz 1987）。★ 但要说清楚：<strong>薛定谔的原话是「不违背已知定律」下的「构造不同」，很多中文转述把它读成了「生命违反物理学」——这是误读</strong>（见 5.5）。
+    </li>
+    <li><strong>「钟表—有机体」这个类比，暴露了全书最深的方法论问题。</strong> 它把有机体想象成一个<strong>靠『固体』运转的精密机器</strong>——<strong>一个从 19 世纪机械论里借来的意象</strong>。而真实的细胞是<strong>溶液里的柔性聚合物网络</strong>，其有序性<strong>既有物理又有酶学、既有分子又有信息</strong>（见 5.3）。<strong>钟表类比是一个漂亮的收尾，也是一个过时的世界观。</strong>
+    </li>
+    <li><strong>「后记」不是科学，而是玄学与哲学的混合。</strong> 把「自由意志」与「量子不确定性」纠缠在一起，<strong>在当代哲学与物理学里都缺乏支持</strong>。★ <strong>读后记的正确姿势</strong>：把它当作<strong>薛定谔个人的哲学自白</strong>读（它有助于理解他为什么一辈子关心「心—身问题」），<strong>但不要把它当成本书的科学结论之一</strong>。<strong>它的存在，本身就提示了这本书的体裁——它是一个物理学家的思想随笔，不是一个科学家的工作报告。</strong><span class="tag t-inf">推断</span>
+    </li>
+  </ol>
+</section>
+
+<section id="s13">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>概念／人物</th><th>一句话</th><th>出现在</th></tr></thead>
+    <tbody>
+      <tr><td><strong>非周期晶体</strong>（aperiodic crystal）</td><td>薛定谔对遗传物质的猜测：一种不靠重复、每个原子都各司其职的复杂结构</td><td>第 5 章（核心概念）</td></tr>
+      <tr><td><strong>密码本</strong>（code-script）</td><td>他对「遗传信息」的叫法：染色体以某种密码形式含有未来发育的蓝图</td><td>第 2、5 章</td></tr>
+      <tr><td><strong>负熵</strong>（negative entropy / negentropy）</td><td>他用来讲「生命如何维持低熵」的隐喻；★ 他自己承认不够严谨，本应用「自由能」</td><td>第 6 章</td></tr>
+      <tr><td><strong>有序来自秩序／有序来自无序</strong></td><td>生命机制（order from order）与物理学统计机制（order from disorder）的区分</td><td>第 6、7 章</td></tr>
+      <tr><td><strong>量子跃迁式的突变</strong></td><td>他设想突变＝分子内部的构型跳跃；★ 后被证伪（突变是序列改变）</td><td>第 4、5 章</td></tr>
+      <tr><td><strong>其他物理学定律</strong></td><td>他推测生命可能涉及「迄今未知的定律」；★ 主流认为解释生命需要化学，而非新物理</td><td>第 7 章</td></tr>
+      <tr><td><strong>Erwin Schrödinger</strong></td><td>本书作者；波动力学创立者，1933 年诺贝尔物理学奖</td><td>—</td></tr>
+      <tr><td><strong>Max Delbrück（马克斯·德尔勃吕克）</strong></td><td>物理学家转生物学；第 5 章「德尔勃吕克模型」的主角；噬菌体小组领袖，<strong>1969 年诺贝尔生理学或医学奖</strong></td><td>第 5 章 / 5.5</td></tr>
+      <tr><td><strong>Timofeeff-Ressovsky &amp; Zimmer</strong></td><td>1935 年与德尔勃吕克合写「绿皮书」，首次给出遗传的分子基础实验证据</td><td>第 5 章 / 5.5</td></tr>
+      <tr><td><strong>Éamon de Valera（德瓦利埃拉）</strong></td><td>当时爱尔兰总理，<strong>数学出身</strong>；1940 年邀薛定谔赴都柏林，创建 DIAS；讲座由他推动并出席</td><td>成书背景 / 导语</td></tr>
+      <tr><td><strong>James Watson（沃森）</strong></td><td>DNA 双螺旋共同发现者；自述 17 岁读此书后「从观鸟转向基因」</td><td>5.1 / 导语</td></tr>
+      <tr><td><strong>Francis Crick（克里克）</strong></td><td>DNA 双螺旋共同发现者；称此书「peculiarly influential」；1953 年致信薛定谔</td><td>5.1 / 导语</td></tr>
+      <tr><td><strong>Maurice Wilkins（威尔金斯）</strong></td><td>DNA X 射线晶体学关键人物；称此书让他「第一次对生物学问题产生兴趣」</td><td>5.1 / 导语</td></tr>
+      <tr><td><strong>Oswald Avery</strong></td><td>1944 年证明 DNA 是遗传物质（与他的书同期发表）</td><td>5.3 / 第 2 章</td></tr>
+      <tr><td><strong>Lily E. Kay</strong></td><td>《Who Wrote the Book of Life?》（2000）作者；质疑「信息/密码」隐喻与英雄叙事</td><td>5.1</td></tr>
+      <tr><td><strong>E. J. Yoxen</strong></td><td>1979 年《History of Science》论文，主张薛定谔的关切被后人遮蔽</td><td>5.1</td></tr>
+      <tr><td><strong>Linus Pauling（鲍林）</strong></td><td>1987 年批评本书「对理解生命没有贡献」，负熵是「负贡献」</td><td>5.5</td></tr>
+      <tr><td><strong>Max Perutz（佩鲁茨）</strong></td><td>1987 年批评：「正确的都不原创，原创的大多不成立」；「那门科学是化学」</td><td>5.5</td></tr>
+      <tr><td><strong>Ilya Prigogine（普里高津）</strong></td><td>耗散结构理论（1977 年诺贝尔化学奖）；对「负熵」提法有保留</td><td>5.2</td></tr>
+      <tr><td><strong>Carlo Rovelli 等</strong></td><td>2019 年 <em>Entropy</em> 论文，论证「生命是局部对抗熵」是误导</td><td>5.2</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s14">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>同一问题的科学史研究（最重要）</strong>：Edward J. Yoxen，〈Where Does Schrödinger's "What is Life?" Belong in the History of Molecular Biology?〉，<em>History of Science</em> 17(1):17–52，<strong>1979</strong> —— 一切后续讨论的起点。
+    </li>
+    <li><strong>信息隐喻的批判</strong>：Lily E. Kay，<em>Who Wrote the Book of Life? A History of the Genetic Code</em>，Stanford University Press，<strong>2000</strong> —— 想看清「密码本」这个比喻是怎么被历史化与问题化的，读它。
+    </li>
+    <li><strong>「密码」概念的进入史</strong>：Matthew Cobb，〈1953: When Genes Became "Information"〉，<em>Cell</em> 153(3):503–506，<strong>2013</strong> —— 短小、可读，直接处理「薛定谔的 code 和沃森的 code 是不是一回事」。
+    </li>
+    <li><strong>两位诺奖得主的正面对撞</strong>：Linus Pauling 与 Max Perutz 的批评，收于 C. W. Kilmister 编，<em>Schrödinger: Centenary Celebration of a Polymath</em>，Cambridge University Press，<strong>1987</strong> —— 想听「实验室里的人」怎么说，读这本书。
+    </li>
+    <li><strong>现代热力学重述</strong>：Kate Jeffery, Robert Pollack &amp; Carlo Rovelli，〈On the Statistical Mechanics of Life: Schrödinger Revisited〉，<em>Entropy</em> 21(12):1211，<strong>2019</strong>（开放获取）—— 对「负熵」最系统的一次当代清理。
+    </li>
+    <li><strong>成书背景的第一手材料</strong>：都柏林高级研究院（DIAS）官方档案页与 2018 年 75 周年纪念页（含克里克 1953 年致薛定谔的信）；诺贝尔奖官网〈Perspectives: What is life?〉专页。
+    </li>
+    <li><strong>德尔勃吕克这条线索</strong>：Timofeeff-Ressovsky, Zimmer &amp; Delbrück，〈Über die Natur der Genmutation und der Genstruktur〉，<strong>1935</strong>（「绿皮书」）；以及噬菌体小组的历史记述。
+    </li>
+  </ol>
+</section>
+
+<section id="s15">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>见同目录 <code>生命是什么-来源清单.md</code>。</p>
+</section>
+
+<section id="s16">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. 中译版页码与「96 页」自相矛盾</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：搜索中出现的<strong>重庆出版社 2022 版（何滟 译）公开目录</strong>，其分节页码已标到「后记 147 / 关于后记的说明 155」，但同一著录又把<strong>总页数标为「96 页」</strong>。<strong>两者不可能同时成立。</strong>
+    </li>
+    <li><strong>我查到了什么</strong>：该「96 页」数字出自单一的百科入口；<strong>没有第二个来源佐证</strong>。而目录本身的结构（7 章＋后记）与剑桥官方目录<strong>完全对应</strong>，说明目录不是凭空生成的。
+    </li>
+    <li><strong>为什么没能定论</strong>：我<strong>未持实物</strong>，也未访问任何受控预览；<strong>不同版本（剑桥 1944／1992、湖南科技 2018）页码本就不同</strong>，无法用一个数字统一。
+    </li>
+    <li><strong>读者该以什么为准</strong>：<strong>请以手中实物的目录页码为准</strong>。本报告第 1 节的「参考页」<strong>只作章节相对长度的示意，不作精确锚点</strong>。
+    </li>
+  </ul>
+  <h3>D2. 康普顿版（1992）与 1992 年前的版本页码不通用</h3>
+  <ul>
+    <li><strong>矛盾</strong>：本书英文版至少有两个「页码体系」——<strong>1944 年初版（194 页）</strong>与 <strong>1992 Canto 版（viii＋184 页）</strong>；另有 1948 重印、1969 平装、1951 年与《Mind and Matter》合刊等形态。
+    </li>
+    <li><strong>我查到了什么</strong>：LoC 与剑桥官方给出的 <strong>1992 Canto 版页码锚点</strong>（如「aperiodic crystal」在 pp.60–61、第 1 章引语在 pp.7–8）来自对<strong>该版</strong>的引述。<strong>这些页码不适用于 1944 初版。</strong>
+    </li>
+    <li><strong>为什么没能定论</strong>：我<strong>未逐页核对</strong>任何版本；本书<strong>仍在版权期内、无合法公开全文</strong>。
+    </li>
+    <li><strong>读者该以什么为准</strong>：引用本书时，<strong>请务必注明是哪一版</strong>；本报告<strong>一律以「章」而非「页」定位</strong>，以免误导。
+    </li>
+  </ul>
+  <h3>D3. 穆勒（H. J. Muller）的「优先权」指控，缺一手来源</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：多个百科入口转述称，<strong>穆勒在 1960 年致一位记者的信中说</strong>：《生命是什么》里凡是说对的关于「遗传分子」的内容，<strong>1944 年之前都已发表</strong>（含分子的「非周期性」）；薛定谔写的「只是些错误的推测」。
+    </li>
+    <li><strong>我查到了什么</strong>：穆勒<strong>确实</strong>早在 1922、1929 年就系统描述过「遗传分子」的基本性质（这在科学史上是可核的）；<strong>但「1960 年那封信」这个具体出处，在英文维基上被明确标注 [citation needed]</strong>，我<strong>未能找到原信或权威转引</strong>。
+    </li>
+    <li><strong>为什么没能定论</strong>：<strong>单一、无出处的转述</strong>，按本项目契约<strong>不能单独采信</strong>。
+    </li>
+    <li><strong>读者该以什么为准</strong>：可以采纳的<strong>只是「穆勒早有优先贡献」这一较弱的说法</strong>（有 1922／1929 两篇原始文献支撑）；<strong>「1960 年信」这一具体细节，请存疑</strong>。
+    </li>
+  </ul>
+  <h3>D4. 合刊本「续编章号」的确切形态，未逐页核对</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：湖南科技 2018 版的 CIP 目录显示，《意识和物质》被<strong>接在主书之后编为「第 8–13 章」</strong>（第 8 章 意识的物质基础 …… 第 13 章 感知的奥秘）。
+    </li>
+    <li><strong>我查到了什么</strong>：该章序来自<strong>国家出版发行信息公共服务平台（CIP）</strong>，是<strong>权威的官方著录</strong>；湖南科技版「三合一一卷」的篇目构成，也由<strong>广州图书馆 OPAC 与人民大学图书馆 OPAC 独立佐证</strong>。
+    </li>
+    <li><strong>为什么没能定论</strong>：我确认了「<strong>目录里是第 8–13 章</strong>」这一事实，但<strong>没有逐页核对正文</strong>，因此<strong>无法排除「目录序号与正文实际分节不一致」</strong>的可能。
+    </li>
+    <li><strong>读者该以什么为准</strong>：<strong>购书与检索时，请以实物目录为准</strong>；<strong>但请务必知道：这本书目录上的「第 8 章及以后」不是《生命是什么》正文。</strong>
+    </li>
+  </ul>
+  <h3>D5. 1943 年讲座的次数与受众规模</h3>
+  <ul>
+    <li><strong>矛盾点</strong>：主流说法是<strong>三场公开讲座</strong>，1943 年 2 月<strong>连续三个周五（5 日、12 日、19 日）</strong>，在<strong>三一学院菲茨杰拉德楼物理讲演厅</strong>举行；薛定谔本人记<strong>每场听众约 400 人</strong>；但该讲演厅<strong>只能容纳约 150 人</strong>，所以通常认为<strong>每场在接下来的周一加讲了一次</strong>。
+    </li>
+    <li><strong>我查到了什么</strong>：上述细节来自<strong>都柏林高级研究院（DIAS）官方纪念页</strong>与多家爱尔兰媒体（RTE）；<strong>《爱尔兰时报》1943-02-06</strong> 还刊登了薛定谔与三一学院教务长 Erton、以及德瓦利埃拉在物理楼前的合影。
+    </li>
+    <li><strong>为什么没能定论</strong>：<strong>「三场」与「实际讲了六次（每周加讲一次）」并存</strong>；我<strong>未能找到薛定谔本人或校方的原始签到记录</strong>来最终裁定听众规模。
+    </li>
+    <li><strong>读者该以什么为准</strong>：说「<strong>三场系列讲座</strong>」是稳妥的；<strong>具体的场次总数与听众数，存两说</strong>。
+    </li>
+  </ul>
+  <h3>D6. 本报告的一处边界：合刊部分（《意识和物质》与自传）未逐章展开</h3>
+  <ul>
+    <li><strong>规范要求</strong>：逐章深挖只做主书 7 章；合刊的《意识和物质》与自传<strong>不逐章展开</strong>，在「全书骨架」表里各给一行，并在附录 D 写明这是边界。
+    </li>
+    <li><strong>本报告的处理</strong>：已在第 1 节骨架表给出两行（《意识和物质》6 章、自传），<strong>未对这两部分做逐章深挖</strong>。
+    </li>
+    <li><strong>为什么这是边界</strong>：① 本报告的定位是「《生命是什么》的阅读指引」，<strong>合刊的另外两篇主题不同</strong>（前者是意识哲学，后者是生平）；② <strong>我未持原书</strong>，对这两篇只能依赖公开目录，<strong>逐章展开会超出我可核验的范围</strong>。⇒ <strong>读者若要读《意识和物质》与自传，请另找专门的指引。</strong>
+    </li>
+  </ul>
+  <h3>D7. 「物理学家推动分子生物学」这条叙事的边界</h3>
+  <ul>
+    <li><strong>我遇到的张力</strong>：诺贝尔奖官网、DIAS、以及多数中文来源，<strong>众口一词</strong>地说这本书「激励了 DNA 的发现」；而 Yoxen (1979)、Cobb (2013) 的实证研究，<strong>恰恰质疑「密码本」是否真的打动了沃森与克里克</strong>。
+    </li>
+    <li><strong>我查到了什么</strong>：我可以确认的是——<strong>沃森、克里克、威尔金斯三人都公开承认读过并受此书影响</strong>（有各自的原文与克里克 1953 年致薛定谔的信）；<strong>但我找不到证据表明，他们的 DNA 研究有哪一步直接依赖了书里的某个论断</strong>。
+    </li>
+    <li><strong>为什么没能定论</strong>：这是<strong>史学方法论层面的争论</strong>，不是靠某一个文件就能裁决的。<strong>「影响」本身是一个程度概念。</strong>
+    </li>
+    <li><strong>读者该以什么为准</strong>：本报告采<strong>折中而具体</strong>的立场——<strong>「这本书确实把一批人吸引进了生物学（这是影响），但它没有为 DNA 的发现提供任何可直接使用的答案（这不是贡献）。」</strong> 凡见到「《生命是什么》提出了 DNA/遗传密码」这类说法，<strong>请一律按「启发」而非「发现」理解</strong>（见 5.1、5.3、导语）。
+    </li>
+  </ul>
+  <h3>D8. 其他可能的版本信息，未能穷尽</h3>
+  <ul>
+    <li><strong>已知但未细核的版本</strong>：重庆出版社 2022 单行本（何滟 译，ISBN 9787229160586）；商务印书馆 2024（张卜天 译，ISBN 9787100227179，240 页），两者均<strong>未见完整版权页</strong>。
+    </li>
+    <li><strong>存疑线索</strong>：检索中出现「译林出版社 2025 年新书计划」中有《生命是什么》的条目（见某百科参考文献），<strong>但我未能核实其是否最终出版、译者与篇目为何</strong>。
+    </li>
+    <li><strong>读者该以什么为准</strong>：<strong>购买前请在出版方官网或书店页面核对版次与篇目</strong>；本报告第 4 节的版本对比<strong>只覆盖已确认的三家</strong>。
+    </li>
+  </ul>
+</section>
+
+<footer>
+  生成于 2026-10-04 · 来源清单与交叉验证记录见同目录 <code>生命是什么-来源清单.md</code><br>
+  本页引文按<b>带页码引文（B 级）</b>处理：结构与章序取自剑桥大学出版社、美国国会图书馆与中译 CIP 目录，正文引语取自诺贝尔奖官网与 DIAS 官方页面转引，批评文献的姓名、篇名、刊物、卷期与日期已逐条给出、可直接核查，<b>但我未持原书、未逐页核对页码</b>。★ <b>全书最该记住的一句是否定句</b>：薛定谔<b>没有提出 DNA</b>，他提出的是「遗传信息写在一种<b>非周期晶体</b>里」这一理论猜测，且他当时假定载体是蛋白质；「生命以负熵为食」<b>应读作隐喻而非定律</b>（他本人在第 6 章注释里承认应改用「自由能」）。★ 本书恰是「<b>影响大</b>不等于<b>论证成立</b>」这条陷阱最经典的诱饵——鲍林与佩鲁茨两位诺奖得主 1987 年的批评，是全书最稀缺的信息。★ <b>合刊本购买前务必看清收入了哪几篇</b>，且湖南科技版把《意识和物质》续编为「第 8–13 章」，按章号检索极易找错。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>
