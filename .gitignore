@@ -1,0 +1,12 @@
+# 本地/回滚产物 —— git 本身就是历史，不需要这些
+_backup_backlink/
+_backup_pad/
+_serve.v1.py
+
+# 暂存与探针（UNC 工作流的中间产物）
+*.new
+*.wtest
+
+# Python
+__pycache__/
+*.pyc

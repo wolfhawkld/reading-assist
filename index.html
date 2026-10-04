@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>读书精华 · 总入口</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#7a2e6e; --talk-bg:#f7e9f4;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 34px 90px}
+
+/* ---------- hero ---------- */
+.hero{padding:60px 0 30px;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:11.5px;letter-spacing:.16em;color:var(--ink3);font-weight:600;margin-bottom:14px}
+.hero h1{font-size:31px;line-height:1.34;margin:0 0 12px;font-weight:600;letter-spacing:-.015em}
+.hero .sub{color:var(--ink2);font-size:15px;margin:0 0 24px;max-width:780px}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:7px 14px;font-size:12.5px;color:var(--ink2)}
+.stat b{color:var(--ink);font-weight:600;font-size:15px;margin-right:6px}
+
+/* ---------- 通用区块 ---------- */
+h2.sec{font-size:17px;font-weight:600;margin:44px 0 6px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
+h2.sec .line{flex:1;height:1px;background:var(--line);margin-left:6px}
+.sec-note{color:var(--ink2);font-size:13.5px;margin:6px 0 0;max-width:820px}
+
+/* ---------- 上手路径 ---------- */
+.paths{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:16px}
+.path{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:14px 18px}
+.path .ph{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.path p{margin:0;font-size:13.5px;color:var(--ink2)}
+.path code{font-size:12.5px;background:var(--hover);padding:1px 5px;border-radius:4px;color:var(--ink)}
+
+/* ---------- 工具条 ---------- */
+.toolbar{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:18px 0 0}
+.toolbar input[type=search]{
+  flex:1 1 240px;min-width:170px;font:inherit;font-size:13px;line-height:1.5;
+  padding:8px 13px;border:1px solid var(--line2);border-radius:8px;background:var(--chipbg);color:var(--ink);
+}
+.toolbar input[type=search]:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-bg)}
+.fbtn{
+  font:inherit;font-size:12.5px;padding:7px 14px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+.fbtn:hover{border-color:var(--accent);color:var(--accent)}
+.fbtn.on{background:var(--accent-bg);border-color:var(--accent);color:var(--accent);font-weight:600}
+.prog{margin-left:auto;font-size:12.5px;color:var(--ink3)}
+.prog b{color:var(--ink);font-weight:600}
+#pbar{height:4px;background:var(--line);border-radius:3px;margin:12px 0 0;overflow:hidden}
+#pbar i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
+
+/* ---------- 卡片 ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(348px,1fr));gap:18px;margin-top:20px}
+.card{
+  background:var(--panel);border:1px solid var(--line);border-radius:12px;
+  padding:20px 20px 16px;display:flex;flex-direction:column;
+  transition:box-shadow .16s ease,border-color .16s ease,opacity .16s ease;
+}
+.card:hover{border-color:var(--line2);box-shadow:0 3px 16px rgba(30,29,26,.07)}
+.card.read{opacity:.62;background:var(--cardread)}
+.card.hide{display:none}
+.chead{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px}
+.idx{
+  flex:0 0 auto;font-size:12px;font-weight:600;color:var(--ink3);
+  background:var(--hover);border-radius:6px;padding:2px 8px;margin-top:5px;letter-spacing:.02em;
+}
+.cttl{flex:1;min-width:0}
+.cttl h3{font-size:17.5px;font-weight:600;margin:0;line-height:1.42;letter-spacing:-.01em}
+.cttl h3 a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent}
+.cttl h3 a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.byline{font-size:12.5px;color:var(--ink3);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mark{
+  flex:0 0 auto;font:inherit;font-size:11.5px;padding:3px 10px;border-radius:20px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink3);margin-top:3px;white-space:nowrap;
+}
+.mark:hover{border-color:var(--src);color:var(--src)}
+.mark[aria-pressed="true"]{background:var(--src-bg);border-color:var(--src);color:var(--src);font-weight:600}
+.onel{font-size:13.8px;color:var(--ink2);margin:0 0 12px}
+.onel strong{color:var(--ink)}
+.guide{border-top:1px dashed var(--line);padding-top:11px;margin-bottom:11px;display:grid;gap:9px}
+.grow{display:grid;grid-template-columns:64px 1fr;gap:10px;align-items:start}
+.gl{
+  font-size:10.5px;font-weight:600;color:var(--accent);background:var(--accent-bg);
+  border-radius:4px;padding:2px 0;text-align:center;letter-spacing:.03em;margin-top:2px;
+}
+.gl.cau{color:var(--rep);background:var(--rep-bg)}
+.grow p{margin:0;font-size:13px;color:var(--ink2);line-height:1.68}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:12px}
+.chip{font-size:11.5px;padding:2px 8px;border-radius:5px;background:var(--hover);color:var(--ink2);white-space:nowrap}
+.chip.src{background:var(--src-bg);color:var(--src)}
+.chip.rep{background:var(--rep-bg);color:var(--rep)}
+.chip.talk{background:var(--talk-bg);color:var(--talk)}
+.cfoot{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.btn{
+  font-size:12px;padding:5px 11px;border-radius:7px;text-decoration:none;
+  border:1px solid var(--line2);color:var(--ink2);background:var(--chipbg);white-space:nowrap;
+}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--onaccent);font-weight:600}
+.btn.primary:hover{background:var(--btnhover);border-color:var(--btnhover);color:var(--onaccent)}
+
+/* ---------- 页脚 ---------- */
+.note{
+  margin-top:44px;padding:18px 22px;background:var(--panel);border:1px solid var(--line);
+  border-radius:10px;font-size:13.2px;color:var(--ink2);
+}
+.note h3{font-size:14px;font-weight:600;color:var(--ink);margin:0 0 8px}
+.note ul{margin:8px 0 0;padding-left:20px}
+.note li{margin:4px 0}
+.note code{font-size:12.5px;background:var(--hover);padding:1px 5px;border-radius:4px}
+.note a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--line2);padding-bottom:1px}
+.note a:hover{border-bottom-color:var(--accent)}
+.note .tag{display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;vertical-align:1px;font-weight:500}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+footer.foot{
+  margin-top:26px;padding-top:20px;border-top:1px solid var(--line);
+  color:var(--ink3);font-size:12.5px;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;
+}
+.empty{
+  display:none;margin-top:20px;padding:26px;text-align:center;color:var(--ink3);font-size:13.5px;
+  background:var(--panel);border:1px dashed var(--line2);border-radius:10px;
+}
+.empty.on{display:block}
+@media(max-width:720px){
+  .wrap{padding:0 18px 70px}
+  .hero{padding-top:36px}
+  .hero h1{font-size:24px}
+  .cards{grid-template-columns:1fr}
+  .grow{grid-template-columns:58px 1fr}
+  .prog{margin-left:0;width:100%}
+}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="ctl">
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">READING ROOM</div>
+  <h1>读书精华 · 总入口</h1>
+  <p class="sub">
+    每一本都是同一套三层产出：<strong>阅读指引 ＋ 精华解析</strong>（HTML 浏览版／Markdown 内容正本）＋ <strong>来源清单</strong>。
+    引用按可信度分档标注，查不到就写查不到。
+  </p>
+  <div class="stats">
+    <span class="stat"><b>10</b>本书</span>
+    <span class="stat"><b>30</b>份产出</span>
+    <span class="stat"><b>4</b>档可信度标注</span>
+    <span class="stat">收录自 <b>2026-09-22</b></span>
+  </div>
+</header>
+
+<h2 class="sec">先挑一本开始<span class="line"></span></h2>
+<p class="sec-note">
+  三条路径，按你此刻想要什么选。<strong>这是本页的推荐，不是来源给的结论</strong>（标 <span class="tag t-inf">推断</span>）——
+  真实情况是每本都可以独立开读，互不依赖。
+</p>
+<div class="paths">
+  <div class="path">
+    <div class="ph">想两小时内就有收获</div>
+    <p>《我看见的世界》→ 按 <code>1 → 7 → 8 → 12</code> 章读，跳过移民部分细节。叙事最强、门槛最低的一款。</p>
+  </div>
+  <div class="path">
+    <div class="ph">想被真正绊一下</div>
+    <p>《瓦尔登湖》→ 先读<strong>第 2 章</strong>（方法论）和<strong>第 18 章</strong>（结束语），回头再跳读「经济篇」。它要求你做的实验不需要你去湖边。</p>
+  </div>
+  <div class="path">
+    <div class="ph">想啃硬骨头</div>
+    <p>《逻辑哲学论》→《哲学研究》。两本同一作者的前期与后期，后者是对前者的自我推翻；按这个顺序读，第二本才有劲。</p>
+  </div>
+  <div class="path">
+    <div class="ph">想跟着一条争论链走</div>
+    <p>戴蒙德 → 赫拉利 → 反驳者：《第三种黑猩猩》→《枪炮、病菌与钢铁》→《人类简史》→《未来简史》→《人类新史》。<strong>五本同题</strong>（文明的差异从哪来），立场却逐本对撞；最后一本专门拆前四本的前提。</p>
+  </div>
+</div>
+
+<h2 class="sec">书目<span class="line"></span></h2>
+<div class="toolbar">
+  <input type="search" id="q" placeholder="搜书名、作者、关键词…（如：维特根斯坦 / 自指 / AI）" aria-label="搜索书目">
+  <button class="fbtn on" type="button" data-f="all">全部</button>
+  <button class="fbtn" type="button" data-f="unread">未读</button>
+  <button class="fbtn" type="button" data-f="read">已读</button>
+  <span class="prog">已读 <b id="rc">0</b> / 10</span>
+</div>
+<div id="pbar"><i></i></div>
+
+<div class="cards" id="cards">
+
+  <!-- ============ 01 ============ -->
+  <article class="card" data-book="禅与摩托车维修艺术" data-search="波西格 pirsig 良质 quality 摩托车 禅 古典 浪漫 gumption 公路">
+    <div class="chead">
+      <span class="idx">01</span>
+      <div class="cttl">
+        <h3><a href="禅与摩托车维修艺术/禅与摩托车维修艺术.html">禅与摩托车维修艺术</a></h3>
+        <div class="byline">罗伯特·M·波西格 · 1974</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="禅与摩托车维修艺术">未读</button>
+    </div>
+    <p class="onel">
+      <strong>一本伪装成公路旅行记的哲学论著。</strong>用一次 17 天的摩托车旅行做壳，追问古希腊式的「什么是好」，
+      试图弥合理性与感性、技术与艺术的裂痕。它不是禅学入门，也不是修车手册——作者自己就写明了这两点。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p>第 9 章的 <em>gumption traps</em>（干劲陷阱）部分。只拿一样东西就拿这个：它是可直接用的工作方法论，不依赖你是否接受那套形而上学。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p>第三部分（形而上学＋古希腊哲学史）是最容易卡死的地方——可快速扫读，只抓「aretē → Truth 的降格」这条主线。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：按原书四部分</span>
+      <span class="chip">引文：B 级 · 含 2 条带页码</span>
+          <span class="chip">收录 2026-09-22</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="禅与摩托车维修艺术/禅与摩托车维修艺术.html">打开阅读页</a>
+      <a class="btn" href="禅与摩托车维修艺术/禅与摩托车维修艺术.md">内容正本</a>
+      <a class="btn" href="禅与摩托车维修艺术/禅与摩托车维修艺术-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/禅与摩托车维修艺术.md">索引</a>
+    </div>
+  </article>
+
+  <!-- ============ 02 ============ -->
+  <article class="card" data-book="逻辑哲学论" data-search="维特根斯坦 wittgenstein 逻辑 语言 图像论 命题 可说 不可说 伦理 沉默">
+    <div class="chead">
+      <span class="idx">02</span>
+      <div class="cttl">
+        <h3><a href="逻辑哲学论/逻辑哲学论.html">逻辑哲学论</a></h3>
+        <div class="byline">路德维希·维特根斯坦 · 1921 ／ 1922</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="逻辑哲学论">未读</button>
+    </div>
+    <p class="onel">
+      <strong>一本用七条命题给「可说的东西」画边界的小书，而作者说它真正的重点在边界之外——他一个字都没写。</strong>
+      它同时是技术逻辑著作、为形而上学送葬的宣言、和一本伦理之作；而第三张面孔，作者 1919 年就写信告诉过出版人。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p>序言 → 命题 7 → 6.4–6.522，<em>最后才回到 1</em>。从 1 开始硬啃的人绝大多数死在命题 4–5 的技术细节里，走不到他真正在说的地方。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p>它的长度是陷阱：六七十页，但它是「结论的集合」，论证被整体省略了。不是不能读完，是不能一次读懂。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：7 组主命题（无「章」）</span>
+      <span class="chip src">引文：A 级 · 公版全文已核</span>
+          <span class="chip">收录 2026-09-22</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="逻辑哲学论/逻辑哲学论.html">打开阅读页</a>
+      <a class="btn" href="逻辑哲学论/逻辑哲学论.md">内容正本</a>
+      <a class="btn" href="逻辑哲学论/逻辑哲学论-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/逻辑哲学论.md">索引</a>
+    </div>
+  </article>
+
+  <!-- ============ 03 ============ -->
+  <article class="card" data-book="哲学研究" data-search="维特根斯坦 wittgenstein 语言游戏 家族相似 私人语言 甲虫 遵守规则 捕蝇瓶 意义即使用">
+    <div class="chead">
+      <span class="idx">03</span>
+      <div class="cttl">
+        <h3><a href="哲学研究/哲学研究.html">哲学研究</a></h3>
+        <div class="byline">路德维希·维特根斯坦 · 1953</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="哲学研究">未读</button>
+    </div>
+    <p class="onel">
+      <strong>这不是一本讲语言理论的书，是一本让你对自己原来那些问题失去兴趣的书。</strong>
+      作者给的比喻是「给苍蝇指出飞出捕蝇瓶的出路」——苍蝇不缺信息，是被困住了。所以它不给答案，它拆掉「必须有个答案」的预设。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p>按 <em>§§1–64 → 65–88 → 89–133 → 243–315</em> 走；把最难的 <em>§§138–242</em>（遵守规则）留到最后。不要试图把散段连成一条论证链，那不是它的写法。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p>§43「意义即使用」原文带让步从句「<em>尽管不是全部</em>」——绝大多数二手介绍把它砍掉了。可以拿这一点去检验任何一本关于它的二手书。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：§1–§693 → 7 个主题板块</span>
+      <span class="chip">1953 年遗作出版</span>
+      <span class="chip src">引文：A 级 · 公版德文原文（第一部分）</span>
+      <span class="chip">含与《逻辑哲学论》的对照节</span>
+          <span class="chip">收录 2026-09-22</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="哲学研究/哲学研究.html">打开阅读页</a>
+      <a class="btn" href="哲学研究/哲学研究.md">内容正本</a>
+      <a class="btn" href="哲学研究/哲学研究-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/哲学研究.md">索引</a>
+    </div>
+  </article>
+
+  <!-- ============ 04 ============ -->
+  <article class="card" data-book="我看见的世界" data-search="李飞飞 fei-fei li imagenet 计算机视觉 北极星 ai 移民 回忆录 人工智能">
+    <div class="chead">
+      <span class="idx">04</span>
+      <div class="cttl">
+        <h3><a href="我看见的世界/我看见的世界.html">我看见的世界</a></h3>
+        <div class="byline">李飞飞 · 2023</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="我看见的世界">未读</button>
+    </div>
+    <p class="onel">
+      <strong>不是 AI 技术原理，也不是纯粹的移民奋斗史，而是一份「一个人如何选定一个问题并追它二十年」的现场记录。</strong>
+      她是 ImageNet 的创建者，但书的重心不在这里——它真正在写的是「北极星」这套方法论：怎么把模糊的好奇心变成可检验的假设。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p>两小时路径：<em>第 1 章 → 7 → 8 → 12 → 回到 2–3 章</em>。第 7、8 章是全书唯一的「科学发现现场」，也是别处读不到的独家内容。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p>书外有一条最锋利的质疑（2018 年 Maven 邮件）——它在书里回应到什么程度，需要你自己判断。本报告把这条列为<em>建议带着读的头号问题</em>。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：12 章</span>
+      <span class="chip">引文：B 级 · 3 条带页码</span>
+      <span class="chip talk">独创：书里／书外分栏</span>
+          <span class="chip">收录 2026-09-22</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="我看见的世界/我看见的世界.html">打开阅读页</a>
+      <a class="btn" href="我看见的世界/我看见的世界.md">内容正本</a>
+      <a class="btn" href="我看见的世界/我看见的世界-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/我看见的世界.md">索引</a>
+    </div>
+  </article>
+
+  <!-- ============ 05 ============ -->
+  <article class="card" data-book="哥德尔、艾舍尔、巴赫" data-search="geb 侯世达 hofstadter 集异璧 怪圈 自指 哥德尔 艾舍尔 巴赫 蚂蚁赋格 miu 人工智能 心智">
+    <div class="chead">
+      <span class="idx">05</span>
+      <div class="cttl">
+        <h3><a href="哥德尔、艾舍尔、巴赫/哥德尔、艾舍尔、巴赫.html">哥德尔、艾舍尔、巴赫</a></h3>
+        <div class="byline">道格拉斯·侯世达 · 1979</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="哥德尔、艾舍尔、巴赫">未读</button>
+    </div>
+    <p class="onel">
+      <strong>用「自指」这一个想法统摄数学、绘画、音乐与心智的书；而它真正的题目是「生命如何从无生命中产生」——这句话在第 684 页。</strong>
+      前 683 页都是准备。所以「读到一半放弃」不是读者的问题，是结构的问题；作者为此抱怨了二十年。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p>最小可用路径（约全书 15%）：导言 <em>p.3</em> → 第 1 章 MU 谜题 <em>p.33</em>（<strong>务必动笔做</strong>）→ 第 9 章 <em>p.246</em> → 第 20 章 <em>p.684</em> → 六部无插入赋格 <em>p.720</em>。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p>中译本是一次「<strong>重写</strong>」而非翻译（作者要求译者另造中文文字游戏）。中英对读「对不上」不是错译——但要引用原文，只能用英文版。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：20 章 ＋ 22 段对话（上篇 GEB／下篇 EGB）</span>
+      <span class="chip">引文：B 级 · p.10／p.688／p.689</span>
+      <span class="chip rep">中文有两本：节译 1/5 vs 全译</span>
+          <span class="chip">收录 2026-09-22</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="哥德尔、艾舍尔、巴赫/哥德尔、艾舍尔、巴赫.html">打开阅读页</a>
+      <a class="btn" href="哥德尔、艾舍尔、巴赫/哥德尔、艾舍尔、巴赫.md">内容正本</a>
+      <a class="btn" href="哥德尔、艾舍尔、巴赫/哥德尔、艾舍尔、巴赫-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/哥德尔、艾舍尔、巴赫.md">索引</a>
+    </div>
+  </article>
+
+  <!-- ============ 06 ============ -->
+  <article class="card" data-book="瓦尔登湖" data-search="梭罗 thoreau 瓦尔登 湖滨散记 隐居 自然 简朴 注意力 徐迟 海子">
+    <div class="chead">
+      <span class="idx">06</span>
+      <div class="cttl">
+        <h3><a href="瓦尔登湖/瓦尔登湖.html">瓦尔登湖</a></h3>
+        <div class="byline">亨利·戴维·梭罗 · 1854</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="瓦尔登湖">未读</button>
+    </div>
+    <p class="onel">
+      <strong>不是教人隐居的书，而是一份关于「注意力」的实验报告。</strong>
+      他用两年独居证明一件事：你以为你在生活，其实你只是在维持生活运转。检验方法只有一个——把花在「维持」上的时间压到最低，看剩下什么。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p><strong>先读第 2 章</strong>（「我生活的地方，我为何生活」，18 页，全书方法论）<strong>再读第 18 章</strong>（结束语）。然后再回头跳读「经济篇」——读开头和「慈善」一段，中间的成本明细整段跳过，不必有负罪感。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p>两个流行说法都错：①「他生前被忽视」是后世建构——已发现的 66 篇初期书评里 <strong>46 篇强烈正面</strong>；② 中文译本 40 种以上，<em>书目本身就混着假译者名</em>（「吴明实」是盗印本编的假名）。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：18 章 → 按四季分 8 节（附版本页码）</span>
+      <span class="chip src">引文：A 级 · 公版全文已核</span>
+      <span class="chip">含「中文译本怎么选」专节</span>
+          <span class="chip">收录 2026-09-27</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="瓦尔登湖/瓦尔登湖.html">打开阅读页</a>
+      <a class="btn" href="瓦尔登湖/瓦尔登湖.md">内容正本</a>
+      <a class="btn" href="瓦尔登湖/瓦尔登湖-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/瓦尔登湖.md">索引</a>
+    </div>
+  </article>
+
+
+  <!-- ============ 07 ============ -->
+  <article class="card" data-book="人类简史" data-search="赫拉利 harari sapiens 智人 认知革命 虚构 想象的秩序 农业革命 科学革命 标致 想象 金钱 帝国 宗教">
+    <div class="chead">
+      <span class="idx">07</span>
+      <div class="cttl">
+        <h3><a href="人类简史/人类简史.html">人类简史</a></h3>
+        <div class="byline">尤瓦尔·诺亚·赫拉利 · 2011／2014</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="人类简史">未读</button>
+    </div>
+    <p class="onel">
+      <strong>用一个「虚构故事」解释全部人类史的思想实验。</strong>核心主张只有一条：智人能统治地球，
+      不是因为更聪明或更强壮，而是因为<strong>只有智人能共同相信并不存在的东西</strong>（神、国家、金钱、公司、人权），
+      从而让几百万陌生人为同一个目标协作。它 90% 的史料是为这一条主张服务的。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p>第一部分「认知革命」（第 1–4 章）——全书<strong>最扎实、最有说服力</strong>的一段；<em>标致公司</em>那个例子是理解「虚构」的钥匙（烧掉厂房、解雇员工，公司仍然存在）。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p>分界线在<strong>第 19 章之后</strong>：第 20 章与后记属「展望」而非史实，<em>作者自己在正文里承认过</em>。另外「农业革命＝史上最大骗局」传播最广，证据也最受质疑。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：四部分 20 章 ＋ 后记</span>
+      <span class="chip">引文：B 级 · p.14／p.19／p.39</span>
+      <span class="chip talk">作者在世：书里／书外分栏</span>
+          <span class="chip">收录 2026-10-02</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="人类简史/人类简史.html">打开阅读页</a>
+      <a class="btn" href="人类简史/人类简史.md">内容正本</a>
+      <a class="btn" href="人类简史/人类简史-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/人类简史.md">索引</a>
+    </div>
+  </article>
+
+  <!-- ============ 08 ============ -->
+  <article class="card" data-book="未来简史" data-search="赫拉利 harari homo deus 智神 数据主义 无用阶级 算法 自由意志 人文主义 长生 幸福 成神 意识 智能">
+    <div class="chead">
+      <span class="idx">08</span>
+      <div class="cttl">
+        <h3><a href="未来简史/未来简史.html">未来简史</a></h3>
+        <div class="byline">尤瓦尔·诺亚·赫拉利 · 2015／2017</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="未来简史">未读</button>
+    </div>
+    <p class="onel">
+      <strong>《人类简史》的镜像，但它写的不是未来，是「当下的信仰危机」。</strong>旧三题（饥荒／瘟疫／战争）已被降级为可管理的项目，
+      议程换成了<strong>长生、幸福、成神</strong>——而这三个目标会拆掉给了它们合法性的那套体系，也就是人文主义。
+      它真正的追问是：<strong>如果自由意志是假的，现代政治与道德还剩下什么。</strong>
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p><strong>第 5 章</strong>（科学与宗教之争）——它给出一把可随时使用的分界尺：<em>科学给力量，宗教给秩序，两者不在同一层面工作</em>。这一章是全书写得最干净的地方。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p><strong>只有前 7 章是「史」，第 8–11 章是推测。</strong>作者在书里写了「本书讲的是可能性，不是预言」，但读者通常只记住第三部分的结论——这个落差是本书最主要的阅读陷阱。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：1 章总论 ＋ 三部分 11 章</span>
+      <span class="chip">引文：B 级 · pp.1–2／p.47</span>
+      <span class="chip">宜与《人类简史》连读</span>
+          <span class="chip">收录 2026-10-02</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="未来简史/未来简史.html">打开阅读页</a>
+      <a class="btn" href="未来简史/未来简史.md">内容正本</a>
+      <a class="btn" href="未来简史/未来简史-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/未来简史.md">索引</a>
+    </div>
+  </article>
+
+  <!-- ============ 09 ============ -->
+  <article class="card" data-book="第三种黑猩猩" data-search="戴蒙德 diamond 第三种黑猩猩 人类的身世 跳跃式演化 性选择 诚实的信号 农业 世界征服者 塔斯马尼亚 日中则昃 崩溃">
+    <div class="chead">
+      <span class="idx">09</span>
+      <div class="cttl">
+        <h3><a href="第三种黑猩猩/第三种黑猩猩.html">第三种黑猩猩</a></h3>
+        <div class="byline">贾雷德·戴蒙德 · 1991</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="第三种黑猩猩">未读</button>
+    </div>
+    <p class="onel">
+      <strong>《枪炮、病菌与钢铁》的前传，也是戴蒙德从生理学教授变成公共思想者的那一本书。</strong>
+      它要回答两个问题，答案后来各自长成了两本书（《枪炮》与《崩溃》）——<strong>而这两个问句就是它的卷首题词</strong>：
+      人怎么会在一瞬间变成世界征服者？我们又怎么会在一夜之间把这一切掉转回去？
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p><strong>第 1–2 章</strong>（人＝第三种黑猩猩、跳跃式演化）＋ <strong>第 13–16 章</strong>（世界征服者：答案是环境，不是种族）。它是 <em>19 篇主题相近的独立随笔</em>，不是论著——<strong>要按主题簇跳读</strong>。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p>第 3–7 章（性与生命周期）占近四分之一却离主线最远，对演化心理学没兴趣可快读；第 12 章（外星文明）是闲笔。另外全书成于 <strong>1991 年，人类学部分已旧</strong>。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：序论 ＋ 五部分 19 章 ＋ 跋语</span>
+      <span class="chip rep">引文：C 级 · 原版 PDF 依据已撤下</span>
+      <span class="chip talk">作者谈话：2024 中文专访</span>
+          <span class="chip">收录 2026-10-02</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="第三种黑猩猩/第三种黑猩猩.html">打开阅读页</a>
+      <a class="btn" href="第三种黑猩猩/第三种黑猩猩.md">内容正本</a>
+      <a class="btn" href="第三种黑猩猩/第三种黑猩猩-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/第三种黑猩猩.md">索引</a>
+    </div>
+  </article>
+
+  <!-- ============ 10 ============ -->
+  <article class="card" data-book="枪炮病菌与钢铁" data-search="戴蒙德 diamond 枪炮 病菌 钢铁 亚力 耶利 yali 地理 大陆轴线 安娜卡列尼娜 粮食 卡哈马卡 殖民 普利策 富国穷国 日本">
+    <div class="chead">
+      <span class="idx">10</span>
+      <div class="cttl">
+        <h3><a href="枪炮病菌与钢铁/枪炮病菌与钢铁.html">枪炮、病菌与钢铁</a></h3>
+        <div class="byline">贾雷德·戴蒙德 · 1997</div>
+      </div>
+      <button class="mark" type="button" aria-pressed="false" data-book="枪炮病菌与钢铁">未读</button>
+    </div>
+    <p class="onel">
+      <strong>用一个新几内亚人的一句问话，把「谁征服谁」从种族问题改写成了地理问题。</strong>
+      1972 年亚力在海滩上问他：为什么你们白人制造了那么多货物运来，而我们几乎没有？戴蒙德想了 25 年才回答——
+      而 1997 年这个答案，用基因、环境与生物地理的证据<strong>正面拆掉了「欧亚霸权源于智力或道德优越」</strong>这套叙述。
+    </p>
+    <div class="guide">
+      <div class="grow"><span class="gl">先读这里</span><p><strong>先读《前言 为什么说世界历史就像洋葱一样?》</strong>——全书最被忽略的一层是方法论（<em>近因 vs 终极因</em>），不读它就读不出这本书到底在干什么。然后<strong>从第二部分开始</strong>，第 5、9、10 章是承重墙。</p></div>
+      <div class="grow"><span class="gl cau">小心</span><p>两个主流译本的<strong>章名几乎每一章都不同</strong>（连提问者都作「耶利／亚力」两样）；而且「2017 版」改的主要是译文与外围——<em>正文未动、延伸阅读文献仍截止 1996 年</em>。</p></div>
+    </div>
+    <div class="chips">
+      <span class="chip">结构：前言＋开场白＋四部分 19 章＋尾声</span>
+      <span class="chip">引文：B 级 · 分章页码＋p.14／19／25</span>
+      <span class="chip rep">中文版本 8 个，译本章名各异</span>
+          <span class="chip">收录 2026-10-02</span>
+    </div>
+    <div class="cfoot">
+      <a class="btn primary" href="枪炮病菌与钢铁/枪炮病菌与钢铁.html">打开阅读页</a>
+      <a class="btn" href="枪炮病菌与钢铁/枪炮病菌与钢铁.md">内容正本</a>
+      <a class="btn" href="枪炮病菌与钢铁/枪炮病菌与钢铁-来源清单.md">来源清单</a>
+      <a class="btn" href="_书目索引/枪炮病菌与钢铁.md">索引</a>
+    </div>
+  </article>
+
+</div>
+
+<div class="empty" id="empty">没有匹配的书目。清空搜索框，或换一个关键词。</div>
+
+<div class="note">
+  <h3>每份长什么样（三层产出）</h3>
+  <ul>
+    <li><strong>HTML 浏览版</strong>（上方「打开阅读页」）——单文件，左边固定目录、可折叠分节、滚动高亮。适合坐在电脑前读。</li>
+    <li><strong>Markdown 内容正本</strong>——同一内容的纯文本版，便于检索、引用、复制到别处。</li>
+    <li><strong>来源清单</strong>——分类来源表 ＋ 交叉验证记录 ＋ 检索盲区，把「这句话哪来的」摊开。</li>
+  </ul>
+  <h3 style="margin-top:16px">引用可信度分档</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有直接文本依据（≥3 个彼此独立的来源逐字一致）</li>
+    <li><span class="tag t-talk">作者谈话</span> 作者书外的访谈／演讲／声明——<strong>与「书里写的」严格分开</strong>，因为二者常被混为一谈</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 整理者自己的推理，无直接来源支撑</li>
+    <li>带 <strong>⚠</strong> 的条目＝单一来源，见各书报告的「待核实项」附录</li>
+  </ul>
+</div>
+
+<div class="note">
+  <h3>这一页怎么维护</h3>
+  <ul>
+    <li>本页是<strong>手写的静态页</strong>：新增一本书后，需要在这里加一张卡（约 30 行）。所有卡片都是独立块，互不影响。</li>
+    <li><strong>判断一本书有没有被收录</strong>，以目录 <code>_书目索引/</code> 为准——那里一本一个文件，是权威清单。</li>
+    <li>所以：<strong>本页可能落后于实际书目</strong>。如果这里少了某本书，去 <a href="_书目索引/">_书目索引/</a> 找，或直接进对应书名目录读 HTML。</li>
+    <li><strong>已读标记</strong>存在浏览器本地（localStorage），换浏览器或换设备不会同步；若浏览器限制本地文件存储，标记只在本次会话有效。</li>
+  </ul>
+</div>
+
+<footer class="foot">
+  <span>读书精华整理 · reading-assist</span>
+  <span>本页更新于 2026-10-02 · 收录 10 本</span>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var KEY = 'reading-assist:read';
+  var store = {};
+  try { store = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { store = {}; }
+
+  var cards  = Array.prototype.slice.call(document.querySelectorAll('.card'));
+  var marks  = Array.prototype.slice.call(document.querySelectorAll('.mark'));
+  var q      = document.getElementById('q');
+  var empty  = document.getElementById('empty');
+  var rc     = document.getElementById('rc');
+  var bar    = document.querySelector('#pbar i');
+  var fbtns  = Array.prototype.slice.call(document.querySelectorAll('.fbtn'));
+  var filter = 'all';
+
+  function save(){
+    try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {}
+  }
+
+  function paint(){
+    var read = 0;
+    cards.forEach(function(c){
+      var b = c.getAttribute('data-book');
+      var isRead = !!store[b];
+      if (isRead) { read++; }
+      c.classList.toggle('read', isRead);
+      var m = c.querySelector('.mark');
+      if (m) {
+        m.setAttribute('aria-pressed', isRead ? 'true' : 'false');
+        m.textContent = isRead ? '已读' : '未读';
+      }
+    });
+    rc.textContent = read;
+    bar.style.width = (cards.length ? (read / cards.length * 100) : 0) + '%';
+  }
+
+  function apply(){
+    var term = (q.value || '').trim().toLowerCase();
+    var shown = 0;
+    cards.forEach(function(c){
+      var b = c.getAttribute('data-book');
+      var hay = ((c.getAttribute('data-search') || '') + ' ' + b).toLowerCase();
+      var okF = (filter === 'all') || (filter === 'read' ? !!store[b] : !store[b]);
+      var okQ = !term || hay.indexOf(term) !== -1;
+      var show = okF && okQ;
+      c.classList.toggle('hide', !show);
+      if (show) { shown++; }
+    });
+    empty.classList.toggle('on', shown === 0);
+  }
+
+  marks.forEach(function(m){
+    m.addEventListener('click', function(){
+      var b = m.getAttribute('data-book');
+      if (store[b]) { delete store[b]; } else { store[b] = 1; }
+      save(); paint(); apply();
+    });
+  });
+
+  fbtns.forEach(function(b){
+    b.addEventListener('click', function(){
+      fbtns.forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      filter = b.getAttribute('data-f');
+      apply();
+    });
+  });
+
+  q.addEventListener('input', apply);
+
+  paint();
+  apply();
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

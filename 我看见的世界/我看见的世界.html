@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《我看见的世界》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+
+<aside>
+  <div class="brand">《我看见的世界》<small>阅读指引与精华解析 · 2026-09-22</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 适合谁 / 不适合谁</a>
+    <a href="#s2">2 全书骨架</a>
+    <a href="#s3">3 读前必知五件事</a>
+    <a href="#s4">4 阅读建议</a>
+    <a href="#s5">5 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s6">1 如坐针毡的华盛顿之行</a>
+    <a href="#s7">2 逐梦之旅</a>
+    <a href="#s8">3 鸿沟渐窄</a>
+    <a href="#s9">4 心智探索</a>
+    <a href="#s10">5 第一道光</a>
+    <a href="#s11">6 北极星</a>
+    <a href="#s12">7 一个假设</a>
+    <a href="#s13">8 实验验证</a>
+    <a href="#s14">9 万物以外是什么</a>
+    <a href="#s15">10 似易实难</a>
+    <a href="#s16">11 无人可控</a>
+    <a href="#s17">12 下一颗北极星</a>
+    <div class="grp">附录</div>
+    <a href="#s18">A 金句与关键段落</a>
+    <a href="#s19">B 延伸阅读</a>
+    <a href="#s20">C 待核实项</a>
+    <a href="#s21">D 来源与验证</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《我看见的世界》阅读指引与精华解析</h1>
+  <div class="sub">The Worlds I See: Curiosity, Exploration, and Discovery at the Dawn of AI</div>
+  <div class="meta">
+    <div><b>作者</b>李飞飞（Fei-Fei Li，1976— ）</div>
+    <div><b>初版</b>2023-11-07 · Flatiron Books / A Moment of Lift Book · 336 页</div>
+    <div><b>中译</b>赵灿译 · 中信出版集团 2024-04 · 432 页</div>
+    <div><b>结构</b>12 章 · 个人史与 AI 学科史双线</div>
+    <div><b>荣誉</b>《金融时报》2023 年度好书 · 奥巴马 AI 推荐书单</div>
+    <div><b>状态</b>未标注已读／想读，两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注说明（全文通用）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有页码，或 ≥2 个彼此独立的来源逐字一致的<strong>书中文字</strong></li>
+    <li><span class="tag t-talk">作者谈话</span> 作者在访谈、演讲、听证会中的公开表述——<strong>不是书里的文字</strong></li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    无公开全文；但<b>三处引文有书中页码可追</b>（p.229／p.275／p.284），其余为经二手来源转引。带 ⚠ 的条目见附录 C。
+  </p>
+  <h3>引文核验级别（2026-10-02 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书落在 <b>B 级（带页码引文）</b>：无公开全文，但已有三处带<b>书中页码</b>的可署名引文（<b>p.229／p.275／p.284</b>，出自 ACRL 同行评审期刊《College &amp; Research Libraries》的署名书评）。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <div class="keybox">
+    这不是一本讲 AI 技术原理的书，也不是一本纯粹的移民奋斗史，而是<strong>一份「一个人如何选定一个问题并追它二十年」的现场记录</strong>。
+  </div>
+  <p>作者是 ImageNet 的创建者——那个让深度学习在 2012 年引爆的数据集。但书的重心不在这里：<strong>它真正在写的是「北极星」这套方法论</strong>——怎么把一个模糊的好奇心变成一个可检验的假设，做完之后如何再找下一颗。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>这本书最适合谁、不适合谁</span><span class="caret">▾</span></h2>
+  <h3>适合</h3>
+  <ul>
+    <li>想理解「AI 这一波是怎么起来的」但不想读技术论文的人。书里有第一人称的现场感，是学界内部视角，别的书给不了。</li>
+    <li>20 岁上下、正在选方向的人。这本书的<strong>实际内容是「怎么选问题」</strong>，不是「怎么成功」。</li>
+    <li>做研究／做研发的人——尤其卡在「我做的事到底有没有意义」这个阶段的。</li>
+    <li>关心科技伦理的人，但你得接受：<strong>这本书提出的是立场，不是方案</strong>。</li>
+  </ul>
+  <h3>不适合／要调整预期</h3>
+  <ul>
+    <li><strong>想读 AI 技术科普的人</strong>：书里不给你 AI 发展年表，也不解释大模型、ChatGPT（它写到 2019 年为止）。英文书评人明确抱怨过：「80% 回忆录，20% AI 信息」「只讲到 2019 年之前」。</li>
+    <li><strong>想读「女性科学家如何对抗性别歧视」的人</strong>：这是这本书被营销成、但书本身着墨最少的部分。有英文读者直接批评：「只读到移民的挣扎，读不到作为女性的挣扎——而她的同事和导师几乎全是男性，她自己还创办了给女孩学 AI 的项目。」</li>
+    <li><strong>想读「AI 威胁论」或「AI 乐观论」的人</strong>：她两边都不站，这可能让立场鲜明的人觉得不过瘾。</li>
+  </ul>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>书是<strong>双线叙事</strong>：一条是个人史（成都 → 新泽西 → 普林斯顿 → 加州理工 → 斯坦福），一条是 AI 学科史（从学术冷宫到深度学习爆发）。两条线在 ImageNet 上合流。</p>
+  <table>
+    <thead>
+      <tr><th>#</th><th>英文原题</th><th>中译</th><th>这条线上发生了什么</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Pins and needles in D.C.</td><td>如坐针毡的华盛顿之行</td><td>2018 年国会作证（全书框架章）</td></tr>
+      <tr><td>2</td><td>Something to chase</td><td>逐梦之旅</td><td>童年、物理学、全家赴美的决定</td></tr>
+      <tr><td>3</td><td>A narrowing gulf</td><td>鸿沟渐窄</td><td>移民后的贫困、语言、高中</td></tr>
+      <tr><td>4</td><td>Discovering the mind</td><td>心智探索</td><td>普林斯顿 → 认知神经科学的转向</td></tr>
+      <tr><td>5</td><td>First light</td><td>第一道光</td><td>AI 寒冬、导师、转向视觉研究</td></tr>
+      <tr><td>6</td><td>The north star</td><td>北极星</td><td>Caltech 101，第一个数据集</td></tr>
+      <tr><td>7</td><td>A hypothesis</td><td>一个假设</td><td><strong>ImageNet 立项：它首先是个假设，不是工程</strong></td></tr>
+      <tr><td>8</td><td>Experimentation</td><td>实验验证</td><td>众包、质检、2010 挑战赛、2012 AlexNet</td></tr>
+      <tr><td>9</td><td>What lies beyond everything?</td><td>万物以外是什么</td><td>深度学习革命、与 Google 的竞赛</td></tr>
+      <tr><td>10</td><td>Deceptively simple</td><td>似易实难</td><td>医疗 AI、环境智能、开始思考伦理</td></tr>
+      <tr><td>11</td><td>No one's to control</td><td>无人可控</td><td>偏见、治理、Google 时期与离开</td></tr>
+      <tr><td>12</td><td>The next north star</td><td>下一颗北极星</td><td>以人为本、回到「激励我们的到底是什么」</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:13px;color:var(--ink3)">英文目录来自 5 个彼此独立的图书馆编目记录（逐字一致）；中文目录来自中译本。</p>
+  <div class="keybox">
+    <strong>一个结构上的细节值得注意</strong>：第 6 章叫「北极星」，第 12 章叫「下一颗北极星」。这不是修辞上的重复——是<strong>她的自我定位</strong>。书里对「北极星」下过一个很清楚的定义：
+  </div>
+  <blockquote>
+    <p class="quote-cn">「以北极星来比喻理想，其真正的价值不仅仅在于北极星可以指引方向，更在于<strong>无论怎样努力，到达北极星的距离永远是无限的</strong>。」</p>
+    <p class="gloss"><span class="tag t-src">原书</span> 中译本转引</p>
+  </blockquote>
+  <p>正因为永远到不了，所以才有「下一颗」。<strong>「找到北极星」这个说法在大众传播里被当成了励志口号，但在这本书里它是一套可操作的方法：</strong>把一个开放的大问题表述成假设 → 为它造工具 → 做完 → 换下一颗。第 7 章标题叫「一个假设」而不是「一个项目」，就是这个意思。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>读之前值得先知道的五件事</span><span class="caret">▾</span></h2>
+
+  <h3>3.1 它出版在一个「女性与女孩」书系里，不是技术丛书</h3>
+  <p>英文原版由 <strong>Moment of Lift Books</strong> 出版——这是<strong>梅琳达·弗兰奇·盖茨与 Flatiron Books 合作创立的出版品牌</strong>，官方定位是「出版那些正在为女性和女孩解锁一个更平等世界的远见者的原创非虚构」。</p>
+  <p><strong>这条信息在很多介绍里都看不到，但它解释了这本书为什么是现在这个形状</strong>：它从立项那天起就是一本「女性成长的非虚构」，而不是「AI 技术书」。英文书评里那些「AI 讲得不够深」「没有 AI 通史」的抱怨，在一定程度上是<strong>把书按错误品类读了</strong>。</p>
+  <p><strong>而更巧的一层</strong>：梅琳达·盖茨正是李飞飞 2017 年共同创办的 AI4ALL（推动 AI 教育多元化）的早期资助方。也就是说，这个书系背后的出版人，本身是她公益事业的长期合作者。<span class="tag t-rep">转述</span></p>
+
+  <h3>3.2 开篇不是童年，是 2018 年国会作证——而且时间点很微妙</h3>
+  <p>全书以 2018 年 6 月 26 日她出席美国众议院科学、空间与技术委员会听证会开篇，主题是「AI——能力越大，责任越大」。<span class="tag t-rep">转述</span></p>
+  <p><strong>这个时间点值得注意</strong>：她当时<strong>还在 Google 的任期内</strong>（2017 年 1 月—2018 年秋），而就在一个月前（2018 年 5 月），她关于 Google 国防部合同 Project Maven 的内部邮件被媒体曝光（见 3.4）。<strong>书从这场听证会切入，等于从她职业生涯中最尴尬的那个时刻切入。</strong></p>
+  <p>这是这本书在结构上最聪明的地方：它没有从「一个成都女孩仰望星空」开始，而是从「一个被舆论夹在中间的科学家坐在证人席上」开始。</p>
+
+  <h3>3.3 书里的母亲只问一句话，但这句话是全书的引擎</h3>
+  <p>母亲是这本书里分量最重的角色。她反复出现在每个关键转折点上，问的几乎是同一句话：</p>
+  <blockquote>
+    <p class="quote-cn">「飞飞，这是你想要的吗？」</p>
+    <p class="gloss"><span class="tag t-src">原书</span> 中译本转引，多源</p>
+  </blockquote>
+  <p>有一段对话在中文读者笔记里流传很广（<span class="tag t-rep">转述</span>，单一来源，见附录 C）：</p>
+  <blockquote>
+    <p class="quote-cn">「飞飞，这是你想要的吗？」<br>「你知道我要什么，妈妈，我想成为一名科学家。」<br>「那还有什么好说的呢？」</p>
+    <p class="gloss">——「面对我的含糊其辞，母亲的回应总是一针见血，速度之快让我得花点儿时间才能反应过来。三步绝杀，一剑封喉，我要去读研究生了。」</p>
+  </blockquote>
+  <p>还有两处转引：当她考虑放弃科研去做金融／咨询来改善家境时，母亲说的是「<strong>我们走到这一步，不是让你现在放弃的</strong>」；当她学生时代在意成绩时，母亲说的是「<strong>没人欠你什么。如果你那么渴望得 A，那么下次可以更加努力</strong>」。</p>
+  <p><strong>为什么这句话重要</strong>：她回忆自己几次差点离开学术道路——普林斯顿毕业时金融和咨询给的待遇，对当时那个家庭是压倒性的诱惑。她自己说过，<strong>如果没有母亲那些尖锐的问题和「甘愿牺牲舒适」的决心，她不会留在科学这条路上</strong>。<span class="tag t-rep">转述，学术书评</span></p>
+
+  <h3>3.4 书外有一条对这本书最锋利的质疑，书里回应到什么程度需要你自己判断</h3>
+  <p>2018 年 5 月，媒体获得了她关于 Google 承接五角大楼 Project Maven（用 AI 分析无人机视频）的内部邮件。以下是被公开引用的原文：</p>
+  <blockquote>
+    <p>「<strong>This is red meat to the media to find all ways to damage Google.</strong>」（这对媒体来说是送上门的生肉，他们可以用各种方式损害 Google。）</p>
+    <p>「You probably heard Elon Musk and his comment about AI causing WW3.」</p>
+    <p>「I don't know what would happen if the media starts picking up a theme that Google is secretly building AI weapons... <strong>I'd be super careful to protect these very positive images.</strong>」（我得非常小心地保护这些非常正面的形象。）</p>
+    <p class="gloss"><span class="tag t-rep">转述</span> 邮件原文，来源为媒体获得的邮件文本</p>
+  </blockquote>
+  <p><strong>批评者的读法</strong>：这封邮件里，她担心的落点是<strong>公众形象</strong>（"damage Google"、"protect these very positive images"），而不是项目本身的伦理。这与她作为「AI 伦理倡导者」的公共形象构成反差。</p>
+  <p><strong>她本人的回应</strong>（对《纽约时报》）：</p>
+  <blockquote>
+    <p>「I believe in human-centered AI to benefit people in positive and benevolent ways. <strong>It is deeply against my principles to work on any project that I think is to weaponize AI.</strong>」</p>
+    <p class="gloss"><span class="tag t-talk">作者谈话</span> 对《纽约时报》</p>
+  </blockquote>
+  <p><strong>关于她的离开</strong>：媒体普遍把离职与 Maven 风波关联（时间上确实接近）；但她自己<strong>坚持说两者没有直接因果关系</strong>，称离开符合「回斯坦福全职做学术」的长期计划。离开时间点在各个来源里也有出入（2018 年 6 月／9 月／10 月），详见附录 C。</p>
+  <div class="warnbox">
+    <strong>我要提醒的是</strong>：这本书是 2023 年出版的，Maven 风波是 2018 年的，书里（按目录推测应在第 9—11 章）必然要处理这段。<strong>但这段具体怎么写、写到什么程度，我没有原书无法判断。</strong> 这是一个<strong>建议你自己带着问题去读</strong>的点——它是这本书里唯一一个「作者既是叙述者又是当事人」的争议事件。
+  </div>
+
+  <h3>3.5 她刻意不站「AI 末日论」那一边，而且这件事有后续</h3>
+  <p>书里贯穿的一个立场是：优先处理<strong>具体、当下、可验证的风险</strong>（偏见、隐私、虚假信息、就业冲击），而不是思辨性的长期威胁（通用人工智能的存在性风险）。她公开与持「生存性危机」论调的人（包括 Geoffrey Hinton）拉开距离。<span class="tag t-rep">转述</span></p>
+  <p><strong>这条立场在书出版后继续发酵</strong>：2024 年她公开反对加州 SB 1047 法案（要求大模型做安全测试、含「终止开关」条款），理由是它会不当加重开发者负担、抑制创新。AI 研究者 Gary Marcus 公开质疑她，认为她支持的是<strong>没有具体机制的「AI 治理」</strong>表述。</p>
+  <div class="keybox">
+    <strong>而这里有一个非常值得玩味的细节</strong>：<strong>Geoffrey Hinton 是这本书的推荐人之一</strong>（推荐语：「She delivers an urgent, clear-eyed account of the awesome potential—and danger—of the AI technology that she helped to unleash」）。也就是说，<strong>为她背书的人，正是她在风险议题上公开分歧的对象。</strong><br><br>
+    这条本身就是理解这本书公共定位的钥匙：它是一本<strong>刻意构建跨立场共识</strong>的书。看英文版推荐阵容——前美国国务卿康多莉扎·赖斯、图灵奖得主 Geoffrey Hinton、诺奖得主 Jennifer Doudna、皮克斯联合创始人 Ed Catmull、LinkedIn 联合创始人 Reid Hoffman。这个名单<strong>在 AI 议题上彼此分歧极大</strong>，却都来推荐同一本书。这不是巧合，是书的策略。
+  </div>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <p><strong>如果你想快速抓住这本书</strong>（约 2 小时）：</p>
+  <p style="padding-left:14px"><strong>第 1 章 → 第 7 章 → 第 8 章 → 第 12 章 → 回到第 2—3 章</strong></p>
+  <p>理由：第 1 章是全书框架（她此刻站在哪里）；第 7、8 章是全书唯一的「科学发现现场」，也是唯一别处读不到的独家内容（ImageNet 怎么从一个被同行认为「你想太远了」的念头变成事实）；第 12 章是她的落点；第 2—3 章的移民部分叙事最完整，适合最后补，因为它们情感浓度高但不推进论证。</p>
+  <p><strong>如果你关心 AI 这段历史</strong>：第 5—9 章连着读，能拿到一条完整的内部线索——AI 寒冬里视觉研究怎么活下来的、为什么当时所有人都在赌算法而不是数据、她的判断为什么一度被当成误入歧途。这是这本书不可替代的部分。</p>
+  <p><strong>可以快读或跳过的部分</strong>：第 4 章后半和第 5 章前半有较多认知神经科学的技术描述；第 10 章的医疗 AI 项目细节偏专业。这些不是废话，但如果你只想要主线，可以略过细节保留结论。</p>
+  <div class="keybox">
+    <strong>一个实操建议</strong>：这本书值得对着英文版读。中译本 432 页，英文原版只有 336 页（部分编目记录写 322 页）——中译本页数几乎多了三成。这个差异可能来自排版、字号、也可能是译者注释，我没有中译本无法核实。但考虑到这本书里「技术判断的措辞精度」很重要，有条件的话中英对照读关键章节更稳妥。
+  </div>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <h3>读者端的主要不满（按出现频次排序）</h3>
+  <ol>
+    <li><strong>「自我庆贺」（self-congratulatory）的文风</strong>。这是英文读者里最集中的一条。相关的一条是「对学界只有崇拜、缺少批评」。</li>
+    <li><strong>视野偏窄</strong>：「对领域整体格局的呈现有限，我更想看到她的工作如何嵌入更大的图景」。</li>
+    <li><strong>叙事寡淡</strong>：有读者认为全书是「对发生了什么的描述，没有做叙事化或戏剧化的努力」，到一半（ImageNet 部分）才真正抓人。</li>
+    <li><strong>后半拖沓</strong>：「前半很好，后半读得很累。」</li>
+    <li><strong>AI 内容只到 2019 年</strong>，不含生成式 AI 与当代大模型。</li>
+    <li><strong>女性处境着墨太少</strong>（这条最尖锐，因为它和书的营销定位直接冲突）。</li>
+  </ol>
+  <h3>专业评论端的批评（质量最高的一条）</h3>
+  <p>College &amp; Research Libraries 的学术书评（2024）指出：<strong>这本书没有处理地缘政治</strong>。原话大意是——中美之间当下的状况会打断全球科研合作、制造隔离、边界与竞争，<strong>而这是「李在书中未能触及的一点」</strong>，结果就是读者不知道她如何看待当下地缘政治对技术发展的影响。</p>
+  <div class="keybox">
+    <strong>我认为这是全部批评里最有分量的一条</strong>，因为它指向一个结构性缺口：<strong>这本书谈「以人为本」，但基本不谈「谁来决定方向」。</strong> 繁中版的一篇书评说得更直白——它认为这本书「几乎回避了『以人为中心』到底意味着什么，以及究竟谁有能力决定人工智能的发展方向」，并称之为「她自己跟这个世界一次错失的机会」。
+  </div>
+  <h3>一处具体的、可验证的疑点</h3>
+  <p>中译本的作者简介里写「2009 年在斯坦福大学完成 ImageNet 的初始版本，包含 1500 万张图片，涵盖了 2.2 万个不同类别」。但 ImageNet 的 <strong>2009 年首发论文与数据库规模约为 320 万张图</strong>（《大英百科全书》词条，与论文标题一致），<strong>1500 万张／2.2 万类是整个数据集后来的最终规模</strong>。这两个数字被大量中文资料（包括中译本自己的作者简介）混用了。详见附录 C。</p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">1</span><span>如坐针毡的华盛顿之行 / Pins and needles in D.C.</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在做什么</strong>：建立全书的时间锚点和语气。她坐在国会听证会的证人席上，为一个大部分人还不了解的技术作证，同时承受着「这个技术到底是好是坏」的追问。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>时间：2018 年 6 月 26 日，美国众议院科学、空间与技术委员会听证会。<span class="tag t-rep">转述</span></li>
+    <li>她在听证会上说了一句后来被反复引用的话：</li>
+  </ul>
+  <blockquote>
+    <p>「<strong>There's nothing artificial about AI. It's inspired by people, created by people, and most importantly it has an impact on people.</strong>」</p>
+    <p class="gloss">（AI 没有任何「人工」的——它由人启发、由人创造，而最重要的是，它影响着人。）<span class="tag t-talk">作者谈话</span> 多源，但措辞有出入，见附录 C</p>
+  </blockquote>
+  <ul>
+    <li>她承认算法可能是中性的，但<strong>造就算法的数据和应用不是</strong>；原话：「给它们输入偏见，它们就会输出偏见。」她还具体举例——没有多元的工程师，就可能造出在白人面孔上训练、在黑皮肤上失效的模型，或对贷款申请做出不公平决策的系统。<span class="tag t-talk">作者谈话</span></li>
+    <li>中译本这一章的导语：</li>
+  </ul>
+  <blockquote>
+    <p class="quote-cn">「我马上要在美国国会就『人工智能』的话题做证，我坚信人工智能可以让世界变得更好。无论如何，我都要让大家知道，科学的力量依然值得我们满怀乐观。」</p>
+    <p class="gloss"><span class="tag t-src">原书</span> 中译本</p>
+  </blockquote>
+  <h3>值得停下来想的地方</h3>
+  <p>注意这一章的位置——它被放在最前面，而它所描述的那场听证会里的所有焦虑（偏见、失业、监管），在书中要等到第 10 章才开始正面处理。<strong>也就是说，书的结构是「用一个已经知道结局的人，回望她怎么走到这里」。</strong> 她在听证会上的从容，是后面三百页才挣来的。</p>
+  <p><strong>她当时还有一层没有说出口的处境</strong>：这场听证会开在 Maven 邮件曝光之后一个月，她还在 Google 任上。<strong>书从这里开头，说明她愿意把最难堪的时刻放在最前面</strong>——这也是我对这本书「自我庆贺」那条批评持保留意见的原因之一：一本只想粉饰的书，不会这样起头。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">2</span><span>逐梦之旅 / Something to chase</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在做什么</strong>：讲「走」这个决定是怎么做出来的，以及这个决定背后的家庭逻辑。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>父母在中国属于「文革一代」成长起来的知识分子。母亲曾是高中教师，父亲是工程师。<span class="tag t-rep">转述，多源</span>（母职有来源冲突，见附录 C）</li>
+    <li>她十几岁就痴迷物理学。中译本导语：「十几岁的我疯狂地痴迷与热爱物理学，为此父母决定冲破周围一切障碍，飞越重洋，全家前往美国，开启逐梦之旅。」<span class="tag t-src">原书</span></li>
+    <li><strong>头一次「仰望北极星」的具体场景</strong>：10 岁时，美术老师带学生去野外徒步看星星——「它点燃了我的好奇心，也激发了我对大自然的向往」。<span class="tag t-rep">转述，单一来源，见附录 C</span></li>
+    <li><strong>家庭氛围</strong>：父亲的形象是「民间科学家」式的——用干洗店的器械当玩具，带她观察自然变化；母亲则是那个不断追问「这是你想要的吗」的人。<span class="tag t-rep">转述</span></li>
+  </ul>
+  <h3>一个必须点明的背景</h3>
+  <p>这本书是<strong>用一个美国家庭的故事讲出来的</strong>。父母离开的是一个他们觉得「会限制女儿梦想」的环境——提到过她在中国时作为女生学物理受到过阻力（老师说这不合适）。她在书里也一直强调自己与中文的紧密连结。<strong>这两件事同时为真，不互相取消。</strong> 读的时候留意她是怎么处理这个平衡的。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">3</span><span>鸿沟渐窄 / A narrowing gulf</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在做什么</strong>：移民之后的贫困，以及这个家庭怎么一点点爬出来。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>1992 年抵达新泽西州帕西帕尼（Parsippany），一家挤在一居室公寓里。父亲修相机和钟表，母亲做收银员／工厂活计，她自己在餐馆打工。<span class="tag t-rep">转述，多源</span></li>
+    <li><strong>高中数学老师 Bob Sabella（鲍勃·萨贝拉）</strong> 是这一章的关键人物，也是全书最重要的「贵人」：他帮她适应新语言，后来<strong>和家人一起借给她父母一笔钱，让家里能盘下一个干洗店</strong>——书里提到这笔借款是 8 万美元。<span class="tag t-rep">转述，多源；金额为单一来源，见附录 C</span></li>
+    <li><strong>干洗店是这一章之后一直延续到下一章的一条线</strong>：她上大学时，因为家里只有她会英语，实际承担了「<strong>CEO</strong>」的角色——接电话、应付检查、跟客人打交道、管账。她自己回忆说，直到读研究生的中期，还在<strong>远程管理</strong>这家店。<span class="tag t-talk">作者谈话</span></li>
+  </ul>
+  <h3>值得停下来想的地方</h3>
+  <p>她在多个场合把这段经历总结成「韧性」，并说这是科学和生活里最要紧的品质。<strong>这一章和全书的关系是：它给「北极星」这个隐喻提供了重量。</strong> 如果不知道这个家庭为了让她继续读书付出了什么，「追逐北极星」就只是一句漂亮话。</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">4</span><span>心智探索 / Discovering the mind</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在做什么</strong>：从物理学转向「心智是什么」，这是全书最重要的一次转向。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>1995 年入普林斯顿读物理，1999 年毕业（全奖）。中译本导语：「从普林斯顿大学到伯克利，我首次接触到真正的科学给我带来的兴奋感。我确定自己无比热爱研究，我要找到属于自己的北极星。」<span class="tag t-src">原书</span></li>
+    <li>触发转向的是普林斯顿期间接触到的<strong>神经科学与视觉研究</strong>——她开始问一个比物理学更「大胆」的问题：<strong>智能是什么？它是怎么产生的？机器能学会它吗？</strong><span class="tag t-talk">作者谈话</span></li>
+    <li>本科毕业后在加州理工读博士（2005 年获电气工程博士），导师 <strong>Pietro Perona</strong>（书中译作「彼得罗」），研究视觉识别。她参与过「<strong>one-shot learning</strong>」（小样本学习）方向的早期工作。<span class="tag t-rep">转述</span></li>
+  </ul>
+  <h3>这一章的技术线索为什么重要</h3>
+  <p>后来 ImageNet 的核心判断是「数据才是瓶颈，不是算法」。而这个判断的<strong>来源恰恰是她在这一章里做的事——去问人类是怎么看东西的</strong>。人类是看了海量图像才学会分辨物体的；而当时计算机视觉界在用几百张图片的数据集训练算法。<strong>她后来做的事，本质上是把「人类的学习方式」这个观察，变成了一个工程决定。</strong></p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">5</span><span>第一道光 / First light</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在做什么</strong>：在 AI 的寒冬里，视觉研究是怎么活下来的；她遇到了谁。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>中译本导语：「人工智能的发展再次遭遇寒冬，我在导师们的引导下开始关注视觉研究。此后，它将成为我一切学术旅程的主线，成为我世界的中心。」<span class="tag t-src">原书</span></li>
+    <li>她的研究横跨<strong>计算机视觉 + 认知神经科学</strong>——这个组合在当时很不寻常。有书评人指出，她的科研生涯「从一开始就不太可能」（improbable from the start）。<span class="tag t-rep">转述</span></li>
+  </ul>
+  <h3>值得注意的一点</h3>
+  <p>这本书里的「AI 寒冬」不是背景板，而是<strong>理解她判断力的关键</strong>。在一个没有人相信这条路的时间点选择它，然后它变成了最重要的那条路——<strong>这是这本书最想传递的一件事，也是它区别于一般「成功回忆录」的地方。</strong></p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">6</span><span>北极星 / The north star</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在做什么</strong>：第一次真正意义上的「造一件东西」——Caltech 101。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>2004 年，团队建成 <strong>Caltech 101</strong>：超过 9000 张图像、101 个类别——当时为机器学习配置的最大规模图像集合之一。<span class="tag t-src">原书</span> <span class="tag t-rep">多源</span></li>
+    <li>关于「101」这个数字，书里有一句很好玩的自述：</li>
+  </ul>
+  <blockquote>
+    <p class="quote-cn">「如果彼得罗想要 100 个类别，我就给他 101 个。」</p>
+    <p class="gloss"><span class="tag t-src">原书</span> 中译本</p>
+  </blockquote>
+  <ul>
+    <li>这一章给出了「北极星」的定义：</li>
+  </ul>
+  <blockquote>
+    <p class="quote-cn">「我发现自己开始在天宇中追寻属于自己的北极星，那是每一位科学家都会穷尽一切追逐的坐标，无论是一个问题、一个假设，还是一个赌注。哪怕要追到天涯海角，我也会毫不犹豫。我只需要找到那颗北极星。」</p>
+    <p class="gloss"><span class="tag t-src">原书</span> 中译本转引，单一来源</p>
+  </blockquote>
+  <div class="keybox">
+    这一章的名字就叫「北极星」——而书里最重要的那次工作（ImageNet）在下一章，叫「一个假设」。<strong>这个排序本身就是论点：先有方向，再有假设。</strong> 很多人把顺序颠倒了——先找课题，再找理由。
+  </div>
+</section>
+
+<section id="s12">
+  <h2><span class="num">7</span><span>一个假设 / A hypothesis</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在做什么</strong>：ImageNet 的立项。<strong>这是全书最有价值的一章。</strong></p>
+  <h3>关键内容</h3>
+  <ul>
+    <li><strong>核心判断</strong>：ImageNet「不仅是一个数据集，它是一个假设、一个赌注——即实现真正机器智能的第一步，是沉浸在完整的视觉世界中。」<span class="tag t-src">原书</span></li>
+    <li><strong>当时的学界共识是相反的</strong>。主流认为瓶颈在算法，不在数据。她提出要建一个规模大到听起来不可能的数据集时，一位导师警告她：「<strong>I think you've taken this idea way too far.</strong>」（我觉得你这个想法走得太远了。）——据 Ars Technica 引述，时间是 2007 年。<span class="tag t-rep">转述，单一来源，见附录 C</span></li>
+    <li>她后来总结这段：「<strong>Pre-ImageNet, people did not believe in data.</strong>」（在 ImageNet 之前，人们不相信数据。）<span class="tag t-talk">作者谈话</span></li>
+    <li><strong>「数据从哪来」完全换了思路</strong>：不用人工雇学生标注（太贵太慢），而是用 <strong>Amazon Mechanical Turk</strong> 众包——当时这是全新的做法，团队后来成为全球最大的 MTurk 学术用户。<span class="tag t-rep">转述</span></li>
+    <li><strong>数据的组织结构来自语言学</strong>：ImageNet 的层级不是随便建的，而是<strong>基于 WordNet 的语义层次结构</strong>。这一步是她跨学科背景的直接产物——她是从「人类怎么组织概念」倒推「机器该怎么组织图像」。<span class="tag t-rep">转述</span></li>
+    <li>中译本导语：「这个赌注无论被证明是对是错，我都做好了准备。但我没想到，它被忽视了。」<span class="tag t-src">原书</span></li>
+  </ul>
+  <h3>这一章的三层含义<span class="tag t-inf">推断</span></h3>
+  <ol>
+    <li><strong>科学上</strong>：它示范了「把直觉变成一个可检验的赌注」——如果数据是瓶颈，那么给足数据后算法应该显著变好；如果没变好，假设就被推翻。</li>
+    <li><strong>方法上</strong>：它示范了<strong>跨学科的价值不在「跨界」本身，而在「把另一学科的结构借过来」</strong>。WordNet 是个语言学工程，ImageNet 是视觉工程，两者的结合点是「人类怎么分类」。</li>
+    <li><strong>职业上</strong>：它示范了<strong>在一个多数人认为错的方向上坚持下去需要什么</strong>——不是勇气，是「能被推翻」的假设形式。这就是为什么这一章不叫「一个项目」。</li>
+  </ol>
+  <p><strong>这一章也是理解她后来所有立场的起点</strong>：一个亲手造出「训练数据决定一切」的人，比任何人都更早看到<strong>数据里的偏见会成为系统的偏见</strong>。</p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">8</span><span>实验验证 / Experimentation</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在做什么</strong>：假设被验证——以及验证之前那几年是难熬的。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>2009 年，ImageNet 论文与数据库发布。<span class="tag t-rep">转述</span></li>
+    <li>2010 年，她把 ImageNet 变成一个<strong>年度竞赛</strong>（ILSVRC）——强迫所有研究者<strong>在同一套大数据上比算法</strong>。这一步的作用常被低估：它把一个数据集变成了全领域的<strong>共同基准</strong>。<span class="tag t-rep">转述</span></li>
+    <li>2012 年，AlexNet（Alex Krizhevsky、Ilya Sutskever、Geoffrey Hinton）参赛，把错误率一下压低，<strong>引爆了深度学习</strong>。中译本导语：「在 ImageNet 的帮助下，AlexNet 焕发生机，它贪婪地吸收着 ImageNet 的内容，在 ImageNet 规模和多样性的土壤中生根发芽，茁壮成长。」<span class="tag t-src">原书</span></li>
+    <li>她的总结是：那个时刻是<strong>大数据、GPU、更好的算法三者终于合流</strong>。<span class="tag t-talk">作者谈话</span></li>
+  </ul>
+  <div class="warnbox">
+    <strong>数字上的一处提醒</strong>：很多中文材料把这次突破写成「AlexNet 识别准确率高达 85%」。这个数字对应的是 <strong>top-5 准确率</strong>（即前五个预测里包含正确答案的比例），不是「单次猜对的准确率」。<strong>这个区别在技术语境里很重要</strong>，而中译本作者简介的表述方式容易让读者误解。详见附录 C。
+  </div>
+  <p>她在这本书里反复说，科学的进步<strong>不是靠孤军奋战的天才</strong>。中译本里有一句：</p>
+  <blockquote>
+    <p class="quote-cn">「科学的追求可能是循序渐进的，但其突破却是由突如其来的巨变推动的，而这样巨变的引发者，不是某一个孤军奋战、雄心勃勃的天才，而是很多人的贡献被幸运之手汇聚在一起。」</p>
+    <p class="gloss"><span class="tag t-src">原书</span> 中译本转引</p>
+  </blockquote>
+</section>
+
+<section id="s14">
+  <h2><span class="num">9</span><span>万物以外是什么 / What lies beyond everything?</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在做什么</strong>：赢了之后，对手从「无人的荒原」变成了「一家公司」。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>深度学习革命到来，而她判断「<strong>我们还没有做好准备</strong>」。中译本导语：「报纸上的一篇文章让我看到了世界变化之快。我们的对手不是其他大学的某个神秘研究团队，而是谷歌。」<span class="tag t-src">原书</span></li>
+    <li><strong>学术实验室与 Google 的竞赛</strong>：据《出版人周刊》书评，她写到斯坦福实验室<strong>与 Google 竞速</strong>，看谁能先做出能描述图像内容的软件。这一段的张力是本书少见的「竞争叙事」。<span class="tag t-rep">转述，权威书评</span></li>
+    <li>2017 年 1 月到 2018 年秋，她休学术假到 Google Cloud 任副总裁兼 AI/ML 首席科学家，推动「AI 平民化」，主导了 <strong>AutoML</strong> 等产品，并参与筹建 <strong>Google AI 中国中心</strong>（2017 年底开业，2019 年关闭）。<span class="tag t-rep">转述</span></li>
+  </ul>
+  <h3>这一章里藏着一个转折</h3>
+  <p>她进 Google 的初衷是「想亲身了解业界怎么运作」，结果这不到两年成了她职业生涯里最公开的争议。<strong>书的叙事在这里从「科学的故事」变成了「权力与责任的故事」。</strong></p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">10</span><span>似易实难 / Deceptively simple</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在做什么</strong>：一个来自病床的问题，把她推向了 AI 的伦理面向。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>母亲在病床上问了一个问题，成为这一章的转折点。据《华尔街日报》引述书中的场景，母亲先问「<strong>飞飞，你到底在做什么？</strong>」，在她解释了 ImageNet 之后，母亲追问：</li>
+  </ul>
+  <blockquote>
+    <p>「<strong>What can AI do to help people?</strong>」（AI 能做什么来帮助人？）</p>
+    <p class="gloss"><span class="tag t-src">原书</span> 经《华尔街日报》引述</p>
+  </blockquote>
+  <ul>
+    <li>中译本导语里母亲的问题被译作「人工智能还能做哪些事来帮助别人?」。<span class="tag t-src">原书</span></li>
+    <li>由此开启了她<strong>医疗方向</strong>的工作（书中译作「环境智能」）。一个具体项目：与斯坦福医学院合作，用摄像系统监测洗手台，提醒忘记正确洗手的医护人员，以降低院内感染。斯坦福临床研究中心主任 <strong>Arnold Milstein</strong> 评价说，从没有别的计算机科学领域的人向他提出过这样的事。<span class="tag t-rep">转述</span></li>
+    <li>这一章她也开始正面处理<strong>偏见</strong>议题：引用过 Yahoo Flickr 和 Google Photos 自动标签出错的问题——<strong>数据不够多元，算法就会带着偏见</strong>。<span class="tag t-rep">转述</span></li>
+  </ul>
+  <h3>这一章的判断价值</h3>
+  <p>它示范了「以人为本」在她那里<strong>不是一个姿态，是一个选题方法</strong>。母亲的问题把她从「让机器看得更准」推到了「让机器帮到具体的人」，而这个转向直接决定了后面十年的研究方向。</p>
+</section>
+
+<section id="s16">
+  <h2><span class="num">11</span><span>无人可控 / No one's to control</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在做什么</strong>：全书最硬的一章——偏见、治理，以及她在 Google 的那段风波。</p>
+  <h3>关键内容：ImageNet 偏见事件的完整脉络</h3>
+  <p>（这件事发生在 2019 年，即她离开 Google 回斯坦福之后）</p>
+  <ul>
+    <li>艺术家 <strong>Trevor Paglen</strong> 与研究者 <strong>Kate Crawford</strong> 推出 <strong>ImageNet Roulette</strong>——一个让用户上传自拍、看 AI 如何给自己打标签的项目。它暴露出数据集的「person」类别里有大量种族歧视、性别歧视、荒谬的标签（公开报道举出的例子包括 "slut"、"rapist"、"Negroid"、"criminal"，以及 "pipe smoker"、"flight attendant" 这类错得离谱的职业标签）。<span class="tag t-rep">转述</span></li>
+    <li><strong>ImageNet 团队随后宣布清理</strong>：当时公开的声明是<strong>移除 438 个「不安全」类别及约 60 万张关联图片</strong>（另有 1155 个「敏感」标签需要视语境处理）。团队发表的论文里给出的数字是<strong>删除 1593 个类别</strong>（占 2932 个「person」类别的 <strong>54%</strong>）。<strong>这两个数字口径不同，两个都要看</strong>，详见附录 C。<span class="tag t-rep">转述</span></li>
+    <li>Paglen 与 Crawford 的回应是双面的：<strong>肯定</strong>团队「承认了问题」，同时<strong>保留</strong>一个更根本的质疑——「我们可能对『用技术手段去偏置训练数据』能在多大程度上解决深层问题存在分歧」。Crawford 后来系统论证过：像 "Debtor"（债务人）、"Boss"（老板）、"Acquaintance"（熟人）、"Brother"（兄弟）、"Color-Blind Person"（色盲者）这类<strong>根本不是视觉概念</strong>的类别，暴露的是分类体系本身的本质主义预设，靠修订类别解决不了。<span class="tag t-rep">转述，学术论文</span></li>
+    <li><strong>这本书里有一句直接承认责任的话</strong>（有页码）：</li>
+  </ul>
+  <blockquote>
+    <p>「ImageNet included, exacerbated poorly tested algorithms and questionable decision making. <strong>When the internet presents a predominately white, Western, and often male picture of everyday life, we're left with the technology that struggles to make sense of everyone else.</strong>」（p. 275）</p>
+    <p class="gloss">（我自己也在内，加剧了测试不足的算法和有问题的决策。当互联网呈现的是一个以白人、西方、男性为主的日常图景时，我们得到的就只能是难以理解其余所有人的技术。）<span class="tag t-src">原书</span></p>
+  </blockquote>
+  <ul>
+    <li>她在听证会和访谈中反复表达的一个相关判断：「<strong>我想，要是 20 年后，我们的科技行业、领导者和从业者缺乏多元性，那简直就是世界末日。</strong>」<span class="tag t-talk">作者谈话</span></li>
+  </ul>
+  <div class="keybox">
+    <strong>这一章真正的问题</strong>（我的整理）：<strong>「无人可控」这个标题本身就是一个立场。</strong> 它不是「我们要控制 AI」，而是指出<strong>没有单一主体在控制它</strong>——因为造它的人分散在全球、用它的场景无法穷举、裁决它的机构还不存在。所以这一章给出的是「共同责任」，而不是解决方案。<br><br>
+    这也正是它被批评的地方：「共同责任」是可辩护的，但它同时回避了「谁有权力决定方向」这个更硬的问题。
+  </div>
+</section>
+
+<section id="s17">
+  <h2><span class="num">12</span><span>下一颗北极星 / The next north star</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在做什么</strong>：收束。回到开篇的听证会，给出她的落点。</p>
+  <h3>关键内容</h3>
+  <ul>
+    <li>中译本导语：「人工智能的未来仍然充满不确定性，我们有很多理由保持乐观，也同样有很多理由感到担忧。但一切都源于比单纯的技术更深层次、更有影响的问题：<strong>在我们创造的过程中，是什么在激励着我们的心灵和思想?</strong>」<span class="tag t-src">原书</span></li>
+    <li>结构上，她在这一章要重新构想 AI，使其成为「以人为本的实践」，并称之为<strong>下一颗北极星</strong>。<span class="tag t-src">原书</span></li>
+    <li><strong>全书的主题句</strong>（有页码）：</li>
+  </ul>
+  <blockquote>
+    <p>「we see the world holistically, not just identifying but understanding its contents—their relationships, their meanings, their pasts, and their futures. The gist. <strong>We aren't merely witnesses but storytellers.</strong> It felt like it was time for algorithms to learn how to do the same.」（p. 229）</p>
+    <p class="gloss">（我们整体地看世界——不只是识别内容，而是理解它们的关联、意义、过去与未来。要点就在这里：我们不只是见证者，我们是讲故事的人。是时候让算法学会做同样的事了。）<span class="tag t-src">原书</span></p>
+  </blockquote>
+  <ul>
+    <li>她本人对「北极星」这个说法给过一个公共版本的定义，被问到「如果要在一块广告牌上写一句话，写什么」时，她的回答是：</li>
+  </ul>
+  <blockquote>
+    <p>「<strong>What is your north-star?</strong>」（你的北极星是什么？）<span class="tag t-talk">作者谈话</span></p>
+  </blockquote>
+  <p><strong>值得注意的一层</strong>：这一章标题叫「下一颗」而不是「北极星」——回到上部讲的那个定义：<strong>到达北极星的距离是无限的</strong>。所以这本书的落点不是「我达成了」，而是「我换了一个更大的问题」。她说自己是 shy person，出版这本书是因为「AI 领域不能缺少女性的声音」——这句话本身也是这个逻辑的一部分。<span class="tag t-talk">作者谈话</span></p>
+  <div class="keybox">
+    <strong>书出版之后发生的事</strong>（不在这本书里，供参考）：2024 年她联合创立 <strong>World Labs</strong>，转向「<strong>空间智能</strong>」——让 AI 理解并作用于三维物理世界，而不只是语言。她的说法是：当前的大模型仍困在「语言的世界」里，缺乏对现实空间、物理规律与因果的真正理解。<span class="tag t-rep">转述</span><br><br>
+    <strong>换言之，第 12 章说的「下一颗北极星」，她后来真的去追了。</strong>
+  </div>
+</section>
+
+<section id="s18">
+  <h2><span class="num">A</span><span>金句与关键段落（按来源可靠性分级）</span><span class="caret">▾</span></h2>
+  <h3>A1. 有页码或图书评引述的书中文字（本报告最高可信度）</h3>
+  <table>
+    <thead><tr><th>内容</th><th>出处</th></tr></thead>
+    <tbody>
+      <tr><td>「When the internet presents a predominately white, Western, and often male picture of everyday life, we're left with the technology that struggles to make sense of everyone else.」</td><td>书 p. 275，经 College &amp; Research Libraries 书评引述</td></tr>
+      <tr><td>「We aren't merely witnesses but storytellers. It felt like it was time for algorithms to learn how to do the same.」</td><td>书 p. 229，同上</td></tr>
+      <tr><td>「AI was a technology that can make a perfect chess move while the room is on fire.」</td><td>读者整理的摘录，未附页码，可信度低于上两条</td></tr>
+    </tbody>
+  </table>
+  <h3>A2. 中译本章节导语（12 章各自开头的题引，多源一致）</h3>
+  <ul>
+    <li>第 1 章：「无论如何，我都要让大家知道，科学的力量依然值得我们满怀乐观。」</li>
+    <li>第 4 章：「我确定自己无比热爱研究，我要找到属于自己的北极星。」</li>
+    <li>第 5 章：「此后，它将成为我一切学术旅程的主线，成为我世界的中心。」</li>
+    <li>第 6 章：「如果彼得罗想要 100 个类别，我就给他 101 个。」</li>
+    <li>第 7 章：「这个赌注无论被证明是对是错，我都做好了准备。但我没想到，它被忽视了。」</li>
+    <li>第 8 章：「AlexNet 焕发生机，它贪婪地吸收着 ImageNet 的内容。」</li>
+    <li>第 9 章：「我们的对手不是其他大学的某个神秘研究团队，而是谷歌。」</li>
+    <li>第 10 章：「人工智能还能做哪些事来帮助别人?」</li>
+    <li>第 12 章：「在我们创造的过程中，是什么在激励着我们的心灵和思想?」</li>
+  </ul>
+  <p style="font-size:13px;color:var(--ink3)">章节导语来自中译本，经百度百科与书商页面两个来源一致转载。<strong>但这两个来源可能同源（均来自出版社资料），所以只能算「一个来源、两处出现」。</strong></p>
+  <h3>A3. 作者公开谈话中的话（<strong>不在书里</strong>，但流传常被误当成书里的）</h3>
+  <table>
+    <thead><tr><th>内容</th><th>场合</th></tr></thead>
+    <tbody>
+      <tr><td>「There's nothing artificial about AI. It's inspired by people, created by people, and most importantly it has an impact on people.」</td><td>2018 年国会听证</td></tr>
+      <tr><td>「给它们输入偏见，它们就会输出偏见。」</td><td>听证／多次访谈</td></tr>
+      <tr><td>「Pre-ImageNet, people did not believe in data.」</td><td>访谈</td></tr>
+      <tr><td>「What is your north-star?」</td><td>访谈</td></tr>
+      <tr><td>「It is deeply against my principles to work on any project that I think is to weaponize AI.」</td><td>对《纽约时报》回应 Maven 邮件</td></tr>
+      <tr><td>「I am a shy person, not good at expressing myself, but I insisted on publishing a book because the field of AI cannot lack female voices.」</td><td>《南华早报》</td></tr>
+      <tr><td>「我不太喜欢被称作 AI 教母。……但我确实想肯定女性的贡献，因为她们常常在科学史上被忽视。我希望 AI 领域能有不止一位教母。」</td><td>Axios 访谈</td></tr>
+    </tbody>
+  </table>
+  <div class="keybox">
+    <strong>最后一条值得单独说明</strong>：她的「不适」针对的是<strong>符号化</strong>（女性被要求代表多元、代表希望，却不被当成普通科学家参与核心技术讨论），而不是「承认女性贡献」。<strong>这个区分经常在转述里丢失</strong>，一丢就变成「她拒绝『AI 教母』这个称号」这种简单化的说法。
+  </div>
+</section>
+
+<section id="s19">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <p><strong>如果读完这本书想继续</strong>：</p>
+  <ol>
+    <li><strong>ImageNet 原始论文</strong>：Deng, Dong, Socher, Li, Li, Fei-Fei, <em>ImageNet: A Large-Scale Hierarchical Image Database</em>（CVPR 2009）。想看「320 万张 vs 1500 万张」到底怎么回事，读这篇最直接。</li>
+    <li><strong>AlexNet 论文</strong>：Krizhevsky, Sutskever, Hinton（2012）。第 8 章那个转折点的技术原貌。</li>
+    <li><strong>ImageNet 偏见清理的团队论文</strong>（2019）：理解第 11 章的关键一手材料，也是看「技术手段能解决多少伦理问题」的样本。</li>
+    <li><strong>Kate Crawford《Atlas of AI》</strong>（中译《技术之外》）：与这本书立场最直接对立的系统论述。<strong>对照读这一本，能把这本书的盲区看得很清楚。</strong></li>
+    <li><strong>她的 TED 演讲</strong>《How we're teaching computers to understand pictures》（2015）：第 7—8 章内容的浓缩版。</li>
+    <li><strong>她在 2024—2025 年关于「空间智能」的公开文章</strong>：第 12 章「下一颗北极星」的后续答案。</li>
+  </ol>
+  <p><strong>如果对「回忆录 + 学科史」这个体裁本身感兴趣</strong>：这本书和珍妮弗·杜德纳的《A Crack in Creation》推荐语互为背书（杜德纳是本书推荐人之一），体裁相近，可以对照「女性科学家怎么写自己的科学史」。</p>
+</section>
+
+<section id="s20">
+  <h2><span class="num">C</span><span>待核实项（我没有裁定的冲突与疑点）</span><span class="caret">▾</span></h2>
+  <p>以下是我<strong>没有裁定的冲突与疑点</strong>，两个说法都列出。</p>
+  <table>
+    <thead><tr><th>#</th><th>事项</th><th>冲突情况</th><th>我的处理</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><strong>移民时的年龄</strong></td><td>1992 年赴美。一说 <strong>15 岁</strong>（Kirkus 书评、Fortune、多家中文媒体）；一说 <strong>16 岁</strong>（《大英百科全书》、百度百科）。她生日为 7 月 3 日，1992 年内确实会从 15 岁跨到 16 岁——两个说法可能都对，取决于具体月份</td><td>两个都列，不裁定</td></tr>
+      <tr><td>2</td><td><strong>母亲在中国的职业</strong></td><td>一说高中教师（多家中文来源）；一说化工厂／超市收银员（英文来源）。<strong>很可能两者都对</strong>：中国时是教师，到美国后做收银员／工厂活</td><td>按「中国时是教师、到美国后打工」表述</td></tr>
+      <tr><td>3</td><td><strong>萨贝拉借款金额</strong></td><td>一说 <strong>8 万美元</strong>（单一读者长评）；其他来源只说「借钱帮助家庭盘下干洗店」</td><td>标注为单一来源</td></tr>
+      <tr><td>4</td><td><strong>ImageNet 规模</strong></td><td><strong>2009 年首发约 320 万张</strong>（大英百科）；最终规模 <strong>约 1500 万张／2.2 万类</strong>（多源）；也有说 1400 万张／2.1 万类</td><td>两个口径分开写，指出中译本作者简介疑似混用</td></tr>
+      <tr><td>5</td><td><strong>AlexNet 的「85% 准确率」</strong></td><td>实为 <strong>top-5 准确率</strong>，不是单次猜对率</td><td>已在正文说明</td></tr>
+      <tr><td>6</td><td><strong>偏见清理的数字</strong></td><td>当时声明：<strong>438 个类别 + 约 60 万张图</strong>；团队论文：<strong>删除 1593 个类别（占 person 类别 54%）</strong></td><td>两个都列</td></tr>
+      <tr><td>7</td><td><strong>离开 Google 的时间与原因</strong></td><td>时间有 2018 年 6 月／9 月／10 月三说；原因上媒体普遍关联 Maven，<strong>她本人否认直接因果</strong>，称符合回斯坦福的长期计划</td><td>并列双方说法</td></tr>
+      <tr><td>8</td><td><strong>听证会名称</strong></td><td>有「Power and Responsibility in the application of advanced technologies」「AI – With great power comes great responsibility」「Artificial Intelligence, Energy, Research, and Technology」三种表述</td><td>正文用「AI——能力越大，责任越大」，其余不引用</td></tr>
+      <tr><td>9</td><td><strong>国会听证名言的措辞</strong></td><td>「impacts people」与「has an impact on people」两个版本</td><td>两个都列，标明措辞有出入</td></tr>
+      <tr><td>10</td><td><strong>中译本出版月份</strong></td><td>2024 年 4 月（多数来源，含 ISBN 记录）vs 2024 年 2 月（百度百科另一词条）</td><td>采用 4 月</td></tr>
+      <tr><td>11</td><td><strong>英文原版页数</strong></td><td><strong>336 页</strong>（Flatiron 官方、多数图书馆）；<strong>322 页</strong>（部分图书馆编目）；Kindle 版 324 页</td><td>采用 336，标明编目差异</td></tr>
+      <tr><td>12</td><td><strong>豆瓣评分</strong></td><td>9.2（上市一周）／9.1／9.0／8.9（10799 人评价）。<strong>呈随时间下滑趋势</strong></td><td>不给单一数字</td></tr>
+      <tr><td>13</td><td><strong>母亲对话「三步绝杀」整段</strong></td><td>来自播客转引，找不到第二个来源</td><td>标为单一来源</td></tr>
+      <tr><td>14</td><td><strong>10 岁看星星的场景</strong></td><td>台州日报书评转引，单一来源</td><td>标注</td></tr>
+      <tr><td>15</td><td><strong>导师 2007 年警告「走太远」</strong></td><td>Fortune 引 Ars Technica，单一来源</td><td>标注</td></tr>
+      <tr><td>16</td><td><strong>网络流传的「金句」</strong></td><td>例如「好奇心是所有科学发现最纯粹的驱动力，它不需要理由」「我看见的世界，不是因为我站在高处，而是因为我从未停止向前走」等，<strong>均来自读者笔记／学生推荐文，部分明确标注了「第 X 章」但无法核实</strong>，高度疑似意译或二创</td><td>**一律降档，不进 A1/A2/A3**</td></tr>
+    </tbody>
+  </table>
+  <div class="warnbox">
+    <strong>第 16 条是本页最重要的一个纪律说明</strong>：这本书在中文互联网上的「金句」密度远高于英文语境，其中相当一部分带着整齐的励志结构（对仗、排比、转折），这类句子在原文里出现的概率不高。<strong>判断方法很简单：拿一句中文「金句」去搜英文，如果搜不到对应的原句，就先别当原文引用。</strong>
+  </div>
+</section>
+
+<section id="s21">
+  <h2><span class="num">D</span><span>来源与验证</span><span class="caret">▾</span></h2>
+  <p>完整来源清单（含链接、检索日期、分类）、交叉验证记录表、检索盲区，见同目录 <code>我看见的世界-来源清单.md</code>。</p>
+  <h3>本报告的检索盲区（明确说明没做到的）</h3>
+  <ol>
+    <li><strong>没有原书、没有中译本电子版</strong>——★ <strong>2026-10-02 更正</strong>：除 <strong>p.229／p.275／p.284</strong> 三条有可署名来源标出页码外，所有引文均为二手转引。</li>
+    <li><strong>各章的中文内容简介来自出版社资料与百科条目</strong>，我没有读到任何一章的正文，所以「下部逐章深挖」的各章内容是基于章节标题、导语、书评引述、作者访谈<strong>交叉重建</strong>的，不是逐章概述。这一点请务必知悉。</li>
+    <li><strong>没有找到中译本「译后记」的内容</strong>（目录显示中译本有译后记，但内容未检索到）。</li>
+    <li><strong>没有找到书里对 Project Maven 事件的正面处理文字</strong>——这是我认为最值得核实的一处，也是我建议你带着问题去读的地方。</li>
+  </ol>
+</section>
+
+<footer>
+  生成于 2026-09-22 · 来源清单与交叉验证记录见同目录 <code>我看见的世界-来源清单.md</code><br>
+  本页引文按<b>带页码引文（B 级）</b>处理：标注页码的条目引自有页码的公开书评／论文，<b>我未持原书</b>，页码请以原书复核；未标页码者仍是二手转引。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

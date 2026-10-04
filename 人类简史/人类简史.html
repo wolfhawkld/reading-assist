@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《人类简史》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+
+<aside>
+  <div class="brand">《人类简史》<small>阅读指引与精华解析 · 2026-10-02</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 五个核心论点</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s5">1 认知革命（第 1–4 章）</a>
+    <a href="#s6">2 农业革命（第 5–8 章）</a>
+    <a href="#s7">3 人类的融合统一（第 9–13 章）</a>
+    <a href="#s8">4 科学革命（第 14–20 章）</a>
+    <div class="grp">附录</div>
+    <a href="#s9">A 金句摘录</a>
+    <a href="#s10">B 延伸阅读</a>
+    <a href="#s11">C 来源清单</a>
+    <a href="#s12">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《人类简史》阅读指引与精华解析</h1>
+  <div class="sub">Sapiens: A Brief History of Humankind</div>
+  <div class="meta">
+    <div><b>作者</b>尤瓦尔·诺亚·赫拉利（1976– ）</div>
+    <div><b>初版</b>2011 希伯来文 · 以色列 Dvir／2014 英文 · Harper</div>
+    <div><b>中译</b>林俊宏译 · 中信出版社 2014-11（440 页）</div>
+    <div><b>纪念版</b>2017-02（444 页）／2018-09 精装（428 页）</div>
+    <div><b>豆瓣</b>9.1 分（中文版）</div>
+    <div><b>状态</b>未标注已读／想读 ⇒ 两条侧重同时给出</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有直接文本依据，且被三个以上彼此独立来源一致引用</li>
+    <li><span class="tag t-talk">作者谈话</span> 出自访谈／演讲／专栏 —— <b>不在书里</b>。作者在世且发言极多，此档必须与「书里写的」分开看</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    我未能接触原书或其电子版；<b>其中三条关键引文已找到带页码的可署名出处</b>（p.14／p.19／p.39），其余仍为转引。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-02 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书落在 <b>B 级（带页码引文）</b>：无公开全文（Internet Archive 上那本是<b>受控借阅</b>，不是公开全文），但已有带页码引文（<b>p.14／p.19／p.39</b>）。★ 此前写的「页码一律无法核对」已不再准确。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>用一个「虚构故事」解释全部人类史的思想实验。</strong>赫拉利的核心主张只有一条：智人能统治地球，不是因为更聪明或更强壮，而是因为<strong>只有智人能共同相信并不存在的东西</strong>（神、国家、金钱、公司、人权），从而让<strong>几百万陌生人</strong>为同一个目标协作。</p>
+  <p>这本书的读法应当是：<strong>把它当一部「论证一个观点的历史随笔」读，而不是当一部史书读</strong>。它 90% 的史料是为那一条主张服务的。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th style="width:22%">部分</th><th style="width:12%">章节</th><th style="width:14%">时间坐标</th><th>内容</th><th style="width:20%">可信度定位</th></tr></thead>
+    <tbody>
+      <tr><td><b>第一部分 认知革命</b></td><td>第 1–4 章</td><td>约 7 万年前</td><td>智人如何靠「虚构」取得大规模合作能力，以及随之而来的物种灭绝</td><td>全书<b>最扎实</b>的一段，也是最有说服力的一段</td></tr>
+      <tr><td><b>第二部分 农业革命</b></td><td>第 5–8 章</td><td>约 1.2 万年前</td><td>「史上最大骗局」：农业让物种繁荣、让个体受苦；不平等与「想象的秩序」</td><td>观点最锋利、<b>证据最受质疑</b>的一段</td></tr>
+      <tr><td><b>第三部分 人类的融合统一</b></td><td>第 9–13 章</td><td>约公元前 1000 – 公元 1500</td><td>金钱、帝国、宗教作为三股让人类走向「一个世界」的力量</td><td>宏观框架清晰，<b>具体的因果判断最粗</b></td></tr>
+      <tr><td><b>第四部分 科学革命</b></td><td>第 14–20 章</td><td>约 1500 年至今</td><td>「承认无知」＋科学与帝国、资本主义的「回馈循环」→ 工业 → 幸福追问 → 智人末日</td><td>前半是史，<b>后半是预言</b>（第 19–20 章＋后记）</td></tr>
+      <tr><td><b>后记 变成神的这种动物</b></td><td>—</td><td>—</td><td>收束：人类已获得神的力量，却没有神的智慧</td><td>宣言性质，非论证</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一个结构上的提示</strong>：全书从「历史」滑向「未来」的位置很靠后（第 19 章之后）。赫拉利本人在正文里承认，第 20 章与后记属于<strong>展望</strong>而非<strong>史实</strong>。读的时候留意这条分界线 —— 它是这本书最常被读者混淆的地方。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>五个核心论点</span><span class="caret">▾</span></h2>
+
+  <h3>论点一：认知革命 —— 「虚构」是智人的独门武器</h3>
+  <p>约 7 万年前，智人获得了<strong>讨论完全不存在的事物的能力</strong>。赫拉利的论证层次很值得注意，它不是「语言＝厉害」，而是：</p>
+  <ul>
+    <li><strong>第一层</strong>：语言最初用于<strong>八卦</strong>，让智人能追踪群体内约 150 人的社会关系 —— 这是自然的，其他灵长类也有类似行为。</li>
+    <li><strong>第二层（真正的转折）</strong>：语言能谈论<strong>从未见过、摸不到、也不存在的东西</strong> —— 部落的守护神、未来的国家、虚构的祖先。</li>
+    <li><strong>第三层（结论）</strong>：<strong>「一起相信同一个虚构」</strong>让陌生人之间产生信任。黑猩猩的合作上限是「我认识的几十个」，智人的合作上限是「几百万个我永远见不到的人」。</li>
+  </ul>
+  <p>书里最常被引用的例子是<strong>标致公司</strong>（Peugeot）：它在法律上是「法人」，但你在现实世界里找不到它 —— 你烧掉它的厂房、解雇它的员工，公司仍然存在，因为<strong>它只存在于大家共同相信的故事里</strong>。<span class="tag t-src">原书</span>（多源一致转引）</p>
+  <blockquote>
+    <p>推论：<strong>「想象的秩序」是嵌入在物质现实里的</strong>。赫拉利强调，这些秩序一旦被足够多的人相信，就能反过来决定谁吃饭、谁挨饿 —— 所以它「不是谎言，而是被实现出来的现实」。</p>
+  </blockquote>
+
+  <h3>论点二：农业革命是「史上最大骗局」</h3>
+  <p>这是全书传播最广、争议最大的主张：</p>
+  <ul>
+    <li><strong>物种层面</strong>：小麦、牛、鸡、猪的 DNA 复制数量爆炸 —— 从演化的「成功」标准看，农业革命大获成功。</li>
+    <li><strong>个体层面</strong>：农民比采集者<strong>劳动时间更长、饮食更单一、更易受饥荒与传染病打击、更被土地束缚</strong>。赫拉利的名句是「<strong>不是人类驯化了小麦，是小麦驯化了智人</strong>」。<span class="tag t-src">原书</span>（多源一致转引）</li>
+    <li><strong>为什么停不下来</strong>：人口增长 → 需要更多粮食 → 需要更多耕作 → 人口再增长。赫拉利称之为「<strong>奢侈生活陷阱</strong>」：每一次「改善」都提出新的义务。</li>
+  </ul>
+  <blockquote>
+    <p><strong>这块论证最薄弱的地方</strong>：赫拉利几乎没有给出「采集者比农民过得好」的定量证据。多位批评者指出，这个结论很大程度靠<strong>选择性引用</strong>与<strong>浪漫化史前生活</strong>（详见下部第 2 节与争议）。<span class="tag t-rep">转述</span></p>
+  </blockquote>
+
+  <h3>论点三：历史有方向 —— 金钱、帝国、宗教三股统一力量</h3>
+  <p>赫拉利主张，尽管历史上充满了战争与分裂，但长期趋势是<strong>走向「一个世界」</strong>。三种力量在做这件事：</p>
+  <table>
+    <thead><tr><th style="width:16%">力量</th><th style="width:42%">它的机制</th><th>赫拉利的判断</th></tr></thead>
+    <tbody>
+      <tr><td><b>金钱</b></td><td>它是有史以来<b>最普遍、最有效的互信系统</b> —— 因为「所有人都相信别人会收它」</td><td>金钱的本质<b>不是财富，是信任</b>；它能把陌生人变成伙伴</td></tr>
+      <tr><td><b>帝国</b></td><td>用暴力建立，但<b>输出统一的语言、法律、道路、货币</b></td><td>帝国是「文化熔炉」；今天人类的许多遗产（文字、制度）都是帝国的产物</td></tr>
+      <tr><td><b>宗教</b></td><td>把<b>超越人类的秩序</b>变成人人都能接受的共同故事</td><td>从泛灵论 → 多神教 → 一神教 → 人文主义，都是「普世真理」的扩张</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>这一部分的争议点</strong>：赫拉利在这里几乎不做因果区分 —— 是金钱统一了世界，还是世界统一了才用上金钱？这个<strong>循环论证的嫌疑</strong>在批评中反复出现。<span class="tag t-rep">转述</span></p>
+
+  <h3>论点四：科学革命 ＝ 「承认自己的无知」＋ 一个回馈循环</h3>
+  <ul>
+    <li><strong>起点是态度而非工具</strong>：赫拉利认为，现代科学的关键<strong>不是实验方法，而是「我们承认自己不知道」这件事本身</strong>。之前的文明把知识看作已完成的东西，只有近代欧洲把「无知」制度化。<span class="tag t-src">原书</span>（多源一致转引）</li>
+    <li><strong>循环</strong>：科学 → 提供新技术 → 帝国／资本获得力量与利润 → 资助更多科学。三者互相咬合，形成一个<strong>自我加速的循环</strong>。</li>
+    <li><strong>科学与帝国是共生的</strong>：探险船带着科学家、也带着炮舰；分类学、地图学、人类学在殖民过程中同时生长。</li>
+  </ul>
+  <div class="warnbox">
+    ⚠ <strong>这一框架的解释力被指「太顺」</strong>：很多历史学家认为，把哥伦布航海说成「科学革命的奠基事件」<strong>是把文艺复兴的产物算到了科学革命头上</strong>（见争议 4.2）。
+  </div>
+
+  <h3>论点五：进步 ≠ 幸福 —— 全书真正的追问</h3>
+  <p>全书最后几章转向一个与前面的宏大叙事<strong>不同层级</strong>的问题：</p>
+  <ul>
+    <li><strong>「快乐」是什么？</strong>赫拉利的答案是：<strong>快乐 = 客观条件与主观期望之间的差距</strong>。所以物质进步若同时抬高了期望，净效果可能为零。</li>
+    <li><strong>生物学版本</strong>：快乐是生化系统的一瞬，而<strong>生化系统会适应</strong>（享乐跑步机）。</li>
+    <li><strong>他给出的出路</strong>：<strong>佛教式的「放下对感受的追逐」</strong> —— 不是得到更多，而是<strong>不再被感受牵着走</strong>。<span class="tag t-rep">转述</span> ⚠ 这部分与他的个人修行背景关系密切（见「作者谈话」档）。</li>
+  </ul>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+
+  <h4>如果你是「想读」</h4>
+  <ol>
+    <li><strong>四部分顺读，但把阅读预算按「史料密度」而不是「页数」分配</strong>：
+      <ul>
+        <li><strong>第一部分（第 1–4 章）值得精读</strong> —— 它是全书论证最密、例证最实的一段，也是后面所有主张的地基。</li>
+        <li><strong>第二部分（第 5–8 章）要读，但要带着怀疑读</strong> —— 观点最爽，证据最松（见下部第 2 节）。</li>
+        <li><strong>第三部分（第 9–13 章）可以快读</strong> —— 骨架清晰，但要留意它每一次「所以历史是这个方向」的跳跃。</li>
+        <li><strong>第四部分前半（第 14–17 章）是史，后半（第 18–20 章 + 后记）是预言</strong> —— <strong>请在心里画一条线</strong>。</li>
+      </ul>
+    </li>
+    <li><strong>先读「序言」</strong>。中译本有北大历史系高毅教授所作序言；作者本人也为十周年纪念版写了新序。<span class="tag t-rep">转述</span></li>
+    <li><strong>配一本反向书单读</strong>：至少读一篇严肃批评（附录 B 已备）。<strong>这本书最大的价值，是它逼你去查它说得对不对。</strong></li>
+  </ol>
+
+  <h4>如果你是「已读」</h4>
+  <ul>
+    <li><strong>重估对象一</strong>：「农业革命是骗局」这个论断<strong>有多强的证据</strong>？这是全书最需要重新审视的一句。</li>
+    <li><strong>重估对象二</strong>：第 8 章（历史从无正义）与第 6 章（盖起金字塔）里，赫拉利从「秩序是想象的」直接推出「秩序无优劣」—— 这一步<strong>是论证还是姿态</strong>？（上海书评的核心批评正落在这里，见争议 4.3）</li>
+    <li><strong>重估对象三</strong>：第 19–20 章谈幸福与未来的部分，<strong>属于他的哲学立场，不属于历史学</strong>。分清它们，你才不会被「历史已经证明」这类语气带走。</li>
+  </ul>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>争议与局限</span><span class="caret">▾</span></h2>
+
+  <h3>4.1 学者批评：事实错误与「论证单薄」</h3>
+  <p>最锋利的一条来自加拿大麦克马斯特大学人类学家 <strong>Christopher Hallpike</strong>：</p>
+  <blockquote>
+    <p>「科学……并不是赫拉利的强项……<strong>凡是他的事实大致正确的地方，都不新鲜；凡是他说出新鲜见解的地方，往往都错了，有时错得严重。</strong>」<span class="tag t-rep">转述</span></p>
+  </blockquote>
+  <p>另一条流传很广的批评来自普林斯顿大学神经科学家 <strong>Lisa Darshana</strong>（《当前事务》杂志），她把赫拉利归为「<strong>科学民粹主义者</strong>」—— 与乔丹·彼得森并列，特征是「<strong>讲故事的才能 + 用简单、情绪化、有说服力的语言包装科学『事实』，去掉细微差别与怀疑，制造出虚假的权威感</strong>」。<span class="tag t-rep">转述</span></p>
+
+  <h3>4.2 中文学界：一份具体的错误清单</h3>
+  <p>香港商报与界面新闻的评论列出了若干<strong>可核对的具体疏漏</strong>（这是最有用的一类批评，因为可验证）：<span class="tag t-rep">转述</span></p>
+  <ul>
+    <li>把「哥伦布发现美洲」说成科学革命的奠基事件 —— 多数史家认为它与近代科学都属<strong>文艺复兴的产物</strong>；</li>
+    <li>称「资本主义之前的社会都不愿延展信用」—— 但<strong>王莽的经济改革里已出现正式的工商贷款制度</strong>；</li>
+    <li>称「欧洲帝国以前的帝国都只是地方事业」—— 历史上疆土<strong>仅次于大英帝国的正是蒙古帝国</strong>；</li>
+    <li>称「只有现代科学愿意承认自己的无知」—— 屈原的《天问》提的就是这个；</li>
+    <li>关于希腊独立战争的外交描述（英法俄三国联合舰队、伦敦条约）与史实有出入。</li>
+  </ul>
+  <p>★ 这份清单的价值不在于「抓到错」，而在于<strong>它示范了一种读法</strong>：凡是赫拉利给出「只有 X 才 Y」这种<strong>全称判断</strong>的地方，都值得停下来查一查。</p>
+
+  <h3>4.3 读者／评论者视角：三处「说不通」</h3>
+  <ul>
+    <li><strong>「想象决定论」的论证太薄</strong>：赫拉利提出「虚构创造了文明」，但<strong>围绕这个基石的论证只有零散例证</strong>，缺少系统的历史论证。<span class="tag t-rep">转述</span></li>
+    <li><strong>生物决定论与自由意志的矛盾</strong>（上海书评的核心批评）：赫拉利一边说人被基因、荷尔蒙、神经元驱动，一边又呼吁人类「选择不同的未来」—— <strong>如果人只是生化算法，凭什么能改变算法给出的结果？</strong><span class="tag t-rep">转述</span></li>
+    <li><strong>「想象的秩序之间无优劣」这一步</strong>：如果《汉谟拉比法典》与《人权宣言》都只是虚构，那解放奴隶与奴役他人就「没有差别」。批评者认为，这一步会让整本书的道德立场<strong>自我掏空</strong>。<span class="tag t-rep">转述</span></li>
+  </ul>
+
+  <h3>4.4 立场问题（我自己的推断）</h3>
+  <p><span class="tag t-inf">推断</span> 这本书的说服力很大程度来自<strong>它的语气与结构，而不是它的证据</strong>：它用「史实」的语气陈述「观念」，用「我们已经知道」的语气陈述「他相信」。<strong>这不必然是缺点</strong> —— 一部好的思想史随笔就该有立场 —— 但它要求读者<strong>自己承担分界的责任</strong>。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num">1</span><span>第一部分 认知革命（第 1–4 章）</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答</strong>：智人凭什么？</p>
+
+  <h3>第 1 章 人类：一种也没什么特别的动物</h3>
+  <ul>
+    <li>智人在生物上<strong>毫无优势</strong>：大脑袋耗能、直立行走造成分娩困难、肌肉力量不如尼安德特人。</li>
+    <li><strong>火的驯化</strong>是关键前置：烹饪让食物更容易消化、缩短肠道、把能量省给大脑。</li>
+    <li>智人<strong>跃升到食物链顶端太快</strong>（几万年 vs 其他顶级掠食者的几百万年），赫拉利认为这留下了一个<strong>心理后遗症</strong>：我们仍带着「草原上的恐惧与焦虑」，却手握神的力量。<span class="tag t-src">原书</span>（多源一致转引）</li>
+    <li>⚠ <strong>这段话正是 Darshana 批评的靶子</strong>（「是什么让狮子充满自信？……他的结论是根据实地观察还是实验室实验？」）—— 见争议 4.1。</li>
+  </ul>
+
+  <h3>第 2 章 知善恶树</h3>
+  <ul>
+    <li>认知革命的核心<strong>不是「更聪明」，是「能共同相信虚构」</strong>（见论点一）。</li>
+    <li><strong>150 人门槛</strong>：基于八卦维系的自然群体上限约 150 人；突破它，靠的是<strong>共同的神话</strong>。</li>
+    <li>标致公司的例子在这里（法律上的「法人」）。<span class="tag t-src">原书</span></li>
+  </ul>
+
+  <h3>第 3 章 亚当和夏娃的一天</h3>
+  <ul>
+    <li><strong>采集者的生活比我们想的宽裕</strong>：营养多样、劳动时间较短、社会更平等 —— 即所谓「<strong>原始富裕社会</strong>」。<span class="tag t-rep">转述</span></li>
+    <li>但赫拉利也承认它<strong>不浪漫</strong>：暴力、饥荒、婴儿死亡率并不低。</li>
+    <li>★ <strong>这一章是第 5 章（农业骗局说）的铺垫</strong> —— 而它的证据基础，恰恰是全书写得最松的地方之一。</li>
+  </ul>
+
+  <h3>第 4 章 毁天灭地的人类洪水</h3>
+  <ul>
+    <li>赫拉利在此给智人一个刺耳的称号：<strong>「生态连环杀手」</strong>。</li>
+    <li>论证：智人每到一块新大陆（澳洲、美洲、马达加斯加……），<strong>大型动物就在时间上紧随其后地灭绝</strong>。</li>
+    <li>⚠ <strong>这是全书里被科学界争议最久的一章</strong>：斩尽杀绝说 vs 气候变迁说，学界至今并存。<strong>赫拉利在书中基本只讲前者。</strong></li>
+  </ul>
+</section>
+
+<section id="s6">
+  <h2><span class="num">2</span><span>第二部分 农业革命（第 5–8 章）</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答</strong>：进步是不是骗局？</p>
+
+  <h3>第 5 章 史上最大骗局</h3>
+  <ul>
+    <li>见论点二。三个支点：<strong>物种成功 ≠ 个体幸福</strong>；<strong>奢侈生活陷阱</strong>；<strong>「小麦驯化智人」</strong>。</li>
+    <li><strong>最有力的部分</strong>是他对「动物福利」的追问：家畜是农业革命真正的无声受害者。<strong>这一段是全书最不容易被反驳的。</strong><span class="tag t-rep">转述</span></li>
+  </ul>
+
+  <h3>第 6 章 盖起金字塔</h3>
+  <ul>
+    <li><strong>「想象的秩序」如何落地</strong>：靠三个机制 —— ① 嵌入<strong>物质世界</strong>（如建筑、文书）；② 塑造<strong>欲望</strong>（我们认为什么值得追求本身就是被教出来的）；③ 存在于<strong>人与人之间</strong>（不是单个人的大脑里）。</li>
+    <li><strong>关键推论</strong>：<strong>要改变一种想象的秩序，必须先改变物质与欲望的布置</strong> —— 只「讲道理」是改不动的。</li>
+    <li>⚠ 这里赫拉利滑向了「<strong>所有秩序都同样虚构</strong>」的立场，为第 8 章的道德推论埋雷。</li>
+  </ul>
+
+  <h3>第 7 章 记忆过载</h3>
+  <ul>
+    <li>文字与数字系统是<strong>为了记账和收税</strong>才出现的 —— 不是为写诗。</li>
+    <li>制度靠<strong>文书</strong>脱离人脑而存在：这是「想象的秩序」能被大规模执行的技术条件。<span class="tag t-rep">转述</span></li>
+  </ul>
+
+  <h3>第 8 章 历史从无正义</h3>
+  <ul>
+    <li>赫拉利论证：<strong>等级、种姓、性别差异都是「想象的秩序」的产物</strong>，不反映客观差异。</li>
+    <li>例证包括印度的种姓、美国的种族制度等。</li>
+    <li>★ <strong>争议最大的一章</strong>：见争议 4.3 第三条。把「社会建构」直接推成「无优劣可言」，是<strong>从「是描述的」跳到「是规范的」</strong>。</li>
+  </ul>
+</section>
+
+<section id="s7">
+  <h2><span class="num">3</span><span>第三部分 人类的融合统一（第 9–13 章）</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答</strong>：为什么历史有一个方向？</p>
+
+  <h3>第 9 章 历史的方向</h3>
+  <ul>
+    <li>赫拉利先声明「历史没有必然规律」，随后又断言「<strong>趋势是走向统一</strong>」—— 这个张力在全书反复出现。<span class="tag t-rep">转述</span></li>
+  </ul>
+
+  <h3>第 10 章 金钱的味道</h3>
+  <ul>
+    <li><strong>金钱 = 最普世的互信系统</strong>。它的价值不来自材质，来自<strong>大家都相信别人会接受它</strong>。</li>
+    <li>★ 这是他「虚构」框架最漂亮的案例之一。<span class="tag t-src">原书</span></li>
+  </ul>
+
+  <h3>第 11 章 帝国的愿景</h3>
+  <ul>
+    <li>帝国通过暴力建立，却为后人留下了语言、法律、文字的通货 —— 今天很多「民族传统」其实是帝国的遗产。<span class="tag t-rep">转述</span></li>
+  </ul>
+
+  <h3>第 12 章 宗教的法则</h3>
+  <ul>
+    <li>从泛灵论到多神教、一神教，再到<strong>人文主义</strong>（他视人文主义为「最新的宗教」）。</li>
+    <li>★ <strong>这条线索是理解他的立场的关键</strong>：他把人文主义也放进「虚构信仰」一栏，这是他后来在《未来简史》里攻击自由主义的伏笔。</li>
+  </ul>
+
+  <h3>第 13 章 成功的秘密</h3>
+  <ul>
+    <li>一个反直觉的判断：<strong>历史不是由「最好的选项」决定的，而是由「碰巧传播开来的选项」决定的</strong> —— 与文化优劣无关，只看<strong>谁更容易被复制</strong>。</li>
+    <li>⚠ 这个「文化演化／模因」式的解释<strong>把「为什么某文化胜出」变成了同义反复</strong>（「因为它胜出了」），是全书最容易循环论证的一章。<span class="tag t-rep">转述</span></li>
+  </ul>
+</section>
+
+<section id="s8">
+  <h2><span class="num">4</span><span>第四部分 科学革命（第 14–20 章）</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答</strong>：我们是怎么走到今天的，接下来会怎样？</p>
+
+  <h3>第 14 章 发现自己的无知</h3>
+  <ul>
+    <li>见论点四。核心：<strong>「承认无知」是一个前所未有的态度</strong>。</li>
+    <li>⚠ 全称判断的风险区（见争议 4.2 的《天问》一条）。</li>
+  </ul>
+
+  <h3>第 15 章 科学与帝国的联姻</h3>
+  <ul>
+    <li>科学为帝国提供工具与正当性，帝国为科学提供资金与数据。地图、植物学、人类学的兴起都嵌在这条链条里。<span class="tag t-rep">转述</span></li>
+  </ul>
+
+  <h3>第 16 章 资本主义教条</h3>
+  <ul>
+    <li>赫拉利的定义：资本主义的引擎是<strong>「信贷 = 对未来信任」</strong> —— 相信未来会更好，才敢把钱借出去。</li>
+    <li>与科学的循环：信贷 → 资助研究 → 技术 → 增长 → 更多信贷。</li>
+  </ul>
+
+  <h3>第 17 章 工业的巨轮</h3>
+  <ul>
+    <li>能量转换（蒸汽、电力）+ 原料（工业革命实质是<strong>能量与原料的转换问题被解决</strong>）。</li>
+    <li>顺带讲「消费主义」的构造：<strong>生产过剩必须由「不断制造新欲望」来消化</strong>。<span class="tag t-rep">转述</span></li>
+  </ul>
+
+  <h3>第 18 章 一场永远的革命</h3>
+  <ul>
+    <li><strong>「永远的革命」指社会秩序再也不稳定</strong>：家庭、社群、国家的形态被不断重写。</li>
+    <li>一条被反复引用的观察：现代社会以<strong>「想象的社群」（民族）和「想象的秩序」（市场）</strong>取代了面对面社群。<span class="tag t-rep">转述</span></li>
+  </ul>
+
+  <h3>第 19 章 从此过着幸福快乐的日子</h3>
+  <ul>
+    <li>见论点五。「快乐 = 期望与现实的落差」；「生化层面的适应」；最后落到<strong>佛教视角</strong>。</li>
+    <li>★ <strong>这一章是全书立场从「历史」转向「人生哲学」的关口</strong>。<span class="tag t-talk">作者谈话</span> 赫拉利多次在访谈中把内观修行与这一章的立场直接连起来。</li>
+  </ul>
+
+  <h3>第 20 章 智人末日</h3>
+  <ul>
+    <li>三种「智慧设计」路径：<strong>生物工程、仿生工程、无机生命（人工智能）</strong>。</li>
+    <li>赫拉利的著名表态：<strong>「我们所知的智人，将在一个世纪左右消失。」</strong><span class="tag t-talk">作者谈话</span>（他多次在书外这么说）</li>
+  </ul>
+
+  <h3>后记 变成神的这种动物</h3>
+  <ul>
+    <li>收束句意：人类已获得<strong>神一般的力量</strong>，却<strong>没有配套的智慧与责任</strong>。</li>
+    <li>★ <strong>这属于宣言，不属于史实</strong> —— 请与前面 19 章分开评价。</li>
+  </ul>
+</section>
+
+<section id="s9">
+  <h2><span class="num">A</span><span>金句摘录</span><span class="caret">▾</span></h2>
+  <p style="color:var(--ink3);font-size:13px">说明：我未能接触原书，下列「引文」均为公开来源转引的中文表述，<strong>措辞可能与原书／中译本有出入，页码无法核对</strong>。</p>
+  <table>
+    <thead><tr><th>引文</th><th style="width:26%">出处／语境</th><th style="width:16%">可信度</th></tr></thead>
+    <tbody>
+      <tr><td>不是人类驯化了小麦，是小麦驯化了智人。</td><td>农业革命章核心反转句</td><td><span class="tag t-src">原书</span>（多源一致转引）</td></tr>
+      <tr><td>智人统治世界，靠的是「共同相信虚构故事」的能力。</td><td>全书主论点，多处出现</td><td><span class="tag t-src">原书</span>（多源一致转引）</td></tr>
+      <tr><td>标致公司在现实中找不到，它只存在于我们共同相信的故事里。</td><td>解释「想象的秩序」</td><td><span class="tag t-src">原书</span>（多源一致转引）</td></tr>
+      <tr><td>现代科学的关键不是方法，而是承认自己的无知。</td><td>科学革命章起点</td><td><span class="tag t-src">原书</span>（多源一致转引）</td></tr>
+      <tr><td>快乐 = 客观条件与主观期望之间的差距。</td><td>第 19 章</td><td><span class="tag t-rep">转述</span></td></tr>
+      <tr><td>我们所知的智人，将在一个世纪左右消失。</td><td>关于未来的表态</td><td><span class="tag t-talk">作者谈话</span> ⚠ 书内书外需分辨</td></tr>
+      <tr><td>人类是「一种也没什么特别的动物」。</td><td>第 1 章标题</td><td><span class="tag t-src">原书</span>（章节标题，可靠）</td></tr>
+      <tr><td>智人是生态连环杀手。</td><td>第 4 章对物种灭绝的定性</td><td><span class="tag t-rep">转述</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s10">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <h4>直接相关（本书自己的上下游）</h4>
+  <ul>
+    <li><strong>《枪炮、病菌与钢铁》（戴蒙德，1997）</strong> —— 赫拉利在多个场合说，他读到这本书时「<strong>像一次学术生涯里的顿悟</strong>，我意识到我也可以写这样的书」。<span class="tag t-talk">作者谈话</span> 两书构成了本批书单的<strong>正面对照</strong>：戴蒙德讲<strong>地理与环境</strong>，赫拉利讲<strong>故事与认知</strong>。<strong>建议两本连着读。</strong></li>
+    <li><strong>《未来简史》（赫拉利，2016）</strong> —— 直接续篇。</li>
+    <li><strong>《第三种黑猩猩》（戴蒙德，1991）</strong> —— 同一问题的更早写法。</li>
+  </ul>
+  <h4>同一问题的其他路径</h4>
+  <ul>
+    <li><strong>《人类新史》（格雷伯 &amp; 温格罗，2021）</strong> —— <strong>专门逐条反驳《人类简史》与《枪炮》的基本前提</strong>（农业不是革命性时刻、环境与技术不决定命运）。<strong>配读价值最高的一本。</strong></li>
+  </ul>
+  <h4>有助于批判性重读</h4>
+  <ul>
+    <li><strong>Christopher Hallpike 的长篇书评</strong> —— 人类学家的逐条纠错。</li>
+    <li><strong>上海书评《〈人类简史〉为何是一部糟糕的历史学作品》</strong>（澎湃，2017-02）—— 中文世界最系统的批评，主攻「生物决定论 vs 自由意志」的内在矛盾。</li>
+    <li><strong>Lisa Darshana《危险的民粹主义者的科学》</strong>（《当前事务》）—— 从「科学传播伦理」角度切入。</li>
+  </ul>
+</section>
+
+<section id="s11">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>完整清单（链接、检索时间、每条来源的定位与手检可信度、交叉验证记录、检索盲区）见同目录 <strong><code>人类简史-来源清单.md</code></strong>。此处只列主力来源：</p>
+  <table>
+    <thead><tr><th style="width:38%">来源</th><th style="width:16%">类型</th><th>主要提供</th></tr></thead>
+    <tbody>
+      <tr><td>英文维基百科 · Sapiens</td><td>百科</td><td>出版信息、四部分结构、核心论点、戴蒙德影响</td></tr>
+      <tr><td>英文维基百科 · Yuval Noah Harari</td><td>百科</td><td>生平、师承、内观修行、作品序列</td></tr>
+      <tr><td>ynharari.com/about（官网）</td><td>一手</td><td>作者自述、销量与语种口径、履历</td></tr>
+      <tr><td>百度百科 ·《人类简史》/《人类简史：从动物到上帝》</td><td>百科（中）</td><td>中译本版权页、目录、奖项、销售口径</td></tr>
+      <tr><td>中信出版社书讯页（文轩 / 当当）</td><td>出版方</td><td>2017 纪念版完整目录与页码</td></tr>
+      <tr><td>澎湃·上海书评（2017-02-06）</td><td>学术书评</td><td>「生物决定论 vs 自由意志」的核心批评</td></tr>
+      <tr><td>界面新闻 / 香港商报</td><td>评论</td><td>具体史实疏漏清单、叙事不自洽</td></tr>
+      <tr><td>《新科学家》· Harari 专访</td><td>报刊专访</td><td>Hallpike 批评原文、课程→成书经过</td></tr>
+      <tr><td>《三联生活周刊》·《人类简史是虚假信息之源？》</td><td>评论</td><td>Darshana「科学民粹主义」批评</td></tr>
+      <tr><td>中国国史网《论「大历史观」》（PDF）</td><td>学术论文</td><td>作者自述三本书的关系</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s12">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <p style="color:var(--ink3);font-size:13px">按「可能影响你判断」的程度排序。</p>
+
+  <h3>D1. 销量与语种数：四个来源四个数字 —— 影响不大，但值得警惕</h3>
+  <ul>
+    <li>官网 ynharari.com：「<strong>55 million copies in 65 languages</strong>」（<strong>全部著作合计</strong>，非单本）</li>
+    <li>百度百科一处：「<strong>超过 1600 万册</strong>」／<code>60 多种语言</code></li>
+    <li>百度百科另一处：「<strong>超过 4600 万册</strong>」／<code>60 多种语言</code></li>
+    <li>《三联》引 2019 年数据：「<strong>1300 多万册</strong>」／<code>50 多种语言</code></li>
+  </ul>
+  <p><strong>判断</strong>：这些数字大概率是<strong>不同年份、不同统计口径（单本／系列／含画册）</strong>，我无法确认。<strong>凡引用请写明「来源 + 年份 + 口径」。</strong></p>
+
+  <h3>D2. 出生地与居住地：两个来源互相矛盾</h3>
+  <ul>
+    <li>一处维基：「<strong>born and raised in Haifa</strong>」</li>
+    <li>另一处维基与 MDPI：「born in <strong>Kiryat Ata</strong>, grew up in <strong>Haifa</strong>」</li>
+    <li>居住地一处写 <strong>Mesilat Zion</strong>（耶路撒冷附近），另一处写 <strong>Karmei Yosef</strong>（特拉维夫郊区）</li>
+  </ul>
+  <p><strong>判断</strong>：「1976-02-24 生于以色列北部」可靠；<strong>具体出生城镇与现居地不可靠</strong>。</p>
+
+  <h3>D3. 中译本的版本问题 —— <strong>影响你买哪一本</strong></h3>
+  <p>已知至少三个版本：<strong>2014-11 初版（440 页）／2017-02 十周年纪念版（444 页）／2018-09 精装（428 页）</strong>，均为林俊宏译、中信出版。</p>
+  <ul>
+    <li>2017 / 2018 版<strong>新增作者亲撰序言</strong>，据说<strong>修订内文百余处</strong>。</li>
+    <li><strong>我未能确认三个版本之间正文的具体差异</strong>（是修订还是仅重排）。</li>
+  </ul>
+  <p>⇒ <strong>实务建议</strong>：<strong>买 2017 年之后的版本</strong>（有作者新版序言）；但<strong>不要以为修订版修正了争议论点</strong> —— 目前没有证据显示赫拉利改动了「农业骗局」这类核心主张。</p>
+
+  <h3>D4. 关于「修订」的一个反向提示（★ 有信息量）</h3>
+  <p>百度百科提到：在出版纪念版时，<strong>出版方曾尝试用 GPT-3 为《人类简史》撰写序言</strong>，而赫拉利本人<strong>对 AI 模仿其文风写出的序言感到「震惊」</strong>，并借此讨论 AI 时代的抉择。<span class="tag t-rep">转述</span></p>
+  <p>⇒ 这件事本身他后来反复讲（见《未来简史》与本批相关系列）—— <strong>它既是出版掌故，也是他后续论点的起点</strong>。</p>
+
+  <h3>D5. 我未做到的检索</h3>
+  <ul>
+    <li><strong>原书文本</strong>：未接触原书正文；★ <strong>2026-10-02 更正</strong>：<strong>p.14／p.19／p.39</strong> 三条有带页码的可署名出处，其余引文均为转引、<strong>页码一律不可信</strong>。</li>
+    <li><strong>中文学界的系统性书评</strong>：找到的多为书评随笔与纠错清单，<strong>未见中文学术期刊的专门研究</strong>。</li>
+    <li><strong>希伯来文原版与英文版的差异</strong>：英文版由作者与 John Purcell 合作译出，<strong>是否有内容增删我未能确认</strong> —— 这是一个已知存在但未被广泛讨论的差异点。</li>
+  </ul>
+</section>
+
+<footer>
+  生成于 2026-10-02 · 来源清单与交叉验证记录见同目录 <code>人类简史-来源清单.md</code><br>
+  本页引文按<b>带页码引文（B 级）</b>处理：标注页码的条目引自有页码的公开书评／论文，<b>我未持原书</b>，页码请以原书复核；未标页码者仍是二手转引。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

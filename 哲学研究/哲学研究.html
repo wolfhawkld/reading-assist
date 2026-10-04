@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《哲学研究》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+
+<aside>
+  <div class="brand">《哲学研究》<small>阅读指引与精华解析 · 2026-09-22</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 五个核心论点</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 争议与局限</a>
+    <div class="grp">下部 · 逐节深挖</div>
+    <a href="#s5">1 §§1–64 语言游戏开场</a>
+    <a href="#s6">2 §§65–88 家族相似</a>
+    <a href="#s7">3 §§89–133 哲学是描述</a>
+    <a href="#s8">4 §§138–242 遵守规则</a>
+    <a href="#s9">5 §§243–315 私人语言</a>
+    <a href="#s10">6 原「第二部分」</a>
+    <a href="#s11">7 与《逻辑哲学论》对照</a>
+    <div class="grp">附录</div>
+    <a href="#s12">A 金句摘录</a>
+    <a href="#s13">B 延伸阅读</a>
+    <a href="#s14">C 来源清单</a>
+    <a href="#s15">D 待核实项</a>
+    <a href="#s16">附 · 报告本身的局限</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+
+<div class="hero">
+  <h1>《哲学研究》阅读指引与精华解析</h1>
+  <div class="sub">Philosophische Untersuchungen, 1953 — 一本让你对自己原来的问题失去兴趣的书</div>
+  <div class="meta">
+    <div><b>作者</b>路德维希·维特根斯坦（1889–1951）</div>
+    <div><b>写作</b>第一部分约 1936–1945；第二部分 1947–1949</div>
+    <div><b>初版</b>1953，Basil Blackwell（遗作，德英对照）</div>
+    <div><b>编订</b>Anscombe 与 Rhees；英译 Anscombe</div>
+    <div><b>中译</b>李步楼（商务 1996）／陈嘉映（上海人民 2001、2005 修订）／韩林合（商务 2013）</div>
+    <div><b>你的状态</b>未标注 → 按两层结构通吃</div>
+  </div>
+  <div class="legend">
+    <h3>可信度标注规则（全文通用）</h3>
+    <ul>
+      <li><span class="tag t-src">原书</span> 该句／该论点在<strong>三个以上彼此独立</strong>的公开来源中一致引用，措辞可核对。<strong>这不等于我核对了手稿或德文原件。</strong></li>
+      <li><span class="tag t-rep">转述</span> 来自二手概括（书评、导读、百科），措辞可能与原书有出入。</li>
+      <li><span class="tag t-inf">推断</span> 我自己的推理，没有直接来源支撑。</li>
+      <li>⚠ 只有单一来源，或来源之间存在冲突，已列入附录 D。</li>
+    </ul>
+    <h3>引文核验级别（2026-10-02 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书落在 <b>A 级（全文核验）</b>，<b>限德文原文之第一部分（§1–§693）</b>：中国／欧盟已进入公有领域，<b>美国要到 2049</b>；第二部分的「看到面相」等内容不在其中，Anscombe 英译在美国仍受版权保护。</p>
+</div>
+  <div class="warnbox">
+    <strong>先把话说清楚</strong>（★ 2026-10-02 更正）：维特根斯坦卒于 1951，<strong>德文原文在中国（2002）与欧盟（2022）均已进入公有领域</strong>，Ludwig Wittgenstein Project 公布了完整德文原文（数码复制自 Suhrkamp《全集》第 1 卷 1999 年版 S. 231–485，该站声明其保护期已届满）。★ 本次修订已在该文本中<strong>逐字核对 §43、§66、§109、§133、§201、§217、§241、§243、§258、§293、§309、§340、§373、§383</strong>（全 693 段 §1–§693，无缺号、无重号）——所以这几段按「原书」标。<strong>但三件事必须记住</strong>：① <strong>美国辖区不同</strong>——本书 1953 年出版，按「出版后 95 年」要到 <strong>2049 年</strong>才进入公有领域；② 该数码版<strong>只含第一部分</strong>，第二部分的「看到面相」「鸭兔图」等<strong>不在其中</strong>，仍属转引；③ <strong>Anscombe 的英译本在美国仍受版权保护</strong>，不能与德文原文同级引用。
+  </div>
+  <div class="keybox">
+    <strong>读这一本前值得知道的一件事</strong>：你上一本读的是《逻辑哲学论》。这两本书不是「同一个人写了两本讲语言的书」，而是<strong>一个人建了一套体系，然后用余生亲手拆掉它</strong>。所以下部第 7 节专门做了对照——那一节可能是这份报告里对你最有用的部分。
+  </div>
+</div>
+
+<section id="s0">
+<h2><span class="num">0</span>一句话定位<span class="caret">▾</span></h2>
+<p><strong>这不是一本讲语言理论的书，是一本让你对自己原来那些问题失去兴趣的书。</strong></p>
+<p>维特根斯坦自己给的比喻是：给苍蝇指出飞出捕蝇瓶的出路（§309）。苍蝇不是缺信息，是被困住了。所以这本书<strong>不提供答案</strong>——它拆掉让你以为「必须有个答案」的那些预设。这决定了它的所有特点：不用术语、不给定义、不建体系、大量举例、反复自我反驳。</p>
+<div class="warnbox">如果你带着「读完能拿到一套关于语言的理论」的期待去读，<strong>你会觉得它什么都没说</strong>。这正是它要的效果，也是它最常见的误读。</div>
+</section>
+
+<section id="s1">
+<h2><span class="num">1</span>全书骨架<span class="caret">▾</span></h2>
+<p>这本书<strong>没有章节</strong>。它由编号短段落组成，而且维特根斯坦<strong>故意不按线性论证排列</strong>。所以「骨架」这件事本身就是注释者事后拼的——下表这一列是<strong>注释传统</strong>普遍认可的主题分块，不是作者标出的结构。</p>
+<table>
+<thead><tr><th>板块</th><th>段落</th><th>在干什么</th></tr></thead>
+<tbody>
+<tr><td>① 开场：奥古斯丁图画</td><td>§§1–64</td><td>立起一个「语言＝给事物命名」的靶子，然后用建筑工人、石板、五个红苹果把它拆开</td></tr>
+<tr><td>② 家族相似</td><td>§§65–88</td><td>「游戏」下不出定义，但大家照样用得对。反本质主义的核心一击</td></tr>
+<tr><td>③ 哲学是什么</td><td>§§89–133</td><td>哲学不是解释而是描述；「不要想，而要看」；治疗观</td></tr>
+<tr><td>④ 遵守规则</td><td>§§138–242</td><td>全书最难、也最重要的地方。规则不能决定自己的应用</td></tr>
+<tr><td>⑤ 私人语言</td><td>§§243–315</td><td>一个人自己给自己发明的语言不可能。含「盒中甲虫」（§293）</td></tr>
+<tr><td>⑥ 心理学哲学（原「第二部分」）</td><td>1947–49 的 14 节</td><td>看见-as、面相知觉、想象、心理概念。<strong>它该不该算这本书，学界吵了七十年</strong></td></tr>
+</tbody>
+</table>
+<h3>关于第六块，有一件事值得先知道 <span class="tag t-src">原书</span></h3>
+<p>1953 年首版把它作为「Part II」和正文一起印，但两位编订者 Anscombe 和 Rhees <strong>自己说明过：把它附上去是「他们自己的决定」</strong>。而 2009 年 Hacker 与 Schulte 编的第 4 版<strong>干脆取消了「两部分」这个划分</strong>——只把原 Part I 称作《哲学研究》，把原 Part II 改名为 <strong>《心理学哲学——一个片段》（Philosophy of Psychology – A Fragment）</strong>，并给其中所有段落编了号。</p>
+<p>所以你拿到的中译本如果是老版本，会看到「第二部分」；如果按新版的框架理解，它是一份<strong>独立的相关残篇</strong>。这个差别不是排版小事，它直接改变你对「这本书到底在讲什么」的判断。</p>
+</section>
+
+<section id="s2">
+<h2><span class="num">2</span>五个核心论点<span class="caret">▾</span></h2>
+
+<h3>① 意义即使用 <span class="tag t-src">原书</span></h3>
+<blockquote><p>§43：<em>For a large class of cases—though not for all—in which we employ the word "meaning," it can be defined thus: the meaning of a word is its use in the language.</em></p></blockquote>
+<p><strong>注意那句让步</strong>：「对一大批情形——尽管不是全部」。这句被引用时<strong>几乎总是被砍掉</strong>，然后变成一句口号「词的意义就是它的用法」。维特根斯坦自己没这么说，他给的是一个受限的说明。§43 也<strong>不是定义</strong>，是<strong>提醒</strong>。</p>
+<p>它的真正靶子是：意义不是词所指的对象，也不是你脑中伴随的心理图像。所以「好」不需要预先存在一个叫「好」的东西。</p>
+
+<h3>② 语言游戏与生活形式 <span class="tag t-src">原书</span></h3>
+<p>语言不是一套符号系统＋一套指称关系，而是<strong>嵌在活动里的实践</strong>。§23 列举过一串：下命令、描述、报告、猜谜、编故事、演戏、唱歌、讲笑话、翻译、请求、感谢、咒骂、问候、祈祷。</p>
+<blockquote><p>§23：<em>the speaking of language is part of an activity, or of a form of life.</em></p></blockquote>
+<p>关键词是 <strong>Lebensform（生活形式）</strong>。你不可能「先学会指称，再进入生活」——<strong>指称只有在生活形式里才成立</strong>。推论很硬：<strong>想象一种语言，就是想象一种生活形式</strong>。</p>
+<p>所以「If a lion could talk, we could not understand him」（原 Part II）不是俏皮话，是这条论点的直接后果：<strong>可翻译的是词，不可翻译的是生活</strong>。</p>
+
+<h3>③ 家族相似 <span class="tag t-src">原书</span></h3>
+<p>「游戏」这个例子最有名：棋类、球类、过家家、单人纸牌、接球……<strong>找不到一个所有游戏共有的本质</strong>，只有层层交叠的相似。</p>
+<blockquote><p>§66：<em>Don't think, but look!</em>（别想，去看！）</p></blockquote>
+<p><strong>这句被当作方法口号，但它真正的锋刃是反本质主义</strong>：不是「定义不可能」，而是<strong>「没有定义也能用得好」</strong>。这个转向后来溢出哲学，直接影响了认知科学里的「原型／范畴化」讨论和分类学争论。⚠ 这一影响关系我只有二手来源，未做专门核实。</p>
+
+<h3>④ 遵守规则的悖论与「基石」 <span class="tag t-src">原书</span></h3>
+<p>这是全书技术密度最高、也是争议最大的地方。</p>
+<blockquote><p>§201：<em>This was our paradox: no course of action could be determined by a rule, because every course of action can be made out to accord with the rule.</em></p></blockquote>
+<p>任何行为都能被解释成「符合某条规则」——那规则怎么还能约束行为？维特根斯坦的回应不是给出一种新解释，而是<strong>否定「再找一个解释」这条路</strong>：</p>
+<blockquote><p>§217：<em>If I have exhausted the justifications, I have reached bedrock and my spade is turned. Then I am inclined to say: "This is simply what I do."</em></p></blockquote>
+<p><strong>铲子弯了</strong>（我的铲子碰到基石了）——解释到此为止，剩下的不是「更深的理解」，而是<strong>训练出来的做法</strong>。所以遵守规则是<strong>一种社会实践</strong>，不是一种私人心理活动。</p>
+<p>★ 这一节引出了 20 世纪后半叶最大的一场维特根斯坦解读战（Kripke 的怀疑论解读），详见下部第 4 节。</p>
+
+<h3>⑤ 私人语言不可能 <span class="tag t-src">原书</span></h3>
+<p>§243 起：设想一种语言，其词「指称只有说话者本人能知道的东西——他自己的直接私人感觉」。</p>
+<p>论证的核心不是「你没法知道别人的感受」这种老问题，而是一个更狠的点：<strong>私人语言无法区分「我以为我在遵守规则」和「我真的在遵守规则」</strong>。§293 的盒中甲虫是最著名的比喻：</p>
+<blockquote><p>每个人都有一个盒子，盒里的东西叫「甲虫」。谁也看不见别人的盒子。那么——<strong>「甲虫」这个词在日常语言里根本不起作用</strong>，它「作为无关之物被排除在考虑之外」。</p></blockquote>
+<div class="warnbox"><strong>这里最容易被误读</strong>：维特根斯坦不是否认你有感觉，是说<strong>「感觉」这个词的意义不来自你私有的那个内在对象</strong>。感觉的表达（疼、哭、皱眉）在公共生活里有位置，私有对象没有。</div>
+</section>
+
+<section id="s3">
+<h2><span class="num">3</span>阅读建议<span class="caret">▾</span></h2>
+
+<h3>如果你还没读（想读）</h3>
+<p><strong>先读哪几节</strong>——不要从第一页硬啃到最后一页：</p>
+<ol>
+<li><strong>§§1–64</strong>（语言游戏开场）：这段有具体场景（工人喊「石板」递石头），是全书最直观的入口。</li>
+<li><strong>§§65–88</strong>（家族相似）：从「游戏」开始，你能立刻抓到这本书的攻击对象。</li>
+<li><strong>§§89–133</strong>（哲学是什么）：到这里你会明白它为什么写成一堆散段。</li>
+<li><strong>§§243–315</strong>（私人语言 + 甲虫）：这一块是它最有名、也最独立成篇的部分。</li>
+<li><strong>§§138–242</strong>（遵守规则）：<strong>放在最后</strong>。它最难，而且需要你已经熟悉前面那一整套「不要解释、去看用法」的语调。</li>
+</ol>
+<p><strong>读法建议</strong>：它比《逻辑哲学论》<strong>好读但不能快读</strong>。一段往往只有两三句，而且经常是一个<strong>对话</strong>——维特根斯坦在跟自己想象中的对手吵架。<strong>不要试图把它们连成一个论证链</strong>，那不是它的写法。读到一段觉得「这不是废话吗」，多半是还没看出它在反驳哪句话——回去看它上一段。</p>
+<p><strong>哪些可以跳过（第一遍）</strong>：</p>
+<ul>
+<li><strong>原「第二部分」</strong>：可以整块留到最后。按 2009 年新版的判读，它本来就该被当作<strong>另一份文本</strong>读。</li>
+<li><strong>数学与逻辑细节段</strong>：这本书里散着一些关于数学基础的段落，中译本里也没有加特别说明，第一遍可以略过。</li>
+<li><strong>解读史</strong>（Kripke 那一大摊）：先读原书，再看解读，否则你会把「Kripkenstein 说的」当成「维特根斯坦说的」。这个坑很大，下部第 4 节专门讲了。</li>
+</ul>
+
+<h3>如果你已经读过（已读）</h3>
+<p><strong>三个最可能被漏掉的地方</strong>：</p>
+<ol>
+<li><strong>§43 的那个让步从句</strong>。「对一大批情形——尽管不是全部」。绝大多数二手介绍把它丢了，于是一句受限的提醒被读成一条普遍理论。<strong>你可以拿这一点去检验任何一本关于这本书的二手书</strong>：如果它说「维特根斯坦主张意义即用法」，它已经粗糙了一层。</li>
+<li><strong>这本书不是理论，但也不是「没有主张」</strong>。这是最大的一处误读争议：它到处立论（反本质主义、反私人语言），却说自己只是描述。<strong>这两件事怎么共存，是解读史的核心难题</strong>（下部第 3 节）。如果你读的时候觉得「他一边猛烈批判一边说自己不立论，这不是自相矛盾吗」——<strong>你抓到了真问题</strong>，不是你没读懂。</li>
+<li><strong>这本书的写作史本身就是论点的一部分</strong>。它被反复重编、撤回、放弃出版、死后由学生编订，还带着一个来源存疑的「第二部分」。<strong>「拒绝给出成品形态」和「拒绝给出成品理论」是同一件事的两面</strong>。</li>
+</ol>
+<p><strong>哪里可以反驳</strong>——三个具体入口：</p>
+<ul>
+<li><strong>反本质主义过头了吗？</strong> 家族相似被大量引用，但批评者指出：<strong>相似性本身也是一种本质</strong>（你凭什么说这两个东西相似而不跟第三个相似？）。维特根斯坦用「生活形式」挡了这个问题，但「生活形式」几乎没被定义过。⚠ 这条批评在文献中很常见，我只有转述来源，未逐条落实。</li>
+<li><strong>「治疗」是解释还是逃避？</strong> 罗素的差评最直白（见下节）。</li>
+<li><strong>反私人语言的论证到底成立吗？</strong> 这是 1980 年代后整个分析哲学的一部分注意力所在，且<strong>至今没有共识</strong>（下部第 5 节）。</li>
+</ul>
+</section>
+
+<section id="s4">
+<h2><span class="num">4</span>争议与局限<span class="caret">▾</span></h2>
+
+<h3>学界／哲学界批评</h3>
+<p><strong>① 罗素的原话，值得完整看一遍</strong> <span class="tag t-src">原书</span>。他 1959 年在《My Philosophical Development》里说：</p>
+<blockquote><p><em>I have not found in Wittgenstein's Philosophical Investigations anything that seemed to me interesting and I do not understand why a whole school finds important wisdom in its pages. … The later Wittgenstein, on the contrary, seems to have grown tired of serious thinking and to have invented a doctrine which would make such an activity unnecessary. … if it is true, philosophy is, at best, a slight help to lexicographers, and at worst, an idle tea-table amusement.</em></p>
+<p class="gloss">译文：「后来那个维特根斯坦，在我看来是<strong>对严肃思考厌倦了</strong>，于是发明了一套让这种活动变得不必要的学说……如果这套学说是对的，哲学充其量只能帮词典编纂者一点小忙，最坏的情况不过是<strong>茶桌上闲聊的消遣</strong>。」</p></blockquote>
+<div class="keybox"><strong>这条批评至今没有真正被驳倒，只是被无视了。</strong>它的力量在于：它不是不懂，而是从「哲学该干什么」这个层面拒绝这本书的前提。</div>
+<p><strong>② 学界接受度并不高，且不是因为他没被读懂。</strong>恩斯特·盖尔纳（Ernest Gellner）1959 年的《Words and Things》对维特根斯坦及牛津日常语言学派做了全面攻击，激烈到当时 <strong>Ryle 拒绝在《Mind》上刊发书评</strong>，而<strong>罗素特意为这本书写了赞许的序言</strong>并致信《泰晤士报》抗议。⚠ 这段公案的细节我来自英文维基，未核对原始文献。</p>
+<p><strong>另有更轻蔑的一句</strong>：阿根廷裔加拿大哲学家 Mario Bunge 说「维特根斯坦流行，是因为他琐碎」（<em>Wittgenstein is popular because he is trivial</em>）。⚠ 单一来源，仅作记录。</p>
+
+<h3>读者反对意见（性质不同，单独列）</h3>
+<p>真实读者的反应分布很集中，<strong>几乎全是两种</strong>：</p>
+<ul>
+<li><strong>「看不懂但被震住」</strong>：「全書真正看懂的，還不到三分之一吧。」／「我看不懂，但我大受震撼。」</li>
+<li><strong>「受不了这种写法」</strong>：「维特根斯坦!!你就不能简洁一点!不要再举例了!我要看直接逻辑推理!」／「将近1000个神谕式的命题和几十个语言游戏……命题和命题之间不总是按顺序来的。」</li>
+</ul>
+<p><strong>有一条最值得拿来说</strong>：一位读者评李步楼译本时说「十年了，我看了不到一百页，但整个思维方式和论辩技巧都发生了巨大的改变」——<strong>同时给出「读不动」和「改变很大」</strong>。这大概是这本书最典型的存在方式。</p>
+<p><strong>一位读过的人给了全书最有价值的一句负评</strong>：「本书虽然标志维特根斯坦的思想的成熟，<strong>但很多命题并不如《逻辑哲学论》清晰和相对正确</strong>。」★ 这句和罗素那条其实是同一个方向，只是从阅读感受说的。</p>
+
+<h3>立场问题（我作为整理者必须点出来的）</h3>
+<ul>
+<li><strong>这本书的「不系统性」是双刃刀</strong>：它让误解变得极容易，也让<strong>「你说的不是维特根斯坦的原意」变成了一个万能挡箭牌</strong>。解读史里大量争论最终不是关于文本，而是关于<strong>谁有权代表维特根斯坦</strong>。读二手文献时请记住这一点。</li>
+<li><strong>中译本的读者多担了一层风险</strong>：陈嘉映的翻译策略是<strong>刻意不统一术语</strong>（他的理由是维特根斯坦德文本来就没术语、同一概念常用不同的词）。这在学理上站得住，但结果是<strong>读者很难靠译名建立稳定的概念地图</strong>。⚠ 译者后记的具体措辞我来自百科转引，未核对原书。</li>
+</ul>
+</section>
+
+<section id="s5">
+<h2><span class="num">1</span>§§1–64：奥古斯丁图画与语言游戏开场<span class="caret">▾</span></h2>
+
+<h3>这一节在回答什么问题</h3>
+<p><strong>「语言是不是就是给事物命名？」</strong></p>
+<p>开场第一句就是引文——奥古斯丁《忏悔录》里一段关于学说话的描述：大人指着一个对象发出声音，孩子记住，然后自己用它指那个东西。</p>
+<blockquote><p>§1 大意 <span class="tag t-src">原书</span>：<em>The individual words in a language name objects — sentences are combinations of such names.</em></p></blockquote>
+<p>维特根斯坦说：<strong>这不是错，是太窄了</strong>。他引出这个图画的三个后果——「每个词都有一个意义」「意义与词对应」「词代表的是对象」——然后开始拆。</p>
+<p><strong>先是那个工人场景</strong> <span class="tag t-src">原书</span>：A 在盖房子，B 给他递材料。A 喊「石板」，B 就把石板递过来。维特根斯坦说：<strong>这是一套完整的原始语言</strong>，不是「指称理论的简化版」，而是<strong>语言在做一件事</strong>。</p>
+
+<h3>关键论证与例证</h3>
+<table>
+<thead><tr><th>例证</th><th>打的是什么</th></tr></thead>
+<tbody>
+<tr><td>建筑工人喊「石板」</td><td>「语言＝指称」只在<strong>已经是语言游戏</strong>的框架里才成立</td></tr>
+<tr><td>「五个红苹果」</td><td>「五」不是被指出来的对象，是<strong>数的用法</strong></td></tr>
+<tr><td>直指定义（ostensive definition）</td><td>指着东西说名字，<strong>解释不了「这是名字还是颜色还是形状」</strong>——直指本身也得先有背景</td></tr>
+<tr><td>举着扫帚说「把扫帚拿过来」</td><td>你会去拿扫帚，不会去拿「扫帚杆 + 扫帚头」——<strong>「简单」是相对的，取决于游戏</strong></td></tr>
+</tbody>
+</table>
+
+<h3>可疑之处</h3>
+<ul>
+<li><strong>奥古斯丁的引文是被选择过的靶子</strong>。有批评者认为维特根斯坦把奥古斯丁读得太粗，那段原文可能并没有他说的那种「指称即意义」的强主张。⚠ 我有来源提到这个方向，但未核实具体论证。</li>
+<li><strong>工人场景的「完整语言」说法本身有争议</strong>：它真的完整吗？还是只是维特根斯坦为了方便而搭的脚手架？——<strong>这个问题在 § 后半段他自己就提出来了</strong>，是这本书「自我反驳」风格的第一处典型表现。</li>
+</ul>
+</section>
+
+<section id="s6">
+<h2><span class="num">2</span>§§65–88：家族相似与「不要想，而要看」<span class="caret">▾</span></h2>
+
+<h3>这一节在回答什么问题</h3>
+<p><strong>「一个词用对了，是不是必须有一个定义？」</strong></p>
+
+<h3>关键论证与例证</h3>
+<p>维特根斯坦请你真的动手：<strong>给「游戏」下个定义</strong>。</p>
+<ul>
+<li>从「娱乐」下手 → 国际象棋选手的体验和小孩玩老鹰捉小鸡差太远</li>
+<li>从「竞争」下手 → 接球、单人纸牌都不是竞争</li>
+<li>从「规则」下手 → 同样碰壁</li>
+</ul>
+<blockquote><p>§66：<em>Don't think, but look!</em>（别想，去看！）</p></blockquote>
+<p><strong>然后是那句最关键的澄清</strong>：重点<strong>不是「游戏无法定义」</strong>，而是<strong>「没有定义也能用得对」</strong>——大家明白「玩游戏」在说什么，还能纠正误用，<strong>全程不需要任何充分必要条件</strong>。</p>
+
+<h3>本节的技术核心，容易被忽略</h3>
+<ul>
+<li><strong>家族相似不是「相似的程度问题」</strong>，而是<strong>相似关系交织成网</strong>：A 像 B 在这一点，B 像 C 在那一点，A 和 C 可能全不搭。</li>
+<li><strong>德国词 Spiel 的意义范围与英文 game 不同</strong>，延伸到「玩耍」。德语读者比英语读者更容易接受这里。⚠ 这条来自英文维基，属转述。</li>
+<li><strong>§71–77 转向「什么是概念」</strong>：模糊概念（blurred concept）是否<strong>不如</strong>清晰概念？维特根斯坦的回答是：模糊不等于无用，<strong>「能不能定清楚」取决于你要它干什么</strong>。</li>
+</ul>
+
+<h3>可疑之处</h3>
+<ul>
+<li>★ <strong>反本质主义的一个硬问题</strong>：<strong>如果家族相似是靠「相似」来统一的，那「相似」本身不就是新的本质吗？</strong>你怎么知道该跟哪一个相似？这是这条论点最常被攻击的软肋，也把读者直接推向「生活形式」那个更含糊的概念。</li>
+<li><strong>「不要想，而要看」在方法论上是可以被滥用的</strong>：它容易被读成「不要理论化」，而在任何需要理论的场合，这句话本身就成了一个不可反驳的挡箭牌。这是<strong>批评者认为这本书最危险的一处</strong>。</li>
+</ul>
+</section>
+
+<section id="s7">
+<h2><span class="num">3</span>§§89–133：哲学是描述，不是解释<span class="caret">▾</span></h2>
+
+<h3>这一节在回答什么问题</h3>
+<p><strong>「那哲学到底还干什么？」</strong></p>
+
+<h3>关键论证与例证 <span class="tag t-src">原书</span></h3>
+<blockquote>
+<p>§109：<em>Philosophy is a battle against the bewitchment of our intelligence by means of our language.</em></p>
+<p>§112：<em>Like everything metaphysical the harmony between thought and reality is to be found in the grammar of the language.</em></p>
+<p>§116：<em>What we do is to bring words back from their metaphysical to their everyday use.</em></p>
+<p>§118：<em>What we are destroying is nothing but houses of cards and we are clearing up the ground of language on which they stood.</em></p>
+<p>§124：<em>Philosophy may in no way interfere with the actual use of language; it can in the end only describe it.</em></p>
+<p>§129：<em>The aspects of things that are most important for us are hidden because of their simplicity and familiarity.</em></p>
+<p>§133：<em>The real discovery is the one which enables me to stop doing philosophy when I want to.</em></p>
+</blockquote>
+<p><strong>「哲学不解释，只描述」</strong>——这是这一节的命题。哲学的产物不是理论，是<strong>清晰的呈现</strong>（§122 的「perspicuous representation」）。</p>
+<p>而 §133 那句是全书的自我定位：<strong>真正的发现，是让我能够在想停的时候停下来</strong>。目标不是「解决」，是「不再被缠住」。</p>
+
+<h3>可疑之处</h3>
+<ul>
+<li>★★ <strong>这一节是全书的解释学核心难题</strong>：<strong>它一边说自己只是在描述、什么也没破坏，一边给出猛烈的批判性论断</strong>（反本质主义、反私人语言）。<strong>「描述」和「论证」在这里怎么共存？</strong> 这不是我挑刺——<strong>这正是 1980 年代后维特根斯坦研究的中心争论</strong>，直接关系到「新维特根斯坦」那条路线。见第 7 节。</li>
+<li><strong>§124「哲学不干涉语言的实际使用」</strong>这一句常被读成保守主义（「什么都别改」），但更常见的读法是：<strong>它不主张改变用法，只主张让混乱消失</strong>。两种读法的差别很大，文本两者都能支持。</li>
+</ul>
+</section>
+
+<section id="s8">
+<h2><span class="num">4</span>§§138–242：遵守规则的悖论 —— 本书最难的一处<span class="caret">▾</span></h2>
+
+<h3>这一节在回答什么问题</h3>
+<p><strong>「我凭什么说我是在遵守规则？」</strong></p>
+
+<h3>关键论证 <span class="tag t-src">原书</span></h3>
+<p>核心是 §201 那个悖论：</p>
+<blockquote><p><em>This was our paradox: no course of action could be determined by a rule, because every course of action can be made out to accord with the rule. The answer was: if everything can be made out to accord with the rule, then it can also be made out to conflict with it. And so there would be neither accord nor conflict here.</em></p></blockquote>
+<p><strong>任何行为都能被说成「符合某条规则」</strong>——因为任何行为都能被<strong>某一种解释</strong>包进去。§185 那个例子最有名：教一个人用「＋2」数数，他数到 1000 之后写下 1004、1008、1012——你喊「你得加 2」，他说「<strong>我就是在加 2</strong>」。你可以给他看规则、写公式、举例子——<strong>每一步他都能用一种解释让自己「符合」</strong>。</p>
+<p>维特根斯坦的回应不是给一个新解释，而是<strong>拆掉「再解释一层就好了」这个直觉</strong>：</p>
+<blockquote><p>§217：<em>If I have exhausted the justifications, I have reached bedrock and my spade is turned. Then I am inclined to say: "This is simply what I do."</em></p></blockquote>
+<p><strong>解释到此为止。剩下的是做法、训练、共识</strong>——不是更深的理解。</p>
+<p>★ 所以「遵守规则是一种社会活动」是这一节的落点：<strong>正确性需要一个公共的判定场所</strong>。</p>
+
+<h3>这一节引出的最大争论：Kripke</h3>
+<ul>
+<li><strong>Saul Kripke</strong> 1982 年出版《Wittgenstein on Rules and Private Language》，主张：维特根斯坦在这里提出的是一个<strong>毁灭性的怀疑论悖论</strong>——<strong>根本没有任何事实能决定你「意谓」的是「＋」还是「quus」</strong>；维特根斯坦不是拒斥它，而是<strong>接受它并给出一个「怀疑论式的解答」</strong>（把意义安放在共同体的行为上）。Kripke 称这是「哲学迄今为止最激进、最原创的怀疑论问题」。</li>
+<li><strong>Kripke 自己在书里就打了预防针</strong>：他说这本书<strong>不该被当作对维特根斯坦观点的准确陈述</strong>，而是「维特根斯坦的论证<strong>如何击中了他 Kripke 本人</strong>」。<strong>这一点极其重要，但几乎总在转述中被丢掉。</strong></li>
+<li><strong>反对者</strong>：Gordon Baker、Peter Hacker、Colin McGinn、John McDowell、Peter Winch、Stanley Cavell——认为这是一种<strong>选择性阅读造成的伪问题</strong>，是对文本的极端误读。批评者给这个解读起了个戏称：<strong>「Kripkenstein」</strong>。</li>
+<li><strong>支持者</strong>：Martin Kusch（2006）等人为其辩护。</li>
+<li><strong>学术声望</strong>：维特根斯坦学者 David G. Stern 认为 Kripke 这本书是 1980 年代以来「<strong>最有影响、被讨论最多</strong>」的维特根斯坦研究著作。</li>
+</ul>
+<div class="keybox">★ <strong>对读者的实际建议</strong>：<strong>这是最容易把「维特根斯坦说的」和「Kripkenstein 说的」搞混的地方</strong>。如果你在别处看到「维特根斯坦认为意义由共同体决定」，那句话的来源大概率是 Kripke，而<strong>它是不是维特根斯坦的原意，学界没有共识</strong>。</div>
+
+<h3>可疑之处</h3>
+<ul>
+<li><strong>悖论到底是真的还是被造出来的？</strong> 这一节的争论持续四十多年，<strong>没有收敛</strong>。有一派认为 §201 的后半句（「答案在于：既然一切都能说成符合，那一切也能说成违反」）说明<strong>维特根斯坦自己就已经解掉了这个悖论</strong>，Kripke 把它读成「接受悖论」是读反了。⚠ 这一层我来自二手综述，未逐条核实。</li>
+<li><strong>「实践／共识」的落点是不是太软？</strong> 批评者指出：如果说规则由共同体实践决定，那<strong>共同体的「多数」岂不是新的权威</strong>？这与维特根斯坦的反权威语调有张力。</li>
+</ul>
+</section>
+
+<section id="s9">
+<h2><span class="num">5</span>§§243–315：私人语言与盒中甲虫<span class="caret">▾</span></h2>
+
+<h3>这一节在回答什么问题</h3>
+<p><strong>「能不能有一种只有我自己懂的语言？」</strong></p>
+
+<h3>关键论证 <span class="tag t-src">原书</span></h3>
+<p>先看 §243 的设定：这种语言的词「指称只有说话者本人能知道的东西——他自己的直接私人感觉」。然后是整段论证的核心杀招：</p>
+<blockquote><p><strong>如果一个词的正确使用原则上无法被别人检验，那它就失去了「正确」这个词的功能。</strong></p></blockquote>
+<p>维特根斯坦的经典追问是：<strong>当你「记住」了某个私人感觉并给它取名 S，几十年后你凭什么说这就是当初那个 S？</strong> 你唯一能调用的判据，还是你自己的记忆——而记忆的可靠性恰恰是问题所在。<strong>没有独立的判据，「正确」和「我以为正确」就分不开了。</strong></p>
+<p>§265 那个比喻最生动：<strong>一个人反复买同一份晨报来核对报上的消息，以此确认报纸没说错。</strong></p>
+<blockquote><p>§293（盒中甲虫）：想象每个人都有一个盒子，盒里的东西叫「甲虫」。谁也看不进别人的盒子。结果——<strong>「甲虫」这个词在日常语言里根本不起作用</strong>，它「作为无关之物被排除在考虑之外」。</p></blockquote>
+<p><strong>必须强调这一点</strong>：维特根斯坦<strong>不否认你有感觉</strong>。他说的是：「感觉」这个词的意义<strong>不来自</strong>你私有的那个内在对象。§580 说得最直接：</p>
+<blockquote><p>§580：<em>An 'inner process' stands in need of outward criteria.</em>（一个「内在过程」需要外在的判据。）</p></blockquote>
+
+<h3>这一节的关联争论</h3>
+<ul>
+<li><strong>「私人语言论证」这个名字不是维特根斯坦起的</strong>。他从没用过「论证」这个词来形容这一段（斯坦福哲学百科明确点出这一点）。<strong>这个名字和它被读成「一个可以被形式化拆解的论证」，是后来的事。</strong></li>
+<li><strong>「知识」用法的边界</strong>：我能<strong>知道</strong>别人疼，但<strong>不能知道</strong>自己疼——我只能<strong>疼</strong>。这个语法观察（「一整个哲学云团浓缩成语法的一滴水」，§ 中语）后来成为心灵哲学讨论第一人称权威时的常用材料。</li>
+<li><strong>鲁滨逊的例子</strong>：⚠ 英文维基提到，维特根斯坦用鲁滨逊（漂流者）表明<strong>语言并非在所有情况下都是社会现象</strong>（尽管大多数情况下是）。这条<strong>与「私人语言不可能」看起来有张力</strong>，我没有找到权威处理，列入附录 D。</li>
+</ul>
+
+<h3>可疑之处</h3>
+<ul>
+<li>★ <strong>这一段的解读分歧不比 §201 小</strong>：它是不是一个「论证」？它的结论是「私人语言不可能」还是仅仅「私人语言无法被谈论」？两者强度差很远。</li>
+<li><strong>它有没有偷换「私有」的两种意义？</strong>「只有我能拥有我的疼」和「只有我能懂我的词」是两回事，批评者认为维特根斯坦把它们混起来了。⚠ 转述来源。</li>
+</ul>
+</section>
+
+<section id="s10">
+<h2><span class="num">6</span>原「第二部分」：看见-as（含文本史问题）<span class="caret">▾</span></h2>
+
+<h3>这一块在回答什么问题</h3>
+<p><strong>「'看出这是……' 和 '把它看成……' 有什么区别？」</strong></p>
+<p>1947–49 年的材料（原 Typescript 234）主要在谈<strong>心理概念</strong>：看见、看成、想象、相信、经验。最著名的例子是<strong>鸭兔图</strong>——同一张图，你可以「看成鸭」也可以「看成兔」，而<strong>图没变</strong>。维特根斯坦用它区分：</p>
+<ul>
+<li><strong>seeing that</strong>（看出这是 X）：一种认知报告</li>
+<li><strong>seeing as</strong>（看成 X）：一种<strong>面相的浮现</strong>，带「咦！」的性质</li>
+</ul>
+<p>★ 这一块（尤其原 Part II 第 xi 节）被公认为<strong>后世「面相知觉」和心灵哲学讨论的源头之一</strong>。</p>
+
+<h3>但是——这一块的文本地位是问题 <span class="tag t-src">原书</span></h3>
+<table>
+<thead><tr><th>事实</th><th>来源</th></tr></thead>
+<tbody>
+<tr><td>1953 首版把它作为「Part II」与正文合印</td><td>多源一致</td></tr>
+<tr><td>编订者 Anscombe 和 Rhees <strong>自己说明：把它附上去是他们的决定</strong></td><td>Ludwig Wittgenstein Project</td></tr>
+<tr><td>它的内容写于 1947–49，<strong>主题上更接近 1945 后的心理学哲学工作</strong></td><td>Ludwig Wittgenstein Project</td></tr>
+<tr><td>2009 年 Hacker &amp; Schulte 第 4 版<strong>取消两部分划分</strong>，原 Part II 改名《心理学哲学——一个片段》，所有段落编号</td><td>Wiley 官方描述、Wiley-VCH、巴西 SOFIA 期刊论文</td></tr>
+<tr><td>学界的争论<strong>至今未收敛</strong></td><td>2019 年论文明确结论：「Part II 的位置问题仍是维特根斯坦研究中一个未决的争议章节」</td></tr>
+</tbody>
+</table>
+<div class="keybox">★ <strong>对读者的实用结论</strong>：<strong>读老中译本时，不要把「第二部分」当成「这本书的结论」</strong>。它既不是原本设计的一部分，也不是被一致认定的续篇。<strong>把它当成一份相关残篇读，风险最小。</strong></div>
+
+<h3>可疑之处</h3>
+<ul>
+<li><strong>「该不该算进去」的争论本身可能问错了问题</strong>。有研究者（Venturinha）主张 1945 年后的写作是<strong>同一进程的延续</strong>；反对者认为这是<strong>新方向</strong>。而 2019 年那篇论文的结论是：<strong>两种立场都有理论上的不一致和文献上的限制</strong>——也就是说，<strong>这个问题目前没有好答案</strong>，不是「还没研究到」。</li>
+<li>⚠ 注意引用格式的坑：老版本里 <strong>Part II 按页码引用</strong>（如「Pt II, p. 223」），新版本里<strong>按编号引用</strong>。所以同一个句子在不同文献里标注会不一样，<strong>这会给跨文献核对造成困难</strong>。</li>
+</ul>
+</section>
+
+<section id="s11">
+<h2><span class="num">7</span>与《逻辑哲学论》的对照（我为本报告加的一节）<span class="caret">▾</span></h2>
+<p>你上一本读的是《逻辑哲学论》。这两本书的对照关系<strong>不是「同一个人写了两本讲语言的书」</strong>，而是<strong>一次哲学史上的特例：一个人建了一套体系，然后用余生亲手拆掉它</strong>。</p>
+
+<h3>四个直接对立</h3>
+<table>
+<thead><tr><th>议题</th><th>《逻辑哲学论》（1921）</th><th>《哲学研究》（1953）</th></tr></thead>
+<tbody>
+<tr><td>意义</td><td><strong>图像论</strong>：命题是事实的图像，与实在共享逻辑形式</td><td><strong>使用论</strong>：意义在语言游戏中的用法（§43）</td></tr>
+<tr><td>语言</td><td>有<strong>唯一的逻辑骨架</strong>，日常语言是伪装</td><td><strong>没有单一本质</strong>，只有交织的实践（家族相似）</td></tr>
+<tr><td>哲学的任务</td><td><strong>逻辑澄清</strong>：分析到原子命题，划出可说／不可说的界限</td><td><strong>治疗</strong>：让混乱消失，让苍蝇飞出瓶子（§309）</td></tr>
+<tr><td>落点</td><td>「<strong>对于不可言说之物，必须保持沉默</strong>」</td><td>「<strong>解释到此为止，我的铲子弯了</strong>」（§217）</td></tr>
+</tbody>
+</table>
+<p>★ <strong>一处极容易被读漏的连续</strong>：两本书都对「哲学给出理论」这件事有敌意，只是<strong>手段不同</strong>。早期是「用逻辑把不该说的东西划出去」，后期是「拆掉让你以为必须说的那个冲动」。维特根斯坦自己在序言里就说了：</p>
+<blockquote><p>《哲学研究》只有对照我旧的思维方式、以它为背景，才能被正确地理解。<span class="tag t-src">原书</span>（序言大意）</p></blockquote>
+
+<h3>学界怎么看这个转折（三种立场，都有支持者）</h3>
+<ol>
+<li><strong>断裂说</strong>：从「逻辑澄清」到「治疗」，是哲学方法的根本改变。Hacker 是这一路的代表（他强调不是换了一个立场，而是<strong>换了对哲学问题的处理方式</strong>）。</li>
+<li><strong>连续说（新维特根斯坦／New Wittgenstein）</strong>：主张<strong>「治疗」贯穿始终</strong>——甚至把《逻辑哲学论》读成「根本不含实质性理论，只是<strong>一堆纯粹的胡说</strong>（plain nonsense）」，用来把读者踹出哲学思辨。代表人物：<strong>Cora Diamond、James Conant、Alice Crary</strong>。此路线的理论根源可追到 John Wisdom 与 Bouwsma 对《蓝皮书》的评论。</li>
+<li><strong>折中说（目前较稳的立场）</strong>：某几方面变了、某几方面没变。</li>
+</ol>
+<div class="keybox">★ <strong>这一条对你的意义</strong>：上一本报告里我提到过《逻辑哲学论》的「坚决式解读」（resolute reading）——<strong>它最初就是为了读《逻辑哲学论》提出的，而它后来在《哲学研究》上引发了更大的争论</strong>。所以你现在读的这本，和上一本共享同一个学术战场。<strong>如果你觉得「治疗」这个词在《逻辑哲学论》里也说得通，你其实站在「新维特根斯坦」这一边了。</strong></div>
+<p><strong>同时要记住反方证据</strong>：Hans-Johann Glock 反驳「纯粹胡说」这条读法，理由是<strong>有外部证据</strong>——维特根斯坦自己的书信和谈话里多次表示《逻辑哲学论》<strong>确实承担了「不可言说的洞见」这个主张</strong>。⚠ 转述来源。</p>
+
+<h3>一个非学术但真实的差别</h3>
+<p><strong>写作风格的转变是有原因的，而这个原因陈嘉映说得很准</strong>（引述）：</p>
+<blockquote><p>《逻辑哲学论》力图以<strong>接近于几何严格性的定义方式</strong>引入基本概念……但哲学概念不是几何概念，不是靠严格定义获得力量的。</p></blockquote>
+<p><strong>所以《哲学研究》几乎没有严格定义的术语、字面极其简单——但它并不因此更容易读。</strong>简单的是句子，难的是<strong>看出这句话在反驳谁</strong>。</p>
+</section>
+
+<section id="s12">
+<h2><span class="num">A</span>金句摘录<span class="caret">▾</span></h2>
+<table>
+<thead><tr><th>段号</th><th>引文（英文，据公开库逐字核对）</th><th>语境</th><th>可信度</th></tr></thead>
+<tbody>
+<tr><td>§43</td><td><em>the meaning of a word is its use in the language</em></td><td>意义即使用（<strong>注意前有「对一大批情形——尽管不是全部」的限制</strong>）</td><td><span class="tag t-src">原书</span></td></tr>
+<tr><td>§109</td><td><em>Philosophy is a battle against the bewitchment of our intelligence by means of our language.</em></td><td>哲学是什么</td><td><span class="tag t-src">原书</span></td></tr>
+<tr><td>§116</td><td><em>What we do is to bring words back from their metaphysical to their everyday use.</em></td><td>方法</td><td><span class="tag t-src">原书</span></td></tr>
+<tr><td>§118</td><td><em>What we are destroying is nothing but houses of cards…</em></td><td>自我定位</td><td><span class="tag t-src">原书</span></td></tr>
+<tr><td>§124</td><td><em>Philosophy may in no way interfere with the actual use of language…</em></td><td>描述的立场</td><td><span class="tag t-src">原书</span></td></tr>
+<tr><td>§129</td><td><em>The aspects of things that are most important for us are hidden because of their simplicity and familiarity.</em></td><td>为什么最简单的看不见</td><td><span class="tag t-src">原书</span></td></tr>
+<tr><td>§133</td><td><em>The real discovery is the one which enables me to stop doing philosophy when I want to.</em></td><td>全书的自我定位</td><td><span class="tag t-src">原书</span></td></tr>
+<tr><td>§66</td><td><em>Don't think, but look!</em></td><td>反本质主义方法</td><td><span class="tag t-src">原书</span></td></tr>
+<tr><td>§201</td><td><em>no course of action could be determined by a rule…</em></td><td>遵守规则悖论</td><td><span class="tag t-src">原书</span></td></tr>
+<tr><td>§217</td><td><em>I have reached bedrock and my spade is turned. …"This is simply what I do."</em></td><td>解释的尽头</td><td><span class="tag t-src">原书</span></td></tr>
+<tr><td>§293</td><td>盒中甲虫：<em>it drops out of consideration as irrelevant</em></td><td>私人语言</td><td><span class="tag t-src">原书</span></td></tr>
+<tr><td>§309</td><td><em>To shew the fly the way out of the fly-bottle.</em></td><td>哲学的目标（原文用 <em>shew</em>，非 <em>show</em>）</td><td><span class="tag t-src">原书</span></td></tr>
+<tr><td>§580</td><td><em>An 'inner process' stands in need of outward criteria.</em></td><td>内在过程需要外在判据</td><td><span class="tag t-src">原书</span></td></tr>
+<tr><td>原 Part II</td><td><em>If a lion could talk, we could not understand him.</em></td><td>生活形式（老版按页码引用，新版按编号）</td><td><span class="tag t-src">原书</span></td></tr>
+<tr><td>原 Part II</td><td><em>What has to be accepted, the given, is — so one could say — forms of life.</em></td><td>生活形式</td><td><span class="tag t-src">原书</span></td></tr>
+<tr><td>序言</td><td><em>I should have liked to produce a good book. This has not come about, but the time is past in which I could improve it.</em></td><td>作者对这本书的不满</td><td><span class="tag t-src">原书</span></td></tr>
+<tr><td>题词</td><td><em>The trouble about progress is that it always looks much greater than it really is.</em>（Nestroy）</td><td>卷首题词（<strong>此为第 4 版译文</strong>）</td><td><span class="tag t-src">原书</span></td></tr>
+</tbody>
+</table>
+<div class="warnbox">★ <strong>注意</strong>（★ 2026-10-02 更正）：上表英文措辞经过公开库逐字核对，<strong>德文原文亦已在 Ludwig Wittgenstein Project 的公有领域文本中逐字核对</strong>（14 段）；<strong>但仍未核对任何纸质版的页码</strong>。中文译法（尤其陈嘉映的译法）会与此处英文有出入——例如他把「意义」译作「含义」、「思考」译作「想」。</div>
+</section>
+
+<section id="s13">
+<h2><span class="num">B</span>延伸阅读<span class="caret">▾</span></h2>
+
+<h3>同一问题的其他路径（读原书之前）</h3>
+<ul>
+<li><strong>《蓝皮书与褐皮书》</strong>（The Blue Book / The Brown Book，1933–35 课堂笔记）：公认<strong>最适合初学者的后期维特根斯坦入口</strong>，清楚、活泼，也是「语言游戏」概念首次出现的地方。维特根斯坦自己只把它当作课堂笔记，没打算当著作。</li>
+<li><strong>陈嘉映《维特根斯坦后期思想》</strong>（讲稿文章，网上可读）：中文语境里最直接的入门讲解，顺着语言游戏、家族相似讲下来。</li>
+</ul>
+
+<h3>有助于批判性重读（读原书之后）</h3>
+<ul>
+<li><strong>Kripke，《Wittgenstein on Rules and Private Language》（1982）</strong>：读之前请先记住作者本人的免责声明——它讲的是「维特根斯坦如何击中了他」，不是「维特根斯坦的原意」。</li>
+<li><strong>Hacker &amp; Schulte 第 4 版（2009）的编者导言</strong>：目前对「这本书该怎么编、原来的 Part II 该怎么办」最权威的处理说明。<strong>中译本没有任何一本反映了这一版。</strong></li>
+<li><strong>贝克与哈克（Baker &amp; Hacker）的四卷本《分析性评注》</strong>（Analytical Commentary on the Philosophical Investigations）：英文世界里最细的逐段注疏。⚠ 我只有书目信息，未读内容。</li>
+<li><strong>斯坦福哲学百科「Ludwig Wittgenstein」条目</strong>：本文多处转述以其为据，是目前质量最稳的免费综述。</li>
+</ul>
+
+<h3>同一作者的其他文本（如果你要读全）</h3>
+<ul>
+<li>《论确实性》（On Certainty，1951 年最后笔记）：临终前两天还在写，主题是信念与怀疑的基础。<strong>与「生活形式」直接相连。</strong></li>
+<li>《数学基础评论》《纸条集》（Zettel）等：与本书主题重叠的遗稿选编。</li>
+</ul>
+</section>
+
+<section id="s14">
+<h2><span class="num">C</span>来源清单<span class="caret">▾</span></h2>
+<p>完整来源表（含链接、检索时间、提供内容、手检可信度）见：<strong><code>哲学研究-来源清单.md</code></strong>（同目录）。</p>
+<p><strong>本文所依据的主力来源</strong>（按权重）</p>
+<table>
+<thead><tr><th>来源</th><th>提供什么</th><th>可信度</th></tr></thead>
+<tbody>
+<tr><td>英文维基 <em>Philosophical Investigations</em> 条目</td><td>结构、版本与 ISBN、核心概念、罗素与 Kripkenstein 争论、著名段落编号</td><td>中高（其中「页面未提供」的信息我没从它推）</td></tr>
+<tr><td>Ludwig Wittgenstein Project（wittgensteinproject.org）</td><td><strong>Part II 的编订史</strong>（编订者自认是他们的决定）、文本流传</td><td>高（专业文本项目）</td></tr>
+<tr><td>斯坦福哲学百科「Ludwig Wittgenstein」</td><td>§201 的解读分歧、grammar／form of life、治疗派与传统派之争</td><td>高</td></tr>
+<tr><td>Wikiquote "Ludwig Wittgenstein"</td><td><strong>§43/§109/§133/§217/§309/§580 等段落英文原文</strong></td><td>中高（多段经交叉核对一致）</td></tr>
+<tr><td>Wiley / Wiley-VCH 官方第 4 版说明</td><td>第 4 版的编辑改动、Part II 改名与编号</td><td>高（出版方一手）</td></tr>
+<tr><td>Philopedia、Chapterly 等</td><td>主题分块、著名段落清单</td><td><strong>中</strong>（AI 生成型，不与其它来源合并计数）</td></tr>
+<tr><td>百度百科、快懂百科、南京大学页面、孔夫子旧书网</td><td>中译本谱系与出版信息</td><td>中（互相冲突处已列附录 D）</td></tr>
+<tr><td>aisixiang（陈嘉映两篇讲稿）</td><td>后期思想脉络、与《逻辑哲学论》的文体对比</td><td>中高（作者本人文本）</td></tr>
+<tr><td>多抓鱼、NeoDB、今日头条</td><td><strong>真实读者反应分布</strong></td><td>低但要（只用于「读者反应」，不用于「书中主张」）</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="s15">
+<h2><span class="num">D</span>待核实项（按「可能影响判断的程度」排序）<span class="caret">▾</span></h2>
+<ol>
+<li>★★ <strong>「第二部分」的文本地位</strong>——我已确认它<strong>是编订者决定附上的</strong>（Ludwig Wittgenstein Project 明说），也确认 2009 年第 4 版<strong>把它拆出去改名</strong>（Wiley 官方）。但<strong>「维特根斯坦本人是否打算把它并入」</strong>这一点，我看到的材料是<strong>指向否定或不确定</strong>，没有找到一份「他明确表示要包含」的证据。<strong>这是全报告里最重要的一处不确定。</strong></li>
+<li>★★ <strong>中文译本信息有冲突</strong>：韩林合译本，百度百科说是<strong>商务印书馆 2013</strong>，另一个来源说是「<strong>华夏版</strong>」。<strong>两者未裁定，两个都列出。</strong>另外陈嘉映译本我见到 <strong>2001 初版</strong>（上海人民出版社，世纪文库）与 <strong>2005 修订版</strong>（同社）两种表述，与「2005 年由上海世纪出版集团发行」的说法并存，<strong>未做版本学落实</strong>。</li>
+<li>★ <strong>豆瓣评分有冲突</strong>：一处说 <strong>9.4</strong>，另一处（NeoDB 转载豆瓣数据）记 <strong>8.8（20 人评分）</strong>。样本量和取数时间都不明，<strong>两个都列，我不选</strong>。「豆瓣评分 9.4」这条来自自媒体文章，可信度低于直接取数。</li>
+<li>⚠ <strong>原「第二部分」的节数与引用方式</strong>：英文维基说 Part II 按<strong>罗马数字或第三版页码</strong>引用，未提「14 节」；另有来源（含外语期刊论文）明确说首版 Part II <strong>分为十四节</strong>。<strong>两者不矛盾但与「新版本已改为编号」叠在一起，引用时要留意。</strong></li>
+<li>⚠ <strong>§43 的「非全部」到底指哪些情形</strong>——维特根斯坦留了口子但没说清。这是理解他那句名言的关键，<strong>我没有找到权威的穷举说明</strong>。</li>
+<li>⚠ <strong>鲁滨逊的例子与「私人语言不可能」的张力</strong>（英文维基提到语言并非在所有情况下都是社会现象），<strong>未找到权威处理</strong>。</li>
+<li>⚠ <strong>「家族相似影响认知科学原型理论」这条说法</strong>，我只见到笼统表述，<strong>未找到具体作者与文献</strong>，故正文标了「未做专门核实」。</li>
+<li>⚠ <strong>维特根斯坦与罗素《My Philosophical Development》批评的年份</strong>：我采用 1959 年（该书出版年），<strong>未核对具体页码</strong>。</li>
+</ol>
+</section>
+
+<section id="s16">
+<h2><span class="num">附</span>报告本身的局限（必须说明）<span class="caret">▾</span></h2>
+<ol>
+<li>★ <strong>2026-10-02 更正</strong>：本条原写「我没有原书，也没有德文原文」——<strong>已不成立</strong>。维特根斯坦卒于 1951，<strong>德文原文在中国（2002）与欧盟（2022）均已进入公有领域</strong>，<strong>Ludwig Wittgenstein Project</strong> 公布了完整德文原文（数码复制自 Suhrkamp《全集》第 1 卷），本次已在该文本中<strong>逐字核对 §43／§66／§109／§133／§201／§217／§241／§243／§258／§293／§309／§340／§373／§383</strong>（全 <strong>693 段 §1–§693，无缺号、无重号</strong>）。<strong>但三点仍须记住</strong>：① 该数码版<strong>只含第一部分</strong>，第二部分的「看到面相」「鸭兔图」等<strong>不在其中</strong>，仍属二手；② <strong>Anscombe 的英译本在美国仍受版权保护</strong>，不能与德文原文同级引用；③ <strong>中译本的版本页码</strong>仍不确切。如果你有陈嘉映译本（或任一版本）的实体书或电子文件，给我，我可以把这十几条引文逐条校准到具体页码。</li>
+<li><strong>中译本的措辞我基本没有采用。</strong>原因：不同译本译法差异明显（陈嘉映刻意不统一术语），而我无法核实任何一种译法的原文对应关系。所以本报告的金句用英文，并注明中文译本可能的差异。<strong>这意味着这份报告对「读中译本时具体该对应哪句话」的帮助是有限的</strong>——这是我的能力边界，不是遗漏。</li>
+<li><strong>解读史部分我做了明显的取舍</strong>：只讲了 Kripke 一脉（因为它影响最大且最容易被误传），Baker/Hacker 的逐段注疏、Cavell 的伦理读法、Diamond/Conant 的新维特根斯坦只做了要点提示。<strong>这块完整讲开会需要一本书的体量。</strong></li>
+</ol>
+</section>
+
+<footer>
+  <p>《哲学研究》阅读指引与精华解析 · 整理于 2026-09-22 · 来源清单与交叉验证记录见同目录 <code>哲学研究-来源清单.md</code></p>
+  <p>本报告所有引文的可信度请对照页首图例判断；标 ⚠ 的项目请当作「尚未确定」而非「已知事实」。</p>
+</footer>
+
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

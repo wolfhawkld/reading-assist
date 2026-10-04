@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《第三种黑猩猩》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+
+<aside>
+  <div class="brand">《第三种黑猩猩》<small>阅读指引与精华解析 · 2026-10-02</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 五个核心论点</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s5">序论 人类自然史</a>
+    <a href="#s6">一 不过是另一种大型哺乳动物罢了</a>
+    <a href="#s7">二 奇异的生命周期</a>
+    <a href="#s8">三 人为万物之灵</a>
+    <a href="#s9">四 世界征服者</a>
+    <a href="#s10">五 日中则昃</a>
+    <a href="#s11">跋语 前事不忘，后事之师</a>
+    <div class="grp">附录</div>
+    <a href="#s12">A 金句摘录</a>
+    <a href="#s13">B 延伸阅读</a>
+    <a href="#s14">C 来源清单</a>
+    <a href="#s15">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《第三种黑猩猩》阅读指引与精华解析</h1>
+  <div class="sub">The Rise and Fall of the Third Chimpanzee / The Third Chimpanzee</div>
+  <div class="meta">
+    <div><b>作者</b>贾雷德·戴蒙德（1937– ）</div>
+    <div><b>初版</b>1991 英国 Radius／1992 美国 HarperCollins</div>
+    <div><b>中译</b>王道还译 · 中信出版社 2022-06 · 544 页</div>
+    <div><b>ISBN</b>9787521736885</div>
+    <div><b>系列</b>「戴蒙德人类史系列」（全 5 册）</div>
+    <div><b>状态</b>未标注已读／想读 ⇒ 两条侧重同时给出</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有直接文本依据，且被三个以上彼此独立来源一致引用（本书可用的一处直接文本是<strong>出版方书讯页转录的序论开篇</strong>；原本另有「原版 PDF 目录页」一项，<strong>2026-10-02 已撤下</strong>）</li>
+    <li><span class="tag t-talk">作者谈话</span> 出自访谈、专访、公开演讲 —— <b>不在书里</b></li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    我未接触中译本正文。★★ <b>原报告据以标注「原文级」的两份整本 PDF 经查为未授权托管，已撤下</b>；章目改由出版方元数据与图书馆编目核对（属<b>结构级</b>），其余引文为转引。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-02 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书落在 <b>C 级（二手转引）</b>：无公开全文，也未找到达标的带页码引文。<b>原报告据以标注「原文级」的两份整本 PDF，经查是高校课程预留页／教师个人主页托管的未授权副本，已撤下。</b></p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>《枪炮、病菌与钢铁》的「前传」，也是戴蒙德从生理学教授变成公共思想者的那一本书。</strong>它要回答两个问题，而且这两个问题的答案后来各自长成了两本书：</p>
+  <ol>
+    <li><strong>人为什么能在一瞬间从「另一种大型哺乳动物」变成世界征服者？</strong> →（长成了《枪炮、病菌与钢铁》）</li>
+    <li><strong>我们为什么有能力在一夜之间把这一切进步掉转回去？</strong> →（长成了《崩溃》）</li>
+  </ol>
+  <p>★ <strong>这两个问句就是本书的题词</strong>。（<span class="tag t-rep">转述</span> ★ <strong>2026-10-02</strong>：原本据以核对的「原版题词页」在那份<strong>未授权托管的 PDF</strong> 里，<strong>已撤下</strong> ⇒ 题词文字<strong>目前没有合法底本可核</strong>），本书的整个结构都挂在这两句上。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th style="width:26%">部分</th><th style="width:12%">章节</th><th style="width:32%">在回答什么</th><th>读完的价值</th></tr></thead>
+    <tbody>
+      <tr><td><b>序论</b> 人类自然史</td><td>—</td><td>人的矛盾：既是动物，又不像动物</td><td>短，但定义全书的提问方式</td></tr>
+      <tr><td><b>第一部分</b> 不过是另一种大型哺乳动物罢了</td><td>第 1–2 章</td><td>我们与黑猩猩到底有多近？「跳跃式演化」是怎么发生的？</td><td>★ <b>全书最扎实、最不过时的两章</b></td></tr>
+      <tr><td><b>第二部分</b> 奇异的生命周期</td><td>第 3–7 章</td><td>人类的性、择偶、人种差异、衰老，如何用演化解释？</td><td>最受争议的一段（性选择被推得太远）</td></tr>
+      <tr><td><b>第三部分</b> 人为万物之灵</td><td>第 8–12 章</td><td>语言、艺术、农业、烟酒毒品、宇宙中的孤独</td><td>混杂：第 10 章是《枪炮》的种子，第 12 章是闲笔</td></tr>
+      <tr><td><b>第四部分</b> 世界征服者</td><td>第 13–16 章</td><td>为什么是欧亚人征服别人？—— <b>答案不是种族</b></td><td>★ <b>全书最有力的论证</b>，也是《枪炮》的直接原型</td></tr>
+      <tr><td><b>第五部分</b> 日中则昃</td><td>第 17–19 章</td><td>我们会不会把进步掉转回去？</td><td>★ 《崩溃》的种子；今天读来最刺的一章</td></tr>
+      <tr><td><b>跋语</b> 前事不忘，后事之师</td><td>—</td><td>收束：知识够了，行动不够</td><td>宣言性质</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一个结构上的提示</strong>：本书<strong>不是</strong>一本环环相扣的论著，而是<strong>19 篇主题相近的独立随笔</strong>。所以它可以跳读 —— <strong>而跳读的正确方式是按「主题簇」跳</strong>（见下部各节末尾的「这一部分值不值得读」）。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>五个核心论点</span><span class="caret">▾</span></h2>
+
+  <h3>论点一：人就是「第三种黑猩猩」—— 这是个基因事实，也是个分类学挑衅</h3>
+  <ul>
+    <li><strong>基因证据</strong>：人与普通黑猩猩／倭黑猩猩的基因差异约 <strong>1.6%</strong>；而黑猩猩与<strong>大猩猩</strong>的差异是 <strong>2.3%</strong>。<span class="tag t-rep">转述</span>（★ 2026-10-02：原版 PDF 依据<strong>已撤下</strong>；现存依据只有维基转引标注 <strong>p.19</strong> 一处，按本级定义（≥3 个独立来源）<strong>不够「原书」</strong>）
+      <br>⇒ <strong>结论</strong>：<strong>黑猩猩最近的亲戚不是别的猿，是人。</strong> 按基因距离，人应当被算作<strong>第三种黑猩猩</strong>（前两种是普通黑猩猩与倭黑猩猩）。</li>
+    <li><strong>挑衅的部分</strong>：戴蒙德说，这样一来，黑猩猩的学名也许该从 <em>Pan troglodytes</em> 改成 <strong><em>Homo troglodytes</em></strong>。
+      ★ 他的原话意思是：<strong>这会「给走过『Homo』笼子标签的人们一点思考的材料」</strong>。<span class="tag t-rep">转述</span></li>
+    <li>⚠ <strong>一个必须说清的数字分歧</strong>：书名与各处引述里同时流传 <strong>98%</strong>（共享）与 <strong>99% 左右</strong>、<strong>1.6%</strong>（差异）与 <strong>1.2%</strong> 等不同口径。
+      <strong>这是分子生物学里「比什么序列、怎么比」导致的正常差异，不是错误</strong> —— 但它意味着<strong>不要引用一个孤立的百分数</strong>，要带着「比的是哪一段」说。<span class="tag t-inf">推断</span></li>
+  </ul>
+
+  <h3>论点二：「跳跃式演化」—— 语言是引信，此后靠文化而不是基因</h3>
+  <ul>
+    <li>戴蒙德的核心断言：智人在<strong>约 4 万–5 万年前</strong>出现了一次<strong>跳跃式</strong>的变化（他在另一本中文版中译作「跳跃式演化」，英文常称 <em>the Great Leap Forward</em>）。</li>
+    <li><strong>跳跃的实质</strong>：不是身体变了，而是<strong>「进步不再依赖基因演化，而依赖文化演化」</strong>。</li>
+    <li><strong>引信是语言</strong>：有了完善的<strong>口语</strong>，复杂计划、协作狩猎、跨代知识传递才成为可能 —— 这是智人相对尼安德特人的关键优势。</li>
+    <li>⚠ <strong>这是全书最容易被后来的研究动摇的一条</strong>。1991 年以来的考古与遗传学证据，一直在<strong>把「一次跳跃」拆成更长的渐变过程</strong>（见争议 4.3）。</li>
+  </ul>
+
+  <h3>论点三：我们的性与生命周期，是一件件演化「设计」</h3>
+  <p>这一部分（第 3–7 章）用的是<strong>性选择</strong>理论，戴蒙德的几个观察很有冲击力：</p>
+  <ul>
+    <li><strong>雌性比雄性更挑剔</strong>：因为雌性在每一个后代上投入的能量远大于雄性 —— 这条<strong>决定了大量人类行为</strong>：怎么择偶、怎么组织社会、怎么养育后代。</li>
+    <li><strong>人类的反常之处</strong>：<strong>隐蔽排卵</strong>（多数哺乳动物会明显发情）、<strong>私密性行为</strong>、<strong>几乎全年都有性活动</strong>、以及<strong>绝经</strong>与<strong>生殖期后长期存活</strong>。这些在动物界都属异常，需要解释。</li>
+    <li><strong>他与同类的解释</strong>：性是<strong>社会性</strong>的，不只是生殖性的；绝经与衰老，是<strong>把资源从个体转移到后代</strong>的机制。
+      ★ 他有一个很直白的比喻：<strong>身体像一辆车</strong> —— 有定期保养，也有非定期维修；问题只是「什么时候该报废」。<span class="tag t-rep">转述</span></li>
+    <li>⚠ <strong>这一部分是全书写得最容易被后人挑战的地方</strong>（见争议 4.2）。</li>
+  </ul>
+
+  <h3>论点四：「人为万物之灵」的每一项，都能找到动物前身或演化解释</h3>
+  <ul>
+    <li><strong>语言</strong>：戴蒙德不认为语言是凭空出现的奇迹，而是从动物交流一步步搭桥而来（第 8 章 + 附录「尼奥-美拉尼西亚语简易教程」）。</li>
+    <li><strong>艺术</strong>：艺术有<strong>动物起源</strong>，并且在人类身上可以被理解为一种「<strong>诚实的信号</strong>」（honest signaling）—— 即<strong>因为代价高昂、所以可信</strong>的展示（第 9 章）。</li>
+    <li><strong>农业</strong>：他给出全书最著名的一个判断 —— <strong>农业是一把双刃剑</strong>（第 10 章「农业：福兮祸之所伏」）。
+      <br>⇒ 这一章是<strong>《枪炮、病菌与钢铁》的种子</strong>：戴蒙德在这里第一次系统地说「粮食生产决定了后面的一切」。</li>
+    <li><strong>烟、酒、毒品</strong>：他把它接在<strong>同一套「诚实的信号」</strong>上解释 —— 这是全书最招批评的一次延伸（见争议 4.2）。</li>
+    <li><strong>宇宙中的孤独</strong>（第 12 章）：他判断<strong>与外星文明接触会是灾难</strong>。★ <strong>这一章是全书的闲笔</strong>，与主线关系最弱。</li>
+  </ul>
+
+  <h3>论点五：世界征服者的答案 —— 不是种族，是环境</h3>
+  <p>★ <strong>这是全书最重要的论证，也是今天戴蒙德最被引用的那部分。</strong></p>
+  <ul>
+    <li><strong>他要反驳的是什么</strong>：把「欧亚人征服别人」解释为「欧亚人基因上更优越」的传统霸权叙述。</li>
+    <li><strong>他给出的答案</strong>：征服者占优势，是因为<strong>他们所在的环境</strong>允许他们：
+      <ol>
+        <li><strong>发展出更大的人口</strong>（可驯化的作物与牲畜更多）；</li>
+        <li><strong>获得更广的免疫</strong>（长期与家畜共处，换来了对动物性传染病的抵抗力）；</li>
+        <li><strong>发展出更优的农业与战争技术</strong>（马、钢铁、火炮）。</li>
+      </ol>
+    </li>
+    <li><strong>他反复强调的一点</strong>（2024 年专访里再说了一遍）：
+      <blockquote>
+        <p><strong>欧洲人征服并部分取代澳洲土著和美洲土著的原因，与大脑差异无关；没有证据表明欧洲人比其他民族更聪明或更有征服动机。</strong><span class="tag t-talk">作者谈话</span></p>
+      </blockquote>
+    </li>
+    <li><strong>最令人不适的一章</strong>：第 16 章讲<strong>第一次接触几乎总以屠杀告终</strong>，其中包括塔斯马尼亚原住民被系统灭绝的完整记录。<strong>戴蒙德在这里几乎没有回避</strong>。</li>
+  </ul>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+
+  <h3>如果你是「想读」</h3>
+  <ol>
+    <li>★★ <strong>先看戴蒙德本人给的阅读顺序</strong>（2024 年中文专访，<span class="tag t-talk">作者谈话</span>）：
+      <blockquote>
+        <p><strong>第三种黑猩猩 → 枪炮、病菌与钢铁 → 崩溃 → 昨日之前的世界 → 剧变</strong></p>
+      </blockquote>
+      他给了<strong>三个理由</strong>：① 他就是按这个顺序写的，能看到他的风格与兴趣怎么变；② <strong>《枪炮》是由本书的一章扩写而来，《崩溃》由另一章扩写而来</strong>；③ 时间尺度是从 600 万年前（本书）→ 1 万年前（《枪炮》）→ 100 年前（《剧变》）。
+      <br>⇒ <strong>如果你想看一本长书怎么从一章里长出来，这本书就是那个「章」。</strong></li>
+    <li><strong>本书按主题簇跳读</strong>（它不是论著，是 19 篇随笔）：
+      <ul>
+        <li><strong>必读</strong>：第 1–2 章（人＝第三种黑猩猩、跳跃式演化）<strong>和</strong>第 13–16 章（世界征服者）；</li>
+        <li><strong>值得读</strong>：第 10 章（农业双刃剑，是《枪炮》的种子）；</li>
+        <li><strong>可快读</strong>：第 3–7 章（性与周期）—— <strong>除非你对演化心理学有兴趣</strong>，否则这五章占全书近四分之一却离主线最远；</li>
+        <li><strong>可跳过</strong>：第 12 章（外星文明），与主线关系最弱。</li>
+      </ul>
+    </li>
+    <li><strong>先读中译本的「致我的中国读者」与三篇推荐序</strong>。这是<strong>中信 2022 版特有</strong>的内容，作者本人为中国读者另写了一段。<span class="tag t-rep">转述</span></li>
+  </ol>
+
+  <h3>如果你是「已读」</h3>
+  <ul>
+    <li><strong>重估对象一</strong>：「跳跃式演化」<strong>发生在什么时候、是不是一次「跳跃」</strong>？这是本书被后来的研究修正最多的一条。</li>
+    <li><strong>重估对象二</strong>：<strong>用「性选择 / 诚实的信号」解释艺术、甚至解释烟酒毒品</strong> —— 这个延伸在哪个点上超出了证据？</li>
+    <li><strong>重估对象三</strong>：第 17–19 章的环境警告写于 1991 年。<strong>哪些预言应验了、哪些没有？</strong> —— 拿它对照《崩溃》（2005）与今天的实际数据，是这本书最能「读活」的方式。</li>
+  </ul>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>争议与局限</span><span class="caret">▾</span></h2>
+
+  <h3>4.1 首先是一条「时代」问题：这本 1991 年的书，人类学部分已经旧了</h3>
+  <p>本书出版于 1991 年。此后三十多年里，<strong>古人类学与古遗传学是变化最剧烈的学科之一</strong>（古 DNA 技术、尼安德特人基因组的测出、丹尼索瓦人的发现都在其后）。因此：</p>
+  <ul>
+    <li><strong>凡书中涉及「某个人种何时出现、何时消失、有没有杂交」的具体判断，都应当另找新来源核对。</strong></li>
+    <li>戴蒙德自己在 2024 年也承认：<strong>如果再写一本概括当今的书，他仍然会叫它《枪炮、病菌和钢铁》</strong><span class="tag t-talk">作者谈话</span> —— 这句话的意思是<strong>他的主线没变</strong>，但<strong>不等于细节没变</strong>。</li>
+  </ul>
+
+  <h3>4.2 性选择被推得太远 —— 学界与读者共同的批评</h3>
+  <ul>
+    <li>第 3–7 章把<strong>择偶、人种差异、衰老</strong>都接到性选择上；第 9–11 章进一步把它接到<strong>艺术</strong>与<strong>烟酒毒品</strong>上。</li>
+    <li>批评集中在：<strong>「诚实的信号」这个机制弹性太大</strong> —— 一旦它可以解释艺术品、也可以解释吸毒，它就有沦为<strong>万能解释</strong>的风险（什么都能解释的理论，等于什么都没解释）。<span class="tag t-rep">转述</span></li>
+    <li>另一条：<strong>用演化解释当代文化现象时，缺少可检验的预测</strong>。<span class="tag t-inf">推断</span></li>
+  </ul>
+
+  <h3>4.3 「跳跃式演化」的时间与机制，学界未定</h3>
+  <ul>
+    <li>戴蒙德给的是<strong>约 4 万–5 万年前的一次相对突然的跃变</strong>，机制是语言。</li>
+    <li>后来大量研究倾向于把「现代行为」的出现在<strong>时间上拉长、在地理上分散</strong>（非洲更早、逐步累积），<strong>而不是一次单点跳跃</strong>。</li>
+    <li>⚠ <strong>本报告不裁决哪一方对</strong>，只标出：<strong>这是本书最需要更新的一条</strong>。</li>
+  </ul>
+
+  <h3>4.4 读者视角的两条有力反对</h3>
+  <ul>
+    <li><strong>「缺少经济与技术维度」</strong>：有读者指出，戴蒙德<strong>几乎不处理经济学</strong> —— 而能源与技术（例如更便宜的能量来源）同样是关键变量，不能只归到环境与地理上。<span class="tag t-rep">转述</span></li>
+    <li><strong>「悲观与重复」</strong>：多条读者反馈认为<strong>后半部分重复啰嗦</strong>，且<strong>通篇悲观</strong>。<span class="tag t-rep">转述</span>
+      <br>★ 注意：<strong>读者反馈是「真实读者的反应分布」的证据，不是「书里写了什么」的证据</strong>（本报告的使用纪律）。</li>
+  </ul>
+
+  <h3>4.5 为它说一句公道话</h3>
+  <p><span class="tag t-inf">推断</span> 本书最强的部分 —— <strong>第 13–16 章关于「征服源于环境而非种族」的论证</strong> —— 是它被引用最多、也最少被推翻的部分。<strong>它在 1991 年就用基因与环境证据正面否定了种族优劣论</strong>，并且在今天依然是这条论证最清晰的大众写法之一。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num">序</span><span>序论 人类自然史</span><span class="caret">▾</span></h2>
+  <p><strong>这一节在回答</strong>：人到底特殊在哪里？</p>
+  <ul>
+    <li>戴蒙德开篇就给出一对矛盾：<strong>人异乎禽兽，毋庸置疑</strong>；<strong>从身体构造的分子层次到解剖层次，人都是一种大型哺乳类动物，也毋庸置疑</strong>。<span class="tag t-src">原书</span>（中信 2022 版正文，出版方书讯页可核对）</li>
+    <li>他明说：<strong>这个矛盾是人这种动物最令人着迷的地方</strong>。</li>
+    <li><strong>「这一部分值不值得读」</strong>：短，但值得 —— 它定义了全书提问的方式：<strong>不是「人为什么特殊」，而是「一个物种怎么能在这么短的时间里变得这么特殊」。</strong></li>
+  </ul>
+</section>
+
+<section id="s6">
+  <h2><span class="num">一</span><span>第一部分 不过是另一种大型哺乳动物罢了（第 1–2 章）</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答</strong>：我们与黑猩猩到底有多近？跳跃是怎么发生的？</p>
+
+  <h3>第 1 章 三种黑猩猩</h3>
+  <ul>
+    <li>见论点一。<strong>基因差异 1.6% vs 黑猩猩—大猩猩 2.3%</strong>。</li>
+    <li>他给了一个很有力的对比：<strong>连亲缘很近的鸟（红眼莺与白眼莺）之间的差异都有 2.9%</strong> —— 也就是说，<strong>人—黑猩猩的距离小于某些「同属近亲鸟」之间的距离</strong>。<span class="tag t-rep">转述</span></li>
+  </ul>
+
+  <h3>第 2 章 跳跃式演化</h3>
+  <ul>
+    <li>见论点二。<strong>关键论断：从这一刻起，进步靠文化演化，不再靠基因演化。</strong></li>
+    <li>他在这里处理智人与尼安德特人、克罗马农人的关系（<strong>⚠ 这一部分的具体结论已旧</strong>）。</li>
+  </ul>
+</section>
+
+<section id="s7">
+  <h2><span class="num">二</span><span>第二部分 奇异的生命周期（第 3–7 章）</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答</strong>：我们的性与寿命，能不能用演化解释？</p>
+
+  <h3>第 3 章 人类性象的演化</h3>
+  <ul>
+    <li>跨灵长类的规律：<strong>一夫多妻的程度</strong>与<strong>雌雄体型差异</strong>、<strong>雄性睾丸大小</strong>相关。<span class="tag t-rep">转述</span></li>
+    <li>他指出的异常：<strong>人类在体型比例上有异常大的阴茎与乳房</strong>。</li>
+  </ul>
+
+  <h3>第 4 章 婚外情的逻辑</h3>
+  <ul>
+    <li>他给了一个<strong>流传很广但极需谨慎对待的数字</strong>：约 <strong>10% 的婴儿是婚外受孕</strong>。<span class="tag t-rep">转述</span> ⚠ <strong>这个数字的测量口径争议极大</strong>，请勿直接引用。</li>
+    <li>人类的三个反常：<strong>排卵隐蔽、性行为私密、性活动频繁且高度社会化</strong>。</li>
+  </ul>
+
+  <h3>第 5 章 人类如何选择配偶和性伴侣</h3>
+  <ul>
+    <li>一个有意思的发现：<strong>伴侣之间在宗教、族裔、社会经济地位、年龄、政治观点上的相关性很高</strong>（他给出的相关系数在 <strong>+0.9</strong> 量级），<strong>人格与 IQ 约 +0.4</strong>，<strong>身体特征仅约 +0.2</strong>。<span class="tag t-rep">转述</span> ⚠ 数字来自读者笔记，<strong>未经核对</strong>。</li>
+    <li><strong>乱伦禁忌</strong>：他倾向于认为<strong>是基因的而非纯文化的</strong>。</li>
+  </ul>
+
+  <h3>第 6 章 性选择与人种</h3>
+  <ul>
+    <li>他主张<strong>人种差异只能部分用自然选择解释</strong>（例如肤色与纬度相关，但很<strong>嘈杂</strong>），<strong>很大程度上还来自性选择</strong>。<span class="tag t-rep">转述</span></li>
+    <li>⚠ <strong>这是全书最容易被误读、也最容易被滥用的一章</strong> —— 因为它谈「人种差异」。<strong>请注意</strong>：戴蒙德的整体立场是<strong>反对种族决定论</strong>的（见论点五），本章讲的是<strong>表型差异的成因</strong>，不是<strong>能力差异</strong>。</li>
+  </ul>
+
+  <h3>第 7 章 死亡与衰老的奥秘</h3>
+  <ul>
+    <li><strong>身体的比喻</strong>：定期保养 + 非定期维修；问题只是<strong>什么时候报废</strong>。<span class="tag t-rep">转述</span></li>
+    <li>解释框架：衰老是<strong>把资源从个体转向后代</strong>的机制。</li>
+    <li><strong>「这一部分值不值得读」</strong>：<strong>如果你对演化心理学没兴趣，这五章可以快读</strong> —— 它们离全书主线（征服与环境）最远，也最受批评。</li>
+  </ul>
+</section>
+
+<section id="s8">
+  <h2><span class="num">三</span><span>第三部分 人为万物之灵（第 8–12 章）</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答</strong>：语言、艺术、农业、药物，这些「人之为人的东西」是从哪来的？</p>
+
+  <h3>第 8 章 语言的演化</h3>
+  <ul>
+    <li>论点：<strong>语言是搭桥而来，不是奇迹</strong>。</li>
+    <li>附了一篇 <strong>「尼奥-美拉尼西亚语简易教程」</strong> —— 用皮钦语／克里奥尔语的形成，说明语言如何在极短时间内从零到可用。<span class="tag t-rep">转述</span>（★ 2026-10-02：<strong>原版目录页依据已撤下</strong>；该附录名可由出版方元数据与图书馆编目核对——属<strong>结构级</strong>，不是原文级）</li>
+  </ul>
+
+  <h3>第 9 章 艺术的自然史</h3>
+  <ul>
+    <li>艺术有<strong>动物起源</strong>；在人类身上可用 <strong>「诚实的信号」</strong>（代价高昂所以可信）解释。⚠ <strong>见争议 4.2。</strong></li>
+  </ul>
+
+  <h3>第 10 章 农业：福兮祸之所伏</h3>
+  <ul>
+    <li>★ <strong>本书最重要的一章之一，也是《枪炮、病菌与钢铁》的直接种子。</strong></li>
+    <li>论断：农业<strong>同时</strong>带来了更多粮食与更差的生活；它使人口增长，也使个体受束缚。</li>
+  </ul>
+
+  <h3>第 11 章 为什么麻醉自己：烟、酒与毒品</h3>
+  <ul>
+    <li>把这些行为接到<strong>同一套「诚实的信号」</strong>上解释。⚠ <strong>这是全书最招批评的一次延伸。</strong></li>
+  </ul>
+
+  <h3>第 12 章 深邃的寂寞</h3>
+  <ul>
+    <li>讨论<strong>外星智慧接触</strong>的可能性，并判断<strong>那会是灾难</strong>。</li>
+    <li><strong>「这一部分值不值得读」</strong>：第 10 章必读；第 8、9、11 章按兴趣；<strong>第 12 章可跳过</strong>（闲笔）。</li>
+  </ul>
+</section>
+
+<section id="s9">
+  <h2><span class="num">四</span><span>第四部分 世界征服者（第 13–16 章）</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答</strong>：为什么是欧亚人征服了别人？ ★ <strong>全书最有力的部分。</strong></p>
+
+  <h3>第 13 章 人类史的新面貌：世界村</h3>
+  <ul>
+    <li>「第一次接触」（last first contacts）：<strong>两个技术水平不对等的文明相遇时，几乎总是以弱势一方被灭绝告终</strong>。</li>
+  </ul>
+
+  <h3>第 14 章 问苍茫大地，谁主浮沉</h3>
+  <ul>
+    <li><strong>「意外的征服者」</strong>：欧亚人的优势来自<strong>驯化的动植物、由此带来的疾病免疫、以及由此积累的技术</strong>，而非任何「种族优越」。</li>
+    <li>★ <strong>这就是《枪炮、病菌与钢铁》的核心论点，在这里已经成型了。</strong></li>
+  </ul>
+
+  <h3>第 15 章 印欧语族群扩张的故事</h3>
+  <ul>
+    <li>用<strong>语言的传播</strong>作为<strong>人口迁移</strong>的化石证据。原版附有一篇<strong>「原始印欧语寓言」</strong>附录。<span class="tag t-rep">转述</span>（★ 2026-10-02：<strong>原版目录页依据已撤下</strong>；附录名可由出版方元数据与图书馆编目核对——属<strong>结构级</strong>）</li>
+  </ul>
+
+  <h3>第 16 章 土著问题：族群冲突</h3>
+  <ul>
+    <li>★ <strong>全书最沉重的一章</strong>：塔斯马尼亚原住民的<strong>系统灭绝</strong>、以及 1492–1900、1900–1950、1950–1990 三段<strong>族群屠杀清单</strong>（原版以三张地图列出）。<span class="tag t-rep">转述</span>（★ 2026-10-02：<strong>原版目录与图目依据已撤下</strong>；三张地图的存在可由编目资料核对——属<strong>结构级</strong>）</li>
+    <li><strong>原版附录</strong>：「若干著名美国人的印第安政策」。<span class="tag t-rep">转述</span>（★ 2026-10-02：<strong>原版目录页依据已撤下</strong>）</li>
+    <li><strong>「这一部分值不值得读」</strong>：★ <strong>必读。</strong> 如果这本书只能读四章，就是这四章。</li>
+  </ul>
+</section>
+
+<section id="s10">
+  <h2><span class="num">五</span><span>第五部分 日中则昃（第 17–19 章）</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答</strong>：我们会不会亲手把进步掉转回去？ ★ <strong>《崩溃》的种子。</strong></p>
+
+  <h3>第 17 章 天人合一的迷思与理念</h3>
+  <ul>
+    <li>「<strong>从未存在过的黄金时代</strong>」：他反驳「前工业社会与自然和谐共处」的浪漫想象。</li>
+  </ul>
+
+  <h3>第 18 章 哺乳类大灭绝：新世界的故事</h3>
+  <ul>
+    <li>「<strong>闪电战与感恩节</strong>」：人类到达新大陆后，大型哺乳类的迅速灭绝。</li>
+  </ul>
+
+  <h3>第 19 章 更大的危机：生态</h3>
+  <ul>
+    <li>「<strong>第二朵云</strong>」（The Second Cloud）：第一朵云是核战争，第二朵云是<strong>生态崩溃</strong>。</li>
+    <li>他的判断：<strong>生态浩劫已经在进行中，且修复难度在上升</strong>。</li>
+  </ul>
+</section>
+
+<section id="s11">
+  <h2><span class="num">跋</span><span>跋语 前事不忘，后事之师</span><span class="caret">▾</span></h2>
+  <ul>
+    <li>收束句意：<strong>知识已经够了，行动不够。</strong><span class="tag t-rep">转述</span></li>
+    <li>★ <strong>这是宣言，不是论证</strong> —— 与前面 19 章分开评价。</li>
+  </ul>
+</section>
+
+<section id="s12">
+  <h2><span class="num">A</span><span>金句摘录</span><span class="caret">▾</span></h2>
+  <p style="color:var(--ink3);font-size:13px">说明：★★ <strong>2026-10-02 更正：本书已不是本批引文条件最好的一本。</strong>原据以核对的「原版 PDF」（题词页、目录页、图目）经查系<strong>未授权托管</strong>、<strong>已撤下</strong>。现存的直接文本只有<strong>出版方书讯页转录的序论开篇</strong>；<strong>题词、献词、附录名一律改按「转述」</strong>（五部分与 19 章等<strong>结构信息</strong>另由出版方元数据与图书馆编目核对，属<strong>结构级</strong>）。</p>
+  <table>
+    <thead><tr><th>引文</th><th style="width:26%">出处／语境</th><th style="width:20%">可信度</th></tr></thead>
+    <tbody>
+      <tr><td>在短暂的时间内，人类是如何从仅仅是另一种大型哺乳动物转变成世界征服者的，以及我们是如何在一夕之间获得逆转历史进程的能力的。</td><td><b>卷首题词（THEME）</b></td><td><span class="tag t-rep">转述</span>（★ 2026-10-02：原版 PDF 依据已撤下，题词文字暂无合法底本）</td></tr>
+      <tr><td>人异乎禽兽，毋庸置疑。从身体构造的分子层次到解剖层次，人都是一种大型哺乳类动物，也毋庸置疑。人类就是这么难以捉摸，不过这也是人这种动物最令人着迷的地方。</td><td>序论 人类自然史 开篇</td><td><span class="tag t-src">原书</span>（中译本正文，出版方书讯页可核对）</td></tr>
+      <tr><td>人与黑猩猩的基因差异只有 1.6%，而黑猩猩与大猩猩的差异是 2.3%。</td><td>第 1 章 · 三种黑猩猩</td><td><span class="tag t-rep">转述</span>（★ 2026-10-02：原版依据已撤下；现存维基转引标注 <b>p.19</b> 一处）</td></tr>
+      <tr><td>献给我的儿子马克斯和乔舒亚，以帮助他们了解我们从哪儿来，以及我们可能会到哪儿去。</td><td><b>献词页</b></td><td><span class="tag t-rep">转述</span>（★ 2026-10-02：原版 PDF 依据已撤下，献词文字暂无合法底本）</td></tr>
+      <tr><td>欧洲人征服澳洲土著与美洲土著的原因，与大脑差异无关；没有证据表明欧洲人比其他民族更聪明或更有征服动机。</td><td>2024 年中文专访</td><td><span class="tag t-talk">作者谈话</span></td></tr>
+      <tr><td>比较，比较，比较，比较，再比较！</td><td>2024 年中文专访 · 被问「用五个关键词概括你的研究」</td><td><span class="tag t-talk">作者谈话</span></td></tr>
+      <tr><td>农业是一把双刃剑：它养活了更多人，也让个体的生活更差。</td><td>第 10 章 主旨</td><td><span class="tag t-rep">转述</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s13">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <h4>直接相关（本书自己的上下游）</h4>
+  <ul>
+    <li>★★ <strong>《枪炮、病菌与钢铁》（戴蒙德，1997）</strong> —— <strong>由本书的一章扩写而成</strong>（作者本人确认，<span class="tag t-talk">作者谈话</span>）。<strong>读完本书第 13–16 章，再看《枪炮》，你会清楚看到一本书是怎么从一章长出来的。</strong></li>
+    <li>★★ <strong>《崩溃》（戴蒙德，2005）</strong> —— <strong>由本书的另一章扩写而成</strong>（同上）。源头在本节第五部分。</li>
+    <li><strong>《昨日之前的世界》（2012）／《剧变》（2019）</strong> —— 系列其余两本，见戴蒙德给出的顺序。</li>
+  </ul>
+  <h4>同一问题的其他路径</h4>
+  <ul>
+    <li><strong>《人类简史》与《未来简史》（赫拉利）</strong> —— ★ <strong>赫拉利本人承认《枪炮》是他的学术起点</strong>。对照阅读能看清两种解释的分工：<strong>戴蒙德讲地理与生物，赫拉利讲故事与算法</strong>。</li>
+    <li><strong>《人类新史》（格雷伯 &amp; 温格罗，2021）</strong> —— 站在相反立场：它<strong>同时反驳</strong>戴蒙德与赫拉利的前提。</li>
+  </ul>
+  <h4>有助于批判性重读</h4>
+  <ul>
+    <li><strong>古人类学／古遗传学的近三十年的新进展</strong>（古 DNA、尼安德特人基因组、丹尼索瓦人）—— 用于更新本书第二部分与第 2 章。</li>
+    <li><strong>对演化心理学的批评文献</strong> —— 用于评估第 3–7 章与第 9、11 章。</li>
+  </ul>
+</section>
+
+<section id="s14">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>完整清单（链接、检索时间、每条来源的定位与手检可信度、交叉验证记录、检索盲区）见同目录 <strong><code>第三种黑猩猩-来源清单.md</code></strong>。此处只列主力来源：</p>
+  <table>
+    <thead><tr><th style="width:34%">来源</th><th style="width:20%">类型</th><th>主要提供</th></tr></thead>
+    <tbody>
+      <tr><td><s><b>原版 PDF（<em>The Rise and Fall of the Third Chimpanzee</em>, 1991, Radius）</b></s> ★ <b>2026-10-02 撤下</b></td><td>✗ <b>已废（未授权托管）</b></td><td><b>题词页原文、完整五部分 19 章目录、全部附录与图目、献词</b></td></tr>
+      <tr><td>英文维基百科 · The Third Chimpanzee</td><td>百科</td><td>两版书名差异、1.6% / 2.3% 与 p.19 页码、五部分结构、塔斯马尼亚等案例</td></tr>
+      <tr><td>SuperSummary · The Third Chimpanzee</td><td>学习平台导读</td><td>五部分内容梗概、获奖信息（1992 皇家学会科学图书奖、1992 洛杉矶时报图书奖）</td></tr>
+      <tr><td>中信 2022 中译本（文轩／腾讯 ima 书库）</td><td><b>出版方一手</b></td><td><b>中译本完整目录＋页码</b>、序论开篇正文、作者简介、ISBN 与页数</td></tr>
+      <tr><td>澎湃新闻 ·《独家专访贾雷德·戴蒙德》（2024-04）</td><td>★ <b>报刊专访</b></td><td><b>作者亲述的五本书阅读顺序与三个理由</b>、扩写关系、「比较」方法论、对 AI／社交的看法</td></tr>
+      <tr><td>界面新闻 ·《戴蒙德与项飙谈疫情、历史和写作》</td><td>报刊访谈</td><td>1987 年双胞胎出生促使他转向公共写作、新书计划</td></tr>
+      <tr><td>Goodreads 读者长评（多条）</td><td>读者反馈</td><td>五部分逐章要点、<b>反对意见</b>（缺经济维度／悲观／重复）</td></tr>
+      <tr><td>淘宝百科／知犀等书目页</td><td>书商业绩页</td><td>系列构成与版本信息（<b>低可信度</b>，仅用于核对书名与册数）</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s15">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <p style="color:var(--ink3);font-size:13px">按「可能影响你判断」的程度排序。</p>
+
+  <h3>D1. 「跳跃式演化」的时间与机制 —— ★ <strong>本书最需要更新的一条</strong></h3>
+  <p>戴蒙德给的是<strong>约 4 万–5 万年前的一次相对突然的跃变</strong>，机制是语言。<strong>1991 年以来的研究倾向于把它拉长、分散</strong>。本报告<strong>不裁决</strong>，只提示：<strong>凡引用本书的这条结论，请补一句「这是 1991 年的判断」。</strong></p>
+
+  <h3>D2. 基因差异的百分数有多个口径 —— <strong>不要孤立引用</strong></h3>
+  <p>同一事实在不同来源里写作 <strong>98% 共享／1.6% 差异</strong>（维基，标 p.19）与 <strong>98.4% 共享</strong>（读者笔记）。</p>
+  <p>⇒ <strong>分子生物学的差异值取决于「比的是哪一段序列、怎么比」</strong>，<strong>一个孤立的百分数没有意义</strong>。</p>
+
+  <h3>D3. 第 4 章「10% 的婴儿是婚外受孕」—— ⚠ <strong>高风险数字，请勿引用</strong></h3>
+  <p>这个数字<strong>来源是读者笔记而非原书</strong>，且<strong>它本身就是学界争议极大的测量问题</strong>（不同研究方法给出的结果差异很大）。<strong>我在正文中已标 ⚠，请把它当「一个被广泛传播的数字」，不要当事实。</strong></p>
+
+  <h3>D4. 第 5 章那一串相关系数 —— <strong>未经核对</strong></h3>
+  <p><strong>+0.9（宗教／族裔／社经地位／年龄／政治观点）、+0.4（人格／IQ）、+0.2（身体特征）、+0.61（中指长度）</strong> —— 这组数字<strong>只来自一位读者的章节笔记</strong>，我<strong>未能在任何第二来源核对</strong>。⚠ <strong>请勿引用。</strong></p>
+
+  <h3>D5. 中译本有两个可能的「前身译本」 —— <strong>影响你买哪一本</strong></h3>
+  <p>中信 2022 版是<strong>王道还</strong>译、<strong>「戴蒙德人类史系列」</strong>之一（544 页，精装）。</p>
+  <p>但戴蒙德这几本中文书历史上<strong>有过其他译本与出版社</strong>（本批检索中出现过不同译者的同名书）。⇒ <strong>如果你手上有旧版，请注意版本</strong>；<strong>建议直接买中信 2022 系列版</strong>（有作者「致我的中国读者」与三篇推荐序）。</p>
+
+  <h3>D6. 我未做到的检索</h3>
+  <ul>
+    <li><strong>中译本正文</strong>：只拿到<strong>序论开篇一段</strong>，<strong>正文其余部分是转引</strong>。</li>
+    <li>★ <strong>已撤下的一处依据</strong>：原报告曾取得一份「原版 PDF 的卷首信息页（题词、目录、图目、献词、序论开头）」。★ <strong>2026-10-02：该 PDF 经查系未授权托管，已撤下</strong> ⇒ <strong>「原书可核对」不再适用于题词、目录、附录名称、献词任何一项</strong>，这些条目一律改按「转述」；其中<strong>结构信息</strong>（五部分、19 章、附录名）另由<strong>出版方元数据与图书馆编目</strong>核对（属<strong>结构级</strong>）。</li>
+    <li><strong>1991 年以来对本书各章的具体修正</strong>：<strong>未做逐章检索</strong>（这是一个可以单独做一轮的功课）。</li>
+    <li><strong>中文版与英文版的差异</strong>：未确认（英文美国版与英国版<strong>书名不同</strong>，内容差异未核）。</li>
+  </ul>
+</section>
+
+<footer>
+  生成于 2026-10-02 · 来源清单与交叉验证记录见同目录 <code>第三种黑猩猩-来源清单.md</code><br>
+  本页引文按<b>二手转引（C 级）</b>处理：未取得原书正文，也未找到带页码的可署名引文，措辞与页码请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

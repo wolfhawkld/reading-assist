@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《逻辑哲学论》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.propnum{font-family:ui-monospace,Consolas,monospace;font-size:13px;color:var(--accent);font-weight:600}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+
+<aside>
+  <div class="brand">《逻辑哲学论》<small>阅读指引与精华解析 · 2026-09-22</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 五个核心论点</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 争议与局限</a>
+    <div class="grp">下部 · 逐命题深挖</div>
+    <a href="#s5">1 序言与结构</a>
+    <a href="#s6">2 命题 1–2：世界</a>
+    <a href="#s7">3 命题 3–4：图像论</a>
+    <a href="#s8">4 命题 5–6：逻辑</a>
+    <a href="#s9">5 唯我论与形而上学主体</a>
+    <a href="#s10">6 命题 6.4–6.54：伦理</a>
+    <a href="#s11">7 命题 7 与梯子</a>
+    <div class="grp">附录</div>
+    <a href="#s12">A 金句摘录</a>
+    <a href="#s13">B 延伸阅读</a>
+    <a href="#s14">C 来源清单</a>
+    <a href="#s15">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《逻辑哲学论》阅读指引与精华解析</h1>
+  <div class="sub">Tractatus Logico-Philosophicus · Logisch-Philosophische Abhandlung</div>
+  <div class="meta">
+    <div><b>作者</b>路德维希·维特根斯坦（1889–1951）</div>
+    <div><b>写作</b>1914–1918 一战期间 · 1918 夏完稿</div>
+    <div><b>初版</b>1921 德文 · Ostwald《自然哲学年鉴》第 14 期</div>
+    <div><b>英译</b>1922 · Ramsey &amp; Ogden 译 · 附罗素导言</div>
+    <div><b>中译</b>张申府 1927 → 郭英 1962 → 贺绍甲 1996 → 韩林合 2013 → 黄敏 2021</div>
+    <div><b>状态</b>未标注已读／想读，两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注说明</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 该句／该论点被三个以上彼此独立的来源一致引用</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+    <li><span class="tag t-rep">⚠</span> 只有单一来源，或来源之间有冲突——见附录 D</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    原文<b>已进公有领域</b>（中国 2002 到期；1922 年英文版在美国亦早入），本次修订已按 Gutenberg #5740 <b>逐字核对命题 1、命题 7 与 6.54</b>，这类标为「原书」。
+    凡涉及<b>中译措辞、页码、语境</b>，我仍只是转引，无法核对。
+  </p>
+  <h3>引文核验级别（2026-10-02 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书落在 <b>A 级（全文核验）</b>：原文已进公有领域（中国 2002 到期；1922 年英文版在美国亦早入），<b>命题 1、命题 7 与 6.54 已逐字核对</b>。<b>此前写的「我没有原书」已作废。</b></p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>一本用七条命题给「可说的东西」画边界的小书，而作者说它真正的重点在边界之外那部分——他一个字都没写。</strong></p>
+  <p>它同时是三件东西，而通常只被当成其中一件：</p>
+  <ol>
+    <li><strong>一部逻辑哲学的技术著作</strong>——提出图像论与真值函项理论，是二十世纪「语言的转向」的标志性文本。<strong>这是它最广为人知的面孔。</strong></li>
+    <li><strong>一份为形而上学送葬的宣言</strong>——「形而上学命题源于语言误用」「伦理与美学不可表达」。维也纳学派据此发展出逻辑实证主义。</li>
+    <li><strong>一本关于「什么是最重要的」的伦理之作</strong>——作者本人 1919 年写信告诉出版人：<strong>「这本书的要点是伦理的」</strong>。这一面当年几乎没人看见，现在成了学界争论的中心。</li>
+  </ol>
+  <blockquote>
+    <p>「这本书的全部意义可以概括如下：凡能够说的，都能够说清楚；凡不能谈论的，就应该保持沉默。」</p>
+    <p class="gloss">—— 序言 <span class="tag t-src">原书</span>（陈嘉映中译）</p>
+  </blockquote>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p><strong>先说一个事实：这本书没有「章」。</strong>它就是七个主命题，每个主命题下面挂一串用十进制编号的子命题，编号本身表达主从关系——<code>1.1</code> 是对 <code>1</code> 的评注，<code>1.11</code> 与 <code>1.12</code> 是对 <code>1.1</code> 的评注，以此类推。所以下面的「骨架」是命题组，不是章节。</p>
+  <table>
+    <thead><tr><th style="width:16%">命题组</th><th style="width:20%">在回答什么</th><th>内容</th><th style="width:16%">地位</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>1 – 2</b></td>
+        <td>世界是什么构成的</td>
+        <td>逻辑原子主义。世界是<b>事实</b>的总和，不是事物的总和（1.1）；事实是事态的存在；事态是对象的结合；对象是简单的（2.02）</td>
+        <td>本体论地基</td>
+      </tr>
+      <tr>
+        <td><b>3 – 4</b></td>
+        <td>思想与语言如何能关于世界</td>
+        <td><b>图像论</b>：事实的逻辑图像即思想（3）；思想是有意义的命题（4）；命题与实在共享<b>逻辑形式</b>，所以能描绘它</td>
+        <td><b>最具独创性的部分</b></td>
+      </tr>
+      <tr>
+        <td><b>5 – 6</b></td>
+        <td>命题如何组合、逻辑的极限在哪</td>
+        <td>命题是基本命题的真值函项（5）；真值函项的一般形式是 [p, ξ, N(ξ)]（6）；逻辑是重言式，只显示结构而不说内容</td>
+        <td>对现代形式逻辑的实际贡献</td>
+      </tr>
+      <tr>
+        <td><b>6.4 – 6.54</b></td>
+        <td>伦理、价值、生命意义在哪</td>
+        <td>世界的意义必在世界之外（6.41）；不可能有伦理命题（6.42）；伦理是超验的（6.421）；<b>死不是生命中的事件</b>（6.4311）；神秘之物不是世界如何，而是世界存在（6.44）</td>
+        <td><b>作者说这才是重点</b></td>
+      </tr>
+      <tr>
+        <td><b>7</b></td>
+        <td>那怎么办</td>
+        <td>「对于不可言说者，必须保持沉默」——<b>全书唯一一条没有子命题的主命题</b></td>
+        <td>落点，也是全部麻烦的起点</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>命题数</strong>：525（英文维基、Reference.org 等多源一致）／ 526（中国社会科学网中文来源）——<strong>两个数并存，见附录 D1</strong>。</p>
+  <div class="keybox">
+    <strong>「说与显示」（saying / showing）是贯穿全书的那根线</strong>：能被命题说出的，是事实；不能说出而只能<strong>显示</strong>自己的，是逻辑形式、伦理、价值、生命意义。整本书就是在这条线上做切割。
+  </div>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>五个核心论点</span><span class="caret">▾</span></h2>
+
+  <h3>论点一：世界是事实的总和，不是事物的总和</h3>
+  <p>这是全书的起点，也是它最反直觉的一步。</p>
+  <blockquote>
+    <p>「世界是事实的总和，而非事物的总和。」（1.1）</p>
+    <p>「对象的本质在于能够成为事态的组成部分。」（2.011）</p>
+    <p class="gloss"><span class="tag t-src">原书</span>（陈嘉映中译）</p>
+  </blockquote>
+  <p><strong>依据在哪</strong>：维特根斯坦的理由是——<strong>对象不能独立自存</strong>，它只能在与其他对象的关联中、作为事态的组成部分而存在。「一匹马」「一辆车」看似是纯粹的事物，但现实里我们见到的永远是在草原上奔跑的马、在路上走走停停的车。<strong>物总是在事中的物</strong>。<span class="tag t-rep">转述</span></p>
+  <p>这一步直接继承自弗雷格的<strong>语境原则</strong>——语词的意义由其在命题中的位置决定。<span class="tag t-rep">转述</span></p>
+
+  <h3>论点二：命题是事实的图像，它能描绘世界是因为共享逻辑形式</h3>
+  <p>这是全书最具独创性的部分。</p>
+  <blockquote>
+    <p>「事实的逻辑图像即思想。」（3）</p>
+    <p>「我们不能用命题来表现逻辑形式：逻辑形式反映在命题之中。」（4.121）</p>
+    <p>「<strong>能显示出来的东西，不能说。</strong>」（4.1212）</p>
+    <p class="gloss"><span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p><strong>机制</strong>：要描绘一个事实，图像必须以某种方式<strong>与它共有相同的逻辑结构</strong>。维特根斯坦自己说，这个想法来自他在报纸上读到的一则报道——<strong>巴黎一个法庭用玩具车和玩偶来重现车祸现场</strong>：模型通过结构性对应表现了真实的事故。<span class="tag t-rep">转述</span>（多源一致，但源的措辞有差异）</p>
+  <p><strong>「显示」是这个体系的枢纽，也是最难懂的一处</strong>：命题能<strong>说</strong>世界是什么样；但命题与世界的<strong>共同之处</strong>（逻辑形式）不能被任何命题说出——因为要说出它，你就得站到逻辑之外，即世界之外（4.12）。所以它只能<strong>显示</strong>自己。<span class="tag t-src">原书</span></p>
+
+  <h3>论点三：逻辑是重言式，它不是关于世界的知识</h3>
+  <blockquote>
+    <p>「逻辑命题是重言式。」（6.1）</p>
+    <p>「逻辑必须自己照看自己。」（转引自手稿 101，措辞可能与定稿不同）</p>
+    <p class="gloss"><span class="tag t-src">原书</span> <span class="tag t-rep">转述</span></p>
+  </blockquote>
+  <p><strong>后果很硬</strong>：逻辑不描述任何东西，因此不存在「逻辑对象」「逻辑常量」（5.4）。命题 4.31 的真值表被他用来把「TFTT」这类位模式直接映射到「If C then A」这样的句子——<strong>这是真值表作为语义学标准方法的早期确立</strong>。<span class="tag t-rep">转述</span></p>
+  <p>顺带推出一条对大问题有影响的话：<strong>没有先天为真的命题</strong>，<strong>只有逻辑必然性</strong>（6.37）。<span class="tag t-src">原书</span></p>
+
+  <h3>论点四：伦理与价值不可说——但这不是「它们不重要」，恰恰相反</h3>
+  <p>这是全书最容易被误读、也最要紧的一段。要点不是「伦理没意义」，而是<strong>「伦理不可能被命题抓住」</strong>。</p>
+  <blockquote>
+    <p>「世界的意义必在世界之外。」（6.41）</p>
+    <p>「因此，不可能有伦理命题。」（6.42）</p>
+    <p>「很清楚，伦理是不可被表达的。伦理是超验的。（伦理与美学是一回事。）」（6.421）</p>
+    <p>「如果善的意志或恶的意志改变世界，它只能改变世界的界限，而不能改变事实……幸福者的世界与不幸者的世界是不同的。」（6.43）</p>
+    <p>「死不是生命中的事件。死不是被经历过的。」（6.4311）</p>
+    <p>「世界是怎样的，不是神秘之物；<strong>世界存在，这才是神秘之物</strong>。」（6.44）</p>
+    <p class="gloss"><span class="tag t-src">原书</span>（原文经多源一致引用）</p>
+  </blockquote>
+  <p><strong>关键推论</strong>：价值不在事实世界里。所以善的意志<strong>改变不了任何事实</strong>，它只能改变<strong>世界的界限</strong>——用他的话说，世界「作为一个整体涨落」。这就是「幸福者的世界不同于不幸者的世界」的全部含义：<strong>不是他们遇到了不同的事，而是他们拥有不同的世界。</strong><span class="tag t-rep">转述</span></p>
+
+  <h3>论点五：作者本人说，这本书的要点是伦理的</h3>
+  <p>1919 年秋，维特根斯坦写信给奥地利期刊《Der Brenner》的主编 Ludwig von Ficker，希望发表手稿。信里有全书最关键的一段自我说明：</p>
+  <blockquote>
+    <p>「这本书的要点是伦理的。……我的作品由两部分组成：这里呈现的部分，加上我没有写出的全部。而<strong>恰恰是第二部分才是重要的</strong>。我的书可以说是从内部为伦理的领域划定了界限，而我确信这是划定那些界限的<strong>唯一严格</strong>的方式。简言之，我相信，当今天许多人只是在空谈时，我通过对之保持沉默，成功地把一切牢固地安置到位。」</p>
+    <p class="gloss">—— 1919 年致 von Ficker 信 <span class="tag t-src">原书</span>（信件原文，多源一致引用）</p>
+  </blockquote>
+  <p><strong>这段话是理解全书的那把钥匙</strong>：书中七十五条命题是「第一部分」（可说的）；「第二部分」是不可说的，<strong>它才是重点，而他选择了不写</strong>。</p>
+  <div class="keybox">
+    而且注意——<strong>它和罗素写的导言、和维也纳学派的理解，方向不同</strong>。罗素把 6.54 的「无意义」往「也许可以神秘地谈论伦理」的方向读；维也纳学派把它读成「反形而上学的科学宣言」。维特根斯坦本人对两者都不满（见上部 4.1）。
+  </div>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <p><strong>这本书的长度是陷阱</strong>：中文约六七十页，你可能以为一个下午能读完。它不是不能读完，是不能<strong>一次读懂</strong>——因为它是「结论的集合」，论证被整体省略了。作者自己的解释（韩林合归纳）：全书<strong>极度浓缩，通常只给结论不给论证</strong>；批评某观点时<strong>甚至不告诉你在批评谁</strong>；一些思想本身异乎寻常地艰深。<span class="tag t-rep">转述</span></p>
+
+  <h4>如果你是「想读」</h4>
+  <ol>
+    <li><strong>先读序言，再读 7，再读 6.4–6.522，最后才回到 1 从头读。</strong>理由：序言交代了这本书想干什么，7 是它的落点，6.4–6.522 是作者自认的重点。从 1 开始硬啃的人，绝大多数死在命题 4–5 的技术细节里，根本走不到他真正在说的地方。</li>
+    <li><strong>命题 5 与 6 的技术部分，第一遍允许自己「读过但没懂」。</strong>那里有真值表、N 算子、罗素悖论、重言式——真懂需要背景。<strong>你不需要它也能拿到这本书九成的东西。</strong></li>
+    <li><strong>给「不可说」分配最多注意力。</strong>这是全书唯一一个直接对你的人生起作用的部分，也是绝大多数读者读完后唯一还记得的部分。</li>
+    <li><strong>选译本</strong>：通行首选<strong>贺绍甲译</strong>（商务印书馆 1996，豆瓣 9.2 分／4615 人评价，是目前被读得最多的版本）；要术语精确与考据，用<strong>韩林合译</strong>（2013）；张申府 1927 年《名理论》是学术史价值，不适合当第一遍读物。⚠ 韩译本的出版社在不同来源里有冲突，见附录 D2。</li>
+    <li><strong>配一本导读</strong>。这本书的导读不是奢侈品——江怡的导读近 200 页，韩林合的《〈逻辑哲学论〉研究》超过 700 页。<span class="tag t-rep">转述</span>这个体量对比本身就说明问题。</li>
+    <li><strong>可以跳过什么</strong>：命题 4.0–5.5 之间的形式逻辑技术细节（除非你要专业研究）；5.5 段关于科学定律与概率的讨论；6.3 段关于牛顿力学的讨论。<strong>这些是给逻辑学者看的，不是给「想知道这本书说了什么」的人看的。</strong></li>
+  </ol>
+
+  <h4>如果你是「已读」</h4>
+  <p>重读时值得重估的是这三件事——每一项都在下部有专节：</p>
+  <ol>
+    <li><strong>6.54 那个自我指涉的坑</strong>：「理解我的人最终会认识到我的命题是无意义的」——如果全书命题都是无意义的，那句断言呢？这不是读者找茬，这是这本书结构上真实存在的裂缝，也是当代学界争论的主战场（resolute reading vs 传统解读）。</li>
+    <li><strong>「不可说」是不是被读成了「神秘主义」</strong>。江怡用张申府、冯友兰、洪谦的中国解读反驳了两种流行态度，主张<strong>对《逻辑哲学论》的中国解读是无需任何神秘主义的形而上学解读</strong>。<span class="tag t-rep">转述</span>如果你当年读出了「玄」，这一节值得看。</li>
+    <li><strong>图像论到底能不能成立</strong>。否定句怎么描绘？全称句怎么描绘？这个理论在技术上有标准反驳，维特根斯坦本人在《哲学研究》里也把它推翻了。</li>
+  </ol>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>争议与局限</span><span class="caret">▾</span></h2>
+
+  <h3>4.1 最大的误读，是它自己招来的</h3>
+  <p><strong>维也纳学派的读法</strong>：Schlick、Carnap、Waismann 把这本书当作<strong>反形而上学的科学宣言</strong>——凡不可经验证实的皆无意义。Carnap 称赞该书包含重要洞见，<strong>却鼓励人们忽略它结尾的语句</strong>。<span class="tag t-rep">转述</span></p>
+  <p><strong>维特根斯坦的反应</strong>：他回应 Schlick 说——</p>
+  <blockquote>
+    <p>「我无法想象 Carnap 竟如此彻底地误解了本书最后的语句，从而误解了整本书的根本构想。」</p>
+    <p class="gloss"><span class="tag t-src">原书</span>（经多源转引）</p>
+  </blockquote>
+  <p>还有一条流传很广的自述（⚠ 各来源措辞不一，作为转述处理）：</p>
+  <blockquote>
+    <p>「我不是学派的成员。我不是实证主义者。如果说有什么的话，我大概是相反的东西。」</p>
+    <p class="gloss"><span class="tag t-rep">转述</span></p>
+  </blockquote>
+  <p><strong>1929 年的公开纠正</strong>：在 Ogden 邀请下，他做了平生唯一一次「通俗」讲座，专门讲伦理学，目的之一就是纠正「《逻辑哲学论》是以实证主义、反形而上学态度写成」这个最流行也最严重的误解。<span class="tag t-rep">转述</span></p>
+  <p>讲演里的原话：</p>
+  <blockquote>
+    <p>「我的整体倾向是冲撞语言的边界，我相信所有曾试图写或谈伦理或宗教的人也是如此。<strong>这种对于我们笼子的壁墙的冲撞完全地、绝对地无望。</strong>……但那是人心的一种倾向的证供，这种倾向，我个人禁不住深深地尊重它，一辈子也不会嘲笑它。」</p>
+    <p class="gloss"><span class="tag t-src">原书</span>（《伦理学演讲》1929）</p>
+  </blockquote>
+  <div class="keybox">
+    <strong>这组对照是整本书最重要的一处张力</strong>：同一批语句，被读成了「价值问题毫无意义」，而作者的原意是「价值问题无法被说尽，而这种冲撞本身值得尊重」。
+  </div>
+
+  <h3>4.2 罗素的导言：帮了出版，帮错了理解</h3>
+  <p>罗素写导言是为帮助此书出版——当时维特根斯坦在哲学界无名，书又极难懂，罗素以自己的声望担保。但维特根斯坦认为这篇导言<strong>肤浅、误读了他的作品</strong>，尤其没抓住「该书命题本身是无意义的」。他一度坚持要英译本<strong>不带罗素的导言</strong>，剑桥大学出版社因此拒了这本书；1922 年最终由 Kegan Paul 出版德英对照本（含导言）。<span class="tag t-rep">转述</span></p>
+  <p>罗素的导言里其实提了一个很尖锐的观察：维特根斯坦自己的哲学在试图<strong>说出</strong>按该书标准不可说的东西——<strong>这个批评维特根斯坦深为不满，但它后来成了对实证主义纲领的标准反驳。</strong><span class="tag t-rep">转述</span></p>
+
+  <h3>4.3 那张梯子：全书最著名的自我指涉难题</h3>
+  <blockquote>
+    <p>「我的命题是这样起阐明作用的：理解我的人，最终会认识到它们是无意义的，当他借它们爬上去、越过它们之后。（他必须，可以说，在爬上去之后把梯子扔掉。）」</p>
+    <p class="gloss">—— 6.54 <span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p><strong>难题是</strong>：如果图像论正确，那么书里关于「语言与世界必须如何」的那些话，按它自己的标准就是无意义的。<strong>一本自称无意义的书，怎么能教给人东西？</strong>G. E. Moore 早年就感到这处困惑；罗素也提过。<span class="tag t-rep">转述</span></p>
+  <p><strong>当代学界的三种进路</strong>（Morris 2008 的归纳）<span class="tag t-rep">转述</span>：</p>
+  <table>
+    <thead><tr><th style="width:24%">进路</th><th>主张</th><th style="width:28%">代表</th></tr></thead>
+    <tbody>
+      <tr><td><b>不可言说真理观</b><br>（传统解读）</td><td>哲学陈述不能说，但借「说／显示」之别可以<b>显示</b>出来</td><td>Anscombe、Hacker、Pears、Malcolm</td></tr>
+      <tr><td><b>坚决式解读</b><br>（resolute / 新维特根斯坦）</td><td>6.54 是当真的：这些命题就是<b>无意义的</b>，作用是治疗性的——让你看到自己在试图说不可说的东西，然后放弃</td><td>Cora Diamond（1988《Throwing Away the Ladder》）、James Conant</td></tr>
+      <tr><td><b>全无真理观</b></td><td>该书命题同时含混地既真又无意义</td><td>（Morris 归纳的第三种）</td></tr>
+    </tbody>
+  </table>
+  <p><strong>坚决式解读的立场很硬</strong>：它反对「有些东西不可说但可以显示」这种<strong>暗示存在不可言说特征</strong>的读法，主张「显示」论述的实际功能是在<strong>逻辑与描述性话语之间画出鲜明对比</strong>。<span class="tag t-rep">转述</span></p>
+  <div class="keybox">
+    这场争论至今没有定论，而它要解决的正是这本书的核心难题。<strong>如果你只记住一条：6.54 不是修辞上的谦虚，它是这本书的结构性裂缝。</strong>
+  </div>
+
+  <h3>4.4 图像论的技术反驳（这本书最实在的弱点）</h3>
+  <p>这是不依赖解释立场、直接针对理论本身的反驳。<span class="tag t-rep">转述</span></p>
+  <ul>
+    <li><strong>否定句问题</strong>：一个句子怎么描绘「事态不发生」？</li>
+    <li><strong>全称句问题</strong>：「所有天鹅都是白的」怎么被描绘？图像隐喻在这里被硬撑。</li>
+    <li><strong>逻辑形式问题</strong>：句子与实在共享的逻辑形式<strong>本身不可被描绘</strong>（要描绘它就需要元语言）。维特根斯坦的回答是「逻辑形式被显示」，批评者认为这是<strong>回避</strong>。</li>
+  </ul>
+  <p><strong>最终裁决来自作者自己</strong>：后期维特根斯坦在《哲学研究》里<strong>推翻了图像论</strong>——开头就批判「奥古斯丁式的语言图像」（词命名对象、句子组合名称），而他早年自己的观点正是靶子之一。<span class="tag t-rep">转述</span>他给出的理由包括：图像论无法解释疑问句、命令句、感叹句（除非把它们都人为还原为陈述句）；它把意义当作词与世界之间的静态关系，忽略了实际使用语境。</p>
+
+  <h3>4.5 局限：它对「不可说」的处理留了一个大洞</h3>
+  <p><strong>6.522 说「确实有不可表达的东西。它显示自身；它是神秘之物」。但「它」是什么？这本书没有说。</strong></p>
+  <p>这个洞的直接后果是：<strong>「凡不可说必须保持沉默」被当成了万能的挡箭牌</strong>。中文语境里这一点尤其明显——这句箴言流传之广，远超这本书本身被读懂的程度。<span class="tag t-inf">推断</span></p>
+  <p><strong>而作者的实际立场比这复杂得多</strong>：他的意思不是「价值问题不许谈」——1929 年他自己就在公开讲伦理，而且说这种冲撞值得深深尊重。<strong>「必须沉默」是逻辑结论，不是行为禁令。</strong><span class="tag t-inf">推断</span></p>
+
+  <h3>4.6 读者反对意见（与学者批评区分开）</h3>
+  <p>以下来自真实读者的反应分布，用来证明「读者怎么读它」，而不是「书里写了什么」：</p>
+  <ul>
+    <li><strong>豆瓣 9.2 分（4615 人评价，商务印书馆 1996 版）</strong>；得到电子书 4.8 分（24 个评分）。<span class="tag t-rep">转述</span></li>
+    <li><strong>最主流的反应是「读不懂但大受震撼」</strong>。有读者说「基本上只对前 60 页有感」；王蒙的「读点儿费劲的书」书单把它列进去，引一位读者的评价是「费老大劲也读不明白（难受）」。<span class="tag t-rep">转述</span></li>
+    <li><strong>有一条反对意见值得注意</strong>：认为把这本书当「哲学入门」推荐是不负责的——它的确薄，但难点不在长度。<span class="tag t-rep">转述</span><span class="tag t-inf">推断</span></li>
+  </ul>
+  <p><strong>读者反应里最值得引用的一句</strong>（来自一位读者）：这本书读起来的体验是「<strong>从绝对、纯粹逻辑的冰原上返回粗糙地面</strong>」。<span class="tag t-rep">转述</span></p>
+  <p><span class="tag t-inf">推断</span>我认为这句话说对了一件事：<strong>这本书的价值可能不在它的答案，而在它逼你走了一遍那条路，然后你自己下来了。</strong></p>
+</section>
+
+<section id="s5">
+  <h2><span class="num">1</span><span>序言与结构：这本书为什么长这样</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答</strong>：一本哲学书为什么写成了七十五条格言？</p>
+  <p>背景是：维特根斯坦在写完后认为<strong>这本书已经最终解决了一切哲学问题</strong>。他给罗素的信里写：「我相信我已经最终解决了我们的问题」——并补一句：「这听上去可能很傲慢，但我不得不这样认为。」他还觉得书写得「像水晶一样清晰」，同时认为「没人能理解」，因为「它推翻了我们所有关于真、类、数的理论以及所有其他理论」。<span class="tag t-rep">转述</span>（陈嘉映转述，多源一致）</p>
+  <p><strong>关于「为什么不给论证」</strong>：罗素建议他补上论证而不只是陈述观点，他的回答是——那会破坏这本书的美，<strong>就像用脏手去碰一朵花</strong>。<span class="tag t-rep">转述</span></p>
+  <p><strong>他后来的自我评价</strong>（1949 年对 Maurice O'Connor Drury 说的）：</p>
+  <blockquote>
+    <p>「《逻辑哲学论》中的每一句话都应被视为一个章标题，需要进一步的阐发。我现在的风格完全不同；我在努力避免那个错误。」</p>
+    <p class="gloss"><span class="tag t-src">原书</span>（经多源转引）</p>
+  </blockquote>
+  <h4>可疑之处</h4>
+  <ul>
+    <li>他同时认为「没人能理解」和「像水晶一样清晰」——这不矛盾，但<strong>说明他对读者门槛的判断是清醒的</strong>。<span class="tag t-inf">推断</span></li>
+    <li><strong>这本书的形式与内容是一体的</strong>：命题 7 下面什么都不写，是因为「话已说到必须沉默处，再喋喋不休就很奇怪」。<span class="tag t-rep">转述</span>（陈嘉映）——<strong>形式本身是论证的一部分</strong>，这一点在读的时候要意识到。</li>
+  </ul>
+</section>
+
+<section id="s6">
+  <h2><span class="num">2</span><span>命题 1–2：世界是事实的总和</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答</strong>：世界由什么构成？</p>
+  <p><strong>论证链</strong>（<span class="tag t-src">原书</span>，命题文本多源一致）：</p>
+  <table>
+    <thead><tr><th style="width:12%">编号</th><th>命题</th></tr></thead>
+    <tbody>
+      <tr><td class="propnum">1</td><td>世界是一切实际情况。</td></tr>
+      <tr><td class="propnum">1.1</td><td>世界是事实的总和，而非事物的总和。</td></tr>
+      <tr><td class="propnum">1.11</td><td>世界为事实所规定，为这些就是一切事实所规定。</td></tr>
+      <tr><td class="propnum">1.13</td><td>逻辑空间里的诸事实即是世界。</td></tr>
+      <tr><td class="propnum">2</td><td>实际情况，即事实，是事态的存在。</td></tr>
+      <tr><td class="propnum">2.01</td><td>事态是对象（物项、事物）的一种结合。</td></tr>
+      <tr><td class="propnum">2.02</td><td>对象是简单的。</td></tr>
+      <tr><td class="propnum">2.021</td><td>对象构成世界的实体。因此它们不能是复合的。</td></tr>
+    </tbody>
+  </table>
+  <p><strong>这一组的实际功能</strong>：它是为图像论<strong>准备本体论地基</strong>的。逻辑必须是确定的，因此分析必须能到达不再可分的终点——那就是「对象」。<span class="tag t-inf">推断</span></p>
+  <h4>可疑之处</h4>
+  <ol>
+    <li><strong>「对象是简单的」是一个断言，不是结论。</strong>维特根斯坦从没给出过任何「简单对象」的实例，也从未说明如何识别它们。他后来（在《哲学研究》中）也放弃了这一设定。<span class="tag t-inf">推断</span></li>
+    <li><strong>5.5563 有一处让整本书显得自相矛盾的话</strong>：「我们日常语言的所有命题，实际上<strong>正如它们本来的样子，在逻辑上完全井然有序</strong>。」（大意）<span class="tag t-rep">转述</span>——这句话与全书「分析出理想逻辑形式」的工程方向有张力：如果日常语言本身就没问题，那分析要干什么？这一张力在后期思想里被放大了。</li>
+  </ol>
+</section>
+
+<section id="s7">
+  <h2><span class="num">3</span><span>命题 3–4：图像论与「说／显示」</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答</strong>：语言为什么能关于世界？</p>
+  <p><strong>核心命题</strong>（<span class="tag t-src">原书</span>）：</p>
+  <table>
+    <thead><tr><th style="width:12%">编号</th><th>命题</th></tr></thead>
+    <tbody>
+      <tr><td class="propnum">3</td><td>事实的逻辑图像即思想。</td></tr>
+      <tr><td class="propnum">4</td><td>思想是有意义的命题。</td></tr>
+      <tr><td class="propnum">4.12</td><td>命题能表现整个实在，但不能表现它为了能表现实在而必须与实在共有的东西——<b>逻辑形式</b>。为了能表现逻辑形式，我们必须能把自己连同命题一起置于逻辑之外，即世界之外。</td></tr>
+      <tr><td class="propnum">4.121</td><td>命题不能表现逻辑形式：它<b>反映在命题之中</b>。……命题<b>显示</b>实在的逻辑形式。命题把它<b>展示</b>出来。</td></tr>
+      <tr><td class="propnum">4.1212</td><td><b>能显示出来的东西，不能说。</b></td></tr>
+      <tr><td class="propnum">4.122</td><td>……这些<b>内部属性与关系</b>不可能借助命题来断言其存在：它们<b>在表现相关事态、涉及相关对象的命题中自行显露</b>。</td></tr>
+    </tbody>
+  </table>
+  <p><strong>图像论的机制</strong>：命题之所以能描绘世界，是因为它与被描绘的事实<strong>共享逻辑形式</strong>。用书里的比喻，语言表达可视为一种<strong>几何投影</strong>——语言是变化的投影形式，而表达的<strong>逻辑结构</strong>是不变的几何关系。<span class="tag t-rep">转述</span></p>
+  <p><strong>「说／显示」的分工</strong>（<span class="tag t-src">原书</span>）：</p>
+  <ul>
+    <li><strong>能说</strong>：世界是什么样（经验事实）。</li>
+    <li><strong>只能显示</strong>：逻辑形式；命题与其意义的关系；以及（延伸出去）伦理、价值、生命意义。</li>
+  </ul>
+  <p><strong>为什么这条线是「逻辑的」而不是「神秘的」</strong>：主张是——任何语言都要依赖逻辑形式，所以我们<strong>无法用语言跳出语言</strong>去谈它。<span class="tag t-rep">转述</span>这是这条线的严格理由。是否成立，取决于你是否接受 4.12 的那个论证。</p>
+  <h4>可疑之处</h4>
+  <ul>
+    <li><strong>它是循环的</strong>：要论证「逻辑形式只能显示」，用到的恰恰是「语言无法表现自身的逻辑形式」这一命题——而这个命题本身就在试图表现逻辑形式。<span class="tag t-inf">推断</span>这正是 6.54 那个难题的根源。</li>
+    <li><strong>4.1212 那条短句是全书被引最多、也最含糊的一句。</strong>如果真按字面严格执行，这本书整个第 4 节（包括 4.1212 自己）都不能写。<span class="tag t-inf">推断</span></li>
+  </ul>
+</section>
+
+<section id="s8">
+  <h2><span class="num">4</span><span>命题 5–6：逻辑与真值函项</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答</strong>：命题如何组合？逻辑的极限在哪？</p>
+  <p><strong>技术骨架</strong>（<span class="tag t-src">原书</span>）：</p>
+  <table>
+    <thead><tr><th style="width:12%">编号</th><th>命题</th></tr></thead>
+    <tbody>
+      <tr><td class="propnum">5</td><td>命题是基本命题的真值函项。（基本命题是其自身的真值函项。）</td></tr>
+      <tr><td class="propnum">5.3</td><td>所有命题都是对基本命题进行真值运算的结果。</td></tr>
+      <tr><td class="propnum">5.4</td><td>这里可以看出，不存在「逻辑对象」「逻辑常量」（在弗雷格与罗素的意义上）。</td></tr>
+      <tr><td class="propnum">5.6</td><td><b>我的语言的界限意谓我的世界的界限。</b></td></tr>
+      <tr><td class="propnum">6</td><td>真值函项的一般形式是 [p, ξ, N(ξ)]。这是命题的一般形式。</td></tr>
+      <tr><td class="propnum">6.37</td><td>不存在一件事因为另一件事发生了就必须发生的必然性。<b>只有逻辑必然性。</b></td></tr>
+    </tbody>
+  </table>
+  <p><strong>这一部分的历史地位</strong>：真值表在这里被系统地用作逻辑语义工具；5.101 可能是史上第一次把「TFTT」这类位模式直接映射到具体句子。这部分是对弗雷格、罗素、怀特海工作的<strong>实质推进</strong>，并且已经得到实际应用。<span class="tag t-rep">转述</span>（李国山）</p>
+  <p><strong>顺便提一个常被引用的评价</strong>：这本书常被误认为是一本逻辑学著作。它的核心关切其实不是逻辑学，而是<strong>为思想的表达划界</strong>——逻辑只是那条边界线在技术上的画法。<span class="tag t-rep">转述</span>（中国社会科学网）</p>
+  <h4>可疑之处</h4>
+  <ul>
+    <li><strong>N(ξ) 这个一般形式是否真的穷尽了所有命题类型</strong>，是技术争论点；Ramsey 当年就提过对「一般命题」与概率处理的质疑。<span class="tag t-rep">转述</span></li>
+    <li><strong>「只有逻辑必然性」这一条代价很大</strong>：它取消了因果必然性这一我们日常与科学都倚重的东西。<span class="tag t-inf">推断</span></li>
+  </ul>
+</section>
+
+<section id="s9">
+  <h2><span class="num">5</span><span>命题 5.6 段：唯我论与「形而上学主体」</span><span class="caret">▾</span></h2>
+  <p><strong>为什么单列这一节</strong>：它是这本书被误读最集中的地方之一，也是它从「逻辑」过渡到「伦理」的那道桥。</p>
+  <p><strong>命题链</strong>（<span class="tag t-src">原书</span>）：</p>
+  <table>
+    <thead><tr><th style="width:12%">编号</th><th>命题</th></tr></thead>
+    <tbody>
+      <tr><td class="propnum">5.6</td><td>我的语言的界限意谓我的世界的界限。</td></tr>
+      <tr><td class="propnum">5.61</td><td>……我们不能想我们无法想的东西：因此我们也不能说我们不能想的东西。</td></tr>
+      <tr><td class="propnum">5.62</td><td>这一评述为「唯我论在多大程度上是真理」这个问题提供了钥匙。因为唯我论者所意谓的东西<b>完全正确</b>，只是<b>它不能被说出来，只能显示自身</b>。世界是我的世界，这显示在：语言的界限（唯有我能理解的那种语言）意谓着我的世界的界限。</td></tr>
+      <tr><td class="propnum">5.621</td><td>世界与生命是一回事。</td></tr>
+      <tr><td class="propnum">5.63</td><td>我是我的世界。（微观宇宙。）</td></tr>
+      <tr><td class="propnum">5.631</td><td>思维着、表象着的主体：不存在这样的东西。……</td></tr>
+      <tr><td class="propnum">5.632</td><td><b>主体不属于世界，而是世界的一个界限。</b></td></tr>
+      <tr><td class="propnum">5.633</td><td>世界之中何处能注意到一个形而上学主体？……<b>但你实际上并没有看见眼睛。</b>从视野中的任何东西也不能推出它是被一只眼睛看到的。</td></tr>
+      <tr><td class="propnum">5.641</td><td>……哲学中的「我」不是人，不是人的身体，也不是心理学所处理的人的灵魂，而是<b>形而上学主体，是界限——不是世界的一部分</b>。</td></tr>
+    </tbody>
+  </table>
+  <p><strong>这几个命题在说什么</strong>（<span class="tag t-rep">转述</span>）：存在一个「形而上学主体」，它比任何被经验到的对象都更基本，但它<strong>不是世界中的一件东西</strong>——它是世界得以呈现的那个<strong>界限</strong>。由此「世界是我的世界」。</p>
+  <p><strong>5.64 的那个断言很关键</strong>（<span class="tag t-src">原书</span>）：</p>
+  <blockquote>
+    <p>「严格贯彻到底的唯我论与纯粹的实在论是一致的。唯我论的『我』缩小为一个无广延的点，而与它相配的实在始终存在。」</p>
+  </blockquote>
+  <p><strong>这一点最容易被读成悖论</strong>。<span class="tag t-rep">转述</span>理解方式是：一旦把那个「我」从世界里彻底清出去（不再是世界中的一件东西），剩下的就只有实在本身——<strong>所以彻底的唯我论翻转成了实在论</strong>。</p>
+  <h4>可疑之处</h4>
+  <ul>
+    <li><strong>眼睛的类比（5.633）很动人，但它不是论证。</strong>它说明「主体不能是世界的一部分」，而没有说明「存在这样一个主体」。从「我们看不见眼睛」推不出「有一个看不见的眼睛」。<span class="tag t-inf">推断</span>这一处被多方指为全书论证最薄的地方。</li>
+    <li><strong>「我」的地位在全书里从未被安置好</strong>：它既不属于世界，又是世界的界限——这是一个体系内的悬空点。<span class="tag t-inf">推断</span></li>
+  </ul>
+</section>
+
+<section id="s10">
+  <h2><span class="num">6</span><span>命题 6.4–6.54：伦理、神秘与沉默（★ 作者说这才是重点）</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答</strong>：那什么是最重要的？</p>
+  <p><strong>完整命题链</strong>（<span class="tag t-src">原书</span>，多源逐字一致）：</p>
+  <table>
+    <thead><tr><th style="width:13%">编号</th><th style="width:44%">原文（Pears/McGuinness 或 Ogden 英译）</th><th>中译要点</th></tr></thead>
+    <tbody>
+      <tr><td class="propnum">6.4</td><td>All propositions are of equal value.</td><td>一切命题都具有同等价值</td></tr>
+      <tr><td class="propnum">6.41</td><td>The sense of the world must lie outside the world. In the world everything is as it is and happens as it does happen. In it there is no value—and if there were, it would be of no value. …… What makes it non-accidental cannot lie in the world, for otherwise this would again be accidental. It must lie outside the world.</td><td>世界的意义必在世界之外。在世界之中，一切如其所是、如其所发生。其中没有价值——即便有，也是无价值的。……使一切成为非偶然的东西不能在世界之内，否则它又会是偶然的。它必在世界之外</td></tr>
+      <tr><td class="propnum">6.42</td><td>Hence also there can be no ethical propositions. Propositions cannot express anything higher.</td><td>因此也不可能有伦理命题。命题不能表达任何更高的东西</td></tr>
+      <tr><td class="propnum">6.421</td><td>It is clear that ethics cannot be expressed. Ethics is transcendental. (<b>Ethics and aesthetics are one.</b>)</td><td>很清楚，伦理不可被表达。伦理是超验的。（<b>伦理与美学是一回事</b>）</td></tr>
+      <tr><td class="propnum">6.422</td><td>……ethics has nothing to do with punishment and reward in the ordinary sense. …… There must be some sort of ethical reward and ethical punishment, but this must lie in the action itself.</td><td>伦理与通常意义的奖惩无关。……必定有某种伦理的奖与罚，但它必在行动自身之中</td></tr>
+      <tr><td class="propnum">6.423</td><td>Of the will as the subject of the ethical we cannot speak. And the will as a phenomenon is only of interest to psychology.</td><td>作为伦理主体的意志，我们不能谈论。作为现象的意志只对心理学有意义</td></tr>
+      <tr><td class="propnum">6.43</td><td>If good or bad willing changes the world, it can only change the <b>limits</b> of the world, not the facts; not the things that can be expressed in language. In brief, the world must thereby become quite another. It must so to speak wax or wane as a whole. <b>The world of the happy is quite another than that of the unhappy.</b></td><td>如果善的或恶的意志改变世界，它只能改变世界的<b>界限</b>，不能改变事实……世界必然因此成为完全不同的另一个，可以说它作为整体涨落。<b>幸福者的世界与不幸者的世界是完全不同的</b></td></tr>
+      <tr><td class="propnum">6.4311</td><td><b>Death is not an event of life. Death is not lived through.</b> If by eternity is understood not endless temporal duration but timelessness, then he lives eternally who lives in the present.</td><td><b>死不是生命中的事件。死不是被经历过的。</b>若把永恒理解为无时间性而非无尽的时间延续，则活在当下者永恒地活着</td></tr>
+      <tr><td class="propnum">6.432</td><td>How the world is, is completely indifferent for what is higher. <b>God does not reveal himself in the world.</b></td><td>世界如何，对于更高的东西完全无关紧要。<b>上帝不在世界中显现自身</b></td></tr>
+      <tr><td class="propnum">6.44</td><td><b>Not how the world is, is the mystical, but that it is.</b></td><td><b>世界是怎样的，不是神秘之物；世界存在，这才是神秘之物</b></td></tr>
+      <tr><td class="propnum">6.45</td><td>The contemplation of the world sub specie aeterni is its contemplation as a limited whole. <b>The feeling of the world as a limited whole is the mystical feeling.</b></td><td>以永恒之相静观世界，就是把它作为有限的整体来静观。<b>把世界感受为一个有限的整体，这就是神秘之感</b></td></tr>
+      <tr><td class="propnum">6.5</td><td>For an answer which cannot be expressed the question too cannot be expressed. <b>The riddle does not exist.</b> If a question can be put at all, then it can also be answered.</td><td>对一个不能表达的答案，问题也不能被表达。<b>谜不存在。</b>一个问题若能提出，也就能被回答</td></tr>
+      <tr><td class="propnum">6.51</td><td>Scepticism is not irrefutable, but palpably senseless, if it would doubt where a question cannot be asked.</td><td>怀疑论不是不可反驳的，而是明显无意义的——如果它在不能提问的地方进行怀疑</td></tr>
+      <tr><td class="propnum">6.52</td><td>We feel that even if all possible scientific questions be answered, the problems of life have still not been touched at all. Of course there is then no question left, and just this is the answer.</td><td>我们觉得，即使所有可能的科学问题都得到解答，人生的问题仍丝毫未被触及。当然，那时已没有问题留下，而这正是答案</td></tr>
+      <tr><td class="propnum">6.521</td><td><b>The solution of the problem of life is seen in the vanishing of this problem.</b></td><td><b>人生问题的解决，在于这个问题的消失</b></td></tr>
+      <tr><td class="propnum">6.522</td><td><b>There is indeed the inexpressible. This shows itself; it is the mystical.</b></td><td><b>确实有不可表达的东西。它显示自身；它是神秘之物</b></td></tr>
+      <tr><td class="propnum">6.53</td><td>The right method of philosophy would be this. To say nothing except what can be said, i.e. the propositions of natural science…… and then always, when someone else wished to say something metaphysical, to demonstrate to him that he had given no meaning to certain signs in his propositions.</td><td>哲学的正确方法如下：除了可说的东西，即自然科学的命题，什么也不说；然后每当别人想说形而上学的东西时，就向他指明：他对他的命题中的某些记号没有给出含义</td></tr>
+      <tr><td class="propnum">6.54</td><td>My propositions are elucidatory in this way: he who understands me finally recognizes them as <b>senseless</b>, when he has climbed out through them, on them, over them. (<b>He must so to speak throw away the ladder, after he has climbed up on it.</b>) He must surmount these propositions; then he sees the world rightly.</td><td>我的命题是这样起阐明作用的：理解我的人最终会认识到它们是<b>无意义的</b>，当他借它们爬上去、越过它们之后。（<b>他必须，可以说，在爬上去之后把梯子扔掉。</b>）他必须超越这些命题；然后他就能正确地看世界</td></tr>
+    </tbody>
+  </table>
+  <p><strong>这一部分的三条主线</strong>（<span class="tag t-rep">转述</span>）：</p>
+  <ol>
+    <li><strong>价值不在世界里</strong>→ 因此伦理、美学、宗教不可能被命题表达（6.4–6.423）。伦理的奖惩只能在行动自身之中——不是外在后果。</li>
+    <li><strong>意志只能改变世界的界限，不能改变事实</strong>→ 所以「幸福者与不幸者的世界不同」不是关于遭遇，而是关于<strong>整体</strong>。这是全书最有实践意味的一句话。</li>
+    <li><strong>神秘之物是「世界存在」这件事本身，而不是「世界如何」</strong>（6.44）→ 也就是说，可以被回答的问题（世界如何）不是神秘的；不能被回答的（世界为何存在）才是。6.5 接着给出最硬的推论：<strong>谜不存在</strong>——不能表达的答案对应不能表达的问题。</li>
+  </ol>
+  <h4>关于 6.522 的一处翻译分歧（值得知道）</h4>
+  <p><span class="tag t-rep">转述</span></p>
+  <ul>
+    <li><strong>Ogden 1922</strong>：「There is indeed the inexpressible. This shows itself; it is the mystical.」（<strong>单数</strong>，且用 <strong>shows</strong>）</li>
+    <li><strong>Pears/McGuinness 1961</strong>：「There are, indeed, things that cannot be put into words. They make themselves manifest. They are what is mystical.」（<strong>复数</strong>，且用 <strong>make themselves manifest</strong>）</li>
+  </ul>
+  <p>有论者指出：德文原文 <em>Es gibt allerdings Unaussprechliches. Dies zeigt sich, es ist das Mystische</em> 用的是<strong>单数</strong>、动词是 <strong>zeigt（显示）</strong>，因此 Ogden 更贴近原文；而 Pears/McGuinness 的复数与「自行显现」<strong>引入了「存在某些不可言说之物，它们能以某种方式向我们显现自身」这一解读</strong>——而这恰恰是坚决式解读所反对的。<span class="tag t-rep">转述</span></p>
+  <div class="keybox">
+    <strong>这条分歧很重要</strong>：它意味着<strong>一个著名的英译本身带了一个解释立场</strong>。如果你读的是从 Pears/McGuinness 转译的中文（贺绍甲即以此为底本），你接受的可能不只是文本，还有一个解读。
+  </div>
+  <h4>可疑之处</h4>
+  <ul>
+    <li><strong>6.421 那句括注「伦理与美学是一回事」</strong>全书没有展开，是一个悬空的等式。<span class="tag t-inf">推断</span></li>
+    <li><strong>6.51 把怀疑论判为「明显无意义」</strong>依赖「有意义＝能提出可回答的问题」这一前提——而这一点本身不是自明的。<span class="tag t-inf">推断</span></li>
+    <li><strong>6.53 提出的「正确方法」是一个极其严苛的纲领</strong>：除了自然科学命题什么都不说，遇到形而上学家就向他指出他「没有给某些记号赋予含义」。如果严格执行，<strong>哲学就只剩下语法检查</strong>。这与作者自己写了整整一本关于不可说的书，是同一个自我指涉难题的另一面。<span class="tag t-inf">推断</span></li>
+  </ul>
+</section>
+
+<section id="s11">
+  <h2><span class="num">7</span><span>命题 7 与梯子：这本书到底在说什么</span><span class="caret">▾</span></h2>
+  <p><strong>放在最后单独说，因为它不是「一章」，而是全书要你做的那个动作。</strong></p>
+  <blockquote>
+    <p><span class="propnum">7</span> <strong>对于不可言说者，必须保持沉默。</strong></p>
+    <p class="gloss">德文原文：<em>Wovon man nicht sprechen kann, darüber muss man schweigen.</em></p>
+  </blockquote>
+  <p><strong>它是全书唯一没有子命题的主命题</strong>——下面一片空白。<span class="tag t-src">原书</span></p>
+  <p><strong>它至少有三个层面，读者常常只拿到第一个</strong>（<span class="tag t-inf">推断</span>）：</p>
+  <table>
+    <thead><tr><th style="width:16%">层面</th><th>内容</th><th style="width:26%">谁常停在这里</th></tr></thead>
+    <tbody>
+      <tr><td><b>逻辑的</b></td><td>语言能表达的只有事实；越界就会产生无意义的伪命题</td><td>逻辑学者、实证主义者</td></tr>
+      <tr><td><b>伦理的</b></td><td>最重要的东西（价值、生命意义、世界的存在）无法被说尽，只能<b>在沉默中被保持</b></td><td>作者本人</td></tr>
+      <tr><td><b>行为的</b>（⚠ 最易滑向滥用）</td><td>「不可说」被用作拒绝讨论一切价值问题的挡箭牌</td><td>大量流行引用</td></tr>
+    </tbody>
+  </table>
+  <div class="warnbox">
+    <strong>第三层是误读，而且作者明确反对。</strong>1929 年他做伦理学讲座时说得很清楚：这种对语言边界的冲撞<strong>无望</strong>，但它「是人心的倾向的证供」，他「深深地尊重它，一辈子也不会嘲笑它」。<span class="tag t-src">原书</span>
+  </div>
+  <p><strong>所以命题 7 的准确读法</strong>（<span class="tag t-inf">推断</span>）：它不是「不许谈价值」，而是<strong>「价值不可能被命题穷尽地谈」</strong>。沉默不是禁止，是<strong>一种承认</strong>。</p>
+  <div class="keybox">
+    <strong>最后一件事：这本书要你做的事，是「丢掉梯子」。</strong>6.54 的字面意思是——你用它爬上去，然后放手。<strong>书本身不是答案，是脚手架。</strong>这也是为什么它薄得反常，却难懂得出奇：它要求你自己走完那段路。
+  </div>
+</section>
+
+<section id="s12">
+  <h2><span class="num">A</span><span>金句摘录</span><span class="caret">▾</span></h2>
+  <p style="color:var(--ink3);font-size:13px">⚠ 本节所有德／英原文均经公开来源核对（多源一致），但<strong>中译措辞来自不同中译本，我无法核对页码</strong>。</p>
+  <table>
+    <thead><tr><th>引文</th><th style="width:24%">出处／语境</th><th style="width:14%">可信度</th></tr></thead>
+    <tbody>
+      <tr><td>凡能够说的，都能够说清楚；凡不能谈论的，就应该保持沉默。</td><td>序言</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>这本书将为思想划界，或者不如说——不是为思想，而是为思想的表达划界。</td><td>序言</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>世界是事实的总和，而非事物的总和。</td><td>1.1</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>对象是简单的。</td><td>2.02</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>事实的逻辑图像即思想。</td><td>3</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>能显示出来的东西，不能说。</td><td>4.1212</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>我的语言的界限意谓我的世界的界限。</td><td>5.6</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>主体不属于世界，而是世界的一个界限。</td><td>5.632</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>严格贯彻到底的唯我论与纯粹的实在论是一致的。</td><td>5.64</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>世界的意义必在世界之外。</td><td>6.41</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>伦理是超验的。（伦理与美学是一回事。）</td><td>6.421</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>幸福者的世界与不幸者的世界是完全不同的。</td><td>6.43</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>死不是生命中的事件。死不是被经历过的。</td><td>6.4311</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>上帝不在世界中显现自身。</td><td>6.432</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>世界是怎样的，不是神秘之物；世界存在，这才是神秘之物。</td><td>6.44</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>谜不存在。</td><td>6.5</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>确实有不可表达的东西。它显示自身；它是神秘之物。</td><td>6.522</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>他必须，可以说，在爬上去之后把梯子扔掉。</td><td>6.54</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>对于不可言说者，必须保持沉默。</td><td>7</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>我的作品由两部分组成：这里呈现的部分，加上我没有写出的全部。而恰恰是第二部分才是重要的。</td><td>1919 年致 von Ficker 信</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>这种对于我们笼子的壁墙的冲撞完全地、绝对地无望。</td><td>《伦理学演讲》1929</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>《逻辑哲学论》中的每一句话都应被视为一个章标题，需要进一步的阐发。</td><td>1949 年对 Drury 语</td><td><span class="tag t-src">原书</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s13">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <h4>直接相关</h4>
+  <ul>
+    <li><strong>《哲学研究》（Philosophical Investigations, 1953，遗著）</strong>——维特根斯坦自己推翻《逻辑哲学论》的地方。开篇即批判「词命名对象」的图像，那正是他早年的靶子。<strong>要理解《逻辑哲学论》的限度，这是最权威的一本。</strong></li>
+    <li><strong>《伦理学演讲》（A Lecture on Ethics, 1929，1965 年发表）</strong>——<strong>本书最该配的一篇短文</strong>。他在这里用第一人称解释「冲撞语言边界」是什么体验，包括「我惊愕于世界的存在」。篇幅极短，价值极高。</li>
+    <li><strong>《名理论》张申府译（1927）／1988 陈启伟校订版</strong>——第一个中文译本，书名古奥典雅。学术史价值高于阅读价值。</li>
+    <li><strong>韩林合译《逻辑哲学论》＋ 韩林合《〈逻辑哲学论〉研究》</strong>——中文学界公认最深入的文本工作，研究专著超 700 页。<span class="tag t-rep">转述</span></li>
+  </ul>
+  <h4>同一问题的其他路径</h4>
+  <ul>
+    <li><strong>《文化与价值》（Culture and Value）</strong>——维特根斯坦的私人笔记，能看到他在哲学之外的关切（宗教、音乐、犹太身份）。</li>
+    <li><strong>M. A. Numminen《The Tractatus Suite》（1989）／Péter Forgács《Wittgenstein Tractatus》（1992）</strong>——这本书在艺术界的两个真实回声：一个是把命题谱成音乐，一个是拍成 32 分钟影片。<span class="tag t-rep">转述</span></li>
+  </ul>
+  <h4>有助于批判性重读</h4>
+  <ul>
+    <li><strong>Cora Diamond《Throwing Away the Ladder》（1988, <em>Philosophy</em> 63(243): 5–27）</strong>——坚决式解读的奠基文章。<strong>要理解 6.54 的争论，从这里开始。</strong></li>
+    <li><strong>Alice Crary &amp; Rupert Read 编《The New Wittgenstein》（2000, Routledge）</strong>——「新维特根斯坦」解读的论文合集。</li>
+    <li><strong>P. M. S. Hacker《Was He Trying to Whistle It?》</strong>（收入《The New Wittgenstein》）——<strong>坚决式解读的头号对手</strong>，代表「不可言说真理观」。想知道争论两边怎么打，读这两篇对照。</li>
+    <li><strong>Oskari Kuusela《Nonsense and Clarification in the Tractatus》</strong>——试图同时保留两种解读的要点。</li>
+    <li><strong>江怡《对〈逻辑哲学论〉中维特根斯坦神秘主义的中国理解》</strong>——用张申府、冯友兰、洪谦的中文解读，反驳「经典不可说论解读」与「治疗性解读」两种流行态度。<strong>中文读者最该看的一篇。</strong></li>
+  </ul>
+</section>
+
+<section id="s14">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>完整清单（含链接、检索时间、每条来源定位与手检可信度、交叉验证记录表、检索盲区）见同目录 <strong><code>逻辑哲学论-来源清单.md</code></strong>。此处仅列主力来源：</p>
+  <table>
+    <thead><tr><th style="width:38%">来源</th><th style="width:16%">类型</th><th>主要提供</th></tr></thead>
+    <tbody>
+      <tr><td>Stanford Encyclopedia of Philosophy · Wittgenstein</td><td>学术百科</td><td>七主命题双译本对照、出版史、罗素导言争议</td></tr>
+      <tr><td>英文维基百科 · Tractatus Logico-Philosophicus</td><td>百科</td><td>结构、525 条命题、接受史、译本谱系、三种解读进路</td></tr>
+      <tr><td>Wikisource · Tractatus（1922 Ogden 版全文）</td><td>原始文本</td><td>6.4–6.54 段全文、6.422–6.4321 逐条</td></tr>
+      <tr><td>Ludwig Wittgenstein Project</td><td>原文库</td><td>5.6 段全文（5.6–5.641）、生平年表</td></tr>
+      <tr><td>中国社会科学网《维特根斯坦与他的〈逻辑哲学论〉》</td><td>中文专栏</td><td>七主命题中译、526 条、四层结构、九连环比喻</td></tr>
+      <tr><td>中国社会科学网《维特根斯坦小传④》</td><td>中文专栏</td><td>命题之树、四方面划分、1929 年立场反转</td></tr>
+      <tr><td>陈嘉映《详解维特根斯坦〈逻辑哲学论〉》</td><td>学者讲稿</td><td>序言中译、全书形式说明、给罗素的信</td></tr>
+      <tr><td>光明日报《韩林合：穿越维特根斯坦的哲学丛林》</td><td>访谈</td><td>维特根斯坦被误解的四个原因（★ 高价值）</td></tr>
+      <tr><td>江怡（北京大学「维特根斯坦、逻辑与哲学」国际研讨会）</td><td>会议报告</td><td>中国解读反驳神秘主义</td></tr>
+      <tr><td>Penguin Classics 2023 版导言</td><td>出版社导言</td><td>1919 年投稿全过程（Jahoda &amp; Siegal / Braumüller / 德国教授）</td></tr>
+      <tr><td>Trinity College Cambridge Archives</td><td>档案</td><td>生平精确年表、Nachlass 情况</td></tr>
+      <tr><td>New World Encyclopedia · Ludwig Wittgenstein</td><td>百科</td><td>出版史细节、赠产、David Pinsent</td></tr>
+      <tr><td>《伦理学演讲》原文（CSULB 收录）＋中译</td><td>原始文本</td><td>「冲撞语言边界」原话、1929 年纠正误读</td></tr>
+      <tr><td>philosophyplus.com《Living in Silence》</td><td>学术论文</td><td>6.522 翻译分歧的详细分析（★ 高价值）</td></tr>
+      <tr><td>Wiki2 / Reference.org / iiab</td><td>百科镜像</td><td>525 条命题、75 页、题词、题献</td></tr>
+      <tr><td>豆瓣 / 得到</td><td>读者平台</td><td>9.2 分（4615 人）、4.8 分（24 人）</td></tr>
+      <tr><td>百度百科 / 快懂百科 / 思格百科</td><td>中文百科</td><td>中译本谱系（⚠ 有冲突）</td></tr>
+      <tr><td>Wikiwand · Ludwig Wittgenstein / The Jew of Linz</td><td>百科</td><td>林茨同校问题的核实状态（★ 用于排雷）</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s15">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <p style="color:var(--ink3);font-size:13px">按「可能影响你判断」的程度排序，不按来源顺序。</p>
+
+  <h3>D1. 全书命题总数：525 还是 526？——两个数都列出</h3>
+  <ul>
+    <li><strong>525</strong>：英文维基（「525 numbered statements」）、Reference.org、iiab 镜像——<strong>三个来源一致</strong></li>
+    <li><strong>526</strong>：中国社会科学网中文专栏（「共有 526 个命题」）——<strong>一个来源</strong></li>
+  </ul>
+  <p><strong>我采信 525，但不裁定。</strong>差异可能源于「是否把命题 7 计入」或「是否计入序言中的引语」。<strong>这个数字不影响任何实质理解</strong>，列出来只是免得你在我和别处看到不同的数时困惑。</p>
+
+  <h3>D2. 中译本谱系里有两处冲突</h3>
+  <table>
+    <thead><tr><th style="width:22%">译本</th><th>来源 A 说</th><th>来源 B 说</th></tr></thead>
+    <tbody>
+      <tr><td><b>韩林合译</b></td><td>商务印书馆，2013</td><td><b>人民出版社</b>（百度文库对照表）</td></tr>
+      <tr><td><b>张申府《名理论》</b></td><td>「该书的第二个译本」（一份中文学术材料）</td><td>普遍称为「<b>第一个中译本</b>」</td></tr>
+    </tbody>
+  </table>
+  <p><strong>我采信「商务印书馆 2013」与「第一个中译本」</strong>（后者有《哲学评论》1 卷 5 期 1927、6 期 1928 的刊物信息支撑）。但<strong>买书前请以书店页面为准</strong>。另：<strong>牟宗三 1987 年台湾译本《名理论》</strong>只有单一来源，我未能交叉验证。</p>
+
+  <h3>D3. 维特根斯坦与希特勒同校：传闻与事实的分界</h3>
+  <p>这条不是书的内容，但你查这本书时<strong>几乎一定会撞上它</strong>，所以我把核实状态写清楚：</p>
+  <p><strong>确证的部分</strong>（<span class="tag t-rep">转述</span>，多源）：</p>
+  <ul>
+    <li>两人<strong>1903/1904 学年</strong>同在林茨 Realschule（维特根斯坦 1903 年 14 岁入学；两人出生相差六天）</li>
+    <li>两人<strong>不在同一年级</strong>——希特勒留过一级，维特根斯坦跳了一级，<strong>相差两个年级</strong>，从未同班</li>
+    <li><strong>没有证据</strong>两人有过任何交往（Ray Monk、Hans Sluga 均如此记录）</li>
+  </ul>
+  <p><strong>被否定或存疑的部分</strong>：</p>
+  <ul>
+    <li><strong>那张著名的「两人同框」照片</strong>：被史家 Brigitte Hamann 断定为 <strong>1900 或 1901 年</strong>，<strong>早于维特根斯坦到校</strong>。<span class="tag t-rep">转述</span></li>
+    <li><strong>大论断</strong>：Kimberley Cornish 在《The Jew of Linz》（1998）里主张维特根斯坦是希特勒反犹主义的触发点。Maser、Sandgruber、Aschheim、Pugh-Thomas 等多位史家<strong>否定</strong>了它；「公然操纵二手材料」是对 Cornish 的指控原话。<span class="tag t-rep">转述</span></li>
+    <li><strong>希特勒在《我的奋斗》里提到的那位「林茨的犹太男孩」</strong>：学者指出文中紧接着的一句是「除此之外，我和我的同伴对他没有特别的看法」，而 Cornish 没引。另有 1903 年在校的 329 名学生中 17 名为犹太人，不能推定就是维特根斯坦。<span class="tag t-rep">转述</span></li>
+    <li><strong>日期有出入</strong>：Monk 估计两人 1904–1905 学年都在校，而另有来源说希特勒 1904 年秋已转往 Steyr。<span class="tag t-rep">转述</span><span class="tag t-rep">⚠</span>未能裁定</li>
+  </ul>
+  <div class="keybox">
+    <strong>结论</strong>：同校一年属实；<strong>「两人相识」无证据；「照片同框」为误；「维特根斯坦是希特勒反犹的起点」被主流史家否定。</strong>如果你在别处看到后三条，可以直接跳过。
+  </div>
+
+  <h3>D4. 书的中文字数有离谱的冲突</h3>
+  <ul>
+    <li>中国社会科学网：「全书<strong>不足 3 万字</strong>」（应指中译正文）<span class="tag t-rep">转述</span></li>
+    <li>百度百科：「字数 <strong>106000</strong>」<span class="tag t-rep">转述</span></li>
+  </ul>
+  <p><strong>后者可能是把整本书的字节数或错误信息当成了字数</strong>。英译实体书约 75 页；中译正文约六七十页。<strong>我倾向「中译正文约 2–3 万字」</strong>，但两个数都列着。</p>
+
+  <h3>D5. 单一来源项（正文中已标 ⚠）</h3>
+  <ul>
+    <li><strong>维特根斯坦说「我不是实证主义者」</strong>的具体措辞——各来源表述不一（原文可能是「我大概是相反的东西」），仅作<span class="tag t-rep">转述</span></li>
+    <li><strong>1929 年伦理学讲座的确是「他一生唯一一次通俗讲座」</strong>——单一来源</li>
+    <li><strong>「在西方哲学中唯一创造了两种不同哲学」</strong>之类评价——中文出版社宣传语性质</li>
+    <li><strong>「20 世纪哲学最重要五本书中列第四」（1999 年 <em>Philosophical Forum</em> 调查）</strong>——单一来源（英文维基）</li>
+  </ul>
+
+  <h3>D6. 我未做到的检索</h3>
+  <ol>
+    <li>★ <strong>2026-10-02 更正</strong>：本条原写「没有原书，也没有德文原文」——<strong>已不成立</strong>。维特根斯坦卒于 1951，<strong>德文原文与 Ogden 英译均已进入公有领域</strong>，全文由 <strong>Project Gutenberg 第 5740 号</strong>（德英双语）合法取得，本次已<strong>逐字核对命题 1、命题 7 与命题 6.54</strong>。<strong>但仍有三点不确切</strong>：① <strong>中译措辞</strong>来自公开转载；② <strong>版本页码</strong>（Gutenberg 版是重排本，页码与纸质版无关）；③ 语境。</li>
+    <li><strong>没有核对德文原文</strong>。6.522 的翻译分歧我是转引论者的分析，没有自己比对德语。</li>
+    <li><strong>中文学界的系统回应收集不全</strong>。我拿到了江怡、韩林合、陈嘉映、李国山四家，但没有覆盖中文期刊里的专门论文。</li>
+    <li><strong>1921 年首版与 1922 年英译本的文本差异未查</strong>。维特根斯坦说 1921 年那版是「盗版版」（未送校样、错字多），但错在哪些地方、对理解有无影响，我没查到具体说明。</li>
+  </ol>
+</section>
+
+<footer>
+  生成于 2026-09-22 · 来源清单与交叉验证记录见同目录 <code>逻辑哲学论-来源清单.md</code><br>
+  本页引文按<b>原文核验（A 级）</b>处理：原文已进公有领域，逐字核对过的部分已注明命题号／章节号。未注明者仍为二手转引。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

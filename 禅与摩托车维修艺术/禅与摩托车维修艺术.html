@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《禅与摩托车维修艺术》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+
+<aside>
+  <div class="brand">《禅与摩托车维修艺术》<small>阅读指引与精华解析 · 2026-09-22</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 五个核心论点</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s5">1 上路与奠基概念</a>
+    <a href="#s6">2 Phaedrus 与 Quality</a>
+    <a href="#s7">3 形而上学（最难）</a>
+    <a href="#s8">4 抵达与和解</a>
+    <a href="#s9">5 gumption traps 全表</a>
+    <a href="#s10">6 「卡住」是好消息</a>
+    <div class="grp">附录</div>
+    <a href="#s11">A 金句摘录</a>
+    <a href="#s12">B 延伸阅读</a>
+    <a href="#s13">C 来源清单</a>
+    <a href="#s14">D 待核实项</a>
+    <a href="#s15">附 · 与《莉拉》的接口</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《禅与摩托车维修艺术》阅读指引与精华解析</h1>
+  <div class="sub">Zen and the Art of Motorcycle Maintenance: An Inquiry into Values</div>
+  <div class="meta">
+    <div><b>作者</b>罗伯特·M·波西格（1928–2017）</div>
+    <div><b>初版</b>1974 年 4 月 · William Morrow · 418 页</div>
+    <div><b>中译</b>张国辰译 · 重庆出版社 2011-09 · 377 页</div>
+    <div><b>旧译名</b>《万里任禅游》重庆出版社 2006-08</div>
+    <div><b>豆瓣</b>8.3 分（中文版）</div>
+    <div><b>状态</b>未标注已读／想读，两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注说明</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 该句／该论点被三个以上彼此独立的来源一致引用</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    原文未入公有领域、无公开全文；但**两条最重要的引文已定位到页码**（p.417、p.319），其余仍为经二手来源转引。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-02 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书落在 <b>B 级（带页码引文）</b>：原文未入公有领域、无公开全文，但有两条带书中页码的公开引文（<b>p.417</b>、<b>p.319</b>）。判据与检索记录见同目录 <code>禅与摩托车维修艺术-来源清单.md</code> 末节。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>一本伪装成公路旅行记的哲学论著。</strong>作者用一次 17 天的摩托车旅行做壳，追问一个古希腊式的问题——「什么是好」——并试图用答案弥合西方思想中理性与感性、技术与艺术、主体与客体的分裂。</p>
+  <p>它<strong>不是</strong>禅学入门，<strong>也不是</strong>修车手册。作者自己在引言里就写了：</p>
+  <blockquote>
+    <p>“What follows is based on actual occurrences… However, it should in no way be associated with that great body of factual information relating to orthodox Zen Buddhist practice. It's not very factual on motorcycles either.”</p>
+    <p class="gloss">（下文基于真实事件……但它绝不应与正统禅修实践的大量事实材料相关联。它在摩托车方面同样不太准确。）<span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>书名是对 Eugen Herrigel 1948 年《射艺中的禅》（<em>Zen in the Art of Archery</em>）的戏仿——多个引述波西格自述的来源共同确认。<span class="tag t-src">原书</span></p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>书有<strong>三条线索交织</strong>，这是理解它最重要的一张表：</p>
+  <table>
+    <thead><tr><th style="width:24%">线索</th><th style="width:24%">时态／人称</th><th>内容</th></tr></thead>
+    <tbody>
+      <tr><td><b>明线 · 旅途</b></td><td>现在时 · 第一人称</td><td>1968 年夏，叙述者与 11 岁的儿子 Chris，加上好友 John 与 Sylvia Sutherland 夫妇，骑摩托车从明尼苏达州到北加州，<b>17 天</b>。前 9 天四人同行，在蒙大拿分手。</td></tr>
+      <tr><td><b>暗线 · Phaedrus</b></td><td>过去时 · 第三人称</td><td>叙述者的「前身」——蒙大拿州立学院修辞学教师。<b>名字取自柏拉图对话录《斐德罗篇》</b>。他痴迷于「什么定义了好的写作」，进而追问「什么定义了『好』本身」→ 与芝加哥大学古典学权威冲突 → 精神崩溃 → 电击治疗 → <b>人格被抹除</b>，剩下如今的叙述者。</td></tr>
+      <tr><td><b>夹层 · Chautauqua</b></td><td>插入式讲谈</td><td>作者对书中哲学讨论的称呼，借自美国旧时的巡回讲演传统。原文定义为「一种旧时的通俗讲演系列，意在既教益又娱乐，改进心智、给听者带来文化与启蒙」。<span class="tag t-src">原书</span></td></tr>
+    </tbody>
+  </table>
+  <h4>结构上的不对称</h4>
+  <p>主要批评集中于此：Chautauqua 越写越长、越技术化，旅途叙事与人际关系在后三分之一被挤薄；最后一章收得很快，很多读者读完后不确定「结局到底发生了什么」。<span class="tag t-rep">转述</span></p>
+  <h4>结局</h4>
+  <p>叙述者在旅途中逐步接纳 Phaedrus 为自己的一部分，也学会不再把 Chris 当作「需要解决的问题」。全书末句：</p>
+  <blockquote>
+    <p>“We've won it. It's going to get better now. You can sort of tell these things.”</p>
+    <p class="gloss">（我们赢了。会好起来的。这种事你能感觉得到。）<span class="tag t-src">原书</span> ⚠ 页码不确切</p>
+  </blockquote>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>五个核心论点</span><span class="caret">▾</span></h2>
+
+  <h3>论点一：「良质」（Quality）是先于主客二分的原初实在</h3>
+  <p>这是全书的地基。波西格的主张是：Quality 既不是物体的客观属性，也不是观察者的主观偏好，而是<strong>在「我」与「物」尚未分开之前</strong>就已被直接体验到的东西。他称之为「the pre-intellectual cutting edge of reality」（前理智的现实刀刃）——只存在于当下，一旦你用语言去定义它，它就立刻坍缩成一个指标。<span class="tag t-src">原书</span></p>
+  <p>书中那句著名的开场 Koan 就是这个意思：</p>
+  <blockquote>
+    <p>“And what is good, Phaedrus, and what is not good—need we ask anyone to tell us these things?”</p>
+    <p class="gloss">（什么是好，斐德罗，什么是不好——这还需要别人来告诉我们吗？）<span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p><strong>推论</strong>：Quality 一旦被「定义」就死了。这不是修辞上的谦虚，而是他的本体论主张——它<strong>在定义之前</strong>就已运作。<span class="tag t-rep">转述</span></p>
+
+  <h3>论点二：现代性的病根，是「古典理解」与「浪漫理解」的割裂</h3>
+  <p>这是全书辨识度最高的二分法：</p>
+  <blockquote>
+    <p>“A classical understanding sees the world primarily as underlying form itself. A romantic understanding sees it primarily in terms of immediate appearance.”</p>
+    <p class="gloss">（古典的理解主要把世界看作底层形式本身；浪漫的理解主要从即时表象去看它。）<span class="tag t-src">原书</span></p>
+  </blockquote>
+  <ul>
+    <li><strong>古典／理性</strong>：看结构、逻辑、机制、可分析的成分。同一辆摩托车，在古典眼里是一套可理解的物理系统。</li>
+    <li><strong>浪漫／感性</strong>：看即时经验、外观、情绪、直觉。同一辆摩托车，在浪漫眼里是美感对象与自由体验。</li>
+    <li><strong>人格化</strong>：叙述者自己动手保养他那辆旧 Honda（古典）；好友 John 拒绝学习维护他那辆昂贵的新 BMW，出问题就烦躁、只能交给专业技工（浪漫）。</li>
+  </ul>
+  <p><strong>关键区分</strong>：波西格不是要否定科学或理性，而是认为这两者<strong>本不冲突，是看同一个整体的两种方式</strong>。<span class="tag t-rep">转述</span></p>
+  <p>书里描述这个断裂带来的具体后果——<strong>技术异化</strong>：机器被体验为与人敌对的东西。他的反驳是：这种敌对感是那个割裂的症状，而不是技术本身的性质。一个真正理解自己所修机器的技工，做的是<strong>禅</strong>。<span class="tag t-rep">转述</span></p>
+
+  <h3>论点三：Quality ≡ 古希腊的 aretē ≡ 道（Tao）</h3>
+  <p>这是书的<strong>哲学史线索</strong>，也是 Phaedrus 崩溃的引信。</p>
+  <p>Phaedrus 的发现是：早期希腊人原本<strong>不区分</strong>「Quality」与「Truth」——二者合一，即 <strong>aretē</strong>（通常译作「德性」，但更贴近「卓越」）。是后来（在当时是必要的）的分裂，把 Truth 抬到至高位置、把 aretē 降格，才造就了后世一系列的麻烦。<span class="tag t-src">原书</span><span class="tag t-rep">转述</span></p>
+  <p>他进一步指控柏拉图：柏拉图把智者派（Sophists）的 aretē 吸收、改造为一个永恒不变的「善」（the Good）。因为如果每个问题只有一个真答案，那么 aretē 也只能有一个真定义——而这恰好抽掉了 aretē 原本「随人、随时、随情境而调适」的性质。这扇门一开，就轮到亚里士多德把 aretē 进一步让位给今天我们所熟悉的那类、基于经验观察的科学探究。<span class="tag t-rep">转述</span></p>
+  <div class="keybox">
+    <strong>这条线索的实操价值</strong>：它解释了全书为什么花那么多篇幅讲古希腊——因为在他看来，「Quality 不可定义」不是他一个人的怪癖，而是<strong>被西方哲学史刻意压下去的一个古老立场</strong>。
+  </div>
+
+  <h3>论点四：「关心」（care）是通往 Quality 的实践路径</h3>
+  <p>抽象想不通的事，用动手做来回答。作者的主张是：<strong>真正的关心</strong>会让机器不再是异己物，而是思维的延伸。他把「保养」从机械劳动提升为一种<strong>注意力练习</strong>：<span class="tag t-rep">转述</span></p>
+  <ul>
+    <li>当你做一件事时一旦想求快，就说明你已不再关心它，而是想去做别的事。<span class="tag t-src">原书</span>（中译本）</li>
+    <li>及时完成一个任务，不等于这件事做得好——<strong>过程本身有价值</strong>。<span class="tag t-rep">转述</span></li>
+  </ul>
+  <p>书里那个著名的例子：一块看似废弃的铝片，一旦你认清它真实的属性，就可以变成解决问题的材料。教训是：<strong>标签与预设有时代价高昂</strong>，它们会让你看不见眼前的可能性。<span class="tag t-rep">转述</span></p>
+
+  <h3>论点五：gumption（干劲）与 gumption traps（干劲陷阱）</h3>
+  <p>这是全书<strong>最实用</strong>的部分，也是唯一能被直接搬到任何行业去用的部分。波西格创造的两个词：</p>
+  <ul>
+    <li><strong>Gumption</strong> ＝常识、机敏、主动性的结合，是「探究事物所需的能量源泉，一切智力生长的原始品质」。<span class="tag t-src">原书</span></li>
+    <li><strong>Gumption trap</strong> ＝让你失去热情、从而无法开始或继续一项工作的事件或心态。它形成<strong>正反馈循环</strong>：热情与主动性下降 → 成功率下降 → 进一步打击 → 循环加深。<span class="tag t-src">原书</span></li>
+  </ul>
+  <p>原文有一句被反复引用的话：</p>
+  <blockquote>
+    <p>“If you haven't got gumption, there's no way the motorcycle can possibly be fixed. But if you have got it and know how to keep it, there's absolutely no way in this whole world that motorcycle can keep from getting fixed.”</p>
+    <p class="gloss">（没有干劲，摩托车修不好；有干劲而且知道怎么保住它，这世界上就没法让它修不好。）<span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p><strong>核心洞见</strong>：挡住你的<strong>不是机械问题，是你对机械问题的情绪反应</strong>。技能与知识可能很充分，但沮丧、焦虑、不耐烦、自负会把它整个压掉。机器不看你的自信或地位，它只暴露错误。</p>
+  <p>详细分类见下部第 5 节。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <p><strong>先接受一个事实</strong>：这本书的结构是失衡的，而且作者自己知道。它是一本「读得慢才划算」的书。</p>
+
+  <h4>如果你是「想读」</h4>
+  <ol>
+    <li><strong>别按顺序硬啃全部。</strong>第一部分（上路、奠基概念）顺读；第二部分（Phaedrus 与 Quality 的诞生）是全书最有故事性的部分；第三部分（形而上学体系 ＋ 古希腊哲学史）<strong>是最容易卡死的地方</strong>，可以快速扫读、只抓「aretē → Truth 的降格」这条主线；第四部分（抵达与和解）短，读完。</li>
+    <li><strong>优先精读第 9 章的 gumption 部分。</strong>如果你只从这本书拿走一样东西，就拿这个——它是可直接用的工作方法论，不依赖你是否接受那套形而上学。</li>
+    <li><strong>带着一个问题读</strong>：「古典 vs 浪漫」这个二分，对你自己成立吗？很多人（尤其同时做技术与创作的人）读到这里会强烈反感——<strong>这种反感是有信息量的</strong>，见上部第 4.4 节。</li>
+    <li><strong>放弃两件事</strong>：把它当禅学书读（它会让你失望），把它当修车指南读（作者自己说它不准确）。</li>
+  </ol>
+
+  <h4>如果你是「已读」</h4>
+  <ul>
+    <li>直奔下部第 3、4 节。核心是：<strong>这本书的哲学史叙事站不站得住</strong>——这是学界批评最集中的地方，也是重读时最值得重估的部分。</li>
+    <li>下部第 5 节给出的是「全书最严重的结构缺陷」和「它自己没意识到的立场问题」。</li>
+  </ul>
+  <div class="warnbox">
+    ⚠ 上述按部分划分的读法，其<strong>具体章节编号（如 Part I 含第 1–11 章）只找到一个来源</strong>，不同版本分章方式不一致。我把「四个部分」的前后次序当作可靠，「章节编号区间」当作不确切。
+  </div>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>争议与局限</span><span class="caret">▾</span></h2>
+
+  <h3>4.1 学术哲学界基本不认它</h3>
+  <p>波西格自己三十年后的说法：</p>
+  <blockquote>
+    <p>“Most academic philosophers ignore it, or badmouth it quietly.”</p>
+    <p class="gloss">（大多数学术哲学家无视它，或者私下说它坏话。）<span class="tag t-src">原书</span>（作者自述，经来源转引）</p>
+  </blockquote>
+  <p>他归因于自己<strong>拒绝定义 Quality</strong>——对一个看重分析边界的学科来说，这让整个项目无法启动。他还为此造了一个词：<strong>philosophologist</strong>（哲学学家）——指那些像昆虫学家钉蝴蝶一样研究思想的人，并说这类人原则上就不信任外来者。<span class="tag t-rep">转述</span></p>
+  <p>他的反击是一句逻辑学老话：「说话者的资格与他所说之真假无关。世上最大的傻瓜也能说太阳在发光，但这不会让天变黑。」<span class="tag t-src">原书</span></p>
+  <p><strong>实证支持这个判断</strong>：在 Google Scholar、PhilPapers 这类工具里，这本书在专业哲学圈<strong>几乎是书目意义上的幽灵</strong>——重量级当代思想者不引用它，博士生不在它上面做研究。<span class="tag t-rep">转述</span> ⚠ 单一来源</p>
+
+  <h3>4.2 最具体的一条学术批评（Brian Bruya）</h3>
+  <p>这是我能找到的<strong>最扎实的技术性批评</strong>，被多个独立书商页面一致转载：</p>
+  <blockquote>
+    <p>在探讨了从苏格拉底与智者派到休谟与康德的哲学遗产的缺陷之后，波西格令人费解地在<strong>十九世纪中叶停下了</strong>。除了庞加莱，他忽略了那些处理过他那些最紧迫问题的、更晚近的哲学家——皮尔士、尼采（Phaedrus 与他有几分相似）、海德格尔、怀特海、杜威、萨特、维特根斯坦、库恩。最终，叙述者关于原创性的主张被<strong>夸大了</strong>，他的推理<strong>可疑</strong>，他对西方思想史的理解<strong>粗略</strong>。他通过把 Quality 抬升到形而上学层面来综合理性与创造的方案，只是<strong>重复了前现代哲学家的错误</strong>。</p>
+    <p>但与大多数哲学家不同，波西格写了一个引人入胜的故事。他是一位真正的创新者，因为他尝试把东方的正念与非理性主义同西方的主客二元论做调和。<strong>这本书的魔力不在于它给出的答案，而在于它提出的问题，以及它提问的方式。</strong></p>
+    <p class="gloss">—— Brian Bruya <span class="tag t-rep">转述</span>（书评原文，多源一致）</p>
+  </blockquote>
+
+  <h3>4.3 关于古希腊的解读被指不可靠</h3>
+  <p>另一路批评更重：波西格对柏拉图、亚里士多德、黑格尔的解读被专业学者认为<strong>缺乏历史深度</strong>，甚至「基于对其实际文本有限乃至可疑的理解」。他把亚里士多德塑造成「技术性的反派」、把柏拉图塑造成「直觉的敌人」，这是在叙事里容易打倒、在研究生讨论课上无法辩护的<strong>稻草人</strong>。他对黑格尔的评论，有领域专家形容为「令人尴尬」。<span class="tag t-rep">转述</span> ⚠ 单一来源</p>
+  <div class="keybox">
+    <strong>该怎么说才公允</strong>：这不是「他错了」，而是「<strong>这本书应当被当作哲学挑衅来读，而不是当严谨的学术哲学来读</strong>」。这个判断来自多源。
+  </div>
+
+  <h3>4.4 古典／浪漫二分被指过度简化</h3>
+  <p>读者反馈里最有力的一条（来自一位同时是工程师与诗人的读者）：这个二分<strong>不是二元对立，而是一个连续谱</strong>；书里近乎在说「你只能把一件事做好」，这对两者兼顾的人是冒犯。很多人<strong>很多年前就自行完成了</strong>波西格笔下 Phaedrus 用精神崩溃换来的那个综合。<span class="tag t-rep">转述</span>（读者评论）</p>
+  <p>这个批评的锋利之处在于：<strong>如果那个综合是普通人能自行达成的，那么为它付出疯狂代价这件事本身就需要另外的解释。</strong></p>
+
+  <h3>4.5 其他</h3>
+  <ul>
+    <li><strong>性别表征</strong>：叙述聚焦男性主角与机械，女性角色常被边缘化或符号化，被指强化了父权规范。<span class="tag t-rep">转述</span> ⚠ 单一来源</li>
+    <li><strong>人际关系读起来不适</strong>：叙述者对待 Chris 的方式，用现代育儿视角看会让人不舒服。<span class="tag t-rep">转述</span></li>
+    <li><strong>「精神病史 → 哲学洞见」的隐含逻辑</strong>值得警惕：把一次真实的精神崩溃作为真理的代价来叙事，很动人，但它<strong>不是论证</strong>。<span class="tag t-inf">推断</span></li>
+    <li><strong>商业上的一个反讽</strong>：这本书后来被拿来给 1970 年代的企业「质量运动」背书，而<strong>波西格与此毫无关系</strong>。<span class="tag t-rep">转述</span> ⚠ 单一来源</li>
+  </ul>
+</section>
+
+<section id="s5">
+  <h2><span class="num">1</span><span>第一部分：上路，与奠基概念</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答</strong>：这本书打算干什么？</p>
+  <ul>
+    <li><strong>人物与设置建立</strong>：叙述者（未具名）、11 岁的 Chris、John 与 Sylvia Sutherland 夫妇。四人 17 天从明尼苏达骑到旧金山，开篇朝达科他方向走。</li>
+    <li><strong>叙述者对自己方法的说明</strong>：「你不必在开动的摩托车上进行伟大的对话。相反，你把时间用于觉察事物并冥想它们。」因为走的是小路，有大量时间反思。<span class="tag t-src">原书</span></li>
+    <li><strong>Chautauqua 的引入</strong>：叙述者说明他将交替进行旅途速写与长篇冥想。主题包括人与现代机器、技术的关系，以及各哲学流派——很多都在追问「如何过最有意义、思虑最正确的生活」。</li>
+    <li><strong>déjà vu 的伏笔</strong>：旅行早期，叙述者越来越频繁地感到「似曾相识」——越接近蒙大拿，越多地标让他觉得认识。他开始烦躁，怀疑有个幽灵般的「另一个我」（Phaedrus）正在追上来。</li>
+    <li><strong>人际张力</strong>：Chris 有情绪问题，担心父亲长时间沉默、几乎不与自己互动；叙述者多半挡回 Chris 的问题，孩子的焦虑因此加剧。四人长时间共处也让每个人压力变大。</li>
+    <li><strong>Phaedrus 的身份揭示</strong>：叙述者意识到 Phaedrus 不是幽灵，而是<strong>自己早些年的样子</strong>。他回想起来：Phaedrus 经历过精神崩溃，在精神病院接受「电击」治疗。<strong>从医院里走出来的那个人不再是 Phaedrus，而是如今这个无名的叙述者。</strong><span class="tag t-rep">转述</span></li>
+  </ul>
+  <p>⚠ 这一部分中<strong>古典 vs 浪漫的对照是通过人具体展开的</strong>——John 不保养他那辆昂贵的 BMW，出了问题就烦躁、只能依赖专业技工；叙述者保养他那辆更旧的 Honda，通常能靠理性排障自己解决。</p>
+  <div class="keybox">
+    <strong>一个可验证的技术细节</strong>（对写作方法有兴趣的话值得注意）：叙述者一行到蒙大拿 Miles City 时，他注意到引擎运转粗暴，可能是油气混合比过浓；次日他发现两个火花塞都发黑，确认了这一点。他判断是<strong>海拔升高</strong>导致混合比过浓，于是换装新的油针（jets）并调整气门，引擎恢复正常。<span class="tag t-rep">转述</span><br>
+    这个例子的作用是把「古典理解」演示一遍，而不是仅仅声称它。
+  </div>
+</section>
+
+<section id="s6">
+  <h2><span class="num">2</span><span>第二部分：Phaedrus 与 Quality 的诞生</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答</strong>：Quality 这个问题是从哪来的？</p>
+  <ul>
+    <li>一行人抵达蒙大拿——<strong>Phaedrus 曾在此当学生、后当教授</strong>。此时叙述者已经能有意识地调取「自己是 Phaedrus 时」的记忆。</li>
+    <li><strong>Phaedrus 的早期经历</strong>：15 岁入大学，计划主修生物化学，但在「如何在多个假设中选择最好的一个」这个问题上卡死——他意识到，对任何现象而言，<strong>理性的假设数量似乎是无限的</strong>，这在他看来会严重削弱科学方法的效力。学业因此垮掉，被大学除名。随后是几年「横向漂移」。参军赴韩，在那里对亚洲哲学产生兴趣。<span class="tag t-rep">转述／原书</span></li>
+    <li><strong>转折点</strong>：回校后转哲学与新闻。他对「把科学方法用于哲学理论」这件事着迷。</li>
+    <li><strong>核心段落</strong>：他在蒙大拿州立学院教修辞学，一位年长同事 <strong>Sarah Vinke</strong> 鼓励他去探究「quality」这个词到底什么意思。他给学生布置的任务就是<strong>定义这个词</strong>——学生的反应（能认出好文章，却说不清好在哪）成了他整个体系的起点。<span class="tag t-rep">转述</span> ⚠ 该人名仅单一来源</li>
+    <li><strong>另一个催化</strong>：他与一位人类学家朋友 James Verne Dusenberry 参加了一次美洲原住民教会的<strong>佩约特（peyote）仪式</strong>。以上两件事合起来，把他推进了他自己所说的「思想的蘑菇云」。<span class="tag t-rep">转述</span> ⚠ 单一来源</li>
+    <li><strong>理论的核心断言</strong>：Quality <strong>无法被定义</strong>——因为它在经验上先于任何对它的理智建构。Quality 是经验的「刀刃」，只在当下存在。<span class="tag t-src">原书</span></li>
+    <li><strong>与东方的连接</strong>：Phaedrus 在贝拿勒斯印度教大学（Banaras Hindu University）接触到梵语箴言 <strong>Tat Tvam Asi</strong>（「汝即是彼」）——它主张你所认为的「主体」与你所认为的「客体」是<strong>不分的</strong>；彻底体认这种不分，即是开悟。<span class="tag t-src">原书</span>这对波西格是个关键锚点：一种<strong>存在论的一元论</strong>，对立于主客二元论。</li>
+    <li>也读到了 F. S. C. Northrop 的《东西方之会》（<em>The Meeting of East and West</em>），这本书系统地关联了西方文化与东亚文化。<span class="tag t-rep">转述</span></li>
+    <li><strong>崩溃</strong>：Phaedrus 与芝加哥大学的系主任（一位坚定的亚里士多德主义者，⚠ 名字在来源中作 Richard McKeon）发生冲突。他对辩证法方法的不满、加上系里的敌意，把他推向一个洞见：希腊人的 aretē 与他自己所理解的 Quality 是同义的。1961 年底，一系列昏厥与抑郁发作把他送进医院，按疑似<strong>紧张型精神分裂</strong>治疗。出院后他愈发不稳定且具攻击性；<strong>1963 年</strong>被送进明尼阿波利斯的退伍军人医院，接受了<strong>28 次</strong>电击治疗。<span class="tag t-rep">转述</span> ⚠ 另一来源说是「偏执型精神分裂」</li>
+    <li><strong>他对治疗的复盘</strong>（书中引述）：电击治疗「教会我与他人相处、妥协，我也同意了。Phaedrus 更诚实，他从不妥协，年轻人因此敬重他。」他觉得自己「内心深处，救下的只是自己这条命」。<span class="tag t-src">原书</span></li>
+  </ul>
+  <p><strong>这一部分最要记住的一句</strong>（关于「想得太用力」）：</p>
+  <blockquote>
+    <p>“He was thinking too hard, and the harder you think in this high country of the mind the slower you go.”</p>
+    <p class="gloss">（他想得太用力了；在这片心智的高原上，你越想得用力，走得越慢。）<span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p><strong>叙事副作用</strong>：随着记忆回来，叙述者越来越不安——他担心到了博兹曼，当年认识他的人会怎么看他。他开始做噩梦、说梦话，把 Chris 吓到。Sutherland 夫妇在博兹曼之后结束同行返家。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">3</span><span>第三部分：Quality 的形而上学（全书最难的一段）</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答</strong>：能不能把 Quality 建成一个体系？</p>
+  <ul>
+    <li>队伍进入山区，叙述者重构 Phaedrus 的哲学系统。</li>
+    <li><strong>核心命题</strong>：Quality <strong>等同于道（Tao）</strong>——万物由之而出的源头，也是刺激从原子到动物一切事物进化、并不断纳入更高层次 Quality 的<strong>根本力量</strong>。按 MOQ 的说法，<strong>一切（包括观念与物质）都是 Quality 的产物与结果</strong>。<span class="tag t-src">原书</span></li>
+    <li><strong>对「纯真理」的批判</strong>：叙述者审视现代对「Pure Truths」的追求，主张它源于早期希腊哲学家——他们建立「真理」概念时，是把它置于「善」（The Good）的<strong>对立面</strong>。他论证：理性思考或许能找到一个真理，但它也许<strong>永远无法完全且普遍地适用于每一个个体的经验</strong>。<span class="tag t-rep">转述</span></li>
+    <li><strong>教育批判</strong>：把抽象理论知识置于实践经验与直接参与之上，会制造出「懂概念但无法应用、也感受不到其内在 Quality」的人。Phaedrus 早年的教学挫败就是例证：学生被教成复述事实，却无法在自己的写作中辨认 Quality。<span class="tag t-rep">转述</span></li>
+    <li><strong>「心智的高原」</strong>（the high country of the mind）：全书最著名的比喻之一——进入抽象思辨的高处，你必须适应<strong>不确定性的稀薄空气</strong>。⚠ 这句的原文措辞在来源中略有差异，以【转述】计。</li>
+    <li><strong>体系的暗面</strong>：Phaedrus 在芝加哥挑战学术建制对理性的崇拜，把西方哲学走错的转折点追溯到<strong>亚里士多德对智者派的否定</strong>。而这个他正在建造的系统，<strong>最终在他自己的重量下崩塌了</strong>——这就是崩溃的哲学侧叙事。<span class="tag t-rep">转述</span></li>
+  </ul>
+  <div class="warnbox">
+    <strong>读书提示</strong>：这一部分是全书最常被读者放弃的地方。它的问题不只是难，而是<strong>它同时在做两件不同的事</strong>——（a）讲 aretē→Truth 降格的哲学史叙事，（b）搭建他自己的形而上学。前者有清晰的论证线，后者很大程度上是断言。（b）部分可以快速通过。
+  </div>
+</section>
+
+<section id="s8">
+  <h2><span class="num">4</span><span>第四部分：抵达与和解</span><span class="caret">▾</span></h2>
+  <ul>
+    <li>父子抵达旧金山，Chris 的情绪困扰加剧。</li>
+    <li><strong>转折</strong>：叙述者意识到，<strong>他对待 Chris 的方式，和他当年被对待的方式是同一种</strong>——把吓到自己的东西埋掉、当作「需要解决的问题」处理。</li>
+    <li><strong>解决</strong>：在同时接纳 Phaedrus 与 Chris 的过程中，叙述者达成整合。书以希望收尾（引文见上部第 1 节）。<span class="tag t-rep">转述</span></li>
+  </ul>
+  <p>⚠ <strong>被抱怨最多的一点</strong>：铺垫了那么长的高潮，收束来得很快，读者被留在原地自己判断「和解究竟成立没有」。这不是个别读者的问题——多来源都提到结局突兀。</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">5</span><span>第 9 章单拎：gumption traps 完全表</span><span class="caret">▾</span></h2>
+  <p>这一节是可独立使用的部分，也是<strong>唯一不依赖你是否接受 MOQ 的部分</strong>。波西格把陷阱分两大类：<strong>Setbacks（挫折，外部）</strong>与 <strong>Hang-ups（心结，内部）</strong>。<span class="tag t-src">原书</span></p>
+  <table>
+    <thead><tr><th style="width:14%">类别</th><th style="width:20%">子类</th><th>典型表现</th><th style="width:24%">书中对策</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="3"><b>Setbacks</b><br>挫折（外部）</td><td>顺序错乱 out-of-sequence</td><td>在准备好拆装通路之前就装上了零件</td><td>退回去，重排工序</td></tr>
+      <tr><td>间歇性故障 intermittent</td><td>只在特定条件下出现，诊断无从下手</td><td><b>别急着动手</b>，盯着看，等模式浮现</td></tr>
+      <tr><td>缺件／多余件 leftover parts</td><td>装完发现多出一颗螺栓或垫圈</td><td>回头查证，不要硬装</td></tr>
+      <tr><td rowspan="7"><b>Hang-ups</b><br>心结（内部）</td><td>价值陷阱 value traps</td><td>固守旧有价值判断，不愿重新评估</td><td>重新评估</td></tr>
+      <tr><td>自我 egotism</td><td>自信过头，跳过验证、强行把零件压进去</td><td>谦逊、审慎、专注、怀疑</td></tr>
+      <tr><td>焦虑 anxiety</td><td>怕做错到不敢动手——「焦虑是自我的反面：你太确定自己会把一切做错，以至于不敢做任何事」</td><td>研究、学习、准备、把步骤细化</td></tr>
+      <tr><td>无聊 boredom</td><td>重复劳动走神 → 粗心</td><td>停下，或把动作<b>仪式化</b>；一出现无聊立即停工</td></tr>
+      <tr><td>不耐烦 impatience</td><td>求快 → 过度拧紧 → 螺纹损坏 → 更大的延误 → 自我怀疑</td><td>给予无限时间，保持价值灵活性</td></tr>
+      <tr><td>真理陷阱 truth traps</td><td><b>误读行动的反馈</b>——涉及「mu」的概念</td><td>重读反馈本身</td></tr>
+      <tr><td>肌肉陷阱 muscle traps</td><td>环境、技工与机器之间的互动不良</td><td>合适的工具、改善环境、培养本体感觉</td></tr>
+    </tbody>
+  </table>
+  <div class="keybox">
+    <strong>这张表为什么值钱</strong>：它的结构是「<strong>外部挫折 × 内部心结</strong>」，而内部那一列——自负、焦虑、无聊、不耐烦——<strong>和修车没有半点关系</strong>。这就是它能迁移到写代码、写论文、做设计的原因。
+  </div>
+  <h4>三个具体的操作性细节<span class="tag t-rep">转述／原书混合</span></h4>
+  <ol>
+    <li><strong>遇到挫折时最糟的做法是继续干。</strong>带着怒气继续，你会把别的东西弄坏——过度拧紧、交叉攻丝。正确做法是<strong>放下工具，去喝杯咖啡，盯着那台车看一会儿而不碰它</strong>。你从「跟机器对抗」切换到「观察机器」，答案（加热、渗透油、换个角度）往往此时才出现。</li>
+    <li><strong>对焦虑：焦虑来自未知，知识杀死焦虑。</strong>读手册，再读一遍，把步骤在脑中过一遍。</li>
+    <li><strong>对无聊：慢下来，把无聊的活儿当仪式。</strong>不要想着之后的骑行，<strong>就把那颗螺栓擦完美</strong>。</li>
+  </ol>
+  <p><strong>与全书主题的接点</strong>：gumption 既是 Quality 思维的<strong>结果</strong>，也是它的<strong>促进者</strong>。你如果卡住过又靠「初学者心态」过了那个坎，下次卡住时你会干劲更足；而那份干劲又会带你找到新的解——即 Quality。<span class="tag t-rep">转述</span></p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">6</span><span>「卡住」为什么是好消息</span><span class="caret">▾</span></h2>
+  <p>这是波西格一个反直觉的主张，值得单列：<span class="tag t-rep">转述</span></p>
+  <blockquote>
+    <p>要契合 Quality，必须培养一种「初学者心态」——<strong>忘掉你所知道的（或你以为你知道的）</strong>，只去默想眼前的任务。正因如此，<strong>「卡住」在他是最好的处境</strong>：正是在惯用的智力或情绪策略失效的那一刻，你才开始接入 Quality——那个总会把你带向答案的东西。</p>
+  </blockquote>
+  <p>这解释了他为什么花那么多篇幅在「卡住」上：<strong>卡住不是失败状态，是切换认知模式的入口。</strong></p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">A</span><span>金句摘录</span><span class="caret">▾</span></h2>
+  <p style="color:var(--ink3);font-size:13px">以下引文均来自公开来源转引，我无法核对原书页码。可信度标注见页首图例。</p>
+  <table>
+    <thead><tr><th>引文</th><th style="width:26%">出处／语境</th><th style="width:14%">可信度</th></tr></thead>
+    <tbody>
+      <tr><td>And what is good, Phaedrus, and what is not good—need we ask anyone to tell us these things?</td><td>全书核心 Koan，出自柏拉图《斐德罗篇》</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>Quality… you know what it is, yet you don't know what it is. But that's self-contradictory.</td><td>定义 Quality 的困境</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>A classical understanding sees the world primarily as underlying form itself. A romantic understanding sees it primarily in terms of immediate appearance.</td><td>古典／浪漫二分</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>The real cycle you're working on is a cycle called yourself.</td><td>被出版社用作宣传语</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>The study of the art of motorcycle maintenance is really a study of the art of rationality itself.</td><td>同上</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>If you haven't got gumption, there's no way the motorcycle can possibly be fixed.</td><td>gumption 章</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>Gumption is the source of energy for the investigation of things. It is the primitive quality from which all intellectual growth begins.</td><td>gumption 定义</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>Anxiety… is sort of the opposite of ego. You're so sure you'll do everything wrong you're afraid to do anything at all.</td><td>焦虑陷阱</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>He was thinking too hard, and the harder you think in this high country of the mind the slower you go.</td><td>Phaedrus 的求学期</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>We've won it. It's going to get better now. You can sort of tell these things.</td><td>全书末句</td><td><span class="tag t-src">原书</span> ⚠ 页码不确切</td></tr>
+      <tr><td>当你做某件事的时候，一旦想要求快，就表示你再不关心它，而想去做别的事。</td><td>中译本 2011</td><td><span class="tag t-src">原书</span>（中译）</td></tr>
+      <tr><td>It's not very factual on motorcycles either.</td><td>作者引言</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>Most academic philosophers ignore it, or badmouth it quietly.</td><td>波西格自述（三十年后）</td><td><span class="tag t-src">原书</span>（经转引）</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s12">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <h4>直接相关</h4>
+  <ul>
+    <li><strong>《莉拉：道德探究》（<em>Lila: An Inquiry into Morals</em>, 1991）</strong>——波西格续作，把 MOQ 发展成完整体系。若你想看他<strong>把话说清楚</strong>，读这本而不是重读《禅》。1992 年普利策小说奖提名决选作品。关键差异见文末「与《莉拉》的接口」。</li>
+    <li><strong>Eugen Herrigel《射艺中的禅》（1948）</strong>——书名戏仿的原作。</li>
+  </ul>
+  <h4>同一问题的其他路径</h4>
+  <ul>
+    <li><strong>Matthew Crawford《摩托车修理店的未来工作哲学》（<em>Shop Class as Soulcraft</em>, 2009）</strong>——一位真的以此为业的「哲学家-技工」，论证手工劳动在智力与道德上的价值。可视为对波西格的<strong>当代正面回应</strong>。</li>
+    <li><strong>Matthew Crawford《The Art of Motorcycle Maintenance》一文</strong>——从实务技工角度对波西格遗产的批判性接续。</li>
+    <li><strong>《道德经》</strong>——波西格自己认定最接近他 Quality 概念的古籍。</li>
+    <li><strong>Douglas Hofstadter《哥德尔、埃舍尔、巴赫》（1979）</strong>——同一时代另一本跨界打破体裁、探讨意识与意义的书。</li>
+  </ul>
+  <h4>有助于批判性重读</h4>
+  <ul>
+    <li><strong>Brian Bruya 的书评</strong>（见上部 4.2）——指出波西格忽略的十九世纪中叶以后的思想家。<strong>建议在重读第三部分之前先读它。</strong></li>
+  </ul>
+</section>
+
+<section id="s13">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>完整清单（含链接、检索时间、每条来源的定位与手检可信度、交叉验证记录、检索盲区）见同目录 <strong><code>sources.md</code></strong>。此处仅列主力来源：</p>
+  <table>
+    <thead><tr><th style="width:34%">来源</th><th style="width:18%">类型</th><th>主要提供</th></tr></thead>
+    <tbody>
+      <tr><td>英文维基百科 · ZAMM</td><td>百科</td><td>出版信息、结构、核心概念、gumption 分类、荣誉</td></tr>
+      <tr><td>The Telegraph · Pirsig 讣告</td><td>报刊</td><td>生平精确细节（122 家出版社、28 次电击、McKeon 冲突）</td></tr>
+      <tr><td>The Guardian · Pirsig 讣告</td><td>报刊</td><td>生平细节、Chris 之死、Lila 写作背景</td></tr>
+      <tr><td>Brian Bruya 书评（多站一致转载）</td><td>学术书评</td><td>最扎实的技术性批评</td></tr>
+      <tr><td>thehumanlogic.org · The Quality Gap</td><td>评论</td><td>学界接受度、对古希腊解读的批评</td></tr>
+      <tr><td>coreframework.org · ZAMM (1974)</td><td>导读</td><td>按部分的章节划分、末尾引文</td></tr>
+      <tr><td>Course Hero · Plot Summary</td><td>学习平台</td><td>四部分的情节展开、人物线索</td></tr>
+      <tr><td>Shortform · Summary &amp; Guide</td><td>导读</td><td>gumption 章细节、aretē→Truth 论证</td></tr>
+      <tr><td>Grokipedia · ZAMM / Pirsig's MOQ</td><td>百科</td><td>MOQ 体系、gumption traps 细分、Lila 的发展</td></tr>
+      <tr><td>百度百科 ·《万里任禅游》</td><td>百科（中文）</td><td>2006 年中文版版权页信息</td></tr>
+      <tr><td>豆瓣／itdw／higrid 等中文书目页</td><td>书目</td><td>2011 年中文版信息与豆瓣评分</td></tr>
+      <tr><td>Countercurrents（2026-08）</td><td>评论</td><td>古典／浪漫、gumption 的当代诠释</td></tr>
+      <tr><td>hardcover.app 读者评论</td><td>读者反馈</td><td>「连续谱而非二分」这条反对意见</td></tr>
+      <tr><td>Reason（1976-03）· 书评</td><td>期刊书评</td><td>Chautauqua 的原文定义、结构分析</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s14">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <p style="color:var(--ink3);font-size:13px">按「可能影响你判断」的程度排序。</p>
+
+  <h3>D1. 四个部分的具体章节编号 —— 不确切</h3>
+  <p>「Part I 含第 1–11 章、Part II 含 12–20、Part III 含 21–28、Part IV 含 29–32」这套划分<strong>只有一个来源</strong>（coreframework），且各版排版方式不一（有版本根本不标章号）。<strong>只有「全书分四个部分、Phaedrus 线在第二部分展开、形而上学体系在第三部分」这个次序是可靠的。</strong></p>
+
+  <h3>D2. 销量在不同来源里差一倍 —— 需注意</h3>
+  <p>英文来源普遍说「五百万册」；一个中文书目页说「累积销量超过一千万册」。这两个数字可能分别是「某年时点」与「至今累计」，但我<strong>无法确认</strong>。另外「译成 25 种语言」与「27 种语言」两种说法并存。</p>
+
+  <h3>D3. 诊断名称有两个版本</h3>
+  <p>Telegraph 说是「疑似紧张型精神分裂」（catatonic schizophrenia），另有来源说「偏执型精神分裂」（paranoid schizophrenia）加临床抑郁。<strong>电击次数「28 次」被英文与中文来源共同支持</strong>，相对可靠。</p>
+
+  <h3>D4. Pirsig（波西格）的死亡日期有冲突</h3>
+  <p>主流来源为 <strong>2017 年 4 月 24 日</strong>（缅因州 South Berwick 家中，88 岁）；一家汽车媒体写作 4 月 20 日。我采信 4 月 24 日，但标出此冲突。</p>
+
+  <h3>D5. 人名与细节的单一来源项</h3>
+  <ul>
+    <li>芝加哥大学的系主任名 <strong>Richard McKeon</strong>（Telegraph 单一来源）</li>
+    <li>鼓励他探究「quality」的同事 <strong>Sarah Vinke</strong>（Wikipedia 单一来源）</li>
+    <li>美洲原住民朋友 <strong>James Verne Dusenberry</strong>（Wikipedia 单一来源）</li>
+    <li>「Google Scholar / PhilPapers 里近乎零引用」这一经验性断言（thehumanlogic 单一来源，且该来源带有明显论战语气）</li>
+  </ul>
+
+  <h3>D6. 我未做到的检索</h3>
+  <ul>
+    <li><strong>原书文本</strong>：我未接触原书或其电子版；★ <strong>2026-10-02 更正</strong>：其中 <strong>p.417 与 p.319</strong> 两条已由可署名来源标出页码，其余「引文」仍是<strong>经二手来源转引</strong>。若你手上有电子书或划线，我可以逐条校准，尤其是页码与中文译法。</li>
+    <li><strong>中译本差异</strong>：2006 年《万里任禅游》与 2011 年《禅与摩托车维修艺术》除书名外是否有译文修订，我未找到说明。</li>
+    <li><strong>中文学界的回应</strong>：我未找到中文哲学界对本书的系统性书评，中文材料以读书笔记与导读为主，深度有限。</li>
+  </ul>
+</section>
+
+<section id="s15">
+  <h2><span class="num">附</span><span>与《莉拉》（1991）的接口</span><span class="caret">▾</span></h2>
+  <p>如果你读完《禅》想知道他后来把这事想清楚没有，这是两本书的接口：</p>
+  <ul>
+    <li>《禅》里是<strong>古典 Quality 与浪漫 Quality</strong> 的二分；《莉拉》里改为 <strong>动态 Quality（Dynamic）与静态 Quality（Static）</strong> 的区分。<span class="tag t-src">原书</span>（Lila）</li>
+    <li>《莉拉》把静态价值分为<strong>四个层级</strong>：无机 → 生物 → 社会 → 理智。除动态 Quality 外，已知宇宙的一切都可归入这四类。<span class="tag t-rep">转述</span></li>
+    <li>核心新装置是「<strong>静态闩锁</strong>（static latch）」：动态 Quality 暂时「闩」进稳定模式以便生长与保存，但这些模式之后可能反过来抵抗进一步的改变，造成停滞或冲突。<span class="tag t-rep">转述</span></li>
+    <li>由此推出一个<strong>道德层级</strong>：无机层胜混乱是「自然法则」，生物层胜无机是「丛林法则」，社会层胜生物是「法律」，理智层对社会则是仍在挣扎中的道德。<span class="tag t-src">原书</span>（Lila）</li>
+  </ul>
+  <div class="keybox">
+    <strong>为什么要知道这个</strong>：Brian Bruya 说「《禅》的魔力不在答案而在问题」——如果你认同这个判断，《莉拉》正是那个试图把答案补齐的动作。它商业上远不如《禅》成功，但被认为哲学上更密实。
+  </div>
+</section>
+
+<footer>
+  生成于 2026-09-22 · 来源清单与交叉验证记录见同目录 <code>sources.md</code><br>
+  本页引文按<b>带页码引文（B 级）</b>处理：标注页码的条目引自有页码的公开书评／论文，<b>我未持原书</b>，页码请以原书复核；未标页码者仍是二手转引。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

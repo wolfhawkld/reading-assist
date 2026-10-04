@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《枪炮病菌与钢铁》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+
+<aside>
+  <div class="brand">《枪炮病菌与钢铁》<small>阅读指引与精华解析 · 2026-10-02</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 六个核心论点</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 争议与局限</a>
+    <a href="#s5">5 中文版本怎么选（★ 本书特有，且是必需的一节）</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s6">1 前言：为什么说世界历史就像洋葱一样?</a>
+    <a href="#s7">2 开场白：亚力的问题</a>
+    <a href="#s8">3 第一部分 从伊甸园到卡哈马卡（第 1–3 章）</a>
+    <a href="#s9">4 第二部分 食物生产的兴起与扩散（第 4–10 章）</a>
+    <a href="#s10">5 第三部分 从食物到枪炮、病菌与钢铁（第 11–14 章）</a>
+    <a href="#s11">6 第四部分 环游世界（第 15–19 章）</a>
+    <a href="#s12">7 尾声与 2017 版后记</a>
+    <div class="grp">附录</div>
+    <a href="#s13">A 金句摘录</a>
+    <a href="#s14">B 延伸阅读</a>
+    <a href="#s15">C 来源清单</a>
+    <a href="#s16">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《枪炮病菌与钢铁》阅读指引与精华解析</h1>
+  <div class="sub">Guns, Germs, and Steel: The Fates of Human Societies</div>
+  <div class="meta">
+    <div><b>作者</b>贾雷德·戴蒙德（1937– ），2024 年从 UCLA 退休</div>
+    <div><b>初版</b>1997-03 · W.W. Norton · 480 页</div>
+    <div><b>中译</b>上海译文 2016 修订版（谢延光）／中信 2022（王道还、廖月娟）</div>
+    <div><b>中文版本</b>共 8 个（1998–2022），本批四本中最多</div>
+    <div><b>荣誉</b>1998 普利策非虚构奖 · 英国皇家学会科学图书奖</div>
+    <div><b>状态</b>未标注已读／想读，两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有出版方／图书馆编目转录的目录与正文段落，或三个以上彼此独立来源一致引用（含分章页码可定位的）</li>
+    <li><span class="tag t-talk">作者谈话</span> 出自戴蒙德的访谈、专访或官网自述 —— 不在书里</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括或读者转引，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    我未接触原书正文；不过<b>上海译文 2016 修订版的逐章页码已由独立来源核实成立</b>，「原书可核对」只适用于有出版方文本或分章页码的段落。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-02 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书落在 <b>B 级（带页码引文）</b>：无公开全文，但上海译文 2016 修订版的<b>逐章页码已由独立来源核实成立</b>，另有带页码引文（<b>p.14／p.19／p.25</b>）。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>它用一个新几内亚人的一句问话，把「谁征服谁」这件事从种族问题改写成了地理问题。</strong> 全书只回答一个问题：</p>
+  <blockquote>
+    <p>亚力问戴蒙德：<strong>「为什么你们白人制造了那么多货物运到新几内亚，而我们黑人却几乎没有自己的货物？」</strong><span class="tag t-src">原书</span>（<strong>p.14</strong>）</p>
+  </blockquote>
+  <p>★ 这句问话问于 <strong>1972 年</strong>、新几内亚的一处海滩上。戴蒙德说，他为此想了 <strong>25 年</strong>，1997 年才写出答案。<span class="tag t-src">原书</span></p>
+  <p><strong>它因此在知识史上占了一个特殊位置</strong>：1997 年，它用基因、环境与生物地理的证据，正面拆掉了「欧亚霸权源于智力或道德优越」这套叙述。<strong>这是一次成功的祛魅</strong> —— 而且它成功到被译成三十多种语言、八次进入中文出版界。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>部分</th><th>章节</th><th>在回答什么</th><th>读完的价值</th></tr></thead>
+    <tbody>
+      <tr><td><strong>前言</strong> 为什么说世界历史就像洋葱一样?</td><td>—</td><td>传统世界史的写法错在哪</td><td>★ 全书的<strong>方法论声明</strong>，最短也最容易被跳过</td></tr>
+      <tr><td><strong>开场白</strong> 亚力的问题</td><td>—</td><td>这个问题是怎么来的</td><td>短；题眼所在</td></tr>
+      <tr><td><strong>第一部分</strong> 从伊甸园到卡哈马卡</td><td>第 1–3 章</td><td>各大洲的起跑线一样吗？</td><td>★ <strong>第 3 章（卡哈马卡）是全书最著名的叙事</strong></td></tr>
+      <tr><td><strong>第二部分</strong> 食物生产的兴起与扩散</td><td>第 4–10 章</td><td>为什么有的地方先种上地？</td><td>★★ <strong>全书论证的承重墙</strong>，7 章</td></tr>
+      <tr><td><strong>第三部分</strong> 从食物到枪炮、病菌与钢铁</td><td>第 11–14 章</td><td>粮食怎么变成了枪炮、文字、国家和病菌？</td><td>★ 第 11 章（病菌）与第 14 章（国家）最关键</td></tr>
+      <tr><td><strong>第四部分</strong> 环游世界</td><td>第 15–19 章（中信版多列第 20 章）</td><td>把模型拿到五大洲去验一遍</td><td>可作<strong>案例集</strong>跳读；第 16 章讲中国</td></tr>
+      <tr><td><strong>尾声</strong> 人类史作为一门科学的未来</td><td>—</td><td>历史能不能成为科学？</td><td>短；<strong>收束全书的方法论主张</strong></td></tr>
+      <tr><td><strong>2017 版后记</strong> 视角下的富国与穷国</td><td>—</td><td>回应《国家为什么会失败》</td><td>★ <strong>2017 年后才有的内容</strong>，是作者唯一一次正面接战</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一个结构上的提示</strong>：本书<strong>不是</strong>按时间顺序写的，而是<strong>按因果链的层次倒着剥</strong>（前沿 → 近因 → 终极因）。<strong>所以从第二部分开始读，比从头读更快抓住它。</strong></p>
+  <p>★ <strong>一个必须提前说清的边界</strong>：<strong>第四部分的章数，中文版与英文版不一样。</strong> 英文原版第四部分标题就叫 <em>Around the World in <strong>Five</strong> Chapters</em>（15–19 章）<span class="tag t-src">原书</span>（图书馆编目转录），而<strong>中信 2022 版把它列为 6 章 —— 多出「第 20 章 日本人是什么人?」</strong><span class="tag t-src">原书</span>（出版方目录）。上海译文 2016 修订版的目录里，「日本人乃何许人也」<strong>在「尾声」之下（p.457）</strong>、不是独立一章<span class="tag t-src">原书</span>。⇒ <strong>「日本」这一章在英文里附于尾声，中信版把它升成了独立一章。</strong> 同一本书的目录可以不一样，讨论时请<strong>用章名而不是章号</strong>。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>六个核心论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：全书只有一个问题 —— 亚力之问</h3>
+  <p>### 论点一：全书只有一个问题 —— 亚力之问</p>
+  <ul>
+    <li>问题原文（英文）：<strong>"Why is it that you white people developed so much cargo and brought it to New Guinea, but we black people had little cargo of our own?"</strong><span class="tag t-src">原书</span>（<strong>p.14</strong>）
+    </li>
+    <li>★ <strong>戴蒙德把它从一个地方性问题推成了全球性问题</strong>：他说，这个问题同样适用于别处 —— 「欧亚裔的人在财富与权力上支配着世界」，而其他民族「被摧毁、被征服，某些情况下甚至被欧洲殖民者灭绝」。<span class="tag t-src">原书</span>（<strong>p.15</strong>）
+    </li>
+    <li>★★ <strong>这一点是理解全书的钥匙</strong>：他不是在问「新几内亚为什么落后」，他在问<strong>「这个世界的不平等是怎么形成的」</strong> —— 而对这个问题的答案里，<strong>没有一句是关于人的优劣的</strong>。
+    </li>
+  </ul>
+  <h3>论点二：必须区分「近因」与「终极因」—— 洋葱式追问</h3>
+  <p>### 论点二：必须区分「近因」与「终极因」—— 洋葱式追问 这是<strong>全书最被忽略、也最要紧的一层</strong>。戴蒙德在《前言》里说得很直接：</p>
+  <ul>
+    <li><strong>传统世界史只写有文字以来的历史</strong>，于是它<strong>只展示了造成历史的近因，而没展示终极原因</strong>。<span class="tag t-rep">转述</span>（出版方转载正文的概括）
+    </li>
+    <li>★ 他的追问链条是：资本主义、重商主义、科学研究、技术、病菌 —— <strong>「所有这些要素都只是近因，而不是终极原因。」</strong> 他接着连问四句：<strong>「为什么资本主义没有在墨西哥土著社会蓬勃发展，重商主义没有在撒哈拉以南非洲风靡盛行，科学研究没有在古代中国备受推崇，先进技术没有在北美土著社会落地开花，致命病菌没有在澳大利亚土著群体中演化出来？」</strong><span class="tag t-src">原书</span>（出版方转载的《前言》正文）
+    </li>
+    <li>★★ 他顺手堵掉了一条常见的退路：有人会说是<strong>文化特质</strong>（如「科学研究在古代中国因儒家思想而遭到遏制」），<strong>但这是回避，不是回答</strong> —— 因为<strong>「为什么不是儒家思想出现在欧亚大陆西部，犹太—基督教伦理出现在古代中国？」</strong><span class="tag t-src">原书</span>
+    </li>
+    <li>★ <strong>他还给了一个反击用的史料</strong>：公元 1400 年以前，<strong>尊崇儒家思想的中国在技术上一直领先于欧亚大陆西部</strong>。<span class="tag t-src">原书</span>
+    </li>
+    <li><strong>「洋葱」这个比喻不是他自创的</strong> —— 来自一位书评人半开玩笑的说法，他接受了：
+    </li>
+  </ul>
+  <blockquote>
+    <p><strong>「我似乎把世界历史看作了洋葱，现代世界是最外面的那一层，在寻求理解历史的过程中要把洋葱一层一层地剥开。没错，世界历史的确就是这样的洋葱！」</strong><span class="tag t-src">原书</span>（出版方转载的《前言》正文）</p>
+  </blockquote>
+  <h3>论点三：粮食生产是那条分水岭</h3>
+  <p>### 论点三：粮食生产是那条分水岭 ★ <strong>这是全书因果链的第 0 步。</strong> 链条是：</p>
+  <p><strong>可驯化的动植物（地理抽签）→ 粮食生产 → 粮食盈余 → 养得起不种地的人（国王、官僚、书吏、工匠、将军）→ 文字／技术／国家／有组织的宗教 → 枪炮与钢铁</strong></p>
+  <ul>
+    <li>戴蒙德的说法是：<strong>文字、技术、政府等都是粮食盈余的「副产品」</strong>。<span class="tag t-rep">转述</span>（出版方简介）
+    </li>
+    <li>★ <strong>他不再把农业当作「进步」来讲</strong> —— 这是他与所有启蒙叙事的差别：农业带来的<strong>同时</strong>是更多人口与更差的个体生活（这条在他上一本书《第三种黑猩猩》第 10 章已经定型）。
+    </li>
+    <li>⚠ <strong>一条必须补上的学理说明</strong>：<strong>「从狩猎采集到农业」不是单向、也不是不可逆的</strong>。学界意见是狩猎采集本身是一种<strong>适应性策略</strong>，在环境变化造成食物压力时<strong>可以重新被采用</strong>；而且两者之间的界线常常并不清楚。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <h3>论点四：两大「地理抽签」—— 大陆轴线 ＋ 安娜·卡列尼娜原则</h3>
+  <p>### 论点四：两大「地理抽签」—— 大陆轴线 ＋ 安娜·卡列尼娜原则 <strong>（a）大陆轴线（第 10 章）</strong></p>
+  <ul>
+    <li><strong>欧亚大陆是东西向的</strong>（横向）⇒ 横跨约 9000 英里的一条<strong>同纬度温带带</strong>，气候、日照长度相近 ⇒ <strong>作物与牲畜可以沿纬度横向传播</strong>。
+    </li>
+    <li><strong>非洲与美洲是南北向的</strong>（纵向）⇒ 要跨越气候带 ⇒ <strong>传播被气候壁垒挡住</strong>。
+    </li>
+    <li>附带的经济后果：<strong>东西向也便于建立贸易网</strong> —— 这是「丝绸之路」在美国或非洲没有纵向等价物的原因之一。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <p><strong>（b）安娜·卡列尼娜原则（第 9 章）</strong></p>
+  <ul>
+    <li>名字取自《安娜·卡列尼娜》开篇：<strong>幸福家庭都是相似的，不幸的家庭各有各的不幸。</strong><span class="tag t-src">原书</span>
+    </li>
+    <li><strong>在驯化上的含义</strong>：一个物种要能被驯化，<strong>必须同时满足一长串条件</strong>（饮食习性、生长速度、圈养繁殖的意愿、性情、群居且有等级结构、不轻易惊慌……）—— <strong>缺一样就不行</strong>。⇒ <strong>失败的方式很多，成功的方式只有一种。</strong>
+    </li>
+    <li>他给出的数字：世界上<strong>大型「驮兽」的候选只有约 14 种，其中 13 种原产于欧亚</strong>；美洲只有<strong>羊驼</strong>（既不能拉犁，也不能骑上战场）。<span class="tag t-rep">转述</span>
+    </li>
+    <li>★ <strong>这条原则是全书最优雅的一处设计</strong>：它把「为什么不驯化斑马」这种看似琐碎的问题，变成了<strong>对种族论最干净的反驳</strong> —— 不是非洲人没想到，是<strong>斑马驯不动</strong>。
+    </li>
+  </ul>
+  <h3>论点五：真正杀死人的不是枪炮，是家畜带来的病菌</h3>
+  <p>### 论点五：真正杀死人的不是枪炮，是家畜带来的病菌</p>
+  <ul>
+    <li>第 11 章标题就叫「<strong>牲畜的致命礼物</strong>」<span class="tag t-src">原书</span>（章目）。
+    </li>
+    <li>核心机制：<strong>多数人类致命传染病是从动物的疾病演化而来的</strong>（天花、流感、肺结核、疟疾、瘟疫、麻疹、霍乱）—— 而<strong>只有长期与家畜密集共处</strong>的社会，才会反复暴露并逐渐积累抗性。<span class="tag t-src">原书</span>（出版方转录正文段落）
+    </li>
+    <li>★ <strong>他一句被引最多的话</strong>：
+    </li>
+  </ul>
+  <blockquote>
+    <p><strong>「过去战争中的胜利者并不总是那些拥有最优秀的将军和最精良武器的军队，而常常不过是那些携带有可以传染给病人的最可怕的细菌。」</strong><span class="tag t-rep">转述</span>（中译本转引段落）</p>
+  </blockquote>
+  <ul>
+    <li>⇒ <strong>一个概率陈述</strong>：欧洲人到达美洲时，<strong>病菌在枪炮之前就完成了大部分杀伤</strong>。这一条是全书<strong>最被后续研究支持</strong>的部分。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <h3>论点六：技术与制度不是天才的产物，而是积累与借用</h3>
+  <p>### 论点六：技术与制度不是天才的产物，而是积累与借用</p>
+  <ul>
+    <li><strong>第 12 章「蓝图和借来的字母」</strong>：文字在人类历史上<strong>只被独立发明过几次</strong>，而且<strong>都在最早发展出食物生产的地区</strong>；其他社会<strong>要么直接采借，要么受其启发</strong>。<span class="tag t-src">原书</span>（出版方转录正文段落）
+    </li>
+    <li><strong>第 13 章「发明为需求之母」</strong> —— ★ <strong>注意这个标题把那句谚语反过来写了</strong>：
+    <ul>
+      <li>通常说「需求是发明之母」（necessity is the mother of invention）；
+      </li>
+      <li>他的主张是<strong>反过来</strong>：<strong>先有发明（多数是借来的），需求是被发明创造出来的</strong>。<span class="tag t-src">原书</span>（章目）＋<span class="tag t-rep">转述</span>（含义）
+      </li>
+      <li>配套判断：<strong>技术是长期积累的结果，而不是孤立英雄行为的结果。</strong><span class="tag t-rep">转述</span>
+      </li>
+    </ul>
+    </li>
+    <li><strong>第 14 章「从人人平等到盗贼统治」</strong>：粮食盈余 → 专业化 → 社会分层 → <strong>kleptocracy（盗贼统治）</strong>。★ 这个词的选择本身就是立场：<strong>他不用「国家」「文明」这类褒义词，而用「盗贼统治」。</strong><span class="tag t-src">原书</span>（章目）
+    </li>
+  </ul>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <p>### 如果你是「想读」</p>
+  <ol>
+    <li>★★ <strong>先决定你读哪个中文版</strong>（见第 5 节）。这不是小事：<strong>两个主流译本的章名几乎每一章都不同</strong>，你可能和朋友讨论的是同一章、却互相认不出。
+    </li>
+    <li>★ <strong>先读三篇「非正文」</strong>，它们比正文更能决定你怎么读它：
+    <ul>
+      <li><strong>《前言 为什么说世界历史就像洋葱一样?》</strong> —— 方法论的钥匙，<strong>读它就够懂全书在干什么</strong>，只有几页；
+      </li>
+      <li><strong>《致我的中国读者》</strong> —— <strong>只有中信 2022 版有</strong>，作者为中国读者另写；
+      </li>
+      <li><strong>《2017 版后记》</strong> —— 回应《国家为什么会失败》，<strong>只有 2017 版以后才有</strong>。
+      </li>
+    </ul>
+    </li>
+    <li><strong>正文的读法：从第二部分开始，最后回看第一部分。</strong>
+    <ul>
+      <li><strong>第一部分（1–3 章）</strong>：第 3 章「卡哈马卡的冲突」是全书叙事最精彩的一段（168 人俘虏了一个帝国的皇帝），<strong>但它是「提出问题」，不是「论证」</strong> —— 第一遍只当故事读即可。
+      </li>
+      <li><strong>第二部分（4–10 章）</strong>：<strong>承重墙</strong>，尤其是<strong>第 5、9、10 三章</strong>（什么时候开始种地／斑马与安娜·卡列尼娜原则／大陆轴线）。<strong>如果只有时间读三章，读这三章。</strong>
+      </li>
+      <li><strong>第三部分（11–14 章）</strong>：<strong>第 11 章（病菌）必读</strong>；13、14 章可快读（观点比论证更硬）。
+      </li>
+      <li><strong>第四部分（15–19 章）</strong>：<strong>当案例集跳读</strong>。中国读者最该看的是<strong>第 16 章「中国——东亚之光」</strong>（英文原题 <em>How China Became Chinese</em>）。
+      </li>
+      <li><strong>尾声</strong>：短，读完 —— 它讲的是「历史能不能成为科学」，是全书的方法论收束。
+      </li>
+    </ul>
+    </li>
+    <li>⚠ <strong>不要把它当「历史书」读</strong>。中文知识界最精准的一次定性来自葛剑雄：<strong>「戴蒙德所采用的也不是非常严谨的学术作品的写作方法，基本上都是论述事实、传播知识理念，只能算一种普及性的读本。」</strong><span class="tag t-rep">转述</span>（2023 年中信直播）★ 戴蒙德自己也说<strong>「我的书不是专门写给专家学者的」</strong><span class="tag t-talk">作者谈话</span>。
+    </li>
+  </ol>
+  <h3>如果你是「已读」</h3>
+  <p>### 如果你是「已读」</p>
+  <ul>
+    <li><strong>重估对象一</strong>：★ <strong>「近因 vs 终极因」这条界线划得对不对。</strong> 全书的力量全部来自这条界线；<strong>而它最脆弱的地方也在同一条线上</strong> —— 因为它让「谁在什么时候做了什么决定」整类问题<strong>退到了不需要回答的位置</strong>（见争议 4.2）。
+    </li>
+    <li><strong>重估对象二</strong>：<strong>病菌那一章今天还站得住吗？</strong> 这是全书<strong>被后续研究支持最多</strong>的一章，值得单独评估它与其他章的不同命运。
+    </li>
+    <li><strong>重估对象三</strong>：★ <strong>「2017 版后记」是全书唯一一次正面接战</strong> —— 把它和《国家为什么会失败》（2012）放在一起读，能看出这场争论的实际形状：<strong>不是「地理 vs 制度」二选一，而是「地理能不能被制度吸收掉」。</strong>
+    </li>
+    <li><strong>重估对象四</strong>：⚠ <strong>这本 1997 年的书，有两处已经从「前沿」变成了「旧」</strong>：一是<strong>把人群按大洲归成「黑人／白人／土著」等类别</strong>（作者自己都承认这是个很差的分类描述）；二是<strong>它对前 1500 年的叙述</strong>。这两处要另找新来源。
+    </li>
+  </ul>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <h3>4.1 ★ 首先是一条「标签」问题：「地理决定论」这个词是谁在用</h3>
+  <p>### 4.1 ★ 首先是一条「标签」问题：「地理决定论」这个词是谁在用 ★ <strong>这条必须先说，因为它是理解所有后续争论的入口。</strong></p>
+  <ul>
+    <li><strong>戴蒙德本人的说法</strong>（官网自述）：针对他的批评有<strong>三个方向</strong> ——<span class="tag t-talk">作者谈话</span>
+    <ol>
+      <li><strong>把「地理决定论」（geographic determinism）当作贬义词使用</strong> —— 他说这个词被有些学者在<strong>许多语境</strong>下调用，目的就是<strong>否认「地理因素对某些人类现象有重要贡献、对其他现象更是主导性解释」</strong>；
+      </li>
+      <li><strong>来自部分欧洲与日本血统者</strong>：认为洲际差异源于<strong>不同人群之间的 IQ 遗传差异</strong>。★ 他说这类观点<strong>很少见诸文字，多在私下交谈中出现</strong>，并且<strong>从未有支持者讨论过「为什么 IQ 会导致病菌也优先在欧洲出现」</strong> —— 而病菌是欧洲征服的主要驱动力之一。他还指出一个时间错位：<strong>书里讨论的历史格局在公元前 3400 年就已基本成形</strong>，那时新月沃地已经有了帝国、文字、金属工具，所以「IQ 解释」该去谈现代伊拉克人、叙利亚人，而不是现代欧洲人和日本人。
+      </li>
+      <li><strong>来自部分政治自由派社会科学家</strong>：用一个贬义词 —— <strong>「欧洲中心主义」（Eurocentrism）</strong> —— 来抹黑这本书。
+      </li>
+    </ol>
+    </li>
+    <li>★★ <strong>他有一句自辩非常关键，因为它把争论翻了个面</strong>：他说，<strong>如果有人说欧洲人征服世界的原因是「欧洲文化」而不是地理，「那才是真正的种族主义，因为欧洲文化并没有什么优越之处。」</strong><span class="tag t-talk">作者谈话</span>
+    </li>
+  </ul>
+  <blockquote>
+    <p>★ <strong>可迁移的教训</strong>：<strong>当一个立场被用一个「…决定论」的名字指称时，先分辨是谁在用它。</strong> 用这个标签的人常常不是在<strong>描述</strong>那个立场，而是在<strong>拒绝</strong>它 —— 而「拒绝」本身不需要论证。本书是最好的实例：戴蒙德从不自称「地理决定论者」，这个标签是他的对手给的。</p>
+  </blockquote>
+  <h3>4.2 ★★ 最锋利的一条批评：它让西方「脱了罪」</h3>
+  <p>### 4.2 ★★ 最锋利的一条批评：它让西方「脱了罪」 这是全书争议的核心，也是最能改变你重读方式的一条：</p>
+  <blockquote>
+    <p>★ 人类学家 <strong>Kathleen Lowrey</strong> 写道：这本书<strong>「让西方脱了钩」（lets the West off the hook）</strong>，并且<strong>「有毒地低语：你尽可以为殖民主义、奴隶制、资本主义、种族主义与掠夺性的新帝国主义哀悼，但这些过去是、现在也是『没人的错』。这是一次恶劣的卸责……它基本上是在说，（非西方的文化／社会）有点可怜，但老天保佑，他们也没办法。」</strong><span class="tag t-rep">转述</span></p>
+  </blockquote>
+  <p><strong>同族的批评</strong>：</p>
+  <ul>
+    <li><strong>Jason Antrosio</strong>（人类学家）称其为<strong>「学术噱头」</strong>，并说：<strong>「戴蒙德的叙述将欧洲统治的所有因素都归结为遥远且偶然的历史，几乎没有考虑人的能动性……欧洲人成为了无意的、偶然的征服者，而本地人则被动地屈服于命运。」</strong> 他还说：<strong>「戴蒙德对人类历史的叙述存在严重误导。他极大地扭曲了驯化和农业在历史中的作用。不幸的是，他讲故事的能力非常吸引人，以至于诱惑了一代受过大学教育的读者。」</strong><span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>Timothy Burke</strong>（斯沃斯莫尔学院非洲史讲师）：<strong>「对非西方社会及西方殖民史感兴趣的学者而言，这种全球史『大图景式』的解释可能令人不安，因为它似乎忽略或极度淡化了 1500 年之后诸多细微差异与选择的重要性。」</strong> 他还指出作者<strong>把 1500 年前撒哈拉以南非洲人（除科伊桑语使用者与「俾格米人」）一律归入「黑人」这一种族类别，尽管他自己明确承认这是个极差的分类描述</strong>。<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>傅可恩（Kerim Friedman）</strong>：<strong>「虽然探讨为何某些国家能够发展技术而其他国家未能如此的问题既有趣又重要，但我认为这一讨论忽略了一个核心问题，即国家内部以及国家之间存在的不平等。」</strong><span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <h3>4.3 ★★ 最硬的一条实证批评：制度 vs 地理（阿杰姆奥卢等）</h3>
+  <p>### 4.3 ★★ 最硬的一条实证批评：制度 vs 地理（阿杰姆奥卢等）</p>
+  <ul>
+    <li><strong>Daron Acemoglu、Simon Johnson、James A. Robinson</strong> 研究<strong>政治制度</strong>对前欧洲殖民地经济与人民福祉的影响。
+    </li>
+    <li>他们的<strong>方法</strong>：使用<strong>定居者死亡率作为工具变量的两阶段最小二乘「准实验」</strong>。
+    </li>
+    <li>他们的<strong>结论</strong>：<strong>在控制制度因素之后，各纬度国家之间的收入差距几乎消失。</strong><span class="tag t-rep">转述</span>
+    </li>
+    <li>2001 年的论文<strong>明确点名并挑战了戴蒙德的工作</strong>；这一批判在两人 2012 年的《国家为什么会失败》中进一步展开，主张<strong>制度因素而非地理因素在国家发展中起决定性作用</strong>。<span class="tag t-rep">转述</span>
+    </li>
+    <li>★★ <strong>而戴蒙德在 2017 版后记里正面回应了它</strong> —— 这是全书唯一一次。要点见下部第 7 节：<strong>用制度解释国富国穷「不能说是错的，但至少是不完整的」。</strong><span class="tag t-src">原书</span>（后记）
+    </li>
+  </ul>
+  <h3>4.4 中文知识界的接受史 —— 一个独有的维度（也是本书与前几本的最大差别）</h3>
+  <p>### 4.4 中文知识界的接受史 —— 一个独有的维度（也是本书与前几本的最大差别） ★ <strong>戴蒙德在中国的接受度和在西方学界不一样。</strong> 这条<strong>值得单列</strong>，因为它会影响你判断这本书的分量：</p>
+  <ul>
+    <li><strong>中文版随书附赠《解读本》，15 位学者与公众人物联袂推荐</strong>：陈嘉映、赵鼎新、赵林、高毅、吴家睿、江晓原、钱颖一、李宏图、俞敏洪、吴军、梁文道、尹烨、熊易寒、严飞、郝景芳。<span class="tag t-src">原书</span>（出版方书讯）
+    </li>
+    <li>★★ <strong>其中最有价值的一条是赵鼎新的「划界式」肯定</strong>：
+    </li>
+  </ul>
+  <blockquote>
+    <p><strong>「这本书是一位优秀的生物学家对人类历史发展规律所做出的分析。书中具有不少洞见。如果以 1.3 万年为跨度，同时不考虑大多数社会科学家所关心的欧亚大陆（以及北非）内部历史差异性发展的原因，而仅解释是什么造成了欧亚大陆（以及北非）与美洲、大洋洲和撒哈拉以南非洲之间在文明发展形态上的巨大差异，戴蒙德给出了一个能令人信服的回答。」</strong><span class="tag t-src">原书</span>（解读本推荐语）</p>
+  </blockquote>
+  <ul>
+    <li>★ <strong>这句话等于替全书划了一条界</strong>：<strong>它解释「洲际差异」，不解释「洲内差异」。</strong> 而这条界线正好<strong>回应了 4.2 里傅可恩的批评</strong>（国家内部不平等）—— <strong>中文知识界用一句更客气的话，说出了同一个问题。</strong>
+    </li>
+    <li>另外三条有分量的：
+    <ul>
+      <li><strong>陈嘉映</strong>：「这本书我到处推荐……最近 20 年，兴起所谓『大历史』，出版了很多类似的宏大叙事，良莠不齐，<strong>我脑海中最好的一部，还是我最早读到的这部『大历史』</strong>。」<span class="tag t-src">原书</span>
+      </li>
+      <li><strong>高毅</strong>（北京大学历史学系教授）：「这本书把一些东方民族的落后归因于地理环境，<strong>是对西方阴魂不散的种族主义谬说的强力冲击</strong>。」<span class="tag t-src">原书</span>
+      </li>
+      <li><strong>钱颖一</strong>（清华大学文科资深教授）：「它一直都是我向清华大学经管学院本科新生推荐的十本书之一，虽然书单每年都有变化。」<span class="tag t-src">原书</span>
+      </li>
+    </ul>
+    </li>
+    <li>⚠ <strong>但中文知识界的接受也有它的边界</strong>，最清醒的一次来自<strong>葛剑雄</strong>（复旦大学文科特聘资深教授，2023 年中信直播）：他说这是他<strong>专业之外唯一一本认认真真看了不止一遍的书</strong>，但紧接着说：<strong>「这本书里讲到的不少内容都不涉及我的专业，而且戴蒙德所采用的也不是非常严谨的学术作品的写作方法……只能算一种普及性的读本。」</strong><span class="tag t-rep">转述</span>
+  <p>★ <strong>这句话的信息量比赞美大</strong>：<strong>一位中国史学者把它定位为「普及读本」而不是「学术著作」。</strong> 这与戴蒙德自己的定位一致（「我的书不是专门写给专家学者的」），也与学界对它的冷淡一致。</p>
+    </li>
+  </ul>
+  <h3>4.5 还有一轮系统性的围攻</h3>
+  <p>### 4.5 还有一轮系统性的围攻</p>
+  <ul>
+    <li>★ <strong>《Questioning Collapse》（剑桥大学出版社，2010）</strong>：一部<strong>论文集</strong>，作者是 <strong>15 位考古学家、文化人类学家与历史学家</strong>，逐条批评《崩溃》与《枪炮、病菌与钢铁》的若干方面。
+    <ul>
+      <li>它的<strong>缘起</strong>值得一提：<strong>2006 年美国人类学协会（AAA）年会</strong>上，一批学者因不满戴蒙德科普著作造成的「误导」而决定<strong>联合多领域专家逐条驳斥</strong>。
+      </li>
+      <li>它的<strong>核心主张</strong>是：<strong>社会是韧性的、会转型为新的形式，而不是「崩溃」。</strong><span class="tag t-rep">转述</span>
+      </li>
+    </ul>
+    </li>
+    <li><strong>J. R. McNeill《The World According to Jared Diamond》</strong>（《The History Teacher》34(2), 2001, pp.165–174）—— <strong>一篇有完整出处的学术书评</strong>。<span class="tag t-src">原书</span>（书目）
+    </li>
+    <li><strong>2023 年《经济学季刊》（QJE）</strong> 一项研究评估了戴蒙德关于「<strong>地形影响中国统一、并促成欧洲分裂</strong>」的论断，<strong>模型发现地形是导致亚欧不同结果的充分条件，但并非必要条件</strong>。<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>James Morris Blaut</strong>（地理学家，2000 年遗作）批评本书<strong>重振了环境决定论</strong>，并把戴蒙德描述为<strong>欧洲中心主义史学家</strong>的例证；他批评戴蒙德对<strong>「欧亚大陆」与「创新性」</strong>这两个词使用不严谨，认为这可能误导读者以为<strong>西欧</strong>在源自中东与亚洲的技术发明中起了主要作用。<span class="tag t-rep">转述</span>
+    </li>
+    <li>⚠ <strong>关于「樱桃摘取」的指控</strong>：批评者常举两个反例 —— <strong>为什么拥有相似地理优势的中国在工业革命中落后于欧洲？为什么农业的诞生地中东没有保持它的先发优势？</strong><span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <h3>4.6 为他记一笔公道</h3>
+  <p>### 4.6 为他记一笔公道 <span class="tag t-inf">推断</span> 本书最强的部分 —— <strong>「洲际差异的终极原因是生物地理而非人群能力」这条论证</strong> —— 是它最被引用、也最少被推翻的部分。它<strong>在 1997 年就用基因与环境证据正面拆掉了种族优劣论</strong>，并且<strong>至今是这条论证最清晰的大众写法之一</strong>。<strong>批评它的人里，几乎没有谁主张回到种族解释上去</strong> —— 这一点本身就是它的胜利。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5</span><span>中文版本怎么选（★ 本书特有，且是必需的一节）</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本书是本批四本里中文版本最多的一本。</strong> 据李公明（2022-01-20，澎湃）的梳理，<strong>汉语出版界在二十多年里先后有 8 个版本</strong><span class="tag t-src">原书</span>（报刊转录的版本史）：</p>
+  <table>
+    <thead><tr><th>版本</th><th>出版社</th><th>出版年</th><th>译者</th><th>备注</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>时报出版（台北）</td><td>1998-10</td><td><strong>王道还、廖月娟</strong></td><td>最早中译本；<strong>作者名当时译作「贾德·戴蒙」</strong></td></tr>
+      <tr><td>2–3</td><td>时报出版（台北）</td><td>2015、2019</td><td>同上</td><td>译者相同</td></tr>
+      <tr><td>4–7</td><td>上海译文出版社</td><td>2000／2006／2014／2016</td><td><strong>谢延光</strong></td><td><strong>四个版本同一译者</strong>；2016 为「修订版」</td></tr>
+      <tr><td>8</td><td><strong>中信出版集团</strong></td><td><strong>2022-01</strong></td><td><strong>王道还、廖月娟</strong></td><td><strong>依 2017 年英文二十周年纪念版译出</strong></td></tr>
+    </tbody>
+  </table>
+  <p><strong>两个主流选择怎么挑</strong>：</p>
+  <ul>
+    <li><strong>A. 上海译文 2016 修订版（谢延光译）</strong> —— 22＋493 页 · ISBN 978-7-5327-7232-2 · 55.00 元 · 「贾雷德·戴蒙德作品系列」<span class="tag t-src">原书</span>（图书馆编目）
+    <ul>
+      <li>★ <strong>它的优势：目录带页码，我拿到了完整的一份</strong>（下部每章都附了页码）。<strong>如果你想按页码规划阅读，用这一版。</strong>
+      </li>
+      <li>⚠ 也<strong>没有</strong>「致我的中国读者」；它的前言就叫「<strong>耶利</strong>的问题」。
+      </li>
+    </ul>
+    </li>
+    <li><strong>B. 中信 2022 版（王道还、廖月娟译）</strong> —— 542 页 ＋ 解读本 44 页（另有 624 页的口径，见附录 D3）· ISBN 978-7-5217-3681-6 · 89.00 元 · 「戴蒙德人类史系列」
+    <ul>
+      <li>★ <strong>它的优势：多了三篇只有它有的东西</strong> —— 作者亲笔的<strong>《致我的中国读者》</strong>、<strong>《前言 为什么说世界历史就像洋葱一样?》</strong>、<strong>《2017 版后记：《枪炮、病菌与钢铁》视角下的富国与穷国》</strong>；并附 <strong>44 页《解读本》</strong>（15 位专家）。
+      </li>
+      <li>⚠ <strong>但要注意</strong>：李公明指出，<strong>这三篇文章里作者都没有谈到 2017 版正文中增添了或修改了哪些内容</strong>；而且<strong>书后「延伸阅读」所列所有著作与文献的发表日期仍然截止于 1996 年</strong>。<span class="tag t-src">原书</span>
+  <p>⇒ ★ <strong>换句话说：所谓「修订」，改的主要是译文与外围，不是正文与文献。</strong></p>
+      </li>
+    </ul>
+    </li>
+  </ul>
+  <p><strong>★ 一个千万不要忽略的操作问题：两个译本的章名几乎全不一样。</strong> 对照如下（左＝谢延光，右＝王道还／廖月娟）：</p>
+  <table>
+    <thead><tr><th>上海译文（谢延光）</th><th>中信（王道还／廖月娟）</th></tr></thead>
+    <tbody>
+      <tr><td>耶利的问题</td><td>亚力的问题</td></tr>
+      <tr><td>走上起跑线</td><td>人类社会的起跑线</td></tr>
+      <tr><td>历史上的穷与富</td><td>历史上的有与无</td></tr>
+      <tr><td>种田还是不种田</td><td>下田好，还是打猎好？</td></tr>
+      <tr><td>怎样识别杏仁</td><td>杏仁的前世今生</td></tr>
+      <tr><td>问题在苹果还是在印第安人</td><td>是苹果的问题，还是印第安人的问题？</td></tr>
+      <tr><td>辽阔的天空与偏斜的轴线</td><td>大陆轴线——历史的伏笔</td></tr>
+      <tr><td>在五章中环游世界</td><td>环游世界</td></tr>
+      <tr><td>耶利的族人</td><td>亚力的族人</td></tr>
+      <tr><td>中国是怎样成为中国人的中国的</td><td>中国——东亚之光</td></tr>
+      <tr><td>驶向波利尼西亚的快艇</td><td>开往波利尼西亚的快船</td></tr>
+      <tr><td>牲畜的致命礼物</td><td>牲畜的致命礼物</td></tr>
+      <tr><td>需要之母</td><td>发明为需求之母</td></tr>
+      <tr><td>日本人乃何许人也</td><td>日本人是什么人？</td></tr>
+    </tbody>
+  </table>
+  <p>⇒ ★★ <strong>连提问者的名字都不同</strong>（<strong>耶利／亚力</strong>，英文 Yali）。<strong>讨论与检索时请附英文原名</strong>，否则两个读者会以为在读两本书。</p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">1</span><span>前言：为什么说世界历史就像洋葱一样?</span><span class="caret">▾</span></h2>
+  <p><strong>这一节在回答</strong>：这本书的方法论是什么？</p>
+  <ul>
+    <li>★ <strong>它批的是「只写有文字以来的历史」的世界史写法</strong> —— 因为那样<strong>只展示近因，不展示终极因</strong>。<span class="tag t-rep">转述</span>
+    </li>
+    <li>他自陈的写法是：<strong>「概述过去 1.3 万年来的人类史」</strong>，重点在于<strong>「探寻终极的原因，并尽可能向前回溯历史的因果链」</strong>。<span class="tag t-src">原书</span>（出版方转载正文）
+    </li>
+    <li>★★ <strong>那四句连问最值得抄下来</strong>：
+    <ul>
+      <li><strong>「所有这些要素都只是近因，而不是终极原因。」</strong>
+      </li>
+      <li><strong>「为什么资本主义没有在墨西哥土著社会蓬勃发展，重商主义没有在撒哈拉以南非洲风靡盛行，科学研究没有在古代中国备受推崇，先进技术没有在北美土著社会落地开花，致命病菌没有在澳大利亚土著群体中演化出来？」</strong>
+      </li>
+      <li><strong>「这种回答还是回避了对终极原因的追寻：为什么不是儒家思想出现在欧亚大陆西部，犹太—基督教伦理出现在古代中国？」</strong>
+      </li>
+      <li><strong>「此外，这一说法还忽略了一个事实，即在公元 1400 年以前，尊崇儒家思想的中国在技术上一直领先于欧亚大陆西部。」</strong><span class="tag t-src">原书</span>
+      </li>
+    </ul>
+    </li>
+    <li><strong>洋葱比喻的来处</strong>：他说有一位书评人<strong>半开玩笑地</strong>写道，他好像把世界历史看作了洋葱 —— 他接受了：<strong>「没错，世界历史的确就是这样的洋葱！」</strong><span class="tag t-src">原书</span>
+    </li>
+    <li><strong>「这一节值不值得读」</strong>：★ <strong>必读，而且是最该先读的一节。</strong> 它只有几页，但<strong>决定了你之后读到的每一章是在回答什么层次的问题</strong>。
+    </li>
+  </ul>
+</section>
+
+<section id="s7">
+  <h2><span class="num">2</span><span>开场白：亚力的问题</span><span class="caret">▾</span></h2>
+  <p><strong>这一节在回答</strong>：这个问题是怎么来的？</p>
+  <ul>
+    <li><strong>场景</strong>：<strong>1972 年</strong>，新几内亚的一处海滩；<strong>亚力（Yali）</strong> 是当地一位政治人物。<span class="tag t-src">原书</span>
+    </li>
+    <li><strong>为什么是这两个人</strong>：戴蒙德从 <strong>1964 年</strong>起在新几内亚研究鸟类，<strong>先后去过 30 多次</strong><span class="tag t-rep">转述</span>，与该地几代人有长期关系。★ 他后来说，<strong>1964 年首次新几内亚之旅是他「人生的决定性转折点」</strong><span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li>★ <strong>一个他反复讲的对比，值得记住</strong>：新几内亚当时技术很原始，但<strong>新几内亚人的思想一点也不原始</strong>；他们<strong>至少和美国人、中国人一样聪明</strong>。<span class="tag t-talk">作者谈话</span>（观察者网专访）
+    </li>
+    <li>★★ <strong>他 2005 年在 NPR 里给出的「回答亚力」的版本，是全书最好的三句话浓缩</strong>：
+    </li>
+  </ul>
+  <blockquote>
+    <p><strong>「亚力，你的族人最终没有现代技术，不是因为缺乏聪明才智……恰恰相反，完全是因为地理。如果你的族人拥有和我族人一样的地理优势，那么创造出直升机的人，本来应该是你们。」</strong><span class="tag t-talk">作者谈话</span>（NPR 2005，PBS 纪录片同期）</p>
+  </blockquote>
+  <p>★ 说明：这在纪录片里是一段对白改写；NPR 转录的英文原句为 <em>"it wasn't for lack of ingenuity that your people didn't end up with modern technology... Instead, the whole answer to your question was geography. If your people had enjoyed the same geographic advantages as my people, your people would have been the ones to invent helicopters."</em><span class="tag t-talk">作者谈话</span></p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">3</span><span>第一部分 从伊甸园到卡哈马卡（第 1–3 章）</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答</strong>：各大洲的起跑线一样吗？</p>
+  <p>★ 页码（上海译文 2016 修订版）：第一部分 p.1；第 1 章 p.3／第 2 章 p.23／第 3 章 p.39。<span class="tag t-src">原书</span></p>
+  <h3>第 1 章 走上起跑线（人类社会的起跑线）</h3>
+  <p>### 第 1 章 走上起跑线（人类社会的起跑线） <strong>副题</strong>：公元前 11000 年前各个大陆发生了些什么</p>
+  <ul>
+    <li><strong>副题本身就是关键</strong>：★ <strong>为什么是「公元前 11000 年」这个时点？</strong> 因为那大致是<strong>上一个冰期结束、各大洲同时「起跑」</strong>的时刻 —— 他要证明的是<strong>起跑线本身差不多</strong>，差距是在之后拉开的。
+    </li>
+    <li>⚠ <strong>这一章在今天最需要更新</strong>：书名副题是「最近 13000 年」，这个时间尺度建立<strong>在上世纪末的考古与年代学之上</strong>；近三十年的古 DNA 与年代学修正，会动到这一章的若干具体判断。<span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+  <h3>第 2 章 历史的自然实验（地理因素是怎样塑造波利尼西亚群岛的社会的）</h3>
+  <p>### 第 2 章 历史的自然实验（地理因素是怎样塑造波利尼西亚群岛的社会的）</p>
+  <ul>
+    <li>★ <strong>这是全书方法论上最漂亮的一章</strong>：波利尼西亚群岛是<strong>一个天然的对照实验</strong> ——
+    <ul>
+      <li><strong>同一批祖先</strong>（同源人群）、<strong>同一套文化</strong>，
+      </li>
+      <li>但<strong>岛屿的环境差异极大</strong>（面积、隔离度、气候、可驯化资源），
+      </li>
+      <li><strong>几千年内</strong>发展出从<strong>狩猎采集部落到原始帝国</strong>的形态各异的社会。
+      </li>
+    </ul>
+    </li>
+    <li>⇒ ★ <strong>「同源人群 × 环境差异 ⇒ 社会形态差异」</strong> 这个设计，<strong>在方法论上排除了种族解释</strong>。<strong>这一章是理解全书逻辑的钥匙，比第 3 章更重要。</strong><span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+  <h3>第 3 章 卡哈马卡的冲突（为什么印加帝国皇帝阿塔瓦尔帕没有俘虏西班牙国王查理一世）</h3>
+  <p>### 第 3 章 卡哈马卡的冲突（为什么印加帝国皇帝阿塔瓦尔帕没有俘虏西班牙国王查理一世）</p>
+  <ul>
+    <li>★ <strong>全书最著名的一段叙事</strong>：<strong>1532 年</strong>，<strong>168 名西班牙人</strong>在卡哈马卡俘获了<strong>印加皇帝阿塔瓦尔帕</strong>，而他当时身边有<strong>数万军队</strong>。
+    </li>
+    <li><strong>这一章的作用是「提出谜题」</strong>：它不是论证，它是<strong>把一个惊人的事实摆出来</strong> —— 然后全书剩下的 19 章都在解释<strong>这个 168 比数万，是怎么可能的</strong>。
+    </li>
+    <li>★ <strong>可读性提示</strong>：<strong>如果你只打算读一章当故事，读这一章。</strong> 但<strong>别在这里停下</strong> —— 它不解释任何东西，它只是把问题摆得更尖锐。
+    </li>
+  </ul>
+</section>
+
+<section id="s9">
+  <h2><span class="num">4</span><span>第二部分 食物生产的兴起与扩散（第 4–10 章）</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答</strong>：为什么有的地方先种上地？ ★ <strong>全书论证的承重墙。</strong></p>
+  <p>★ 页码（上海译文 2016）：第二部分 p.55；第 4 章 p.57／第 5 章 p.66／第 6 章 p.94／第 7 章 p.104／第 8 章 p.123／第 9 章 p.151／第 10 章 p.172。<span class="tag t-src">原书</span></p>
+  <h3>第 4 章 农民的力量（枪炮、病菌与钢铁的根源）</h3>
+  <p>### 第 4 章 农民的力量（枪炮、病菌与钢铁的根源）</p>
+  <ul>
+    <li><strong>本章是「链条」的公示</strong>：粮食生产 → 盈余 → 专业化 → 枪炮、病菌与钢铁。<strong>全书后面所有内容都是这一章的展开。</strong>
+    </li>
+    <li>★ <strong>值得注意的一点</strong>：它是<strong>全书最短的章之一</strong>（上海译文版 p.57–66，<strong>约 9 页</strong>）。<strong>这符合它的功能 —— 它是一张目录，不是论证。</strong>
+    </li>
+    <li>⚠ <strong>它与第 5 章的顺序有一个阅读陷阱</strong>：<strong>中文版把「农民的力量」放在「历史上的有与无」之前</strong>，于是读者先看到一个结论，才看到依据。<strong>如果你觉得第 4 章像在空口断言，那是因为它本来就是先给结论的。</strong>
+    </li>
+  </ul>
+  <h3>第 5 章 历史上的穷与富（粮食生产开始时的地理差异）</h3>
+  <p>### 第 5 章 历史上的穷与富（粮食生产开始时的地理差异）</p>
+  <ul>
+    <li><strong>谁在什么时候开始种地</strong> —— 他给出的图景是：<strong>只有约九个地方独立发展出粮食生产</strong>（新月沃地、中国、墨西哥、安第斯、新几内亚等），其余地方<strong>要么采借，要么一直没有</strong>。<span class="tag t-talk">作者谈话</span>（NPR）
+    </li>
+    <li><strong>为什么这很重要</strong>：<strong>「有与无」的差异不是能力差异，是可用野生物种的差异。</strong>
+    </li>
+  </ul>
+  <h3>第 6 章 种田还是不种田（粮食生产传播的原因）</h3>
+  <p>### 第 6 章 种田还是不种田（粮食生产传播的原因）</p>
+  <ul>
+    <li>★ <strong>这一章正面处理 4.2 那条批评</strong>：<strong>农业不是必然的选择，而是一系列具体的成本收益权衡。</strong>
+    </li>
+    <li>他的框架是：狩猎采集在<strong>人口密度低</strong>时常常更省力；农业的优势在于<strong>单位面积能养活更多人</strong>。⇒ <strong>「种田」的动力不是「进步」，是人口压力。</strong>
+    </li>
+  </ul>
+  <h3>第 7 章 怎样识别杏仁（古代作物的无意识的发展）</h3>
+  <p>### 第 7 章 怎样识别杏仁（古代作物的无意识的发展）</p>
+  <ul>
+    <li><strong>本章讲「驯化」的机制</strong>：作物是如何在<strong>无人有意识地设计</strong>的情况下，被反复的人工选择<strong>无意识地</strong>改造出来的。<span class="tag t-rep">转述</span>
+    </li>
+    <li>★ 同章还包含一个重要的对照概念：<strong>「大种子」与「小种子」野生植物的分布差异</strong>，决定了哪些地区能发展出高产作物。
+    </li>
+  </ul>
+  <h3>第 8 章 问题在苹果还是在印第安人（为什么有些地区的族群未能驯化植物）</h3>
+  <p>### 第 8 章 问题在苹果还是在印第安人（为什么有些地区的族群未能驯化植物）</p>
+  <ul>
+    <li>★★ <strong>标题就是全书的核心修辞</strong>：它在问 —— <strong>同一个失败，责任在「苹果」（即植物）还是在「印第安人」（即人）？</strong>
+    </li>
+    <li>他的答案是<strong>前者</strong>：<strong>失败的责任在可驯化物种的匮乏，不在人。</strong>
+    </li>
+    <li>★ <strong>这一章的副题是全书最直白的「反种族论」宣言之一</strong>，值得单独找来看。
+    </li>
+  </ul>
+  <h3>第 9 章 斑马、不幸的婚姻和安娜·卡列尼娜原则（为什么大多数大型野生哺乳动物没有得到驯化）</h3>
+  <p>### 第 9 章 斑马、不幸的婚姻和安娜·卡列尼娜原则（为什么大多数大型野生哺乳动物没有得到驯化）</p>
+  <ul>
+    <li>★★ <strong>见论点四（b）。这是第二部分里最有力的一章。</strong>
+    </li>
+    <li><strong>核心机制</strong>：<strong>驯化需要同时满足一长串条件，缺一不可</strong> ⇒ <strong>失败的方式很多，成功的只有一种。</strong><span class="tag t-src">原书</span>（章名即此原则）
+    </li>
+    <li><strong>具体条件</strong>（他给的清单方向）：饮食习性（效率）、生长速度、圈养繁殖的意愿、性情（不能太凶）、<strong>群居且有等级结构</strong>（这样人才能取代头领的位置）、不轻易惊慌 —— 等。
+    </li>
+    <li>★ <strong>结论的重量</strong>：世界上<strong>大型驮兽候选约 14 种，13 种原产欧亚</strong>；美洲只有<strong>羊驼</strong>。<span class="tag t-rep">转述</span>
+    </li>
+    <li>⇒ ★ <strong>斑马是全书最常用的一个例子</strong>：它看起来像马，<strong>但驯不动</strong> —— 而<strong>这就是「为什么不是非洲人驯化了斑马」的答案</strong>。
+    </li>
+  </ul>
+  <h3>第 10 章 辽阔的天空与偏斜的轴线（为什么在不同的大陆粮食生产传播的速度不同）</h3>
+  <p>### 第 10 章 辽阔的天空与偏斜的轴线（为什么在不同的大陆粮食生产传播的速度不同）</p>
+  <ul>
+    <li>★★ <strong>见论点四（a）。全书的「地理」这一半，压在这一章上。</strong>
+    </li>
+    <li><strong>欧亚</strong>：东西向轴线 ⇒ 同纬度温带带长约 <strong>9000 英里</strong>（从大西洋到太平洋）⇒ 作物与牲畜<strong>横向传播顺畅</strong>。
+    </li>
+    <li><strong>美洲与非洲</strong>：南北向轴线 ⇒ 跨越气候带 ⇒ <strong>传播被挡</strong>。
+    </li>
+    <li>★ <strong>他附带的一个经济论点</strong>：<strong>东西向也便于建贸易网</strong> —— 这是他解释「为什么丝绸之路在美国或非洲没有纵向等价物」的方式。<span class="tag t-rep">转述</span>
+    </li>
+    <li>⚠ <strong>一条必须补上的限定</strong>：<strong>「轴线」是一个统计性、倾向性的解释，不是机械因果。</strong> 用<strong>欧亚内部</strong>的反例来检验它（例如地中海与斯堪的纳维亚同纬度、却差异极大），是这条论证最容易被质疑的地方。<span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+</section>
+
+<section id="s10">
+  <h2><span class="num">5</span><span>第三部分 从食物到枪炮、病菌与钢铁（第 11–14 章）</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答</strong>：粮食怎么变成了枪炮、文字、国家和病菌？</p>
+  <p>★ 页码（上海译文 2016）：第三部分 p.189；第 11 章 p.191／第 12 章 p.213／第 13 章 p.240／第 14 章 p.269。<span class="tag t-src">原书</span></p>
+  <h3>第 11 章 牲畜的致命礼物（病菌的演化）</h3>
+  <p>### 第 11 章 牲畜的致命礼物（病菌的演化）</p>
+  <ul>
+    <li>★★ <strong>见论点五。这是第三部分里最重要、今天也最站得住的一章。</strong>
+    </li>
+    <li><strong>机制链</strong>：<strong>家畜密集共处 → 动物病原体跨物种跃迁 → 人口密集的定居社会 → 传染病地方性流行 → 存活者获得抗性。</strong>
+    </li>
+    <li><strong>他给出的病种</strong>：天花、流感、肺结核、疟疾、瘟疫、麻疹、霍乱 —— <strong>都是从动物疾病演化而来</strong>。<span class="tag t-src">原书</span>（出版方转录正文段落）
+    </li>
+    <li><strong>一个常被引用的次生事实</strong>：<strong>第二次世界大战之前，战争受害者死于战争引起的疾病的人数，多于死于战斗创伤的人数。</strong><span class="tag t-src">原书</span>（出版方转录正文段落）
+    </li>
+    <li>★ <strong>被引最多的一句话</strong>：
+    </li>
+  </ul>
+  <blockquote>
+    <p><strong>「所有那些为伟大的将军们歌功颂德的军事史，对一个令人泄气的事实只是轻描淡写的一笔带过，这个事实就是：过去战争中的胜利者并不总是那些拥有最优秀的将军和最精良武器的军队，而常常不过是那些携带有可以传染给病人的最可怕的细菌。」</strong><span class="tag t-rep">转述</span>（中译本转引段落）</p>
+  </blockquote>
+  <ul>
+    <li>★ <strong>学理定位</strong>：<strong>这一章与第 9 章（安娜·卡列尼娜原则）是全书内部咬合最紧的两章</strong> —— 家畜的可驯化性决定了有没有病菌，而病菌决定了征服的实际杀伤。
+    </li>
+  </ul>
+  <h3>第 12 章 蓝图和借来的字母（文字的演变）</h3>
+  <p>### 第 12 章 蓝图和借来的字母（文字的演变）</p>
+  <ul>
+    <li><strong>核心事实</strong>：<strong>文字在人类历史上只被独立发明过几次</strong>，而且<strong>都在最早发展出食物生产的地区</strong>；其他社会<strong>要么直接采借，要么受启发而自创</strong>。<span class="tag t-src">原书</span>
+    </li>
+    <li>★ <strong>他附带的一个尺度提醒</strong>：<strong>文字约在公元前 3000 年诞生</strong>；在那之前的历史「往往只被一笔带过」 —— <strong>而在人类 500 万年的历史里，没有文字的时间占 99.9%。</strong><span class="tag t-src">原书</span>（出版方转录正文段落）
+    </li>
+    <li><strong>章的立场</strong>：<strong>「借用」不是羞耻，是常态。</strong> 这一章为第 13 章的「发明为需求之母」铺路。
+    </li>
+  </ul>
+  <h3>第 13 章 需要之母（技术的演进）</h3>
+  <p>### 第 13 章 需要之母（技术的演进）</p>
+  <ul>
+    <li>★★ <strong>注意标题把谚语反过来了</strong>：不是「需求是发明之母」，是<strong>「发明是需求之母」</strong>。
+    </li>
+    <li><strong>论证</strong>：<strong>多数技术是借来的，不是本地发明的</strong>；<strong>技术的发展是长期积累的，而不是靠孤立的英雄行为</strong>。<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>他举的例子方向</strong>：玻璃的发明史（从偶然发现到罗马的玻璃窗，历经数千年）—— <strong>从一个偶然发现到一个可用的东西，中间隔的是很长的时间与很多的接力。</strong><span class="tag t-rep">转述</span>
+    </li>
+    <li>★ <strong>还有一个与他上一本书相连的观点</strong>：<strong>「除了过去的几个完全与世隔绝的社会外」，创新实际上来自别处。</strong><span class="tag t-rep">转述</span>
+    </li>
+    <li>⚠ <strong>这一章是全书被批评为「忽略人的能动性」时最常被点的地方</strong> —— 因为把「发明」说成积累与借用，就等于<strong>把「谁在什么时候做了关键决定」这个问题移出了因果链</strong>。<span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+  <h3>第 14 章 从平等主义到盗贼统治（政府和宗教的演变）</h3>
+  <p>### 第 14 章 从平等主义到盗贼统治（政府和宗教的演变）</p>
+  <ul>
+    <li>★★ <strong>见论点六。标题用词本身是本书记忆点之一</strong>：<strong>kleptocracy（盗贼统治）</strong> —— 他<strong>拒绝用「国家」「文明」这类褒义或中性词</strong>来称呼这个产物。<span class="tag t-src">原书</span>（章目）
+    </li>
+    <li><strong>机制</strong>：粮食盈余 → 供养不事生产者 → 专业化 → <strong>社会分层</strong> → 再分配与强制 → <strong>国家</strong>；宗教与意识形态为这套结构提供合法性。<span class="tag t-rep">转述</span>
+    </li>
+    <li>★ <strong>这是全书道德姿态最清楚的一章</strong>：<strong>它把「国家的形成」写成一件有代价的事，而不是一件成就。</strong>
+    </li>
+  </ul>
+</section>
+
+<section id="s11">
+  <h2><span class="num">6</span><span>第四部分 环游世界（第 15–19 章）</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答</strong>：把模型拿到五大洲去验一遍。★ <strong>可当案例集跳读。</strong></p>
+  <p>★ 页码（上海译文 2016）：第四部分 p.317；第 15 章 p.319／第 16 章 p.348／第 17 章 p.361／第 18 章 p.382／第 19 章 p.405。<span class="tag t-src">原书</span></p>
+  <p>★ <strong>必须先说清的一处结构差异</strong>：<strong>英文原版这一部分的标题就是 <em>Around the World in Five Chapters</em>（五章，15–19 章）</strong><span class="tag t-src">原书</span>（图书馆编目转录）；<strong>上海译文 2016 版也是五章</strong>；而<strong>中信 2022 版把「日本人是什么人?」列为第 20 章</strong><span class="tag t-src">原书</span>（出版方目录）。⇒ <strong>同一本书，中文版的第四部分可能是 6 章。</strong> 详见附录 D2。</p>
+  <h3>第 15 章 亚力的族人（澳大利亚和新几内亚的历史）</h3>
+  <p>### 第 15 章 亚力的族人（澳大利亚和新几内亚的历史）</p>
+  <ul>
+    <li>★ <strong>本章把开场白的问题收回原处</strong>：<strong>新几内亚高原是「独立发展出农业，却没有发展出国王与先进技术」的那一个案例。</strong>
+    </li>
+    <li><strong>他给的答案</strong>（NPR）：新几内亚的农业<strong>基础太薄</strong> —— 只有约<strong>九种作物</strong>，而且<strong>主要是根茎类作物</strong>（不像小麦和大麦那样可以撒种），<strong>并且没有驯化动物</strong>。⇒ <strong>永远无法产生能供养发明家、书吏、国王和将军的粮食盈余。</strong><span class="tag t-talk">作者谈话</span>
+    </li>
+    <li>★ <strong>他给的那个对照，是全书最可爱的一段</strong>：新月沃地有<strong>野生的牛、绵羊、山羊</strong> ⇒ 驯化出了<strong>古代战争的「谢尔曼坦克」——马</strong>；<strong>新几内亚有的是树袋鼠，至今没被驯化。</strong><span class="tag t-talk">作者谈话</span>
+    </li>
+  </ul>
+  <h3>第 16 章 中国——东亚之光（东亚的历史）</h3>
+  <p>### 第 16 章 中国——东亚之光（东亚的历史）</p>
+  <ul>
+    <li>★★ <strong>对中国读者来说，这是第四部分最该读的一章</strong>（英文原题 <em>How China Became Chinese</em>；谢延光译作「中国是怎样成为中国人的中国的」，<strong>这一译名其实比中信版的「东亚之光」更贴原题</strong>）。
+    </li>
+    <li>★ <strong>他论证的核心是「统一 vs 分裂」</strong>，全部挂在<strong>地形</strong>上：<span class="tag t-talk">作者谈话</span>（观察者网专访）
+    <ul>
+      <li><strong>中国两条最大河流的流向彼此平行</strong>，而<strong>欧洲的大河是从中央山脉呈放射状流出</strong>；
+      </li>
+      <li><strong>中国不像意大利、希腊、斯堪的纳维亚那样拥有很多长条形半岛</strong>；
+      </li>
+      <li><strong>中国近海没有很多大型岛屿</strong>（不像英国、西西里、撒丁岛）。
+  <p>⇒ <strong>地理使中国易于统一，使欧洲难以统一。</strong></p>
+      </li>
+    </ul>
+    </li>
+    <li>★ <strong>他还给了另一个层次的差异</strong>（<strong>这一条是本书里最少被注意、但也最有意思的</strong>）：<strong>中国大部分地区依赖水稻农业，而美国与欧洲依赖小麦农业。</strong>
+    <ul>
+      <li><strong>灌溉水稻需要农民合作</strong>；<strong>麦农不必合作</strong> —— 每个麦农都可以随时播种和收获他的小麦。
+      </li>
+      <li>⇒ <strong>这是他解释「为什么中国、日本、韩国社会比美国、欧洲更重视合作、更少个人主义」的方式。</strong>
+      </li>
+      <li>★ 他甚至把这套解释用在中国内部：<strong>「这也是为什么中国的小麦农民不如中国的水稻农民那样更容易合作！」</strong><span class="tag t-talk">作者谈话</span>
+      </li>
+    </ul>
+    </li>
+    <li>⚠ <strong>本章与 4.3 里的 2023 年 QJE 研究直接相关</strong>：那项研究评估了戴蒙德<strong>「地形影响中国统一、促成欧洲分裂」</strong>的论断，<strong>发现地形是充分条件但非必要条件</strong>。<span class="tag t-rep">转述</span>
+    </li>
+    <li>⚠ <strong>另一条要小心的地方</strong>：<strong>这一章被批评者列为「樱桃摘取」的典型之一</strong> —— 因为<strong>中国在公元 1400 年前技术上领先欧亚，之后却落后了</strong>。★ <strong>戴蒙德自己也在《前言》里用这个反例做论证</strong>（见下部第 1 节），所以他知道这个事实；<strong>争论点是这个事实能不能被他的框架解释。</strong><span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+  <h3>第 17 章 开往波利尼西亚的快船（南岛人扩张的历史）</h3>
+  <p>### 第 17 章 开往波利尼西亚的快船（南岛人扩张的历史）</p>
+  <ul>
+    <li><strong>南岛语族（Austronesian）的扩张</strong>：从一次<strong>史前最伟大的航海扩张</strong>看「同源人群 × 不同岛屿 ⇒ 不同社会」。
+    </li>
+    <li>★ <strong>本章是第 2 章（波利尼西亚自然实验）的历史学版本</strong>；两章合起来读，才看得出<strong>他为什么选波利尼西亚做核心案例</strong>。
+    </li>
+  </ul>
+  <h3>第 18 章 两个半球的碰撞（欧亚大陆与美洲历史的比较）</h3>
+  <p>### 第 18 章 两个半球的碰撞（欧亚大陆与美洲历史的比较）</p>
+  <ul>
+    <li><strong>两条「为什么」汇合的一章</strong>：<strong>为什么是欧亚人去了美洲，而不是相反？</strong>
+    </li>
+    <li><strong>答案的三个层次</strong>（对应书名三个词）：<strong>粮食生产的先发／驯化动物的有无／由此而来的病菌与冶金</strong>。
+    </li>
+    <li>★ <strong>这一章与第 3 章（卡哈马卡）是首尾呼应的</strong>：第 3 章摆出谜题，这一章给答案。<strong>收尾时回看第 3 章，是全书最完整的阅读闭环。</strong>
+    </li>
+  </ul>
+  <h3>第 19 章 非洲是怎样成为黑人的非洲的（非洲的历史）</h3>
+  <p>### 第 19 章 非洲是怎样成为黑人的非洲的（非洲的历史）</p>
+  <ul>
+    <li>★ <strong>章名本身是全书最受批评的一处表述</strong> —— 见 4.2 里 Timothy Burke 的批评：作者<strong>把 1500 年前撒哈拉以南非洲人（除科伊桑语使用者与「俾格米人」）一律归入「黑人」，而他自己明确承认这是个极差的分类描述</strong>。<span class="tag t-rep">转述</span>
+    </li>
+    <li>⚠ <strong>本报告的一条立场</strong>：<strong>这一章的章名沿用了一个不严谨的人群分类框架，读者应把它当作 1997 年的表述来读，不要当作关于非洲的事实陈述。</strong><span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+  <h3>（中信版第 20 章）日本人是什么人?</h3>
+  <p>### （中信版第 20 章）日本人是什么人?</p>
+  <ul>
+    <li>★ <strong>英文原版无此独立章</strong>；上海译文 2016 版把它放在<strong>「尾声」之下（p.457）</strong>；中信 2022 版把它<strong>升为第四部分第 20 章</strong>。<span class="tag t-src">原书</span>
+    </li>
+    <li><strong>内容方向</strong>：日本文明的来源与「外来—本土」的关系（<strong>与第 12 章「蓝图和借来的字母」同题</strong>）。<span class="tag t-inf">推断</span>
+    </li>
+    <li>⚠ <strong>别按章号找它</strong> —— 它在三个版本里的位置不同（见附录 D2）。
+    </li>
+  </ul>
+</section>
+
+<section id="s12">
+  <h2><span class="num">7</span><span>尾声与 2017 版后记</span><span class="caret">▾</span></h2>
+  <h3>尾声（上海译文 2016 版 p.433；中信版译「收场白」）</h3>
+  <p>### 尾声（上海译文 2016 版 p.433；中信版译「收场白」） <strong>这一节在回答</strong>：历史能不能成为一门科学？</p>
+  <ul>
+    <li>★ <strong>这是他全书的方法论宣言</strong>：他主张<strong>历史确实有普遍的模式</strong>。
+    </li>
+    <li>★ <strong>他引用了一句反驳怀疑论者的话</strong>：历史<strong>不像</strong>「某个怀疑者」说的那样，是<strong>「没完没了的事实」</strong>；<strong>解释那些模式，不仅能生产慧见，也是个令人着迷的事业。</strong><span class="tag t-src">原书</span>（出版方转录正文段落）
+    </li>
+    <li>★★ <strong>本节的落点</strong>：<strong>全书真正的主张不是「地理决定一切」，而是「历史可以被解释」。</strong> 这一点最容易被读者跳过，也最容易被批评者忽略。<span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+  <h3>2017 版后记 《枪炮、病菌与钢铁》视角下的富国与穷国</h3>
+  <p>### 2017 版后记 《枪炮、病菌与钢铁》视角下的富国与穷国 <strong>这一节在回答</strong>：如果制度才是关键，这本书还剩下什么？ ★★ <strong>2017 年后才有的内容；也是全书唯一一次正面接战。</strong></p>
+  <ul>
+    <li><strong>它回应的是</strong>《国家为什么会失败》（阿杰姆奥卢与罗宾逊，2012）—— 以及更早的 2001 年那篇论文（见 4.3）。<span class="tag t-src">原书</span>（后记）
+    </li>
+    <li>★★ <strong>他的核心回应</strong>：<strong>用制度来解释国富国穷，「不能说是错的，但至少是不完整的」。</strong><span class="tag t-src">原书</span>
+    </li>
+    <li><strong>他给出的两条</strong><span class="tag t-src">原书</span>（后记，经报刊转录）：
+    <ol>
+      <li><strong>除了良好制度，还有其他因素影响国家财富，尤其是地理因素。</strong>
+      <ul>
+        <li>数据：<strong>非洲共有 48 个国家，38 个位于热带，10 个位于温带；除了加蓬，剩余 37 个热带国家比所有温带国家都要贫穷。</strong>
+        </li>
+        <li>另一组数据：<strong>若以沿海和内陆区分，沿海国家的财富值平均比内陆国家高 50%。</strong>
+        </li>
+      </ul>
+      </li>
+      <li>★★ <strong>「我们必须弄清楚良好制度是怎样形成的」</strong> —— 原话：
+      </li>
+    </ol>
+    </li>
+  </ul>
+  <blockquote>
+    <p><strong>「我们不能仅仅满足于将良好制度看作事实予以接受，认为它们可以随意地从天而降，落到某些国家，而没有落到另一些国家。为了理解良好制度是怎样形成的，我们必须探究人类社会所建立的复杂制度的深刻历史渊源，不管这些复杂的制度是好是坏。」</strong></p>
+  </blockquote>
+  <ul>
+    <li>⇒ <strong>他由此又绕回 1.3 万年前</strong>：<strong>复杂制度最重要的终极原因是农业</strong>，其次是人口稠密的定居社会与农业带来的食物盈余。<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <ul>
+    <li>★★ <strong>全书的最后一句（后记末尾），也是本报告最喜欢的一句</strong>：
+    </li>
+  </ul>
+  <blockquote>
+    <p><strong>「总而言之，有些国家比其他国家富裕得多，其原因众多且复杂。如果你坚持认为这个重要问题只有一个简单的原因，那么你得离开地球去其他星球生活，因为这里的现实生活实在很复杂。」</strong><span class="tag t-src">原书</span>（后记）</p>
+  </blockquote>
+</section>
+
+<section id="s13">
+  <h2><span class="num">A</span><span>金句摘录</span><span class="caret">▾</span></h2>
+  <blockquote>
+    <p>说明：本表按<strong>能不能定位</strong>分两类。有<strong>出版方转录文本或页码</strong>的可用；其余为<strong>转引</strong>。</p>
+    <p>★ 本书是<strong>下游转引极多、上游文本极散</strong>的一类书（PBS 纪录片脚本、报刊专访、官网自述、中译本摘录站都在传它的话）—— <strong>请优先采信带页码或出版方转录的那些。</strong></p>
+  </blockquote>
+  <table>
+    <thead><tr><th>引文</th><th>出处／语境</th><th>可信度</th></tr></thead>
+    <tbody>
+      <tr><td>为什么你们白人制造了那么多货物运到新几内亚，而我们黑人却几乎没有自己的货物？</td><td>开场白 · 亚力之问（<strong>p.14</strong>）</td><td><span class="tag t-src">原书</span>（转引标 <strong>p.14</strong>）</td></tr>
+      <tr><td>欧亚裔的人在财富与权力上支配着世界……（其他人）被摧毁、被征服，某些情况下甚至被欧洲殖民者灭绝。</td><td>开场白（<strong>p.15</strong>）</td><td><span class="tag t-src">原书</span>（转引标 <strong>p.15</strong>）</td></tr>
+      <tr><td>所有这些要素都只是近因，而不是终极原因。</td><td>前言</td><td><span class="tag t-src">原书</span>（出版方转录《前言》正文）</td></tr>
+      <tr><td>为什么资本主义没有在墨西哥土著社会蓬勃发展，重商主义没有在撒哈拉以南非洲风靡盛行，科学研究没有在古代中国备受推崇，先进技术没有在北美土著社会落地开花，致命病菌没有在澳大利亚土著群体中演化出来？</td><td>前言</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>这种回答还是回避了对终极原因的追寻：为什么不是儒家思想出现在欧亚大陆西部，犹太—基督教伦理出现在古代中国？</td><td>前言</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>在公元 1400 年以前，尊崇儒家思想的中国在技术上一直领先于欧亚大陆西部。</td><td>前言</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>我似乎把世界历史看作了洋葱，现代世界是最外面的那一层，在寻求理解历史的过程中要把洋葱一层一层地剥开。没错，世界历史的确就是这样的洋葱！</td><td>前言（引一位书评人当年的话）</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>整个近代史上，人类的主要杀手是天花、流感、肺结核、疟疾、瘟疫、麻疹和霍乱，它们都是从动物的疾病演化而来的传染病。</td><td>第 11 章 · 牲畜的致命礼物</td><td><span class="tag t-src">原书</span>（出版方转录正文段落）</td></tr>
+      <tr><td>第二次世界大战前，战争受害者死于战争引起的疾病比死于战斗创伤的要多。</td><td>第 11 章</td><td><span class="tag t-src">原书</span>（同上）</td></tr>
+      <tr><td>文字大约在公元前 3000 年诞生……尽管在人类 500 万年的历史中，没有文字的时间占到了 99.9%。</td><td>第 12 章</td><td><span class="tag t-src">原书</span>（同上）</td></tr>
+      <tr><td>历史绝对不像某个怀疑者说的那样，是「没完没了的事实」。历史的确有普遍的模式，解释那些模式，不仅能生产慧见，也是个令人着迷的事业。</td><td>尾声 · 人类史作为一门科学的未来</td><td><span class="tag t-src">原书</span>（同上）</td></tr>
+      <tr><td>过去战争中的胜利者并不总是那些拥有最优秀的将军和最精良武器的军队，而常常不过是那些携带有可以传染给病人的最可怕的细菌。</td><td>第 11 章 · 主旨</td><td><span class="tag t-rep">转述</span>（中译本摘录站转引）</td></tr>
+      <tr><td>除了过去的几个完全与世隔绝的社会外，创新实际上来自别处。</td><td>第 13 章 · 需要之母</td><td><span class="tag t-rep">转述</span></td></tr>
+      <tr><td>技术的发展是长期积累的，而不是靠孤立的英雄行为。</td><td>第 13 章</td><td><span class="tag t-rep">转述</span></td></tr>
+      <tr><td>亚力，你的族人最终没有现代技术，不是因为缺乏聪明才智……如果你的族人拥有和我族人一样的地理优势，那么创造出直升机的人，本来应该是你们。</td><td>PBS 纪录片 / NPR 2005</td><td><span class="tag t-talk">作者谈话</span>（NPR 转录英文原文）</td></tr>
+      <tr><td>用制度来解释国富国穷，不能说是错的，但至少是不完整的。</td><td>2017 版后记</td><td><span class="tag t-src">原书</span>（后记，经报刊转录）</td></tr>
+      <tr><td>我们不能仅仅满足于将良好制度看作事实予以接受，认为它们可以随意地从天而降，落到某些国家，而没有落到另一些国家。</td><td>2017 版后记</td><td><span class="tag t-src">原书</span>（同上）</td></tr>
+      <tr><td>总而言之，有些国家比其他国家富裕得多，其原因众多且复杂。如果你坚持认为这个重要问题只有一个简单的原因，那么你得离开地球去其他星球生活，因为这里的现实生活实在很复杂。</td><td>2017 版后记 · 末段</td><td><span class="tag t-src">原书</span>（同上）</td></tr>
+      <tr><td>如果有人说欧洲人征服世界的原因不是地理而是欧洲文化，那才真的是种族主义，因为欧洲文化并没有什么优越之处。</td><td>访谈（Irish Times 2019）</td><td><span class="tag t-talk">作者谈话</span></td></tr>
+      <tr><td>我的书不是专门写给专家学者的。</td><td>观察者网专访</td><td><span class="tag t-talk">作者谈话</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s14">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <h4>直接相关（本书自己的上下游）</h4>
+  <ul>
+    <li>★★ <strong>《第三种黑猩猩》（1991）</strong> —— <strong>《枪炮》就是由它的一章扩写而成</strong>（作者本人确认，<span class="tag t-talk">作者谈话</span>）。<strong>读完本书第 10 章（农业双刃剑那个思想的源头）再回头看它，能看清一本书是怎么从一章长出来的。</strong>
+    </li>
+    <li>★★ <strong>《崩溃》（2005）</strong> —— <strong>由《第三种黑猩猩》的另一章扩写而成</strong>（同上）。
+    </li>
+    <li>★★ <strong>《国家为什么会失败》（阿杰姆奥卢 &amp; 罗宾逊，2012）</strong> —— <strong>2017 版后记对应的正是它</strong>。<strong>要理解本书的争论形状，必须读它</strong>（见下部第 7 节）。
+    </li>
+    <li><strong>《昨日之前的世界》（2012）／《剧变》（2019）</strong> —— 系列其余两本。★ 戴蒙德给出的阅读顺序是：<strong>第三种黑猩猩 → 枪炮、病菌与钢铁 → 崩溃 → 昨日之前的世界 → 剧变</strong>。<span class="tag t-talk">作者谈话</span>
+    </li>
+  </ul>
+  <h4>同一问题的其他路径</h4>
+  <ul>
+    <li><strong>《人类简史》《未来简史》（赫拉利）</strong> —— ★ <strong>赫拉利本人承认《枪炮》是他的学术起点</strong>。对照阅读能看清两种解释的分工：<strong>戴蒙德讲地理与生物，赫拉利讲故事与算法</strong>。
+    </li>
+    <li><strong>《人类新史》（格雷伯 &amp; 温格罗，2021）</strong> —— 站在相反立场，<strong>同时反驳</strong>戴蒙德与赫拉利的前提。
+    </li>
+    <li><strong>《国家的视角》（詹姆斯·斯科特）</strong> —— 另一条批评「国家叙事」的路径，与本书第 14 章直接对话。
+    </li>
+  </ul>
+  <h4>有助于批判性重读</h4>
+  <ul>
+    <li>★ <strong>《Questioning Collapse》（剑桥大学出版社，2010）</strong> —— 15 位学者逐条批评的论文集（见 4.5）。<strong>读它之前先读本书第 14 章与第四部分。</strong>
+    </li>
+    <li>★ <strong>J. R. McNeill《The World According to Jared Diamond》（《The History Teacher》34(2), 2001, pp.165–174）</strong> —— 一篇有完整出处的学术书评。
+    </li>
+    <li><strong>Acemoglu, Johnson &amp; Robinson (2001)</strong> —— 那篇「定居者死亡率作工具变量」的论文（见 4.3）。
+    </li>
+    <li><strong>古 DNA／古遗传学的近三十年新进展</strong> —— 用于更新第 1 章的时间尺度。
+    </li>
+  </ul>
+</section>
+
+<section id="s15">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>完整清单（链接、检索时间、每条来源的定位与手检可信度、交叉验证记录、检索盲区）见同目录 <strong><code>枪炮病菌与钢铁-来源清单.md</code></strong>。此处只列主力来源：</p>
+  <table>
+    <thead><tr><th>来源</th><th>类型</th><th>主要提供</th></tr></thead>
+    <tbody>
+      <tr><td><strong>上海译文 2016 修订版目录（浙江图书馆数字资源平台转录）</strong></td><td>★ <strong>图书馆／出版社目录（带页码）</strong></td><td><strong>谢延光译本的分章页码</strong>（第一部分 p.1 …… 尾声 p.433、「日本人乃何许人也」p.457、「2003 后记」p.479）</td></tr>
+      <tr><td><strong>中国海洋大学图书馆 OPAC（上海译文 2016 修订版）</strong></td><td><strong>图书馆编目</strong></td><td>完整目录（含<strong>每章副题</strong>）、22＋493 页、ISBN、丛书名</td></tr>
+      <tr><td><strong>W.W. Norton 1997 原版编目（UW–Madison 图书馆）</strong></td><td><strong>图书馆编目</strong></td><td><strong>英文原版完整目录</strong>（四部分 ＋ 尾声）、480 页、ISBN、OCLC、参考书目页码范围</td></tr>
+      <tr><td><strong>中信 2022 版目录（当当／books.com.tw／海宁市图书馆／百度百科）</strong></td><td><strong>出版方一手</strong></td><td><strong>中译本完整目录</strong>、ISBN、542／624 页口径、<strong>15 位专家推荐语原文</strong></td></tr>
+      <tr><td><strong>中国人民大学／对外经济贸易大学图书馆 OPAC</strong></td><td><strong>图书馆编目</strong></td><td><code>xlvi, 542 页</code> ＋ <strong>解读本 44 页</strong>、丛书名、译自 2017 年英文版</td></tr>
+      <tr><td><strong>李公明《一周书记：苍茫大地与……西风或东风》（澎湃，2022-01-20）</strong></td><td>★ <strong>报刊书评</strong></td><td><strong>八个中文版本的版本史</strong>；<strong>「作者未谈 2017 版正文改了什么」＋「延伸阅读文献截止 1996 年」这两处关键观察</strong></td></tr>
+      <tr><td><strong>搜狐／每日文摘等出版方转载《前言》正文</strong></td><td><strong>出版方转录正文</strong></td><td><strong>洋葱比喻、近因 vs 终极因的四连问、公元 1400 年中国技术领先</strong> —— 本书<strong>唯一一类可定位的正文段落</strong></td></tr>
+      <tr><td>英文维基百科 · Guns, Germs, and Steel</td><td>百科</td><td><strong>p.14／p.15 页码</strong>、结构与获奖、<strong>批评全谱</strong>（Antrosio／Blaut／Friedman／Burke／Lowrey／Acemoglu 等）、PBS 纪录片</td></tr>
+      <tr><td>★ <strong>jareddiamond.org · GGS 页（作者官网自述）</strong></td><td>★ <strong>作者一手</strong></td><td><strong>作者本人对三类批评的分类与回应</strong>；「没有严肃的详细替代理论」「我的解读在根本上是正确的」</td></tr>
+      <tr><td><strong>NPR《Talk of the Nation》（2005-07，PBS 纪录片同期）</strong></td><td>★ <strong>广播访谈（含转录）</strong></td><td><strong>「该由你们发明直升机」那段；新几内亚农业只有九种作物、树袋鼠</strong>；戴蒙德 1964 年起的鸟类研究背景</td></tr>
+      <tr><td><strong>观察者网专访（2022，新冠疫情背景下）</strong></td><td>★ <strong>报刊专访</strong></td><td><strong>中国与欧洲的地形差异（河流／半岛／岛屿）</strong>；<strong>水稻 vs 小麦与「合作／个人主义」</strong>；「我的书不是写给专家学者的」</td></tr>
+      <tr><td><strong>Irish Times（2019，谈《剧变》）</strong></td><td>报刊访谈</td><td>「激进人类学家认为《枪炮》是本种族主义的书」；<strong>「用文化解释才是种族主义」那句自辩</strong></td></tr>
+      <tr><td><strong>腾讯新闻《晚点周末》（2023-12）</strong></td><td>报刊报道</td><td><strong>2017 版后记的核心内容与三组数字</strong>（非洲 48 国／沿海高 50%）；作者自评《第三种黑猩猩》是他写得最好的一本</td></tr>
+      <tr><td>腾讯新闻《戴蒙德与项飙谈疫情、历史和写作》</td><td>报刊访谈</td><td>戴蒙德转向公共写作的动因</td></tr>
+      <tr><td><strong>澎湃《复旦教授葛剑雄：这是唯一一本让我看了不止一遍的「闲书」》（2023-07）</strong></td><td>报刊直播摘编</td><td><strong>葛剑雄对本书性质的定性</strong>（「不是非常严谨的学术作品……只能算一种普及性的读本」）</td></tr>
+      <tr><td>英文维基／kiwix 镜像／Handwiki／wikiwand（同一词条）</td><td>百科（同源）</td><td>出版史（2003／2007 更新版）、获奖</td></tr>
+      <tr><td>百度百科（中）·贾雷德·戴蒙德</td><td>百科（中）</td><td><strong>生平与家庭</strong>、2024 年从 UCLA 退休、著作清单</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s16">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <p>按「可能影响你判断」的程度排序。</p>
+  <h3>D1. ★ 两个译本的章名几乎全不一样 —— <strong>讨论请附英文原名</strong></h3>
+  <p>### D1. ★ 两个译本的章名几乎全不一样 —— <strong>讨论请附英文原名</strong> 见上部第 5 节的对照表。★ 最要紧的是<strong>提问者的名字</strong>：<strong>Yali 在谢延光译本里作「耶利」，在王道还／廖月娟译本里作「亚力」。</strong> ⇒ <strong>跨译本讨论时，请用英文原名（Yali's question）或写明版本。</strong><span class="tag t-src">原书</span></p>
+  <h3>D2. ★★ 第四部分是 5 章还是 6 章 —— <strong>三个版本三个答案</strong></h3>
+  <p>### D2. ★★ 第四部分是 5 章还是 6 章 —— <strong>三个版本三个答案</strong></p>
+  <ul>
+    <li><strong>英文原版</strong>：第四部分标题即 <em>Around the World in Five Chapters</em>，<strong>15–19 章</strong><span class="tag t-src">原书</span>（W.W. Norton 编目转录）。
+    </li>
+    <li><strong>上海译文 2016 修订版</strong>：第四部分 <strong>15–19 章</strong>；<strong>「日本人乃何许人也」在「尾声」之下（p.457）</strong>，<strong>不是独立一章</strong><span class="tag t-src">原书</span>（浙图转录目录）。
+    </li>
+    <li><strong>中信 2022 版</strong>：第四部分<strong>列 15–20 章</strong>，<strong>第 20 章「日本人是什么人?」</strong><span class="tag t-src">原书</span>（出版方目录）。
+    </li>
+  </ul>
+  <p>⇒ <strong>本报告不裁决哪一个是「对」的</strong>，只标明：<strong>「日本」这一章在英文与谢延光译本里附于尾声，在中信版里被升为独立一章。</strong> ⚠ 我<strong>未能确认</strong>这是中信版的编辑处理，还是 2017 英文版对正文结构做过调整 —— <strong>李公明恰好指出「作者没有谈到 2017 版正文中增添了或修改了哪些内容」，这条线索因此更值得留意。</strong></p>
+  <h3>D3. 页数有三到四个口径 —— <strong>不是错误，是「含什么」不同</strong></h3>
+  <p>### D3. 页数有三到四个口径 —— <strong>不是错误，是「含什么」不同</strong></p>
+  <ul>
+    <li><strong>624 页</strong>（当当商品页；李公明亦作 624 页）
+    </li>
+    <li><strong>542 页</strong>（台湾 books.com.tw 规格页）
+    </li>
+    <li><strong><code>xlvi, 542 页</code> ＋ 解读本 44 页</strong>（人大／对外经贸馆藏编目）
+    </li>
+    <li><strong>22 ＋ 493 页</strong>（上海译文 2016 修订版，另一个版本）
+    </li>
+  </ul>
+  <p>⇒ <strong>差别在于是否计入前置页（<code>xlvi</code>）与随书《解读本》。</strong> 引用页数时请注明口径。</p>
+  <h3>D4. ★ 「2017 版」到底改了什么 —— <strong>这条最值得跟进</strong></h3>
+  <p>### D4. ★ 「2017 版」到底改了什么 —— <strong>这条最值得跟进</strong> 李公明 2022 年提出的观察：<strong>三篇新增文章里，作者都没有谈到 2017 版正文中增添了或修改了哪些内容</strong>；且<strong>书后的「延伸阅读」所列所有著作、文献的发表日期仍然截止于 1996 年</strong>。<span class="tag t-src">原书</span> ⇒ ★ <strong>结合 D2（日本章位置）与「2003／2007 更新版均称结论未变」，本报告的建议是：把中信 2022 版当作「同一本书 ＋ 新增外围三篇」，不要当作「修订本」。</strong><span class="tag t-inf">推断</span></p>
+  <h3>D5. 与本书论战相关的年份与出处，需要时回原刊</h3>
+  <p>### D5. 与本书论战相关的年份与出处，需要时回原刊</p>
+  <ul>
+    <li><strong>Acemoglu／Johnson／Robinson</strong> 的关键论文是 <strong>2001 年</strong>（维基与百科镜像一致），但<strong>我用的是二手概述，未见原文</strong><span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>2023 年 QJE 那项「地形是充分条件而非必要条件」的研究</strong>：只有二手概述，<strong>未见论文本身</strong><span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>《Questioning Collapse》（2010）</strong>：出版社与作者构成多源一致，但<strong>我未读其中任何一篇</strong>。
+    </li>
+  </ul>
+  <h3>D6. ⚠ 一类我明确拒绝转述的批评</h3>
+  <p>### D6. ⚠ 一类我明确拒绝转述的批评 检索中出现过一类<strong>主张「洲际差异源于人群间 IQ 的遗传差异」</strong>的论述（含具体 IQ 数值）。★ <strong>本报告不采用、也不转述其论据</strong>，理由有两条，<strong>都属于研究纪律而非立场表态</strong>：</p>
+  <ol>
+    <li><strong>戴蒙德本人已明确拒绝这一类解释</strong>，并指出其两个具体困难（<strong>无法解释「为什么 IQ 会导致病菌也优先出现在欧洲」</strong>；<strong>把时间点放错了 —— 历史格局在公元前 3400 年就已成形</strong>）。<span class="tag t-talk">作者谈话</span>
+    </li>
+    <li>该类论述所依赖的<strong>跨文化 IQ 测量与遗传率分解</strong>，在方法论上争议极大。<span class="tag t-inf">推断</span>
+    </li>
+  </ol>
+  <p>⇒ ★ <strong>给出这类的来源在检索中确实出现过，我记录它「存在」，但不转述它的内容</strong> —— 与本工作流的纪律一致：<strong>「记录它存在，不采用它」。</strong></p>
+  <h3>D7. 我未做到的检索</h3>
+  <p>### D7. 我未做到的检索</p>
+  <ul>
+    <li><strong>原书正文</strong>：<strong>未接触</strong>。可定位的正文只有<strong>《前言》与少数段落</strong>（出版方转录）—— <strong>「原书可核对」不适用于其余章节。</strong>
+    </li>
+    <li><strong>中译本差异的逐句比对</strong>：两个主流译本的<strong>译文差异未逐句核</strong>（只核了章名）。
+    </li>
+    <li><strong>2003／2007／2017 三个英文版的正文差异</strong>：<strong>未逐版比对</strong>（只说「结论未变」，<strong>没找到具体增删清单</strong>）。
+    </li>
+    <li><strong>中文知识界的系统性批评</strong>：中文材料以<strong>推荐语与读书笔记</strong>为主；<strong>我未找到一篇有分量的中文学术批评</strong>（这本身是一个可单独做的功课）。
+    </li>
+    <li><strong>PBS 纪录片（2005，三集）</strong>：只拿到<strong>第一集脚本</strong>，第二、三集未核。
+    </li>
+  </ul>
+</section>
+
+<footer>
+  生成于 2026-10-02 · 来源清单与交叉验证记录见同目录 <code>枪炮病菌与钢铁-来源清单.md</code><br>
+  本页引文按<b>带页码引文（B 级）</b>处理：标注页码的条目引自有页码的公开书评／论文，<b>我未持原书</b>，页码请以原书复核；未标页码者仍是二手转引。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>
