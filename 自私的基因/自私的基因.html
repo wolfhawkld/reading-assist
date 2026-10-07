@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《自私的基因》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《自私的基因》<small>阅读指引与精华解析 · 2026-10-07</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 七个核心论点</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 中文译本怎么选</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s7">6 第 1 章 为什么会有人呢？（Why are people? · p.1）</a>
+    <a href="#s8">7 第 2 章 复制因子（The replicators · p.15）</a>
+    <a href="#s9">8 第 3 章 不朽的螺旋圈（Immortal coils · p.26）</a>
+    <a href="#s10">9 第 4 章 基因机器（The gene machine · p.59）</a>
+    <a href="#s11">10 第 5 章 进犯行为：稳定性和自私的机器（Aggression: stability and the selfish machine · p.86）</a>
+    <a href="#s12">11 第 6 章 基因种族（Genesmanship · p.114）</a>
+    <a href="#s13">12 第 7 章 计划生育（Family planning · p.141）</a>
+    <a href="#s14">13 第 8 章 代际之战（Battle of the generations · p.159）</a>
+    <a href="#s15">14 第 9 章 两性战争（Battle of the sexes · p.182）</a>
+    <a href="#s16">15 第 10 章 你为我挠痒，我就骑在你头上（You scratch my back, I'll ride on yours · p.216）</a>
+    <a href="#s17">16 第 11 章 觅母：新的复制因子（Memes: the new replicators · p.245）</a>
+    <a href="#s18">17 第 12 章 好人终有好报（Nice guys finish first · p.261）</a>
+    <a href="#s19">18 第 13 章 基因的延伸（The long reach of the gene · p.302）</a>
+    <a href="#s20">19 第 14 章 基因决定论与基因选择论（Genetic determinism and gene selectionism）</a>
+    <a href="#s21">20 第 15 章 对于完美化的制约（Constraints on perfection）</a>
+    <div class="grp">附录</div>
+    <a href="#s22">A 关键概念与人物速查</a>
+    <a href="#s23">B 延伸阅读</a>
+    <a href="#s24">C 来源清单</a>
+    <a href="#s25">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《自私的基因》阅读指引与精华解析</h1>
+  <div class="sub">The Selfish Gene / The Extended Selfish Gene</div>
+  <div class="meta">
+    <div><b>作者</b>理查德·道金斯（Richard Dawkins，1941– ），英国演化生物学家、科普作家；牛津大学动物学博士（师从诺奖得主 Niko Tinbergen）；1995–2008 年任牛津首任「查尔斯·西蒙尼公众理解科学教授」，现为牛津新学院荣休研究员；<b>在世</b>——本批六本中唯一可以真实使用「作者谈话」档的一本</div>
+    <div><b>原书名</b><i>The Selfish Gene</i>（1976 初版）／ 40 周年增订版原题 <b><i>The Extended Selfish Gene</i></b>（2016）</div>
+    <div><b>成书年代</b>★ <b>1976-11 初版（11 章）</b> → <b>1989 第 2 版（＋第 12、13 章 ＝ 13 章）</b> → 2006 三十周年版 → <b>2016 四十周年版／《延伸的自私基因》（＋尾声 ＋《延伸的表型》第 2、3 章）</b> → 2026 五十周年版（新尾声 ＋ 新附录）</div>
+    <div><b>★ 大陆简体版</b>中信出版集团「见识城邦 · 见识丛书」<b>40 周年增订版</b> · 卢允中 · 张岱云 · 陈复加 · 罗小舟 · 叶盛 译 · 2018-11 平装 · ISBN 9787508694498 · 2019-06 精装 · ISBN 9787508693279</div>
+    <div><b>★ 版本谱系（易买错）</b>① <b>科学出版社 1981-12</b>（卢允中 · 张岱云 译，281 页，统一书号 13031.1758）——<b>只含初版 11 章，没有第 12–15 章</b>｜② <b>中信 2012-09 三十周年版</b>（ISBN 978-7-5086-3415-9，四人译）——<b>13 章</b>｜③ <b>中信 2018/2019 四十周年增订版</b>——<b>15 章，含第 12–15 章与 40 周年序言</b></div>
+    <div><b>篇幅</b>中译 40 周年增订版 <b>15 章</b> ＋「40 周年增订版序言」＋ 尾注／参考书目／第 14、15 章术语表（英文 40 周年版正文 13 章 ＋《延伸的表型》两章 ＋ 尾声；平装本 464 页，延伸硬装本 xxxiv+548 页）</div>
+    <div><b>荣誉／地位</b>2017-07 英国皇家学会科学图书奖三十周年纪念投票评为<b>「有史以来最具影响力的科学图书」</b>；另入围皇家学会「史上最佳科学图书」短名单（该奖由普里莫·莱维《元素周期表》夺得）；已译成 <b>23–30 余种语言</b>，全球销量以百万／数百万计</div>
+    <div><b>状态</b>未标注已读／想读 —— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有可定位文本支撑的段落 —— 含 <b>Google Books 官方预览公布的 40 周年版逐章页码</b>、出版方与图书馆编目的目录、<b>中文版转录的章首语引语</b>，以及<b>署名、刊物、卷期、年份齐全的批评文献</b>（凡引批评者观点，正文均写明姓名与出处）</li>
+    <li><span class="tag t-talk">作者谈话</span> ★ <b>本书作者道金斯在世，本档真实可用</b>：40 周年增订版序言（英文题 <i>Epilogue to the 40th Anniversary Edition</i>，经权利人授权在《Skeptical Inquirer》2017 年 3/4 月号全文转载）、作者官网 richarddawkins.net、PBS《Faith and Reason》访谈、《The Listener》与 BBC《Horizon》节目等公开访谈与演讲。<b>作者其他著作（《延伸的表型》等）不计入本档</b></li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、书评转述、百科或读者笔记，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本书<b>仍在版权期内</b>，我未持原书，也未访问任何受控借阅或受控预览正文。<b>最大的便利是：Google Books 官方预览公布了 40 周年版的逐章页码</b>（Ch1 p.1 → Ch13 p.302 → Epilogue p.345 → Endnotes p.359 → Index p.447），可与中译章号逐章对应。<b>最大的边界是：全书 15 章我没有逐字读过任何一章的完整原文</b>——正文引文均可定位，但属「有可定位文本支撑」，不等于逐字核对。★ <b>唯一做到逐字核对的是 40 周年增订版序言</b>（见「引文核验级别」）。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-07 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书整体按 <b>B 级（有可定位引文，未逐字核对全书）</b>标注：有 <b>官方目录逐项一致的逐章页码</b>（OUP 2016 四十周年版，Ch1 p.1 → Epilogue p.345 → Index p.447）、<b>公开访谈与官网的原文</b>，以及 <b>署名、刊物、卷期、日期齐全的一手批评与论战文本</b>（Midgley, <i>Philosophy</i> 54(210):439–458, 1979；Gould &amp; Lewontin, <i>Proc. R. Soc. B</i> 205(1161):581–598, 1979；Wilson, <i>Sociobiology</i>, 1975；Sperber, <i>Explaining Culture</i>, 1996；Axelrod, 1984）。★ 但有一处冲到了 <b>局部 A</b>：<b>40 周年增订版序言</b>（英文题 <i>Epilogue to the 40th Anniversary Edition</i>）——其<b>授权公开全文</b>载于《Skeptical Inquirer》41(2)（2017 年 3/4 月号）封面特稿〈The Selfish Gene Revisited〉（文末注明 Copyright 2016，Reprinted by permission of Richard Dawkins and OUP），并经 <b>Center for Inquiry</b> 官网新闻稿与 skepticalinquirer.org 编者按交叉印证；本篇的正文段落（含「recant the central message」「cooperativeness…not because a group of genes is naturally selected as a whole」等句）已逐字核对。★ <b>「局部 A」只适用于这一篇序言；正文 15 章仍为 B 级</b>——请勿把本档的局部 A 读成「整本书都核对过」。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>这本书要说的是：演化的基本单位不是物种、不是群体，甚至不是个体，而是基因；我们这些生物体，是基因为了复制自己而建造并丢掉的「生存机器」。</strong></p>
+  <p>道金斯的写法不是「一个话题一章」，而是<strong>一条模型推演的链</strong>：从「复制因子」这个抽象起点出发，一步步推。先有能自我复制的分子（第 2 章）；它们造出「生存机器」把自己包起来（第 4 章）；接着用一个数学工具——<strong>进化稳定策略（ESS）</strong>——说明为什么机器之间不会往死里打，而会停在某个稳定的比例上（第 5 章）；再把这条逻辑用到<strong>亲属</strong>（第 6–8 章）、<strong>配偶</strong>（第 9 章）、<strong>非亲非故的合作者</strong>（第 10、12 章）身上；最后把「复制因子」这个概念从基因<strong>推广到文化</strong>（第 11 章「觅母」），把「表型」这个概念<strong>推广到身体之外</strong>（第 13 章）。</p>
+  <p>一句话结论（全书最后一段，也是最该记住的一句）：<strong>「我们是被建造为基因机器的，也是被培养为觅母机器的，但我们有能力反抗我们的缔造者。在这地球上，只有我们，能够反抗自私的复制因子的暴政。」</strong><span class="tag t-src">原书</span>（1976 年版正文末，第 13 章「基因的延伸」结尾一带；中译 40 周年版同）。</p>
+  <p><strong>它不是什么</strong>：不是一本「人天生自私」的道德宣言（道金斯反复否认，见第 4b 节）；不是一本讲人类行为的书（第 1 章明确声明<strong>不讨论人类行为细节</strong>）；也不是一本严格的教科书——它是一部<strong>论战书</strong>，靶子是 1960 年代流行的「为了物种的好处」式的群体选择论。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>下表把<strong>英文 40 周年版的逐章页码</strong>与<strong>中译 40 周年增订版的章号／章名</strong>并排。英文页码取自 <strong>Oxford University Press 2016 年《The Selfish Gene: 40th Anniversary Edition》官方目录</strong>（Google Books 预览逐项可见：第 1 章 p.1 → 尾声 p.345 → 尾注 p.359 → 参考书目 p.435 → 索引 p.447 → 评论集萃 p.457，全书 464 页）；★ <strong>注意</strong>：这一页码体系<strong>只代表 2016 年 OUP 平装本</strong>，1976 初版与 1989 第 2 版页码不同，本表不采用。</p>
+  <table>
+    <thead><tr><th>#</th><th>结构单位（中译章名）</th><th>英文章名 · 英文页</th><th>这一部分讲什么</th><th>它在体系里处于哪一层</th></tr></thead>
+    <tbody>
+      <tr><td>—</td><td>40 周年增订版序言</td><td>Epilogue to the 40th Anniversary Edition · p.345</td><td>作者四十年后自述：承认全书最大的误读，提出「其实该叫《合作的基因》」</td><td><strong>元层</strong>：作者对自己这本书的重新定位</td></tr>
+      <tr><td>—</td><td>第 2 版前言／30 周年版简介／初版前言</td><td>Preface to 2nd ed. / Intro to 30th anniv. / Preface to 1st ed.</td><td>说明写作缘起、三版增补、以及「本书不讨论人类行为细节」的声明</td><td><strong>元层</strong>：使用说明</td></tr>
+      <tr><td>1</td><td>第 1 章 为什么会有人呢？</td><td>Why are people? · p.1</td><td>提出全书的问题，并把「物种/群体利益」式的旧解释先摆出来</td><td><strong>问题层</strong>：立靶子</td></tr>
+      <tr><td>2</td><td>第 2 章 复制因子</td><td>The replicators · p.15</td><td>从「原始汤」里的自复制分子讲起，给出「复制因子」这一抽象起点</td><td>★ <strong>承重墙一</strong>：复制因子</td></tr>
+      <tr><td>3</td><td>第 3 章 不朽的螺旋圈</td><td>Immortal coils · p.26</td><td>DNA 双螺旋；基因为何「近乎不朽」，以及「基因」在本书里是<strong>演化意义</strong>而非胚胎学意义的定义</td><td><strong>基础层</strong>：定义与寿命</td></tr>
+      <tr><td>4</td><td>第 4 章 基因机器</td><td>The gene machine · p.59</td><td>生物体＝基因造的生存机器；基因「不思考」，只提供建造指令</td><td><strong>基础层</strong>：生存机器</td></tr>
+      <tr><td>5</td><td>第 5 章 进犯行为：稳定性和自私的机器</td><td>Aggression: stability and the selfish machine · p.86</td><td>★ <strong>ESS（进化稳定策略）</strong>与<strong>鹰鸽博弈</strong>：为什么同类相争常停在「有限暴力」</td><td>★ <strong>承重墙二</strong>：ESS</td></tr>
+      <tr><td>6</td><td>第 6 章 基因种族</td><td>Genesmanship · p.114</td><td>★ <strong>亲缘选择</strong>与<strong>汉密尔顿法则 rB &gt; C</strong>：亲属间的利他如何被算清</td><td>★ <strong>承重墙三</strong>：亲缘</td></tr>
+      <tr><td>7</td><td>第 7 章 计划生育</td><td>Family planning · p.141</td><td>动物不是为群体节制生育，而是为<strong>自己现有子女的最优存活数</strong>调节窝卵数</td><td><strong>应用层</strong>：家庭内部</td></tr>
+      <tr><td>8</td><td>第 8 章 代际之战</td><td>Battle of the generations · p.159</td><td>亲子冲突（断奶、断奶后冲突）：子女想让父母多投入，父母想平衡投入</td><td><strong>应用层</strong>：家庭内部</td></tr>
+      <tr><td>9</td><td>第 9 章 两性战争</td><td>Battle of the sexes · p.182</td><td>两性冲突、<strong>亲代投资（Trivers）</strong>、性别比（Fisher）</td><td><strong>应用层</strong>：配偶之间</td></tr>
+      <tr><td>10</td><td>第 10 章 你为我挠痒，我就骑在你头上</td><td>You scratch my back, I'll ride on yours · p.216</td><td><strong>互惠利他</strong>、<strong>囚徒困境</strong>、清洁鱼与「骗子」</td><td>★ <strong>承重墙四</strong>：非亲缘合作</td></tr>
+      <tr><td>11</td><td>第 11 章 觅母：新的复制因子</td><td>Memes: the new replicators · p.245</td><td>★ <strong>觅母（meme）</strong>：把「复制因子」推广到人类文化</td><td>★ <strong>影响最大、学术上最不牢的一章</strong></td></tr>
+      <tr><td>12</td><td>第 12 章 好人终有好报</td><td>Nice guys finish first · p.261</td><td><strong>针锋相对（tit-for-tat）</strong>：阿克塞尔罗德竞赛与重复囚徒困境</td><td>★ <strong>承重墙四的加强版</strong>（1989 增补）</td></tr>
+      <tr><td>13</td><td>第 13 章 基因的延伸</td><td>The long reach of the gene · p.302</td><td>★ <strong>延伸表型</strong>：基因的影响可越出身体，作用于环境与他人（1989 增补）</td><td>★ <strong>承重墙五</strong></td></tr>
+      <tr><td>14</td><td>第 14 章 基因决定论与基因选择论</td><td>Genetic determinism and gene selectionism</td><td>反驳「基因决定论」这一「伟大的谬误」（英文原为《延伸的表型》第 2 章）</td><td><strong>防守层</strong>：作者回应（2016 增补）</td></tr>
+      <tr><td>15</td><td>第 15 章 对于完美化的制约</td><td>Constraints on perfection</td><td>回应「适应主义」误解：并非所有性状都是被自然选择优化出来的（《延伸的表型》第 3 章）</td><td><strong>防守层</strong>：作者回应（2016 增补）</td></tr>
+      <tr><td>—</td><td>尾注／参考书目／第 14、15 章术语表／评论集萃</td><td>Endnotes p.359 / Bibliography p.435 / …</td><td>各版注释、文献、术语表、早期书评摘录</td><td><strong>附录层</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一个必须知道的操作建议</strong>：<strong>最该先读的是第 2、5、6、10、13 章</strong>——它们分别对应「复制因子→ESS→亲缘→互惠→延伸表型」这条主链上的五个承重墙。<strong>第 1 章是全书最著名、也最容易被误读的一章，恰恰可以最后回头再看</strong>；<strong>第 14、15 章是作者对争议的回应，请先读正文再读它们</strong>（先有误解的对象，才看得懂回应的靶子）。</p>
+  <p>★ <strong>读法提示</strong>：这本书的<strong>章节顺序就是论证顺序</strong>，不要跳着读主线。但<strong>每一章内部是自足的</strong>——道金斯把「模型—例子—结论」压缩在同一章里，所以真要拆开读，也不会断线。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>七个核心论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：自然选择的基本单位是基因，不是个体，也不是物种</h3>
+  <p><strong>主张</strong>：道金斯主张，演化这台机器真正加工的「东西」是基因——更准确地说，是任何能长期稳定地自我复制、从而充当自然选择单位的染色体片段（他采用的是 George C. Williams 的定义）<span class="tag t-src">原书</span>（第 3 章主旨，40 周年序言亦重述该定义）。个体、群体、物种都只是基因的「载体」（vehicle），世代短暂，而基因可以近乎不朽地绵延。</p>
+  <p><strong>依据</strong>：① 复制因子是唯一能延续的东西，个体寿命有限；② 只有基因（而不是个体或群体）会以稳定频率在基因库里长期存在；③ 大量看似「为物种好」的行为，用基因之眼一看就有更省的解释。</p>
+  <p><strong>为什么重要</strong>：<strong>这是全书的地基，也是所有误解的源头。</strong> 一旦把选择的单位从「物种」挪到「基因」，你就不需要再假设动物会「为群体利益」牺牲自己——这是道金斯对 1960 年代主流（如 V. C. Wynne-Edwards 的群体选择论）最直接的一击。</p>
+  <h3>论点二：「自私」是隐喻——它绝不等于人的自私</h3>
+  <p><strong>主张</strong>：道金斯反复声明，基因的「自私」只是一种<strong>记账方式</strong>：一个基因若能推广自身，就在这个意义上「自私」；它<strong>不意味着基因有意识、有意图，更不意味着人类应当自私</strong><span class="tag t-src">原书</span>（第 1 章、第 4 章；40 周年序言）。</p>
+  <p><strong>依据</strong>：① 基因「从不思考」，只提供建造指令 <span class="tag t-src">原书</span>（第 4 章）；② <strong>「自私的基因可以程序化出利他的个体」</strong>——他在访谈里说得最清楚：<strong>「『自私的基因』这个说法只意味着基因是自私的，不意味着个体生物是自私的。恰恰相反，这本书的主要讯息之一就是：自私的基因可以程序化出生物体的利他行为。」</strong><span class="tag t-talk">作者谈话</span>（PBS《Faith and Reason》访谈）；③ 全书结尾则把话反过来说：人类有能力<strong>反抗</strong>自私的复制因子。</p>
+  <p><strong>为什么重要</strong>：这是<strong>全世界对这本书最大的一处误读</strong>，而作者本人四十年间一直在替它澄清（详见第 5.1 与第 4b 节）。<strong>读这本书时，把「自私」理解成「统计意义上的自我推广」，全书就顺了；理解成「品行恶劣」，全书就全歪了。</strong></p>
+  <h3>论点三：亲属间的利他，由「汉密尔顿法则」算清</h3>
+  <p><strong>主张</strong>：帮亲戚，其实是在帮<strong>和你有共同版本的基因</strong>。道金斯把 W. D. Hamilton 的<strong>亲缘选择</strong>理论讲成一条清晰的不等式：<strong>只有当受益者获得的收益 B 乘以亲缘系数 r，大于施惠者付出的代价 C 时，利他行为才会被选择保留——即 rB &gt; C</strong><span class="tag t-src">原书</span>（第 6 章主旨）。</p>
+  <p><strong>依据</strong>：亲缘系数 r 由减数分裂的概率决定，取值是<strong>可以算的</strong>：</p>
+  <table>
+    <thead><tr><th>关系</th><th>亲缘系数 r</th><th>一句话</th></tr></thead>
+    <tbody>
+      <tr><td>同卵双胞胎／同一个个体的自身拷贝</td><td>1</td><td>基因完全相同</td></tr>
+      <tr><td>亲子 · 全同胞（兄弟姊妹）</td><td>0.5</td><td>各有一半基因相同</td></tr>
+      <tr><td>祖孙 · 半同胞 · 叔侄／姑侄</td><td>0.25</td><td>各占四分之一</td></tr>
+      <tr><td>曾祖孙 · 第一代堂表亲</td><td>0.125</td><td>各占八分之一</td></tr>
+    </tbody>
+  </table>
+  <p><strong>依据（续）</strong>：霍尔丹（J. B. S. Haldane）那句被反复引用的话给这条法则做了最生动的注脚：<strong>「我会为救两个兄弟或八个表亲而舍命吗？……（是的。）」</strong><span class="tag t-rep">转述</span>（出处见 richarddawkins.net 转载的《卫报》纪念文章）。</p>
+  <p><strong>为什么重要</strong>：这是<strong>把利他从「道德」问题变成「记账」问题</strong>的一步。它解释了蚂蚁、蜜蜂为何「无私」到自杀式工作，也解释了父母对子女的偏心为何「按份」——<strong>这本书里几乎每一章都在用这条法则的不同形态</strong>。</p>
+  <h3>论点四：行为策略的稳定性，由「ESS」刻画</h3>
+  <p><strong>主张</strong>：道金斯引入 John Maynard Smith 与 George Price 的<strong>进化稳定策略（Evolutionarily Stable Strategy, ESS）</strong>：一个策略如果一旦被种群大多数采用，就再也无法被任何「突变策略」侵入，它就是 ESS <span class="tag t-src">原书</span>（第 5 章主旨）。</p>
+  <p><strong>依据</strong>：① <strong>鹰鸽博弈（Hawk–Dove）</strong>——假设种群里有「鹰」（往死里打）与「鸽」（虚张声势、见真章就走）两种策略；纯鹰、纯鸽都不稳定，稳定解是<strong>两种策略按某个比例混合</strong>，或一个「不做作（Bourgeois）」式的条件策略；② 这个模型的威力在于<strong>它不需要任何「善」的假设</strong>，光是「谁也赢不了」就能推出「同类相争常停在有限暴力」。</p>
+  <p><strong>为什么重要</strong>：<strong>ESS 是这本书从「讲故事」变成「建模」的那一步。</strong> 它把「自然界为什么不是血流成河」这个问题，转化成一个可以用数学求解的稳定性问题——<strong>也正因此，它成了后来被批评为「过度还原」的重灾区</strong>（见第 5.3）。</p>
+  <h3>论点五：非亲非故的合作，靠「互惠利他」与「针锋相对」</h3>
+  <p><strong>主张</strong>：对于没有共同血缘的个体，合作可以由<strong>互惠利他（reciprocal altruism）</strong>维持——今天我帮你，是因为明天你可能会帮我；而维持它最稳的策略是<strong>针锋相对（tit-for-tat）</strong>：<strong>第一回合先合作，之后照抄对方上一回合的做法</strong><span class="tag t-src">原书</span>（第 10 章引入互惠与囚徒困境；第 12 章用阿克塞尔罗德竞赛专门展开）。</p>
+  <p><strong>依据</strong>：① <strong>囚徒困境</strong>——单次博弈里，「背叛」是理性选择，合作会被占便宜；② 但在<strong>重复</strong>的囚徒困境里，<strong>针锋相对被 Robert Axelrod 的两轮计算机竞赛证明为最稳健的简单策略</strong>——它既善良（先合作）、又可报复（被背叛就还手）<span class="tag t-src">原书</span>（第 12 章）；③ 真实世界的对应物：清洁鱼与宿主鱼、狒狒的互相理毛、蝙蝠的反哺。 <strong>为什么重要</strong>：这是全书<strong>唯一一条为「非亲缘的善」留下的通道</strong>——它说明<strong>合作不必以「善」为前提</strong>，只需要「会再见面」。它也把这份推理从生物学一路送进了经济学与政治学（奥斯特罗姆、博弈论教材都在用）。</p>
+  <h3>论点六：复制因子不止基因；表型不止身体</h3>
+  <p><strong>主张</strong>：道金斯把「复制因子」和「表型」两个概念各推出一步：<strong>文化里也有复制因子，他叫它「觅母」（meme）</strong>（第 11 章）；<strong>基因的表型效应也可以越出身体，作用到巢、坝、乃至其他生物体上</strong>，这叫<strong>延伸表型（extended phenotype）</strong>（第 13 章）<span class="tag t-src">原书</span>。</p>
+  <p><strong>依据</strong>：① 觅母具备复制、变异、选择三要素的类比（曲调、观念、时尚在人际间被模仿传播）；② 海狸的坝、河狸的巢、寄生虫操纵宿主的行为，都可以理解为「基因在体外留下的痕迹」。 <strong>为什么重要</strong>：<strong>这两步是全书中「收益最大、风险也最大」的两步。</strong> 「觅母」一章让道金斯的名字进入了互联网文化（今天的网络 meme 一词就源于此），但它<strong>在学术上始终不牢</strong>；「延伸表型」则被公认为他本人<strong>最原创、也相对最经得起推敲</strong>的理论贡献（他本人也说，最偏爱的一本书是《延伸的表型》）。<strong>同一本书里，这两步的学术命运截然不同——这是本报告要替读者分清的。</strong></p>
+  <h3>论点七：人类是唯一能「反抗」的物种——但这不是生物学结论，而是行动的号召</h3>
+  <p><strong>主张</strong>：全书最后一段给出的，不是一句生物学命题，而是一句<strong>劝告</strong>：<strong>人类既然能理解「自己是被基因建造的机器」，就有能力</strong>（部分地）<strong>摆脱基因的摆布</strong>。道金斯把它写成：<strong>「我们是被建造为基因机器的，也是被培养为觅母机器的，但我们有能力反抗我们的缔造者。在这地球上，只有我们，能够反抗自私的复制因子的暴政。」</strong><span class="tag t-src">原书</span>（1976 年版正文结尾一带）</p>
+  <p><strong>依据</strong>：① 人类有<strong>「预测未来的想象力」</strong>——能预见到长期后果，从而改变短期行为；② 人类有<strong>文化与教育</strong>——可以把「反自私」的规则传递下去；③ 道金斯甚至在结尾说：<strong>「我们甚至可以讨论如何刻意培养和培育纯粹的、忘我的利他——那是自然界中毫无立足之地、在世界史上从未存在过的东西。」</strong><span class="tag t-src">原书</span></p>
+  <p><strong>为什么重要</strong>：★ <strong>这是全书最容易两头被误读的一段。</strong> 一方面，<strong>把「基因的自私」读成「所以人该自私」的人，会在这里翻车</strong>——因为作者明明白白号召「反抗」；另一方面，<strong>把它读成「道金斯证明了人可以自由」的人也会翻车</strong>——因为<strong>这是一句「应然」的号召，不是一句「实然」的科学结论</strong>。<strong>本书最有名的一句「道德宣言」，恰恰是全书里最不「科学」的一句。</strong> 道金斯自己也很清楚这一点，所以他说：<strong>「我不打算辩论人类是否真有纯粹的利他——我只是说，即便退一步承认人是彻底自私的，我们的远见也仍能救我们。」</strong><span class="tag t-inf">推断</span>（据其结尾段落的措辞归纳）</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <ol>
+    <li><strong>不要从第 1 章开始，也不要被书名吓住。</strong> 第 1 章写给 1976 年、还不知道「基因之眼」的读者，今天读来会觉得它在反复铺垫。<strong>建议先读第 2 章（复制因子）与第 5 章（ESS）</strong>，用它们建立「复制—竞争—稳定」这条主线。
+    </li>
+    <li><strong>把第 6、10、12 章连着读。</strong> 它们合起来回答同一个问题——「利他怎么可能演化出来」：第 6 章回答「亲戚（血）」，第 10 章回答「伙伴（交情）」，第 12 章回答「重复交往下的最优解」。<strong>这三章是全书最有说服力的部分。</strong>
+    </li>
+    <li><strong>第 3、4、7、8、9 章可以当作「工具箱」按需翻。</strong> 第 3、4 章是定义与过渡；第 7、8、9 章是家庭与两性冲突的专场，例子精彩但可以从任意一章切入。
+    </li>
+    <li><strong>第 11 章（觅母）读的时候请一直握着第 5 章末尾那句提醒。</strong> 它是全书最著名的一章，也是学术上最薄弱的一章——<strong>读它可以欣赏它的想象力，但不要把它当「已被科学证实的理论」</strong>（见第 5.5）。
+    </li>
+    <li><strong>第 13 章（基因的延伸）建议精读。</strong> 它是道金斯原创性最高的一章，也是他自己最看重的理论。
+    </li>
+    <li><strong>最后再回头读第 1 章、以及第 14、15 章与 40 周年序言。</strong> 第 1 章是讲给陌生读者的开场白；第 14、15 章和序言是<strong>作者对四十年误读的正面回应</strong>——<strong>先读完正文，你才知道他在回应什么</strong>。
+    </li>
+  </ol>
+  <h3>如果你是「已读」</h3>
+  <ol>
+    <li><strong>回头核对一件事</strong>：你说「道金斯说人天生自私」时，读到的究竟是正文哪一句？<strong>《自私的基因》第 1 章明确声明「本书不准备论证的第三点是，不对人类或其他某一种动物的行为细节进行描述」</strong>——<strong>它根本没在讲人</strong>。这句原文最能把「人天生自私」这句话证伪。
+    </li>
+    <li><strong>把「基因决定论」这一指控和第 14 章对读</strong>。道金斯在访谈里说过：<strong>「我们生命的基因程序化并不是完全决定论的。它是统计性的。」</strong><span class="tag t-talk">作者谈话</span>（PBS 访谈）——这与「基因决定一切」是两件事。
+    </li>
+    <li><strong>重读第 12 章，并对照阿克塞尔罗德的原著</strong>（Robert Axelrod, <em>The Evolution of Cooperation</em>, 1984）。<strong>它是全书里最经得起实证检验的一章</strong>，也是这本书真正跨界（进入经济学、政治学）的入口。
+    </li>
+    <li><strong>最后，读一遍 40 周年序言全文。</strong> 道金斯在里面承认自己也有措辞上的失误，并且说：<strong>「《合作的基因》本来同样适合做这本书的书名，而书的内容一个字都不用改。」</strong><span class="tag t-talk">作者谈话</span>——<strong>这是作者自己给出的、对全书最准确的读法。</strong>
+    </li>
+  </ol>
+  <h3>★ 一条可执行的阅读路线（15 章怎么排）</h3>
+  <p>如果你打算<strong>认真读完</strong>，本报告建议按下面的顺序，而不是按目录顺序：</p>
+  <ol>
+    <li><strong>第 2 章（复制因子）→ 第 4 章（基因机器）→ 第 3 章（不朽的螺旋圈）。</strong> ★ 先建立「复制因子—生存机器—基因的定义」这一串地基；<strong>第 3 章的定义句是全书的钥匙，务必读准</strong>（它是演化意义的「基因」，不是分子生物学意义的「基因」）。
+    </li>
+    <li><strong>第 5 章（ESS 与鹰鸽）</strong>。这是全书从「比喻」转向「模型」的那一步，<strong>读懂了它，后面的章节都变简单</strong>。
+    </li>
+    <li><strong>第 6 章（亲缘与汉密尔顿法则）→ 第 7 章 → 第 8 章 → 第 9 章。</strong> ★ 连着读，它们是「同一套亲缘逻辑」在<strong>家庭内部 → 亲子 → 两性</strong>上的依次展开；<strong>四章一气读完，比零散读省一半力气</strong>。
+    </li>
+    <li><strong>第 10 章 → 第 12 章。</strong> ★ 这两章必须连读：<strong>第 10 章给机制（互惠、囚徒困境），第 12 章给答案（哪种策略最稳）</strong>；<strong>只读第 10 章会以为「合作很常见」，只读第 12 章不知道「合作从何而来」。</strong>
+    </li>
+    <li><strong>第 13 章（基因的延伸）</strong>。全书原创性最高的一章，<strong>建议精读</strong>。
+    </li>
+    <li><strong>第 11 章（觅母）</strong>。放在这里读——★ <strong>先具备第 2 章「复制因子」的底子，你才看得出这一章的得失在哪。</strong>
+    </li>
+    <li><strong>最后回头读第 1 章 ＋ 第 14、15 章 ＋ 40 周年序言。</strong> ★ 第 1 章是最著名的开头，却最适合当结尾；<strong>第 14、15 章与序言是作者的自辩，先把正文读完，你才知道他面对的是什么指控。</strong>
+    </li>
+  </ol>
+  <p><strong>可以跳过的</strong>：第 7、8、9 章的具体动物例子（保留结论即可）；尾注（除非你要做研究）；第 11 章之后可以只记结论。 <strong>不能跳过的</strong>：第 2、5、6、10、13 章——<strong>这五章是全书骨架的承重墙</strong>。</p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本报告必需的，因为本书的中文版本状况「看起来简单、其实极易买错」——坑不在译本质量，而在「章数」。</strong></p>
+  <p><strong>先说最要紧的三句话结论</strong>：</p>
+  <blockquote>
+    <p><strong>⚠ ① 认准「40 周年增订版」＋中信出版集团 ＋ ISBN 9787508694498（2018 平装）或 9787508693279（2019 精装），这才是完整的 15 章本。</strong></p>
+    <p><strong>⚠ ② 千万别把「科学出版社 1981 年旧译」当成同一本书的便宜版——它只有初版内容（11 章），第 12–15 章与作者四十年后的回应一个字都没有。</strong></p>
+    <p><strong>⚠ ③ 所有简体中译都出自卢允中、张岱云一系（后续版次加入陈复加、罗小舟、叶盛），章号与英文原版一一对应，不需要像某些书那样换算章号。</strong></p>
+  </blockquote>
+  <p><strong>简体中文版谱系</strong>（★ 这是最容易买错的地方，务必看清）：</p>
+  <table>
+    <thead><tr><th></th><th>1981 科学出版社</th><th>2012 中信（30 周年）</th><th><strong>2018/2019 中信（★ 40 周年增订版）</strong></th></tr></thead>
+    <tbody>
+      <tr><td>书名</td><td>《自私的基因》</td><td>《自私的基因》</td><td>《自私的基因：40 周年增订版》</td></tr>
+      <tr><td>译者</td><td>卢允中 · 张岱云</td><td>卢允中 · 张岱云 · 陈复加 · 罗小舟</td><td>卢允中 · 张岱云 · 陈复加 · 罗小舟 · <strong>叶盛</strong></td></tr>
+      <tr><td>出版</td><td>科学出版社 1981-12</td><td>中信出版社 2012-09</td><td>中信出版集团 2018-11（平装）／2019-06（精装）</td></tr>
+      <tr><td>依据版本</td><td>1976 初版</td><td>2 版（1989）正文 ＋ 2006 三十周年版材料</td><td><strong>《The Extended Selfish Gene》（2016）</strong></td></tr>
+      <tr><td><strong>章数</strong></td><td><strong>11 章</strong></td><td><strong>13 章</strong></td><td><strong>15 章</strong></td></tr>
+      <tr><td>页数</td><td>281 页</td><td>371 页</td><td><strong>449 页（另有 496 页口径，见附录 D2）</strong></td></tr>
+      <tr><td>书号</td><td>统一书号 13031.1758（定价 1.00 元）</td><td>ISBN 978-7-5086-3415-9</td><td>ISBN 9787508694498／9787508693279</td></tr>
+      <tr><td>★ 有没有</td><td>没有第 12–15 章</td><td>有 12、13 章，<strong>没有 14、15 章与 40 周年序言</strong></td><td><strong>第 12–15 章 ＋「40 周年增订版序言」俱全</strong></td></tr>
+    </tbody>
+  </table>
+  <p><strong>★ 该选哪个</strong>：</p>
+  <ul>
+    <li><strong>简体读者 → 直接选 2018 年 11 月后的中信「40 周年增订版」</strong>。它才含第 14 章（对「基因决定论」的驳斥）、第 15 章（对「适应主义」的回应）与 40 周年序言——<strong>而这三样东西，恰好是回答「这本书到底在说什么、别人怎么骂它」的关键材料。</strong>
+    </li>
+    <li><strong>已在读旧版的读者 → 值得补读的只有三处</strong>：第 12 章「好人终有好报」、第 13 章「基因的延伸」、第 14–15 章 ＋ 序言。<strong>前面 1–11 章，各版内容一致，不必重买。</strong>
+    </li>
+    <li><strong>不要购买没有版权页、书号对不上、或号称「精编版／导读版」的拼凑本</strong>（本书中译被大量二次拼装，见来源清单第 4 项）。
+    </li>
+  </ul>
+  <p><strong>★ 一个必须提醒的坑</strong>：<strong>本书的繁体版与简体版、以及中信自己的两个版次，章号体系是统一的（都对应英文第 1–15 章）</strong>，所以<strong>不需要章号换算</strong>；<strong>真正会骗到你的，是「同名的旧版内容不全」</strong>。买书时<strong>只认「40 周年增订版」＋ 书号</strong>即可。</p>
+  <p><strong>★ 与英文版的对应关系（便于中英对照阅读）</strong>：中译第 1–13 章 ＝ 英文 40 周年版第 1–13 章；中译第 14、15 章 ＝ 英文《The Extended Selfish Gene》里收进来的<strong>《延伸的表型》第 2 章、第 3 章</strong>（英文把它们作为附录章节，中译把它们编成第 14、15 章）；中译「40 周年增订版序言」＝ 英文 <strong>Epilogue to the 40th Anniversary Edition</strong>（英文排在正文之后，中译挪到正文之前）。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本批新增的，也是本报告最值钱的部分之一。</strong> 下面逐条把中文互联网上最流行的说法，与原文／作者自述对一遍。<strong>判据是「有没有真的回到原书或作者本人」。</strong></p>
+  <table>
+    <thead><tr><th>#</th><th>流行说法</th><th>原文／事实（附定位）</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>「道金斯说<strong>人天生自私</strong>。」</td><td>★ <strong>原文里没有这句话。</strong> 第 1 章明确声明：<strong>「本书不准备论证的第三点是，不对人类或其他某一种动物的行为细节进行描述。」</strong><span class="tag t-src">原书</span> 40 周年序言里，道金斯说的是「<strong>自私的基因可以程序化出利他的个体</strong>」。<strong>这是全书被误传最广的一条。</strong></td></tr>
+      <tr><td>2</td><td>「这本书主张<strong>基因决定论</strong>——行为由基因决定。」</td><td>★ <strong>第 14 章整章就是为反驳这一指控而写</strong>（章名即「基因决定论与基因选择论」）。道金斯在访谈中亦明确：<strong>「我们生命的基因程序化并不是完全决定论的，它是统计性的。」</strong><span class="tag t-talk">作者谈话</span>（PBS 访谈）。</td></tr>
+      <tr><td>3</td><td>「道金斯认为<strong>基因决定一切行为</strong>。」</td><td><strong>原文说的是基因「统计性地」影响</strong>，且第 14 章区分了「基因选择论」（gene selectionism，基因是选择的单位）与「基因决定论」（genetic determinism，基因决定性状）<strong>这两件常被混为一谈的事</strong>。<strong>把前者读成后者，正是作者要纠正的「伟大的谬误」。</strong></td></tr>
+      <tr><td>4</td><td>「<strong>meme 是道金斯提出的一套严谨科学概念</strong>。」</td><td>★ <strong>第 11 章是「推测性地」提出这个概念，不是一套理论。</strong> 道金斯本人后来与该领域（memetics）<strong>保持距离</strong>，说它从未产生他所设想的严谨科学；而「meme」一词如今在网络语境（梗图）里的含义，<strong>与他 1976 年的原意已相去甚远</strong>（见第 5.5）。</td></tr>
+      <tr><td>5</td><td>「这本书是<strong>为社会达尔文主义／撒切尔主义辩护</strong>。」</td><td>★ <strong>全书结尾说的恰恰相反</strong>：<strong>「我们是被建造为基因机器的……我们有能力反抗我们的缔造者。在这地球上，只有我们，能够反抗自私的复制因子的暴政。」</strong><span class="tag t-src">原书</span>（第 13 章末）。道金斯还公开说过，自己被左右两派同时误读，被左翼指控「该为撒切尔上台负部分责任」。</td></tr>
+      <tr><td>6</td><td>「自私的基因学说意味着<strong>一切都是自私的、道德是幻觉</strong>。」</td><td><strong>第 10、12 章整两块都在讲互惠与合作</strong>；全书结尾更<strong>明确呼吁「刻意培养和培育纯粹的、忘我的利他」</strong>——并说这是<strong>「在自然界中毫无立足之地、在世界史上从未存在过的东西」</strong><span class="tag t-src">原书</span>（1976 年版正文结尾）。</td></tr>
+      <tr><td>7</td><td>「道金斯说<strong>基因有意识、有意图</strong>地自私。」</td><td><strong>原文反复否认。</strong> 第 4 章：基因「从不思考」，「它们只不过是预先准备好……因为在以前的一些躯体内，它们一直是这样做的」<span class="tag t-src">原书</span>。<strong>「自私」在全书里是一个技术性隐喻，不是一个心理描述。</strong></td></tr>
+      <tr><td>8</td><td>「<strong>汉密尔顿法则</strong>说的是『帮亲戚总有好报』。」</td><td><strong>原文是一条有条件的成本收益不等式：rB &gt; C。</strong> 只有当「受益 × 亲缘系数 &gt; 代价」时利他才成立；<strong>血亲越远（r 越小），要求的好处就越大</strong>。<strong>它不是无条件的亲情颂歌。</strong></td></tr>
+      <tr><td>9</td><td>「这本书讲的是<strong>人的自私</strong>。」</td><td><strong>第 1 章前言已声明不讨论人类行为细节</strong>；书中人类只是零星举例。<strong>它讲的是「基因之眼下的演化」，不是人性论。</strong></td></tr>
+      <tr><td>10</td><td>「<strong>觅母就是网络上的『梗图』</strong>。」</td><td><strong>道金斯原意是「文化传播的单位」</strong>（曲调、观念、时尚），与今天特指「网络 meme／梗图」的用法<strong>是两回事</strong>；这个词在他笔下已「变成了自己的觅母」，含义在流传中被大幅改写 <span class="tag t-rep">转述</span>（《Skeptical Inquirer》与多篇 meme 研究综述均如此概括）。</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一个反直觉的总结</strong>：<strong>这本书最被误读的两处，恰好是它最著名的两处——书名里的「自私」，和最后一章的「觅母」。</strong> 前者被读成道德主张，后者被读成科学理论；<strong>而它们在原文里，一个只是记账隐喻，一个只是推测性类比。</strong> 记住这一点，你读这本书的收获会翻倍。</p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本报告最该细读的一节。</strong> 本书获得的是<strong>压倒性的公众声誉</strong>（2017 年皇家学会投票评为「史上最具影响力的科学图书」），<strong>但它在学术与思想史上的争议同样密集，而且持续了四十多年</strong>。下面八条按「锋利程度」排序，<strong>每条都带批评者的姓名 ＋ 出处 ＋ 年份</strong>。最后两条回答「这本书按今天的标准哪里读不下去」与「它今天还成立吗」。</p>
+  <h3>5.1 ★★ 最根本的一条：「自私」这个词造成了全书最大的误读——而这一条有作者的原话可核对（本节为「局部 A」）</h3>
+  <p><strong>这是本书最大的争议，而它甚至不是学术争论，是语言学事故。</strong> 道金斯选了一个煽动性的书名，于是这本书被读成了一部「人性本恶」的宣言。<strong>对此最有力的证据不是别人说的，是道金斯自己说的。</strong></p>
+  <p><strong>★ 局部 A 的依据入口（如实说明）</strong>：40 周年增订版序言（英文原题 <strong>Epilogue to the 40th Anniversary Edition</strong>）是一篇<strong>作者自述</strong>。我<strong>在《Skeptical Inquirer》杂志 2017 年 3/4 月号（第 41 卷第 2 期）的封面特稿〈The Selfish Gene Revisited〉中读到了该序言的全文</strong>——它是<strong>经理查德·道金斯与牛津大学出版社授权转载</strong>的（文末版权页注明 "This article is the epilogue to The Extended Selfish Gene and the fortieth anniversary edition of The Selfish Gene, both published in 2016 by Oxford University Press. Copyright 2016. Reprinted by permission of Richard Dawkins and OUP."），并可经 Center for Inquiry 官网新闻页交叉印证。<strong>因此本报告对「40 周年增订版序言」这一部分的引用标为「局部 A」——有授权公开全文可逐字核对；全书其余部分仍为 B 级</strong>（见 legend_extra 与 footer_note）。★ 需要说明：英文原题叫「Epilogue（尾声）」，<strong>中文 40 周年增订版把它放在正文之前，改题「40 周年增订版序言」</strong>——两者是同一篇文字。</p>
+  <p><strong>★ 道金斯本人的原话（中英并录，全句给出）</strong>：</p>
+  <blockquote>
+    <p><strong>英文</strong>：「In some ways I would quite like to find ways to recant the central message of <em>The Selfish Gene</em>.」<span class="tag t-talk">作者谈话</span>（40 周年增订版序言，p.345）</p>
+    <p><strong>中文（中信 40 周年增订版序言）</strong>：<strong>「在某种意义上，我很愿意找到一种方式来收回《自私的基因》一书的核心思想。」</strong></p>
+  </blockquote>
+  <p><strong>★ 还有一句同样关键、且直接回应「合作」这一路误读的</strong>：</p>
+  <blockquote>
+    <p><strong>英文</strong>：「The important point to understand (it is much misunderstood) is that the cooperativeness is favoured, not because a group of genes is naturally selected as a whole, but because individual genes are separately selected against the background of the other genes likely to be met in a body…」<span class="tag t-talk">作者谈话</span>（同上）</p>
+    <p><strong>中文大意</strong>：<strong>「有一点必须弄清（它太常被误解了）：合作性之所以得到青睐，并不是因为一组基因作为整体被自然选择，而是因为单个基因是在『其他的基因也大概会出现在同一具身体里』这一背景下分别被选择的……」</strong></p>
+  </blockquote>
+  <p><strong>★ 以及那句最著名的自我修正</strong>：</p>
+  <blockquote>
+    <p><strong>「《合作的基因》本来同样适合做这本书的书名，而书的内容一个字都不会变。」</strong><span class="tag t-talk">作者谈话</span>（同上；亦见 Center for Inquiry 官网新闻稿引文）</p>
+  </blockquote>
+  <p><strong>为什么这条最要命</strong>：<strong>一个作者四十多年后自己说『我想收回这本书的核心讯息』，却被绝大多数中文读者当成『人天生自私』的倡导者——这个落差本身就是本书最好的导读。</strong> 道金斯要「收回」的不是「基因之眼」（他仍然坚持这一点），而是<strong>书名所诱导的那种道德联想</strong>。<strong>他用「自私的基因」，说的是「自我推广的复制因子」；读者听到的却是「自私的人」。</strong> <span class="tag t-inf">推断</span>这个错位，是这本书一切误解的总开关。</p>
+  <h3>5.2 ★★ 学理上最著名的一击：Mary Midgley, "Gene-Juggling"（1979）</h3>
+  <p><strong>批评者与出处</strong>：<strong>玛丽·米奇利（Mary Midgley，英国哲学家，时任纽卡斯尔大学）</strong>，〈<strong>Gene-Juggling</strong>〉（《摆弄基因》），<strong><em>Philosophy</strong></em>（皇家哲学研究所期刊）<strong>第 54 卷第 210 期，1979 年 10 月，pp. 439–458</strong>，DOI 10.1017/S0031819100063488 <span class="tag t-src">原书</span>。</p>
+  <p><strong>背景（必须一起读）</strong>：1978 年，哲学家 <strong>J. L. Mackie</strong> 在同一刊物发表〈The Law of the Jungle: Moral Alternatives and Principles of Evolution〉（<em>Philosophy</em> 第 53 卷），<strong>盛赞</strong>《自私的基因》，并主张把它的想法用到道德哲学上。<strong>米奇利是被这篇「盛赞」激出来的</strong>——她本来自认「不值得为道金斯大动干戈」，是 Mackie 的文章让她觉得这本书的哲学后果已被认真对待，必须回应 <span class="tag t-src">原书</span>。</p>
+  <p><strong>她批什么</strong>（原文最扎人的一句）：</p>
+  <blockquote>
+    <p><strong>「基因不可能是自私或无私的，就像原子不可能嫉妒、大象不可能沉思、饼干不可能有目的论一样。」</strong>（"Genes cannot be selfish or unselfish, any more than atoms can be jealous, elephants abstract or biscuits teleological."）<span class="tag t-src">原书</span>（"Gene-Juggling" 开篇）</p>
+  </blockquote>
+  <p>米奇利的核心指控有三条：① <strong>道金斯把「基因的自私」偷偷换成了「人性的自私」</strong>——她特别指出，道金斯一边说自己在谈基因（化学结构），一边又滑向「<strong>我们生来是自私的</strong>」（《自私的基因》第 1 版 p.3 的原文）<span class="tag t-src">原书</span>，而<strong>「我们」和「我们的基因」是两码事</strong>；② <strong>这是一个披着生物学外衣的「哲学自我主义」</strong>（psychological egoism），而非经验科学；③ <strong>拟人化不是修辞装饰，而是其论证的支柱</strong>——她说，一旦去掉这种拟人化，<strong>「他就破产了」</strong> <span class="tag t-src">原书</span>。</p>
+  <p><strong>道金斯的反击（一手原文）</strong>：道金斯在 <em>Philosophy</em> 第 56 卷（1981）作答，说米奇利的文章<strong>「在体面的期刊里，就其对一位同行的居高临下的傲慢而言，难有匹敌」</strong>，并称她<strong>「把『误解』提升到了令人眩晕的高度。我的中心论点与她的指控毫无关系。我对人、至少对人的情感本性，甚至并不非常直接地感兴趣。我的书讲的是生命的演化，不是某一个相当反常的物种的伦理。」</strong><span class="tag t-src">原书</span>（Dawkins 1981 回应，转引自米奇利词条与研究文献）。米奇利 1983 年在 <em>Philosophy</em> 第 58 卷以〈Selfish Genes and Social Darwinism〉再答：<strong>「我该为拖延与文章的急躁语气道歉……但我的基本反对意见依旧成立。」</strong><span class="tag t-src">原书</span>。</p>
+  <p><strong>★ 这条怎么判</strong>：</p>
+  <ul>
+    <li><strong>米奇利抓住了一个真问题</strong>——「基因的自私」与「人的自私」不能滑接，<strong>这正是 5.1 里道金斯本人四十多年后也要承认的</strong>。
+    </li>
+    <li><strong>但她把道金斯的立场也读歪了一半</strong>：道金斯从未主张「情感本性专属于自利」（他在 5.1 的序言里亲口否认），所以<strong>这场争论是「双方各误读对方一半」的经典案例</strong>。
+    </li>
+    <li><strong>它的历史位置很清楚</strong>：这是<strong>对「基因之眼」隐喻最著名的一次哲学总攻</strong>，也是道金斯在 1989 年第 2 版注释 p.55 里回敬为<strong>「一篇极度失当而恶毒的文章」</strong>（"highly intemperate and vicious paper"）<span class="tag t-src">原书</span>的那一篇。<strong>要理解这本书为什么被骂，从这里开始读。</strong>
+    </li>
+  </ul>
+  <h3>5.3 ★★ 适应论批评：Gould 与 Lewontin, "The Spandrels of San Marco"（1979）</h3>
+  <p><strong>批评者与出处</strong>：<strong>斯蒂芬·杰伊·古尔德（Stephen Jay Gould，哈佛古生物学家）与理查德·列万廷（Richard C. Lewontin，哈佛遗传学家）</strong>，〈<strong>The Spandrels of San Marco and the Panglossian Paradigm: A Critique of the Adaptationist Programme</strong>〉，<strong><em>Proceedings of the Royal Society of London, Series B</strong></em> <strong>205(1161): 581–598，1979 年 9 月 21 日</strong><span class="tag t-src">原书</span>。</p>
+  <p><strong>他们批什么</strong>：</p>
+  <ul>
+    <li>用<strong>威尼斯圣马可大教堂穹顶下的「拱隅」（spandrels）</strong>打比方：那些三角空间<strong>不是为镶嵌画而设计的，它们是「把圆顶架在拱上」这一结构约束的必然副产品</strong>——后来才被艺术家用来画画。<strong>「有用途」不等于「为此而被选择」。</strong>
+    </li>
+    <li><strong>「潘格洛斯式范式」（Panglossian Paradigm）</strong>：借伏尔泰《老实人》里那位「一切都是最好的安排」的博士，讽刺适应论者<strong>给每一个性状都编一个「它有用所以被选择」的故事</strong>。
+    </li>
+    <li>关键指控：<strong>道金斯式的推理依赖「合理性」而非证据</strong>，制造出一堆无法检验的「<strong>就是这样</strong>的故事」（just-so stories，源出吉卜林的童话）；并主张<strong>发育约束、系统发生史、漂变</strong>等非选择因素被系统性地忽略了 <span class="tag t-src">原书</span>。
+    </li>
+  </ul>
+  <p><strong>道金斯一方怎么回应</strong>：道金斯在《延伸的表型》（<strong>1982</strong>）中正面回击——他反驳说，<strong>古尔德他们的比喻本身选错了对象</strong>：生物学家说的「适应」更像<strong>拱</strong>（有功能、被选择），而不是拱隅的<strong>装饰</strong>；即便在拱隅里，<strong>壁画仍然可以是「被最优设计」的</strong><span class="tag t-rep">转述</span>（转引自多篇进化生物学综述对该论战的回顾）。<strong>丹尼尔·丹尼特（Daniel Dennett）</strong>在《达尔文的危险观念》（<strong><em>Darwin's Dangerous Idea</em>，1995</strong>）里也称它是一篇<strong>「修辞杰作」但科学上误导</strong>。</p>
+  <p><strong>★ 这条的分量</strong>：<strong>它不是针对某一章，而是针对整本书的方法论</strong>——「基因之眼 + 适应论推理」这个组合。<strong>它是 1979 年那场「适应论之争」的开端，也是后来「进化发育生物学（evo-devo）」兴起的背景之一。</strong> 今天的主流看法是：<strong>适应与约束两者都在起作用</strong>（Hox 基因、顺式调控元件的研究证明了这一点），<strong>所以古尔德-列万廷的反击『赢了一半』</strong>：他们成功地让「约束」重新成为一门正经学问，但没有推翻适应论本身。</p>
+  <h3>5.4 ★ 与社会生物学之争：1975 年 E. O. Wilson 引发的风暴，以及「这本书有没有为社会达尔文主义开后门」</h3>
+  <p><strong>事件与出处</strong>：<strong>爱德华·O. 威尔逊（E. O. Wilson）</strong>的《<strong>社会生物学：新的综合</strong>》（<em>Sociobiology: The New Synthesis</em>，哈佛大学出版社，<strong>1975</strong>）出版——<strong>全书四分之一是蚂蚁，但引爆争议的是最后一章「人：从社会生物学到社会学」</strong>，威尔逊在其中把社会生物学的框架推到了人类身上 <span class="tag t-src">原书</span>。</p>
+  <p><strong>随后发生的事（有确切出处）</strong>：</p>
+  <ul>
+    <li><strong>1975 年 11 月</strong>，波士顿的「<strong>社会生物学研究小组</strong>（Sociobiology Study Group）」（<strong>成员含古尔德与列万廷</strong>）在《<strong>纽约书评</strong>》（<em>The New York Review of Books</em>）发表公开信〈<strong>Against 'Sociobiology'</strong>〉，指控威尔逊的学说是「<strong>对人类社会的决定论看法</strong>」<span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>1978 年 11 月</strong>，在一次 AAAS（美国科学促进会）会议上，威尔逊<strong>被抗议者当场把一罐水从头浇下</strong>，抗议者喊「Wilson, you're all wet」。威尔逊后来称，<strong>「我相信我是现代唯一一位因为一个想法而遭受人身攻击的科学家」</strong><span class="tag t-rep">转述</span>（多方记述一致）。
+    </li>
+    <li>这场战争后来被概括为<strong>「生物学决定论」之争</strong>，并深刻影响了「社会生物学」这个学科的名声——<strong>它后来被迫改名换姓，以「进化心理学」的面目重新出山</strong> <span class="tag t-rep">转述</span>。
+    </li>
+  </ul>
+  <p><strong>道金斯在这件事里的位置（★ 这是中文读者最容易搞混的一点）</strong>：</p>
+  <ul>
+    <li><strong>道金斯与威尔逊 1975/1976 年几乎同时出书，方向一致，常被并称</strong>——两者都是「基因之眼」阵营的传播者（研究文献甚至说明：威尔逊负责「圈地、命名」，道金斯负责「解释这个领域的内在逻辑」）<span class="tag t-rep">转述</span>。<strong>所以「《自私的基因》＝社会生物学的一员」这个归类并非无据。</strong>
+    </li>
+    <li><strong>但道金斯与威尔逊并不等同</strong>：道金斯在书里<strong>明确反对群体选择</strong>，也<strong>点名批评过群体选择论者 Robert Ardrey</strong>；而且<strong>他本人是政治上的左倾无神论者</strong>，与「社会达尔文主义」的政治纲领没有亲和性——<strong>他甚至在访谈里主张「应当把达尔文主义当作一面警告旗，用来提醒我们不要把社会那样组织」</strong><span class="tag t-talk">作者谈话</span>（PBS 访谈）。
+    </li>
+    <li><strong>★ 「这本书是否为社会达尔文主义开了后门」——必须分层回答</strong>：
+    <ol>
+      <li><strong>在作者的主观意图上：没有。</strong> 道金斯反复、明确地说这本书是描述性的，不是规范性的；它不问「人应当怎样活」，只问「东西是怎么演化出来的」<span class="tag t-src">原书</span>（第 1 章；40 周年序言）。
+      </li>
+      <li><strong>在文本的字面效果上：很难说没有风险。</strong> <strong>「自私」「基因的暴政」这类比喻，一旦脱离生物学语境进入公共讨论，几乎必然被拿去做道德与政治论证</strong>——<strong>这正是米奇利 5.2 那条批评的要害，也是道金斯自己在 5.1 里想要「收回核心讯息」的原因。</strong>
+      </li>
+      <li><strong>在社会接受史上：这本书被双方同时引用。</strong> 道金斯说过，出书后<strong>右翼来找他当同路人，左翼则指控他该为撒切尔政府上台「负部分责任」</strong>；而他坚称<strong>两边都误解了他</strong><span class="tag t-talk">作者谈话</span>（BBC《Horizon》节目《Nice Guys Finish First》及其同名文章，《The Listener》1986-04-17）。
+  <p>⇒ <strong>结论</strong>：<strong>把它称作「社会达尔文主义」是错的（它反对这一点）；但说它的隐喻体系『容易被人拿去给社会达尔文主义背书』，则是有据的、且作者本人也承认的。</strong></p>
+      </li>
+    </ol>
+    </li>
+  </ul>
+  <h3>5.5 ★★ 「觅母」这一章：影响极大，但学术上极不牢——<strong>学术分量与流行程度完全不成比例</strong></h3>
+  <p>★ <strong>这是本报告认为最需要说清「成比例」问题的一条。</strong> 第 11 章「觅母：新的复制因子」让「meme」成为 21 世纪互联网最流行的词之一；<strong>但它在学术上的分量，远低于它的知名度。</strong></p>
+  <p><strong>为什么说它「不牢」</strong>：</p>
+  <ul>
+    <li><strong>它本来就是「推测性地」提出的</strong>：道金斯自己说，这一章只是<strong>把「基因是复制因子」这个想法顺手推到文化领域</strong>，<strong>不是一套完整的文化演化理论</strong>；提出时用的是「meme」（源自希腊语 <em>mimeme</em>，缩短以押韵 gene）这个新造词 <span class="tag t-src">原书</span>（第 11 章；亦见多篇 memetics 综述）。
+    </li>
+    <li><strong>「单位」的定义始终立不住</strong>：<strong>一首《生日快乐》是一个觅母还是很多个？基督教是一个觅母还是一大堆互相独立的表征？</strong>（这是研究综述反复提出的「个体化标准」难题）<span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>复制保真度不够</strong>：基因复制靠 DNA 碱基互补，<strong>保真度极高</strong>；文化传播却远非如此高保真的复制。
+    </li>
+    <li><strong>★ 最深的批评来自 Dan Sperber（丹·斯珀伯）</strong>：文化传播<strong>根本不是「复制」，而是「重构」</strong>——在人际之间传递的不是一个「信息包」，而是一个<strong>刺激</strong>，接收者会<strong>用自己的认知架构重建</strong>一个表征；文化的稳定性不来自复制保真，而来自「<strong>认知吸引子</strong>」（attractor）。<strong>这是一套与觅母论竞争的解释机制，不是对它的修补</strong> <span class="tag t-src">原书</span>（Dan Sperber, <em>Explaining Culture: A Naturalistic Approach</em>, Blackwell, 1996）。
+    </li>
+    <li><strong>古尔德更直接</strong>：他把 memetics 称为<strong>「一个没有意义的隐喻」（a meaningless metaphor）</strong><span class="tag t-src">原书</span>。
+    </li>
+  </ul>
+  <p><strong>它后来怎样了（这决定它今天的地位）</strong>：</p>
+  <ul>
+    <li><strong>「觅母学」（memetics）作为一种独立学科，从未达到道金斯所设想的严谨程度</strong>——它办过期刊（<em>Journal of Memetics</em>）、开过会，但<strong>没有产生可检验、可预测的成果，被许多学者视为伪科学 / 未成立的研究纲领</strong><span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>主流学界的替代路线是「文化演化理论」与「基因—文化协同演化」（dual inheritance theory）</strong>——代表学者是 <strong>Robert Boyd 与 Peter Richerson</strong>。<strong>这条路线在很多问题上与觅母论重叠，但明确拒绝「觅母是复制因子」这一核心主张</strong> <span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>道金斯本人的态度是矛盾的</strong>：他<strong>既为「meme」这个词感到得意，又与觅母学作为科学纲领保持距离</strong>——多次承认它缺少基因那样的物理个体化 <span class="tag t-rep">转述</span>。
+    </li>
+  </ul>
+  <p><strong>★ 一句话结论</strong>：<strong>这一章是「用一章篇幅，换来了半个世纪的文化影响力，却没换来一个可靠的学科」。</strong> 读它的正确姿势是：<strong>欣赏它的类比之巧与命名之妙，但不要把它当「已被科学证实的理论」</strong>——<strong>它是这本书里唯一一个「流行程度远超学术分量」的章节，而这个反差本身就是本报告要替读者揭开的。</strong></p>
+  <h3>5.6 ★★ 第 12–15 章的作用：版本考古本身就是内容的一部分</h3>
+  <p>★ <strong>这本书的四十年增补，不是「修订」，而是「作者对这本书被怎样误读的逐年回应」。</strong> 把版本史按时间铺开，就是一部误读编年史：</p>
+  <table>
+    <thead><tr><th>版本</th><th>年份</th><th>加了什么</th><th>它在回应什么误读</th></tr></thead>
+    <tbody>
+      <tr><td>初版，<strong>11 章</strong></td><td><strong>1976</strong></td><td>无</td><td>——（还不存在「误读」，因为还没出名）</td></tr>
+      <tr><td>第 2 版，<strong>13 章</strong></td><td><strong>1989</strong></td><td>＋第 12 章「好人终有好报」、＋第 13 章「基因的延伸」</td><td>回应「自私＝冷酷」：<strong>用阿克塞尔罗德竞赛证明「好人（针锋相对）能赢」</strong>；回应「基因只影响身体」：<strong>提出延伸表型</strong></td></tr>
+      <tr><td>30 周年版</td><td>2006</td><td>＋新导言，<strong>恢复初版 Trivers 序</strong></td><td>回应「这本书是孤立的灵感」：<strong>重新强调它站在 Hamilton、Williams、Trivers 等人建立的理论脉络里</strong></td></tr>
+      <tr><td><strong>40 周年／延伸版</strong></td><td><strong>2016</strong></td><td>＋<strong>尾声（自述）</strong>＋<strong>《延伸的表型》第 2、3 章</strong>（中译编为第 14、15 章）</td><td>★ 回应两根最硬的批评：<strong>「基因决定论」（第 14 章）</strong>与<strong>「适应主义」（第 15 章）</strong></td></tr>
+      <tr><td>50 周年版</td><td><strong>2026</strong></td><td>＋新尾声 ＋论 A. G. Lowndes 的新附录</td><td>延续「作者逐年重估自己」的传统</td></tr>
+    </tbody>
+  </table>
+  <p><strong>★ 为什么说「版本考古是内容」</strong>：</p>
+  <ul>
+    <li><strong>第 12、13 章是「补自己的理论漏洞」</strong>：初版只讲到「利他与亲缘」，<strong>没讲清「非亲非故的合作」，也没讲清「基因作用到身体之外」</strong>。这两章补的正是这两块。
+    </li>
+    <li><strong>第 14、15 章是「补别人的批评」</strong>：<strong>它们原本是《延伸的表型》（1982）里的章节，是道金斯对米奇利、古尔德-列万廷那一轮的正面回复</strong>——<strong>中译把这本属于另一本书的两章直接编进《自私的基因》第 14、15 章，等于把「辩护词」装订进了「正文」。</strong>
+    </li>
+    <li>★ <strong>一个必须点破的细节</strong>：<strong>英文《The Extended Selfish Gene》（2016 精装）把这两章作为「《延伸的表型》的章节」放在书末，与正文分开；而中文 40 周年增订版把它们编成第 14、15 章，与正文连排。</strong> ⇒ <strong>中文读者读到的「15 章本」，在结构上其实混合了两本书</strong>；这不是错误，但<strong>读的时候要知道：第 14、15 章的语气、体例、写作年代（1982）都和前 13 章（1976/1989）不同。</strong>
+    </li>
+  </ul>
+  <h3>5.7 体裁与可读性：按今天的标准，这本书哪里读不下去</h3>
+  <ul>
+    <li><strong>第 1 章最劝退，但它又是全书最著名的一章。</strong> 它写给 1976 年、第一次接触「基因之眼」的读者，<strong>大量篇幅在铺垫「为什么要换个角度看演化」</strong>；今天的读者早已在教科书里听过「基因是遗传单位」，会觉得它在原地打转。<strong>建议把第 1 章留到最后读。</strong>
+    </li>
+    <li><strong>模型与例子的比例，今天看会显得「例子多于模型」。</strong> 道金斯没有给出正式的数学（这是它畅销的原因，也是它被批评「只靠合理性」的原因，见 5.3）。<strong>ESS、汉密尔顿法则、囚徒困境在他的笔下都是「用文字讲出来的」，想要精确形式的读者需要另找教材。</strong>
+    </li>
+    <li><strong>它的「论战语气」会让今天的读者觉得刺眼。</strong> 全书有一个始终在场的敌人——1960 年代的「为物种好」式群体选择论（以 Wynne-Edwards 为代表）。<strong>这个靶子今天已经不再是主流</strong>，于是<strong>书里相当一部分篇幅是在打一场已经结束的仗</strong>。
+    </li>
+    <li><strong>第 7、8、9 章（家庭、两性）的许多动物行为例子，是 1970 年代的行为生态学快照</strong>，<strong>部分具体结论已被后续研究细化或修正</strong>；但这三章的<strong>推理结构</strong>今天仍然成立。
+    </li>
+    <li><strong>第 11 章（觅母）是「读起来最兴奋、信起来最危险」的一章</strong>（见 5.5）。
+    </li>
+    <li><strong>附录式的「尾注」体量庞大</strong>（2016 版尾注从 p.359 排到 p.435，<strong>近 80 页</strong>），且<strong>第 2 版才补上</strong>——<strong>想读透这本书的人，尾注是半个正文；只想了解框架的人，完全可以先跳过。</strong>
+    </li>
+  </ul>
+  <h3>5.8 这本书今天还成立吗</h3>
+  <p><strong>要分三层回答，不能一句「经典不朽」了事。</strong></p>
+  <p><strong>（一）作为学术命题</strong>：</p>
+  <ul>
+    <li>★ <strong>「基因是自然选择的重要单位 / 基因之眼是一种有解释力的视角」——今天仍是演化生物学的标准工具</strong>，在行为生态学、社会性昆虫研究、生命史理论里无处不在。
+    </li>
+    <li><strong>「基因是唯一的选择单位」这一更硬的主张，则一直是争论对象</strong>：古尔德-列万廷（5.3）之后，<strong>多层次选择、群体选择在 1980 年代后重新抬头</strong>（D. S. Wilson 等），<strong>今天的主流是「多层次选择」框架</strong>——基因之眼是其中一个层次，而不是唯一层次 <span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>「觅母」作为科学纲领基本被放弃</strong>（5.5），但<strong>作为文化演化的一条启发式</strong>仍在使用（Boyd-Richerson 路线）。
+    </li>
+    <li><strong>「延伸表型」（第 13 章）是道金斯原创性最高、被引用最正面的贡献</strong>——它今天在宿主-寄生虫、生态位构建（niche construction）等研究中很活跃。
+    </li>
+  </ul>
+  <p><strong>（二）作为公共讨论</strong>：</p>
+  <ul>
+    <li>★ <strong>它最持久的「成立」，是作为一面照妖镜</strong>：<strong>每当有人用「这是人性／这是基因决定的」来给某种社会安排背书，你都可以把这本书翻到第 14 章和结尾那一段</strong>——<strong>作者本人反对基因决定论，也号召人类反抗「自私复制因子的暴政」。</strong>
+    </li>
+    <li><strong>它的政治误读仍在继续</strong>（5.4）——<strong>这本书是被误用最多的科学著作之一，而这个「被误用」本身，就是它今天仍然值得读的理由。</strong>
+    </li>
+  </ul>
+  <p><strong>（三）作为入门读物</strong>：</p>
+  <ul>
+    <li>★ <strong>它仍然是最好的「基因之眼」入门书</strong>：文笔、结构、比喻都是教科书级的，<strong>没有一本后来的书能完全取代它在「通俗解释演化逻辑」上的位置。</strong>
+    </li>
+    <li><strong>但它不是「演化生物学入门」</strong>：它<strong>没有</strong>系统讲成种、系统树、分子演化、性选择的最新进展；<strong>它是一本关于「一个视角」的书，不是一本科普大全。</strong>
+    </li>
+    <li><strong>建议的搭配</strong>：想补最新框架，配 Wilson &amp; Wilson 的多层次选择论述或 Boyd-Richerson 的文化演化；想补批评，直接读古尔德-列万廷（5.3）与米奇利（5.2）的原文。
+    </li>
+  </ul>
+  <p>★ <strong>一句反直觉的总结</strong>：<strong>《自私的基因》今天最成立的部分，恰恰是它最不愿被当成「论点」的部分——它教人「换一个层次看问题」的那种方法，以及它对自身误读的持续警觉；而它最容易被当成「结论」的部分（基因决定一切、人天生自私、觅母是科学），恰恰是它最站不住的部分。</strong></p>
+  <p>★ <strong>结构说明</strong>：本部分<strong>逐章</strong>对应中译 40 周年增订版的 <strong>15 章</strong>，编号从 <code>## 6</code> 连续排到 <code>## 20</code>。每章三段式：<strong>这一章在论证什么／关键模型与例子／可疑之处</strong>。英文页码锚定 <strong>OUP 2016 年 40 周年版</strong>（第 1 章 p.1 → 尾声 p.345）；中文读者无须换算章号（中译与英文一一对应）。★ 第 14、15 章在英文原书里是《延伸的表型》的章节，中译编入本书正文，<strong>读时请留意其写作年代（1982）与前 13 章（1976/1989）不同</strong>。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>第 1 章 为什么会有人呢？（Why are people? · p.1）</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>先立问题，再立靶子。</strong> 道金斯问的是那个「好奇的孩子」会问的问题——<strong>为什么会有人？生命有意义吗？</strong> 他要说明：这些问题<strong>不必求助于超自然</strong>，达尔文的自然选择就能给出一个「切合实际的回答」。同时，这一章要<strong>先把旧的解释方式摆出来</strong>——即 1960 年代流行的、把动物的行为解释成「为了物种的利益／为了群体的好处」的那套思路（群体选择论），作为全书要拆解的对象 <span class="tag t-src">原书</span>（第 1 章主旨，出版方目录与内容述要）。</p>
+  <h3>关键模型与例子</h3>
+  <ul>
+    <li><strong>「生存机器」这个比喻的首次登场</strong>：道金斯在这里就提出，<strong>我们以及其他一切动物，都是各自基因所创造的「生存机器」</strong>。
+    </li>
+    <li>★ <strong>一句被引用最多、也最容易被截断的话</strong>：<strong>「我们是生存机器——被盲目编程的机器人载体，为的是保存那些叫作基因的自私分子。」</strong><span class="tag t-src">原书</span>（第 1 章）。
+    </li>
+    <li><strong>一个极重要的、常被忽略的声明</strong>：道金斯在初版前言里明确列出「本书<strong>不</strong>准备论证的几点」，其中第三点是——<strong>『本书不对人类或其他某一种动物的行为细节进行描述』</strong>；他还特意说：<strong>「我不会说：『你看狒狒的行为是自私的，所以人的行为也可能是自私的。』」</strong><span class="tag t-src">原书</span>（初版前言，中译 40 周年版「前言」）。
+    </li>
+    <li><strong>「基因之眼」（the gene's eye view）</strong>这个贯穿全书的视角，在此处被第一次命名。
+    </li>
+    <li>★ <strong>「为什么」这个词是故意的挑衅</strong>：道金斯问的不是「人生有什么意义」，而是<strong>「人这种机器是怎么被造出来的」</strong>——<strong>他把一个通常属于哲学的问题，硬拉回到演化的层面上问。</strong> 这一「换层」（从「意义」换到「机制」）是全书方法论的缩影。
+    </li>
+    <li><strong>「复制因子」这个概念的一般性</strong>：道金斯强调，他要的不是「基因」这个词，而是<strong>「任何能自我复制的实体」</strong>——<strong>这为第 11 章的「觅母」，以及他在 40 周年序言里说的「宇宙中任何地方的生命，都会是一个关于复制因子的故事」，早早埋下了线。</strong> <span class="tag t-talk">作者谈话</span>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一章是全书「误会」的出生地。</strong> 它同时做了两件互相矛盾的事：<strong>一边用「机器人」「自私分子」这类强刺激的词来抓读者，一边又用一段正式声明说「本书不讨论人类行为」。</strong> 后一句话在传播中被彻底丢掉了，前一句话被无限放大——<strong>这就是「道金斯说人天生自私」这条误传的源头</strong>（见第 4b 节第 1、9 条）。 ★ <strong>另一个可疑处</strong>：把「为什么会有人」这样一个人生意义的问题，交给一套演化机制来回答，<strong>本身就有一次跳跃</strong>——演化解的是「怎么来的」，不等于回答「有什么意义」。<strong>道金斯在这里没有把这条界线划清</strong>，而这正是 5.2 里米奇利要攻击的地方之一。<strong>读第 1 章时，请注意它是一份「誓师词」，不是一份「论证」。</strong></p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>第 2 章 复制因子（The replicators · p.15）</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>从「起点」推起。</strong> 道金斯要把演化的起点还原成一个不依赖任何「目的」的东西——<strong>能自我复制的分子</strong>。他要说明：<strong>自然选择不需要预先存在生命，只需要预先存在「复制因子」</strong>。这一章是全书的地基，后面所有的「生存机器」「自私」「稳定策略」，都建立在「复制因子」这个抽象概念上 <span class="tag t-src">原书</span>（第 2 章主旨）。</p>
+  <h3>关键模型与例子</h3>
+  <ul>
+    <li><strong>「原始汤」（primeval soup）</strong>：在早期地球的海洋里，分子偶然组合成能<strong>吸引周围原子、拼出自己拷贝</strong>的结构——这就是<strong>第一批复制因子</strong>。
+    </li>
+    <li><strong>三个条件</strong>：复制因子若要演化，必须有 <strong>复制（heredity）· 变异（variation）· 选择（selection）</strong> 三要素。<strong>复制过程中的「不精确」，正是变异的来源</strong>；不同变体竞争有限的原料，于是<strong>选择</strong>发生。
+    </li>
+    <li>★ <strong>关键一步</strong>：某些复制因子<strong>造出一层蛋白质外壳把自己包起来</strong>——这层壳后来变成细胞、变成身体。<strong>「生存机器」的起源在这里。</strong>
+    </li>
+    <li><strong>道金斯的措辞</strong>：复制因子「源远流长」，它们「存在于你和我的躯体内，它们创造了我们，创造了我们的肉体和心灵」<span class="tag t-src">原书</span>（第 2 章章首语，中译目录转录）。
+    </li>
+    <li>★ <strong>「复制」比「分子」重要</strong>：道金斯反复说，关键的<strong>不是「某个分子」，而是「某种能被复制的模式」</strong>——<strong>载体可以换，模式本身却可以被无限次地拷贝下去</strong>。<strong>这一抽象，是全书能从「基因」顺利滑到「觅母」的技术前提。</strong>
+    </li>
+    <li><strong>「稳定性」是这一步的隐含门槛</strong>：能复制的模式很多，但<strong>只有「复制得够准、活得够久、复制得够快」的那些</strong>，才能在原始汤里积累起来。<strong>这三个词（保真度、长寿、繁殖力）后来成了分析一切复制因子（含觅母）的通用标尺。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一章的「原始汤」叙事，是 1970 年代对生命起源的想象，今天看已相当粗糙。</strong> 现代关于生命起源的研究（RNA 世界、代谢优先还是复制优先、深海热泉假说等）<strong>远比「原始汤里的分子偶然自复制」复杂</strong>；「一次偶然自复制」的概率问题也是批评者的常见靶子。<strong>但这不影响全书论证</strong>——<strong>因为道金斯要借的只是「复制因子」这个功能性的抽象，而不是这段具体的历史</strong>。（事实上他在 40 周年序言里说，他原本可以把这个故事讲得更抽象、更一般。）<span class="tag t-talk">作者谈话</span></p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>第 3 章 不朽的螺旋圈（Immortal coils · p.26）</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>给「基因」下定义，并解释它为什么能近乎不朽。</strong> 道金斯要确立「基因」在<strong>本书里是一个特殊意义的概念</strong>——<strong>它不是胚胎学意义上的「一段决定某个性状的 DNA」，而是演化意义上的「一段能存活足够多代、从而充当自然选择单位的染色体物质」</strong>。这一步至关重要：<strong>只有这种「长期存在」的东西，才是自然选择真正加工的对象</strong> <span class="tag t-src">原书</span>（第 3 章主旨）。</p>
+  <h3>关键模型与例子</h3>
+  <ul>
+    <li><strong>DNA 双螺旋（「不朽的螺旋圈」）</strong>：一对核苷酸链相互缠绕，<strong>互补配对</strong>——这是「高保真复制」的物理基础。
+    </li>
+    <li>★ <strong>道金斯采用的是 George C. Williams 的定义</strong>：<strong>「基因是任何一段染色体物质，它有可能延续足够多的世代，从而充当自然选择的单位。」</strong><span class="tag t-src">原书</span>（第 3 章；40 周年序言亦逐字重述并强调这点，并称 Williams 是本书的「公认英雄」之一）
+    </li>
+    <li><strong>一个著名的「玩笑式」推论</strong>：道金斯说，<strong>严格讲这本书应该叫《略微自私的大段染色体，以及更加自私的小段染色体》</strong><span class="tag t-talk">作者谈话</span>（40 周年序言，转述其自嘲）。
+    </li>
+    <li><strong>顺带提出「自私的 DNA／寄生 DNA」</strong>：道金斯指出，<strong>基因组里大量「多余的」DNA，最简单的解释是「它们是寄生者」</strong>——这个「随手一提」，后来被证实催生了「自私遗传因子」这一整片研究领域。
+    </li>
+    <li>★ <strong>「不朽」到底是什么意思</strong>：基因的「不朽」<strong>不是「某个分子永不消失」，而是「同一条信息可以被无限次地拷贝下去」</strong>——<strong>个体会死，但只要它留下的拷贝还在，这条信息就没有断。</strong> 这就是 "immortal gene"（不朽的基因）这个说法的准确含义，也是道金斯 40 周年序言里说「其实该叫《不朽的基因》」的依据 <span class="tag t-talk">作者谈话</span>。
+    </li>
+    <li><strong>「自私」在本书里的操作性定义</strong>：一个基因若能<strong>增加自身被拷贝的机会</strong>，它就在这个意义上「自私」；<strong>这个定义不含任何「意图」或「情感」，也不涉及它是否伤害别的基因。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一章的定义，是全书最容易被「时间倒转」的地方。</strong> 道金斯说的「基因」<strong>不是分子生物学课本里的基因</strong>，而是<strong>统计学意义上一段「能长期被数算的」染色体物质</strong>——<strong>这正是古尔德-列万廷（5.3）和 Denis Noble 等人后来攻击的靶心</strong>：他们说，<strong>「基因」被定义成「凡是使这个故事成立的东西」，于是这个理论似乎失去了经验内容</strong> <span class="tag t-rep">转述</span>（批评文献，见来源清单第 3 路）。 ★ <strong>但这条批评的反面也成立</strong>：道金斯本人是<strong>有意识</strong>地在 40 周年序言里区分「<strong>这个书里的 gene 是『为演化裁剪过的』意义，不是『为胚胎学裁剪的』意义</strong>」的 <span class="tag t-talk">作者谈话</span>。<strong>所以真正的争议不是「他搞错了定义」，而是「用一个自定义的概念去做公共论证，会不会被误当成分子生物学的结论」</strong>——<strong>答案显然是会。</strong></p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>第 4 章 基因机器（The gene machine · p.59）</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>把「基因」和「身体」的关系说透。</strong> 道金斯要说明：<strong>身体是基因造出来的「生存机器」；基因「不思考」，它只是提供一套建造指令（像一张图纸），由身体去执行</strong>。这一章的核心任务是<strong>切断「基因有意识」这个联想</strong>——<strong>这是全书反复被误读的第二个源头</strong> <span class="tag t-src">原书</span>（第 4 章主旨）。</p>
+  <h3>关键模型与例子</h3>
+  <ul>
+    <li>★ <strong>北极熊的例子（全书最著名的比喻之一）</strong>：<strong>「北极熊基因可以有把握地预先知道，它们尚未出生的生存机器将会面对一个寒冷的环境。这种预测并不是基因进行思考的结果。它们从不思考：它们只不过是预先准备好一身厚厚的皮毛，因为在以前的一些躯体内，它们一直是这样做的。」</strong><span class="tag t-src">原书</span>（第 4 章章首语，中译目录转录）
+    </li>
+    <li><strong>基因与身体的分工</strong>：基因是「复制者」，身体是「载体／生存机器」；基因通过<strong>设定身体的发育与行为倾向</strong>来影响自己的复制概率。
+    </li>
+    <li><strong>行为不是被「决定」的，而是被「赋予倾向」的</strong>：基因给出的是<strong>统计性的倾向</strong>，而不是一道道刻死的指令。
+    </li>
+    <li><strong>「生命就是一场赌博」</strong>：基因的排列组合是随机的，只有当随机的行为倾向恰好在某个环境里提高了复制成功率，那个基因才会被传下去。
+    </li>
+    <li>★ <strong>「环境」这两个字在本章已经被写死</strong>：道金斯在此明确说，<strong>行为倾向是基因与环境共同作用的结果</strong>——<strong>这句看似不起眼的话，正是第 14 章反驳「基因决定论」的伏笔</strong>（见 <code>## 19</code>）。<strong>换句话说：被指控「基因决定论」的那本书，其实在自己的第 4 章里就写了反证。</strong>
+    </li>
+    <li><strong>「机器」这个比喻的两面</strong>：它<strong>精确</strong>（基因确实不思考、确实像程序），但它<strong>危险</strong>（读者容易把「程序」读成「宿命」）。<strong>这正是全书贯穿始终的「准确」与「修辞」之间的张力。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一章是本书「基因决定论」指控的直接来源</strong>（尽管作者否认）。<strong>「机器」「编制程序」这类词在 1976 年是中性的技术隐喻，在今天却很容易被读成「人被基因彻底决定」</strong>——<strong>这正是第 14 章要专门澄清的事</strong>（见 <code>## 19</code>）。 ★ <strong>一个更细的问题</strong>：把身体说成「基因的机器」，<strong>在修辞上贬低了身体与个体的因果自主性</strong>。<strong>现代发育生物学强调「发育是基因与环境的相互作用」，而非「图纸—产品」的单向关系</strong>；「基因是唯一的行动者、身体是工具」这个图景<strong>今天已被大幅修正</strong> <span class="tag t-rep">转述</span>。★ 但要注意，<strong>道金斯在书里（尤其第 14 章）其实并不否认环境的作用</strong>——<strong>他的措辞比后来的转述者谨慎得多</strong>。</p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">10</span><span>第 5 章 进犯行为：稳定性和自私的机器（Aggression: stability and the selfish machine · p.86）</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>引入全书最重要的数学工具，回答「为什么同类相争不会赶尽杀绝」。</strong> 一个幼稚的自私理论会推出「把对手杀光最好」，但<strong>自然界并非如此</strong>。道金斯用<strong>进化稳定策略（ESS）</strong>说明：<strong>在「别人也采取同类策略」的前提下，暴力有它自己的稳定上限；一个策略能存活，不是因为它「善」，而是因为任何偏离它的突变策略都讨不到便宜</strong> <span class="tag t-src">原书</span>（第 5 章主旨）。</p>
+  <h3>关键模型与例子</h3>
+  <ul>
+    <li>★ <strong>进化稳定策略（ESS）</strong>：由 <strong>John Maynard Smith 与 George Price（1973, <em>Nature</em>）</strong> 提出。定义：<strong>一个策略 S 是 ESS，当且仅当种群中几乎所有个体都采用 S 时，任何变异的策略都无法获得更高的适应度</strong>。
+    </li>
+    <li>★ <strong>鹰鸽博弈（Hawk–Dove）</strong>——本章的核心范例：
+    <ul>
+      <li><strong>鹰</strong>：遇到对手就升级为全力搏斗，<strong>赢了得全部资源，输了受重伤</strong>。
+      </li>
+      <li><strong>鸽</strong>：虚张声势，<strong>若对方也虚张声势则各自退让分摊；若对方是真鹰则立刻撤退</strong>。
+      </li>
+      <li><strong>结果</strong>：<strong>纯鹰种群不稳定</strong>（全是鹰则互相打成重伤，做鸽的突变体反而得利）；<strong>纯鸽种群也不稳定</strong>（全是鸽则做鹰的突变体大占便宜）；<strong>稳定解是一个混合比例，或一个条件策略（如「占有者不让、入侵者退」的「不做作」策略）</strong>。
+      </li>
+    </ul>
+    </li>
+    <li><strong>「不做作」（Bourgeois）策略</strong>：<strong>占着地盘的人硬守，来抢的人退让</strong>——一个简单的约定就能稳定一大半的动物领地纠纷。
+    </li>
+    <li><strong>现实的对应物</strong>：许多动物的争斗<strong>高度仪式化</strong>（比力气、比体型、瞪眼、嘶叫），<strong>极少真打到重伤</strong>。
+    </li>
+    <li>★ <strong>「多态」与「混合策略」要分清</strong>：道金斯特别澄清两个容易混淆的情形——<strong>「种群里有 7/12 是鹰、5/12 是鸽」（多态），与「每个个体都以 7/12 的概率做鹰」（混合策略）并不相同</strong>；<strong>两者都能成为 ESS，但含义不同</strong>。<strong>这是本章最容易被读漏的一个技术细节。</strong>
+    </li>
+    <li><strong>ESS 的关键限定词是「一旦被大多数采用」</strong>：<strong>它讨论的是「稳定性」，不是「最优性」。</strong> <strong>一个 ESS 完全可能是「对所有人都比另一个方案更差」的——它只是「无法被侵入而已」。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一章是「用模型去套自然」的典型，也是 5.3 那条适应论批评的着落地。</strong> 批评者会说：<strong>ESS 的解释力太强了——它几乎能给任何观察到的行为「事后配一个稳定解」</strong>；而<strong>它是不是这个行为真正的演化原因，往往没有被检验</strong>。这正是古尔德-列万廷说的「<strong>就是这样</strong>的故事」。 ★ <strong>另一个问题</strong>：<strong>ESS 是「策略层面」的模型，它假设了「策略可以被基因编码、并在种群中遗传」</strong>。<strong>在只需要「学一次就够了」的行为（如人类很多行为）里，ESS 的适用性会大打折扣。</strong> ★ <strong>但必须说清</strong>：<strong>ESS 本身是演化博弈论的里程碑，今天仍被广泛使用</strong>——争议<strong>不在工具本身，而在「用它解释一个具体现象时，是否跳过了检验」</strong>。</p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">11</span><span>第 6 章 基因种族（Genesmanship · p.114）</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>把「自私」的逻辑用到亲属身上，解释利他行为。</strong> 这是全书的<strong>第一座承重墙</strong>：<strong>它要回答「一个基因为什么会造出一个『愿意为他人牺牲』的身体」</strong>。答案是<strong>亲缘选择</strong>：<strong>帮亲戚，就是在帮「和自己有共同版本的基因」；只要受益 × 亲缘系数 大于代价，利他就会被自然选择保留</strong> <span class="tag t-src">原书</span>（第 6 章主旨）。</p>
+  <h3>关键模型与例子</h3>
+  <ul>
+    <li>★ <strong>汉密尔顿法则（Hamilton's rule）</strong>：<strong>rB &gt; C</strong>——<strong>B</strong> 是受益者获得的收益，<strong>C</strong> 是施惠者付出的代价，<strong>r</strong> 是两人之间的<strong>亲缘系数</strong>。<strong>W. D. Hamilton 在 1964 年的论文〈The Genetical Evolution of Social Behaviour〉中提出</strong>（<em>Journal of Theoretical Biology</em>）。
+    </li>
+    <li>★ <strong>r 的取值（必须记清）</strong>：
+    </li>
+  </ul>
+  <table>
+    <thead><tr><th>关系</th><th>r</th></tr></thead>
+    <tbody>
+      <tr><td>自己与自己的拷贝（同卵双胞胎）</td><td>1</td></tr>
+      <tr><td>亲子 · 全同胞兄弟姊妹</td><td>1/2（0.5）</td></tr>
+      <tr><td>祖孙 · 半同胞 · 叔/姑与侄</td><td>1/4（0.25）</td></tr>
+      <tr><td>曾祖孙 · 第一代堂表亲</td><td>1/8（0.125）</td></tr>
+    </tbody>
+  </table>
+  <ul>
+    <li>★ <strong>霍尔丹的名言</strong>：<strong>「我会为救两个兄弟或八个表亲而舍命吗？」</strong><span class="tag t-rep">转述</span>（J. B. S. Haldane；见 richarddawkins.net 转载之《卫报》纪念文章）——<strong>它把 rB &gt; C 变成了可以直接数人头的算术。</strong>
+    </li>
+    <li><strong>社会性昆虫（蚂蚁、蜜蜂）之谜</strong>：<strong>为何工蜂宁可不生育、终身服侍蜂后？</strong> 答案在 r——<strong>膜翅目的特殊性别决定机制让姐妹之间的 r 高达 3/4，高于母女之间的 1/2</strong>，于是「照顾姐妹」比「自己生育」更划算。
+    </li>
+    <li><strong>人类例子</strong>：<strong>氏族仇杀、乱伦禁忌</strong>——道金斯说，<strong>乱伦禁忌表明人类有深刻的亲缘关系意识</strong>，尽管它的遗传好处<strong>未必</strong>来自利他，而更可能与<strong>近亲繁殖产生隐性有害基因</strong>有关 <span class="tag t-src">原书</span>（第 6 章章首语，中译目录转录）。
+    </li>
+    <li>★ <strong>「怎么认出亲戚」是一个独立的问题</strong>：rB &gt; C 的前提是动物<strong>能辨别亲疏</strong>。道金斯指出，<strong>识别未必靠「天生的亲属识别器」，也可以靠「同巢、同窝、共同生活」这类经验线索</strong>——<strong>「凭简单规则认亲」往往就够了</strong>，这大大降低了这条法则被应用的难度。
+    </li>
+    <li><strong>「亲缘选择」与「群体选择」的区别（关键）</strong>：<strong>亲缘选择不要求「群体一起受益」，它只要求「受益者的身体里带着施惠者的基因拷贝」。</strong> <strong>所以它不需要任何「为了群体」的假设——这正是道金斯认为它比群体选择更朴素的地方。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>「亲缘选择」这一章，是全书证据最强、也最容易被过度推广的一章。</strong> 强在：<strong>它有一个可算的、可证伪的核心（rB &gt; C）</strong>，而且在蚂蚁、蜜蜂、鸟类上<strong>有大量实测支持</strong>。弱在：<strong>把它直接搬到人类身上，极易滑向「血缘决定论」与「种族主义」</strong>——<strong>这正是 1975-78 年那场社会生物学风暴的核心争议之一</strong>（见 5.4）。 ★ <strong>一个技术性的争议点</strong>：膜翅目的「3/4 假说」<strong>后来被批评为「解释得太漂亮反而值得怀疑」</strong>——<strong>单倍二倍体假说并不能完全解释真社会性的多次独立起源</strong>（有研究指出，社会性在其他不具该机制的类群中也多次演化）。<strong>所以「社会性昆虫＝亲缘选择的完美证据」这个说法，今天要打折扣</strong> <span class="tag t-rep">转述</span>。 ★ <strong>另一个必须补的背景</strong>：<strong>道金斯在书里主要讲「亲缘选择」，但他对「群体选择」的态度是非常排斥的</strong>——<strong>这个态度在 1980 年代后受到挑战</strong>，<strong>今天的主流是「多层次选择」而非「只有基因层次选择」</strong>（见 5.8）<span class="tag t-rep">转述</span>。</p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">12</span><span>第 7 章 计划生育（Family planning · p.141）</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>把亲缘逻辑用到「家庭规模」上。</strong> 一个流行的误解是：<strong>动物节制生育是「为了群体的利益」、为了不耗尽资源</strong>。道金斯要论证：<strong>恰恰相反</strong>——<strong>动物调节窝卵数，是为了让自己「现有子女的存活数」最大化，是纯粹的自私盘算，与群体利益无关</strong> <span class="tag t-src">原书</span>（第 7 章主旨）。</p>
+  <h3>关键模型与例子</h3>
+  <ul>
+    <li>★ <strong>「不，是为了自己」的论证</strong>：如果一只鸟少下几个蛋，<strong>这是因为它多养一个蛋的边际成本（养活它、稀释给其他子女的资源）超过了边际收益</strong>，<strong>不是因为它在替群体节约</strong>。
+    </li>
+    <li><strong>Lack 的最优窝卵数（David Lack）</strong>：鸟类每次下蛋的数量，<strong>倾向于落在「存活子代总数最大」的那个点上</strong>——太少则浪费繁殖机会，太多则每只都养不好。
+    </li>
+    <li><strong>一个反直觉的推论</strong>：<strong>从基因之眼看来，「你多生」和「你多养好现有的」之间有一个权衡</strong>；而这个权衡的答案<strong>随环境变化</strong>（食物丰度、天敌压力、伴侣是否可靠）。
+    </li>
+    <li><strong>与人类生育的对照</strong>：道金斯在章首语里用了一句极具挑衅性的话：<strong>「它们节制生育的目标，同我们提倡节制生育的本来目标恰好背道而驰。」</strong><span class="tag t-src">原书</span>（第 7 章章首语）
+    </li>
+    <li>★ <strong>「生几个」与「生儿生女」是两个问题</strong>：<strong>前者是本章的窝卵数，后者是第 9 章 Fisher 原理的性别比</strong>——<strong>道金斯把两者分开处理，读者不要混为一谈。</strong>
+    </li>
+    <li><strong>「调节」不等于「有意识调节」</strong>：再次呼应第 4 章——<strong>「表现得像是在算最优数」不等于「真的在算」</strong>；<strong>被淘汰的个体退场，留下的看起来就像会算一样。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一章是全书最「例子化」的一章，也是最容易被误读成「动物在理性算账」的一章。</strong> 道金斯的意思<strong>不是</strong>鸟在脑子里做除法，<strong>而是「表现为多下或少于最优数的个体会被淘汰，于是留下来的就像是在算最优数一样」</strong>——<strong>这是一句「仿佛」（as if）的论证，不是「真有计算」的论证</strong>（第 4 章已经说清基因不思考）。 ★ <strong>一个经验争议</strong>：<strong>「最优窝卵数」在野外常常测不出来</strong>——很多鸟的实测窝卵数<strong>小于</strong>理论最优，<strong>这催生了「个体最优 ≠ 群体最优」「代价被低估」等一大批后续研究</strong>，<strong>说明这一章的具体结论远比它写出来的复杂</strong> <span class="tag t-rep">转述</span>。 ★ <strong>对人类生育的隐含推论（「人越多越好」）尤其危险</strong>：道金斯本人<strong>没有</strong>做这个推论；<strong>但这句话极易被人口政策辩论拿去当武器</strong>。<strong>请把第 7 章严格读成「动物行为生态学」，不要让它去承担人口政治的重量。</strong></p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">13</span><span>第 8 章 代际之战（Battle of the generations · p.159）</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>把亲缘逻辑用到「亲子之间」。</strong> 第 6 章讲「亲属之间会互助」，第 8 章要讲<strong>亲属之间也会冲突</strong>——<strong>因为父母与子女的「利益」并不完全一致</strong>。这是<strong>罗伯特·特里弗斯（Robert Trivers）1974 年「亲子冲突」理论</strong>的通俗版：<strong>父母对每个子女的「最优投入」是平均的（因为每个子女都带着父母的 r＝1/2），而子女希望从父母那里拿到「超出平均」的一份</strong> <span class="tag t-src">原书</span>（第 8 章主旨）。</p>
+  <h3>关键模型与例子</h3>
+  <ul>
+    <li>★ <strong>核心洞见</strong>：<strong>「这是同一批基因在互相打仗。」</strong> 父母与子女共享基因，<strong>但共享的程度不同</strong>——<strong>父母对每个孩子都投一半基因，而子女对自己投 100%、对手足投 50%</strong>。于是<strong>子女想要的资源分配，与父母愿意给的分配，天然不一致</strong>。
+    </li>
+    <li><strong>断奶（weaning）</strong>：<strong>断奶不是「母亲不爱孩子」，而是母亲的「投资回报率」在孩子长大后下降了</strong>——<strong>母亲想把资源转投下一个孩子（或自己），孩子想继续独占</strong>。
+    </li>
+    <li><strong>「欺骗」</strong>：道金斯在章首语里写道，<strong>幼儿会装成比实际更饥饿、更年幼、或面临更大危难的样子</strong>，而<strong>父母必须对这种欺骗保持警觉</strong> <span class="tag t-src">原书</span>（第 8 章章首语，中译目录转录）。
+    </li>
+    <li><strong>具体的动物例子</strong>：哺乳动物的<strong>断奶冲突</strong>、鸟类的<strong>幼鸟乞食（begging）</strong>——<strong>乞食声既是「我要」的信号，也是「我在骗你」的博弈</strong>。
+    </li>
+    <li>★ <strong>「代际之战」这个说法来自哪里</strong>：它出自<strong>特里弗斯 1974 年的「亲子冲突」（parent–offspring conflict）理论</strong>，道金斯把它通俗化；<strong>但它描述的是「利益不一致」，不是「家庭关系恶劣」</strong>——<strong>父母与子女仍然会合作到某个程度，只是合作的「条款」需要不断重新谈判。</strong>
+    </li>
+    <li><strong>这一章的普遍性</strong>：<strong>亲子冲突不止发生在人类身上</strong>，它预测了一个可检验的模式——<strong>冲突最激烈的时点，往往是「母亲准备断奶」与「子女想继续」之间的那段</strong>。<strong>后来的实证研究大体支持这个方向。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>「亲子冲突」理论（Trivers 1974）本身是行为生态学的坚实成果</strong>，这一章的推理结构今天仍然成立。<strong>但它的具体强度与表现形式，在人类身上远比对动物难测</strong>——<strong>人类有长期的亲代投资、有文化规则、有语言，这些都让「断奶冲突」的原始模型需要大量修正。</strong> ★ <strong>一个被过度发挥的点</strong>：<strong>「子女会欺骗父母」这个说法，很容易被读成一种冷冰冰的育儿观</strong>。道金斯本人<strong>没有</strong>主张「父母应该提防孩子」；<strong>他描述的是选择压力下的倾向，不是道德建议</strong>。<strong>读的时候请记住第 1 章的那句声明。</strong> ★ <strong>另一个技术争议</strong>：<strong>「父母—子女冲突」的数学模型在 2000 年代被重新审视过</strong>（例如「基因组印记」被认为可能与该冲突有关），<strong>这说明这一章的方向是对的，但机制远比书中复杂</strong> <span class="tag t-rep">转述</span>。</p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">14</span><span>第 9 章 两性战争（Battle of the sexes · p.182）</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>把冲突从「父母—子女」扩展到「雌—雄」。</strong> 这一章要用<strong>亲代投资</strong>（parental investment）的概念，解释<strong>两性之间为什么从交配策略到育幼分工都长期存在张力</strong>，并顺带处理<strong>性别比</strong>这个经典问题 <span class="tag t-src">原书</span>（第 9 章主旨）。</p>
+  <h3>关键模型与例子</h3>
+  <ul>
+    <li>★ <strong>亲代投资的起源（Trivers, 1972）</strong>：<strong>雌雄双方在「产生一个可育后代」上的初始投入不同</strong>——<strong>卵子大而少、精子小而多</strong>。<strong>投资少的一方（通常是雄性）倾向于「广撒网」，投资多的一方（通常是雌性）倾向于「挑挑拣拣」。</strong> 道金斯在章首语里用了一个尖锐的例子：<strong>「鉴于精子易于散失，雄性鱼必须等到雌性鱼产卵后才在卵子上射精。但这样，雌性鱼就有了难得的几秒钟时间可以趁机溜走，把受精卵丢给雄性鱼照管……」</strong><span class="tag t-src">原书</span>（第 9 章章首语，中译目录转录）
+    </li>
+    <li><strong>「家庭幸福」策略 vs 「花花公子」策略</strong>：<strong>一方可以选择「留下共同育幼」（家庭幸福），也可以选择「交配完就走」（花花公子）</strong>；<strong>哪种策略占优取决于对方怎么做</strong>——这又是一个 ESS 问题（与第 5 章呼应）。
+    </li>
+    <li><strong>「篱笆与打手」式类比</strong>：雌性挑剔（选择），雄性竞争（展示）；<strong>雌性挑剔的程度，取决于雄性「走了以后孩子能不能自己活」</strong>。
+    </li>
+    <li><strong>性别比（Fisher 原理）</strong>：<strong>R. A. Fisher 的「等比例投资」理论</strong>——<strong>若出生性别比偏向一性，则该性别的每个个体平均留下的后代更少，于是自然选择会拉回 1:1</strong>（在「父母对儿女投资相等」的假设下）。<strong>这是本章最经典、也最经得起检验的结论之一。</strong>
+    </li>
+    <li><strong>人类的对照</strong>：道金斯提到<strong>择偶中的「领地」因素</strong>——<strong>「在许多情况下，雌性动物因雄性动物不拥有一块领地而拒绝同其交配」</strong><span class="tag t-src">原书</span>（第 9 章，该段落被中文读者大量摘录）。
+    </li>
+    <li>★ <strong>「性比率」这一节的独立性</strong>：<strong>Fisher 原理虽然被放在「两性战争」这一章，但它其实是一个群体遗传学结论</strong>（1:1 是稳定解），<strong>与「两性策略冲突」可以分开读</strong>——<strong>不要因为它在同一章里，就以为它是「冲突」的一部分。</strong>
+    </li>
+    <li>★ <strong>「亲代投资」不等于「雌性天生投入更多」</strong>：道金斯强调，<strong>决定方向的是「初始投资」的差异</strong>——<strong>在少数物种里雄性投入更多，于是性别角色也反过来</strong>。<strong>这一点常被读者忽略，也是这一章被误用（拿来支持性别刻板印象）的技术性反驳点。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一章是全书被误用最严重的一章，且误用方向主要在人类身上。</strong> 「亲代投资理论」被大量通俗读物（以及一些演化心理学畅销书）用来<strong>为性别刻板印象、为「男性花心／女性拜金」提供「生物学根据」</strong>——<strong>这是对 Trivers 与道金斯原意的严重拉伸</strong>。 ★ <strong>必须说清的两点</strong>：① <strong>Trivers 讲的是「初始投资差异造成的选择压力」，不是「个体行为的宿命」</strong>；② <strong>人类是「高亲代投资 + 长期配对 + 文化规则」的物种，与「鱼产卵就跑」的模型相距极远</strong>。<strong>把鱼类模型直接推广到人类婚恋，是这一章最常被滥用的地方。</strong> ★ <strong>一个经验上的边界</strong>：<strong>亲代投资理论在解释「投资差异」与「择偶挑剔」上有力，但在预测具体的人类择偶偏好上，重复性一直是问题</strong> <span class="tag t-rep">转述</span>。<strong>这一章的正确读法是「看它怎么把性别差异还原成一个投资问题」，而不是「找一段给某种性别偏见撑腰的引文」。</strong></p>
+</section>
+
+<section id="s16">
+  <h2><span class="num">15</span><span>第 10 章 你为我挠痒，我就骑在你头上（You scratch my back, I'll ride on yours · p.216）</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>回答本书最难的一问：非亲非故的两个个体，怎么会合作？</strong> 第 6 章的答案是「血」，但<strong>自然界大量互助发生在没有亲缘关系的个体之间</strong>。道金斯引入<strong>互惠利他（reciprocal altruism）</strong>与<strong>囚徒困境</strong>，说明：<strong>只要两方会「再见面」，合作就能被自私的盘算维持住</strong> <span class="tag t-src">原书</span>（第 10 章主旨）。</p>
+  <h3>关键模型与例子</h3>
+  <ul>
+    <li>★ <strong>互惠利他（Robert Trivers, 1971）</strong>：<strong>「今天我帮你，是因为明天你可能会帮我。」</strong> 关键条件：<strong>双方要能识别对方、要会重复相遇、要能记住谁欠了谁、要能惩罚骗子。</strong>
+    </li>
+    <li>★ <strong>囚徒困境（Prisoner's Dilemma）</strong>——本章引入的博弈论框架：<strong>两人都合作，各自得中等收益；一人合作一人背叛，背叛者独得最高收益、合作者吃最大亏；两人都背叛，各自得低收益。</strong> ⇒ <strong>单次博弈里，理性人会背叛；但重复博弈里，合作有机会出现。</strong>
+    </li>
+    <li><strong>清洁鱼与宿主鱼</strong>：<strong>小鱼为大鱼清理寄生虫（合作），大鱼不趁机吃掉小鱼（否则下次没人给它清）</strong>——<strong>道金斯用「骗子（接受恩惠却不思图报）」来描述破坏合作的一方</strong>，章首语即以此开篇 <span class="tag t-src">原书</span>（第 10 章章首语，中译目录转录）。
+    </li>
+    <li><strong>人类的「互惠」</strong>：<strong>送礼、请客、人情往来</strong>——<strong>都带有「记账」的结构</strong>（这也是「AA 制」式的「大家平摊，但人人都想多点一个菜」的例子，见第 12 章道金斯自述的餐厅类比 <span class="tag t-talk">作者谈话</span>）。
+    </li>
+    <li><strong>社会性昆虫之外的例子</strong>：<strong>吸血蝙蝠的反哺</strong>——<strong>吃饱的蝙蝠会吐血喂食没吸到血的同巢伙伴</strong>，<strong>且优先喂「以前喂过自己的」</strong>。
+    </li>
+    <li>★ <strong>互惠要成立，得先有「认得出来、记得住」的脑子</strong>：<strong>个体识别 + 长期记忆</strong>是互惠利他的前置条件——<strong>这解释了为什么它在灵长类、鲸类、社会性鸟类里特别发达，而在鱼、虫里更多表现为「共生式的即时交换」。</strong>
+    </li>
+    <li><strong>「互惠」与「利他」这两个词都别当真</strong>：<strong>道金斯自己说，把它叫作「互惠」更准确的说法其实是「开明的自利」（enlightened self-interest）</strong>——<strong>因为这里根本没有「牺牲」。</strong> <span class="tag t-talk">作者谈话</span>（BBC《Horizon》同期文章，《The Listener》1986-04-17）
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>「互惠利他」是这本书里最经得起后续检验的一段</strong>（吸血蝙蝠的长期野外研究、灵长类的梳理交换、清洁鱼的实验都支持它）。<strong>它的问题不在「对不对」，而在「能走多远」。</strong> ★ <strong>一个关键限制</strong>：<strong>互惠利他要求「可识别、可重复、可记忆、可惩罚」四个条件</strong>——<strong>这四条一旦不满足，「合作」就退化回「背叛」</strong>。<strong>道金斯在书里说清了这些条件，但后来的通俗转述常常省略它们，于是「合作总是最优」被讲成了一句鸡汤。</strong> ★ <strong>与第 12 章的关系</strong>：<strong>第 10 章讲「有什么机制」，第 12 章讲「哪种策略最稳」</strong>——<strong>两章必须连读</strong>（见 <code>## 17</code>）。<strong>单读第 10 章，你会以为「合作很常见」；读完第 12 章你会发现，合作其实是被一堆苛刻条件守护着的、脆弱的均衡。</strong></p>
+</section>
+
+<section id="s17">
+  <h2><span class="num">16</span><span>第 11 章 觅母：新的复制因子（Memes: the new replicators · p.245）</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>把「复制因子」这个概念从基因推广到文化。</strong> 道金斯提出：<strong>文化里也存在「能自我复制、会变异、被选择」的单位</strong>——他把它命名为<strong>觅母（meme）</strong>。这一步的意义是：<strong>「演化」不再只是生物学的，而是一个更一般的「复制因子动力学」</strong> <span class="tag t-src">原书</span>（第 11 章主旨）。</p>
+  <h3>关键模型与例子</h3>
+  <ul>
+    <li>★ <strong>觅母（meme）</strong>：<strong>源自希腊语 <em>mimeme</em>（意为「被模仿的东西」），缩短为 meme 以与 gene 押韵</strong>；指<strong>在人际间被模仿传播的文化单位</strong>——<strong>曲调、观念、流行语、时尚、技术、宗教信条</strong>。
+    </li>
+    <li><strong>三要素的类比</strong>：觅母与基因一样，需要<strong>复制（模仿）· 变异（传播中的走样）· 选择（被记住、被传播的程度不同）</strong>。
+    </li>
+    <li>★ <strong>一个著名的具体例子</strong>：<strong>「上帝」这个概念就是一个超强的觅母</strong>——<strong>它几乎不以「真假」取胜，而以「被记住、被传播」取胜</strong>（道金斯后来在〈Viruses of the Mind〉中把宗教当作「心灵的病毒」）<span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>觅母库与「共同演化的觅母复合体」（memeplex）</strong>：多个觅母可以打包成一套一起传播——<strong>语言、传统、意识形态都是这种「复合体」</strong>。
+    </li>
+    <li>★ <strong>最重要的语用学事实</strong>：<strong>「meme」这个词本身的传播，是他这本书最成功的一个觅母。</strong> 今天它已进入《牛津英语词典》，并在互联网上被改写成「梗图」的意思 <span class="tag t-rep">转述</span>。
+    </li>
+    <li>★ <strong>类比的强度，道金斯自己就承认有限</strong>：他说觅母的复制<strong>「远不如基因精确」</strong>，所以觅母的「选择」更接近<strong>「记得住 vs 记不住」「传得开 vs 传不开」</strong>，而不是基因式的精确筛选。<strong>这一点，正是他后来与「觅母学」拉开距离的理由之一。</strong> <span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>「快速」是觅母论最动人的地方</strong>：<strong>基因的演化以万年计，觅母的演化以年、以月计</strong>——<strong>道金斯用「英语使用者今天读乔叟很吃力」来说明这种速度差</strong>。<strong>这个观察是对的；错的是把它升级成「所以文化有独立的复制因子」。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★★ <strong>这一章的学术地位，是「流行程度」与「学术分量」严重不成比例的典型。</strong></p>
+  <ul>
+    <li><strong>它本来就是「推测性」的</strong>：道金斯<strong>没有</strong>在这里给出完整理论，<strong>只提出了一个类比</strong>；「单位是什么」「复制保真度够不够」「怎么算一个觅母」这些问题<strong>从未被解决</strong> <span class="tag t-rep">转述</span>（见 5.5）。
+    </li>
+    <li><strong>最深的批评来自 Dan Sperber（1996）</strong>：<strong>文化传播不是「复制」而是「重构」</strong>——<strong>传播的不是一个包，而是一个刺激，接收者用自己的认知架构重建它；稳定靠的是「认知吸引子」，不是复制保真。</strong> 这是<strong>一套竞争性解释，而非补充</strong> <span class="tag t-src">原书</span>（Sperber, <em>Explaining Culture</em>）。
+    </li>
+    <li><strong>古尔德称 memetics 是「一个没有意义的隐喻」</strong><span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>「觅母学」作为独立学科基本失败</strong>：它办过期刊、开过会，但<strong>没能产生可检验的成果</strong>；<strong>主流的替代路线是 Boyd-Richerson 的「基因—文化协同演化」与「双重继承理论」</strong> <span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>道金斯本人的态度也是矛盾的</strong>：他<strong>得意于「meme」这个词，但与该领域保持距离</strong>——<strong>他 40 周年序言里那句「我很愿意找到一种方式来收回这本书的核心讯息」，虽主要针对书名，但也可以读作对「觅母」这一章的一种保留</strong> <span class="tag t-inf">推断</span>。
+    </li>
+  </ul>
+  <p>★ <strong>一句话</strong>：<strong>如果你只从这本书里记住一个词，多半是「觅母」；但恰恰是这个词，在今天是最不该被当成「科学结论」来引用的。</strong> 正确的姿势是：<strong>把它读成一章绝妙的「思想实验」，而不是一章「论证」。</strong></p>
+</section>
+
+<section id="s18">
+  <h2><span class="num">17</span><span>第 12 章 好人终有好报（Nice guys finish first · p.261）</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>把第 10 章的互惠推到底：在重复博弈里，哪一种「好人策略」能赢？</strong> 这一章是 <strong>1989 年第 2 版新增的</strong>，<strong>道金斯用的是政治学家 Robert Axelrod 在 1980 年组织的两轮「重复囚徒困境」计算机竞赛结果</strong>。结论颠覆直觉：<strong>最稳健的简单策略不是「永远合作」，也不是「永远背叛」，而是「针锋相对」</strong> <span class="tag t-src">原书</span>（第 12 章主旨；Axelrod, <em>The Evolution of Cooperation</em>, 1984）。</p>
+  <h3>关键模型与例子</h3>
+  <ul>
+    <li>★ <strong>针锋相对（Tit-for-Tat, TFT）</strong>：<strong>第一回合先合作；此后每一回合都「照抄对方上一回合的做法」</strong>。<strong>四句话概括它的性格：善良（从不先背叛）、可报复（被背叛就还手）、宽容（对方合作就立刻回到合作）、清晰（行为可预期）。</strong>
+    </li>
+    <li>★ <strong>Axelrod 竞赛的结果</strong>：<strong>TFT 在两轮开放竞赛中都名列前茅</strong>——<strong>它胜在「不占便宜但也不吃亏」，并且能在「长期交往」中累积信任</strong>。
+    </li>
+    <li><strong>道金斯的核心论断</strong>：<strong>「好人的数目注定要减少，善良在达尔文主义里终将灭亡」——但这是单次博弈的结论；在重复博弈里，好人则能「得好报」。</strong><span class="tag t-src">原书</span>（第 12 章章首语，中译目录转录）
+    </li>
+    <li><strong>「永不背叛」（Always Cooperate）的失败</strong>：<strong>它太容易被「永远背叛」（Always Defect）的白吃白喝者利用</strong>——<strong>善良若无牙齿，会被吃掉。</strong>
+    </li>
+    <li><strong>从「策略」到「生物行为」</strong>：<strong>道金斯强调 TFT 是「策略的语言」，生物体不必真有意图</strong>；<strong>只要行为产生的收益结构符合，选择就会保留对应的行为倾向。</strong>
+    </li>
+    <li>★ <strong>「宽容」是被低估的一半</strong>：<strong>Axelrod 特意指出，TFT 成功的一个关键面向是「宽容」——一旦对方回到合作，它立刻回到合作，不搞无限报复。</strong> 反而，<strong>「永远报复」（GRIM）在无噪声环境里也能撑住，但一旦有误判就会灾难性崩溃。</strong>
+    </li>
+    <li><strong>它对「好人」的定义很技术</strong>：<strong>这里的「好人」不是道德意义上的好人，而是「不主动背叛、但被背叛就还手、且会重新合作」的策略。</strong> <strong>「好人终有好报」这句话的准确含义，是「在重复交往里，这样的策略能长期胜出」——仅此而已。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一章是全书最「干净」、最经得起检验的一章</strong>——<strong>它是可执行的、可复现的、有明确数学结果的一片</strong>。<strong>它也是《自私的基因》真正跨界（进入经济学、政治学、国际关系）的入口。</strong> ★ <strong>但它有三处被后续研究削弱的假设</strong>：</p>
+  <ol>
+    <li><strong>TFT 要求「同时行动、能观察对方上一回合行为、无噪声」</strong>——<strong>一旦有「误判」（对方其实合作了，你以为是背叛），TFT 会陷入无休止的报复循环</strong>。<strong>后续研究（如「宽容型 TFT」「Pavlov／赢则留、输则换」）正是为修补这一点而生的</strong> <span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>Axelrod 的竞赛设定里，参赛者是「程序」，不是「会学习的真实人类」</strong>——<strong>真实人类的行为更杂，也更受情绪与语言影响。</strong>
+    </li>
+    <li><strong>它容易被过度政治化</strong>：<strong>「针锋相对＝该对外强硬」这类推论在 1980 年代的国际关系讨论里出现过</strong>，<strong>但这是对这一章的直接误用</strong>——<strong>TFT 的核心信息恰恰是「先合作、可报复、且要宽容」，而不是「先动手」。</strong>
+  <p>★ <strong>注意</strong>：<strong>这一章写于 1989 年，语气与第 10 章（1976）明显不同</strong>——<strong>它更乐观、更「总结陈词」，也更像是作者对自己早年悲观语调的一次修正。</strong> 这个语气变化本身，就是 5.6 说的「版本考古即内容」。</p>
+    </li>
+  </ol>
+</section>
+
+<section id="s19">
+  <h2><span class="num">18</span><span>第 13 章 基因的延伸（The long reach of the gene · p.302）</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p>★ <strong>本书原创性最高的一章：把「表型」从身体里解放出来。</strong> 「表型」在经典遗传学里指<strong>生物体的可观察性状</strong>；道金斯主张：<strong>基因的表型效应可以越出身体，作用到环境、到人工制品、乃至到其他生物体的身体上</strong>。<strong>基因「操纵着外部世界」。</strong> 这一章是 <strong>1989 年第 2 版新增的</strong>，也为他 1982 年的《延伸的表型》做了通俗版总结 <span class="tag t-src">原书</span>（第 13 章主旨）。</p>
+  <h3>关键模型与例子</h3>
+  <ul>
+    <li>★ <strong>章首语</strong>：<strong>「我们可以进一步推理：一个生物体内的基因可以对另一个生物体有延伸表型影响。基因从其自身身体中逃逸出，操纵着外部世界。」</strong><span class="tag t-src">原书</span>（第 13 章章首语，中译目录转录）
+    </li>
+    <li><strong>经典例子</strong>：
+    <ul>
+      <li><strong>海狸的坝、河狸的巢</strong>——<strong>它们不是「环境的产物」，而是「基因的表型产物」</strong>（就像牙齿是基因的表型一样）。
+      </li>
+      <li><strong>寄生虫操纵宿主</strong>：<strong>某些寄生虫的基因能让宿主的行为／外形发生改变</strong>（如使螺的壳变厚以防被鸟吃掉）——<strong>这是「基因作用于别人的身体」的最强形态</strong>。
+      </li>
+      <li><strong>石蚕（caddis fly）幼虫的壳</strong>——<strong>由基因与石头共同「建成」，它到底是「基因的表型」还是「环境的产物」？道金斯说，这条界线本身是人为的。</strong>
+      </li>
+    </ul>
+    </li>
+    <li>★ <strong>「瓶颈」与「复制者—载体」的两层结构</strong>：<strong>每个世代都从一个单细胞开始（瓶颈）</strong>，<strong>这保证了「共生」的各基因必须相互兼容</strong>——<strong>呼应 40 周年序言里那句「合作的基因」</strong>。
+    </li>
+    <li><strong>「个体」的边界是任意的</strong>：<strong>当基因的作用越过身体，「个体」就再也不是一个自明的单位</strong>。<strong>这说明：把「个体」当作选择的单位，是一开始就搞错了。</strong>
+    </li>
+    <li>★ <strong>最激进的那一步推论</strong>：<strong>如果基因的作用可以越过身体，那么「一个基因也可以与另一个生物体的身体发生关系」</strong>——<strong>寄生虫操纵宿主、宿主与寄生虫之间的军备竞赛，都能被装进这个框架里看。</strong> <strong>这是「延伸表型」最有用、也最反直觉的一处应用。</strong>
+    </li>
+    <li><strong>为什么这一章是「1989 年才加的」</strong>：<strong>它把 1982 年《延伸的表型》的内容搬进了这本畅销书</strong>——<strong>换句话说，作者花了十三年，把一本「通俗版」补成了「带原创理论」的版本。</strong> 这本身就是 5.6 那个判断的又一例证。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>「延伸表型」是道金斯本人最看重的贡献</strong>（他说自己最偏爱的一本书就是《延伸的表型》<span class="tag t-rep">转述</span>），<strong>也是本书里学术上最被正面接受的一块</strong>——<strong>它给「利他之外的基因作用」提供了框架，也被后来的「生态位构建」（niche construction）等研究吸收</strong> <span class="tag t-rep">转述</span>。 ★ <strong>但它有一个被反复提出的隐忧</strong>：<strong>「基因的表型效应」这个概念被扩得太宽之后，会不会变得「什么都可以算」？</strong> <strong>如果海狸的坝是基因的表型，那么人的城市、甚至人类的整个文明，是不是也是基因的表型？</strong> <strong>扩张到这一步，这个概念就失去了可证伪性</strong>——<strong>这正是批评者（尤其适应论批评一派）会提出的问题</strong> <span class="tag t-inf">推断</span>。 ★ <strong>一个必须说清的区别</strong>：<strong>「延伸表型」与「觅母」是两件事</strong>——<strong>前者讲「基因影响了身体之外」，仍然在「基因」这条线上；后者讲「文化里另有一套复制因子」，是在「复制因子」这条线上。</strong> <strong>中文读者常把两者混为一谈</strong>（都译成「延伸」），<strong>其实它们是两个方向。</strong> 前者学术上更牢，后者更出名。</p>
+</section>
+
+<section id="s20">
+  <h2><span class="num">19</span><span>第 14 章 基因决定论与基因选择论（Genetic determinism and gene selectionism）</span><span class="caret">▾</span></h2>
+  <p>★ <strong>阅读提示</strong>：本章<strong>源自 1982 年《延伸的表型》第 2 章</strong>，<strong>写作年代与第 1–13 章（1976/1989）不同</strong>，语气是<strong>辩论体</strong>；英文《The Extended Selfish Gene》把它作为《延伸的表型》的章节附在书末，<strong>中译把它编入正文第 14 章</strong>。<strong>建议先读完全书，再读这一章</strong>（先有被误读的对象，才看得懂作者在驳什么）。</p>
+  <h3>这一章在论证什么</h3>
+  <p>★ <strong>正面拆掉「基因决定论」这顶帽子。</strong> 道金斯要区分<strong>两个被混为一谈的东西</strong>：</p>
+  <ul>
+    <li><strong>基因选择论（gene selectionism）</strong>：<strong>基因是自然选择的单位</strong>——这是他的立场。
+    </li>
+    <li><strong>基因决定论（genetic determinism）</strong>：<strong>基因决定（人类）的性状与行为，环境无足轻重</strong>——<strong>他说这是「伟大的基因决定论谬误」，他从没主张过</strong> <span class="tag t-src">原书</span>（第 14 章主旨）。
+    </li>
+  </ul>
+  <h3>关键模型与例子</h3>
+  <ul>
+    <li>★ <strong>核心区分</strong>：<strong>「某个基因对某个性状有影响」≠「该性状完全由基因决定」</strong>——<strong>任何性状都是基因与环境相互作用的产物；「基因决定论」错误地把「是一个原因」读成「是唯一原因」。</strong>
+    </li>
+    <li><strong>道金斯的自陈</strong>：<strong>「我们生命的基因程序化并不是完全决定论的。它是统计性的。」</strong><span class="tag t-talk">作者谈话</span>（PBS 访谈）——<strong>这句话可以看作第 14 章的口语版总结。</strong>
+    </li>
+    <li><strong>一个类比式的辨析</strong>：<strong>说「某行为有遗传基础」不等于「该行为不可改变」</strong>——<strong>就像说「某病的发病率有遗传易感性」，不等于「该病人无法治疗」。</strong>
+    </li>
+    <li><strong>对「自由意志」的回应</strong>：道金斯说：<strong>「我很自在地接受『我们可以用自由意志去超越生物学』这个想法。事实上我一直在鼓励人们这样做。」</strong><span class="tag t-talk">作者谈话</span>（PBS 访谈）
+    </li>
+    <li>★ <strong>这一章真正的技术动作是「分层次」</strong>：道金斯区分<strong>「在演化意义上，基因是选择的单位」</strong>与<strong>「在发育意义上，基因是性状的诸多原因之一」</strong>——<strong>把这两个层次混为一谈，就会得出「基因决定一切」的结论。</strong> <strong>换句话说：他主张的是「基因选择论」，反对的是被误读成「基因决定论」。</strong>
+    </li>
+    <li><strong>一个类比式的辨析（值得记住）</strong>：<strong>说「某行为有遗传基础」，不等于说「该行为不可改变」</strong>——<strong>就像说「某病有遗传易感性」，不等于说「该病人无法治疗」。</strong> <strong>把「有影响」读成「是宿命」，是这一章要拆掉的全部东西。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一章的立场在逻辑上是清晰的，但它无法消除一个「语用」问题</strong>：<strong>道金斯一边说「基因只是统计性的影响」，一边用「机器」「编制程序」「自私」这些强决定论色彩的词去写畅销书</strong>——<strong>读者的印象是被这些词塑造的，不是被这一章的澄清塑造的</strong>。<strong>这正是米奇利（5.2）批评的要害，也是 5.1 里他想要「收回核心讯息」的原因。</strong> ★ <strong>另一处争议</strong>：<strong>「基因选择论」与「多层次选择」之争，不因这一章而终结</strong>——<strong>这一章只是在「决定论」这个战场上为道金斯辩护，并没有在「选择的单位到底有几个层次」这个更硬的战场上给出答案</strong>（见 5.8）。</p>
+</section>
+
+<section id="s21">
+  <h2><span class="num">20</span><span>第 15 章 对于完美化的制约（Constraints on perfection）</span><span class="caret">▾</span></h2>
+  <p>★ <strong>阅读提示</strong>：本章<strong>源自 1982 年《延伸的表型》第 3 章</strong>，<strong>是全书最后一块拼图，也是作者对「适应主义」指控的回应</strong>。<strong>请与第 5.3 节的古尔德-列万廷对读。</strong></p>
+  <h3>这一章在论证什么</h3>
+  <p>★ <strong>承认「不是所有性状都是被优化出来的」。</strong> 这一章回应的是「<strong>适应主义</strong>」（adaptationism）的指控：<strong>批评者（古尔德、列万廷）说道金斯一派给每一个性状都编一个「它有用所以被选择」的故事</strong>。道金斯在这里要说：<strong>他和他的同行的真正立场是「适应主义纲领」——把「适应」当作一个值得优先检验的假说，而不是「凡性状必为适应」的教条</strong>；<strong>且他本人承认，完美化受大量制约</strong> <span class="tag t-src">原书</span>（第 15 章主旨）。</p>
+  <h3>关键模型与例子</h3>
+  <ul>
+    <li>★ <strong>章首语</strong>：<strong>「我们今天所看到的动物很有可能是『过时的』，影响其建立过程的那些基因是在某个更早的时期为了应对与今天不同的条件而被选择出来的。」</strong><span class="tag t-src">原书</span>（第 15 章章首语，中译目录转录）
+    </li>
+    <li><strong>「时滞」（time lag）</strong>：<strong>环境变了，基因还没跟上</strong>——<strong>于是「今天看起来不合理」的性状，可能是对「昨天的环境」的适应</strong>。
+    </li>
+    <li><strong>制约的来源</strong>：<strong>发育约束、系统发生史（历史包袱）、物理与工程约束、以及「别的基因已经在做什么」</strong>——<strong>一个基因不能单独被优化，它必须与基因库里其他基因共处</strong>（与 40 周年序言的「合作的基因」直接呼应）。
+    </li>
+    <li>★ <strong>这一章其实是「两个道金斯」的和解</strong>：<strong>适应主义批评者（古尔德）与道金斯在这章里各让一步</strong>——<strong>道金斯承认制约重要；但古尔德也承认「适应」是一个合理的优先假说。</strong> 这为后来「<strong>适应 + 约束</strong>都是真问题」的共识（见 5.3 结论）铺了路。
+    </li>
+    <li>★ <strong>「完美化」这个词的重量</strong>：道金斯在这里承认，<strong>很多性状只是「足够好」，而不是「最优」</strong>——<strong>这不是他四十年后才松口的话，而是他在 1982 年就写下的。</strong> <strong>换句话说：他被贴上「适应主义者」标签的方式，本身就把他实际的立场简化掉了。</strong>
+    </li>
+    <li><strong>这一章与第 5 章遥相呼应</strong>：<strong>ESS 讲的是「稳定性不等于最优」，第 15 章讲的是「适应也不等于完美」</strong>——<strong>两章合起来，其实是全书对「一切都恰到好处」这种推理的一贯警惕。</strong> <strong>这一点很少被读者注意到，但它是道金斯比他的批评者所描述的更谨慎的证据。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一章是全书「最像辩护词」的一章，因此也最容易让读者误以为「争论已经被解决了」。</strong> 事实是：<strong>1979 年古尔德-列万廷提出的问题，到 1982 年道金斯的回应，再到今天，争论一直延续</strong>——<strong>「适应」与「约束」的权重如何分配，仍是一个活跃的研究问题</strong> <span class="tag t-rep">转述</span>。 ★ <strong>一个必须注意的结构性事实</strong>：<strong>第 14、15 章的存在，本身就证明了这本书的「不完整」</strong>——<strong>如果书里的立场本来就没有歧义，作者为什么要在四十年后专门加两章来澄清？</strong> ★ <strong>这两章是作者对「这本书被误读」的最终回应，也是本报告 5.6 所说的「版本考古即内容」的最直接证据。</strong> <strong>读到这里，这本书才算读完。</strong></p>
+</section>
+
+<section id="s22">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>概念／人物</th><th>一句话</th><th>出现在</th></tr></thead>
+    <tbody>
+      <tr><td><strong>基因之眼（the gene's eye view）</strong></td><td>把演化看成「基因的存活竞争」，个体是载体</td><td>全书视角（第 1 章命名）</td></tr>
+      <tr><td><strong>复制因子（replicator）</strong></td><td>能自我复制、会变异、被选择的东西；基因与文化皆可</td><td>第 2、11 章</td></tr>
+      <tr><td><strong>生存机器（survival machine）</strong></td><td>基因造出来的身体，用来保存和传播基因</td><td>第 4 章</td></tr>
+      <tr><td><strong>ESS 进化稳定策略</strong></td><td>一旦被多数采用就无法被突变策略侵入的策略</td><td>第 5 章（Maynard Smith &amp; Price, 1973）</td></tr>
+      <tr><td><strong>鹰鸽博弈（Hawk–Dove）</strong></td><td>用「鹰／鸽」两种策略演示 ESS 的经典模型</td><td>第 5 章</td></tr>
+      <tr><td><strong>汉密尔顿法则（rB &gt; C）</strong></td><td>利他被选择的条件：受益 × 亲缘系数 &gt; 代价</td><td>第 6 章（Hamilton, 1964）</td></tr>
+      <tr><td><strong>亲缘系数 r</strong></td><td>同卵 1／亲子·同胞 1/2／祖孙·半同胞 1/4／堂表 1/8</td><td>第 6 章</td></tr>
+      <tr><td><strong>亲代投资（parental investment）</strong></td><td>雌雄初始投入不同 → 两性策略差异</td><td>第 9 章（Trivers, 1972）</td></tr>
+      <tr><td><strong>互惠利他（reciprocal altruism）</strong></td><td>非亲缘合作：会再见面的两方互帮</td><td>第 10 章（Trivers, 1971）</td></tr>
+      <tr><td><strong>囚徒困境（Prisoner's Dilemma）</strong></td><td>单次博弈里背叛是理性解，重复博弈里合作可现</td><td>第 10、12 章</td></tr>
+      <tr><td><strong>针锋相对（Tit-for-Tat）</strong></td><td>先合作、后照抄：Axelrod 竞赛最稳健的简单策略</td><td>第 12 章（Axelrod, 1984）</td></tr>
+      <tr><td><strong>觅母（meme）</strong></td><td>文化中的复制因子；<strong>学术上极不牢</strong></td><td>第 11 章</td></tr>
+      <tr><td><strong>延伸表型（extended phenotype）</strong></td><td>基因的表型效应可越出身体，作用于环境与他人</td><td>第 13 章</td></tr>
+      <tr><td><strong>基因选择论 vs 基因决定论</strong></td><td>前者「基因是选择单位」，后者「基因决定一切」——作者只要前者</td><td>第 14 章</td></tr>
+      <tr><td><strong>适应主义（adaptationism）</strong></td><td>「把适应当优先假说」的纲领，被古尔德-列万廷批评</td><td>第 15 章</td></tr>
+      <tr><td><strong>Richard Dawkins（1941– ）</strong></td><td>本书作者；牛津公众理解科学教授；<strong>在世</strong></td><td>——</td></tr>
+      <tr><td><strong>W. D. Hamilton</strong></td><td>亲缘选择与「汉密尔顿法则」的提出者</td><td>第 6 章</td></tr>
+      <tr><td><strong>John Maynard Smith</strong></td><td>ESS 与鹰鸽博弈的提出者</td><td>第 5 章</td></tr>
+      <tr><td><strong>Robert Trivers</strong></td><td>互惠利他与亲代投资理论提出者；为初版写序</td><td>第 9、10 章；初版序</td></tr>
+      <tr><td><strong>G. C. Williams</strong></td><td>基因定义（「codex」）的来源；本书「公认英雄」</td><td>第 3 章</td></tr>
+      <tr><td><strong>Robert Axelrod</strong></td><td>重复囚徒困境竞赛的组织者</td><td>第 12 章</td></tr>
+      <tr><td><strong>Mary Midgley</strong></td><td>〈Gene-Juggling〉（1979），最著名的学理批评者</td><td>第 5.2 节</td></tr>
+      <tr><td><strong>Stephen Jay Gould &amp; Richard Lewontin</strong></td><td>〈The Spandrels of San Marco…〉（1979），适应论批评</td><td>第 5.3 节</td></tr>
+      <tr><td><strong>E. O. Wilson</strong></td><td>《社会生物学》（1975），引爆社会生物学大战</td><td>第 5.4 节</td></tr>
+      <tr><td><strong>Dan Sperber</strong></td><td>以「重构而非复制」批评觅母论</td><td>第 5.5 节</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s23">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>理论源流（读之前先知道这本书站在谁肩上）</strong>：W. D. Hamilton，〈The Genetical Evolution of Social Behaviour I &amp; II〉，<em>Journal of Theoretical Biology</em> 7(1):1–52，<strong>1964</strong>；John Maynard Smith &amp; George Price，〈The Logic of Animal Conflict〉，<em>Nature</em> 246:15–18，<strong>1973</strong>；Robert Trivers，〈The Evolution of Reciprocal Altruism〉，<em>Quarterly Review of Biology</em> 46(1):35–57，<strong>1971</strong>。
+    </li>
+    <li><strong>本书的正面续篇</strong>：Richard Dawkins，《延伸的表型》（<em>The Extended Phenotype</em>，1982）——<strong>道金斯本人最偏爱的一本，也是第 13、14、15 章的思想来源</strong>。
+    </li>
+    <li><strong>最硬的批评</strong>：Mary Midgley，〈Gene-Juggling〉，<em>Philosophy</em> 54(210):439–458，<strong>1979</strong>；Gould &amp; Lewontin，〈The Spandrels of San Marco…〉，<em>Proc. R. Soc. B</em> 205(1161):581–598，<strong>1979</strong>——<strong>想看清「这本书被怎么骂」，从这两篇原文读起。</strong>
+    </li>
+    <li><strong>合作的机制</strong>：Robert Axelrod，《合作的演化》（<em>The Evolution of Cooperation</em>，Basic Books，1984）——第 12 章的完整版。
+    </li>
+    <li><strong>觅母论的替代路线</strong>：Dan Sperber，《Explaining Culture》（Blackwell，1996）；Robert Boyd &amp; Peter Richerson，《Culture and the Evolutionary Process》（芝加哥大学出版社，1985）与《Not by Genes Alone》（2005）。
+    </li>
+    <li><strong>多层次选择与后续框架</strong>：David Sloan Wilson &amp; Edward O. Wilson，〈Rethinking the Theoretical Foundation of Sociobiology〉，<em>Quarterly Review of Biology</em> 82(4):327–348，<strong>2007</strong>——<strong>想理解「今天怎么看基因之眼」，从这篇读起。</strong>
+    </li>
+    <li><strong>40 周年序言本身</strong>：Richard Dawkins，〈The Selfish Gene Revisited〉，<em>Skeptical Inquirer</em> 41(2)，<strong>2017 年 3/4 月号</strong>（《The Extended Selfish Gene》尾声的授权全文转载）。
+    </li>
+  </ol>
+</section>
+
+<section id="s24">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>见同目录 <code>自私的基因-来源清单.md</code>。</p>
+</section>
+
+<section id="s25">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. 40 周年版「尾声」还是「序言」：英文与中译的体例不一致</h3>
+  <ul>
+    <li><strong>英文原书</strong>：2016 年 OUP《The Selfish Gene: 40th Anniversary Edition》与《The Extended Selfish Gene》里，这篇作者自述的标题都是 <strong>"Epilogue to the 40th Anniversary Edition"（尾声）</strong>，<strong>排在正文（第 13 章）之后</strong>（Google Books 官方目录：第 13 章 p.302 → Epilogue p.345 → Endnotes p.359）。
+    </li>
+    <li><strong>中译 40 周年增订版</strong>：目录里它是 <strong>「40 周年增订版序言」</strong>，<strong>排在正文之前</strong>（紧随「40 周年增订版说明」）。
+    </li>
+    <li>⇒ <strong>我判断这是同一篇文字</strong>（内容对照一致：都以「科学家与政客不同，能够以错为乐」开篇），<strong>中译改变了它的标题与位置</strong>。★ <strong>但我未持中译实物版权页，无法 100% 排除中译另有一篇独立前言。⇒ 请以你手中中译实物的目录页为准。</strong>
+    </li>
+  </ul>
+  <h3>D2. 中译 40 周年增订版的页数：449 还是 496？</h3>
+  <ul>
+    <li><strong>449 页</strong>：浙江省新华书店集团书目（2018-11 第 1 版第 1 次印刷，ISBN 9787508694498）。
+    </li>
+    <li><strong>496 页</strong>：百度百科「自私的基因」词条（同一 ISBN）。
+    </li>
+    <li>★ 另有一种说法把 <strong>496 页</strong>给 2019-06 精装本（ISBN 9787508693279，本报告采用的是这一口径）。
+    </li>
+    <li>⇒ <strong>两个数字都有来源，但无法判断差异来自「正文页数 vs 含附录总页数」还是「不同印次」</strong>。★ <strong>本报告正文并列两个口径，不擅自裁决。以实物版权页为准。</strong>
+    </li>
+  </ul>
+  <h3>D3. 「道金斯说『我们生来是自私的』」这句原文，出处在哪一版第几页？</h3>
+  <ul>
+    <li><strong>米奇利在 1979 年的〈Gene-Juggling〉里</strong>明确指出，道金斯一边谈基因，一边滑向「<strong>we are born selfish</strong>」，<strong>并给出页码为《The Selfish Gene》第 1 版 p.3</strong> <span class="tag t-src">原书</span>（Midgley 1979 转引）。
+    </li>
+    <li><strong>中文版里对应的一句</strong>是：<strong>「我们生来是自私的，任何生物，包括我们自己，都只是求生的机器。」</strong>（常见于中文出版物导语与简介）。
+    </li>
+    <li>★ <strong>但我没有读到第 1 版 p.3 的原页面</strong>（我未持原书，且该页码对应的是 1976 年初版，与 2016 年版页码不同）。⇒ <strong>本报告只把它当作「被广泛引用的原文片段」处理，未做逐字核对。</strong>
+    </li>
+    <li>★ 另一个相关但<strong>未能核实</strong>的说法：有二手页面称，道金斯在 40 周年序言里曾说 <strong>"I do with hindsight notice lapses of my own… 'Born selfish' is misleading."</strong> ——<strong>我在《Skeptical Inquirer》授权转载的序言全文中没有读到这句话</strong>，<strong>故本报告不采用</strong>（见 D7）。
+    </li>
+  </ul>
+  <h3>D4. 中文 40 周年增订版第 14、15 章的「来源」表述</h3>
+  <ul>
+    <li><strong>英文《The Extended Selfish Gene》（2016 精装，ISBN 9780198788782）</strong>的官方目录（Wellcome Collection、UCSB、Salt Lake City 公共图书馆三家独立编目一致）显示：<strong>正文 13 章 + Epilogue 之后，另附「The Extended Phenotype」的 [chapter] 2. Genetic Determinism and Gene Selectionism 与 [chapter] 3. Constraints on Perfection，并附 Glossary 与 References</strong>。
+    </li>
+    <li><strong>中译 40 周年增订版</strong>则把这两章编为<strong>第 14 章「基因决定论与基因选择论」</strong>与<strong>第 15 章「对于完美化的制约」</strong>（百度百科词条目录）。
+    </li>
+    <li>⇒ <strong>结构上：中译把《延伸的表型》的两章「并入」了《自私的基因》的章号，英文则把它们「附录化」。</strong> ★ <strong>这一差异用于提醒读者：中译的「15 章」在英文世界里其实对应「一本正文 13 章 + 两章附录」的书。</strong> ★ 我未能核对中译是否在原章名之外另加说明文字。
+    </li>
+  </ul>
+  <h3>D5. 「2017 年皇家学会投票评为史上最具影响力科学图书」的口径</h3>
+  <ul>
+    <li><strong>一处来源</strong>：维基百科系页面写「<strong>2017 年 7 月，纪念皇家学会科学图书奖设立三十周年的投票，把《自私的基因》列为有史以来最具影响力的科学图书</strong>」。
+    </li>
+    <li><strong>另一处来源</strong>：同一页面又写「<strong>皇家学会（Royal Institution）</strong>办过一次评『史上最佳科学图书』的投票，《自私的基因》进入短名单，<strong>冠军是普里莫·莱维《元素周期表》</strong>」。
+    </li>
+    <li>★ <strong>两个投票的举办机构、年份与结果并不相同</strong>（一个是「皇家学会科学图书奖」的纪念投票，一个是「皇家学会」的最佳图书投票），<strong>中文来源常把两者混为一谈</strong>。⇒ <strong>本报告并列两种表述，不合并，不裁决。</strong>
+    </li>
+  </ul>
+  <h3>D6. 「被译成多少种语言／卖了多少本」的数字口径</h3>
+  <ul>
+    <li><strong>至少 23 种</strong>（英文维基系页面，含阿拉伯语、泰语、土耳其语）；
+    </li>
+    <li><strong>超过 25 种</strong>（Google Books 2016 年 40 周年版页面）；
+    </li>
+    <li><strong>超过 30 种、销量「数百万」</strong>（2026 年 50 周年版出版方页面）。
+    </li>
+    <li>⇒ <strong>三个数字随时间递增，可能都对（不同年份的统计）</strong>；★ <strong>本报告正文采用「23–30 余种语言」的区间表述，不锁定单一数字。</strong>
+    </li>
+  </ul>
+  <h3>D7. 我主动排除的来源</h3>
+  <ul>
+    <li>★ <strong>盗版电子书／整本书 PDF 与 EPUB 站点</strong>：检索中确曾出现多个托管整本书（含 2016 年 40 周年版 EPUB，附 IPFS 哈希）与非授权中文全文的站点。按本项目契约「<strong>只用合法来源，任何目的不例外</strong>」，<strong>一律不采用</strong>——<strong>即使它们含有本报告需要的正文页面与页码</strong>（例如上面 D3 里那句 "Born selfish" 的核对，我因此未能完成）。
+    </li>
+    <li><strong>AI 生成或聚合的 SEO 内容</strong>：本报告在检索中识别出多篇（特征是<strong>把道金斯的原话与「社会达尔文主义」「基因决定论」随意拼接、给出无法核实的引语与页码</strong>）。★ <strong>其中「D3 里那句 'Born selfish' is misleading」正出自这类页面，因无法在合法来源中核到，已排除</strong>（见 D3）。
+    </li>
+    <li><strong>高校课程页／个人主页托管的全文</strong>：<strong>没有</strong>把任何「整本书 PDF」当依据；仅将<strong>期刊论文自身的 PDF</strong>（如古尔德-列万廷 1979 的授权重印件）用于核对<strong>该论文自身的页码与原文</strong>。
+    </li>
+    <li><strong>论坛／文库类站点的中文全文</strong>（如某些托管整本中译的论坛帖）：★ <strong>本报告仅用它们做「中文译法」的旁证（如 40 周年序言的中文措辞），不作为「原书内容」的依据</strong>；凡属此类，正文已标 <span class="tag t-talk">作者谈话</span> 并同时给出<strong>合法英文出处</strong>。
+    </li>
+  </ul>
+  <h3>D8. 「作者谈话」档的口径说明（重要）</h3>
+  <ul>
+    <li>本书作者<strong>道金斯在世且公开发言极多</strong>，本报告<strong>真实使用了「作者谈话」这一档</strong>（这是本批六本中唯一能真正使用该档的一本）。<strong>但并非所有署名道金斯的文字都算这一档</strong>，本报告的处理口径是：
+    </li>
+    <li><strong>计入该档的</strong>：① <strong>40 周年增订版序言</strong>（作者自述，经授权在《Skeptical Inquirer》2017 年 3/4 月号全文转载）；② <strong>PBS《Faith and Reason》访谈</strong>（道金斯谈《自私的基因》）；③ <strong>《每日电讯报》2021 年前后访谈</strong>（道金斯谈「自私的基因产生利他的个体」）；④ <strong>《The Listener》1986-04-17 与 BBC《Horizon》节目《Nice Guys Finish First》</strong>（道金斯本人对「右翼左翼都误读了他」的回应）。
+    </li>
+    <li><strong>不计入该档、但用作出处的</strong>：道金斯其他著作（《延伸的表型》《盲目的钟表匠》《上帝的错觉》等）——<strong>它们是「作者其他著作」，不是「访谈」</strong>；正文凡引用，均标明其<strong>针对的是哪一本书</strong>。
+    </li>
+  </ul>
+  <h3>D9. 关于 2026 年五十周年版（本报告截稿时的新变化）</h3>
+  <ul>
+    <li>★ 本报告以规范指定的<strong>40 周年增订版</strong>为锚定版。但检索发现：<strong>牛津大学出版社已于 2026-05 出版 50 周年纪念版</strong>（<em>The Selfish Gene: 50th Anniversary Edition</em>，第 5 修订版，ISBN 978-0-19-898538-9，544 页），<strong>新增一篇「50 周年尾声」与一篇关于 A. G. Lowndes 的附录</strong>。
+    </li>
+    <li>⇒ <strong>本报告未采用该版本</strong>（它超出规范给定的版本考古范围），<strong>仅在此记录，供读者注意「这本书仍在被作者持续修订」这一事实</strong>——<strong>这本身也印证了 5.6 的判断：版本史即内容。</strong>
+    </li>
+  </ul>
+</section>
+
+<footer>
+  生成于 2026-10-07 · 来源清单与交叉验证记录见同目录 <code>自私的基因-来源清单.md</code><br>
+  本页引文按 <b>B 级（有可定位引文，未逐字核对全书）</b>处理：标注章号的条目取自出版方／图书馆编目的目录、官方预览页码与署名二手来源的逐字引用，<b>我未持原书</b>，引文请以原书复核；批评文献的姓名、篇名、刊物、卷期与日期已逐条给出；未标章号者仍是二手转引。★ <b>唯一的「局部 A」是 40 周年增订版序言</b>（详见上方「引文核验级别」）。★ 本书是本批六本中<b>唯一作者在世</b>的一本，因此「作者谈话」这一档<b>真实可用</b>：书里最大的争议——「基因的自私」被误读成「人的自私」——可以<b>直接引作者在 40 周年序言里的原话</b>（「在某种意义上，我很愿意找到一种方式来收回《自私的基因》一书的核心思想」）来回应。★ 另请留意两件事：<b>（一）中文 40 周年增订版的「15 章」，在英文世界里对应「正文 13 章 ＋ 附录收入《延伸的表型》两章」</b>；<b>（二）「觅母」一章影响极大而学术上极不牢，请勿当成已被科学证实的理论</b>。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

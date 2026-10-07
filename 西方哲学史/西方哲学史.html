@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《西方哲学史》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《西方哲学史》<small>阅读指引与精华解析 · 2026-10-07</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 六个核心论点</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 中文译本怎么选</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s7">6 卷一第一篇：前苏格拉底哲学家（卷一第 1–10 章）</a>
+    <a href="#s8">7 卷一第二篇：苏格拉底、柏拉图、亚里士多德（卷一第 11–24 章）</a>
+    <a href="#s9">8 卷一第三篇：亚里士多德以后的古代哲学（卷一第 25–30 章）</a>
+    <a href="#s10">9 卷二第一篇：教父（卷二第 1–6 章）</a>
+    <a href="#s11">10 卷二第二篇：经院哲学家（卷二第 7–15 章）</a>
+    <a href="#s12">11 卷三第一篇：从文艺复兴到休谟（卷三第 1–17 章）</a>
+    <a href="#s13">12 卷三第二篇：从卢梭到现代（卷三第 18–31 章）</a>
+    <div class="grp">附录</div>
+    <a href="#s14">A 关键概念与人物速查</a>
+    <a href="#s15">B 延伸阅读</a>
+    <a href="#s16">C 来源清单</a>
+    <a href="#s17">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《西方哲学史》阅读指引与精华解析</h1>
+  <div class="sub">A History of Western Philosophy and Its Connection with Political and Social Circumstances from the Earliest Times to the Present Day</div>
+  <div class="meta">
+    <div><b>作者</b>伯特兰·罗素（Bertrand Russell，1872–1970）—— 英国哲学家、逻辑学家、数学家、社会活动家；剑桥三一学院出身，与怀特海合著《数学原理》，分析哲学与逻辑原子论的主要创始人之一；1950 年诺贝尔文学奖得主</div>
+    <div><b>成书年代</b>1945（美国 Simon &amp;amp; Schuster 首版；英国 George Allen &amp;amp; Unwin 1946 版）。由 1941–42 年在美国费城巴恩斯基金会（Barnes Foundation）的讲学讲稿整理而成 —— 成书时二战刚结束，讲座现场有鲜明的现实指向</div>
+    <div><b>★ 大陆简体版</b>何兆武、李约瑟 译（上卷）＋ 马元德 译（下卷），商务印书馆「汉译世界学术名著丛书」。★ 上卷内还换过手：<b>卷一（古代哲学）为何兆武译，卷二（天主教哲学）为李约瑟译</b>；何兆武只译了约 35%，译完卷一即辞去</div>
+    <div><b>篇幅</b>3 卷 7 篇 <b>76 章</b>（卷一 古代哲学 30 章 · 卷二 天主教哲学 15 章 · 卷三 近代哲学 31 章）</div>
+    <div><b>荣誉／地位</b>二十世纪最畅销的哲学著作之一（Routledge 版自称「the best-selling philosophy book of the twentieth century」）；罗素 1950 年获诺贝尔文学奖时的重要作品之一</div>
+    <div><b>状态</b>未标注已读／想读 —— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有<b>卷／章（部分到页）</b>可定位的罗素原文引文 —— 经学术论文、书评与权威二手研究<b>逐字引用并注明出处</b>（如绪论 p.xiii–xiv、卷三第 1 章、卷三第 19 章 pp.660/671–673）。★ 全部属「经人转引」，我未读原书页面</li>
+    <li><span class="tag t-talk">作者谈话</span> 罗素本人<b>书外</b>的其他文字与讲说 —— 本书特指《罗素自传》《我的哲学的发展》与 1959 年缩写本《西方的智慧》等。<b>★ 罗素已于 1970 年去世，本档不是访谈，也不是本书正文</b></li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、书评转述、百科或读者笔记，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本书<b>仍在版权期内</b>（1945 年成书、罗素 1970 年去世），<b>我未读全书正文、也未访问任何受控借阅或预览正文</b>。★ 本报告的可用文本层是<b>「带卷／章／页的二手引用」</b>：学术论文、书评与权威转引中<b>逐字引用并注明出处</b>的罗素原话。因此<b>每一条【原书】引文都有卷／章定位、部分有页码，但都属「经人转引」</b>。★ 另一项特殊优势：<b>76 章的中英文章名已由多家独立图书馆编目与出版社目录逐项核对一致</b>（UPenn 馆藏记录、Routledge、印度 IIMB OPAC ＋ 商务印书馆中译目录）。★ 最大的边界在<b>卷二（教父与经院哲学 15 章）缺少可定位的罗素逐字原话</b>，相关表述多为转述（见附录 D7）。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-07 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书按 <b>B 级（带卷／章可定位引文）</b>标注：<b>有卷／章（部分到页）可定位的罗素原文引文</b>（绪论 p.xiii–xiv 的「神学与科学之间的无人区」与「教我们如何在不确定中生活」；卷三第 1 章「主观性的滑坡……这是疯狂」；卷三第 19 章卢梭「pseudo-democratic dictatorship」与「Hitler is an outcome of Rousseau; Roosevelt and Churchill, of Locke」，London 1946/2000, pp.660, 671–673），以及<b>署名、刊物、卷期、年份齐全的一手批评文献</b>（Kaufmann, <i>Philosophical Review</i> 60(4):459–486, 1951；Boas, <i>Journal of the History of Ideas</i> 8:117–123, 1947；Roberts, <i>Isis</i> 38:268–270, 1948；Copleston, <i>A History of Philosophy</i> Vol.IV；Steiner, <i>Martin Heidegger</i>, 1991, p.4；Stewart 编 <i>The Hegel Myths and Legends</i>, 1996, p.383；Scruton, 2001；Grayling, 2002/2004；Monk, <i>The Ghost of Madness</i>, 2000, p.296）。★ <b>但本书在版权期，无合法公开全文</b>，我<b>未逐字核对全书正文</b>，所以如实标 <b>B 级</b>，不冒充 A 级。未标卷／章处一律为二手转述。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>这本书要说的是：哲学既不是神学，也不是科学，而是两者之间的一块无人区；而西方哲学史，就是「社会凝聚（权威）」与「个人自由」这两种力量反复拉锯的历史。</strong></p>
+  <p>罗素在绪论里给哲学下的定义是全书的地基：哲学「<strong>像神学一样，思考那些迄今为止确切知识无法确定的事情；但又像科学一样，诉诸人类理性而不是权威</strong>」，所以它是「<strong>一块暴露在两面夹攻之下的无人区（No Man's Land）</strong>」<span class="tag t-src">原书</span>（绪论，p. xiii）。他由此分出三个阶段：古代哲学、天主教哲学、近代哲学，并用一句自陈点题——哲学<strong>既是时代的产物，也是时代的原因</strong>：「人们的生活境况很大程度上决定了他们的哲学，但反过来，他们的哲学也很大程度上决定了他们的境况。」<span class="tag t-src">原书</span>（绪论）</p>
+  <p>一句话结论（罗素对这书的自我定位）：<strong>「我要揭示的是，哲学乃是社会生活与政治生活的一个组成部分：它并不是卓越的个人所做的孤立思考，而是曾经盛行过的各种社会性格的产物与成因。」</strong><span class="tag t-src">原书</span>（序言）</p>
+  <p><strong>它不是什么</strong>：不是哲学史教科书（它没有系统的论证重建、没有文献考订）；不是中立的百科（罗素的判断密度极高）；也不是一本讲完了 20 世纪哲学的书——<strong>它最后一章（卷三第 31 章）才写到逻辑分析哲学，全书完全没有提到海德格尔</strong>。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>★ 下表把<strong>全部 76 章逐章列出</strong>（一行一章）。★ <strong>章号写法</strong>：三卷<strong>各自从第 1 章重新编号</strong>，所以一律写成「<strong>卷一第 14 章 柏拉图的乌托邦</strong>」「<strong>卷三第 20 章 康德</strong>」，绝不能只写「第 66 章」。章名据商务印书馆中译本的目录。</p>
+  <table>
+    <thead><tr><th>#</th><th>卷</th><th>篇</th><th>章</th><th>这一章讲什么／罗素的着眼点</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>卷一</td><td>一 前苏格拉底哲学家</td><td>卷一第 1 章 希腊文明的兴起</td><td>希腊文明的地理与社会条件；奥尔弗斯教带来的灵魂不朽信念</td></tr>
+      <tr><td>2</td><td>卷一</td><td>一</td><td>卷一第 2 章 米利都学派</td><td>泰勒斯等第一次用「物质」而不是「神」解释世界</td></tr>
+      <tr><td>3</td><td>卷一</td><td>一</td><td>卷一第 3 章 毕达哥拉斯</td><td>灵魂轮回与数的神秘主义；罗素认为其影响比数学本身更深远</td></tr>
+      <tr><td>4</td><td>卷一</td><td>一</td><td>卷一第 4 章 赫拉克利特</td><td>万物流变、逻各斯、火；罗素视之为黑格尔辩证法的源头</td></tr>
+      <tr><td>5</td><td>卷一</td><td>一</td><td>卷一第 5 章 巴门尼德</td><td>「存在者存在」；第一次从语言／逻辑推出形而上学结论</td></tr>
+      <tr><td>6</td><td>卷一</td><td>一</td><td>卷一第 6 章 恩培多克勒</td><td>四元素与「爱／恨」；科学成分与神秘成分的折衷</td></tr>
+      <tr><td>7</td><td>卷一</td><td>一</td><td>卷一第 7 章 雅典与文化的关系</td><td>波斯战争后雅典的黄金时代；民主的成就与它的奴隶制底色</td></tr>
+      <tr><td>8</td><td>卷一</td><td>一</td><td>卷一第 8 章 阿那克萨哥拉</td><td>把「心灵」（nous）引入宇宙，但只在起点用一次</td></tr>
+      <tr><td>9</td><td>卷一</td><td>一</td><td>卷一第 9 章 原子论者</td><td>留基伯与德谟克利特；罗素认为这是希腊最有科学前途的路线</td></tr>
+      <tr><td>10</td><td>卷一</td><td>一</td><td>卷一第 10 章 普罗泰戈拉</td><td>「人是万物的尺度」；智者派的怀疑主义与自由</td></tr>
+      <tr><td>11</td><td>卷一</td><td>二 苏格拉底、柏拉图、亚里士多德</td><td>卷一第 11 章 苏格拉底</td><td>苏格拉底其人、辩证法与受审；罗素敬其人而疑其法</td></tr>
+      <tr><td>12</td><td>卷一</td><td>二</td><td>卷一第 12 章 斯巴达的影响</td><td>斯巴达的军事共产主义如何经由柏拉图影响后世</td></tr>
+      <tr><td>13</td><td>卷一</td><td>二</td><td>卷一第 13 章 柏拉图见解的来源</td><td>苏格拉底＋斯巴达＋毕达哥拉斯＋奥尔弗斯教</td></tr>
+      <tr><td>14</td><td>卷一</td><td>二</td><td>卷一第 14 章 柏拉图的乌托邦</td><td>《理想国》的护卫者、哲学王与社会分层</td></tr>
+      <tr><td>15</td><td>卷一</td><td>二</td><td>卷一第 15 章 理念论</td><td>理念／共相；罗素认为这是逻辑上的混淆</td></tr>
+      <tr><td>16</td><td>卷一</td><td>二</td><td>卷一第 16 章 柏拉图的不朽论</td><td>《斐多》的灵魂不朽论证；罗素判其薄弱</td></tr>
+      <tr><td>17</td><td>卷一</td><td>二</td><td>卷一第 17 章 柏拉图的宇宙生成论</td><td>《蒂迈欧》；数学神秘主义进入中世纪科学观</td></tr>
+      <tr><td>18</td><td>卷一</td><td>二</td><td>卷一第 18 章 柏拉图哲学中的知识与知觉</td><td>《泰阿泰德》；罗素认为这是柏拉图逻辑上的高点</td></tr>
+      <tr><td>19</td><td>卷一</td><td>二</td><td>卷一第 19 章 亚里士多德的形而上学</td><td>形式／质料、潜能／现实、不动的推动者</td></tr>
+      <tr><td>20</td><td>卷一</td><td>二</td><td>卷一第 20 章 亚里士多德的伦理学</td><td>中道与幸福；罗素认为内容稀薄、多是老生常谈</td></tr>
+      <tr><td>21</td><td>卷一</td><td>二</td><td>卷一第 21 章 亚里士多德的政治学</td><td>城邦与奴隶制；罗素批评其天然的等级偏见</td></tr>
+      <tr><td>22</td><td>卷一</td><td>二</td><td>卷一第 22 章 亚里士多德的逻辑</td><td>三段论；罗素判它统治逻辑两千年、但被严重过誉</td></tr>
+      <tr><td>23</td><td>卷一</td><td>二</td><td>卷一第 23 章 亚里士多德的物理学</td><td>目的论物理；罗素说它几乎全错，却统治了中世纪</td></tr>
+      <tr><td>24</td><td>卷一</td><td>二</td><td>卷一第 24 章 希腊早期的数学与天文学</td><td>希腊真正过硬的成就；阿里斯塔克的地动说为何被埋没</td></tr>
+      <tr><td>25</td><td>卷一</td><td>三 亚里士多德以后</td><td>卷一第 25 章 希腊化世界</td><td>亚历山大之后的专制社会与个人孤立感</td></tr>
+      <tr><td>26</td><td>卷一</td><td>三</td><td>卷一第 26 章 犬儒学派与怀疑派</td><td>「回到自然」与「悬置判断」；动乱时代的个人安宁术</td></tr>
+      <tr><td>27</td><td>卷一</td><td>三</td><td>卷一第 27 章 伊壁鸠鲁派</td><td>被误解的快乐主义；其实追求的是心灵宁静</td></tr>
+      <tr><td>28</td><td>卷一</td><td>三</td><td>卷一第 28 章 斯多葛主义</td><td>自然法与人类平等；对罗马法与基督教影响深远</td></tr>
+      <tr><td>29</td><td>卷一</td><td>三</td><td>卷一第 29 章 罗马帝国与文化的关系</td><td>罗马在哲学上几乎无所贡献，只是希腊思想的通道</td></tr>
+      <tr><td>30</td><td>卷一</td><td>三</td><td>卷一第 30 章 普罗提诺</td><td>新柏拉图主义；把柏拉图的神秘主义系统化，直通基督教</td></tr>
+      <tr><td>31</td><td>卷二</td><td>一 教父</td><td>卷二第 1 章 犹太人的宗教发展</td><td>选民与末世观念；后来基督教历史哲学的底色</td></tr>
+      <tr><td>32</td><td>卷二</td><td>一</td><td>卷二第 2 章 基督教最初的四个世纪</td><td>基督教与犹太教的分化；希腊哲学的渗入</td></tr>
+      <tr><td>33</td><td>卷二</td><td>一</td><td>卷二第 3 章 教会的三位博士</td><td>安布洛斯、杰罗姆、奥古斯丁；神学的奠基</td></tr>
+      <tr><td>34</td><td>卷二</td><td>一</td><td>卷二第 4 章 圣奥古斯丁的哲学与神学</td><td>柏拉图主义＋基督教；原罪与恩典的教义</td></tr>
+      <tr><td>35</td><td>卷二</td><td>一</td><td>卷二第 5 章 公元五世纪和六世纪</td><td>蛮族入侵与文明崩解；向「黑暗时代」的过渡</td></tr>
+      <tr><td>36</td><td>卷二</td><td>一</td><td>卷二第 6 章 圣边奈狄克特与大格雷高里</td><td>修道院制度与教皇制；教会成为文明的保存者</td></tr>
+      <tr><td>37</td><td>卷二</td><td>二 经院哲学家</td><td>卷二第 7 章 黑暗时期中的罗马教皇制</td><td>教皇与世俗权力的长期搏斗</td></tr>
+      <tr><td>38</td><td>卷二</td><td>二</td><td>卷二第 8 章 约翰·司各脱</td><td>早期经院哲学；带有泛神论倾向</td></tr>
+      <tr><td>39</td><td>卷二</td><td>二</td><td>卷二第 9 章 公元十一世纪的教会改革</td><td>教权改革的社会与思想背景</td></tr>
+      <tr><td>40</td><td>卷二</td><td>二</td><td>卷二第 10 章 回教文化及其哲学</td><td>阿拉伯哲学保存亚里士多德并回传欧洲</td></tr>
+      <tr><td>41</td><td>卷二</td><td>二</td><td>卷二第 11 章 公元十二世纪</td><td>亚里士多德著作的翻译与传播</td></tr>
+      <tr><td>42</td><td>卷二</td><td>二</td><td>卷二第 12 章 公元十三世纪</td><td>经院哲学的黄金时代与大学的兴起</td></tr>
+      <tr><td>43</td><td>卷二</td><td>二</td><td>卷二第 13 章 圣托马斯·阿奎那</td><td>亚里士多德与基督教的综合；罗素承认其体系庞大而轻其哲学</td></tr>
+      <tr><td>44</td><td>卷二</td><td>二</td><td>卷二第 14 章 弗兰西斯教团的经院哲学家</td><td>邓斯·司各脱、奥卡姆；唯名论的抬头</td></tr>
+      <tr><td>45</td><td>卷二</td><td>二</td><td>卷二第 15 章 教皇制的衰落</td><td>教权瓦解，为宗教改革铺路</td></tr>
+      <tr><td>46</td><td>卷三</td><td>一 从文艺复兴到休谟</td><td>卷三第 1 章 总说</td><td>近代哲学的一般特征：权威瓦解与主观性的兴起</td></tr>
+      <tr><td>47</td><td>卷三</td><td>一</td><td>卷三第 2 章 意大利文艺复兴</td><td>道德的松弛与创造力的爆发并存</td></tr>
+      <tr><td>48</td><td>卷三</td><td>一</td><td>卷三第 3 章 马基雅弗利</td><td>《君主论》把政治与道德切开，罗素称之为政治的科学</td></tr>
+      <tr><td>49</td><td>卷三</td><td>一</td><td>卷三第 4 章 埃拉斯摩和莫尔</td><td>人文主义者的温和与《乌托邦》</td></tr>
+      <tr><td>50</td><td>卷三</td><td>一</td><td>卷三第 5 章 宗教改革运动和反宗教改革运动</td><td>个人判断的解放与个人孤立同时到来</td></tr>
+      <tr><td>51</td><td>卷三</td><td>一</td><td>卷三第 6 章 科学的兴盛</td><td>哥白尼、开普勒、伽利略、牛顿；近代最强的力量</td></tr>
+      <tr><td>52</td><td>卷三</td><td>一</td><td>卷三第 7 章 弗兰西斯·培根</td><td>罗素判其作为哲学家被过誉，归纳法有缺陷</td></tr>
+      <tr><td>53</td><td>卷三</td><td>一</td><td>卷三第 8 章 霍布士的利维坦</td><td>逻辑一贯，但以恐惧为心理学基础</td></tr>
+      <tr><td>54</td><td>卷三</td><td>一</td><td>卷三第 9 章 笛卡尔</td><td>「我思故我在」是近代哲学的起点，也是它的病根</td></tr>
+      <tr><td>55</td><td>卷三</td><td>一</td><td>卷三第 10 章 斯宾诺莎</td><td>逻辑与神秘合一；泛神论的伦理动人</td></tr>
+      <tr><td>56</td><td>卷三</td><td>一</td><td>卷三第 11 章 莱布尼兹</td><td>单子论与「最好世界」；罗素本人写过专著</td></tr>
+      <tr><td>57</td><td>卷三</td><td>一</td><td>卷三第 12 章 哲学上的自由主义</td><td>洛克式的宽容与个人权利</td></tr>
+      <tr><td>58</td><td>卷三</td><td>一</td><td>卷三第 13 章 洛克的认识论</td><td>经验论与「白板说」</td></tr>
+      <tr><td>59</td><td>卷三</td><td>一</td><td>卷三第 14 章 洛克的政治哲学</td><td>《政府论》成为自由主义政治的基石</td></tr>
+      <tr><td>60</td><td>卷三</td><td>一</td><td>卷三第 15 章 洛克的影响</td><td>经贝克莱、法国启蒙到英美政治</td></tr>
+      <tr><td>61</td><td>卷三</td><td>一</td><td>卷三第 16 章 贝克莱</td><td>「存在即被感知」；罗素判其论证有效而结论荒谬</td></tr>
+      <tr><td>62</td><td>卷三</td><td>一</td><td>卷三第 17 章 休谟</td><td>经验论的高峰，也是它的终点</td></tr>
+      <tr><td>63</td><td>卷三</td><td>二 从卢梭到现代</td><td>卷三第 18 章 浪漫主义运动</td><td>对理性的反叛；孕育个人主义也孕育专制</td></tr>
+      <tr><td>64</td><td>卷三</td><td>二</td><td>卷三第 19 章 卢梭</td><td>罗素眼中「伪民主专政」的发明者（★ 罗素的判断）</td></tr>
+      <tr><td>65</td><td>卷三</td><td>二</td><td>卷三第 20 章 康德</td><td>罗素承认其伟大，但判其「物自体」与先验综合有硬伤</td></tr>
+      <tr><td>66</td><td>卷三</td><td>二</td><td>卷三第 21 章 十九世纪思潮</td><td>浪漫主义、科学、进化论、民族主义的混流</td></tr>
+      <tr><td>67</td><td>卷三</td><td>二</td><td>卷三第 22 章 黑格尔</td><td>罗素认为体系多半是错的，国家学说为极权辩护</td></tr>
+      <tr><td>68</td><td>卷三</td><td>二</td><td>卷三第 23 章 拜伦</td><td>以诗人代表浪漫主义的反叛精神（非哲学贡献入选）</td></tr>
+      <tr><td>69</td><td>卷三</td><td>二</td><td>卷三第 24 章 叔本华</td><td>悲观主义；罗素视之为一种逃避</td></tr>
+      <tr><td>70</td><td>卷三</td><td>二</td><td>卷三第 25 章 尼采</td><td>权力意志与强者伦理；罗素明确表示不喜欢</td></tr>
+      <tr><td>71</td><td>卷三</td><td>二</td><td>卷三第 26 章 功利主义者</td><td>边沁、詹姆斯·穆勒、约翰·穆勒</td></tr>
+      <tr><td>72</td><td>卷三</td><td>二</td><td>卷三第 27 章 卡尔·马克思</td><td>罗素承认其重要，但批评劳动价值论与历史必然性</td></tr>
+      <tr><td>73</td><td>卷三</td><td>二</td><td>卷三第 28 章 柏格森</td><td>直觉与生命冲力；罗素专章反驳</td></tr>
+      <tr><td>74</td><td>卷三</td><td>二</td><td>卷三第 29 章 威廉·詹姆士</td><td>实用主义；罗素批评「真理即有用」</td></tr>
+      <tr><td>75</td><td>卷三</td><td>二</td><td>卷三第 30 章 约翰·杜威</td><td>工具主义；罗素批评其把探究等同于成功</td></tr>
+      <tr><td>76</td><td>卷三</td><td>二</td><td>卷三第 31 章 逻辑分析哲学</td><td>罗素自己的方法；全书在此收束</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法提示</strong>：这张表本身就是一份「罗素的选择清单」。把它和一部专业的哲学史目录并排看，你会发现<strong>篇幅的分配就是罗素的论点</strong>——希腊（30 章）＋近代经验论（卷三前 17 章）被允许展开，<strong>中世纪只给 15 章、德国观念论只给寥寥数章、20 世纪早期分析哲学只给最后 1 章</strong>。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>六个核心论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：哲学是「神学与科学之间的一块无人区」——这是全书的定义与选材标准</h3>
+  <p><strong>主张</strong>：罗素给哲学划了一个位置：<strong>它既不是科学，也不是神学</strong>。哲学处理的是「确切知识尚未能确定」的问题（世界的本原、灵魂是否不朽、有无目的），但它<strong>诉诸理性而非权威</strong>。所以它是「<strong>一块暴露在两面夹攻之下的无人区（No Man's Land）</strong>」<span class="tag t-src">原书</span>（绪论，p. xiii）。</p>
+  <p><strong>依据</strong>：「一切确定的知识属于科学；一切关于超出确定知识之外的教条属于神学。但在神学与科学之间……这块无人区就是哲学。」<span class="tag t-src">原书</span>（绪论，p. xiii）</p>
+  <p><strong>为什么重要</strong>：这是全书的总尺子。此后罗素评判任何一位哲学家，用的都是同一把尺：<strong>他是在往「教条／权威」那边漂，还是在往「理性／可错」那边走。</strong> 一个从没提过上帝的思想家，只要他推出一套不可辩驳的绝对体系，罗素照样判他「滑进了神学的领地」。</p>
+  <h3>论点二：全书有一条贯穿的叙事线——「社会凝聚（权威）vs 个人自由」</h3>
+  <p><strong>主张</strong>：罗素把两千五百年写成一场拉锯：<strong>一边是社会凝聚（它常常表现为教会、国家、习俗、集体意志），一边是个人自由（它表现为怀疑、宽容、经验与逻辑）。</strong> 他自陈：哲学<strong>既是社会环境的产物，又是后来社会政治制度的原因之一</strong><span class="tag t-src">原书</span>（序言）。</p>
+  <p><strong>依据</strong>：绪论里他反复用这条线索串三个时代：古代（城邦与帝国）、中世纪（教会的统一与瓦解）、近代（科学对思想的支配）。他对「自由」的偏好，直接决定了谁得分高、谁得分低。</p>
+  <p><strong>为什么重要</strong>：★★ <strong>这条线索是罗素的选择，不是哲学史公认的框架。</strong> 它是一副极有解释力的眼镜，但它会把「不符合这条故事线」的东西自动边缘化——中世纪哲学被压缩、德国观念论被敌视，都与这条线直接相关（见第 5 节）。</p>
+  <h3>论点三：罗素把哲学史写成「哲学家的时代传记」——社会史被放在哲学前面</h3>
+  <p><strong>主张</strong>：这本书不同于一般哲学史的地方，是它<strong>大段地写社会史</strong>：为了讲清斯多葛与伊壁鸠鲁，先讲希腊化时代；为了讲经院哲学，先讲 5–15 世纪的教会史<span class="tag t-rep">转述</span>（百度百科据中译本目录概括）。有些政治家与诗人（如<strong>拜伦</strong>）也因「对哲学发展有较大影响」而单独占一章<span class="tag t-src">原书</span>（卷三第 23 章的存在本身即证据）。</p>
+  <p><strong>依据</strong>：罗素的选择标准不是「谁在哲学上更优越」，而是「<strong>谁对时代社会生活的影响更大</strong>」<span class="tag t-rep">转述</span>。</p>
+  <p><strong>为什么重要</strong>：★ 这带来一个<strong>操作上的好处</strong>：<strong>每章开头的「时代背景」往往可以先读</strong>——它不依赖哲学论证，读起来像历史散文，而且正是罗素这本书真正的特色。也带来一个<strong>代价</strong>：哲学论证本身常常被挤到一边（见第 5 节体裁批评）。</p>
+  <h3>论点四：全书有一把贯穿的好恶尺度——偏爱经验论、逻辑与清晰；厌恶先验论、体系与神秘主义</h3>
+  <p><strong>主张</strong>：罗素的偏好极其稳定：他喜欢<strong>休谟、洛克、贝克莱</strong>（经验论），喜欢<strong>马基雅维利</strong>（把政治当科学），喜欢<strong>他自己的逻辑分析</strong>；他不喜欢<strong>卢梭</strong>（浪漫主义）、<strong>黑格尔</strong>（先验体系）、<strong>柏格森</strong>（直觉主义）、<strong>尼采</strong>（权力意志）。他甚至在卷三第 1 章里画出一条「主观性的滑坡」：从<strong>笛卡尔</strong>经<strong>贝克莱、康德</strong>到<strong>费希特</strong>（「一切都是自我的涌出」），并断言「<strong>这是疯狂</strong>」<span class="tag t-src">原书</span>（卷三第 1 章，p. xxi）。</p>
+  <p><strong>依据</strong>：他对每位哲学家的评价都遵循同一套判据：能否接受被反驳？结论有没有超出证据？</p>
+  <p><strong>为什么重要</strong>：★★ <strong>这套好恶就是本书最值钱、也最危险的地方。</strong> 值钱，因为它让判断锋利、书好看；危险，因为它常常<strong>先于论证</strong>发生——读的时候要能把它当成「罗素的观点」而不是「事实」。</p>
+  <h3>论点五：篇幅的分配本身就是论点——重希腊、重英国经验论，轻中世纪与德国观念论</h3>
+  <p><strong>主张</strong>：76 章的分配极不均匀：<strong>卷一（古代）30 章</strong>，其中<strong>柏拉图、亚里士多德两人独占 14 章</strong>；<strong>卷二（教父＋经院哲学）共 15 章</strong>，要覆盖近千年；<strong>卷三第二篇 14 章</strong>里，<strong>康德、黑格尔各只占一章</strong>，而柏格森、威廉·詹姆士、杜威各占一章，最后<strong>逻辑分析哲学只占 1 章</strong>。</p>
+  <p><strong>依据</strong>：目录与篇幅对比（见第 1 节表）。</p>
+  <p><strong>为什么重要</strong>：★ 这决定了这本书<strong>作为入门读物极好、作为专业参考不可靠</strong>——凡是罗素看重的，讲得极透；凡是罗素轻视的，常常草草带过甚至失真（见第 5 节）。</p>
+  <h3>论点六：全书收在「逻辑分析哲学」——罗素把整部哲学史读成通向他自己那套方法的序曲</h3>
+  <p><strong>主张</strong>：最后一章（卷三第 31 章 逻辑分析哲学）不是又一个学派介绍，而是<strong>罗素对自己方法的正面陈述</strong>。他让整部哲学史以「离科学最近的那种哲学」收尾。</p>
+  <p><strong>依据</strong>：目录结构（末章即罗素的自家纲领）。</p>
+  <p><strong>为什么重要</strong>：★ 这让本书带有一个<strong>目的论式的收束</strong>：希腊的好奇、中世纪的信仰、近代的体系，最后都要在「逻辑分析」这里被清算。<strong>这是叙事上的漂亮，也是历史上的可疑</strong>——它等于把哲学史写成了罗素方法的预告片。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <ol>
+    <li>★ <strong>不要顺读，先读卷三第一篇（文艺复兴到休谟，卷三第 1–17 章）</strong>。这一篇是近代思想的主干，罗素写得最顺手：马基雅维利、培根、霍布士、笛卡尔、斯宾诺莎、莱布尼兹、洛克、贝克莱、休谟依次排开，一气呵成；而且是全书「务实」的部分，不需要先懂希腊。
+    </li>
+    <li>★ <strong>再读卷一第二篇（苏格拉底、柏拉图、亚里士多德，卷一第 11–24 章）</strong>。这是全书篇幅最长、也最见功力的 14 章。<strong>柏拉图与亚里士多德在这里被讲得最细</strong>，是这本书不可替代的部分。
+    </li>
+    <li><strong>每章开头的「时代背景」可以先读</strong>。罗素把社会史放在哲学前，这是他的特色；先读背景，能让你明白他为什么这样选材、这样做判断。
+    </li>
+    <li>★ <strong>卷二的经院哲学（卷二第 7–15 章）可以跳读</strong>。如果要读，只读<strong>卷二第 10 章（回教文化及其哲学）</strong>与<strong>卷二第 13 章（圣托马斯·阿奎那）</strong>两章即可——前者讲阿拉伯世界如何保存亚里士多德，后者是经院哲学的总账。其余各章罗素写得敷衍。
+    </li>
+    <li>★ <strong>卷三第二篇要带着「防身术」读</strong>。卢梭（卷三第 19 章）、康德（卷三第 20 章）、黑格尔（卷三第 22 章）、柏格森（卷三第 28 章）这几章，罗素的敌意最强、可信度最低。<strong>先把第 5 节的争议清单看一遍，再进去读</strong>，你就不会被他的语气带走。
+    </li>
+  </ol>
+  <h3>如果你是「已读」</h3>
+  <ol>
+    <li><strong>回头做一次「两栏笔记」</strong>：任挑一章，左边写「这个哲学家自己的主张」，右边写「罗素的判断」。<strong>你会发现右边往往比左边长。</strong> 这个练习能一次把全书的性质看清楚。
+    </li>
+    <li><strong>把卢梭章（卷三第 19 章）单独抽出来重读</strong>。罗素那句「<strong>希特勒是卢梭的产物，罗斯福与丘吉尔是洛克的产物</strong>」是全书写得最出名、也最受质疑的一句。对照卢梭《社会契约论》原书读，你会看到「公意」与「极权」之间被罗素直接划了等号。
+    </li>
+    <li><strong>读一读当时的反面书评</strong>：Boas（1947）、Roberts（1948）、以及 Isaiah Berlin 的那篇（后收入《扭曲的人性之材》第二版附录）。<strong>同一本书，专业哲学史家的判词与大众读者的口碑几乎相反</strong>——这个反差本身就是本报告第 5 节的主题。
+    </li>
+  </ol>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是必写项，因为这本书的中译状况有一个别人不知道的坑：它是两个人译的，而且第一译者中途辞工了。</strong></p>
+  <p><strong>先说最要紧的三条</strong>：</p>
+  <blockquote>
+    <p><strong>⚠ ① 上卷与下卷是两位（实为三位）译者。</strong> 上卷由<strong>何兆武、李约瑟</strong>译，下卷由<strong>马元德</strong>译。<strong>上卷里也换了手</strong>：<strong>卷一（古代哲学）是何兆武译，卷二（天主教哲学）是李约瑟译</strong>（上卷卷二末尾注明：「本书卷一，古代哲学部分是何兆武译；卷二，天主教哲学部分是李约瑟译」）。⇒ <strong>同一本书里，术语与文风会随卷而变</strong>，这不是你买错了。</p>
+    <p><strong>⚠ ② 何兆武只译了约 35%，译完卷一就辞工了。</strong> 他译的是卷一（含《美国版序言》《英国版序言》），共 382 页，约占全书（上下卷合计 1081 页）的 35%；他自述是「太费劲了」，译完第一部分便推掉了后两卷<span class="tag t-rep">转述</span>（澎湃新闻《何兆武译罗素〈西方哲学史〉的几点史实》，2023-09-11）。</p>
+    <p><strong>⚠ ③ 叫《西方哲学史》的书有一大堆，都不是这一本。</strong> 梯利（Frank Thilly，葛力译，商务印书馆）、希尔贝克（Gunnar Skirbekk）、斯通普夫（Stumpf）、文德尔班（Windelband）的《西方哲学史》<strong>全是另一本书</strong>；国内还有赵敦华《西方哲学简史》等教材。<strong>购物站搜书名时务必认作者「罗素」。</strong></p>
+  </blockquote>
+  <p><strong>版本关系（商务印书馆）</strong>：</p>
+  <table>
+    <thead><tr><th>版次</th><th>年份</th><th>内容</th><th>规格</th></tr></thead>
+    <tbody>
+      <tr><td>上卷初版</td><td>1963-09</td><td>何兆武、李约瑟 译（卷一 古代＋卷二 天主教）</td><td>590 页 · ISBN 9787100004824</td></tr>
+      <tr><td>下卷初版</td><td>1976-06</td><td>马元德 译（卷三 近代）</td><td>491 页 · ISBN 9787100004831</td></tr>
+      <tr><td>商务·权威全译本（上卷）</td><td>2015-06</td><td>何兆武、李约瑟 译</td><td>641 页 · ISBN 9787100111478</td></tr>
+      <tr><td>精装典藏版（上下卷）</td><td>2020-06</td><td>三译者合署</td><td>ISBN 9787100186391</td></tr>
+    </tbody>
+  </table>
+  <p><strong>★ 三个版次关系要说清</strong>：1963 年是<strong>上卷的初版</strong>（曾有「1964 年初版」的误说，已被澄清）；2015 年的「<strong>商务·权威全译本</strong>」是现行的通行为主的本子；2020 年的<strong>精装典藏版</strong>是上下卷合出的典藏形式。<strong>下卷自 1976 年出齐后，商务印书馆历来都是「上下两卷分别出版」</strong>，直到精装版才合成一套。</p>
+  <p><strong>★ 上卷／下卷译者不同带来的后果</strong>：</p>
+  <ul>
+    <li><strong>术语不统一</strong>：古代哲学部分（何译）与近代哲学部分（马译）对同一批西洋术语（如 substance、idea、reason、understanding）可能采用不同译名。<strong>跨卷对读时，同一个概念可能换了名字。</strong>
+    </li>
+    <li><strong>文风不同</strong>：何兆武译笔偏凝练、带史家风；马元德译的近代部分更贴原文句法。<strong>这造成「一本书读到一半像换了作者」的错觉。</strong>
+    </li>
+    <li><strong>卷二里还会再换一次手</strong>（何兆武→李约瑟），所以「古代→天主教→近代」三段其实是<strong>三种译笔</strong>。
+    </li>
+  </ul>
+  <p><strong>★ 该选哪个——三句话结论</strong>：</p>
+  <ol>
+    <li><strong>只想读罗素这本 → 认准「罗素 著 · 何兆武／李约瑟／马元德 译 · 商务印书馆」</strong>，其余同名书一律不是它。
+    </li>
+    <li><strong>要买现行本 → 选 2015 年「商务·权威全译本」或 2020 年精装典藏版</strong>；前者单册够用，后者适合收藏。<strong>读的时候记住：卷一、卷二、卷三可能分别是三种译笔，术语不统一是正常的。</strong>
+    </li>
+    <li><strong>只读一遍的话，优先读卷三（马元德译）与卷一（何兆武译）</strong>——这两部分译笔与内容质量最高；<strong>卷二（李约瑟译）可略读</strong>。
+    </li>
+  </ol>
+  <p><strong>★ 一个必须提醒的坑</strong>：译者的「<strong>李约瑟</strong>」<strong>不是</strong>那位写《中国科学技术史》的英国科学家<strong>李约瑟（Joseph Needham，1900–1995）</strong>。本书的译者李约瑟是<strong>另一位同名的中国人</strong>（1924 年生，青年时期在日本研习西方哲学史，后任教于南开大学哲学系）<span class="tag t-rep">转述</span>（同上澎湃新闻文）。<strong>部分图书馆编目把译者李约瑟的著录写成了 1900–1995（那是 Joseph Needham 的生卒年），这是编目错误</strong>（见附录 D）。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <p>★ 这一节的目的，是把你<strong>以为</strong>知道的和书里<strong>实际写的</strong>对一遍。每条都给出<strong>卷／章</strong>定位。</p>
+  <table>
+    <thead><tr><th>流行说法</th><th>原文／事实</th></tr></thead>
+    <tbody>
+      <tr><td>「《西方哲学史》是西方哲学史的权威教材／学界标准」</td><td>★ 它<strong>从来不是学术教科书</strong>。Grayling（2004）：「由于观点的党派性与机智的呈现方式，<strong>它从来不是学术教科书</strong>；它属于哲学的爱好者。」它是<strong>讲稿整理成的评论性通史</strong>。Copleston 说它对若干重要哲学家的处理「insufficient and misleading」<span class="tag t-src">原书</span>（Copleston, <em>A History of Philosophy</em>）</td></tr>
+      <tr><td>「罗素客观中立、只是陈述事实」</td><td>★ 罗素<strong>自己否认</strong>。序言：「我有时被指责写的不是真历史，而是有偏见的记述……但在我看来，<strong>没有偏见的人写不出有趣的历史</strong>。」<span class="tag t-src">原书</span>（序言）他对卢梭的敌意、对经院哲学的轻慢都有据（见第 5 节）</td></tr>
+      <tr><td>「这本书讲完了 20 世纪哲学」</td><td>★ <strong>没有</strong>。它到<strong>卷三第 31 章「逻辑分析哲学」</strong>就结束了，20 世纪早期分析哲学<strong>只占最后 1 章</strong>；而且<strong>全书完全没提海德格尔</strong>——George Steiner 正是据此把此书称为「vulgar（粗俗）」<span class="tag t-src">原书</span>（Steiner, <em>Martin Heidegger</em>, 1991, p.4）</td></tr>
+      <tr><td>「罗素是哲学史家」</td><td>★ 罗素首先是<strong>逻辑学家与数理逻辑的奠基者</strong>（与怀特海合著《数学原理》），本书是<strong>他晚年为谋生而写的讲稿</strong>。据其自传，此书「<strong>开始写作乃出于偶然，结果却成为我此后多年一个主要的财源</strong>」<span class="tag t-talk">作者谈话</span>（《罗素自传》第二卷，中译本第 349 页）</td></tr>
+      <tr><td>「罗素笔下的卢梭就是卢梭」</td><td>★ 罗素在<strong>卷三第 19 章</strong>称卢梭是「<strong>伪民主专政（pseudo-democratic dictatorship）的政治哲学</strong>的发明者」，还说「<strong>希特勒是卢梭的产物，罗斯福与丘吉尔是洛克的产物</strong>」<span class="tag t-src">原书</span>（卷三第 19 章）。★ 这是<strong>罗素的判断</strong>，与卢梭研究的共识相去很远（见第 5 节）</td></tr>
+      <tr><td>「罗素笔下的康德／黑格尔就是康德／黑格尔」</td><td>★ 被明确指控为误读：<strong>Kaufmann（1951）</strong>指罗素（与波普尔）传播了关于黑格尔的「神话」；<strong>Jon Stewart 编《The Hegel Myths and Legends》(1996, p.383)</strong> 把罗素的书列入传播黑格尔「神话」的著作；<strong>Houlgate</strong> 指罗素说黑格尔的国家学说「为任何形式的暴政辩护」是「ignorant（无知）」；<strong>Scruton（2001）</strong>指罗素「不了解康德」<span class="tag t-src">原书</span></td></tr>
+      <tr><td>「中译本就一个人译的／李约瑟就是那位写中国科技史的英国李约瑟」</td><td>★ 上卷＝何兆武（卷一）＋李约瑟（卷二），下卷＝马元德；<strong>何兆武只译了约 35%</strong>。★ 译者李约瑟<strong>不是</strong> Joseph Needham，而是另一位同名的中国人（1924 年生，南开大学哲学系）<span class="tag t-rep">转述</span>（澎湃新闻，2023-09-11）</td></tr>
+      <tr><td>「拜伦是哲学家」</td><td>★ 罗素<strong>专门给诗人拜伦一整章</strong>（卷三第 23 章），因为他的选材标准是「<strong>对时代生活的影响</strong>」而非哲学贡献。<strong>这在别的哲学史里几乎没有</strong>——是这本书体裁特色的直接证据<span class="tag t-inf">推断</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本报告最该细读的一节。</strong> 这本书的<strong>大众口碑极高</strong>（畅销、诺贝尔奖加持、Einstein 与 Schrödinger 公开称好），<strong>但当时的专业哲学界给它的判词几乎相反</strong>——而且批评它的，很多是行内一流的人。下面五条按重头戏顺序排，最后回答「今天读还成立吗」。</p>
+  <h3>5.1 ★★ 专业哲学史界的批评：它对德国先验哲学（康德、黑格尔）的处理被指偏见与错误极多</h3>
+  <p><strong>批评者与出处（姓名＋书名／文章＋刊物＋年份）</strong>：</p>
+  <ul>
+    <li><strong>Walter Kaufmann</strong>，〈<strong>The Hegel Myth and Its Method</strong>〉，<em>Philosophical Review</em> <strong>60(4): 459–486，1951</strong>；重印于 <em>From Shakespeare to Existentialism</em>（Beacon Press 1959；Princeton UP 1980，第 7 章，pp. 95–128）。他系统拆解了英语世界（包括罗素与波普尔）所流传的<strong>「黑格尔神话」</strong>——例如那句「正—反—合」三分法，其实<strong>在黑格尔二十卷全集里只出现过一次</strong><span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>Jon Stewart（编）</strong>，<em>The Hegel Myths and Legends</em>，<strong>Northwestern University Press，1996</strong>，p. 383 —— 明确把<strong>罗素的《西方哲学史》列入「传播了关于黑格尔的神话」的著作</strong><span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>Stephen Houlgate</strong> —— 指罗素那句「<strong>黑格尔的国家学说为任何形式的暴政辩护</strong>」是「<strong>ignorant（无知）</strong>」<span class="tag t-src">原书</span>（转引自上述 Stewart 文集与相关文献）。
+    </li>
+    <li><strong>Roger Scruton</strong>，<em>A Short History of Modern Philosophy</em>，<strong>2001</strong> —— 该书「文笔优雅、机智」，但批评罗素<strong>过度侧重笛卡尔之前的哲学</strong>、<strong>不了解康德（lack of understanding of Kant）</strong>，并存在<strong>过度概括与遗漏</strong><span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>Frederick Copleston</strong>，<em>A History of Philosophy</em>（1946–75），Vol. IV，pp. 270–272、315（Doubleday 重印 1994）—— 说罗素此书「<strong>异常生动有趣</strong>」，但「<strong>对若干重要哲学家的处理既不足又误导</strong>」<span class="tag t-src">原书</span>。
+    </li>
+  </ul>
+  <p><strong>批的是什么</strong>：★ 不是「罗素不喜欢康德黑格尔」，而是<strong>他的转述本身失真</strong>。他对康德的「物自体」「先验综合判断」的概括常被指简化到变形；对黑格尔，他把一套极其缠绕的体系压成一句「国家即神」并加以定罪。<strong>⇒ 读康德、黑格尔两章（卷三第 20、22 章）时，应把罗素的转述当作「一位论敌的驳词」，而不是「一位史学家的介绍」。</strong></p>
+  <h3>5.2 ★★ 成书背景＝1945 年、二战刚结束：讲座现场的现实指向直接塑造了他的判断</h3>
+  <p><strong>背景事实</strong>：本书<strong>1945 年在美国首版</strong>（英国 1946）——<strong>二战刚结束</strong>。它成书于罗素 1940 年被纽约市立学院拒聘（法院判他「道德上不适宜任教」）、生计窘迫之际，由费城<strong>巴恩斯基金会</strong>的讲稿整理而成<span class="tag t-rep">转述</span>（出版方与多篇介绍一致）。一个人在战争与流亡刚结束时对着听众讲哲学史，<strong>他的现实焦虑必然进入judgment</strong>——罗素之所以对「集体意志」「先验体系」如此警觉，是因为他眼前就是极权主义的废墟。</p>
+  <p><strong>表现一：对卢梭的敌意（出了名的）。</strong> 他在<strong>卷三第 19 章</strong>写：「<strong>希特勒是卢梭的产物，罗斯福与丘吉尔是洛克的产物。</strong>」并称卢梭的社会契约论「<strong>虽在口头上向民主致敬，却倾向于为极权国家辩护</strong>」，是「<strong>伪民主专政的政治哲学的发明者</strong>」<span class="tag t-src">原书</span>（卷三第 19 章；<strong>依据</strong>：<em>A History of Western Philosophy</em>，London 1946/2000, pp. 660, 671–673）。该章结尾还逐一点名罗伯斯庇尔、俄国与德国（尤其德国）的专政「部分是卢梭学说的产物」<span class="tag t-src">原书</span>。</p>
+  <p><strong>表现二：对经院哲学的轻慢。</strong> <strong>Leo Roberts</strong> 在 <em>Isis</em> <strong>38 (1948): 268–270</strong> 的书评里说：罗素此书「<strong>也许是罗素最差的一本书</strong>」，他处理当代哲学时最好，而「<strong>他对古代与中世纪学说的处理几乎毫无价值（nearly worthless）</strong>」<span class="tag t-src">原书</span>。</p>
+  <p><strong>表现三：对黑格尔与「德国式」体系的定罪。</strong> 见 5.1；罗素本人在卷三第 1 章就把从笛卡尔到费希特的一条线称为走向「<strong>疯狂（insanity）</strong>」<span class="tag t-src">原书</span>（卷三第 1 章）。</p>
+  <p><strong>★ 必须分清的两件事</strong>：<strong>「卢梭的著作里有容易被威权利用的要素」是一回事（这是可讨论的哲学史问题）；「希特勒是卢梭的产物」是另一回事（这是一个因果断言，学界普遍视为过度简化）。</strong> 罗素把前者直接推成了后者。★ <strong>反面证据</strong>：<strong>Robert Paul Wolff</strong>（<em>About Philosophy</em>, 9th ed., 2006, p. 318）称卢梭是「<strong>有史以来最伟大的政治哲学家</strong>」；<strong>G.D.H. Cole</strong> 在其译序（1913）里说《社会契约论》「<strong>是所有政治哲学教科书中最好的一本</strong>」<span class="tag t-src">原书</span>。</p>
+  <h3>5.3 体裁批评：把哲学史写成了「自由 vs 权威」的社会史，哲学论证本身常被压缩</h3>
+  <p><strong>批评者</strong>：</p>
+  <ul>
+    <li><strong>George Boas</strong>，书评，<em>Journal of the History of Ideas</em> <strong>8 (1947): 117–123</strong> —— 罗素「<strong>似乎从来都拿不定主意，自己究竟是在写历史还是在写论战</strong>」，而这种方法「<strong>给已死的哲学家一种虚假的当代性</strong>……这仍是对历史的误读」<span class="tag t-src">原书</span>。★ <strong>这是对本书体裁最精准的一击</strong>：它既不是历史，也不是纯粹的论战，夹在中间。
+    </li>
+    <li><strong>Isaiah Berlin</strong> 的著名书评（后收入 <em>The Crooked Timber of Humanity</em> 第二版附录，Princeton UP，2013）—— 大意：既然是写给普通读者的，就不必拿专业水准苛求；行文散漫、缺漏多、常不论证就来一句惊人论断，历史背景交代随心所欲；<strong>但罗素文笔优美、目光敏锐、始终坦诚</strong>——「<strong>你不就是来看罗素有什么见解的吗？</strong>」<span class="tag t-rep">转述</span>（转引自中文评介；原文见 Berlin 文集）
+    </li>
+    <li><strong>George Steiner</strong>，<em>Martin Heidegger</em>，University of Chicago Press，<strong>1991</strong>，p. 4 —— 称此书「<strong>vulgar（粗俗）</strong>」，并指出它<strong>完全没提海德格尔</strong><span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>A. C. Grayling</strong>，<strong>2004</strong> —— 「由于观点的党派性与机智的呈现方式，<strong>它从来不是学术教科书</strong>；它属于哲学的爱好者——既指热爱这门追求的人，也指那些为自己而读的人。」<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <p><strong>★ 结论</strong>：<strong>作为入门读物，它极好</strong>（清晰、好读、把哲学放回历史）；<strong>作为专业参考，它不可靠</strong>（论证被压缩、判断先于论证、文献不交代）。</p>
+  <h3>5.4 选择性偏差：谁被允许展开、谁被压缩，是有规律的</h3>
+  <ul>
+    <li><strong>被允许展开的</strong>：希腊（卷一 30 章，柏拉图＋亚里士多德独占 14 章）、近代英国经验论（卷三第 12–17 章，洛克三章＋贝克莱＋休谟）。
+    </li>
+    <li><strong>被压缩／处理的</strong>：<strong>中世纪</strong>（卷二 15 章要盖住近千年，被 Roberts 判为「几乎毫无价值」）；<strong>德国观念论</strong>（康德、黑格尔各只一章，且被指失真）；<strong>20 世纪早期分析哲学</strong>（<strong>只占最后一章</strong>）。
+    </li>
+    <li><strong>被省略的</strong>：<strong>海德格尔完全没有出现</strong>（Steiner, 1991）<span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>被破格收录的</strong>：<strong>诗人拜伦</strong>（卷三第 23 章）——因为罗素的选材标准是「影响力」而非哲学贡献<span class="tag t-inf">推断</span>（依据其序言自陈的选材原则）。
+    </li>
+  </ul>
+  <p>★ <strong>一句话概括这个偏差</strong>：<strong>凡符合「自由 vs 权威」这条线、且罗素自己擅长或敬重的，都被放大；凡不符合的，都被压缩甚至曲解。</strong></p>
+  <h3>5.5 中译方面：何兆武中途辞译，上卷与下卷译笔、术语不统一——阅读体验上的后果</h3>
+  <ul>
+    <li><strong>史实</strong>：<strong>何兆武</strong>译卷一（含两篇序言），<strong>382 页，约占全书 35%</strong>，译完第一部分即辞去；<strong>卷二由李约瑟译</strong>；<strong>下卷（卷三）由马元德译</strong>。何兆武自述辞译的原因是「太费劲了」<span class="tag t-rep">转述</span>（澎湃新闻，2023-09-11；另见何兆武口述）。
+    </li>
+    <li><strong>阅读体验的后果</strong>：① <strong>术语不统一</strong>——同一批西洋术语在古代部分（何译）与近代部分（马译）可能换名，跨卷对读时容易「对不上号」；② <strong>文风断层</strong>——一本书里实际上有<strong>三种译笔</strong>（何兆武→李约瑟→马元德），读到卷二、卷三会感觉像换了作者；③ 罗素原文里大量的<strong>长句与反讽</strong>，不统一的译笔会加剧理解的难度。
+    </li>
+    <li><strong>★ 附带的历史插曲</strong>：据何兆武本人回忆，翻译此书的缘起与一份「上面派的任务」有关，他并因译此书在「文革」中受到冲击（被指「为资本主义在中国复辟招魂」）<span class="tag t-rep">转述</span>（何兆武口述，2013／2021 报道）。★ 这些回忆的<strong>细节（如赠书与访华的年份）在转述中存在出入</strong>，见附录 D。
+    </li>
+  </ul>
+  <h3>5.6 这本书今天读还成立吗</h3>
+  <p><strong>大体成立的</strong>：</p>
+  <ul>
+    <li><strong>作为「入门读物」与「思想史读本」</strong>：它的可读性、把哲学放回社会背景的写法、以及大量精彩的单章（如普勒泰戈拉、马基雅维利、休谟）<strong>至今无人能替代</strong>。Grayling 称它是「二十世纪哲学与文学的纪念碑之一」<span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>对希腊部分的通识讲述</strong>（尤其柏拉图、亚里士多德的 14 章）<strong>仍是极好的入口</strong>。
+    </li>
+  </ul>
+  <p><strong>要打折的</strong>：</p>
+  <ul>
+    <li><strong>所有关于康德、黑格尔的转述</strong>——按 5.1 处理（被 Kaufmann、Stewart、Houlgate、Scruton 等指为失真）。
+    </li>
+    <li><strong>对卢梭的定性</strong>——按 5.2 处理（「希特勒是卢梭的产物」是因果断言，学界视为过度简化）。
+    </li>
+    <li><strong>对中世纪的处理</strong>——按 5.4 处理（Roberts 判其「几乎毫无价值」，虽措辞过重，但方向可参考）。
+    </li>
+    <li><strong>§5.3 的体裁问题常驻</strong>——它<strong>始终是「罗素的观点」，不是「哲学史的事实」</strong>。
+    </li>
+  </ul>
+  <p>★ <strong>一个反直觉的判断</strong>：<strong>这本书最耐读的部分，恰恰是它最「不专业」的部分。</strong> 讲希腊社会、讲马基雅维利的处境、讲他为什么讨厌某个体系——这些不依赖任何会被后续研究推翻的考据，靠的是<strong>清晰的判断与漂亮的文笔</strong>。<strong>而这正是它能畅销八十年、而专业哲学史著作做不到的原因。</strong></p>
+  <p>★ <strong>结构说明</strong>：本书 76 章、7 篇。本部<strong>按「篇」深挖（<code>## 6</code>–<code>## 12</code>）</strong>，但<strong>每一篇内部逐章评述该篇下辖的全部章</strong>，<strong>一章不少</strong>（卷一 30 ＋ 卷二 15 ＋ 卷三 31 ＝ 76）。每篇开头是「<strong>这一篇在讲什么</strong>」与「<strong>关键哲学家与罗素的判断</strong>」，中间是<strong>逐章评述</strong>，末尾是「<strong>可疑之处</strong>」。★ 章号一律写「<strong>卷X第 Y 章</strong>」（三卷各自重新编号）。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>卷一第一篇：前苏格拉底哲学家（卷一第 1–10 章）</span><span class="caret">▾</span></h2>
+  <h3>这一篇在讲什么</h3>
+  <p>这是全书的第一篇，也是罗素<strong>为整部哲学史铺设的舞台</strong>。它不急着讲哲学论证，而是先做两件事：<strong>① 交代希腊文明的地理、经济与社会条件</strong>（城邦、奴隶制、地理对埃及与巴比伦的接触）；<strong>② 交代一种宗教底色</strong>——奥尔弗斯教（Orphism）带来的<strong>灵魂不朽、灵魂轮回、现世是惩罚</strong>的观念。罗素认为，这一底色比任何具体学说都重要，因为它<strong>一路潜行到了柏拉图、以至基督教</strong>。</p>
+  <p>于是这 10 章有了一个清晰的走向：<strong>从「用物质解释世界」（米利都学派）开始，到「用存在／逻辑规范世界」（巴门尼德），最后落到「人是不是万物的尺度」（普罗泰戈拉）这一关于知识与权威的问题上。</strong> 罗素在这一篇里已经把他的偏好写了出来：他更喜欢那些<strong>愿意用理性去试、而不是诉诸权威</strong>的人。</p>
+  <h3>关键哲学家与罗素的判断</h3>
+  <ul>
+    <li><strong>米利都学派</strong>：罗素判它「<strong>是科学与哲学的第一次尝试</strong>」——不问「谁造了世界」，而问「世界由什么构成」。
+    </li>
+    <li><strong>毕达哥拉斯</strong>：罗素判其影响<strong>坏多于好</strong>——他把<strong>数学的确定性与灵魂的神秘主义</strong>绑在一起，这种「数与神秘」的混合是柏拉图主义的病灶。
+    </li>
+    <li><strong>赫拉克利特</strong>：罗素判他<strong>是黑格尔辩证法的祖宗</strong>——「对立统一」「万物流变」，罗素对此的评语带着明显的不耐烦。
+    </li>
+    <li><strong>巴门尼德</strong>：罗素判其<strong>方法上的重要性极高</strong>——第一次<strong>从语言／逻辑推出形而上学的结论</strong>。
+    </li>
+    <li><strong>德谟克利特</strong>：罗素惋惜<strong>原子论这条最有科学前途的路线被柏拉图和亚里士多德压了下去</strong>。
+    </li>
+    <li><strong>普罗泰戈拉</strong>：罗素判智者派<strong>是被柏拉图冤枉的怀疑主义者与自由派</strong>。
+    </li>
+  </ul>
+  <p>★ 一句话记住这一篇：<strong>罗素在这里测定了自己的坐标——他站「科学／理性／可错」一边，警惕「神秘／权威／绝对」。</strong></p>
+  <h3>卷一第 1 章 希腊文明的兴起</h3>
+  <p>罗素先写<strong>地理与文明条件</strong>：希腊多山、海岸曲折，商业与殖民促成了城邦；与埃及、巴比伦的接触带来了天文、几何与文字的刺激。然后他写<strong>思想底色</strong>——<strong>奥尔弗斯教</strong>带来「灵魂不朽、灵魂轮回、肉体是灵魂的牢狱」这一整套观念。<strong>罗素的判断</strong>：这一章的作用是「设伏」——希腊哲学的很多问题（尤其柏拉图的），其实答案一半早已由宗教给定了；所以<strong>不了解奥尔弗斯教，就读不懂柏拉图</strong>。★ 这也是罗素「社会史先行」写法最典型的示范。</p>
+  <h3>卷一第 2 章 米利都学派</h3>
+  <p>泰勒斯、阿那克西曼德、阿那克西美尼。<strong>罗素的判断</strong>：米利都学派的意义不在他们给出的答案（水、无定、气），而在<strong>提问方式的反转</strong>——他们用<strong>自然物质</strong>解释世界，而不再用神来解释。<strong>这是科学精神的第一次出现。</strong> 罗素也提醒：他们的宇宙论本身价值不大，<strong>真正重要的是「从此人们开始要证据」</strong>。★ 罗素顺便点出：泰勒斯预言日食、阿那克西曼德的地球悬于空中等，是<strong>科学传统的开端</strong>而非哲学思辨的胜利。</p>
+  <h3>卷一第 3 章 毕达哥拉斯</h3>
+  <p>罗素讲<strong>毕达哥拉斯教团</strong>（宗教团体＋数学学派）、灵魂轮回、以及「万物皆数」。<strong>罗素的判断</strong>：他是这一篇里<strong>影响最深远、也最该警惕</strong>的人物。他把<strong>数学的清晰与宗教的迷狂</strong>合成一体——理性（数学）与神秘主义（灵魂不朽）从此纠缠在西方哲学里，<strong>柏拉图和基督教神学都吃下了这一剂</strong>。罗素明说：毕达哥拉斯学派对哲学的影响「<strong>几乎全是坏的</strong>」（在他看来，把数学对象当成神秘实体是后来理念论的源头）。★ 注意：这是<strong>罗素的判断</strong>，数学史家对毕达哥拉斯本人的贡献评价要谨慎得多。</p>
+  <h3>卷一第 4 章 赫拉克利特</h3>
+  <p>万物流变（「人不能两次踏入同一条河」）、<strong>逻各斯</strong>、火是万物的本原、以及「对立面的统一与斗争」。<strong>罗素的判断</strong>：他<strong>很看重赫拉克利特的历史地位</strong>——因为<strong>黑格尔正是从「对立统一」发展出辩证法的</strong>。但罗素对辩证法的态度是<strong>明确的不耐烦</strong>：他把它视为一种把逻辑错误包装成智慧的手法。★ 他还提一句有趣的对比：赫拉克利特倾向战争与斗争，仇恨民主——这在罗素眼里是<strong>不讨喜</strong>的性格。</p>
+  <h3>卷一第 5 章 巴门尼德</h3>
+  <p>巴门尼德主张<strong>「存在者存在，不存在者不存在」</strong>，由此推出<strong>没有真正的变化、没有真正的多样性、万物是一</strong>。<strong>罗素的判断</strong>：巴门尼德的价值在<strong>方法</strong>——他第一次<strong>从语言与逻辑出发推出关于世界的结论</strong>，这开了「形而上学靠逻辑」的先例。罗素花力气分析其论证的漏洞（把「是」的存在义与系词义混同），并指出：<strong>这一混淆此后统治了两千年</strong>。★ 罗素对巴门尼德的评价是「<strong>重要性极高，正确性极低</strong>」。</p>
+  <h3>卷一第 6 章 恩培多克勒</h3>
+  <p>四元素（水火土气）＋「爱」与「恨」两种力量。<strong>罗素的判断</strong>：恩培多克勒是<strong>科学与神秘主义的混血</strong>——他一边讲四元素的机械组合，一边自称神灵、讲灵魂轮回与净化。罗素认为，这恰好标出了希腊思想的<strong>双重性格</strong>：<strong>科学的希腊与宗教的希腊同时存在</strong>。他还提到恩培多克勒的进化论雏形（器官的偶然组合），认为那是<strong>自然主义冲动的表现</strong>。</p>
+  <h3>卷一第 7 章 雅典与文化的关系</h3>
+  <p>这是全书<strong>最纯粹的一章社会史</strong>：波斯战争后雅典的黄金时代、伯里克利、雅典帝国、<strong>奴隶制的普遍性、妇女的低下地位</strong>。<strong>罗素的判断</strong>：雅典的辉煌<strong>建立在不自由之上</strong>；它的民主只是「自由民」的民主。罗素同时指出：<strong>雅典的黄金时代极短暂（约公元前 5 世纪），随即便被斯巴达和后来的马其顿吞没</strong>。★ 这一章的写法，是罗素「哲学是时代产物」这一主张最直接的演示。</p>
+  <h3>卷一第 8 章 阿那克萨戈拉</h3>
+  <p>他提出<strong>「心灵」（nous）是安排万物的力量</strong>，并使「多样」由种子的混合而成。<strong>罗素的判断</strong>：阿那克萨戈拉<strong>引入了「心」，却只在开头上用了一次</strong>——之后就用机械的方式解释一切。罗素把这种「开端即止」的做法称为<strong>偷懒或半途而废</strong>：既然已经引入了心，就该把作用贯穿全程；只在需要时用一次，等于既没建立真正的目的论，也没坚持真正的机械论。★ 本章是罗素「论证一贯性」这把尺子的又一次练习。</p>
+  <h3>卷一第 9 章 原子论者</h3>
+  <p>留基伯与德谟克利特。<strong>罗素对它的评价明显偏爱</strong>：原子论是<strong>希腊最有科学前途的路线</strong>——世界由不可再分的原子与虚空构成，一切由机械必然性发生，连灵魂也是原子。罗素<strong>明确惋惜</strong>：这条路线被柏拉图与亚里士多德的「目的论／理念论」压了下去，直到近代才被恢复。★ <strong>这是罗素全书里少见的、对「该赢却没赢的一方」表示遗憾的地方</strong>——他在这里几乎把自己的偏好写成了哲学史本可以更好的样子。</p>
+  <h3>卷一第 10 章 普罗泰戈拉</h3>
+  <p>「<strong>人是万物的尺度</strong>」、对神是否存在的存疑、以及智者派的教学（修辞与辩论）。<strong>罗素的判断</strong>：智者派是<strong>怀疑论与思想自由的先驱</strong>；他们被柏拉图塑造成了「诡辩家」，是一种<strong>不公</strong>。罗素把普罗泰戈拉看作<strong>雅典民主的精神产物</strong>——人人意见平等，因而没有绝对权威。★ 但也点出：这种立场<strong>容易被庸俗化</strong>为「怎么说都行」，因此柏拉图的反击并非全无道理。</p>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一篇的可信度相对高，但有三处要在心里打问号</strong>：</p>
+  <ol>
+    <li><strong>「奥尔弗斯教」的作用被罗素用得偏重</strong>。用「俄耳甫斯教的神秘主义」解释柏拉图，是 19–20 世纪初学界流行的一条思路，<strong>今天已被大大弱化</strong>——学界对奥尔弗斯教的年代、教义与影响范围都有分歧，罗素<strong>把它当作了确定的前提</strong>。
+    </li>
+    <li><strong>前苏格拉底诸家的资料本身就是「二手」的</strong>。这些人的著作大多只存残篇，我们对他们的认识大量依赖<strong>亚里士多德、柏拉图、以及后世辑录者（第欧根尼·拉尔修等）的转述</strong>。罗素写得很流畅，但他<strong>没有交代哪些是原文、哪些是转述</strong>——这一点对专业读者是硬伤，对普通读者则容易被误导。
+    </li>
+    <li><strong>「德谟克利特应该赢」是历史判断，不是历史事实</strong>。罗素对原子论的偏爱是明显的。
+    </li>
+  </ol>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>卷一第二篇：苏格拉底、柏拉图、亚里士多德（卷一第 11–24 章）</span><span class="caret">▾</span></h2>
+  <h3>这一篇在讲什么</h3>
+  <p>这是<strong>全书篇幅最长、也最见功力的一篇（14 章）</strong>。三个人物里，<strong>苏格拉底 1 章、柏拉图 8 章、亚里士多德 6 章</strong>。罗素给柏拉图与亚里士多德的分量，是他「重希腊」这一选择的集中体现。这一篇的中心问题是：<strong>「理念／形式」这一说法是怎么来的，它对西方思想意味着什么。</strong></p>
+  <p>罗素在这里做了一件贯穿全篇的事：<strong>把「大师本人的学说」与「大师的时代处境」绑在一起看</strong>。他反复强调：柏拉图的乌托邦是<strong>对雅典民主危机的反应</strong>，是对<strong>斯巴达</strong>的暗中羡慕；亚里士多德的体系是<strong>对城邦世界的系统化</strong>，其中「奴隶制天然合理」这类判断，恰恰暴露了时代。</p>
+  <h3>关键哲学家与罗素的判断</h3>
+  <ul>
+    <li><strong>苏格拉底</strong>：罗素<strong>敬其人而疑其法</strong>。他敬苏格拉底的勇气与诘问精神，但认为<strong>「辩证法」这一套（靠追问逼出定义）容易从诚实走向教条</strong>。
+    </li>
+    <li><strong>柏拉图</strong>：罗素<strong>全书写得最重</strong>的人物（8 章）。他承认柏拉图影响最大，但<strong>判其《理想国》是极权主义的最早原型</strong>，<strong>判其理念论是逻辑上的混淆</strong>（把「共相」当成了独立存在的事物）。
+    </li>
+    <li><strong>亚里士多德</strong>：罗素的分量给得足，评价却常常<strong>贬多于褒</strong>——伦理「稀薄」、政治「带等级偏见」、逻辑「被严重过誉」、物理「几乎全错」。
+    </li>
+    <li><strong>斯巴达</strong>：罗素专门用一章（卷一第 12 章）讲斯巴达，因为在他看来，<strong>斯巴达的军事共产主义经由柏拉图进入了西方政治思想</strong>。
+    </li>
+  </ul>
+  <p>★ 一句话记住这一篇：<strong>罗素认为柏拉图与亚里士多德塑造了此后两千年的哲学，但其中很大一部分是「走错了路」——他是在给两千年后的自己清场。</strong></p>
+  <h3>卷一第 11 章 苏格拉底</h3>
+  <p>罗素讲苏格拉底其人（其貌不扬、好问、最终受审饮鸩）、他的方法（诘问法 / 辩证法）、以及<strong>「苏格拉底问题」——柏拉图笔下的苏格拉底有多少是真的苏格拉底</strong>。<strong>罗素的判断</strong>：① 苏格拉底<strong>人格伟大</strong>，其受审与就死<strong>成就了他作为道德殉道者的形象</strong>；② 但<strong>他的方法有问题</strong>——「辩证法」预设了「只要好好追问，就能问到确定定义」，这一步<strong>从诚实的求解滑向了教条的确信</strong>；③ 罗素还讨论了苏格拉底的政治态度（他倾向贵族制，对雅典民主有所批评），认为这<strong>预示着柏拉图的方向</strong>。★ 罗素对苏格拉底是<strong>全书最复杂的态度之一：敬其人，而疑其法</strong>。</p>
+  <h3>卷一第 12 章 斯巴达的影响</h3>
+  <p>罗素讲斯巴达的制度（军事化的共产主义、优生、弃婴、长老制）、以及它在希腊世界里的吸引力。<strong>罗素的判断</strong>：斯巴达之所以重要，<strong>不是因为它是哲学家，而是因为它成了柏拉图的模范</strong>——柏拉图《理想国》里的许多设计（护卫者不蓄私产、国家办教育、审查文艺）都能在斯巴达找到原型。罗素把斯巴达形容为<strong>一个「军营利维坦」式的社会</strong>，并指出：<strong>后世许多极权理想都是从这种「把共同体置于个人之上」的冲动里长出来的</strong>。★ 这一章的存在本身就是罗素的论点：<strong>政治实践先于政治哲学。</strong></p>
+  <h3>卷一第 13 章 柏拉图见解的来源</h3>
+  <p>罗素把柏拉图的来源拆成四股：<strong>苏格拉底</strong>（方法与人格）、<strong>斯巴达</strong>（政治理想）、<strong>毕达哥拉斯</strong>（数学—神秘主义、灵魂不朽）、<strong>奥尔弗斯教</strong>（灵魂与肉体的对立）。<strong>罗素的判断</strong>：柏拉图不是一个凭空创造的天才，而是<strong>把已有的三四种潮流汇成一个体系的人</strong>。这一章<strong>是罗素方法的最好示范</strong>——先讲来源，再讲体系；也正因为来源被这样确定，柏拉图此后在他笔下就带上了「神秘主义＋精英政治」的底色。★ 罗素的推论链条很清晰，但<strong>这四来源的划分本身也是一种解释框架</strong>，不是唯一公认的读法。</p>
+  <h3>卷一第 14 章 柏拉图的乌托邦</h3>
+  <p>罗素讲《理想国》的核心设计：<strong>社会分为护卫者、辅助者、生产者三层</strong>；护卫者<strong>不蓄私产、妻子儿女公有、由国家养育与教育</strong>；国家<strong>审查文艺</strong>、<strong>由哲学家为王</strong>。<strong>罗素的判断（★★ 全书写得最出名的一句之一）</strong>：这是<strong>极权主义政治哲学的最早原型</strong>；它把「国家的统一」置于「个人的自由」之上，而且<strong>这一切与当时的斯巴达现实密切相关</strong>。罗素尤其抓住「<strong>高贵的谎言</strong>」（把国民分成金银铜三等的故事）与「<strong>驱逐／审查诗人</strong>」两点，作为<strong>共同体压迫个人的证据</strong>。★ 必须分清：<strong>这是罗素的定性</strong>；柏拉图研究者并不都接受「柏拉图＝极权主义源头」这一读法（见第 5 节与本篇「可疑之处」）。</p>
+  <h3>卷一第 15 章 理念论</h3>
+  <p>罗素讲理念论：<strong>可感事物分有理念，理念是永恒不变的实在</strong>；善的理念处于最高。<strong>罗素的判断</strong>：这是全书<strong>最核心、也最应该在逻辑上被拆掉</strong>的部分。他认为柏拉图犯了一个<strong>根本性的混淆</strong>——把「<strong>共相（universal）</strong>」（如「美」这个性质）当成了<strong>独立的、更实在的个体事物</strong>。★ 罗素在这里用的是他自己作为逻辑学家的武器：<strong>「共相」是逻辑问题，不是天上的实体问题</strong>；柏拉图把它实体化了，这造成了此后两千年形而上学的重重迷雾。</p>
+  <h3>卷一第 16 章 柏拉图的不朽论</h3>
+  <p>罗素讲《斐多》里的灵魂不朽论证（灵魂非复合、轮回、与理念的亲缘）。<strong>罗素的判断</strong>：这些论证<strong>薄弱</strong>——大多依赖「灵魂与理念同类」「生命排斥死亡」这类<strong>语言上的把戏</strong>，而非真正的证明。罗素把它们与毕达哥拉斯—奥尔弗斯教的关系点明，认为<strong>这是宗教信念被包装成哲学论证</strong>的典型。★ 本章不长，但把罗素的一条判据显示得很清楚：<strong>凡结论靠「定义」而非「证据」得到的，他一律降级。</strong></p>
+  <h3>卷一第 17 章 柏拉图的宇宙生成论</h3>
+  <p>罗素讲《蒂迈欧》：造物主（Demiurge）按数学秩序造世界、四元素、时间、灵魂与世界的关系。<strong>罗素的判断</strong>：这是一部<strong>准科学（quasi-science）</strong>，也是<strong>数学神秘主义渗入西方宇宙论的通道</strong>。罗素的态度是「<strong>内容多不足取，影响却极大</strong>」——它经由新柏拉图主义与阿拉伯世界进入中世纪，<strong>成为基督教宇宙观的重要来源</strong>。★ 罗素特别指出：把「数学美」当作「世界实在的证据」这一习惯，从这里就开始了。</p>
+  <h3>卷一第 18 章 柏拉图哲学中的知识与知觉</h3>
+  <p>罗素讲《泰阿泰德》对「知识是什么」的追问（知识与知觉、知识与真意见、知识与真意见加定义）。<strong>罗素的判断</strong>：<strong>这是柏拉图逻辑上的高点</strong>——在这里他真正在做认识论的辨析，而不是讲神话。罗素对它评价明显更高（比起《蒂迈欧》），并指出：<strong>知识的定义问题在两千多年后仍是哲学的核心问题</strong>。★ 本章是罗素「偏逻辑、轻神秘」这一取向的正面对照。</p>
+  <h3>卷一第 19 章 亚里士多德的形而上学</h3>
+  <p>罗素讲「<strong>形式／质料</strong>」「<strong>潜能／现实</strong>」「<strong>四因</strong>」，以及<strong>不动的推动者（神）</strong>。<strong>罗素的判断</strong>：亚里士多德把柏拉图的天上理念<strong>搬回了事物内部</strong>，这是进步；但<strong>他的「目的论」是一条死路</strong>——用「为了什么」解释自然，使物理学长期无法走上科学的轨道。罗素还注意到：<strong>亚里士多德的神只推动而不知人，缺乏宗教的热情</strong>。★ 罗素的态度：<strong>逻辑上有进步，物理上埋下大坑。</strong></p>
+  <h3>卷一第 20 章 亚里士多德的伦理学</h3>
+  <p>罗素讲《尼各马可伦理学》的<strong>幸福</strong>与<strong>中道</strong>（美德是两极之间的适度）、及其对具体美德的列举。<strong>罗素的判断</strong>：这一章<strong>「内容稀薄」</strong>——「中道」这类说法听起来周全，实际上<strong>接近老生常谈</strong>；亚里士多德<strong>缺少真正的道德冲突感</strong>，也<strong>对普遍的爱与同情关注不足</strong>（这与基督教伦理形成对照）。★ 罗素在道德哲学上一向偏好清晰的功利考量，对亚里士多德的德性论耐心有限——<strong>这是罗素的判断，不是德性伦理学界的共识</strong>（今人对亚里士多德伦理学的评价远高于罗素）。</p>
+  <h3>卷一第 21 章 亚里士多德的政治学</h3>
+  <p>罗素讲《政治学》：城邦是自然的、人的目的在于过好生活、<strong>奴隶制天然合理</strong>、以及政体分类。<strong>罗素的判断</strong>：这一章暴露了亚里士多德的<strong>时代偏见</strong>——他<strong>为奴隶制辩护</strong>，主张「有人天生为奴」，这在罗素看来是<strong>不可原谅的</strong>。罗素也承认亚里士多德对政体分类（君主/贵族/共和与其变体）有系统贡献，但整体评价受制于这套等级偏见。★ 罗素在此再度演练他的尺子：<strong>凡是把「不同」说成「高低」的等级论，他一律不信。</strong></p>
+  <h3>卷一第 22 章 亚里士多德的逻辑</h3>
+  <p>罗素讲<strong>三段论</strong>（大前提—小前提—结论）与范畴。<strong>罗素的判断</strong>：三段论<strong>统治了逻辑两千年</strong>，但<strong>它是形式逻辑的一个片段，且被严重过誉</strong>——三段论不能处理关系推理（如「A 大于 B」），而这恰恰是数学推理的核心。罗素以自己与弗雷格、皮亚诺的工作为对照，指出：<strong>必须等到 19 世纪末，逻辑才从亚里士多德的框架里走出来。</strong> ★ 这是全篇里<strong>罗素最有底气的一章</strong>，因为这是他的专业主场。</p>
+  <h3>卷一第 23 章 亚里士多德的物理学</h3>
+  <p>罗素讲<strong>目的论物理</strong>：重物下落是因为「要回到自己的位置」、月下世界与月上世界的二分、运动需持续推动等。<strong>罗素的判断</strong>：<strong>几乎全错</strong>。但罗素强调：<strong>它的错误不在于不可检验，而在于它用「目的」代替了「规律」</strong>——这让物理学长期无法取得进步。★ 罗素也点出：这套物理<strong>经由教会统治了中世纪</strong>，成为近代科学革命要打倒的第一个对手。</p>
+  <h3>卷一第 24 章 希腊早期的数学与天文学</h3>
+  <p>罗素讲<strong>欧几里得几何、阿基米德</strong>，以及希腊天文学（本轮、均轮、<strong>阿里斯塔克的地动说</strong>）。<strong>罗素的判断</strong>：这些是希腊<strong>真正过硬的成就</strong>（不同于他们的玄学思辨）。他特别惋惜<strong>阿里斯塔克的地动日心说没被接受</strong>——若被接受，也许能早两千年走上科学之路。★ 罗素在此的态度是<strong>科学史家的态度</strong>：他把古希腊的辉煌落在数学与天文上，而不是落在理念论上。</p>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一篇内容丰富，但有三处必须打问号</strong>：</p>
+  <ol>
+    <li><strong>「柏拉图＝极权主义原型」是罗素的定性，学界并不一致</strong>。★ 罗素对《理想国》的处理是他最受争议的部分之一。后世对柏拉图的读法（包括施特劳斯学派、以及强调《理想国》对话性质与讽刺成分的研究）<strong>与罗素的读法差别很大</strong>；而且<strong>把《理想国》直接当作一本政治纲领来读，本身就有争议</strong>。
+    </li>
+    <li><strong>「苏格拉底问题」被处理得太轻</strong>。苏格拉底本人没有著作，「真的苏格拉底」与「柏拉图笔下的苏格拉底」如何分界是专门学问；罗素给了个大致方向，<strong>但没有交代这一区分的方法与依据</strong>。
+    </li>
+    <li><strong>对亚里士多德的贬抑带有明显偏向</strong>。他判伦理学「稀薄」、逻辑「被过誉」——作为逻辑学家，他对亚里士多德逻辑的评价<strong>专业意味很强</strong>；但作为伦理学与政治学的评价，<strong>今天的亚里士多德研究远没有罗素那样轻看</strong>。⇒ <strong>读这一篇时，凡是「罗素认为亚里士多德很糟」的地方，都要记住那是罗素的判词。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>卷一第三篇：亚里士多德以后的古代哲学（卷一第 25–30 章）</span><span class="caret">▾</span></h2>
+  <h3>这一篇在讲什么</h3>
+  <p>希腊城邦垮了之后，哲学往哪里去？这一篇（6 章）讲的是<strong>希腊化与罗马时期的哲学</strong>——斯多葛、伊壁鸠鲁、犬儒、怀疑派，最后收在<strong>普罗提诺</strong>。罗素的处理方式非常一致：<strong>先讲社会条件（专制、个人无力、普遍的不安全感），再讲哲学（个人如何在这种环境里求安宁）</strong>。于是这几派的共同点浮现出来：<strong>它们关心的不是「世界是什么」，而是「人怎么活才安稳」。</strong></p>
+  <p>这一篇在全书结构中还有一个功能：<strong>它是通向基督教的桥</strong>。斯多葛的「自然法」与「人类平等」、《普罗提诺》的新柏拉图主义，都被基督教接手。</p>
+  <h3>关键哲学家与罗素的判断</h3>
+  <ul>
+    <li><strong>犬儒派与怀疑派</strong>：罗素判它们是<strong>动乱时代个人自保的哲学</strong>——一个「拒绝文明的矫饰」，一个「悬置判断以求安宁」。
+    </li>
+    <li><strong>伊壁鸠鲁派</strong>：罗素判伊壁鸠鲁<strong>被世人误解</strong>——他名字成了「享乐」的代名词，其实追求的是<strong>心灵的宁静（ataraxia）</strong>。
+    </li>
+    <li><strong>斯多葛主义</strong>：罗素给它的评价较高——<strong>「自然法」与「人类平等」的观念是它留给后世最重要的遗产</strong>。
+    </li>
+    <li><strong>罗马</strong>：罗素判<strong>罗马在哲学上几乎无所贡献</strong>，只是希腊思想的搬运工。
+    </li>
+    <li><strong>普罗提诺</strong>：罗素判他是<strong>古代哲学通往中世纪的关卡</strong>——他把柏拉图的神秘主义系统化为一个「流溢」的宇宙。
+    </li>
+  </ul>
+  <p>★ 一句话记住这一篇：<strong>城邦死了，哲学从「追问世界」退成「安顿自己」——而正是这种「安顿自己」的哲学，成了基督教的温床。</strong></p>
+  <h3>卷一第 25 章 希腊化世界</h3>
+  <p>罗素讲亚历山大之后的世界：<strong>大一统帝国、城邦自治的终结、个人的无力感</strong>。<strong>罗素的判断</strong>：正是这种<strong>政治上的无力</strong>，把哲学推向了<strong>个人伦理与内心安宁</strong>。★ 这一章几乎没有哲学，却决定了后面几篇的读法——<strong>罗素认为，希腊化哲学的「内转」是社会条件逼出来的</strong>。</p>
+  <h3>卷一第 26 章 犬儒学派与怀疑派</h3>
+  <p>罗素讲<strong>狄奥根尼</strong>式的犬儒（拒绝文明、回归自然、惊世骇俗）与<strong>皮罗</strong>式的怀疑（悬置判断、以求不动心）。<strong>罗素的判断</strong>：这两派都是<strong>文明衰落后个人求安宁的产物</strong>——犬儒用「藐视社会规范」来保护自己，怀疑派用「不做判断」来保护自己。罗素对犬儒的<strong>戏剧化表演</strong>略带讥讽，对怀疑派的<strong>逻辑自反问题</strong>（「一切判断都不可靠」这句话本身可靠吗）则有明确的逻辑批评。</p>
+  <h3>卷一第 27 章 伊壁鸠鲁派</h3>
+  <p>罗素讲伊壁鸠鲁的<strong>原子论 + 快乐主义</strong>：快乐＝身体无痛、心灵无扰；「神」不干预人事；死亡的恐惧应当消除。<strong>罗素的判断</strong>：伊壁鸠鲁<strong>是被名字冤枉的哲学家</strong>——「伊壁鸠鲁主义」被后世当成「纵欲」，其实他追求的是<strong>节制与宁静</strong>。罗素对他<strong>评价明显比对斯多葛更亲切</strong>：他至少继承了德谟克利特的原子论这条<strong>有科学前途的路线</strong>。</p>
+  <h3>卷一第 28 章 斯多葛主义</h3>
+  <p>罗素讲斯多葛的<strong>物理学（宇宙理性/逻各斯）、伦理学（依自然而生活、控制激情）、以及「自然法」与「人类皆兄弟」</strong>。<strong>罗素的判断</strong>：斯多葛派在哲学思辨上贡献有限，但它<strong>在政治与法律思想上的影响极大</strong>——「自然法」与「人类平等」经由罗马法与基督教，成为西方政治传统的地基。罗素也点出斯多葛的<strong>内在困难</strong>：既然「一切都是命定」，个人的道德努力究竟还有何意义？</p>
+  <h3>卷一第 29 章 罗马帝国与文化的关系</h3>
+  <p>罗素讲罗马：<strong>法律的成就、行政的成就、以及哲学上的贫瘠</strong>。<strong>罗素的判断</strong>：罗马<strong>几乎没有原创哲学</strong>，它的作用是<strong>保存与传播希腊思想</strong>（以及后来接纳基督教）。罗素略带讥讽地说：罗马人忙于打仗与治理，把哲学留给了希腊人和后来的蛮族。★ 本章的社会史分量很重，是罗素「哲学是时代产物」写法的又一例。</p>
+  <h3>卷一第 30 章 普罗提诺</h3>
+  <p>罗素讲普罗提诺的<strong>新柏拉图主义</strong>：<strong>太一（the One）→ 心智 → 灵魂 → 物质</strong>的「流溢（emanation）」体系；万物「流溢」而出，人生的目标是<strong>回归太一</strong>（神秘合一）。<strong>罗素的判断</strong>：普罗提诺是<strong>古代哲学的终点与中世纪的起点</strong>——他把柏拉图的神秘主义整理成一套可被基督教神学直接使用的系统（奥古斯丁、伪丢尼修、中世纪神秘主义都受其影响）。罗素对他<strong>有几分敬意</strong>（认为他的人格与体系都自成一格），但明确不认同其<strong>神秘合一的认识论</strong>。</p>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一篇相对平稳，但有两处要提醒</strong>：</p>
+  <ol>
+    <li><strong>「希腊化哲学是个人无力感的产物」是一条社会—心理的因果解释</strong>，罗素把它讲得像定论。<strong>这与「社会背景影响哲学」是同构的，但同样属于解释而非事实</strong>；把它当成理解框架可以，当成定论则过。
+    </li>
+    <li><strong>篇幅严重不均</strong>：斯多葛、伊壁鸠鲁、犬儒、怀疑派（整整四个重要学派）合计只有 3 章，而<strong>罗马占 1 章、普罗提诺占 1 章</strong>。⇒ 这一篇的<strong>取舍依据仍是「对社会的影响」而非「哲学的分量」</strong>，其结果是<strong>希腊化哲学本身被简化了</strong>。
+    </li>
+  </ol>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>卷二第一篇：教父（卷二第 1–6 章）</span><span class="caret">▾</span></h2>
+  <h3>这一篇在讲什么</h3>
+  <p>从这一篇起，罗素进入<strong>中世纪</strong>——也是他被批评最集中的地方。卷二第一篇（6 章）讲<strong>基督教哲学的起源</strong>：从犹太教、早期基督教、到教父（尤其<strong>奥古斯丁</strong>），再到公元五六世纪文明崩解与修道院—教皇制的兴起。罗素的处理方式仍是「社会史先行」：他花了大量篇幅写<strong>教会与国家的权力关系、蛮族入侵、教育垄断</strong>，而不是写神学论证。</p>
+  <p>罗素的隐含立场在这一篇已经很清楚：<strong>他同情「理性」，对「信仰的权威」始终隔着一层冷眼。</strong> 这也是为什么这个本该厚重的部分，在他笔下更像<strong>一份「教会如何崛起」的编年史</strong>，而不是「教父哲学的思想史」。</p>
+  <h3>关键哲学家与罗素的判断</h3>
+  <ul>
+    <li><strong>犹太教</strong>：罗素判它给基督教留下了<strong>「选民意识」与「历史的目的论」</strong>——这两样东西后来塑造了整个西方历史哲学。
+    </li>
+    <li><strong>奥古斯丁</strong>（这一篇的主角）：罗素判他是<strong>把柏拉图主义与基督教结合的第一人</strong>，并承认其<strong>影响之巨</strong>（原罪、恩典、上帝之城）；但他<strong>对奥古斯丁的哲学评价并不高</strong>，认为很多地方是<strong>雄辩压过了论证</strong>。
+    </li>
+    <li><strong>边奈狄克特与格雷高里</strong>：罗素判修道院与教皇制的作用是<strong>在文明崩解中保存了秩序与教育</strong>——这与他整体上对教会的负面态度形成有趣的张力。
+    </li>
+  </ul>
+  <p>★ 一句话记住这一篇：<strong>罗素认为教父时代的「哲学」主要是「把信仰体系化」，而哲学思考被信仰的需要压住了。</strong></p>
+  <h3>卷二第 1 章 犹太人的宗教发展</h3>
+  <p>罗素讲犹太教的发展：一神论的确立、<strong>选民观念、律法、末世与弥赛亚期待</strong>。<strong>罗素的判断</strong>：犹太教给基督教留下了三样东西——<strong>「唯一的神」、作为救赎主体的「历史」、以及「被拣选者」的意识</strong>。罗素指出：这套「历史有目的、民族有使命」的框架，<strong>后来成为西方历史哲学（乃至黑格尔、马克思）的底层结构</strong>。★ 这一章<strong>神学内容不多，历史社会学分量重</strong>，是罗素一贯的写法。</p>
+  <h3>卷二第 2 章 基督教最初的四个世纪</h3>
+  <p>罗素讲基督教如何从犹太教的一个支派<strong>分化成普世宗教</strong>：吸收希腊哲学（尤其斯多葛与新柏拉图主义）、建立组织（主教制）、并在罗马帝国中从被迫害到被奉为国教。<strong>罗素的判断</strong>：基督教的成功<strong>既是思想的、更是组织的</strong>——它借来了希腊人的理论工具，也用上了罗马人的组织能力。★ 罗素在此明确点出全书的一条线索：<strong>基督教是「犹太的历史＋希腊的哲学＋罗马的组织」的合成品</strong>（这一点他在绪论里也说过）。</p>
+  <h3>卷二第 3 章 教会的三位博士</h3>
+  <p>罗素讲<strong>安布洛斯、杰罗姆、奥古斯丁</strong>（Ambrose, Jerome, Augustine）这三位被尊为教会博士的人物：安布洛斯的政治角色、杰罗姆的《圣经》拉丁译本（武加大译本）、奥古斯丁的神学。<strong>罗素的判断</strong>：这三人的贡献主要在<strong>奠立教会的权威与文本</strong>，而非哲学创造。他特别注意到<strong>安布洛斯以教权压皇权</strong>这一情节——在罗素眼里，这是<strong>「教会作为权力的崛起」</strong>的标志性事件。</p>
+  <h3>卷二第 4 章 圣奥古斯丁的哲学与神学</h3>
+  <p>罗素讲奥古斯丁：<strong>用柏拉图主义为基督教神学搭台</strong>（《忏悔录》《上帝之城》）、<strong>原罪与恩典</strong>、<strong>预定论</strong>、<strong>上帝之城与世俗之城</strong>的对立。<strong>罗素的判断</strong>：奥古斯丁<strong>影响极大</strong>（是整个中世纪与宗教改革都要回应的坐标），但他的哲学<strong>论证常常让位于雄辩与信仰</strong>；其中<strong>原罪与预定论</strong>在他的体系里<strong>在逻辑上有严重困难</strong>（既然全由神预定，人的自由与罪责如何自处？）。★ 罗素在此的态度是<strong>有敬意的保留</strong>：他把奥古斯丁当作「必须介绍的大人物」，但<strong>不给他的论证高分</strong>。</p>
+  <h3>卷二第 5 章 公元五世纪和六世纪</h3>
+  <p>罗素讲<strong>西罗马的灭亡与蛮族入侵</strong>，以及这期间学术与文明的凋敝。<strong>罗素的判断</strong>：这两个世纪是「<strong>文明的最低谷</strong>」——哲学几乎停滞，思想被压缩进教会与修道院。★ 这一章几乎是纯历史叙述，它的功能在全书结构里是「<strong>交代空白期</strong>」：罗素借此说明<strong>为什么中世纪的哲学要从教会里长出来</strong>。</p>
+  <h3>卷二第 6 章 圣边奈狄克特与大格雷高里</h3>
+  <p>罗素讲<strong>修道院制度</strong>（边奈狄克特的清规）与<strong>大格雷高里</strong>（Gregory the Great，教会权力的扩张、传教、礼拜仪式的整理）。<strong>罗素的判断</strong>：这两个人物<strong>在文明断裂处保存了秩序、教育与知识</strong>——因此<strong>教会成了中世纪唯一的文化载体</strong>。★ 这是罗素对教会少见的正面评价：<strong>他不喜欢教会的教义权威，但承认它在历史功能上「保存了文明」</strong>——这个张力在全书中反复出现。</p>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一篇有三个问题</strong>：</p>
+  <ol>
+    <li><strong>社会史挤掉了哲学</strong>。整整 6 章，真正关于神学论证的内容很少。对想了解「教父哲学究竟怎么论证」的读者，<strong>这一篇几乎不够用</strong>——而这正是 Leo Roberts（1948）判罗素「对古代与中世纪学说的处理几乎毫无价值」的所在。
+    </li>
+    <li><strong>罗素的宗教立场影响叙述</strong>。他本人是知名的无神论者/不可知论者，笔下的教会史因此<strong>带有一层讽意</strong>（写国王的纵欲、教会的权术时尤其明显）。这层讽意<strong>未必失真，但一定带色</strong>。
+    </li>
+    <li><strong>奥古斯丁的《上帝之城》被处理得太简</strong>。这部著作的历史哲学含义（两座城、历史的意义）与罗素自己在绪论里的「历史哲学」兴趣高度重合，但他没有展开——<strong>取舍的理由依然是「对社会生活的影响」这一条</strong>。
+    </li>
+  </ol>
+</section>
+
+<section id="s11">
+  <h2><span class="num">10</span><span>卷二第二篇：经院哲学家（卷二第 7–15 章）</span><span class="caret">▾</span></h2>
+  <h3>这一篇在讲什么</h3>
+  <p>这一篇（9 章）覆盖<strong>经院哲学的整个盛期</strong>——从黑暗时代的教皇制，到阿拉伯哲学的传入、亚里士多德的翻译、大学的兴起、阿奎那的综合，直到教皇制的衰落与宗教改革的前夜。它要盖住<strong>近五百年</strong>，密度却只有 9 章。</p>
+  <p>罗素在这一篇里的做法，是一个<strong>在别人看来很怪、在他看来很自然</strong>的选择：<strong>他把经院哲学当作「教会制度史」的一部分来讲</strong>。所以你会看到大量关于教皇与皇帝斗争、教权与王权博弈、修道会（弗兰西斯教团、多明我会）的叙述，而<strong>「上帝存在的证明怎么构造」这类真正的哲学内容被压到了很薄</strong>。再加上他一贯的<strong>对「信仰的权威」的冷眼</strong>，这一篇成了全书<strong>被专业批评最集中、也最被推荐跳读的部分</strong>。</p>
+  <h3>关键哲学家与罗素的判断</h3>
+  <ul>
+    <li><strong>阿拉伯哲学（卷二第 10 章）</strong>：罗素判它的作用是<strong>保存并回传亚里士多德</strong>——没有阿拉伯世界，欧洲的亚里士多德复兴无从谈起。
+    </li>
+    <li><strong>阿奎那（卷二第 13 章）</strong>：罗素承认阿奎那的体系<strong>庞大而影响深远</strong>，但<strong>对它的哲学评价并不高</strong>，认为它是<strong>把信仰当作前提、再找理由去支撑</strong>。
+    </li>
+    <li><strong>邓斯·司各脱、奥卡姆（卷二第 14 章）</strong>：罗素判他们代表<strong>经院哲学内部的分裂与唯名论的抬头</strong>——这在思想史上比阿奎那的合成更「有前途」。
+    </li>
+    <li><strong>教皇制的衰落（卷二第 15 章）</strong>：罗素判它是<strong>宗教改革的前奏</strong>。
+    </li>
+  </ul>
+  <p>★ 一句话记住这一篇：<strong>罗素把经院哲学读成「一群聪明人为既定信仰找论证」，因此他写制度多、写论证少——这也是本书最受专业批评的一卷。</strong></p>
+  <h3>卷二第 7 章 黑暗时期中的罗马教皇制</h3>
+  <p>罗素讲<strong>墨洛温与加洛林时代</strong>、教皇与法兰克王权的结盟、教会势力的扩张。<strong>罗素的判断</strong>：这一时期的主题是<strong>「教权与俗权的长期搏斗」</strong>——教会借世俗权力立身，又反过来制衡它。★ 本章<strong>几乎全是政治史</strong>；罗素借此说明<strong>「中世纪思想的形状，是由权力的形状决定的」</strong>。</p>
+  <h3>卷二第 8 章 约翰·司各脱</h3>
+  <p>罗素讲<strong>约翰·司各脱·爱留根纳</strong>（Johannes Scotus Eriugena）：把新柏拉图主义（伪丢尼修）带入拉丁西方，其体系带有<strong>泛神论色彩</strong>（自然即神的显现）。<strong>罗素的判断</strong>：他是<strong>中世纪早期最有哲学野心的思想家</strong>，其泛神论在后来的正统审查下<strong>显得危险</strong>。★ 罗素对他的兴趣明显高于对多数经院学者——因为<strong>他的思想里有一点「体系」而非只有「论证信仰」</strong>。</p>
+  <h3>卷二第 9 章 公元十一世纪的教会改革</h3>
+  <p>罗素讲<strong>克吕尼改革、教权与皇权的授职权之争、以及希尔德布兰德（格雷高里七世）</strong>。<strong>罗素的判断</strong>：教会改革的意义在于<strong>把教会变成一个更集权、更有纪律的组织</strong>，从而在中世纪的政治格局中占据上风。★ 仍是「制度史」写法；哲学内容（如安瑟伦的本体论证明在此时期）<strong>几乎被略过</strong>——这是本篇「重制度、轻论证」的第一个明显例子。</p>
+  <h3>卷二第 10 章 回教文化及其哲学</h3>
+  <p>罗素讲<strong>阿拉伯/伊斯兰世界的哲学</strong>：阿维森纳（伊本·西那）、阿威罗伊（伊本·路世德）、以及他们<strong>注释并保存亚里士多德</strong>的工作。<strong>罗素的判断</strong>：这一章之所以重要，是因为<strong>「没有阿拉伯人，欧洲就不会有亚里士多德」</strong>——亚里士多德的著作经由叙利亚—阿拉伯世界保存、注释，再回传拉丁欧洲。★ 罗素对阿拉伯哲学家本身的原创性着墨不多，但从全书的线索看，<strong>他把他们当作「希腊哲学与中世纪之间的传送带」</strong>。</p>
+  <h3>卷二第 11 章 公元十二世纪</h3>
+  <p>罗素讲<strong>亚里士多德著作的拉丁翻译与传播、大学的兴起、以及早期的经院哲学家</strong>（如阿伯拉尔）。<strong>罗素的判断</strong>：12 世纪的关键事件是<strong>「亚里士多德全集进入欧洲课堂」</strong>——这让经院哲学有了新的理论工具（逻辑与形而上学），也带来了<strong>信仰与理性的第一次大规模冲突</strong>（亚里士多德的一些结论与教义不合）。★ 罗素对这一「理性进入课堂」的时刻<strong>是赞许的</strong>——这是他与中世纪之间的和解点。</p>
+  <h3>卷二第 12 章 公元十三世纪</h3>
+  <p>罗素讲<strong>经院哲学的鼎盛期</strong>：多明我会与弗兰西斯教团、巴黎大学、以及<strong>亚里士多德主义的制度化</strong>。<strong>罗素的判断</strong>：13 世纪是<strong>经院哲学的黄金时代</strong>，但也是<strong>思想被「正统化」的时代</strong>——亚里士多德的学说先被禁、后被奉为正统。★ 罗素在此的隐含批评是：<strong>当一种哲学变成官方教义，它就不再是哲学</strong>（这与他绪论里「诉诸理性而非权威」的标准直接呼应）。</p>
+  <h3>卷二第 13 章 圣托马斯·阿奎那</h3>
+  <p>罗素讲阿奎那（《神学大全》）：<strong>信仰与理性的调和</strong>、上帝存在的<strong>五路证明</strong>、<strong>本质与存在</strong>、<strong>自然法与永恒法</strong>。<strong>罗素的判断</strong>：阿奎那的体系<strong>庞大、均衡、影响深远</strong>（天主教哲学的官方体系即由此而来），但罗素认为它<strong>从信仰出发、再为信仰找论证</strong>，因此<strong>在哲学上并未真正解决问题</strong>（如五路证明在他看来都不成立）。★ ★ <strong>这是全书最受专业批评的一章之一</strong>：他在此写得很简，且带有明显的轻慢——批评者（Roberts 1948 等）认为<strong>他对中世纪的处理几乎不能算数</strong>。</p>
+  <h3>卷二第 14 章 弗兰西斯教团的经院哲学家</h3>
+  <p>罗素讲<strong>罗吉尔·培根、邓斯·司各脱、奥卡姆的威廉</strong>：<strong>唯名论的抬头</strong>（共相只是名称）、意志优先于理性、以及奥卡姆的「剃刀」。<strong>罗素的判断</strong>：这一派<strong>比阿奎那更有思想前途</strong>——唯名论的路线经过奥卡姆<strong>直接通向近代经验论与科学</strong>（罗素自己的谱系便在此）。★ 这是本篇里<strong>罗素态度最积极的一章</strong>：因为他在这里看到<strong>「理性开始脱离权威」的苗头</strong>。</p>
+  <h3>卷二第 15 章 教皇制的衰落</h3>
+  <p>罗素讲<strong>教皇制在 14–15 世纪的衰落</strong>：与法王的冲突、教会大分裂、宗教会议的失败、以及人文主义的兴起。<strong>罗素的判断</strong>：教皇制的衰落<strong>直接为宗教改革铺了路</strong>，而宗教改革又<strong>把「个人判断」带进欧洲思想</strong>（这一点他在卷三第 5 章继续展开）。★ 本章作为卷二的收尾，功能是<strong>「把中世纪的权威结构送进历史」</strong>，为卷三的近代哲学腾出舞台。</p>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一篇是全书专业可信度最低的部分，有三处要重点标记</strong>：</p>
+  <ol>
+    <li><strong>篇幅与内容严重失衡</strong>。<strong>近五百年</strong>的经院哲学只有 9 章，且大半是社会与制度史。<strong>「上帝存在的证明」「共相之争」「意志与理性的关系」这些经院哲学的核心论证，几乎都只能靠读者另外补课。</strong> ⇒ 想认真了解中世纪哲学的读者，<strong>不要以这一篇为准</strong>。
+    </li>
+    <li><strong>轻慢的语调是有据可查的</strong>。★ Leo Roberts 在 <em>Isis</em> 38 (1948) 说罗素「<strong>对古代与中世纪学说的处理几乎毫无价值</strong>」；Copleston 说他「<strong>对若干重要哲学家的处理既不足又误导</strong>」。这一篇是这两句判词最直接的适用对象。
+    </li>
+    <li><strong>「经院哲学＝为既定信仰找论证」是一个可争议的总体定性</strong>。现代中世纪研究者（如 Gilson 一脉）恰恰主张<strong>经院哲学有真正的哲学问题与严格的方法</strong>，并非只是信仰的婢女。★ 罗素的定性<strong>是一方的立场，不是定论</strong>。
+    </li>
+  </ol>
+</section>
+
+<section id="s12">
+  <h2><span class="num">11</span><span>卷三第一篇：从文艺复兴到休谟（卷三第 1–17 章）</span><span class="caret">▾</span></h2>
+  <h3>这一篇在讲什么</h3>
+  <p>这是<strong>全书写得最顺手、可读性最高的一篇（17 章）</strong>。它覆盖<strong>近代哲学的第一段</strong>：从文艺复兴、宗教改革、科学革命，到马基雅维利、培根、霍布士、笛卡尔、斯宾诺莎、莱布尼兹，再到英国经验论的洛克、贝克莱、休谟。★ <strong>这一篇是本部推荐的「入口」</strong>（见第 3 节）。</p>
+  <p>罗素在这一篇里画了一条他非常看重的线：<strong>「权威的瓦解」与「主观性的兴起」</strong>。他在卷三第 1 章就把这条线说明白：近代哲学从<strong>笛卡尔</strong>的「我思」开始，经过<strong>贝克莱</strong>（存在即被感知）、<strong>康德</strong>（现象与物自体），一路滑到<strong>费希特</strong>（一切都是自我的涌出）——他称之为一条<strong>走向「疯狂」的下坡路</strong><span class="tag t-src">原书</span>（卷三第 1 章）。★ <strong>这条线是罗素的叙事装置</strong>：它让英国经验论成了「清醒的一支」，让德国观念论成了「滑坡的一支」。</p>
+  <h3>关键哲学家与罗素的判断</h3>
+  <ul>
+    <li><strong>马基雅维利</strong>：罗素<strong>评价颇高</strong>——他把政治从道德中切出来，是<strong>「政治的科学」的开端</strong>。
+    </li>
+    <li><strong>培根</strong>：罗素判他<strong>作为哲学家被过誉</strong>——文笔好、口号响，但<strong>归纳法本身有缺陷</strong>。
+    </li>
+    <li><strong>霍布士</strong>：罗素判他<strong>逻辑一贯</strong>，但心理学以<strong>恐惧</strong>为底座。
+    </li>
+    <li><strong>笛卡尔</strong>：罗素判他<strong>是近代哲学的起点，也是它的病根</strong>——「我思」把「我」实体化了。
+    </li>
+    <li><strong>斯宾诺莎</strong>：罗素判他<strong>逻辑与神秘合一</strong>，其泛神论在伦理上动人，但<strong>「证明」的形式是虚设的</strong>。
+    </li>
+    <li><strong>莱布尼兹</strong>：罗素<strong>本人写过莱布尼兹专著</strong>，判他<strong>逻辑一面被忽略、流行一面被高估</strong>。
+    </li>
+    <li><strong>洛克</strong>：罗素判他是<strong>自由主义的基石</strong>（政治哲学的分量甚至重于认识论）。
+    </li>
+    <li><strong>贝克莱</strong>：罗素判他<strong>论证有效、结论荒谬</strong>。
+    </li>
+    <li><strong>休谟</strong>：罗素判他是<strong>经验论的高峰，也是它的终点</strong>——因果怀疑一来，经验论就走到了头。
+    </li>
+  </ul>
+  <p>★ 一句话记住这一篇：<strong>罗素在这里找回了他的「主场」——英国经验论、清晰、可错、反体系；因此他对这一篇的把握也最稳。</strong></p>
+  <h3>卷三第 1 章 总说</h3>
+  <p>罗素讲<strong>近代哲学的一般特征</strong>：教会权威的瓦解、<strong>主观性的兴起</strong>、科学对世界观的支配。<strong>罗素的判断（★ 全书最著名的一段判断之一）</strong>：近代哲学从<strong>笛卡尔的「我思」</strong>出发，经<strong>贝克莱、康德</strong>到<strong>费希特</strong>（「一切都是自我的涌出」），他直斥「<strong>这是疯狂（insanity）</strong>」<span class="tag t-src">原书</span>（卷三第 1 章）。★ 这一章其实是<strong>罗素对整卷的路线图与判决书</strong>：他把「主观主义」当成近代哲学的主要危险，而把<strong>英国经验论与他自己</strong>当成解药。</p>
+  <h3>卷三第 2 章 意大利文艺复兴</h3>
+  <p>罗素讲文艺复兴的意大利：<strong>权力的分散、道德的松弛、艺术与学术的爆发</strong>、以及教皇与君主们的腐败。<strong>罗素的判断</strong>：文艺复兴的成就<strong>建立在一个道德解体的社会之上</strong>——这与古希腊的处境<strong>惊人相似</strong>（他都用了「创造力爆发＋社会凝聚力丧失」这个模式）。★ 罗素在此再次演练他「社会条件决定思想形态」的方法。</p>
+  <h3>卷三第 3 章 马基雅弗利</h3>
+  <p>罗素讲《君主论》与《论李维》：<strong>把政治与道德分开</strong>、对权术的冷静分析。<strong>罗素的判断</strong>：马基雅维利<strong>不是「教人作恶」，而是「如实描述政治如何运作」</strong>——他因此是<strong>「政治科学」的开创者</strong>。罗素对他<strong>评价相当高</strong>，因为他<strong>诉诸观察与理性、不诉诸道学的权威</strong>——这正是罗素那把尺子给高分的类型。★ 对照一下：他在这一篇里对<strong>同样「冷」的霍布士</strong>也给了不低的评价，而对<strong>浪漫主义的卢梭</strong>则毫不客气——<strong>这不是偶然，是同一把尺子。</strong></p>
+  <h3>卷三第 4 章 埃拉斯摩和莫尔</h3>
+  <p>罗素讲<strong>伊拉斯谟</strong>（人文主义的温和、对教会的讽刺）与<strong>托马斯·莫尔</strong>（《乌托邦》、以及他因拒绝宣誓而殉道）。<strong>罗素的判断</strong>：这两人代表<strong>人文主义的良知</strong>——在宗教狂热中保持宽容与嘲讽。★ 莫尔的《乌托邦》与柏拉图《理想国》的对照，是罗素顺手带出的一条线：<strong>「乌托邦」这一体裁本身就带有集体压个人的危险</strong>（呼应卷一第 14 章）。</p>
+  <h3>卷三第 5 章 宗教改革运动和反宗教改革运动</h3>
+  <p>罗素讲<strong>路德、加尔文、以及天主教的反改革</strong>。<strong>罗素的判断（★ 双重判断）</strong>：宗教改革一方面<strong>解放了个人判断</strong>（人人可自行读经），另一方面<strong>造成了「个人孤立」与无穷的教派分裂</strong>——它让<strong>「信仰成了个人的事」</strong>，这既是自由，也是精神上的孤立。罗素把这条线索与近代哲学里「主观性的兴起」<strong>接在一起</strong>。★ 这一章的判断结构（一利一弊）是罗素少见的平衡写法。</p>
+  <h3>卷三第 6 章 科学的兴盛</h3>
+  <p>罗素讲<strong>哥白尼、开普勒、伽利略、牛顿</strong>：日心说的确立、力学与天文学的数学化。<strong>罗素的判断</strong>：<strong>科学是近代最强的力量</strong>；它把「权威」从自然研究中逐出，迫使哲学重新给自己找位置。★ 罗素在这一章是<strong>科学的热烈拥护者</strong>——这也是他在绪论里把哲学定义为「诉诸理性」的底气所在。</p>
+  <h3>卷三第 7 章 弗兰西斯·培根</h3>
+  <p>罗素讲培根的生平（政治生涯、贪贿丑闻）、《新工具》、<strong>归纳法</strong>与「四假象说」。<strong>罗素的判断（★ 反流俗）</strong>：培根<strong>作为哲学家被过誉了</strong>——他的归纳法<strong>过于简单，且对当时真正的科学方法（伽利略式的数学演绎）理解有限</strong>；他更该被记住的是<strong>文笔与对科学的热忱</strong>。★ 这是「流行说法 vs 原文」的一条（见第 4b 节）：大众印象里培根是「科学方法之父」，罗素恰恰<strong>不这么看</strong>。</p>
+  <h3>卷三第 8 章 霍布士的利维坦</h3>
+  <p>罗素讲霍布士：<strong>自然状态即战争、社会契约、主权者（利维坦）的绝对权力</strong>、以及他的机械论心理学。<strong>罗素的判断</strong>：霍布士<strong>逻辑非常一贯</strong>（从前提推到结论毫不含糊），但他的<strong>心理学以「恐惧」为基础</strong>，且<strong>为绝对主权辩护</strong>。罗素承认：霍布士的结论令人不安，但<strong>他的推论过程值得尊重</strong>——这与他对洛克「结论可亲、推论证弱」的对照，很能说明罗素偏好的是<strong>论证质量</strong>而非<strong>结论是否讨喜</strong>。</p>
+  <h3>卷三第 9 章 笛卡尔</h3>
+  <p>罗素讲笛卡尔的<strong>方法论怀疑、「我思故我在」、心物二元论、以及上帝存在的证明</strong>。<strong>罗素的判断</strong>：笛卡尔是<strong>近代哲学的起点</strong>，但其「我思」里<strong>有一个被忽略的漏洞</strong>——他从「有思想」推出「有一个我（实体）」，这一步罗素判为<strong>不合法</strong>。★ 罗素对笛卡尔的态度是<strong>「奠基者但有病根」</strong>：他认为整条「主观主义」的下坡路就是从这一步开始的。</p>
+  <h3>卷三第 10 章 斯宾诺莎</h3>
+  <p>罗素讲斯宾诺莎的<strong>《伦理学》几何学式体系</strong>：实体即神即自然、属性与样式、决定论、以及「对神的理智的爱」。<strong>罗素的判断</strong>：斯宾诺莎是<strong>「逻辑的与神秘的」合一</strong>——体系的外壳（公理—定理）<strong>是虚设的</strong>，但<strong>内涵的伦理理想（从激情中解脱、得到宁静）是高贵的</strong>。罗素对斯宾诺莎<strong>有真诚的敬意</strong>（他将斯宾诺莎与「因爱真理而受难」联系在一起），但仍指出<strong>其「证明」只是形式</strong>。</p>
+  <h3>卷三第 11 章 莱布尼兹</h3>
+  <p>罗素讲莱布尼兹：<strong>单子论、充足理由律、前定和谐、以及「一切可能世界中最好的世界」</strong>。<strong>罗素的判断（★ 他有资格说这番话）</strong>：罗素本人写过《莱布尼兹哲学批判解说》（1900），因此他<strong>特别强调莱布尼兹「被忽略的逻辑一面」</strong>（莱布尼兹的逻辑构想是数理逻辑的先声），同时判他<strong>为迎合宫廷而写的「流行哲学」被高估</strong>（伏尔泰在《老实人》里嘲笑的正是这一面）。★ 这是本报告要提醒的一条：<strong>这一章带有罗素自己研究的印记，专业含量高，但也因此最有「罗素视角」。</strong></p>
+  <h3>卷三第 12 章 哲学上的自由主义</h3>
+  <p>罗素讲<strong>自由主义</strong>作为一种政治—思想传统：<strong>宽容、个人权利、有限政府、思想的自由市场</strong>。<strong>罗素的判断</strong>：自由主义<strong>是近代最值得珍视的政治产物</strong>，它的源头在<strong>洛克</strong>。★ 这一章几乎不是「哲学史」而是「罗素的宣言」——他在此把自己所站的位置（自由主义的、经验论的、反体系的）<strong>明白地摆出来了</strong>，也为后文<strong>对卢梭的敌意</strong>埋下伏笔。</p>
+  <h3>卷三第 13 章 洛克的认识论</h3>
+  <p>罗素讲洛克的《人类理解论》：<strong>反对天赋观念、「白板说」、观念来自经验（感觉与反省）、第一性质与第二性质</strong>。<strong>罗素的判断</strong>：洛克是<strong>经验论的代表</strong>，方向正确，但<strong>他留下了不少含混</strong>（第二性质的界定、实体的说法），这些含混<strong>后来被贝克莱与休谟一一戳破</strong>。★ 罗素对洛克的评价是<strong>「方向对、收尾差」</strong>。</p>
+  <h3>卷三第 14 章 洛克的政治哲学</h3>
+  <p>罗素讲洛克的《政府论》：<strong>自然状态并非战争、自然权利（生命/自由/财产）、政府源于受托、以及人民有反抗滥权的权利</strong>。<strong>罗素的判断</strong>：「<strong>洛克的政治哲学是自由主义政治的基石</strong>」——他把它与霍布士对照（霍布士的恐惧 vs 洛克的信赖），并指出<strong>洛克的学说直接喂养了英美政治传统</strong>。★ 此处罗素的偏好很明白：<strong>他站在洛克这一边，正如他后来站在洛克的对立面批评卢梭。</strong></p>
+  <h3>卷三第 15 章 洛克的影响</h3>
+  <p>罗素讲洛克的<strong>广泛影响</strong>：认识论上经<strong>贝克莱、休谟</strong>发展成经验论；政治上经<strong>法国启蒙</strong>（孟德斯鸠、卢梭的对手一脉）与<strong>英美革命</strong>落地。<strong>罗素的判断</strong>：洛克是<strong>「近代思想的枢纽」</strong>之一——从他这里分出经验论与自由主义两条大河。★ 本章功能是<strong>「承上启下」</strong>：把洛克放到全书的结构中枢。</p>
+  <h3>卷三第 16 章 贝克莱</h3>
+  <p>罗素讲贝克莱：<strong>「存在即被感知」（esse est percipi）</strong>、反对物质实体、以及「上帝作为永恒感知者」。<strong>罗素的判断（★ 经典表述）</strong>：贝克莱的<strong>论证在逻辑上是有效的</strong>（若你接受他的前提，洛克式的物质实体确实站不住），但<strong>结论荒谬</strong>（世界依赖于感知而存在）。罗素由此得出一个反复出现的观点：<strong>「逻辑上有效」并不等于「真」</strong>——类似的情况他认为在黑格尔那里也会重演。★ 罗素对贝克莱是<strong>「欣赏其刀法、拒绝其结论」</strong>。</p>
+  <h3>卷三第 17 章 休谟</h3>
+  <p>罗素讲休谟：<strong>印象与观念、因果关系的怀疑（我们看到的只是「相继」，看不到「必然联系」）、习惯与信念、以及「自我」的虚妄</strong>。<strong>罗素的判断</strong>：休谟是<strong>经验论的最高峰，也是它的终点</strong>——因为一旦贯彻经验论，连「因果」和「自我」都保不住，于是<strong>经验论必须要么改道（康德），要么崩解</strong>。罗素对休谟<strong>评价极高</strong>（这是他最欣赏的哲学家类型：诚实、清晰、不装腔），但也指出休谟的<strong>怀疑论留下的窟窿</strong>是后来哲学要面对的中心问题。★ <strong>这是全书最重要的一章之一</strong>，也是通往康德（卷三第 20 章）的必经之路。</p>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一篇可读性与可信度都是全书最高的，但仍有三处要标记</strong>：</p>
+  <ol>
+    <li><strong>「主观性滑坡」这条线是罗素的叙事装置</strong>。他把笛卡尔→贝克莱→康德→费希特串成一条「走向疯狂」的路，<strong>在叙事上漂亮，在历史上却压缩了大量差别</strong>（康德与费希特的差别、贝克莱与康德的差别都被抹平）。⇒ 这条线<strong>是罗素的读法，不是哲学史的公认框架</strong>。
+    </li>
+    <li><strong>「培根被过誉」是罗素的判断</strong>。科学史界对培根「归纳法」的评价本身有分歧；罗素的贬抑<strong>有其逻辑学的理由</strong>（培根不懂数学化的科学方法），但<strong>不宜当作定论</strong>。
+    </li>
+    <li><strong>对莱布尼兹一章带有作者自己的研究印记</strong>。它是<strong>优点也是偏性</strong>：优点是有专业深度，偏性是<strong>它比别的章节更像「罗素在讲他自己的莱布尼兹」</strong>。
+    </li>
+  </ol>
+</section>
+
+<section id="s13">
+  <h2><span class="num">12</span><span>卷三第二篇：从卢梭到现代（卷三第 18–31 章）</span><span class="caret">▾</span></h2>
+  <h3>这一篇在讲什么</h3>
+  <p>这是<strong>全书判断最激烈、也最需要在阅读时「防身」的一篇（14 章）</strong>。它从<strong>浪漫主义运动</strong>（卷三第 18 章）开始，经<strong>卢梭、康德、黑格尔</strong>，到<strong>叔本华、尼采、功利主义者、马克思、柏格森、詹姆斯、杜威</strong>，最后收在<strong>逻辑分析哲学</strong>。</p>
+  <p>这一篇的节奏是<strong>「清算」</strong>：罗素在这里把他不喜欢的（<strong>浪漫主义的集体意志、德国先验哲学、直觉主义、实用主义</strong>）逐一处理，把秩序让给他喜欢的（<strong>功利主义的改良、他自己的逻辑分析</strong>）。★ <strong>本篇对德国观念论的处理，是全书专业可信度最受质疑的地方</strong>（康德、黑格尔各一章，且被 Kaufmann、Houlgate、Scruton 等指为失真）。</p>
+  <h3>关键哲学家与罗素的判断</h3>
+  <ul>
+    <li><strong>浪漫主义运动（卷三第 18 章）</strong>：罗素判它是<strong>「对理性的反叛」</strong>——它既孕育<strong>个人主义</strong>（拜伦式的反抗），也孕育<strong>集体主义的专制</strong>（卢梭式的公意）。
+    </li>
+    <li><strong>卢梭（卷三第 19 章）</strong>：★★ 罗素判他是「<strong>伪民主专政的政治哲学的发明者</strong>」，并说出那句著名的「<strong>希特勒是卢梭的产物，罗斯福与丘吉尔是洛克的产物</strong>」。<strong>这是全书敌意最强的一章。</strong>
+    </li>
+    <li><strong>康德（卷三第 20 章）</strong>：罗素承认他<strong>伟大、影响巨大</strong>，但判其<strong>「物自体」与「先验综合判断」是站不住的</strong>。
+    </li>
+    <li><strong>黑格尔（卷三第 22 章）</strong>：罗素判其<strong>体系大半是错的</strong>，<strong>国家学说为极权辩护</strong>。
+    </li>
+    <li><strong>拜伦（卷三第 23 章）</strong>：罗素以诗人代表<strong>浪漫主义的反抗精神</strong>。
+    </li>
+    <li><strong>叔本华（卷三第 24 章）</strong>：罗素判其<strong>悲观主义是一种心理上的自我投射</strong>。
+    </li>
+    <li><strong>尼采（卷三第 25 章）</strong>：罗素<strong>明确表示不喜欢</strong>——判其把优劣势伦理化。
+    </li>
+    <li><strong>功利主义者（卷三第 26 章）</strong>：罗素对<strong>约翰·穆勒有同情</strong>（他是罗素的教父）。
+    </li>
+    <li><strong>马克思（卷三第 27 章）</strong>：罗素承认其<strong>重要性</strong>，但批评<strong>劳动价值论</strong>与<strong>历史必然性</strong>。
+    </li>
+    <li><strong>柏格森（卷三第 28 章）</strong>：罗素<strong>专章驳斥</strong>其「直觉」与「生命冲力」。
+    </li>
+    <li><strong>詹姆斯、杜威（卷三第 29–30 章）</strong>：罗素批评<strong>实用主义把「真」等同于「有用」</strong>。
+    </li>
+    <li><strong>逻辑分析哲学（卷三第 31 章）</strong>：罗素<strong>自己的纲领</strong>，全书在此收束。
+    </li>
+  </ul>
+  <p>★ 一句话记住这一篇：<strong>罗素在这里把他对「自由」的偏爱推到了顶——因此他对卢梭、黑格尔、柏格森的评价，最需要读者另找一把尺子来校准。</strong></p>
+  <h3>卷三第 18 章 浪漫主义运动</h3>
+  <p>罗素讲浪漫主义：<strong>对理性与规则的反叛、对强烈情感与「无限」的追求、对「伟大个人」的崇拜</strong>。<strong>罗素的判断</strong>：浪漫主义是一柄<strong>双刃剑</strong>——它一边给出<strong>个人反抗权威</strong>的能量（拜伦式的英雄），一边给出<strong>「把个人意志膨胀为集体意志」</strong>的危险（卢梭式的公意）；后者在罗素看来通向专制。★ 这一章是<strong>本篇的框架章</strong>：它为罗素的「卢梭—黑格尔—极权」这条线<strong>预设了舞台</strong>。</p>
+  <h3>卷三第 19 章 卢梭</h3>
+  <p>罗素讲卢梭的生平（他与当时人的关系、他的忏悔与自辩）、以及《社会契约论》的<strong>「公意」「主权不可转让」「主权不可代表」</strong>。<strong>罗素的判断（★★ 全书最著名、也最受质疑的一段）</strong>：卢梭是「<strong>伪民主专政的政治哲学（pseudo-democratic dictatorship）的发明者</strong>」；「<strong>希特勒是卢梭的产物，罗斯福与丘吉尔是洛克的产物</strong>」；《社会契约论》「<strong>虽在口头上向民主致敬，却倾向于为极权国家辩护</strong>」<span class="tag t-src">原书</span>（卷三第 19 章；<em>A History of Western Philosophy</em>, London 1946/2000, pp. 660, 671–673）。他并称卢梭误用了「自由」一词，而<strong>黑格尔承袭了这一误用</strong>，把自由定义为服从。★ ★ <strong>必须分清：以上全部是「罗素的判断」，不是「卢梭的学说」。</strong> 学界的反面意见：<strong>Robert Paul Wolff</strong> 称卢梭是「有史以来最伟大的政治哲学家」（<em>About Philosophy</em>, 9th ed., 2006, p. 318）；<strong>G.D.H. Cole</strong> 说《社会契约论》是「所有政治哲学教科书中最好的一本」（其译序 1913）<span class="tag t-src">原书</span>。</p>
+  <h3>卷三第 20 章 康德</h3>
+  <p>罗素讲康德：<strong>哥白尼式的革命（对象符合认识而非认识符合对象）、先验感性论（时空是直观形式）、先天综合判断、十二范畴、二律背反、以及现象与物自体</strong>。<strong>罗素的判断</strong>：康德<strong>是伟大的哲学家、影响深远</strong>，但罗素认为<strong>他的体系核心有致命困难</strong>——①「<strong>物自体</strong>」是一个<strong>说不得又必须有的东西</strong>（罗素视之为自相矛盾的残留）；②「<strong>先天综合判断</strong>」这一提法<strong>站不住</strong>（罗素以逻辑与数学的新发展来反驳）；③ 康德的<strong>道德哲学（绝对命令、自律）</strong>虽崇高，但其<strong>先验自由与决定论的并存</strong>有问题。★ ★ <strong>这一章是全书被专业批评最集中的地方之一</strong>：<strong>Roger Scruton（2001）</strong> 明确指出罗素<strong>「不了解康德（lack of understanding of Kant）」</strong>；<strong>Copleston</strong> 也把康德列入罗素「处理既不足又误导」的名单。⇒ <strong>读这一章的正确姿势：把罗素的转述当成「一位逻辑经验主义者的驳词」，要去了解康德，请另读专业导论。</strong></p>
+  <h3>卷三第 21 章 十九世纪思潮</h3>
+  <p>罗素讲 19 世纪的几条大流：<strong>浪漫主义的余波、科学与进化论、民族主义与自由主义、以及思想上的「体系热」</strong>。<strong>罗素的判断</strong>：19 世纪是<strong>「体系与反体系」交织的时代</strong>——一边是黑格尔式的庞大体系，一边是科学带来的实证与怀疑。★ 本章是全篇的<strong>过渡章</strong>：它把哲学放进 19 世纪的社会与政治潮流里（罗素一贯的写法），并把读者的注意力引向<strong>黑格尔之后的「反叛者」（叔本华、尼采、马克思）</strong>。</p>
+  <h3>卷三第 22 章 黑格尔</h3>
+  <p>罗素讲黑格尔：<strong>绝对精神、辩证法（正反合）、逻辑与历史的同一、以及《法哲学》里的国家学说</strong>。<strong>罗素的判断</strong>：<strong>黑格尔的体系「大半是错的」</strong>；他的<strong>国家学说为极权辩护</strong>（罗素称黑格尔把国家抬为「神在世间的行进」）；他甚至讥讽黑格尔对「自由」的定义等同于「服从」。<span class="tag t-src">原书</span>（卷三第 22 章）。★ ★ <strong>这是全书专业可信度最低的一章之一</strong>：<strong>Walter Kaufmann（1951）</strong> 系统拆解了罗素（与波普尔）传播的<strong>「黑格尔神话」</strong>（例如「正—反—合」三分法<strong>在黑格尔二十卷全集中只出现一次</strong>）；<strong>Jon Stewart 编《The Hegel Myths and Legends》(1996, p.383)</strong> 把罗素的书列入<strong>传播黑格尔「神话」</strong>的著作；<strong>Stephen Houlgate</strong> 指罗素「黑格尔的国家学说为任何暴政辩护」的说法是「<strong>ignorant（无知）</strong>」<span class="tag t-src">原书</span>。</p>
+  <h3>卷三第 23 章 拜伦</h3>
+  <p>罗素讲拜伦：他的生平、他的诗、他在希腊独立战争中的角色。<strong>罗素的判断</strong>：拜伦的价值不在哲学，而在<strong>他是浪漫主义反抗精神的化身</strong>——罗素认为<strong>这种人生态度对欧洲的社会与政治有真实影响</strong>，所以值得入史。★ 这一章是<strong>「罗素其实在写思想史而非哲学史」的最直接证据</strong>：<strong>诗人进了哲学史，而且是作为一个独立章</strong>——这在他自己的选材原则下完全说得通（选材看影响力），但在任何别的哲学史里都不会出现<span class="tag t-inf">推断</span>。</p>
+  <h3>卷三第 24 章 叔本华</h3>
+  <p>罗素讲叔本华：<strong>「世界是我的表象」与「世界是我的意志」、意志的形而上化、以及悲观主义</strong>。<strong>罗素的判断</strong>：叔本华的悲观主义<strong>更多是一种性情与人生观的投射</strong>，其哲学<strong>以「意志」这个模糊的实体为地基</strong>；罗素并指出叔本华的<strong>生活与他所宣传的禁欲不符</strong>（此人脾气暴躁、贪财）。★ 罗素对他<strong>有几分戏谑</strong>——这一章的语气比康德、黑格尔章<strong>轻松</strong>，因为罗素觉得叔本华<strong>不值得像对康德那样认真反驳</strong>。</p>
+  <h3>卷三第 25 章 尼采</h3>
+  <p>罗素讲尼采：<strong>权力意志、「超人」、主人道德与奴隶道德、永恒轮回</strong>。<strong>罗素的判断（★ 明确的不喜欢）</strong>：尼采把<strong>伦理问题化简为「强者的权利」</strong>，把<strong>同情与利他贬为弱者的怨愤</strong>——罗素直言他不喜欢尼采，因为他<strong>「喜欢沉思苦难」</strong>，并且认为尼采的伦理<strong>与后来的法西斯有亲和</strong>。★ <strong>这条附会必须打问号</strong>：尼采本人轻视国家与民族主义，他的思想<strong>被其妹与纳粹做了手脚，是学界公案</strong>；罗素把尼采与法西斯相连，是<strong>他个人的判断</strong>，且有后人认为<strong>不公平</strong>（见本报告第 5 节与 Kaufmann 一脉的尼采研究）。</p>
+  <h3>卷三第 26 章 功利主义者</h3>
+  <p>罗素讲<strong>边沁、詹姆斯·穆勒、约翰·穆勒</strong>：<strong>最大多数人的最大幸福、快乐计算、以及密尔的自由论与对「质」的快乐的补充</strong>。<strong>罗素的判断</strong>：罗素<strong>对约翰·穆勒有明显同情</strong>（穆勒是其教父且影响其思想），承认功利主义是<strong>一种真诚的、诉诸可检验标准的伦理学</strong>；但也指出<strong>「快乐计算」的可操作性问题</strong>（幸福如何比较、如何加总）。★ 对比他对浪漫主义的敌意，可以看出：<strong>罗素倾向任何「诉诸可检验标准而非直觉」的道德学说。</strong></p>
+  <h3>卷三第 27 章 卡尔·马克思</h3>
+  <p>罗素讲马克思：<strong>唯物史观、阶级与剩余价值、劳动价值论、以及「资本主义必然崩溃」</strong>。<strong>罗素的判断</strong>：马克思是<strong>重要的思想家</strong>（罗素承认其对社会学与历史理论的影响），但<strong>有几处硬伤</strong>——① <strong>劳动价值论</strong>在经济学上<strong>站不住</strong>（罗素站在后来边际革命的立场上说这话）；② <strong>「历史必然性」</strong>的论证<strong>是从黑格尔那里借来的先验结构</strong>（罗素视之为形而上学的残留）；③ <strong>革命后无产阶级专政的预测</strong>在实践上带来的是新的专制。★ 这一章是<strong>哲学史里少见的、由一位自由主义者对马克思的系统批判</strong>，不能当作中立的介绍。</p>
+  <h3>卷三第 28 章 柏格森</h3>
+  <p>罗素讲柏格森：<strong>时间与绵延（durée）、直觉高于理智、生命冲力（élan vital）、以及对机械论的批判</strong>。<strong>罗素的判断（★ 最凶狠的一章之一）</strong>：罗素<strong>专章反驳柏格森</strong>，认为他的哲学建立在<strong>「直觉」这一不可检验的权威</strong>之上，是<strong>反理智的</strong>；他逐条拆解柏格森关于「时间」「运动」「智力的目的性」的论证，判其<strong>混淆与分析错误</strong>。★ 这一章向来被当作<strong>罗素「论战欲」的标本</strong>：他不只是在介绍柏格森，而是<strong>在辩论中把柏格森打倒在地</strong>。</p>
+  <h3>卷三第 29 章 威廉·詹姆士</h3>
+  <p>罗素讲詹姆士：<strong>实用主义（真理的「兑现价值」）、「信仰的意志」、「经验」的激进多元论</strong>。<strong>罗素的判断</strong>：实用主义<strong>把「真」等同于「有用」是错的</strong>——罗素认为这会让「真理」失去独立的标准（一个信念「有用」，不等于它「真」）；但他也承认詹姆士的写法<strong>生动、诚恳</strong>。★ 罗素对实用主义的批评，与他对柏格森的批评同出一源：<strong>凡把「有用/直觉/成功」当作真理标准者，他一律不接受。</strong></p>
+  <h3>卷三第 30 章 约翰·杜威</h3>
+  <p>罗素讲杜威：<strong>工具主义、「探究即实验」、教育哲学、以及他对「理论—实践」二分的消解</strong>。<strong>罗素的判断</strong>：杜威<strong>把「探究」等同于「解决问题的成功」</strong>，犯了与詹姆士类似的错误——<strong>把「有效」偷换成「真」</strong>；但罗素对杜威<strong>为人与用心评价正面</strong>（他尊重杜威的民主与教育理想）。★ 这一章的语气比柏格森章<strong>温和</strong>，显示了罗素的偏好并非只有「喜欢／不喜欢」两档，还包含<strong>「不赞同但尊重」</strong>。</p>
+  <h3>卷三第 31 章 逻辑分析哲学</h3>
+  <p>罗素讲<strong>他自己的纲领</strong>：<strong>逻辑分析、摹状词理论、对「语言混乱造成假问题」的清理、以及哲学应以科学为典范</strong>。<strong>罗素的判断</strong>：这一章<strong>不是又一个学派的介绍，而是全书的收束与立场声明</strong>——罗素让整部哲学史以「离科学最近、最不诉诸权威的那种哲学」结尾。★ 这也是<strong>全书最短的「现代部分」</strong>：20 世纪早期分析哲学<strong>只有这一章</strong>，且<strong>完全没有提到海德格尔</strong>（George Steiner 正是据此把此书称为「vulgar」，见 <em>Martin Heidegger</em>, 1991, p.4）。</p>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一篇是全书最需要「另找尺子」的部分，有四条</strong>：</p>
+  <ol>
+    <li><strong>对卢梭的敌意与因果断言</strong>。「希特勒是卢梭的产物」是<strong>因果断言</strong>而非文本结论；卢梭研究界（Cole、Wolff 等）对卢梭的评价与罗素近乎相反。⇒ <strong>读卷三第 19 章时，必须把「卢梭的主张」与「罗素的判决」分栏记录。</strong>
+    </li>
+    <li><strong>对康德、黑格尔的转述被指失真</strong>。★ <strong>Kaufmann（1951）</strong>、<strong>Stewart 编（1996）</strong>、<strong>Houlgate</strong>、<strong>Scruton（2001）</strong> 的批评都集中在这里；<strong>这两章的篇幅与它们的哲学分量严重不成比例</strong>。⇒ <strong>不要用这两章作为了解康德、黑格尔的依据。</strong>
+    </li>
+    <li><strong>对柏格森、尼采、马克思的处理带有强烈论战性</strong>。这三章<strong>不是介绍，而是辩论</strong>——罗素在其中把对手的立场压缩成便于击倒的形态。★ 对尼采「与法西斯有亲和」的暗示，尤其需要注意：<strong>尼采思想的被纳粹挪用是学界公案，责任不在尼采本人。</strong>
+    </li>
+    <li><strong>末章的选择性收尾</strong>。把 20 世纪哲学收在「逻辑分析哲学」一章，<strong>把整部哲学史写成了罗素方法的序曲</strong>——这是叙事上的漂亮，<strong>也是历史上的偏斜</strong>（现象学、存在主义、以及整个欧陆 20 世纪哲学在此缺席，海德格尔甚至未被提及）。
+    </li>
+  </ol>
+</section>
+
+<section id="s14">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>概念／人物</th><th>一句话</th><th>出现在</th></tr></thead>
+    <tbody>
+      <tr><td><strong>神学与科学之间的无人区</strong></td><td>罗素对「哲学」的定位：诉诸理性而非权威</td><td>绪论（全书地基）</td></tr>
+      <tr><td><strong>社会凝聚 vs 个人自由</strong></td><td>全书的叙事主线（罗素的选择）</td><td>绪论与全书</td></tr>
+      <tr><td><strong>哲学既是果，又是因</strong></td><td>哲学由时代造成，又反过来塑造时代</td><td>序言、绪论</td></tr>
+      <tr><td><strong>奥尔弗斯教</strong></td><td>灵魂不朽与轮回的宗教底色</td><td>卷一第 1、3、13、16 章</td></tr>
+      <tr><td><strong>原子论</strong></td><td>罗素认为最「有科学前途」却被压制的一条路</td><td>卷一第 9 章</td></tr>
+      <tr><td><strong>理念论</strong></td><td>罗素判其为「把共相当成实体」的逻辑混淆</td><td>卷一第 15 章</td></tr>
+      <tr><td><strong>高贵的谎言</strong></td><td>《理想国》把国民分金银铜三等</td><td>卷一第 14 章</td></tr>
+      <tr><td><strong>自然法</strong></td><td>斯多葛留给后世的遗产</td><td>卷一第 28 章</td></tr>
+      <tr><td><strong>流溢说</strong></td><td>普罗提诺的宇宙生成（太一→心智→灵魂→物质）</td><td>卷一第 30 章</td></tr>
+      <tr><td><strong>原罪与恩典</strong></td><td>奥古斯丁的核心教义</td><td>卷二第 4 章</td></tr>
+      <tr><td><strong>唯名论</strong></td><td>共相只是名称；罗素视为通向近代经验论的路线</td><td>卷二第 14 章</td></tr>
+      <tr><td><strong>主观性的滑坡</strong></td><td>笛卡尔→贝克莱→康德→费希特（罗素判为「疯狂」）</td><td>卷三第 1 章</td></tr>
+      <tr><td><strong>存在即被感知</strong></td><td>贝克莱；罗素判「论证有效、结论荒谬」</td><td>卷三第 16 章</td></tr>
+      <tr><td><strong>因果怀疑</strong></td><td>休谟：我们见「相继」，不见「必然联系」</td><td>卷三第 17 章</td></tr>
+      <tr><td><strong>伪民主专政</strong></td><td>罗素对卢梭的定性（★ 罗素的判断）</td><td>卷三第 19 章</td></tr>
+      <tr><td><strong>物自体</strong></td><td>康德；罗素判其为自相矛盾的残留</td><td>卷三第 20 章</td></tr>
+      <tr><td><strong>逻辑分析哲学</strong></td><td>罗素自己的纲领，全书收束</td><td>卷三第 31 章</td></tr>
+      <tr><td><strong>Bertrand Russell</strong></td><td>作者；逻辑学家，本书为讲稿</td><td>—</td></tr>
+      <tr><td><strong>Walter Kaufmann</strong></td><td>拆解罗素所传「黑格尔神话」</td><td>第 5.1 节</td></tr>
+      <tr><td><strong>George Boas</strong></td><td>指罗素「分不清历史与论战」</td><td>第 5.2／5.3 节</td></tr>
+      <tr><td><strong>Leo Roberts</strong></td><td>判罗素对古代与中世纪「几乎毫无价值」</td><td>第 5.4 节</td></tr>
+      <tr><td><strong>Frederick Copleston</strong></td><td>判罗素处理多位哲学家「既不足又误导」</td><td>第 5.1 节</td></tr>
+      <tr><td><strong>Roger Scruton</strong></td><td>指罗素「不了解康德」</td><td>第 5.1 节</td></tr>
+      <tr><td><strong>Isaiah Berlin</strong></td><td>那篇著名书评（后收入《扭曲的人性之材》二版附录）</td><td>第 5.3 节</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s15">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>反面书评（想看清这本书的边界，必读这三篇）</strong>：George Boas，<em>Journal of the History of Ideas</em> 8 (1947): 117–123；Leo Roberts，<em>Isis</em> 38 (1948): 268–270；Isaiah Berlin 的书评（后收入 <em>The Crooked Timber of Humanity</em>，第二版附录，Princeton UP，2013）。
+    </li>
+    <li><strong>专业哲学史的对照</strong>：Frederick Copleston，<em>A History of Philosophy</em>（9 卷，1946–75）——英语世界最系统的对照读本；Anthony Kenny，<em>A New History of Western Philosophy</em>（2004）。
+    </li>
+    <li><strong>黑格尔之争</strong>：Walter Kaufmann，〈The Hegel Myth and Its Method〉，<em>Philosophical Review</em> 60(4): 459–486，1951；Jon Stewart（编），<em>The Hegel Myths and Legends</em>，Northwestern University Press，1996。
+    </li>
+    <li><strong>卢梭的另一面</strong>：G.D.H. Cole 为卢梭文集所写的译序（1913）；Robert Paul Wolff，<em>About Philosophy</em>，9th ed.，2006。
+    </li>
+    <li><strong>罗素其人其书</strong>：Ray Monk，<em>Bertrand Russell: The Ghost of Madness 1921–1970</em>，2000；罗素《自传》（中译本，商务印书馆 2003）第二卷。
+    </li>
+  </ol>
+</section>
+
+<section id="s16">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>见同目录 <code>西方哲学史-来源清单.md</code>。</p>
+</section>
+
+<section id="s17">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. 首版的年份与国别，两套口径</h3>
+  <ul>
+    <li><strong>美国首版 1945（Simon &amp; Schuster），英国版 1946（George Allen &amp; Unwin）</strong>——这是多数来源与本书目录页的写法（罗素自序提到巴恩斯基金会的讲学）。
+    </li>
+    <li>★ 但<strong>个别英文介绍把美国首版记作 1947</strong>（如某摘要站点写「UK 1946; US 1947」），与主流口径不符；另有出版方页面写「First published in 1946」（指英国版）。
+    </li>
+    <li>⇒ <strong>本报告取「1945 年美国首版／1946 年英国版」</strong>，并在此并列异说。<strong>以你手中版本的版权页为准。</strong>
+    </li>
+  </ul>
+  <h3>D2. 「历史章节由其妻代笔」之说，未能核实</h3>
+  <ul>
+    <li>中文百科称「其中关于历史方面的内容是由其第三任妻子<strong>多拉·布莱克</strong>完成的」。★ <strong>多拉·布莱克是罗素的第二任妻子，不是第三任</strong>；而且我<strong>未能找到一手来源</strong>支持「历史章节系他人代笔」这一说法（罗素自传强调的是本书由讲稿整理、且成为他多年主要收入）。
+    </li>
+    <li>⇒ <strong>本报告不采用此说</strong>，仅在此标注。<strong>若你见到类似说法，请要求其出示一手依据。</strong>
+    </li>
+  </ul>
+  <h3>D3. 译者「李约瑟」的身份与图书馆编目的错误</h3>
+  <ul>
+    <li>本书译者署名中的<strong>李约瑟</strong>，据澎湃新闻《何兆武译罗素〈西方哲学史〉的几点史实》（2023-09-11）与李约瑟本人信息，是<strong>另一位中国人</strong>（1924 年生，青年时期在日本研习西方哲学史，后任教于南开大学哲学系），<strong>不是</strong>写《中国科学技术史》的英国科学家 <strong>Joseph Needham（1900–1995，中文名亦作李约瑟）</strong>。
+    </li>
+    <li>★ <strong>但部分图书馆编目把译者李约瑟的著录写成了「李约瑟 (1900-1995)」</strong>（即 Joseph Needham 的生卒年）——这是<strong>编目错误</strong>。
+    </li>
+    <li>⇒ <strong>以纸本版权页为准</strong>；遇到写「李约瑟 (1900–1995)」译的编目，应视作错误著录。
+    </li>
+  </ul>
+  <h3>D4. 爱因斯坦那句中文引语，来源不明</h3>
+  <ul>
+    <li>中文网络流传一句爱因斯坦的评价：「一本珍贵的、超越派别和意见冲突的、最适宜于教学的书」。★ 英文资料只说此书<strong>得到爱因斯坦与薛定谔的好评</strong>（Wikipedia 及多篇介绍的一致说法），<strong>但我未能找到这句中文引语的原文出处与准确译本</strong>。
+    </li>
+    <li>⇒ <strong>本报告不引用该句具体译文</strong>，仅承认「爱因斯坦对此书有好评」这一较弱的事实。
+    </li>
+  </ul>
+  <h3>D5. 「诺贝尔文学奖主要根据《西方哲学史》」的措辞</h3>
+  <ul>
+    <li>中文资料常见「罗素 1950 年获诺贝尔奖，评奖的主要根据就是《西方哲学史》」。★ 可核实的是<strong>罗素因「多样且重要的作品、持续追求人道主义理想与思想自由」获奖</strong>；<strong>「主要根据本书」这一具体措辞我未能以诺贝尔官方材料逐字确认</strong>。
+    </li>
+    <li>⇒ <strong>本报告只写「它是罗素获奖时的重要作品之一」，不作「主要根据」的断言。</strong>
+    </li>
+  </ul>
+  <h3>D6. 2015「权威全译本」与 1963 版的页数差</h3>
+  <ul>
+    <li>1963 上卷 590 页 vs 2015 上卷 641 页——<strong>51 页的差异从何而来</strong>（新增序跋／排版／索引／补译？）<strong>未核实</strong>。
+    </li>
+    <li>⇒ <strong>购书与引用页码时，须以你手中版次的版权页与目录为准</strong>；本报告<strong>不使用页码定位</strong>，一律用「卷X第 Y 章」。
+    </li>
+  </ul>
+  <h3>D7. 罗素对经院哲学的具体判词，缺少可定位的逐字引文</h3>
+  <ul>
+    <li>本报告能定位到的对中世纪的判断，<strong>主要来自批评者（Roberts 1948、Copleston）的转述</strong>，而非罗素本人的逐字原话。★ 卷二各章的具体判词<strong>未能逐字核对</strong>。
+    </li>
+    <li>⇒ <strong>卷二相关表述一律按「转述／推断」处理</strong>；若需引用罗素原话，请回到原书卷二。
+    </li>
+  </ul>
+</section>
+
+<footer>
+  生成于 2026-10-07 · 来源清单与交叉验证记录见同目录 <code>西方哲学史-来源清单.md</code><br>
+  本页引文按<b>B 级（带卷／章可定位引文）</b>处理：标注卷／章（部分页码）的条目取自学术论文、书评与权威二手研究的逐字引用，<b>我未持原书、未读全书正文</b>，具体措辞请以原书复核；批评文献的姓名、篇名、刊物、卷期与年份已逐条给出；未标卷／章者仍是二手转述。★ 本书是<b>一部带强烈立场的评论性通史</b>——罗素自称「没有偏见的人写不出有趣的历史」，并对卢梭、黑格尔、柏格森等人大加重判。因此本报告<b>第 5 节（争议与局限）刻意写得最实</b>，且下部<b>逐章把「这个哲学家说了什么」与「罗素怎么评价他」分开写</b>：大众口碑极好，而<b>专业哲学史界的批评更晚、更硬</b>，后者才是稀缺信息。★ 另请留意：中译的<b>「李约瑟」不是写《中国科学技术史》的英国李约瑟（Joseph Needham）</b>，而是另一位同名的中国译者。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

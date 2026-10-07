@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《国富论》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《国富论》<small>阅读指引与精华解析 · 2026-10-07</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 七个核心论点</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 中文译本怎么选</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s7">6 第一篇·第一章：论分工</a>
+    <a href="#s8">7 第一篇·第二章：论分工的起因</a>
+    <a href="#s9">8 第一篇·第三章：论分工受市场范围的限制</a>
+    <a href="#s10">9 第一篇·第四章：论货币的起源及其效用</a>
+    <a href="#s11">10 第一篇·第五章：论商品的真实价格与名义价格</a>
+    <a href="#s12">11 第一篇·第六章：论商品价格的组成部分</a>
+    <a href="#s13">12 第一篇·第七章：论商品的自然价格与市场价格</a>
+    <a href="#s14">13 第一篇·第八章：论劳动工资</a>
+    <a href="#s15">14 第一篇·第九章：论资本利润</a>
+    <a href="#s16">15 第一篇·第十章：论工资与利润随职业不同而不同</a>
+    <a href="#s17">16 第一篇·第十一章：论地租</a>
+    <a href="#s18">17 第二篇·第一章：论资财的划分</a>
+    <a href="#s19">18 第二篇·第二章：论货币作为社会总资财的一个特殊部门</a>
+    <a href="#s20">19 第二篇·第三章：论资本积累，并论生产性与非生产性劳动</a>
+    <a href="#s21">20 第二篇·第四章：论贷出取息的资财</a>
+    <a href="#s22">21 第二篇·第五章：论资本的各种用途</a>
+    <a href="#s23">22 第三篇·第一章：论财富的自然增长</a>
+    <a href="#s24">23 第三篇·第二章：论罗马帝国崩溃后农业所受的抑制</a>
+    <a href="#s25">24 第三篇·第三章：论都市的勃兴与进步</a>
+    <a href="#s26">25 第三篇·第四章：论都市商业对农村改良的贡献</a>
+    <a href="#s27">26 第四篇·第一章：论商业主义或重商主义的原理</a>
+    <a href="#s28">27 第四篇·第二章：论限制从外国输入国内能生产的货物</a>
+    <a href="#s29">28 第四篇·第三章：论对贸易差额被认为不利的那些国家的货物的输入所加的异常限制</a>
+    <a href="#s30">29 第四篇·第四章：论退税</a>
+    <a href="#s31">30 第四篇·第五章：论奖励金</a>
+    <a href="#s32">31 第四篇·第六章：论通商条约</a>
+    <a href="#s33">32 第四篇·第七章：论殖民地</a>
+    <a href="#s34">33 第四篇·第八章：关于重商主义的结论</a>
+    <a href="#s35">34 第四篇·第九章：论重农主义</a>
+    <a href="#s36">35 第五篇·第一章：论君主或国家的费用</a>
+    <a href="#s37">36 第五篇·第二章：论一般收入或公共收入的源泉</a>
+    <a href="#s38">37 第五篇·第三章：论公债</a>
+    <div class="grp">附录</div>
+    <a href="#s39">A 关键概念与人物速查</a>
+    <a href="#s40">B 延伸阅读</a>
+    <a href="#s41">C 来源清单</a>
+    <a href="#s42">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《国富论》阅读指引与精华解析</h1>
+  <div class="sub">An Inquiry into the Nature and Causes of the Wealth of Nations</div>
+  <div class="meta">
+    <div><b>作者</b>亚当·斯密（Adam Smith，1723–1790），苏格兰启蒙运动核心人物；格拉斯哥大学道德哲学教授（1752–1764）；与休谟终生挚友；另有《道德情操论》（1759）、《哲学文集》（含《天文学史》）</div>
+    <div><b>成书年代</b>1776-03-09 首次出版（伦敦 W. Strahan and T. Cadell）；生前共出 <b>5 版</b>（1776／1778／1784／1786／1789），每版均有实质修订</div>
+    <div><b>★ 大陆简体版</b>郭大力、王亚南 译，商务印书馆「汉译世界学术名著丛书」。<b>1931 初译题《国富论》；1965 校订时恢复原著全称《国民财富的性质和原因的研究》</b>（精装 894 页，ISBN 9787100023337）；2015-06 版《国富论》920 页（ISBN 978-7-100-10884-3）；2019 建国 70 周年珍藏本 920 页（ISBN 978-7-100-17816-7）。★ 另有 <b>杨敬年 译</b>（陕西人民出版社 2001，学界评价高，附熊彼特／萨缪尔森／马克思批注）、唐日松、贾拥民等译本；最早的严复译本《原富》出版于 1901–1902</div>
+    <div><b>篇幅</b><b>5 篇 32 章</b>（第一篇 11 章｜第二篇 5 章｜第三篇 4 章｜第四篇 9 章｜第五篇 3 章；第二、四篇另有「序论」）。第四篇与第五篇合计接近全书一半</div>
+    <div><b>荣誉／地位</b>现代经济学的奠基文本；「政治经济学」作为独立学科由此确立；据传第一版半年售罄，此后译成数十种文字；中文世界自严复《原富》起传入已百余年，2000 年后出现重译潮</div>
+    <div><b>状态</b>未标注已读／想读 —— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> ★ 本书走 <b>A 级（公版原文）</b>：依据 <b>Project Gutenberg #3300 英文全文</b>，逐篇逐章核对，并以 Online Library of Liberty 的 Glasgow 校勘版作对照。凡引文均可在该公版全文中找到并比对上下文；定位一律用<b>篇·章</b>，能佐证处并给 Glasgow 段落号（如 WN IV.ii.9）</li>
+    <li><span class="tag t-talk">作者谈话</span> ★ 斯密<b>已逝于 1790 年</b>，本报告<b>不假装他接受过访谈</b>。此档仅用于斯密本人<b>书外</b>的其他文字：《道德情操论》《天文学史》等 —— 并已注明<b>这不是访谈</b></li>
+    <li><span class="tag t-rep">转述</span> 关于接受史、批评史、译名史的一切二手陈述（Rothschild 1994、Kennedy 2009、Raphael–Macfie 1976 等）—— 姓名＋篇名＋刊物／出版社＋年份齐备，但未回原 PDF 逐字核对</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本报告对《国富论》全书结构与约 <b>25 章</b>的原文段落做了 A 级（公版全文）核对；<b>第一篇第 4 章、第二篇第 4 章、第四篇第 4 章、第四篇第 6 章退到 B</b>（只核结构、未逐段精读）。Gutenberg 全文无段落号，故除「看不见的手」（WN IV.ii.9，多来源一致佐证）外，正文一律<b>不硬造 Glasgow 段落号</b>。★ 中译本页数／ISBN 取自出版方页面与编目，我未持原书。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（A 级 · 公版原文）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">依据入口：<b>Project Gutenberg eBook #3300</b>（<i>An Inquiry into the Nature and Causes of the Wealth of Nations</i>，英文公版全文，约 2.47 MB／34930 行，Release 2002-06-01），以 <b>Online Library of Liberty 的 Glasgow 校勘版</b>作结构对照。<br>覆盖范围：全书 <b>5 篇 32 章</b>目录逐章核对；<b>约 25 章</b>的原文段落逐字引用与上下文比对；其余 <b>4 章（第一篇第 4 章、第二篇第 4 章、第四篇第 4 章、第四篇第 6 章）</b>仅核结构、未逐段精读，如实降为 <b>B</b>。<br>★ 引文定位一律用<b>篇·章</b>（如「第四篇第二章」）；有多个独立来源一致佐证处给出 <b>Glasgow 段落号 WN IV.ii.9</b>；因公版全文无段落号，其余处<b>不硬造</b>。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>这本书要回答的是：一个国家的财富从哪来、怎么增长、由谁分配、政府在其中该干什么。</strong></p>
+  <p>它不是一本经济学教科书（没有公式、没有需求曲线），也不是一本政策手册；它是<strong>一部以「自然自由体系」（the system of natural liberty）为纲的、带强烈论战色彩的庞大论著</strong>。斯密在开篇《序论》里就把问题锁死了：一国年产物是丰是寡，取决于两件事——<strong>① 劳动的熟练、技巧与判断力（即分工）；② 从事有用劳动的人数与非有用劳动人数的比例（即资本配置）</strong> <span class="tag t-src">原书</span>（《序论》开篇）。</p>
+  <p>一句话结论（全书最该记住的一句）：<strong>「劳动是价值的真实尺度。」</strong>（Labour is the real measure of the exchangeable value of all commodities.）<span class="tag t-src">原书</span>（第一篇第五章）。</p>
+  <p><strong>它不是什么</strong>：不是「自由市场宣言」（斯密在第五篇给政府列了三大职能，还主张国家办教育）；不是「自私的辩护词」（他骂商人的话比对谁都狠）；也不是一本可以只挑「看不见的手」一句来读的书。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>下表把<strong>五篇 32 章</strong>全部列出（一章不少）。引用一律用<strong>篇·章</strong>定位；凡有神采的原句，我给 Gutenberg #3300 全文核对的段落位置。</p>
+  <table>
+    <thead><tr><th>#</th><th>篇／章</th><th>中文标题</th><th>这一部分在体系里的位置</th></tr></thead>
+    <tbody>
+      <tr><td>—</td><td>《序论》</td><td>序论及全书设计</td><td>提出全书问题：年产物由「分工」与「有用劳动占比」二因素决定</td></tr>
+      <tr><td>1</td><td>第一篇 第一章</td><td>论分工</td><td>提出「分工是劳动生产力最大增进的原因」＋别针工厂</td></tr>
+      <tr><td>2</td><td>第一篇 第二章</td><td>论分工的起因</td><td>分工源于人性中「互通有无、物物交换、互相交易」的倾向</td></tr>
+      <tr><td>3</td><td>第一篇 第三章</td><td>论分工受市场范围的限制</td><td>市场越大，分工越细；水运扩大市场</td></tr>
+      <tr><td>4</td><td>第一篇 第四章</td><td>论货币的起源及其效用</td><td>从物物交换困难推出货币的起源</td></tr>
+      <tr><td>5</td><td>第一篇 第五章</td><td>论商品的真实价格与名义价格</td><td>★ 劳动价值论：劳动是价值的真实尺度，货币是名义尺度</td></tr>
+      <tr><td>6</td><td>第一篇 第六章</td><td>论商品价格的组成部分</td><td>价格分解为工资＋利润＋地租</td></tr>
+      <tr><td>7</td><td>第一篇 第七章</td><td>论商品的自然价格与市场价格</td><td>★ 全书最技术的一节：自然价格 vs 市场价格</td></tr>
+      <tr><td>8</td><td>第一篇 第八章</td><td>论劳动工资</td><td>工资由劳资博弈与资本积累决定；高工资是繁荣的标志</td></tr>
+      <tr><td>9</td><td>第一篇 第九章</td><td>论资本利润</td><td>利润随资本丰裕而下降；利息上限</td></tr>
+      <tr><td>10</td><td>第一篇 第十章</td><td>论工资与利润随职业不同而不同</td><td>各种职业的差异；★「同业者密谋抬高价格」</td></tr>
+      <tr><td>11</td><td>第一篇 第十一章</td><td>论地租</td><td>地租理论；★ 内嵌极长的「论银价四世纪之变动」插叙</td></tr>
+      <tr><td>12</td><td>第二篇 第一章</td><td>论资财的划分</td><td>资本分为固定资本与流动资本</td></tr>
+      <tr><td>13</td><td>第二篇 第二章</td><td>论货币作为社会总资财的特殊部门</td><td>银行、纸币与信用（含著名的「苏格兰银行」材料）</td></tr>
+      <tr><td>14</td><td>第二篇 第三章</td><td>论资本积累，并论生产性与非生产性劳动</td><td>★ 生产性／非生产性劳动之分；节俭是资本增加的直接原因</td></tr>
+      <tr><td>15</td><td>第二篇 第四章</td><td>论贷出取息的资财</td><td>利息的由来与利率</td></tr>
+      <tr><td>16</td><td>第二篇 第五章</td><td>论资本的各种用途</td><td>资本四种用途；★ 农业→工业→批发→零售的「自然顺序」</td></tr>
+      <tr><td>17</td><td>第三篇 第一章</td><td>论财富的自然增长</td><td>★ 欧洲走的是「不自然的、倒退的」道路</td></tr>
+      <tr><td>18</td><td>第三篇 第二章</td><td>论罗马帝国崩溃后农业所受的抑制</td><td>长子继承制、限定继承、什一税、农奴制</td></tr>
+      <tr><td>19</td><td>第三篇 第三章</td><td>论都市的勃兴与进步</td><td>城市自治、行会与王权的交易</td></tr>
+      <tr><td>20</td><td>第三篇 第四章</td><td>论都市商业对农村改良的贡献</td><td>商业城市如何反过来改造农业</td></tr>
+      <tr><td>21</td><td>第四篇 第一章</td><td>论重商主义原理</td><td>★ 论战开始：财富＝金银的谬误</td></tr>
+      <tr><td>22</td><td>第四篇 第二章</td><td>论限制输入国内能生产的货物</td><td>★★「看不见的手」<strong>唯一</strong>出现之处（IV.ii.9）</td></tr>
+      <tr><td>23</td><td>第四篇 第三章</td><td>论对贸易差额不利国家的异常限制</td><td>批「贸易差额论」的极端推论</td></tr>
+      <tr><td>24</td><td>第四篇 第四章</td><td>论退税</td><td>对出口退税的具体分析</td></tr>
+      <tr><td>25</td><td>第四篇 第五章</td><td>论奖励金</td><td>★ 批谷物奖励金（bounty）——被驳倒的政策样板</td></tr>
+      <tr><td>26</td><td>第四篇 第六章</td><td>论通商条约</td><td>批以通商条约谋取垄断</td></tr>
+      <tr><td>27</td><td>第四篇 第七章</td><td>论殖民地</td><td>★★ 全书最长的一章：殖民地贸易垄断与「放弃殖民地」的推演</td></tr>
+      <tr><td>28</td><td>第四篇 第八章</td><td>关于重商主义的结论</td><td>总结论战：消费是生产的唯一目的</td></tr>
+      <tr><td>29</td><td>第四篇 第九章</td><td>论重农主义</td><td>批重农学派（魁奈），虽同情但说其片面</td></tr>
+      <tr><td>30</td><td>第五篇 第一章</td><td>论君主或国家的费用</td><td>★ 政府三大职能：国防、司法、公共工程＋教育</td></tr>
+      <tr><td>31</td><td>第五篇 第二章</td><td>论一般收入或公共收入的源泉</td><td>★ 税收四原则（平等／确定／便利／经济）；四类税</td></tr>
+      <tr><td>32</td><td>第五篇 第三章</td><td>论公债</td><td>★ 公债的机制与危险；论战争与债务</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法总提示</strong>：五篇不是五个并列话题，而是<strong>一条论证链</strong>。若把全书当成一座建筑——<strong>第一篇是地基（价值与分配），第二篇是发动机（资本），第三篇是施工史（历史），第四篇是把错误图纸撕掉（论战），第五篇是交付清单（政府与财政）</strong>。前三篇教你怎么理解，后两篇才教你怎么办。<strong>只读前三篇的人，读到的是一半的《国富论》。</strong></p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>七个核心论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：分工是劳动生产力增进的最大原因</h3>
+  <p><strong>主张</strong>：国民财富的丰裕，首先来自<strong>分工</strong>——分工使同一批人做出多得多的产出 <span class="tag t-src">原书</span>（第一篇第一章）。全书的第一个例证就是<strong>别针工厂</strong>：十个工人分十八道工序，一天可做四万八千枚针；若各自独立，恐怕一天一枚也做不出 <span class="tag t-src">原书</span>（第一篇第一章，别针工厂段）。</p>
+  <p><strong>依据</strong>：分工提高生产力有三条理由——① 每个工人技术更熟练；② 省去工种转换的时间；③ 简化劳动催生了机器发明 <span class="tag t-src">原书</span>（第一篇第一章末段）。</p>
+  <p><strong>为什么重要</strong>：这是全书的<strong>起点</strong>。斯密的整个体系，都建立在一个「不必靠美德、只靠机制就能增产」的假设上——分工把技能与效率平均化，让最普通的人也能分享繁荣。★ 但要注意：<strong>斯密同时也警告分工使人「变得愚蠢和无知」</strong>（第五篇第一章第三部分），因此主张国家办教育来补救。<strong>把「分工赞美」和「教育主张」丢掉一半，就会读成一个盲目的分工崇拜者。</strong></p>
+  <h3>论点二：劳动是价值的真实尺度；价格由工资、利润、地租三部分构成</h3>
+  <p><strong>主张</strong>：斯密区分商品的<strong>真实价格</strong>（用劳动衡量）与<strong>名义价格</strong>（用货币衡量），并断言<strong>劳动是一切商品交换价值的真实尺度</strong> <span class="tag t-src">原书</span>（第一篇第五章）。在「初期野蛮社会」，全部产出归劳动者；但一旦出现土地私有与资本积累，价格就分解为<strong>工资＋利润＋地租</strong>三部分 <span class="tag t-src">原书</span>（第一篇第六章）。</p>
+  <p><strong>依据</strong>：他以谷物与白银的长期比价做长时段论证，试图说明劳动是更稳定的价值标准。</p>
+  <p><strong>为什么重要</strong>：这既是<strong>古典政治经济学的基石</strong>（李嘉图、马克思都从这里出发），也是全书<strong>后来被改写最厉害</strong>的一环（见 5.3）。★ 而且斯密自己就不统一：他一方面说劳动是价值尺度，另一方面又说资本积累后「劳动价值论」只适用于早期社会——<strong>这套理论从诞生起就带着裂缝</strong>。</p>
+  <h3>论点三：资本积累靠「节俭」，生产性劳动比非生产性劳动更能增加财富</h3>
+  <p><strong>主张</strong>：资本增加的直接原因是<strong>节俭（parsimony），而非勤劳</strong> <span class="tag t-src">原书</span>（第二篇第三章）。斯密把劳动分为<strong>生产性</strong>（能固定并实现在可售商品上，能带来利润）与<strong>非生产性</strong>（服务一过即逝，如家仆、官吏、演艺人员）两类，并主张前者才积累资本 <span class="tag t-src">原书</span>（第二篇第三章）。</p>
+  <p><strong>依据</strong>：制造业工人的工资会在成品价值里「还原并带来利润」，而家仆的工资不会还原——「雇一批工人会致富，养一批家仆会变穷」<span class="tag t-src">原书</span>（第二篇第三章）。</p>
+  <p><strong>为什么重要</strong>：★ 这一条是全书<strong>最经不起检验、也最有政治后果</strong>的一环：它把军队、公务员、教士、教师、学者统统划进了「非生产性」——<strong>在斯密这里这只是一个会计分类，但被后来的论者引向「政府是纯消耗」的判断，也因此埋下了被误解为「小政府」的伏笔</strong>（见 5.5）。</p>
+  <h3>论点四：欧洲的财富走了一条「不自然的、倒退的」道路</h3>
+  <p><strong>主张</strong>：按事物的自然顺序，资本应先投农业、再投制造业、最后才是对外贸易；但<strong>欧洲「在许多方面把这一顺序完全颠倒了过来」</strong>——对外贸易和制造业先起，农业反而被制度和政策压制，被他称为「不自然的、倒退的顺序」（unnatural and retrograde order）<span class="tag t-src">原书</span>（第三篇第一章）。</p>
+  <p><strong>依据</strong>：罗马帝国崩溃后，长子继承制、限定继承、什一税、农奴制、行会与城市特权层层阻碍农业；而城市通过自治与商业，反而先积累了资本 <span class="tag t-src">原书</span>（第三篇第二至四章）。</p>
+  <p><strong>为什么重要</strong>：<strong>第三篇是全书的「历史论证」</strong>，也是斯密体系里最容易被忽略、却最能说明「他为什么反重商主义」的一篇。<strong>他的论点不是「市场总会好」，而是「人为的制度把自然顺序搞乱了」。</strong></p>
+  <h3>论点五：重商主义是错的——财富不是金银，自由贸易才增长财富</h3>
+  <p><strong>主张</strong>：重商主义把财富等同于金银，用关税、禁令、奖励金、殖民地垄断把贸易变成零和博弈；斯密则说，<strong>真正的财富是年产物</strong>，而自由贸易能让各国各展所长 <span class="tag t-src">原书</span>（第四篇第一、二章）。★ 著名的「<strong>看不见的手</strong>」就出现在这一篇的这一章：个人「只图自己的安全与利益」，却被一只看不见的手引导去促进「并非他本意的目的」<span class="tag t-src">原书</span>（第四篇第二章，IV.ii.9）。</p>
+  <p><strong>依据</strong>：他对贸易差额论、奖励金（尤其谷物奖励金）、通商条约、殖民地垄断逐一做了具体的经济学反驳。</p>
+  <p><strong>为什么重要</strong>：<strong>这是全书的主战场。</strong> 第四篇是全篇最长的一篇之一（9 章），也是「看不见的手」的原产地。<strong>但斯密并不是绝对的自由贸易者</strong>——同一章里他紧接着说：「<strong>鉴于国防比富裕重要得多，航海法或许是英国一切商业法规中最明智的一条。</strong>」<span class="tag t-src">原书</span>（第四篇第二章）<strong>这句要紧的话，几乎从不出现在流行转述里。</strong></p>
+  <h3>论点六：国家有三大职能，钱来自税收与公债</h3>
+  <p><strong>主张</strong>：按自然自由体系，君主/国家只有<strong>三项职责</strong>——① <strong>国防</strong>（保护社会不受外来侵略）；② <strong>司法</strong>（保护每个成员不受他人侵害）；③ <strong>公共工程与公共机构</strong>（私人无利可图、社会却必需者）<span class="tag t-src">原书</span>（第五篇第一章）。而财政靠税收，税收要遵守<strong>四原则</strong>——平等、确定、便利、经济（尽量少从人民口袋里拿走超出国库所得的部分）<span class="tag t-src">原书</span>（第五篇第二章）。</p>
+  <p><strong>依据</strong>：他逐项讨论国防（常备军）、司法、道路桥梁运河港口、<strong>以及教育</strong>（青年教育与全民教育两部分，明确主张国家介入），再讨论四类税与公债。</p>
+  <p><strong>为什么重要</strong>：★ <strong>这是纠正「斯密＝小政府／无政府」这一流行印象的关键一章。</strong> 斯密从没说过「政府越小越好」；他说的是<strong>政府该干的就认真干，不该干的别插手</strong>——而他认为该干的事，包括<strong>办教育</strong>和<strong>修路架桥</strong>。第五篇占全书约四分之一（3 章，但每章内分多节），<strong>是全书最被跳过、也最有现实意义的一篇。</strong></p>
+  <h3>论点七：评判经济政策的标准是「消费者」，而不是「生产者」</h3>
+  <p><strong>主张</strong>：斯密在第四篇收尾处抛出全书最政治化的一句原则：「<strong>消费是一切生产的唯一目的和用途；生产者的利益，只有在为促进消费者的利益所必需时，才应受到注意。</strong>」<span class="tag t-src">原书</span>（第四篇第八章）他并指出：重商主义的一整套政策（关税、禁令、奖励金、殖民地垄断）「<strong>几乎总是为了生产者的利益而牺牲消费者的利益</strong>」<span class="tag t-src">原书</span>（第四篇第八章）。</p>
+  <p><strong>依据</strong>：他对每一项具体政策（进口限制、奖励金、殖民地贸易独占）的分析，最终都落在同一个判据上——<strong>这项政策是让消费者多付了钱，还是让消费者少付了钱。</strong></p>
+  <p><strong>为什么重要</strong>：★ 这条原则把「自由贸易」从一句口号变成了<strong>一个可操作的评判标尺</strong>——问「<strong>谁得利、谁付账</strong>」。它至今仍是评估产业政策与贸易保护的起点。★ 但它也有代价：<strong>它倾向于忽略生产者（工人）的调整成本</strong>，这正是斯密在第四篇第二章承认「突然放开有痛苦、须渐进」、却在第四篇第八章说得过于绝对的地方（见第 33 章）。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <ol>
+    <li><strong>先读《序论》＋第一篇第 1–3 章</strong>（分工、分工的起因、分工受市场限制）。这是全书的门面，也是最好读的部分；别针工厂就在第一章。
+    </li>
+    <li><strong>第一篇第 4–7 章要连读</strong>（货币 → 真实价格与名义价格 → 价格构成 → 自然价格与市场价格）。这四章是全书<strong>唯一一段成体系的「价格理论」</strong>，第七章是全书最技术的一节（读法见下）。
+    </li>
+    <li><strong>第一篇第 8–11 章可跳读</strong>。第 8、9、10 章讲工资利润，选读即可；<strong>第十一章论地租里有一段极长的「论银价四世纪之变动」插叙——整段技术、整段可跳</strong>，不影响主线。
+    </li>
+    <li><strong>第二篇重点读第三章</strong>（生产性／非生产性劳动、节俭）；第一、二章（资本划分、货币银行）可略读。
+    </li>
+    <li><strong>第三篇四章要整篇读</strong>，它短、而且好看——它是全书的「历史故事」，也是理解第四篇的钥匙。
+    </li>
+    <li><strong>第四篇第 1、2 章必读</strong>（重商主义原理 ＋「看不见的手」）；<strong>第七章（论殖民地）值得抽时间读</strong>，它是全书最长的一章，也是最见斯密现实判断与政治胆识的一章。
+    </li>
+    <li><strong>第五篇第 1、2、3 章都要读</strong>。若时间紧，至少读<strong>第一章（政府三职能＋教育）</strong>与<strong>第二章里的「税收四原则」</strong>——这两处可以直接拿去对照今天的公共政策讨论。
+    </li>
+  </ol>
+  <p>★ <strong>怎么读第一篇第七章的「自然价格」</strong>：这是全书最技术的一节，别被术语吓退。只要抓住三句话就够了——① <strong>自然价格</strong>＝按自然率支付的工资＋利润＋地租，相当于「长期均衡价」；② <strong>市场价格</strong>＝当下实际成交价，由实际上市量与「<strong>有效需求</strong>」决定；③ <strong>市场价格围绕自然价格上下波动，而供给方的进出会把它拉回自然价格</strong> <span class="tag t-src">原书</span>（第一篇第七章）。<strong>这三句话，就是后来的「供求均衡」理论的雏形。</strong> 读它要盯住一个词：<strong>effectual demand（有效需求）</strong>——它不是「想买」，而是「愿意且能够按自然价格买」。<strong>这个词错了，整章就错了。</strong></p>
+  <h3>如果你是「已读」</h3>
+  <ol>
+    <li><strong>回头核对「看不见的手」到底在原文里说了什么</strong>（第四篇第二章）。<strong>你会发现它前面是一段关于「本国资本优先投本国产业」的论证，后面紧跟着他对商人的挖苦——它是一句收束性的旁注，不是开篇的纲领。</strong> 把它读准，能一次性修正一半的流行误解。
+    </li>
+    <li><strong>重读第五篇第一章</strong>，然后问自己一个问题：<strong>「斯密主张的政府，和今天被贴上『斯密式』标签的那种政府，是同一个吗？」</strong> 答案是否定的（见 5.5）。
+    </li>
+    <li><strong>把第一、二篇的劳动价值论与今天的边际效用理论对照读</strong>（见 5.3），看你还能在多大程度上把斯密的「价值尺度」当成可用的分析工具——<strong>答案很可能是：作为思想史要读，作为分析工具要谨慎。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是必需的，因为《国富论》的中文版本状况比一般书复杂：书名不同、底本不同、章名译法不同，且隐藏着一个「同一译者两次改名」的陷阱。</strong></p>
+  <p><strong>先说最要紧的三条</strong>：</p>
+  <blockquote>
+    <p><strong>⚠ ① 大陆最通行、影响最大的中译是郭大力、王亚南译本，但它换过名字。</strong> 1931 年初译题《国富论》；<strong>1965 年校订时恢复原著全称《国民财富的性质和原因的研究》</strong>，此后长期以此名行世（商务「汉译世界学术名著丛书」）；2015、2019 年又有题作《国富论》的新版。<strong>同一个译本，在书店里可能以两个书名出现，别误当成两种书。</strong></p>
+    <p><strong>⚠ ② 杨敬年译（陕西人民，2001）是学界评价很高、可读性好的现代译本</strong>，且附熊彼特、萨缪尔森、马克思等批注——<strong>想要一本「带路标」的现代汉语本，优先考虑它。</strong></p>
+    <p><strong>⚠ ③ 中文世界最早的译本是严复 1901–1902 年的《原富》</strong>（据牛津大学 1880 年英文版）。它有不可替代的历史地位，但<strong>用古雅文言译成，且大量借先秦术语「格义」西方概念，今天的普通读者几乎无法直接通读</strong>——它属于「思想史文献」，不属于「现在的阅读版本」。</p>
+  </blockquote>
+  <p><strong>大陆主要版本对比</strong>：</p>
+  <table>
+    <thead><tr><th></th><th>郭大力、王亚南 译</th><th>杨敬年 译</th><th>严复《原富》</th></tr></thead>
+    <tbody>
+      <tr><td>书名</td><td>1931《国富论》→1965《国民财富的性质和原因的研究》</td><td>《国富论》</td><td>《原富》</td></tr>
+      <tr><td>出版社</td><td>商务印书馆</td><td>陕西人民出版社（「影响世界历史进程的十本书」）</td><td>上海南洋公学译书院</td></tr>
+      <tr><td>出版年</td><td>1931；1965 校订；2015／2019 新版</td><td>2001-01</td><td>1901–1902</td></tr>
+      <tr><td>底本</td><td>英文原著</td><td>英文原著</td><td>牛津大学出版社 1880 年版</td></tr>
+      <tr><td>特点</td><td>马克思主义政治经济学视角，术语体系影响深远</td><td>现代白话，附名家批注，约 74 万字＋6 万字索引</td><td>文言「格义」体，译名多与今不同</td></tr>
+      <tr><td>适合谁</td><td>想读「经典版本」、做文献引用者</td><td>想顺畅读懂、要现代注释者</td><td>研究近代翻译史、思想史者</td></tr>
+    </tbody>
+  </table>
+  <p><strong>★ 该选哪个（可操作的三句话结论）</strong>：</p>
+  <ol>
+    <li><strong>普通读者想读通</strong> → 首选<strong>杨敬年译（陕西人民，2001）</strong>，现代白话、带批注，最省力。
+    </li>
+    <li><strong>做引用、要「权威版本」</strong> → 用<strong>郭大力、王亚南译（商务）</strong>，并<strong>务必写明是「1965 校订本／《国民财富的性质和原因的研究》」还是 2015 后的《国富论》版</strong>——因为<strong>同一译本两个书名</strong>，不写清楚会被人误当成两种译本。
+    </li>
+    <li><strong>关心「斯密如何进入中国」</strong> → 读<strong>严复《原富》</strong>，但请把它当<strong>史料</strong>读，不要当阅读本；同时记住严复的底本是 <strong>1880 年牛津版</strong>，不是 Glasgow 校勘版。
+    </li>
+  </ol>
+  <p><strong>★ 两个必须提醒的坑</strong>：</p>
+  <ol>
+    <li><strong>不要把《国富论》与斯密的其他书搞混</strong>。《道德情操论》（<em>The Theory of Moral Sentiments</em>）是<strong>另一本书</strong>，而且是理解《国富论》的关键（见 5.2）；书市上「斯密」名下还有《法学讲义》《哲学文集》等。
+    </li>
+    <li><strong>不要相信「某译本删了第几篇」之类的说法</strong>而不核对。原书<strong>只有 5 篇 32 章</strong>；若见到「第 6 篇」之类表述，几乎肯定是错的（见附录 D）。
+    </li>
+  </ol>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <p>★ 下表每一条我都回到 Gutenberg #3300 全文核对过。<strong>这一节是本报告最值钱的部分之一</strong>——它专门处理「被中文互联网转述了几十年、但与原文对不上」的说法。</p>
+  <table>
+    <thead><tr><th>流行说法</th><th>原文／事实（带篇·章定位）</th></tr></thead>
+    <tbody>
+      <tr><td>「斯密说市场万能，政府越小越好」</td><td>★ <strong>原文恰恰相反</strong>。斯密在<strong>第五篇第一章</strong>明确列出君主的<strong>三项职责</strong>：国防、司法、公共工程与公共机构；并主张国家应介入<strong>教育</strong>（第五篇第一章第三部分）。他反对的是<strong>不该管的</strong>干预，从没说过「越小越好」。</td></tr>
+      <tr><td>「看不见的手是《国富论》的核心思想／全书纲领」</td><td><strong>全书只出现 1 次</strong>，在<strong>第四篇第二章</strong>（WN IV.ii.9），是反重商主义论证里的一句旁注；另有《道德情操论》（TMS IV.i.10）与《天文学史》各 1 次。<strong>它在原文里的分量，与它今天的名声完全不成比例</strong>（见 5.1）。</td></tr>
+      <tr><td>「斯密认为人天生自私，是利己主义的辩护者」</td><td><strong>《道德情操论》开篇第一句就讲「同情」（sympathy）</strong>；《国富论》用的是 <strong>self-interest（自爱／审慎）</strong>，不是道德上的「自私」。★ 就在「看不见的手」那段同一页，他紧接着挖苦那些「假装为公益而贸易」的商人 <span class="tag t-src">原书</span>（第四篇第二章）。</td></tr>
+      <tr><td>「斯密反对一切政府干预」</td><td><strong>他明确支持若干干预</strong>：支持<strong>航海法</strong>（称其「或许是英国一切商业法规中最明智的一条」，理由是国防重于富裕 <span class="tag t-src">原书</span>，第四篇第二章）；支持<strong>利息上限</strong>（第一篇第九章）；支持<strong>国家办教育</strong>与<strong>修路架桥</strong>（第五篇第一章）。<strong>他是「选择性干预者」，不是「无政府主义者」。</strong></td></tr>
+      <tr><td>「斯密是资本家的代言人」</td><td><strong>他反复批评商人</strong>：第一篇第十章有「<strong>同业者聚在一起，谈话往往以密谋对付公众、或抬高价格告终</strong>」<span class="tag t-src">原书</span>（第一篇第十章）；第一篇第八章里他批评雇主联合压低工资；他还主张<strong>高工资是繁荣的标志与社会的好处</strong> <span class="tag t-src">原书</span>（第一篇第八章：「劳动的高报酬……是国民财富增进的必然结果」）。</td></tr>
+      <tr><td>「斯密提出了完整的劳动价值论，是马克思的先驱」</td><td><strong>他只提出了雏形，且自相矛盾</strong>：一方面说「劳动是价值的真实尺度」（第一篇第五章），另一方面又说这套只适用于土地与资本尚未私有的早期社会（第一篇第六章）。<strong>系统化的是李嘉图，极端化的是马克思，而它随后被 1870 年代的边际革命取代</strong>（见 5.3）。</td></tr>
+      <tr><td>「斯密主张自由放任、殖民地应继续被统治」</td><td>★ <strong>第四篇第七章里，他认真推演了「英国自愿放弃对殖民地的一切统治权」的可能性</strong>，并说「从来没有哪个国家自愿放弃过任何一省的统治权……这种牺牲虽常常合乎利益，却总是伤国家的自尊」<span class="tag t-src">原书</span>（第四篇第七章）。<strong>这不是道义上的反殖民，而是基于英国自身利益的计算——但它远比流行印象激进。</strong></td></tr>
+      <tr><td>「斯密认为分工只有好处」</td><td><strong>他明确说过分工的坏处</strong>：分工使工人一生重复少数简单操作，<strong>「变得尽可能愚蠢和无知」</strong>，所以要靠<strong>国家办教育</strong>来补救 <span class="tag t-src">原书</span>（第五篇第一章第三部分）。<strong>「分工赞美」的一半是「教育主张」。</strong></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本报告最该细读的一节。</strong>《国富论》获得的是一种近乎「教科书式」的正典地位，但它同时也是<strong>被转述得最失真</strong>的一本书。下面六条按「被误传的程度 × 重要性」排序，最后回答「今天读还成立吗」。</p>
+  <h3>5.1 ★★ 第一条：「看不见的手」全书只出现 1 次，却被抬成了核心</h3>
+  <p><strong>事实</strong>：</p>
+  <ul>
+    <li>斯密一生著作中，「看不见的手」共出现 <strong>3 次</strong>：①《天文学史》——讽刺多神教把自然异象归于「朱庇特看不见的手」（Glasgow 版 p.49）；②《道德情操论》（1759）——富人在「自然自私与贪婪」中分给穷人生活必需品，「被一只看不见的手引导」实现近乎均等的分配（TMS IV.i.10，Glasgow 版 pp.184–185）；③《国富论》（1776）第四篇第二章（WN IV.ii.9，Glasgow 版 pp.455–456）<span class="tag t-src">原书</span>（三处均已对照全文）。
+    </li>
+    <li><strong>在《国富论》里，它与「分工」「资本」「价格」这些承重结构毫无关系</strong>——它出现在批重商主义的一章里，作用是说明「个人偏好本国产业，无意中也壮大了本国年产物」。
+    </li>
+  </ul>
+  <p><strong>它被抬高的过程</strong>（这是本条的重点）：</p>
+  <ul>
+    <li><strong>18–19 世纪几乎无人提及。</strong> 经济史家 <strong>Emma Rothschild</strong> 在〈Adam Smith and the Invisible Hand〉（<em>American Economic Review</em> 84(2): 319–322, <strong>1994</strong>）中考证：斯密本人把它当作一个「<strong>温和的讽刺性玩笑</strong>」（a mildly ironic joke），并不看重；她并称 20 世纪是「<strong>看不见的手的时代</strong>」（the epoch of the invisible hand）<span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>1876 年《国富论》百年纪念时，几乎无人以此为主题</strong>；据 Mark Skousen 考，直到 <strong>1937 年 Max Lerner 为 Modern Library 版编索引</strong>，才首次把「invisible hand」单列为一个索引条目 <span class="tag t-rep">转述</span>（Skousen, 「The Centrality of the Invisible Hand」, 2012——<strong>此条我未能回到原版索引核对</strong>，见附录 D）。
+    </li>
+    <li><strong>20 世纪它被逐渐「理论化」</strong>：Arrow &amp; Hahn, <em>General Competitive Analysis</em>（1971, p.1）称其「或许是经济学思想最重要的贡献」；Arrow（1987, p.71）称其为「斯密最深刻的观察」；Tobin（1992, p.117）称其为「历史上的伟大观念之一」；Stigler 更称之为《国富论》的「<strong>皇冠明珠</strong>」、全部经济学中「最重要的实质性命题」<span class="tag t-rep">转述</span>（以上引文转引自 Gavin Kennedy, 〈Adam Smith and the Invisible Hand: From Metaphor to Myth〉, <em>Econ Journal Watch</em>, 2009）。
+    </li>
+    <li><strong>Kennedy 的结论</strong>：斯密<strong>没有「看不见的手理论」</strong>，现代经济学赋予它的角色「<strong>仅依赖现代经济学家的断言与插补，得不到斯密文本的支持</strong>」<span class="tag t-rep">转述</span>（Kennedy, 2009）。
+    </li>
+    <li><strong>反方</strong>：Daniel Klein &amp; Brandon Lucas 主张斯密是<strong>刻意</strong>把这句话放在两本巨著「几乎正中央」的位置（<em>Economic Affairs</em> 31(1), 2011）<span class="tag t-rep">转述</span>。
+    </li>
+  </ul>
+  <p><strong>★ 结论</strong>：<strong>「看不见的手」绝不是一个可以拿来概括《国富论》的短语。</strong> 把它当纲领，等于用一句旁注替换了全书五篇的论证。<strong>但它是否「毫无深意」也有争论</strong>（Klein &amp; Lucas 一方）——诚实的说法是：<strong>它在原文里分量很小，但其思想（自利动机的意外后果）确实贯穿全书。</strong></p>
+  <h3>5.2 ★★ 第二条：「斯密问题」（Das Adam Smith Problem）——现代学界的结论是「不成问题」</h3>
+  <p><strong>问题是什么</strong>：19 世纪中叶的<strong>德国历史学派</strong>提出：《道德情操论》（1759）以「同情／利他」为基，《国富论》（1776）以「自利」为基，<strong>斯密的体系自相矛盾</strong>。提出者包括 <strong>布鲁诺·希尔德布兰德</strong>（Bruno Hildebrand, <em>Die Nationalökonomie der Gegenwart und Zukunft</em>, 1848）、<strong>卡尔·克尼斯</strong>（Karl Knies）、<strong>维托尔德·冯·斯卡尔钦斯基</strong>（Witold von Skarżyński, 1878, 该术语的定型者）<span class="tag t-rep">转述</span>。</p>
+  <p><strong>现代结论：这是「不成问题」的伪问题</strong>，依据有四条：</p>
+  <ol>
+    <li><strong>斯密本人的自述</strong>：《道德情操论》第六版（1790）他明确表示把《国富论》看作自己伦理思想的继续。
+    </li>
+    <li><strong>格拉斯哥版编者的判词</strong>：<strong>D. D. Raphael &amp; A. L. Macfie</strong> 在格拉斯哥版《道德情操论》导论（<strong>1976</strong>, p.20）中直言：「所谓的『亚当·斯密问题』是一个<strong>建立在无知与误解之上的伪问题</strong>（a pseudo-problem based on ignorance and misunderstanding）。」<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>《法学讲义》的发现</strong>：1895 年 <strong>Edwin Cannan</strong> 发现《法学讲义》B 部分、1958 年 <strong>John Lothian</strong> 发现 A 部分，证明《国富论》的许多核心观点<strong>在斯密 1764 年赴法之前就已成形</strong>，从而推翻了「法国之行让他从利他转向利己」的猜想 <span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>两书的人性观其实一致</strong>：<strong>《道德情操论》的「同情」不是利他主义，而是一种共情机制</strong>；《国富论》的「自利」也始终处在道德与社会约束之下。如 <strong>Robert Ekelund &amp; Robert Hébert</strong> 所言：《道德情操论》里「<strong>同情是约束自利的道德能力</strong>」，《国富论》里「<strong>竞争是约束自利的经济能力</strong>」<span class="tag t-rep">转述</span>。
+    </li>
+  </ol>
+  <p><strong>★ 但「问题」并未消失，而是换了形态</strong>：<strong>István Hont</strong> 与 <strong>Paul Sagar</strong> 主张，真正的问题不是文本矛盾，而是「<strong>市场的道德品质</strong>」——高度依赖市场交换的社会，是否还能维持其道德基础？<strong>Sagar 称之为「真正的亚当·斯密问题」</strong>；<strong>Amartya Sen</strong>（<em>Erasmus Journal for Philosophy and Economics</em>, 2010）则批评现代经济学把斯密关于人类行为的看法「<strong>狭隘化</strong>」了 <span class="tag t-rep">转述</span>。</p>
+  <p><strong>★ 结论</strong>：<strong>「两个斯密」这个说法是 19 世纪的误读产物，今天在严肃学界已基本被弃用。</strong> 但「市场与道德的关系」这条线索非但没有过时，反而在 2008 年金融危机后重新成为热点。</p>
+  <h3>5.3 ★ 第三条：劳动价值论的命运——被证伪的部分与仍然成立的部分</h3>
+  <p><strong>斯密自己就自相矛盾</strong>：他一面说「劳动是价值的真实尺度」（第一篇第五章），一面又在第一篇第六章承认：只有在<strong>土地未私有、资本未积累</strong>的「初期野蛮社会」，全部产出才归劳动者；一旦有了地租与利润，价格就分解成三部分，<strong>劳动价值论不再直接成立</strong> <span class="tag t-src">原书</span>。</p>
+  <p><strong>此后发生了什么</strong>：</p>
+  <ul>
+    <li><strong>李嘉图</strong>（David Ricardo, <em>On the Principles of Political Economy and Taxation</em>, <strong>1817</strong>）把它系统化为「商品价值取决于其生产所需的劳动量」，但遇到「<strong>不变的价值尺度</strong>」难题，一生未解 <span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>马克思</strong>（<em>Das Kapital</em> 第一卷, <strong>1867</strong>）从李嘉图出发，把它推向剩余价值与剥削的政治结论 <span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>边际革命</strong>（<strong>1871–1874</strong>）：<strong>杰文斯</strong>（W. S. Jevons, <em>The Theory of Political Economy</em>, London, <strong>1871</strong>）、<strong>门格尔</strong>（Carl Menger, <em>Grundsätze der Volkswirtschaftslehre</em>, Vienna, <strong>1871</strong>）、<strong>瓦尔拉斯</strong>（Léon Walras, <em>Éléments d'économie politique pure</em>, Lausanne, <strong>1874</strong>）<strong>各自独立地</strong>提出边际效用价值论，把价值从「客观的劳动投入」移到「主观的边际效用」，<strong>一举化解了斯密本人提出的「钻石与水悖论」</strong> <span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>Sraffa</strong>（Piero Sraffa, <em>Production of Commodities by Means of Commodities</em>, <strong>1960</strong>）试图从古典—李嘉图路线重建「无劳动价值论的价值论」，催生了「新李嘉图学派」，但<strong>未能取代主流的新古典理论</strong> <span class="tag t-rep">转述</span>。
+    </li>
+  </ul>
+  <p><strong>★ 分层回答「今天还成立吗」</strong>：</p>
+  <table>
+    <thead><tr><th>层次</th><th>判断</th></tr></thead>
+    <tbody>
+      <tr><td>作为<strong>价值理论</strong>（劳动量决定交换价值）</td><td><strong>已被边际效用取代</strong>，主流经济学不再采用。斯密的「价值尺度」作为分析工具<strong>已失效</strong>。</td></tr>
+      <tr><td>作为<strong>分配分析</strong>（工资＋利润＋地租的三分法）</td><td><strong>仍然有用</strong>——它奠定了「功能性收入分配」的问题框架。</td></tr>
+      <tr><td>作为<strong>思想史</strong></td><td><strong>必读</strong>——不理解斯密的劳动价值论，就读不懂李嘉图、马克思乃至边际革命的来龙去脉。</td></tr>
+    </tbody>
+  </table>
+  <h3>5.4 ★ 第四条：殖民地与自由贸易（第四篇第七章）——在当时与今天的政治含义</h3>
+  <p><strong>斯密说了什么</strong>：</p>
+  <ul>
+    <li>他主张<strong>殖民地贸易的垄断对英国不利</strong>，垄断「<strong>在一切场合都迫使一部分英国资本进入比它本来会去的方向更不利的方向</strong>」<span class="tag t-src">原书</span>（第四篇第七章）。
+    </li>
+    <li>他推演了英国<strong>自愿放弃对殖民地统治权</strong>的设想，并冷峻地指出：「<strong>从来没有哪个国家自愿放弃过任何一省的统治权，无论治理它是多么麻烦、它带来的收入相对开销多么微不足道。</strong>」<span class="tag t-src">原书</span>（第四篇第七章）。
+    </li>
+    <li>他甚至说，「<strong>英国从它对殖民地行使的统治中，除了损失什么也得不到</strong>」（在现行管理制度下）<span class="tag t-src">原书</span>（第四篇第七章）。
+    </li>
+  </ul>
+  <p><strong>在当时</strong>：这近乎政治上的惊世骇俗——写作时正值<strong>美国独立战争</strong>期间（1776 年出版）。斯密的自由贸易推论直接指向「<strong>殖民地不值得</strong>」。</p>
+  <p><strong>在今天</strong>：★ <strong>这里有一个必须说清的边界。</strong> 斯密的论证是<strong>基于英国自身利益的成本收益计算</strong>，不是基于殖民地人民的自决权或反殖民道义。<strong>他的答案是「母国划不来」，不是「殖民本身是错的」。</strong> 因此把斯密读成「反帝国主义先驱」是一种<strong>过度拔高</strong>；但把他读成「殖民主义辩护者」同样错误——<strong>他确实是当时最清醒地质疑殖民垄断的人之一。</strong></p>
+  <h3>5.5 ★★ 第五条：他支持的政府职能（第五篇）——用来纠正「斯密＝小政府／无政府」</h3>
+  <p><strong>这是本报告要重点澄清的一条。</strong></p>
+  <p><strong>斯密列的政府三职能</strong>（第五篇第一章原文）：</p>
+  <ol>
+    <li><strong>国防</strong>：「保护社会不受其他独立社会的暴力和侵略」；
+    </li>
+    <li><strong>司法</strong>：「尽可能保护社会的每一个成员不受其他成员的侵害或不义压迫，即建立严正的司法行政」；
+    </li>
+    <li><strong>公共工程与公共机构</strong>：「建造和维持某些公共工程和公共机构，这些工程与机构，对一个大社会虽极为有利，但其利润却永远无法偿还任何个人或少数人的费用」<span class="tag t-src">原书</span>（第五篇第一章）。
+    </li>
+  </ol>
+  <p><strong>他还明确主张国家办教育</strong>。第五篇第一章第三部分把「青年教育」与「全民教育」单列，并写出那句常被忽略的话：「<strong>在文明而商业化的社会里，普通人民的教育，或许比有身份有财产者的教育更值得公众注意。</strong>」<span class="tag t-src">原书</span>（第五篇第一章第三部分）他给出的理由是：<strong>分工使普通工人「变得尽可能愚蠢和无知」，国家若不补救，整个社会会退化。</strong></p>
+  <p><strong>★ 因此</strong>：</p>
+  <ul>
+    <li><strong>「斯密＝小政府」是一个流行神话。</strong> 他反对的是<strong>他判定为无益的</strong>干预（垄断、奖励金、殖民地独占、行会限制）；他<strong>支持</strong>的是<strong>他判定为公共必需</strong>的职能（国防、司法、基础设施、教育）。
+    </li>
+    <li><strong>「斯密＝无政府」更是错的</strong>——他给了政府一份<strong>相当长的</strong>任务清单，还专门讨论了这些职能需要多少开支、钱从哪来。
+    </li>
+    <li>★ <strong>这条纠正之所以重要</strong>，是因为它同时修复了「第三件必须说的事」与「第四篇论战」两处的误读：<strong>斯密是「有边界的政府」论者，不是「无政府」论者。</strong>
+    </li>
+  </ul>
+  <h3>5.6 ★ 第六条与「今天是否成立」：版本问题 ＋ 今日评估</h3>
+  <p><strong>（a）版本问题</strong>：《国富论》生前有 <strong>5 个版本</strong>（1776／1778／1784／1786／1789），斯密每版都有实质修订；现代学术引用<strong>多据 Glasgow 校勘版</strong>（<em>The Glasgow Edition of the Works and Correspondence of Adam Smith</em>，1976 起），而<strong>旧译本（含早期中译）往往据更早的版本</strong>。⇒ <strong>同一句引文在不同版本里可能有细微差别</strong>；引用时<strong>应写明版本</strong>。本报告原文核对用的是 <strong>Gutenberg #3300 电子版</strong>（据 1904 年 Cannan 编本一系），<strong>段落号以 Glasgow 版为准的地方我均已注明</strong> <span class="tag t-rep">转述</span>。</p>
+  <p><strong>（b）体裁与可读性</strong>：按今天的标准，本书有三处读不下去的地方——① <strong>18 世纪的句法与冗长的复句</strong>（尤其中译本若保留长句）；② <strong>大量关于 18 世纪英国税收、谷物法、金银比价的细节</strong>（第四、五篇尤甚），对无背景的读者是硬骨头；③ <strong>第一篇第十一章的银价插叙与第五篇的税种分析</strong>，技术性极强。<strong>它不是一本「通读型」经典，而是一本「按图索骥型」经典。</strong></p>
+  <p><strong>（c）它今天还成立吗——分角度回答</strong>：</p>
+  <table>
+    <thead><tr><th>角度</th><th>判断</th></tr></thead>
+    <tbody>
+      <tr><td>作为<strong>经济学理论文本</strong></td><td><strong>部分成立</strong>：分工与市场范围、自然价格／市场价格、资本积累的分析框架仍在使用；<strong>劳动价值论已失效</strong>。</td></tr>
+      <tr><td>作为<strong>思想史文献</strong></td><td><strong>完全成立且不可替代</strong>：它界定了「政治经济学」这门学科的问题域。</td></tr>
+      <tr><td>作为<strong>公共讨论的资源</strong></td><td><strong>高度相关</strong>：关于政府职能、自由贸易、教育与公共品的论证，今天仍在被双方引用——★ <strong>但被引用的往往是被截断的斯密</strong>（见第 4b 节）。</td></tr>
+      <tr><td>作为<strong>入门读物</strong></td><td><strong>要谨慎</strong>：体量与术语对初学者不友好；建议先读本报告的「阅读建议」路线，或配导读本。</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一个反直觉的判断</strong>：<strong>《国富论》最耐读、最不过时的部分，恰恰不是「看不见的手」，而是第五篇那些关于「政府该干什么」的枯燥讨论。</strong> 因为它讨论的是<strong>任何社会都绕不开的问题</strong>——谁来修路、谁来办学、谁来收税、怎么收得不招人恨——而不是一个被符号化了的「市场」。</p>
+  <p>★ <strong>结构说明</strong>：本书正文 5 篇 32 章（第二、四篇另有《序论》）。本部分<strong>逐章</strong>对应，<strong>编号从 6 起连续到 37</strong>。章节标题采用郭大力、王亚南译本的通行译法；原文引文以 Project Gutenberg #3300 全文核对，定位一律用<strong>篇·章</strong>（能给 Glasgow 段落号处已注明）。</p>
+  <p>★ <strong>读下部之前，先记住《序论》给的问题式</strong>：《序论》不是一章，但它给全书定了框架——<strong>一国年产物的丰裕与否，取决于两个因素</strong>：① 劳动的<strong>熟练、技巧与判断力</strong>（分工）；② <strong>从事有用劳动的人数与非有用劳动人数的比例</strong>（资本配置）<span class="tag t-src">原书</span>（《序论》）。斯密判断<strong>前者更重要</strong>，并用「狩猎渔捞的野蛮民族人人劳动、却依然极度贫困」作反证。★ <strong>但要注意</strong>：他在这里用的「有用／非有用劳动」二分，到第二篇第三章会变成「<strong>生产性／非生产性劳动</strong>」这一麻烦的分类，而那个标准<strong>今天已不被采用</strong>（见第 19 章）。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>第一篇·第一章：论分工</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>提出全书第一个、也是最著名的命题：劳动生产力最大的增进，来自分工。</strong> 斯密用别针工厂把这一步说清楚：分工使同样的十个人，一天能做出<strong>四万八千枚针</strong>；若各自独立、且未受过这行训练，「<strong>恐怕一天连一枚也做不出，至少做不出二十枚</strong>」<span class="tag t-src">原书</span>（第一篇第一章，别针工厂段）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li><strong>别针工厂的具体计数</strong>：分工把制针拆成「<strong>约十八道不同工序</strong>」——拉丝、拉直、切断、磨尖、磨顶、装头（又需两三道）、镀白、装纸……十人中每人兼做两三道工序，一天共约十二磅、每磅四千余枚，合计四万八千枚 <span class="tag t-src">原书</span>（第一篇第一章）。
+    </li>
+    <li><strong>分工提高生产力的三条理由</strong>：① 熟练度提高；② <strong>省去工种转换的时间</strong>（他指出「闲逛和偷懒」多由此产生）；③ <strong>简化劳动催生了机器发明</strong>——「当人的全部注意力集中在一个简单目标上时，更可能发明出便利的机器」<span class="tag t-src">原书</span>（第一篇第一章）。
+    </li>
+    <li>他举了<strong>一个男孩发明的蒸汽机阀门</strong>作例子：为省力而发明的自动装置 <span class="tag t-src">原书</span>（第一篇第一章）。
+    </li>
+    <li>他随即指出这一原理<strong>适用于一切工艺与制造业</strong>，并从「一个文明国家的日用工人的日用品」反推出分工的普遍性 <span class="tag t-src">原书</span>（第一篇第一章）。
+    </li>
+    <li>★ <strong>他同时指出分工的边界</strong>：「<strong>农业的性质不容许那么多劳动的分工</strong>」——农活随季节变换，同一个人要轮流承担多种工作，因此<strong>农业的生产力增进总是慢于制造业</strong> <span class="tag t-src">原书</span>（第一篇第一章）。★ <strong>这是「分工有上限」的一处伏笔</strong>，也解释了他后文为何对农业另眼相看（第二篇第五章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一章有两个被流行转述掩盖的要点</strong>：</p>
+  <ol>
+    <li><strong>别针工厂不是斯密原创的例子</strong>——他明确说这是「<strong>分工常被注意到的一个极琐碎的制造业</strong>」，即他是在引用一个当时已流传的例子，而非自己的发现 <span class="tag t-src">原书</span>（第一篇第一章）。<strong>斯密的原创性在于把这个例子放进一个体系，而不在于观察到它。</strong>
+    </li>
+    <li><strong>他把机器发明的功劳给了「工人」</strong>，这一点与他后面（第五篇）对分工使人愚蠢的担忧形成张力——<strong>同一个人，既赞美分工又警惕分工</strong>。若只读第一章，会读出一个单面的斯密。
+    </li>
+  </ol>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>第一篇·第二章：论分工的起因</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>分工不是谁的智慧设计出来的，而是人性中一种倾向的缓慢结果。</strong> 斯密说：分工「<strong>不是人类智慧预见并有意促成的结果</strong>」，而是人性中「<strong>互通有无、物物交换、互相交易</strong>」这一倾向的「<strong>必然的、虽然很缓慢的</strong>结果」<span class="tag t-src">原书</span>（第一篇第二章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li>这段话给出了《国富论》人性观的<strong>精确边界</strong>：他说的倾向是「<strong>交易</strong>」，不是「<strong>贪婪</strong>」。
+    </li>
+    <li>他用<strong>猎人与牧人的交易</strong>说明分工的由来：一个擅长造弓的人靠交换别人的肉，反而比亲自去打猎更有利，于是<strong>制弓成了他的专职</strong> <span class="tag t-src">原书</span>（第一篇第二章）。
+    </li>
+    <li>★ 他区分了人的这一倾向与动物：<strong>两条猎犬追同一只兔子看似「协作」，但那是本能的同向，不是「契约」</strong>；「<strong>没有人见过一只狗与另一只狗公平地交换骨头</strong>」<span class="tag t-src">原书</span>（第一篇第二章）。
+    </li>
+    <li>他顺带提出「<strong>人的才能差异，与其说是分工的原因，不如说是分工的结果</strong>」——哲学家与挑夫的天性差别，多由劳动分工与教育造成 <span class="tag t-src">原书</span>（第一篇第二章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>本章的人性论片段极易被断章取义。</strong> 常被引用的「<strong>不是屠夫、酿酒师或面包师的仁慈，而是他们对自身利益的考虑，给我们提供晚餐</strong>」<span class="tag t-src">原书</span>（第一篇第二章）——<strong>这句话常被读成「斯密认为人只要自私就够了」。但它在原文里的功能是解释「为什么分工能在陌生人之间扩展」</strong>，紧接其后就是「<strong>诉诸他们的自爱，而不要说他们的人道</strong>」。<strong>这与《道德情操论》的同情论并不矛盾</strong>（见 5.2）。</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>第一篇·第三章：论分工受市场范围的限制</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>分工的程度，受市场规模的限制。</strong> 也就是说：<strong>再好的分工，若市场规模不够大，就养活不起专职的人</strong> <span class="tag t-src">原书</span>（第一篇第三章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li>他举例：<strong>在苏格兰高地的小村子里，一个专业屠夫、酿酒师、面包师都难以活命</strong>；而大城市的工匠能靠专人专职生存 <span class="tag t-src">原书</span>（第一篇第三章）。
+    </li>
+    <li>★ 他特别强调<strong>水运能大幅扩大市场</strong>：水运费用远低于陆运，所以<strong>沿海、沿河地区先富</strong>——这是「市场范围限制分工」的地理推论 <span class="tag t-src">原书</span>（第一篇第三章）。
+    </li>
+    <li>他对比了<strong>非洲内陆与欧洲沿海</strong>的发展差异，以及<strong>地中海沿岸文明的兴起</strong> <span class="tag t-src">原书</span>（第一篇第三章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一章是全书生命力最长的一章之一，但也最容易被人当作「定理」而不知其边界。</strong> 后来的 <strong>George Stigler</strong>（〈The Division of Labor is Limited by the Extent of the Market〉, <em>Journal of Political Economy</em>, 1951）把它发展成产业组织理论的一支 <span class="tag t-rep">转述</span>。<strong>但它有一个今天必须修补的前提</strong>：斯密假设市场范围是地理性的；而在<strong>全球市场与数字市场</strong>里，「市场范围」的含义已完全不同。<strong>这一章仍然成立，但不可以直接照搬 18 世纪的「水运」结论。</strong></p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>第一篇·第四章：论货币的起源及其效用</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>分工一旦展开，物物交换就不够用了，货币因此产生。</strong> 斯密从「<strong>交换的困难</strong>」推出货币的起源：当分工使人各有所长，每个人需要用自己的产品换别人的产品，而<strong>物物交换常因「对方不想要我的东西」而失败</strong>，于是人们普遍选出一种大众都愿接受的东西作媒介——那就是货币 <span class="tag t-src">原书</span>（第一篇第四章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li>货币的序列：<strong>牲畜、盐、贝壳、干鱼、烟草、皮革、铁钉</strong>……最后落到<strong>金属</strong>（因其耐久、可分割、可称量）<span class="tag t-src">原书</span>（第一篇第四章）。
+    </li>
+    <li>金属货币又经历「<strong>称量 → 铸币 → 官方打上花押</strong>」的演变，由此引出「<strong>铸币税</strong>」与「<strong>货币成色</strong>」的问题 <span class="tag t-src">原书</span>（第一篇第四章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ 本章是<strong>货币起源的经典「交换便利说」</strong>，但今天人类学与货币史<strong>并不完全接受它</strong>——若干研究表明，<strong>货币与市场未必同源，债务与记账可能早于实物交换</strong>（如 David Graeber 一派的主张）。<strong>斯密这一章的价值是逻辑上的（从交换困难推出媒介），而不是史实上的（它未必是真实的历史顺序）。</strong> 本报告未逐字核对 Graeber 的具体论证，此条按 <span class="tag t-inf">推断</span> 处理，读者若需深入请自行核对。</p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">10</span><span>第一篇·第五章：论商品的真实价格与名义价格</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>提出全书的价值论：劳动是价值的真实尺度，货币只是名义尺度。</strong> 斯密说：「<strong>劳动是衡量一切商品交换价值的真实尺度。</strong>」（Labour is the real measure of the exchangeable value of all commodities.）<span class="tag t-src">原书</span>（第一篇第五章）他进而区分<strong>真实价格</strong>（以劳动计）与<strong>名义价格</strong>（以货币计），并讨论两者的长期背离。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li>「<strong>劳动是第一价格，是最初用以购买一切东西的原始货币</strong>」<span class="tag t-src">原书</span>（第一篇第五章）。
+    </li>
+    <li><strong>他承认两者在长期会有偏离</strong>：金银价值本身会变，货币的成色与重量也会被君主篡改，因此<strong>名义价格不可靠</strong> <span class="tag t-src">原书</span>（第一篇第五章）。
+    </li>
+    <li>他提出了一个著名的命题：<strong>等量劳动的时点上，劳动是唯一普遍、唯一不变的价值尺度</strong>——「<strong>等量的劳动，在一切时间和地点，对劳动者来说，都具有同等的价值</strong>」<span class="tag t-src">原书</span>（第一篇第五章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★★ <strong>这一章是全书理论上最脆弱、也最有历史后果的一章。</strong></p>
+  <ol>
+    <li><strong>「劳动是不变的价值尺度」这个前提站不住</strong>：劳动的「辛苦程度」本身随时空而变，把这个当作不变尺度，是一种<strong>便利的假设，而非可证的事实</strong> <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>它内部就不彻底</strong>：斯密一边说劳动是真实尺度，一边又承认在资本积累后价格分解为工资＋利润＋地租（见第 11 章），<strong>因此劳动不再是全部产出的归属</strong>；这个裂缝后来成了李嘉图与马克思的工作起点（见 5.3）。
+    </li>
+    <li><strong>它被边际革命取代</strong>——1871–1874 年杰文斯、门格尔、瓦尔拉斯各自独立地提出边际效用价值论，把价值移到主观效用一侧 <span class="tag t-rep">转述</span>（见 5.3）。
+    </li>
+  </ol>
+</section>
+
+<section id="s12">
+  <h2><span class="num">11</span><span>第一篇·第六章：论商品价格的组成部分</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>从「劳动价值论」过渡到「三要素价格论」。</strong> 斯密说：在<strong>土地尚未私有、资本尚未积累</strong>的早期社会，全部产出归劳动者；<strong>但一旦有了地租与利润，价格就分解为工资、利润、地租三部分</strong> <span class="tag t-src">原书</span>（第一篇第六章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li>他给出全书的价格公式：<strong>自然价格 ＝ 工资 ＋ 利润 ＋ 地租</strong>（见下一章）<span class="tag t-src">原书</span>（第一篇第六章）。
+    </li>
+    <li>他明确承认这是<strong>从「劳动价值论」到「成本构成论」的转折</strong>，并试图在两套理论之间架桥——但<strong>桥并没架稳</strong> <span class="tag t-src">原书</span>（第一篇第六章）。
+    </li>
+    <li>他举例：<strong>谷物、家禽、野味</strong>在文明社会里的价格构成不同，以此说明三要素的普遍性 <span class="tag t-src">原书</span>（第一篇第六章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>本章是全书最关键的「理论接缝」，也是问题最大的接缝之一。</strong> 斯密在此<strong>同时持有两套价值论</strong>：一是劳动价值论（价格源于劳动），二是成本构成论（价格由三要素相加）。<strong>这两者在逻辑上并不等价</strong>——「三部分相加」无法解释它们各自的水平是怎么定的。<strong>后来的「剑桥资本争论」（1950s–60s）所纠缠的正是这一类循环论证问题</strong>（见 5.3 关于 Sraffa）。<strong>读者在此应把斯密的两套理论分开看，不要替他圆场。</strong></p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">12</span><span>第一篇·第七章：论商品的自然价格与市场价格</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>建立全书的「价格调节机制」。</strong> 斯密定义：</p>
+  <ul>
+    <li><strong>自然价格</strong>＝按<strong>自然率</strong>支付的工资、利润、地租之和（相当于长期均衡价）；
+    </li>
+    <li><strong>市场价格</strong>＝当下实际成交价，由<strong>实际上市量</strong>与<strong>有效需求</strong>的比例决定；
+    </li>
+    <li><strong>市场价格围绕自然价格波动，供给方的进出会把它拉回自然价格</strong> <span class="tag t-src">原书</span>（第一篇第七章）。
+    </li>
+  </ul>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li>★ <strong>核心概念：「有效需求」（effectual demand）</strong>——「<strong>愿意支付商品自然价格的人的需求</strong>」；「<strong>那种需求才是有效需求，因为商品永远不可能被带到市场上，除非它的价格能付出全部租金、劳动和利润</strong>」<span class="tag t-src">原书</span>（第一篇第七章）。
+    </li>
+    <li><strong>调节机制</strong>：若上市量不足，市场价格高于自然价格，<strong>高利润吸引资本流入</strong>，产量增加，价格回落；若上市量过多，价格低于自然价格，<strong>资本流出</strong>，价格回升 <span class="tag t-src">原书</span>（第一篇第七章）。
+    </li>
+    <li>他讨论了<strong>垄断价格</strong>（monopoly price）——「<strong>垄断价格在一切场合都是所能得到的最高价格</strong>」，与自然价格的性质不同 <span class="tag t-src">原书</span>（第一篇第七章）。
+    </li>
+    <li>他提出了关于<strong>商业秘密、制造业技巧、原料产地</strong>等造成的「<strong>自然垄断</strong>」的讨论 <span class="tag t-src">原书</span>（第一篇第七章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这是全书最技术的一节，也是最容易被读错的一节。</strong></p>
+  <ol>
+    <li><strong>「有效需求」不等于「需求」</strong>：它是<strong>在自然价格上有支付能力的需求</strong>。<strong>把 effectual demand 读成「市场需求总量」，会误以为斯密说的是「供给创造需求」（萨伊定律）</strong>——这是最常见的误读。
+    </li>
+    <li><strong>它已经包含了「市场进出」的直觉，但还不是完整的均衡理论</strong>：斯密没有说明「价格如何精确收敛」，也没有成本曲线、需求曲线的工具；<strong>严格的一般均衡理论要等瓦尔拉斯（1874）之后</strong>（见 5.3）。
+    </li>
+    <li><strong>斯密忽略了「路径依赖」与「时间」</strong>：资本能否迅速流入流出，被他默认得太顺畅了 <span class="tag t-inf">推断</span>。
+    </li>
+  </ol>
+</section>
+
+<section id="s14">
+  <h2><span class="num">13</span><span>第一篇·第八章：论劳动工资</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>工资由什么决定？</strong> 斯密给出一个<strong>劳资博弈＋资本积累</strong>的框架：工资的高低取决于<strong>劳动者的谈判地位</strong>与<strong>资本的积累速度</strong>；并主张<strong>高工资是繁荣的标志，而不是坏事</strong> <span class="tag t-src">原书</span>（第一篇第八章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li><strong>劳资博弈的不对称</strong>：雇主比工人更少、更容易联合、也更能坚持；「<strong>工人的联合常被法律禁止</strong>」，而雇主的联合却少受限制 <span class="tag t-src">原书</span>（第一篇第八章）。
+    </li>
+    <li><strong>「劳动的高报酬」</strong>：他反复说「<strong>劳动的高报酬，是国民财富增进的必然结果</strong>」「<strong>劳动的丰厚报酬……使劳动者能更好抚养子女</strong>」，并称「<strong>劳动的高报酬既是繁荣的果，也是繁荣的因</strong>」<span class="tag t-src">原书</span>（第一篇第八章）。
+    </li>
+    <li>他明确批评那种「<strong>给劳工高工资就会让他们变懒</strong>」的说法，认为<strong>丰厚的报酬反而会激励劳动</strong> <span class="tag t-src">原书</span>（第一篇第八章）。
+    </li>
+    <li>他讨论<strong>工资随社会状态变化</strong>：<strong>进步社会工资高，静止社会工资低，退步社会工资最低</strong> <span class="tag t-src">原书</span>（第一篇第八章）。
+    </li>
+    <li>★ <strong>工资的决定机制</strong>：「<strong>劳动的价格，必然由两种情形调节：对劳动的需求，以及生活必需品与便利品的价格。</strong>」对劳动的需求<strong>随社会是进步、静止还是退步而变化</strong>，从而决定劳动者应得的「生活资料的数量」<span class="tag t-src">原书</span>（第一篇第八章）。
+    </li>
+    <li>★ <strong>「静止的中国」例证</strong>：斯密以中国说明<strong>静止社会的低工资</strong>——他称中国「<strong>长期是世界上最富、最肥沃、耕作最精细、最勤劳也人口最多的国家之一</strong>」，但「<strong>似乎长期停滞</strong>」；「<strong>一切旅行者的记载，在劳动工资之低、以及劳工难以养家这一点上是一致的</strong>」；他更直言「<strong>中国下层人民的贫困，远远超过欧洲最穷的国家</strong>」<span class="tag t-src">原书</span>（第一篇第八章）。★ 但他同时判断：<strong>中国「也许停滞，但并不倒退」</strong>，所以工资被压在生存线上，而非持续崩坏 <span class="tag t-src">原书</span>（第一篇第八章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一章是全书最被低估、也最反「斯密是资本家代言人」的一章。</strong> 他对劳工的同情是明白写着的，对雇主的批评也不留情面。<strong>但仍有可疑之处</strong>：他的工资理论包含「<strong>工资基金</strong>」（wages fund）的雏形——即工资由既定资本决定，这个学说后来被证明<strong>站不住</strong>（1860s 被 Thornton、Longe 击倒，J. S. Mill 被迫收回）<span class="tag t-rep">转述</span>。<strong>所以：斯密对劳工的道德立场可靠，但他的工资决定机制已过时。</strong></p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">14</span><span>第一篇·第九章：论资本利润</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>利润由什么决定？</strong> 斯密主张：<strong>利润随资本丰裕而下降</strong>，且<strong>利润率随社会进步而降低</strong> <span class="tag t-src">原书</span>（第一篇第九章）。他并讨论<strong>利息率</strong>与利润率的联动。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li><strong>利润率下降的机制</strong>：资本多了，投资机会相对减少，<strong>竞争压低利润</strong> <span class="tag t-src">原书</span>（第一篇第九章）。
+    </li>
+    <li><strong>利息率作为利润率的指示</strong>：利息率随利润率升降，因此<strong>可以用利息率反推利润率的高低</strong>；他举了英国、荷兰、苏格兰、法国、北美殖民地的利率对比 <span class="tag t-src">原书</span>（第一篇第九章）。
+    </li>
+    <li>他支持<strong>法定的利息上限</strong>——「<strong>法定利息应当略高于最低市场利率，但低于最高市场利率</strong>」，以阻止高利贷并引导资本用于生产 <span class="tag t-src">原书</span>（第一篇第九章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一章有两处明显的局限</strong>：① <strong>「利润率趋于下降」这一断言在经验上并不普遍成立</strong>——利润率受技术、垄断、制度影响极大，并非资本越多就越低 <span class="tag t-inf">推断</span>；② <strong>他用利息率反推利润率，隐含了「利息率随利润率同步」的强假设</strong>，今天未必成立。<strong>但他主张「法定利息上限应设在市场利率之上」这条，放在金融监管史上却相当有见地</strong>，值得与今天的利率管制讨论对照。</p>
+</section>
+
+<section id="s16">
+  <h2><span class="num">15</span><span>第一篇·第十章：论工资与利润随职业不同而不同</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>为什么不同职业的工资、利润不一样？</strong> 斯密给出<strong>两类解释</strong>：一是<strong>职业本身的性质</strong>（如脏累危险、需要培训、不稳定），二是<strong>欧洲的政策</strong>（如行会、学徒法、公司特权）。他指出：<strong>若没有政策扭曲，职业间的净收益会趋于均衡</strong> <span class="tag t-src">原书</span>（第一篇第十章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li><strong>五种「补偿性差异」</strong>：工作的愉快程度、学习成本、职业稳定性、责任大小、成功概率 <span class="tag t-src">原书</span>（第一篇第十章）。
+    </li>
+    <li>★ <strong>最著名的一句</strong>：「<strong>同一行业的人聚在一起，哪怕只是为消遣娱乐，谈话往往也以一场密谋对付公众、或某种抬高价格的安排告终。</strong>」<span class="tag t-src">原书</span>（第一篇第十章）他接着说，法律无法阻止这种聚会，「<strong>但法律不应为这种集会提供便利，更不应使之成为必要</strong>」。
+    </li>
+    <li>他痛批<strong>行会与学徒法</strong>：它们限制入行、抬高价格，是「<strong>用政策把自然的均衡打破</strong>」<span class="tag t-src">原书</span>（第一篇第十章）。
+    </li>
+    <li>他<strong>反对「同业公会垄断」</strong>，主张自由竞争能让净收益均衡 <span class="tag t-src">原书</span>（第一篇第十章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一章是全书对商人批评最密集的一处，也是最直接反驳「斯密为资本家辩护」的一处。</strong> 但仍有可疑：① 他假设「<strong>若无政策扭曲则收益均衡</strong>」，这需要<strong>完全竞争与自由流动</strong>的前提，而现实中流动性受限；② 他的「<strong>补偿性差异</strong>」理论至今仍是劳动经济学的基础，<strong>但这部分与后文的「生产性与非生产性劳动」之间的衔接并不严密</strong> <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s17">
+  <h2><span class="num">16</span><span>第一篇·第十一章：论地租</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>地租是什么？由什么决定？</strong> 斯密主张：<strong>地租是「租地人所能支付的最高额」，是价格的结果，而不是价格的原因</strong>——也就是说，<strong>地租是「垄断价格」的一种形式，随谷物价格升降而升降</strong> <span class="tag t-src">原书</span>（第一篇第十一章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li>★ <strong>地租的定义</strong>：「<strong>地租，作为使用土地所付的价格，自然是租地人在土地实际情况下所能支付的最高额。</strong>」斯密随即说明：地主尽力只留给租地人「维持资本与获得邻近普通利润」的最小份额，其余全部留作地租 <span class="tag t-src">原书</span>（第一篇第十一章）。
+    </li>
+    <li><strong>地租与价格的关系</strong>：谷物价格高，地租就高；「<strong>地租之高下，随土地肥沃程度与位置优劣而不同</strong>」<span class="tag t-src">原书</span>（第一篇第十一章）。
+    </li>
+    <li>他区分了<strong>土地产物的三类</strong>：<strong>总能提供地租的</strong>（如食物）、<strong>有时提供有时不提供的</strong>、<strong>基本不提供的</strong> <span class="tag t-src">原书</span>（第一篇第十一章，第一、二部分）。
+    </li>
+    <li>★ <strong>内嵌一段极长的插叙：「论银价四世纪以来的变动」</strong>——这是全书<strong>最技术、最可整段跳过</strong>的部分，讨论 14–18 世纪欧洲金银比价、谷物价格与白银价值的长时段变动 <span class="tag t-src">原书</span>（第一篇第十一章，插叙）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★★ <strong>这是全书篇幅最长、争议最大、也最容易被跳过的一章。</strong></p>
+  <ol>
+    <li><strong>「地租是价格的结果而非原因」这个命题，只在特定条件下成立</strong>；李嘉图后来给出更严格的「<strong>级差地租</strong>」理论，把地租与边际土地的耕作成本挂钩——<strong>斯密的地租论是李嘉图的起点，但已被后者取代</strong> <span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>银价插叙的历史数据可质疑</strong>：以现代经济史的标准看，18 世纪有关中世纪谷物价格与银价的统计<strong>很不完整</strong>，斯密的许多数字今天难以验证 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>实用建议</strong>：<strong>银价插叙整段可跳</strong>，不影响主线；<strong>只看该章开头的「地租一般理论」与结尾的「地租与价格关系」即可</strong>。
+    </li>
+  </ol>
+</section>
+
+<section id="s18">
+  <h2><span class="num">17</span><span>第二篇·第一章：论资财的划分</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>把「资本」这个概念拆开。</strong> 斯密把社会资财分为三类，并把「资本」分为<strong>固定资本</strong>与<strong>流动资本</strong> <span class="tag t-src">原书</span>（第二篇第一章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li><strong>三类资财</strong>：① <strong>留作直接消费的</strong>；② <strong>固定资本</strong>（机器、厂房、土地改良）；③ <strong>流动资本</strong>（货币、原料、制成品、存货）<span class="tag t-src">原书</span>（第二篇第一章）。
+    </li>
+    <li><strong>固定资本与流动资本的区分标准</strong>：前者<strong>不必换手就能提供收入</strong>，后者<strong>必须换手才能提供收入</strong> <span class="tag t-src">原书</span>（第二篇第一章）。
+    </li>
+    <li>他讨论了<strong>货币既是流动资本，又是流通工具</strong>的双重性 <span class="tag t-src">原书</span>（第二篇第一章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一章的概念区分（固定／流动资本）是会计学的源头之一，今天仍在使用。</strong> 但斯密对<strong>货币</strong>的处理是<strong>矛盾的</strong>——他既把货币算作流动资本，又说货币「<strong>不是社会收入的一部分</strong>」（因为货币本身不进入消费）<span class="tag t-src">原书</span>（第二篇第一章）。<strong>这个矛盾他并未解决，是后来货币理论反复纠缠的起点。</strong></p>
+</section>
+
+<section id="s19">
+  <h2><span class="num">18</span><span>第二篇·第二章：论货币作为社会总资财的一个特殊部门</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>货币、银行与信用在社会总资财中扮演什么角色？</strong> 斯密在此给出他关于<strong>银行与纸币</strong>的著名讨论，主张<strong>以真实票据为基础的银行信用能扩大流通、促进生产</strong>，但也警告<strong>过度发行纸币的危险</strong> <span class="tag t-src">原书</span>（第二篇第二章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li>★ <strong>「流通的大车轮」</strong>：货币是「<strong>流通的大车轮</strong>」，是「<strong>商业的大工具</strong>」；但其本身<strong>不构成社会的收入</strong> <span class="tag t-src">原书</span>（第二篇第二章）。
+    </li>
+    <li><strong>银行信用的作用</strong>：银行以贴现与现金账户<strong>把闲置资本调动起来</strong>，使「<strong>同一笔资本能做更多的事</strong>」<span class="tag t-src">原书</span>（第二篇第二章）。
+    </li>
+    <li>★ <strong>他举了苏格兰的银行经验与「阿姆斯特丹银行」的历史</strong>，并讨论<strong>纸币的过度发行如何导致危机</strong> <span class="tag t-src">原书</span>（第二篇第二章）。
+    </li>
+    <li>他支持<strong>对银行券发行的某些限制</strong>（如禁止小额银行券），理由是<strong>防止纸币泛滥</strong> <span class="tag t-src">原书</span>（第二篇第二章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一章是全书对货币问题最具体的一处，也是斯密「不是无条件的自由放任者」的又一例证。</strong> 他<strong>主张对银行券发行设限</strong>（尤其禁止小额票券），这与「政府别管市场」的流行印象相反。<strong>但可疑之处在于</strong>：他对银行信用扩张的乐观（「同一笔资本能做更多的事」）在后世的金融危机中反复被打脸——<strong>他低估了信用的顺周期放大效应</strong> <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s20">
+  <h2><span class="num">19</span><span>第二篇·第三章：论资本积累，并论生产性与非生产性劳动</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>资本怎么增长？靠节俭。</strong> 斯密断言：「<strong>节俭，而非勤劳，是资本增加的直接原因。</strong>」（Parsimony, and not industry, is the immediate cause of the increase of capital.）<span class="tag t-src">原书</span>（第二篇第三章）并把劳动分为<strong>生产性</strong>与<strong>非生产性</strong>两类。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li>★ <strong>生产性／非生产性劳动的定义</strong>：能「<strong>固定并实现在某种可售商品上、且持续一段时间</strong>」的劳动为生产性；服务「<strong>在提供的那一瞬间就消亡</strong>」的为非生产性 <span class="tag t-src">原书</span>（第二篇第三章）。
+    </li>
+    <li><strong>例子</strong>：「<strong>雇一批制造工人会致富，养一批家仆会变穷</strong>」；他把<strong>君主、官吏、军队、教士、律师、医生、文人、演员、歌手、舞者</strong>都归入「非生产性劳动」<span class="tag t-src">原书</span>（第二篇第三章）。
+    </li>
+    <li><strong>节俭与浪费</strong>：「<strong>资本因节俭而增加，因浪费与妄为而减少</strong>」；他强调「<strong>节俭</strong>」是资本增加的直接原因，而勤劳只是提供了节俭的对象 <span class="tag t-src">原书</span>（第二篇第三章）。
+    </li>
+    <li>他讨论了<strong>生产性与非生产性劳动者的人数比例</strong>如何决定一国的产出 <span class="tag t-src">原书</span>（第二篇第三章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★★ <strong>这是全书最经不起检验、也最有政治后果的一章。</strong></p>
+  <ol>
+    <li><strong>「生产性／非生产性」这个分类今天已被抛弃</strong>：从现代国民经济核算看，<strong>服务（含教育、医疗、金融）也是产出</strong>，「服务一过即逝、不增加价值」的假设是错的 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>它埋下了巨大的误读伏笔</strong>：把政府、军队、教育全划进「非生产性」，<strong>极易被读成「政府是纯消耗」</strong>——而斯密本人同时主张国家办教育、修路（第五篇），<strong>两项主张之间是有张力的</strong>。<strong>不做这个区分的人，会误以为斯密主张「政府越小越好」</strong>（见 5.5）。
+    </li>
+    <li><strong>但「节俭是资本积累之源」这一条仍有价值</strong>：把它放进 18 世纪的语境，它是对<strong>挥霍的贵族与重商主义</strong>的批评。
+    </li>
+  </ol>
+</section>
+
+<section id="s21">
+  <h2><span class="num">20</span><span>第二篇·第四章：论贷出取息的资财</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>利息是什么？</strong> 斯密把「取息的资财」看作贷方把「<strong>用于借贷的资本</strong>」转让给借方，借方用它来生产、并以<strong>利息</strong>回报 <span class="tag t-src">原书</span>（第二篇第四章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li><strong>利息率与利润率的关系</strong>：利息率随利润率升降（与第一篇第九章呼应）<span class="tag t-src">原书</span>（第二篇第四章）。
+    </li>
+    <li>他区分了<strong>贷给「消费」的钱与贷给「生产」的钱</strong>——只有后者才增加社会资本 <span class="tag t-src">原书</span>（第二篇第四章）。
+    </li>
+    <li>他讨论了<strong>信用与信用的滥用</strong>，并再度支持<strong>法定利息上限</strong> <span class="tag t-src">原书</span>（第二篇第四章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一章相对干净，是第二篇里争议最小的一节。</strong> 但它同样建立在「<strong>储蓄自动转化为投资</strong>」的假设上——<strong>这个假设在凯恩斯之后被推翻</strong>（储蓄未必等于投资，可能出现需求不足）<span class="tag t-rep">转述</span>。<strong>斯密这里没有「有效需求不足」的视野，这是时代的限制，不是他的疏漏。</strong></p>
+</section>
+
+<section id="s22">
+  <h2><span class="num">21</span><span>第二篇·第五章：论资本的各种用途</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>资本有几种用法？哪种最有利于国家？</strong> 斯密把资本用途分为<strong>四类</strong>，并主张它们<strong>按「对社会有利的程度」排序</strong>，最后给出<strong>资本投放的「自然顺序」</strong> <span class="tag t-src">原书</span>（第二篇第五章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li>★ <strong>资本的四类用途</strong>：① 获取<strong>原生产物</strong>（农业、矿业、渔业）；② <strong>制造与加工</strong>；③ <strong>批发</strong>（运输与分销）；④ <strong>零售</strong> <span class="tag t-src">原书</span>（第二篇第五章）。
+    </li>
+    <li>★ <strong>他断言：用于农业的资本「对社会的有利程度最大」</strong>，因为「<strong>它不但推动生产性劳动，而且它所推动的生产性劳动，在比例上也是最大的</strong>」——同一笔资本投在农业，推动的生产性劳动比投在制造业或商业更多 <span class="tag t-src">原书</span>（第二篇第五章）。
+    </li>
+    <li><strong>因此他给出「自然顺序」</strong>：农业 → 制造业 → 批发 → 零售；而<strong>欧洲走的是相反顺序</strong>（这直接接上第三篇）<span class="tag t-src">原书</span>（第二篇第五章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一章是全书最被怀疑「偏袒农业」的一处。</strong> 斯密断言<strong>农业最好</strong>，但这个结论<strong>没有说服重农学派以外的人</strong>——<strong>制造业同样推动生产性劳动，而斯密的理由（「农业推动的生产性劳动比例最大」）建立在他自己的分类上，并不牢固</strong> <span class="tag t-inf">推断</span>。★ <strong>但「资本自然顺序」这一判断，是理解第三篇的钥匙</strong>——它把「欧洲为什么走弯路」的问题，从「运气差」变成了「制度错」。</p>
+</section>
+
+<section id="s23">
+  <h2><span class="num">22</span><span>第三篇·第一章：论财富的自然增长</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>全书的历史论证开篇：欧洲的财富增长走了一条「不自然的、倒退的」道路。</strong> 斯密说：按自然顺序，<strong>资本应先投农业、再投制造业、最后才是对外贸易</strong>；但欧洲「<strong>在许多方面把这一顺序完全颠倒了过来</strong>」——<strong>对外贸易与制造业先起，农业反被制度和政策压制</strong>，被他称为「<strong>不自然的、倒退的顺序</strong>」（unnatural and retrograde order）<span class="tag t-src">原书</span>（第三篇第一章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li><strong>自然顺序的因果</strong>：先有土地耕种，才有城镇；先有乡间的粗糙制造，才有对外贸易 <span class="tag t-src">原书</span>（第三篇第一章）。
+    </li>
+    <li>★ <strong>欧洲的颠倒</strong>：「<strong>某些城市的外贸先引进了精良的制造业，而制造业与外贸又一起带来了农业的主要改良</strong>」——所以<strong>农业的改良反而成了最后一步</strong> <span class="tag t-src">原书</span>（第三篇第一章）。
+    </li>
+    <li>他把这一颠倒归因于<strong>原始政府的性质所引入的、并在政府改变后仍然残留的风俗与习惯</strong> <span class="tag t-src">原书</span>（第三篇第一章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一章的价值在于：它把「经济史」纳入了「经济学」。</strong> 但可疑之处也很明显：① <strong>「自然顺序」是否真的「自然」，本身可疑</strong>——它更像是斯密从「重农主义式的偏好」推出的规范判断，而非普遍历史规律 <span class="tag t-inf">推断</span>；② <strong>他所说的「习俗残留」缺乏机制解释</strong>——为什么坏制度能延续？<strong>这一点要到后来诺斯（Douglass North）的制度经济学才被系统研究</strong> <span class="tag t-rep">转述</span>。</p>
+</section>
+
+<section id="s24">
+  <h2><span class="num">23</span><span>第三篇·第二章：论罗马帝国崩溃后农业所受的抑制</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>欧洲农业为什么长期不振？答：制度。</strong> 斯密逐一列举罗马帝国崩溃后压制农业的<strong>具体法律与习俗</strong> <span class="tag t-src">原书</span>（第三篇第二章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li>★ <strong>压制农业的四项制度</strong>：
+    <ol>
+      <li><strong>长子继承制</strong>（primogeniture）与<strong>限定继承</strong>（entail）——把土地锁在少数人手中，妨碍转让与改良；
+      </li>
+      <li><strong>什一税</strong>（tithes）——拿走农民收成的十分之一，抑制耕作；
+      </li>
+      <li><strong>农奴制</strong>（villainage）——农民被束缚于土地；
+      </li>
+      <li><strong>苛捐杂税与强征劳役</strong> <span class="tag t-src">原书</span>（第三篇第二章）。
+      </li>
+    </ol>
+    </li>
+    <li>他用<strong>地主与租佃制度</strong>说明：<strong>土地难以转让，资本就进不去改良</strong> <span class="tag t-src">原书</span>（第三篇第二章）。
+    </li>
+    <li>他讨论了<strong>欧洲土地改良缓慢的因果</strong>，并指出「<strong>大地产与无地农民</strong>」的结构问题 <span class="tag t-src">原书</span>（第三篇第二章）。
+    </li>
+    <li>★ <strong>长子继承制的起源——一条功能主义解释</strong>：斯密说，当土地不只是「生计与享乐的手段」、而成为「<strong>权力与保护的手段</strong>」时，人们便认为「<strong>最好让它不分割地传给一个人</strong>」。因为在乱世里，<strong>大领主就是小君主，土地越大越安全，「分割土地就是毁掉它」</strong><span class="tag t-src">原书</span>（第三篇第二章）。★ <strong>这条解释把「制度」与「环境」挂在一起，是制度经济学的早期范本。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>本章的分析是制度经济学的早期范本</strong>——把「贫困」归因于<strong>制度而非自然禀赋</strong>，这一点至今有效。<strong>可疑之处</strong>：斯密对<strong>中世纪农业的史料判断较为粗糙</strong>（如对农奴制的性质与范围），且把「长子继承制」的作用讲得过重 <span class="tag t-inf">推断</span>。<strong>作为「制度重要」的论证它成立；作为对中世纪的具体描述它需要现代史学来校正。</strong></p>
+</section>
+
+<section id="s25">
+  <h2><span class="num">24</span><span>第三篇·第三章：论都市的勃兴与进步</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>城市为什么先富起来？答：自治与商业。</strong> 斯密讲了一个「<strong>国王与城市做交易</strong>」的故事：国王需要钱，城市需要特权，于是<strong>城市用纳税换取自治与自由</strong> <span class="tag t-src">原书</span>（第三篇第三章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li><strong>城市自治的条件</strong>：<strong>市民的自由、财产的安全、以及对外交易的便利</strong> <span class="tag t-src">原书</span>（第三篇第三章）。
+    </li>
+    <li>★ <strong>「国王与市民的联盟」</strong>：国王憎恨大领主，市民需要保护，双方结盟；城市因此获得<strong>自治特许、行会特权、免受领主司法管辖的自由</strong> <span class="tag t-src">原书</span>（第三篇第三章）。
+    </li>
+    <li>他讨论了<strong>城市如何先于农村积累资本</strong>——贸易与制造业在城市起步，因为<strong>那里的自由与安全程度更高</strong> <span class="tag t-src">原书</span>（第三篇第三章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一章的「国王—城市交易」叙事精彩，但被后来的史学大幅修正</strong>：中世纪城市的自治路径远比斯密描述的复杂，国王与市民也不总是盟友 <span class="tag t-inf">推断</span>。<strong>但斯密的洞察——「自由与安全是资本积累的前提」——仍然成立</strong>，且与今天「制度质量决定经济发展」的结论呼应。</p>
+</section>
+
+<section id="s26">
+  <h2><span class="num">25</span><span>第三篇·第四章：论都市商业对农村改良的贡献</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>城市反过来怎样改造农村？</strong> 斯密给出三条路径，说明<strong>商业城市如何促进农业改良</strong> <span class="tag t-src">原书</span>（第三篇第四章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li>★ <strong>三条路径</strong>：① 城市为农村<strong>提供市场</strong>，使农产品有了销路；② 城市商人<strong>购买土地、投资农业</strong>；③ 城市的<strong>文明与秩序</strong>通过商业关系<strong>渗入农村</strong>，动摇封建依附 <span class="tag t-src">原书</span>（第三篇第四章）。
+    </li>
+    <li>他强调「<strong>商业与制造业的发展，会逐渐带来秩序与好的政府，随之而来的还有个人的自由与安全</strong>」——这是本章最著名的一句判断 <span class="tag t-src">原书</span>（第三篇第四章）。
+    </li>
+    <li>他描述<strong>商人如何用钱买地、成为绅士</strong>，从而改良农业 <span class="tag t-src">原书</span>（第三篇第四章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>本章那句「商业带来自由与秩序」是斯密最乐观、也最被引用的论断之一，但它在 18 世纪就已有反例，今天更是如此</strong>：商业未必带来自由，也可能带来<strong>新的依附、垄断与不平等</strong> <span class="tag t-inf">推断</span>。<strong>把它当成「商业必然带来文明」的定律，是危险的</strong>——斯密自己也没有为这个论断提供机制，他提供的是观察。</p>
+</section>
+
+<section id="s27">
+  <h2><span class="num">26</span><span>第四篇·第一章：论商业主义或重商主义的原理</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>论战正式开场：重商主义把「财富＝金银」搞错了。</strong> 斯密先复述重商主义的信条（<strong>财富由金银构成，一国应尽量少买多卖</strong>），然后逐条反驳 <span class="tag t-src">原书</span>（第四篇第一章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li>★ <strong>反驳的核心</strong>：<strong>真正的财富是「年产物」（可消费的商品），金银只是流通工具</strong>——「<strong>一国的财富，不在于金银的多少，而在于其土地与劳动年产物的可交换价值</strong>」<span class="tag t-src">原书</span>（第四篇第一章）。
+    </li>
+    <li>他讨论了<strong>「贸易差额」的谬误</strong>：以为「卖给外国的多于买进来的」就是赚，忽略了<strong>进口本身也是财富</strong> <span class="tag t-src">原书</span>（第四篇第一章）。
+    </li>
+    <li>他引入<strong>「财富与货币的区别」</strong>：一国可以金银很多却贫穷，也可以金银很少却富裕 <span class="tag t-src">原书</span>（第四篇第一章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>本章的论证方向是成立的，但斯密的表述有过度之处</strong>：他几乎<strong>完全否认金银/货币对经济的重要性</strong>，这在今天的宏观经济学看来<strong>低估了货币与信用的作用</strong>（对比第二篇第二章他对银行信用的重视，这里有张力）<span class="tag t-inf">推断</span>。<strong>重商主义的某些关切（如外部平衡、国际收支）并非全无道理，斯密把它们一并否定了。</strong></p>
+</section>
+
+<section id="s28">
+  <h2><span class="num">27</span><span>第四篇·第二章：论限制从外国输入国内能生产的货物</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>★ 这是全书最著名的一章——因为「看不见的手」就在这里（WN IV.ii.9）。</strong> 斯密论证：<strong>限制进口（保护本国产业）是不必要的，因为个人会自发地把资本投向本国产业，无意中促进本国年产物</strong> <span class="tag t-src">原书</span>（第四篇第二章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li>★★ <strong>「看不见的手」原文</strong>：「<strong>他一般既不打算促进公共的利益，也不知道自己在多大程度上促进了它。……他只图自己的安全；……他只图自己的利益；而在这个场合，如同在许多其他场合一样，他被一只看不见的手引导着，去促进一个并非他本意要达到的目的。</strong>」（…he is in this, as in many other cases, led by an invisible hand to promote an end which was no part of his intention.）<span class="tag t-src">原书</span>（第四篇第二章，WN IV.ii.9）
+    </li>
+    <li>★ <strong>紧接着的两句常被忽略</strong>：「<strong>我从未见过那些假装为公众利益而贸易的人做出多少好事</strong>」；以及「<strong>至于哪种本国产业能产生最大价值，每个身处其地的个人显然比任何政治家或立法者都判断得更好</strong>」<span class="tag t-src">原书</span>（第四篇第二章）。
+    </li>
+    <li>★ <strong>同一章里他对「自由贸易的例外」的说明</strong>：当外国以禁令或高税阻碍我方出口时，<strong>「由于国防比富裕重要得多，航海法或许是英国一切商业法规中最明智的一条」</strong> <span class="tag t-src">原书</span>（第四篇第二章）。此外他还承认<strong>「报复性关税」</strong>与<strong>「对本国产品征税时对外国同类产品也征税」</strong>是合理的例外 <span class="tag t-src">原书</span>（第四篇第二章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★★ <strong>本章是全书被误读最集中的一章。</strong></p>
+  <ol>
+    <li><strong>「看不见的手」在此处的功能被严重夸大</strong>：它只是<strong>说明「个人偏好本国产业」这一具体论点</strong>的一句收束语，<strong>不是全书的方法论纲领</strong>（见 5.1）。
+    </li>
+    <li><strong>斯密不是绝对自由贸易者</strong>：他明确承认<strong>国防、报复、对等课税</strong>三类例外；<strong>把这一章读成「任何情况下都别管贸易」是错的</strong>。
+    </li>
+    <li><strong>他承认调整的痛苦</strong>：他说完全不设防的自由贸易是「<strong>对已受保护产业的突然冲击</strong>」，因此<strong>主张渐进放开</strong> <span class="tag t-src">原书</span>（第四篇第二章）。<strong>这一点在今天关于贸易政策的讨论里极有现实意义——斯密本人就是「自由贸易＋渐进调整」的支持者。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s29">
+  <h2><span class="num">28</span><span>第四篇·第三章：论对贸易差额被认为不利的那些国家的货物的输入所加的异常限制</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>把「贸易差额论」推到极端，看它站不住脚。</strong> 斯密继续反驳：一些国家<strong>以「与某国的贸易差额不利」为由，对该国货物加征异常限制</strong>，他认为这在逻辑上是荒谬的 <span class="tag t-src">原书</span>（第四篇第三章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li>他讨论了<strong>与法国的贸易</strong>：许多人主张对法国货严加限制，斯密则以<strong>两国贸易的实际好处</strong>反驳 <span class="tag t-src">原书</span>（第四篇第三章）。
+    </li>
+    <li>他分析<strong>两国贸易失衡会自行调节</strong>（金银流动会改变价格与贸易流向）——这实际上<strong>继承了休谟的「金银流动机制」</strong> <span class="tag t-src">原书</span>（第四篇第三章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>本章的国际贸易分析在方向上正确，但把「贸易差额」一笔否定也过于简化</strong>：外部失衡确实可能带来真实的经济调整成本，<strong>这一点要等到 20 世纪的国际收支理论（如 Marshall–Lerner 条件）才有更细的处理</strong> <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s30">
+  <h2><span class="num">29</span><span>第四篇·第四章：论退税</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>出口退税（drawback）该不该有？</strong> 斯密对退税的态度是<strong>有条件支持</strong>——他区分了「<strong>再出口的外国货物退税</strong>」与「<strong>本国产品的出口退税</strong>」，认为<strong>前者合理，后者弊多利少</strong> <span class="tag t-src">原书</span>（第四篇第四章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li><strong>退税的合理性</strong>：对<strong>进口后又复出口</strong>的货物退还已征的税，是正当的，因为它<strong>不改变资本的自然走向</strong> <span class="tag t-src">原书</span>（第四篇第四章）。
+    </li>
+    <li><strong>但本国产品的出口退税</strong>会<strong>扭曲资本配置</strong>，把资本吸引到并非自然有利的方向 <span class="tag t-src">原书</span>（第四篇第四章）。
+    </li>
+    <li>他讨论了<strong>退税与走私</strong>的关系：过高的税会诱发走私，反而使税收减少 <span class="tag t-src">原书</span>（第四篇第四章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ 本章相对技术、争议较小，是斯密「<strong>具体政策分析</strong>」能力的一次展示。<strong>可疑之处</strong>：他反对出口退税的理由是「扭曲资本自然走向」，<strong>但现代贸易理论已能以「外部性」与「规模经济」为国家扶持出口提供理由</strong>，因此他的结论<strong>不是普遍定律</strong> <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s31">
+  <h2><span class="num">30</span><span>第四篇·第五章：论奖励金</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>★ 批「奖励金」（bounty）——谷物出口奖励金是斯密反复引用的「坏政策样板」。</strong> 他主张：<strong>对谷物出口发放奖励金，是强制的、有害的，它既不增加产量，也人为抬高价格</strong> <span class="tag t-src">原书</span>（第四篇第五章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li>★ <strong>谷物奖励金的运作</strong>：政府补贴谷物出口，使出口商能在国外低价倾销，结果是<strong>国内谷物价格被抬高、农民未必受益、纳税人承担成本</strong> <span class="tag t-src">原书</span>（第四篇第五章）。
+    </li>
+    <li>他区分了<strong>奖励金与退税</strong>：退税是退还已征税，<strong>奖励金是额外给钱</strong>，性质完全不同 <span class="tag t-src">原书</span>（第四篇第五章）。
+    </li>
+    <li>他主张<strong>反对「以奖励金鼓励特定产业」</strong>：这会使资本流入并非最有利的方向 <span class="tag t-src">原书</span>（第四篇第五章）。
+    </li>
+    <li>★ 他讨论了<strong>渔业奖励金、殖民地奖励金</strong>等，并指出<strong>奖励金导致走私与欺诈</strong> <span class="tag t-src">原书</span>（第四篇第五章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这是斯密最扎实、最经得起检验的一章之一</strong>——他对谷物奖励金的分析（补贴抬高国内价格、扭曲配置），<strong>与现代福利经济学的补贴分析高度一致</strong> <span class="tag t-inf">推断</span>。<strong>但要注意他的边界</strong>：他反对的是<strong>奖励金式的产业补贴</strong>，而不是<strong>一切公共支出</strong>；<strong>他同时主张国家办教育、修路</strong>（第五篇）。<strong>「反补贴」不等于「反政府」。</strong></p>
+</section>
+
+<section id="s32">
+  <h2><span class="num">31</span><span>第四篇·第六章：论通商条约</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>通商条约（treaties of commerce）值得签吗？</strong> 斯密主张：<strong>那种以「给某国排他性特权」为代价的条约，通常对本国不利</strong>，因为它是一种<strong>互惠式的垄断安排</strong> <span class="tag t-src">原书</span>（第四篇第六章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li>他以<strong>《梅休因条约》</strong>（Methuen Treaty，英国与葡萄牙，1703）为例，讨论<strong>以特权换市场的代价</strong> <span class="tag t-src">原书</span>（第四篇第六章）。
+    </li>
+    <li>他的核心判断：<strong>这种条约让本国资本被吸入对方指定的方向，损害而非促进本国利益</strong> <span class="tag t-src">原书</span>（第四篇第六章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ 本章与前三章同属「反垄断式贸易安排」的论证，方向一致。<strong>可疑之处</strong>：他几乎<strong>否认一切特权型通商条约的价值</strong>，但<strong>在现实的外交与战略框架里，贸易条约常同时包含非经济目标</strong>（安全、同盟），<strong>斯密的纯经济评估会低估这一层</strong> <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s33">
+  <h2><span class="num">32</span><span>第四篇·第七章：论殖民地</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>★ 全书篇幅最长的一章。</strong> 斯密系统讨论殖民地的<strong>动机、繁荣原因、以及欧洲从殖民中获得的好处</strong>，并得出一个在当时极为激进的结论：<strong>殖民地贸易的垄断对母国不利，英国甚至应当考虑自愿放弃对殖民地的统治权</strong> <span class="tag t-src">原书</span>（第四篇第七章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li><strong>殖民地贸易垄断的机制</strong>：母国以法律<strong>独占殖民地市场</strong>，结果是「<strong>把英国资本从更有利的用途强拉到较不利的用途</strong>」<span class="tag t-src">原书</span>（第四篇第七章）。
+    </li>
+    <li>★ <strong>垄断的反复刻画</strong>：「<strong>殖民地贸易的垄断……在一切场合都迫使一部分英国资本进入比它本来会去的方向更不利的方向。</strong>」<span class="tag t-src">原书</span>（第四篇第七章）
+    </li>
+    <li>★★ <strong>「放弃殖民地」的推演</strong>：「<strong>要提议英国自愿放弃对殖民地的一切统治权、让它们自己选举官员、制定法律、决定和战……这等于是提议一件从未有过、也永远不会有任何国家采纳的措施。</strong>」<span class="tag t-src">原书</span>（第四篇第七章）他紧接着分析为什么各国都做不到——「<strong>这种牺牲虽常合乎利益，却总是伤国家的自尊</strong>」，且<strong>损害当权者处理官位与利益的机会</strong> <span class="tag t-src">原书</span>（第四篇第七章）。
+    </li>
+    <li>他讨论<strong>北美殖民地的迅速繁荣</strong>，并把它归因于<strong>土地充足、没有垄断与更高的自由</strong> <span class="tag t-src">原书</span>（第四篇第七章）。
+    </li>
+    <li>★ <strong>对「好处」的分层</strong>：在专门讨论「<strong>欧洲从美洲的发现与殖民中获得的好处</strong>」的那一部分里，斯密把<strong>贸易扩大、产业受激励这类一般好处</strong>，与<strong>母国靠独占才能拿到的好处</strong>分开处理，并论证<strong>独占那一部分算总账往往是净损失</strong> <span class="tag t-src">原书</span>（第四篇第七章，第三部分）。
+    </li>
+    <li>他分析<strong>欧洲各国从殖民地获得的实际好处</strong>，结论是<strong>在现行制度下，母国所得有限甚至为负</strong> <span class="tag t-src">原书</span>（第四篇第七章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★★ <strong>这是全书政治胆识最高、也最需要小心处理的一章。</strong></p>
+  <ol>
+    <li><strong>他的论证是「母国成本收益」的逻辑，不是殖民地的自决权</strong>。因此<strong>把它读成现代反殖民主义</strong>是过度拔高；但它<strong>在当时确实是极为罕见的清醒批判</strong>。
+    </li>
+    <li><strong>他对殖民地「繁荣原因」的解释（自由、土地充足）在今天仍有争议</strong>——把殖民地繁荣归因于「制度优越」，会<strong>忽略对原住民的剥夺、奴隶制的强制劳动</strong>等斯密触及不足的维度 <span class="tag t-inf">推断</span>。★ <strong>这一点必须写出来，不能只讲他的「自由贸易洞见」。</strong>
+    </li>
+    <li><strong>它的现实指向是 1776 年的美国独立战争</strong>——斯密在此几乎是<strong>在为一方的政治结论做经济论证</strong>。
+    </li>
+  </ol>
+</section>
+
+<section id="s34">
+  <h2><span class="num">33</span><span>第四篇·第八章：关于重商主义的结论</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>给第四篇的论战收口。</strong> 斯密总结：重商主义的一套政策（关税、禁令、奖励金、殖民地垄断）<strong>服务的不是消费者，而是生产者</strong>；而「<strong>消费是一切生产的唯一目的</strong>」<span class="tag t-src">原书</span>（第四篇第八章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li>★ <strong>最著名的一句</strong>：「<strong>消费是一切生产的唯一目的和用途；生产者的利益，只有在为促进消费者的利益所必需时，才应受到注意。</strong>」（Consumption is the sole end and purpose of all production…）<span class="tag t-src">原书</span>（第四篇第八章）
+    </li>
+    <li>他点出重商主义的<strong>阶级偏向</strong>：它「<strong>几乎总是为了生产者的利益而牺牲消费者的利益</strong>」<span class="tag t-src">原书</span>（第四篇第八章）。
+    </li>
+    <li>他讨论<strong>重商主义政策如何被商人与制造主推动</strong>，作为一条「<strong>立法被特殊利益俘获</strong>」的历史注脚 <span class="tag t-src">原书</span>（第四篇第八章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>本章是全书政治经济学立场最清楚的一处：以「消费者」为准，而不是以「生产者」为准。</strong> 这条原则<strong>至今仍是评判贸易与产业政策的重要标尺</strong>。<strong>可疑之处</strong>：把「消费者利益」绝对化，会<strong>忽略生产者（工人）的调整成本与就业问题</strong>——<strong>斯密自己在第四篇第二章承认了「突然放开」的痛苦</strong>，这里却说得更绝对，两者之间有张力 <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s35">
+  <h2><span class="num">34</span><span>第四篇·第九章：论重农主义</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>批评另一个「体系」：重农学派。</strong> 斯密说：重农主义（魁奈一派）主张<strong>只有农业是生产性的、土地产物是财富的唯一来源</strong>，这个体系「<strong>虽有诸多可取之处，却是片面的</strong>」<span class="tag t-src">原书</span>（第四篇第九章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li><strong>重农主义的核心主张</strong>：只有土地的产物才是「净产品」，制造业与商业是「非生产性」的 <span class="tag t-src">原书</span>（第四篇第九章）。
+    </li>
+    <li>★ <strong>斯密的评价</strong>：这是他<strong>唯一公开赞许的经济学派</strong>（「<strong>就政治经济学而言，这个体系虽有许多缺陷，或许是最接近真理的</strong>」）<span class="tag t-src">原书</span>（第四篇第九章）——但<strong>他明确反对「只有农业才生产」</strong>，认为制造业同样生产 <span class="tag t-src">原书</span>（第四篇第九章）。
+    </li>
+    <li>他讨论了<strong>魁奈的《经济表》</strong>及相关政策主张 <span class="tag t-src">原书</span>（第四篇第九章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>本章是全书最「文献综述式」的一章</strong>，也是理解斯密与法国重农学派关系的钥匙。<strong>可疑之处</strong>：斯密对重农学派的批评<strong>集中在「只有农业生产」这一点</strong>，但<strong>他没有充分承认重农学派在「经济循环」与「净产品」概念上的贡献</strong> <span class="tag t-inf">推断</span>。<strong>就思想史而言，这一章对重农学派的处理略嫌简慢。</strong></p>
+</section>
+
+<section id="s36">
+  <h2><span class="num">35</span><span>第五篇·第一章：论君主或国家的费用</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>★ 全书最被忽略、也最该读的一章。</strong> 斯密在此给政府列出<strong>三项职责</strong>，并逐项讨论其<strong>费用</strong> <span class="tag t-src">原书</span>（第五篇第一章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li>★★ <strong>政府三职能</strong>（原文）：
+    <ol>
+      <li>「<strong>保护社会不受其他独立社会的暴力和侵略</strong>」——即<strong>国防</strong>；
+      </li>
+      <li>「<strong>尽可能保护社会的每一个成员不受其他成员的不义或压迫</strong>」——即<strong>司法</strong>；
+      </li>
+      <li>「<strong>建造和维持某些公共工程与公共机构</strong>，它们对一个大社会极为有利，但其利润永远无法偿还任何个人或少数人的费用」——即<strong>公共工程与公共机构</strong> <span class="tag t-src">原书</span>（第五篇第一章）。
+      </li>
+    </ol>
+    </li>
+    <li><strong>国防</strong>（第一部分）：他主张<strong>常备军</strong>，并讨论<strong>军事费用随社会发展而上升</strong> <span class="tag t-src">原书</span>（第五篇第一章，第一部分）。
+    </li>
+    <li><strong>司法</strong>（第二部分）：他主张<strong>司法应独立于行政</strong>，并讨论<strong>诉讼费用与法官薪俸</strong> <span class="tag t-src">原书</span>（第五篇第一章，第二部分）。
+    </li>
+    <li>★★ <strong>公共工程与公共机构</strong>（第三部分）：分三类——① <strong>便利商业的</strong>（道路、桥梁、运河、港口）；② <strong>青年教育</strong>；③ <strong>全民教育</strong>（主要是宗教）。<strong>他明确主张国家介入教育</strong>：「<strong>在文明而商业化的社会里，普通人民的教育，或许比有身份有财产者的教育更值得公众注意。</strong>」<span class="tag t-src">原书</span>（第五篇第一章，第三部分）他的理由是：<strong>分工使普通工人「变得尽可能愚蠢和无知」</strong>，若不补救，整个社会会退化 <span class="tag t-src">原书</span>（第五篇第一章，第三部分）。
+    </li>
+    <li>★ <strong>公共工程的收费原则</strong>：他主张<strong>道路、桥梁、运河的费用，应由「按重量向通过的车辆与船只征收的小额通行费」来支付</strong>——「<strong>这种税或通行费虽由运输者垫付，最终仍由消费者承担，而货物反因道路改善而更便宜</strong>」<span class="tag t-src">原书</span>（第五篇第一章，第三部分）。★ 注意：<strong>这既不是「全部免费」，也不是「全部私营」——他主张的是「使用者付费」。</strong>
+    </li>
+    <li>★ <strong>全民教育（宗教）</strong>：他指出对全民的教导「<strong>主要是宗教教育</strong>」，并主张<strong>教士的生活费若取自学费与自愿捐献（而非固定俸禄），其勤勉与热忱会大得多</strong>——这正是他「<strong>竞争优于俸禄</strong>」原则在教育领域的应用 <span class="tag t-src">原书</span>（第五篇第一章，第三部分）。
+    </li>
+    <li><strong>维持君主尊严的费用</strong>（第四部分）<span class="tag t-src">原书</span>（第五篇第一章，第四部分）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★★ <strong>本章是纠正「斯密＝小政府」的关键，但也要诚实指出它的边界。</strong></p>
+  <ol>
+    <li><strong>斯密主张的「公共教育」是「部分国家资助」而非「国家垄断」</strong>——他强调<strong>竞争与学费的必要性</strong>，反对完全官办 <span class="tag t-src">原书</span>（第五篇第一章，第三部分）。<strong>因此不能把他说成「主张教育国有化」。</strong>
+    </li>
+    <li><strong>他对宗教教育的处理带有 18 世纪启蒙的反教权色彩</strong>，今天读来会有距离 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>「政府越小越好」这句判断，在本章里找不到任何依据。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s37">
+  <h2><span class="num">36</span><span>第五篇·第二章：论一般收入或公共收入的源泉</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>钱从哪来？</strong> 斯密先讨论<strong>公共收入的来源</strong>（国有资本与土地的收入、税收），然后在第二部分给出<strong>税收四原则</strong>，再逐类分析税种 <span class="tag t-src">原书</span>（第五篇第二章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li>★★ <strong>税收四原则</strong>（原文）：
+    <ol>
+      <li><strong>平等（equality）</strong>：「<strong>一国国民，都应在可能范围内，按照各自能力的比例，即按照各自在国家保护下享有的收入的比例，缴纳国赋</strong>」；
+      </li>
+      <li><strong>确定（certainty）</strong>：「<strong>各人应缴的税，应当是确定的，不得随意变更。缴纳的日期、方法、数额，都应清楚明白</strong>」——他强调「<strong>税收的不确定，比不平等为害更大</strong>」；
+      </li>
+      <li><strong>便利（convenience）</strong>：「<strong>每种税都应在纳税人最可能有钱缴纳的时期、以最便利的方式征收</strong>」；
+      </li>
+      <li><strong>经济（economy）</strong>：「<strong>每种税都应设计得使人民所付出的，尽可能等于国库所收入的</strong>」——即<strong>尽量减少征收成本与扭曲</strong> <span class="tag t-src">原书</span>（第五篇第二章，第二部分）。
+      </li>
+    </ol>
+    </li>
+    <li><strong>四类税种的详细分析</strong>：<strong>地租税</strong>（第一部分）、<strong>利润税</strong>（第二部分）、<strong>工资税</strong>（第三部分）、<strong>对一切收入无差别征收的税</strong>（第四部分，含人头税、消费税）<span class="tag t-src">原书</span>（第五篇第二章，第二部分）。
+    </li>
+    <li>他讨论了<strong>直接税与间接税</strong>、<strong>税负转嫁</strong>（如工资税最终会转嫁给消费者）<span class="tag t-src">原书</span>（第五篇第二章）。
+    </li>
+    <li>★ <strong>人头税（capitation taxes）</strong>：他批评<strong>人头税难以做到公平</strong>——若按财产比例征收，就变成任意与压迫；若按身份征收，则<strong>最不公平</strong>；「<strong>人头税征收费用小，但在下层人民不受重视的地方，它往往成为最不公的税种</strong>」<span class="tag t-src">原书</span>（第五篇第二章，第四部分）。
+    </li>
+    <li>★ <strong>消费税（taxes upon consumable commodities）</strong>：它由消费者<strong>零星支付、便利且不易察觉</strong>（「<strong>他买货时一点一点地付</strong>」）；但斯密同时指出<strong>它会抬高商品价格、抑制消费与生产</strong> <span class="tag t-src">原书</span>（第五篇第二章，第四部分）。这是全书对<strong>间接税</strong>最集中的一节。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>税收四原则是本章、乃至全书最经得起时间检验的部分之一</strong>——它至今仍是财政学的基本原则，"确定优于平等"这一判断尤其有洞见。<strong>可疑之处</strong>：① 他的<strong>税负转嫁分析过于简单</strong>（假设完全竞争、完全转嫁），现代税负归宿理论要复杂得多 <span class="tag t-inf">推断</span>；② 他对<strong>累进税</strong>的态度偏保守，且<strong>对「平等」的理解是「按比例」而非「累进」</strong> <span class="tag t-src">原书</span>（第五篇第二章）；③ 他对<strong>消费税</strong>的讨论带有时代色彩。</p>
+</section>
+
+<section id="s38">
+  <h2><span class="num">37</span><span>第五篇·第三章：论公债</span><span class="caret">▾</span></h2>
+  <h3>这一章在论证什么</h3>
+  <p><strong>公债会带来什么？</strong> 斯密对<strong>公债（public debts）持强烈警惕</strong>，认为<strong>它是战争的产物，会把国家拖入危险</strong> <span class="tag t-src">原书</span>（第五篇第三章）。</p>
+  <h3>关键概念与史例</h3>
+  <ul>
+    <li><strong>公债的起源</strong>：他把它与<strong>战争开支</strong>直接挂钩——「<strong>巨大的债务，是历次战争的产物</strong>」；和平时期若不偿还，债务就会累积 <span class="tag t-src">原书</span>（第五篇第三章）。
+    </li>
+    <li>★ <strong>公债的机制</strong>：他讨论<strong>公债如何被「基金化」</strong>（政府以专项税收担保）、<strong>长期债与短期债</strong>的差别、以及<strong>债务的滚动</strong> <span class="tag t-src">原书</span>（第五篇第三章）。
+    </li>
+    <li><strong>危险的机制</strong>：公债会<strong>把资本从生产用途抽到政府用途</strong>，且<strong>鼓励战争</strong>（因为打仗的钱可以借，不必当场征税）<span class="tag t-src">原书</span>（第五篇第三章）。
+    </li>
+    <li>他讨论了<strong>偿债基金</strong>（sinking fund）的失效——<strong>本为还债而设的基金，常被挪作他用</strong> <span class="tag t-src">原书</span>（第五篇第三章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>本章的判断在 18 世纪是极有洞见的</strong>——「债务是战争的产物」「借钱使战争更容易」这两条，在 20 世纪的财政史里反复被验证。<strong>但可疑之处在于</strong>：① 斯密<strong>几乎完全否定公债的建设性用途</strong>（如为公共工程、应对危机融资），这在现代宏观经济学里已被修正 <span class="tag t-inf">推断</span>；② 他<strong>没有区分「本币债务」与「外币债务」</strong>的风险差异，而这在主权债务分析里至关重要 <span class="tag t-inf">推断</span>。</p>
+</section>
+
+<section id="s39">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>概念／人物</th><th>一句话</th><th>出现在</th></tr></thead>
+    <tbody>
+      <tr><td><strong>分工</strong>（division of labour）</td><td>劳动生产力最大增进的原因；以别针工厂为范例</td><td>第一篇第 1–3 章</td></tr>
+      <tr><td><strong>别针工厂</strong></td><td>十人分十八道工序，日产四万八千枚针</td><td>第一篇第一章</td></tr>
+      <tr><td><strong>劳动价值论</strong></td><td>劳动是价值的真实尺度，货币只是名义尺度</td><td>第一篇第五、六章</td></tr>
+      <tr><td><strong>自然价格／市场价格</strong></td><td>长期均衡价 vs 当下成交价；由「有效需求」决定</td><td>第一篇第七章</td></tr>
+      <tr><td><strong>有效需求</strong>（effectual demand）</td><td>愿意且能够按自然价格购买的需求</td><td>第一篇第七章</td></tr>
+      <tr><td><strong>生产性／非生产性劳动</strong></td><td>能否固定并实现在可售商品上</td><td>第二篇第三章</td></tr>
+      <tr><td><strong>固定资本／流动资本</strong></td><td>是否需换手才能带来收入</td><td>第二篇第一章</td></tr>
+      <tr><td><strong>自然顺序／不自然的倒退顺序</strong></td><td>欧洲的财富增长次序被制度颠倒</td><td>第三篇第一章</td></tr>
+      <tr><td><strong>重商主义</strong>（mercantile system）</td><td>把财富等同于金银的体系；斯密的论战对象</td><td>第四篇全篇</td></tr>
+      <tr><td><strong>看不见的手</strong></td><td>全书仅 1 次（WN IV.ii.9），反重商主义语境中的旁注</td><td>第四篇第二章</td></tr>
+      <tr><td><strong>政府三职能</strong></td><td>国防、司法、公共工程与公共机构</td><td>第五篇第一章</td></tr>
+      <tr><td><strong>税收四原则</strong></td><td>平等、确定、便利、经济</td><td>第五篇第二章</td></tr>
+      <tr><td><strong>Adam Smith</strong></td><td>本书作者（1723–1790），格拉斯哥大学道德哲学教授</td><td>—</td></tr>
+      <tr><td><strong>David Hume</strong></td><td>斯密挚友，其「金银流动机制」被斯密采用</td><td>第四篇第三章</td></tr>
+      <tr><td><strong>François Quesnay</strong></td><td>重农学派领袖，斯密既赞许又批评</td><td>第四篇第九章</td></tr>
+      <tr><td><strong>David Ricardo</strong></td><td>继承并系统化劳动价值论；提出级差地租</td><td>5.3</td></tr>
+      <tr><td><strong>Karl Marx</strong></td><td>把李嘉图的价值论推向剩余价值与剥削</td><td>5.3</td></tr>
+      <tr><td><strong>Jevons／Menger／Walras</strong></td><td>1871–1874 年边际革命的三位独立提出者</td><td>5.3</td></tr>
+      <tr><td><strong>Emma Rothschild</strong></td><td>指出「看不见的手」是「温和的讽刺性玩笑」（1994）</td><td>5.1</td></tr>
+      <tr><td><strong>Gavin Kennedy</strong></td><td>主张斯密没有「看不见的手理论」（2009）</td><td>5.1</td></tr>
+      <tr><td><strong>Raphael &amp; Macfie</strong></td><td>格拉斯哥版《道德情操论》编者，判「斯密问题」为伪问题（1976）</td><td>5.2</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s40">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>斯密本人的另一半</strong>：Adam Smith, <em>The Theory of Moral Sentiments</em>（1759／1790 第六版）——读《国富论》前或后都该读；「同情」与「看不见的手」的另一次出现都在这里。
+    </li>
+    <li><strong>争议的原始文献</strong>：Gavin Kennedy, 〈Adam Smith and the Invisible Hand: From Metaphor to Myth〉, <em>Econ Journal Watch</em> 6(2), <strong>2009</strong>——把「看不见的手」被神化的过程拆得最清楚的一篇。
+    </li>
+    <li><strong>抬高史的关键一站</strong>：Emma Rothschild, 〈Adam Smith and the Invisible Hand〉, <em>American Economic Review</em> 84(2): 319–322, <strong>1994</strong>。
+    </li>
+    <li><strong>「斯密问题」的判词</strong>：D. D. Raphael &amp; A. L. Macfie（eds.）, <em>The Theory of Moral Sentiments</em>（Glasgow Edition）, Oxford University Press, <strong>1976</strong>, 导论 p.20。
+    </li>
+    <li><strong>价值论的命运</strong>：W. S. Jevons, <em>The Theory of Political Economy</em>, <strong>1871</strong>；Carl Menger, <em>Grundsätze der Volkswirtschaftslehre</em>, <strong>1871</strong>；Léon Walras, <em>Éléments d'économie politique pure</em>, <strong>1874</strong>；Piero Sraffa, <em>Production of Commodities by Means of Commodities</em>, <strong>1960</strong>。
+    </li>
+    <li><strong>分工的现代发展</strong>：George Stigler, 〈The Division of Labor is Limited by the Extent of the Market〉, <em>Journal of Political Economy</em>, <strong>1951</strong>。
+    </li>
+  </ol>
+</section>
+
+<section id="s41">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>见同目录 <code>国富论-来源清单.md</code>。</p>
+</section>
+
+<section id="s42">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. 「看不见的手」首次进入索引的时间与性质</h3>
+  <p>中文与英文二手来源普遍称：<strong>1937 年 Max Lerner 为 Modern Library 版《国富论》编索引时才首次把「invisible hand」单列为条目</strong>，此前 1876 年百年纪念无人提及。★ <strong>我未回到 1904 年 Cannan 版的实际索引逐页核对这一条</strong>，也无法确认「1876 年无人提及」这一否定性断言的检索范围。⇒ <strong>请以原版索引实物为准</strong>；本报告正文已标 <span class="tag t-rep">转述</span>。</p>
+  <h3>D2. 郭大力、王亚南译本「恢复全称」的年份，两种口径并存</h3>
+  <ul>
+    <li><strong>本报告采用的规范口径</strong>：<strong>1965 年校订时恢复原著全称《国民财富的性质和原因的研究》</strong>（并见《人民日报》相关文章、商务印书馆书目）。
+    </li>
+    <li><strong>另一口径</strong>：部分资料（如《快懂百科》条、南开大学相关纪念文章的一段）记作 <strong>1972 年</strong>修订版改书名。
+  <p>★ 两说可能指<strong>不同的版次动作</strong>（1965 校订 vs 1972 修订），也可能其中一说有误。<strong>我未能查到版权页原件</strong>。⇒ <strong>以你手中实物版权页为准。</strong></p>
+    </li>
+  </ul>
+  <h3>D3. 严复《原富》的翻译起讫年份与译名拟定</h3>
+  <ul>
+    <li>常见两说：<strong>1896–1901 年翻译</strong>、<strong>1901–1902 年出版</strong>（据牛津 1880 年版）。
+    </li>
+    <li>译名：初拟《<strong>计学</strong>》（约 1899），定稿改为《<strong>原富</strong>》（1901）。★ 本报告采用此说，但<strong>未能核对严复本人的书信原件</strong>，仅据二手研究综述。⇒ <strong>以严译版权页与现代严复研究专著为准。</strong>
+    </li>
+  </ul>
+  <h3>D4. Gutenberg #3300 的底本与 Glasgow 段落号的对应</h3>
+  <p>Gutenberg #3300 全文<strong>无段落号</strong>，且据其编校说明系<strong>较早版本一系</strong>（近 Cannan 1904 编本），<strong>与 Glasgow 校勘版的段落划分未必逐一对应</strong>。★ 因此本报告<strong>只在有多个独立来源一致佐证处</strong>给出 Glasgow 段落号（如 WN IV.ii.9、TMS IV.i.10），<strong>其余一律只用「篇·章」定位</strong>。⇒ <strong>需要精确段落号时，请以 Glasgow 版原书复核。</strong></p>
+  <h3>D5. 第五篇各节「占全书四分之一」的确切口径</h3>
+  <p>「第五篇约占全书四分之一」是按<strong>篇幅占比</strong>的通行说法，本报告采用它时<strong>未逐页统计</strong>。★ 不同统计口径（页数／字数／段落数）会得出不同比例。⇒ <strong>这是一个量级判断，不宜当作精确数字引用。</strong></p>
+  <h3>D6. 我主动排除的来源</h3>
+  <ul>
+    <li>★ <strong>盗版整本书 PDF</strong>：检索中确曾出现多个托管在个人站点或聚合站的《国富论》中英文全书 PDF。按本项目契约「<strong>只用合法来源，任何目的不例外</strong>」，<strong>一律不采用</strong>。
+    </li>
+    <li><strong>AI 生成的 SEO / 聚合内容</strong>：本报告识别出若干自动生成的百科页与「名著导读」页，其特征是<strong>把书名、译名、篇章数与权威编目对不上</strong>（如把《国富论》与《道德情操论》混淆、编造「第六篇」）。<strong>一律不采信。</strong>
+    </li>
+    <li><strong>无署名的中文「名著精读」短视频与笔记</strong>：因无法核实其转引链，本报告只在<strong>能回到公版原文或出版方页面</strong>时才采用其提示的问题意识，<strong>不采用其具体引文</strong>。
+    </li>
+  </ul>
+  <h3>D7. 「斯密支持航海法」这一条的性质</h3>
+  <p>斯密原文确实写道「<strong>由于国防比富裕重要得多，航海法或许是英国一切商业法规中最明智的一条</strong>」<span class="tag t-src">原书</span>（第四篇第二章）。★ <strong>但这是一句「承认例外」的话，不等于他「支持航海法的一般政策」</strong>；他在别处仍批评航海法的商业后果。⇒ <strong>引用时须连同上下文，不可截取为「斯密支持贸易保护」。</strong></p>
+  <h3>D8. 「消费是生产的唯一目的」一语的完整语境</h3>
+  <p>该句在第四篇第八章（WN IV.viii）<span class="tag t-src">原书</span>。★ 它是一句<strong>规范性判断</strong>，斯密用它来批评重商主义的<strong>阶级偏向</strong>，<strong>不是在建立「消费决定论」</strong>。⇒ <strong>引用时应说明它是「反对为生产者牺牲消费者」的论证，而非「需求决定供给」的命题</strong>（后者是萨伊定律，与斯密不同）。</p>
+</section>
+
+<footer>
+  生成于 2026-10-07 · 来源清单与交叉验证记录见同目录 <code>国富论-来源清单.md</code><br>
+  本页引文按 <b>A 级（公版原文）</b>处理：依据 <b>Project Gutenberg #3300 英文全文</b>逐字核对，并以 Glasgow 校勘版对照；未逐段精读的 4 章已如实降为 <b>B</b>。★ 斯密已逝于 1790 年，本报告<b>不假装他接受过访谈</b>，「作者谈话」一档仅指其本人其他著作中的自述。★ 本书被转述得极多、也失真极多：正文<b>第 4b 节</b>与<b>第 5 节</b>刻意写得最实 —— 尤其是「看不见的手」全书只出现 <b>1 次</b>（第四篇第二章，WN IV.ii.9）却被抬成核心、以及「斯密＝小政府」这一流行印象与第五篇原文的冲突。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

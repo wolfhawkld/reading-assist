@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《人类理解研究》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《人类理解研究》<small>阅读指引与精华解析 · 2026-10-07</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 六个核心论点</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 中文译本怎么选</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s7">6 第一节：各派哲学</a>
+    <a href="#s8">7 第二节：观念的起源</a>
+    <a href="#s9">8 第三节：观念的联络</a>
+    <a href="#s10">9 第四节：关于理解作用的一些怀疑（★ 全书枢轴）</a>
+    <a href="#s11">10 第五节：关于这些怀疑的一种怀疑主义的解决法（★ 与第四节连读）</a>
+    <a href="#s12">11 第六节：可然性</a>
+    <a href="#s13">12 第七节：「必然联系」的观念</a>
+    <a href="#s14">13 第八节：自由和必然</a>
+    <a href="#s15">14 第九节：动物的理性</a>
+    <a href="#s16">15 第十节：神迹（★ 全书最著名的一节）</a>
+    <a href="#s17">16 第十一节：特殊的天意和来世的状况</a>
+    <a href="#s18">17 第十二节：怀疑哲学</a>
+    <div class="grp">附录</div>
+    <a href="#s19">A 关键概念与人物速查</a>
+    <a href="#s20">B 延伸阅读</a>
+    <a href="#s21">C 来源清单</a>
+    <a href="#s22">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《人类理解研究》阅读指引与精华解析</h1>
+  <div class="sub">An Enquiry Concerning Human Understanding</div>
+  <div class="meta">
+    <div><b>作者</b>大卫·休谟（David Hume，1711–1776） —— 苏格兰哲学家、历史学家、经济学家；苏格兰启蒙运动核心人物；经验主义认识论的集大成者，「归纳问题」的提出者</div>
+    <div><b>成书年代</b>1748（初版题《人类理智哲学研究》<i>Philosophical Essays concerning Human Understanding</i>）；1758 年改现名；★ 作者生前多次修订，<b>1777 年「遗著版」为定本</b>，后世通行本皆以它为底本</div>
+    <div><b>★ 大陆简体版</b><b>关文运 译</b> · 商务印书馆「汉译世界学术名著丛书」—— 1957-10 初版（145 页）→ 1997-05（145 页 · ISBN 9787100017978）→ 2011 新版（163 页 · ISBN 9787100085120）；★ 另有 <b>周晓亮 译</b>（译林 2010，<b>书名不同</b>：《论道德原理·论人类理智》）</div>
+    <div><b>篇幅</b><b>12 节（Section I–XII）</b>，其中 IV、V、VII、VIII、X 各分 Part I／II，XII 分 Part I／II／III；正文自然段第 1–132 段</div>
+    <div><b>荣誉／地位</b>经验主义认识论与「归纳问题」的奠基文本；逻辑实证主义（维也纳学派、艾耶尔）尊为「现代分析哲学的先驱」；★ <b>但它本来的身份是《人性论》第一卷的通俗重写本</b></div>
+    <div><b>★ 全书结构</b>不是「12 个并列话题」，而是<b>一条单线论证链</b>：印象／观念之分（II–III）→ <b>因果怀疑（IV，全书枢轴）</b> → 怀疑的化解（<b>V，与 IV 连读是同一枚硬币</b>）→ 必然联系（VII）→ 自由与必然（VIII）→ 神迹（X）→ 怀疑哲学（XII）</div>
+    <div><b>★ 引文定位</b>一律用「<b>节号 ＋ Part 号</b>」（如「第四节第二部分」「第十节第一部分」），必要时附 Gutenberg #9662 自然段序号；<b>不用页码</b>（145 页本与 163 页本页码不同）</div>
+    <div><b>状态</b>未标注已读／想读 —— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有<b>可定位原文</b>支撑的段落 —— 即休谟 <i>An Enquiry Concerning Human Understanding</i> 的<b>公版全文</b>（以 1777 年遗著定本为底本的 <b>L. A. Selby-Bigge 编校本</b>）；凡引原文，均以「节号 ＋ Part 号（＋ 自然段序号）」定位，可逐段核对</li>
+    <li><span class="tag t-talk">作者谈话</span> ★ <b>休谟 1776 年已去世，不可能有访谈</b>。本档一律指<b>休谟本人的其他文字</b>：自传《我的一生》（1776）、1777 年版卷首《作者告白》、《人类理智哲学研究》初版题记、书信。<b>这不是访谈，是作者的其他文本</b></li>
+    <li><span class="tag t-rep">转述</span> 来自二手研究文献、百科、译序与导读的概括；措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本书为 <b>1748 年公版著作</b>，我使用的是 <b>Project Gutenberg 电子书 #9662</b> 的公版全文（Editor: L. A. Selby-Bigge，Second Edition 1902，转印自 1777 Posthumous Edition），并另以 Leeds 电子文本中心之 1777 年版目录、archive.org 公版扫描件交叉确认。★ 本书最大的边界在<b>中文译本</b>：我未持中文纸本，中文译名与体例依据出版方页面、图书馆编目与旧书网著录；另有一处版本细节未能定论（1937 年「关琪桐」署名版的独立著录），见附录 D。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-07 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书落在 <b>A 级（逐节核对公版全文）</b>：我<b>完整阅读并逐段核对了 Project Gutenberg #9662 全书 12 节（Section I–XII，自然段第 1–132 段）</b>，底本为 1777 遗著定本、Selby-Bigge 编校（1902）；并以 <b>Leeds Electronic Text Centre（Peter Millican，2000）之 1777 年版目录</b>与 <b>archive.org 公版扫描件</b>的卷首《Author's Advertisement》交叉确认。★ <b>本书 12 节全部达到 A 级，没有哪一节退到 B 级</b>。★ 另需说明：<b>《人类理解研究》并非《人性论》的缩写，而是其第一卷的改写本</b>（休谟自述《人性论》失败「更多在方式而非内容」）；因此「是—应当」问题、「理性是激情的奴隶」、「自我是一束知觉」等常见归诸休谟的名论，<b>都不在本书，而在《人性论》</b>。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>这本书要说的是：我们关于「原因与结果」的一切推理，都没有理性的根据——使它成立的，是「习惯」。</strong></p>
+  <p>更完整一点：休谟先承认人类知识分两类（「观念的关系」与「实际的事情」），再指出后一类知识全靠因果推理，然后把因果推理拆开——<strong>它既不是靠直觉，也不是靠论证，而是靠经验；而「经验为什么能推及未来」这一步本身，又无法用理性证明</strong>。于是他给出一个心理学的、而非逻辑学的答案：<strong>是「习惯」让我们在看到一个事件时，不由自主地期待它惯常的伴随者；我们把它叫作「必然联系」，但那不过是我们心中被习惯造出的一种「感觉」。</strong></p>
+  <p><strong>它不是什么</strong>：不是「休谟说因果不存在」的宣言（他否定的是<strong>必然联系的理性根据</strong>，而<strong>不是</strong>否认因果、更<strong>不是</strong>否认世界有规律）；不是一套怀疑一切的虚无主义（他自称<strong>温和怀疑主义者</strong>）；也不是一本无神论宣传册（他反复说，宗教信仰的基础是「<strong>信</strong>」，并把「理性地相信基督教」说成一件不可能的事——但这是<strong>证据论</strong>上的判断，不是本体论上的「神迹不可能」）。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>下表列出 12 节。要看清一件事：<strong>这张表不是菜单，是一条链</strong>——每一节都在处理上一节留下的问题。</p>
+  <table>
+    <thead><tr><th>#</th><th>节号与标题</th><th>这一节讲什么</th><th>它在论证链里处于哪一层</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><strong>第一节 各派哲学</strong>（Of the different Species of Philosophy）</td><td>区分「浅显哲学」与「精深哲学」两种做哲学的方式，为「抽象研究」辩护</td><td><strong>开场白</strong>：先给整本书的立场——我要做「既能深究、又能讲清」的哲学</td></tr>
+      <tr><td>2</td><td><strong>第二节 观念的起源</strong>（Of the Origin of Ideas）</td><td>印象（impressions）／观念（ideas）之分；一切观念都是印象的「摹本」</td><td><strong>地基</strong>：给出全书唯一的一把尺子（找不到印象即无观念）</td></tr>
+      <tr><td>3</td><td><strong>第三节 观念的联络</strong>（Of the Association of Ideas）</td><td>观念的联结只有三条原则：相似、时空接近、因果</td><td><strong>工具</strong>：给出「心灵如何把观念串起来」的三条线索</td></tr>
+      <tr><td>4</td><td><strong>第四节 关于理解作用的一些怀疑</strong>（Sceptical Doubts…）★★</td><td>「休谟的叉子」；因果知识不来自先验，而来自经验；经验推理无理性根据</td><td><strong>★ 全书枢轴</strong>：拆掉因果推理的理性地基（Part I 立叉子，Part II 给出否定性结论）</td></tr>
+      <tr><td>5</td><td><strong>第五节 关于这些怀疑的一种怀疑主义的解决法</strong>（Sceptical Solution…）★★</td><td>使人做因果推理的不是理性，而是<strong>习惯</strong>；「信念」是一种心理的强烈感</td><td><strong>★ 与第四节连读</strong>：破之后的立——同一枚硬币的另一面</td></tr>
+      <tr><td>6</td><td><strong>第六节 可然性</strong>（Of Probability）</td><td>由「机会」与「原因」而来的可然性；信念的强弱随证据份量变化</td><td><strong>技术补丁</strong>：把「信念有强弱」这一机制补进第 5 节的框架（最短、最技术）</td></tr>
+      <tr><td>7</td><td><strong>第七节 「必然联系」的观念</strong>（Of the Idea of necessary Connexion）</td><td>外部世界与内心（意志）都找不到「能力」的印象；「必然联系」感来自习惯性的心理推移</td><td><strong>核心补强</strong>：把第 5 节的结论单独坐实成一个正面学说</td></tr>
+      <tr><td>8</td><td><strong>第八节 自由和必然</strong>（Of Liberty and Necessity）</td><td>「必然」＝恒常结合＋推断；人类行为同样有恒常结合，故争论只是字面之争；道德须以必然为前提</td><td><strong>应用一</strong>：把第 7 节的「必然」用到人性与伦理上</td></tr>
+      <tr><td>9</td><td><strong>第九节 动物的理性</strong>（Of the Reason of Animals）</td><td>动物也靠经验与习惯推理，并无「论证」；习惯是一种本能</td><td><strong>应用二 / 旁证</strong>：用动物类比反证「习惯」说的普遍性</td></tr>
+      <tr><td>10</td><td><strong>第十节 神迹</strong>（Of Miracles）★</td><td>证言本身是一种经验证据；奇迹证言所要对抗的，是「自然律」这条最强经验证据</td><td><strong>应用三（最著名）</strong>：把证据权衡论用到宗教史上</td></tr>
+      <tr><td>11</td><td><strong>第十一节 特殊的天意和来世的状况</strong>（Of a particular Providence and of a future State）</td><td>假托「伊壁鸠鲁的申辩」：我们只能从果推因，不能从因再推新果；宗教假设不能推出任何新事实</td><td><strong>应用四</strong>：给「设计论证」划界（对话体）</td></tr>
+      <tr><td>12</td><td><strong>第十二节 怀疑哲学</strong>（Of the academical or sceptical Philosophy）</td><td>感官证据的哲学疑难；对抽象推理与事实推理的怀疑；<strong>温和／学园派怀疑主义</strong></td><td><strong>收束</strong>：从彻底怀疑走向「限制探究范围」的温和怀疑主义，以「焚书」之名收尾</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法提示</strong>：这本书<strong>不是「12 章一门课」</strong>，而是<strong>四级递进</strong>——地基（II–III）→ 枢轴（IV–V）→ 补强（VI–VIII）→ 应用与收束（IX–XII）。<strong>跳着读会断线，尤其别在 IV 处停下</strong>。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>六个核心论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：一切观念都来自印象（「摹本原则」）</h3>
+  <p><strong>主张</strong>：心灵的一切知觉分两种——<strong>印象</strong>（impressions，我们听到、看到、感到、爱、恨、欲求、意愿时的那些<strong>强烈而生动</strong>的知觉）与<strong>观念</strong>（ideas，我们回忆或想象它们时那些<strong>微弱</strong>的知觉）。<strong>一切简单观念都是某个印象的摹本</strong>（copies of our impressions）<span class="tag t-src">原书</span>（第二节，第 11–13 段）。</p>
+  <p><strong>依据</strong>：① 分析任何复杂观念，最终都分解为来自感觉或情感的简单观念；② 天生失明者没有颜色的观念，失聪者没有声音的观念——<strong>缺哪一路印象，就缺哪一路观念</strong>；③ 休谟自己承认唯一可能的反例是「<strong>缺失的蓝色阴影</strong>」：一个见过所有色调、独缺某一种蓝色的人，也许能凭想象补出那一色——但他马上说这个例子「<strong>太孤立，不值得为它改动通则</strong>」<span class="tag t-src">原书</span>（第二节，第 16 段）。</p>
+  <p><strong>为什么重要</strong>：这是全书的<strong>唯一一把尺子</strong>。休谟把它当成检验工具：<strong>凡遇到一个哲学语词，就问「它由哪个印象来的？」——如果指不出，就可疑</strong>（第二节，第 17 段）。第七节查「必然联系」、第四节查「能力」，用的都是这把尺子。<strong>没有这个摹本原则，后面全章都无从下手。</strong></p>
+  <h3>论点二：休谟的叉子——「观念的关系」与「实际的事情」</h3>
+  <p><strong>主张</strong>：人类理性的一切对象可分为两类。<strong>「观念的关系」（relations of ideas）</strong>——几何、代数、算术，靠纯思维即可发现，即使自然界从无圆或三角，欧几里得的真理仍永保其确实性。<strong>「实际的事情」（matters of fact）</strong>——它们的反面<strong>永远可能</strong>，不包含矛盾：说「太阳明天不会升起」，与说「太阳明天会升起」一样可理解、一样不蕴含矛盾 <span class="tag t-src">原书</span>（第四节第一部分，第 20–21 段）。</p>
+  <p><strong>依据</strong>：一切关于实际事情的推理，都建立在「<strong>原因与结果</strong>」这一关系上；而唯有靠这一关系，我们才能超出记忆与感官的当下证据（第四节第一部分，第 22 段）。</p>
+  <p><strong>为什么重要</strong>：这是全书的<strong>分界线</strong>。它一旦划下，<strong>「超出经验的命题」（神迹、来世、终极实体）就被放进了「既非观念关系、又无法由经验证明」的悬空地带</strong>。二十世纪逻辑实证主义就是从这把叉子出发，把它变成「意义标准」——甚至艾耶尔说自己的《语言、真理与逻辑》「<strong>不过是穿上现代服装的休谟</strong>」<span class="tag t-rep">转述</span>（A. J. Ayer 语，见 5.5）。<strong>这也是整本书最容易被后世「用过头」的一处。</strong></p>
+  <h3>论点三（★ 承重墙）：因果推理既非直觉、也非论证——因果怀疑论</h3>
+  <p><strong>主张</strong>：休谟给出<strong>否定性结论</strong>：即使我们已有因果经验，<strong>从经验得出的结论也不是建立在推理之上的</strong>（第四节第二部分，第 28 段）。因果知识不来自先验（a priori）：给一个从未见过水的人看水，他无法从水的透明流动性推出它会不会淹死他；给一个从未见过台球撞击的人看两球相碰，他也无法先验地断言第二球会动 <span class="tag t-src">原书</span>（第四节第一部分，第 23–25 段）。而<strong>「过去如此，将来也必如此」这一步，本身无法被证明</strong>——若用「或然论证」去证明它，就是<strong>循环论证</strong>（拿待证的东西当前提）；若用「论证性推理」去证明，又与「自然的进程可能改变」这一点不矛盾 <span class="tag t-src">原书</span>（第四节第二部分，第 30、32 段）。</p>
+  <p><strong>依据（他的三个支点）</strong>：</p>
+  <ul>
+    <li><strong>效果与原因不是同一件事</strong>：第二球之动，与第一球之动是「完全不同的两个事件」，原因里看不出结果（第四节第一部分，第 25 段）；
+    </li>
+    <li><strong>一次与一千次在理性上没有差别</strong>：理性对「看一个圆」与「看宇宙间所有圆」得出的结论一样；若有理性论证从一次经验推出规律，那么它在第一次就该跟在一千次之后一样有效——但事实并非如此（第四节第二部分，第 31 段）；
+    </li>
+    <li><strong>连婴儿与野兽都会这一步</strong>：若这一步要靠论证，那么请问那个「论证」是什么？它必须简单到连婴孩都懂——可你一旦说不出这个「明摆着的论证」，就等于承认，<strong>驱使我们做这个推断的不是推理</strong>（第四节第二部分，第 33 段）。
+    </li>
+  </ul>
+  <p><strong>为什么重要</strong>：<strong>这是全书的承重墙，也是「归纳问题」的原始出处</strong>。★ <strong>但必须钉死他否定的到底是什么</strong>：他否定的是「<strong>这一步有理性／论证的根据</strong>」，<strong>不是</strong>否定因果推理会发生（它天天在发生）、<strong>不是</strong>否定世界有规律（他处处假定「自然进程的齐一性」是我们<strong>行动</strong>的前提）、更<strong>不是</strong>说「原因与结果没有关系」。<strong>这是中文世界最常讲错的一条</strong>（见 4b 第 1 条）。</p>
+  <h3>论点四（★ 与论点三连读）：化解之钥不是理性，而是「习惯」</h3>
+  <p><strong>主张</strong>：既然理性给不出这一步，那么<strong>是什么给了它？</strong> 休谟答：<strong>习惯或习俗（Custom or Habit）</strong>。「凡是某种动作或操作的一再重复，会不靠任何推理地产生重做同一动作的倾向，我们就说这种倾向是<strong>习惯</strong>的效果」<span class="tag t-src">原书</span>（第五节第一部分，第 36 段）。他把它上升为一句名言：<strong>「习惯是人类生活伟大的向导」（Custom, then, is the great guide of human life）</strong><span class="tag t-src">原书</span>（第五节第一部分，第 36 段）。</p>
+  <p><strong>依据</strong>：这一机制<strong>只有它能解释那个难题</strong>——「为什么我们能从上千个事例推出结论，却无法从一个与它们毫无差别的事例推出结论？」理性解释不了这种差异（理性一次与一千次一样），<strong>只有习惯能</strong>（第五节第一部分，第 36 段）。而且它像自然给我们的<strong>本能</strong>：我们不知道肌肉与神经如何运作，却被赋予使用四肢的能力；同理，自然在我们心里植入一种本能，让思想沿着外部对象的轨道前进（第五节第一部分，第 45 段）。</p>
+  <p><strong>为什么重要</strong>：★ <strong>这是第 4 节的「解」，必须与第 4 节连读</strong>。休谟的棋局是：<strong>IV 问「为什么」，V 答「因为习惯」</strong>。他进一步说，所谓「信念」（belief）不是加在观念上的另一个观念，而是<strong>一种更强烈、更生动、更稳固的构想方式</strong>——是「<strong>心灵所感到的某种东西</strong>」<span class="tag t-src">原书</span>（第五节第二部分，第 40 段）。第七节再补一刀：<strong>我们向外物投射的那种「能力／必然联系」，其实是我们自己心中被习惯造出的那种感觉</strong>（第七节，第 59 段）。<strong>休谟的怀疑论因此不是要人停止推理，而是要给推理换一个心理学的地基。</strong></p>
+  <h3>论点五：自由与必然——一切人类实践都已默认「必然」</h3>
+  <p><strong>主张</strong>：「必然」这个词，我们只知道它含两件事——<strong>恒常结合</strong>（constant conjunction）与<strong>由之而来的心灵推断</strong>（inference）<span class="tag t-src">原书</span>（第八节第一部分，第 64 段）。而在人的行为里，<strong>这两件事同样处处可见</strong>：动机与行为有恒常结合，我们天天据以推断他人（第八节第一部分，第 65–69 段）。因此，<strong>关于自由与必然的千年争论，其实只是字面之争</strong>——所有人都默认了「必然」这层意思，只是不愿给它这个名字（第八节第一部分，第 63、71 段）。</p>
+  <p><strong>依据</strong>：历史之可信、政治之成学、道德之成立、文艺批评之可能，<strong>全都预设了「性格—行为」的恒常结合</strong>；监狱囚徒预判看守的忠贞，与预判铁窗与墙壁一样确定（第八节第一部分，第 70 段）。</p>
+  <p><strong>为什么重要</strong>：★ 这是把第七节的理论<strong>应用到伦理上</strong>。休谟的结论出人意料：<strong>「必然」不但不与道德冲突，反而是道德的前提</strong>——因为只有当行为源自性格中恒常的东西时，人才该为行为负责（第八节第二部分，第 76–77 段）。<strong>这一节常被读成「休谟支持决定论」，其实他做的是「重新定义必然，让争论消失」。</strong></p>
+  <h3>论点六：神迹——证据权衡论，证言不足以压过自然律</h3>
+  <p><strong>主张</strong>：「一个明智的人，会按证据来调配他的信念」（A wise man, therefore, proportions his belief to the evidence）<span class="tag t-src">原书</span>（第十节第一部分，第 87 段）。神迹是「<strong>对自然律的违背</strong>」；自然律由「牢固不变的经验」建立，故<strong>反对神迹的证据，就其性质而言，是能想象的最完整的证据</strong>（第十节第一部分，第 90 段）。他的核心准则：<strong>「任何证言，若其虚假不比它所力图建立的事实更神迹，就不足以确立一个神迹」</strong>（no testimony is sufficient to establish a miracle, unless the testimony be of such a kind, that its falsehood would be more miraculous, than the fact, which it endeavours to establish）<span class="tag t-src">原书</span>（第十节第一部分，第 91 段）。</p>
+  <p><strong>依据</strong>：他另给四条「削弱神迹证言」的理由——① 从无一个神迹由足够多、又兼具见识、学养、诚信、名声且公开到无法作假的人所证明（第十节第二部分，第 92 段）；② 人心天生爱好惊奇，<strong>宗教热情一掺进来就没了常识</strong>（第 93 段）；③ 神迹多见于<strong>蒙昧野蛮的民族</strong>（第 94 段）；④ <strong>各宗教的神迹互相抵消</strong>，一方的证言同时摧毁另一方（第 95 段）。</p>
+  <p><strong>为什么重要</strong>：★ <strong>这是全书流传最广的一节，也是最容易被误读的一节</strong>。休谟论证的<strong>不是「神迹不可能发生」</strong>（他甚至明说：<strong>「否则，也可能存在这样的神迹，其性质容许人的证言来证明」</strong>，并设想「全世界所有作者一致记载地球黑暗八日」这个可接受的例子，第十节第二部分，第 99 段）；他论证的是<strong>「证言在证据量上压不过自然律」</strong>。<strong>这是一个证据论结论，不是本体论结论。</strong>（现代反驳见 5.3。）</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <ol>
+    <li><strong>按 1 → 2 → 3 的地基顺序读</strong>：第一节（立场）→ 第二节（印象／观念）→ 第三节（三条联结原则）。<strong>这三节不长，但少了它们，第四节会读不懂。</strong>
+    </li>
+    <li><strong>第四、五节一定连读，一口气读完</strong>。它们是同一枚硬币：<strong>IV 破、V 立</strong>。★ 如果你只有一小时，读这四段：第四节第一部分（叉子）、第四节第二部分（否定结论）、第五节第一部分（习惯）、第五节第二部分（信念）。<strong>这四段就是全书的脊椎。</strong>
+    </li>
+    <li><strong>第四节第二部分末尾那几段可略读</strong>（论证较绕），<strong>抓住结论即可</strong>：「从经验来的结论不建立在推理之上，而建立在习惯之上」。
+    </li>
+    <li><strong>第十节可以单独先读</strong>，它自足、火爆、易读；但读者要记住它是<strong>证据论</strong>而不是<strong>无神论</strong>。
+    </li>
+    <li><strong>第十二节第三部分必读</strong>——那里藏着休谟对「我是哪种怀疑论者」的正式回答。
+    </li>
+  </ol>
+  <h3>如果你是「已读」</h3>
+  <ol>
+    <li><strong>回头核对一件事</strong>：你记住的「休谟否定了因果」，原文是不是这么说的？<strong>第七节第 59 段</strong>：他说「一个对象与另一个对象相连接，我们<strong>只是指</strong>它们在我们的思想中获得了连接」——<strong>这是重新定义，不是取消</strong>。他从未说事件之间没有恒常的先后秩序。
+    </li>
+    <li><strong>重看第四节与第五节的分工</strong>：<strong>怀疑（IV）</strong>与<strong>解决（V）</strong>之间不是「先吓你一跳、再安慰你一句」，而是<strong>同一条论证</strong>的两个必要环节——正因理性无据，习惯才是唯一的出口。<strong>若把休谟读成「他不信因果」，就等于把论文的第三段读成了结论。</strong>
+    </li>
+    <li><strong>对照第五节与第七节</strong>：第五节给「信念」，第七节给「必然联系」。<strong>两者是同一个机制</strong>（习惯造出的心理推移），只是一个用来说明「信念」，一个用来说明「因果观念」。<strong>读通这一对，你就读通了休谟的认识论。</strong>
+    </li>
+  </ol>
+  <h3>★ 可执行的阅读路线（12 节怎么走）</h3>
+  <ul>
+    <li><strong>不可跳</strong>：<strong>第四节（全文枢轴）、第五节（与 IV 连读）、第七节（正面学说）、第十二节第三部分（自我定位）。</strong>
+    </li>
+    <li><strong>可后读 / 可略</strong>：<strong>第六节「可然性」整节最短、最技术（讲赌博与或然率式的信念强弱），与主线关系最松，第一遍可以跳</strong>；第九节「动物的理性」是旁证，可略过论证只取结论（习惯是本能）。
+    </li>
+    <li><strong>可先读</strong>：<strong>第十节「神迹」</strong>最独立，适合作为「休谟风格」的入门样本。
+    </li>
+    <li><strong>政治与宗教敏感段落</strong>：第十节第二部分第 100 段（评《摩西五经》）与第十一节（伊壁鸠鲁申辩）语气最尖锐，但都属<strong>证据论与推理学</strong>，不是信念宣告。
+    </li>
+  </ul>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是必需的，因为本书的中文版本有一个隐藏陷阱：同一本书，在两个最常用的中译本里「书名不同」。</strong></p>
+  <p><strong>先说最要紧的三条结论</strong>：</p>
+  <blockquote>
+    <p><strong>⚠ ① 买大陆通行本，认准「关文运 译 ＋ 商务印书馆 ＋ 《人类理解研究》」。</strong> 它是「汉译世界学术名著丛书·哲学」本，1957 起印行，版式稳定、学界引用最多。</p>
+    <p><strong>⚠ ② 别被《论人类理智》这个书名骗了——那是同一部书的另一个译本。</strong> 周晓亮译（译林，2010）把它收在<strong>合集</strong>里，书名叫《论道德原理·论人类理智》，<strong>单看封面不会出现「人类理解研究」五个字</strong>，检索与购买时极易错过。</p>
+    <p><strong>⚠ ③ 关文运早年署名「关琪桐」。</strong> 你若买到民国时期的旧版（1930 年代商务），译者可能标作「关琪桐」，<strong>那仍是同一位译者</strong>（关文运本名关其桐，笔名关文运、关琪桐等）。</p>
+  </blockquote>
+  <p><strong>关文运译本（★ 本项目锚定版）</strong>：</p>
+  <ul>
+    <li>商务印书馆「汉译世界学术名著丛书·哲学」本
+    </li>
+    <li><strong>1957-10 第 1 版</strong>（沿用「统一书号」时代；1981 第 5 次印刷），145 页，统一书号 2017·7
+    </li>
+    <li><strong>1997-05 版</strong>：145 页，ISBN 7-100-01797-1／9787100017978
+    </li>
+    <li><strong>2011 新版</strong>：163 页，ISBN 9787100085120
+    </li>
+    <li>★ <strong>两个版次页数不同（145 / 163），这也是本报告「引文不用页码、只用节号」的直接原因。</strong>
+    </li>
+    <li>★ <strong>目录含「休谟自传」</strong>（即《我的一生》<em>My Own Life</em>）——多个书目来源与旧书网目录均列「休谟自传」为首篇。
+    </li>
+  </ul>
+  <p><strong>周晓亮译本</strong>：</p>
+  <ul>
+    <li>《论道德原理·论人类理智》· 周晓亮 译 · <strong>译林出版社 2010-01</strong> · 「译林人文精选」丛书 · 284 页 · ISBN 9787544711494 · 定价 22 元
+    </li>
+    <li>★ <strong>它是两部书的合订本</strong>：《论道德原理》（<em>An Enquiry Concerning the Principles of Morals</em>，即《道德原理研究》/「第二研究」）＋《论人类理智》（即本书，<em>An Enquiry Concerning Human Understanding</em>，即「第一研究」）。
+    </li>
+    <li>周晓亮是中国社科院哲学所研究员，著有《休谟及其人性哲学》《〈人性论〉导读》，是休谟专家；译本在「术语统一」上较用心。
+    </li>
+  </ul>
+  <p><strong>★ 该选哪个（三句话）</strong>：</p>
+  <ol>
+    <li><strong>想要「学界通用、引用方便、版本可靠」→ 选关文运译（商务印书馆）</strong>；它印次多、易得，讨论休谟时别人引的通常就是它。
+    </li>
+    <li><strong>想要「术语更统一、且顺带把『第二研究』（道德原理）一起读掉」→ 选周晓亮译（译林合集）</strong>；但请记住它在这本里叫<strong>《论人类理智》</strong>。
+    </li>
+    <li><strong>无论选哪本，请自己动手做一件事：把「节号」标在书上</strong>。因为中译本沿用「第一章／第二章……第一节／第二节」体例，而学界通行的是「Section I–XII ＋ Part」——<strong>把两套编号在书页边角对应一次，你以后看任何二手文献都不会迷路。</strong>
+    </li>
+  </ol>
+  <p>★ <strong>两个必须提醒的坑</strong>：</p>
+  <ol>
+    <li><strong>不要把《人类理解研究》和「第二研究」搞混。</strong>《道德原则研究》（<em>An Enquiry Concerning the Principles of Morals</em>，1751）是<strong>另一部书</strong>，讲道德；本书讲认识论。周晓亮译本把两者合订，<strong>更要注意分开读</strong>。
+    </li>
+    <li><strong>不要把《人类理解研究》当作《人性论》的「缩写」。</strong> 它是<strong>重写</strong>，删掉了《人性论》第一卷的若干大块（时空的详细学说、抽象观念理论、<strong>人格同一性／自我</strong>、外物存在的详细处理），又<strong>增补了《人性论》里根本没有的「神迹」一节</strong>（见 5.6）。<strong>它比《人性论》更好读，但并非《人性论》的完整替身。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本节是本报告最该细读的部分之一。</strong> 下面每一条，左边是中文世界流传的说法，右边是我在<strong>公版原文</strong>里核对到的事实，并附<strong>节号定位</strong>。</p>
+  <table>
+    <thead><tr><th>#</th><th>流行说法</th><th>原文／事实（附定位）</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>「<strong>休谟否定了因果</strong>」（或「休谟认为因果只是幻觉」）</td><td>★ 他否定的是<strong>「必然联系」的理性根据</strong>，<strong>不是因果本身</strong>。第七节第 59 段：他说当我们说「一个对象与另一个相连」时，「<strong>我们只是指</strong>它们在我们的思想中获得了连接」，并且这个结论「建立在足够的证据上」；他从未说事件之间没有先后秩序。<strong>他反而给出正面解释</strong>：因果观念来自「恒常结合 ＋ 习惯」（第七节第 58–61 段）。</td></tr>
+      <tr><td>2</td><td>「<strong>休谟是彻底的怀疑论者</strong>（怀疑一切）」</td><td>★ 他自己在第十二节第三部分第 129–130 段明确主张一种<strong>「更温和的怀疑主义，即学园派哲学」（a more mitigated scepticism or academical philosophy）</strong>，说它「既持久又有用」，教人「谦逊、审慎、克制」。他对「过度的、皮罗式的怀疑主义」的判决是：「<strong>行动、劳作与日常生活的事务</strong>」才是它的最大摧毁者（第十二节第二部分，第 126 段）。</td></tr>
+      <tr><td>3</td><td>「<strong>休谟的『是—应当』问题在《人类理解研究》里</strong>」</td><td>★ <strong>不在本书。</strong> 那段著名文字（「我惊奇地发现，作者们……突然从『是』跳到『应当』」）出自<strong>《人性论》第三卷第一部分第一节（1739–40）</strong>。★ 我在本书全文（12 节，第 1–132 段）中<strong>未发现</strong>该论断。另需注意：休谟 1777 年《告白》声明今后只认《两篇研究》为其哲学立场——<strong>而《告白》所指的另三桩争议（理性／激情二分、正义是人为而非自然之德）也都不在本书重点</strong>。</td></tr>
+      <tr><td>4</td><td>「<strong>休谟论证了『神迹不可能发生』</strong>」</td><td>★ 他论证的是「<strong>证言在证据量上压不过自然律</strong>」。第十节第二部分第 99 段他明确留了口子：<strong>「我承认，否则的话，也可能存在一些神迹……其性质容许人的证据来证明」</strong>，并设想了「全世界所有作者一致记载地球黑暗八天」这一<strong>可接受</strong>的例子。他要否定的是「神迹能成为某个<strong>宗教体系</strong>的基础」（第 98 段），不是「神迹在逻辑上不可能」。</td></tr>
+      <tr><td>5</td><td>「<strong>休谟说『理性是且只应是激情的奴隶』</strong>」</td><td>★ <strong>这句不在本书，出自《人性论》第二卷第三部分第三节（1740）。</strong> 本书对「情感」着墨极少，作者在《告白》后更是有意淡化了理性／激情的二分。<strong>把它当本书名言引用，是双重张冠李戴。</strong></td></tr>
+      <tr><td>6</td><td>「<strong>休谟否认『我』（自我）存在</strong>」（常被当作本书内容）</td><td>★ <strong>本书基本不谈自我。</strong> 休谟在<strong>《人性论》第一卷第四部分第六节（论人格同一性）</strong>才说「我」不过是一束知觉、找不到一个简单的「自我」印象；<strong>《人类理解研究》把这一整块删去了</strong>（只在第十二节等处顺带提及）。<strong>这是「重写」删掉的内容之一。</strong></td></tr>
+      <tr><td>7</td><td>「<strong>休谟证明了归纳在逻辑上无效，所以科学没有根据</strong>」</td><td>★ 他给的是<strong>否定性结论</strong>：「从经验来的结论，不建立在推理之上」（第四节第二部分，第 28 段）。但紧接着第五节把「根据」搬到了习惯上，并说<strong>这丝毫不危及实践</strong>：「自然总会维护她的权利」，实践中的推理「绝不会因这一发现而受损害」（第五节第一部分，第 34 段）。<strong>他的意思不是「科学没根据」，而是「根据不是理性的、而是本能的」。</strong></td></tr>
+      <tr><td>8</td><td>「<strong>休谟的《人类理解研究》就是他 1739 年那本《人性论》的新名字</strong>」</td><td>★ 是<strong>改写</strong>，不是改名。1777 年《告白》：「<strong>本书所含的大多数原理与推理，曾发表在一部三卷本著作《人性论》中……由于发现它不成功，他意识到自己过早付印的错误，于是把整部作品在这些篇什里重新铸造</strong>」<span class="tag t-talk">作者谈话</span>。休谟在自传里说得更直白：失败「<strong>与其说在内容，不如说在叙述方式</strong>」<span class="tag t-talk">作者谈话</span>。<strong>它是「第一卷的通俗重铸版」，而非「同一本书换皮」。</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>这一节的方法论</strong>：以上每一条都不是「网上有个人这么说」，而是<strong>我在公版全文里逐段核对后</strong>，发现「流传的说法」与「原文可定位的段落」对不上。<strong>判据是「你有没有回到原文」——不是「这个说法流不流行」。</strong></p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本节是本报告最该细读的一节。</strong> 本书的影响几乎无人否认（它塑造了整个近代认识论，并成了逻辑实证主义的祖本），<strong>但它的每一处关键论证，后来都被人从内部撬松过</strong>。下面五条按「锋利程度」排列，最后两条回答「今天还读吗」。</p>
+  <h3>5.1 ★★ 因果怀疑论的准确范围：他说「无理性根据」，不说「无因果」</h3>
+  <p><strong>这条是本报告反复强调的第一误读，也是学术界公认的「读休谟的第一道关口」。</strong></p>
+  <p><strong>内容</strong>：休谟在第四节第二部分把结论限定为<strong>否定性</strong>的——从经验来的结论「不是建立在推理之上」<span class="tag t-src">原书</span>（第四节第二部分，第 28 段）。他<strong>没有</strong>说「因果不存在」；他说的是「我们不知道<strong>那个把因与果绑在一起的东西</strong>是什么」，并据此把「必然联系」重新定义为<strong>恒常结合 ＋ 心灵的习惯性推移</strong>（第七节，第 58–61 段）。</p>
+  <p><strong>现代学界对此的共识与分歧</strong>：</p>
+  <ul>
+    <li><strong>学界共识</strong>：把休谟读成「否认因果必然性的本体论虚无主义者」，是<strong>误读</strong>。标准解读（如 <strong>Don Garrett</strong>、<strong>Peter Millican</strong> 等）强调，休谟的怀疑论是<strong>认识论的</strong>（我们缺乏对「必然」的观念／印象），而非<strong>本体论的</strong>（世界无规律）。
+    </li>
+    <li><strong>仍有争议的是</strong>：这种「认识论怀疑」到底有多强？<strong>Peter Millican</strong> 的系列论文（如 "Hume's Skeptical Doubts" 等，收于多部休谟研究文集）主张休谟的论证<strong>基本成立且相当强</strong>；而 <strong>Edward Craig</strong>（《The Mind of God and the Works of Man》，牛津，1987）等则强调其「自然主义」一面——休谟从不是要人怀疑，而是要<strong>解释</strong>我们为何必然如此相信。
+    </li>
+  </ul>
+  <p><strong>★ 为什么单列</strong>：因为<strong>中文普及读物里「休谟否定因果」的写法极其普遍</strong>，而它恰好把休谟<strong>最正面、最有建设性</strong>的那一半（习惯说、恒常结合说）给抹掉了。</p>
+  <h3>5.2 ★ 「是—应当」问题与《人性论》的关系：别张冠李戴</h3>
+  <p><strong>内容</strong>：那段著名文字——「我惊奇地发现……作者们从『是』与『不是』，突然跳到了『应当』与『不应当』，这个变化虽不为人察觉，却意义重大」——出自<strong>《人性论》第三卷第一部分第一节（1739–40）</strong><span class="tag t-src">原书</span>（《人性论》III.i.1，段末）。它被称为「<strong>休谟法则</strong>」（Hume's Law）或「<strong>休谟的断头台</strong>」（Hume's Guillotine）。</p>
+  <p><strong>★ 关键事实</strong>：<strong>这段文字不在《人类理解研究》里。</strong> 我在本书全文逐段核对（12 节、第 1–132 段）<strong>未发现</strong>该论断。更需注意：休谟 1777 年《告白》明确声明，今后只认《两篇研究》为其哲学立场——<strong>而《告白》所对应的三桩常见归诸休谟的争议（理性／激情二分、「是—应当」、正义是人为而非自然之德）恰恰都主要来自《人性论》，而非本书。</strong> 这在解释学上留下一个难题：<strong>作者本人声称放弃《人性论》，可后世大用特用的，偏偏是《人性论》里的东西。</strong></p>
+  <p><strong>后继讨论</strong>：</p>
+  <ul>
+    <li><strong>R. M. Hare</strong>（《The Language of Morals》，牛津，1952）与 <strong>Karl Popper</strong>（《The Open Society and Its Enemies》，1945）<strong>把这句抱怨形式化为一条逻辑原则</strong>：从纯描述性前提不能有效推出规范性结论。
+    </li>
+    <li><strong>John Searle</strong>〈How to Derive 'Ought' from 'Is'〉，<em>Philosophical Review</em> 73(1)，<strong>1964</strong>——提出著名反例（从「琼斯说了『我承诺……』」推到「琼斯应当……」）；<strong>批评者</strong>反驳说，这个推导偷偷塞进了关于「承诺」这一制度的规范前提。
+    </li>
+    <li><strong>Alasdair MacIntyre</strong>《After Virtue》（1981）主张：休谟法则只对「非目的论的、历史化的」事实观有效；一旦恢复「人的目的／功能」这一亚里士多德式框架，事实就能推出规范。
+    </li>
+  </ul>
+  <h3>5.3 ★★ 神迹论证（第十节）：论证结构，与现代反驳（两边都写）</h3>
+  <p><strong>休谟的论证结构</strong>（第十节，三步）：</p>
+  <ol>
+    <li><strong>证言也是一种经验证据</strong>：我们对证言的信任，来自「人的诚信与事实相符」这一经验（第 88 段）。
+    </li>
+    <li><strong>神迹是对自然律的违背</strong>，而自然律由「牢固不变的经验」建立；因此<strong>反对神迹的证据，就其性质而言，是能想象的最完整的证据</strong>（第 90 段）。
+    </li>
+    <li><strong>权衡准则</strong>：只有当「证言的虚假」比「事实为真」<strong>更神迹</strong>时，证言才可能被接受；否则「我从两个神迹中取较小的那个」（第 91 段）。再由四条理由（证人品质／爱惊奇的人性／蒙昧民族的偏向／各宗教神迹互斥）说明，<strong>历史上从未有神迹证言达到这个门槛</strong>（第 92–98 段）。
+    </li>
+  </ol>
+  <p><strong>★ 现代反驳（必须写，且不止一家）</strong>：</p>
+  <ul>
+    <li><strong>John Earman</strong>，<em>Hume's Abject Failure: The Argument Against Miracles</em>，<strong>Oxford University Press，2000</strong>（232 页，ISBN 0195127374）。Earman 的立场极硬：他主张休谟的论证「<strong>在很大程度上既非原创，亦无价值</strong>」（largely unoriginal and chiefly without merit where it is original）<span class="tag t-rep">转述</span>（出版方简介与学界书评转述）。他的正面建议是：<strong>用贝叶斯式的概率演算来重做这个问题</strong>——即把「奇迹证言」当作一个后验概率更新，而不是一个「全有或全无」的对抗。Earman 的核心指责是：<strong>休谟的归纳观与概率观，比他同时代的 Richard Price、Samuel Clarke 还要粗糙。</strong>
+    </li>
+    <li><strong>Richard Swinburne</strong>（牛津大学，宗教哲学），<strong>《The Existence of God》</strong>（1979；第二版 2004）与 <strong>《The Resurrection of God Incarnate》</strong>（牛津，2003）。他提出两条理性原则——<strong>「轻信原则」（Principle of Credulity）</strong>：若你经验到 X，则（无特别理由时）X 很可能存在；<strong>「证言原则」（Principle of Testimony）</strong>：他人所报告的其经验，若无特别理由，很可能属实。据此他反驳休谟<strong>两点</strong>：① <strong>神迹的根据不限于目击证言</strong>，也可能有<strong>物理痕迹</strong>等证据（原则上可与自然律证据抗衡）；② <strong>休谟最根本的错误，是假定「关于自然律的知识」是唯一相关的背景证据</strong>——如果<strong>独立地</strong>有理由相信上帝存在（宇宙论、目的论、道德论据），那么「神迹的先验概率」就不像休谟以为的那样低。<strong>Swinburne 实际上承认了休谟论证的形式结构，只是在先验概率的取值上与其分歧。</strong>
+    </li>
+    <li><strong>John L. Mackie</strong>〈Miracles and Testimony〉（收于《The Miracle of Theism》，牛津，1982）<strong>基本支持休谟的核心结论</strong>，但<strong>修补</strong>了他的表述，指出其「全有或全无」的措辞需要概率化的改写。<strong>（Mackie 站在休谟一侧，用来表明这条战线不是「信教者 vs 无神论者」。）</strong>
+    </li>
+    <li><strong>R. F. Holland</strong>（《The Miraculous》，1982 等）主张<strong>「偶发神迹」</strong>（contingency miracle）——即不必是自然律的违背，而是<strong>一次意味深长的巧合</strong>，被解释为宗教性的。
+    </li>
+  </ul>
+  <p><strong>★ 这条为什么最值得单列</strong>：<strong>它是「一个有影响力的论证，不等于一个成立的论证」的最佳样本。</strong> 休谟的准则被写进教科书（「非凡的主张需要非凡的证据」），但<strong>Earman 2000 与 Swinburne 的回应表明：这条准则的具体形式（如何取值、如何权衡）至今没有定论</strong>，而且争议的<strong>真正战场是先验概率</strong>——一个哲学立场问题，不是一个证据问题。</p>
+  <h3>5.4 ★ 归纳问题：休谟提出，后来者如何接手（Popper、Goodman 等）</h3>
+  <p><strong>内容</strong>：休谟问题的原始表述在第四节第二部分与第五节：<strong>从经验来的推理无理性根据，只能靠习惯</strong>。</p>
+  <p><strong>后继接手的三种路径</strong>：</p>
+  <ul>
+    <li><strong>Karl Popper（证伪主义）</strong>：在《科学发现的逻辑》（1959 英译初版；德文原著 1934）与《猜想与反驳》（<em>Conjectures and Refutations</em>，<strong>1963</strong>）中，<strong>接受休谟的结论</strong>（归纳无法得到逻辑辩护），但<strong>拒绝怀疑论</strong>：科学的方法不是归纳，而是<strong>演绎的证伪</strong>——理论若要有科学性，必须「<strong>把自己的脖子伸出去</strong>」，做出可能被推翻的预测。<strong>他甚至在晚期自述里直接称「休谟是我的老师」。</strong>
+    </li>
+    <li><strong>Nelson Goodman（新归纳之谜）</strong>：在《事实、虚构与预测》（<em>Fact, Fiction, and Forecast</em>，<strong>1955</strong>）中提出 <strong>grue／bleen（绿蓝／蓝绿）悖论</strong>：定义「<strong>绿蓝的</strong>」为「在时刻 t 前被观察且为绿，或未被如此观察且为蓝」。于是，同样的「所有已观察绿宝石都是绿的」证据，<strong>也同等支持</strong>「所有绿宝石都是绿蓝的」；可我们只做前一个归纳。<strong>Goodman 因此说：休谟正确地把归纳归于习惯，但他漏了一步——为何我们对某些归纳形成习惯、而不对其他归纳形成习惯？</strong> 他的答案是「<strong>可投射性</strong>」（projectibility）与谓词的「<strong>根深蒂固</strong>」（entrenchment）。
+    </li>
+    <li><strong>Willard Van Orman Quine</strong>（《Ontological Relativity and Other Essays》，1969）试图用「<strong>自然类</strong>」（natural kinds）为根深蒂固的谓词找一个形而上学的底；<strong>Hilary Putnam</strong> 等则指出，grue 的「时间依赖性」本身依赖于所选语言——换个语言，「绿」也可能同样「怪」。<strong>这场争论至今未决。</strong>
+    </li>
+  </ul>
+  <p><strong>★ 这条为什么单列</strong>：<strong>它说明休谟留下的是一个问题，而不是一个答案。</strong> 二百八十年过去，<strong>没有人证明归纳的理性根据</strong>；也<strong>没有人能不用归纳而生活</strong>。这个张力本身，就是休谟的遗产。</p>
+  <h3>5.5 ★ 「休谟的叉子」的后果：逻辑实证主义如何用它，又如何批评它</h3>
+  <p><strong>内容</strong>：叉子（第四节第一部分，第 20 段）把知识一分为二：<strong>观念的关系</strong>（先验、分析、必然）与<strong>实际的事情</strong>（后验、综合、或然）。</p>
+  <p><strong>它怎样被接走——逻辑实证主义</strong>：</p>
+  <ul>
+    <li><strong>A. J. Ayer</strong>，<em>Language, Truth and Logic</em>（<strong>1936</strong>）。他在开篇即声明：「<strong>像休谟一样，我把一切真正的命题分为两类</strong>：一类关于『观念的关系』，一类关于『实际的事情』。」<span class="tag t-rep">转述</span>（Ayer 1936，第 1 章）。他直言自己的书「<strong>不过是穿上现代服装的休谟</strong>」（no more than Hume in modern dress），并<strong>逐字引用了休谟那句『焚书』</strong>（本书第十二节第三部分，第 132 段；Ayer 标作 EHU 12.34／SBN 165）作为「<strong>实证主义者立场的最佳表述</strong>」<span class="tag t-rep">转述</span>（Ayer 语，见 Slavov 2017 转引）。
+    </li>
+    <li>维也纳学派（Carnap 等）<strong>进一步把它变成「意义标准」</strong>：一个命题若非分析的，就必须可被经验证实，否则「无认知意义」。<strong>这是把休谟的「辩护论区分」改造成了「意义论区分」——而这个改造，休谟本人未必会同意。</strong>
+    </li>
+  </ul>
+  <p><strong>它怎样被反噬</strong>：</p>
+  <ul>
+    <li><strong>W. V. O. Quine</strong>〈Two Dogmas of Empiricism〉，<em>The Philosophical Review</em> 60(1)，<strong>1951</strong>——<strong>直接攻击「分析／综合」这条分界本身</strong>，认为它站不住脚。
+    </li>
+    <li><strong>验证原则自我挫败</strong>：该原则本身既非分析的、又不可被经验证实。<strong>John Passmore</strong> 1967 年已可断言：逻辑实证主义「<strong>死了，或者像任何哲学运动那样死透了</strong>」（is dead, or as dead as a philosophical movement ever becomes）<span class="tag t-rep">转述</span>（Smith 1967 转引）。
+    </li>
+    <li><strong>Kant 的第三条路</strong>：康德提出「<strong>先天综合判断</strong>」（synthetic a priori），恰恰是为了<strong>绕开休谟的叉子</strong>，挽救牛顿物理的普遍必然性——<strong>这是叉子历史上最重要的一次「补第三类」。</strong>
+    </li>
+  </ul>
+  <p><strong>★ 这条为什么单列</strong>：<strong>它把「一个二百年后被用爆、又被拆掉的分界」摆在你面前。</strong> 叉子是本书最锋利的工具，也是被后世<strong>用过头</strong>最厉害的一件——<strong>艾耶尔拿它当武器，Quine 又把这件武器折了。读休谟时记住：叉子是他描述「知识两分」的方式，不是他宣布「别的话都是胡说」的判词——那个判词是后来的实证主义者加上的。</strong></p>
+  <h3>5.6 体裁与可读性：作为「改写本」与「入门读物」的双重处境</h3>
+  <ul>
+    <li><strong>它按今天的标准哪里读不下去</strong>：① <strong>第四节第二部分、第七节第一部分论证绵密而冗长</strong>（休谟自己都在第七节末尾说「我怕再多说反而更晦涩」，第 61 段）；② <strong>拉丁文与希腊文夹注、18 世纪人名典故</strong>（Tillotson、Malebranche、Abbé Paris）需要背景；③ <strong>第六节「可然性」</strong>是全节最短也最无趣的技术段落。<strong>★ 相对而言，本书已是休谟最好读的一部</strong>——这正是他改写的目的（见下）。
+    </li>
+    <li><strong>★ 它作为「入门读物」的特殊处境</strong>：<strong>它是《人性论》第一卷的通俗重铸版。</strong> 休谟在自传《我的一生》里说，失败的原因「<strong>与其说在内容，不如说在叙述方式</strong>」；1777 年《告白》说，《人性论》「<strong>他从未承认</strong>」（which the Author never acknowledged），今后「<strong>只应把以下篇什视为他哲学情感与原理的所在</strong>」<span class="tag t-talk">作者谈话</span>。<strong>这意味着两件事</strong>：① 今天想读休谟的认识论，<strong>从本书入手远比读《人性论》合适</strong>；② <strong>但本书删掉了《人性论》第一卷的若干大块</strong>——<strong>时空的详细学说、抽象观念理论、人格同一性（自我）、外物存在的详细处理</strong>，同时<strong>增补了《人性论》里完全没有的「神迹」一节</strong>。★ <strong>所以：本书是「更好读的入口」，但不是「更完整的休谟」。</strong>
+    </li>
+    <li><strong>★ 一条必须点破的张力</strong>：休谟<strong>本人声明放弃《人性论》</strong>，可后世<strong>大用特用</strong>的（「是—应当」「理性是激情的奴隶」「自我是一束知觉」）<strong>几乎全在《人性论》里</strong>。<strong>作者想要的门面，和思想史实际收下的货，并不一致</strong>——这不是八卦，而是读任何「作者自我修订过的经典」时都要留意的结构性问题。
+    </li>
+  </ul>
+  <h3>5.7 它今天还成立吗（分角度回答，不要一句「经典不朽」）</h3>
+  <table>
+    <thead><tr><th>角度</th><th>判断</th><th>依据</th></tr></thead>
+    <tbody>
+      <tr><td><strong>作为认识论问题</strong></td><td>★ <strong>仍然活着，而且更活</strong></td><td>「归纳问题」至今无解（5.4）；「因果必然性」至今是形而上学与科学哲学的中心议题。<strong>这一块没被推翻，只被反复重述。</strong></td></tr>
+      <tr><td><strong>作为具体论证</strong></td><td><strong>要分部位看</strong></td><td>「摹本原则」的严格版（每个简单观念都有对应印象）<strong>普遍被认为太强</strong>（休谟自己的「缺失蓝色」就是例外）；「必然联系＝习惯性推移」这一心理机制<strong>被现代认知科学部分支持</strong>（联想学习、预测编码），但<strong>作为对「因果」的完整分析，明显不足</strong>（它只解释了我们的因果<strong>信念</strong>，没解释因果<strong>关系</strong>）。</td></tr>
+      <tr><td><strong>作为神迹论证</strong></td><td><strong>核心直觉仍在，具体形式受质疑</strong></td><td>「按证据调配信念」被广泛接受；但「异常的主张需要异常的证明」<strong>如何精确化</strong>，仍无共识（Earman 2000 与 Swinburne 的分歧，见 5.3）。</td></tr>
+      <tr><td><strong>作为宗教哲学文本</strong></td><td><strong>被反复引用，但立场被两边拉扯</strong></td><td>无神论者拿它当武器，神学家（Swinburne、Hick）则说它「<strong>只证明了一个很高的证据门槛，而门槛是可跨的</strong>」。<strong>它的真实身份是证据论，不是无神论。</strong></td></tr>
+      <tr><td><strong>作为入门读物</strong></td><td>★ <strong>强烈推荐，且优于读《人性论》</strong></td><td>篇幅短、结构清晰、语气克制；<strong>它是休谟自己认可的「正式版本」</strong>。</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一个反直觉的判断</strong>：<strong>这本书最耐读的部分，恰恰不是那些被引用最多的口号（「习惯是伟大的向导」「焚书」），而是第四节与第五节那种「先拆掉地基、再换一块新地基」的双人舞。</strong> 前者是标语，后者才是<strong>论证</strong>。而<strong>「读标语 vs 读论证」的差别，正是这本书最想训练你的能力。</strong></p>
+  <p>★ <strong>结构说明</strong>：本书正文 <strong>12 节</strong>。本部分<strong>逐节</strong>对应，<strong>编号从 6 起连续到 17</strong>。每节三段：<strong>「这一节的论证链条」／「关键区分与例子」／「可疑之处」</strong>。引文一律用「节号 ＋ Part 号」（必要时附 Gutenberg #9662 文本的自然段序号）。★ <strong>第四、五节请连读</strong>；<strong>第十节可单独先读</strong>。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>第一节：各派哲学</span><span class="caret">▾</span></h2>
+  <h3>这一节的论证链条</h3>
+  <ol>
+    <li><strong>先分家</strong>：道德哲学（＝人的科学）可以用<strong>两种方式</strong>处理。第一种把人看作「为行动而生」的存在，靠趣味与情感来打动他——「浅显的哲学」（the easy philosophy）；第二种把人看作「理性而非行动的存在」，要探究理解、情感与赞贬的<strong>原理</strong>——「精深的哲学」（the abstruse philosophy）（第 1–2 段）。
+    </li>
+    <li><strong>承认浅显哲学占优</strong>：它更贴近生活、更能塑造心灵，名声也更持久；精深的哲学则「一离开阴影、走到光天化日下就消散」（第 3–4 段）。
+    </li>
+    <li><strong>★ 但为精深哲学辩护</strong>（本节的重心）：① 精深的哲学<strong>服务于</strong>浅显的哲学——没有解剖学，画家画不出维纳斯（第 5 段）；② 精确的精神会逐步扩散到政治、法律、军事（第 5 段）；③ <strong>真正要驱逐的不是「形而上学」，而是「假形而上学」</strong>——「真形而上学」是击退迷信与诡辩的唯一「万应良药」（accurate and just reasoning is the only catholic remedy）（第 6–7 段）。
+    </li>
+    <li><strong>收束</strong>：本书的目标是「<strong>把精深的研究与清晰结合起来</strong>」——既深究，又讲清（第 10 段）。
+    </li>
+  </ol>
+  <h3>关键区分与例子</h3>
+  <ul>
+    <li><strong>两种哲学</strong>（easy vs abstruse）的对照，是全书第一组区分，也是作者对自己写作风格的<strong>定位声明</strong>：他要做的是<strong>「用浅显方式做精深事情」</strong>的那种哲学。
+    </li>
+    <li><strong>比喻群</strong>：<strong>解剖学家 vs 画家</strong>（第 5 段）——最难看的解剖学反而是画维纳斯的前提；<strong>强盗逃进森林</strong>（第 6 段）——迷信被赶出开阔地，就躲进形而上学的荆棘丛里伏击心灵。
+    </li>
+    <li><strong>名言</strong>：「<strong>做一个哲学家；但在你全部的哲学之中，仍要做一个人</strong>」（Be a philosopher; but, amidst all your philosophy, be still a man）（第 4 段）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一节的可信度高，因为它是「写作宣示」而非「论证」。</strong> 它先给立场、再许愿、最后才在第二节起给证据。<strong>若你读完第一节觉得「好像什么都没证明」，那是正常的</strong>——它做的是设定议题。<strong>唯一值得警惕的暗线</strong>：休谟在这里已经把「预防迷信」定成了目标之一，这为第十、十一节的宗教讨论<strong>预先定了调</strong>——<strong>但他的方法自始至终是「证据论」，不是「反宗教宣告」</strong>，这一点在第 4b 第 4 条与 5.7 已反复提醒。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>第二节：观念的起源</span><span class="caret">▾</span></h2>
+  <h3>这一节的论证链条</h3>
+  <ol>
+    <li><strong>先立两分</strong>：心灵的一切知觉，按「<strong>力量与生动性</strong>」分为两种——<strong>印象</strong>（impressions，较强烈生动者：我们听到、看到、感到、爱、恨、欲求、意愿时）与<strong>观念</strong>（ideas，较微弱者：我们反省上述感觉或活动时所意识到的）。（第 11–12 段）
+    </li>
+    <li><strong>★ 摹本原则</strong>：观念是印象的摹本。思想的创造看似无边——可以造怪物、把不相干的形状拼在一起；但细察之下，<strong>它的一切材料都来自感觉与经验</strong>，心的能力只是<strong>复合、置换、增减</strong>这些材料。「金山」＝「金」＋「山」；「德马」＝「德」＋「马的身形」（第 13 段）。
+    </li>
+    <li><strong>两个论证</strong>（第 14–15 段）：① 分析任何观念，终归分解为来自先前感觉或情感的简单观念；② 器官有缺则相应观念有缺——<strong>盲人无颜色观念、聋人无声音观念</strong>，从未尝过酒的人无酒味观念。<strong>「请指出那个不从这一来源来的观念」</strong>——这是他对反例下的战书。
+    </li>
+    <li><strong>自承的例外</strong>：<strong>「缺失的蓝色阴影」</strong>（the missing shade of blue）——一个看惯各种色调、独缺某一种蓝的人，也许能凭想象补出那一色。休谟承认这是「一个矛盾的现象」，但判定它「<strong>如此孤立，几乎不值得注意，更不值得为它单独改动通则</strong>」（第 16 段）。
+    </li>
+    <li><strong>把它变成尺子</strong>：凡遇到一个哲学语词，若怀疑它没有意义，就问——「<strong>它由哪个印象来的？</strong>」（from what impression is that supposed idea derived?）指不出印象，便可疑（第 17 段）。
+    </li>
+  </ol>
+  <h3>关键区分与例子</h3>
+  <ul>
+    <li>★ <strong>印象 vs 观念</strong>：区分标准是「<strong>力量与生动性</strong>」（force and vivacity），<strong>不是内容</strong>——观念在内容上是印象的摹本，只在强度上弱一筹。
+    </li>
+    <li>★ <strong>简单观念 vs 复杂观念</strong>：摹本原则对<strong>简单观念</strong>成立（复杂观念可由心自由组合，故可能出现「狮头羊身」这类无对应印象的复杂观念，但其<strong>零件</strong>仍来自印象）。
+    </li>
+    <li><strong>「上帝」这个观念</strong>：休谟直言它来自反省我们自己心灵的运作，再把善良与智慧<strong>无限放大</strong>——<strong>不是来自任何新印象</strong>（第 14 段）。★ 这是全书里<strong>最具颠覆性的一句话之一</strong>，注意它是<strong>推论</strong>，不是攻击。
+    </li>
+    <li><strong>「天马」式例子</strong>：「金山」「德马」是「观念可自由复合」的标准例证。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一节是全书地基，但地基的承重点是「简单观念」这一层，而『缺失的蓝色』恰恰戳在这层上。</strong> 后来的批评者（如 <strong>Robert Fogelin</strong>《Hume's Skepticism in the Treatise of Human Nature》，Routledge，1985 等）与人文学界普遍认为，<strong>这个例外若成立，摹本原则就不再是「全称命题」，而只是一个「大致规律」</strong>——而休谟对它的处理是<strong>降低其重要性</strong>（「不值得改动通则」），而非解决它。★ <strong>另一个可议之处</strong>：休谟把「印象」当作不证自明的<strong>经验单位</strong>，但「何为一个简单印象」本身是理论负载的（后来的格式塔心理学与知觉研究正是在这一点上质疑<strong>「原子式感觉材料」</strong>这一设定）。<strong>读这一节时，请把摹本原则当作「一把极好用的尺子」，而不是「一条已证成的自然律」。</strong></p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>第三节：观念的联络</span><span class="caret">▾</span></h2>
+  <h3>这一节的论证链条</h3>
+  <ol>
+    <li><strong>观察</strong>：观念不是杂乱出现的，它们之间有一种<strong>联结原则</strong>（a principle of connexion），使记忆与想象按某种「方法」与「规则」相互引出——连在最狂野的遐想与梦里，想象也不是完全乱跑（第 18 段）。
+    </li>
+    <li><strong>★ 三条原则</strong>：休谟说，他找不出更多的了——<strong>相似（Resemblance）、时空接近（Contiguity in time or place）、因果（Cause or Effect）</strong>（第 19 段）。
+    </li>
+    <li><strong>举证与收束</strong>：<strong>相似</strong>——照片自然把思想引向原型；<strong>接近</strong>——提到一座建筑的一个房间，自然联想到其他房间；<strong>因果</strong>——想到伤口，几乎不免想到随之而来的疼痛（第 19 段及注）。他承认「完备性难以证明」，只能「尽可能多列举、逐一检验」（第 19 段）。
+    </li>
+  </ol>
+  <h3>关键区分与例子</h3>
+  <ul>
+    <li>★ <strong>这一节是把第二节的「静态原子」变成「动态联结」</strong>：第二节说观念从哪来，第三节说观念之间怎么串起来。<strong>没有第三节，第五节的「信念＝更生动的构想」就没有机制</strong>——因为意象的<strong>相互唤起</strong>正是靠这三条联结。
+    </li>
+    <li><strong>「相似」的宗教例</strong>：休谟大胆把<strong>罗马天主教的仪式</strong>拿来当例子——信徒说，可见的形象与姿态能让他们的虔诚更活（第 41 段）。<strong>这是他惯用的「拿宗教现象做心理机制的例子」的手法</strong>（在第七节还会用圣髑）。
+    </li>
+    <li><strong>「对比」（contrast）</strong>：休谟把它<strong>归并进相似＋因果</strong>，不单列第四条（第 19 段注 5）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>可疑之处在于「完备性」的举证方式。</strong> 休谟自己承认「无法证明这三条已尽」，只能靠<strong>枚举＋归纳</strong>来增强信心（第 19 段）——<strong>可他在第四节恰恰说过，枚举式的归纳没有理性根据</strong>。★ <strong>这是他全书反复出现的自我张力</strong>：他用「经验枚举」来确立分类，而他的认识论又说经验枚举不能确立必然性。<strong>这不是自相矛盾（他从未说自己找到了「必然」的三条联结），但读者应注意到：第三节的『完整性』主张，其证据强度与第四节的怀疑论是同一量级的——都是「实践上够用」，而非「逻辑上必真」。</strong></p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>第四节：关于理解作用的一些怀疑（★ 全书枢轴）</span><span class="caret">▾</span></h2>
+  <h3>这一节的论证链条</h3>
+  <p><strong>Part I（立叉子、铺问题）</strong></p>
+  <ol>
+    <li><strong>★ 休谟的叉子</strong>：人类理性的一切对象分两类——<strong>观念的关系</strong>（几何、代数、算术；靠纯思维发现，即使自然中从无圆或三角，欧几里得的真理仍永保确实）与<strong>实际的事情</strong>（其反面永远可能、不蕴含矛盾：说「太阳明天不升起」与说「它升起」一样可理解）（第 20–21 段）。
+    </li>
+    <li><strong>一切关于实际事情的推理都建立在因果关系上</strong>；唯有靠它，我们才能超出记忆与感官的当下证据（第 22 段）。
+    </li>
+    <li><strong>★ 因果知识不来自先验</strong>：对象不论多新，凭其可感性质也看不出它的因或果。<strong>亚当（Adamo 式假设）</strong>即使理性完美，也不能从水的流动透明推出它会淹死他，不能从火的温暖明亮推出它会烧毁他（第 23 段）。<strong>台球</strong>：给一个毫无自然哲学知识的人两块光洁大理石，他也绝不会先验地看出它们会黏在一起（第 24 段）。
+    </li>
+    <li><strong>反驳「熟悉的事可以一见便知」</strong>：<strong>两球相撞</strong>——第一次见的人只能看到第一球撞上第二球，<strong>看不到任何『必须如此』</strong>；想象力的先验发明是<strong>完全任意的</strong>（第 25 段）。
+    </li>
+    <li><strong>连几何也帮不了</strong>：混合数学只是在<strong>假设</strong>某些自然律已定的前提下运作，而<strong>定律本身只能由经验发现</strong>（第 27 段）。
+    </li>
+  </ol>
+  <p><strong>Part II（给否定性结论）</strong></p>
+  <ol>
+    <li><strong>把问题逼到底</strong>：问答链——「关于实际事情的推理建立在什么上？」→「因果。」「关于因果的推理建立在什么上？」→「经验。」「<strong>一切从经验而来的结论，又建立在什么上？</strong>」→ ★ 这是新问题（第 28 段）。
+    </li>
+    <li><strong>★ 否定性答案</strong>：「<strong>即使有了因果经验，我们从那种经验得出的结论，也不是建立在推理、或任何理解过程之上的</strong>」（第 28 段）。
+    </li>
+    <li><strong>补刀</strong>：从「我发现这类对象总伴随这类效果」推到「我预见外观相似的其他对象也会有相似效果」——<strong>这两个命题远非同一个</strong>；要把它们连起来，需要「一个中介」（a medium），而休谟说「<strong>我必须承认，这个中介不在我的理解范围内</strong>」（第 29、32 段）。
+    </li>
+    <li><strong>封闭唯一的出口</strong>：若用「论证性推理」证明，则「自然进程可能改变」不蕴含矛盾，故无法<strong>论证性</strong>地证明；若用「或然论证」证明，则<strong>循环论证</strong>（用「将来会像过去」去证明「将来会像过去」）（第 30 段）。
+    </li>
+    <li><strong>釜底抽薪</strong>：<strong>一次与一千次在理性上无差别</strong>；理性对「看一个圆」与「看所有圆」结论相同——可人却要等很久的齐一经验才有把握（第 31 段）。
+    </li>
+    <li><strong>收束（对傲慢者的反将一军）</strong>：连<strong>婴儿与野兽</strong>都会这一步；若它靠论证，那个「论证」必须简单到连婴孩都懂——<strong>你一旦说不出它，就等于承认：驱使我们这样推断的不是推理</strong>（第 33 段）。
+    </li>
+  </ol>
+  <h3>关键区分与例子</h3>
+  <ul>
+    <li>★★ <strong>「休谟的叉子」</strong>（Hume's fork）：relations of ideas vs matters of fact。★ <strong>判据是「反面的可构想性」</strong>——观念的关系，其反面蕴含矛盾；实际的事情，其反面不蕴含矛盾、可清楚构想。<strong>这是全书的分类器，也是第五节、第七节的全部工具。</strong>
+    </li>
+    <li>★ <strong>「两个命题」的区分</strong>（第 29、32 段）：「我一直发现这类对象伴随这类效果」≠「我在相似情形下预见相似效果」。休谟要的就是<strong>中间那步</strong>——那步「不是同一律、不是矛盾律、也不是论证性的」，因此需要一个<strong>非理性的</strong>来源。
+    </li>
+    <li><strong>核心例子</strong>：<strong>台球</strong>（两球相撞，除了「第一球撞到第二球」之外，看不到「必然」）；<strong>面包</strong>（同色同质的面包未必总能滋养你）；<strong>亚当</strong>（理性完美也无从先验推出后果）；<strong>云里掉下像雪的东西却有咸味或火烫感</strong>（第 30 段，用来说明「自然进程可变」不矛盾）。
+    </li>
+    <li><strong>「或然论证的循环」</strong>：★ 这是本节最有名的一击——<strong>用来证明『将来像过去』的证据，其本身就以『将来像过去』为前提</strong>。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一节是全书承重墙，但有两处必须看清：</strong></p>
+  <ol>
+    <li><strong>★ 他到底否定了什么？</strong> 他否定的是「<strong>这一步有理性 / 论证的根据</strong>」——<strong>不是</strong>「因果推理不发生」，<strong>不是</strong>「世界无规律」，<strong>更不是</strong>「因与果没有关系」。<strong>他自己的话</strong>：「作为一个行动者，我对这一点完全满意；但作为一个哲学家……我想知道这个推断的根据」（第 32 段）。★★ <strong>这条是中文世界最深、最普遍的误读</strong>（见 4b 第 1 条与 5.1）。
+    </li>
+    <li><strong>论证的强度是否被夸大？</strong> 休谟把「一切从经验来的结论都靠『将来像过去』」当成一个<strong>不可证</strong>前提。<strong>批评者</strong>指出：这暗含了一个非常强的「论证」概念（只承认演绎），而<strong>若采用概率化的论证概念，则这个『过渡』未必无据</strong>（这正是当代贝叶斯主义者与「归纳逻辑」研究者的切入点，见 5.4）。★ <strong>另一处更细的争议</strong>：休谟说「一次与一千次在理性上无差别」——这对<strong>演绎</strong>理性确实成立，但<strong>对『理性』的广义用法（含概率推理）未必成立</strong>；<strong>Peter Millican</strong> 等维护休谟者则反驳说：休谟正是要显示，<strong>任何非演绎的『推理』本身就已经预设了归纳</strong>，所以不能循环。
+    </li>
+    <li><strong>一个常被忽略的自我节制</strong>：休谟在第四节没有说「所以你们不该相信因果」——他把「这个困难」<strong>提交给公众</strong>，并谦称「我至少会使我们意识到自己的无知」（第 32 段）。<strong>这种『暴露困难而非宣布结论』的姿态，是他与后世『虚无主义式休谟』形象的关键区别。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s11">
+  <h2><span class="num">10</span><span>第五节：关于这些怀疑的一种怀疑主义的解决法（★ 与第四节连读）</span><span class="caret">▾</span></h2>
+  <h3>这一节的论证链条</h3>
+  <p><strong>Part I（习惯出场）</strong></p>
+  <ol>
+    <li><strong>先稳住阵脚</strong>：学园派／怀疑派哲学「无害」，且<strong>不会危及日常生活</strong>——「自然总会维护她的权利，最终胜过任何抽象推理」；即使承认「从经验来的推理中有一步无根据」，也<strong>没有危险</strong>，因为「若理性没有促使心灵走这一步，那必是<strong>某种同等分量的原则</strong>促使它这么做」（第 34 段）。
+    </li>
+    <li><strong>思想实验</strong>：假设一个人<strong>突然被投入这个世界</strong>（无经历），他只会看到事件相继发生，无法得到因果观念，因为「秘密的能力」从不显现于感官；一次前后相继，也可能只是偶然（第 35 段）。让他有了经验、观察到恒常结合呢？他<strong>立刻</strong>会从一个对象推出另一个——但他<strong>并未因此获得任何关于「秘密能力」的知识，也不是被任何推理过程促使</strong>——「<strong>他发现自己非要这样推断不可</strong>」（第 35 段）。
+    </li>
+    <li>★★ <strong>答案揭晓：「这个原则就是习惯或习俗」（This principle is Custom or Habit）</strong>。定义：<strong>凡某种动作或操作的一再重复，能够不靠任何推理地产生重做同一动作的倾向，我们便说这个倾向是「习惯」的效果</strong>（第 36 段）。
+    </li>
+    <li><strong>为什么只有习惯能解释</strong>：理性解释不了「一千次 vs 一次」的差别——理性对一次与一千次结论相同；<strong>惟独习惯能</strong>（第 36 段）。
+    </li>
+    <li><strong>习惯是伟大向导</strong>：★「<strong>习惯，于是，是人类生活伟大的向导</strong>」（Custom, then, is the great guide of human life）。没有它，「我们在记忆与感官当下所及之外，对任何实际事情都将一无所知」，「一切行动也好，思辨的主要部分也好，都会立刻完结」（第 36 段）。
+    </li>
+    <li><strong>收尾的「前定和谐」</strong>：自然界的过程与我们的观念序列之间，有一种「<strong>前定和谐</strong>」（pre-established harmony）；<strong>习惯</strong>就是造成这种对应的原则，它对「物种的生存」与「行为的调节」是必要的（第 44 段）。
+    </li>
+  </ol>
+  <p><strong>Part II（信念是什么）</strong></p>
+  <ol>
+    <li><strong>问题转向</strong>：把「习惯」当作答案之后，休谟再问——<strong>「信念」（belief）究竟是什么？</strong> 信念与虚构的区别不等于「多了一个观念」，因为心能随意给任何虚构添上任何观念、那就可以随意相信任何东西——可我们做不到（第 39 段）。
+    </li>
+    <li>★ <strong>答案</strong>：信念<strong>不在观念的特殊性质或次序，而在构想的方式（the manner of conception）与心灵感受</strong>——<strong>信念是一种更强烈、更生动、更稳固、更牢靠的构想方式</strong>（第 40 段）。休谟坦承：<strong>「无法完全解释这种感受」</strong>，只能说它是心灵的「一种感觉」，使判断的观念区别于想象的虚构（第 40 段）。
+    </li>
+    <li><strong>类比拓展</strong>：相似（朋友的画像使我们对他的观念更活）、接近（离家近时，任何与家相关的事更触动我们）、因果（挥剑于胸前，「伤与痛」的观念比举杯时更强）——<strong>三条联结都有『使相关观念更生动』的效果</strong>（第 41–44 段）。
+    </li>
+    <li><strong>本能论</strong>：这一步太重要，不能托付给「慢、易错、要在幼年之后才显现」的理性；「自然更可能用一个<strong>本能或机械倾向</strong>来保障它」——就像自然教我们用四肢却不给我们肌肉神经的知识（第 45 段）。
+    </li>
+  </ol>
+  <h3>关键区分与例子</h3>
+  <ul>
+    <li>★★ <strong>第四节 vs 第五节的分工</strong>：<strong>IV 是「否定性论证」（这一步无理性根据）；V 是「肯定性解释」（这一步的心理根据是习惯）</strong>。★ <strong>两者必须连读，否则会得出「休谟被自己的怀疑难住了」的错觉</strong>——事实是，他在第四节故意把理性逼到墙角，就是为了在第五节让「习惯」来接位。<strong>先破后立，一气呵成。</strong>
+    </li>
+    <li>★ <strong>信念的性质</strong>：信念 = <strong>更强的构想 + 心灵的感觉</strong>，不是「多出来的一个观念」。★ 这个「信念不可完全解释」的坦白，是休谟<strong>自然主义</strong>的核心——他把「相信」当成一种<strong>发生在我们身上、由不得我们</strong>的自然事件（「如我们受惠时不禁生出爱、受伤时不禁生出恨」，第 38 段）。
+    </li>
+    <li><strong>关键比喻</strong>：<strong>前定和谐</strong>（第 44 段）——自然过程与观念序列的对应；<strong>本能</strong>（第 45 段）——四肢的运用不需要解剖学知识。
+    </li>
+    <li><strong>名言</strong>：「<strong>习惯是人类生活伟大的向导</strong>」（第 36 段）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一节是全书的「解」，但这个『解』本身有个著名的软肋：它把「信念」定义成一种『感觉』，而感觉是不可验证的。</strong></p>
+  <ol>
+    <li><strong>「信念＝更强的感觉」难以证成</strong>：休谟自己承认「无法完全解释这种感受」（第 40 段）。<strong>现代心灵哲学与认知科学</strong>对此既有支持（联想学习、<strong>预测编码</strong>理论中「预期」确实伴随可测量的加工优势），也有批评——<strong>「生动性」这种描述无法独立测定</strong>，因此它作为<strong>分析</strong>（把「相信」分析为「更生动的构想」）是<strong>不充分</strong>的：我们能把「栩栩如生的虚构」与「相信」区分开吗？
+    </li>
+    <li><strong>「习惯」是不是一种『论证』的替代品，还是只是『把问题挪了个地方』？</strong> 批评者（自古至今）说：休谟<strong>解释了信念的起源，却没有辩护它的正当性</strong>——<strong>而这两件事是两回事</strong>。★ <strong>Goodman 1955 的『新归纳之谜』正是从这条缝里插进去的</strong>：如果习惯能解释归纳，为什么我们对「绿」形成习惯、对「绿蓝」不形成习惯？（见 5.4）
+    </li>
+    <li><strong>但也要为休谟说一句公道话</strong>：他<strong>从未声称「习惯」给因果推理提供了理性辩护</strong>；他的目标是<strong>描述</strong>——人心实际上怎么运作。★ <strong>所以「休谟用习惯『解决』了怀疑」这个说法本身是含混的：他解决的是『为什么我们仍会推理』，不是『推理为什么合法』。</strong> 看清这个区分，比记住「习惯是伟大向导」这句名言重要得多。
+    </li>
+  </ol>
+</section>
+
+<section id="s12">
+  <h2><span class="num">11</span><span>第六节：可然性</span><span class="caret">▾</span></h2>
+  <h3>这一节的论证链条</h3>
+  <ol>
+    <li><strong>「机会」（chance）不是真实的</strong>：「世间并无所谓机会」（Though there be no such thing as Chance in the world）——<strong>机会只是我们对其真实原因的无知</strong>，这种无知对理解有同样的影响，产生同类的信念或意见（第 46 段）。
+    </li>
+    <li><strong>机会的或然性</strong>：掷骰子——若四面刻一种点、两面另一种，则前者更可能；<strong>若一千面里只有一面不同，则信念更稳、更牢</strong>。机制：心在「预想结果」时，把各个面<strong>一视同仁</strong>地巡回遍历，<strong>勾选某一结果的「视点」越多，那个观念在想象中被印得越强</strong>（第 46 段）。
+    </li>
+    <li><strong>原因的或然性</strong>：有些原因完全一致（火总烧、水总溺），有些则不尽然（大黄未必总通便、鸦片未必总催眠）。★ <strong>但哲学家不把这种不一致归于自然的不规则</strong>，而归于「隐蔽的相反原因」的作用；我们从过去转移到现在时，会<strong>按各效果在过去的出现比例</strong>给它们分配权重（第 47 段）。
+    </li>
+    <li><strong>机制统一</strong>：无论来自机会还是来自原因，<strong>「多个视点在同一个事件上汇合」都会增强那个观念在想象中的力量</strong>，产生我们称之为「信念」的感觉（第 46–47 段）。
+    </li>
+    <li><strong>谦逊收尾</strong>：休谟说，他只想「<strong>激发哲学家的好奇心</strong>」，让他们意识到「一切通行理论在处理这类精微问题时是多么有缺陷」（第 47 段）。
+    </li>
+  </ol>
+  <h3>关键区分与例子</h3>
+  <ul>
+    <li>★ <strong>本节的功能</strong>：它是<strong>第五节的延伸补丁</strong>——第五节说「信念＝更强的构想」，第六节补上<strong>信念何以有强弱之分</strong>（随证据份量而变）。<strong>没有它，第五节的『生动性』会显得神秘；有了它，休谟就把『或然判断』也纳入了「信念＝想象强度」的统一框架。</strong>
+    </li>
+    <li><strong>关键例子</strong>：<strong>掷骰子</strong>（机会的或然性）；<strong>大黄、鸦片</strong>（原因的或然性）；<strong>一月里下霜比整月不结霜更可能</strong>（气候差异使或然性逼近确定）（第 47 段）。
+    </li>
+    <li><strong>一个术语澄清</strong>：休谟在此加注，说洛克把一切论证分成「论证性的」与「或然的」；他建议改为三分——<strong>论证（demonstrations）、证明（proofs）、或然（probabilities）</strong>，其中「证明」指「不留怀疑余地的经验论证」（第 45 段注 9）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一节是全书最短、最技术、也最可跳过的一节</strong>——它与主线关系最松，讲的是「信念的强弱如何随证据分布变化」。<strong>且它有一个技术上很粗糙的地方</strong>：休谟说心「遍历」各面、按「视点」数目分配信念强度——<strong>这实质上是一种早期的『古典概率＋直觉频率』混合</strong>，既不严格，也未处理「证据之间不独立」等情形。★ <strong>但它的方向是对的</strong>：它试图说明<strong>信念是一个程度问题</strong>（这为第十节的证据权衡论埋了伏笔）。<strong>若你第一遍只想抓主线，本节可略读</strong>；但若你关心「休谟 vs 现代概率论」，这一节连同第七节的注 16 是他最接近「概率主义」的段落。</p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">12</span><span>第七节：「必然联系」的观念</span><span class="caret">▾</span></h2>
+  <h3>这一节的论证链条</h3>
+  <p><strong>Part I（四处搜寻「能力」的印象）</strong></p>
+  <ol>
+    <li><strong>起题</strong>：在形而上学里，再没有比<strong>能力、力、能量、必然联系</strong>这些观念更晦涩难定的了。休谟要用第二节那把尺子（摹本原则）来固定它们的意义（第 49 段）。
+    </li>
+    <li><strong>第一处搜寻——外部对象</strong>：看一个单一实例，我们<strong>永远无法发现</strong>任何「能力」或「必然联系」，只看到「一个事件确实跟着另一个事件」。<strong>台球</strong>：第一球的冲撞伴随第二球的运动——<strong>这就是外感官所呈现的全部</strong>；心从这一相继中<strong>没有感到任何内在印象</strong>（第 50 段）。
+    </li>
+    <li><strong>反证</strong>：若能力可被心智发现，我们就能<strong>不经经验而预见效果</strong>；可事实上，从对象的最初显现，我们永远猜不出它会产生什么（第 50 段）。
+    </li>
+    <li><strong>第二处搜寻——内心（意志）</strong>：有人说我们时刻意识到「内在能力」——凭意志的命令就能移动肢体或调动心智。休谟<strong>逐条反驳</strong>（第 52 段）：
+    <ul>
+      <li><strong>灵魂与身体的联合</strong>本身是最神秘的事；若能意识到意志中的能力，我们就会知道这种联合（第 52 段）；
+      </li>
+      <li><strong>意志对器官的控制并不整齐</strong>：为什么意志能控制舌头与手指，却控制不了心脏与肝脏？若我们意识到能力，这问题就不会让我们困惑（第 52 段）；
+      </li>
+      <li><strong>瘫痪者</strong>竭力想动已失去的手臂，其「意志能力」的感觉与健康人无异——而意识从不欺骗我们。结论：<strong>无论哪种情况，我们都不曾意识到任何能力</strong>（第 52 段）。
+      </li>
+      <li><strong>解剖学</strong>：意志的直接作用对象不是被移动的肢体，而是肌肉、神经、动物精气，甚至更微小的东西——<strong>一个我们自己都不知道的事件</strong>（第 52 段）。
+      </li>
+    </ul>
+    </li>
+    <li><strong>第三处搜寻——意志对观念的控制</strong>：同样失败。我们<strong>不知道</strong>灵魂的本性与观念的本性，也不知道前者何以能产生后者；而且这种「自控」本身有限度，且随健康、时辰（早上比晚上强）、饥饱而变——<strong>这些界限只能靠经验得知</strong>，说明能力并不被内省所见（第 53 段）。
+    </li>
+    <li><strong>旁批「偶因论」</strong>：休谟批判 Malebranche 式的偶因论——该说把「神」当成一切事件的直接原因，把所谓原因只当作「occasions」。休谟说这<strong>既太胆大、又站不住</strong>：我们连「物质如何作用」都不懂，也<strong>同样不懂「心如何作用」</strong>；而我们对「神的能力」并没有比「物质的能力」更多的观念（第 55–57 段）。
+    </li>
+  </ol>
+  <p><strong>Part II（正面学说：必然联系＝习惯性的心理推移）</strong></p>
+  <ol>
+    <li><strong>总结搜寻</strong>：★ <strong>「一切事件的显现都是完全松散、彼此分离的。一个事件跟着另一个事件；但我们永远观察不到它们之间的任何纽带。它们似乎是『相合』的，但从不相连。」</strong>（They seem <em>conjoined</em>, but never <em>connected</em>）（第 58 段）
+    </li>
+    <li><strong>转机</strong>：还有一个未查的来源——<strong>恒常结合</strong>。当某一类事件在<strong>所有</strong>实例中都伴随另一类事件，我们就说前者是<strong>因</strong>，后者是<strong>果</strong>，并<strong>假定</strong>其间有某种联系、某种「能力」（第 59 段）。
+    </li>
+    <li>★★ <strong>必然联系的观念来自哪里</strong>：来自<strong>许多相似实例的恒常结合</strong>，而<strong>不是</strong>来自任何单一实例。→ 那么，大量实例与单一实例的差别在哪里？<strong>除了「在相似实例重复之后，心被习惯带着、于一事件出现时便期待其惯常伴随者」之外，别无其他。</strong> ★ <strong>「因此，我们在心中所感到的这个联系、这个想象力的习惯性推移，就是那个感觉或印象，我们由它形成『能力』或『必然联系』的观念。」</strong>（第 59 段）
+    </li>
+    <li><strong>重新定义因果</strong>（两个定义，第 60 段）：
+    <ul>
+      <li>定义一：<strong>一个原因，是「被另一对象所跟随，且所有与前者相似的对象都被与后者相似的对象所跟随」的对象</strong>；或换言之，「<strong>若第一个对象不曾存在，第二个就永不会存在</strong>」。
+      </li>
+      <li>定义二：<strong>一个原因，是「被另一对象所跟随，且其出现总是把思想带到另一个对象」的对象</strong>。
+      </li>
+      <li>★ 休谟坦承：<strong>这两个定义都是从「原因之外」的情形引出的</strong>，但我们<strong>无法给出更好的定义</strong>——因为<strong>我们对那个「联系」本身没有任何观念</strong>。
+      </li>
+    </ul>
+    </li>
+    <li><strong>收束</strong>：把本节论证重述一遍——<strong>单一实例中没有任何东西能产生印象</strong>，故无「能力」观念；<strong>多个齐一实例</strong>产生了新的东西，那就是<strong>习惯性的心理推移</strong>（第 61 段）。
+    </li>
+  </ol>
+  <h3>关键区分与例子</h3>
+  <ul>
+    <li>★★ <strong>「恒常结合」（conjoined） vs 「必然联系」（connected）</strong>：休谟的整个学说就压在这个区分上。<strong>我们能观察到的只是前者（相合），我们投射到世界的却是后者（相连）</strong>——而后者其实是<strong>我们心中被习惯造出的感觉</strong>（第 58–59 段）。
+    </li>
+    <li>★ <strong>「必然联系是心灵的感觉，不是世界的特征」</strong>——这不是「世界没有规律」，而是「我们称之为『必然』的那个东西，其可被我们把握的部分，是心理的」。★★ <strong>这句话是全书的核心，也是 4b 第 1 条要纠正的那处误读的靶心。</strong>
+    </li>
+    <li><strong>关键例子</strong>：<strong>台球</strong>（同第四节）；<strong>瘫痪者的手臂</strong>（说明「意志能力」的感觉是假的）；<strong>心脏与肝脏不受意志控制</strong>（说明能力不是内省直接见到的东西）；<strong>圣髑与宗教仪式</strong>（用来说明「因果关联」也能像相似、接近一样使观念更生动，第 43 段）。
+    </li>
+    <li><strong>对「力／能力」这些词的诊断</strong>：休谟说，这些词在日常语言里意义<strong>非常松散、混乱</strong>；我们把自己移动物体时的<strong>「努力感」（nisus）投射到无生命物上</strong>，就以为物体也有类似感觉（第 60 段注 16）。★ <strong>这是把「拟人化投射」当作语言迷雾的来源来分析。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一节是把第五节结论「坐实」的一节，但它的正面学说有一个众所周知的空洞：它把「因果」分析成了两个「外在的」定义，却承认自己说不出「联系本身」。</strong></p>
+  <ol>
+    <li><strong>「两个定义」的两难</strong>：定义一（<strong>恒常相接</strong>）是<strong>客观的、规律的</strong>；定义二（<strong>心灵被带到）是</strong>主观的、心理的<strong>。★ </strong>多数当代研究者认为，休谟实际上同时持有『规律论』与『投射论』两条线索，而两者的关系并不清楚**——这正是「休谟的因果观到底是哪一派」这场大辩论的源头。
+    </li>
+    <li><strong>「投射论」面临的质疑</strong>：<strong>我们为什么要把『心中的感觉』说成是『外物的能力』？</strong> 休谟的回答是「因为一切内在感觉都容易被转移到外物上」（第 60 段注 16）。★ 但这条解释本身又依赖一个心理事实，仍属<strong>发生学描述</strong>，不构成<strong>正当性辩护</strong>。
+    </li>
+    <li><strong>一处技术争议</strong>：休谟说「单一实例里没有任何东西能产生印象」——<strong>现代一点的自然主义（如因果实在论、倾向论）会问：如果因果是世界的真实特征，为什么它『必然』要在单一实例中被我们『感到』？</strong> 这一点上，休谟的要求（「没有印象就没有观念」）<strong>预设了很激进的经验主义</strong>。<strong>换句话说，这一节的说服力，取决于你是否接受第二节那把尺子。</strong> ★ <strong>这也是全书的普遍结构：第七节的力量来自第二节，第七节的软肋也来自第二节。</strong>
+    </li>
+    <li><strong>另一处值得注意的自我限制</strong>：休谟在第四、第五节说「习惯造成信念」，在第七节说「习惯造成『必然联系』的观念」——<strong>同一个机制被用来解释两种不同的东西</strong>。<strong>这不是重复，而是他体系的贯通性证据</strong>：信念与因果观念，在他看来是同一枚心理硬币的两面。
+    </li>
+  </ol>
+</section>
+
+<section id="s14">
+  <h2><span class="num">13</span><span>第八节：自由和必然</span><span class="caret">▾</span></h2>
+  <h3>这一节的论证链条</h3>
+  <p><strong>Part I（论证「必然」普遍成立）</strong></p>
+  <ol>
+    <li><strong>起手</strong>：长久争议往往源于<strong>语词含混</strong>。所以「自由与必然」之争打了这么久，恐怕也是因为双方对术语赋予了不同的观念（第 62–63 段）。
+    </li>
+    <li><strong>给「必然」下定义</strong>（承接第七节）：「必然」只含两件事——<strong>恒常结合</strong> ＋ <strong>心灵由此及彼的推断</strong>；除此之外，我们对「必然」<strong>没有任何概念</strong>（第 64 段）。
+    </li>
+    <li>★ <strong>证明「必然」在人的行为中同样成立</strong>：
+    <ul>
+      <li><strong>人性在各时代、各国家高度齐一</strong>：「同样的动机总是产生同样的行为」；要了解希腊人、罗马人的情感与生活，去研究法国人与英国人即可（第 65 段）。
+      </li>
+      <li><strong>历史之可能、政治之成学、道德之成立、文艺批评之可行</strong>，全都预设了「性格—行为」的恒常结合（第 70 段）。★ <strong>囚徒</strong>：他既怕看守的忠贞，也怕铁窗与砖墙；被押赴刑场时，他预判「卫兵不肯放他」与预判「斧头会落下」一样确定——<strong>「心智在这两种情形下感觉不到差别」</strong>（第 70 段）。
+      </li>
+      <li><strong>反驳「有时行为无法解释」</strong>：哲学家会把这些归入<strong>隐藏的相反原因</strong>（牙痛、未进食、突来的好运……），正如他不会因某次药效失常而否认医术的有效原理（第 67–68 段）。
+      </li>
+    </ul>
+    </li>
+    <li><strong>结论</strong>：★ <strong>「一切时代的一切人，其实一直同意『必然』，只是嘴上不愿承认」</strong>；哲学家也从未真正与之分歧——<strong>「必然」在此意义上从未被拒绝，也不可能被任何哲学家拒绝</strong>（第 71 段）。
+    </li>
+  </ol>
+  <p><strong>Part II（把「必然」与「自由」调和，并为道德辩护）</strong></p>
+  <ol>
+    <li><strong>先立一个方法原则</strong>：<strong>不许用「后果危险」来反驳一个假设</strong>（第 75 段）——这本身就是一个重要的哲学方法论声明。
+    </li>
+    <li><strong>「自由」的调和定义</strong>：休谟给「自由」下的是<strong>「按意志的决定行动或不行动的能力」</strong>（liberty of spontaneity／hypothetical liberty），而<strong>不是</strong>「不受因果决定的『无所谓』（indifference）」（第 77–78 段）。★ 他说：<strong>这样定义的「自由」，与「必然」不但不冲突，而且是道德的前提</strong>（第 77 段）。
+    </li>
+    <li><strong>为道德辩护</strong>：若行为不来自性格中恒常的东西，人就不该为其负责（第 76 段）；<strong>悔改能洗刷罪行</strong>，正因为行为只是「心灵中犯罪原则的证据」，原则一改，证据就没了（第 76 段）。★ 所以<strong>「必然」不但不与道德冲突，反而是它的支柱</strong>（第 75 段）。
+    </li>
+    <li><strong>对「神是罪恶终极作者」的诘难</strong>：休谟承认这是一个「不容易满意回答」的难题（第 81 段），并把「绝对预知与人的自由如何相容」等列为<strong>超出人类理性能力</strong>的奥秘——他主张哲学在这里应「<strong>谦逊地退回它真正的领域：对日常生活的考察</strong>」（第 81 段）。
+    </li>
+  </ol>
+  <h3>关键区分与例子</h3>
+  <ul>
+    <li>★ <strong>两种「自由」</strong>：休谟区分了<strong>「自发性的自由」</strong>（照意志去行动的能力——他主张的）与<strong>「无所谓／中立性的自由」</strong>（不受任何因果决定——他否认的）。<strong>绝大多数的「自由意志之争」，在休谟看来是把后者混进了前者。</strong>
+    </li>
+    <li><strong>「必然」的中立化</strong>：★ 休谟的巧招是<strong>重新定义「必然」</strong>（＝恒常结合＋推断），从而使<strong>决定论与自由意志的对立在字面上消解</strong>——这与当代哲学里的「<strong>相容论</strong>」（compatibilism）属同一条血脉。
+    </li>
+    <li><strong>关键例子</strong>：<strong>囚徒与刑场</strong>（第 70 段）；<strong>我知道一位诚实富有的朋友不会在离开前刺我以夺我的银墨水台</strong>（第 70 段）；<strong>旅行者带回一个完全没有贪欲、野心与复仇心的民族，我们立刻判他在撒谎</strong>（第 65 段）。
+    </li>
+    <li><strong>方法论名言</strong>：<strong>「用后果危险来反驳一个假设，是最常见也最应受责备的一种推理方式」</strong>（第 75 段）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一节是全书最「应用性」的一节，但它的调和方案本身争议极大。</strong></p>
+  <ol>
+    <li><strong>相容论是否偷换了论题？</strong> 休谟把「必然」重新定义成「恒常结合＋推断」——<strong>批评者说，这样一来他其实取消了问题</strong>：他所「调和」的，是一个被他<strong>重新命名过的『必然』</strong>。<strong>决定论者与自由意志论者争的「那种必然」，被他定义掉了。</strong> ★ 这也是当代相容论（如 <strong>A. J. Ayer</strong>〈Freedom and Necessity〉，<em>Polemic</em>，1946 等）被自由意志论者（如 <strong>Roderick Chisholm</strong> 等）攻击的通用套路。
+    </li>
+    <li><strong>「恒常结合」是否足够？</strong> 现代行动哲学与神经科学都在追问：<strong>「动机→行为」的齐一性，其强度是否与「火→热」的齐一性同量级？</strong> 休谟承认「这种齐一性不能推到每个细节」（第 66 段），但他仍坚持二者的「必然」是<strong>同一种</strong>。<strong>怀疑者可以说：这恰恰是把两种不同的规律性混为一谈。</strong>
+    </li>
+    <li><strong>一处诚实的自我承认</strong>：休谟在第 81 段<strong>明确承认</strong>「神为罪恶负责」这一诘难「不容易满意回答」——<strong>这是全书里他少有的『我不解决』姿态</strong>，值得记录：<strong>他不是把所有裂缝都糊上的人。</strong>
+    </li>
+    <li><strong>与第五节的关系</strong>：★ 本节把第五节、第七节的「习惯」与「必然」<strong>搬到了人的世界</strong>——<strong>它是全书论证链从「自然」延伸到「人性」的关键一环</strong>，也是理解「休谟是人类行为研究（道德哲学、经济学、历史学）的先驱」这一点的入口。
+    </li>
+  </ol>
+</section>
+
+<section id="s15">
+  <h2><span class="num">14</span><span>第九节：动物的理性</span><span class="caret">▾</span></h2>
+  <h3>这一节的论证链条</h3>
+  <ol>
+    <li><strong>起手</strong>：一切关于实际事情的推理，都建立在<strong>类比</strong>上——从相似的原因期待相似的结果（第 82 段）。他要拿这个「假设」（指「习惯说」）来做一个新检验：<strong>看它能不能解释动物（第 82 段）。</strong>
+    </li>
+    <li><strong>动物确实从经验学习</strong>：马知道它能跳多高、老猎犬会把最费力的追击交给年轻的同类——这些「推想」只能来自观察与经验（第 83 段）。<strong>训练与奖惩</strong>也证明动物会「推断」：狗见你举鞭便怕，听到自己的名字便知在叫它（第 83 段）。
+    </li>
+    <li>★ <strong>但动物的推断不可能来自「论证」</strong>：若类比推理要靠「像事件必随像对象而来」这类论证，那对动物的理解力而言<strong>太精深了</strong>；连最有天分的哲学家都要费极大功夫才能发现和观察它们（第 84 段）。结论：<strong>动物不是靠推理；儿童不是；普通人的日常行动也不是；哲学家在生活的行动部分，与常人无异</strong>（第 84 段）。
+    </li>
+    <li><strong>所以必有一个更现成、更普遍的原则</strong>：<strong>「只有习惯，使动物在感官受任何对象触动时，就推断其惯常伴随者」，并把想象从一物带到另一物——这就是我们称之为「信念」的那种方式</strong>（第 84 段）。
+    </li>
+    <li><strong>本能论收束</strong>：动物有许多来自「自然原初之手」的能力，我们称之为<strong>本能</strong>，觉得它们「非常奇特、无法解释」；但只要想到——<strong>连我们自己与兽类共有的那种经验推理，也不过是一种本能或机械能力</strong>，惊奇就应停止（第 85 段）。★ 教人避火的那种本能，与教鸟孵卵、经营巢穴的那种本能，<strong>并无本质不同，只是种类有别</strong>（第 85 段）。
+    </li>
+  </ol>
+  <h3>关键区分与例子</h3>
+  <ul>
+    <li>★ <strong>本节的功能是「旁证 + 普遍化」</strong>：若「习惯＋本能」能解释动物与婴孩，那么它作为「人为何做因果推理」的答案就<strong>更可信</strong>——<strong>这是休谟体系里少见的「用类比增强理论可信度」的段落。</strong>
+    </li>
+    <li><strong>关键例子</strong>：<strong>马跳沟</strong>（知道自己能跳多高）；<strong>老猎犬</strong>（把最累的活交给年轻的，自己抄近路堵截野兔）；<strong>狗听名字、见鞭子</strong>（经验使然）；<strong>教人避火 vs 教鸟孵卵</strong>（同为本能）。
+    </li>
+    <li><strong>一个被忽略的注</strong>：休谟在注 19 里列出<strong>人与动物、人与人在推理能力上差异的九条原因</strong>（注意力与记忆、视野、推断链长度、观念混淆、区分相关情境的能力、形成通则的能力、类比能力、偏见、书本与交谈）——<strong>这是休谟关于「个体差异」的一段难得的社会学式观察</strong>，常被读者错过。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一节相对安全，但有一处逻辑张力</strong>：休谟用「婴儿与野兽也会因果推断」来<strong>反证</strong>「这一步不靠论证」（第四节末尾也用同一招）；可是<strong>用『连动物都会』来证明『这不是推理』，预设了『推理必然是复杂的、需要学养的』</strong>——而这是一个<strong>关于推理的实质主张</strong>，不是自明的。★ <strong>维护者会说</strong>：休谟的要点是<strong>举证责任</strong>——<strong>谁主张这一步是推理，谁就该说出那个「论证」是什么</strong>，而它必须简单到连婴孩都懂。<strong>这个举证责任的反转，才是这一节真正的力量所在，而非「动物也会」这个事实本身。</strong> ★ 另一个可议处：以 18 世纪的行为观察水平而言，「动物有理性／本能」的界线本就模糊；<strong>把「经验推理」直接叫作「本能」，在概念上拉平了两类差异极大的现象</strong>——这是可以接受的<strong>纲领性</strong>主张，但不是已证成的科学结论。</p>
+</section>
+
+<section id="s16">
+  <h2><span class="num">15</span><span>第十节：神迹（★ 全书最著名的一节）</span><span class="caret">▾</span></h2>
+  <h3>这一节的论证链条</h3>
+  <p><strong>Part I（给出准则）</strong></p>
+  <ol>
+    <li><strong>借 Tillotson 起手</strong>：休谟先引 Tillotson 大主教反对「圣体实在论」的论证——<strong>证言证据弱于感官证据；而较弱的证据不能摧毁较强的证据</strong>——以此为模板，说自己发现了一个「<strong>同类性质</strong>」的论证，将成为一切迷信欺骗的「<strong>永久屏障</strong>」（第 86 段）。
+    </li>
+    <li><strong>理性按证据行事</strong>：经验是我们的唯一向导，但它<strong>并非不会出错</strong>；故实际事情的推理有从「最高确定」到「最低或然」的各种程度（第 87 段）。
+    </li>
+    <li>★ <strong>核心准则</strong>：「<strong>一个明智的人，按证据来调配他的信念</strong>」（第 87 段）。所有或然性都预设了「相反实验的对立」，需<strong>把较小的数目从较大的数目中减去</strong>，才知优势证据的确切分量（第 87 段）。
+    </li>
+    <li><strong>证言也是一种经验证据</strong>：我们对证言的信任，<strong>并非来自「证言与实在之间先验的可觉察联系」，而来自「证言与事实通常相符」这一经验</strong>（第 88 段）；因此它同样<strong>随经验而变</strong>，可被称作「证明」或「或然」（第 88 段）。
+    </li>
+    <li><strong>当事实越离奇，证言证据越被削弱</strong>：因为此时是<strong>两股相反经验在角力</strong>，较强的一方只能以<strong>剩余的力量</strong>作用于心（第 89 段）。例：<strong>「若这话是加图说的，我也不信」</strong>（罗马谚语）；<strong>从未见过冰的印度王子</strong>，拒绝相信水会结冰是「推理正确」的（第 89 段及注 21）。
+    </li>
+    <li>★★ <strong>定义神迹 + 给出准则</strong>：<strong>「神迹是对自然律的违背」</strong>（A miracle is a violation of the laws of nature）；<strong>由于牢固不变的经验确立了自然律，故反对神迹的证据，就其性质而言，是能想象的最完整的证据</strong>（第 90 段）。
+    </li>
+    <li>★★ <strong>权衡准则</strong>：<strong>「任何证言都不足以确立一个神迹，除非该证言的虚假会比它所力图确立的事实更神迹；即便在此情形下，仍有一种论证的相互抵消，优势方只以扣除劣势方后的剩余力量给我们相应程度的保证。」</strong>（第 91 段）→ 一句浅白版：<strong>「当我听说有人使死人复活，我立刻掂量：此人欺骗或被欺骗，与事件真的发生，哪一样更可能？我永远拒绝那个更大的神迹。」</strong>（第 91 段）
+    </li>
+  </ol>
+  <p><strong>Part II（四条削弱理由 + 界限）</strong></p>
+  <ol>
+    <li><strong>理由一（证人品质）</strong>：史上从未有一个神迹，由足够多、又兼具见识、学养、诚信与名声、且公开到难以作假的人所证明（第 92 段）。
+    </li>
+    <li><strong>理由二（人性爱惊奇）</strong>：「<strong>惊奇与赞叹之情是一种令人愉悦的情绪，它本身就有使人相信的倾向</strong>」；宗教热情一掺进来，「<strong>常识就完了</strong>」，证言也失去一切权威（第 93 段）。
+    </li>
+    <li><strong>理由三（蒙昧民族的偏向）</strong>：神迹「<strong>主要见于蒙昧野蛮的民族</strong>」；文明民族的神迹多半承接自蒙昧的祖先（第 94 段）。<strong>例</strong>：骗子 Alexander 把舞台设在蒙昧的帕夫拉戈尼亚（第 94 段）。
+    </li>
+    <li><strong>理由四（各宗教神迹互斥）</strong>：任一宗教的神迹，在<strong>确立本教的同时，也在摧毁其他教</strong>；因此各教神迹互为「<strong>相反的事实</strong>」，证据相互抵消——「<strong>不仅神迹摧毁了证言的可信，证言也摧毁了它自己</strong>」（第 95 段）。
+    </li>
+    <li><strong>三个「最佳证言」的反例</strong>：<strong>塔西佗记载的维斯帕先皇帝行神迹</strong>（第 96 段）；<strong>德雷兹红衣主教记载的萨拉戈萨奇迹</strong>（第 96 段）；<strong>法国阿贝·帕里斯（Jansenist）墓前神迹</strong>——后者「即时在当场由无可置疑的法官、有名望的证人证实」（第 96 段）。★ 休谟的回应是：「<strong>对这样多的证人，我们只能以事件本身的绝对不可能或神迹性质来反驳——而这，在一切有理性的人看来，本身就是充分的驳倒。</strong>」（第 96 段）
+    </li>
+    <li>★★ <strong>界限（关键）</strong>：休谟<strong>明确留了口子</strong>——「<strong>我承认，否则的话，也可能存在一些神迹或对自然常轨的违背，其性质容许人的证据来证明</strong>」（第 99 段）。他给了两个思想实验：
+    <ul>
+      <li><strong>可接受的</strong>：若<strong>所有语言的所有作者</strong>一致记载「1600 年 1 月 1 日起全球黑暗八天」，且各地旅行者带回的传说毫无出入，那么我们的哲学家「<strong>不但不该怀疑，反而应接受它为确实，并去探寻其原因</strong>」（第 99 段）。
+      </li>
+      <li><strong>不可接受的</strong>：若所有英国史家一致记载「伊丽莎白女王 1600 年 1 月 1 日去世、下葬一月后又现身复位、统治英国三年」，休谟说他<strong>会惊讶，但绝不相信</strong>——他只会断定这是伪造，因为「<strong>人的狡诈与愚行是如此常见，我宁可相信最离奇的事件出于它们的凑合，也不愿承认如此重大的自然律被违背</strong>」（第 99 段）。
+      </li>
+    </ul>
+    </li>
+    <li><strong>应用与收束</strong>：他把这套推理用到《摩西五经》上——要问「<strong>这本书的虚假，会不会比它所记载的一切神迹更神迹？</strong>」（第 100 段）；并说，这条推理正是为「<strong>那些危险的、伪装的基督教之敌</strong>」准备的：<strong>「我们最神圣的宗教，建立在『信』上，而非理性上」</strong>（第 100 段），「任何人若因『信』而赞同它，就是意识到自己身上有一个继续不断的神迹」——<strong>它颠覆了他理解的一切原则</strong>（第 101 段）。
+    </li>
+  </ol>
+  <h3>关键区分与例子</h3>
+  <ul>
+    <li>★★ <strong>本节到底是什么论证</strong>：<strong>它是证据论（epistemology of evidence），不是本体论（ontology）。</strong> 休谟论证的是<strong>「证言在证据量上压不过自然律」</strong>，<strong>不是</strong>「神迹不可能发生」。★★ <strong>这是 4b 第 4 条要纠正的核心误读。</strong> 第 99 段的「界限」白纸黑字：<strong>他承认原则上可以存在证据充分的神迹。</strong>
+    </li>
+    <li>★ <strong>「神迹」的定义</strong>：「<strong>对自然律的违背</strong>」，且<strong>可以被定义为「神或某个不可见作用者，凭其具体意志对自然律的僭越」</strong>（第 90 段注 22）。★ <strong>注意</strong>：他区分了「<strong>奇异的（extraordinary）</strong>」与「<strong>神迹的（miraculous）</strong>」——<strong>水在酷寒中结冰对热带来的印度人是『奇异』（不合他的类比）但不是『神迹』</strong>（因为并非违背<strong>齐一</strong>的经验，第 89 段注 21）。
+    </li>
+    <li><strong>关键例子</strong>：<strong>加图的谚语</strong>；<strong>印度王子与冰</strong>；<strong>维斯帕先</strong>；<strong>德雷兹红衣主教</strong>；<strong>阿贝·帕里斯墓（含帕斯卡侄女之愈）</strong>；<strong>世界黑暗八天</strong>（可接受的思想实验）；<strong>伊丽莎白复活</strong>（不可接受的思想实验）。
+    </li>
+    <li>★ <strong>一句最有名的浓缩</strong>：「<strong>非凡的主张需要非凡的证据</strong>」是后世对第 91 段的概括（此为「转述式口号」，<strong>原文并无此句</strong>，注意区分）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这是全书最著名、也最被过度解读的一节。三层要看清：</strong></p>
+  <ol>
+    <li><strong>★ 论证范围被夸大</strong>：它<strong>没有</strong>说「神迹不可能」，而是说「<strong>证言不足以确立作为宗教体系基础的神迹</strong>」（第 98 段）。★ <strong>现代反驳</strong>（须两边都写，见 5.3）：<strong>Earman《Hume's Abject Failure》（牛津，2000）</strong>说休谟的论证「<strong>在很大程度上既非原创、亦无价值</strong>」，主张改用贝叶斯概率演算；<strong>Swinburne</strong>（《The Existence of God》1979/2004、《The Resurrection of God Incarnate》2003）用「<strong>轻信原则</strong>」与「<strong>证言原则</strong>」反驳，并指休谟最根本的错误是<strong>假定「关于自然律的知识」是唯一相关的背景证据</strong>——若独立地有理由信上帝存在，则神迹的先验概率不低。
+    </li>
+    <li><strong>★ 「定义游戏」的争议</strong>：休谟把神迹定义为「违背自然律」，于是<strong>在定义上</strong>就让自然律的证据永远压过神迹证言。★ <strong>批评者（含</strong> Antony Flew <strong>等的讨论）说：这是把结论塞进了定义</strong>——<strong>「自然律」若被定义为「一切经验所确立的齐一」，那么任何反例都会被说成「不是真正的自然律，而是另有隐藏原因」，从而使神迹在原则上无法进入视野</strong>。休谟本人其实<strong>意识到了这一点</strong>（他在第 47 段与第 67 段都用「隐藏的相反原因」来解释例外），但他<strong>没有充分处理</strong>：<strong>如何区分「隐藏原因造成的例外」与「真正的神迹」？</strong>
+    </li>
+    <li><strong>★ 「四条理由」的时代局限</strong>：理由三（神迹多见于蒙昧民族）带明显的 <strong>18 世纪欧洲中心主义色彩</strong>；理由二（人性爱惊奇）是心理学的<strong>归纳概括</strong>，而非证明。<strong>这些理由可以作为「额外支持」，但它们不是主论证，也不该被当成确证。</strong> ★ <strong>一个必须承认的强点</strong>：<strong>主论证（第 91 段）的形式极其有力</strong>——它把问题转化为「<strong>两个证据的权衡</strong>」，这条直觉被广泛接受，且从未被彻底驳倒，只是被「概率化」并继续争论（见 5.3）。<strong>这是「一个有巨大影响的论证 ≠ 一个已经成立的论证」的最佳样本。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s17">
+  <h2><span class="num">16</span><span>第十一节：特殊的天意和来世的状况</span><span class="caret">▾</span></h2>
+  <h3>这一节的论证链条</h3>
+  <ol>
+    <li><strong>形式</strong>：本节是一篇<strong>对话</strong>（休谟与一位「爱怀疑悖论的朋友」），主体是朋友<strong>假托「伊壁鸠鲁」</strong>在雅典人面前的一篇申辩（第 102–110 段）。
+    </li>
+    <li><strong>起手引话题</strong>：朋友先笑谈「哲学的幸运」——哲学需要自由与宽容，古雅典罗马反而对哲学家宽容（第 102 段）。
+    </li>
+    <li><strong>伊壁鸠鲁申辩的主干</strong>（把宗教问题<strong>限定为「推理学」问题</strong>）：
+    <ul>
+      <li><strong>我不否认最高存在</strong>（「我从未质疑神的实存」），也承认「从自然的秩序推出一位有智慧的设计者」这一论证<strong>可以成立、甚至很扎实</strong>（第 105 段）；
+      </li>
+      <li>★ <strong>但推论的规则是：从果推因时，我们</strong>只能给原因分配恰好足以产生该结果的属性<strong>，不能更多</strong>——「十盎司的重物只能证明对侧砝码超过十盎司，绝不能证明它超过一百盎司」（第 105 段）；
+      </li>
+      <li>★ <strong>所以：从「世界这个结果」推出「神」，只能推出世界所显示的那</strong>些<strong>能力、智慧与善，</strong>不能推出任何更多的东西**（如更大的善、更好的来世、更公平的分配）（第 106 段）；
+      </li>
+      <li>★ <strong>一旦你从「因」再往「果」推，就是「</strong>粗劣的诡辩<strong>」</strong>（a gross sophism）——因为关于原因的知识<strong>完全来自结果</strong>，不可能反过来指向结果之外（第 108 段）；
+      </li>
+      <li><strong>结论</strong>：宗教假设<strong>既不确定（超出一切人类经验），又无用（不产生任何新的行为准则）</strong>（第 110 段）。
+      </li>
+    </ul>
+    </li>
+    <li><strong>对话者（休谟本人立场）的反驳</strong>：他举「<strong>半成的建筑</strong>」「<strong>沙滩上的一个脚印</strong>」为例——从这些「结果」我们<strong>确实</strong>能从因再推果（楼会完工、还会有另一只脚）（第 111 段）。
+    </li>
+    <li><strong>朋友的应答（关键区分）</strong>：
+    <ul>
+      <li>我们从「人的作品」能回推，是因为<strong>我们另外熟悉「人」这个类</strong>——知道人的才能、意图、习惯（第 112 段）；
+      </li>
+      <li>★ <strong>但对「神」我们没有这样的知识</strong>：神<strong>只</strong>通过其作品被认识，是<strong>宇宙中单一的存在</strong>，<strong>不归属于任何已知的种或类</strong>，无法用类比从别处「补充」属性（第 113 段）；
+      </li>
+      <li>所以：<strong>给神添加属性，就是添加「结果里没有的东西」</strong>——是<strong>推测与假设</strong>，不是推理（第 113 段）。
+      </li>
+    </ul>
+    </li>
+    <li><strong>休谟最后的反诘</strong>：他提出一个「<strong>过于精细、不敢坚持</strong>」的困难——<strong>一个只由结果认识、且独一无二（无同类）的原因，我们能否从中推出任何东西？</strong> 我们只在「两类对象恒常结合」时才能互推；<strong>若一个结果是完全独一无二、不能归属任何已知类的，我们恐怕根本无法对它作出任何推断</strong>（第 115 段）。★ <strong>这一击直指「宇宙是独一无二的结果 → 推出神是独一无二的原因」这一设计论证的根基。</strong>
+    </li>
+  </ol>
+  <h3>关键区分与例子</h3>
+  <ul>
+    <li>★ <strong>本节的核心区分</strong>：<strong>「从果推因」（可，但只能推到结果所显示的程度） vs 「从因再推果」（对神不可行）</strong>。★ <strong>这是「设计论证」（argument from design）的经典限制</strong>：你可以从钟表推出钟表匠，但<strong>你必须另外知道『有人这一类』</strong>，才能从钟表匠再推出「他还会修别的表」；<strong>而对神，你没有这个『类』可用。</strong>
+    </li>
+    <li><strong>关键例子</strong>：<strong>十盎司的砝码</strong>（因果关系里的「比例原则」）；<strong>半成的建筑、沙上的脚印</strong>（从因回推果的<strong>正当</strong>情形）；<strong>「神只由作品认识，是单一存在、不属任何类」</strong>（第 113 段）。
+    </li>
+    <li>★ <strong>著名的一句</strong>：<strong>「诸神啊，请让你们的诸神与自然当前的样子相配吧」</strong>（Let your gods, therefore, O philosophers, be suited to the present appearances of nature）——意思是：<strong>不许为了迎合你归给神的属性，而随意改动现象</strong>（第 106 段）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一节常被忽略（它在中文世界的知名度远低于第四节与第十节），但它在学术上极为重要——它是「设计论证」最经典的批评之一，早于达尔文。</strong></p>
+  <ol>
+    <li><strong>论证的有效性</strong>：休谟的「<strong>类比推理需要『类』</strong>」这一招相当有力：<strong>从独特结果推独特原因，是缺乏根据的</strong>。★ <strong>但它也有一个软肋</strong>：批评者（<strong>Richard Swinburne</strong>《The Existence of God》等）会反问——<strong>为什么「宇宙作为整体」不能算作「一类恰当的结果」？</strong> 若「宇宙存在」是一个恰当的自然类，那么类比未必失效。<strong>这场争论（「宇宙是否是独特的」）至今是设计论证的核心战场之一。</strong>
+    </li>
+    <li><strong>与第十节的呼应</strong>：★ <strong>第十节说「证言压不过自然律」，第十一节说「不能从神推出超出自然秩序的东西」——两节合起来，是休谟对宗教理性论证的『两面夹击』</strong>：一边打断「神迹证据」，一边打断「设计论证的延伸」。<strong>要理解休谟的宗教哲学，《人类理解研究》里必须把 X 与 XI 连起来读</strong>（另见《自然宗教对话录》1779 的展开）。
+    </li>
+    <li><strong>形式的价值</strong>：★ <strong>它是全书唯一的对话体</strong>，读起来比第 4、7 节的连续论证轻松；<strong>且『伊壁鸠鲁的申辩』这一虚构演说，本身是 18 世纪『哲学与迫害』议题的隐喻</strong>（第 102–104 段谈宽容与思想自由）。<strong>这一节的政治含义（哲学需要自由）常被读者忽略。</strong>
+    </li>
+    <li><strong>一处值得注意的节制</strong>：休谟借朋友的嘴说，「神的实存」这一结论<strong>他从不否认</strong>——<strong>这个设定让本节成为一篇『内部批评』</strong>（接受有神论前提，但从推理形式上限缩它），而不是「无神论宣告」。<strong>读懂这一点，才能理解为什么休谟的宗教批评在当年既惹恼教会、又不被当成纯粹的异端</strong>。
+    </li>
+  </ol>
+</section>
+
+<section id="s18">
+  <h2><span class="num">17</span><span>第十二节：怀疑哲学</span><span class="caret">▾</span></h2>
+  <h3>这一节的论证链条</h3>
+  <p><strong>Part I（两种怀疑 + 对感官的怀疑）</strong></p>
+  <ol>
+    <li><strong>两种怀疑主义</strong>：① <strong>「先于研究」（antecedent）的怀疑主义</strong>——笛卡尔式的「普遍怀疑」（连我们的faculty也要怀疑）。休谟说它「一旦被达到，就根本无法治愈」（第 116 段），但对<strong>真正的研究</strong>没害处。② <strong>「后于科学和探究」（consequent）的怀疑主义</strong>——人在研究之后发现自己的心智能力「绝然虚妄」或「不适合」达到确定结论（第 117 段）。
+    </li>
+    <li><strong>对感官的怀疑（通俗层）</strong>：水中弯的桨、远近不同形状、按一只眼时的重影——这些只足以说明<strong>感官不能单独被信靠</strong>，需靠理性校正；有<strong>更深的</strong>反感官论证（第 117 段）。
+    </li>
+    <li><strong>自然本能 vs 理性的冲突</strong>：
+    <ul>
+      <li><strong>自然本能</strong>让我们相信有「外于我们、不依于我们的感知而存在的外在世界」（第 118 段），且<strong>把感官所呈现的『影像』径直当作外物本身</strong>（第 118 段）；
+      </li>
+      <li><strong>最浅薄的哲学</strong>立刻摧毁这个「全人类的首要意见」——<strong>呈现于心的永远只是一个影像或知觉，感官只是通道，不能产生心与外物的直接交往</strong>（第 118 段）；
+      </li>
+      <li>★ <strong>于是哲学陷入困境</strong>：要为新系统辩护，<strong>既不能再诉诸「不可错、不可抗的自然本能」，又拿不出任何清晰的论证</strong>（第 119 段）。<strong>「经验在此必然是、且只能是沉默的」</strong>（第 119 段）。
+      </li>
+    </ul>
+    </li>
+    <li><strong>「借神的诚实」也行不通</strong>：若靠神的诚实来证明感官的诚实，是「一个非常意外的迂回」——<strong>因为若神的诚实与此相关，我们的感官就该是绝无错误的</strong>（第 120 段）。
+    </li>
+    <li><strong>对「第一／第二性质」的怀疑</strong>：一切可感性质（硬软冷热白黑）都只是<strong>内心的知觉</strong>，并无外部的原型；那么所谓「<strong>第一性质</strong>」（广延与固体性）也<strong>不例外</strong>——广延的观念完全来自视觉与触觉，若这些只是心中的知觉，广延亦然（第 122 段）。★ <strong>剥掉物质的一切可理解的品质，你就在某种程度上「消灭」了它，只剩下「某种未知的、无法解释的『某物』作为我们知觉的原因」——一个如此不完善的概念，没有怀疑论者会觉得值得与之争辩</strong>（第 123 段）。
+    </li>
+  </ol>
+  <p><strong>Part II（两种相反的怀疑对象）</strong></p>
+  <ol>
+    <li><strong>对抽象推理的怀疑</strong>：来自<strong>时空观念</strong>——如「广延的无限可分」及其推论（如「切触角」比任何直线角都无限小、而不同曲线间又可无限更小），<strong>其论证看起来与三角形内角和一样无可指摘，却满是矛盾与荒谬</strong>，让理性「惊愕、悬置」（第 124–125 段）。
+    </li>
+    <li><strong>对事实推理的怀疑</strong>：分「通俗的」与「哲学的」。（第 126–127 段）
+    <ul>
+      <li><strong>通俗的很弱</strong>：人的理解力薄弱、意见随时地而变、病中与健康中判断不同……这些不足以摧毁证据，因为「<strong>日常生活的事务</strong>」是我们时刻在用的。
+      </li>
+      <li>★ <strong>哲学的才厉害</strong>：它复述第四、五、七节的结论——<strong>关于事实的一切证据都来自因果；我们对因果除「恒常相合」外无别的观念；而我们没有任何论证能保证「过去恒常相合的，将来也会相合」；把我们带到这一步的，只是习惯或本能的倾向，而本能「如其他本能一样，可能是虚妄、骗人的」</strong>（第 127 段）。
+      </li>
+    </ul>
+    </li>
+    <li>★ <strong>对「过度怀疑」的致命一击</strong>：问那个皮罗派怀疑者——<strong>「你说的到底是什么意思？你搞这些精妙研究想达到什么？」</strong> 他<strong>立刻无言以对</strong>。因为：彻底的怀疑若被普遍、稳定地奉行，<strong>「一切人类生活都必须消亡，一切言谈、一切行动都会立刻停止，人们将陷入完全的木僵，直到自然需求未获满足而结束他们悲惨的存在」</strong>（第 128 段）。★ 但——<strong>「这类致命的后果其实很不可怕。自然总是太强，胜过原则」（Nature is always too strong for principle）</strong>；那个皮罗派一觉醒来，「<strong>他将第一个加入对自己的嘲笑</strong>」（第 128 段）。
+    </li>
+  </ol>
+  <p><strong>Part III（温和怀疑主义 + 焚书）</strong></p>
+  <ol>
+    <li>★ <strong>温和的、学园派的怀疑主义</strong>（a more mitigated scepticism or academical philosophy）：它是皮罗式的过度怀疑<strong>被常识与反省有所校正后的产物</strong>，<strong>既持久又有用</strong>（第 129 段）。它的<strong>两条益处</strong>：
+    <ul>
+      <li><strong>① 治病</strong>：让人<strong>谦逊、审慎、克制</strong>——治疗人的教条与自负（第 129 段）；
+      </li>
+      <li><strong>② 划界</strong>：<strong>把探究限制在最适合人类理智的狭窄能力的题目上</strong>——即<strong>日常生活与经验</strong>之内；「较崇高的题目」交给诗人、演说家、教士与politician 去点缀（第 130 段）。
+      </li>
+    </ul>
+    </li>
+    <li><strong>★ 知识的地图</strong>：只有<strong>量与数</strong>是「抽象科学或论证」的对象；超出此界的一切「更完美的知识」都是<strong>诡辩与幻觉</strong>（第 131 段）。一切其他探究只关乎<strong>实际事情与存在</strong>，而它们<strong>显然不能有论证</strong>——「<strong>凡存在的，都可以不存在</strong>」（Whatever is may not be），任何事实的否定都不蕴含矛盾（第 132 段）。
+    </li>
+    <li><strong>对一切的定性</strong>：<strong>道德与批评</strong>严格说不是「知性」的对象，而是<strong>趣味与情感</strong>的对象——「<strong>美，无论是道德的或自然的，是被感到的，而非被知觉的</strong>」（第 132 段）。
+    </li>
+    <li>★★ <strong>焚书</strong>（本节最有名的一段）：「当我们按这些原则检视一切藏书时，我们会造成何等浩劫！随手拿起一本书，比如神学的或经院形而上学的，我们问：<strong>它含有任何关于量与数的抽象推理吗？</strong> 没有。<strong>它含有任何关于实际事情与存在的经验推理吗？</strong> 没有。那么，<strong>把它丢进火里吧：因为它所包含的，除了诡辩与幻觉，别无他物。</strong>」（第 132 段）
+    </li>
+  </ol>
+  <h3>关键区分与例子</h3>
+  <ul>
+    <li>★★ <strong>两种怀疑主义的分野</strong>（本节的核心）：
+    </li>
+  </ul>
+  <table>
+    <thead><tr><th>类型</th><th>特征</th><th>休谟的态度</th></tr></thead>
+    <tbody>
+      <tr><td><strong>皮罗式／过度怀疑</strong>（Pyrrhonism）</td><td>怀疑一切、连行动也怀疑</td><td>★ <strong>不可行、也不可持久</strong>——「自然」会压过它（第 128 段）</td></tr>
+      <tr><td><strong>学园派／温和怀疑</strong>（Academic）</td><td>把怀疑用于<strong>校正</strong>与<strong>划界</strong>，限制探究范围</td><td>★ <strong>这正是休谟本人的立场</strong>（第 129–130 段）</td></tr>
+    </tbody>
+  </table>
+  <ul>
+    <li>★★ <strong>「自然总是太强，胜过原则」</strong>（Nature is always too strong for principle）——这是休谟<strong>整个哲学的解毒剂</strong>，也是他不同于「虚无主义式怀疑论」的关键（第 128 段）。
+    </li>
+    <li><strong>「凡存在的，都可以不存在」</strong>（Whatever is may not be）——这是叉子中「实际的事情」一侧的凝练表述（第 132 段）。
+    </li>
+    <li><strong>「美是被感到的，而非被知觉的」</strong>——休谟价值论的一句话概括（第 132 段），它预示了道德哲学里的「情感论」（另见《道德原则研究》）。
+    </li>
+    <li><strong>关键例子</strong>：<strong>水中弯桨、双重影像</strong>（通俗反感官论证）；<strong>切触角与无限可分</strong>（反抽象推理）；<strong>「木僵」（lethargy）</strong>——彻底怀疑的后果（第 128 段）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一节是全书收束，也是休谟自我定位最清楚的地方，但两件事必须分清：</strong></p>
+  <ol>
+    <li><strong>★ 他是「温和怀疑主义者」，不是「彻底怀疑论者」。</strong>（这是 4b 第 2 条要纠正的核心误读。）★ 温和怀疑主义<strong>不是精神分裂</strong>（一边怀疑一边行动），而是一种<strong>方法论</strong>：<strong>用怀疑来治病（治教条与自负）＋划界（限制探究范围）</strong>。<strong>这正是休谟对全书标题「sceptical」的最终解释。</strong>
+    </li>
+    <li><strong>★ 「焚书」那句的危险性</strong>：它口气极大，且被逻辑实证主义<strong>当成意义标准的宣言</strong>（艾耶尔逐字引用，见 5.5）。★ <strong>但休谟在第 132 段给的是「两条腿的检验」</strong>：<strong>量的抽象推理 ／ 实际事情的经验推理</strong>。<strong>他没有说「宗教命题无意义」</strong>——<strong>「无意义」是二十世纪实证主义者加上的</strong>。休谟甚至在同一段里立刻给「道德与批评」留了位置（<strong>美是被感到的</strong>）。<strong>把「焚书」读成「休谟要把一切非科学的书烧掉」，是最粗暴的断章取义。</strong>
+    </li>
+    <li><strong>★ 「限制探究范围」的后果</strong>：这条「划界」主张后来被读成「<strong>科学主义</strong>」——只承认量与数的知识与经验知识。★ <strong>要看清：休谟的『划界』针对的是『是否能被证明』，而不是『是否有价值』</strong>；他对神学与形而上学的判决是<strong>认识论的</strong>（不能算知识），不是<strong>存在论的</strong>（不真）——<strong>这一点与第一节他为「精深哲学」辩护、与第十一节承认「神之实存我从未质疑」是一致的。</strong>
+    </li>
+    <li><strong>一处方法论自省的缺口</strong>：休谟说哲学应退回「日常生活」。<strong>但</strong>第四节所揭示的那个「日常生活也建立在一个无法辩护的前提上」的困难，<strong>并没有因为这个『退回』而被解决</strong>——他只是<strong>把它安放在一个『实践上够用』的位置上</strong>。★ <strong>这正是休谟怀疑论的诚实，也是它的未完之处</strong>：他给了我们一个「够用」的答案，不给「最终」的答案。<strong>全书的真正姿态，就藏在这个『不假装完成』里。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s19">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>概念／人物</th><th>一句话</th><th>出现在</th></tr></thead>
+    <tbody>
+      <tr><td><strong>印象</strong>（impression）</td><td>强烈生动的知觉：感觉、情感、意愿</td><td>第二节（§II）</td></tr>
+      <tr><td><strong>观念</strong>（idea）</td><td>微弱模糊的知觉，是印象的摹本</td><td>第二节（§II）</td></tr>
+      <tr><td><strong>摹本原则</strong>（copy principle）</td><td>一切简单观念都来自印象；无印象即无观念</td><td>第二节（§II）</td></tr>
+      <tr><td><strong>缺失的蓝色</strong>（missing shade of blue）</td><td>休谟自承的摹本原则唯一例外</td><td>第二节第 16 段</td></tr>
+      <tr><td><strong>观念的联结</strong>（association of ideas）</td><td>三条原则：相似、接近、因果</td><td>第三节（§III）</td></tr>
+      <tr><td><strong>休谟的叉子</strong>（Hume's fork）</td><td>观念的关系 vs 实际的事情</td><td>第四节第一部分第 20 段</td></tr>
+      <tr><td><strong>观念的关系</strong>（relations of ideas）</td><td>先验、分析、必然（几何、代数、算术）</td><td>第四节（§IV）</td></tr>
+      <tr><td><strong>实际的事情</strong>（matters of fact）</td><td>后验、综合、或然；反面永远可能</td><td>第四节（§IV）</td></tr>
+      <tr><td><strong>恒常结合</strong>（constant conjunction）</td><td>我们能观察到的全部：一事件总伴随另一事件</td><td>第四节、第七节</td></tr>
+      <tr><td><strong>必然联系</strong>（necessary connexion）</td><td>我们投射到世界的「相连」，实为心中习惯所致的感觉</td><td>第七节（§VII）</td></tr>
+      <tr><td><strong>习惯／习俗</strong>（custom / habit）</td><td>因果推理的真实原因；「人类生活伟大的向导」</td><td>第五节（§V）</td></tr>
+      <tr><td><strong>信念</strong>（belief）</td><td>一种更强烈、更生动、更稳固的构想方式</td><td>第五节第二部分（§V.ii）</td></tr>
+      <tr><td><strong>或然性</strong>（probability）</td><td>信念强度随证据份量变化</td><td>第六节（§VI）</td></tr>
+      <tr><td><strong>自由与必然</strong>（liberty and necessity）</td><td>「必然」＝恒常结合＋推断；自由＝照意志行动的能力</td><td>第八节（§VIII）</td></tr>
+      <tr><td><strong>动物的理性</strong>（reason of animals）</td><td>动物也靠习惯推断；习惯即本能</td><td>第九节（§IX）</td></tr>
+      <tr><td><strong>神迹</strong>（miracle）</td><td>对自然律的违背；证言不足以确立它为宗教基础</td><td>第十节（§X）</td></tr>
+      <tr><td><strong>温和／学园派怀疑主义</strong>（mitigated/academical scepticism）</td><td>休谟本人的立场：以怀疑治病、以怀疑划界</td><td>第十二节第三部分（§XII.iii）</td></tr>
+      <tr><td><strong>皮罗式怀疑</strong>（Pyrrhonism）</td><td>过度怀疑；不可行，终被「自然」击溃</td><td>第十二节第二部分（§XII.ii）</td></tr>
+      <tr><td><strong>大卫·休谟</strong></td><td>本书作者；1711–1776</td><td>—</td></tr>
+      <tr><td><strong>约翰·洛克</strong>（John Locke）</td><td>经验主义前辈；休谟批评其「能力」观念</td><td>第二节注、第七节注</td></tr>
+      <tr><td><strong>贝克莱</strong>（George Berkeley）</td><td>休谟称其论证「是最好的怀疑论教材，却无解、也无说服力」</td><td>第十二节第一部分注 31</td></tr>
+      <tr><td><strong>马勒伯朗士</strong>（Malebranche）</td><td>偶因论代表；休谟在第七节批判其「神是唯一真正原因」</td><td>第七节（§VII）</td></tr>
+      <tr><td><strong>笛卡尔</strong>（Descartes）</td><td>「先于研究的怀疑主义」的代表</td><td>第十二节（§XII）</td></tr>
+      <tr><td><strong>伊壁鸠鲁</strong>（Epicurus）</td><td>第十一节「申辩」的假托发言人</td><td>第十一节（§XI）</td></tr>
+      <tr><td><strong>Tillotson 大主教</strong></td><td>其反「圣体实在论」论证被休谟借为神迹论证模板</td><td>第十节第一部分</td></tr>
+      <tr><td><strong>Peter Millican</strong></td><td>当代休谟学者；维护休谟归纳论证的强度；整理 1777 年版电子文本</td><td>5.1、5.4</td></tr>
+      <tr><td><strong>John Earman</strong></td><td>著《Hume's Abject Failure》（2000），批评神迹论证</td><td>5.3</td></tr>
+      <tr><td><strong>Richard Swinburne</strong></td><td>以「轻信原则／证言原则」回应神迹论证</td><td>5.3</td></tr>
+      <tr><td><strong>A. J. Ayer</strong></td><td>逻辑实证主义者；自称「现代服装的休谟」</td><td>5.5</td></tr>
+      <tr><td><strong>Nelson Goodman</strong></td><td>提出「新归纳之谜」（grue/bleen）</td><td>5.4</td></tr>
+      <tr><td><strong>Karl Popper</strong></td><td>接受休谟归纳结论，以「证伪」取代归纳</td><td>5.4</td></tr>
+      <tr><td><strong>W. V. O. Quine</strong></td><td>攻击「分析／综合」二分，反噬休谟叉子</td><td>5.5</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s20">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>原文（必读）</strong>：Project Gutenberg #9662，<em>An Enquiry Concerning Human Understanding</em>（Selby-Bigge 编校本，1777 遗著版底本）；另有 <strong>Leeds 电子文本中心</strong>（Peter Millican 整理，2000）之 1777 年版，与 <strong>Online Library of Liberty</strong> 校勘版。
+    </li>
+    <li><strong>休谟本人其他文本</strong>：《人性论》（<em>A Treatise of Human Nature</em>，1739–40；★ 「是—应当」与「理性是激情的奴隶」皆在此）；自传《我的一生》（<em>My Own Life</em>，1776；★ 说《人性论》失败「更多在方式而非内容」）；1777 年版卷首《作者告白》（Author's Advertisement）。
+    </li>
+    <li><strong>神迹论证的两边</strong>（读第十节前必看）：<strong>John Earman</strong>，《Hume's Abject Failure》（牛津，2000）；<strong>Richard Swinburne</strong>，《The Existence of God》（1979；2nd ed. 2004）、《The Resurrection of God Incarnate》（牛津，2003）；<strong>John L. Mackie</strong>，《The Miracle of Theism》（牛津，1982）。
+    </li>
+    <li><strong>归纳问题</strong>：<strong>Karl Popper</strong>，《Conjectures and Refutations》（1963）；<strong>Nelson Goodman</strong>，《Fact, Fiction, and Forecast》（1955）；<strong>W. V. O. Quine</strong>，〈Two Dogmas of Empiricism〉（<em>Philosophical Review</em> 60(1)，1951）。
+    </li>
+    <li><strong>叉子与逻辑实证主义</strong>：<strong>A. J. Ayer</strong>，《Language, Truth and Logic》（1936）；<strong>John Passmore</strong>，〈Logical Positivism〉（收于 <em>The Encyclopedia of Philosophy</em>，1967）。
+    </li>
+  </ol>
+</section>
+
+<section id="s21">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>见同目录 <code>人类理解研究-来源清单.md</code>。</p>
+</section>
+
+<section id="s22">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. 我核对了哪些节、依据什么（★ 核验级别的诚实说明）</h3>
+  <ul>
+    <li><strong>A 级（逐节核对公版全文）</strong>：我<strong>完整阅读了 Project Gutenberg #9662 《An Enquiry Concerning Human Understanding》全书的 12 节（Section I–XII，自然段第 1–132 段）</strong>，并以 Leeds 电子文本中心 1777 年版目录、OLL 校勘版的章节结构作交叉确认。★ <strong>本书 12 节全部达到了 A 级</strong>：<span class="tag t-src">原书</span>标注的每一处引文，我都在该文本中<strong>逐段读到并核对</strong>。
+    </li>
+    <li><strong>未能逐字核对的</strong>：① <strong>1777 年版相对 1748 初版的逐条修订细节</strong>（我只用到 1777 定本，未做版本对照校勘）；② <strong>中译本（关文运、周晓亮）的正文</strong>（我未持有中文纸本／电子本，中文译名与体例依据出版方页面、图书馆编目与旧书网著录）；③ <strong>休谟书信原件</strong>（本报告引用的「作者谈话」只有《我的一生》与 1777《告白》，此二者有公版全文可查）。
+    </li>
+    <li>★ <strong>凡我未读到的，一律不冒充核对过。</strong> 本报告不存在「暗示核对过实际没核对的内容」。
+    </li>
+  </ul>
+  <h3>D2. 「神迹」一节的论证范围，两种概括口径并存</h3>
+  <ul>
+    <li><strong>本报告采用的概括</strong>：休谟论证的是「<strong>证言不足以确立作为宗教体系基础的神迹</strong>」（第 98 段），而他<strong>明确承认原则上可以有证据充分的神迹</strong>（第 99 段）。
+    </li>
+    <li><strong>仍存的口径</strong>：大众读物里普遍写作「休谟论证了神迹不可能」。★ <strong>我判断这是过度概括，依据是原文第 99 段的『界限』段</strong>；但请注意，<strong>休谟在第 96 段那句「对这样多的证人，只能以事件本身的绝对不可能来反驳」</strong>，确实容易被读成「神迹不可能」——<strong>这两段之间的张力，是本节解释史上真实的争议点</strong>（见 5.3）。
+    </li>
+  </ul>
+  <h3>D3. 关文运译本的「休谟自传」到底在哪一版、哪一年</h3>
+  <ul>
+    <li><strong>可确认的</strong>：多个来源（搜狗百科、旧书网、中文百科全书）在 1957 年版《人类理解研究》的目录里，<strong>首列「休谟自传」</strong>；《人类理解研究》<strong>确含休谟自传（《我的一生》）</strong>。
+    </li>
+    <li><strong>未能定论的</strong>：<strong>「1937 年商务版由『关琪桐』署名并含《我的一生》」这一条，我只从父代理提供的已核实身份与传记材料中读到</strong>——我检索到关文运（本名关其桐，笔名关文运、关琪桐，1904–1973）的译者信息，<strong>但未能找到 1937 年版的独立书目著录</strong>来确认该版的署名与内容。<strong>⇒ 请以实物版权页为准。</strong>
+    </li>
+  </ul>
+  <h3>D4. 「休谟否定因果」这一误传的来源，我未逐文追溯</h3>
+  <ul>
+    <li><strong>可确认的</strong>：中文普及读物里「休谟否定因果」「因果是幻觉」的写法极为常见；而<strong>原文并不支持这个概括</strong>（第七节第 58–61 段）。
+    </li>
+    <li><strong>未能核实的</strong>：<strong>这个误传是通过哪些具体的中文文本（教材、译本序、通俗读物）扩散的</strong>——我<strong>未能逐篇溯源</strong>。★ 本报告只陈述「原文说什么」与「常见说法是什么」，<strong>不对该误传的传播链条下断言</strong>。
+    </li>
+  </ul>
+  <h3>D5. 「非凡的主张需要非凡的证据」并非休谟原文</h3>
+  <ul>
+    <li><strong>广泛流传的一句</strong>：「Extraordinary claims require extraordinary evidence」（常被归给休谟、Sagan 或 Truzzi）。
+    </li>
+    <li>★ <strong>我在本书全文（12 节，第 1–132 段）中未找到该句</strong>。它是对第十节第 91 段准则的<strong>后世概括</strong>。<strong>本报告一律标注它是「转述式口号」，不作为原文引用。</strong> ⇒ 若你在别处看到它被加引号归给休谟，<strong>应存疑</strong>。
+    </li>
+  </ul>
+  <h3>D6. <span class="tag t-talk">作者谈话</span> 档的口径说明（重要）</h3>
+  <ul>
+    <li><strong>休谟 1776 年去世，不可能有访谈。</strong> 本报告 <span class="tag t-talk">作者谈话</span> 一档<strong>一律指休谟本人的其他文字</strong>：《我的一生》（1776 自传）、1777 年版卷首《作者告白》、《人类理智哲学研究》初版题记、书信。
+    </li>
+    <li><strong>具体用到并核对的</strong>：① 「<strong>从印刷机里死产下来</strong>」（<em>My Own Life</em>）；② 「<strong>与其说在内容，不如说在叙述方式</strong>」（<em>My Own Life</em>）；③ 「<strong>我把那部著作的第一部分重新铸成了《人类理解研究》</strong>」（<em>My Own Life</em>）；④ 「<strong>本书所含的大多数原理与推理，曾发表在三卷本《人性论》中……他从未承认</strong>」「<strong>今后只应把以下篇什视为其哲学情感与原理</strong>」（1777《作者告白》）。<strong>此四处均有公版或权威转录文本可查。</strong>
+    </li>
+    <li>★ <strong>未计入本档的</strong>：网上流传的「休谟临终访谈」（Boswell 的临终谈话记录）——它<strong>不是休谟本人的文字，而是他人的回忆录</strong>，本报告<strong>不采信为「作者谈话」</strong>，仅在需要时标明其性质。
+    </li>
+  </ul>
+  <h3>D7. 版本页数口径不一，本报告为何不用页码</h3>
+  <ul>
+    <li><strong>中文版口径</strong>：关文运译本 <strong>145 页</strong>（1957／1997）与 <strong>163 页</strong>（2011）两种；英文版页码亦随版本漂移。
+    </li>
+    <li><strong>处理方式</strong>：★ 本报告<strong>一律用「节号 ＋ Part 号」定位</strong>（如「第四节第二部分」），<strong>必要时附 Gutenberg #9662 的自然段序号</strong>（第 1–132 段，与 Selby-Bigge 段落划分基本一致）。⇒ <strong>这是为让读者能用任何译本、任何版本定位到同一段原文。</strong>
+    </li>
+  </ul>
+</section>
+
+<footer>
+  生成于 2026-10-07 · 来源清单与交叉验证记录见同目录 <code>人类理解研究-来源清单.md</code><br>
+  本页引文按 <b>A 级（逐节核对公版全文）</b>处理：引文一律以「<b>节号 ＋ Part 号</b>」（必要时附自然段序号）定位，底本为 <b>Project Gutenberg #9662</b>（1777 遗著定本 · Selby-Bigge 编校 · 1902），并以 Leeds 电子文本中心 1777 年版目录与 archive.org 公版扫描件交叉确认；<b>中文译者与体例以实物版权页为准</b>。★ 阅读本书最要紧的一件事：<b>休谟否定的是「必然联系」的理性根据，不是否定因果本身，更不是否认世界有规律</b>——他反而给出「恒常结合 ＋ 习惯」的正面解释。★ 第二件：<b>第四节的怀疑与第五节的化解必须连读</b>，它们是同一枚硬币的两面。★ 另请留意：本书是《人性论》第一卷的改写本，其「神迹」（第十节）一节是《人性论》里根本没有的。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

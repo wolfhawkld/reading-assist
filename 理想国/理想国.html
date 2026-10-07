@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《理想国》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《理想国》<small>阅读指引与精华解析 · 2026-10-07</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 七个核心论点</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 中文译本怎么选</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s7">6 卷一：什么是正义，与色拉叙马霍斯的挑战（327a–354c）</a>
+    <a href="#s8">7 卷二：正义本身 vs 正义的后果，与古各斯的戒指（357a–383c）</a>
+    <a href="#s9">8 卷三：护卫者的教育（下），与「高贵的谎言」（386a–417b）</a>
+    <a href="#s10">9 卷四：城邦四德、灵魂三分，与「正义＝各做各的事」（419a–445e）</a>
+    <a href="#s11">10 卷五：三个浪头——妇女儿童公有、哲学家为王（449a–480a）</a>
+    <a href="#s12">11 卷六：哲人的天性、善的理念、太阳比喻与线喻（484a–511e）</a>
+    <a href="#s13">12 卷七：洞穴比喻、教育即转向、与哲人王的课程（514a–541b）</a>
+    <a href="#s14">13 卷八：四种政体的退化——荣誉政治、寡头、民主、僭主（543a–569c）</a>
+    <a href="#s15">14 卷九：僭主式的人、三重快乐，与灵魂的画像（571a–592b）</a>
+    <a href="#s16">15 卷十：诗的再次审判、灵魂不朽，与厄尔神话（595a–621d）</a>
+    <div class="grp">附录</div>
+    <a href="#s17">A 关键概念与人物速查</a>
+    <a href="#s18">B 延伸阅读</a>
+    <a href="#s19">C 来源清单</a>
+    <a href="#s20">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《理想国》阅读指引与精华解析</h1>
+  <div class="sub">Πολιτεία / Respublica / The Republic（《国家篇》《共和国》《王制》）</div>
+  <div class="meta">
+    <div><b>作者</b>柏拉图（Πλάτων / Plato，约前 427–前 347），雅典贵族出身；苏格拉底的学生、亚里士多德的老师；约前 387 年创办学园（Academy），执教四十年</div>
+    <div><b>成书年代</b>约公元前 375 年（学界通说前 390–前 370 之间，无公认确考，见附录 D1）；故事设定的戏剧时间在前 5 世纪末伯罗奔尼撒战争末期</div>
+    <div><b>★ 大陆简体版</b><b>郭斌和、张竹明 译</b>，商务印书馆「汉译世界学术名著丛书」——1986-01 初版 448 页，ISBN 9787100017565；2017／2018 精装 457–458 页，ISBN 978-7-100-12966-4；2019 平装 458 页，ISBN 9787100162586。译者郭斌和（1900–1987，江苏江阴，语文学家）、张竹明（1932– ，古希腊罗马文化专家）</div>
+    <div><b>其他中译</b>王扬 译注本（华夏出版社「经典与解释」丛书，据标准希腊文校勘本直译，<b>正文保留 Stephanus 编号</b>）／ 顾寿观 译本（岳麓书社，据称古希腊原文直译）／ 溥林（熊林）译《理想国（政制）》（商务印书馆「希汉对照柏拉图全集」，<b>左希腊文右中文、上下两册</b>，书名作「政制」）／ 据英译转译的旧译本（吴献书 1935 文言译本、谢善元 上海译文译本）</div>
+    <div><b>篇幅</b>10 卷，对话体；全篇按学界通用的 <b>Stephanus 页码</b>标注，起于 <b>327a</b>、讫于 <b>621d</b>；中译约 30–40 万字</div>
+    <div><b>荣誉／地位</b>西方政治哲学与伦理学的奠基文本；怀特海「全部西方哲学传统不过是对柏拉图的一系列脚注」一语主要即针对它；2015 年被英国评为「最具影响力的 20 本学术书」之一</div>
+    <div><b>核心结构</b>卷一（正义之争）→ 卷二（正义本身 vs 后果）→ 卷三（护卫者教育、高贵的谎言）→ 卷四（城邦四德、灵魂三分）→ 卷五（妇女儿童公有、哲人王，三个浪头）→ 卷六（善的理念、太阳比喻、线喻）→ 卷七（洞穴比喻、教育即转向、课程）→ 卷八（四政体退化）→ 卷九（僭主与灵魂幸福）→ 卷十（诗与模仿、厄尔神话）</div>
+    <div><b>状态</b>未标注已读／想读 —— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有<b>公版原文</b>可定位的段落：本报告引文取自 Burnet 校勘本希腊原文（Perseus 文本号 tlg0059.tlg030.perseus-grc2，Oxford Classical Text，1905）与 Shorey 的 Loeb 英译（tlg0059.tlg030.perseus-eng2，Loeb 1935–37），两份文本均带 <b>Stephanus 分节里程碑</b>，可逐节对齐；另以 Gutenberg 的 Jowett 英译（#1497）作措辞对照。凡引批评者，正文均写明姓名、书名／文章、出版社／刊物与年份</li>
+    <li><span class="tag t-talk">作者谈话</span> 柏拉图已逝（约前 347），<b>不可能接受访谈</b>。本档<b>改用于柏拉图本人其他文字中的自述</b>：主要是《第七封信》（政治经历自白，<b>其真实性学界有争议</b>）与《法律篇》（对《理想国》方案的晚年修正）。<b>这不是访谈。</b></li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、百科条目、书评或研究综述，措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本书文本为<b>公版</b>，我据 Perseus 公版校勘本仓库取得了<b>希腊原文全文与 Shorey 英译全文</b>（两者均带 Stephanus 里程碑），本报告所有引文均据此核对。<b>凡属推理标「推断」，属二手概括标「转述」，有公版原文可定位的标「原书」。</b>带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-07 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书按 <b>A 级（公版原文）</b>标注。依据入口：PerseusDL/canonical-greekLit 官方仓库的《理想国》希腊原文（<b>Burnet 校勘本</b>，Oxford Classical Text，1905，urn:cts:greekLit:tlg0059.tlg030.perseus-grc2）与 <b>Shorey 英译</b>（Loeb Classical Library 第 5–6 册，Harvard UP／Heinemann，1935–37，urn:cts:greekLit:tlg0059.tlg030.perseus-eng2），<b>两份文本均带 resp="Stephanus" 的分节里程碑</b>，希腊文与英译可逐节对齐；另取 Project Gutenberg 的 <b>Jowett 英译</b>（#1497）作措辞对照。★ <b>覆盖范围：卷一至卷十（全 10 卷）</b>——本报告的引文覆盖每一卷，并逐条核对了其 Stephanus 定位（如卷七 514a 洞穴、卷六 507b 太阳／509d 线喻、卷三 414b 高贵的谎言、卷四 433a 正义定义、卷五 473c 哲人王、卷二 359d 古各斯戒指、卷一 338c／343a 色拉叙马霍斯、卷八 544c 政体退化、卷九 571a／588c 僭主与灵魂画像、卷十 595a／607a 诗／614b 厄尔神话）。<b>诚实说明：我对全书十卷的关键段落逐字核对，并核对了全书的 Stephanus 结构；但未逐句通读全书的每一行——若某条引文不在本报告标注的段落内，仍请以原文复核。</b>批评文献与二手研究的姓名、篇名、刊物／出版社、年份均已在正文逐条给出。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>《理想国》要回答的是一个伦理问题——「一个人为什么要做正义的人」——但它的答案却把整个政治哲学、认识论、教育学和形而上学都卷了进来：因为柏拉图认定，要看清楚「个人灵魂里的正义」，就必须先放大到一个城邦上看；而要让那个城邦真的正义，就非得有一种能认识「善本身」的人来统治不可。</strong></p>
+  <p>它不是政治操作手册（它造的是「言辞中的城邦」λόγῳ πόλις，一处「天上的范型」）；不是一本中立的对话集（苏格拉底的话越到后面越不像历史上的苏格拉底，而越像柏拉图自己的体系，见 5.5）；也不是「西方文明的说明书」——<strong>那个身份有很大一部分是波普尔之后、由关于它的争论塑造出来的</strong>。</p>
+  <p>一句话结论（也是全书最该记住的一句，卷七 517b–c，Shorey 英译）：<strong>「在可知的领域里，最后被看见、也最难看见的东西，就是善的理念；而一旦看见它，就必然推出：它是一切事物中一切正确与美好的原因——它在可见世界里生出了光，在可知世界里它自己是真理与理性的主人。」</strong><span class="tag t-src">原书</span>（卷七 517b–c）。<strong>它不是什么</strong>：不是一本给出「正义的定义」就收工的书——卷一的四次定义全被拆掉，而全书到最后也没给出一条能写进词典的定义。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>下表把 10 卷一行一条。<strong>页码采用 Stephanus 体系</strong>（1578 年 Estienne 版页码，学界引柏拉图的通用通货），与 Burnet 校勘本、Shorey 英译、以及中译郭张版目录一致。「它在问题链上的位置」一列，说明这一卷<strong>为什么必须存在</strong>。</p>
+  <table>
+    <thead><tr><th>#</th><th>卷（Stephanus）</th><th>这一卷在谈什么</th><th>它在问题链上的位置</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>卷一（327a–354c）</td><td>一个往下走又回不去的下午：定义正义的四次失败（欠债还钱→助友损敌→强者的利益→…），色拉叙马霍斯被逼退</td><td>★ 问题被提出：正义到底是什么？「正义是强者的利益」这个最强挑战被摆上桌，但<strong>没有被真正解决</strong></td></tr>
+      <tr><td>2</td><td>卷二（357a–383c）</td><td>格劳孔与阿德曼托斯把问题升级：不求正义的<strong>好处</strong>，只求证明正义<strong>本身就值得要</strong>；引出古各斯戒指；苏格拉底改用「大写与小写」法，城邦教育起步</td><td>★ 问题的纯化：「为正义而正义」；<strong>方法论转向</strong>——先造城邦，再从城邦看灵魂</td></tr>
+      <tr><td>3</td><td>卷三（386a–417b）</td><td>护卫者的文学与体育教育：审查荷马、雕塑神的形象；<strong>高贵的谎言</strong>（金银铜铁）；护卫者不得有私产</td><td>★ 城邦的「教育装置」；第一次赤裸地处理「统治者可否对人民说谎」</td></tr>
+      <tr><td>4</td><td>卷四（419a–445e）</td><td>城邦四德（智慧／勇敢／节制／正义）；灵魂三分（理性／激情／欲望）；正义＝「各做各的事，不越界」</td><td>★ 全书第一个「结论」：正义被定义为<strong>秩序</strong>，城邦与灵魂同时说通</td></tr>
+      <tr><td>5</td><td>卷五（449a–480a）</td><td>三个「浪头」：妇女儿童公有（第一浪）、哲学家为王（最大浪）、善的理念（第三浪起头）；意见与知识的区分</td><td>★ 最反直觉的一卷：为「城邦可能正义」付出代价——统治者彻底去私人化</td></tr>
+      <tr><td>6</td><td>卷六（484a–511e）</td><td>谁能当哲人王（哲人的天性与败坏）；善的理念；★ <strong>太阳比喻</strong>（507b–509c）＋<strong>线喻</strong>（509d–511e）</td><td>★ 为「哲人王凭什么叫王」补认识论地基：善使知识成为可能</td></tr>
+      <tr><td>7</td><td>卷七（514a–541b）</td><td>★ <strong>洞穴比喻</strong>（514a–520a）：教育＝灵魂的转向＋返回的义务；哲人王的全部课程（算术—几何—天文—和声—辩证法）</td><td>★ 链条的顶点与转折：哲学如何培养，以及<strong>为什么学成必须回去</strong></td></tr>
+      <tr><td>8</td><td>卷八（543a–569c）</td><td>四种政体的退化：荣誉政治→寡头→民主→僭主；民主如何「过度自由」地养出僭主</td><td>★ 反向的链：从最好的政体一路烂到最坏，为卷九的「僭主是失败者」铺路</td></tr>
+      <tr><td>9</td><td>卷九（571a–592b）</td><td>僭主式的人与僭主式的城邦；灵魂三部分的三重快乐与三重人生；「人形—狮形—多头怪兽」的灵魂画像</td><td>★ 回到格劳孔的问题：正义者比不义者<strong>更幸福</strong>，论证收口</td></tr>
+      <tr><td>10</td><td>卷十（595a–621d）</td><td>对模仿性诗的第二次驱逐（与卷三呼应）；灵魂不朽；★ <strong>厄尔神话</strong>（614b–621d）</td><td>★ 收尾：把「正义值得要」扩大到「此生之外也值得要」，以神话封顶</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法提示</strong>：这张表本身就是一条证据链，三点值得先记住。<strong>（一）</strong> 卷一（问题）与卷十（封顶）首尾相接，中间夹着五、六、七三卷「哲学之书」——全书的结构是「下降（开篇走进比雷埃夫斯港）—上升（三卷哲学）—下降到最低谷（僭主）—再上升（厄尔神话）」的多重框型。<strong>（二）</strong> 从卷五到卷七这三卷，是苏格拉底<strong>被逼着</strong>讲出来的：他把妇女儿童公有叫「第一个浪头」、哲人王叫「最大的浪头」，一路上反复声明「我不想讲」「你们会笑我」<span class="tag t-src">原书</span>（473c、451a 等）。<strong>这个「被迫」的姿态很重要</strong>——它提示读者：这三卷最反常识的内容，是不是柏拉图在<strong>反讽</strong>，至今仍是学界最大的分歧之一（见 5.5）。<strong>（三）</strong> 卷四得出的「正义＝各做各的事」一直用到卷九，但<strong>它真的回答了卷二的问题吗</strong>——格劳孔要的是「正义本身是好的」，而柏拉图给的是「正义是有秩序」；这两者之间的缺口，是全书的承重墙裂缝（见 5.1）。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>七个核心论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：正义不是一种「行为」，而是一种「秩序」——灵魂内部各部分的和谐</h3>
+  <p><strong>主张</strong>：苏格拉底的结论是，正义<strong>不在</strong>于你做了什么，而在于你灵魂的<strong>三部分</strong>是否各安其位、各干各的活；不正义就是「灵魂的政变」，是某一部分越权篡位 <span class="tag t-src">原书</span>（卷四 443c–444a）。</p>
+  <p><strong>依据</strong>：城邦里被认定的正义是「每个人只做自己分内的事，不兼做别人的事」（τὸ τὰ αὑτοῦ πράττειν καὶ μὴ πολυπραγμονεῖν，433a 希腊原文可查）；把它放大回灵魂，就是理性统率、激情辅佐、欲望服从（441c 起）。</p>
+  <p><strong>为什么重要</strong>：这是全书所有其他内容的地基。<strong>一旦接受这个定义，正义就变成一个「内部状态」，于是「正义者是否更幸福」就变成「灵魂健康的灵魂是否更幸福」——一个可以被推演的问题。</strong> 但它也埋下最大的争议：一个「内心和谐」的人，即便在外干尽坏事，按这一定义还算不算正义？（这一尖锐反驳在卷四 442d–443e 由苏格拉底自己提出、又草草按住。）</p>
+  <h3>论点二：城邦与灵魂「同构」——先看大字，再看小字</h3>
+  <p><strong>主张</strong>：苏格拉底提出一个方法论：城邦是「放大的灵魂」，先在城邦里找正义，再回头在个人灵魂里找同样的结构 <span class="tag t-src">原书</span>（卷四 368c–369a、434d–435c）。</p>
+  <p><strong>依据</strong>：城邦由三等人构成（统治者／护卫者／生产者），灵魂由三部分构成（理性／激情／欲望），结构一一对应；城邦的四种德性也可类比到灵魂。</p>
+  <p><strong>为什么重要</strong>：这是全书<strong>承重墙里最可疑的一块</strong>。它让论证得以进行（否则无法推演），但它<strong>预设了</strong>「城邦和人真的同构」而没有证明。★ 后来的批评（从亚里士多德到现代政治哲学）大多从这里下手：亚里士多德《政治学》第二卷就说，城邦的本质是「多样性」（πλῆθος），把它化约成「一个人」不是统一而是毁灭（1261a15–24）<span class="tag t-src">原书</span>。</p>
+  <h3>论点三：★ 比喻体系——太阳、线、洞穴，是同一条论证的三步</h3>
+  <p><strong>主张</strong>：善的理念是「一切可知之物可知、一切存在之物存在的最终原因」；柏拉图用三个层层加深的比喻把这件事说清楚 <span class="tag t-src">原书</span>（卷六 507b–511e、卷七 514a–520a）。</p>
+  <p><strong>依据与三步</strong>：</p>
+  <ul>
+    <li><strong>太阳（507b–509c）</strong>：善在可知世界中的作用，正如太阳在可见世界中的作用——太阳既使眼睛能看、又使对象能被看见；善既使灵魂能知、又使被知的对象存在。太阳是善「生出来的儿子」（ἔκγονος，508b–c：<span class="tag t-src">原书</span>「太阳是善所生的、与善成比例的产物」）。
+    </li>
+    <li><strong>线喻（509d–511e）</strong>：把一条线段按<strong>不等</strong>比例切成两段（可见／可知），每段再按同样比例切，得到四级：<strong>影像（εἰκασία）— 实物（πίστις）— 数理对象（διάνοια）— 理念（νόησις）</strong>；越往上，「清晰与真实」越高。
+    </li>
+    <li><strong>洞穴（514a–520a）</strong>：把整条线<strong>演成一个囚徒的解放故事</strong>，并补上关键一步——<strong>解放者必须回到洞里</strong>。
+    </li>
+  </ul>
+  <p><strong>为什么重要</strong>：这是全书最被通俗化、最被讲错的部分。太阳／线／洞穴不是三个可以随便引用的「意象」，而是一条论证：<strong>善不是「又一个对象」，而是「让对象可知、并让认识者能知」的条件</strong>。★ <strong>洞穴的功能是「教育」（παιδεία），不是「媒体批判」</strong>；它的论证重心在结尾——学成者<strong>有义务回去</strong>（519c–520a、520a–e）。</p>
+  <h3>论点四：三个「浪头」——城邦要正义，统治者就必须彻底放弃私人生活</h3>
+  <p><strong>主张</strong>：为让城邦尽可能统一，护卫者阶层要<strong>取消私人财产与私人家庭</strong>：妇女儿童公有、择偶与生育由城邦安排（第一浪）；而且<strong>除非哲学家成为国王、或国王成为哲学家，城邦永无宁日</strong>（最大的浪）<span class="tag t-src">原书</span>（卷五 449a–471c、473c–e）。</p>
+  <p><strong>依据</strong>：私有财产与私人家庭被认为是「分裂城邦」的根源——「我的」与「非我的」一旦分裂，城邦就不再是「一个」；公有制则让全体对同样的东西说「我的」（462b–464b）。</p>
+  <p><strong>为什么重要</strong>：这是全书<strong>最反直觉、最少被现代读者接受</strong>的一卷，也是波普尔指控柏拉图「极权」的直接依据（见 5.1）。★ 要注意两点原文事实：<strong>① 公有制只施于护卫者阶层</strong>，不是全体城邦；<strong>② 「共妻」的原意是取消护卫者的私人婚姻与家庭，而不是「性自由」</strong>——生育被刻意设计成优生与限制（458–461）。<strong>「柏拉图主张共产共妻」这个流行说法，至少在这两点上是失真的</strong>（见 4b）。</p>
+  <h3>论点五：政体的退化——从最好的政体一路烂到僭主</h3>
+  <p><strong>主张</strong>：除理想的贵族政体外，有四种「有病」的政体，按退化次序排列：<strong>荣誉政治（克里特—斯巴达式）→ 寡头政治 → 民主政治 → 僭主政治</strong>，最坏的是僭主 <span class="tag t-src">原书</span>（卷八 544c–d：<span class="tag t-src">原书</span>「我先讲那被多数人称赞的克里特与斯巴达式政体；其次是被叫做寡头政治的政体……第三是民主政治……第四是 tyranny，众病之末」）。</p>
+  <p><strong>依据</strong>：每一种政体都对应一种「人」的性格（543c–545c）；僭主式的人是民主「过度自由」的产物——极端的自由必然走向极端的奴役（564a 起）。</p>
+  <p><strong>为什么重要</strong>：这给了卷九一个<strong>从结果反推</strong>的论证：既然僭主式的人是最不义的，而他又最痛苦、最不自由、最恐惧，那么<strong>正义者比不义者更幸福</strong>——格劳孔的问题被回答了。★ 但这条「退化论」也是最经不起历史检验的部分：它是<strong>一个单向下滑的图式</strong>，而不是经验描述；波普尔把它当作柏拉图「历史决定论」（historicism）的核心证据（见 5.1）。</p>
+  <h3>论点六：诗与模仿——为什么要把诗人赶出去</h3>
+  <p><strong>主张</strong>：模仿性的诗（史诗、悲剧）是「模仿的模仿」，与真理隔了三层；它又专门喂养灵魂中低级的激情部分，所以理想城邦要把它驱逐，只留下「歌颂神与好人的颂歌」<span class="tag t-src">原书</span>（卷十 595a–607a；卷三 386a–398b）。</p>
+  <p><strong>依据</strong>：工匠照着理念造床，画家照着工匠的床再画一张床——「与自然（真理）隔了三重」（597b）；诗人在观众心里唤起并喂大本该被理性压制的哀泣与恐惧（605c–606b）。</p>
+  <p><strong>为什么重要</strong>：这是文学理论史上被引用最多的段落之一，也是<strong>最容易被反噬的一节</strong>——因为《理想国》自己就是一部用神话、比喻与戏剧性情节写成的书。<strong>柏拉图一面驱逐模仿，一面在书里大用模仿</strong>（他自己就写了厄尔神话这一个「高贵的谎言」式的故事）。★ 这一自我矛盾，是理解全书「反讽」读法的关键证据（见 5.5）。</p>
+  <h3>论点七：灵魂不朽与厄尔神话——把「正义值得要」延伸到此生之外</h3>
+  <p><strong>主张</strong>：灵魂是不朽的；死后灵魂要接受审判，然后<strong>自己选择下一次的人生</strong>，并为自己的选择负责——「罪过不在神，在选择者」<span class="tag t-src">原书</span>（卷十 608c–614b、614b–621d）。</p>
+  <p><strong>依据</strong>：厄尔（Er）是一个战死又复活的人，他讲述了灵魂在冥界的见闻：判决、千年奖罚、命运三女神的纺锤、以及灵魂挑选来世生活的场景 <span class="tag t-src">原书</span>（614b–621d）。</p>
+  <p><strong>为什么重要</strong>：这是全书的收尾。它要解决一个<strong>论证内的漏洞</strong>：如果正义者这一世可能受苦（如被钉十字架，卷二 361e–362a 格劳孔设想的极端情形），那么「正义值得要」如何仍然成立？答案是：<strong>这一世不是全部</strong>。★ 但这一步也带来新问题——<strong>用「来世的好处」来劝人正义，恰恰是卷二格劳孔要求不要使用的那类理由</strong>。厄尔神话因此长期被质疑是「结尾」还是「后加的补丁」（见 5.5、附录 D）。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <ol>
+    <li><strong>先读卷七（514a–541b），尤其是洞穴比喻 514a–520a。</strong> 它是全书最好读、也最自成一体的一段，几乎不需要前面九卷的任何铺垫就能读懂，而且它把全书的「目的」一次说清：哲学教育是为了什么、以及为什么受教者必须回去。读完含泪，你就知道这本书的价值在哪。
+    </li>
+    <li><strong>再回头读卷一（327a–354c）。</strong> 它原本可能是一篇独立的对话（见 5.5），戏剧性最强，像一出戏：色拉叙马霍斯带着律师式的傲慢冲进来、被苏格拉底逼到脸红、最后被一句「正义者幸福」打发走，而苏格拉底自己承认「我什么也没搞清楚」。<strong>这一卷定下了全书的问题，而且它的问题比它的答案更重要。</strong>
+    </li>
+    <li><strong>把卷五至卷七当一座「需要交门票的桥」。</strong> 这三卷最反直觉（妇女儿童公有、哲人王、善的理念），也最难。★ <strong>阅读顺序建议是「先结论后论证」</strong>：先接受「柏拉图要哲人王」这个结论，再回看他是怎么一步步被逼出来的，比顺着硬啃容易得多。
+    </li>
+    <li><strong>卷八（政体退化）可以单独当政治评论读。</strong> 它对民主政体病症的描写（过度的自由、把平等当成对一切人的平等）锋利而具体，不需要接受柏拉图的整个体系就能感到它的分量——<strong>这也是它最容易被现代政治立场各取所需的一卷</strong>。
+    </li>
+  </ol>
+  <h3>如果你是「已读」</h3>
+  <ol>
+    <li><strong>回头查一件事：卷四那个「正义＝各做各的事」的定义，真的回答了卷二的问题吗？</strong> 格劳孔要的是「正义本身（不靠后果）就是好的」，而柏拉图的答案「正义是灵魂的秩序」是<strong>另一种东西</strong>。这两者之间的「缺口」为什么能补上、能不能补上，是全书的承重墙问题（见 5.1）。
+    </li>
+    <li><strong>把三个比喻连起来看</strong>：太阳（善是可知性的原因）→ 线（认识的四级）→ 洞穴（教育＝转向＋返回）。★ 如果你此前把洞穴当成「讲媒体操控」的寓言，读卷七 517c–520a 会让你重新认识它。
+    </li>
+    <li><strong>带着 5.1（波普尔）与 5.5（反讽／苏格拉底分界）重读卷五</strong>。同一段「妇女儿童公有」，波普尔读成极权蓝图，施特劳斯学派读成故意夸张到让人反感的反讽——<strong>你站在哪一边，决定了你读到的是一本政策的书，还是一本哲学的书。</strong>
+    </li>
+  </ol>
+  <h3>★ 一条可执行的阅读路线（对话体怎么读）</h3>
+  <ul>
+    <li><strong>最容易卡住的三处</strong>：<strong>① 卷二后半到卷三的教育细节</strong>（386a–412b）：一长串「荷马哪一段该删」，人名与神名密集，初次读会非常枯燥——<strong>这一段可以只读各段的开头结论，把它当「柏拉图删了什么」的清单看</strong>；<strong>② 卷六、卷七的课程表</strong>（521c–534d）：算术—几何—天文—和声—辩证法的「学习次序」，是全书最像「课程大纲」的部分，<strong>数学不好的读者可以直接跳到辩证法的定义（533d）</strong>；<strong>③ 卷十的前半</strong>（595a–608b）：关于「模仿」的三层论证绕，<strong>可以先读结论（607a 驱逐诗人）、再回读论证</strong>。
+    </li>
+    <li><strong>对话体的读法</strong>：<strong>永远先看是谁在说话、谁在反驳谁。</strong> 这本书不是独白，苏格拉底几乎所有关键结论都是被对话者「逼」出来的：格劳孔不满意「俭朴的城邦」，才有护卫者与整套教育；格劳孔提出「三个浪头」不肯放，才有妇女儿童公有与哲人王。★ <strong>读的时候记得问一句：苏格拉底哪一步是在真心论证，哪一步是在偷换（比如说「形容词的正义」时，他要求「用一只手和一只手比较」的类比，427b–e 一带就滑了一下）。</strong> 把这些「滑步」标出来，你就读到了这个文本真正的样子。
+    </li>
+    <li><strong>可以跳的部分</strong>：卷七的数学课程细节、卷十对「模仿」的几何学式论证。<strong>不能跳的部分</strong>：卷一、卷二开头（古各斯戒指）、卷四（灵魂三分）、卷五（三个浪头）、卷七（洞穴）、卷九（僭主）。
+    </li>
+  </ul>
+  <h3>给不同读者的一句话建议</h3>
+  <ul>
+    <li><strong>如果你是学生、要写课程论文</strong>：★ 别从「洞穴」写起——那个题目已经被写烂了。<strong>从「卷二的问题设定」写起</strong>（格劳孔为什么不要后果、只要正义本身），或者从「卷四的灵魂三分与『各做各的事』的循环风险」写起，更容易写出新意。
+    </li>
+    <li><strong>如果你是政治学／法学读者</strong>：<strong>卷八＋卷九＋波普尔＋亚里士多德《政治学》第二卷</strong>，这四样一起读，你会得到一条完整的「关于理想政体的争论链」。
+    </li>
+    <li><strong>如果你只读一遍</strong>：★ <strong>读卷二（问题）、卷四（答案）、卷七（代价）三卷，把卷一当序、把五、六当桥、把八、九、十当延伸。</strong> 三卷读完，你已经拿到了《理想国》的主干。
+    </li>
+  </ul>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节对《理想国》尤其要紧，因为「用哪个译本」直接决定了你能不能把书里的引文与全世界的二手文献对上号。</strong> 关键不在译者文笔，而在<strong>有没有 Stephanus 页码</strong>。</p>
+  <p><strong>先说最要紧的三条</strong>：</p>
+  <blockquote>
+    <p><strong>⚠ ① 判断一个《理想国》中译本好不好，第一条标准不是「顺不顺」，而是「有没有 Stephanus 编码」。</strong> 学界引柏拉图从不用页码，只用 <strong>Stephanus 编号</strong>（如「514a」「473c」）。<strong>一个不标 Stephanus 的译本，你没法拿它的任何一句去对照研究文献</strong>——你只能在自己的书里打转。</p>
+    <p><strong>⚠ ② 大陆现行最通行的是郭斌和、张竹明译本（商务印书馆）。</strong> 它<strong>在正文旁标了 Stephanus 页码</strong>（其目录也是按 Stephanus 区间排的，如「第一卷 327–354」），这是它最大的实用优势；底本接近 Loeb 古典丛书。它的缺点是从 1986 年起沿用至今，个别术语（如「理念」对 idea/eidos、「善的理念」）与更新的译法有出入。</p>
+    <p><strong>⚠ ③ 想「较真」还有三个更贴近希腊原文的选择</strong>：<strong>王扬</strong>译注本（华夏出版社「经典与解释」丛书，据标准希腊文校勘本直译，<strong>正文中保留 Stephanus 编号</strong>，如 379a、476b）；<strong>顾寿观</strong>译本（岳麓书社，自称「古希腊原文直译」，哲学专业学生常推荐）；<strong>溥林（本名熊林）</strong>译《理想国（政制）》（商务印书馆「希汉对照柏拉图全集」，<strong>左希腊文右中文、上下两册、注释详尽</strong>）——★ <strong>注意它把书名译成了「政制」，购物站搜「理想国」可能搜不到。</strong></p>
+  </blockquote>
+  <p><strong>主要版本对比</strong>：</p>
+  <table>
+    <thead><tr><th></th><th>郭斌和·张竹明（商务）</th><th>王扬（华夏）</th><th>溥林／熊林（商务·希汉对照）</th></tr></thead>
+    <tbody>
+      <tr><td>底本</td><td>接近 Loeb 古典丛书</td><td>标准希腊文校勘本（据前言）</td><td>古希腊文（左原文右译文）</td></tr>
+      <tr><td>Stephanus 页码</td><td><strong>有</strong>（正文旁＋目录区间）</td><td><strong>有</strong>（正文内）</td><td>有（对照）</td></tr>
+      <tr><td>注释</td><td>较少</td><td><strong>密集脚注</strong></td><td><strong>详尽</strong></td></tr>
+      <tr><td>可读性</td><td><strong>最好读</strong>（对话提示说话者名字）</td><td>较难（有读者反馈前两章最难读）</td><td>分册、定价高</td></tr>
+      <tr><td>适合</td><td>初读、通读</td><td>精读、做笔记</td><td>对照原文、写论文</td></tr>
+    </tbody>
+  </table>
+  <p><strong>另有一类「据英译转译」的旧译本</strong>：<strong>吴献书 1935 年文言译本</strong>是中文世界最早的《理想国》译本，底本是英译、又是文言，今天基本只具文献价值；<strong>谢善元</strong>译本（上海译文「译文经典」）也自称底本为英文，译笔「带英味」、长句多。★ <strong>它们不必然劣质，但都对不上 Stephanus</strong>（或对得上也很别扭），引文时务必小心。</p>
+  <p><strong>★ 三句话结论</strong>：</p>
+  <ol>
+    <li><strong>普通读者、只想读懂</strong>：买<strong>商务·郭斌和／张竹明</strong>，够了，而且它带 Stephanus 页码。
+    </li>
+    <li><strong>想精读、想拿书里的引文去查研究文献</strong>：认准<strong>任何带 Stephanus 编码</strong>的版本；若要贴着希腊文读，选<strong>王扬</strong>或<strong>溥林（希汉对照）</strong>。
+    </li>
+    <li><strong>千万别买那种「不标 Stephanus、也不标是谁译的」拼凑本</strong>——《理想国》是公版书，市面上有大量据旧英译转排、无译注、删节甚至重组的廉价本，买了等于白读。
+    </li>
+  </ol>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <p>★ 这一节的判据是：<strong>我有没有真的回到原文。</strong> 下面每一条都给出了 Stephanus 定位与（必要时）希腊原文关键词。<strong>《理想国》是中文世界被二手转述最严重的古典之一</strong>，以下十条几乎每一本「通俗哲学」读物都会踩到其中几条。</p>
+  <table>
+    <thead><tr><th>流行说法</th><th>原文／事实（带定位）</th></tr></thead>
+    <tbody>
+      <tr><td>「洞穴比喻讲的是媒体操控／信息茧房」</td><td>★ 错位。洞穴的语境是 <strong>教育（παιδεία）</strong>，原文第一句就是「把受过教育与没受过教育的人的本质，比作这样一种处境」（514a，希腊原文 <code>παιδείας τε πέρι καὶ ἀπαιδευσίας</code>）。它的论证重心在结尾：被解放者<strong>有义务回到洞里</strong>去管那些囚徒（519c–520a）。把它读成「媒介批判」是 20 世纪的挪用，不是柏拉图的论点 <span class="tag t-src">原书</span>。</td></tr>
+      <tr><td>「柏拉图主张共产共妻、性自由」</td><td>半错。<strong>公有制只施于护卫者阶层</strong>（统治者与辅助者），生产者（农夫、工匠）保留私产与家庭。所谓「共妻」是<strong>取消护卫者的私人婚姻、由城邦安排优生与生育</strong>（449a–471c、458–461），<strong>不是「性自由」</strong>。原文对生育的管控极其严格（只允许「最好的男女」结合、对孩子保密生父母）<span class="tag t-src">原书</span>。</td></tr>
+      <tr><td>「《理想国》是一份政治蓝图，柏拉图想照着建」</td><td>原文把它叫 <strong>「言辞中的城邦」（λόγῳ πόλις）</strong>，并说这个范型「存在于天上」，是供人「照着看」的标准（592a–b，Shorey：<span class="tag t-src">原书</span>「也许它存在于天上，是给想要看见它、并照着它安排自己的人看的范型」）。★ 更硬的反证：柏拉图晚年写的《法律篇》走的完全是另一条路（法治、次优），根本没有哲人王 <span class="tag t-src">原书</span>（《法律篇》739a–e）。</td></tr>
+      <tr><td>「柏拉图说民主是最坏的政体」</td><td>错。卷八的退化序列是<strong>荣誉政治→寡头→民主→僭主</strong>（544c），<strong>民主排第三，僭主才是最坏的</strong>。柏拉图批评的是雅典式<strong>直接民主</strong>的特定病症（把自由推成「什么都行」），不是「民主＝最坏」<span class="tag t-src">原书</span>。</td></tr>
+      <tr><td>「哲人王就是独裁，说明柏拉图崇拜独裁」</td><td>半错。哲人王的正当性<strong>不来自权力，而来自「知识」</strong>——他见过「善的理念」，所以才能正确地安排城邦（473c–e、506a–b）。★ 而且苏格拉底反复强调这种人<strong>凤毛麟角</strong>，并承认他们会<strong>不愿回来当王</strong>、是被城邦「强迫」回去的（519c–520a、520e）<span class="tag t-src">原书</span>。</td></tr>
+      <tr><td>「柏拉图要废除家庭」</td><td>错。只废护卫者的私人家庭；生产者仍过家庭生活。而且护卫者的制度不是「没有性别差」，而是<strong>男女同一标准、同一教育、同样当护卫者</strong>（455d–456c，<span class="tag t-src">原书</span>「在治理城邦上，女人与男人的天赋并无不同」）<span class="tag t-src">原书</span>。</td></tr>
+      <tr><td>「《理想国》主张人人平等／废除奴隶制」</td><td>错。全书<strong>没有主张废除奴隶制</strong>，也<strong>不主张一切人平等</strong>；「平等」主要限于<strong>护卫者阶层内部的男女同权</strong>，以及统治者之间。生产者阶层被排除在政治之外。把它读成平等主义是对原文的过度包装（见 5.4）<span class="tag t-rep">转述</span>（如澎湃新闻文章即指出「他将广大生产者排除在政治活动之外」）。</td></tr>
+      <tr><td>「苏格拉底在书里说的，就是历史上苏格拉底说过的」</td><td>半错。<strong>卷一最接近历史上的苏格拉底</strong>（反诘法、无结论收场）；但<strong>从卷二起，尤其卷五到卷七的「灵魂三分」「理念论」「善的理念」，是柏拉图自己的体系</strong>。学者（如 Vlastos 1991）据此把卷一与后九卷分开处理 <span class="tag t-src">原书</span>（Vlastos，《Socrates: Ironist and Moral Philosopher》，Cambridge UP，1991）。</td></tr>
+      <tr><td>「柏拉图反对一切艺术」</td><td>错。他只驱逐<strong>模仿性</strong>的诗（史诗、悲剧），明确保留「<strong>献给神的颂歌和赞美好人的诗</strong>」（607a）。而且他给诗留了「申辩」的机会：如果诗的爱好者能用散文证明诗对治理有益，「我们很乐意让她从流放中回来」（607d–608a）<span class="tag t-src">原书</span>。</td></tr>
+      <tr><td>「厄尔神话记录的是柏拉图真实相信的来世」</td><td>存疑。原文称它 <strong>μῦθος（神话／故事）</strong>，功能是「劝人向善」；学者多把它读成「<strong>有益的虚构</strong>」（edifying fiction），与卷二格劳孔「不要用后果来劝人正义」的要求存在张力。它是不是结尾、是不是后加，学界有争议（见 5.5、附录 D5）<span class="tag t-src">原书</span>。</td></tr>
+      <tr><td>「高贵的谎言说明柏拉图主张精英愚民、撒谎治国」</td><td>半错。414b–c 原文的措辞是「<strong>在需要的时候</strong>可以说的谎言」（<code>τῶν ψευδῶν τῶν ἐν δέοντι γιγνομένων</code>；<code>γενναῖόν τι ἓν ψευδομένους</code>），且柏拉图在同一卷明确说「<strong>真正的</strong>谎言（对灵魂撒谎）为神人共憎」，只有「作为药物」的谎言才可统治者使用（382c、389b）<span class="tag t-src">原书</span>。它是<strong>极端的、有严格条件的例外</strong>，不是常规治理手段。</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本报告最该细读的一节。</strong> 《理想国》的「争议」与别的书不同：别的书的争议是「它说得对不对」，而《理想国》的争议有一半是「<strong>它到底说了什么</strong>」——它被 20 世纪的两种读法（波普尔的极权读法、施特劳斯学派的反讽读法）拉向两个极端，<strong>而这本书本身对「自己说了什么」并不肯把话说死</strong>。下面五条按锋利程度排，最后回答「今天读还成立吗」。</p>
+  <h3>5.1 ★★ 波普尔《开放社会及其敌人》（1945）指控柏拉图是「极权主义的思想源头」</h3>
+  <p><strong>这是《理想国》最著名的现代争议，必须正面写清楚，也要写清楚反驳方。</strong></p>
+  <p><strong>（a）波普尔指控了什么。</strong> 卡尔·波普尔（Karl Popper）在战时（新西兰流亡期间）写成的《开放社会及其敌人》（<em>The Open Society and Its Enemies</em>，Routledge，<strong>1945</strong>）第一卷，把柏拉图列为「开放社会的敌人」之首，指控他的《理想国》是现代极权主义的思想源头 <span class="tag t-src">原书</span>。波普尔的具体指控由四条构成：</p>
+  <ul>
+    <li><strong>历史决定论（historicism）</strong>：柏拉图把历史看成一条必然退化的下滑曲线（荣誉政治→寡头→民主→僭主），并想<strong>用强力把社会冻结</strong>在一个不变的分层结构里；这正是「封闭社会」的标志。
+    </li>
+    <li><strong>本质主义（essentialism）</strong>：柏拉图认为<strong>绝对真理存在、且只有极少数人（哲人王）能认识</strong>；波普尔认为这种「认识论精英主义」否认了人的可错性，为不受制约的权威统治提供了借口。
+    </li>
+    <li><strong>整体主义（holism）</strong>：个人被完全从属于城邦的整体和谐；护卫者的<strong>共产共妻</strong>、国家审查、<strong>高贵的谎言</strong>（金银铜铁神话）层层剥夺个人的选择与自决。
+    </li>
+    <li><strong>乌托邦式的社会工程（utopian social engineering）</strong>：柏拉图主张自上而下的整体重建，而非波普尔推崇的「零星社会工程」（piecemeal social engineering）。
+    </li>
+  </ul>
+  <p>波普尔有一句常被引用的话，承认柏拉图的分量：<strong>「西方思想要么是柏拉图式的，要么是反柏拉图式的，但几乎没有非柏拉图式的。」</strong><span class="tag t-rep">转述</span>（转引自关于波普尔《开放社会》的概述与二手评述；原文措辞以原书为准）</p>
+  <p><strong>（b）反驳方怎么说。</strong> 反驳最系统的是 <strong>Ronald B. Levinson，《In Defense of Plato》（Harvard University Press，1953）</strong>——674 页，逐条回应波普尔。它的核心指控是<strong>方法</strong>：波普尔<strong>选择性引用、倾向性翻译，并把文本里没有的立场安给柏拉图</strong> <span class="tag t-src">原书</span>（Levinson 1953，见该书第 9 章「Was Plato a Totalitarian?」及书末十六条附录；其反驳的批评者名单含 Chapman、Fite、Winspear、Toynbee、Crossman、Popper）。此外：</p>
+  <ul>
+    <li><strong>语境错置的指控（anachronism）</strong>：<strong>John Wild</strong> 等主张，用 20 世纪反法西斯的概念去判一个公元前 4 世纪的哲学家，是范畴错误；柏拉图的城邦<strong>没有民族、没有种族、没有大众政党、没有秘密警察、没有监控技术</strong>——这些恰恰是 20 世纪极权主义的构成要件 <span class="tag t-rep">转述</span>（见关于「Plato as an enemy of open society」的学术评述）。
+    </li>
+    <li><strong>反方向的谱系</strong>：John Wild 主张柏拉图属于<strong>自然法传统</strong>（用客观标准去限制统治者的权力），是<strong>宪政</strong>而非独裁的祖先 <span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>平衡的裁决</strong>：<strong>George Klosko</strong> 的评估被普遍认为比较公允：<strong>波普尔对文本的处理常常站不住脚，但他对「前提中的危险」的指认是对的</strong> <span class="tag t-rep">转述</span>。
+    </li>
+  </ul>
+  <p><strong>★ 本报告的分层判断</strong>：波普尔<strong>赢在逻辑，输在历史</strong>。他准确指出了《理想国》里那个真问题——<strong>当「谁该统治」被一个不可质疑的知识权威回答掉以后，还有什么能防止它变坏</strong>；但他把「一个哲学范型」当成了「一份立法草案」，这恰恰忽略了柏拉图自己反复说的「言辞中的城邦」。<strong>这条争论今天没有定论，而它本身就是读这本书最大的收获之一。</strong></p>
+  <h3>5.2 ★ 哲人王与民主：柏拉图对民主的敌意，在 20 世纪被反复引用</h3>
+  <p>柏拉图出身于<strong>被民主政体处死苏格拉底</strong>的雅典，又亲历三十僭主与伯罗奔尼撒战败；他对民主的敌意有具体的个人创伤背景（见《第七封信》324b–326b 的自白 <span class="tag t-src">原书</span>／<span class="tag t-talk">作者谈话</span>）。卷八对民主的描写是全书最刻薄的一段：<strong>民主把自由推向极端，连「该不该服从」都变成可选，于是「什么都行」；而极端的自由必然生出极端的奴役——僭主</strong>（562b–566d、564a）<span class="tag t-src">原书</span>。</p>
+  <p><strong>争议在哪里</strong>：① 柏拉图<strong>没有明确主张雅典民主即刻该被推翻</strong>，但《理想国》的整套设计（生产者无政治参与、统治者凭知识而非同意获得权力）在<strong>理论上取消了政治参与本身</strong>。② 20 世纪，这段文字被<strong>极权与反极权双方</strong>都引用过：波普尔引它证明柏拉图反民主，而一些反民主的思想家也引它为自己的精英主义背书。③ 现代政治哲学（如 <strong>Isaiah Berlin</strong> 的价值多元论）对它的反驳是釜底抽薪的：<strong>如果终极价值本就是多元且不可通约的，那就不存在「关于目的的唯一正确答案」，哲人王的「知识」在概念上就不可能存在</strong> <span class="tag t-rep">转述</span>（Berlin 的价值多元论，见关于《理想国》现代批评的综述）。</p>
+  <h3>5.3 ★ 等级制与「高贵的谎言」（卷三 414b–415d）：全书最难辩护的一段</h3>
+  <p><strong>原文</strong>：苏格拉底提议用一个「腓尼基式的故事」（<code>Φοινικικόν τι</code>，414c）——神在铸造人时，<strong>该统治的人掺了金、护卫者掺了银、农夫与工匠掺了铁与铜</strong>；神命令统治者严加看守后代灵魂里的金属成分，<strong>若金银父母生出铜铁孩子，就要毫不怜悯地把他降级，反之则提拔</strong>（415a–c）<span class="tag t-src">原书</span>。</p>
+  <p><strong>为什么难辩护</strong>：</p>
+  <ul>
+    <li><strong>它把社会分层说成神定的自然事实</strong>，从而<strong>取消了平等讨论的前提</strong>——这正是波普尔「本质主义＋整体主义」指控的靶心。
+    </li>
+    <li><strong>它要求统治者对被统治者撒谎</strong>（「首要的是说服统治者自己，其次是说服其余城邦」，414b–c）：即便按柏拉图自己「真谎神人共憎、药用谎言可用」（382c）的限定，这也把「人民」永久放在了需要被「医疗」的位置上。
+    </li>
+    <li><strong>它有内在的反转</strong>：同一段又说金银父母可能生出铜铁孩子、要按能力升降——<strong>这其实内含了一点「贤能政治」的弹性</strong>，与「种姓式固化」并不完全一致。辩护方（含 Levinson）正是抓住这一点，说它更像「<strong>开明的贤能制</strong>」而非「种姓制」<span class="tag t-rep">转述</span>。
+    </li>
+  </ul>
+  <p><strong>本报告判断</strong>：这是《理想国》里<strong>最无法用现代语言中立复述</strong>的一段。你能做的是如实呈现它，而不是替它圆场。</p>
+  <h3>5.4 ★ 审查与驱逐诗人（卷二、卷三、卷十）</h3>
+  <p>柏拉图要在理想城邦里对文艺实行<strong>国家审查</strong>：删掉荷马里关于神的丑行（宙斯与克洛诺斯的争斗、诸神的欺骗）、删掉对死亡的渲染与哀恸、删掉「坏人得福、好人受苦」的情节（卷二 377a–383c、卷三 386a–398b）；到卷十，他进一步从<strong>形而上学</strong>上判诗的罪——<strong>模仿性诗与真理隔了三层，且专门喂养灵魂里低级的激情</strong>（595a–607a），最终结论是「除了颂神与颂好人的诗，其余一概不许进城」（607a）<span class="tag t-src">原书</span>。</p>
+  <p><strong>争议</strong>：① <strong>它直接触怒了一切为艺术自主辩护的人</strong>——这是「审查制度」在西方思想史上的第一次系统辩护。② <strong>它自相矛盾</strong>：驱逐模仿的人，自己正用神话、比喻、戏剧性对话在「模仿」；厄尔神话本身就是一段高贵的虚构。③ 现代学者多认为，柏拉图批评的其实是一种<strong>特定的、把观众情绪当目的的艺术</strong>（悲剧、史诗的煽情），而非一切再现；证据是他保留了「颂神与颂好人」的诗，并给诗留了申辩的窗口（607d–608a）<span class="tag t-src">原书</span>。<strong>这个「留窗口」的细节，是反讽读法最看重的证据之一。</strong></p>
+  <h3>5.5 ★ 文本内部问题：苏格拉底与柏拉图的分界；卷七课程的可靠性；厄尔神话是结尾还是后加</h3>
+  <p><strong>（一）苏格拉底 vs 柏拉图。</strong> 这是柏拉图研究的「母题」。<strong>Gregory Vlastos</strong>（《Socrates: Ironist and Moral Philosopher》，Cambridge UP，<strong>1991</strong>）提出：<strong>卷一属于「苏格拉底期」的诘问式对话</strong>（与《拉刻斯》《卡尔米德》同类），那里的苏格拉底只诘问、不立论、最后承认无知；<strong>卷二起则转入柏拉图自己的建构性体系</strong>（灵魂三分、理念论、善的理念）。Vlastos 甚至形容：把卷一那个苏格拉底与后九卷那个苏格拉底塞进同一个脑袋，除非那是个「精神分裂者的脑袋」<span class="tag t-src">原书</span>（Vlastos 1991，46、248–251）。</p>
+  <p><strong>但这套「发展论」本身也被反对</strong>：<strong>Terence Irwin</strong>（1995）把卷一与卷二都看作「两段长引子」<span class="tag t-src">原书</span>；<strong>Bruce Aune</strong>〈The Unity of Plato's Republic〉（<em>Ancient Philosophy</em> 17(2): 291–308，<strong>1997</strong>）逐条论证<strong>卷一其实压缩地包含了后九卷的整套理论</strong> <span class="tag t-src">原书</span>；<strong>John Cooper</strong>（1997，柏拉图全集导言）干脆宣告「发展论时代」结束，主张把作品的文学与哲学内容放在各自语境里读 <span class="tag t-src">原书</span>。★ <strong>结论</strong>：把苏格拉底与柏拉图「一刀切开」是 20 世纪的方法，<strong>它有帮助，但绝不是定论</strong>。</p>
+  <p><strong>（二）卷七课程的真实性。</strong> 卷七给哲人王排了一整套课程：算术—平面几何—立体几何—天文—和声—<strong>辩证法</strong>（521c–534e），并说只有辩证法能「抓住善本身」。争议在于：这套「数学通向哲学」的阶梯，<strong>是柏拉图的真实教育理念，还是一种理想化的、为了配合「灵魂上升」这个比喻而搭出来的脚手架</strong>？学界一般认为它反映了柏拉图学园重视数学的事实（学园门口据传写着「不懂几何者莫入」<span class="tag t-rep">转述</span>），但<strong>它作为「培养哲人王」的课程，几乎不可能有现实对应物</strong>。</p>
+  <p><strong>（三）厄尔神话是结尾还是后加？</strong> 卷十以厄尔神话（614b–621d）收尾。质疑点有二：① 它<strong>用「来世奖罚」劝人正义</strong>，而卷二格劳孔（358d–362c）恰恰要求苏格拉底<strong>不要</strong>用后果、要用正义本身来证明正义值得要——这是不是自相矛盾？② 它与全书论证的收口（卷九 588a–592b 已经用「灵魂的图像」回答了幸福问题）是否为同一层。赞成方（如 <strong>Julia Annas</strong>《An Introduction to Plato's Republic》1981 第 10 章）认为它<strong>就是收尾</strong>、并把它读成「对全书的封顶」；质疑方则视其为「有益的虚构」（edifying fiction）。★ 一个可考的事实是：<strong>新柏拉图主义者 Proclus 专门写了一篇关于厄尔神话的长评</strong>，说明它在古代就被当作需要「解经」的难段 <span class="tag t-src">原书</span>（John Dillon，〈Proclus on the Myth of Er〉，<em>Dionysius</em> XXXIII，2015，132–144）。</p>
+  <h3>5.6 体裁与可读性：这本书按今天的标准哪里读不下去</h3>
+  <ul>
+    <li><strong>对话体的绕</strong>：苏格拉底几乎从不直给答案，而是绕圈子、设圈套、假装无知（苏格拉底式反讽 εἰρωνεία）。<strong>卷一末尾他甚至承认「我什么也不知道就结束了」</strong>（354b–c）<span class="tag t-src">原书</span>。习惯了「论点—论据—结论」的读者会觉得「读了半天没给结论」。
+    </li>
+    <li><strong>论题的超载</strong>：一本从「什么是正义」起头的书，中途把<strong>政治学、教育学、认识论、形而上学、灵魂学说、艺术理论、来世论</strong>全装了进去。这既是它的伟大，也是它的负担——<strong>几乎没有一个现代学科能在它面前不感到「这是我祖上那本」</strong>。
+    </li>
+    <li><strong>历史与人类学语境的隔膜</strong>：卷二的「古各斯戒指」、卷三的荷马审查、卷八的政体谱系，都预设了希腊读者共享的神话与政治常识。<strong>中文读者需要额外的注释才能读出味道</strong>（这也是为什么「王扬译注本」「溥林希汉对照本」对精读者更有价值）。
+    </li>
+  </ul>
+  <h3>5.7 这本书今天还成立吗</h3>
+  <p><strong>照样成立、甚至越来越相关的</strong>：</p>
+  <ul>
+    <li><strong>「什么是正义」这个问题本身，以及「正义是否值得为其自身而求」这个提法的纯粹性</strong>——它塑造了此后一切道德哲学的问题形态。
+    </li>
+    <li><strong>灵魂三分（理性／激情／欲望）</strong>：这是对「人为什么明知不该做却仍然做」的第一次系统回答，今天在道德心理学里仍被当作一个起点模型（虽已被大幅修正）。
+    </li>
+    <li><strong>洞穴比喻作为「教育与启蒙」的模型</strong>：它关于「被解放者的不适、回到黑暗的痛苦、以及被同伴嘲笑甚至敌视」的描写，在任何时代都成立。
+    </li>
+    <li><strong>卷八对民主过度现象的观察</strong>：把「自由被推到「什么都行」会滋生僭主」当作一个政治病理学命题，今天仍可讨论。
+    </li>
+  </ul>
+  <p><strong>要打折的</strong>：</p>
+  <ul>
+    <li><strong>政体退化论</strong>：单向下滑的图式与经验历史不符；把它当「历史规律」是波普尔意义上的历史决定论。
+    </li>
+    <li><strong>哲人王</strong>：作为一种制度设想，它的致命处是<strong>不可纠错</strong>——谁能判定统治者「真的见过善」？这正是波普尔「可错性」批评的着力点。
+    </li>
+    <li><strong>妇女儿童公有 / 高贵的谎言</strong>：按现代政治道德几乎不可辩护（见 5.3、5.4）。
+    </li>
+    <li><strong>等级制与生产者无政治参与</strong>：与一切现代政治平等理念直接冲突。
+    </li>
+  </ul>
+  <p>★ <strong>一个反直觉的判断</strong>：<strong>这本书最耐读、最不需要你接受柏拉图体系的，恰恰是「洞穴」与「卷一」这两段。</strong> 它们靠的是清晰的区分、绝妙的结构和对人类处境的洞察，而不是任何一项可以被未来研究推翻的教条。<strong>而它最不受欢迎的部分（妇女儿童公有、哲人王、高贵的谎言），恰恰是它最真诚地把自己逼到逻辑尽头的地方</strong>——你能不喜欢它，但你很难说它是轻率的。</p>
+  <p>★ <strong>结构说明</strong>：本部分<strong>逐卷</strong>对应，编号从 <strong>6 连续到 15</strong>，每卷三段式——「这一卷在谈什么」／「关键论证与比喻」／「可疑之处」。<strong>页码一律用 Stephanus 体系</strong>（如「卷一 327a–354c」），引文尽量给希腊原文关键词，便于你去任何带 Stephanus 编码的译本里对照。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>卷一：什么是正义，与色拉叙马霍斯的挑战（327a–354c）</span><span class="caret">▾</span></h2>
+  <h3>这一卷在谈什么</h3>
+  <p><strong>一个从港口往上走、却再也走不回去的下午。</strong> 苏格拉底「昨天」下到比雷埃夫斯港（327a，希腊原文开篇第一词 <strong>κατέβην</strong>「我下去了」——这个「下降」被后世读成全书「下降—上升」结构的起点）。在商人克法洛斯的家里，围绕「正义是什么」展开了四次定义，四次都被拆掉；最后闯入的智者<strong>色拉叙马霍斯</strong>（Thrasymachus）抛出全书最凶的一句话：<strong>「正义不是别的，就是强者的利益。」</strong>（338c，<span class="tag t-src">原书</span>「我断言，正义不外乎就是强者的利益」）</p>
+  <h3>关键论证与比喻</h3>
+  <ul>
+    <li><strong>四次定义与四次拆解</strong>：克法洛斯「正义＝说真话、还欠债」（331c）→ 被「把武器还给一个发疯的朋友」拆掉；玻勒马霍斯「正义＝助友损敌」（332d）→ 被「对敌人我们也会看错」拆掉；色拉叙马霍斯「正义＝强者的利益」→ 被苏格拉底的「统治者也会犯错、会立出对自己不利的法」拆掉（339c–340c）；他退一步改口「正义＝强者的<strong>真实</strong>利益，而统治者不会犯错」→ 又被「技艺是为对象而非为自己的利益」（341c–342e）拆掉。
+    </li>
+    <li><strong>★ 色拉叙马霍斯真正的杀招（343a–344c）</strong>：他不谈定义，改谈<strong>后果</strong>——「正义的人是吃亏的」：合伙做生意，正义者分得少；纳税，正义者缴得多；当官，正义者因不肯假公济私而家事荒废、还开罪亲友。他举<strong>牧人</strong>为喻：牧人养羊，图的从来不是羊好，而是主人自己好；统治者对百姓，是一样的。★ 最后他把论述推到顶点：<strong>「不义的极致就是僭主」</strong>——抢钱抢地抢神庙的是罪犯，而<strong>抢走整个城邦、连人一起抢走的人，却被叫作幸福的、受祝福的</strong>（344a–c，<span class="tag t-src">原书</span>）。<strong>这一段是全书真正的对手，卷九整卷都在回答它。</strong>
+    </li>
+    <li><strong>苏格拉底的反击与它有多弱</strong>：苏格拉底的第一个反驳（339c–340c）其实是<strong>钻字眼</strong>——他抓住「统治者会犯错」，但色拉叙马霍斯立刻用「严格意义上的统治者」把漏洞堵上（340c–341a），苏格拉底自己也承认那样说是「吹毛求疵」（341c）。随后他才拿出真正有力的<strong>功能论证（ergon argument）</strong>（352d–354a）：凡事有其「功能」（工作），有功能就有其特有的「德性」，眼睛的功能靠「视觉的德性」完成，灵魂的功能是<strong>管理、统治、思虑、活着</strong>，<strong>灵魂的德性就是正义</strong>；所以「正义的灵魂活得也好（εὖ）」，活得好的就是幸福，不义者相反。★ <strong>这一段的要害在于「活得好」被悄悄读成了「幸福」——这是全书第一个未证成的跳步</strong>（见「可疑之处」）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一卷最值得盯住的地方，是它的「结论」其实建立在一次未加论证的移动上。</strong> 「灵魂的德性就是正义」这个前提是<strong>直接宣布</strong>的（353e，<span class="tag t-src">原书</span>苏格拉底问「我们不是同意灵魂的德性是正义、缺点是vice么？」——但这恰恰是<strong>待证</strong>的东西）。也就是说：<strong>苏格拉底用「正义是灵魂的德性」证明「正义者幸福」，而这个前提本身正是他要证明的结论的必要条件。</strong> 这不是苏格拉底笨，而是<strong>卷一故意停在「没有真正解决」的位置</strong>：354b–c 结尾苏格拉底亲口承认，因为不知道正义是什么，也就不知道它是不是德性，「我什么也没有搞清楚」。★ <strong>全书后九卷的存在理由，就是把这个「没解决」重新解决一遍——这就是为什么卷一必须接到卷二。</strong></p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>卷二：正义本身 vs 正义的后果，与古各斯的戒指（357a–383c）</span><span class="caret">▾</span></h2>
+  <h3>这一卷在谈什么</h3>
+  <p><strong>格劳孔（Glaucon）不接受卷一的草率收场。</strong> 他把问题重设成一个更纯粹、也更致命的形态：<strong>我不要你证明「正义能带来好名声和好报应」，我要你证明「正义本身」就是好的</strong>——哪怕正义者被众人当成恶人、受尽凌辱也不改其志，不义者却伪装成好人、享尽荣华（357a–362c）。为了把这一步逼到极致，他讲了著名的<strong>古各斯戒指</strong>。随后<strong>阿德曼托斯</strong>（Adeimantus）补刀：连诗人和大人们都在教孩子「要装作正义」，正义被当成不得不做的苦差（362d–367e）。苏格拉底于是提出<strong>全书的方法论转向</strong>：先造一个城邦，因为城邦是大字、个人是小字（368c–369a）。</p>
+  <h3>关键论证与比喻</h3>
+  <ul>
+    <li><strong>三种善的区分</strong>（357a–357d）：格劳孔说，善分三类——① 只因其自身（如单纯的快乐）；② 因其自身<strong>也</strong>因其后果（如视力、健康、明智）；③ 只因其后果（如锻炼、治病、赚钱）。<strong>问题被逼成：正义属于第①、②还是③类？</strong> 苏格拉底答第②类（358a），格劳孔与阿德曼托斯则要求：<strong>请证明它至少是第②类中的那一项——它本身值得要</strong>。
+    </li>
+    <li><strong>★ 古各斯的戒指（359d–360d）</strong>：一个牧羊人偶然得到一枚能隐身的戒指，于是勾引王后、杀掉国王、夺取王位。格劳孔由此推断：<strong>如果给正义者和不义者各一枚这样的戒指，两人的行为不会有任何区别</strong>；因此「人做正义的事，不是出于自愿，而是出于没有能力作恶」（360c，<span class="tag t-src">原书</span>）。★ 注意：<strong>这个故事的要点不是「人性本恶」，而是「没有监督时，正义是否还成立」</strong>——它是全书对「正义的动机」提出的最强质疑。
+    </li>
+    <li><strong>正义的「极端情形」</strong>（361a–362c）：格劳孔要求给正义者以最坏的处境（被诬陷、被拷打、被钉死）、给不义者以最好的待遇（拥权、联姻、掌权），然后比较两人的<strong>灵魂状态</strong>。<strong>这是全书的一个方法论承诺：排除一切外在赏罚来谈正义。</strong>
+    </li>
+    <li><strong>城邦的起源与「健康的城邦」</strong>（369b–372a）：城邦出于人的<strong>需要</strong>（不是出于人的社会性）而产生，靠<strong>分工</strong>满足需要（每个人天性不一样，应当在最适合他的事上「只做一件」）。★ 苏格拉底先建了一个只有农、牧、工、商的「<strong>俭朴的城邦</strong>」（372a 起），格劳孔嫌它「只配给猪吃」（372d）——于是苏格拉底被迫加入护卫者，城邦「发高烧」了，这才有了整套护卫者教育。<strong>「护卫者」是被格劳孔逼出来的，不是柏拉图一开始就要的。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一卷的「可疑」不在论证，而在它设下的「游戏规则」太严，以至于书后面很难赢。</strong> 格劳孔的挑战是「只谈正义本身，不谈后果」，但柏拉图后面的解决方案（灵魂和谐、来世奖罚）<strong>既用了内在状态、又用了来世后果</strong>——<strong>它究竟满足了自己设下的规则吗？</strong> 这正是 5.5 里厄尔神话争议的根源。★ 另一个必须注意的点：<strong>「城邦源于需要」这个起点是反亚里士多德的</strong>——亚里士多德认为人天生是政治动物，城邦出于自然；柏拉图这里把城邦建在「需要」上，是他能推导出「分工—等级」的关键第一步。<strong>如果你不接受这个起点，卷三、卷五的许多结论都会跟着松动。</strong></p>
+  <h3>一个最容易被跳过的关键转折：从「健康城邦」到「发烧的城邦」</h3>
+  <p>卷二里有一处<strong>全书的结构枢纽</strong>，却最常被读者一掠而过。苏格拉底先建的那个「俭朴城邦」（372a–d）：只要农夫、瓦匠、织工、鞋匠，大家吃大麦饼、喝淡酒、唱着歌过日子。<strong>格劳孔嫌它「只配给猪吃」</strong>（372d），逼着苏格拉底加上护卫者、加上对手艺与财富的追求——于是城邦「发了烧」（372e–373e，<span class="tag t-src">原书</span>）。★ <strong>这一步的意义远超「加一个阶级」</strong>：正是因为城邦发高烧、要打仗、要扩张，才需要<strong>专职的护卫者</strong>；而一旦有了专职的护卫者，就必然要问「<strong>谁来守卫这些护卫者</strong>」（413c 一带的伏笔）——这才引出了卷三的整套教育、卷三的高贵谎言、卷五的共产共妻、卷五至卷七的哲人王。<strong>换句话说：全书的「政治部分」不是从「什么是理想城邦」起步的，而是从「一个贪婪的病人需要多少医生」起步的。</strong> 这一点几乎决定了柏拉图政治思想的整体气质——<strong>他谈的不是「城邦应当如何变好」，而是「已经病了的人需要什么药」。</strong></p>
+  <h3>「护卫者的天性」是这一卷埋下的第二颗种子（373e–376e）</h3>
+  <p>苏格拉底接着论证护卫者需要两种近乎矛盾的天性：<strong>既温和（对同胞如猎犬般亲善）、又刚烈（对敌人凶猛）</strong>——而这<strong>正是卷三「音乐＋体育」教育的理由</strong>（既要养温文的爱智一面，又要养刚烈的一面）。★ 一颗种子引出整套教育学：<strong>没有这种「天性双面」的设定，卷三的音乐与体育就无从谈起。</strong> 所以卷二读起来像在「闲聊城邦起源」，实际上<strong>每一个设定都是后面几卷的地基</strong>。</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>卷三：护卫者的教育（下），与「高贵的谎言」（386a–417b）</span><span class="caret">▾</span></h2>
+  <h3>这一卷在谈什么</h3>
+  <p><strong>继续给护卫者「塑魂」。</strong> 上半卷是文艺审查（哪些荷马段落要删、神该怎么被描写、体育与音乐如何配合），下半卷转到<strong>谁该统治</strong>的问题，端出全书最难辩护的两样东西：<strong>高贵的谎言</strong>（金银铜铁神话）与<strong>护卫者不得有私产</strong>。★ 这一卷有一条被很多人忽略的暗线：<strong>教育不只是「教什么」，而是「用什么样的故事从童年起塑造灵魂的形状」</strong>——柏拉图把「讲给孩子的故事」当成统治技术。</p>
+  <h3>关键论证与比喻</h3>
+  <ul>
+    <li><strong>审查荷马与神（377a–392c）</strong>：① 神只能是善的原因，不能是恶的原因（379a–380c）；② 神不会变形、不欺骗（380d–383a）；③ 删掉对死亡的渲染——「冥府」的恐怖描写会让人怕死，而护卫者不能怕死（386a–387c）；④ 删掉哀恸、大笑、以及「好人受苦、坏人享福」的情节。★ <strong>审判标准不是「美不美」，而是「对护卫者的灵魂有没有害」。</strong>
+    </li>
+    <li><strong>体育与音乐的平衡（403c–412b）</strong>：音乐养「爱智」的一面，体育养「刚烈」的一面，两者若失衡——<strong>只练体育变得粗野，只练音乐变得柔弱</strong>（410b–411c）。目标是一个「<strong>既温文又刚强</strong>」的灵魂。
+    </li>
+    <li><strong>★ 高贵的谎言（414b–415d）</strong>：原文的措辞是「<strong>在需要时可以说的谎言</strong>」（<code>τῶν ψευδῶν τῶν ἐν δέοντι γιγνομένων</code>）——一个「腓尼基式」的故事（<code>Φοινικικόν τι</code>，414c）：所有人都是大地母亲生的兄弟，但神在铸造时<strong>给该统治的掺了金、给辅助者掺了银、给农夫工匠掺了铁和铜</strong>；统治者最要紧的任务，是守护后代灵魂里的金属成分，<strong>金银父母若生了铜铁孩子要降级，铜铁父母若生出金银孩子要提拔</strong>（415a–c）<span class="tag t-src">原书</span>。★ 苏格拉底自己承认这个劝说「需要极大的说服力」，而且<strong>先要说服统治者自己，其次才是其余城邦</strong>（414b–c）。
+    </li>
+    <li><strong>护卫者的生活方式（415d–417b）</strong>：护卫者不得拥有私产、不得碰金银、住在公共营房、同吃同住。★ 这里有一段极精彩的「文字游戏」：<strong>他们灵魂里有从神那里得来的「真金」，就不需要人间的金银了</strong>（416e–417a，<span class="tag t-src">原书</span>）——「金银铜铁」这个神话因此同时是一句双关。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一卷是全书争议的火山口。</strong> 「高贵的谎言」把「统治者可否对人民说谎」正式写进了制度设计，这一点无论怎么辩护都很难看（详见 5.3）。<strong>但更有意思的「可疑」在下面这个结构性问题</strong>：苏格拉底在这里刚说「护卫者灵魂里已有神给的真金、不需要人间金银」，紧接着的制度目标却是「防止他们用权力谋私」——<strong>如果「灵魂里掺了金」就真的意味着不可能腐败，那为什么还需要禁止私产、需要谎言来劝？</strong> 这个矛盾（「知识即德性」的承诺 vs「必须靠制度防范」的现实）是全书内部一处真实的裂缝，现代学者称之为「护卫者为什么不腐败」的难题。★ <strong>它不是柏拉图写漏了，而是「理想的辩护」与「现实的防范」这两条线在同一个人身上打架。</strong></p>
+  <h3>一次被低估的收获：柏拉图的教育心理学</h3>
+  <p>卷三的「审查」读起来像一份冗长的禁书目录，但它背后有一套<strong>相当现代的教育直觉</strong>，值得单独点出。柏拉图的核心命题是：<strong>灵魂在幼年像蜡一样被塑形，而塑形它的主要不是「道理」，是「故事与节奏」</strong>——<span class="tag t-src">原书</span>「从童年起就与它朝夕相处的东西，会渗进人的性格与习惯里」（401b–d 一带讲「节奏与和谐」如何进入灵魂深处）。所以他管音乐与体育，不是为了培养专长，而是为了<strong>塑造灵魂的「形」</strong>：音乐养「爱智」与温文，体育养「刚烈」与勇气，二者失衡则灵魂失衡（410b–411c）。★ <strong>这一套说法，今天在「环境如何塑造早期认知」的讨论里仍然被当作一个经典的直觉起点</strong>——只是柏拉图把它用在了「国家应当审查童话」这个今天很难接受的目的上。<strong>好的直觉与坏的结论，可以出现在同一段里；这是读《理想国》要一直记住的事。</strong></p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>卷四：城邦四德、灵魂三分，与「正义＝各做各的事」（419a–445e）</span><span class="caret">▾</span></h2>
+  <h3>这一卷在谈什么</h3>
+  <p><strong>全书第一次「给答案」。</strong> 苏格拉底在城邦里找到四种德性——<strong>智慧、勇敢、节制、正义</strong>，并证明正义就是「每个人只做自己分内的事」；然后他宣布：<strong>城邦与灵魂同构</strong>，于是在灵魂里也找到对应的三部分——<strong>理性（λογιστικόν）、激情（θυμοειδές）、欲望（ἐπιθυμητικόν）</strong>，并论证个人的正义就是这三部分各守其职、由理性统率。★ <strong>这一卷是全书的主梁</strong>：卷一提出的问题、卷二提出的方法（大字母／小字母），在这里第一次成功合拢。</p>
+  <h3>关键论证与比喻</h3>
+  <ul>
+    <li><strong>城邦四德的定位（427d–434d）</strong>：
+    <ul>
+      <li><strong>智慧（σοφία）</strong>：不在全体，而在<strong>统治者</strong>那一小部分人——他们「知道如何治理内政外交」（428c–429a）。
+      </li>
+      <li><strong>勇敢（ἀνδρεία）</strong>：在<strong>护卫者</strong>身上，是「对什么该怕、什么不该怕的、合乎法律的、持久的意见」（429b–430c）。
+      </li>
+      <li><strong>节制（σωφροσύνη）</strong>：★ 与前三者不同，它<strong>不专属任何一部分，而是贯穿全体的「一致」</strong>——「天性上较好的一部分与较差的一部分，就谁该统治达成一致」（431b–432a，<span class="tag t-src">原书</span>）。它像一种「和谐」（harmonia）。
+      </li>
+      <li><strong>正义（δικαιοσύνη）</strong>：剩下的那个，就是「<strong>每个人只做自己分内的事，不兼做别人的事</strong>」（433a，希腊原文 <code>τὸ τὰ αὑτοῦ πράττειν καὶ μὴ πολυπραγμονεῖν</code>）<span class="tag t-src">原书</span>。★ 苏格拉底坦承这句话「是听来的、到处都在说」，但要把它<strong>限定在「做自己分内的事」这个意义上</strong>才有内容（433a–b）。
+      </li>
+    </ul>
+    </li>
+    <li><strong>灵魂三分（435b–441c）</strong>：论证灵魂有三个部分。<strong>同一个东西不可能同时做相反的事</strong>（436b–437a）——渴求（欲望）与阻止渴求的力量（理性）有时相反，故只能是两部分；激情（愤怒、义愤、荣誉感）既不同于欲望、也不等于理性，是第三部分（439e–441c）。★ 一个关键例证：<strong>勒翁提俄斯（Leontius）</strong>看见刑场上的尸体、欲望想看又厌恶，气愤地骂自己的眼睛（439e–440a）——这是「欲望与激情在理性之外各自活动」的经典场景。
+    </li>
+    <li><strong>个人的正义（441c–444e）</strong>：理性统治、激情辅佐、欲望服从；三部分各自做好本分、不越界，就是灵魂的正义；反之就是灵魂的「<strong>内乱</strong>」（στάσις）——「做自己的主人」这句话因此被理解为<strong>灵魂内较好部分对较差部分的统治</strong>（443c–444a）<span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>一个漂亮的收束</strong>（445a–e）：由城邦与灵魂的对偶，推出<strong>五种政体对应五种人格</strong>——由此埋下卷八、九的伏笔。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一卷有三处必须标出来的问题。</strong></p>
+  <ol>
+    <li><strong>「灵魂三部分」的论证有一个未被证明的假设。</strong> 它的核心是「同一者不能同时受相反的作用」（436b）。但<strong>灵魂是不是一个可以这样切分的「东西」，恰恰是待证的</strong>；而且它用的是「部分／整体」的空间比喻——用一个关于<strong>物</strong>的模型去说<strong>心</strong>。★ 现代道德心理学接受「人有冲突的动机」，但大多不接受「灵魂是三个独立部件」这个强主张。
+    </li>
+    <li><strong>「各做各的事」这条正义定义几乎可以套到任何东西上。</strong> 批评者早有此议：如果「各做各的事」就是正义，那我身体各部分也都「各做各的事」，难道我身体也是正义的？<strong>这个定义的说服力，一半来自它在城邦和灵魂上的「类比式」套用，而不是来自独立的论证。</strong>
+    </li>
+    <li><strong>最关键的裂缝</strong>：苏格拉底自己设想过一个反驳——<strong>一个灵魂内部和谐、却在外做出「偷窃、抢劫」等不义之事的人，按这个定义算不算正义？</strong>（442d–443e 一带他提出「最大的指控」）。他匆匆按住，说这样的人「不可能存在」，因为灵魂和谐的人不会去做不义之事。★ <strong>这一句「不可能」是全书最关键的断言，也是一个纯粹的存在论断言——它把「灵魂和谐」与「行为正义」强行绑定，却几乎没有论证。</strong> 卷九的答案（正义者幸福）完全建立在这一步上；一旦这一步垮了，整个上层的论证都会跟着松。
+    </li>
+  </ol>
+</section>
+
+<section id="s11">
+  <h2><span class="num">10</span><span>卷五：三个浪头——妇女儿童公有、哲学家为王（449a–480a）</span><span class="caret">▾</span></h2>
+  <h3>这一卷在谈什么</h3>
+  <p><strong>全书最反直觉、也最「被误解」的一卷。</strong> 苏格拉底刚要开始讲四种坏政体，就被波勒马霍斯和阿德曼托斯一把揪住袖子（449b–450a）：你还没有交代「朋友之间一切公有，包括妇女和儿童」到底指什么。于是苏格拉底不情愿地开始讲三个「浪头」（κύματα）：<strong>第一浪——妇女儿童公有；第二大浪——哲学家为王；第三浪——善的理念</strong>（第三浪在卷五末起头、卷六继续）。★ 这一卷的戏剧性极强：苏格拉底一路抱怨「这会掀起嘲笑和责难的大浪」「我会被你们推下水」，甚至说要「像在敌人中间」讲（451a）<span class="tag t-src">原书</span>。</p>
+  <h3>关键论证与比喻</h3>
+  <ul>
+    <li><strong>第一浪：妇女与儿童公有（449a–471c）</strong>。论证分四步：
+    <ol>
+      <li><strong>男女天性相同（455d–456c）</strong>：苏格拉底承认男女在体力、生育上有别，但主张<strong>在治理城邦所需的天性上「女人并不比男人差」</strong>——<span class="tag t-src">原书</span>「在守护城邦这件事上，女人的天性与男人的天性并无不同」（455d）。<strong>因此同样的教育、同样的岗位要对男女开放。</strong>
+      </li>
+      <li><strong>取消护卫者的私人家庭（457b–466d）</strong>：护卫者「一切公有」：共同居住、共同饮食，<strong>没有私人房屋、土地与家室</strong>；婚配由城邦「以抽签方式」安排（459e–460a），只在<strong>最好的男女之间</strong>尽可能多地安排生育（459d–e）。<strong>孩子一生下来就被带走，统一抚养，父母与子女互不相识</strong>（460c–461c）<span class="tag t-src">原书</span>。
+      </li>
+      <li><strong>为什么要这样做</strong>：因为「<strong>私有的东西就会引起纠纷</strong>」——「我的」与「非我的」一旦分裂，城邦就不成其为「一个」（462b–464b）。城邦的最高目标，是<strong>尽可能像一个整体、像一个人</strong>：全体对同样的东西同喜同悲，把「这不是我的事」从语言里赶出去。
+      </li>
+      <li><strong>优生与战争</strong>：最好的护卫者与最好的女子多生育；有缺陷的孩子「秘密处理掉」（460c）；战斗中的勇士有奖励（求婚的优先权 468c）；战场上要带孩子观战、教他们骑马与战斗（466e–467e）。
+      </li>
+    </ol>
+    </li>
+    <li><strong>★ 第二浪：哲学家为王（473c–e）</strong>。这是全书的<strong>最高音、也是最大的浪</strong>。原文（473c–d）：<span class="tag t-src">原书</span>「<strong>除非哲学家成为城邦的国王，或者现在被称为国王与统治者的人真正地、充分地从事哲学，把政治权力与哲学智慧合而为一……否则，城邦、乃至整个人类都不会停止祸患。</strong>」★ 苏格拉底的措辞是「我就要说出那个被比作最大浪头的东西了，哪怕它会引来嘲笑与羞辱」。
+    </li>
+    <li><strong>「浪头」这个比喻的功能</strong>：三个浪一波比一波高——妇女儿童公有只是第一波，哲人王是「最大的浪」，善的理念是「第三浪」（卷六 504a–506b）。<strong>这不是修辞的花哨，而是提示读者：论证的每一步都在往更不合常识的地方走</strong>，而最不合常识的那一步（善的理念）在后面。
+    </li>
+    <li><strong>回击「哲学家没用、该被治理」的成见（474b–480a）</strong>：苏格拉底区分「<strong>只爱意见的人</strong>」与「<strong>爱知识的人</strong>」——前者爱美的<strong>具体实例</strong>（爱美的声音、颜色、形状），后者爱<strong>美本身</strong>（476a–b）。★ 这个区分是卷六、七的知识论的起点：<strong>只有认识「理念」的人才有资格统治，只停留在「意见」层面的人，无论多聪明，都不能当王。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一卷是全书「可信度」与「可接受度」落差最大的一卷，必须冷静拆开。</strong></p>
+  <ol>
+    <li><strong>「公有」的边界</strong>：★ 反复强调——<strong>只施于护卫者（统治者与辅助者）</strong>。生产者仍然过私有家庭与私产的生活。中文世界最流行的误读之一，就是把这段读成「柏拉图要全城邦共产共妻」（见 4b）。
+    </li>
+    <li><strong>妇女「解放」还是妇女被国家接管</strong>：★ 这一卷同时含<strong>解放的一面</strong>（妇女可以受教育、可以当护卫者、可以统治——这在公元前 4 世纪是骇人听闻的）与<strong>控制的一面</strong>（生育被优生化、婚配被抽签化、母子被拆散）。<strong>把这一卷简单说成「柏拉图是女权先驱」或简单说成「柏拉图厌女」，都是片面的。</strong>
+    </li>
+    <li><strong>本报告认为这一卷最难辩护的一处，是「孩子被抱走、父母与子女互不相识」</strong>（460c–461c）。它的辩护逻辑是「消弭私人亲情对公共利益的威胁」，代价则是<strong>把人的最基本情感关系作为制度变量来设计</strong>。这一点，连古代读者都觉得荒谬——阿里斯托芬的喜剧《公民大会妇女》（前 392）就是拿「妇女儿童公有」开涮的 <span class="tag t-rep">转述</span>（雅典观众对这段的反应，柏拉图的对话者阿德曼托斯在 449b–450a、451a 就表现得惊慌，本身就是文本内证）。
+    </li>
+    <li><strong>「哲学家为王」的论证此刻还是空的</strong>：卷五只说了「除非哲人王，城邦无救」，但<strong>「哲学家是什么」「为什么他能知道」「他凭什么不会腐化」</strong>——全在卷六、七才回答。★ <strong>卷五结束时的哲人王，还只是一个宣布出来的口号；它的地基在卷六、七。</strong>
+    </li>
+  </ol>
+  <h3>「公有」到底怎么说的——三处必须精确的原文事实</h3>
+  <p>因为卷五被误传得最厉害，这里把三处措辞单独拎出来，请你对着希腊原文（或任何带 Stephanus 的译本）核一遍：</p>
+  <ol>
+    <li><strong>范围</strong>：原文说「这些女人，所有这些女人，应当是所有这些男人共有的」（457c–d 一带，<span class="tag t-src">原书</span>「这些女人应当为这些男人所共有」），而<strong>「这些男人」指的是护卫者</strong>——就在这一段之前，苏格拉底刚刚把城邦分成「统治者／辅助者（合称护卫者）」与「其余人（农夫工匠）」，并明确说公有制度是给前者的（458b–c、463a–464a 的「全体」指的是护卫者全体）。<strong>它不是全城邦的婚姻制度。</strong>
+    </li>
+    <li><strong>「共妻」不是「共床」</strong>：原文对性结合的规定极其严厉——只允许<strong>在指定节日、由抽签安排的、被判定「最好」的男女</strong>结合（459d–460a），而且<strong>禁止任何未经安排的结合</strong>，违者（尤其越界者）要受谴责（458d–459a 一带）。★ 所以「共妻」的准确意思是「<strong>取消私人婚姻、把生育交给城邦</strong>」，与「性自由」恰恰相反。
+    </li>
+    <li><strong>「像一个人」这个比喻的分量</strong>：<span class="tag t-src">原书</span>「当一个城邦里，人们说『我的』『不是我的』时，指向的是<strong>同一个东西</strong>，那这个城邦就是治理得最好的」（462c）；还有那句常被引的「这些公民在一切事上尽可能共同，连苦乐都共有」（464a，<span class="tag t-src">原书</span>）。★ 这句话后来被亚里士多德在《政治学》第二卷逐句反驳：<strong>城邦的本质是「多」，追求「一」到极致，会把城邦变成一个家、再变成一个「人」——那不是统一，而是毁灭</strong>（1261a15–24、1263b；<span class="tag t-src">原书</span>「<strong>对最多人共同的东西，得到最少的照管</strong>」，1261b32–33）。
+    </li>
+  </ol>
+</section>
+
+<section id="s12">
+  <h2><span class="num">11</span><span>卷六：哲人的天性、善的理念、太阳比喻与线喻（484a–511e）</span><span class="caret">▾</span></h2>
+  <h3>这一卷在谈什么</h3>
+  <p><strong>给「哲人王」补地基。</strong> 上半卷回答「哲学家到底是什么样的人、为什么配当王、他们为什么在现实城邦里往往变坏」（484a–502c）；下半卷进入全书最形而上的部分——<strong>善的理念</strong>，并用<strong>太阳比喻</strong>（507b–509c）与<strong>线喻</strong>（509d–511e）把「善」与「知识／意见」的关系说清楚。★ 这一卷与卷七共同构成全书的核心，也是最难读、术语最密的三十页。它有一个著名的「船喻」开场：<strong>真正的航海家（哲学家）在船上被一群不懂航海的船员排挤、嘲笑，甚至被当成没用的观星者</strong>（488a–489a）<span class="tag t-src">原书</span>。</p>
+  <h3>关键论证与比喻</h3>
+  <ul>
+    <li><strong>船喻与「哲学的败坏」（487a–497a）</strong>：城邦像一条船，真正的舵手（懂天文、懂季节的人）被争着掌舵的水手们认为「没用」。★ 苏格拉底的核心判断是：<strong>不是哲学败坏了哲人，而是现有的城邦制度败坏了本可成为哲人的人</strong>——「最优秀的天性若得到坏的教育，会变得格外坏」（491e–492a）<span class="tag t-src">原书</span>。这段话和《申辩》里苏格拉底的自我辩护呼应。
+    </li>
+    <li><strong>哲人的天性（484a–487a、503b–504a）</strong>：爱真理、爱「整全」（不满足于片段）、节制、慷慨、勇敢、有良好的记忆力与「恰到好处的分寸感」。★ 这些条件极高，苏格拉底自己承认<strong>能同时满足的人「如凤毛麟角」</strong>（491a–b、503b）。
+    </li>
+    <li><strong>★ 善的理念与太阳比喻（504a–509c）</strong>：苏格拉底说，最大的学习（μέγιστον μάθημα）是认识<strong>善的理念</strong>；他先不肯直接讲「善是什么」，而讲「<strong>善的儿子</strong>」——太阳（506e）。原文的要点（508a–509c）：
+    <ul>
+      <li><strong>太阳既使眼睛能看见，又使对象能被看见</strong>；同样，<strong>善既使灵魂能认识，又使被认识的对象（理念）存在</strong>（508b–e）。
+      </li>
+      <li>★ 希腊原文的关键词是 <strong>ἔκγονος</strong>（「所生的」「子嗣」）：<span class="tag t-src">原书</span>「太阳是<strong>善所生的</strong>、与善成比例的产物」（508b–c）。所以太阳 <strong>不是</strong> 善本身，而是善在可见世界里的对应物。
+      </li>
+      <li>一句最常被引的原话：<strong>「给认识的对象以真理、给认识者以认识能力的东西，就是善的理念。」</strong>（508e，Shorey 译 <span class="tag t-src">原书</span>「是善的理念给了被知者以真理、给了知者以认识的能力」）
+      </li>
+    </ul>
+    </li>
+    <li><strong>★ 线喻（509d–511e）</strong>：把一条线<strong>按不等比例</strong>切成两段（较短的可见、较长的可知），再各按同样比例切一次，得到四段，对应四种认识状态 <span class="tag t-src">原书</span>（511d–e）：
+    </li>
+  </ul>
+  <table>
+    <thead><tr><th>段</th><th>对象</th><th>灵魂状态</th></tr></thead>
+    <tbody>
+      <tr><td>可见·下</td><td>影像（阴影、水中倒影）</td><td><strong>εἰκασία（想象／影像）</strong></td></tr>
+      <tr><td>可见·上</td><td>实物（动植物、人造物）</td><td><strong>πίστις（信念／相信）</strong></td></tr>
+      <tr><td>可知·下</td><td>数理对象（几何、算术的对象）</td><td><strong>διάνοια（理解／推理）</strong></td></tr>
+      <tr><td>可知·上</td><td>理念（善）</td><td><strong>νόησις（理智／直观）</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★ 关键区别：<strong>数理学家（διάνοια）必须借助图像、必须从假设出发不能上溯到第一原理；辩证法（νόησις）则不靠图像、以假设为「跳板」一路上升到「无需假设的第一原理」</strong>（511b–d，<span class="tag t-src">原书</span>）。<strong>「辩证法」在这里第一次获得它的技术含义。</strong></p>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>这一卷有三处必须标出的问题。</strong></p>
+  <ol>
+    <li><strong>「善的理念」的内容始终是空的。</strong> 苏格拉底讲了太阳、讲了线，却<strong>始终没有正面说「善是什么」</strong>——他反复推托「这太难」「我怕说不好」（506c–e）。★ 波普尔正是抓住这一点，说柏拉图对善的理念只有「空洞的形式主义」（Open Society 146，<span class="tag t-rep">转述</span>）。辩护方则说：柏拉图是<strong>故意</strong>不讲，因为善只能通过比喻和辩证法的历程被「看见」，不能被「说给」——这与全书「教育是转向、不是灌输」的立场是一致的。<strong>两种读法都有文本依据。</strong>
+    </li>
+    <li><strong>线喻的比例含混。</strong> 原文说第一段是「可见／可知」的不等分割，又要求每段内部「按同一比例」再分（509d）。★ 但这个比例的<strong>具体数值与它究竟表达「清晰度」还是「实在度」，原文说得不清楚</strong>，历代注释家争论不休（有的读成 1:2:2:4，有的读成别的）。<strong>这是一个文本本身的模糊点，不是翻译问题。</strong>
+    </li>
+    <li><strong>太阳比喻里有一个悄悄过度的步骤</strong>：太阳只「<strong>使</strong>对象可见」（因果上是光），而善不只是「<strong>使</strong>理念可知」，还被说成「<strong>使</strong>理念存在」（509b，<span class="tag t-src">原书</span>「善并不是存在，而是比存在更尊贵、更强大的东西」）。★ <strong>从「认识论的使能者」滑到「存在论的创造者」，是这一步的关键。</strong> 它决定了柏拉图主义此后两千年的形态，但也正是最容易被追问的地方：<strong>「善」若在「存在」之上，那我们还能说「善存在」吗？</strong> 柏拉图自己也说善「<strong>在尊严与力量上超过存在</strong>」（509b）。
+    </li>
+  </ol>
+</section>
+
+<section id="s13">
+  <h2><span class="num">12</span><span>卷七：洞穴比喻、教育即转向、与哲人王的课程（514a–541b）</span><span class="caret">▾</span></h2>
+  <h3>这一卷在谈什么</h3>
+  <p><strong>全书的高峰与枢纽。</strong> 它以一个比喻开场——<strong>洞穴</strong>（514a–520a），把卷六的太阳与线喻「演成一出戏」；然后给出全书的「教育论」核心命题：<strong>教育不是把知识灌进灵魂，而是把整个灵魂从「生成变化的世界」转向「存在的世界」</strong>（518b–d）；接着回答一个被比喻逼出来的伦理问题——<strong>学好之后为什么要回去</strong>（519c–520e）；最后列出哲人王的整套课程（521c–534e）：算术—平面几何—立体几何—天文—和声—<strong>辩证法</strong>，并以「辩证法」的定义收束。</p>
+  <h3>关键论证与比喻</h3>
+  <ul>
+    <li><strong>★ 洞穴（514a–520a）</strong>：
+    <ul>
+      <li><strong>场景</strong>：一群人自幼被锁在地下洞穴里，头颈和腿脚都绑着、不能转头，只能看着面前的洞壁；身后有一堆火，火与囚徒之间有一条路，路上有一道矮墙，有人举着各种器物（人像、动物像）从墙后走过；<strong>囚徒看见的只是洞壁上的影子，并把这些影子当成全部的真实</strong>（514a–515b）。
+      </li>
+      <li><strong>解放与痛苦</strong>：其中一人被解开、被迫站起来、转头、走向火光——他会<strong>眼花、痛苦、想逃回原来的影子世界</strong>；被硬拖出洞口见太阳时，最初什么也看不见，只能先看影子、再看实物、再看星空，最后才能看太阳本身（515c–516b）<span class="tag t-src">原书</span>。
+      </li>
+      <li><strong>★ 关键一句</strong>：当解放者回到洞里、告诉囚徒真相时，<span class="tag t-src">原书</span>「<strong>如果他们有可能抓住这个人、把他杀掉，难道他们不会杀掉他吗？</strong>」（517a）——<strong>这是全书对苏格拉底之死的第一次直接影射</strong>（写这本书时苏格拉底已被雅典处死）。对话者回答：「他们一定会。」
+      </li>
+      <li><strong>★ 比喻的「翻译」（517a–c）</strong>：洞穴＝可见世界，火光＝太阳，上升＝灵魂上升到可知世界，而<strong>「最后被看见、也最难看见的东西，就是善的理念」</strong>；<span class="tag t-src">原书</span>「它是万物中一切正确与美好的原因——在可见世界里它生出了光，在可知世界里它本身是真理与理性的主人」（517b–c，见第 0 节引文）。
+      </li>
+    </ul>
+    </li>
+    <li><strong>★ 教育＝转向（518b–d）</strong>：<span class="tag t-src">原书</span>「教育不是像有些人说的那样，把知识灌进空灵魂里，如同把视力放进瞎眼里；而是要<strong>把已经在那儿、只是转错了方向的灵魂的整个器官，从生成变化的世界转向存在的世界</strong>」。★ 这一句是全书的「教育学宣言」，也是为什么柏拉图的课程全部是<strong>数学（抽象）</strong>——因为数学是让灵魂「转身」的杠杆。
+    </li>
+    <li><strong>★ 返回的义务（519c–520e）</strong>：这是全书最容易被忽略、也最重要的一段。苏格拉底说，我们不能允许哲人<strong>留在上面</strong>不管洞里的人：<span class="tag t-src">原书</span>「<strong>我们的职责，是强迫最好的天性上升到最大的知识……而他们上去看过之后，不许再被允许留在上面不肯下来，回到那些被缚的同伴中间，分担他们的劳苦与荣誉</strong>」（519c–d）。他继而给出理由（也是全书对「城邦为何有权强求」的正面回答）：<span class="tag t-src">原书</span>「<strong>法律关心的不是任何某一个阶层的特殊幸福，而是整个城邦的福祉</strong>；它用说服和强制把公民调和在一起……<strong>它是为了把全体联结成一个共同体才培养这些人，不是为了让每个人随自己的心意去走</strong>」（519e–520a）。★ <strong>洞穴比喻因此不是「启蒙颂」，而是一个带代价的「义务论」</strong>：受过教育的人反而要为没受教育的人服务。这一点几乎在所有通俗转述里被丢掉。
+    </li>
+    <li><strong>课程（521c–534e）</strong>：依「灵魂从可见转向可知」的次序，先学<strong>算术（数）</strong>（522c–526c）→ <strong>平面几何</strong>（526c–527c）→ <strong>立体几何</strong>（528a–d，柏拉图自己承认这门学科当时「尚未发展」）→ <strong>天文</strong>（528e–530c）→ <strong>和声</strong>（530c–531c）→ 最后是<strong>辩证法</strong>（531c–535a）。★ 每一科都以「它能把灵魂从生成拉向存在」为入选理由；例如天文学不研究头顶的天、而是研究「天背后的数学模型」（529a–b）。
+    </li>
+    <li><strong>辩证法与教育限度（531c–537e）</strong>：辩证法「像墙顶上的压顶石」（534e）——它是唯一一种靠「logos（言辞／理性）」本身去把握每一事物本质的学科。★ 一段很重要的话：<strong>「被迫进行的学习不能在灵魂里生根」</strong>（536d–e）<span class="tag t-src">原书</span>——教育必须让学习者<strong>自愿</strong>，但前面又说上升是「被迫」的（515c、519d）；这个张力，柏拉图没有完全消解。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>卷七是本报告认为最需要「反通俗化」的一卷。</strong></p>
+  <ol>
+    <li><strong>洞穴不是媒体理论。</strong> 现代把它读成「大众传播操控」「信息茧房」的寓言，是<strong>外向的挪用</strong>，不是文本的意思。原文的议题是<strong>教育（παιδεία）</strong>与<strong>灵魂转向</strong>，它的戏剧核心是「<strong>回去的代价</strong>」（517a 的「杀人」），不是「影子＝假新闻」。★ 判据很简单：全文没有任何一处提到「传播」「宣传」「他人操控影子」；影子来自<strong>人与器具本身</strong>，而囚徒的问题在于<strong>没转过身</strong>。把它讲成「媒体操控」并不错得离谱——它确实说了「看不到真相」——但它<strong>漏掉了这个比喻一半的要点：返回的义务</strong>。
+    </li>
+    <li><strong>「哲人王为何配统治」在这里仍然只靠比喻撑着。</strong> 洞穴告诉我们「看见太阳的人知道真相」，但没有告诉我们<strong>怎么确认</strong>眼前这个人真的看见了。<strong>这正是波普尔式批评（可错性、不可纠错）最有力的一点</strong>：整个制度建立在一个人人无法检验的「我见过善」之上（见 5.1）。
+    </li>
+    <li><strong>「被迫学习不能生根」与「上升是受迫的」相互打架</strong>（536d vs 515c、519d）。这可能反映柏拉图<strong>真心</strong>相信教育需要自愿，但在制度设计上又必须强制——<strong>这处张力，是「自由主义读柏拉图」与「极权主义读柏拉图」都能拿来做证据的地方。</strong>
+    </li>
+  </ol>
+  <p>★ <strong>一句话记住卷七</strong>：<strong>太阳比喻说的是「善」，线喻说的是「认识的层级」，洞穴说的是「教育是转向，而转向是有代价的——你要回去」。</strong> 三者合起来才是柏拉图的教育哲学。</p>
+  <h3>洞穴里三个容易读漏的细节</h3>
+  <ol>
+    <li><strong>影子是谁投的？</strong> 不是「别人故意编造的假消息」，而是<strong>火光（太阳的对应物）照在从墙后走过的人举着的器物上</strong>投下的（514b–515a）。★ 也就是说，<strong>囚徒的错误来源不在「有人撒谎」，而在「他们所处的认识位置」</strong>——他们并不知道有墙、有人、有器物，因为<strong>他们从没转过身</strong>。把这一层读出来，你就知道为什么<strong>「转身」而不是「获得真相」才是柏拉图的教育目标</strong>。
+    </li>
+    <li><strong>「杀掉他」的一句是全书的政治注脚。</strong> 517a 那句「他们难道不会杀掉他吗」，是<strong>柏拉图在写苏格拉底之死</strong>：解放者回到洞里，不但不被感激，反而要被处死。★ 这一句让洞穴比喻从「认识论寓言」升级为<strong>「哲学与政治的关系」的寓言</strong>——<strong>哲学对城邦没有用处，甚至危险，而城邦对哲学也不友好</strong>。这正是卷二「船喻」（488a–489a）说的同一件事。
+    </li>
+    <li><strong>「上升」与「下降」是对称的两个动作。</strong> 全书以「下降」（327a 的 κατέβην，苏格拉底下到港口）开篇，以「上升」（洞穴里的灵魂上升）为核心，又以「<strong>上升者必须下降回去</strong>」（519c–520e）规定伦理。★ <strong>把「下降—上升—再下降」这三个动作连起来，你才拿到全书的结构钥匙</strong>：<strong>真正的哲学家，是那些上去过、又肯下来的人。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s14">
+  <h2><span class="num">13</span><span>卷八：四种政体的退化——荣誉政治、寡头、民主、僭主（543a–569c）</span><span class="caret">▾</span></h2>
+  <h3>这一卷在谈什么</h3>
+  <p><strong>给全书装一条「反向的链」。</strong> 卷四末尾说要讲「有病的政体」，卷八正式开讲：除理想政体外，有四种退化政体——<strong>荣誉政治（τίmocracy，克里特／斯巴达式）→ 寡头政治 → 民主政治 → 僭主政治</strong>（544c–d）<span class="tag t-src">原书</span>；每一种政体都对应一种「人」的性格，而<strong>退化是从上一代人的病传给下一代人</strong>。★ 卷八是全书最像「政治评论」的一卷，也是波普尔指控「历史决定论」的靶心。</p>
+  <h3>关键论证与比喻</h3>
+  <ul>
+    <li><strong>退化序列的机制（544c–545c）</strong>：苏格拉底说，理想的贵族政体<strong>也会腐坏</strong>（548b 起）——原因在护卫者阶层的生育安排出了差错（「金银铜铁」的混杂，546a–547a），以及城邦忘了「音乐与体育并重」而偏向体育。于是：
+    <ul>
+      <li><strong>荣誉政治（548a–550c）</strong>：由「爱荣誉」的人统治，介于贵族与寡头之间；特征是争强好胜、重武轻文、暗中贪财。
+      </li>
+      <li><strong>寡头政治（550c–555b）</strong>：由「爱钱」的富人统治；按财产资格分配权力，<strong>穷人没有资格参与</strong>。★ 它内部就埋着自我毁灭的种子：<strong>财富集中于少数人，穷人与「无产的游民」越来越多</strong>，最终一触即发。
+      </li>
+      <li><strong>民主政治（555b–562a）</strong>：由「自由」统率。苏格拉底说，寡头城邦像<strong>养不起的蜂巢</strong>：一部分是「带刺的雄蜂」（靠寄生为生的穷人），一部分是「最能干的富人」，二者对立。民主来了以后，<strong>自由被推到极端</strong>——<span class="tag t-src">原书</span>「这种城市里，凡是有点名目的事，都会演化成……<strong>过度</strong>的自由」（562b–e）；于是「<strong>什么都行</strong>」成为一种政治原则。
+      </li>
+      <li><strong>★ 僭主政治（562a–569c）</strong>：苏格拉底给出全书最有名的一条命题：<strong>「过多的自由，无论对个人还是对国家，都会变成过度的奴役。」</strong>（564a，<span class="tag t-src">原书</span>「极端的自由，无论个人还是城邦，都会变成极端的奴役」）机制是：<strong>民主把「人民」奉为至高，于是需要一个「人民的保护者」（προστάτης）</strong>；这个保护者本来是领袖，渐渐变成「豺狼」——先杀外敌，再杀内敌，最后成为<strong>暴君</strong>（565c–566d）<span class="tag t-src">原书</span>。★ 僭主「由保护者变成完美的、完成了的暴君」（566d）。
+      </li>
+    </ul>
+    </li>
+    <li><strong>★ 政体与人格的对偶</strong>：第八卷每一半都遵循同一结构——先讲城邦怎么退化，再讲这一政体如何塑造出<strong>对应的人</strong>（555b「民主人」、559d「寡头人」等）。这是把卷四「城邦—灵魂同构」的模型一路用下去。★ 民主人被描写成「<strong>一天一个活法</strong>」：早上喝淡酒、下午醉一场、一会儿投资、一会儿修身——<strong>没有一种善能贯穿他的一生</strong>（561c–d）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>卷八是全书画得最漂亮、也最经不起史实验证的一卷。</strong></p>
+  <ol>
+    <li><strong>「退化」是必然的吗？</strong> ★ 苏格拉底暗示这是一条<strong>固定的下滑路线</strong>，甚至给出了数理化的「生育周期」（546b–c 那个著名的、含混的「柏拉图数」）。现代读者几乎不会接受「政体按固定周期退化」这种历史规律——<strong>这正是波普尔所谓「historicism（历史决定论）」的典型形态</strong>（见 5.1）。辩护方会说：苏格拉底讲的其实是一种<strong>心理—制度的内在逻辑</strong>（贪婪→分裂→无序→僭主），而不是时间表；但原文的数理周期又确实存在。
+    </li>
+    <li><strong>对民主的描写有明显的选择性。</strong> 它抓住的是民主的<strong>病理</strong>（过度自由、把平等误当对一切人的平等），几乎不谈民主的<strong>制度优点</strong>（公开辩论、可问责、和平更替）。★ 一个必须公正地说出的对照：<strong>现代研究民主的理论，很多核心关切（防止权力滥用、和平轮替、公民参与）恰恰来自柏拉图批评雅典民主时没有看到的那一面。</strong>
+    </li>
+    <li><strong>「僭主由民主产生」这条因果链，是全书最有政治现实感、也最难证伪的一条。</strong> 它用一个<strong>机制</strong>（人民需要一个保护者→保护者变成暴君）替代了「历史规律」，比前面的数理周期可信得多。★ <strong>如果你想从卷八里带走一样东西，就带走这个机制</strong>——它不是「民主必然导致独裁」，而是「<strong>当大众把权利委托给单一保护者、并放弃对它的制衡时，独裁就从这里进来</strong>」。
+    </li>
+  </ol>
+  <h3>为什么卷八值得政治学读者单独读</h3>
+  <p>撇开元理论，卷八对四种政体人格的刻画，是全书<strong>最具观察力、也最少教条</strong>的部分。它给每一种政体都配了一张心理素描：<strong>荣誉政治的人</strong>争强好胜、重武轻文、暗地里贪财（548a–550b）；<strong>寡头的人</strong>把财富当唯一尺度、把「赚钱」当唯一美德、对内克扣、对外假装体面（551c–555a）；<strong>民主的人</strong>「一天一个活法」、没有一种善能贯穿他的一生（561c–d）；<strong>僭主的人</strong>则永远贫穷、永远恐惧、永远不能做自己的朋友（卷九 576b–580c）。★ <strong>这套「政体—人格」的对偶，是把卷四的「城邦—灵魂同构」一路用到最后一刻</strong>；而它对民主人格的批评（「什么都可以、什么都无所谓」），恰恰是<strong>任何一个自由社会都会反复遇到的自我怀疑</strong>。这也是为什么《理想国》到今天仍在公共讨论里被反复引用——<strong>人们引的不是它的结论，是它提出的那种不适感。</strong></p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">14</span><span>卷九：僭主式的人、三重快乐，与灵魂的画像（571a–592b）</span><span class="caret">▾</span></h2>
+  <h3>这一卷在谈什么</h3>
+  <p><strong>回答格劳孔的问题：正义者比不义者更幸福吗？</strong> 苏格拉底先解剖「僭主式的人」（571a–580d），再把灵魂三部分的三种快乐与三种人生排个高下（580d–588a），最后用一幅<strong>惊人的画像</strong>——「人、狮子、多头怪兽」——把灵魂的真相画出来（588a–592b）。★ 卷九的结尾终于正面回答了卷二的问题：「<strong>正义本身</strong>就是好的」，因为它是灵魂的<strong>健康</strong>。</p>
+  <h3>关键论证与比喻</h3>
+  <ul>
+    <li><strong>「僭主式的人」的诞生（571a–576b）</strong>：苏格拉底先区分<strong>必要的欲望</strong>与<strong>不必要的欲望</strong>，在不必要的欲望里又分出<strong>无法无天的欲望（lawless desires）</strong>——它们在<strong>睡眠</strong>中、在理性「睡着」的时候醒来：<span class="tag t-src">原书</span>「那兽性的、野蛮的部分，酒足饭饱之后，就赶走睡眠，试图冲出去满足自己的本能——你知道，这种时候它什么都干得出来：<strong>它不避讳与母亲或其他任何人、神、兽交合，不拒绝任何残杀</strong>，总之它不放过任何极端的愚行与无耻」（571c–d）。★ 这个「梦境里的无法无天」，就是僭主式灵魂的原料。
+    </li>
+    <li><strong>僭主是最不自由的人（576b–580c）</strong>：谁最像个僭主？——<strong>那个醒着时做着梦里那些事的人</strong>（576b）。苏格拉底论证：僭主的城邦被奴役，因此<strong>僭主式的人是最不自由的</strong>；他充满恐惧、猜忌、懊悔，<strong>穷得像永远填不满的洞</strong>；他「一辈子没能真正做自己的朋友，也没能做别人的朋友」（576c–580c）。★ 一句最锋利的：<strong>一个真正的僭主，连出门都提心吊胆，还得靠一群卫兵把自己关在屋里——他活得像个被自己囚禁的囚徒。</strong>
+    </li>
+    <li><strong>三重快乐与三重人生（580d–588a）</strong>：灵魂三部分各有快乐（理性爱真理、激情爱荣誉、欲望爱利益）。苏格拉底问：<strong>哪一部分的判断最可信？</strong> 答：<strong>理性的判断，因为它同时经历过另外两种快乐</strong>（只有爱智者体验过知识、荣誉与利益三种；爱利者与爱荣誉者都没体验过知识之乐，{582a–583a}）。★ 由此推出「<strong>爱智者的人生最幸福、爱荣誉者次之、爱利者（僭主）最不幸福</strong>」。★ 这是全书对「幸福」最直接的一次论证，也最常被批评为<strong>循环论证</strong>：它预设了「理性的快乐才是真快乐」，再用「理性有资格评判快乐」来证明它（见「可疑之处」）。
+    </li>
+    <li><strong>★ 灵魂的画像（588b–592b）</strong>：苏格拉底让格劳孔在想象里造一个生物——<strong>一个多头怪兽（欲望，头有驯有野、可增可减）＋一头狮子（激情）＋一个人（理性）</strong>，把三者嵌进一个人的外壳里（588c–589a）。<span class="tag t-src">原书</span>「谁若说『不义对人有利』，就等于说：<strong>该养肥多头怪兽和狮子、却让里面那个人挨饿受辱，好让怪兽和狮子把他拖来拖去</strong>」（588e–589a）。正义的人则相反——<strong>让里面的人（理性）像农夫一样照料多头怪兽与狮子，使它们变得驯服、彼此和睦</strong>（589b）。★ 这个画像的功能是：<strong>把「正义"真正的收益」从外在名声里彻底剥离出来——正义的好处是「灵魂内部的秩序」，不是任何外部报偿。</strong>
+    </li>
+    <li><strong>收尾（592a–b）</strong>：格劳孔问，这样一个理想城邦在现实中是否存在。苏格拉底给出那个著名的回答：<span class="tag t-src">原书</span>「<strong>也许它存在于天上，是给想要看见它、并照着它来安排自己的人看的一个范型</strong>（παράδειγμα）；至于这城邦现在是否在某处存在，并不重要。」★ <strong>这句「天上的范型」，是全部〈《理想国》不是蓝图〉论证的文本支柱</strong>（见 4b、5.1）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>卷九是全书论证的收口，也是最该被追问的一卷。</strong></p>
+  <ol>
+    <li><strong>「哪种快乐更真」的论证预设了结论。</strong> 苏格拉底说理性的判断最可信，因为它<strong>体验过全部三种</strong>；但这只在「快乐可以通约、且知识之乐确实是一种更高的快乐」的前提下成立。★ 一位功利主义者或一位享乐主义者完全可以反驳：<strong>我体验过你说的「知识的快乐」（我也读诗、也解题），但我不认为它比感官之乐更「真」——它只是不同。</strong> 柏拉图没有堵死这条路。
+    </li>
+    <li><strong>「灵魂画像」用了一个视觉化的类比来充当论证。</strong> 它把「理性统率欲望」这个命题<strong>画成</strong>一个「人在里面、怪兽在外面」的画面，但<strong>画面不构成论证</strong>——为什么「让理性统率」就是好的？这仍然是待证的。★ 这是全书惯用手法的一个典型：<strong>用比喻代替论证</strong>（洞穴、太阳、线、画像，无一例外）。这也是为什么本书在「读起来」与「论证起来」之间有一道持久的落差。
+    </li>
+    <li><strong>一个被忽略的细节</strong>：苏格拉底在这一卷说，<strong>即使正义者生活在现实中得不到承认</strong>，只要他「照着天上的范型安排自己」，他就是幸福的（592a–b）。★ 这一步其实<strong>把卷二格劳孔的挑战悄悄换掉了</strong>：格劳孔要的是「在同等处境下」比较，苏格拉底给的却是「不管你处境如何，只要你灵魂有秩序就幸福」。<strong>这正是全书最深的争议：柏拉图是不是在用一个内部定义（灵魂秩序＝幸福）来回避一个外部比较的问题？</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s16">
+  <h2><span class="num">15</span><span>卷十：诗的再次审判、灵魂不朽，与厄尔神话（595a–621d）</span><span class="caret">▾</span></h2>
+  <h3>这一卷在谈什么</h3>
+  <p><strong>收尾。</strong> 三件事：① 回到诗，从<strong>形而上学</strong>上再判它一次罪（595a–608b）；② 论证<strong>灵魂不朽</strong>（608c–611a）；③ 用 <strong>厄尔神话</strong>（614b–621d）把「正义值得要」延伸到此生之外。★ 卷十有两个「第二次」：<strong>第二次审判诗</strong>（呼应卷三的第一次）、以及<strong>第二次处理灵魂</strong>（呼应卷四的三分说，这里要处理「灵魂若三分，它还能不朽吗」的问题）。</p>
+  <h3>关键论证与比喻</h3>
+  <ul>
+    <li><strong>★ 诗的第二次审判——三张床（595a–597e）</strong>：苏格拉底用「床」做三层论证 <span class="tag t-src">原书</span>：
+    <ol>
+      <li><strong>理念的床</strong>（神造的、唯一的「床本身」）；
+      </li>
+      <li><strong>木匠的床</strong>（照理念造出的具体床）；
+      </li>
+      <li><strong>画家的床</strong>（照木匠的床再画出的床）。
+  <p>★ 结论：<strong>画家/诗人与「真理」隔了三层</strong>（<code>τρίτος ἀπὸ τῆς ἀληθείας</code>，597e）——他模仿的不是真理，而是<strong>看起来像真的东西</strong>。一句名言：<span class="tag t-src">原书</span>「<strong>模仿者对于自己所模仿的东西，没有真正的知识，只有意见</strong>」（601b–c 一带）。</p>
+      </li>
+    </ol>
+    </li>
+    <li><strong>对灵魂的毒害（602c–608b）</strong>：诗人还诉诸灵魂中<strong>低级的、非理性的部分</strong>——<span class="tag t-src">原书</span>「<strong>它唤醒、喂养、强化了那个本该被理性压制的情感部分</strong>」（605b–c 一带；苏格拉底的比喻是：一个人遇到丧亲之痛时，理性的部分是「克制」，而诗偏偏让那个「想要大哭」的部分上台）。★ 因此最终判决：<span class="tag t-src">原书</span>「<strong>我们只能允许歌颂神与赞美好人的诗进入城邦</strong>」（607a）。
+    </li>
+    <li><strong>★ 但书里给诗留了一道门</strong>（607b–608a）：<span class="tag t-src">原书</span>「<strong>如果模仿性的、甜美的诗能拿出理由，证明她在治理良好的城邦里有存在的价值，我们很乐意让她回来；因为我们自己也能感到她的魅力。</strong>」——而且允许「诗的爱好者」用<strong>不带韵律的散文</strong>替她辩护（607d）。★ 这一段是全书「反讽读法」最看重的证据：<strong>柏拉图不是简单禁诗，他是把诗放上被告席、并要求她答辩</strong>。
+    </li>
+    <li><strong>灵魂不朽（608c–611a）</strong>：苏格拉底论证：只有<strong>特有的恶</strong>才能毁灭一物；灵魂特有的恶是<strong>不义、无知等</strong>，但灵魂被这些恶伤害后<strong>并不因此毁灭</strong>，所以灵魂是不朽的（608d–611a）<span class="tag t-src">原书</span>。★ 这段论证在学界评价不高（波普尔未专门针对，但一般认为它弱）。
+    </li>
+    <li><strong>★ 厄尔神话（614b–621d）</strong>：厄尔（Er）战死后第十二天在火葬堆上复活，讲述了他看到的一切 <span class="tag t-src">原书</span>：灵魂在冥界受审、善者升天、恶者入地，各受<strong>十倍于</strong>其行为的报偿或惩罚，为期<strong>一千年</strong>；随后灵魂聚集在草地上，<strong>自行挑选下一世的生活</strong>（有的选僭主的一生、有的选天鹅或狮子的生命）；最后经过命运三女神，喝下「遗忘之河」（Λήθη）的水，投生。★ 全书最著名的收尾句由此而来：<span class="tag t-src">原书</span>「<strong>过错不在选择者，而在选择本身之外的神；选择者要为自己的选择负责</strong>」（617e，<code>αἰτία ἑλομένου· θεὸς ἀναίτιος</code>）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>卷十的三处关键问题。</strong></p>
+  <ol>
+    <li><strong>「驱逐诗人」与《理想国》自己是诗——这是全书最显眼的自我矛盾。</strong> ★ 柏拉图驱逐的是「模仿性诗」，可他自己<strong>正在写一部充满神话、比喻与戏剧性情节的「模仿性」作品</strong>：厄尔神话就是一段虚构叙事，洞穴比喻就是一幅画。<strong>这个矛盾有两种读法</strong>：一种说柏拉图在<strong>反讽</strong>（他把自己的神话也放在「需要辩护」的位置上，邀请读者去追问），另一种说他只是<strong>双标</strong>（哲学的神话是「有益的谎言」，诗的神话是「有害的模仿」）。<strong>本报告不替读者裁决，但必须指出：这一段是全书最无法被「当教条读」的地方。</strong>
+    </li>
+    <li><strong>厄尔神话与卷二格劳孔的挑战相冲突。</strong> 格劳孔明确要求：<strong>不要用「正义的后果」（包括来世的奖罚）来证明正义值得要</strong>（358d–362c）。而厄尔神话的劝说逻辑<strong>正是</strong>「此生之外有奖罚」。★ 支持方（如 Annas 1981 第 10 章）认为它<strong>不是论证而是收束</strong>、是「把已经证明的东西用神话强化」；质疑方认为它<strong>消解了全书前九卷的「内在价值」路线</strong>（见 5.5）。
+    </li>
+    <li><strong>灵魂不朽的论证与灵魂三分说打架。</strong> 卷四说灵魂有三部分、且各部分会互相冲突；但<strong>一个「由可冲突的部分构成」的东西，怎么可能是不朽、不可分解的</strong>？★ 苏格拉底在这一卷末段确实<strong>察觉到</strong>了这个困难，并含糊地暗示：也许灵魂的「真面目」（as it truly is）并不像我们现在看到的、被身体污染后的样子（611b–612a，<span class="tag t-src">原书</span>「我们看到的灵魂，不是它本来的样子，而是像海神格劳科斯那样，被海水与贝壳糊住了」）。<strong>这个「真面目」的说法是全书一个漂亮的救场，但它也承认：此前的三分说描述的是「被污染的灵魂」。</strong>
+    </li>
+  </ol>
+  <p>★ <strong>一句话记住卷十</strong>：<strong>它要回答的问题是「正义的好处在死后还算不算数」，但它的方法（来世奖罚）恰恰是格劳孔一开始禁止使用的方法——这是全书最诚实、也最自相矛盾的一个结尾。</strong></p>
+</section>
+
+<section id="s17">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>概念／人物</th><th>一句话</th><th>出现在</th></tr></thead>
+    <tbody>
+      <tr><td><strong>正义</strong>（δικαιοσύνη / dikaiosynē）</td><td>各做各的事、不越界；灵魂三部分由理性统率的和谐</td><td>卷四（433a 定义）；卷九（收口）</td></tr>
+      <tr><td><strong>灵魂三分</strong>（tripartite soul）</td><td>理性（λογιστικόν）／激情（θυμοειδές）／欲望（ἐπιθυμητικόν）</td><td>卷四（435b–441c）</td></tr>
+      <tr><td><strong>城邦—灵魂同构</strong></td><td>大字母与小字母：在城邦里看到的正义，同样在灵魂里</td><td>卷二（368c）提法；卷四（434d）确立</td></tr>
+      <tr><td><strong>护卫者</strong>（φύλαξ / phylax）</td><td>统治者＋辅助者；受特殊教育、无私人财产与家庭</td><td>卷二至卷五</td></tr>
+      <tr><td><strong>男女同天性</strong></td><td>治理城邦所需的天性男女相同，故妇女可当护卫者</td><td>卷五（455d）</td></tr>
+      <tr><td><strong>妇女儿童公有</strong></td><td>取消护卫者的私人家庭，生育与婚配由城邦安排</td><td>卷五（449a–471c）</td></tr>
+      <tr><td><strong>哲人王</strong></td><td>除非哲学家为王、或王成为哲学家，城邦无救</td><td>卷五（473c–e）</td></tr>
+      <tr><td><strong>善的理念</strong>（τὸ ἀγαθόν）</td><td>使理念可知、并使理念存在的最高原理；太阳是其「儿子」</td><td>卷六（504a–509c）</td></tr>
+      <tr><td><strong>太阳比喻</strong></td><td>善之于可知世界，如太阳之于可见世界</td><td>卷六（507b–509c）</td></tr>
+      <tr><td><strong>线喻</strong></td><td>可见／可知各分两级：影像—实物—数理—理念</td><td>卷六（509d–511e）</td></tr>
+      <tr><td><strong>洞穴比喻</strong></td><td>教育＝灵魂的转向；受教者有义务返回</td><td>卷七（514a–520a）</td></tr>
+      <tr><td><strong>高贵的谎言</strong>（γενναῖον ψεῦδος）</td><td>金银铜铁神话：神定等级，统治者守之</td><td>卷三（414b–415d）</td></tr>
+      <tr><td><strong>古各斯戒指</strong></td><td>能隐身时，正义者与不义者行为无异</td><td>卷二（359d–360d）</td></tr>
+      <tr><td><strong>四政体退化</strong></td><td>荣誉政治→寡头→民主→僭主</td><td>卷八（544c–569c）</td></tr>
+      <tr><td><strong>僭主</strong></td><td>不义的极致；由「人民的保护者」蜕变而来</td><td>卷八（562a–569c）、卷九（571a–580c）</td></tr>
+      <tr><td><strong>模仿</strong>（μίμησις / mimēsis）</td><td>与真理隔三层；喂养低级激情，故须审查</td><td>卷三、卷十（595a–608b）</td></tr>
+      <tr><td><strong>厄尔神话</strong></td><td>灵魂不死、受审、自选来世、饮遗忘之河</td><td>卷十（614b–621d）</td></tr>
+      <tr><td><strong>苏格拉底</strong></td><td>对话主角；卷一的苏格拉底近于历史人物，后九卷近于柏拉图</td><td>全书</td></tr>
+      <tr><td><strong>色拉叙马霍斯</strong></td><td>「正义＝强者的利益」；卷一的最强对手</td><td>卷一（336b–354c）</td></tr>
+      <tr><td><strong>格劳孔／阿德曼托斯</strong></td><td>柏拉图的兄弟；把「正义本身」问题逼到极致</td><td>卷二（357a–367e）</td></tr>
+      <tr><td><strong>波普尔（Karl Popper）</strong></td><td>指《理想国》为极权主义源头</td><td>5.1（《开放社会》1945）</td></tr>
+      <tr><td><strong>Levinson（R. B. Levinson）</strong></td><td>逐条反驳波普尔</td><td>5.1（《In Defense of Plato》1953）</td></tr>
+      <tr><td><strong>Vlastos（G. Vlastos）</strong></td><td>分卷一为「苏格拉底期」、后九卷为柏拉图</td><td>5.5（1991）</td></tr>
+      <tr><td><strong>施特劳斯（Leo Strauss）</strong></td><td>读《理想国》为反讽、非方案</td><td>5.1、5.5</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s18">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>想读一本可靠的现代导读</strong>：Julia Annas，《An Introduction to Plato's Republic》，Oxford University Press，<strong>1981</strong>——按卷推进、问题导向，是英文世界里最好的单本导论之一，尤其第 10 章对厄尔神话的处理。
+    </li>
+    <li><strong>想看「反讽读法」的代表</strong>：Leo Strauss 论《理想国》的相关文字（见《城与人》<em>The City and Man</em>，1964，第 2 章），以及施特劳斯学派对「高贵的谎言」与洞穴的解读——⚠ <strong>这类读法争议极大，读时务必对照 5.5 的批评。</strong>
+    </li>
+    <li><strong>想看最系统的反驳波普尔</strong>：Ronald B. Levinson，《In Defense of Plato》，Harvard University Press，1953。
+    </li>
+    <li><strong>想看最系统的现代批判</strong>：Karl Popper，《The Open Society and Its Enemies》第一卷，Routledge，1945——读之前先读 5.1，把它当作「一场论战的一方」而不是「判决书」。
+    </li>
+    <li><strong>中译与对照原文</strong>：王扬译注本（华夏，带 Stephanus）、溥林（熊林）译《理想国（政制）》（商务，希汉对照）；配合本报告下部逐卷读效果最好。
+    </li>
+  </ol>
+</section>
+
+<section id="s19">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>见同目录 <code>理想国-来源清单.md</code>。</p>
+</section>
+
+<section id="s20">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. 成书年代：约前 375 年，还是更早／更晚？</h3>
+  <p>本报告采用「<strong>约公元前 375 年</strong>」（学界通说，多落在前 390–前 370 之间）。★ 但<strong>没有一个是能证死的日期</strong>：它的依据是文体统计学（stylometry）、与《会饮》《斐多》等的相对次序、以及少数内证（如提到某场战役）。<strong>我未能找到任何一份原始证据能把年代锁到某一年</strong>。⇒ <strong>以你手中的中译本导言为准，并把它当成「约」而非「确」。</strong></p>
+  <h3>D2. 中文旧译本的具体底本与版本信息</h3>
+  <p>本报告提到<strong>吴献书 1935 文言译本</strong>（据英译）与<strong>谢善元译本</strong>（上海译文，据英译）。★ 但<strong>吴献书译本的确切底本（Jowett 还是别的英译）、以及它是否经过后人校订重排，我未能核实到版权页级别</strong>。⇒ <strong>若你要引用这两个译本，请以实物版权页为准。</strong></p>
+  <h3>D3. 郭张版「正文旁标 Stephanus 页码」的版次差异</h3>
+  <p>★ 有来源称「某些版本（如郭斌和、张竹明的 2009 年译本）在正文旁插入了 Stephanus 页码」（维基百科中文条目）；商务版目录也按 Stephanus 区间排（如「第一卷 327–354」）。<strong>但不同印次的版式可能不同</strong>，我<strong>未能逐版核对</strong>是否每一印次都印了边码。⇒ <strong>买书时请翻到正文随机一页，确认旁边有没有「327a」「357b」这类编号。</strong></p>
+  <h3>D4. 「三个浪头」的编号与卷五／卷六的边界</h3>
+  <p>★ 三个浪头（妇女儿童公有、哲人王、善的理念）的讲法，<strong>在文本里有明确的「浪」比喻，但第三个浪头的展开横跨卷五末到卷六</strong>；不同译本与导论对「第三浪从哪一页开始」的说法不完全一致。⇒ 本报告按「卷五 449a 起第一浪、473c 第二浪、卷六 504a 起第三浪」处理，<strong>具体页码以带 Stephanus 的版本为准。</strong></p>
+  <h3>D5. 厄尔神话是「结尾」还是「后加」？</h3>
+  <p>★ 争议真实存在：是否与卷九的收口重复、是否与卷二格劳孔的「不要用后果劝人」冲突、是否由后世编者（或柏拉图本人晚年）补入。<strong>我未能找到任何一份能定论的直接证据</strong>（古代注疏与现代研究的意见都只是「解释」，不是「证明」）。⇒ <strong>把它当「柏拉图用它来收尾」读即可，但知道这个争议的存在。</strong></p>
+  <h3>D6. 「柏拉图数」（546b–c）的含义</h3>
+  <p>★ 卷八里那个决定政体退化周期的神秘数字（所谓「柏拉图数」「婚姻数」），<strong>自古至今没有一个被普遍接受的解读</strong>：有人读出 12960000，有人读出别的值，有人干脆认为它是一个「故意的谜」。⇒ <strong>本报告不给出任何具体数值</strong>；你若在某本书里看到「柏拉图数＝某某」，请当作一家之言。</p>
+  <h3>D7. 我主动排除的来源</h3>
+  <ul>
+    <li>★ <strong>盗版电子书站的整本书 PDF</strong>：检索中出现过（例如某些站点提供郭张译本完整扫描）。按本项目契约「<strong>只用合法来源，任何目的不例外</strong>」，<strong>一律不采用</strong>。
+    </li>
+    <li><strong>AI 生成的 SEO／聚合内容</strong>：本报告识别出若干条目（如把「2024 年商务版」的译者一会写成郭张、一会写成溥林，或把郭张译本底本与溥林译本底本混为一谈）。<strong>其判据是「版本信息自相矛盾」</strong>——凡版本、ISBN、译者对不上的页面，一律不采信。
+    </li>
+    <li><strong>高校课程页／个人主页托管的整本书文本</strong>：本报告<strong>没有</strong>把任何「整本书」当依据；仅将<strong>可查证的学术论文</strong>（如 Aune 1997、Dillon 2015）用于核对其自身论点与出处。
+    </li>
+  </ul>
+  <h3>D8. <span class="tag t-talk">作者谈话</span> 档的口径说明（重要）</h3>
+  <p>《理想国》作者柏拉图已逝（约前 347），<strong>不可能接受访谈</strong>。本报告的 <span class="tag t-talk">作者谈话</span> 一档<strong>改用于柏拉图本人其他文字中的自述</strong>——主要是 <strong>《第七封信》（Ἐπιστολή Ζ΄）</strong>（他自述早年政治抱负、西西里之行与对现实政治的态度）与 <strong>《法律篇》</strong>（他晚年对《理想国》方案的修正：放弃哲人王、转向法治与次优政体）。★ <strong>这不是访谈，我在正文与 build.json 里都会写明这一点。</strong> 另外必须诚实标注：<strong>《第七封信》的真实性本身在学界有争议</strong>（有人认为它是后人伪托），故凡引它，本报告都另行标明「《第七封信》（真伪有争议）」。</p>
+</section>
+
+<footer>
+  生成于 2026-10-07 · 来源清单与交叉验证记录见同目录 <code>理想国-来源清单.md</code><br>
+  本页引文按 <b>A 级（公版原文）</b>处理：引文取自 Burnet 希腊原文与 Shorey 的 Loeb 英译（均带 Stephanus 里程碑，卷一起至卷十；已逐条核对定位），关键术语另核希腊原文；批评文献的姓名、篇名、出版社／刊物与年份逐条给出。★ 本书是<b>「转述史」的重灾区</b>——中文互联网上流传的「柏拉图主张共产共妻」「洞穴比喻讲媒体操控」「《理想国》是一份政治蓝图」等，多数与原文对不上，故<b>第 4b 节逐条回原文核对</b>；第 5 节（争议与局限）<b>刻意写得最实</b>——波普尔 1945 年的极权指控与 Levinson 1953 及后续的反驳、哲人王与民主、高贵的谎言、审查与驱逐诗人、苏格拉底／柏拉图的分界与厄尔神话的真伪，均按「姓名＋出处＋年份」呈现，且<b>不替作者圆场</b>。柏拉图已逝，<b>本报告没有、也不可能使用任何访谈材料</b>；「作者谈话」一档仅用于其本人其他著作（《第七封信》《法律篇》）。请以原文与实物译本为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>
