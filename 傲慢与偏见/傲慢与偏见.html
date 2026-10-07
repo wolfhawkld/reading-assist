@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《傲慢与偏见》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《傲慢与偏见》<small>阅读指引与精华解析 · 2026-10-07</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 核心主题与结构机制</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 中文译本怎么选</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 逐卷深挖</div>
+    <a href="#s7">6 第一卷：第 1–23 章（婚姻市场开幕，与第一次"跌到谷底"）</a>
+    <a href="#s8">7 第二卷：第 24–42 章（从罗新斯到彭伯利——偏见被击穿的那一卷）</a>
+    <a href="#s9">8 第三卷：第 43–61 章（彭伯利、私奔，与两次求婚之间的那一课）</a>
+    <div class="grp">附录</div>
+    <a href="#s10">A 主要人物小传</a>
+    <a href="#s11">B 延伸阅读</a>
+    <a href="#s12">C 来源清单</a>
+    <a href="#s13">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《傲慢与偏见》阅读指引与精华解析</h1>
+  <div class="sub">Pride and Prejudice —— 简·奥斯汀 1813 · 61 章 / 三卷（1–23 · 24–42 · 43–61）· 引擎是限定继承权 entail</div>
+  <div class="meta">
+    <div><b>作者</b>简·奥斯汀（Jane Austen，1775–1817）。终身未婚，一生六部小说，本书是第二部。★ <b>关于她，最需要先破除的两种想象</b>：① 她不是「闺阁里写写小情小爱」的业余者——她对自己的书能不能卖、卖多少钱算得极清楚，<b>1812-11-29 致 Martha Lloyd 的信里亲手记下了把版权以 £110 卖断给 Egerton 这笔账</b>（她本想卖 £150）；② 她也不是一部「摄政时期爱情片」的编剧——<b>她的六部小说有四部的主角都把婚姻当经济决策在算</b>，本书尤其如此</div>
+    <div><b>初版</b><b>1813 年 1 月 28 日</b>（广告见当日《晨报》The Morning Chronicle）· 出版者 <b>Thomas Egerton</b>（Whitehall，本行是军事图书馆出版商）· <b>三卷本（three-volume novel）</b> · <b>匿名出版</b>，署名 <b>"By the Author of <i>Sense and Sensibility</i>"</b> · 定价 <b>18 先令</b>（纸板装）· 印数不祥，通行推测约 1500 册（<span class="tag t-rep">转述</span>）· 版权为<b>卖断</b>（£110），非版税——<b>因此这本书后来大卖，奥斯汀本人没有多拿到一分钱</b></div>
+    <div><b>★ 依据版本（原文）</b><b>Project Gutenberg #1342</b>（<code>https://www.gutenberg.org/ebooks/1342</code>）——1998-06-01 首发、末次更新 2026-09-29，据 Internet Archive 图像制作，<b>底本为 1894 年 George Allen 插图本</b>（Chiswick Press 印刷，Hugh Thomson 插图系统）。<b>另参 #42671</b>（<code>https://www.gutenberg.org/ebooks/42671</code>）——PG 编目里明确标 <b>Editor: R. W. Chapman</b>（即 1923 年牛津克拉伦登版编者），<b>此本保留了 1813 年初版的三卷本格式与分卷章号（每卷重新从第 I 章起）</b>。<b>本报告点读以 #1342 的分章文本为准，卷界与分卷章号以 #42671 的三卷标题页为准。</b></div>
+    <div><b>结构</b><b>61 章，三卷</b>——<b>第一卷＝第 1–23 章／第二卷＝第 24–42 章／第三卷＝第 43–61 章</b>。★ <b>编号陷阱</b>：1813 年初版与 Chapman 1923 版采用「每卷重新从第 I 章起」的分卷编号，<b>因此初版里出现过三个「第 I 章」</b>；本报告统一使用<b>现代连续编号 1–61</b>，凡与初版分卷编号可能混淆处均另行注明</div>
+    <div><b>★ 核心机制</b><b>限定继承权（entail）——这不是背景，是引擎。</b> Longbourn 的产业（约<b>每年两千英镑</b>）<b>在无男嗣时只能由一个远房亲戚继承</b>；班纳特太太当年带来的嫁资只有<b>四千英镑</b>（年息约两百镑）。原文<b>第七、二十三、二十九章</b>都把这条硬约束点名写出。⇒ 五个女儿若无良好婚姻，<b>父亲一死就被扫地出门</b>；柯林斯那套令人作呕的求婚之所以说得出口，正因<b>他将来就是那个把她们赶出去的人</b></div>
+    <div><b>★ 三卷本＝两次反向悬念</b><b>第 23 章结尾（第一卷末）</b>与 <b>第 42 章结尾（第二卷末）</b>都不是「问题被解决」，而是<b>把处境弄得更糟</b>：第一卷末把「限定继承权」推到一家人脸上（夏绿蒂嫁给了 Collins）；第二卷末最后一句是 <i>"To Pemberley, therefore, they were to go."</i>——<b>把一个最不该发生的相遇轻轻推到下一页</b>。★ 这是维多利亚时代小说借阅制的商业逻辑，被奥斯汀用成了节奏工具（见正文第 6、7 节）</div>
+    <div><b>★ 中译怎么选</b>中文读者最容易买错的是<b>译本</b>（不是版本——英文原著早已公版）。本报告对照 <b>七种开篇第一句</b>的译法：杨缤 1935／王科一 1955／孙致礼 1990／张玲·张扬 1993／罗良功 2007／丁凯特 2014／李继宏 2016。<b>试金石是 in want of 的处理</b>——差之毫厘，语气与叙事距离全变（见正文第 4 节）</div>
+    <div><b>引文体例</b>★ <b>英文字句一律给「章号＋原文」，中译引文另计核验级别</b>：原文为 A（公版可逐字定位），<b>中文引文一律 B</b>（各家中译均在版权期内）——<b>两句分开写、不合并</b>。凡引批评者观点，均写明<b>姓名＋文章或书名＋出版社或刊物＋年份</b></div>
+    <div><b>状态</b>未标注「已读／想读」——本报告两层结构（上部速览／下部逐卷深挖）同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有<b>公版英文原文可逐字定位</b>的段落 —— 本报告指 Project Gutenberg #1342 的<b>英文全文</b>（738,046 字节，61 章齐全，已下载到本地）与 #42671 的三卷标题页，可按<b>章号</b>逐字读取。<b>凡标此档者，正文均给出章号</b></li>
+    <li><span class="tag t-talk">作者谈话</span> ★ <b>奥斯汀不能访谈——她逝于 1817 年；任何「奥斯汀访谈」都是伪托</b>。本档在本书里专指两类文字：① <b>她本人的书信</b>（<i>Jane Austen's Letters</i>, Deirdre Le Faye 编，4th ed., Oxford, 2011）——如 1813-01-29「我把自己的宝贝孩子从伦敦接回来了」、1813-02-04「这本书太轻松明亮、闪闪发光，它缺一层阴影」；② <b>小说文本内的直接表态</b>（旁白与人物原话）。★ <b>她谈自己创作的信极少</b>：存世约 164 封以家常琐事为主，<b>Cassandra 焚毁了大量信件</b>，因此本档材料天然稀缺，见正文第 5.6 节与附录 D5</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、学术论文转述、百科条目或书评 —— 本报告中<b>绝大多数现代批评文献（Gilson、Said、Barchas、Ferguson 等）属此档</b>：我给出姓名＋书名／篇名＋出版社／刊物＋年份，但<b>多数在付费墙后，我没有逐字核对它们本身</b></li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑 —— 例如「三卷本格式被用成节奏工具」这类结构判断，以及中译本各家对 in want of 处理的取舍分析</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    ★ 本书最想让你注意的一件事：<b>「作者谈话」这一档在本书里不能用成默认选项。</b> 奥斯汀死于 1817 年，<b>这不是访谈——不存在访谈、不存在回忆录、不存在创作谈，任何冠以「奥斯汀访谈」的文字都是伪托</b>；她留下的、能直接说明她<b>怎么想自己这本书</b>的文字，事实上只有 1813 年 1 月至 2 月的三四封信。★ 所以在正文里，<b>凡是「作者谈话」出现的地方，我都会同时告诉你它取自哪封信、哪一天</b>；而<b>凡是听起来像「奥斯汀说她要写一个关于傲慢与偏见的故事」这类话，都请先怀疑它是后人的代言</b>。★ 另一条须并说：<b>我逐字核对的是 61 章的章首与关键引文段（约 60 处），不是逐行通读全文</b>。
+  </p>
+  <h3>引文核验级别（2026-10-07 定）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)"><b>原文：A 级。</b>我下载并点读了 <b>Project Gutenberg #1342 英文全文</b>（738,046 字节，61 章齐全），并下载 <b>#42671</b>（725,097 字节）逐卷比对卷界与分卷章号；<b>61/61 章全部达到 A 级，无一章退到 B</b>。★ 但两条限制必须同时说清：① <b>我逐字核对的不是逐行通读 738,046 字节</b>，而是每章章首句＋全书约 60 处关键引文段（三卷覆盖表见同目录 <code>傲慢与偏见-来源清单.md</code> 第八节）；② 我手上<b>没有 #1342 之外的第二份独立电子底本</b>，故版本差异靠 #42671 与公开图像页交叉，而非双份全文对校。<b>中文引文：B 级。</b>上文所列七家中译<b>全部在版权期内</b>，我<b>没有任何中译电子版、未接触任何整书 PDF</b>，凡引中译皆为公开来源（出版社商品页、学术论文译例、书评）的二手材料——<b>故凡涉中译的论断一律标 B，且与原文 A 级分开写、不合并</b>。★ 覆盖辖区：<b>原文覆盖英、美、澳等公版辖区（PG 为美国注册非营利）；中译部分与初版书影涉及英国版权期内的译本与 1894／1923 年版编排，适用辖区与原文不同</b>。★ 附录 D 单列 8 条待核实项。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>《傲慢与偏见》写的是：在一个把女儿当资产、把婚姻当交易的小乡绅社会里，一个聪明而爱下判断的姑娘，先被自己的第一印象彻底骗了一回，再一步一步把偏见拆开——而这部小说最厉害的技术，就是让读者跟着她一起被骗、一起拆。</strong></p>
+  <p>它不是一部"结局圆满的爱情故事"（四桩婚事里有两桩几乎与爱情无关，第三桩建立在错觉上，只有一桩同时具备感情与经济）；不是一本"英国乡村风俗画"（风俗画不会在第三卷突然转入一场私奔危机）；也不是<strong>关于"傲慢"与"偏见"两个抽象品质的寓言</strong>——<strong>书名那两个词是从 Fanny Burney《塞西莉亚》末章（标题叫 "Pride and Prejudice"）借来的，与当下流行的、把所有轻重都押在两个主角品德上的读法不完全是一回事</strong>（见第 4b 节第 6 条与第 5 节）。</p>
+  <p>一句话结论（也是全书最该记住的一句，出自主角自己）：<strong>"我这一生，实则一直是个自私的人，尽管并非原则上如此……我从小到大，都是这个样子，若不是遇到你——我最亲爱的、最可爱的伊丽莎白，我现在还会是这样！你让我受了怎样一堂课啊！这堂课起初确实难受，却又有益。是你真正把我打倒了。"</strong>（第 58 章，<span class="tag t-src">原书</span>；原文 <code>I have been a selfish being all my life, in practice, though not in principle… Such I was, from eight to eight-and-twenty; and such I might still have been but for you, dearest, loveliest Elizabeth!</code>）</p>
+  <p><strong>它不是什么</strong>：不是一部"误会解除即痛快"的轻喜剧（真正的转折是第 35 章一封长信，而不是任何一次争吵或表白）；不是一本可以靠电影替代的书（<strong>奥斯汀的核心技法"自由间接引语"在银幕上几乎注定流失</strong>，见第 2 节主题三与第 5 节第 6 条）；也不是一本主题单一的"爱情小说"（见第 4b 节第 1 条）。</p>
+  <p>★ <strong>读前的一个提醒（本报告最想让你记住的一句操作建议）</strong>：<strong>这本书的第一遍，请允许自己"读错"。</strong> 因为<strong>它就是这样设计的</strong>——第 3 章的群体舆论、第 16 章魏克翰的自述、第 24 章卡罗琳的来信，<strong>三次都让读者跟着主角接受一件不可靠的事</strong>。⇒ <strong>你第一次读时对达西的反感、对魏克翰的同情、对柯林斯的耻笑，都不是"读得不够仔细"，而是这本书预期你会有的反应。</strong> 真正的阅读发生在第 36 章之后：<strong>当伊丽莎白开始重估一切时，这本书才要求你和她一起，把此前读到的每一页重新称一遍。</strong> —— <strong>能不能承受这一次重估，就是这本书的入场券。</strong></p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>下表按<strong>三卷 61 章</strong>逐段列出。<strong>章号采用现代通行的连续编号 1–61</strong>；★ <strong>注意：1813 年初版与 Chapman 1923 版是"每卷重新从第 I 章起"的分卷编号，因此初版里出现过三个"第 I 章"</strong>（见 PG #42671 与牛津版目录）——中文译本用哪种编号，直接决定你按章号找内容找不找得到。</p>
+  <table>
+    <thead><tr><th>卷</th><th>章号</th><th>这一批章发生了什么</th><th>这一批在结构里干什么</th></tr></thead>
+    <tbody>
+      <tr><td>一</td><td>第 1–6 章</td><td>内瑟菲尔德庄园租给了宾利；麦里屯舞会上达西当众贬低伊丽莎白（"她还过得去，但还不够漂亮，引不起我的兴趣"）；简与宾利互有好感；卢卡斯家登场，夏绿蒂抛出"婚姻幸福与否全凭运气"</td><td>开局登场：把婚姻市场的全部规则一次摆开</td></tr>
+      <tr><td>一</td><td>第 7–12 章</td><td>点名 <strong>限定继承权</strong>（第七章开篇：产业"在无男嗣时被限定继承给一个远亲"）；简赴内瑟菲尔德遇雨生病；伊丽莎白徒步探病；达西开始改观，宾利姐妹势利毕露</td><td>把经济引擎写进第一段旁白；让男女主第一次近距离相处</td></tr>
+      <tr><td>一</td><td>第 13–18 章</td><td>柯林斯先生到访（他正是那个将来继承产业的人）；威克姆登场并编造达西的"恶行"；内瑟菲尔德舞会，柯林斯当众冒失，班纳特太太失态，达西向伊丽莎白当面示好</td><td>两条假线索同时上线：一个假求婚者、一个假受害者</td></tr>
+      <tr><td>一</td><td>第 19–23 章</td><td>柯林斯求婚被拒、转求夏绿蒂并被接受；宾利一行突然离开；<strong>第二十三章结尾＝第一卷末："限定继承权"被班纳特太太点名骂出，丈夫用一句反讽收场</strong></td><td>★ 反向悬念一：处境由坏转更坏</td></tr>
+      <tr><td>二</td><td>第 24–29 章</td><td>卡罗琳的来信断了简的念想；嘉丁纳夫妇登场并提醒伊丽莎白提防威克姆；伊丽莎白赴汉斯福，见到柯林斯与夏绿蒂的婚姻实况，见凯瑟琳夫人</td><td>把"没有爱情的婚姻"摆到读者眼前；搭好罗新斯这个第二舞台</td></tr>
+      <tr><td>二</td><td>第 30–35 章</td><td>罗新斯的相处；费茨威廉上校透露是达西拆散了宾利；<strong>达西求婚被拒（34）</strong>；<strong>达西的清晨长信（35）</strong></td><td>★★ 全书转轴：偏见第一次被证据击穿</td></tr>
+      <tr><td>二</td><td>第 36–38 章</td><td>伊丽莎白反复读信、重新审视全部往事："直到此刻，我才真正认识了我自己"（36）；达西一行离开罗新斯</td><td>主角的自我审判；全书的道德中枢</td></tr>
+      <tr><td>二</td><td>第 39–42 章</td><td>回家；丽迪雅获邀赴布赖顿；伊丽莎白随嘉丁纳夫妇出游德比郡；<strong>第四十二章末＝第二卷末："To Pemberley, therefore, they were to go."</strong></td><td>★ 反向悬念二：把最不该发生的相遇推到下一页</td></tr>
+      <tr><td>三</td><td>第 43–46 章</td><td>彭伯利之访；管家口中"全英国最好的地主"；达西提前归来、态度判若两人；乔治安娜来访；<strong>丽迪雅与威克姆私奔的消息抵达（46）</strong></td><td>全书最大的一次反转；随即坠入最大危机</td></tr>
+      <tr><td>三</td><td>第 47–49 章</td><td>赶回 Longbourn；嘉丁纳先生赴伦敦寻人；达西独自出手；私奔被"买"成婚事；班纳特先生的自嘲</td><td>危机不是靠主角解决，而是靠一个"看不见的恩人"</td></tr>
+      <tr><td>三</td><td>第 50–52 章</td><td>班纳特先生对早年失职的悔悟；麦里屯流言；丽迪雅口无遮拦泄底；<strong>嘉丁纳太太的来信揭出达西才是幕后人（52）</strong></td><td>伊丽莎白得知真相，感情正式转向</td></tr>
+      <tr><td>三</td><td>第 53–56 章</td><td>宾利重返内瑟菲尔德；宾利与简订婚；<strong>凯瑟琳夫人上门逼问伊丽莎白（56）</strong></td><td>反派无意中促成主角</td></tr>
+      <tr><td>三</td><td>第 57–61 章</td><td>达西第二次求婚（58，含上文那段自述）；两家允婚；丽迪雅夫妇的潦倒结局；凯瑟琳夫人最终"屈尊"来访；全书以嘉丁纳夫妇收束</td><td>收束：四桩婚事各得其所，账目算清</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法提示</strong>：这张表本身就是一条证据链——<strong>第 35 章与第 52 章是两个不可移动的转轴</strong>。第 35 章那封信之前，伊丽莎白的偏见是"叙事的地基"；此后，整本书的任务变成"她能不能承担自己判断错误这件事"。第 52 章那封信之前，达西的感情始终是"不可见的"；此后，读者与伊丽莎白同时知道<strong>他为什么值得</strong>。<strong>这两封信之间，隔着一场私奔——而私奔，正是全书经济引擎的总爆发。</strong></p>
+  <p>★ <strong>一个操作建议</strong>：<strong>第一次读，先按顺序读第一、二卷，但第三卷可以从第 43 章（彭伯利）直接跳到第 46 章（私奔）</strong>，把第 44、45 章当作"暴风雨前的两次访问"回头补——这样你会在第一次读时更强烈地感到"危机来得有多突然"，那正是 Austen 要的效果。</p>
+  <p>★ <strong>一份"定位清单"（本报告引用最密集的十处，按章号排序）</strong>：</p>
+  <table>
+    <thead><tr><th>章</th><th>为什么值得定位</th></tr></thead>
+    <tbody>
+      <tr><td>第 1 章</td><td>开篇第一句（反讽的样板）与班纳特夫妇的第一场对话</td></tr>
+      <tr><td>第 3 章</td><td>达西的 <code>She is tolerable…</code> 与那段群体舆论（自由间接引语）</td></tr>
+      <tr><td>第 7 章</td><td><strong>限定继承权的正面交代</strong>（全书因果起点）</td></tr>
+      <tr><td>第 16 章</td><td>魏克翰的假自述（全书最大的假线索）</td></tr>
+      <tr><td>第 22–23 章</td><td>夏绿蒂接受柯林斯；<strong>卷末的 entail</strong></td></tr>
+      <tr><td>第 34–36 章</td><td>求婚被拒→达西的信→"直到此刻我才认识自己"（<strong>全书转轴</strong>）</td></tr>
+      <tr><td>第 42 章</td><td>关于班纳特先生婚姻的冷峻议论；<strong>卷末的 <code>To Pemberley…</code></strong></td></tr>
+      <tr><td>第 43 章</td><td>彭伯利之访（"看"如何改变判断）</td></tr>
+      <tr><td>第 52 章</td><td>嘉丁纳太太的信（<strong>品格的定义：做对的事而不图报</strong>）</td></tr>
+      <tr><td>第 58 章</td><td>第二次求婚与达西的自述（<code>I have been a selfish being…</code>）</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>核心主题与结构机制</span><span class="caret">▾</span></h2>
+  <p>★ 本节按文学型写法：每条讲<strong>这部作品在做什么、靠什么手段做的</strong>，而不是"作品想告诉我们什么道理"。</p>
+  <h3>主题一：限定继承权是引擎，不是布景</h3>
+  <p><strong>主张</strong>：全书的情节动力并不是"两个人脾气不合"，而是一条<strong>法律—经济约束</strong>：Longbourn 的产业在无男嗣时被限定继承给一个远亲，五个女儿和有产独子之间的婚姻，成了这个家庭唯一可行的资产重配方案。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：</p>
+  <ul>
+    <li><strong>第七章开篇点名</strong>：<code>Mr. Bennet's property consisted almost entirely in an estate of two thousand a year, which, unfortunately for his daughters, was entailed, in default of heirs male, on a distant relation; and their mother's fortune… Her father had been an attorney in Meryton, and had left her four thousand pounds.</code>（<span class="tag t-src">原书</span>，第 7 章）
+    </li>
+    <li><strong>第二十三章结尾（第一卷末）把它骂出来</strong>：班纳特太太说 <code>I never can be thankful, Mr. Bennet, for anything about the entail. How anyone could have the conscience to entail away an estate from one's own daughters I cannot understand</code>（<span class="tag t-src">原书</span>）。
+    </li>
+    <li><strong>第二十九章凯瑟琳夫人当面对伊丽莎白说</strong>：<code>Your father's estate is entailed on Mr. Collins, I think?</code>（<span class="tag t-src">原书</span>）——★ <strong>敌人都拿它当武器</strong>。
+    </li>
+    <li><strong>第三章里宾利家的钱来自商业</strong>：<code>their brother's fortune and their own had been acquired by trade</code>，宾利从父亲那里继承 <strong>近十万英镑</strong>（第 4 章 <span class="tag t-src">原书</span>）——<strong>这本书里几乎每一笔钱都能说出数目和来路。</strong>
+    </li>
+  </ul>
+  <p><strong>为什么重要</strong>：<strong>把 entail 读成"背景"的人，会把这本书读成一本关于品性的书；把它读成"引擎"的人，会读出它其实是一本关于分配的书。</strong> 夏绿蒂"嫁给 Collins"、丽迪雅"嫁给魏克翰"、伊丽莎白"嫁给达西"，三桩婚事分别对应三种<strong>经济处置方式</strong>（换取安全、换取体面、换取资产），而第四桩（简与宾利）才是唯一接近"纯感情"的一桩——<strong>四桩并置本身就是一个对照实验</strong>。</p>
+  <h3>主题二：反讽是叙述的默认语气（开篇第一句即是）</h3>
+  <p><strong>主张</strong>：这本书的叙述者<strong>几乎从不直白地说出自己要说什么</strong>。她用"庄严的大词 + 平凡的小事"这一种降格手法（bathos），从第一句话起就定下了全书语气。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：开篇第一句 <code>It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife.</code>（<span class="tag t-src">原书</span>，第 1 章）——<strong>"举世公认的真理"（a truth universally acknowledged）是庄严的，"有钱的单身汉需要一个老婆"是市井的</strong>；两者一撞，笑点与批判同时成立。<strong>而真正被说出的其实不是"单身汉想要妻子"，而是"有女儿的人家认定他必须有一个妻子"</strong>——第一句就把叙述的位置放在了<strong>邻居们的脑子里</strong>，而不是单身汉自己的心里（这一点决定了后面所有中译的成败，见 <code>## 4</code> 与第 4b 节第 4 条）。</p>
+  <ul>
+    <li>全书最典型的反讽人物是<strong>班纳特先生</strong>：他对妻子说 <code>You want to tell me, and I have no objection to hearing it.</code>（第 1 章 <span class="tag t-src">原书</span>），对太太抱怨 entail 的回答是 <code>I leave it to yourself to determine.</code>（第 23 章 <span class="tag t-src">原书</span>）——<strong>他从不正面反驳，只用语言的距离感表达立场。</strong>
+    </li>
+    <li><strong>柯林斯的自我感觉</strong>与<strong>叙述者的评语</strong>形成第二重反讽：第 15 章开篇 <code>Mr. Collins was not a sensible man</code>（<span class="tag t-src">原书</span>）——<strong>一句话把他的自我叙述全部作废。</strong>
+    </li>
+  </ul>
+  <p><strong>为什么重要</strong>：<strong>反讽不是"幽默的装饰"，它是这本书的认识论装置。</strong> 因为叙述者从不直接表态，读者必须<strong>自己推断她站在哪里</strong>——这个"推断"动作，恰好就是伊丽莎白在全书里反复要做的事（判断一个人的品格）。<strong>你读这本书时做的判断练习，就是主角在书里做的判断练习。</strong> <span class="tag t-inf">推断</span></p>
+  <h3>主题三：自由间接引语——视角贴着伊丽莎白，又滑进别人心里</h3>
+  <p><strong>主张</strong>：本书的叙事视角<strong>大部分时间贴在伊丽莎白身上</strong>，但并不总是严格限知：叙述者会<strong>把她的话、她的想法，与群体舆论、与他人内心之间的界限抹掉</strong>，让一段文字同时像是"她在想""旁白在说""所有人都在说"。这就是奥斯汀研究里最核心的技术课题 <strong>free indirect discourse（自由间接引语）</strong>。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>（三处可逐字定位）：</p>
+  <ul>
+    <li><strong>第 3 章</strong>：<code>His character was decided. He was the proudest, most disagreeable man in the world, and everybody hoped that he would never come there again.</code>（<span class="tag t-src">原书</span>）——<strong>"他的性格就此定了"这句是谁说的？</strong> 不是叙述者的判决，也不是达西的自述，而是<strong>麦里屯当晚整个客厅的意见</strong>被原样说出了。★ <strong>读者会不由自主地把它当成事实接受，然后和伊丽莎白一起背负这个偏见。</strong>
+    </li>
+    <li><strong>第 42 章开篇</strong>（第二卷将尽）：<code>Had Elizabeth's opinion been all drawn from her own family, she could not have formed a very pleasing picture of conjugal felicity…</code>（<span class="tag t-src">原书</span>）——<strong>一整段关于她父亲婚姻的判断，用的是她的角度，却用着叙述者的语体</strong>，正是自由间接引语的教科书样本。
+    </li>
+    <li><strong>第 36 章</strong>：<code>Till this moment, I never knew myself.</code>（<span class="tag t-src">原书</span>）——<strong>这一句是全书的道德拐点</strong>：此前读者共享的是伊丽莎白的偏见，此刻起共享的是她的自我审判。
+    </li>
+  </ul>
+  <p><strong>为什么重要</strong>：<strong>这项技术是《傲慢与偏见》不能改编成电影的根本原因。</strong> 银幕上你只能拍"她说的话"和"她做的事"，没法拍<strong>"一段既是她说、又是旁白说、又是所有人说"的话</strong>。第 5 节第 6 条会讲：<strong>1995 与 2005 两版改编各自成功，但都不得不放弃这一层。</strong> <span class="tag t-inf">推断</span></p>
+  <h3>主题四：书信插入——两封信撑起整部小说的两个转轴</h3>
+  <p><strong>主张</strong>：Austen 把全书的两次"认知地动"<strong>都放在书信里</strong>，而不是放在对话或动作里。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：</p>
+  <ul>
+    <li><strong>第一封（第 35 章）</strong>：达西在清晨交给伊丽莎白的信，开头 <code>Be not alarmed, madam, on receiving this letter…</code>（<span class="tag t-src">原书</span>），分两部分回应两条指控——<strong>拆散宾利与简</strong>、<strong>毁掉威克姆的前途</strong>。<strong>读完这封信，伊丽莎白对达西的评价与对威克姆的评价同时反转。</strong>
+    </li>
+    <li><strong>第二封（第 52 章）</strong>：嘉丁纳太太的信，<strong>揭出真正找到丽迪雅、并出钱促成婚事的，是达西</strong>——<span class="tag t-src">原书</span>（叙述以此完成"恩人归属"的重新分配）。
+    </li>
+    <li>书中还有大量<strong>次要书信</strong>（卡罗琳·宾利的第 24 章来信、柯林斯的第 13 章来信、简在第 46 章的两封、丽迪雅的口无遮拦），共同构成一套"以信件推动情节"的机器。
+    </li>
+  </ul>
+  <p><strong>为什么重要</strong>：<strong>书信在这本书里是"无法当面说出的真相"的专用通道。</strong> 达西当面说不利落（第 34 章求婚时的傲慢正是他拙于当面的证据），于是改写信；<strong>信与话的对比，就是人物的对比</strong>。★ 也因此，<strong>中译里"信"的语言质量，往往比"对话"更能看出一位译者的工夫</strong>（达西的信是全书最长、最复杂的语体）。</p>
+  <h3>主题五：对话塑造人物——每个人开口就能认出来</h3>
+  <p><strong>主张</strong>：这本书<strong>几乎所有人物塑造都靠对话完成</strong>，叙述者极少对人物做直接心理描写；<strong>不同人物的"说法方式"本身就是他们的性格。</strong> <span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：</p>
+  <ul>
+    <li><strong>班纳特太太</strong>：句句是"我的好老爷""你怎么这样叫人讨厌"式的情绪冲刺（第 1 章 <span class="tag t-src">原书</span>）。
+    </li>
+    <li><strong>柯林斯</strong>：长篇、自我贬抑与自我膨胀交替，句子里永远带着"我要请允许我"。
+    </li>
+    <li><strong>班纳特先生</strong>：短句、干笑、以退为进。
+    </li>
+    <li><strong>达西</strong>：前期文绉绉地傲慢，后期在同一句法里学会了自嘲。
+    </li>
+    <li><strong>丽迪雅</strong>：无标点式的喧闹（<code>Good Lord! Sir William, how can you tell such a story?</code>，第 23 章 <span class="tag t-src">原书</span>）。
+    </li>
+    <li><strong>凯瑟琳夫人</strong>：命令句、宣告句、不给人回答的余地。
+    </li>
+  </ul>
+  <p><strong>为什么重要</strong>：<strong>对话是复调，不是装饰。</strong> 一本书里能让五六个角色"闭眼分得出谁在说话"，是极高难度的技术；<strong>而这正是中文译本最容易失手的地方——把所有人都译成同一个文雅腔，就把复调压成了独白</strong>（见第 4 节）。</p>
+  <h3>主题六：三卷本格式与两次"反向悬念"</h3>
+  <p><strong>主张</strong>：三卷本的划分既是当时出版业（流通图书馆借阅制）的惯例，也被 Austen 用成了节奏装置：<strong>每一卷末尾都不是解决，而是加剧。</strong> <span class="tag t-src">原书</span> <span class="tag t-inf">推断</span></p>
+  <p><strong>依据</strong>：</p>
+  <ul>
+    <li><strong>第一卷末（第 23 章）</strong>：夏绿蒂嫁给柯林斯 + 班纳特太太骂出 entail + 丈夫的一句冷话——<strong>"将来把我赶出去的人"成了"我最好的朋友的丈夫"。</strong>
+    </li>
+    <li><strong>第二卷末（第 42 章）</strong>：<code>To Pemberley, therefore, they were to go.</code>（<span class="tag t-src">原书</span>）——<strong>明知不该去，还是要去</strong>。
+    </li>
+    <li><strong>第三卷末</strong>即全书末（第 61 章），这一次才是真正的收束。<span class="tag t-inf">推断</span>：<strong>前两次落点都选在"事情正在变坏的那一格"，是刻意为之。</strong>
+    </li>
+  </ul>
+  <p><strong>为什么重要</strong>：<strong>它解释了为什么这本书"读起来停不下来"</strong>：两次卷末都把一个未解决的问题轻轻放下，读者与人物同时悬在半空。<strong>也解释了为什么现代平装本删掉卷界标注后，读者会失去一层节奏感</strong>——<strong>买书时看清目录有没有标出"卷"（见第 1 节的编号陷阱）。</strong></p>
+  <p>★ <strong>一个常被误解的点</strong>：<strong>三卷本的"卷"与"书里的季节"并不同步</strong>。★ 第一卷结束于夏绿蒂的婚讯（第 23 章），第二卷开始于"他们已在伦敦过冬"（第 24 章），而第二卷结束于初夏的德比郡（第 42 章）——⇒ <strong>卷界的落点选在"人物处境的最低点／最不该去的那一步"，而不是选在季节的接缝上。</strong> <span class="tag t-inf">推断</span>：<strong>这正是"艺术设计"与"出版惯例"可以并存的地方——惯例决定"必须分成三卷"，落点决定"把断口切在哪里"。</strong> 因此在讨论"三卷本是不是艺术设计"这个问题时（第 4b 节第 5 条），<strong>要区分这两件事，否则会各说各话。</strong></p>
+  <h3>主题七（附）：四桩婚事＝一场对照实验</h3>
+  <p><strong>主张</strong>：全书把四桩婚事并置，构成一组关于"婚姻与金钱、感情、认识"的对照实验。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：</p>
+  <table>
+    <thead><tr><th>婚事</th><th>基础</th><th>结局</th></tr></thead>
+    <tbody>
+      <tr><td>夏绿蒂 × 柯林斯</td><td>安全（"婚姻幸福与否全凭运气"，第 6 章）</td><td>各得其所，礼貌而空洞</td></tr>
+      <tr><td>丽迪雅 × 魏克翰</td><td>冲动＋一场"被买下的"婚事</td><td>感情迅速转淡，靠姐姐接济</td></tr>
+      <tr><td>简 × 宾利</td><td>感情（几经拆散）</td><td>唯一接近"纯感情"的一桩</td></tr>
+      <tr><td>伊丽莎白 × 达西</td><td>感情＋自我认识＋资产</td><td>全书唯一"三项俱全"的一桩</td></tr>
+    </tbody>
+  </table>
+  <p><strong>为什么重要</strong>：<strong>如果这本书只是"爱情小说"，它不需要前三桩婚事。</strong> 前三桩的存在，是为了让第四桩<strong>显得是一个被论证过的结论，而不是一个被许诺的愿望</strong>。</p>
+  <h3>主题八：意象系统——"走"与"看"</h3>
+  <p><strong>主张</strong>：这本小说有两个反复出现的动作意象：<strong>"走"（go / walk / drive）与"看"（see / observe / perceive）</strong>。★ <strong>在别的书里它们只是动词；在这本书里，它们是主题的肉身。</strong> <span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：</p>
+  <ul>
+    <li><strong>"走"</strong>：伊丽莎白<strong>徒步三英里</strong>去内瑟菲尔德看生病的姐姐（第 8 章，被宾利姐妹讥为"泥浆里滚过"）——<strong>"走路"在这里是她的性格宣言</strong>；她<strong>独自在罗新斯的园子里散步</strong>，才撞上达西的求婚（第 33–34 章）；<strong>第二卷的最后一句话就是一个"去"的动词</strong>：<code>To Pemberley, therefore, they were to go.</code>（第 42 章）；<strong>第三卷她与达西的和解也发生在散步中</strong>（第 58 章，两人边走边谈）。⇒ <strong>"去哪里"在本书里＝"命运走到哪一步"。</strong>
+    </li>
+    <li><strong>"看"</strong>：达西的第一次出场是<strong>在舞会上看人</strong>（<code>She is tolerable…</code>，"看"的结果是一句怠慢）；彭伯利一章（第 43 章）的核心是<strong>伊丽莎白"看见"了另一个达西</strong>（管家、画像、房子都在替她重新作证）；第 43 章她看着达西的画像，<code>I have never seen him so handsome</code> 一类的观感变化，正是"看"的行为本身在改换对象。⇒ <strong>"看见"在本书里＝"做出判断"，而全书讲的正是"看错过一次"。</strong>
+    </li>
+    <li><strong>"读"</strong>是"看"的极端形式：第 36 章伊丽莎白<strong>反复读同一封信</strong>，同一串字在第一遍与第三遍里意义完全不同——<strong>"看"的可靠与否，就是这本书的题目。</strong> <span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+  <p><strong>为什么重要</strong>：<strong>意象系统是"这本书为什么不能只用梗概复述"的直接证据。</strong> 梗概会告诉你"她去看了彭伯利"，但不会告诉你<strong>这一段路她是走过去的、她的判断是在走路中间改的</strong>——<strong>而这本书的内容，有相当一部分恰恰在"她是怎么走过去的"里面。</strong></p>
+  <blockquote>
+    <p><strong>★ 作者本人的话（本节唯一一处）</strong>：Austen 在 <strong>1813 年 2 月 4 日</strong>致姐姐 Cassandra 的信里这样评自己刚出版的这本书——<strong>"</strong>这部作品<strong>未免太轻、太亮、太闪了（rather too light &amp; bright and sparkling）；它缺少阴影；它需要在这里那里被拉开、加上一章长的东西——如果找不到'见识'，那就来一段煞有介事的废话——写点与故事无关的东西：一篇论写作的文章、一篇对司各特的评论，或者波拿巴的历史</strong>——总之要有点什么来形成对照，好让读者带着更大的快意回到那种俏皮与警句式的总体风格上去。"<strong><span class="tag t-talk">作者谈话</span>（据 Le Faye 编《Jane Austen's Letters》第 4 版，2011；★ </strong>这不是访谈——Austen 逝于 1817 年，任何"访谈"都是伪托。这是私人书信。<strong> 转引自公开引文页，未核 Le Faye 2011 版原书，见附录 D5。）★ </strong>她谈自己创作的书信极少<strong>：存世 164 封里以家常为主，Cassandra 又焚毁了相当一部分；上面这一封之所以被反复引用，正因为它几乎是唯一一处她</strong>正面评论本书质地<strong>的地方——</strong>而她的自评是"太亮、缺阴影"，与后世给它贴的"经典爱情小说"标签并不一样。**</p>
+  </blockquote>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <ol>
+    <li><strong>先读第 1–6 章，当作"规则说明书"读。</strong> 婚姻市场的规则、每个人物的说话方式、entail 的阴影，前六章已经全部就位。<strong>读慢一点，它值得。</strong>
+    </li>
+    <li><strong>第 35 章（达西的信）与第 36 章（伊丽莎白读信）必须连读，不要拆开。</strong> 这是全书的心脏；跳过它，后面的所有变化都会显得突然。
+    </li>
+    <li><strong>第 43 章（彭伯利）之前，停下来回想一次：此刻你对达西的判断是什么？</strong> 把这个判断写下来。等你读完第 58 章再回头看——<strong>这就是这本书唯一的"游戏规则"。</strong>
+    </li>
+    <li><strong>配角不要跳读。</strong> 柯林斯、凯瑟琳夫人、宾利姐妹、丽迪雅，他们不是"笑料"；<strong>他们是这台婚姻市场的不同计价方式。</strong>
+    </li>
+    <li><strong>拿一支笔，记下每一笔金额</strong>（两千、四千、一万、十万、四五千一年）。<strong>这本书里的钱都是真的</strong>，把钱数看懂，情节就通了一半。
+    </li>
+    <li>★ <strong>配一份"译本简报"再买书</strong>：翻开任意一段，看两个人物对话时"像不像两个人"。第 4 节就是这份简报。
+    </li>
+  </ol>
+  <h3>如果你是「已读」</h3>
+  <ol>
+    <li><strong>回头核对一件事：第 34 章求婚为什么会失败？</strong> 请把达西的原话读一遍（<code>In vain have I struggled…</code>，<span class="tag t-src">原书</span>）——<strong>他不是被"偏见"打败的，他是被自己那套"我降尊纡贵来提亲"的措辞打败的</strong>。★ <strong>这一步决定了你把这本书读成"女主的成长"，还是"两个人的成长"。</strong>
+    </li>
+    <li><strong>重读第 42 章开篇那段关于班纳特先生婚姻的议论。</strong> 它出现在第二卷将尽处，是全书唯一一次<strong>用近乎悲剧的语调谈"一场错误的婚姻"</strong>——它把喜剧的底色翻给了你看。
+    </li>
+    <li><strong>对照四桩婚事的"钱"</strong>：柯林斯的收入与产业、魏克翰的债务、宾利的十万、达西的一万一年（第 58 章他自述的家产）。<strong>把它们并排看，你会明白这本书对"婚姻"下的定义是什么。</strong>
+    </li>
+    <li><strong>做一次"译本对读"</strong>：找开篇第一句与达西信件的第一段，在至少两个中译本里对照。<strong>你会立刻明白"翻译的政治"不是术语问题</strong>（第 4 节）。
+    </li>
+    <li><strong>把两版改编当作"两种读法"看</strong>（1995 BBC 与 2005 电影），然后回答第 5 节第 6 条提出的那个问题：<strong>改编补上了什么，又拿走了什么？</strong>
+    </li>
+  </ol>
+  <h3>如果你是「要拿它做教学／写作范本」</h3>
+  <ol>
+    <li><strong>教"反讽"：用第 1 章第一段与第 3 章那段群体舆论</strong>。让学生先说出"这句话是谁在说"，<strong>答案的模糊本身就是教学点</strong>（自由间接引语）。
+    </li>
+    <li><strong>教"经济与情节的关系"：用第 7 章那段旁白，配合第 19、22、23 章</strong>。让学生把"谁有多少钱"列一张表，<strong>再问：如果 entail 不存在，这个故事还剩下多少？</strong>
+    </li>
+    <li><strong>教"视角"：用第 36 章与第 52 章</strong>（一封信改变认知的两次），比较"第一遍读"与"第三遍读"的差别。
+    </li>
+    <li><strong>教"翻译"：用开篇第一句的七种译法</strong>（<code>## 4</code> 表）。<strong>这是最省事的翻译课素材</strong>：七种译文的差别不在词汇量，而在<strong>对叙述视角与语级的判断</strong>。
+    </li>
+    <li><strong>写作范本的角度</strong>：★ <strong>本书最值得学的不是"如何写对话"，而是"如何用别人的话制造偏见"</strong>——第 3 章那段群体舆论、第 16 章魏克翰的自述、第 24 章卡罗琳的来信，<strong>三次都是"由别人告诉读者一件不可靠的事"，读者却全都信了</strong>。<strong>这是叙事操控的教科书级示范。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本报告必需的</strong>：公版名著的中译本状况比一般书复杂得多，<strong>而且隐藏着一个"开篇第一句就能看出两条路线"的分岔</strong>。</p>
+  <p><strong>先说最要紧的三条</strong>：</p>
+  <blockquote>
+    <p><strong>⚠ ① 认译者，不认书名。</strong> 中文世界里《傲慢与偏见》有十几个译本，<strong>书名全一样</strong>。决定质量的只有译者与底本。</p>
+    <p><strong>⚠ ② 老译名与今译名不同。</strong> 王科一（1955）用"吉英／彬格莱／丽迪雅／班纳特"，孙致礼（1990）起多用"简／宾利／莉迪亚／贝内特"等今日通行形式。<strong>混读两个译本会认错人。</strong></p>
+    <p><strong>⚠ ③ 警惕不署译者名的廉价公版书。</strong> 公版书出版门槛极低，市面上确有一批"来路不明、译文不清甚至拼凑翻译"的版本。<strong>封面只印作者不印译者的，建议直接放下。</strong></p>
+  </blockquote>
+  <p><strong>★ 开篇第一句的七种译法（这是最快的试金石）</strong>：</p>
+  <p>原文：<code>It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife.</code></p>
+  <table>
+    <thead><tr><th>译者（版本）</th><th>开篇第一句译文</th><th>对 <code>in want of</code> 的处理</th></tr></thead>
+    <tbody>
+      <tr><td>杨缤（1935 · 商务印书馆，今见最早中译本）</td><td>但凡家产丰厚的单身男子，必然渴求娶妻成家，这是普天之下公认的常理……</td><td>"渴求"（主观愿望）</td></tr>
+      <tr><td>王科一（1955 · 上海文艺／今上海译文）</td><td>凡是有钱的单身汉，总想娶位太太，这已经成了一条举世公认的真理。</td><td>"总想"（主观愿望；"总"字带出普遍化）</td></tr>
+      <tr><td>孙致礼（1990 · 译林）</td><td>有钱的单身汉总要娶位太太，这是一条举世公认的真理。</td><td>"总要"（客观需要，最贴近 <code>in want of</code> 的名词义）</td></tr>
+      <tr><td>张玲、张扬（1993 · 人民文学）</td><td>饶有家资的单身男子必定想要娶妻室，这是举世公认的真情实理。</td><td>"想要"（主观愿望）</td></tr>
+      <tr><td>罗良功（2007 · 中央编译）</td><td>单身男人一旦有了钱财，必定想要寻妻觅偶，这是一个举世公认的真理。</td><td>"想要寻妻觅偶"（主观愿望）</td></tr>
+      <tr><td>丁凯特（2014 · 时代文艺）</td><td>拥有丰厚家产的单身男士，必然渴望迎娶一位妻子，这是全世界都公认的道理。</td><td>"渴望"（主观愿望）</td></tr>
+      <tr><td>李继宏（2016 · 天津人民）</td><td>一个家财万贯的单身汉，必定想要娶一位妻子，这是一条举世公认的真理。</td><td>"想要"（主观愿望）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>这张表最值钱的地方在最后一列</strong>：<code>in want of</code> 里的 want 是<strong>名词</strong>，词义偏向"<strong>客观上的缺少／需要</strong>"（牛津、朗文等词典的名词条目都收此义），而<strong>不是"内心的欲望"</strong>。原文的讽刺恰恰建立在这上面——<strong>不是单身汉"想要"妻子，而是旁人认定他"需要"一位太太</strong>（<code>must be in want of</code> 更近于"想必缺一位太太"）。<strong>七种译法里，只有孙致礼用"总要"保住了这层客观意味；其余都译成了"想／渴求／渴望"，讽刺的方向当场掉了个头。</strong> ★ 微博上一条被反复引用的观察说得更狠：<strong>越新的译本，越容易把叙述视角从"有女儿的人家凝视单身汉"挪到"单身汉自述"</strong>——<strong>这一挪，全书的第一个笑话就没了。</strong></p>
+  <p><strong>主流通行译本对比</strong>：</p>
+  <table>
+    <thead><tr><th></th><th>王科一（★ 影响最大）</th><th>孙致礼（★ 常荐给初读）</th><th>张玲、张扬</th><th>李继宏（★ 争议最大）</th></tr></thead>
+    <tbody>
+      <tr><td>出版社</td><td>上海文艺 1955 → 新文艺 1956 → 上海译文 1980 起</td><td>译林 1990</td><td>人民文学 1993</td><td>天津人民 2016</td></tr>
+      <tr><td>底本</td><td>英文原著</td><td>英文原著</td><td>英文原著</td><td>英文原著＋300 余条注释</td></tr>
+      <tr><td>风格</td><td><strong>归化、口语化、戏感强</strong>；人物一开口能分出是谁</td><td><strong>忠实、干净、生活化</strong>，成语多</td><td><strong>书面腔最浓</strong>（"饶有家资""真情实理"）</td><td><strong>注释体</strong>，考据 18 世纪衣食住行</td></tr>
+      <tr><td>争议点</td><td>把 <code>ladies</code> 译作"娘儿们"，被批<strong>语级失当</strong>（见第 5 节第 2 条）</td><td>四字成语过密，被部分读者嫌"太雅"</td><td>开篇句被批"诙谐意味全盘失落"</td><td>"迄今为止最好译本"的宣传语引发豆瓣"一星运动"；注释被批"民科式"</td></tr>
+      <tr><td>适合</td><td>想品"奥斯汀味儿"、能接受年代口语</td><td>第一次读、只想顺畅读完</td><td>想对照直译路线</td><td>想带注释读背景</td></tr>
+    </tbody>
+  </table>
+  <p><strong>其他值得知道的译本</strong>：</p>
+  <ul>
+    <li><strong>罗良功</strong>（中央编译，2007；据英国企鹅英语文库 1972 年版译出）——华中师范大学教授，近年口碑不错，无翻译腔。
+    </li>
+    <li><strong>王晋华</strong>（作家出版社）、<strong>杨浩田</strong>（读客／江苏凤凰文艺，主打顺畅好读）、<strong>张思婷</strong>（繁体为主，被部分读者评为"信达细"）、<strong>丁凯特</strong>（时代文艺 2014）、<strong>陈历明、刘根奇</strong>——均有读者群，流通度不如前几种。★ <strong>杨浩田、王晋华两家的开篇句我未能从两个独立来源核到，见附录 D3。</strong>
+    </li>
+  </ul>
+  <p><strong>★ 该选哪个——三句话结论</strong>：</p>
+  <ol>
+    <li><strong>只想买一本、第一次读 → 孙致礼（译林）</strong>。文字干净、普及度高、开篇句的语级处理最稳，<strong>是多数人不会错的选择</strong>；对全文感兴趣、想做题的英语系学生也常被推荐此本。
+    </li>
+    <li><strong>想品"奥斯汀味儿"、看得惯年代口语 → 王科一（上海译文）</strong>。译笔传神，人物说话有戏；<strong>但要对"娘儿们""我的好老爷"这类译法有心理准备。</strong>
+    </li>
+    <li><strong>想读进去并且顺便读背景 → 李继宏（天津人民）</strong>，注释信息量大；<strong>但它的注释本身是争议对象，请带着怀疑读注。</strong>
+    </li>
+  </ol>
+  <p><strong>★ 两个必须提醒的坑</strong>：</p>
+  <ol>
+    <li><strong>不要把《傲慢与偏见》和奥斯汀的其他小说搞混</strong>：《理智与情感》《曼斯菲尔德庄园》《爱玛》《诺桑觉寺》《劝导》都是不同的书。<strong>购物站搜"奥斯汀"时极易误买。</strong>
+    </li>
+    <li><strong>购书时看目录有没有标"卷"。</strong> 原书是<strong>三卷</strong>结构（1–23／24–42／43–61），标了卷的版本更接近原貌；<strong>而且要看章号是 1–61 连续编号，还是三卷各自从 I 起</strong>——这决定你跨版本引用章号时对不对得上（见第 1 节）。
+    </li>
+  </ol>
+  <p><strong>★ 选购速查（按需求对号入座）</strong>：</p>
+  <table>
+    <thead><tr><th>你的需求</th><th>选购建议</th><th>理由</th></tr></thead>
+    <tbody>
+      <tr><td>第一次读，想顺畅读完</td><td>孙致礼（译林）</td><td>文字干净、开篇句语级最稳、普及度最高</td></tr>
+      <tr><td>想品"奥斯汀味儿"、看得惯老译名</td><td>王科一（上海译文）</td><td>译笔传神、人物说话有戏感</td></tr>
+      <tr><td>想带注释读 18 世纪背景</td><td>李继宏（天津人民）</td><td>300 余条注释；<strong>但注释本身有争议</strong></td></tr>
+      <tr><td>想看"直译路线"长什么样</td><td>张玲、张扬（人民文学）</td><td>书面腔最浓，适合对照</td></tr>
+      <tr><td>想找近年较新、无翻译腔的译本</td><td>罗良功（中央编译）</td><td>据企鹅英语文库 1972 年版译出</td></tr>
+      <tr><td>只想看故事、不想被译本争议打扰</td><td>任何署名译者的大社版本</td><td>★ <strong>但请避开不署译者名的版本</strong></td></tr>
+    </tbody>
+  </table>
+  <p><strong>★ 三条自查方法（本书最实用的一段）</strong>：</p>
+  <ol>
+    <li><strong>开篇句测试</strong>：看第一句有没有保住 <code>in want of</code> 的"客观需要"意味（<strong>"总要" &gt; "总想／想要／渴望"</strong>）。
+    </li>
+    <li><strong>对话测试</strong>：随便翻一页，看班纳特先生、班纳特太太、柯林斯三个人<strong>说话像不像三个人</strong>。<strong>像同一个人＝复调被压平了。</strong>
+    </li>
+    <li><strong>信体测试</strong>：翻到第 35 章达西的信。★ <strong>这封信是全书最长的正式语体</strong>，也是<strong>最难译的一段</strong>：要既冷、又有礼、又傲慢又克制。<strong>如果译出来像一封套话公文，那这一版对全书最关键的那封信是失手的。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <p>★ <strong>下表每条都回原文核过。</strong> 定位一律用<strong>卷／章</strong>（公版作品不用页码）。</p>
+  <table>
+    <thead><tr><th>#</th><th>流行说法</th><th>原文实际怎么说</th><th>定位</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>「这是一部爱情小说」</td><td>全书四桩婚事，<strong>只有一桩同时具备感情与经济条件</strong>；另外三桩分别是"换安全"（夏绿蒂）、"换体面"（丽迪雅）、"几经拆散的感情"（简）。<strong>推动情节的第一动力是限定继承权，不是心动</strong>——第七章开篇直接用旁白报出 entail 与两笔钱数。</td><td>第 7、6、22、61 章（全卷）</td></tr>
+      <tr><td>2</td><td>「达西是主角」</td><td><strong>叙事聚焦在伊丽莎白身上</strong>：读者从第 3 章起借她的耳朵听到达西的"她还过得去"，借她的眼睛看威克翰的谎言，并在第 36 章与她一起"直到此刻才认识自己"。<strong>达西在前 33 章几乎没有内心戏，他的内心是第 35 章那封信一次性交给读者的。</strong> 论篇幅与视角权重，主角是伊丽莎白。</td><td>第 3、34–36、58 章</td></tr>
+      <tr><td>3</td><td>「班纳特太太只是笑料」</td><td>她的焦虑有硬约束支撑：<strong>她带来的嫁资只有四千英镑</strong>，产业又只能由远亲继承，五个女儿若嫁不出去就是贫困。<strong>她在第 1 章的第一句话就把全书的经济逻辑说破</strong>；她在第 23 章骂出的正是全书的法律困局。<strong>她是"制度性焦虑"的化身，不是单纯的笑料。</strong></td><td>第 1、7、23 章</td></tr>
+      <tr><td>4</td><td>「开篇第一句的反讽在任何译本里都保得住」</td><td>不成立。<strong><code>in want of</code> 的 want 是名词</strong>，义近"客观缺少／需要"；<strong>七种中译里只有孙致礼用"总要"保住这层，其余（"总想""想要""渴求""渴望"）都把它译成了主观愿望。</strong> 反讽的方向（旁人认定他"需要" vs 他自己"想要"）当场改变。</td><td>第 1 章首句（见 <code>## 4</code> 表）</td></tr>
+      <tr><td>5</td><td>「三卷本是艺术设计」</td><td><strong>一半对。</strong> 三卷本是 Austen 时代（流通图书馆借阅制）的<strong>出版惯例</strong>，Sense and Sensibility 同样三卷；<strong>但本书把两处卷末都用在"加剧处境"上</strong>——第 23 章末（夏绿蒂订婚＋entail 被骂出）与第 42 章末（<code>To Pemberley, therefore, they were to go.</code>）。<strong>惯例是给定的，落点是选的。</strong></td><td>第 23、42 章（卷末）</td></tr>
+      <tr><td>6</td><td>「匿名出版是因为她低调」</td><td><strong>不全对。</strong> 当时女性为钱写小说并不体面，匿名有保护隐私的一面；<strong>但本书的署名是 "By the Author of <em>Sense and Sensibility</em>"——这是拿上一部畅销书的品牌做生意，是一种市场策略，不是纯粹的隐退。</strong> 书名本身也未必是主题宣言：本书改名可能就为避免与 Margaret Holford 1800 年的同名小说撞车；"Pride and Prejudice"这个搭配还出现在 Fanny Burney《塞西莉亚》的末章标题里。</td><td>1813 年初版扉页；第 4 节；第 5 节第 1、3 条</td></tr>
+      <tr><td>7</td><td>「限定继承权只是背景，离现代读者很远」</td><td><strong>它是全书的因果起点。</strong> 柯林斯之所以敢向伊丽莎白求婚，正因为他将来要继承 Longbourn（第 13、19 章）；夏绿蒂之所以接受他，正因为她没有别的出路（第 22 章）；<strong>第 23 章班纳特太太骂的就是这条法律</strong>。把它去掉，情节链立刻断裂。</td><td>第 7、13、19、22、23 章</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>共同规律</strong>：上面七条里，<strong>只有第 5 条是"半对"</strong>，其余六条都把一个<strong>多因的现象</strong>压缩成了<strong>单因的标签</strong>。<strong>这本书最大的阅读陷阱，就是"它太顺口了"——每一句流行说法听起来都像没说错。</strong></p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本报告最该细读的一节。</strong> 本书被赞美了两百多年，<strong>而赞美是最廉价的信息</strong>。下面按 BOOK_SPEC 规定的六条写，<strong>每条给出姓名＋出处＋年份。</strong></p>
+  <h3>5.1 文本与版本：PG #1342／#42671 与 R. W. Chapman 1923 牛津版是什么关系</h3>
+  <p><strong>关键事实与出处</strong>：</p>
+  <ul>
+    <li><strong>R. W. Chapman</strong>（Robert William Chapman，1881–1960），<em>The Novels of Jane Austen</em>，Oxford: At the Clarendon Press，<strong>1923</strong>，<strong>五卷本</strong>（第二卷即 <em>Pride and Prejudice</em>）；<strong>再版 1926、修订三版 1932</strong>。<strong>这是奥斯汀小说的第一部学术校勘版</strong>，"其文字基于对早期各版的校勘"（据牛津学术版页面与 dealers 书目对 1923 年初版的著录；大纸本限印 1000 套，950 套出售）。此后近一个世纪的通行本大多以 <strong>Chapman 文本</strong>为底本（据 Jane Austen Centre 概览与 OUP 档案页）。
+    </li>
+    <li><strong>★ 一条不常被提到的隐情</strong>：牛津大学出版社档案馆的一篇专文（据其档案与 <strong>Janine Barchas</strong> 发表于 <em>Review of English Studies</em> <strong>2017</strong> 的论文）指出，1923 年 Chapman 版中 <em>Pride and Prejudice</em> 与 <em>Northanger Abbey</em> 的文本，<strong>大量基于其妻 Katharine Metcalfe（Katherine Chapman）1912／1918 年已完成的校勘本</strong>，"而她的贡献在署名中被抹去"。Barchas 认为，<strong>把奥斯汀"从客厅带进文本考据的课堂"的是 Metcalfe 1912 年的那本《傲慢与偏见》</strong>。
+    </li>
+    <li><strong>PG 两个版本的定位</strong>：<strong>#1342</strong>（1998 首发）据 Internet Archive 图像制作，<strong>底本为 1894 年 George Allen 插图本</strong>（正文由 Chiswick Press 承印，卷前有 Hugh Thomson 系统的插图）；<strong>#42671</strong>（2013 首发）在 PG 编目里明确标 <strong>Editor: R. W. Chapman</strong>，<strong>保留 1813 年的三卷格式与分卷章号</strong>（每卷各自标 VOL. I／II／III 与 I–XXIII／I–XIX／I–XIX）。
+    </li>
+    <li><strong>一个实用后果</strong>：<strong>同一个"第 35 章"，在初版与 Chapman 版里是"第二卷 第 XII 章"。</strong> 现代平装本多用连续 1–61 编号。
+    </li>
+    <li><strong>局限</strong>：<strong>初版（1813）与后世校订本之间存在异文</strong>（标点、拼写、个别词句），我<strong>没有能力做逐字校勘</strong>，本报告引文一律取 <strong>PG #1342 的电子文本</strong>，并要求读者以手中版本的版权页为准。
+    </li>
+  </ul>
+  <p><strong>★ 一个实用的结论</strong>：★ <strong>对普通读者，"读哪一个英文版本"这个问题基本不存在</strong>（公版全文差别很小）；<strong>真正会出问题的是"跨版本引用章号"</strong>——<strong>原书每卷重新编号，因此"第二卷第 12 章"＝现代编号第 35 章（达西那封信所在）。</strong> ⇒ <strong>凡引用，请写明用的是哪一套编号</strong>（本报告用连续 1–61）。★ 另外：如果你在读的是<strong>有注释的现代版本（如 Norton、Penguin、Oxford World's Classics）</strong>，<strong>注意它们的注释各自基于不同的校勘传统</strong>——<strong>这不是"哪本更权威"的问题，而是"哪本更适合你"的问题。</strong></p>
+  <p><strong>★ 关于 PG 两个版本，一句给普通读者的话</strong>：★ <strong>你不需要同时读 #1342 与 #42671</strong>。<strong>#1342 好用</strong>（分章清晰、文本便于检索）；<strong>#42671 的价值在于"三卷结构与分卷章号原样保留"</strong>，是<strong>核对卷界与编号体系</strong>用的。⇒ <strong>本报告的做法是：引文取 #1342，卷界与编号取 #42671，两者交叉验证。</strong> 若你只想读一本英文原文，<strong>取 #1342 即可。</strong></p>
+  <h3>5.2 中译之争：王科一的"娘儿们"，与孙致礼、张玲·张扬的三条路线</h3>
+  <p><strong>关键事实与出处</strong>：</p>
+  <ul>
+    <li><strong>王科一</strong>（1925–1968，复旦英文系出身），译《傲慢与偏见》<strong>1955 年 2 月上海文艺联合出版社首版</strong>，1956 年新文艺出版社再版；<strong>1980 年上海译文出版社再版，引发一波"奥斯汀热"</strong>（新华社与《纽约时报》均有报道；据百度百科词条与今日头条 2025 年纪念奥斯汀诞辰 250 周年长文）。他采用<strong>归化（domesticating）策略</strong>。
+    </li>
+    <li><strong>"娘儿们"之争</strong>：知乎长期话题"<strong>如何看待王科一译版把女士翻译成'娘儿们'</strong>"（题号 388979646），<strong>一条 253 赞的高赞回答</strong>主张：翻译作为再创作，<strong>最重要的是准确传递原文的语级</strong>；<strong>奥斯汀原文是端正典雅的书面语，过度本土化、口语化就变了味道</strong>。同一条回答把另一个译本把 <code>a single man in possession of a good fortune</code> 译成"<strong>钻石王老五</strong>"列为反面教材（据什么值得买 2026-08 综述转引）。
+    </li>
+    <li><strong>★ 但这条批评本身也被反驳</strong>：腾讯新闻 <strong>2021-10-02</strong>《娘儿们与娘们儿》一文逐例核对了王译本，指出<strong>他并没有把 <code>ladies</code> 一律译作"娘儿们"</strong>——只在该词指"<strong>娘俩／女眷</strong>"时才用，<strong>与《西游记》《红楼梦》里"你娘儿们""咱们娘儿们"的古典用法一致</strong>（引《现代汉语规范词典》第 3 版释义）；例句如"果然不出他所料，娘儿们一听此话，一个个都大为惊异"，对象是<strong>班纳特太太与她的女儿们</strong>。⇒ <strong>"蔑视女性"的指控，与"逐例可查的用法分布"之间，是有距离的。</strong>
+    </li>
+    <li><strong>★ 一条需要读者自己拿主意的话</strong>：这是一场"<strong>忠实于语级</strong>"与"<strong>忠实于戏感</strong>"之间的路线之争，<strong>没有学理上的终审</strong>。另有读者指出王译本在个别处存在误译（如把 <code>You are very ill.</code> 译作"你看起来好像有病呢"），见腾讯频道 2026-05 读者帖 <span class="tag t-rep">转述</span>——<strong>这类个案批评与整体风格之争是两回事，不要混为一谈。</strong>
+    </li>
+    <li><strong>对照的两条路线</strong>：<strong>孙致礼</strong>（1990，译林）走<strong>忠实路线</strong>，文字干净、成语多；<strong>张玲、张扬</strong>（1993，人民文学）走<strong>直译路线</strong>，"饶有家资""真情实理"书面腔最浓，开篇句被批评"诙谐意味全盘失落"（据学术论文《从功能对等理论角度比较研究〈傲慢与偏见〉的三个汉译本》与《傲慢与偏见中的反讽》方向的比较研究）。
+    </li>
+    <li><strong>李继宏</strong>（2016，天津人民）：宣称"<strong>在我之前，是没有所谓的优秀译本的</strong>""<strong>迄今为止最好译本</strong>"，<strong>引发豆瓣"一星运动"</strong>；其 300 余条注释<strong>被批"民科式翻译"</strong>（界面新闻专访；《为什么某些新编〈傲慢与偏见〉太扯了》一文）。<strong>这是一场关于"经典重译是时代需要还是商业炒作"的公开争论，不是单纯的译本优劣之争。</strong>
+    </li>
+    <li><strong>局限</strong>：<strong>我不持有任何中译本实体书</strong>；本节所有译文均<strong>转引自公开的学术论文、出版社商品页或书评</strong>，<strong>未核对中文实体书</strong>（见来源清单与附录 D）。
+    </li>
+  </ul>
+  <p><strong>★ 这一节最该记住的一句话</strong>：★ <strong>"王科一好还是孙致礼好"这个问题，问错了。</strong> 真正的分歧是<strong>两个不可兼得的目标</strong>——<strong>"让人物像中国人在说话"（王科一）与"让读者听见奥斯汀的分寸"（孙致礼）</strong>。⇒ <span class="tag t-inf">推断</span>：<strong>任何译本都必须在"读得顺"与"语级对"之间做减法；</strong> 知道这一点之后，你就能把"选译本"从"选最好的"变成<strong>"选你要哪一种损失"</strong>。★ 而"娘儿们"之争的真正价值，也正在这里：<strong>它把"风格偏好"逼成了"可讨论的语级问题"</strong>——<strong>这比"我更喜欢哪一版"要有用得多。</strong></p>
+  <h3>5.3 「只是言情小说」的定位之争</h3>
+  <p><strong>批评者与出处</strong>：</p>
+  <ul>
+    <li><strong>Charlotte Brontë</strong>（夏洛蒂·勃朗特），1848 年致 <strong>G. H. Lewes</strong> 的信（Lewes 曾在 <em>Fraser's Magazine</em> 1847 年撰文盛赞奥斯汀，并称宁写《傲慢与偏见》也不写司各特的历史小说）：她读后大失所望，称其为"<strong>一座精心围起、高度开垦的花园，有齐整的边界与娇嫩的花；但没有开阔的原野，没有新鲜空气，没有青山，没有欢唱的小溪</strong>"（据 Jane Austen Centre 概览转引）。★ <strong>这是"只是言情／格局太小"这一批评的祖师级文本，出自另一位大作家之手。</strong>
+    </li>
+    <li><strong>现代的反批评</strong>：简·奥斯汀诞辰 250 周年（2025）中文长文（今日头条 2025-05）指出："<strong>人们越来越认识到奥斯汀的'小'题材涉及女性处境、婚姻和家庭的经济基础、不同人群间的政治、经济、文化权力的分配和运行</strong>"，并引英国哲学家 <strong>John Bayley</strong>（约翰·贝利）<strong>1967 年</strong>在英国奥斯汀学会年会上的发言：当代人的历史与奥斯汀笔下的世界"<strong>密切地、甚至令人惊恐地息息相关</strong>"。
+    </li>
+    <li><strong>★ 我的判断（<span class="tag t-inf">推断</span>）</strong>：<strong>"只是言情"这条批评之所以站不住，理由不在"文学价值高低"，而在"文本事实"</strong>——一本言情小说的第一段旁白不会去交代限定继承权与两笔嫁资的具体数目（第 7 章），也不会让一套法律安排成为全书的因果起点。<strong>把它读成言情，不是读浅了，是读漏了。</strong> 但也要承认：<strong>勃朗特批评的是"视野的窄"，这不是事实层面的错误判断，而是趣味与价值取向的分歧</strong>——<strong>这一步没有终审。</strong>
+    </li>
+  </ul>
+  <p><strong>★ 这场争论今天还在以别的形式继续</strong>：★ <strong>它换成了"网文／言情读法"与"文学读法"的对立</strong>——在中文互联网上，本书常被放进"言情套路祖师爷"的框架里（"模板"说），<strong>而这条线索本身是真实的</strong>：简与宾利的"误会拆散"、达西的"高冷人设反转"、"贫穷女主嫁入豪门"，<strong>确实是后来大量言情作品的构件</strong>。⇒ <span class="tag t-inf">推断</span>：<strong>"它是言情套路的源头"与"它不止是言情"，这两句话可以同时为真</strong>——<strong>区别在于：套路是它用过的材料，而不是它做过的全部事情。</strong> 把两者对立起来，无论站哪一边，都会失掉一半。</p>
+  <h3>5.4 经济与法律读法：限定继承权、女性财产权与婚姻市场</h3>
+  <p><strong>关键事实与出处</strong>：</p>
+  <ul>
+    <li>原文自陈：第七章（<code>entailed, in default of heirs male</code>）、第二十三章（班纳特太太骂 entail）、第二十九章（凯瑟琳夫人当面点出）——<strong>三处均 <span class="tag t-src">原书</span> 可定位。</strong>
+    </li>
+    <li><strong>制度实质</strong>：<strong>entail（限嗣继承）</strong>把地产锁定在<strong>男系</strong>之内，<strong>女儿没有继承资格</strong>；因此有产家庭的女儿唯一可行的"资产变现"，就是婚姻。<strong>Austen 一生未婚，其本人与姐姐 Cassandra 也长期受制于这一制度</strong>（据 JASNA 与奥斯汀研究通说，参 <strong>Edward Copeland</strong>，<em>Women Writing about Money: Women's Fiction in England, 1790–1820</em>，Cambridge University Press，<strong>1995</strong>）。<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>关于"女性财产权"的更大背景</strong>：当时英国的普通法（<strong>coverture</strong>）使已婚女性的财产原则上归丈夫支配——<strong>这一原则的经典表述见 William Blackstone</strong>，<em>Commentaries on the Laws of England</em>，<strong>1765–1769</strong>（即有名的"<strong>已婚妇女的法律人格并入丈夫</strong>"论）——<strong>这是理解夏绿蒂与丽迪雅两桩婚事的钥匙</strong>（据法律史通说 <span class="tag t-rep">转述</span>，非本书原文）。
+    </li>
+    <li><strong>局限</strong>：<strong>"婚姻市场"的具体价格（嫁资多少算体面、年入多少算富有）在书中是通过人物之口零散给出的</strong>（两千、四千、一万、十万、四五千一年），<strong>要把它换算成现代购买力，是本报告不做、也无法可靠做到的事。</strong> ⇒ <strong>以书中的相对关系为准，不要做绝对换算。</strong>
+    </li>
+  </ul>
+  <p><strong>★ 一条比"钱数"更该注意的事</strong>：★ <strong>这本书里所有关于钱的对话，都是当着人的面说的</strong>——班纳特太太当众说宾利"每年四五千镑"，柯林斯当面向伊丽莎白陈述她"嫁资太小"，凯瑟琳夫人当面质问她的出身。⇒ <span class="tag t-inf">推断</span>：<strong>"钱"在这本书里不只是经济事实，它是一种公开的社交语言</strong>；<strong>谁在什么场合说出什么数字，本身就是对这个人社会位置的判定</strong>。<strong>因此，读这本书时留意"这句话是谁在什么场合说的"，比记住具体金额更重要。</strong></p>
+  <h3>5.5 后殖民批评：Edward Said《文化与帝国主义》（1993）与奥斯汀的"沉默"</h3>
+  <p><strong>批评者与出处</strong>：</p>
+  <ul>
+    <li><strong>Edward W. Said</strong>，<em>Culture and Imperialism</em>，New York: Knopf，<strong>1993</strong>，其中 <strong>〈Jane Austen and Empire〉</strong> 一章。Said 的核心论证：<strong>《曼斯菲尔德庄园》里斯托马斯爵士在安提瓜的</strong>糖料种植园<strong>是伯特伦家财富的结构性来源，而小说中几乎不写它</strong>——Said 由此提出该小说与帝国有着 "affiliations"（联系），并认为这类"本土文化"<strong>为</strong>英国后来的帝国扩张<strong>提供了不被质疑的日常底色。★ 牛津参考（Oxford Reference）对 "contrapuntal reading" 词条的概括与此一致：</strong>"没有他们在殖民地的产业，伯特伦家既不会这么富，也不必长期离家"**。
+    </li>
+    <li><strong>★ 必须诚实说明的两点（这是本节最重要的限定）</strong>：
+    <ol>
+      <li><strong>Said 的正面分析对象是《曼斯菲尔德庄园》（1814），不是《傲慢与偏见》</strong>——<strong>BOOK_SPEC 里"Bingley 家财富与加勒比种植园的关系"这一提示，与原文不符</strong>：本书第 4 章明写宾利家的财富 <code>had been acquired by trade</code>（来自<strong>商业</strong>，继承自父亲约 <strong>十万英镑</strong>），<strong>与加勒比种植园无关</strong>（<span class="tag t-src">原书</span>）。<strong>把 Said 对《曼斯菲尔德庄园》的批评平移给本书，是会出错的。</strong> 本书可被 Said 式眼光质询的，是另一件事：<strong>全书对帝国的沉默</strong>（例如民兵团的调动、殖民地驻军的背景，都只作为"在场上发生的事"出现）。
+      </li>
+      <li><strong>Said 本人对本书也有一处众所周知的混淆</strong>：他将《傲慢与偏见》的 <strong>Lydia Bennet</strong> 列为《曼斯菲尔德庄园》的人物（据 <em>Prospect</em> 杂志对 Said 传记的评述文章指出）——<strong>这提醒我们：二手转述里，连批评者本人都可能张冠李戴。</strong>
+      </li>
+    </ol>
+    </li>
+    <li><strong>对该批评的反对意见</strong>：<em>Prospect</em>（同上）认为 Said "<strong>给了作者过多的责任、又给了过少的理解</strong>"：范妮·普莱斯向伯特伦爵士提起奴隶制、得到的<strong>"死一般的沉默"</strong>，恰恰暴露的是<strong>小说人物的道德麻木，而不是作者本人的立场</strong>；而奥斯汀同时代读者未必不会想起 <strong>1772 年曼斯菲尔德勋爵（Lord Mansfield）的判决</strong>——<strong>"Mansfield Park"这个书名本身就可能带着反讽的余音。</strong>
+    </li>
+    <li><strong>⇒ 正确的用法</strong>：<strong>把 Said 当作"问对了一个问题的人"，而不是"给出了最后一个答案的人"。</strong> 他让一代读者开始追问"这本书没写什么"；<strong>但把这个追问变成对《傲慢与偏见》的判决书，超出了他的原文。</strong>
+    </li>
+  </ul>
+  <p><strong>★ 那么，对《傲慢与偏见》本身，Said 式的问题该怎么问？</strong> ⇒ <span class="tag t-inf">推断</span>：<strong>（1）</strong> 民兵团的驻地与调动（第 7、15、39、41 章）背后是<strong>英法战争的背景</strong>，而全书对此不置一词；<strong>（2）</strong> 达西的财富是<strong>土地财富</strong>，宾利的是<strong>商业财富</strong>，而<strong>这两条财富链更远处的环节（殖民地贸易、战争利润）在书中全部缺席</strong>；<strong>（3）</strong> 全书最远的地理边界是<strong>德比郡与伦敦</strong>——<strong>帝国在这里不是一个"被回避的题目"，而是根本不在叙事的地图上</strong>。⇒ <strong>这是"沉默"这一指控在本书上唯一站得住的形式</strong>：<strong>不是"替帝国辩护"，而是"世界只有这么小"。</strong> ★ 但要立刻补一句限定：<strong>奥斯汀写的是一部关于"乡绅家庭如何在婚姻市场上分配女儿"的小说，它的取材范围本身就是它的题目</strong>——<strong>"世界只有这么小"既是它的局限，也是它的方法。</strong> 这两个判断，我不替读者合并成一个。</p>
+  <h3>5.6 影视改编如何反向塑造读者（尤其对达西）</h3>
+  <p><strong>关键事实与出处</strong>：</p>
+  <ul>
+    <li><strong>1995 BBC 六集剧</strong>（导演 Simon Langton，编剧 <strong>Andrew Davies</strong>，Jennifer Ehle 饰伊丽莎白、<strong>Colin Firth 饰达西</strong>，约六小时）。★ <strong>它"忠实到几乎逐场照拍"，但加了几场原著没有的戏</strong>：达西洗澡、击剑、骑马，以及<strong>最著名的"水塘一幕"</strong>——剧中达西跳入池塘后湿衣走回。结果是<strong>莱姆庄园（Lyme Hall）因游客激增而受益，"达西派对"在英美出现，Colin Firth 的事业从此扶摇直上</strong>（据 JASNA <em>Persuasions On-Line</em> 第 27 卷第 2 期，<strong>Camden</strong> 的文章；及 IMDb 观众评议）。
+    </li>
+    <li><strong>2005 电影</strong>（导演 <strong>Joe Wright</strong>，Deborah Moggach 编剧，<strong>Keira Knightley 饰伊丽莎白、Matthew Macfadyen 饰达西</strong>）。★ <strong>关键背景：Wright 接戏时还没读过原著</strong>（据 Wellesley News 2020-04 评论）。该片在 <strong>Rotten Tomatoes 好评率 87%</strong>（186 位影评人）、<strong>Metacritic 82</strong>、<strong>CinemaScore A−</strong>（据 2005 电影条目）。<strong>JASNA 于 2007 年为此出版了一期 <em>Persuasions On-Line</em> 专号，由 6 国 19 位奥斯汀学者参与</strong>——<strong>这是一部改编引发的罕见规模的学术回应。</strong>
+    </li>
+    <li><strong>★ 改编拿走了什么（本节的核心论点）</strong>：
+    <ul>
+      <li><strong>奥斯汀的讽刺</strong>：<em>Time Out</em> 杂志批评该片"<strong>浪漫情节剧被放大，代价是她的锋利机智</strong>"（据 2005 电影条目转引）。
+      </li>
+      <li><strong>自由间接引语</strong>：这是<strong>技术上无法搬上银幕</strong>的一层（见第 2 节主题三）。<strong>电影只能把"群体意见"改拍成"某个人在说话"</strong>，于是偏见的社会性被个人化。
+      </li>
+      <li><strong>视角的性别倒转</strong>：JASNA 的文章（Camden）指出，1995 版的宣传与镜头<strong>把达西变成了"被凝视的对象"</strong>（DVD 封面以达西头像为主体），而 2005 版<strong>把凝视收回并落在伊丽莎白／Knightley 身上</strong>——<strong>两版对"谁是被欲望的对象"给了相反的答案。</strong>
+      </li>
+    </ul>
+    </li>
+    <li><strong>局限</strong>：<strong>改编对读者期待的反向塑造，我只能举证到"评论与产业反应"这一层</strong>（票房、评分、旅游、JASNA 专号）；<strong>"读了原著的人是否被改编改变了对达西的判断"，没有数据可查。</strong> ⇒ 这一条<strong>结论要打折扣</strong>。
+    </li>
+  </ul>
+  <p><strong>★ 一个不该被忘记的对照</strong>：★ 两版改编被批评的共同点，恰恰都是<strong>"补上了原著没有的东西"</strong>——1995 版补"达西的身体"（洗澡、击剑、池塘），2005 版补"伊丽莎白的视角与风景"（长镜头、光线、手持镜头）。⇒ <span class="tag t-inf">推断</span>：<strong>改编之所以必须"补"，是因为原著最有力的那一层（自由间接引语、反讽的叙述距离）在视听语言里没有对应物</strong>；<strong>补进去的，是原著本来不需要、也刻意不给的东西。</strong> ★ <strong>这不是改编的失败，而是两种媒介的分工</strong>——<strong>但它确实解释了"为什么看过电影再读原著的人，会觉得书里的达西更冷"。</strong></p>
+  <p>★ <strong>六条之外还有两条值得知道</strong>（不计入上述六条）：<strong>（一）本书被当作"英语学习材料"使用</strong>（大量双语对照本与分级读物），<strong>这会系统性地只留下"故事"而滤掉"反讽"</strong>；<strong>（二）"傲慢与偏见"这个词组本身先于本书存在</strong>（Fanny Burney《塞西莉亚》末章标题），<strong>把它当成奥斯汀发明的主题词，是一种常见的时代错置。</strong></p>
+  <p>★ <strong>结构说明</strong>：全书<strong>61 章，三卷</strong>。本部分按<strong>三卷</strong>逐卷深挖，编号 <code>## 6</code>–<code>## 8</code>，与 BOOK_SPEC 第 5.2.1 节一致。每卷四段：<strong>「这一卷发生了什么」／「关键内容：反讽、叙事视角与自由间接引语」／若干章群（标题写"第 N–M 章 ＋ 一句内容提要"）／「可疑之处」</strong>。★ <strong>章群划分覆盖全部 61 章，一章不漏</strong>（第一卷 1–23／第二卷 24–42／第三卷 43–61）。章号一律用<strong>现代连续编号 1–61</strong>，凡涉及分卷章号会另行注明。<strong>所有引文均取自 PG #1342 公版全文，可定位核对。</strong></p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>第一卷：第 1–23 章（婚姻市场开幕，与第一次"跌到谷底"）</span><span class="caret">▾</span></h2>
+  <h3>这一卷发生了什么</h3>
+  <p>内瑟菲尔德庄园租给了从英格兰北部来的富家青年<strong>宾利</strong>。麦里屯的舞会上，宾利看上了<strong>简</strong>，而他的朋友<strong>达西</strong>——一个年入一万英镑的彭伯利庄园主——当众拒绝与<strong>伊丽莎白</strong>跳舞，还说了一句让全屋子都听见的话：<code>She is tolerable; but not handsome enough to tempt me.</code>（"她还过得去，但还没漂亮到能引起我的兴趣。"第 3 章 <span class="tag t-src">原书</span>）<strong>这句话是全书的第一颗种子</strong>：伊丽莎白的"偏见"从此有了具体的形状。简因赴约遇雨而病倒在内瑟菲尔德，伊丽莎白徒步去照料——<strong>达西第一次近距离看见她</strong>，观感开始松动，但宾利姐妹的势利同时暴露。随后，那个<strong>将来要继承 Longbourn 的远亲</strong>柯林斯先生上门求婚（第 19 章），被伊丽莎白当着面子拒绝；转头就娶了她的闺蜜<strong>夏绿蒂</strong>（第 22 章）。与此同时，民兵团的<strong>魏克翰</strong>登场，用一段关于达西"毁掉他前途"的故事赢得了伊丽莎白的同情——<strong>这是全书最大的假线索</strong>。卷末（第 23 章），夏绿蒂的婚事宣布，班纳特太太公开咒骂限定继承权，而丈夫用一句冷话把谈话关掉。★ <strong>本卷的时间跨度约半年（从米迦勒节前的乔迁传闻到圣诞节前后），但真正推动情节的不是时间，而是三次"错配"</strong>：一个配错了的求婚者（柯林斯）向一个不想要他的人求婚、一个错认了的受害人（魏克翰）得到了不该得到的同情、一个错估了的婚姻（夏绿蒂）被一个清醒的人主动接受。★ <strong>全卷没有一件事是"意外"</strong>——<strong>每一个人都做出了符合自己处境的判断，而所有的判断加在一起，就是一场灾难。</strong></p>
+  <h3>关键内容：反讽、叙事视角与「自由间接引语」</h3>
+  <ul>
+    <li>★ <strong>开篇第一句就是全书的方法论</strong>：<code>It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife.</code>（第 1 章 <span class="tag t-src">原书</span>）——<strong>庄严的大词＋市井的内容＝降格反讽</strong>。★ 更关键的是<strong>视角</strong>：这句话说的不是"单身汉想要妻子"，而是"<strong>邻居们认定他必须有一位妻子</strong>"。<strong>读者从第一句起，就被放进了"有女儿的人家"的脑子里</strong>——这正是全书的视角装置。
+    </li>
+    <li>★ <strong>自由间接引语的头号样本（第 3 章）</strong>：<code>His character was decided. He was the proudest, most disagreeable man in the world, and everybody hoped that he would never come there again.</code>（<span class="tag t-src">原书</span>）——<strong>"他的性格就此定了"是谁的判断？</strong> 它不是叙述者的判决，而是<strong>整间舞厅的舆论</strong>，被叙述者用直陈句原样说出。<strong>读者会不自觉地把群体偏见当成客观事实接收</strong>，此后每次看见达西都会带着这层滤镜。<strong>这就是这本书最狠的一手：它让读者成为偏见的共犯。</strong>
+    </li>
+    <li><strong>对话即人物（复调）</strong>：本卷已经把每个人的"说话方式"全部摆出——班纳特太太的情绪冲刺（<code>My dear Mr. Bennet</code>）、班纳特先生的干冷（<code>You want to tell me, and I have no objection to hearing it.</code>，第 1 章 <span class="tag t-src">原书</span>）、柯林斯的长篇自我谦抑、丽迪雅的喧闹（<code>Good Lord! Sir William, how can you tell such a story?</code>，第 23 章 <span class="tag t-src">原书</span>）。<strong>叙述者几乎不做心理描写，一切靠说出来的话。</strong>
+    </li>
+    <li><strong>限知视角的"缝隙"</strong>：本卷有两处叙述者<strong>短暂越出伊丽莎白的视野</strong>——第 4 章交代宾利与达西的家世（<code>their brother's fortune and their own had been acquired by trade</code>，<span class="tag t-src">原书</span>），第 6 章借夏绿蒂之口说出全书第二句格言：<code>Happiness in marriage is entirely a matter of chance.</code>（<span class="tag t-src">原书</span>）。★ <strong>第 4 章那段"钱的来路"很重要：它把宾利家定性为"商业财富"，与达西的"土地财富"对照</strong>——这是全书阶级结构的第一张底图。
+    </li>
+    <li><strong>伏笔的埋法</strong>：第 5 章交代卢卡斯家（夏绿蒂的处境），第 13 章柯林斯登场时点明<strong>他正是 entail 的受益人</strong>，第 15 章一句话作废他的全部自我叙述（<code>Mr. Collins was not a sensible man</code>，<span class="tag t-src">原书</span>）。★ <strong>Austen 从不预告，只布点。</strong>
+    </li>
+  </ul>
+  <h3>第 1–6 章 ＋ 一支舞、一次当众的拒绝，与"婚姻幸福全靠运气"</h3>
+  <ul>
+    <li><strong>第 1 章</strong>：班纳特太太报信，丈夫不接招。名句二连：开篇第一句＋<code>You want to tell me, and I have no objection to hearing it.</code>（<span class="tag t-src">原书</span>）。★ 人物性格在一页内立完。
+    </li>
+    <li><strong>第 2 章</strong>：班纳特先生<strong>秘密</strong>去拜访了宾利——<strong>他嘴上讽刺，行动上照办</strong>。
+    </li>
+    <li><strong>第 3 章</strong>：麦里屯舞会。达西的 <code>She is tolerable; but not handsome enough to tempt me.</code>（<span class="tag t-src">原书</span>）＋<code>His character was decided.</code>这一段群体舆论 —— ★ <strong>本卷最重要的一章。</strong>
+    </li>
+    <li><strong>第 4 章</strong>：简与伊丽莎白对宾利的评价；宾利家世与"商业财富"（<code>acquired by trade</code>，<span class="tag t-src">原书</span>）；宾利姐妹的势利开始显形。
+    </li>
+    <li><strong>第 5 章</strong>：卢卡斯家登场；威廉爵士的社交哲学与"介绍"这件事的分量。
+    </li>
+    <li><strong>第 6 章</strong>：两家的互相拜访；夏绿蒂抛出 <code>Happiness in marriage is entirely a matter of chance.</code>（<span class="tag t-src">原书</span>）——★ <strong>这句"运气论"是她第 22 章接受柯林斯的心理准备，不是随口一说。</strong>
+  <p>★ <strong>本组小结</strong>：前六章实际上完成了一件很硬的技术活——<strong>在没有发生任何"事件"的情况下，把全书的世界规则交代完了</strong>：谁有多少钱、谁能继承什么、谁配得上谁、女人靠什么活。★ 特别注意<strong>夏绿蒂在两章里出现了两次</strong>（第 5 章的社交哲学、第 6 章的"运气论"），<strong>这两个片段之间隔着一整个舞会，Austen 却把它们安排成了同一个人的同一个判断</strong>——<strong>这是本书布点方式的样本：不预告，只重复，重复到读者自己发现。</strong> <span class="tag t-inf">推断</span></p>
+    </li>
+  </ul>
+  <h3>第 7–12 章 ＋ 一场雨、一间病房，与全书的经济引擎</h3>
+  <ul>
+    <li><strong>第 7 章</strong>：★ <strong>本卷最关键的一段旁白开门</strong>——<code>Mr. Bennet's property consisted almost entirely in an estate of two thousand a year, which… was entailed, in default of heirs male, on a distant relation; and their mother's fortune… Her father had been an attorney in Meryton, and had left her four thousand pounds.</code>（<span class="tag t-src">原书</span>）<strong>全书的因果起点就在这一句里。</strong> 同章：简受邀骑马赴内瑟菲尔德、遇雨致病。
+    </li>
+    <li><strong>第 8 章</strong>：病房边的客厅；达西关于"有教养的女人"的那段著名定义（多才多艺、读书、谈吐……），以及伊丽莎白对他的反驳。
+    </li>
+    <li><strong>第 9 章</strong>：伊丽莎白<strong>徒步</strong>三英里去看姐姐；宾利姐妹讥笑她"泥浆里滚过"，达西却默默改观；班纳特太太在客厅里失态。
+    </li>
+    <li><strong>第 10–11 章</strong>：达西与伊丽莎白的两场拌嘴（关于"骄傲""虚荣"、关于"性格的可塑性"）；宾利姐妹对达西心思的窥探。
+    </li>
+    <li><strong>第 12 章</strong>：姐妹俩返回 Longbourn；——<strong>本卷的第一个小循环结束。</strong>
+  <p>★ <strong>本组小结</strong>：这六章是全书的"经济底图"章节。★ <strong>第 7 章那段旁白一旦读进去，后面所有对话的"重量"都会变</strong>：达西的"她家配不上我"之所以刺人，是因为"配不上"在这里有精确的钱数；柯林斯的求婚之所以可笑又可怕，是因为他手里的筹码是<strong>一栋别人家的房子</strong>；班纳特太太的喧哗之所以不能一笑了之，是因为<strong>她说的每一句关于钱的话都是真的</strong>。★ 另一个技术要点：<strong>第 9 章伊丽莎白徒步探病，是本书第一次让"行动方式"替人物说话</strong>（见第 2 节主题八）——<strong>她没有车马可用，于是走路；她不在乎别人怎么看，于是走泥路。</strong> 这两件事一句话都没写，全在动作里。<span class="tag t-inf">推断</span></p>
+    </li>
+  </ul>
+  <h3>第 13–18 章 ＋ 一个假求婚者、一个假受害者</h3>
+  <ul>
+    <li><strong>第 13 章</strong>：柯林斯来信并上门（★ 明写他因 entail 而将继承 Longbourn）；班纳特先生称他为"混合了骄傲与谄媚"的人。
+    </li>
+    <li><strong>第 14 章</strong>：饭桌上柯林斯朗读《布道集》并吹捧凯瑟琳夫人；丽迪雅打断他。
+    </li>
+    <li><strong>第 15 章</strong>：<code>Mr. Collins was not a sensible man</code>（<span class="tag t-src">原书</span>）；一行人在麦里屯遇见魏克翰与丹尼；<strong>舞会消息传来</strong>。
+    </li>
+    <li><strong>第 16 章</strong>：★ <strong>魏克翰的谎言</strong>——他称达西"违背了老达西先生的遗愿"，剥夺了他做牧师的机会。★ 伊丽莎白全盘相信。<strong>叙述者一句提示都不给——读者和她一起上当。</strong>
+    </li>
+    <li><strong>第 17 章</strong>：伊丽莎白把魏克翰的故事讲给简听；简主张"其中必有误会"（★ <strong>简的判断其实是对的，被节奏盖过去了</strong>）。
+    </li>
+    <li><strong>第 18 章</strong>：★ <strong>内瑟菲尔德舞会</strong>——达西主动请伊丽莎白跳舞（态度已有变化）；柯林斯当众向达西自我介绍（达西冷脸）；班纳特太太高声预告"简要嫁宾利"，被达西听进去；伊丽莎白为家人羞窘。<strong>这一晚是"拆散宾利与简"的真正素材来源。</strong>
+  <p>★ <strong>本组小结</strong>：这六章是全书最"阴"的一段，因为<strong>两条假线索在这里同时上线</strong>：柯林斯（假求婚者）与魏克翰（假受害者）。★ 值得注意的是<strong>两条线索的写法完全不同</strong>——柯林斯是<strong>喜剧式</strong>处理（叙述者直接下场判定 <code>Mr. Collins was not a sensible man</code>），魏克翰是<strong>限制视角式</strong>处理（叙述者一句疑问都不给，读者只能跟着伊丽莎白信）。⇒ <span class="tag t-inf">推断</span>：<strong>Austen 对"识人"这件事做了一个精细的分工——靠叙述者就能识破的（柯林斯），让你笑；必须靠主角自己识破的（魏克翰），让你和她一起错。</strong> 读者第一次读这本书时之所以会"上当"，正是因为这个分工。★ 还有一处必须点明：<strong>第 11 章达西说出了他的人生格言</strong>——<code>My good opinion once lost is lost for ever.</code>（<span class="tag t-src">原书</span>）——<strong>这句话在全书里的位置很微妙：它既是他的傲慢，也是他日后对伊丽莎白"错怪了他"这件事久久不能释怀的原因。</strong></p>
+    </li>
+  </ul>
+  <h3>第 19–23 章 ＋ 被拒绝的求婚、被接受的求婚，与卷末的 entail</h3>
+  <ul>
+    <li><strong>第 19 章</strong>：柯林斯正式求婚（长篇、自我称许）。★ 他的一句话把全书的经济结构说穿：<code>Your portion is unhappily so small, that it will in all likelihood undo the effects of…</code>（<span class="tag t-src">原书</span>）——<strong>求婚的理由里没有一句是感情。</strong>
+    </li>
+    <li><strong>第 20 章</strong>：伊丽莎白拒绝；班纳特太太震怒；班纳特先生站女儿这边。
+    </li>
+    <li><strong>第 21 章</strong>：柯林斯的自我安慰；宾利一行<strong>突然离开</strong>内瑟菲尔德；卡罗琳来信暗示他们要在伦敦过冬。
+    </li>
+    <li><strong>第 22 章</strong>：卢卡斯家的晚宴；<strong>夏绿蒂接受柯林斯的求婚</strong>——★ 她算得很清楚：这是她这个年龄、这份家境的<strong>最优解</strong>。
+    </li>
+    <li><strong>第 23 章</strong>：婚讯宣布（丽迪雅当众失礼：<code>Good Lord! Sir William, how can you tell such a story?</code>）；伊丽莎白震惊后仍为朋友辩护；★ <strong>卷末：班纳特太太的咒骂与班纳特先生的一句冷话收场</strong>——<code>I never can be thankful, Mr. Bennet, for anything about the entail. How anyone could have the conscience to entail away an estate from one's own daughters I cannot understand</code> / <code>I leave it to yourself to determine,</code> said Mr. Bennet.`（<span class="tag t-src">原书</span>）
+  <p>★ <strong>本组小结</strong>：<strong>这五章是全卷写得最好的一段</strong>，因为它在极短的篇幅里完成了四次"翻面"：柯林斯从"求婚者"变成"被拒者"（19–20）→ 宾利一行从"在场"变成"离场"（21）→ 夏绿蒂从"旁观者"变成"当事人"（22）→ 卷末把这一切收进一笔法律账里（23）。★ 其中<strong>第 22 章是全书最被低估的一章</strong>：Austen 用不到两页写完了夏绿蒂"算清了这笔账"的整个过程，<strong>没有一句批评，也没有一句辩护</strong>——<strong>这是自由间接引语之外，她另一种更冷静的技术：让读者自己决定要不要替夏绿蒂难过。</strong> ★ 而<strong>第 23 章把 entail 放在全卷的最后一页</strong>，这个位置本身就是判断：<strong>第一卷不是以"谁爱上了谁"结束的，是以"法律"结束的。</strong> <span class="tag t-inf">推断</span></p>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>本卷有三处需要读者留个心眼：</strong></p>
+  <ol>
+    <li><strong>第 4 章那段"宾利家财富来自商业"的旁白，是本卷唯一一次离开伊丽莎白的视野</strong>（她当时不在场）。★ <strong>这是自由间接引语之外的另一层视角技术：叙述者需要"补"一次阶级底图，就补在哪里</strong>——但它同时提示：<strong>本书的视角并非严格限知，而是"大体贴着伊丽莎白、必要时滑动"。</strong>
+    </li>
+    <li><strong>伊丽莎白对魏克翰的信任，其实有一个可查的松动点</strong>：第 17 章简说"其中必有误会"，伊丽莎白<strong>没有采纳</strong>。★ <strong>这个细节说明：偏见不是"没被告知"，而是"被告知了也不信"</strong>——<strong>《傲慢与偏见》对偏见的理解比一般读者以为的深刻，它写的不是信息不对称，而是注意力方向。</strong><span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>柯林斯的求婚被拒之后，情节为什么反而加速？</strong> 从结构上看，第 20–23 章几乎是一部"小小说"：一次失败求婚（19–20）→ 一次突然离别（21）→ 一次成功求婚（22）→ 婚讯与咒骂（23）。⇒ <span class="tag t-inf">推断</span>：<strong>Austen 把第一卷的落点选在"婚姻市场的最坏情形"（她最好的朋友嫁给了将要赶走她的人），而不是选在"最甜的情形"，正是为了让第二卷的"达西求婚"显得像一次转折，而不是一次顺理成章。</strong>
+    </li>
+    <li><strong>一个技术性的疑点</strong>：<strong>第 3 章那段群体舆论（<code>His character was decided.</code>）把达西"一锤定音"了，此后再没有回头修正过</strong>。⇒ <strong>它究竟是叙述者的判断，还是麦里屯的判断？</strong> 我的读法是需要"两句都成立"：<strong>在语法上它读得像叙述者，在叙述策略上它必须是村庄</strong>——<strong>这正是自由间接引语的全部难度，也是它在中译里最容易消失的地方</strong>（见第 5 节第 6 条）。<span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>★ 一个可以拿来检验自己读法的选择题</strong>：第一卷里，<strong>"偏见"到底是谁的？</strong> ⇒ 三种答法都有人支持：（a）<strong>是伊丽莎白的</strong>（她信了魏克翰）；（b）<strong>是全村的</strong>（第 3 章那段群体舆论）；（c）<strong>是读者的</strong>（跟随叙事一起接受了前两者）。★ 我的读法（<span class="tag t-inf">推断</span>）：<strong>第三种才是这本书真正在做的事</strong>——<strong>这正是本卷把"限知视角＋群体舆论"捆在一起使用的收益：它把偏见从一个人的毛病，变成了一种人人都在其中的处境。</strong> 但这只是我的读法，不是唯一解。
+    </li>
+  </ol>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>第二卷：第 24–42 章（从罗新斯到彭伯利——偏见被击穿的那一卷）</span><span class="caret">▾</span></h2>
+  <h3>这一卷发生了什么</h3>
+  <p>卡罗琳·宾利的来信坐实了简的失落（第 24 章）。嘉丁纳夫妇登场，舅妈提醒伊丽莎白提防威克翰（第 25–26 章）。伊丽莎白随后与威廉爵士、玛丽亚同赴汉斯福，探访新婚的夏绿蒂（第 27–28 章），并在罗新斯庄园见到<strong>凯瑟琳夫人</strong>（第 29 章）。达西与表哥费茨威廉上校来访（第 30–33 章）——<strong>费茨威廉一句无心之言，让伊丽莎白知道了是达西拆散了宾利与简</strong>（第 33 章）。紧接着，<strong>达西突然求婚</strong>（第 34 章），被伊丽莎白以"傲慢、拆散姐姐、毁掉威克翰"三条罪状当面痛斥；<strong>次晨，达西递上那封改变了全书的信</strong>（第 35 章）。伊丽莎白独自反复读信（第 36 章），第一次认清自己；达西一行离开罗新斯（第 37–38 章）。春天回家，丽迪雅获邀赴布赖顿（第 39 章），伊丽莎白把求婚与魏克翰真相都告诉了简（第 40 章）；伊丽莎白劝阻父亲不要让丽迪雅赴布赖顿，无功而返（第 41 章）；<strong>第二卷在伊丽莎白对父母婚姻的冷峻评价中结束，最后一句是 <code>To Pemberley, therefore, they were to go.</code></strong>（第 42 章）。★ <strong>本卷的时间跨度约三个月（春到初夏），空间却换了三处</strong>：汉斯福（柯林斯夫妇的新居）→ 罗新斯（凯瑟琳夫人的庄园）→ Longbourn／布赖顿／德比郡。★ <strong>空间的移动与判断的改变是同步的</strong>：她离开家（第 27 章）时相信魏克翰；她在罗新斯被求婚（第 34 章）时仍相信自己；她在回程路上（第 36 章）推翻了自己；她再出发（第 42 章）时，已经是一个不一样的人了。⇒ <strong>这一卷的题目其实是"一个人如何从错误里走出来"——而全卷只用了两个场景：一次求婚与一封信。</strong></p>
+  <h3>关键内容：反讽、叙事视角与「自由间接引语」</h3>
+  <ul>
+    <li>★★ <strong>本卷是全书的技术核心，因为它的转折点是一封信</strong>（第 35 章）。达西的信开头 <code>Be not alarmed, madam, on receiving this letter, by the apprehension of its containing any repetition of those sentiments…</code>（<span class="tag t-src">原书</span>）——<strong>Austen 把全书最重要的信息交付给"书写"而不是"说话"</strong>。原因很清楚：<strong>达西当面说不利落</strong>（第 34 章求婚时把"她家配不上我"当成情话讲出来），<strong>只有信件能让他把两件事（拆散宾利／威克翰）逐条摊开</strong>。★ <strong>信与话的对比，就是达西这个人物的对比。</strong>
+    </li>
+    <li>★★ <strong>自由间接引语的第二个高峰（第 42 章开篇）</strong>：<code>Had Elizabeth's opinion been all drawn from her own family, she could not have formed a very pleasing picture of conjugal felicity or domestic comfort. Her father, captivated by youth and beauty… had married a woman whose weak understanding and illiberal mind had very early in their marriage put an end to all real affection for her.</code>（<span class="tag t-src">原书</span>）——<strong>这一段用的是伊丽莎白的判断，却用着叙述者的语体与格调</strong>。★ <strong>它是全书唯一一次用"近乎悲剧"的语调谈婚姻</strong>，就安在喜剧第二卷的末尾。
+    </li>
+    <li>★ <strong>第 36 章的自省句是全书道德拐点</strong>：<code>vanity, not love, has been my folly… Till this moment, I never knew myself.</code>（<span class="tag t-src">原书</span>）——<strong>此前的读者与伊丽莎白共享偏见，此后共享自我审判。</strong> 视角的"授权对象"在这一章换了一次手。
+    </li>
+    <li><strong>反讽继续承担人物塑造</strong>：柯林斯夫妇的家居（第 28–30 章）用<strong>生活细节</strong>完成对照——<strong>夏绿蒂把起居室安排成自己独处、好让伊丽莎白不必整晚听柯林斯讲话</strong>；凯瑟琳夫人用命令句把每个人的位置钉死（第 29 章）。
+    </li>
+    <li><strong>书信作为"情节发动机"</strong>：本卷共有卡罗琳的信（24）、嘉丁纳太太的告诫（25–26）、简的信（26）、达西的信（35）；★ <strong>到第三卷，信的功能会从"传消息"升级为"揭真相"（第 52 章）</strong>——<strong>一封信推动一次认知，是本书的固定节奏。</strong>
+    </li>
+  </ul>
+  <h3>第 24–29 章 ＋ 念想被掐断，与一场"没有爱情"的婚姻实况</h3>
+  <ul>
+    <li><strong>第 24 章</strong>：卡罗琳来信，宣布他们已在伦敦过冬，宾利暂无归期——<strong>简的希望"完全落空"</strong>（<code>Hope was over, entirely over.</code>，<span class="tag t-src">原书</span>）；伊丽莎白断定是宾利姐妹作梗。
+    </li>
+    <li><strong>第 25 章</strong>：嘉丁纳夫妇来访；★ 嘉丁纳太太是全书<strong>唯一一对"婚姻幸福且理性"的夫妻</strong>，她的存在本身就是对照物。
+    </li>
+    <li><strong>第 26 章</strong>：嘉丁纳太太劝伊丽莎白提防威克翰；<strong>威克翰转去追求有钱的玛丽·金（金小姐有一万英镑）</strong>——★ <strong>第一次露出真面目，但伊丽莎白仍未彻底醒。</strong>
+    </li>
+    <li><strong>第 27 章</strong>：伊丽莎白与威廉爵士、玛丽亚启程，途中在伦敦停留；<strong>威克翰的冷淡</strong>。
+    </li>
+    <li><strong>第 28 章</strong>：抵达汉斯福；<strong>夏绿蒂的新居布局</strong>——★ <strong>她把自己"安放"进这场婚姻的方式，是安排一间不朝向柯林斯书房的起居室。</strong> 伊丽莎白看在眼里。
+    </li>
+    <li><strong>第 29 章</strong>：罗新斯晚宴；<strong>凯瑟琳夫人的审问式谈话</strong>（<code>Your father's estate is entailed on Mr. Collins, I think?</code>，<span class="tag t-src">原书</span>）——★ <strong>敌人拿 entail 当武器，第二次点出全书的法律引擎。</strong>
+  <p>★ <strong>本组小结</strong>：这六章的功能是<strong>把"婚姻"这个词从"感情问题"改写成"处境问题"</strong>。★ 嘉丁纳夫妇（第 25 章）提供了一条正面的参照线——<strong>他们是全书唯一一对"理性与感情并存"的夫妻</strong>，因此他们说什么，读者可以信；而夏绿蒂的新居（第 28 章）提供了反面的参照线——<strong>她把自己安置进这场婚姻的方式，是给自己留一间不朝向丈夫书房的起居室</strong>。⇒ <strong>两条参照线并排摆着，读者不需要旁白也能得出结论</strong>——<strong>这是 Austen 的"用事实代替议论"的典型手法。</strong> ★ 另一处必须点出：<strong>第 26 章威克翰转去追求有一万英镑的玛丽·金</strong>，这是他第一次露出真面目；但<strong>伊丽莎白仍然没有醒</strong>——<strong>这个"证据在眼前而判断不改变"的细节，是第 36 章自省的伏笔。</strong> <span class="tag t-inf">推断</span></p>
+    </li>
+  </ul>
+  <h3>第 30–35 章 ＋ 一句无心的话、一次失败的求婚，与一封决定性的长信</h3>
+  <ul>
+    <li><strong>第 30–32 章</strong>：达西与费茨威廉到访罗新斯；达西开始频繁出现在牧师宅；★ <strong>第 32 章达西单独造访伊丽莎白，两人相对无言</strong>——<strong>他显然在鼓勇气，她完全没看出来。</strong>
+    </li>
+    <li><strong>第 33 章</strong>：★ <strong>费茨威廉上校透露"达西最近刚把一位朋友从一桩不合适的婚事里救出来"</strong>——<strong>伊丽莎白当场明白是简。</strong> 这是第 34 章的引信。
+    </li>
+    <li><strong>第 34 章</strong>：★★ <strong>达西求婚与伊丽莎白的拒绝。</strong> 达西开口：<code>In vain have I struggled. It will not do. My feelings will not be repressed. You must allow me to tell you how ardently I admire and love you.</code>（<span class="tag t-src">原书</span>）——<strong>但紧接着他把"她家的低微""这桩婚事是降格"也都讲了出来</strong>（叙述者的原话：<code>he was not more eloquent on the subject of tenderness than of pride</code>，<span class="tag t-src">原书</span>）。伊丽莎白的回答同样冰冷：她列出三条罪状。★ <strong>这一章是全书最常被误读的一章：它常被读成"女主有骨气"，其实它是"两个人同时失败"。</strong>
+    </li>
+    <li><strong>第 35 章</strong>：★★ <strong>达西的信</strong>。两大部分：① 他为何拆散宾利与简（他<strong>误判简没有动心</strong>）；② 威克翰的真相（<strong>老达西先生确实留了牧师职位给他，是他自愿放弃并索要现金、此后又试图诱拐乔治安娜·达西</strong>）。★ <strong>信末还有一句把人物立住的告白：他不是在辩解，他是在交代自己的行为准则。</strong>
+  <p>★ <strong>本组小结</strong>：<strong>这六章是全书的转轴，也是全书唯一一次"两个人的两份陈述被并排放在读者面前"</strong>。★ 技术上有三点值得记：（1）<strong>第 33 章那句"无心之言"是全书最经济的一次信息披露</strong>——费茨威廉上校完全不知道自己说了什么，<strong>信息在社交的缝隙里漏出来，正是 Austen 最擅长的传递方式</strong>；（2）<strong>第 34 章把两个人的失败写得同样清楚</strong>——达西的失败是"不会说话"，伊丽莎白的失败是"说得太快"；（3）<strong>第 35 章把转折放进"写"而不是"说"</strong>——<strong>这意味着全书的转折点是无法被"表演"出来的，它只能被"阅读"</strong>（这一点的改编后果见第 5.6 节）。★ 还有一处：<strong>第 31 章伊丽莎白对达西说的那句话</strong>——<code>There is a stubbornness about me that never can bear to be frightened at the will of others. My courage always rises with every attempt to intimidate me.</code>（<span class="tag t-src">原书</span>）——<strong>这句话在第 56 章会一字不差地兑现</strong>（她顶住了凯瑟琳夫人）。<span class="tag t-inf">推断</span></p>
+    </li>
+  </ul>
+  <h3>第 36–38 章 ＋ 一个人对着一封信重新认识自己</h3>
+  <ul>
+    <li><strong>第 36 章</strong>：★ 伊丽莎白<strong>反复读信</strong>；<code>vanity, not love, has been my folly… Till this moment, I never knew myself.</code>（<span class="tag t-src">原书</span>）。<strong>她的三条指控逐条瓦解：她对达西的"偏见"建立在魏克翰的一面之词上；而她对魏克翰的好感建立在"他讨人喜欢"上。</strong> ★ <strong>本书最像"道德哲学"的一章。</strong>
+    </li>
+    <li><strong>第 37 章</strong>：达西与费茨威廉离开罗新斯；凯瑟琳夫人的送别仍然是命令式。
+    </li>
+    <li><strong>第 38 章</strong>：伊丽莎白与玛丽亚离开汉斯福；★ <strong>她与夏绿蒂的告别里有全书最好的克制</strong>：两人都心知对方过的是什么日子，<strong>谁也不点破。</strong>
+  <p>★ <strong>本组小结</strong>：<strong>这三章是全书唯一"没有外部事件、只有内部事件"的部分</strong>——剧情几乎不动，动的全是伊丽莎白的判断。★ 因此它也是<strong>本书最难改编成影视的一段</strong>：一个女孩独自在乡间小路上反复读一封信，一边走一边推翻自己过去的所有判断——<strong>这在银幕上几乎无从呈现</strong>（第 5.6 节）。★ 从结构上说，<strong>第 36 章是全书唯一一次"叙述者把权力交给主角"的时刻</strong>：此前读者被动地接受伊丽莎白的偏见，此刻起读者被动地接受她的自我审判。★ 也要注意：<strong>第 37–38 章不是"余波"，它们完成了两件事</strong>——把罗新斯这条线关掉，以及<strong>让伊丽莎白和夏绿蒂的关系走到一个"彼此都明白但都不说"的位置</strong>（<strong>这条线索在第三卷再没有回来，正是它的分寸感所在</strong>）。<span class="tag t-inf">推断</span></p>
+    </li>
+  </ul>
+  <h3>第 39–42 章 ＋ 回家、布赖顿的计划，与"我们还是要到彭伯利去"</h3>
+  <ul>
+    <li><strong>第 39 章</strong>：伊丽莎白与简回家；★ <strong>丽迪雅获邀随福斯特上校一家赴布赖顿</strong>（<code>It was the second week in May…</code>，第 39 章开篇）——<strong>这是全书最大灾难的伏笔。</strong>
+    </li>
+    <li><strong>第 40 章</strong>：伊丽莎白把达西求婚与魏克翰真相都告诉简；★ <strong>两人对"是否告诉别人"的犹疑</strong>——<strong>分寸感是这本书的社交技术。</strong>
+    </li>
+    <li><strong>第 41 章</strong>：丽迪雅出发前夜；<strong>伊丽莎白私下劝父亲不要让丽迪雅赴布赖顿</strong>——★ <strong>父亲一笑置之，说"丽迪雅不会比别的姑娘更糟"</strong>。<strong>这是全书最致命的一句轻率。</strong>
+    </li>
+    <li><strong>第 42 章</strong>：★ <strong>本卷收束</strong>——那段关于班纳特先生婚姻的冷峻议论（见上文"关键内容"）；随后嘉丁纳夫妇提议出游，伊丽莎白同行；最后一句：<code>To Pemberley, therefore, they were to go.</code>（<span class="tag t-src">原书</span>）★ <strong>反向悬念二：明知不该去的地方，被一句轻描淡写推到了下一页。</strong>
+  <p>★ <strong>本组小结</strong>：这四章是"灾难的引信"。★ 它做了三件事：（1）<strong>丽迪雅获邀赴布赖顿</strong>（第 39 章）——把最不可控的人放到最不受约束的地方；（2）<strong>伊丽莎白劝父失败</strong>（第 41 章）——<strong>把责任的归属从"坏人作恶"移向"家长失职"</strong>（见本节"可疑之处"第 1 条）；（3）<strong>把伊丽莎白送到彭伯利门口</strong>（第 42 章）。⇒ <span class="tag t-inf">推断</span>：<strong>三件事的排列次序是刻意的——先制造可预见的风险，再让唯一能阻止它的人放弃阻止，最后把主角送到一个能让一切翻转的地方。</strong> ★ 还有一个技术细节值得注意：<strong>第 42 章那段关于班纳特先生婚姻的议论，是全书唯一一次"叙事语调明显变慢"的段落</strong>（长句、抽象名词、"the true philosopher"这样的反讽）。<strong>它安在喜剧的一卷末尾，像一次调息。</strong></p>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>本卷有三处需要留意：</strong></p>
+  <ol>
+    <li><strong>第 41 章伊丽莎白劝父失败，是全书最关键的一次"劝说无效"</strong>：★ 它把后面所有灾难的责任，<strong>从"反派作恶"转移到了"家长失职"</strong>。⇒ <span class="tag t-inf">推断</span>：<strong>这本书真正的批判对象不是魏克翰，而是班纳特先生那种"聪明人的懒惰"</strong>——<strong>他在第 23 章用反讽回避妻子、在第 41 章用玩笑回避责任，两次都是同一套手法。</strong>
+    </li>
+    <li><strong>第 35 章信里的达西，与第 34 章求婚时的达西，是同一个人吗？</strong> ★ 这封信写得<strong>异常清醒、克制、有条理</strong>，与求婚时的措辞傲慢判若两人。⇒ <strong>两种解释都说得通</strong>：（a）<strong>书信是他的母语，口语不是</strong>（他需要"写"才能思考清楚）；（b）<strong>这是一个人在被当头一击之后的即时自我修正</strong>（他当夜就写了）。<strong>文本本身不裁定，读者必须自己选</strong>——<strong>而这正是 Austen 把转折放在信里、而不是放在对话里的深意。</strong> <span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>夏绿蒂的婚姻读法之争</strong>：★ <strong>第 28–30 章对她的处理，是本书最容易被二元化的一处</strong>——可读作"女性没有选择时的被迫妥协"，也可读作"一个理性人的现实主义选择"。⇒ <strong>我的读法（<span class="tag t-inf">推断</span>）：Austen 并未把夏绿蒂写成反面教材，她给了夏绿蒂一个体面的、有自我安排能力的婚姻生活（独处的起居室、对伊丽莎白的照顾）。</strong> 若把夏绿蒂简单判为"势利"，就会漏掉"她能选的东西本来就不多"这件事。<strong>（注意：这一判断在中文学术与评论里有分歧，我不把它当成定论。）</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>第三卷：第 43–61 章（彭伯利、私奔，与两次求婚之间的那一课）</span><span class="caret">▾</span></h2>
+  <h3>这一卷发生了什么</h3>
+  <p>伊丽莎白与嘉丁纳夫妇同游德比郡，被说服去看彭伯利（第 43 章）。管家雷诺兹太太口中"全英国最好的地主"、以及达西本人的意外归来，让伊丽莎白第一次看见"另一个达西"；随后达西带妹妹乔治安娜上门拜访（第 44 章），两家的往来迅速升温，只剩宾利小姐在一旁冷嘲（第 45 章）。就在这时，简的两封急信到来：<strong>丽迪雅与魏克翰私奔了</strong>（第 46 章）。伊丽莎白赶回 Longbourn（第 47 章），全家束手无策；嘉丁纳先生赴伦敦寻人（第 48 章）。三天后消息传来：<strong>婚事已谈成</strong>——魏克翰要钱，钱有人出了（第 49 章）。班纳特先生自嘲说"这是我这辈子最难受的一次"（第 50 章）；丽迪雅夫妇回乡，口无遮拦地把达西出现在婚礼现场的事说漏（第 51 章）；<strong>嘉丁纳太太的信终于揭出真相：找到丽迪雅、出钱促成婚事、承担全部债务的，是达西</strong>（第 52 章）。宾利重返内瑟菲尔德（第 53 章），与简恢复旧情并订婚（第 54–55 章）。<strong>凯瑟琳夫人突然上门逼伊丽莎白承诺不与达西订婚</strong>（第 56 章）；她的恐吓反而给达西吃了定心丸（第 57 章）。<strong>达西第二次求婚</strong>，这一次伊丽莎白答应了（第 58 章）；她向父亲坦白（第 59 章），两家允婚（第 60 章）；全书以四桩婚事的结局、以及嘉丁纳夫妇的收场作结（第 61 章）。★ <strong>本卷的时间跨度不到一年，但事件的密度是全卷之最</strong>：一次旅行、一场私奔、一次秘密救援、一次订婚、一次上门逼问、一次求婚。★ 与第二卷不同，<strong>这一卷的主角几乎不"行动"</strong>——<strong>她收到消息、被说动、被告知、被求见、被祝福</strong>；真正在动手的，是达西（找丽迪雅、出钱）、凯瑟琳夫人（上门逼问）、宾利（回来）、魏克翰（制造危机）。⇒ <strong>所以第三卷的问题不再是"她会怎么做"，而是"她能不能看清"</strong>——<strong>而它的答案，全部在第 52 章那封信里。</strong></p>
+  <h3>关键内容：反讽、叙事视角与「自由间接引语」</h3>
+  <ul>
+    <li>★★ <strong>第 43 章（彭伯利）是全书最大的一次"视角反转"</strong>：伊丽莎白看到的达西，是<strong>管家、房子、风景共同作证的那个达西</strong>；★ 而叙述的巧妙在于——<strong>她看到的还是同一个达西，变的只是她此刻愿意看见什么</strong>。⇒ <strong>这一章在技术上证明了第 36 章的结论：偏见是"注意力方向"的问题，不是"信息不足"的问题。</strong>
+    </li>
+    <li>★★ <strong>第 52 章让"书信装置"完成了它最漂亮的一次升级</strong>：此前的信件传递的是<strong>消息</strong>（第 24、26 章）或<strong>辩解</strong>（第 35 章）；<strong>这一封信传递的是"读者的感情"</strong>——嘉丁纳太太写到一半，伊丽莎白自己都乱了：<code>How could I ever be so blind?</code> 一类的自我诘问与<strong>对达西感情的正式确立</strong>同时完成。<span class="tag t-src">原书</span>
+    </li>
+    <li>★ <strong>反讽的顶点在第 56–57 章</strong>：<strong>凯瑟琳夫人自以为在"阻止"这桩婚事，实际上是全书的头号媒人。</strong> ★ 她的逻辑是"你不配"，她说出这句话之后，<strong>达西知道了伊丽莎白拒绝过她</strong>，于是有了第 58 章那一句：<code>You are too generous to trifle with me. If your feelings are still what they were last April, tell me so at once.</code>（<span class="tag t-src">原书</span>）——<strong>全书最大的助攻来自最大的障碍。</strong>
+    </li>
+    <li>★ <strong>第 58 章达西那段自述是本卷的"道德核心"</strong>：<code>I have been a selfish being all my life, in practice, though not in principle… Such I was, from eight to eight-and-twenty; and such I might still have been but for you, dearest, loveliest Elizabeth!</code>（<span class="tag t-src">原书</span>）——<strong>注意他给出的转变原因：不是"你教会我爱"，而是"你让我受了一次正确的打击"</strong>（<code>By you, I was properly humbled.</code>）。★ <strong>这是一本把"被羞辱"写成"被教育"的书。</strong>
+    </li>
+    <li><strong>对话塑造人物（本卷的高潮用法）</strong>：第 56 章凯瑟琳夫人的长段命令句、第 58 章两人的长对白、第 59 章伊丽莎白向父亲坦白时的半句话与试探——<strong>三场戏各自使用完全不同的句法节奏。</strong>
+    </li>
+  </ul>
+  <h3>第 43–46 章 ＋ 一次不该去的旅行，与一场把所有人打懵的私奔</h3>
+  <ul>
+    <li><strong>第 43 章</strong>：★ <strong>彭伯利之访</strong>。管家雷诺兹太太的证词（<code>the best landlord, and the best master… that ever lived</code>一类，<span class="tag t-src">原书</span>）＋风景＋达西提前归来。★ <strong>同章有名句：伊丽莎白对一个"不曾显得如此亲切"的达西，第一次产生了动摇。</strong>
+    </li>
+    <li><strong>第 44 章</strong>：达西带<strong>乔治安娜</strong>来访；★ <strong>乔治安娜的羞怯与伊丽莎白对她的体贴，构成对达西家庭生活的证词</strong>——<strong>他在家里是另一个人。</strong>
+    </li>
+    <li><strong>第 45 章</strong>：宾利小姐的冷嘲（她暗示威克翰旧事，却被伊丽莎白接住并反将一军）；<strong>简的两封急信到达。</strong>
+    </li>
+    <li><strong>第 46 章</strong>：★ <strong>私奔消息</strong>——<code>Lydia has eloped with Wickham.</code> 一类消息抵达；<strong>达西在场，伊丽莎白把家丑当场说给了他听</strong>。★ <strong>这是全书唯一一次"她被迫在他面前交代自己的家庭"。</strong>
+  <p>★ <strong>本组小结</strong>：这四章完成了全书最大的一次"视角翻转＋危机启动"。★ 技术上值得记的是<strong>第 43 章把"看"写成了情节本身</strong>：伊丽莎白并没有听到任何新的辩解，她只是<strong>看见</strong>了另一个达西（管家的证词、房子、风景、他妹妹），<strong>判断就变了</strong>。⇒ 这一点在任何"说理式"的小说里都做不到，<strong>它是本书把"叙事的对象"设定为"知觉"的直接证据</strong>（见第 2 节主题三与主题八）。★ 另一处：<strong>第 46 章让达西"在场"是精心设计</strong>——<strong>家丑被当面说出，而不是被写信告知，这让他的"后续行动"从"帮忙"升级为"担当"</strong>。⇒ 若这条消息是书信送达，第三卷的力量会弱一半。<span class="tag t-inf">推断</span></p>
+    </li>
+  </ul>
+  <h3>第 47–49 章 ＋ 一次"被买下来的"婚事，与一个"看不见的恩人"</h3>
+  <ul>
+    <li><strong>第 47 章</strong>：赶回 Longbourn；★ 全家的反应各有性格——<strong>母亲病倒、父亲赴伦敦、玛丽说空话、吉蒂哭、简忍着。</strong>
+    </li>
+    <li><strong>第 48 章</strong>：等待与搜寻；嘉丁纳先生赴伦敦；★ <strong>班纳特先生返家时的"如释重负＋自我厌恶"混合</strong>。
+    </li>
+    <li><strong>第 49 章</strong>：★ 嘉丁纳先生的信：丽迪雅将与魏克翰结婚（债务人愿出钱）；<strong>班纳特先生的反应是那句著名的自嘲</strong>——<code>Who that had been in my place would have been so little of a father?</code>（<span class="tag t-src">原书</span>）。★ <strong>他明白这是一桩"买来的婚事"，但仍以为钱是自己出的。</strong>
+  <p>★ <strong>本组小结</strong>：<strong>这三章是"危机被解决、但解决者隐身"的三章</strong>——<strong>全书的转折发生在这里，读者却看不见它发生</strong>。★ 技术上这是相当高的一手：<strong>Austen 让"恩人"完全退到叙述之外</strong>，读者与伊丽莎白同时被蒙在鼓里，<strong>直到第 52 章才由第三者的一封信揭晓</strong>。⇒ 换句话说，<strong>这本书的"高潮"是一次"事后得知"，而不是一次"当场发生"</strong>。★ 另一个要点：<strong>第 49–50 章让班纳特先生承担了全书唯一的"道德自审"</strong>——他说出那句自嘲时，<strong>读者才意识到：这本书里最聪明的人，也是失职的人。</strong> 这与第 5.6 节的判断互为印证。<span class="tag t-inf">推断</span></p>
+    </li>
+  </ul>
+  <h3>第 50–52 章 ＋ 悔悟、流言、口无遮拦，与真相大白的一封信</h3>
+  <ul>
+    <li><strong>第 50 章</strong>：★ <strong>班纳特先生对女儿教养与 entail 的悔悟</strong>（<code>Let me once in my life feel how much I have been to blame.</code> 一类，<span class="tag t-src">原书</span>）；★ <strong>全书唯一一次，他把"当年没有为女儿们存钱"归为自身的错</strong>。
+    </li>
+    <li><strong>第 51 章</strong>：丽迪雅与魏克翰回乡；★ <strong>丽迪雅把达西出现在婚礼现场说漏</strong>——<code>He was there in the church</code> 一类，<span class="tag t-src">原书</span>——<strong>一个蠢话说破了全书最大的秘密的线索。</strong>
+    </li>
+    <li><strong>第 52 章</strong>：★★ <strong>嘉丁纳太太的来信</strong>：找到丽迪雅的是达西，出钱的是达西，为魏克翰还债、给他谋职的也是达西；<strong>并且他要求保密</strong>。★ <strong>伊丽莎白的感情在这一章正式确立</strong>——<strong>她终于知道"他做了什么"，而且知道他"不想让人知道"。</strong> ⇒ <strong>这是全书对"品格"下的定义：做对的事而不图报。</strong>
+  <p>★ <strong>本组小结</strong>：<strong>这三章完成了本书对"品格"的最终定义，而定义的方式是"隐藏"</strong>。★ 请注意一个精妙的对位：<strong>第一卷里达西被指控的"傲慢"，在第三卷里被他自己一次次的行为反证；而这些行为全都要求"不要让人知道"</strong>——⇒ <span class="tag t-inf">推断</span>：<strong>品格在这本书里不是"表现出来的好"，而是"没打算被看见的好"</strong>。★ 另一处技术要点：<strong>第 51 章让丽迪雅这个"最不可靠的信息源"来泄露第一条线索，第 52 章让最可靠的嘉丁纳太太来完成揭示</strong>——<strong>先由蠢话给出线头，再由可靠的信给出全貌</strong>，这是本书处理"信息披露"的一贯节奏（第 33 章同样如此）。★ 还有一层：<strong>第 52 章之后，伊丽莎白对达西的感情已经确定，但两人还没有见面</strong>——<strong>Austen 让感情先成立、再让当事人相见，这个次序在言情传统里是反的。</strong> <span class="tag t-inf">推断</span></p>
+    </li>
+  </ul>
+  <h3>第 53–56 章 ＋ 旧人重逢、一桩婚事敲定，与一位上门逼问的夫人</h3>
+  <ul>
+    <li><strong>第 53 章</strong>：宾利重返内瑟菲尔德，先来 Longbourn 探访；★ <strong>达西同来，伊丽莎白与他几乎无法交谈。</strong>
+    </li>
+    <li><strong>第 54 章</strong>：宾利与简的旧情复苏；★ <strong>伊丽莎白对达西的心意焦灼，却无从确认。</strong>
+    </li>
+    <li><strong>第 55 章</strong>：★ <strong>宾利求婚成功</strong>；班纳特先生"批准"的方式照旧是反讽（他对太太说"我同意了"时的句式，<span class="tag t-src">原书</span>）。
+    </li>
+    <li><strong>第 56 章</strong>：★★ <strong>凯瑟琳夫人上门</strong>——她要求伊丽莎白保证不嫁达西，伊丽莎白拒绝低头。★ <strong>这一场戏的"功能"是反向的：夫人的目的由头到尾没有实现，却把达西推到了伊丽莎白面前。</strong>
+  <p>★ <strong>本组小结</strong>：<strong>这四章是"反派的助攻章"</strong>，也是本书最快意的一段。★ 技术上它用了一个非常高明的装置：<strong>让阻力去传递信息</strong>——凯瑟琳夫人此行的目的是"阻止"，<strong>实际完成的是"通知达西：伊丽莎白拒绝了我、并且没有否认爱你"</strong>。⇒ <strong>全书最大的障碍，在结构上同时是全书最大的推手。</strong> ★ 另外注意<strong>伊丽莎白在这一场里的表现，兑现了她在第 31 章说过的那句话</strong>（<code>My courage always rises with every attempt to intimidate me.</code>，<span class="tag t-src">原书</span>）——<strong>一处伏笔隔了二十五章才用，而用得毫不生硬</strong>。★ 也要看到：<strong>第 53–55 章处理宾利与简的重逢用的是"低强度"写法</strong>（探访、沉默、旁观），<strong>与第 56 章的高强度对峙形成节奏对照</strong>——<strong>Austen 把"平淡的复合"与"激烈的拒绝"并排放在一起，读者才知道自己该为哪一件事心跳。</strong> <span class="tag t-inf">推断</span></p>
+    </li>
+  </ul>
+  <h3>第 57–61 章 ＋ 第二次提案、四个结局，与一本不再需要悬念的书</h3>
+  <ul>
+    <li><strong>第 57 章</strong>：凯瑟琳夫人转告达西；★ <strong>伊丽莎白陷入"既盼他来、又怕他来"的悬置</strong>；班纳特先生的玩笑（<code>if a man …</code>）。
+    </li>
+    <li><strong>第 58 章</strong>：★★ <strong>达西第二次求婚</strong>，成功。★ 两人<strong>边走边谈</strong>（Austin 的名场面之一），达西交代了自己转变的全过程（见上文引文）。★ <strong>注意：这次求爱全程没有一句"我爱你"式的抒情，取而代之的是"我为什么变了"的交代</strong>——<strong>这就是这本书对"爱情"的定义方式。</strong>
+    </li>
+    <li><strong>第 59 章</strong>：伊丽莎白先告诉简，再向父亲坦白；<strong>父亲的震动与祝福</strong>；达西向班纳特先生提亲。
+    </li>
+    <li><strong>第 60 章</strong>：伊丽莎白与达西的对话收尾（两人都开始学会互相打趣）；★ <strong>宾利与简、达西与伊丽莎白，两桩婚事的账目正式挂上。</strong>
+    </li>
+    <li><strong>第 61 章</strong>：★ <strong>全书收束</strong>——<code>Happy for all her maternal feelings was the day on which Mrs. Bennet got rid of her two most deserving daughters.</code>（<span class="tag t-src">原书</span>）；随后交代：班纳特先生最想念二女儿；宾利与简只在内瑟菲尔德住了一年就搬走（<strong>离亲戚太近不便</strong>）；丽迪雅夫妇潦倒，靠姐姐接济；宾利小姐<strong>收敛了怨恨</strong>；凯瑟琳夫人最终<strong>"屈尊"来访</strong>（<code>condescended to wait on them at Pemberley</code>，<span class="tag t-src">原书</span>）；全书最后一句留给<strong>嘉丁纳夫妇</strong>——<code>With the Gardiners they were always on the most intimate terms.</code>（<span class="tag t-src">原书</span>）★ <strong>结尾落在"恩人"身上，而不是落在新人身上——这是 Austen 的最后一记反讽。</strong>
+  <p>★ <strong>本组小结</strong>：<strong>这五章是全书的"结算章"，也是最不像"大团圆"的大团圆</strong>。★ 三点值得记：（1）<strong>第 58 章的求爱里没有一句抒情</strong>——达西说的是"我为什么变了"，伊丽莎白说的是"我也是"（<code>I have been a selfish being…</code>那一整段是交代，不是表白）；⇒ <strong>本书对"爱情"的理解，是"两个人互相完成了对方的改正"</strong>，而不是"两个人心心相印"。（2）<strong>第 61 章对每一桩婚事都给了具体的"结局状态"，而不是"从此幸福"</strong>——丽迪雅夫妇"感情转淡"，凯瑟琳夫人"为了好奇而和解"，班纳特先生"最想念二女儿"。<strong>这是一本把账算到底的书。</strong>（3）<strong>最后一句话留给嘉丁纳夫妇，是一个明确的价值判断</strong>：<strong>全书真正值得感谢的，不是达西（他做了，但不让人知道），也不是伊丽莎白（她判断，但判断错过），而是那对"把人带到正确的地方去"的夫妇。</strong> ★ <span class="tag t-inf">推断</span>：<strong>如果这本书有一个不动声色的道德中心，它就是嘉丁纳夫妇。</strong></p>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ <strong>收尾三处值得推敲：</strong></p>
+  <ol>
+    <li><strong>第 58 章之后，全书的"悬念"立刻消失</strong>：第 59–61 章几乎是"结算清单"式的三章。⇒ <span class="tag t-inf">推断</span>：<strong>Austen 并不在乎"结尾要有惊喜"</strong>，她在乎的是<strong>把每一笔账都算清</strong>（谁的钱、谁欠谁、谁最终过得怎样）。<strong>这本书对"结局"的理解是"分配"，不是"团圆"。</strong>
+    </li>
+    <li><strong>第 61 章对丽迪雅夫妇的处理相当冷酷</strong>：<code>His affection for her soon sunk into indifference… and, in spite of her youth and her manners, she retained all the claims to reputation which her marriage had given her.</code>（<span class="tag t-src">原书</span>）★ <strong>Austen 没有给他们一个体面的收场，也没有给他们一个惩罚性的收场——她给了他们一个"持续的、平常的坏"。</strong> ⇒ <strong>这一笔比任何道德训诫都更有效。</strong>
+    </li>
+    <li><strong>★ 一个常被忽略的技术细节</strong>：第 43 章的"彭伯利之访"与第 58 章的"第二次求婚"，中间隔了一场私奔、一次真相揭露、一次宾利回归、一次上门逼问。⇒ <strong>这几件事里有三件是"别人做的"（达西、凯瑟琳夫人、魏克翰），只有一件是伊丽莎白自己做的（拒绝了凯瑟琳夫人的要求）。</strong> ★ <strong>换句话说：主角在第三卷里几乎不"行动"，她主要是"接受信息"和"改变判断"</strong>——<strong>这与第 2 节主题三（视角技术）互为印证：这本书的主角是"一个变得能看清的人"，不是一个"做了很多事的人"。</strong> <span class="tag t-inf">推断</span>
+    </li>
+  </ol>
+</section>
+
+<section id="s10">
+  <h2><span class="num">A</span><span>主要人物小传</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>人物</th><th>一句话</th><th>出现</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Elizabeth Bennet</strong>（伊丽莎白）</td><td>二女儿；叙事视角的载体；全书的"判断者"与"被判断者"</td><td>全书</td></tr>
+      <tr><td><strong>Mr. Darcy</strong>（达西）</td><td>年入一万英镑的彭伯利主人；傲慢以第 34 章为界，此后成为被理解的对象</td><td>第 3 章起</td></tr>
+      <tr><td><strong>Jane Bennet</strong>（简）</td><td>长女；善意与克制；她的"不显情绪"是第 35 章误判的来源</td><td>全书</td></tr>
+      <tr><td><strong>Mr. Bingley</strong>（宾利）</td><td>内瑟菲尔德租客；财富来自商业（第 4 章）；易被牵动</td><td>第 3 章起</td></tr>
+      <tr><td><strong>Mrs. Bennet</strong>（班纳特太太）</td><td>制度性焦虑的化身；第 1 章第一句话就说出全书经济逻辑</td><td>全书</td></tr>
+      <tr><td><strong>Mr. Bennet</strong>（班纳特先生）</td><td>反讽的化身；"聪明人的懒惰"；第 41 章失职是灾难主因</td><td>全书</td></tr>
+      <tr><td><strong>Mr. Collins</strong>（柯林斯）</td><td>限定继承权的受益人；第 19 章求婚的理由里没有感情</td><td>第 13 章起</td></tr>
+      <tr><td><strong>Charlotte Lucas / Mrs. Collins</strong>（夏绿蒂）</td><td>第 6 章"婚姻幸福全凭运气"；第 22 章接受柯林斯</td><td>第 5 章起</td></tr>
+      <tr><td><strong>George Wickham</strong>（魏克翰）</td><td>假受害者；第 16 章谎言；第三卷由他来引爆危机</td><td>第 15 章起</td></tr>
+      <tr><td><strong>Lydia Bennet</strong>（丽迪雅）</td><td>私奔者；全书最大灾难的执行人；第 41 章的伏笔</td><td>第 1 章起</td></tr>
+      <tr><td><strong>Lady Catherine de Bourgh</strong>（凯瑟琳夫人）</td><td>命令句的化身；第 56 章上门逼问，反成媒人</td><td>第 29 章起</td></tr>
+      <tr><td><strong>Col. Fitzwilliam</strong>（费茨威廉上校）</td><td>第 33 章无心披露；第 34 章的引信</td><td>第 30 章起</td></tr>
+      <tr><td><strong>Mr. &amp; Mrs. Gardiner</strong>（嘉丁纳夫妇）</td><td>全书唯一一对"理性＋感情"俱全的夫妻；第 52 章的信；结尾的落脚点</td><td>第 25 章起</td></tr>
+      <tr><td><strong>Georgiana Darcy</strong>（乔治安娜）</td><td>达西的妹妹；第 35 章魏克翰旧事；第 44 章的证词</td><td>第 35 章起</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>译名对照（混读两个译本时必备）</strong>：</p>
+  <table>
+    <thead><tr><th>英文</th><th>老译名（王科一系统）</th><th>通行的今译名</th></tr></thead>
+    <tbody>
+      <tr><td>Jane Bennet</td><td>吉英</td><td>简</td></tr>
+      <tr><td>Elizabeth Bennet</td><td>伊丽莎白（丽萃 Lizzy）</td><td>伊丽莎白（莉齐）</td></tr>
+      <tr><td>Lydia Bennet</td><td>丽迪雅</td><td>莉迪亚</td></tr>
+      <tr><td>Mr. Bingley</td><td>彬格莱</td><td>宾利</td></tr>
+      <tr><td>Netherfield</td><td>尼日斐花园</td><td>内瑟菲尔德</td></tr>
+      <tr><td>Mr. Bennet</td><td>班纳特先生</td><td>贝内特先生</td></tr>
+      <tr><td>Wickham</td><td>韦翰／魏克翰</td><td>威克姆</td></tr>
+      <tr><td>Darcy</td><td>达西</td><td>达西</td></tr>
+      <tr><td>Pemberley</td><td>彭伯利</td><td>彭伯利</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一个警示</strong>：<strong>上面两列的名字指的都是同一个人</strong>。★ 网络上大量"译本对比"帖之所以读起来像在说两本书，<strong>原因常常只是译名不同</strong>——<strong>认译者之前，先认清译名。</strong> <span class="tag t-rep">转述</span>（本表据上文学术译例、出版社商品页与读者对比帖汇总整理；★ <strong>各译本的译名在具体卷册中可能并不完全统一</strong>，以实物为准。）</p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>原文与版本</strong>：Project Gutenberg <strong>#1342</strong>（<code>https://www.gutenberg.org/ebooks/1342</code>）——本报告全部引文来源，可逐章核对；<strong>#42671</strong>（<code>https://www.gutenberg.org/ebooks/42671</code>，PG 编目标 Editor 为 <strong>R. W. Chapman</strong>）——保留 1813 年三卷格式与分卷章号，用于核对卷界。★ 更正式的学术文本可参 <strong>R. W. Chapman 编《The Novels of Jane Austen》</strong>（Oxford: Clarendon Press, <strong>1923</strong>；第二卷即本书；修订三版 1932）。
+    </li>
+    <li><strong>出版史与版本学</strong>：<strong>David Gilson</strong>，收入 Taylor &amp; Francis 的 <em>Pride and Prejudice</em> 版本学导论，<strong>1995</strong>（初稿年代、退稿、£110、18 先令、1500 册、晨报广告日期皆出于此）。
+    </li>
+    <li><strong>作者本人</strong>：<strong><em>Jane Austen's Letters</strong></em>，<strong>Deirdre Le Faye 编，第 4 版，Oxford University Press，2011</strong>（收存世书信 <strong>164 封</strong>，Cassandra 焚毁了大量）。★ 本报告的 <span class="tag t-talk">作者谈话</span> 档即取自本书所收 1813 年那几封。
+    </li>
+    <li><strong>后殖民批评</strong>：<strong>Edward W. Said</strong>，<em>Culture and Imperialism</em>，Knopf，<strong>1993</strong>，其中〈Jane Austen and Empire〉一章。
+    </li>
+    <li><strong>中译比较（学术）</strong>：《从功能对等理论角度比较研究〈傲慢与偏见〉的三个汉译本》（王科一／孙致礼／张玲·张扬译例对比）；<span class="tag t-rep">转述</span> 我未核到该文的正式刊名与作者。
+    </li>
+    <li><strong>改编研究</strong>：JASNA <em>Persuasions On-Line</em>，<strong>第 27 卷第 2 期（2007）</strong>（2005 电影专辑，6 国 19 位学者参与）；其中 <strong>Camden</strong>〈Sex and the Scullery: The New Pride &amp; Prejudice〉一文讨论 1995 与 2005 两版"凝视对象"的倒转。
+    </li>
+    <li><strong>同名／同源文本</strong>：<strong>Fanny Burney</strong>，<em>Cecilia</em>（1782）——其末章标题即 "Pride and Prejudice"，<strong>本书书名的可能来源</strong>；<strong>Margaret Holford</strong>，<em>First Impressions</em>（1800）——<strong>与本书初稿同名的先行出版作品</strong>（见第 4b 节第 6 条）。
+    </li>
+    <li><strong>同时代的反面意见</strong>：<strong>Charlotte Brontë</strong> 1848 年致 <strong>G. H. Lewes</strong> 的信（"一座精心围起的花园……没有新鲜空气"）——★ <strong>"格局太小"这一批评的经典文本</strong>（见 5.3）。
+    </li>
+    <li><strong>中译本选购的公开讨论</strong>：什么值得买 <strong>2026-08-21</strong>《〈傲慢与偏见〉是最容易买错版本的名著：七个译本开头摆在一起，该买哪版一目了然》——★ <strong>本文的七种开篇句对照即转引自此（其原始出处为微博对比帖）</strong>，属二手汇总，见附录 D3、D4。
+    </li>
+    <li><strong>原文可读的对照入口</strong>：<strong>Wikisource</strong> 的 <em>Pride and Prejudice</em> 1813／1817 页面（分卷列出，可核对"三卷各自编号"）；★ 但<strong>本报告的引文一律取 PG #1342</strong>，不用 Wikisource 作引文依据。
+    </li>
+  </ol>
+</section>
+
+<section id="s12">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>见同目录 <code>傲慢与偏见-来源清单.md</code>。</p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. PG #1342 的底本到底是什么版本</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：#1342 的正文里出现 <strong>"Copyright 1894 by George Allen"</strong> 的插图说明，卷末印 <strong>"CHISWICK PRESS:--CHARLES WHITTINGHAM AND CO."</strong>——<strong>这说明它的文字来自 1894 年 George Allen 的插图本</strong>（配 Hugh Thomson 一系的插图），而不是 1813 年初版原件。PG 页面只写"produced from images available at The Internet Archive"，<strong>没有点名是哪一册</strong>。
+    </li>
+    <li><strong>我查到了什么</strong>：插图版权页与承印信息两处独立指向 1894 年 George Allen 版；这与 PG 编目里 "Chuck Greif" 的制作说明一致。<span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>为什么没能定死</strong>：<strong>我无法确认 Internet Archive 上被扫描的那一册的完整版权页信息。</strong>
+    </li>
+    <li>⇒ <strong>本报告引文对"文字可靠性"的立场是：它是公版流传本，措辞与 1813 初版可能存在细微差异（标点、拼写）；如需逐字校勘，请用 Chapman 版或牛津学术版（见 5.1）。</strong>
+    </li>
+  </ul>
+  <h3>D2. 61 章的两个编号系统，与"每卷重新从第 I 章起"</h3>
+  <ul>
+    <li><strong>我核到了什么</strong>：PG <strong>#42671</strong> 与牛津学术版的目录都显示 <strong>VOL. I 第 I–XXIII 章／VOL. II 第 I–XIX 章／VOL. III 第 I–XIX 章</strong>；Wikisource 的 1813 年版页面同样分卷列出。⇒ <strong>1813 年初版与 Chapman 版确实"每卷重新编号"，因此原书里有三个"第 I 章"。</strong> 现代通行本多改用连续 1–61。
+    </li>
+    <li><strong>★ 一处矛盾</strong>：某教学网站（CourseHero）称"<strong>有的版本连续编到 60 章</strong>"——<strong>这与 61 章不符</strong>（该书正文为 61 章）。⇒ <strong>以 61 为准</strong>；若见到"60 章"的说法，多半是转述错误。<span class="tag t-src">原书</span>（#1342 的 61 个 "CHAPTER" 标题已逐一数过）。
+    </li>
+    <li><strong>为什么仍列在待核实</strong>：<strong>"1813 年初版原件是否真的分卷重编号"这一条，我是通过 PG #42671 与牛津版目录间接确认的，没有看到初版原书的书影。</strong> ⇒ 若你要引用，建议以 Chapman 版或大英图书馆等机构藏本书影复核。
+    </li>
+  </ul>
+  <h3>D3. 杨浩田、王晋华两家译本的开篇句未能核到</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：BOOK_SPEC 点名的译者里，<strong>杨浩田（读客／江苏凤凰文艺）与王晋华（作家出版社）</strong> 两家，我在公开来源里只能确认<strong>存在这两个译本</strong>（据什么值得买 2026-08 综述与爱企查条目），<strong>未能找到它们开篇第一句的逐字译文</strong>。
+    </li>
+    <li><strong>我查到了什么</strong>：杨浩田译本被多个书评称为"主打顺畅好读"；王晋华译本见于"作家出版社"系列。<strong>但两家开篇句的原文，我没有从两个独立来源核到。</strong>
+    </li>
+    <li>⇒ <strong>本报告 <code>## 4</code> 的对照表因此不含这两家</strong>；它们是本报告<strong>明确未核实</strong>的项。<strong>若你要引用这两家的译文，请以实物书为准。</strong>
+    </li>
+  </ul>
+  <h3>D4. 中译本的版次、页数与 ISBN，我未逐项核死</h3>
+  <ul>
+    <li><strong>我核到了什么</strong>：王科一译本 <strong>1955-02 上海文艺联合出版社首版 → 1956-09 新文艺 → 1980 上海译文再版 → 2006-08 上海译文"译文名著文库"版（358 页，ISBN 9787532739783）</strong>；★ <strong>同一译者至少有两个书名版本与多个重新排印本。</strong>
+    </li>
+    <li><strong>★ 一个我无法裁定的矛盾</strong>：<strong>王科一开篇句至少有两种流传版本</strong>——"<strong>凡是有钱的单身汉，总想娶位太太</strong>"（kekenet、诗词汇、什么值得买等多数来源）与"<strong>凡是有财产的单身汉，必定需要娶位太太</strong>"（多篇翻译研究论文引作 V1 译文）。<strong>这两句究竟哪一个对应 1955 年初版、哪一个对应后来的修订再版，我未能确认。</strong> ⇒ <strong>本报告 <code>## 4</code> 采用流传更广的"凡是有钱的单身汉……"，并在来源清单里并列另一说。</strong>
+    </li>
+    <li>⇒ <strong>各译本页数与 ISBN 请以实物版权页为准。</strong>
+    </li>
+  </ul>
+  <h3>D5. 本书「作者自述类材料」一档的取材边界（重要）</h3>
+  <ul>
+    <li><strong>本档只收三类</strong>：① <strong>Austen 本人书信</strong>（据 <em>Jane Austen's Letters</em>, 4th ed. 2011 所收 1813 年书信）；② <strong>小说文本内的直接表态</strong>（如以叙述者身份做出的判断——但这严格说是小说的叙述者，不完全是作者的"谈话"）。<strong>必须写明：这不是访谈——Austen 逝于 1817 年，任何"访谈"都是伪托。</strong>
+    </li>
+    <li><strong>★ 我核到的、真正谈本书创作的信极少</strong>：<strong>第 79 封（1813-01-29 致 Cassandra）</strong>——<code>I have got my own darling Child from London</code>，并说觉得自己笔下的伊丽莎白"是印刷品中出现过的最令人愉快的造物"；<strong>第 80 封（1813-02-04 致 Cassandra）</strong>——<code>the work is rather too light &amp; bright and sparkling; it wants shade</code>；<strong>第 87 封（1813-09-15/16）</strong>——Warren Hastings 也喜欢她的伊丽莎白。⇒ <strong>她谈自己创作的信，确实非常少</strong>（Cassandra 焚毁了大量书信；存世 164 封中多为家常）。
+    </li>
+    <li><strong>★ 本报告对第 80 封引文的处理</strong>：该信文字<strong>我是通过公开的引文分享页（Risky Regencies 2013-02 引 Brabourne 版与 Le Faye 版）转引的</strong>，<strong>未核对 Le Faye 2011 版原书</strong>。<span class="tag t-rep">转述</span> ⇒ <strong>若引用，请以 Le Faye 2011 版为准。</strong>
+    </li>
+    <li><strong>另一处需要注意</strong>：本书的叙述者<strong>不是</strong> Austen 本人；<strong>把叙述者的反讽语句直接当成"作者的态度"是错误的读法</strong>（第 5 节第 5 条已就 Said 的问题说明同类风险）。
+    </li>
+  </ul>
+  <h3>D6. Edward Said 批评的对象与"本书"的边界</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：BOOK_SPEC 提示 Said《文化与帝国主义》（1993）<strong>批评奥斯汀"及此书"</strong>回避帝国与奴隶制，并提到"<strong>Bingley 家的财富来路与加勒比种植园的关系</strong>"。
+    </li>
+    <li><strong>我核到了什么</strong>：Said 的正文分析对象是 <strong>《曼斯菲尔德庄园》</strong>（伯特伦家在<strong>安提瓜</strong>的糖料种植园）；<strong>本书第 4 章明写宾利家财富 <code>had been acquired by trade</code>（来自商业，继承自父亲约十万英镑），与加勒比种植园无关</strong>（<span class="tag t-src">原书</span>）。★ 另有评述指出，Said 曾把本书的 Lydia Bennet 误列作《曼斯菲尔德庄园》的人物（<em>Prospect</em> 杂志对 Said 传记的评述）。
+    </li>
+    <li>⇒ <strong>本报告的处理</strong>：如实写出 Said 的原始论点（对象是《曼斯菲尔德庄园》），并<strong>明确指出把该论点平移到本书是需要额外论证的</strong>；对本书适用的，是<strong>"对帝国的沉默"这一更弱的质询</strong>，而不是"种植园财富"这一具体指控。<strong>（这一点与 BOOK_SPEC 的提示不同，我按原文核实结果写。）</strong>
+    </li>
+  </ul>
+  <h3>D7. 「一千五百册」印数与几项金额，都是通行推测</h3>
+  <ul>
+    <li><strong>我核到了什么</strong>：<strong>David Gilson 1995 明确写"印数不明，1500 册只是一个被提出过的数字"</strong>；Christie's 与 BIBLIO 的初版著录写"approximately 1500 copies"。★ <strong>换言之，"1500"是估计值，不是记录值。</strong>
+    </li>
+    <li><strong>另两项金额的可靠性</strong>：£110（Austen 自己 1812-11-29 致 Martha Lloyd 信）与 18 先令定价（广告）<strong>有据</strong>；<strong>Jan Fergus 估算 Egerton 头两版赚约 £450</strong> 是<strong>学者的计算</strong>，不是原始账目。⇒ <strong>引用时请注明这是估算。</strong> <span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <h3>D8. 1995／2005 两版改编的"影响"边界</h3>
+  <ul>
+    <li><strong>我核到了什么</strong>：1995 BBC 六集剧的导演 <strong>Simon Langton</strong>、编剧 <strong>Andrew Davies</strong>、主演 <strong>Jennifer Ehle／Colin Firth</strong>，约六小时；2005 电影导演 <strong>Joe Wright</strong>、编剧 <strong>Deborah Moggach</strong>、主演 <strong>Keira Knightley／Matthew Macfadyen</strong>，<strong>RT 87%／Metacritic 82／CinemaScore A−</strong>，<strong>JASNA 2007 年出专号</strong>。<span class="tag t-rep">转述</span>（据 IMDb 条目、2005 电影条目与 JASNA 页面）
+    </li>
+    <li><strong>★ 我未能核实的一项</strong>："<strong>Wright 接戏时没读过原著</strong>"这一说法，我只见于 Wellesley News 2020 年的一篇学生评论，<strong>未找到第二个独立来源</strong>。⇒ <strong>本报告正文（第 5.6 节）引用时已标明"据 Wellesley News"，请视为单一来源。</strong>
+    </li>
+    <li><strong>为什么这一条要列出来</strong>：<strong>"改编影响了读者对达西的期待"这个结论是方向正确的，但可核的证据只到"评论／票房／旅游／学术回应"这一层</strong>，<strong>没有读者调查数据</strong>。⇒ <strong>结论要打折扣。</strong>
+    </li>
+  </ul>
+  <p>★ <strong>关于本附录的使用说明</strong>：<strong>D1–D8 列出的，都是"我明确知道没能核到"的东西，而不是"我怀疑有问题"的东西。</strong> ★ 如果你要引用本报告的<strong>原文引文</strong>（标注 <span class="tag t-src">原书</span> 的那些），<strong>它们全部可以在 PG #1342 的公版全文里逐字检索到，可自行复核</strong>；★ 如果你要引用的是<strong>中译引文、出版社信息或作者书信</strong>，<strong>请务必回到本附录与来源清单里注明的那一层去核</strong>（尤其是 D3、D4、D5 三项——<strong>中译本与作者书信这两类，是本报告最薄的一环</strong>）。<strong>宁缺勿假：凡我核不到的，我都写在了这里。</strong></p>
+</section>
+
+<footer>
+  生成于 2026-10-07 · 来源清单与交叉验证记录见同目录 <code>傲慢与偏见-来源清单.md</code><br>
+  本页引文分两级处理：<b>英文原文为 A 级（Project Gutenberg #1342 公版全文，#42671 补卷界，61/61 章全 A）</b>；<b>中文引文为 B 级</b>（七家中译均在版权期内，无电子版，仅据公开来源的二手材料）。★ 请接受三条边界：<b>① 我逐字核对的是 61 章章首句与约 60 处关键引文段，不是逐行通读全文；② 页面上的中文引文均非中译本原文的照抄，措辞以译本为准；③ 批评文献（Gilson、Said、Barchas、Ferguson 等）属可定位的一手文献，我没有逐字核对专著本身，一律标 转述。</b> ★ 最后提醒三件事：<b>① 这本书的发动机是「限定继承权 entail」而不是爱情——每读一桩婚事，请先问一句：这是爱情，还是发动机在响？② 三卷本的两次卷末（第 23、42 章）都是把处境弄得更糟的「反向悬念」，不是解决问题；③ 开篇第一句的六种以上中译对 in want of 的处理分成了「主观想要」与「客观需要」两条路，这便是中文读者最容易买错的岔口。</b> 请以公版原文与署名学术文献为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

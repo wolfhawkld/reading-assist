@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《战争与和平》· 索引碎片</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+
+/* ===== 索引碎片页的版式覆盖（无侧栏，单列）===== */
+main{margin:0 auto;max-width:840px;padding:0 22px 90px}
+.hero{padding:40px 0 20px}
+.hero .kick{font-size:11.5px;letter-spacing:.08em;color:var(--ink3);font-weight:600;margin-bottom:6px}
+.frag{margin:20px 0 0;padding:20px 22px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.frag .row{margin:0 0 11px;font-size:14px;color:var(--ink2);line-height:1.75}
+.frag .row>b{color:var(--ink);font-weight:600;margin-right:2px}
+.frag ol.sub{margin:6px 0 0 0;padding-left:22px;font-size:13.5px;color:var(--ink2)}
+.frag ol.sub li{margin:4px 0}
+.frag code{background:var(--hover);padding:1px 5px;border-radius:4px;font-size:.92em}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+.chip{font-size:11.5px;padding:2px 9px;border-radius:5px;background:var(--hover);color:var(--ink2)}
+.cfoot{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
+.cfoot a{font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;text-decoration:none;
+  background:var(--accent-bg);color:var(--accent);border:1px solid var(--linkline)}
+.cfoot a:hover{background:var(--linkhover)}
+.cfoot a.ghost{background:var(--panel);color:var(--ink2);border-color:var(--line2)}
+ol.dir{list-style:none;margin:18px 0 0;padding:0}
+ol.dir li{padding:10px 14px;border:1px solid var(--line);border-radius:9px;background:var(--panel);margin:8px 0}
+ol.dir a{font-weight:600;color:var(--accent);text-decoration:none;font-size:14.5px}
+ol.dir a:hover{text-decoration:underline}
+ol.dir .m{font-size:12.5px;color:var(--ink3);margin-top:3px}
+</style>
+</head>
+<body>
+<div id="ctl"><button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button></div>
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+<header class="hero">
+  <div class="kick">索引碎片 · 战争与和平</div>
+  <h1>《战争与和平》</h1>
+<div class="chips"><span class="chip">状态：未标注已读／想读</span><span class="chip">收录：2026-10-07</span><span class="chip">形态：文学型（近代长篇）＋「卷 → 部」两级 nav —— 下部 4 卷 ＋ 尾声（6–10）</span><span class="chip">核验级别：原文 A（俄文原文 ＋ Maude 公版英译</span></div>
+</header>
+<div class="frag">
+    <div class="row"><b>作者</b>列夫·尼古拉耶维奇·托尔斯泰（Лев Николаевич Толстой／Leo Tolstoy，<strong>1828–1910</strong>）</div>
+    <div class="row"><b>原名</b>Война и мир（旧正字法 <strong>Война и миръ</strong>；英译 <em>War and Peace</em>）</div>
+    <div class="row"><b>写作史</b><strong>1863 起笔</strong>；<strong>1865–1867</strong> 在《俄国导报》（Русский вестник）连载前半，题名 <strong>《1805》</strong>；<strong>1866–1869 整部重写</strong>；<strong>1869 出版完整本</strong>。★ 妻子 <strong>索菲娅·托尔斯泰娅</strong> 抄录了多达<strong>七份</strong>完整稿；<strong>★ 连载版的结局与 1869 年成书版不同</strong></div>
+    <div class="row"><b>★ 结构（本报告全部定位都按它来读）</b>标准俄文版＝<strong>4 卷 · 15 部 · 外加分两部分的尾声</strong>；全书 <strong>361 章</strong>，其中 <strong>24 章为哲学议论章</strong></div>
+    <ol class="sub">
+      <li><strong>卷-部对应</strong>：<strong>第一卷＝第 1–3 部（1805）／第二卷＝第 4–8 部（1806–1812）／第三卷＝第 9–11 部（1812）／第四卷＝第 12–15 部（1812–1813）／尾声＝第一尾声＋第二尾声</strong></li>
+      <li>★ <strong>24 章哲学章可定位清单</strong>：第 10 部 第 19、20、33 章；第 11 部 第 1 章；第 13 部 第 8 章；第 14 部 第 1、2、18 章；<strong>第一尾声 第 1–4 章；第二尾声（全部）</strong></li>
+      <li>★ <strong>Gutenberg／Maude 英译不标「卷」</strong>，只标 <strong>Book One–Fifteen ＋ First／Second Epilogue</strong>（<strong>英译分部章数合计 365，与俄文 361 不同——拆章口径差异，主要在 Book One：俄文 25 章／英译 28 章</strong>）⇒ <strong>引用优先用「部」号，卷号标注在旁</strong></li>
+    </ol>
+    <div class="row"><b>篇幅</b>初版 <strong>1,225 页</strong>；英文计约 <strong>58 万词</strong>；约 <strong>580 个人物</strong>，其中约 <strong>160 个是真实历史人物</strong></div>
+    <div class="row"><b>★ 公版全文入口</b><strong>俄文 Wikisource</strong>（据 90 卷本《托尔斯泰全集》第 9–12 卷，4 卷＋尾声）／<strong>Project Gutenberg #2600</strong>（<strong>Louise 与 Aylmer Maude 译本</strong>，1922–23）／<strong>分卷版 #28920 起</strong>（Book 01: 1805）／<strong>英译 Wikisource</strong>（分 Book／Chapter，定位最方便）</div>
+    <div class="row"><b>中译（主要谱系）</b>董秋斯（1940 年代，骆驼书店→人民文学；<strong>据英译还是俄文，公开说法互相矛盾</strong>）／高植（1950 年代，据俄文）／<strong>刘辽逸</strong>（人民文学 1981，「外国文学名著丛书」网格本，学界标杆）／<strong>草婴</strong>（上海译文；★ <strong>省略大多数人物的父名</strong>）／张捷（★ 严格保留完整人名规则）／娄自良（上海译文）</div>
+    <div class="row"><b>状态</b>未标注已读／想读</div>
+    <div class="row"><b>收录</b>2026-10-07</div>
+    <div class="row"><b>形态</b>★ <strong>文学型（近代长篇）＋「卷 → 部」两级 nav</strong> —— 下部 <strong>4 卷 ＋ 尾声</strong>（6–10），<strong>卷内逐部 15 部一部不漏</strong>（3＋5＋3＋4）；<code>## 2</code> 为「核心主题与结构机制」</div>
+    <div class="row"><b>产出</b><code>战争与和平/</code> — <code>战争与和平.md</code>（191,190 B，<strong>45,504 汉字</strong>，本批篇幅最大）＋ <code>战争与和平-来源清单.md</code>（14,977 B）＋ <code>战争与和平-build.json</code></div>
+    <div class="row"><b>结构</b>正文 <strong>4 卷＋尾声</strong>（下部 6–10）＋ 附录 A–D；上部含一句话定位／全书骨架（<strong>15 部逐部表 ＋ 24 章哲学章清单</strong>）／核心主题与结构机制／阅读建议／<strong>中文译本怎么选</strong>／<strong>流行说法 vs 原文（7 条）</strong>／争议与局限（7 条）；附录 <strong>D 待核实项（11 条）</strong></div>
+    <div class="row"><b>核验级别</b><strong>原文 A（俄文原文 ＋ Maude 公版英译，两路并行）＋ 中文引文 B</strong>（★★ <strong>两句分开写、不合并</strong>）。<strong>① 原文：A 级</strong> —— 俄文 Wikisource 四卷＋尾声全文与 PG #2600 的 Maude 英译全文<strong>均下载到本地可做全文检索与逐段核对</strong>。<strong>② 中文引文：B 级</strong> —— 六种中译均在版权期内，未逐字核对</div>
+    <div class="row"><b>备注</b></div>
+    <ol class="sub">
+      <li>★★ <strong>这不是一本「拿破仑战争小说」，托尔斯泰本人否认它是小说</strong>。他在 <strong>1868 年</strong>《关于〈战争与和平〉的几点说明》（Несколько слов по поводу книги «Война и мир»）里写下：<strong>「这不是小说，更不是长诗，更不是历史编年。」</strong>（«Это не роман, еще менее поэма, еще менее историческая хроника»）★ 佐证：<strong>他认为《安娜·卡列尼娜》（1878）才是自己第一部真正意义上的小说</strong></li>
+      <li>★★ <strong>15 部里有 24 章是纯议论，位置极其讲究</strong>：越往后越多，<strong>最后整篇第二尾声都是它们</strong>。跳过它们读到的不是完整的《战争与和平》</li>
+      <li>★★ <strong>「Gutenberg #2600 是 Garnett 译本」——这是错的，是 Maude 译本</strong>（Gutenberg #2600 书头写明 Translator 为 Louise &amp; Aylmer Maude）。★ 这个错误在网上反复出现，<strong>本报告把它单列进 4b 当样本</strong></li>
+      <li>★★ <strong>草婴译本「最忠实」的说法方向反了</strong>：草婴的<strong>最大特色是省略大多数人物的父名</strong>（安德烈·尼古拉耶维奇·保尔康斯基 → 安德烈·保尔康斯基）——<strong>不是对错问题，是两条互斥的翻译路线</strong>（张捷严格保留完整人名规则，最贴原文也最考验记忆）</li>
+      <li>★ <strong>历史哲学的核心</strong>：第二尾声是一整篇 12 章的<strong>史学论战</strong>，批「伟人史观」，主张历史由无数微小行动累积而成，<strong>以微积分作类比</strong>，并顺带嘲讽当时新兴的达尔文主义</li>
+      <li>★ <strong><span class="tag t-talk">作者谈话</span> 档的实际用法</strong>：托尔斯泰 1910 年已逝 ⇒ 该档用于 <strong>1868 年那篇说明</strong>、《什么是艺术？》（1897）、书信日记，<strong>每次使用都写明不是访谈</strong>；★ 并写出<strong>他晚年与创作期对本书态度的落差</strong></li>
+    </ol>
+    <div class="row"><b>待核实</b>★ D1「361 章」与「365 章」的拆章口径（俄文 25／英译 28，主要在第 1 部）；★ D2 董秋斯究竟据英译还是俄文（两说并存、未能确证）；★ D3 郭沫若是否只译了法文版第一卷、高植补译后三卷（未核到确证）；★ D4 连载版《1805》与 1869 成书版结局的具体差异文本未直读；★ D5 索菲娅「抄了七份」的最初出处；★ D6 书名来源（蒲鲁东 1861《La Guerre et la Paix》说 vs 苏维托尼乌斯说，两说并存）；★ D7 初版 1,225 页的统计口径；★ D8 580 人物／160 真实人物的统计口径；★ D9 Maude 译本 1922–23 的首版出版信息；★ D10 Pevear &amp; Volokhonsky 2007 译本争议的一手书评未直读；★ D11 第一尾声第 2 章「养肥的公羊」寓言的中文定位易误（常被说成出自「第一部第二章」）</div>
+</div>
+<div class="cfoot">
+  <a href="../战争与和平/战争与和平.html">打开阅读页</a>
+  <a class="ghost" href="../战争与和平/战争与和平.md">内容正本</a>
+  <a class="ghost" href="../战争与和平/战争与和平-来源清单.md">来源清单</a>
+  <a class="ghost" href="战争与和平.md">本页 Markdown</a>
+</div>
+</main>
+<script>/* 主题切换（本页自用的小脚本，不依赖书页主脚本） */
+(function(){var b=document.getElementById('themebtn');if(!b)return;
+function sync(){b.textContent=(document.documentElement.getAttribute('data-theme')==='dark')?'◐ 浅色':'◐ 深色';}
+b.addEventListener('click',function(){
+  var d=document.documentElement.getAttribute('data-theme')==='dark';
+  var n=d?'light':'dark';
+  document.documentElement.setAttribute('data-theme',n);
+  try{localStorage.setItem('ra-theme',n)}catch(e){}
+  sync();});
+sync();})();</script>
+</body>
+</html>

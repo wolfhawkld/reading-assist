@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《变形记》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《变形记》<small>阅读指引与精华解析 · 2026-10-07</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 核心主题与结构机制</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 中文译本怎么选</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 逐部分深挖</div>
+    <a href="#s7">6 第一部分：醒来，与失去声音</a>
+    <a href="#s8">7 第二部分：照料的变质</a>
+    <a href="#s9">8 第三部分：清除，与死亡</a>
+    <a href="#s10">9 未解释的变形：卡夫卡留下了什么</a>
+    <div class="grp">附录</div>
+    <a href="#s11">A 关键概念与人物速查</a>
+    <a href="#s12">B 延伸阅读</a>
+    <a href="#s13">C 来源清单</a>
+    <a href="#s14">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《变形记》阅读指引与精华解析</h1>
+  <div class="sub">Die Verwandlung：一个人在一个早晨变成了一个没有名字的东西</div>
+  <div class="meta">
+    <div><b>书名</b>《变形记》（Die Verwandlung，英译 The Metamorphosis）</div>
+    <div><b>作者</b>弗兰茨·卡夫卡（Franz Kafka，1883–1924），布拉格德语犹太作家</div>
+    <div><b>初版</b>1915-10 首发于表现主义月刊 Die weißen Blätter（主编 René Schickele）；1915-12 由 Kurt Wolff Verlag（Leipzig）出单行本，属 Bücherei »Der jüngste Tag« 第 22/23 卷，初版封面 Ottomar Starke 设计</div>
+    <div><b>篇幅</b>初版 73 页 ＋ 3 页广告（别称「约 70 印刷页」）；分三个部分，原文标 I./II./III.；卡夫卡生前发表并认可的作品中最长的一篇</div>
+    <div><b>依据版本</b>Project Gutenberg #22367（德文原文，底本＝Kurt Wolff Verlag 1917 年版，版权页作 COPYRIGHT KURT WOLFF VERLAG · LEIPZIG. 1917）</div>
+    <div><b>核验级别</b>原文：A（德文全文三个部分逐段核对）／中文引文：B</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有公版德文原文（Project Gutenberg #22367）可逐行定位的段落与德文原词；或三个以上彼此独立来源一致引用的事实（含拍卖行对 1915 年初版实物的逐项编目）</li>
+    <li><span class="tag t-talk">作者谈话</span> 出自卡夫卡本人的其他文字 —— <b>日记、书信、〈致父亲的信〉</b>，尤以 <b>1915-10-25 致出版商谈封面设计的信</b> 为核心。★ <b>这不是访谈</b>：卡夫卡已于 1924 年去世，本报告绝不假装能访谈他</li>
+    <li><span class="tag t-rep">转述</span> 来自英文二手、机构条目或读者转引，措辞可能与原文有出入；凡我不懂德文原文处、或只有单个来源支持处，一律标此</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    我未接触任何中译本实体书；本报告 A 级依据只有一件 —— <b>Project Gutenberg #22367 的德文全文（145,983 字节，已下载到本地逐行核对）</b>。「原书可核对」只适用于有公版德文原文可定位的段落。★ 本档「作者谈话」只用卡夫卡本人的<b>日记与书信</b>，<b>并已写明这不是访谈</b>。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（原文 A ＋ 中文引文 B，两句分开）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书落在 <b>原文：A</b> —— 德文公版全文三个部分（I./II./III.）逐段核对，可给德文原词定位。</p>
+  <p style="margin:6px 0 0;font-size:12.5px;color:var(--ink3)"><b>中文引文：B</b> —— 李文俊、张荣昌、叶廷芳、谢莹莹等译文均在版权期内，<b>本报告未持任何中译实体书</b>，中文引文一律<b>据公开文章转引</b>（柳冬妩，中国作家网 2014；《光明日报》2015-04-16）。<b>两句分开写、不合并。</b></p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>《变形记》写的是：一个人在一个早晨毫无理由地变成了一只「不是任何具体物种的虫子」，而他最害怕的事不是变形本身，是「上班要迟到了」——此后他只能躺在床上、趴在墙上、蜷在椅子底下，隔着一扇半开的门，听自己的家人一点点学会把他当成一件待处理的麻烦。</strong></p>
+  <p>它不是「异化寓言」的标准答案（「异化」是后来的批评家给的词，卡夫卡本人没用过）；不是恐怖故事（叙述从不为变形惊讶，一次都没有）；也不是一本可以用「他变成甲虫」四个字概括的书——<strong>因为「甲虫」不在原文里</strong>。</p>
+  <p>一句话结论（引自原文，全书的语法引擎都在这半句里）：<strong><code>fand er sich in seinem Bett zu einem ungeheueren Ungeziefer verwandelt.</code></strong>——「<strong>他发现自己躺在床上，变成了一只巨大的 <code>Ungeziefer</code>。</strong>」<span class="tag t-src">原书</span> 注意：动词 <code>fand</code>（发现）在前，<code>verwandelt</code>（变成了）压在句尾——<strong>德语的框型结构让「变形」这个词最后一个才落地，而「发现自己」排在第一个</strong>。<strong>这就是这本书的写法：变形早已完成，叙述只处理「发现」。</strong></p>
+  <p><strong>它不是什么</strong>：不是解释性的小说（<strong>从不交代为什么变形、不变形的是什么、格里高尔自己怎么想</strong>）；不是「卡夫卡预言了现代人的疏离」这种先有结论再找证据的读法；也不是一本「读过梗概就算读过」的书——<strong>它的价值有很大一部分在「不解释」的技术、在门与窗的空间调度、在那只苹果如何在背里烂掉。</strong></p>
+  <p>★ <strong>先说清楚它「是」什么类型的东西</strong>：它是一篇<strong>中篇小说</strong>（德语 <code>Novelle</code> 的近亲，但卡夫卡生前并未严格归类），<strong>约 70 印刷页</strong>，分三个部分。<strong>它不是长篇，不是短篇，也不是寓言集里的一则。</strong> 它有一种非常特定的「尺寸感」：<strong>短到你可以一口气读完，长到足够让你被关进那个房间一整天。</strong> ★ <strong>这个尺寸不是偶然的</strong>——卡夫卡在写作时曾说它「比他最初计划的要长」（见第 9 节）。<strong>如果它只有五页，它就是一个笑话；如果它有五百页，它就成了一份病历。它恰好是七十页，所以它是一间你住得进去、但住不久的房子。</strong> <span class="tag t-inf">推断</span></p>
+  <p>★★ <strong>最后再强调一次本书最容易被说错的一句话</strong>：<strong>「格里高尔变成了一只甲虫」——这句话在中文里被说了无数遍，而它从来没有在卡夫卡笔下出现过。</strong> 卡夫卡写的是 <code>einem ungeheueren Ungeziefer</code>，<strong>一个没有物种的词</strong>。<strong>你如果带着「甲虫」读这本书，你会一直替卡夫卡做一件他不肯做的事：给它命名。</strong> 本报告的第 5.1 节、第 9 节都在讲这件事——<strong>而它是理解这本书的入口，不是花边。</strong></p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>下表三部分一行一条。原文只标 <strong>I. / II. / III.</strong>（不标标题），下表标题是笔者为便于定位所拟，<strong>章名一律以罗马数字为准</strong>。定位用「部分＋场景」，不用页码（版本间页码不同）。</p>
+  <table>
+    <thead><tr><th>#</th><th>部分</th><th>这一部分写了什么</th><th>这一部分的结构功能</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><strong>I.</strong>（约 73 页中的前 1/3）</td><td>格里高尔在出租屋里醒来，发现自己变了形；他盘算的还是赶火车、怕丢工作；首席店员（Prokurist）上门问罪；他挣扎着开门，吓跑首席店员，被父亲用手杖和报纸赶回房间，房门「砰」地关上；妹妹 Grete 在门外轻声叫他</td><td>建立「不可能的前提」并让叙述照常进行；把格里高尔<strong>锁进房间</strong>，从此「门」成为全书唯一的交通设施</td></tr>
+      <tr><td>2</td><td><strong>II.</strong>（中 1/3）</td><td>黄昏醒来，格里高尔学会用触角和腿；Grete 开始每天送食物、打扫，试探他吃什么；父母不敢看他的样子；父亲重新去银行做杂役；格里高尔某夜爬出房间，被父亲用<strong>苹果</strong>轰炸，一颗苹果嵌进后背；母亲昏倒</td><td>照料开始<strong>变质</strong>：从「喂他」到「容忍他」；物理上的重伤（苹果）落在这一部分末尾，<strong>成为第三部分死亡的伏笔</strong></td></tr>
+      <tr><td>3</td><td><strong>III.</strong>（后 1/3）</td><td>重伤缠绵一个多月；家里为补贴收入招来<strong>三位房客（Zimmerherren）</strong>；打扫女佣（Bedienerin，老寡妇）来了，只有她不怕格里高尔；Grete 拉小提琴给房客听，格里高尔被音乐吸引爬出房间；房客抗议，Grete 宣布 <strong><code>Weg muß es</code>（必须把它弄走）</strong>；格里高尔退回房间，在凌晨三点死去；女佣发现尸体喊「它死了」；父亲说「现在我们可以感谢上帝了」；一家人乘电车出城</td><td><strong>清除与死亡</strong>：妹妹的话完成「去人格化」；苹果的伤兑现为死；结尾一家三口出门，格里高尔连一句悼词也没有</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法提示</strong>：三部分的长度几乎等分，<strong>这不是「三章」而是「三个乐章」</strong>：I. 是「发现」，II. 是「照料」，III. 是「清除」。<strong>每一部分结尾都落在一次身体的损伤上</strong>——I. 末被父亲赶，一条腿受伤；II. 末被苹果砸中，苹果留在肉里；III. 末格里高尔死。<strong>这条「伤一次比一次重」的线，就是全书的骨架</strong>（见第 2 节第 8 条）。</p>
+  <p>★ <strong>一个必须知道的操作建议</strong>：<strong>本书只有约 70 页，请一次读完，不要分成三次。</strong> 它的效果建立在「你已经被关进那间房子」这一点上——<strong>分段读会把它读成三个短篇，而它其实是一个不能中断的房间。</strong></p>
+  <p>★ <strong>这张表还藏着一件事：三部分的信息密度是「递减」的，而情绪强度是「递增」的。</strong> I. 段事件最密（变形、首席店员、开门、被赶），可情绪最轻（格里高尔担心的是工作）；到 III. 段事件最少（房客、琴声、死），而情绪最重（全家松了一口气、女儿伸展身体）。★ <strong>卡夫卡用「事件变少、情绪变重」的方式，模拟了「被隔离者的世界越来越小、而痛苦越来越清晰」的过程。</strong> <span class="tag t-inf">推断</span> <strong>这也是为什么这本书读到最后会让人喘不过气——不是发生了什么，而是「什么都没发生」而一切都结束了。</strong></p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>核心主题与结构机制</span><span class="caret">▾</span></h2>
+  <p>★ 本书是文学型作品，没有「论点」，只有<strong>手法与机制</strong>。以下八条，写的是<strong>这本书在做什么、靠什么手段做</strong>。</p>
+  <h3>机制一：首句的语法——变形早已完成，叙述只处理「发现」</h3>
+  <p><strong>主张</strong>：全书的叙事机制在第一个句子里就定了型：<strong>卡夫卡不写「变形」这个过程，只写「发现」这个结果</strong>。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：德文首句把 <code>fand</code>（发现）放在主语之后、把 <code>verwandelt</code>（变成了）压在句尾——<strong>德语的框型结构（Satzklammer）让「变形」这个词最后一个才落地</strong>，而 <code>eines Morgens</code>（一天早晨）这种童话式的、含混的时间状语一上来就消解了「为什么是这一天」的问题。紧接着第二段：<code>»Was ist mit mir geschehen?« dachte er. Es war kein Traum.</code>——「『我出了什么事？』他想。<strong>这不是梦。</strong>」<span class="tag t-src">原书</span>（I. 段）<strong>卡夫卡只用了三个词就堵死了「这是梦」这条退路。</strong></p>
+  <p><strong>为什么重要</strong>：<strong>这一句是全书所有「不解释」的总开关。</strong> 一旦变形是「已完成」的，追问原因就变成了一个文本之外的问题；而卡夫卡把读者的注意力<strong>从「怎么会变成这样」拧向了「那现在怎么办」。</strong> ★ <strong>这是本书对后世最大的技术贡献</strong>：<strong>它把「奇幻」从「一个需要被解释的事件」变成「一个不需要被解释的条件」</strong>——<strong>此后所有严肃的魔幻现实主义，都在用这一个开关。</strong></p>
+  <h3>机制二：「不解释」不是缺陷，是一种被反复模仿、极难模仿的方法</h3>
+  <p><strong>主张</strong>：卡夫卡<strong>从不交代变形的原因，不描述虫的具体形态，不让格里高尔说出「为什么」</strong>。这不是他忘了交代，而是这本书的技术核心。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：① 全文 <strong><code>Ungeziefer</code> 只出现一次，就是首句那一次</strong>（笔者对 PG #22367 全文检索确认）——此后再没有对「物种」的任何命名；② 对虫身的描写全是<strong>零散的、局部的、互相并不完全兼容的</strong>：<code>panzerartig harten Rücken</code>（甲壳般坚硬的背）、<code>gewölbten, braunen, von bogenförmigen Versteifungen geteilten Bauch</code>（拱起的、棕色的、被弓形硬化带分隔的肚子）、<code>vielen, im Vergleich zu seinem sonstigen Umfang kläglich dünnen Beine</code>（许多条相较其体量可怜地细的腿）<span class="tag t-src">原书</span>（I. 段）——<strong>这些细节够你「感到」一只虫，却不够你「画出」一只虫</strong>；③ <strong>格里高尔从头到尾没问过一次「我为什么会变成这样」</strong>，他问的是「我错过了火车吗」「老板会怎么说」。</p>
+  <p><strong>为什么重要</strong>：<strong>「不解释」是本书最被模仿、也最难模仿的手法。</strong> 1947 年，二十岁的马尔克斯读到《变形记》，惊叹 <strong>「天呀，小说可以这样写！」</strong><span class="tag t-rep">转述</span>（据柳冬妩《解密〈变形记〉》转述，中国作家网 2014；《百年孤独》的开头即继承了这种「把最不可能的事当既成事实叙述」的写法）。★ <strong>但模仿者大多只学到「不解释」，没学到「不解释之后叙述照常精确运转」</strong>——卡夫卡在拒绝解释物种的同时，对「苹果的重量」「钥匙的转动」「门的缝隙有多宽」写得一丝不苟。<strong>不解释的前提，是别处极度精确。</strong></p>
+  <p>★ <strong>把这条拆成可操作的三步，才能看出它有多难</strong>：</p>
+  <ul>
+    <li><strong>第一步：把异常当作既成事实。</strong> 「一天早晨……他发现自己变成了……」——<strong>没有铺垫、没有征兆、没有目击</strong>。<strong>异常被处理成天气预报。</strong>
+    </li>
+    <li><strong>第二步：让所有人物也接受它。</strong> 家人没有一个人问「怎么可能」，他们问的是「他还能不能上班」「我们该怎么养他」<span class="tag t-src">原书</span>。★ <strong>人物的反应越平常，读者的不安就越强</strong>——<strong>因为找不到一个「和你一起惊讶的人」。</strong>
+    </li>
+    <li><strong>第三步：永远不给答案，但永远给细节。</strong> 卡夫卡可以花一整段写格里高尔<strong>怎样用下颚转动钥匙</strong><span class="tag t-src">原书</span>，却从不肯花一个词解释<strong>他为什么变成这样</strong>。★★ <strong>这种「精确的沉默」，是《变形记》最难学的部分</strong>——<strong>大多数模仿者只学会了沉默，没学会精确。</strong>
+    </li>
+  </ul>
+  <h3>机制三：门与窗——空间结构就是叙事结构</h3>
+  <p><strong>主张</strong>：<strong>格里高尔被留在房间里，全书百分之八十的信息是他透过半开的门缝「听」来的。</strong>「门」不是道具，是本书的<strong>叙事器官</strong>。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：① 全文 <code>Tür</code>（门）出现约 <strong>84 次</strong>（笔者对 PG #22367 全文统计），<strong>远超 <code>Fenster</code>（窗）的 25 次</strong>；② 第一部分的语音结构完全是「隔门对话」：母亲在门口轻声叫他、父亲用拳头砸门、妹妹在另一扇门后低声请求——<code>Infolge der Holztür war die Veränderung in Gregors Stimme draußen wohl nicht zu merken</code>（<strong>由于木门的阻隔，格里高尔声音的变化在外面大概察觉不到</strong>）<span class="tag t-src">原书</span>（I. 段）；③ 进入 II.、III.，门变成「一扇被家人选择开或不开的门」：<code>immer gegen Abend die Wohnzimmertür… wurde geöffnet</code>（<strong>每天傍晚，客厅的门会被打开</strong>，让他能听家人说话）<span class="tag t-src">原书</span>（III. 段）。</p>
+  <p><strong>为什么重要</strong>：<strong>门把「家庭」变成了一个可以被「听」的对象。</strong> 格里高尔听见的从来不是完整的话，是<strong>碎片</strong>——这解释了为什么他常常「误解」家人（他以为妹妹还站在他这边，其实妹妹已经在策划清除他）。<strong>叙述者贴着格里高尔，于是读者也被关在这道门内侧。</strong></p>
+  <h3>机制四：声音的丧失——被听懂的边界，一寸一寸往后退</h3>
+  <p><strong>主张</strong>：格里高尔的「变形」不是一次完成的，是<strong>一档一档失去与人沟通的能力</strong>。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：① 他第一次开口时，声音「<strong>无疑还是他从前的声音</strong>」（<code>unverkennbar seine frühere</code>），但混进了一种压不住的、痛苦的「<code>Piepsen</code>」（<strong>唧唧声</strong>），<code>das die Worte förmlich nur im ersten Augenblick in ihrer Deutlichkeit beließ, um sie im Nachklang derart zu zerstören</code>（<strong>每个词只在刚出口的一瞬还是清楚的，接着就被破坏得听不出说了什么</strong>）<span class="tag t-src">原书</span>（I. 段）；② 隔着一扇木门，家人听不出异样；③ 打开门之后，首席店员听见的已经是一声动物式的叫喊，逃之夭夭；④ 到 III. 段末尾，妹妹说「<strong>如果他听得懂我们</strong>」（<code>Wenn er uns verstünde</code>）——<strong>这句话本身在语法上判了他出局</strong>。</p>
+  <p><strong>为什么重要</strong>：<strong>「听不懂」是被一步步做出来的，不是一开始就给定的。</strong> 这使「格里高尔还是不是人」这个问题有了一个<strong>可测量的刻度</strong>：他失去的不是身体，是<strong>被听懂的可能</strong>。★ <strong>而这本书最残忍的设计在于：格里高尔从头到尾都听得懂家人。</strong> 听力是单向的——<strong>他能听懂他们说的每一句话，包括那些「他不该听见」的话；而他们连一句完整的话都听不到他说。</strong> <span class="tag t-inf">推断</span></p>
+  <h3>机制五：食物的三重性——养活／武器／死亡工具</h3>
+  <p><strong>主张</strong>：食物在本书里走完了三重身份：<strong>先是养活他的东西，再是打他的武器，最后是杀死他的东西。</strong><span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：① <strong>养活</strong>：妹妹第二天在桌上准备了 <code>süßer Milch…, in der kleine Schnitte von Weißbrot schwammen</code>（<strong>甜牛奶，里面漂着几片白面包</strong>）——那是他「从前最喜欢的」；可他不再喝牛奶了，转而吃 <code>Käse</code>（奶酪）、<code>Gemüse</code>（蔬菜）、<code>Sauce</code>（酱汁），<strong>新鲜的食物更合他口味</strong><span class="tag t-src">原书</span>（II. 段）。此后妹妹每天用一张报纸把食物端进端出，几乎成了他的全部日程。② <strong>武器</strong>：父亲从 <code>Obstschale</code>（果盘）里把口袋装满苹果，<code>war der Vater hatte sich entschlossen, ihn zu bombardieren</code>（<strong>父亲决心要轰炸他了</strong>）<span class="tag t-src">原书</span>（II. 段）——★ 注意 <code>bombardieren</code>（轰炸）这个词，<strong>它是军人词汇</strong>，与那幅军人照片构成一组反讽。③ <strong>死亡工具</strong>：一颗苹果<strong>嵌进他的后背</strong>，<code>der Apfel blieb, da ihn niemand zu entfernen wagte, als sichtbares Andenken im Fleische sitzen</code>（<strong>那颗苹果留在肉里，谁也不敢去取，成了一枚看得见的纪念物</strong>）<span class="tag t-src">原书</span>（III. 段）——<strong>最后发现死尸时，妹妹说的是「你们看他多瘦，他好久没吃东西了」</strong>。<span class="tag t-src">原书</span></p>
+  <p><strong>为什么重要</strong>：★ <strong>「养活／武器／死亡工具」这三重身份，是同一个家庭关系的三个阶段。</strong> 食物是家人对格里高尔唯一「正常」的接口——<strong>当这个接口也变成了投掷物，亲情就没有别的通道了。</strong></p>
+  <h3>机制六：照料的变质——格里高尔变形，妹妹也在变形</h3>
+  <p><strong>主张</strong>：<strong>全书最精确的一条「变形」线，不是格里高尔，是妹妹 Grete。</strong> 她从照料者变成监管者，再变成宣判者。<span class="tag t-src">原书</span>（此读法的公开表述可参 <strong>Volker Drüke 2013</strong>，见 5.4）</p>
+  <p><strong>依据</strong>：① II. 段开头，Grete 是<strong>唯一还愿意进来的人</strong>，她试探他吃什么、清理房间、甚至搬动家具给他腾出爬行的空间；② 到了 III. 段，她越来越不耐烦，房门不再每天开；③ 高潮处她拍桌子说：<code>Liebe Eltern, so geht es nicht weiter… wir müssen versuchen es loszuwerden</code>（<strong>亲爱的父母，这样下去不行了……我们必须设法把它弄走</strong>），并宣布 <strong><code>Weg muß es</code></strong>（<strong>必须把它弄走</strong>）<span class="tag t-src">原书</span>（III. 段）；④ <strong>而全书最后一个画面，是父母注意到她「长成了一个美丽丰满的姑娘」，开始盘算给她找个丈夫。</strong><span class="tag t-src">原书</span>（III. 段末）</p>
+  <p><strong>为什么重要</strong>：<strong>卡夫卡把「变形」这个词用在了两处</strong>：一处是格里高尔（肉体），一处是 Grete（从女孩变成女人、从女儿变成家庭权威）。<strong>标题 <code>Die Verwandlung</code> 并没有限定只有一个受害者。</strong> 这一读法<strong>不推翻</strong>主流解读，但<strong>它把「谁是主角」这个问题重新打开了一次。</strong></p>
+  <p>★ <strong>这个读法为什么站得住（不是过度联想）</strong>：<strong>原文在结尾给了它一个明确的落点。</strong> 最后一段，父母看着女儿——<code>wie sie in der letzten Zeit trotz aller Pflege, die ihre Wangen bleich gemacht hatte, zu einem schönen und üppigen Mädchen aufgeblüht war</code>（<strong>她在最近这段时间里，尽管种种操劳把她的脸颊累得苍白，却长成了一个美丽丰满的姑娘</strong>）<span class="tag t-src">原书</span>。★★ <strong>注意「操劳把她累得苍白」与「长成美丽丰满」同时出现在一句话里</strong>：<strong>这就是 Grete 的「变形」——操劳既是消耗她、也是催熟她的东西。</strong> 而格里高尔的「变形」是纯粹的退化：<strong>一个向前，一个向后，用的是同一个词。</strong> ★ 卡夫卡没有说破这一点，他只是<strong>让这本书的最后画面，停在一个「刚长成的身体」上</strong>——<strong>读者若只盯着虫，就会错过标题的另一半。</strong></p>
+  <h3>机制七：一组反讽物——皮裘女士、军人照片、苹果、制服</h3>
+  <p><strong>主张</strong>：本书有许多<strong>挂在墙上、装在口袋里、穿在身上</strong>的东西，它们互相对照，构成一组<strong>反讽物系统</strong>。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：① <strong>皮裘女士肖像</strong>：他早先「从一本画报上剪下来、装进镀金框」的一幅画，画中女士 <code>mit einem Pelzhut und einer Pelzboa versehen… einen schweren Pelzmuff</code>（戴着皮帽、皮围脖，举着一只厚重的皮手筒）<span class="tag t-src">原书</span>（I. 段）——<strong>这是格里高尔自己的房间装饰，代表他私人欲望的一角</strong>；② <strong>军人照片</strong>（见首部第 3 条）；③ <strong>苹果</strong>；④ <strong>父亲的制服</strong>：父亲做了银行杂役后，<code>in seiner Livree</code>（穿着号衣）回家，<code>Herr Samsa… in seiner Livree, an einem Arm seine Frau, am anderen seine Tochter</code>（<strong>萨姆沙先生穿着号衣，一只胳膊挽着妻子，另一只挽着女儿</strong>）<span class="tag t-src">原书</span>（III. 段）。</p>
+  <p><strong>为什么重要</strong>：<strong>格里高尔的军人照片（制服+按剑+微笑）与父亲的号衣，构成一组「军人—杂役」的反讽</strong>；而这幅照片又和墙上的皮裘女士、被塞进背里的苹果一起，构成一整套<strong>「他曾经以为属于自己的东西，最后都反过来定义了他的失败」</strong>的系统。★ <strong>如果按李文俊／张荣昌的译本，把这幅照片读成「父亲的」，这套反讽就整块塌掉了</strong>（见 5.2）。</p>
+  <p>★ <strong>这组物件为什么值得单列一条机制</strong>：因为它们<strong>互相之间没有一句「说明」</strong>。卡夫卡从不写「这幅照片象征着什么」，他只是<strong>把物件摆在房间里，让它们自己发光</strong>。<strong>读者看见的是同一面墙上的两样东西：一张自己剪下来装框的皮裘女士，一张自己按剑微笑的少尉照片——两个「他想要的自己」。</strong> 而这两样东西，一个被他用身体护住又被拿走，一个从墙上俯视着他一点点烂在房间里。★ <strong>卡夫卡最像诗人的地方，就在这里：他不解释，他并置。</strong> <span class="tag t-inf">推断</span></p>
+  <h3>机制八：节奏——三部分等长的「伤一次比一次重」</h3>
+  <p><strong>主张</strong>：本书节奏是<strong>三段递进</strong>的，每段末落在一次身体损伤上，<strong>而损伤一次比一次重</strong>。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：① I. 段末，格里高尔被父亲用手杖和报纸赶回房间，<strong>一条腿被门夹伤</strong>（<code>Ein Beinchen war… schwer verletzt worden</code>，II. 段回叙）；② II. 段末，<strong>苹果嵌进后背</strong>，<code>förmlich in Gregors Rücken ein</code>（<strong>实实在在扎进了他的背</strong>）<span class="tag t-src">原书</span>；③ III. 段末，格里高尔<strong>死亡</strong>。<strong>而三段的时间也在加速：从「一个早晨」到「一个月」到「最后一夜」。</strong></p>
+  <p><strong>为什么重要</strong>：<strong>这条节奏解释了为什么本书读起来越来越不能呼吸</strong>——它不是靠情节推动，是靠<strong>身体的损耗</strong>推进。★ 也正因此，<strong>本书不宜分段读</strong>（见第 3 节）。</p>
+  <h3>机制九：时间的分割——白天属于家人，夜属于格里高尔</h3>
+  <p><strong>主张</strong>：本书有一套<strong>极精确的钟表结构</strong>，而且<strong>时间本身是阶级性的</strong>：<strong>格里高尔拥有的是夜，家人拥有的是白天。</strong><span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：① I. 段是<strong>清晨</strong>（闹钟「七点差一刻」「七点」，<code>gerade schlug der Wecker dreiviertel sieben</code>）——<strong>格里高尔在属于「工作」的时刻醒来</strong>；② II. 段从他的<strong>黄昏</strong>醒来开始（<code>Erst in der Abenddämmerung erwachte Gregor</code>）；③ 从 II. 段起，格里高尔所有重要的行动（爬出房间、听家人说话、听音乐）都发生在<strong>傍晚到深夜</strong>，而家人开始 <code>immer gegen Abend</code> 打开客厅的门（III. 段）；④ <strong>他死于「凌晨三点」</strong>（<code>bis die Turmuhr die dritte Morgenstunde schlug</code>）——<strong>正好是白天开始之前，也是他能拥有的那段黑夜的尽头</strong>。</p>
+  <p><strong>为什么重要</strong>：<strong>这套时间表把「格里高尔的生物钟」和「家庭的作息」彻底错开。</strong> 他只能<strong>偷听</strong>，因为他醒着的时候，别人在睡；别人醒着的时候，他在「不许出现」的房间里。<strong>「门」隔开的是空间，「钟」隔开的是时间——卡夫卡用了两套装置，才把格里高尔完全隔离。</strong></p>
+  <h3>机制十：喜剧性——官僚语汇与一只虫的错位</h3>
+  <p><strong>主张</strong>：<strong>《变形记》是一篇很好笑的悲剧</strong>，而它好笑的方式非常特定：<strong>把一个「行政的、公文式的、讲流程的世界」原样保留在一个「人变成了虫」的场景里。</strong><span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：① I. 段里，格里高尔变成虫之后，脑子里转的是——<strong>「如果我病了，医生会开假条」</strong>、<strong>「老板会因为一次迟到就否定我这些年」</strong>、<strong>「我不能辞职，父母欠着老板的债」</strong><span class="tag t-src">原书</span>；② 首席店员上门时，带来的是<strong>「出勤／失职／挪用公款」</strong>这套语汇；③ 父亲做了银行杂役后，穿的是<strong>编号衣（Livree）</strong>，那是一种「制服的语言」；④ 格里高尔死后，女佣的第一反应是<strong>「那玩意儿怎么弄走」</strong>（<code>wie das Zeug von nebenan weggeschafft werden soll</code>，注意 <code>Zeug</code>＝「东西、杂物」）<span class="tag t-src">原书</span>。★ 据 Reiner Stach 的传记，卡夫卡<strong>当他朋友们的面朗读这篇故事时，大家笑得停不下来</strong>，他不得不常常停下来等他们（见第 9 节）<span class="tag t-rep">转述</span>。</p>
+  <p><strong>为什么重要</strong>：★ <strong>这一点最容易被只读「异化寓言」的读者完全错过。</strong> 卡夫卡从来不写「悲剧」，他写的是<strong>「一个公务员家庭遭遇一场无法进入流程的灾难」</strong>——<strong>而一切灾难在这个家庭里的处理方式，都是「当作行政事务」。</strong> <strong>笑与恐怖在本书里是同一件事的两面</strong>：你越觉得那些「请假条／退租／搬家」的念头荒谬，就越看到这个家庭早已把「人」变成了「事项」。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <ol>
+    <li><strong>一次读完，约 70 页，两小时内可以完成。</strong> 不要当成三个短篇分开读——它的效果建立在「你被关在同一间房子里」这一点上。
+    </li>
+    <li><strong>读的时候注意「门」开和关的次数</strong>。<strong>门每被打开一次，格里高尔就离「被清除」近一步</strong>；到 III. 段，门几乎不再为他开。
+    </li>
+    <li><strong>留意每次出现「三」这个数字</strong>：三个部分、三扇门（正面＋两侧）、三位房客、女佣发现他死时是「凌晨三点」、挨打后缠绵「一个多月」。<strong>这不是巧合，是卡夫卡故意的结构</strong>。
+    </li>
+    <li><strong>不要急着找象征</strong>。第一遍请只读「发生了什么」；第二遍再看「叙述者用什么语气说」——<strong>「不解释」的厉害，第一遍是感觉不到的。</strong>
+    </li>
+    <li>★ <strong>配一份「敌情简报」再读</strong>：读之前先知道学界在争什么（<code>Ungeziefer</code> 是什么、谁能译、卡夫卡到底要让读者读什么），第 5 节就是这份简报。<strong>带着它读，你会读出一个更清醒的卡夫卡。</strong>
+    </li>
+  </ol>
+  <h3>如果你是「已读」</h3>
+  <ol>
+    <li><strong>回头核对一件事</strong>：格里高尔死后，<strong>家人有谁哭过？</strong> 原文里，母亲「带着一种哀伤的笑」对他说「快到我们屋里来一会儿」，妹妹「目不转睛地看着尸体」，父亲说「现在我们可以感谢上帝了」并<strong>划十字</strong><span class="tag t-src">原书</span>（III. 段）。<strong>全书没有一滴为格里高尔流的眼泪。</strong> —— 这一步会重新校准你对整本书的评价。
+    </li>
+    <li><strong>重读首句的德文结构</strong>（见机制一）。如果你读的是中译，请找一段把 <code>verwandelt</code> 的「句尾位置」也译出来的版本，你会立刻明白第一个句子和后面所有句子是同一个呼吸。
+    </li>
+    <li><strong>重读那个「穿皮裘的女士」和「军人照片」同时出现的那一段</strong>。<strong>这两个物件，加上父亲后来的号衣，是本书的「服装—身份」系统。</strong>
+    </li>
+    <li><strong>对照两个现代读法</strong>：一类把格里高尔读成<strong>被排挤的犹太人／被压榨的打工人</strong>（社会—政治读法），一类把它读成<strong>一个家庭的情感过程</strong>（家庭—心理读法）。它们<strong>方向不同，都有文本依据</strong>（第 5 节、第 9 节）。
+    </li>
+    <li><strong>做一次「译本对读」</strong>：找同一句（建议就用军人照片那句）在至少两个中译本里的样子。<strong>你会立刻明白「翻译的政治」不是术语问题</strong>（5.2）。
+    </li>
+  </ol>
+  <h3>★ 想读德文原文的读者（哪怕只读一句）</h3>
+  <ol>
+    <li><strong>只读一句也可以</strong>：把首句抄下来，<strong>看着 <code>verwandelt</code> 压在句尾</strong>读出来。德语的框型结构不需要你懂语法就能感到——<code>fand er sich… verwandelt</code>，<strong>先说「发现」，最后说「变成了」。</strong>
+    </li>
+    <li><strong>只需认三个词</strong>：<code>Ungeziefer</code>（那个不是物种的词）、<code>Tür</code>（门）、<code>Fenster</code>（窗）。<strong>读完这三个词在全篇的位置，你就掌握了这本书的空间结构。</strong>
+    </li>
+    <li><strong>公版全文是免费的</strong>（PG #22367），<strong>不必买书</strong>；但要读印刷本的话，<strong>1915 年初版是 73 页的小册子</strong>，2007 年以来的多种德文单行本都据此重排。
+    </li>
+    <li>★ <strong>一个提醒</strong>：<strong>德文原文里 <code>Ungeziefer</code> 只出现一次</strong>（首句）。你如果读的是英译或中译，看到的「甲虫／蟑螂／bug」<strong>每次都多于一次</strong>——<strong>那个多出来的频率，就是翻译替你做的决定。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本报告必需的</strong>：本书的中译状况<strong>有一个被广泛忽视的陷阱</strong>——<strong>两个最有影响的中译本，在同一处关键细节上一起译错了</strong>（见 5.2），而它们正是流传最广、进过中学与大学教材的两种。</p>
+  <p><strong>先说最要紧的三条</strong>：</p>
+  <blockquote>
+    <p><strong>⚠ ① 认译者，不认书名。</strong> 中文世界里《变形记》至少有七种以上公开出版的译本，<strong>书名都叫《变形记》</strong>（台湾金溟若本另题《蜕变》）。真正决定质量的是译者与底本：<strong>叶廷芳、谢莹莹、赵登荣、姬健梅是本报告核对过能正确处理「照片归属」的四种</strong>；<strong>李文俊、张荣昌这两个影响最大的译本，在这一处是错的</strong>。</p>
+    <p><strong>⚠ ② 底本不同，读到的「卡夫卡」就不同。</strong> 李文俊本<strong>据英译转译</strong>（见下），张荣昌本据 <strong>Paul Raabe 编《卡夫卡中短篇小说全集》</strong>（Fischer 1969），其余多据德文直译。<strong>同一句话在四种底本系统下的差别，不是措辞好坏，是意义方向。</strong></p>
+    <p><strong>⚠ ③ 译名之争：叫《变形记》还是《蜕变》？</strong> 台湾早期译本（金溟若，1969）题名《蜕变》，<strong>从日文转译</strong>。两词差别在 <strong><code>Verwandlung</code> 的义域</strong>：「变形」偏<strong>外形的改变</strong>，「蜕变」偏<strong>脱壳羽化的、带有「成长／进化」意味的改变</strong>。★ 卡夫卡用的 <code>Verwandlung</code> 是中性的、不带褒义的「变成另一个样子」；<strong>「蜕变」在汉语里带有「越变越好」的暗示，与本书的彻底悲观并不相称</strong>。这就是为什么今天通行的是《变形记》而非《蜕变》。</p>
+  </blockquote>
+  <p><strong>主要译本对比</strong>：</p>
+  <table>
+    <thead><tr><th></th><th>李文俊 译</th><th>张荣昌 译</th><th>叶廷芳 译</th><th>谢莹莹 译</th><th>赵登荣 译</th><th>金溟若 译（台湾）</th><th>姬健梅 译（台湾）</th></tr></thead>
+    <tbody>
+      <tr><td>首刊／出版</td><td>1979，《世界文学》第 1 期</td><td>上海译文 2012（另入河北教育《卡夫卡全集》1996）</td><td>2006 新译，入《卡夫卡选本》等</td><td>1997，《卡夫卡精品集》（作家出版社）</td><td>浙江文艺 2003</td><td>志文出版社 1969（书名《蜕变》）</td><td>麦田出版社</td></tr>
+      <tr><td>底本</td><td><strong>据 Muir 夫妇英译</strong>（纽约《现代文库》1952 年版《卡夫卡短篇小说选》）；<strong>其夫人张佩芬据莱比锡 Reclam 1978 德文本校订</strong></td><td><strong>据 Paul Raabe 编《卡夫卡中短篇小说全集》</strong>（Fischer 1969／1981 版）</td><td>德文直译</td><td>德文直译</td><td>德文直译</td><td><strong>从日文转译</strong></td><td>德文直译</td></tr>
+      <tr><td>影响</td><td><strong>影响最大、流传最广</strong>，入选上海、广东等多省高中语文教材与大量大学教材</td><td><strong>影响力仅次于李文俊</strong>，入选人教社高中语文第五册</td><td>学界权威</td><td>入人民文学《卡夫卡全集》</td><td>—</td><td>中文世界最早的单行本之一</td><td>—</td></tr>
+      <tr><td>「军人照片」归属</td><td>❌ <strong>译成「他父亲的」</strong></td><td>❌ <strong>译成「他父亲的」</strong></td><td>✅ 明确译为格里高尔的</td><td>✅ 明确译为格里高尔的</td><td>✅ 译为格里高尔的</td><td>✅ 译为格里高尔的</td><td>✅ 译为格里高尔的</td></tr>
+    </tbody>
+  </table>
+  <p><strong>★ 关于最早的中译（一个容易被忽略的起点）</strong>：在 1979 年《世界文学》之前，卡夫卡作品已有中文首译——<strong>1964 年（一说 1966 年）上海新文艺出版社／作家出版社内部发行的《审判及其他作品》</strong>（曹庸、李文俊译），当时被贴「反面教材」标签、仅内部参考。<strong>1979 年李文俊的《变形记》译文，是国内第一篇公开发表、并真正引发研究的译本。</strong><span class="tag t-rep">转述</span>（据中国作家网 2024-06-04《卡夫卡与当代中国的邂逅》与译介研究文章；1964／1966 两说并存，见附录 D4）</p>
+  <p><strong>★ 底本差异到底差在哪里——用一句话说明白</strong>：<strong>据英译转译（李文俊本）和据德文直译（叶廷芳、谢莹莹等本），差别不只是「准不准」，而是「读到的卡夫卡是几手的」。</strong> 具体地讲：</p>
+  <ul>
+    <li><strong>「隔了一层」的问题</strong>：Muir 夫妇的英译本身已经做过一次「为英语读者可读性」的取舍（例如把 <code>Ungeziefer</code> 定成了 <code>insect</code>）。<strong>中文若再据这个英译转译，等于在一层取舍之上再叠一层取舍</strong>——<strong>「虫是什么」这个洞，会在两次翻译里被填两次。</strong>
+    </li>
+    <li><strong>校订的限度</strong>：李文俊本的「其夫人张佩芬据莱比锡 Reclam 1978 德文本校订」<span class="tag t-rep">转述</span>，<strong>是对个别词句的核对，不是重译</strong>。★ <strong>这解释了为什么「照片」那处错误会留下来</strong>——<strong>它不是靠「校一个词」能发现的，它需要通读全篇、并把「反讽结构」当作一个整体来判断。</strong>
+    </li>
+    <li><strong>德文直译的优势</strong>：德文的语序、复合词、框型结构，在直译本里保留下来的比例更高。★ <strong>本书最值钱的东西（「发现」在前、「变形」在后的句法）</strong>，只有在德文直译本里才可能被读者感到。
+    </li>
+  </ul>
+  <p><strong>★ 一个具体的、可以自己检验的例子</strong>：找首句在四种译本里的样子。<strong>凡是把「变成了」放在句尾的（无论用什么办法），都是更贴近原文的；凡是把「他变成了一只虫」压平成一个判断句的，都丢掉了那句的「先发现、后落地」。</strong> 这不是玄学，是德语句法。<span class="tag t-inf">推断</span></p>
+  <p><strong>★ 该选哪个——三句话结论</strong>：</p>
+  <ol>
+    <li><strong>只想买一本、想认真读 → 选叶廷芳译或谢莹莹译（德文直译，且照片归属正确）</strong>。它们是本报告在「照片」这一处核对无误的版本。
+    </li>
+    <li><strong>想要一个流利、易读、影响力最大的版本 → 李文俊本仍可用，但请带着「照片那句是译错的」这条提示读</strong>；读时把「他父亲的」自动更正为「格里高尔的」。
+    </li>
+    <li><strong>不要迷信「影响最大」</strong>。<strong>影响最大 ≠ 最准确</strong>——本书恰好是这句话的最好例子。
+    </li>
+  </ol>
+  <p><strong>★ 两个必须提醒的坑</strong>：</p>
+  <ol>
+    <li><strong>不要因为某译本是「教材指定」就以为它最可靠。</strong> 人教社与多省教材采用的李文俊、张荣昌两本，<strong>恰好在「照片」这一关键细节上一起出错</strong>（柳冬妩 2014／2015）。
+    </li>
+    <li><strong>不要把《变形记》和卡夫卡的其他中译搞混</strong>。卡夫卡另有《审判》《城堡》《失踪者》《乡村医生》等——<strong>它们都是不同的书</strong>；购物站搜「卡夫卡」时极易误买。
+    </li>
+  </ol>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <p>★ 下表每一条都<strong>回德文原文核实过</strong>再写。定位用「部分＋场景」，不用页码。</p>
+  <table>
+    <thead><tr><th>#</th><th>流行说法</th><th>原文怎么说</th><th>定位</th><th>判定</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>★「格里高尔变成了一只<strong>甲虫</strong>」</td><td>原文只说 <code>einem ungeheueren Ungeziefer</code>（一只巨大的 <code>Ungeziefer</code>）。<code>Ungeziefer</code> 是贬义集合名词，指「害兽／害虫／不洁之物」，<strong>不是任何物种名；「甲虫」在原文里根本不存在</strong></td><td>I. 段首句</td><td>❌ <strong>误</strong>——这是全书的头号流行误读</td></tr>
+      <tr><td>2</td><td>★「卡夫卡要求焚稿，所以本书才险些失传」</td><td><strong>《变形记》是卡夫卡 1915 年生前亲自发表、认可的作品</strong>，不属于「焚稿遗言」处置的未刊长篇（《审判》《城堡》《失踪者》等）</td><td>全篇；遗嘱问题见 5.5</td><td>❌ <strong>误</strong>——两件事被混为一谈</td></tr>
+      <tr><td>3</td><td>「纳博科夫说格里高尔是甲虫」</td><td>纳博科夫的<strong>限定很死</strong>：他据文本细节（背拱、腿细、棕色、鞘翅下有可飞的膜翅）论证格里高尔<strong>不是蟑螂</strong>，而是「一只<strong>大甲虫</strong>」，并且<strong>结语就是「他严格说不是蜣螂，只是一只大甲虫」</strong></td><td>见 5.1</td><td>⚠ <strong>半对</strong>——须保留他的限定：<strong>他反对的是「蟑螂」，而非「甲虫」之外的任何细节</strong></td></tr>
+      <tr><td>4</td><td>「打扫女佣说的『蜣螂』就是他的物种」</td><td><strong>全文只有女佣说过一次 <code>alter Mistkäfer</code>（老蜣螂）</strong>，且是她「<strong>自以为亲切</strong>」的称呼（原文：<code>mit Worten, die sie wahrscheinlich für freundlich hielt</code>）；<strong>叙述者从未给格里高尔定性</strong></td><td>III. 段，女佣登场后</td><td>❌ <strong>误</strong>——那是<strong>人物的说法</strong>，不是叙述的定性</td></tr>
+      <tr><td>5</td><td>★「李文俊／张荣昌译本最可靠」</td><td>两本<strong>都把 <code>Photographie Gregors</code>（格里高尔的照片）译成「他父亲的」</strong>；柳冬妩打电话向两位译者求证，<strong>两位均承认是误译</strong>。叶廷芳、谢莹莹、赵登荣、姬健梅等本子则译对</td><td>I. 段，格里高尔开门后</td><td>❌ <strong>需打问号</strong>——「影响最大」不等于「最准确」</td></tr>
+      <tr><td>6</td><td>「卡夫卡是捷克作家」</td><td>卡夫卡是<strong>布拉格德语犹太作家</strong>：1883 年生于奥匈帝国布拉格，<strong>用德语写作</strong>，属布拉格德语文学圈（与 Max Brod、Franz Werfel 等往来）；今属捷克，但<strong>把他简单说成「捷克作家」会抹掉他的语言身份</strong></td><td>作者身份</td><td>⚠ <strong>须修正</strong>——准确说法是「奥匈帝国（今捷克）的布拉格德语犹太作家」</td></tr>
+      <tr><td>7</td><td>「这是一篇讲『异化』的小说，主题是资本主义把人变成虫」</td><td>「异化」（Entfremdung）是<strong>后来的批评家给的框架</strong>，<strong>卡夫卡本人从未用它描述本书</strong>；原文里<strong>没有任何一处把变形归因于资本、制度或社会</strong>（连老板都只是老板，不是隐喻机器）</td><td>全篇</td><td>⚠ <strong>是一种读法，不是原文的主张</strong>——须标明是解释，不是文本</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本报告最该细读的一节。</strong> 《变形记》被赞美了一百年，<strong>而赞美是最廉价的信息</strong>。下面按「问题的硬度」排六条，<strong>每条带姓名＋出处＋年份</strong>。</p>
+  <h3>5.1 ★★ 物种问题：<code>Ungeziefer</code> 是什么——它是全书最大的误解源</h3>
+  <p><strong>（a）这个词本身</strong>：<code>Ungeziefer</code> 在中古德语里字面义是「<strong>不适于献祭的不洁动物</strong>」（否定前缀 <code>un-</code> + 古高地德语 <code>zebar</code>「祭品、牺牲之动物」）<span class="tag t-rep">转述</span>（据 Susan Bernofsky 的说明，转引自 Miller's Book Review 对多个英译本的综述；另见英文维基百科条目）。它在现代德语里是一个<strong>贬义的集合名词</strong>，主要指<strong>六条腿的、脏的、让人厌恶的爬虫</strong>（你绝不会用它称呼瓢虫），<strong>但它不指任何一个物种</strong>。</p>
+  <p><strong>（b）英译至少 16 种——这本身就是证据</strong>。下表列出公开可见的主要译法（据英文维基百科与多家书评汇总；★ 各来源在个别年份上有出入，见附录 D2）：</p>
+  <table>
+    <thead><tr><th>译者（年份）</th><th>译法</th><th>译者（年份）</th><th>译法</th></tr></thead>
+    <tbody>
+      <tr><td>Willa &amp; Edwin Muir（1933／1948）</td><td>gigantic insect</td><td>M. A. Roberts（2005）</td><td>gargantuan pest</td></tr>
+      <tr><td>A. L. Lloyd（1937／1946）</td><td>some monstrous kind of vermin</td><td><strong>Michael Hofmann（2007）</strong></td><td><strong>monstrous cockroach</strong></td></tr>
+      <tr><td>Stanley Corngold（1972）</td><td>monstrous vermin</td><td>Ian Johnston（2007）</td><td>monstrous verminous bug</td></tr>
+      <tr><td>J. A. Underwood（1981）</td><td>giant bug</td><td>Philip Lundberg（2007）</td><td>a vile insect, one of gigantic proportions</td></tr>
+      <tr><td>Malcolm Pasley（1992）</td><td>monstrous insect</td><td>Joyce Crick（2009）</td><td>some kind of monstrous vermin</td></tr>
+      <tr><td>Joachim Neugroschel（1993）</td><td>monstrous vermin</td><td>David Wyllie（2011）</td><td>horrible vermin</td></tr>
+      <tr><td>Stanley Appelbaum（1996）</td><td>enormous bug</td><td>Susan Bernofsky（2014）</td><td>some sort of monstrous insect</td></tr>
+      <tr><td>—</td><td>—</td><td>Christopher Moncrieff（2014）</td><td>some kind of monstrous bedbug</td></tr>
+      <tr><td>—</td><td>—</td><td>John R. Williams（2014）</td><td>huge verminous insect</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>其中五条的取向，恰好把「翻译的难度」摆在台面上</strong>：<strong>Muir 夫妇（1933）取 <code>gigantic insect</code>（巨大的昆虫）</strong>，最中性也最含糊，<strong>此后几乎成了英语世界的默认值</strong>；<strong>Lloyd（1937／46）取 <code>some monstrous kind of vermin</code>（某种怪物般的害兽）</strong>，保留了 <code>Ungeziefer</code> 的「类别含糊」；<strong>Corngold（1972）取 <code>monstrous vermin</code>（怪物般的害兽）</strong>，成了学界引用最多的一种；<strong>Hofmann（2007）取 <code>monstrous cockroach</code>（怪物般的蟑螂）</strong>——<strong>这是最具体、也最受争议的一种，直接违反了原文的含糊</strong>；<strong>Bernofsky（2014）取 <code>some sort of monstrous insect</code>（好像一只巨大的昆虫）</strong>，<strong>她自己解释：加一个「some sort of」是为了模糊掉 <code>insect</code> 这个词「太具体」的边界，因为「卡夫卡想让我们带着格里高尔自己发现身体时那种朦胧的焦距去看它」。</strong></p>
+  <p><strong>（c）★★ 卡夫卡本人 1915-10-25 致出版商的信（本书最有力的证据）</strong>：当他听说封面画师 <strong>Ottomar Starke</strong> 真的要画插图时，他写信给出版社，德文原话是：</p>
+  <blockquote>
+    <p><code>Es ist mir nämlich eingefallen, da Starke doch tatsächlich illustriert, er könne etwa das Insekt selbst zeichnen wollen. Das nicht, bitte das nicht! … Das Insekt kann nicht gezeichnet werden. Es kann aber nicht einmal von der Ferne aus gezeigt werden …</code> <span class="tag t-talk">作者谈话</span></p>
+  </blockquote>
+  <p>英译通行作：<strong>"The insect itself must not be illustrated by a drawing. It cannot be shown at all, not even from a distance."</strong>（<strong>昆虫本身不得画出来，连从远处看一眼都不行。</strong>）<span class="tag t-talk">作者谈话</span>（德文原话据 Dietz 编目录 S. 72，经 Bassenge 拍卖行编目逐字引用；英译据佳士得、Vialibri 等拍卖行编目，措辞一致）</p>
+  <p>★ <strong>注意这封信的两件事</strong>：① 卡夫卡<strong>自己在信里用了 <code>Insekt</code>（昆虫）这个词</strong>——所以「译成 insect 有一定道理」；② 但<strong>他明确禁止任何插图画出它</strong>。<strong>结论：卡夫卡自己也不知道（或不愿说）它是什么，而且他有意让读者也无法确定。</strong></p>
+  <p><strong>（d）纳博科夫的判断</strong>：<strong>Vladimir Nabokov</strong>（既是作家，也是职业鳞翅目昆虫学家）在康奈尔大学的讲稿里专门讨论过格里高尔的物种。他的原话（<em>Lectures on Literature</em>，Fredson Bowers 编，Weidenfeld &amp; Nicolson，<strong>1980</strong>，pp. 258–60）：</p>
+  <blockquote>
+    <p>「评论家们说是蟑螂，<strong>这当然讲不通</strong>。蟑螂是一种身体扁平、腿很粗的昆虫，而格里高尔一点也不扁：<strong>他两面都是凸的</strong>，肚子和背，腿也细。他在一个方面像蟑螂：<strong>颜色是棕的</strong>。就这些。此外他有一个巨大的、分成节段的凸肚子，和一个圆而硬的、<strong>像是翅鞘</strong>的背。在甲虫身上，这些翅鞘里藏着能展开的薄膜翅……他还长着强壮的大颚……<strong>这给了我们他身体的长度：大约三英尺长。</strong>」</p>
+  </blockquote>
+  <p>结论句是：<strong>「他严格说不是蜣螂。他只是一只大甲虫。」</strong>（<code>He is not, technically, a dung beetle. He is merely a big beetle.</code>）★ 纳博科夫还补了一句著名的观察：<strong>「格里高尔这只甲虫从来没发现自己背上有翅膀。这是一点很值得珍藏的观察。有些格里高尔，有些张三李四，不知道自己有翅膀。」</strong><span class="tag t-rep">转述</span></p>
+  <p>⇒ <strong>这条为什么重要</strong>：<strong>纳博科夫恰恰是最反对「蟑螂」的那个人。</strong> 中文网络常把他说成「纳博科夫说他是甲虫」——<strong>这个转述丢了关键的一半：他反对的不是「甲虫」的读音，而是「蟑螂」的懒惰。</strong> ★ 更根本的是：<strong>纳博科夫是在做「文本—形态学」的推理（背拱、腿细、色棕、鞘翅），而不是在做「卡夫卡说了什么」的考据</strong>——<strong>卡夫卡一个字都没说格里高尔的体长是三英尺。</strong></p>
+  <p><strong>（e）为什么「物种问题」值得花这么多篇幅</strong>：因为它是<strong>一个「读法会被一个词决定」的样本</strong>。</p>
+  <ul>
+    <li><strong>如果你接受「他是一只甲虫」</strong>，你会自然地去想「卡夫卡为什么选甲虫」「甲虫象征什么」——<strong>于是你走上了一条「替卡夫卡命名」的路，而卡夫卡明确拒绝命名（那封信就是铁证）。</strong>
+    </li>
+    <li><strong>如果你接受「他是一个没有名字的 <code>Ungeziefer</code>」</strong>，你就会去注意<strong>「谁在给他命名」</strong>：<strong>女佣叫他蜣螂、家人叫他「它」（<code>es</code>）、妹妹不愿说出哥哥的名字、公司叫他「萨姆沙先生」。</strong> ★★ <strong>「谁来命名」这件事，恰恰是全书最精确的权力线</strong>：<strong>能命名的人，就是能处置他的人。</strong>
+    </li>
+    <li>⇒ <strong>这就是为什么「物种」不是考据癖，而是入口</strong>：<strong>它在教你怎么读这本书——注意命名，而不是顺从命名。</strong> <span class="tag t-inf">推断</span>
+    </li>
+    <li>★ <strong>一个可以自己做的检验</strong>：<strong>在德文原文里检索家人对格里高尔的称呼</strong>。你会看到——<strong>妹妹的宣判里连用 <code>es</code>（它）：<code>wir müssen versuchen es loszuwerden</code>（我们必须设法把它弄走）、<code>Weg muß es</code>（必须把它弄走）、<code>daß es Gregor ist</code>（它是不是格里高尔）</strong>；<strong>而全篇唯一一次家人用带敌意的名词称呼他，就是妹妹那句 <code>diesem Untier</code>（这个怪物）</strong><span class="tag t-src">原书</span>（III. 段，均为笔者对 PG #22367 全文检索确认）。★★ <strong>「它」（<code>es</code>）与「他」（人名／代词 <code>er</code>）在语法上只差一个字母，但它们是全书最深的伤口</strong>——<strong>能命名的人，就是能处置他的人；而格里高尔失去的最后一件事，正是被叫作「他」的权利。</strong> <span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <h3>5.2 ★★ 中译误译：两个最有影响的译本把「格里高尔的照片」译成了「父亲的」</h3>
+  <p><strong>批评者</strong>：<strong>柳冬妩</strong>（本名刘定富，1973 年生，东莞文学艺术院副院长），专著《解密〈变形记〉》（花城出版社，<strong>2014</strong>）；论文与专栏系列见<strong>中国作家网 2014-12-05／2014-12-09</strong>，另有《羊城晚报》<strong>2015-04-12</strong>（转载于<strong>《光明日报》2015-04-16</strong>，《译作〈变形记〉中一个关键细节的误译》）<span class="tag t-src">原书</span>（该文公开可查，逐字引用了两种译文）。</p>
+  <p><strong>证据</strong>：德文原文写的是 <strong><code>eine Photographie Gregors aus seiner Militärzeit, die ihn als Leutnant darstellte, wie er, die Hand am Degen, sorglos lächelnd, Respekt für seine Haltung und Uniform verlangte</code></strong>——「<strong>一幅格里高尔服兵役时的照片，照片上他是少尉，手按在佩剑上，无忧无虑地微笑着，分明要人尊重他的姿态和制服。</strong>」<span class="tag t-src">原书</span>（I. 段）</p>
+  <p><strong>译本对比（据柳冬妩公开引文，未核原书）</strong><span class="tag t-rep">转述</span>：</p>
+  <ul>
+    <li><strong>李文俊译</strong>：「在格里高尔<strong>正对面</strong>的墙上挂着一幅<strong>他</strong>服兵役时的照片，当时<strong>他</strong>是少尉……」
+    </li>
+    <li><strong>张荣昌译</strong>：「正对面墙上挂着一幅<strong>他</strong>服兵役时的照片，当时<strong>他</strong>是少尉……」
+    </li>
+    <li>★ <strong>两种译文里的「他」都指向父亲</strong>（柳冬妩指出，结合上下文，读者只能理解为「父亲的」）。
+    </li>
+    <li><strong>叶廷芳译</strong>：「恰好对面墙上挂着一幅<strong>格里高尔</strong>服兵役时照的相片，少尉的装束……」
+    </li>
+    <li><strong>谢莹莹译</strong>：「对面墙上挂着一张<strong>格雷戈尔</strong>服兵役时的照片……」
+    </li>
+  </ul>
+  <p><strong>★ 译者本人的确认</strong>：柳冬妩写道，他<strong>专门打电话向张荣昌求证，张荣昌告诉他「这照片的确是格里高尔父亲的」</strong>；<strong>打电话给李文俊，也得到了他的证实</strong>。<span class="tag t-rep">转述</span>（柳冬妩，中国作家网 2014；《光明日报》2015-04-16）</p>
+  <p><strong>★ 为什么这不是小事</strong>：这幅照片是<strong>全篇结构性反讽的前提</strong>。原文通过对「制服」和 <code>kommandieren</code>（指挥）／<code>zielen</code>（瞄准）／<code>bombardieren</code>（轰炸）／<code>angreifen</code>（攻击）这些<strong>军人词汇</strong>的反复使用，把格里高尔「按剑微笑的少尉」与「被父亲用苹果轰炸的虫子」扣在一起<span class="tag t-src">原书</span>（II. 段，父亲的「轰炸」段落）。<strong>如果照片是父亲的，这条反讽链就断了</strong>——读者会把「军人形象」归给父亲，从而读出另一个完全不同的故事（一个「父权镇压」的故事，而不是「自我形象崩塌」的故事）。</p>
+  <p><strong>⇒ 因此这条也是「中文译本的可靠性」问题</strong>：<strong>李文俊本据 Muir 英译转译</strong>（其夫人张佩芬据 Reclam 1978 德文本校订），<strong>张荣昌本据 Paul Raabe 编 Fischer 1969 版</strong><span class="tag t-rep">转述</span>——<strong>两者都在这一处出错，说明「转译 + 校订」和「照某个版本直译」都不足以防止这类错误。</strong> ★ <strong>而柳冬妩请叶廷芳、韩瑞祥查阅德国 Fischer 出版社 1994 年校勘本《卡夫卡全集》，确认照片是格里高尔的。</strong><span class="tag t-rep">转述</span></p>
+  <h3>5.3 ★ 校勘本 vs Brod 本：一个必须写清限定的版本学问题</h3>
+  <p><strong>问题是什么</strong>：市面上多数译本据 <strong>Max Brod 整理本</strong>；而国际研究普遍认为 <strong>Brod 对原手稿的句法、标点、章节顺序做了大量改动，校勘本（</strong>Fischer 出版社 1994 年 12 卷《卡夫卡全集》<strong>）才更接近原貌</strong>。中文世界里，<strong>人民文学出版社《卡夫卡小说全集》（韩瑞祥、仝保民译，2003）据 Fischer 1994 校勘本译出</strong>，是国内首部采用校勘本的卡夫卡小说集<span class="tag t-src">原书</span>（据中国作家网 2024-06-04《卡夫卡与当代中国的邂逅》）。</p>
+  <p><strong>★ 但必须写清限定</strong>：<strong>Brod 的编辑对《变形记》的影响，远小于对《审判》《城堡》《失踪者》的影响。</strong> 原因很简单——<strong>《审判》《城堡》等是未完成的长篇，Brod 要重排章节、补写句子、统一标点；而《变形记》是卡夫卡 1915 年生前亲自发表、亲自校订的作品，有完整的印刷本传世</strong>（同年 10 月首发于 Die weißen Blätter，12 月出单行本）。⇒ <strong>讨论 Brod 的编辑问题时，不可把《变形记》和那三部长篇同等对待。</strong> <span class="tag t-inf">推断</span>（基于版本事实：生前发表的印刷本 vs 遗稿整理本）</p>
+  <p><strong>⇒ 对读者的意义</strong>：<strong>《变形记》的「版本问题」主要不是「Brod 改了什么」，而是「底本用哪一版印刷本」（1915 初版 / 1917 年版 / 1919 年重印 / 校勘本）以及「译本据德文还是据英译」。</strong> 本报告依据的 PG #22367 底本即 <strong>Kurt Wolff Verlag 1917 年版</strong>（版权页作 1917），与 1915 初版正文基本一致，主要差异见附录 D3。</p>
+  <p>★ <strong>一个常被忽略的旁证</strong>：<strong>1915 年初版的首印很快就出了问题</strong>——两个基本装帧（纸面／布面）同时推出，销路不佳，一年多以后，<strong>剩余未售出的书被盖上德国审查机关的官方图章</strong><span class="tag t-rep">转述</span>（古书商 Vialibri、Burnside 编目）。★★ <strong>也就是说：「焚书」与「审查」这条线，从这本书的第一次印刷起就埋下了。</strong> 1915 年卖不动的《变形记》，1933 年被送进火里，<strong>但在这一切之前，卡夫卡 1915 年 10 月 25 日的那封信已经说了：连画都不许画。</strong> <strong>「不许画」与「不许卖」「不许读」，是同一条命运的三种形式。</strong> <span class="tag t-inf">推断</span></p>
+  <h3>5.4 ★★ 解释的无限性：一个人写了一百三十年，批评家写了一百多种解释</h3>
+  <p><strong>关键文献</strong>：<strong>Stanley Corngold</strong>，《<strong>The Commentators' Despair</strong>》（<em>The Commentators' Despair: The Interpretation of Kafka's Metamorphosis</em>），Kennikat Press，<strong>1973</strong>——<strong>这本书几乎全部由 Corngold 对当时能找得到的《变形记》解释的逐条概述组成，共 130 多种。</strong></p>
+  <p><strong>它说明了什么</strong>：<strong>「过度解释」本身成了这本书的接受史问题。</strong> 同一篇 70 页的小说，被读成：俄狄浦斯冲突的寓言（心理分析派，1931 年即有一篇发表于精神分析期刊的解读）；被读成「对疾病／残障者态度的寓言」（企鹅版简介即取此意：「一则关于人类如何应对苦难与疾病的、纠缠不去的寓言」）；被读成社会边缘群体的处境；被读成宗教寓言、存在主义、荒诞派……<span class="tag t-rep">转述</span>（据 Corngold 1973 的概述，转引自 Routledge《Die Verwandlung》 Twentieth Century Texts 版导论；★ 该导论所在的电子文本页来源可疑，本报告只采其<strong>被多方独立引证</strong>的核心事实：Corngold 书收录 130 多种解释）</p>
+  <p>★ <strong>另一个方向的解释</strong>：<strong>Volker Drüke（2013）</strong> 主张，<strong>书里真正经历「变形」的关键人物是 Grete</strong>——标题的指向应当是她；格里高尔变形后被消磨、最终死去，而 Grete 因家庭变故而成熟、承担了责任，父母最终注意到她「长成了美丽丰满的姑娘」，想给她找伴侣。<span class="tag t-rep">转述</span></p>
+  <p><strong>⇒ 这个「无限性」本身该怎么读</strong>：<strong>不是「所以怎么读都行」，也不是「所以读法都错」。</strong> 卡夫卡本人对此有过警觉：他<strong>厌恶弗洛伊德式的解读</strong>，把心理分析称作「一种无助的错误」（<code>a helpless error</code>），说弗洛伊德的理论是「<strong>大致上、粗糙的图景，既没有照顾到细节，更没有照顾到事情的本质</strong>」<span class="tag t-rep">转述</span>（转引自纳博科夫《Lectures on Literature》对照引文；★ 卡夫卡的原话出处见附录 D5，本报告未逐字核对日记原本）。<strong>⇒ 最稳的态度是：把「130 多种解释」当成接受史的</strong>证据<strong>，而不是当成「原文没有意义」的证据。</strong></p>
+  <p>★ <strong>一条给读者的判断准则</strong>：<strong>面对 130 多种解释，不要问「哪个对」，要问「每个解释漏掉了什么」。</strong> ★ <strong>一个好的《变形记》解读，必须能同时容纳这三件事</strong>：① 那只虫<strong>从未被命名</strong>；② 家人<strong>从未做过一件「恶事」</strong>；③ 叙述者<strong>从未惊讶过一次</strong>。<strong>任何解释，只要它必须把这三件事中任何一件抹掉，它就丢掉了卡夫卡。</strong> <span class="tag t-inf">推断</span> <strong>——这是本报告给读者的唯一一条「判卷标准」。</strong></p>
+  <h3>5.5 作者身份与背景：布拉格德语犹太作家，及其被焚烧与查禁的记录</h3>
+  <p><strong>（a）身份</strong>：卡夫卡是<strong>布拉格德语犹太作家</strong>。1883 年生于<strong>奥匈帝国布拉格</strong>，<strong>以德语写作</strong>，属布拉格德语文学圈（与 <strong>Max Brod</strong>、<strong>Franz Werfel</strong> 等往来）<span class="tag t-src">原书</span>（据多部权威传记与出版编目）。★ <strong>把他简称为「捷克作家」会抹掉两件事：他写的是德语；他的犹太身份是他一生与二十世纪历史的交点。</strong> 准确说法是「<strong>奥匈帝国（今捷克）的布拉格德语犹太作家</strong>」。</p>
+  <p><strong>（b）焚书与查禁记录</strong>（转述时须标明来源，<strong>不得把反犹／政治禁令与作品的「政治含义」简单等同</strong>）：</p>
+  <ul>
+    <li><strong>纳粹德国，1933-05-10</strong>：卡夫卡的书<strong>在被公开焚毁之列</strong>。当日德国学生与冲锋队在柏林歌剧院广场（Opernplatz）等地焚烧「非德意志精神」的书籍，<strong>卡夫卡名列被列入的德语犹太作家名单</strong>（同列者包括 Einstein、Freud、Brecht、Heinrich Mann、Stefan Zweig 等）<span class="tag t-src">原书</span>（据 Jewish Virtual Library「The Burning of the Books」名单，与德文维基百科 1933 年焚书条目名单一致——<strong>两个独立来源一致</strong>）。
+    </li>
+    <li><strong>其他查禁记录</strong>：据 banned-books.org 汇总（引 Wikipedia 与阿根廷 Memoria Abierta），《变形记》另有<strong>西班牙（1939，佛朗哥政权）、苏联（1950）、阿根廷（1976，军人政权）</strong>的查禁／限制记录<span class="tag t-rep">转述</span>。
+    </li>
+    <li>★ <strong>一句必须写的话</strong>：<strong>卡夫卡 1924 年就去世了，他没有活到看见自己的书被烧。</strong> 把「《变形记》被纳粹焚毁」说成「卡夫卡的政治抗议」是时序错乱；<strong>这些查禁反映的是后来政权对「一个犹太作家的作品」的处置，不是作品本身的宣言。</strong>
+    </li>
+  </ul>
+  <p><strong>（c）父亲与信</strong>：卡夫卡与父亲 <strong>Hermann Kafka</strong> 的关系是理解本书的一条重要线索（评论界常引《致父亲的信》作对照）。★ <strong>但要把这条线索用得有分寸</strong>：「父子冲突」是本书的一个<strong>读法</strong>，不是卡夫卡盖章的答案；<strong>卡夫卡写《致父亲的信》在 1919 年，晚于《变形记》七年</strong>。<span class="tag t-inf">推断</span> ★ 更值得注意的是：<strong>卡夫卡本人</strong>在 1915 年 10 月<strong>亲自为这本书的封面写信</strong>、<strong>亲自校订</strong>、<strong>把它归入自己认可的少数作品之列</strong>——<strong>他对《变形记》的态度，比他对《审判》《城堡》的态度要明确得多。</strong>（他自己在日记里又说过讨厌它，见第 9 节——<strong>「认可」与「厌恶」在他身上是同时的</strong>。）</p>
+  <p><strong>（d）为什么「作者身份」对读这本书有意义，以及它的边界</strong>：</p>
+  <ul>
+    <li><strong>有意义的地方</strong>：卡夫卡是<strong>一个在奥匈帝国官僚系统里上班、晚上写作、讲德语、信犹太教又疏离于犹太教、与父亲关系紧张的儿子</strong>。<strong>《变形记》里那种「公文式的冷静」</strong>——<strong>「请假条」「出勤」「退租」「家庭义务」</strong>——<strong>确实带着一个「保险公司职员」的手感。</strong> 这不是过度联想：卡夫卡 1908–1922 年在劳工工伤保险公司工作，<strong>处理的就是工伤事故的赔付与鉴定</strong><span class="tag t-src">原书</span>（据多部权威传记与出版编目）。
+    </li>
+    <li><strong>边界在哪里</strong>：<strong>但《变形记》不是自传。</strong> 卡夫卡没有变成虫，他的妹妹们没有清除他，他的父亲没有向他扔苹果。★ <strong>把「父子关系」当成唯一的钥匙，会把这本书缩成一份病例</strong>——<strong>这正是第 5.4 节所说的「读成心理病例」的风险。</strong> <span class="tag t-inf">推断</span>
+    </li>
+    <li>★ <strong>一句总结</strong>：<strong>作者的生平是这本书的「入场券」，不是「谜底」。</strong> 知道卡夫卡是谁，能帮你更敏感地感到那种「官僚语汇里的绝望」；<strong>但《变形记》之所以是一百年的经典，是因为它不需要你先知道卡夫卡是谁，就能击中你。</strong>
+    </li>
+  </ul>
+  <h3>5.6 中译谱系：从《蜕变》到《变形记》</h3>
+  <p><strong>七个主要汉译本与它们的年份／底本</strong>：</p>
+  <table>
+    <thead><tr><th>译者</th><th>首次出版</th><th>底本／特点</th></tr></thead>
+    <tbody>
+      <tr><td><strong>金溟若</strong>（台湾）</td><td><strong>志文出版社 1969</strong>，书名《<strong>蜕变</strong>》</td><td><strong>从日文转译</strong>；中文世界最早的单行本之一</td></tr>
+      <tr><td><strong>李文俊</strong></td><td><strong>1979，《世界文学》第 1 期</strong></td><td><strong>据 Muir 夫妇英译</strong>（纽约《现代文库》1952 年版），其夫人张佩芬据莱比锡 Reclam 1978 德文本校订；<strong>影响最大、流传最广</strong></td></tr>
+      <tr><td><strong>张荣昌</strong></td><td>上海译文 2012（另入河北教育《卡夫卡全集》1996）</td><td>据 <strong>Paul Raabe 编《卡夫卡中短篇小说全集》</strong>（Fischer 1969／1981）；<strong>影响力仅次于李文俊</strong>，入选人教社高中语文</td></tr>
+      <tr><td><strong>谢莹莹</strong></td><td>作家出版社 1997（《卡夫卡精品集》）</td><td>德文直译；入人民文学《卡夫卡全集》2003</td></tr>
+      <tr><td><strong>赵登荣</strong></td><td>浙江文艺 2003</td><td>德文直译</td></tr>
+      <tr><td><strong>叶廷芳</strong></td><td>2006 新译</td><td>德文直译；学界权威</td></tr>
+      <tr><td><strong>姬健梅</strong>（台湾）</td><td>麦田出版社</td><td>德文直译（据柳冬妩，2014 年已第二版第十二次印刷）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>「变形记」与「蜕变」的译名之争</strong>：德文 <code>Die Verwandlung</code> 的核心是「<strong>变成另一个样子</strong>」，<strong>中性、不褒不贬</strong>。「变形」较贴近原义（外形的改变）；「蜕变」在汉语里常带<strong>脱壳、羽化、由坏变好</strong>的意味（宋词「蝉蜕」、今日常说「华丽蜕变」），<strong>与本书结尾一家三口「松了一口气」的冷漠并不相称</strong>。⇒ <strong>这就是为什么今天通行的是《变形记》。</strong> ★ 但也要知道：<strong>1969 年台湾金溟若本题作《蜕变》，不是「译错」，而是早期接受时对 <code>Verwandlung</code> 的一种理解</strong>——<strong>这正是「一部作品的译名史，本身就是它的接受史」的样本。</strong></p>
+  <p>★ <strong>一个反直觉的判断</strong>：<strong>这七个译本里，影响最大的两个（李文俊、张荣昌）恰好是照片那句译错的两个；而译对了的四个（叶廷芳、谢莹莹、赵登荣、姬健梅）里，影响相对较小。</strong> ⇒ <strong>在《变形记》这件事上，「读哪个译本」比「读不读」更决定你读到什么。</strong></p>
+  <p>★ <strong>为什么「误译」这件事在这本书上格外要紧（而不是通用的「翻译总是有损失」）</strong>：<strong>因为《变形记》是一部「靠细节链条运转」的小说。</strong> 它没有复杂的情节，没有多线索，没有反转——<strong>它全部的力量压在「物件之间的相互映照」上</strong>：一幅照片对一份制服、一只苹果对一段军旅、一张皮裘对一间被搬空的房间。★ <strong>因此，只要链条上有一环被译反了，整条链就断了。</strong> 这就是为什么「照片是父亲的还是格里高尔的」<strong>不是一个小疏漏，而是一个结构性错误</strong>——<strong>它换掉的是整本书的一个支点。</strong> <span class="tag t-inf">推断</span>（此为笔者基于文本结构的判断，非某位批评者的原话；柳冬妩的论断是「照片构成结构性反讽的必不可少的前提」，与本报告此处的结论方向一致）</p>
+  <p>★ <strong>给普通读者的最后一条实用建议</strong>：<strong>如果你手边只有李文俊或张荣昌本，完全不必弃读</strong>——它们是流畅、可读、影响深远的译本；<strong>你只需要在读第一部分「格里高尔打开门」那一段时，在心里把「他父亲的」改成「格里高尔的」。</strong> <strong>一个字的更正，就能把这本你已经读过的书，变成另一本书。</strong></p>
+  <p>★ <strong>结构说明</strong>：本书正文分三个部分（原文标 <strong>I. / II. / III.</strong>）。本部分<strong>逐部分对应</strong>，<code>## 6</code>–<code>## 8</code> 依次对应三部分；<code>## 9</code> 是<strong>总论</strong>，处理「不解释」这一手法与卡夫卡的遗产。每节三段：<strong>「这一部分在做什么」／「关键内容：文体、节奏与意象」／「可疑之处」</strong>。所有德文引文取自公版原文（PG #22367，Kurt Wolff Verlag 1917 年版），可定位核对。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>第一部分：醒来，与失去声音</span><span class="caret">▾</span></h2>
+  <h3>这一部分在做什么</h3>
+  <p><strong>建立「不可能的前提」，然后让叙述像什么都没发生一样照常进行下去。</strong> 这一部分做的事只有一件：<strong>把格里高尔装进一个房间里，然后把门关上。</strong></p>
+  <p>它从一句完整的、已经完成的事实开始——<code>Als Gregor Samsa eines Morgens aus unruhigen Träumen erwachte, fand er sich in seinem Bett zu einem ungeheueren Ungeziefer verwandelt.</code> <span class="tag t-src">原书</span> 紧接着，卡夫卡用一个句子堵死「这是梦」：<code>Es war kein Traum.</code>（<strong>这不是梦</strong>）<span class="tag t-src">原书</span>。然后，<strong>格里高尔的第一个念头不是恐惧，而是「我得赶七点那班火车」</strong>——他盘算的是自己的旅行推销员工作、老板的脾气、五点钟那班火车、如果现在起来还能不能赶上。<strong>叙述者对「人变成虫」这件事，从头到尾没有一丝惊讶。</strong> 这一部分在做的，就是让这个「零惊讶」的语调<strong>站稳</strong>——一旦读者接受了这个语调，后面七十页都成立。</p>
+  <p>这一部分的实际事件链是：格里高尔醒来 → 盘算上班 → 母亲隔门催他 → 父亲砸门 → 妹妹低声请求 → 首席店员（<code>Prokurist</code>）上门问罪、并暗示老板怀疑他<strong>侵吞公款</strong><span class="tag t-src">原书</span> → 格里高尔艰难地翻身、用下颚转开钥匙、打开门 → 他探出头，看见对面墙上的<strong>军人照片</strong>、看见客厅里的家人和首席店员 → 首席店员倒退、逃走 → 父亲用手杖和报纸把他赶回房间，<strong>用一种野兽般的声音「嘘」他</strong> → 门被关上，<strong>全家人第一次松了一口气</strong>。</p>
+  <h3>关键内容：文体、节奏与意象</h3>
+  <ul>
+    <li><strong>★★ 语调：叙述者对最荒诞的事毫无惊讶。</strong> 这是本书的第一技术，也是它最难模仿的地方。<strong>变形在原文里没有感叹号。</strong> 首句之后立刻进入的，是极精确的、几乎公文式的空间描写：<code>Er lag auf seinem panzerartig harten Rücken und sah, wenn er den Kopf ein wenig hob, seinen gewölbten, braunen, von bogenförmigen Versteifungen geteilten Bauch…</code>（他躺在甲壳般坚硬的背上，稍一抬头，就看见自己拱起的、棕色的、被弓形硬化带分隔的肚子……）<span class="tag t-src">原书</span>。★ <strong>注意：这是「看见」，不是「害怕」。</strong> 卡夫卡把恐惧留给了读者，把冷静留给了叙述。
+    </li>
+    <li><strong>★ 声音的第一次变形</strong>：格里高尔回答母亲时，听见了自己的声音——<code>die wohl unverkennbar seine frühere war, in die sich aber, wie von unten her, ein nicht zu unterdrückendes, schmerzliches Piepsen mischte</code>（<strong>那无疑还是他从前的声音，但其中混进了一种从下面冒上来的、压不住的、痛苦的唧唧声</strong>）<span class="tag t-src">原书</span>。★ <strong>这是全书「失去声音」的第一格。</strong> 而家人<strong>听不出</strong>，因为隔着一扇木门（<code>Infolge der Holztür war die Veränderung in Gregors Stimme draußen wohl nicht zu merken</code>）<span class="tag t-src">原书</span>。<strong>门在这里第一次救了格里高尔，也第一次骗了家人。</strong>
+    </li>
+    <li><strong>★ 那幅军人照片（本书最关键的细节）</strong>：格里高尔打开门、侧着头探出去，看见的是<strong>客厅对面墙上</strong>的一幅照片——<code>eine Photographie Gregors aus seiner Militärzeit, die ihn als Leutnant darstellte, wie er, die Hand am Degen, sorglos lächelnd, Respekt für seine Haltung und Uniform verlangte</code>（<strong>格里高尔服兵役时的照片，照片上他是少尉，手按在佩剑上，无忧无虑地微笑着，分明要人尊重他的姿态和制服</strong>）<span class="tag t-src">原书</span>。★ <strong>这是中文两个最有影响译本一起译错的地方</strong>（见 5.2）。它的功能是：<strong>把「按剑微笑的少尉」和后面「被苹果轰炸的虫」扣在一起</strong>——<strong>一个曾经「要求别人尊重制服」的人，最后连「被听懂」都做不到。</strong>
+    </li>
+    <li><strong>★ 皮裘女士肖像（与军人照片遥遥相对的第一件反讽物）</strong>：I. 段开头，格里高尔的房间桌上摊着推销的布料样品，上方挂着 <code>das Bild, das er vor kurzem aus einer illustrierten Zeitschrift ausgeschnitten und in einem hübschen, vergoldeten Rahmen untergebracht hatte</code>——<strong>他前不久从画报上剪下来、装进一个漂亮镀金框</strong>的一幅画，画中女士戴着皮帽、皮围脖，举起一只厚重的皮手筒<span class="tag t-src">原书</span>。★ <strong>这幅画后来会再出现一次（见 II. 段）</strong>：当家人搬空他的房间时，他扑上去死死贴住这幅画（<code>preßte sich an das Glas</code>），<strong>宁愿保住这幅画也不保别的</strong>——<strong>这是他作为「私人个体」最后的领地。</strong>
+    </li>
+    <li><strong>★ 首席店员与「工作」的世界</strong>：<code>Prokurist</code> 上门时带来的是<strong>公司的语言</strong>：<code>Herr Samsa… Ihr Fleiß und Ihre Verläßlichkeit wurden… geschätzt… aber in der letzten Zeit…</code>（<strong>萨姆沙先生……您的勤勉和可靠一直受赏识……可最近……</strong>）<span class="tag t-src">原书</span>。★ 卡夫卡在这里做了一件很狠的事：<strong>在一个「人变成了虫」的场景里，让公司代表来谈「出勤率」和「挪用公款」。</strong> 荒诞与官僚语汇的并置，是《变形记》最独特的喜剧感来源。
+    </li>
+    <li><strong>★ 结尾那一「嘘」（本部分最冷的一处）。</strong> 格里高尔最终被赶回房间时，原文写父亲一边用手杖和报纸把他往里赶，一边发出一种声音——<code>mit dem Stock und mit dem Zeitungsblatt… unter gleichzeitigem eigentümlichem Zischen</code>（<strong>用手杖和报纸……同时发出一种古怪的嘘声</strong>）<span class="tag t-src">原书</span>。★★ <strong>父亲是在「像赶牲畜一样」赶他——而这个「嘘」字（<code>Zischen</code>），正是全书把格里高尔从「儿子」彻底变成「动物」的第一个动作。</strong> 紧接着，门被关上，<strong>全家人同时松了一口气</strong>：原文说门关上时，<code>die Tür wurde… zugeschlagen</code>（<strong>门被「砰」地关上</strong>）<span class="tag t-src">原书</span>。★ <strong>「门关上」这个动作，在第一部分结尾就已经预言了全书的结局。</strong>
+    </li>
+    <li><strong>★ 母亲的位置。</strong> 母亲在 I. 段只有两句台词，却每次都在「门」前：先是<strong>隔门轻声催他起床</strong>（<code>Die sanfte Stimme!</code>，<strong>那温柔的声音啊！</strong>）<span class="tag t-src">原书</span>，然后是在格里高尔被赶回房间后、父亲已经发话时的沉默。★ <strong>卡夫卡用「声音的温柔」标记母亲</strong>——<strong>她是全书唯一一个用「软」的方式对待格里高尔的人，但她从不出手阻止任何事情。</strong> <strong>「温柔」在这里不是慈悲，是无力。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ 第一部分是全书流传最广、也最被「误读」的一部分，值得指出四点：</p>
+  <ol>
+    <li><strong>★ 首句的德文语法无法完全移植。</strong> <code>fand er sich… verwandelt</code> 是一个<strong>框型结构</strong>：<code>fand</code>（发现）在句中的位置保证了「发现」先出现，<code>verwandelt</code>（变成了）在句尾保证了「变形」最后落地。<strong>多数中译只能译成「发现……变成了」，把这一先一后压平成一句状态描写</strong>——<strong>读者因此失去了「变形在语法上是既成事实」的那层冲击。</strong> <span class="tag t-inf">推断</span>（基于德文语法结构，非版本问题）
+    </li>
+    <li><strong>「首席店员」这个译名。</strong> 德文 <code>Prokurist</code> 是一个<strong>法定职衔</strong>（公司的「全权代理人／授权签字人」），既不是「秘书」，也不完全是「经理」。李文俊、张荣昌译「秘书主任」，谢莹莹译「全权代理」，叶廷芳译「协理」<span class="tag t-rep">转述</span>（柳冬妩，2014）。★ <strong>这不是「谁对谁错」，而是「这家公司到底怎么被想象」——它决定了读者读到的是一个官僚企业还是一个家族作坊。</strong>
+    </li>
+    <li><strong>★ 门到底「开」了多久？</strong> 原文里格里高尔打开门、探出头、与首席店员和家人有一段时间的「面对面」，然后才被赶回去。<strong>这段「面对面」的长度，是决定「这一部分有多残酷」的变量</strong>——有的译本把它处理得很快，有的拖得很长。<span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>★ 格里高尔到底「看见」了什么？</strong> 他打开门时，看见的是<strong>客厅</strong>——有摊开的早餐、有报纸、有<strong>军人照片</strong>、有站在门口的首席店员、有母亲与妹妹。★ <strong>这个「看见」是全书唯一一次，格里高尔用他自己的眼睛「看见」他的家。</strong> 此后他再没能进过客厅的中央（III. 段他是爬出来、随即被赶回）。<strong>这一眼的珍贵，与他「错过火车」的焦虑并列在本部分的开头与结尾</strong>——<strong>卡夫卡从不提醒你这两件事的重要性，他只是让它们并排放着。</strong><span class="tag t-inf">推断</span>
+    </li>
+  </ol>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>第二部分：照料的变质</span><span class="caret">▾</span></h2>
+  <h3>这一部分在做什么</h3>
+  <p><strong>让「照料」变成一种日常制度，再让这个制度一点点腐烂。</strong> 这一部分做的事是：<strong>确立「格里高尔会活下去」这个假象，然后用它把家人拖垮。</strong></p>
+  <p>它从黄昏开始——<code>Erst in der Abenddämmerung erwachte Gregor aus seinem schweren ohnmachtähnlichen Schlaf.</code>（<strong>直到暮色降临，格里高尔才从沉重的、昏厥般的睡眠中醒来</strong>）<span class="tag t-src">原书</span>。★ <strong>注意「黄昏」这个时间</strong>：从此格里高尔的生活全在<strong>夜里</strong>——<strong>白天属于家人，夜里属于他。</strong> 这一部分的实际事件是：妹妹 Grete 开始给他送食物、试探他吃什么 → 父母不敢看他，母亲在门口昏倒过一次 → 家人逐渐接受他存在的事实 → 格里高尔开始隔着门偷听家人的谈话（<code>erhorchte er manches aus den Nebenzimmern</code>）<span class="tag t-src">原书</span> → <strong>他某夜爬出房间，直接出现在客厅</strong>（这是全篇他最接近「回家」的一次）→ <strong>父亲用苹果轰炸他</strong> → 母亲昏倒 → 妹妹制止 → 格里高尔被赶回房间，<strong>那颗苹果嵌在他背上</strong>。</p>
+  <p>★ <strong>这一部分的标题之核在「变质」两个字</strong>：<strong>Grete 的照料从一开始是真的，但照料是有保质期的。</strong> 当「照料」变成「工作」，当「工作」变成「负担」，当「负担」需要被结算——这一部分记录的就是这个变质过程。</p>
+  <h3>关键内容：文体、节奏与意象</h3>
+  <ul>
+    <li><strong>★ 食物：从「养活」到「被端进端出」。</strong> II. 段开头，Grete 准备的是 <code>süßer Milch…, in der kleine Schnitte von Weißbrot schwammen</code>（<strong>漂着白面包片的甜牛奶</strong>），那是格里高尔从前最喜欢的<span class="tag t-src">原书</span>。<strong>但他不喝了</strong>——他改吃 <code>Käse</code>、<code>Gemüse</code>、<code>Sauce</code>，<strong>新鲜的食物更合口味</strong><span class="tag t-src">原书</span>。★ 这个细节不是闲笔：<strong>它说明连「他喜欢什么」这条线，也从「人」那一侧断掉了。</strong> 到了 III. 段，<strong>女佣干脆「用脚」把食物踢进他房间</strong>（<code>mit dem Fuß irgendeine beliebige Speise in Gregors Zimmer hinein</code>）<span class="tag t-src">原书</span>——<strong>食物从「照料」彻底变成「投喂」。</strong>
+    </li>
+    <li><strong>★ 「窗」与「外面」。</strong> I. 段里，格里高尔曾望着窗外的阴雨 <code>ganz melancholisch</code>（十分忧郁）<span class="tag t-src">原书</span>；II.、III. 段里，开窗、看外面成了他仅剩的<strong>几件事之一</strong>。★ <strong>「窗」是全书里唯一不属于家庭、也不属于房间的东西</strong>——<strong>它通向一个格里高尔再也进不去的世界。</strong> 结尾时，女佣把窗子「完全打开」透气，而格里高尔刚死（<code>Die Bedienerin schloß die Tür und öffnete gänzlich das Fenster</code>）<span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>★ 妹妹的「试探」与「照料」。</strong> Grete 是这一部分的主心骨：她一个人进来、换食物、扫地、搬家具。★ <strong>卡夫卡把「她还愿意进来」这件事写成了全篇唯一的温暖。</strong> 而当格里高尔爬上墙、趴在画上不肯下来时，<strong>Grete 用「移走家具」的方式替他「腾出爬行的空间」</strong>——这正是照料关系的模板：<strong>她在替他做决定，而他不被询问。</strong>
+    </li>
+    <li><strong>★ 父亲的「制服」与「轰炸」（本书最重要的反讽组合之一）。</strong> 父亲重新去银行做杂役后，回家时 <code>stand… aufrecht da, ein wenig steif, in seiner Livree</code>（<strong>直立着、有点僵硬地站着，穿着号衣</strong>）<span class="tag t-src">原书</span>。<strong>然后他从果盘里装满口袋，主张「轰炸」他</strong>：<code>der Vater hatte sich entschlossen, ihn zu bombardieren</code>；<code>Aus der Obstschale auf der Kredenz hatte er sich die Taschen gefüllt und warf nun, ohne vorläufig scharf zu zielen, Apfel für Apfel</code>（<strong>他从餐具柜上的果盘里把口袋装满，也不仔细瞄准，一只接一只地扔苹果</strong>）<span class="tag t-src">原书</span>。★ <strong>这是全篇最锋利的反讽</strong>：<strong>「不瞄准」＋「轰炸」——这两个词都属于军人，而格里高尔正是一个按过剑、要求别人尊重制服的少尉。</strong> 儿子曾经「要求被尊重」，父亲现在「不瞄准」地扔苹果——<strong>同一个军人词汇系统，两种命运。</strong>
+    </li>
+    <li><strong>★ 那颗苹果：留在肉里，成为「纪念物」。</strong> 这一段结束时，一颗苹果<strong>嵌进了格里高尔的后背</strong>（<code>drang… förmlich in Gregors Rücken ein</code>）<span class="tag t-src">原书</span>。到 III. 段开头，卡夫卡写道：<code>der Apfel blieb, da ihn niemand zu entfernen wagte, als sichtbares Andenken im Fleische sitzen</code>——<strong>那颗苹果没人敢去取，就这样留在肉里，成了一枚看得见的纪念物</strong><span class="tag t-src">原书</span>。★★ <strong>「看得见的纪念物」（sichtbares Andenken）这个词，通常用于纪念逝者的物件</strong>——<strong>卡夫卡在这里把「家人对他的伤害」写成了一座墓碑。</strong> 更狠的是：<strong>没有人敢去取它</strong>（<code>da ihn niemand zu entfernen wagte</code>）——<strong>不是「不愿意」，是「不敢」。</strong> 这枚苹果的留在肉里，等于家人承认了「我们伤害过他，而这个伤口我们碰不得」。
+    </li>
+    <li><strong>★ 家具的搬移：一场「为你好」的剥夺。</strong> II. 段有一场极重要的戏：Grete 决定<strong>把他房间里的家具搬走</strong>，理由是<strong>给他更多爬行的空间</strong>。格里高尔本能地反对——他不是反对「空间」，他反对的是<strong>他的过去被人从墙上、从地上、从房间里一件件拿走</strong>。原文写他趴在墙上、<strong>死守那幅穿皮裘的女士画像</strong>（<code>preßte sich an das Glas</code>）<span class="tag t-src">原书</span>。★★ <strong>这是全书里格里高尔唯一一次「主动保卫一件属于他自己的东西」。</strong> 他保卫的不是画有多好看，是<strong>「这是我剪下来、装框、挂上去的」这件事</strong>。★ <strong>而这场保卫以失败告终</strong>：母亲看见他从墙上爬出来，<strong>当场昏倒</strong>，Grete 只好停下来。
+    </li>
+    <li><strong>★ 母亲昏倒：全篇的「同情」与「嫌恶」同时发作。</strong> 母亲看见他之后 <code>fiel… in Ohnmacht</code>（昏了过去）<span class="tag t-src">原书</span>。★ 卡夫卡把「母亲」这个角色写得极有分寸：<strong>她是全家唯一「想对他好」的人，但她的身体承受不了他</strong>。<strong>她的昏倒不是冷漠，是她无法「同时」爱他并容忍他的样子——而这正是全书的家庭困境的最小模型。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★ 第二部分的位置最容易被低估，因为它是「事件最少」的一段。四点：</p>
+  <ol>
+    <li><strong>★ 母亲为什么昏倒？</strong> 母亲在 II. 段一次看见格里高尔后 <code>fiel… in Ohnmacht</code>（昏了过去）<span class="tag t-src">原书</span>。★ <strong>这一段常被读成「母亲是全家最心软的人」，但原文并不这样描写</strong>：她晕倒，<strong>不代表她不厌恶他</strong>——卡夫卡只写她的身体反应，从不写她的内心。<strong>读者若把「心软」加到母亲身上，是文本之外的补完。</strong>
+    </li>
+    <li><strong>「偷听」这个动作的道德重量。</strong> 格里高尔从这一部分起开始 <code>erhorchte</code>（偷听）家人的对话<span class="tag t-src">原书</span>。★ <strong>叙述者贴着他，于是读者一直站在「门外偷听」的位置</strong>——<strong>这也意味着我们一直只听到家庭的碎片，而非全貌。</strong> 这一点的后果在 III. 段爆发：格里高尔<strong>误以为妹妹还站在他这边</strong>，而妹妹其实已在下决心清除他。★ <strong>这解释了本书最著名的「误读」为什么容易发生：读者和格里高尔共享同一个受限的视角，于是和格里高尔一起误判了家人。</strong>
+    </li>
+    <li><strong>★ 第二部分的时间跨度是多少？</strong> 原文说 Grete「每天」来，但没说多少天；到 III. 段才出现「一个多月」（<code>über einen Monat</code>）<span class="tag t-src">原书</span>。⇒ <strong>II. 段到底过了几天，原文是模糊的</strong>——<strong>这个模糊是有意的</strong>，它让「照料」看起来像一种没有尽头的日常。★ 这也是为什么第一批读者会感到「这本书像读了很久」：<strong>它的时间不是靠日期推进的，是靠一餐一餐的饭推进的。</strong>
+    </li>
+    <li><strong>★ 苹果的「不瞄准」是不是一个技术错误？</strong> 原文说父亲 <code>ohne vorläufig scharf zu zielen</code>（<strong>也没有先仔细瞄准</strong>）地扔苹果<span class="tag t-src">原书</span>。★ 但<strong>正是这个「不瞄准」，让伤害显得更随意、更日常、也更残忍</strong>——<strong>不是处决，是「顺手」。</strong> 卡夫卡若写父亲「瞄准了扔」，这一段就变成了「仇恨的爆发」；<strong>写「不瞄准」，它就变成了「日常的暴力」。</strong> <span class="tag t-inf">推断</span>
+    </li>
+  </ol>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>第三部分：清除，与死亡</span><span class="caret">▾</span></h2>
+  <h3>这一部分在做什么</h3>
+  <p><strong>让「清除」从一个念头变成一句宣判，再让格里高尔自己把这句宣判执行掉。</strong> 这一部分做的事是：<strong>完成「去人格化」，然后让受害者在被清除之前，先同意自己被清除。</strong></p>
+  <p>它从一句极度冷静的判决开始——<code>Die schwere Verwundung Gregors, an der er über einen Monat litt---der Apfel blieb… als sichtbares Andenken im Fleische sitzen---schien selbst den Vater daran erinnert zu haben, daß Gregor trotz seiner gegenwärtigen traurigen und ekelhaften Gestalt ein Familienglied war, das man nicht wie einen Feind behandeln durfte, sondern dem gegenüber es das Gebot der Familienpflicht war, den Widerwillen hinunterzuschlucken und zu dulden, nichts als dulden.</code>（<strong>格里高尔的重伤——那颗苹果没人敢取，就这样留在肉里当纪念——似乎连父亲也想起了：尽管格里高尔现在这副伤心可厌的样子，他仍是家庭成员，不能像对敌人一样对待，对他只有一条家庭义务：把厌恶吞下去，忍耐，除了忍耐没有别的。</strong>）<span class="tag t-src">原书</span>。★ <strong>「忍耐，除了忍耐没有别的」（nichts als dulden）——这一句就是第三部分的主题句：家庭对格里高尔的全部态度，被压缩成「不允许厌恶，但要忍耐」。</strong></p>
+  <p>实际事件链：格里高尔的伤缠绵一个多月 → 家里为了收入<strong>招来三位房客（Zimmerherren）</strong>，把杂物堆进格里高尔的房间、<strong>房客要求他不能出现在公共空间</strong> → 打扫女佣登场（老寡妇，只有她不怕他）→ 某晚房客要求 Grete 拉小提琴给他们听 → <strong>格里高尔被音乐吸引，爬出房间</strong> → 房客发现他、抗议要退租 → <strong>Grete 拍桌宣布 <code>Weg muß es</code>（必须把它弄走）</strong> → 格里高尔退回房间 → <strong>凌晨三点，他咽下最后一口气</strong> → 女佣发现尸体、喊「它死了」（<code>es ist krepiert</code>）→ 一家人（+女佣）看尸体 → 父亲说「现在我们可以感谢上帝了」并划十字 → 一家人乘电车出城，<strong>发现 Grete 已经长大，开始盘算给她找个丈夫</strong>。</p>
+  <h3>关键内容：文体、节奏与意象</h3>
+  <ul>
+    <li><strong>★★ 小提琴与音乐（第三部分的高潮）。</strong> 这是全篇唯一一次「美」的出现。房客饭厅里传来琴声——原文：<code>Gregor… hatte… die ganze Zeit die Violine gehört</code>；他<strong>从没听过这么美的音乐</strong>，被它一路吸引爬出房间。★ 格里高尔的心理独白是全篇最动人的一段：<strong>「他是不是一只动物，音乐都能这样打动他？」</strong>（原文：<code>War er ein Tier, da ihn Musik so ergriff?</code>）<span class="tag t-src">原书</span>。★★ <strong>这句话是全书唯一一次，格里高尔把「自我怀疑」说出了口</strong>——<strong>而它出现在他死前几页</strong>。★ <strong>更残酷的是</strong>：他爬出来，是想「告诉她，让她带琴进他房间来」（<code>sie möge doch mit ihrer Violine in sein Zimmer kommen</code>）<span class="tag t-src">原书</span>——<strong>这个请求永远没有说出口。</strong>
+    </li>
+    <li><strong>★ Grete 的宣判（全篇的语言转折点）。</strong> 她说的是：<code>Ich will vor diesem Untier nicht den Namen meines Bruders aussprechen und sage daher bloß: wir müssen versuchen es loszuwerden.</code>（<strong>我不愿在这个怪物面前说出我哥哥的名字，所以我只说：我们必须设法把它弄走。</strong>），接着重复 <strong><code>Weg muß es</code></strong>（<strong>必须把它弄走</strong>）<span class="tag t-src">原书</span>。★ <strong>注意她的理由不是「它危险」，而是「它让我们过不下去」</strong>：<code>es bringt euch noch beide um</code>（<strong>它会把你俩都拖死</strong>）。<strong>父亲回应的是</strong>：<code>Wenn er uns verstünde… dann wäre vielleicht ein Übereinkommen mit ihm möglich.</code>（<strong>要是他听得懂我们……也许还能跟他达成某种协议。</strong>）<span class="tag t-src">原书</span>。★★ <strong>这句话是全篇最冷的一刀</strong>：<strong>它把「他还是不是格里高尔」的判据，定在了「他能不能听懂我们」上</strong>——而格里高尔此刻正听着，却无法让他们知道自己听懂了。
+    </li>
+    <li><strong>★ 死亡：格里高尔自己同意死。</strong> 原作写他退回房间后：<code>Er wunderte sich darüber nicht… Im übrigen fühlte er sich verhältnismäßig behaglich… An seine Familie dachte er mit Rührung und Liebe zurück. Seine Meinung darüber, daß er verschwinden müsse, war womöglich noch entschiedener, als die seiner Schwester.</code>（<strong>他对此并不惊讶……此外他相对地感到舒适……他怀着感动和爱回想家人。关于他必须消失这一点，他的看法甚至比妹妹的还坚决。</strong>）<span class="tag t-src">原书</span>。然后：<code>Dann sank sein Kopf ohne seinen Willen gänzlich nieder, und aus seinen Nüstern strömte sein letzter Atem schwach hervor.</code>（<strong>然后他的头不由自主地完全垂下，最后一口气从鼻孔里微弱地流了出来。</strong>）<span class="tag t-src">原书</span>。★★ <strong>「他的看法比妹妹的还坚决」——这是全书最可怕的一句。</strong> <strong>清除的执行者不是家人，是格里高尔自己。</strong>
+    </li>
+    <li><strong>★ 女佣的用词：<code>es ist krepiert</code>。</strong> 女佣发现尸体后喊：<code>Sehen Sie nur mal an, es ist krepiert; da liegt es, ganz und gar krepiert!</code>（<strong>您来看看，它死了；它就躺在那儿，彻底死了！</strong>）<span class="tag t-src">原书</span>。★ <code>krepieren</code> 是一个<strong>专门用于动物（甚至带轻蔑）的动词</strong>（相当于汉语「死翘翘」「暴毙」），<strong>与 <code>sterben</code>（人的死）完全不同</strong>。★★ <strong>格里高尔生前是 <code>Ungeziefer</code>，死后是 <code>krepieren 的东西</code>——他从头到尾没有被这个家「以人的语法」称呼过。</strong> ★ 而<strong>女佣也是全篇唯一一个不怕他、还给他起外号（<code>alter Mistkäfer</code>）的人</strong>——<strong>最不把他当人的，是唯一不恐惧他的人。</strong>
+    </li>
+    <li><strong>★ 结尾：一家人出城。</strong> 最后一段写三人<strong>一起离开公寓</strong>（<code>verließen alle drei gemeinschaftlich die Wohnung</code>），<strong>坐电车出城</strong>（<code>fuhren mit der Elektrischen ins Freie vor die Stadt</code>），<strong>商量换一套更小更便宜的房子</strong>，然后注意到女儿<strong>「在种种操劳中反倒长成了一个美丽丰满的姑娘」</strong>（<code>zu einem schönen und üppigen Mädchen aufgeblüht war</code>），<strong>开始盘算给她找个好丈夫</strong>；结尾落在：<code>als am Ziele ihrer Fahrt die Tochter als erste sich erhob und ihren jungen Körper dehnte.</code>（<strong>到达目的地时，女儿第一个站起来，伸展了她年轻的身体。</strong>）<span class="tag t-src">原书</span>★★ <strong>这是全书最让人不寒而栗的一句：一个儿子/哥哥死了，而全家的最后动作是「伸展身体」。</strong> <strong>格里高尔的死，没有换来任何一个人的一滴眼泪。</strong>
+    </li>
+    <li><strong>★ 三位房客与「退租」：家庭把格里高尔当成了可清除的「事项」。</strong> 房客发现格里高尔后，<code>kündeten</code>（<strong>宣布退租</strong>）、要求索赔<span class="tag t-src">原书</span>。★ 注意这个家庭<strong>处理格里高尔的方式</strong>：不是「他被发现了怎么办」，而是<strong>「我们损失了房租怎么办」</strong>。★★ <strong>从 I. 段的「请假条」，到 III. 段的「退租」，贯穿全书的始终是同一套语言：行政、财务、流程。</strong> <strong>格里高尔在这个家里的身份，从头到尾都是一个「成本项」——这比「家人不爱他」更精确，也更冷酷。</strong>
+    </li>
+    <li><strong>★ 女佣的「不怕」与她的「不敬」。</strong> 女佣是全篇唯一<strong>不怕格里高尔</strong>的人，也是唯一<strong>给他起外号</strong>的人（<code>alter Mistkäfer</code>）。★ 她甚至会<strong>用椅子威胁他</strong>（<code>hob bloß einen… Stuhl hoch empor</code>）<span class="tag t-src">原书</span>。★★ <strong>这里有一个极精确的悖论：最不把他当「人」的，恰恰是唯一不恐惧他的人；而最把他当「人」的家庭成员，恰恰是那些一看见他就昏倒、就跑的人。</strong> <strong>「恐惧」在这个家里其实是「他还重要」的证据；到了 III. 段，恐惧消失了，格里高尔也就死了。</strong> <span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★★ 第三部分是全书的收束，也是争议最集中的部分。四点：</p>
+  <ol>
+    <li><strong>★ 格里高尔到底是被「杀死」的，还是「自己死的」？</strong> 原文写的是<strong>多重原因叠在一起</strong>：苹果的伤（感染）、长期不吃东西、被遗忘。★ <strong>但卡夫卡刻意不给一个单一的、医学的死因</strong>。<strong>这正是「不解释」在结尾处的延续</strong>——<strong>和「他为什么变形」一样，「他为什么死」也不解释。</strong> <span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>★★ 结尾的「冬天转暖」时间标志。</strong> 女佣开窗时，原文说：<code>Trotz des frühen Morgens war der frischen Luft schon etwas Lauigkeit beigemischt. Es war eben schon Ende März.</code>（<strong>尽管还是清晨，清新的空气里已经掺进了一点暖意。已经是三月底了。</strong>）<span class="tag t-src">原书</span>。★ <strong>「三月底」意味着冬天过去了——春天来了，而格里高尔死了。</strong> <strong>这个季节的转调是全书最阴冷的一笔</strong>：<strong>大自然在对格里高尔一点也不在意的节奏里回暖。</strong>
+    </li>
+    <li><strong>★ 那三位房客（Zimmerherren）是谁？</strong> 他们是全篇最陌生的角色。原文说他们是 <code>ernste Herren</code>（严肃的先生们），<strong>要求绝对不受打扰</strong><span class="tag t-src">原书</span>。★ <strong>他们最像「把格里高尔家变成市场关系的那个东西」</strong>——<strong>但卡夫卡从不解释他们的象征。</strong> <strong>读者若把他们当作「资本的化身」，是超出文本的</strong>（这也正是第 4b 节第 7 条要提醒的：<strong>「异化」是后来给的框架</strong>）。
+    </li>
+    <li><strong>★ Grete 的「变形」是不是全书真正的主角？</strong>（见 5.4）<strong>Volker Drüke（2013）</strong> 持此说。★ <strong>本报告认为这是本书最重要、也最有前景的一个补充读法</strong>：格里高尔的「变形」是<strong>退化</strong>，Grete 的「变形」是<strong>成长</strong>——<strong>同一个词，两种命运。</strong> <strong>但要标明：这是解释，不是原文的宣示。</strong>
+    </li>
+    <li><strong>★ 那场「音乐」到底改变了什么？</strong> 格里高尔爬出房间、房客抗议、妹妹宣判——<strong>这一连串事件的触发点，是他「被音乐吸引」。</strong> 有的读者因此把音乐读成「人性的最后证明」；也有读者指出：<strong>恰恰是他「被美打动」这件事，直接导致了他的死。</strong> ★ <strong>原文没有回答；它只把「美」和「死亡」放在相邻的两页上。</strong> <strong>这又是「不解释」的一次示范：卡夫卡给你两样东西，不告诉你它们的关系。</strong> <span class="tag t-inf">推断</span>
+    </li>
+  </ol>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>未解释的变形：卡夫卡留下了什么</span><span class="caret">▾</span></h2>
+  <h3>这一部分在做什么</h3>
+  <p><strong>把「不解释」本身当成一种方法来看它，并回答一个问题：为什么这本书一百多年后还在被读，而它读起来仍然像一个刚发生的事。</strong></p>
+  <p>这一节不再逐段讲情节，而是把全书当作一个<strong>手法样本</strong>：<strong>卡夫卡做了一件在 1912 年几乎没人在做的事情——他把最不可能的事件，当成一个已经发生的既成事实来叙述，并且拒绝解释它。</strong> 这个手法后来被无数人模仿（马尔克斯、博尔赫斯、卡尔维诺、村上春树……），<strong>但真正被复制的往往只是「不解释」的姿态，而不是「不解释之后，叙述仍然精确运转」的能力。</strong></p>
+  <p>★ <strong>先说清楚一件事</strong>：「不解释」听起来像一种「留白的美学」，但卡夫卡的做法<strong>恰恰相反</strong>。他不是把一切弄模糊，他是<strong>把一切都弄得很清楚，只留下一个洞</strong>。<strong>房子有多大、门有多宽、苹果滚到哪儿、钥匙转到第几圈、闹钟响在几点几分——他精确到可以画出平面图。</strong> 唯一不解释的，是<strong>「为什么」</strong>。★ <strong>一本书里如果处处模糊，你会觉得它故弄玄虚；一本书里如果处处精确、只有一个洞，那个洞就会吸走你全部的注意力。</strong> 这就是《变形记》的力学：<strong>它用一个洞，撑起整座建筑。</strong></p>
+  <h3>关键内容：文体、节奏与意象</h3>
+  <ul>
+    <li><strong>★★ 「不解释」的三条规矩。</strong> 卡夫卡在《变形记》里从不做三件事：<strong>① 不解释变形的原因</strong>（全文没有一处归因）；<strong>② 不描述虫的具体形态</strong>（只给零散的、局部不一致的细节，不给一张「图」；连他自己都在信里禁止画出来）；<strong>③ 不让格里高尔说出「为什么」</strong>（格里高尔全程不问「我为什么变成这样」，他问的是火车、老板、家人）。★ <strong>三条合起来，构成一个「意义的真空」——而读者会不由自主地往这个真空里填东西。</strong> <strong>这，才是这本书一百年来「读不尽」的机械原因。</strong>
+    </li>
+    <li><strong>★★ 叙述视角的「贴」与「不贴」。</strong> 全篇基本贴着格里高尔的意识（<strong>他是唯一的聚焦点</strong>），<strong>但关键处会轻微地滑出去</strong>：当他死后，叙述<strong>平滑地转到家人的视角</strong>，用的是同样平静的语调（<code>und es fand sich, daß diese bei näherer Betrachtung durchaus nicht schlecht waren</code>，<strong>一细看，未来还真不坏</strong>）<span class="tag t-src">原书</span>。★ <strong>这个「滑出去」是全书最恐怖的叙事操作</strong>：<strong>叙述从未为格里高尔的死停顿过一秒钟。</strong>
+    </li>
+    <li><strong>★ 「三」与「门」的结构回响（本书的骨架）。</strong> 再点一次：<strong>三个部分、三扇门、三位房客、凌晨三点、一个多月的伤</strong>。★ <strong>这不是巧合，是卡夫卡给这本 70 页的小书配的结构。</strong> 与之呼应的是意象系统：<strong>皮裘女士肖像</strong>（私人欲望）／<strong>军人照片</strong>（社会身份）／<strong>苹果</strong>（伤害与纪念）／<strong>制服</strong>（父权与职业）／<strong>小提琴</strong>（唯一的「美」）。<strong>它们各自独立，又两两相扣。</strong>
+    </li>
+    <li><strong>★ 卡夫卡的「笑」与「不笑」。</strong> 卡夫卡的文学自述散见于信件与日记（本档属 <span class="tag t-talk">作者谈话</span>，<strong>注意：这不是访谈</strong>）。他曾在日记里称这个故事是 <code>ausnehmend ekelhafte Geschichte</code>（<strong>一篇特别令人厌恶的故事</strong>），两年后又写 <code>Großer Widerwillen vor "Verwandlung". Unlesbares Ende. Unvollkommen fast bis in den Grund…</code>（<strong>对《变形记》极度反感。结局不可读。几乎从根子上不完美……</strong>）<span class="tag t-talk">作者谈话</span>（★ 这两条通行引语出自卡夫卡的日记／书信；本报告据 Routledge《Die Verwandlung》 Twentieth Century Texts 版导论转引，<strong>未逐字核对日记原本</strong>，见附录 D5）。★ <strong>但另一面是</strong>：据 Reiner Stach 的传记，卡夫卡曾在布拉格把这篇故事读给朋友听，<strong>念的时候不得不常常停下来，因为大家笑得停不下来</strong><span class="tag t-rep">转述</span>（Stach，《Kafka: The Decisive Years》，S. Fischer，2002，经二手转引）。★★ <strong>这两件事并不矛盾</strong>：<strong>《变形记》是一篇极好笑的悲剧</strong>——它的喜剧性来自「官僚语汇 vs 一只虫」的错位（见第 6 节）。<strong>大多数读者第一次读时没笑，那正是卡夫卡厉害的地方。</strong>
+    </li>
+    <li><strong>★ 卡夫卡的「遗产」不在这本书里，但这本书是它的入口。</strong> 卡夫卡 1924 年临终托付 Brod 焚毁遗稿，Brod 违背遗嘱出版——<strong>但那批遗稿是《审判》《城堡》《失踪者》等未刊长篇。</strong>《变形记》<strong>是卡夫卡生前亲自发表、亲自校订、并认可的作品</strong>（1915 年 10 月的 Die weißen Blätter + 12 月的单行本），<strong>不属于遗嘱处置范围</strong>。（★ 通俗说法常把两者混为一谈，见第 4b 节第 2 条。）
+    </li>
+    <li><strong>★ 「后世的影响」：为什么是《变形记》而不是别的？</strong> 卡夫卡生前寂寂无名，甚至自认写作失败；<strong>《变形记》初版首印约 800–1000 册，头一年多只卖出约 400 册</strong><span class="tag t-rep">转述</span>（古书商 Burnside、Whitmore 编目均记此数）。★ <strong>今天它成了二十世纪被引用最多、被改编最多的短篇之一</strong>（星 Philip Glass 的配乐、《变形记》的舞台／影视改编层出不穷；中文世界近年还有把格里高尔改成「快递员／赛博甲虫」的当代改编）。★★ <strong>这个反差本身是本书接受史的一部分</strong>：<strong>卡夫卡写的是一个「被当作无用的东西处理掉」的人，而这篇小说后来成了最有用的文学资源之一。</strong> 卡夫卡若知道，大概会写一篇更好笑的故事。
+    </li>
+    <li><strong>★ 阅读一百年后的今天，这本书多出来的那一层。</strong> 2024 年是卡夫卡逝世一百周年，中文世界的纪念文章里反复出现一个说法：<strong>「卡夫卡已经写出了我们的无力感」</strong>——被工作挤压变形的苦、出差、工资、领导、闹钟、赶火车、迟到、身体抱恙却不敢请假<span class="tag t-rep">转述</span>（据中国作家网 2024-06-04《卡夫卡与当代中国的邂逅》转述的读者评论）。★ <strong>这是一个「接受的变形」（这本身也呼应了书名）</strong>：<strong>1915 年的读者读到的是一则家庭寓言，2020 年代的读者读到的是职场处境。</strong> <strong>两者都不算错，因为卡夫卡留下的那个洞，允许不同时代往里填不同的东西。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <p>★★★ <strong>这一节要指出的是「不解释」这条路的代价与风险</strong>：</p>
+  <ol>
+    <li><strong>★ 「不解释」不等于「没有意义」。</strong> 这是一条最容易被误用的判断。<strong>有人读《变形记》，读成「所以怎么解释都行」；另有人读成「所以卡夫卡是在故弄玄虚」。两者都错。</strong> 「不解释」是一种<strong>高度控制的技术</strong>——<strong>它靠的是别处的极度精确</strong>（门缝、苹果、钥匙的转动、时间）。<strong>一旦读者接受了「一切都模糊」，就正落进卡夫卡的圈套</strong>：<strong>书里唯一模糊的，只有「为什么」；其余一切都无比清楚。</strong> <span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>★ 「不解释」的可复制性被高估了。</strong> 模仿者常学会「不解释的设定」，学不会「不解释之后，叙述仍保持零惊讶、且精确到细节」。★ <strong>技术上的关键是：叙述者必须比读者更冷静。</strong> 一旦叙述者露出一丝惊讶，整个魔法就散了。
+    </li>
+    <li><strong>★ 这本书最容易被两种相反的方式读坏</strong>：
+    <ul>
+      <li><strong>读成「社会寓言」</strong>——变成一篇「资本主义把人变成虫」的论说文（见第 4b 节第 7 条）。★ <strong>它的问题不是「错」，而是「太快」</strong>：一旦你认定虫＝被压榨的劳动者，<strong>你就再也不会注意到那幅皮裘女士的画像、那颗从不瞄准的苹果、那个凌晨三点的钟声</strong>。<strong>你把一座建筑压成了一句标语。</strong>
+      </li>
+      <li><strong>读成「心理病例」</strong>——把格里高尔当作一个需要诊断的病人，把全书当作一份症状记录。★ <strong>它的问题同样是「太快」</strong>：一旦你认定这是一份「抑郁／解离」的病历，<strong>你就再也不会问「为什么叙述者对这一切毫不惊讶」</strong>——而<strong>那个「毫不惊讶」才是这本书的发明</strong>。
+      </li>
+      <li>★★ <strong>两者都能找到支持，但都把「这篇小说作为一件艺术品」的那一层抹掉了。</strong> <strong>正确的姿势不是「拒绝解释」，而是「解释完之后，回到文本，看看还剩什么」。</strong> <strong>剩下的那个东西，才是卡夫卡真正给你的。</strong>
+      </li>
+    </ul>
+    </li>
+    <li><strong>★ 最后一点，也是最重要的一点</strong>：<strong>《变形记》真正无可替代的，不是它的「主题」，是它的「语气」。</strong> 把「人变成虫」这个设定拿走，把「异化」这个词拿走，它剩下的那个东西——<strong>一种对最可怕的事毫不惊讶、对最可怕的事精确描述的语气</strong>——<strong>才是卡夫卡留给二十世纪文学的东西。</strong> ★ <strong>这种东西在梗概里全部消失。</strong> 所以：<strong>如果你只读过梗概，你其实没读过《变形记》。</strong>
+    </li>
+  </ol>
+  <p>★★ <strong>收束一句（<span class="tag t-inf">推断</span>）</strong>：<strong>《变形记》最深的恐怖，不在于「一个人变成了虫」，而在于「变成虫之后，他的家人用处理一件家具的方式处理了他，而叙述者用记录一次搬家的语气记录了这一切」。</strong> ★ 卡夫卡没有控诉任何人——<strong>父亲、母亲、妹妹，每一个人都「讲道理」，每一个人都「已经尽力」，每一个人都「没有别的办法」。</strong> 这正是它比任何控诉都更可怕的地方：<strong>它写的是一个「没有恶人的悲剧」。</strong> 一百多年来，读者一遍遍回到这本书，不是因为它给了答案，<strong>而是因为它把一个「不给答案的问题」摆得无比清楚</strong>——<strong>当一个人不再「有用」，他还是不是「家人」？</strong></p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>概念／人物</th><th>一句话</th><th>出现在</th></tr></thead>
+    <tbody>
+      <tr><td><strong><code>Ungeziefer</code></strong></td><td>全书唯一的「物种」词；贬义集合名词，「害兽／害虫」，不是任何物种名</td><td>I. 段首句（全文仅此一次）</td></tr>
+      <tr><td><strong><code>Verwandlung</code>（变形／蜕变）</strong></td><td>中性的「变成另一个样子」；不带「越变越好」的褒义（译名之争见 5.6）</td><td>书名</td></tr>
+      <tr><td><strong>Gregor Samsa（格里高尔·萨姆沙）</strong></td><td>旅行推销员；变形者；曾服兵役任少尉</td><td>全篇</td></tr>
+      <tr><td><strong>Grete（格蕾特）</strong></td><td>妹妹；从唯一照料者变成宣判者；★「变形」的另一条线</td><td>I. / II. / III.</td></tr>
+      <tr><td><strong>父亲（Herr Samsa）</strong></td><td>用苹果「轰炸」儿子的人；后做银行杂役、穿号衣</td><td>II. / III.</td></tr>
+      <tr><td><strong>母亲（Frau Samsa）</strong></td><td>见格里高尔后昏倒；在门口叫他名字</td><td>I. / II.</td></tr>
+      <tr><td><strong>首席店员（<code>Prokurist</code>）</strong></td><td>公司来的人；带来「出勤率／挪用公款」的官僚语言</td><td>I. 段</td></tr>
+      <tr><td><strong>打扫女佣（<code>Bedienerin</code>）</strong></td><td>老寡妇；唯一不怕格里高尔、也是唯一用动物动词称呼他的人</td><td>III. 段</td></tr>
+      <tr><td><strong>三位房客（<code>Zimmerherren</code>）</strong></td><td>严肃的租房者；要求绝对不受打扰；抗议格里高尔出现</td><td>III. 段</td></tr>
+      <tr><td><strong>军人照片（<code>Photographie Gregors</code>）</strong></td><td>格里高尔服兵役时的照片；★ 两个最有影响的中译误作「父亲的」</td><td>I. 段</td></tr>
+      <tr><td><strong>皮裘女士肖像</strong></td><td>格里高尔从画报剪下、装框的画；他最后死守的一件私人物</td><td>I. / II. 段</td></tr>
+      <tr><td><strong>苹果</strong></td><td>「轰炸」的武器；嵌进后背，成为「看得见的纪念物」；死因之一</td><td>II. / III. 段</td></tr>
+      <tr><td><strong>小提琴</strong></td><td>第三部分的高潮；格里高尔唯一一次说出自我怀疑的地方</td><td>III. 段</td></tr>
+      <tr><td><strong>门（<code>Tür</code>）</strong></td><td>全书的叙事器官；格里高尔大半信息来自门缝</td><td>全篇（约 84 次）</td></tr>
+      <tr><td><strong>窗（<code>Fenster</code>）</strong></td><td>唯一通向家庭与房间之外的东西；他死前后被「完全打开」</td><td>全篇（约 25 次）</td></tr>
+      <tr><td><strong><code>es ist krepiert</code></strong></td><td>女佣发现尸体时的话；<code>krepieren</code> 是用于动物的死</td><td>III. 段末</td></tr>
+      <tr><td><strong><code>Weg muß es</code></strong></td><td>妹妹的宣判：必须把它弄走</td><td>III. 段</td></tr>
+      <tr><td><strong>Franz Kafka</strong></td><td>作者；布拉格德语犹太作家；1912-11-17 – 12-06 写成</td><td>—</td></tr>
+      <tr><td><strong>Ottomar Starke</strong></td><td>1915 年初版封面画师；卡夫卡 1915-10-25 写信反对他画虫</td><td>版本史</td></tr>
+      <tr><td><strong>Max Brod</strong></td><td>卡夫卡挚友与遗稿执行人；违背遗嘱出版遗稿（★ 与本书无关）</td><td>见 5.5</td></tr>
+      <tr><td><strong>Vladimir Nabokov</strong></td><td>作家兼鳞翅目昆虫学家；论证格里高尔不是蟑螂而是「大甲虫」</td><td>见 5.1</td></tr>
+      <tr><td><strong>Stanley Corngold</strong></td><td>《The Commentators' Despair》（1973）作者；列出 130 多种解释</td><td>见 5.4</td></tr>
+      <tr><td><strong>柳冬妩</strong></td><td>《解密〈变形记〉》（2014）作者；发现两译本照片误译并获译者确认</td><td>见 5.2</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s12">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>原文全文（公版，A 级依据）</strong>：Project Gutenberg <strong>#22367</strong>，<code>https://www.gutenberg.org/ebooks/22367</code>（德文，底本 Kurt Wolff Verlag 1917 年版）。<strong>本报告全部德文引文均出自此本。</strong>
+    </li>
+    <li><strong>最早的英译（对照用）</strong>：Willa &amp; Edwin Muir，<em>The Metamorphosis</em>（1933／1948）——<strong>李文俊中译所据的即是 Muir 英译（纽约《现代文库》1952 年版《卡夫卡短篇小说选》）</strong>；另有 A. L. Lloyd（1937／1946，保留「类别含糊」）。
+    </li>
+    <li><strong>最重要的一篇讲稿</strong>：<strong>Vladimir Nabokov</strong>，《The Metamorphosis》一章，收入 <em>Lectures on Literature</em>（Fredson Bowers 编，Weidenfeld &amp; Nicolson，<strong>1980</strong>），pp. 258–60——<strong>「他不是蜣螂，只是一只大甲虫」的出处。</strong>
+    </li>
+    <li><strong>解释史的样本</strong>：<strong>Stanley Corngold</strong>，《The Commentators' Despair: The Interpretation of Kafka's Metamorphosis》，Kennikat Press，<strong>1973</strong>——130 多种解释的逐条概述。
+    </li>
+    <li><strong>中译误译的一手批评</strong>：<strong>柳冬妩</strong>《解密〈变形记〉》，花城出版社，<strong>2014</strong>；相关专栏见<strong>中国作家网 2014-12</strong> 与<strong>《光明日报》2015-04-16</strong>（《译作〈变形记〉中一个关键细节的误译》）。
+    </li>
+    <li><strong>版本与实物编目</strong>：佳士得 2021-09 拍卖目录（1915 年初版，Kurt Wolff Verlag，Starke 封面，Der Jüngste Tag 22/23）；Bassenge 拍卖目录（含卡夫卡 1915-10-25 德文原信，引 Dietz S. 72）；Burnside / Whitmore Rare Books 编目（初版 73 页 + 3 页广告；首印约 800–1000 册，初年售出约 400 册）。
+    </li>
+    <li><strong>版本学</strong>：Fischer 出版社 <strong>1994 年 12 卷《卡夫卡全集》校勘本</strong>；中文世界 <strong>人民文学出版社《卡夫卡小说全集》（韩瑞祥、仝保民译，2003）据校勘本译出</strong>。
+    </li>
+    <li><strong>卡夫卡的生平与创作史</strong>：<strong>Reiner Stach</strong>，《Kafka: The Decisive Years》，S. Fischer，<strong>2002</strong>（含写作《变形记》时期的生活细节）。
+    </li>
+  </ol>
+</section>
+
+<section id="s13">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>见同目录 <code>变形记-来源清单.md</code>。</p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. 写作起止日期：「12 月 6 日」还是「12 月 7 日」</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：规范第一节给的是 <strong>1912 年 11 月 17 日–12 月 6 日</strong>；而古书商 Whitmore Rare Books 的编目与部分研究文献作 <strong>11 月 17 日–12 月 7 日</strong>。
+    </li>
+    <li><strong>我查到了什么</strong>：两个日期都指向同一个「约一个月」的密集写作期，<strong>差一天</strong>。
+    </li>
+    <li><strong>为什么没能定论</strong>：<strong>我未见到卡夫卡日记原件</strong>，无法裁定。⇒ <strong>以「11 月中旬到 12 月初」为准</strong>；若需精确到日，请以德文校勘本卡夫卡日记为准。
+    </li>
+  </ul>
+  <h3>D2. <code>Ungeziefer</code> 英译对照表的年份与名单，「16 种」是下限</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：英文维基百科说「至少 16 种」并给出名单；<strong>另有多个来源在个别译者与年份上有出入</strong>（例：Lloyd 有 1937 与 1946 两说；Muir 有 1933 与 1948 两说；Wyllie 有 2009 与 2011 两说）。
+    </li>
+    <li><strong>我查到了什么</strong>：<strong>「16 种译法」这一事实有多来源一致</strong>（英文维基、Miller's Book Review 综述、New World Encyclopedia 均收录且措辞相近）；<strong>但具体到「某位译者哪一年用的哪一种」，来源之间不完全一致。</strong>
+    </li>
+    <li>⇒ <strong>本报告的表用于展示「译法分歧」这一事实，年份以「通行说法」为准</strong>；若要逐条引用，请以各家译本实物版权页复核。<strong>「16」应读作下限。</strong>
+    </li>
+  </ul>
+  <h3>D3. PG #22367 底本（1917 年版）与 1915 年初版的异文，未逐字比对</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：本报告依据的 PG #22367 版权页作 <code>COPYRIGHT KURT WOLFF VERLAG · LEIPZIG. 1917</code>，即 <strong>Kurt Wolff Verlag 1917 年版</strong>；而《变形记》初版单行本是 <strong>1915 年 12 月</strong>。
+    </li>
+    <li><strong>我查到了什么</strong>：题名页作 <code>BÜCHEREI »DER JÜNGSTE TAG« BAND 22/23</code>，与初版同属一个文库系列；<strong>首句的 <code>ungeheueren</code>（与格）与常被引用的 <code>ungeheueres</code>（主格）写法不同</strong>，这本身就是一处版本／语法差异（原文句中 <code>zu einem … Ungeziefer</code> 用与格，故此处作 <code>ungeheueren</code>）。
+    </li>
+    <li><strong>为什么没能定论</strong>：<strong>我未同时持有 1915 初版与 1917 年版做逐字比对。</strong> ⇒ <strong>本报告所有德文引文只代表 PG #22367（1917 年版）</strong>，用于定位与核对；<strong>1915 初版的细微异文请以校勘本为准。</strong>
+    </li>
+  </ul>
+  <h3>D4. 最早的中译：1964 年还是 1966 年？出版社是上海新文艺还是作家出版社？</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：一说 <strong>1964 年上海新文艺出版社</strong>《审判及其他作品》（曹庸、李文俊译，内部发行）；一说 <strong>1966 年作家出版社</strong>《审判及其他》（李文俊、曹庸译，内部参考）。
+    </li>
+    <li><strong>我查到了什么</strong>：<strong>两说都提到「内部发行、反面教材、含《变形记》」</strong>，但<strong>出版社、年份、译者署名顺序不一致</strong>。
+    </li>
+    <li><strong>为什么没能定论</strong>：<strong>我未见到该书的实物版权页。</strong> ⇒ <strong>以「1960 年代，内部发行，含《变形记》，曹庸、李文俊译」为准</strong>；精确年份与出版社<strong>两说并存，未能确证。</strong>
+    </li>
+  </ul>
+  <h3>D5. 卡夫卡日记／书信中的两条自述引语，未逐字核对原件</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：本报告第 9 节引用卡夫卡称本书为 <code>ausnehmend ekelhafte Geschichte</code>（特别令人厌恶的故事）与 <code>Großer Widerwillen vor "Verwandlung". Unlesbares Ende…</code>（对《变形记》极度反感，结局不可读……）。
+    </li>
+    <li><strong>我查到了什么</strong>：两条引语在多个二手来源中一致出现（含 Routledge《Die Verwandlung》 Twentieth Century Texts 版导论）。
+    </li>
+    <li><strong>为什么没能定论</strong>：<strong>我未见到德文版卡夫卡日记／书信原件</strong>，也未核到统一的卷页编号。⇒ <strong>引语可信、措辞一致，但属「经人转引」；请以德文版日记（S. Fischer 校勘本）复核。</strong>
+    </li>
+  </ul>
+  <h3>D6. 我主动排除的来源</h3>
+  <ul>
+    <li><strong>盗版电子书站与整本书 PDF</strong>：检索中确曾出现多个「卡夫卡全集 / 变形记中英对照」p2p 与网盘站点。按本项目契约「只用合法来源，任何目的不例外」，<strong>一律不采用</strong>。
+    </li>
+    <li><strong>可疑的电子教材托管页</strong>（一个托管德文《Die Verwandlung》 Twentieth Century Texts 版导论的站点）：★ 我只用它<strong>印证两点被多方独立引证的事实</strong>（Corngold 书收录 130 多种解释；卡夫卡对本书的两句自述），<strong>凡其独有、未获旁证的内容，一律不作为依据</strong>，并在正文标明 <span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>AI 生成的 SEO / 聚合内容</strong>：识别到若干自动生成的「名著解析」页，其特征是<strong>把中译误译说成「卡夫卡写错了」、把 <code>Ungeziefer</code> 直接写成「蟑螂」、或给出无法核实的页数</strong>。一律排除。
+    </li>
+    <li><strong>无署名的读书笔记与书评</strong>：用于了解「读者接受」，<strong>不用作任何事实依据</strong>。
+    </li>
+  </ul>
+  <h3>D7. 「焚书名单里有卡夫卡」的来源层级</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：多个中英文来源都说卡夫卡的书在 1933-05-10 被焚。
+    </li>
+    <li><strong>我查到了什么</strong>：<strong>Jewish Virtual Library 的焚书名单</strong>与<strong>德文维基百科 1933 年焚书条目的被禁作者名单</strong>——<strong>两个彼此独立的来源一致列有 Franz Kafka</strong>。
+    </li>
+    <li><strong>保守口径</strong>：<strong>「卡夫卡被列入 1933 年纳粹焚书／禁书名单」有多来源一致，可以写</strong>；<strong>但「1933-05-10 当晚在柏林被焚烧的具体书目里是否逐本包含《变形记》」，我未能核到当日的逐本清单。</strong> ⇒ 正文已按「卡夫卡的书被列入焚毁之列」表述，<strong>未断言「当晚烧的就是《变形记》这一本」</strong>。
+    </li>
+  </ul>
+</section>
+
+<footer>
+  生成于 2026-10-07 · 来源清单与交叉验证记录见同目录 <code>变形记-来源清单.md</code><br>
+  本页德文引文按 <b>原文 A 级</b> 处理：均出自 <b>Project Gutenberg #22367</b>（底本 Kurt Wolff Verlag 1917 年版），逐行可核。<b>中文引文一律为 B 级</b> —— 据公开文章转引，<b>我未核对中文实体书</b>，措辞请以原书为准。带 ⚠ 的条目见附录 D。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

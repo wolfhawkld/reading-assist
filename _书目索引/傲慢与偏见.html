@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《傲慢与偏见》· 索引碎片</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+
+/* ===== 索引碎片页的版式覆盖（无侧栏，单列）===== */
+main{margin:0 auto;max-width:840px;padding:0 22px 90px}
+.hero{padding:40px 0 20px}
+.hero .kick{font-size:11.5px;letter-spacing:.08em;color:var(--ink3);font-weight:600;margin-bottom:6px}
+.frag{margin:20px 0 0;padding:20px 22px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.frag .row{margin:0 0 11px;font-size:14px;color:var(--ink2);line-height:1.75}
+.frag .row>b{color:var(--ink);font-weight:600;margin-right:2px}
+.frag ol.sub{margin:6px 0 0 0;padding-left:22px;font-size:13.5px;color:var(--ink2)}
+.frag ol.sub li{margin:4px 0}
+.frag code{background:var(--hover);padding:1px 5px;border-radius:4px;font-size:.92em}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+.chip{font-size:11.5px;padding:2px 9px;border-radius:5px;background:var(--hover);color:var(--ink2)}
+.cfoot{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
+.cfoot a{font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;text-decoration:none;
+  background:var(--accent-bg);color:var(--accent);border:1px solid var(--linkline)}
+.cfoot a:hover{background:var(--linkhover)}
+.cfoot a.ghost{background:var(--panel);color:var(--ink2);border-color:var(--line2)}
+ol.dir{list-style:none;margin:18px 0 0;padding:0}
+ol.dir li{padding:10px 14px;border:1px solid var(--line);border-radius:9px;background:var(--panel);margin:8px 0}
+ol.dir a{font-weight:600;color:var(--accent);text-decoration:none;font-size:14.5px}
+ol.dir a:hover{text-decoration:underline}
+ol.dir .m{font-size:12.5px;color:var(--ink3);margin-top:3px}
+</style>
+</head>
+<body>
+<div id="ctl"><button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button></div>
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+<header class="hero">
+  <div class="kick">索引碎片 · 傲慢与偏见</div>
+  <h1>《傲慢与偏见》</h1>
+<div class="chips"><span class="chip">状态：未标注已读／想读</span><span class="chip">收录：2026-10-07</span><span class="chip">形态：文学型（近代长篇小说） —— 下部逐「卷」深挖（3 卷</span><span class="chip">核验级别：英文原文 A ＋ 中文引文 B（★★ 两句分开写、不合并）</span></div>
+</header>
+<div class="frag">
+    <div class="row"><b>作者</b>简·奥斯汀（Jane Austen，1775–1817），终身未婚，一生六部小说，本书是第二部</div>
+    <div class="row"><b>原名</b><em>Pride and Prejudice</em>。★ 初稿题名 <strong>First Impressions</strong>（1796-10–1797-08 写成，她 20–21 岁）；父亲 George Austen 于 <strong>1797-11-01</strong> 投书出版商 Cadell，<strong>当日被退稿</strong>（据 David Gilson 1995、Jane Austen Centre）；1800 年 Margaret Holford 出版了同名的 <em>First Impressions</em>，书名遂改；<strong>1811–1812 大幅修订</strong>后定名</div>
+    <div class="row"><b>初版</b><strong>1813 年 1 月 28 日</strong> · <strong>Thomas Egerton</strong>（Whitehall）· <strong>三卷本</strong> · <strong>匿名</strong>，署名 "By the Author of <em>Sense and Sensibility</em>" · 定价 18 先令。★ 她 <strong>1812-11-29</strong> 致 Martha Lloyd 的信里写明把版权以 <strong>£110 卖断</strong>（本想卖 £150）</div>
+    <div class="row"><b>分卷</b><strong>61 章，三卷</strong>——<strong>第一卷＝第 1–23 章／第二卷＝第 24–42 章／第三卷＝第 43–61 章</strong></div>
+    <div class="row"><b>★ 公版原文（本报告的底本）</b><strong>Project Gutenberg #1342</strong>（<code>https://www.gutenberg.org/ebooks/1342</code>，738,046 B，61 章齐全；底本＝<strong>1894 年 George Allen 插图本</strong>，Chiswick Press 印刷，Hugh Thomson 插图系统）；<strong>另参 PG #42671</strong>（725,097 B，PG 编目明标 <strong>Editor: R. W. Chapman</strong>，即 <strong>1923 年牛津克拉伦登版</strong>编者，<strong>保留 1813 年初版的三卷本格式与分卷章号</strong>）。★ 点读以 #1342 的分章文本为准，卷界以 #42671 的三卷标题页为准</div>
+    <div class="row"><b>中译（主要谱系）</b>王科一（1955，上海文艺／上海译文）／孙致礼（1990，译林）／张玲·张扬（1993，人民文学）／罗良功（中央编译）／李继宏（2016，天津人民）／杨浩田（读客／江苏凤凰文艺）／王晋华（作家出版社）</div>
+    <div class="row"><b>篇幅</b>正文 61 章；中译通行本约 30 万字上下</div>
+    <div class="row"><b>状态</b>未标注已读／想读</div>
+    <div class="row"><b>收录</b>2026-10-07</div>
+    <div class="row"><b>形态</b>★ <strong>文学型（近代长篇小说）</strong> —— 下部<strong>逐「卷」深挖</strong>（3 卷，不是逐章）；<code>## 2</code> 为「核心主题与结构机制」；每卷三段用文学写法（这一卷发生了什么／关键内容：反讽、叙事视角与自由间接引语／可疑之处）</div>
+    <div class="row"><b>产出</b><code>傲慢与偏见/</code> — <code>傲慢与偏见.md</code>（122,257 B，28,142 汉字）＋ <code>傲慢与偏见-来源清单.md</code>（18,062 B）＋ <code>傲慢与偏见-build.json</code></div>
+    <div class="row"><b>结构</b>正文 <strong>3 卷</strong>（下部 6–8，61 章全部被章群覆盖）＋ 附录 A–D；上部含一句话定位／全书骨架／核心主题与结构机制／阅读建议／<strong>中文译本怎么选</strong>／<strong>流行说法 vs 原文（7 条）</strong>／争议与局限（6 条）；附录 A 主要人物小传 · B 延伸阅读 · C 来源清单 · <strong>D 待核实项（8 条）</strong></div>
+    <div class="row"><b>核验级别</b><strong>英文原文 A ＋ 中文引文 B</strong>（★★ <strong>两句分开写、不合并</strong>）。<strong>① 英文原文：A 级</strong> —— 依据 <strong>PG #1342 ＋ #42671</strong>，<strong>61 章逐章核对、卷界逐处核对，无降级章</strong>；★ 辖区＝美国等「公版」辖区（PG 为美国注册非营利，其公版判定以美国版权法为准）。<strong>② 中文引文：B 级</strong> —— 上述中译均在版权期内，<strong>未逐字核对中文页面</strong>，只作术语对照与译例引用。③ 版本学细节（Chapman 1923 编者身份）取牛津大学出版社档案馆与 PG 编目两处一致</div>
+    <div class="row"><b>备注</b></div>
+    <ol class="sub">
+      <li>★★ <strong>推动全书的发动机是「限定继承权」（entail），不是爱情</strong>：Longbourn 产业（约<strong>每年两千英镑</strong>）无男嗣时只能由远亲继承，班纳特太太的嫁资只有<strong>四千英镑</strong>，五个女儿若无好婚姻即陷贫困（原文第 7、23、29 章点名）。<strong>这不是时代背景，是情节的因果起点</strong>——柯林斯敢求婚正因为他将来要赶她们出门，夏绿蒂接受他正因二十七岁无产无貌的她别无出路</li>
+      <li>★★ <strong>三卷本格式被用成了两次「反向悬念」</strong>：第 23 章（第一卷末）与第 42 章（第二卷末）的结尾<strong>都不是解决问题，而是把处境弄得更糟</strong>——三卷本是流通图书馆时代的出版惯例，但本书把它用成了结构</li>
+      <li>★ <strong>开篇第一句的反讽在中译里大面积流失</strong>：<code>in want of</code> 的 <strong>want 是名词</strong>，义近「客观缺少／需要」；报告核对的<strong>七种中译里只有孙致礼用「总要」保住这一层</strong>，多数译成主观「想要」，反讽随之消失</li>
+      <li>★ <strong>叙事技术是本书真正的题目</strong>：反讽（开篇第一句即是）、<strong>自由间接引语 free indirect discourse</strong>（多数贴着 Elizabeth，但会滑向他人内心）、第 36 章 Darcy 的长信（全书转折点）</li>
+      <li>★<strong>后殖民批评</strong>：Edward Said《文化与帝国主义》（1993）批评奥斯汀回避帝国与奴隶制——<strong>书中财富的来源（西印度殖民地）从未被追问</strong>；报告如实转述并标明是批评者观点</li>
+      <li>★ <strong><span class="tag t-talk">作者谈话</span> 档的实际用法</strong>：奥斯汀 1817 年已逝 ⇒ 该档用于<strong>她的书信</strong>（<em>Jane Austen's Letters</em>, 4th ed. 2011, Oxford）与小说文本内的直接表态，<strong>每次使用都写明这不是访谈</strong>，并如实说明<strong>她谈自己创作的信非常少</strong></li>
+    </ol>
+    <div class="row"><b>待核实</b>★ D1 PG #1342 的底本究竟是哪个版本（正文出现 "Copyright 1894 by George Allen" 的插图说明，与 PG 编目 "Chuck G…" 的转录说明并存）；★ D2 1813 年初版印数（「约 1500 册」是通行推测，非实录）；★ D3 王科一译本把 <code>ladies</code> 译作「娘儿们」的原始出处页；★ D4 各家译本所据英文底本（多数译本序跋未写明）；★ D5 孙致礼译本「总要」一词的首次出现版次；★ D6 1995 BBC 剧集与 2005 电影对「达西形象」影响的量化证据；★ D7 Chapman 1923 版与 #42671 的逐页对应关系未逐页比对；★ D8 改编影响结论的证据等级（只到评论／票房／旅游／学术回应）</div>
+</div>
+<div class="cfoot">
+  <a href="../傲慢与偏见/傲慢与偏见.html">打开阅读页</a>
+  <a class="ghost" href="../傲慢与偏见/傲慢与偏见.md">内容正本</a>
+  <a class="ghost" href="../傲慢与偏见/傲慢与偏见-来源清单.md">来源清单</a>
+  <a class="ghost" href="傲慢与偏见.md">本页 Markdown</a>
+</div>
+</main>
+<script>/* 主题切换（本页自用的小脚本，不依赖书页主脚本） */
+(function(){var b=document.getElementById('themebtn');if(!b)return;
+function sync(){b.textContent=(document.documentElement.getAttribute('data-theme')==='dark')?'◐ 浅色':'◐ 深色';}
+b.addEventListener('click',function(){
+  var d=document.documentElement.getAttribute('data-theme')==='dark';
+  var n=d?'light':'dark';
+  document.documentElement.setAttribute('data-theme',n);
+  try{localStorage.setItem('ra-theme',n)}catch(e){}
+  sync();});
+sync();})();</script>
+</body>
+</html>

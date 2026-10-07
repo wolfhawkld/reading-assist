@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《浮士德》· 索引碎片</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+
+/* ===== 索引碎片页的版式覆盖（无侧栏，单列）===== */
+main{margin:0 auto;max-width:840px;padding:0 22px 90px}
+.hero{padding:40px 0 20px}
+.hero .kick{font-size:11.5px;letter-spacing:.08em;color:var(--ink3);font-weight:600;margin-bottom:6px}
+.frag{margin:20px 0 0;padding:20px 22px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.frag .row{margin:0 0 11px;font-size:14px;color:var(--ink2);line-height:1.75}
+.frag .row>b{color:var(--ink);font-weight:600;margin-right:2px}
+.frag ol.sub{margin:6px 0 0 0;padding-left:22px;font-size:13.5px;color:var(--ink2)}
+.frag ol.sub li{margin:4px 0}
+.frag code{background:var(--hover);padding:1px 5px;border-radius:4px;font-size:.92em}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+.chip{font-size:11.5px;padding:2px 9px;border-radius:5px;background:var(--hover);color:var(--ink2)}
+.cfoot{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
+.cfoot a{font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;text-decoration:none;
+  background:var(--accent-bg);color:var(--accent);border:1px solid var(--linkline)}
+.cfoot a:hover{background:var(--linkhover)}
+.cfoot a.ghost{background:var(--panel);color:var(--ink2);border-color:var(--line2)}
+ol.dir{list-style:none;margin:18px 0 0;padding:0}
+ol.dir li{padding:10px 14px;border:1px solid var(--line);border-radius:9px;background:var(--panel);margin:8px 0}
+ol.dir a{font-weight:600;color:var(--accent);text-decoration:none;font-size:14.5px}
+ol.dir a:hover{text-decoration:underline}
+ol.dir .m{font-size:12.5px;color:var(--ink3);margin-top:3px}
+</style>
+</head>
+<body>
+<div id="ctl"><button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button></div>
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+<header class="hero">
+  <div class="kick">索引碎片 · 浮士德</div>
+  <h1>《浮士德》</h1>
+<div class="chips"><span class="chip">状态：未标注已读／想读</span><span class="chip">收录：2026-10-07</span><span class="chip">形态：文学型（诗体戏剧） —— 下部 4 节（6–9：三篇序／第一部／第二部／两个赌局的结构再读）</span><span class="chip">核验级别：德文原文 A ＋ 中文引文 B（★★ 两句分开写、不合并）</span></div>
+</header>
+<div class="frag">
+    <div class="row"><b>作者</b>约翰·沃尔夫冈·冯·歌德（Johann Wolfgang von Goethe，<strong>1749–1832</strong>），德国诗人、剧作家、小说家、魏玛公国枢密顾问</div>
+    <div class="row"><b>原名</b><strong><code>Faust. Der Tragödie erster Teil</code>（1808）／<code>Faust. Der Tragödie zweiter Teil</code>（1832）</strong>。★★ <strong>副标题是书名的一部分</strong>，直译「<strong>浮士德·悲剧第一部／第二部</strong>」——★ 中文世界几乎所有译本的书封只写《浮士德》，<strong>上海外国语大学卫茂平 2019 年在《中国比较文学》第 3 期专文立论</strong>，指出「几乎所有汉译书名，均弃其副标题『一部悲剧』不译」</div>
+    <div class="row"><b>写作史</b>悲剧贯穿他一生六十年——早期稿 <strong>Urfaust</strong>（1770 年代）→ <strong>Fragment</strong>（1790）→ <strong>第一部 1808</strong> → <strong>第二部 1832</strong>（歌德死后作为遗作出）</div>
+    <div class="row"><b>场次与幕</b><strong>第一部＝献词（Zueignung）＋舞台序幕（Vorspiel auf dem Theater）＋天上序幕（Prolog im Himmel）＋ 25 场</strong>（Nacht／Vor dem Tor／Studierzimmer ×2／Auerbachs Keller／Hexenküche／Straße ×2／Abend／Spaziergang／Der Nachbarin Haus／Garten／Ein Gartenhäuschen／Wald und Höhle／Gretchens Stube／Marthens Garten／Am Brunnen／Zwinger／Nacht. Straße vor Gretchens Türe／Dom／Walpurgisnacht／Walpurgisnachtstraum／Trüber Tag. Feld／Nacht, offen Feld／Kerker）；<strong>第二部＝ 5 幕（Akt I–V）</strong>。★ 通行中译篇幅约 1.1 万–1.2 万行诗</div>
+    <div class="row"><b>★ 公版原文（本报告的底本）</b><strong>Project Gutenberg #2229</strong>（<em>Faust: Der Tragödie erster Teil</em>，<strong>德文原文</strong>，其目录即第一部 25 场）＋ <strong>PG #2230</strong>（<em>Faust: Der Tragödie zweiter Teil</em>，<strong>德文原文</strong>）。<strong>英译对照（B 级）＝ PG #14591</strong>（<strong>Bayard Taylor 1870–71 英译</strong>，"in the original metres"，Harry Clarke 插图）——<strong>仅在德文读不动时对照措辞，不作为任何德文事实的依据</strong></div>
+    <div class="row"><b>中译（主要谱系）</b>周学普 1935（散文起手、后改韵文的全本）／郭沫若 1928 上·1947 下（诗体）／钱春绮 1982（据 Volksverlag Weimar 1958）／董问樵 1983（复旦，据 Weimar 1958 及 Hamburger Ausgabe 1976）／樊修章 1993（据 Aufbau 1980）／<strong>绿原 1994</strong>（据 Reclam 1983；<strong>散文为主；1998 年获首届鲁迅文学奖优秀文学翻译彩虹奖</strong>）／杨武能 1998／潘子立 2013（据 Reclam 2000）／梁宗岱 2016／谷裕 2022（第二部译注）</div>
+    <div class="row"><b>状态</b>未标注已读／想读</div>
+    <div class="row"><b>收录</b>2026-10-07</div>
+    <div class="row"><b>形态</b>★ <strong>文学型（诗体戏剧）</strong> —— 下部 <strong>4 节</strong>（6–9：三篇序／第一部／第二部／两个赌局的结构再读）；<strong>第一部内 25 场分组覆盖、一场不漏</strong>，<strong>第二部按 5 幕逐一评述</strong>；<code>## 2</code> 为「核心主题与结构机制」</div>
+    <div class="row"><b>产出</b><code>浮士德/</code> — <code>浮士德.md</code>（126,721 B，28,021 汉字）＋ <code>浮士德-来源清单.md</code>（15,023 B）＋ <code>浮士德-build.json</code></div>
+    <div class="row"><b>结构</b>正文 <strong>4 节</strong>（下部 6–9）＋ 附录 A–D；上部含一句话定位／全书骨架／核心主题与结构机制／阅读建议／<strong>中文译本怎么选</strong>／<strong>流行说法 vs 原文（8 条）</strong>／争议与局限（6 条）；附录 <strong>D 待核实项（8 条）</strong></div>
+    <div class="row"><b>核验级别</b><strong>德文原文 A ＋ 中文引文 B</strong>（★★ <strong>两句分开写、不合并</strong>）。<strong>① 德文原文：A 级</strong> —— 依据 <strong>PG #2229 ＋ #2230</strong>，<strong>第一部 25 场与第二部 5 幕逐场／逐幕核对</strong>，凡引德文原句均可回原文定位。<strong>② 中文引文：B 级</strong> —— 各中译均在版权期内，未逐字核对。<strong>③ 英译对照（Taylor）＝ B 级，不作为德文事实依据</strong></div>
+    <div class="row"><b>备注</b></div>
+    <ol class="sub">
+      <li>★★ <strong>中文读者几乎都没见过这本书完整的书名</strong>。副标题「<strong>悲剧（Tragödie）</strong>」是歌德对整部作品的<strong>体裁判决</strong>，丢掉它，读者就会把它读成「自强不息、终得救赎」的励志故事（卫茂平，《中国比较文学》2019 年第 3 期，第 2–15 页）</li>
+      <li>★★ <strong>全书的结构靠「两个赌局」撑起来，不是一个</strong>。除浮士德与梅菲斯特的赌（《书斋二》「若有一刻令我说出『停留一下吧，你真美』……」）之外，<strong>《天上序幕》里还有天主与梅菲斯特的赌</strong>（<code>Was wettet Ihr? den sollt Ihr noch verlieren!</code>）。<strong>没有这第一场赌，第二部结尾的「救赎」就无所依归</strong></li>
+      <li>★★ <strong>它是「输了赌约却被救」的戏</strong>：梅菲斯特依血契宣布时钟停摆（<code>Die Uhr steht still</code>），但天使的判词是 <code>Wer immer strebend sich bemüht, / Den können wir erlösen.</code>——<strong>得救的理由是「永远在追求」，不是「做了好事」</strong></li>
+      <li>★ <strong>梅菲斯特「纯粹是恶」至少不完整</strong>：他自称 <code>Ein Teil von jener Kraft, / Die stets das Böse will und stets das Gute schafft.</code>（那种「总想作恶、却总造出善」的力量的一部分）</li>
+      <li>★ <strong>诗体是有意义的</strong>：歌德刻意混合多种格律（Knittelvers 打油诗体、古典颂歌体、但丁式三行体、自由节奏）；<strong>中译里绿原以散文体为主（诗体只用于抒情段落），钱春绮／杨武能坚持诗体</strong>——两条路线的正面对撞</li>
+      <li>★<strong>意识形态化解读</strong>：1980 年代钱春绮、董问樵译本序把浮士德读作「新兴资产阶级进步知识分子的代表」，报告如实转述并标明是特定时期的读法</li>
+      <li>★ <strong><span class="tag t-talk">作者谈话</span> 档的实际用法</strong>：歌德 1832 年已逝 ⇒ 该档用于<strong>《诗与真》（自传）</strong>、<strong>与席勒的通信</strong>、晚年自述，<strong>每次使用都写明不是访谈</strong>。★★ 特别提示：<strong>《歌德谈话录》（Eckermann 1836）是他人记录，性质属 <span class="tag t-rep">转述</span>，不进本档</strong>，凡引用一律标明「转述」</li>
+    </ol>
+    <div class="row"><b>待核实</b>★ D1 董问樵译本出版年 1982 与 1983 两说并存（「据 Weimar 1958 ＋ Hamburger Ausgabe 1976」两处一致）；★ D2 周学普 1935 全本是否确为「散文起手、后改韵文」；★ D3 绿原获奖的准确奖项全称（首届鲁迅文学奖优秀文学翻译彩虹奖）；★ D4 梁宗岱 2016 本的底本与整理者；★ D5 谷裕 2022 第二部译注的体例与所据德文版；★ D6 潘子立 2013 本所据 Reclam 2000 版的具体编号；★ D7 卫茂平所述「几乎所有汉译均弃副标题」的逐一核对（报告仅抽样核对）；★ D8 <strong>数字行号缺失</strong> —— 本报告全部定位凭「场名＋德文原句」在 PG #2229／#2230 上检索，<strong>若需数字行号请对照带行号的德文校勘本</strong></div>
+</div>
+<div class="cfoot">
+  <a href="../浮士德/浮士德.html">打开阅读页</a>
+  <a class="ghost" href="../浮士德/浮士德.md">内容正本</a>
+  <a class="ghost" href="../浮士德/浮士德-来源清单.md">来源清单</a>
+  <a class="ghost" href="浮士德.md">本页 Markdown</a>
+</div>
+</main>
+<script>/* 主题切换（本页自用的小脚本，不依赖书页主脚本） */
+(function(){var b=document.getElementById('themebtn');if(!b)return;
+function sync(){b.textContent=(document.documentElement.getAttribute('data-theme')==='dark')?'◐ 浅色':'◐ 深色';}
+b.addEventListener('click',function(){
+  var d=document.documentElement.getAttribute('data-theme')==='dark';
+  var n=d?'light':'dark';
+  document.documentElement.setAttribute('data-theme',n);
+  try{localStorage.setItem('ra-theme',n)}catch(e){}
+  sync();});
+sync();})();</script>
+</body>
+</html>

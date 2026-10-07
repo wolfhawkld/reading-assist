@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《浮士德》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《浮士德》<small>阅读指引与精华解析 · 2026-10-07</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 核心主题与结构机制</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 中文译本怎么选</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 逐部深挖</div>
+    <a href="#s7">6 三篇序：献词／舞台序幕／天上序幕</a>
+    <a href="#s8">7 第一部（1808）：学者的悲剧与格蕾琴的悲剧</a>
+    <a href="#s9">8 第二部（1832）：从宫廷到古典，再到救赎</a>
+    <a href="#s10">9 两个赌局：全书的结构再读</a>
+    <div class="grp">附录</div>
+    <a href="#s11">A 关键概念与人物速查</a>
+    <a href="#s12">B 延伸阅读</a>
+    <a href="#s13">C 来源清单</a>
+    <a href="#s14">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《浮士德》阅读指引与精华解析</h1>
+  <div class="sub">Faust：一部写了六十年的「悲剧」——把副标题装回书名</div>
+  <div class="meta">
+    <div><b>书名</b>《浮士德》· 德文原名 <b>Faust. Der Tragödie erster Teil</b>（1808）／<b>Faust. Der Tragödie zweiter Teil</b>（1832）——★ 副标题「一部悲剧」是书名的一部分，几乎所有汉译书名都把它弃译</div>
+    <div><b>作者</b>约翰·沃尔夫冈·冯·歌德（Johann Wolfgang von Goethe，1749–1832），德国诗人、剧作家、魏玛公国枢密顾问</div>
+    <div><b>初版</b>悲剧贯穿歌德一生：早期稿 Urfaust（1770 年代）→ Fragment（1790）→ <b>第一部 1808</b> → <b>第二部 1832</b>（歌德死后作为遗作出）</div>
+    <div><b>篇幅</b>第一部 ＝ 献词 ＋ 舞台序幕 ＋ 天上序幕 ＋ <b>25 场</b>；第二部 ＝ <b>5 幕</b>（Akt I–V）</div>
+    <div><b>依据版本</b>Project Gutenberg <b>#2229</b>（第一部德文原文）＋ <b>#2230</b>（第二部德文原文）；英译对照 PG #14591（Bayard Taylor 1870–71，B 级）</div>
+    <div><b>核验级别</b>原文：A（德文两部全文，逐 25 场 ＋ 逐 5 幕核对）／中文引文：B</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有公版德文原文（Project Gutenberg <b>#2229／#2230</b>）可逐场／逐幕定位的段落与德文原词；或两个以上彼此独立来源一致引用的事实（含卫茂平 2019 所附中译谱系表、首届鲁迅文学奖获奖名单、中国作家网绿原小传）</li>
+    <li><span class="tag t-talk">作者谈话</span> 出自歌德本人的其他文字 —— <b>《诗与真》自传、与席勒的通信、晚年自述</b>。★ <b>这不是访谈</b>：歌德已于 1832 年去世，本报告绝不假装能访谈他。★★ 另注：<b>《歌德谈话录》（Eckermann 1836）是他人记录，性质属【转述】，不放进本档</b>。本报告 1 处引绿原《前言》亦标此档，已在该处说明「这是译者的文字，不是歌德的」</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、公开引文汇编、译者序跋的公开转引，措辞可能与原书本来的样子有出入；凡我未核实体书处（尤其中译引文），一律标此</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑；本书中「两个赌局的结构再读」等分析即属此档</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    我未接触任何中译本实体书；本报告 A 级依据只有一件 —— <b>Project Gutenberg #2229 与 #2230 的两份德文全文</b>（分别约 218 KB／345 KB，已下载到本地逐场／逐幕核对）。「原书可核对」只适用于有公版德文原文可定位的段落。<b>中文引文一律为 B 级</b>。★ 本档「作者谈话」只用歌德本人的文字，<b>并已写明这不是访谈</b>；<b>《歌德谈话录》属【转述】，未计入本档</b>。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（原文 A ＋ 中文引文 B，两句分开）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书落在 <b>原文：A</b> —— 德文公版全文 <b>#2229（第一部，25 场）与 #2230（第二部，5 幕）</b> 逐场／逐幕核对，可给德文原词定位（如 <code>Grau, teurer Freund, ist alle Theorie</code>／<code>Wer immer strebend sich bemüht, / Den können wir erlösen</code>／<code>Das Ewig-Weibliche / Zieht uns hinan</code>）。</p>
+  <p style="margin:6px 0 0;font-size:12.5px;color:var(--ink3)"><b>中文引文：B</b> —— 周学普、郭沫若、钱春绮、董问樵、樊修章、绿原、杨武能、潘子立、梁宗岱、谷裕各译均在版权期内，<b>本报告未持任何中译实体书</b>；中文书名与出版信息据 <b>卫茂平《〈浮士德〉汉译及解读考索》（《中国比较文学》2019 年第 3 期，第 2–15 页）</b>所附中译表转引；《书斋二》名句六种译法据公开课件汇总转引。<b>两句分开写、不合并。</b></p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>《浮士德》写的是：一个把全部学问都读遍、却承认「我们什么也不能知道」的学者，用灵魂与魔鬼打赌，要求体验「整个人类」的全部苦乐；他一路经过爱情、权力、古典美、功业，最后在说出「停留一下吧」的瞬间倒下——而这部戏的副标题，叫「一部悲剧」。</strong></p>
+  <p>它不是「浮士德传说」的复述（那个传说只提供骨架，全部血肉是歌德自己的）；不是一部励志书（第二部结尾确实有「救赎」，但救赎的理由恰恰推翻了一般的道德记账）；也不是「西方文明的精神史图解」——<strong>那个身份很大程度上是 19—20 世纪的教育体系与批评传统加给它的</strong>，第 5 节会讲这一步怎么发生。</p>
+  <p>一句话结论（也是全书最该记住的一句，引自《书斋二》<span class="tag t-src">原书</span>）：</p>
+  <blockquote>
+    <p><strong><code>Grau, teurer Freund, ist alle Theorie, / Und grün des Lebens goldner Baum.</code></strong>——「亲爱的朋友，一切理论都是灰色的，唯有生命之树常青。」</p>
+  </blockquote>
+  <p><strong>它不是什么</strong>：不是一本靠情节梗概能替代的书（它的价值有相当一部分在<strong>格律的切换</strong>、在<strong>场次的排布</strong>、在<strong>用典的密度</strong>上）；不是一本「读完第一部就懂了」的书（<strong>第二部是歌德晚年思想的全部容器</strong>，且刻意写得晦涩）；也不是一部「主角是好人的戏」——<strong>浮士德在第 7 节要面对的是他亲手造成的格蕾琴一家三条人命</strong>，戏比他自己更清楚这一点。</p>
+  <p><strong>★ 它真正在问的三个问题</strong>（你若只记一件事，记这三个）：</p>
+  <ol>
+    <li><strong>「知道了一切，而什么也不能改变」——人该怎么办？</strong> 这是《夜》里浮士德把书合上时的问题，也是全书的第一推力。他的答案是「去行动」；而全剧剩下的部分，就是<strong>「行动」这个答案的账单</strong>。
+    </li>
+    <li><strong>「有没有一个瞬间，值得我用永恒去换？」</strong> 这是他和梅菲斯特的赌约，也是现代人最熟悉的那道题：<strong>是继续追，还是停下来？</strong> ★ 歌德给的答案不是「追」或「停」，而是<strong>「你从来没有真正停下，所以你还活着」</strong>（第 9 节）。
+    </li>
+    <li><strong>「一个毁了人的人，还能不能说自己是在追求善？」</strong> 这是格蕾琴一家、菲勒蒙与鲍奇斯一起逼出来的问题，也是副标题里「悲剧」二字的落点。★ <strong>本书不出判词——它只把账单摊开给你看。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>下表把两部、三篇序与第二部 5 幕并排。★ 第一部的 <strong>25 场</strong>采用 PG #2229 目录的次序（与德文通行本一致）；<strong>「25 场」不含三篇序</strong>。</p>
+  <table>
+    <thead><tr><th>单位</th><th>内容</th><th>这一层在哪</th></tr></thead>
+    <tbody>
+      <tr><td><strong>献词</strong>（Zueignung）</td><td>歌德晚年重理旧稿，向「飘摇的形象」致意</td><td>抒情框架；作者本人的声音（第 6 节）</td></tr>
+      <tr><td><strong>舞台序幕</strong>（Vorspiel auf dem Theater）</td><td>剧场经理、诗人、丑角三人争「戏该为谁演」</td><td>关于戏剧本身的元对话（第 6 节）</td></tr>
+      <tr><td><strong>天上序幕</strong>（Prolog im Himmel）</td><td>三天使颂歌；梅菲斯特获准去引诱浮士德；<strong>天主与梅菲斯特的赌</strong></td><td>★★ <strong>全书的框架与前提</strong>（第 6、第 9 节）</td></tr>
+      <tr><td><strong>第一部·25 场</strong></td><td>Nacht 至 Kerker（见下方分组表）</td><td>★ 学者的悲剧 ＋ 格蕾琴的悲剧（第 7 节）</td></tr>
+      <tr><td>″</td><td><strong>Nacht（夜）</strong>／<strong>Vor dem Tor（城门口）</strong>／<strong>Studierzimmer（书斋一）</strong>／<strong>Studierzimmer（书斋二）</strong></td><td>学者四场：绝望、出走、转向行动、立赌约</td></tr>
+      <tr><td>″</td><td><strong>Auerbachs Keller in Leipzig（莱比锡奥尔巴赫地下酒店）</strong>／<strong>Hexenküche（女巫的丹房）</strong></td><td>赌约的功能性兑现与「返老还童」</td></tr>
+      <tr><td>″</td><td><strong>Straße (I)／Abend／Spaziergang／Der Nachbarin Haus／Straße (II)／Garten／Ein Gartenhäuschen／Wald und Höhle</strong></td><td>格蕾琴悲剧上半：相遇、诱惑、幽会</td></tr>
+      <tr><td>″</td><td><strong>Gretchens Stube／Marthens Garten／Am Brunnen／Zwinger／Nacht. Straße vor Gretchens Türe／Dom</strong></td><td>格蕾琴悲剧下半：孤独、审讯、杀兄、教堂</td></tr>
+      <tr><td>″</td><td><strong>Walpurgisnacht／Walpurgisnachtstraum</strong></td><td>瓦尔普吉斯之夜（两场）</td></tr>
+      <tr><td>″</td><td><strong>Trüber Tag. Feld／Nacht, offen Feld／Kerker</strong></td><td>收束：格蕾琴之死与「她得救了」</td></tr>
+      <tr><td><strong>第二部·5 幕</strong></td><td><strong>第一幕</strong>（Anmutige Gegend 舒适宜人的地方／皇帝宫廷）</td><td>从个人转向世界：纸币、假面舞会</td></tr>
+      <tr><td>″</td><td><strong>第二幕</strong>（高拱狭窄的哥特式房间／古典瓦尔普吉斯之夜，含 Homunculus）</td><td>从北方巫术转向古典古代</td></tr>
+      <tr><td>″</td><td><strong>第三幕</strong>（海伦，斯巴达）</td><td>古典美与浮士德的结合与消散</td></tr>
+      <tr><td>″</td><td><strong>第四幕</strong>（Hochgebirg 高山）</td><td>从审美退回权力与功业</td></tr>
+      <tr><td>″</td><td><strong>第五幕</strong>（宫殿·午夜·埋葬·升天）</td><td>★ 说出「停留」、死亡、<strong>救赎</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法提示</strong>：这张表本身是一条论证——<strong>第一部与第二部不是「前后两半」，而是两种戏</strong>。第一部贴着一个人的欲望走（爱、罪、悔），是<strong>主观的、抒情的、可感受的</strong>；第二部把主角扔进历史与象征的场地（宫廷、古典、帝国、海岸），是<strong>客观的、寓言的、要解读的</strong>。歌德自己把第一部叫「小世界」（kleine Welt）——第二部则是「大世界」（große Welt）。<strong>这两半之间的落差，是这本书最大的一道阅读门槛</strong>，也是第 3、第 8 节要处理的事。</p>
+  <p>★ <strong>三篇序为什么在骨架表里单列</strong>：它们不是「正文之前的附属品」，而是<strong>三种不同的入场方式</strong>。<strong>《献词》把你放在作者的书桌前，《舞台序幕》把你放在戏院的观众席上，《天上序幕》把你放在天廷的旁听席上。</strong> 三种位置各有各的代价：第一种让你想起「这是个人写的」，第二种让你想起「这是一场演出」，第三种让你想起「这是一场有裁判的赌局」。★ <strong>读完三部序再进正文，你等于先拿到了三副不同的眼镜</strong>——这是全书最被低估的一个开场设计。</p>
+  <p>★ <strong>写作时间线（理解第二部为什么难的第一把钥匙）</strong>：歌德 1770 年代写下《早期浮士德》（Urfaust），1790 年刊出《片断》（Fragment），1808 年出版<strong>第一部</strong>——这时他 59 岁；此后二十多年里，他把大部分精力给了《威廉·迈斯特》《亲和力》、自然科学与魏玛政务，直到晚年才把<strong>第二部</strong>收束，1832 年（他去世那年）封笔。★ <strong>两部之间隔了至少二十年，而且中间隔着一整部《威廉·迈斯特》与欧洲的法国大革命、拿破仑战争、复辟时代。</strong> 所以第二部里会突然出现纸币、报纸、群众、殖民、人造人——<strong>那不是歌德跑题，那是他在这二十多年里看见的东西。</strong></p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>核心主题与结构机制</span><span class="caret">▾</span></h2>
+  <p>★ 本书是戏剧，不是论说文，所以下面写的不是「论点」，而是<strong>这部戏靠什么手段工作</strong>。三段式保留（主张／依据／为什么重要），但「主张」是手法与机制。</p>
+  <h3>机制一：两个赌局构成一个「框架—内核」结构</h3>
+  <p><strong>主张</strong>：全书的力来自<strong>两层赌</strong>——外层是《天上序幕》里<strong>天主与梅菲斯特</strong>的赌（关于「人会不会在追求中迷失」），内层是《书斋二》里<strong>浮士德与梅菲斯特</strong>的赌（关于「哪一刻值得停留」）。<strong>外层赌局规定了全书的玩法，内层赌局把玩法落到一个人身上。</strong><span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：外层赌的文字是 <code>Was wettet Ihr? den sollt Ihr noch verlieren!</code>（你赌什么？你还会输掉他！）与天主的回应 <code>Es irrt der Mensch so lang er strebt.</code>（人只要在追求，就难免迷误）<span class="tag t-src">原书</span>（天上序幕）；内层赌的文字是 <code>Werd' ich zum Augenblicke sagen: / Verweile doch! du bist so schön!</code>（若我对瞬间说：停留一下吧，你真美！）<span class="tag t-src">原书</span>（书斋二）。</p>
+  <p><strong>为什么重要</strong>：<strong>只有把两层赌叠起来看，结尾才不荒谬。</strong> 第二部第五幕，浮士德确实说出了近似的句子（<code>Zum Augenblicke dürft' ich sagen: / Verweile doch, du bist so schön!</code>），梅菲斯特也确实判他输（<code>Die Uhr steht still</code>）；但天使仍把他救走。<strong>这个「输了却得救」的结局，只有在「外层赌局」的天平上才讲得通</strong>——第 9 节会把这一步讲完。</p>
+  <h3>机制二：格律的切换本身就是意义的切换</h3>
+  <p><strong>主张</strong>：歌德<strong>在同一个剧本里连续使用多种格律</strong>，而且<strong>每次切换都对应着内容或场景性质的切换</strong>。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：① <strong>Knittelvers</strong>（打油诗体，四音步、对仗粗砺）用于浮士德的独白、格蕾琴的民谣式独白与梅菲斯特的挖苦；② <strong>古典颂歌体</strong>（如《书斋一》的赌约段之后的庄严独白、第二部《高山》浮士德的独白）用于庄严处；③ <strong>但丁式三行体（Terzinen）</strong>用于第二部第三幕海伦的独白（<code>Bewundert viel und viel gescholten, Helena</code> 正是三行体开篇）；④ <strong>自由节奏（freie Rhythmen）</strong>用于第二部结尾《山谷》的升天合唱；⑤ 还有短长格（Jamben）写对白、民歌体写插曲。</p>
+  <p><strong>为什么重要</strong>：<strong>格律切换是歌德的「调度」，不是装饰。</strong> 第二部第三幕之所以必须用三行体，是因为海伦代表<strong>古典古代</strong>——三行体是但丁《神曲》的格律，用它写海伦，等于在格律层面宣告「这里是古典世界」；而曲终转入自由节奏的合唱，等于宣告「这里已经不是古典世界了」。★ 这直接决定了译本的可比性：<strong>钱春绮／杨武能试图移植原诗形式（行数一对一、力图保留节奏），绿原以散文为主只在抒情段落用诗体</strong>——读绿原可能更明白「发生了什么事」，读钱春绮可能更能感到「歌德在换乐器」。</p>
+  <h3>机制三：全剧的对称与「回环」——第一部与第二部互为镜像</h3>
+  <p><strong>主张</strong>：第二部不是第一部的续集，而是<strong>第一部的倒影</strong>：第一部里被浮士德毁掉的（格蕾琴），第二部里回来救他；第一部里用「北方的巫术」求得的（女巫的丹房），第二部里换成「古典的巫术」（古典瓦尔普吉斯之夜）；第一部里他用「下沉」求生命（钻入感官），第二部里书末用了「上升」（<code>Zieht uns hinan</code>）。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：最硬的证据是结尾——升天一场的名单里有 <code>UNA POENITENTIUM, SONST GRETCHEN GENANNT</code>（<strong>一个忏悔者，原名格蕾琴</strong>）<span class="tag t-src">原书</span>（第二部第五幕《山谷》）。<strong>她没有作为「格蕾琴」出现在人物表里，而是作为「忏悔者之一」</strong>。另一处是「女巫的丹房」与「古典瓦尔普吉斯之夜」的对位：前者在北方、粗野、用猴子与药锅，后者在希腊、用哲学与神话。</p>
+  <p><strong>为什么重要</strong>：<strong>这一步决定了你怎么读「救赎」。</strong> 如果格蕾琴只是第一部的一桩罪，她的死就只是代价；但她出现在第二部结尾的救赎队伍里，<strong>她就成了浮士德的引路人</strong>——这是全书最漂亮也最容易被忽略的一处结构设计（第 8、第 9 节继续）。</p>
+  <h3>机制四：用典的密度——第二部是一部「需带注解读」的戏</h3>
+  <p><strong>主张</strong>：第二部把《圣经》、希腊罗马神话、中世纪炼金术、德国宫廷史、古典文献大量并置，<strong>许多段落（尤其第二幕的古典瓦尔普吉斯之夜）几乎是「引文拼贴」</strong>。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：第二幕出现了泰勒斯、阿那克萨戈拉、普罗透斯、涅柔斯、伽拉忒亚等一串古典名目（<code>Felsbuchten des ägäischen Meers</code> 一场），并在同幕造出 <strong>Homunculus</strong>（人造小人）这一炼金术形象（<code>Fürwahr, es ist Homunculus!</code>）<span class="tag t-src">原书</span>。</p>
+  <p><strong>为什么重要</strong>：这一条不是抱怨，是<strong>读法的前提</strong>。<strong>读第二部不要指望靠「情节」撑住</strong>——它的关节在「这个典故指什么、歌德拿它做什么」。歌德晚年把这部戏当作<strong>他一生所读之书的总汇</strong>，这在世界文学里是极少数作品才有的形态。</p>
+  <h3>机制五：副标题「一部悲剧（Tragödie）」是体裁判决</h3>
+  <p><strong>主张</strong>：书名里的 <code>Der Tragödie erster/zweiter Teil</code> 不是「分册」，而是<strong>体裁归类</strong>——「悲剧」二字是歌德本人对全书性质的判断。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：德文初版剧名即为 <code>Faust. Der Tragödie erster Teil</code>（PG #2229 标题页），第二部为 <code>Faust. Der Tragödie zweiter Teil</code>（PG #2230 标题页）。</p>
+  <p><strong>为什么重要</strong>：<strong>它决定你怎么理解结尾的「救赎」。</strong> 一部悲剧「主角被救」看上去自相矛盾；但若把「悲剧」读成「人类追求欲念满足、得寸进尺、终究无法摆脱失败与死亡」，则「个人得救」与「人的处境仍是悲剧」并不冲突（卫茂平 2019 即持此读，第 5.1 节）。★ <strong>中文译本几乎全部弃译这个副标题，是本书在中文世界最大的接受偏差。</strong></p>
+  <h3>机制六：象征物的复现系统——镜子·火·玫瑰</h3>
+  <p><strong>主张</strong>：这部戏用一组<strong>反复出现的物件</strong>承担结构功能：<strong>镜子（Spiegel）</strong>、<strong>火（Feuer／Brand）</strong>、<strong>玫瑰（Rosen）</strong>。它们每一次出现都在前一次的基础上改变意义。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：① <strong>镜子</strong>：第一部《女巫的丹房》里，浮士德在<strong>魔镜</strong>中看见「世间女人的典范形象」<span class="tag t-src">原书</span>；第二部第五幕，海伦出现时，那一个看不见的「美」的等级——<strong>镜像 → 海伦 → 永恒之女性</strong>，是一条层层升级的谱系。② <strong>火</strong>：地灵在<strong>淡红的火焰</strong>中显现（<code>Es zuckt eine rötliche Flamme, der Geist erscheint in der Flamme.</code>）<span class="tag t-src">原书</span>；第五幕<strong>菲勒蒙与鲍奇斯的小屋被烧</strong>；梅菲斯特描述地狱时反复说<strong>火焰之城</strong>。<strong>火＝越界与毁灭</strong>。③ <strong>玫瑰</strong>：第二部第五幕，天使以<strong>玫瑰</strong>逼退魔鬼、把浮士德从梅菲斯特手里「抢」走——<strong>玫瑰＝爱，而爱是唯一能打断魔鬼的武器</strong>。</p>
+  <p><strong>为什么重要</strong>：★ <strong>这一组复现物，是理解「救赎为何可能」的钥匙</strong>。魔鬼能驾驭火（第一部的火焰、第五幕的纵火），却挡不住玫瑰。<strong>歌德把全书最后一个动作交给「爱」，而不是交给「努力」</strong>——这一点常被只读「自强不息」的人错过。</p>
+  <h3>机制七：全书唯一被正面评价的德性，是「追求」（Streben）</h3>
+  <p><strong>主张</strong>：这部戏的人物里没有多少「好人」，但它对<strong>一件事</strong>始终保持肯定：<strong>不停下来</strong>。<span class="tag t-src">原书</span></p>
+  <p><strong>依据</strong>：天主的判词把「追求」与「迷误」绑在一起（<code>Es irrt der Mensch so lang er strebt</code>）<span class="tag t-src">原书</span>；天使在结尾把「努力」直接写成得救的条件（<code>Wer immer strebend sich bemüht, / Den können wir erlösen.</code>）<span class="tag t-src">原书</span>；浮士德死前最后那句近似的自述里，动词仍是<strong>面向未来</strong>（<code>Solch ein Gewimmel möcht' ich sehn, / Auf freiem Grund mit freiem Volke stehn.</code>）<span class="tag t-src">原书</span>。</p>
+  <p><strong>为什么重要</strong>：★ <strong>认清了这一点，就能看懂「他毁了人却仍被救」的账是怎么结的</strong>——歌德的天平上放着的是「朝向」，不是「功德」。<strong>这也是全书最该被质疑的一点</strong>（第 8 节《可疑之处》、第 5.1 节），但它确实是文本自己的立场。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <ol>
+    <li><strong>先读三篇序（献词／舞台序幕／天上序幕），再读第一部 25 场，最后才碰第二部。</strong> 前两步是一夜间的量；第二部建议按「幕」而非按「页」推进，一幕一个晚上。
+    </li>
+    <li><strong>第一部按叙事群走</strong>：学者四场（夜—书斋二）是你认识浮士德的窗口；从「街」到「园中小屋」这一串是格蕾琴悲剧的引诱线；从「格蕾琴的闺房」到「大教堂」是它转暗的部分；「地牢」一场是第一部真正的收束。<strong>不要跳过「瓦尔普吉斯之夜」</strong>——它是第一部的「反面镜子」，浮士德在这一夜看见了格蕾琴的幻影（血）。<span class="tag t-src">原书</span>
+    </li>
+    <li><strong>第二部建议先读</strong>第一幕、第五幕<strong>，再回头补第二、三、四幕。</strong> 第一幕与第五幕有完整的情节骨架（宫廷、海岸、死亡、升天）；第二幕（古典瓦尔普吉斯之夜）与第三幕（海伦）几乎是纯象征，<strong>第一次读可以只求「知道它在做什么」，不求读懂每个典</strong>。
+    </li>
+    <li><strong>先读《天上序幕》，读完全书后回头再读一遍。</strong> 它是全书唯一一处把「游戏规则」提前说出来的地方；第一遍你以为它是开场的装饰，第二遍你会发现它是全书的机关图（第 6 节）。
+    </li>
+    <li><strong>怎么读韵文</strong>：① <strong>出声读</strong>，哪怕只出声读几段——格律切换在眼睛里看不出来；② <strong>用「场／幕」定位，不要用页码</strong>（版本间页码不同）；③ 遇到第二部的密集用典，<strong>先跳过注、把情节走完</strong>，第二遍再带注解读。
+    </li>
+    <li>★ <strong>配一份「敌情简报」再读</strong>：读之前先知道中文世界对这本书有两套很不同的读法（「自强不息终得救」vs「一部悲剧」），第 5 节就是这份简报。<strong>带着它读，你会读出一个更冷、也更复杂的歌德。</strong>
+    </li>
+    <li>★ <strong>给自己定一个「只抓三条线」的纪律</strong>。全书太长，第一次读不要贪：
+    <ul>
+      <li><strong>线一：浮士德要什么？</strong>（要「一切」，要「不白活」，要「不停」）——顺着这条线读，他每一场的动机都是清楚的。
+      </li>
+      <li><strong>线二：他留下什么？</strong>（母亲、哥哥、婴儿、一对老夫妻、一间小屋）——顺着这条线读，你会看见一部戏在替他记账。
+      </li>
+      <li><strong>线三：梅菲斯特在笑谁？</strong>（笑学者、笑学生、笑宫廷、笑进步）——顺着这条线读，会读出这是全书最反讽的声音。
+  <p>★ <strong>每当读不下去，就回到这三条线</strong>；它们能把你从第二部的典故里捞回来。</p>
+      </li>
+    </ul>
+    </li>
+  </ol>
+  <h3>如果你是「已读」</h3>
+  <ol>
+    <li><strong>回头把「副标题」装回去读一遍。</strong> 把「一部悲剧」放在书名里，再问一次：<strong>浮士德到底算不算「得救」？</strong> 第 5.1、第 4b 两条会给你歌德本人的文字与卫茂平 2019 的读法。
+    </li>
+    <li><strong>回头核对一件事</strong>：《书斋二》里的赌约，浮士德用的动词是<strong>条件式</strong>（<code>Werd' ich … sagen</code>，「若我……说」），第二部第五幕用的也是条件式（<code>dürft' ich sagen</code>）。<strong>他从来没有真正许愿「停下来」。</strong> 这一步会改变你对结局的态度（第 9 节）。
+    </li>
+    <li><strong>重读第二部第五幕的《午夜》与《山谷》</strong>。前者是浮士德被「忧虑」弄瞎（<code>Die Menschen sind im ganzen Leben blind, / Nun, Fauste, werde du's am Ende!</code>），后者是天使的判词（<code>Wer immer strebend sich bemüht, / Den können wir erlösen.</code>）。<strong>一句「凡不断努力者，吾人可救之」——它到底救了什么、不救什么？</strong> 这是全书最值得反复咀嚼的一句。
+    </li>
+    <li><strong>对照三到四个中译本读同一段</strong>（建议用《书斋二》的名句或《天上序幕》的赌局）。<strong>你会立刻明白「翻译的政治」不是术语问题</strong>（第 4 节）。
+    </li>
+    <li><strong>把《诗与真》与与席勒的通信翻出来对读</strong>。歌德与席勒 1794–1805 年的通信，是理解「第二部为什么那样写」的第一手材料（第 5 节末与附录 D 有说明）。
+    </li>
+  </ol>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本报告必需的</strong>：本书的中译状况在批 10 四本里最复杂，且<strong>隐藏着一个「副标题被弃译」的陷阱</strong>和一个「底本各不同」的陷阱。</p>
+  <p><strong>先说最要紧的三条</strong>：</p>
+  <blockquote>
+    <p><strong>⚠ ① 认译者，不认书名。</strong> 中文世界里《浮士德》至少十六个单本译本，<strong>书名几乎都只叫《浮士德》</strong>（把「一部悲剧」全丢掉了）。真正决定你读到什么的是译者与底本。</p>
+    <p><strong>⚠ ② 底本各不相同。</strong> 钱春绮据 <strong>Volksverlag Weimar 1958</strong>、董问樵据 <strong>Weimar 1958 ＋ Hamburger Ausgabe 1976</strong>、樊修章据 <strong>Aufbau Verlag 1980</strong>、绿原据 <strong>Reclam 1983</strong>、潘子立据 <strong>Reclam 2000</strong>——<strong>你手里可能根本不是同一个德文《浮士德》</strong>。</p>
+    <p><strong>⚠ ③ 文体路线分两派。</strong> <strong>诗体派</strong>（钱春绮、杨武能，力图移植原诗形式、行数一对一）与<strong>散文体派</strong>（周学普、绿原；周学普初稿散文后改韵文，绿原只在抒情段落用诗体）。选哪个取决于你要不要「感到格律切换」。</p>
+  </blockquote>
+  <p><strong>主要中译谱系表</strong>（★ 以下出版信息据卫茂平《〈浮士德〉汉译及解读考索》（《中国比较文学》2019 年第 3 期）所附中译表，<strong>据公开信息转引，未核中文实体书</strong>）：</p>
+  <table>
+    <thead><tr><th>译者</th><th>出版社／年</th><th>备注（底本，据该表）</th><th>文体倾向</th></tr></thead>
+    <tbody>
+      <tr><td><strong>周学普</strong></td><td>上海商务印书馆 <strong>1935</strong>（上册＋下册，署名「哥德」，附钟敬文序）</td><td>民国两大全本之一；1978 台北志文出版社新版</td><td><strong>散文体起步，后改为韵文</strong>（据其 1935 译者序，初稿用散文、后从头改译为韵文）</td></tr>
+      <tr><td><strong>郭沫若</strong></td><td>第一部上海创造社出版部 <strong>1928-02</strong>；第二部上海群益出版社 <strong>1947-11</strong>（全译本）</td><td>参照 2 种日译＋1 种英译，且参照周学普中译</td><td>诗体</td></tr>
+      <tr><td><strong>钱春绮</strong></td><td>上海译文出版社 <strong>1982</strong></td><td><strong>据 Volksverlag Weimar 1958 年版</strong>（版权页）</td><td>诗体，力求移植原诗形式</td></tr>
+      <tr><td><strong>董问樵</strong></td><td>复旦大学出版社 <strong>1983</strong>（另有 1982 口径，两说并存）</td><td><strong>据 Weimar 1958 ＋ Hamburger Ausgabe 1976</strong>（译序）</td><td>诗体</td></tr>
+      <tr><td><strong>樊修章</strong></td><td>译林出版社 <strong>1993</strong>（译序落款 1988）</td><td><strong>据 Aufbau Verlag 1980</strong>（版权页）</td><td>诗体</td></tr>
+      <tr><td><strong>绿原</strong></td><td>人民文学出版社 <strong>1994</strong></td><td><strong>据 Verlag Philipp Reclam 1983</strong>（版权页）；<strong>1998 获首届鲁迅文学奖优秀文学翻译彩虹奖</strong></td><td><strong>散文体为主，抒情段落用诗体</strong></td></tr>
+      <tr><td><strong>杨武能</strong></td><td>安徽文艺出版社 <strong>1998</strong></td><td>译序《说不完的〈浮士德〉》</td><td>诗体</td></tr>
+      <tr><td><strong>潘子立</strong></td><td>天津人民出版社 <strong>2013</strong></td><td><strong>据雷克拉姆（Reclam）2000 年校阅版</strong>（译者序）</td><td>诗体</td></tr>
+      <tr><td><strong>梁宗岱</strong></td><td>华东师范大学出版社 <strong>2016</strong>（另广东人民出版社 1986 口径）</td><td>早年有节译，后人整理全本</td><td>诗体</td></tr>
+      <tr><td><strong>谷裕</strong></td><td>（第二部译注本，2022）</td><td>第二部的注释式译本</td><td>译注</td></tr>
+    </tbody>
+  </table>
+  <p><strong>★ 该选哪个</strong>：</p>
+  <ol>
+    <li><strong>第一次读、想读懂「发生了什么事」→ 绿原译（人民文学 1994）</strong>。散文体为主使句子更顺、更少被格律卡住；它在抒情段落仍用诗体（如《格蕾琴的闺房》《城墙角》），<strong>关键抒情处不失诗性</strong>。★ 它是<strong>首届鲁迅文学奖优秀文学翻译彩虹奖</strong>得主（1998 年 2 月 9 日公布，评选 1995–1996 年度）<span class="tag t-src">原书</span>（中国作家网绿原小传；第 1 届鲁迅文学奖获奖名单）。
+    </li>
+    <li><strong>要「感到」歌德在换格律 → 钱春绮译（上海译文 1982）</strong>。它的目标是<strong>移植原诗形式</strong>，行数一对一，古典颂歌体处能看出歌德的调度；代价是句子更硬。
+    </li>
+    <li><strong>想要注释与背景、想把第二部读通 → 董问樵译（复旦 1983）或谷裕第二部译注</strong>。董译把「作者生平」「写作经过」「政治观点与哲学思想」「人道主义问题」「艺术形式特点」做成完整译序，<strong>注释量在诸本中突出</strong>（据卫茂平 2019 转引董译译序结构）。
+    </li>
+    <li><strong>想做翻译史研究 → 周学普 1935 与郭沫若 1928／1947</strong>。它们是汉译史的起点，且<strong>郭译在 1928–1947 年间重版极频</strong>（据卫茂平 2019，第一部 1928 年初版后至 1947 年全译本问世前重版 8 次），影响极大。
+    </li>
+  </ol>
+  <p><strong>★ 《书斋二》名句六种中译对照表</strong>（★ 下表<strong>据刘岩《洞察人性与历史的 16 部文艺作品》第六讲课件汇总的公开译文转引</strong>；<strong>我未核对中文实体书</strong>，逐一回德文原文 <code>Grau, teurer Freund, ist alle Theorie, / Und grün des Lebens goldner Baum.</code> 确认<strong>意思方向一致</strong>——「理论＝灰」「生命之树＝绿」；<strong>未照抄、不当作原书文字</strong>）：</p>
+  <table>
+    <thead><tr><th>译者</th><th>《书斋二》名句译法</th></tr></thead>
+    <tbody>
+      <tr><td>周学普（1935）</td><td>你要知道理论都是灰色的，／而生命的金树常青。</td></tr>
+      <tr><td>董问樵（1982/83）</td><td>亲爱的朋友，灰色的理论到处都有，／而生活的金树长青。</td></tr>
+      <tr><td>钱春绮（1982）</td><td>理论全是灰色，敬爱的朋友，／生命的金树才是长青。</td></tr>
+      <tr><td>绿原（1994）</td><td>尊贵的朋友，所有理论都是灰色的，／生活的金树常青。</td></tr>
+      <tr><td>杨武能（1998）</td><td>朋友啊，理论全是灰色的，／只有生命的金树常青。</td></tr>
+      <tr><td>樊修章（1993）</td><td>朋友，生活的宝树青葱，／而一切理论都显得朦胧。</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一句提示</strong>：前五种与德文原句的词序、意象<strong>几乎严格对应</strong>；<strong>樊修章的译法把两句的主次颠倒了</strong>（先说「生活的宝树青葱」，再说「理论显得朦胧」），并把 <code>grau</code>（灰）意译成了「朦胧」——<strong>这是六种里唯一在修辞策略上明显偏离的一家</strong>。读到时值得知道这一点。</p>
+  <p><strong>★ 一个必须提醒的坑</strong>：<strong>不要把《浮士德》与歌德的其他作品搞混</strong>。歌德另有诗剧《伊菲革涅亚在陶里斯》《哀格蒙特》《塔索》，小说《少年维特之烦恼》《威廉·迈斯特》，自传《诗与真》——<strong>它们都是不同的书</strong>。购物站搜「歌德」时极易误买（尤其《少年维特之烦恼》常与《浮士德》合印）。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <p>★ 定位一律用<strong>部／场／幕／行</strong>（不用页码）。<strong>每一条都回德文原文核实后写成</strong>，不照抄任何二手概述。</p>
+  <table>
+    <thead><tr><th>#</th><th>流行说法</th><th>原文怎么说（附德文）</th><th>定位</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>★「这本书的书名就是《浮士德》」</td><td><strong>错。</strong> 德文剧名自初版即为 <code>Faust. Der Tragödie erster Teil</code>／<code>…zweiter Teil</code>，副标题「<strong>一部悲剧</strong>」是书名的一部分。<strong>几乎所有汉译书名都把它弃译</strong>——卫茂平 2019 单独立论指出此现象并析其成因</td><td>书名页（PG #2229／#2230）；卫茂平《中国比较文学》2019(3):2–15</td></tr>
+      <tr><td>2</td><td>「梅菲斯特纯粹是恶，是与善对立的魔鬼」</td><td><strong>至少不完整。</strong> 他自称 <code>Ein Teil von jener Kraft, / Die stets das Böse will und stets das Gute schafft.</code>（<strong>那种总想作恶、却总造出善的力量的一部分</strong>）；又说 <code>Ich bin der Geist, der stets verneint!</code>（<strong>我是永远否定的精神</strong>）。天主则称他为 <code>der Schalk</code>（<strong>那促狭鬼</strong>），并说「<strong>从没有一个否定的精灵，比这促狭鬼更不让我讨厌</strong>」（<code>Von allen Geistern, die verneinen, / ist mir der Schalk am wenigsten zur Last.</code>）</td><td>第一部《书斋一》（<code>Ein Teil von jener Kraft</code>／<code>Ich bin der Geist, der stets verneint</code>）；《天上序幕》（<code>der Schalk</code>）</td></tr>
+      <tr><td>3</td><td>「第二部不必读，读第一部就够了」</td><td><strong>可以这样读，但代价很大。</strong> 第二部是歌德晚年思想的容器，且<strong>第一部的罪在第二部才被回应</strong>：结尾救赎队伍的名单里有 <code>UNA POENITENTIUM, SONST GRETCHEN GENANNT</code>（<strong>一个忏悔者，原名格蕾琴</strong>）——第一部被浮士德毁掉的女子，第二部回来救他</td><td>第二部第五幕《山谷》（升天一场）</td></tr>
+      <tr><td>4</td><td>「浮士德最后得救，是因为他做了好事／因为他开垦了土地」</td><td><strong>原文给的理由更窄、也更特别。</strong> 天使的判词是 <code>Wer immer strebend sich bemüht, / Den können wir erlösen.</code>（<strong>凡不断努力者，吾人可救之</strong>）——救的是「<strong>努力（streben）</strong>」这件事本身，不是功德清单；而且《天上序幕》的天主<strong>早就把赌注押在这一点上</strong>（见第 9 节）。歌德在《天上序幕》还借天主说 <code>Ein guter Mensch, in seinem dunklen Drange, / Ist sich des rechten Weges wohl bewußt.</code></td><td>第二部第五幕《山谷》天使合唱；第一部《天上序幕》</td></tr>
+      <tr><td>5</td><td>「歌德一次写成了《浮士德》」</td><td><strong>错，它写了近六十年。</strong> 早期稿 <strong>Urfaust</strong>（1770 年代）→ <strong>Fragment</strong>（1790）→ <strong>第一部 1808</strong> → <strong>第二部 1832</strong>（歌德死后作为遗作出）。<strong>甚至有证据显示第二部的部分构思在 1800 年前后即已开始</strong></td><td>版本沿革（PG #2229／#2230 标题页；歌德写作史）</td></tr>
+      <tr><td>6</td><td>「Grau ist alle Theorie」（理论是灰色的）只是歌德的一句人生格言</td><td><strong>它是一句被误解的戏词。</strong> 完整主语是 <code>alle Theorie</code>（<strong>一切理论</strong>），且<strong>说这句话的是梅菲斯特、听的人是那个被戏弄的大学生</strong>——不是歌德在陈述自己的观点，而是<strong>魔鬼在劝一个青年轻视理论、直接扑向「生活」</strong>。全句为 <code>Grau, teurer Freund, ist alle Theorie, / Und grün des Lebens goldner Baum.</code>。<strong>中译流变本身也是一条线索</strong>：六种译法都抓住了「灰／绿」对举，但樊修章把主次颠倒、把 <code>grau</code> 译成「朦胧」</td><td>第一部《书斋二》（对白对象＝学生）</td></tr>
+      <tr><td>7</td><td>「《浮士德》是『悲剧』，所以结局应该是毁灭／绝望」</td><td><strong>也不对——它恰恰是「输了赌约却被救」的戏。</strong> 梅菲斯特依血契宣布时钟停摆（<code>Die Uhr steht still</code>），但天使以玫瑰逼退魔鬼并宣布 <code>Wer immer strebend sich bemüht, / Den können wir erlösen.</code>。<strong>副标题的「悲剧」指的是「追求本身即受苦」的人类处境，不是「主角下地狱」</strong></td><td>第二部第五幕《埋葬》与《山谷》</td></tr>
+      <tr><td>8</td><td>「浮士德是全书的道德中心，读者要跟着他走」</td><td><strong>戏比他更清醒。</strong> 他毁掉格蕾琴一家（第一部《地牢》），又因不能忍受一对老夫妇的钟声而烧掉他们的小屋（第二部第五幕）；对照之下，全书<strong>唯一被正面写的一对普通人</strong>恰恰是被烧死的菲勒蒙与鲍奇斯。<strong>读者被邀请的不是「认同」，而是「看着」</strong></td><td>第二部第五幕《开阔的田野》《宫殿》</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>关于这张表的一句总提醒</strong>：以上八条里有<strong>四条</strong>（第 2、4、6、8 条）都属于同一类错误——<strong>把「某个剧中人说的话」当成了「歌德说的话」</strong>。这是读一切戏剧都会犯的错，但在《浮士德》身上特别容易犯，因为：<strong>① 主角的话最长、最好听；② 魔鬼的话最漂亮、最像格言；③ 天使的话最庄严、最像结论。</strong> ★ <strong>读剧本的第一条纪律：先问「这是谁在说话、说给谁听、目的是什么」，再问「它对不对」。</strong> 本书第 4b 表的第 6 条（<code>Grau ist alle Theorie</code>）就是这条纪律最好的练习题。</p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节按 BOOK_SPEC 7.4 的六条专属条目写，每条带姓名＋出处＋年份。</strong> 本书被赞美了两百年，<strong>而赞美是最廉价的信息</strong>。</p>
+  <h3>5.1 ★★ 副标题被弃译：一百年来「一部悲剧」在中文书名里消失了</h3>
+  <p><strong>批评者与出处</strong>：<strong>卫茂平</strong>（上海外国语大学德语系），《〈浮士德〉汉译及解读考索——兼论其副标题"一部悲剧"的阙如》，《<strong>中国比较文学</strong>》<strong>2019 年第 3 期，第 2–15 页</strong>（国家社科基金重大项目「《歌德全集》翻译」14ZDB090 阶段性成果）。</p>
+  <p><strong>他指出什么</strong>：<strong>「几乎全部汉译书名，均弃其副标题『一部悲剧』不译」</strong>；且几乎所有中译者与译序都把主题归结为「<strong>不断努力、自强不息</strong>」。<strong>他主张返回完整剧名</strong>，并据歌德本人文字重解：<strong>歌德要展示的是人性，探讨的是人类追求欲念满足、得寸进尺的生命本质，以及终究无法摆脱失败和死亡的深层悲剧，表露出洞悉人世的忧患意识。</strong></p>
+  <p><strong>★ 为什么这条最硬</strong>：它不是一个措辞问题，而是<strong>体裁判决的丢失</strong>。丢掉「悲剧」二字，读者会把一部关于「追求本身即受苦」的戏，读成一部「努力就会得救」的励志书——<strong>而这两种读法对结尾的解释是相反的</strong>（第 9 节）。</p>
+  <p><strong>卫茂平所究的「成因」大致有三层（据该文转述）</strong>：</p>
+  <ol>
+    <li><strong>汉译史的起点就没有这个副标题</strong>。1919 年郭沫若在《时事新报·学灯》上译出的是<strong>「第一部开场白」</strong>，1928 年出版的是<strong>《浮士德》第一部</strong>——<strong>从一开始，「浮士德」三个字就被当成了完整书名</strong>。此后的译本沿用这个书名，也就沿用这个省略。
+    </li>
+    <li><strong>中文书市的命名习惯</strong>。汉字书名讲究短、直、可记；「浮士德」三个字已经足够，加上「悲剧第一部」在商业上反成累赘。★ 与此对照：德文书名把「悲剧」写在最前，是因为<strong>它是一句体裁声明</strong>，不是市场标签。
+    </li>
+    <li><strong>接受史的改写</strong>。1980 年代以降的中译序普遍把主题归结为「<strong>自强不息</strong>」——<strong>一部「自强不息」的戏不需要「悲剧」这个副标题</strong>。★ 于是省略副标题与改写主题，成了<strong>互相支撑的两件事</strong>。
+    </li>
+  </ol>
+  <p><strong>★ 卫茂平的结论</strong>（据该文）：「<strong>返回该剧完整剧名</strong>」是必要的，因为歌德要展示的是<strong>人性</strong>，探讨的是<strong>人类追求欲念满足、得寸进尺的生命本质</strong>，以及<strong>终究无法摆脱失败和死亡的深层悲剧</strong>——「<strong>表露出洞悉人世的忧患意识</strong>」。★ <strong>这个结论与「自强不息」的读法，是同一个文本的两端</strong>。</p>
+  <h3>5.2 ★ 诗体 vs 散文体：两条翻译路线的正面对撞</h3>
+  <p><strong>分歧双方与出处</strong>：</p>
+  <ul>
+    <li><strong>钱春绮</strong>（上海译文 1982 译本，据 <strong>Volksverlag Weimar 1958</strong>）：主张<strong>移植原诗形式</strong>，行数一对一、力求保留格律。他在《题解》里同时承认「<strong>《浮士德》是一部不太容易懂的古典著作，原文中有许多矛盾之处，还有许多意义含糊、晦涩费解的地方</strong>」<span class="tag t-src">原书</span>（据卫茂平 2019 转引钱译题解）。
+    </li>
+    <li><strong>绿原</strong>（人民文学 1994 译本，据 <strong>Reclam 1983</strong>）：<strong>以散文体为主，只在抒情段落用诗体</strong>。★ 绿原在<strong>《前言》</strong>里正面反驳「复现原诗格律」的路线，大意是：<strong>通过相距甚远的文字去复现原有格律，多次实践证明是徒劳的</strong>（<span class="tag t-rep">转述</span>，据卫茂平 2019 对绿原《前言》路线的概述）<span class="tag t-talk">作者谈话</span>（绿原《前言》属译者本人书外文字）。
+    </li>
+  </ul>
+  <p><strong>分歧的实质</strong>：<strong>「忠实」到底忠实在哪一层？</strong> 钱派忠实在<strong>形式层</strong>（格律、行数、节奏），绿派忠实在<strong>意义层与可读性层</strong>（先让人读懂，再谈韵味）。★ <strong>本报告不替读者选</strong>——但要说清：<strong>这部戏的格律切换本身是意义</strong>（第 2 节机制二），所以这一分歧在本书里比在一般诗剧里更尖锐。</p>
+  <h3>5.3 第二部的可读性：它是全书最难、也最少被读完的一半</h3>
+  <p><strong>问题</strong>：第二部自问世起即被认为晦涩。<strong>古典瓦尔普吉斯之夜</strong>（含 Homunculus、普罗透斯、泰勒斯、伽拉忒亚等）、<strong>海伦幕</strong>（斯巴达、三行体、中世纪与古典的联姻）、<strong>第五幕的教父式讽喻</strong>（Doctor Marianus、Magna Peccatrix、Mulier Samaritana、Maria Aegyptiaca 一整串《圣经》人物），构成了一道极高的门槛。<strong>是否该读、怎么读，本身就是争议。</strong></p>
+  <p><strong>两种态度</strong>（均可查、均有其人）：</p>
+  <ul>
+    <li><strong>「可以不读，第一部自足」</strong>：理由是第一部的格蕾琴悲剧有完整的情感结构，可以独立成篇。<strong>但这一派必须解释</strong>：为什么歌德至死都在写第二部、且把「救赎」放在第二部结尾（<code>Wer immer strebend…</code>、<code>Das Ewig-Weibliche…</code>）。
+    </li>
+    <li><strong>「必须读，否则不懂全书」</strong>：理由是<strong>第一部的罪在第二部才被回应</strong>（格蕾琴以忏悔者身份出现在升天队伍里），且<strong>两个赌局的框架只有在第二部结尾才闭合</strong>（第 9 节）。
+    </li>
+  </ul>
+  <p>★ 本报告取<strong>后者</strong>，但承认：<strong>第二部需要注解、需要耐心，且第一次读不可能全懂。</strong> ★ 一个实用的折中：<strong>第一遍只读第一幕与第五幕</strong>（有情节骨架），<strong>把第二、三、四幕当作「主题展馆」</strong>——它们的功能是让浮士德依次经过「自然」「古典美」「权力」，而不是讲故事。</p>
+  <p><strong>★ 关于「该不该读第二部」的一个更公平的提法</strong>：<strong>问题不是「第二部好不好读」，而是「第二部能不能被绕过」</strong>。★ 答案是：<strong>如果你只想知道『浮士德是个什么人』，第一部够了；如果你想知道『歌德最后怎么判他』，第二部绕不过去。</strong> 因为——</p>
+  <ul>
+    <li><strong>「救赎」在第二部</strong>（第一部只留下一句 <code>Ist gerettet!</code>，而且是给格蕾琴的）；
+    </li>
+    <li><strong>「浮士德与海伦」在第二部</strong>（这是他把「美」当作生活去过的唯一一次尝试）；
+    </li>
+    <li><strong>「格蕾琴的回归」在第二部</strong>（没有它，第一部就只是一桩罪行）；
+    </li>
+    <li><strong>全书的收尾句 <code>Das Ewig-Weibliche / Zieht uns hinan.</code> 在第二部</strong>。
+    </li>
+  </ul>
+  <p>★ 也就是说：<strong>第二部不是第一部的续集，而是第一部的「判决书」。</strong> 你可以不读判决书，但那样你手里剩下的就只是起诉书。</p>
+  <h3>5.4 ★ 底本问题：读者可能读的不是同一个「浮士德」</h3>
+  <p><strong>问题与证据</strong>：据卫茂平 2019 所附中译表（该表逐一注明出处为<strong>版权页或译序</strong>）：</p>
+  <table>
+    <thead><tr><th>中译</th><th>据以译出的德文版</th></tr></thead>
+    <tbody>
+      <tr><td>钱春绮</td><td><strong>Volksverlag Weimar 1958</strong>（版权页）</td></tr>
+      <tr><td>董问樵</td><td><strong>Volksverlag Weimar 1958 ＋ Hamburger Ausgabe 1976</strong>（译序）</td></tr>
+      <tr><td>樊修章</td><td><strong>Aufbau Verlag 1980</strong>（版权页）</td></tr>
+      <tr><td>绿原</td><td><strong>Verlag Philipp Reclam 1983</strong>（版权页）</td></tr>
+      <tr><td>潘子立</td><td><strong>Reclam 2000 校阅版</strong>（译者序）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>这意味着</strong>：标点、断句、个别异文、甚至某些段落的存废，在不同中译之间<strong>可能本就不同</strong>。<strong>「哪个中译更准」这个问题，必须先问「它在跟哪个德文本比」。</strong> ★ 另据卫茂平 2019，此表中<strong>有若干译本「既不注版本出处，也无译序或译后介绍内容」</strong>——这一类源流最不可考。</p>
+  <p><strong>★ 这一条对你的实际影响</strong>：如果你在读<strong>第二部第三幕（海伦）或第二幕（古典瓦尔普吉斯之夜）</strong>，异文的差异会明显放大——因为这些段落本身用典密集、断句复杂，<strong>不同底本的标点与分行会直接改变「谁在说话、说什么」</strong>。⇒ 一个实用的建议：<strong>读这两幕时，最好手边有两个据不同底本的中译（例如绿原＋钱春绮）</strong>，遇到读不通的地方对读——<strong>差异本身会告诉你「这里本来就有歧义」，而不是「你没读懂」。</strong></p>
+  <h3>5.5 ★ 郭译的功过：汉译史的起点，也是被长期批评的对象</h3>
+  <p><strong>当事人与出处</strong>：<strong>郭沫若</strong>，第一部<strong>1928-02</strong>（上海创造社出版部）、第二部<strong>1947-11</strong>（上海群益出版社，全译本）。</p>
+  <ul>
+    <li><strong>功</strong>：1928 年首版后至 1947 年全译本问世前<strong>重版 8 次</strong>；1947 全译本初印 2000 册，1950 年代累计印数逾万，<strong>是民国至今影响最大的《浮士德》汉译</strong>（据卫茂平 2019）。
+    </li>
+    <li><strong>过与其自承</strong>：★ 郭沫若在<strong>「第二部译后记」</strong>里坦承自己翻译时参阅<strong>两种日译本和一种英译本</strong>，并写道：<strong>「中译本有周学普氏的一种，我更彻底的利用过。因为周氏译本上的空白很多，我的译文就直接写在他的书上，这样节省了我抄写许多人名和相同字汇的麻烦。」</strong>（歌德 1947:376，据卫茂平 2019 逐字转引）。他另在 1955 年人民文学出版社《重印小引》中说：<strong>「可惜我的德文程度实在有限，没有可能很好地传神。有些地方译得太呆板，同时也一定还有好些译得不准确的地方」</strong>（据公开转引）。
+    </li>
+    <li><strong>长期批评</strong>：<strong>「文胜于质」</strong>——郭沫若以诗人笔法改写，译文华美，但<strong>误读误译长期被批评</strong>（钱春绮即认为「郭译多是在周译基础上涂改几句而已」，据公开转引）。★ <strong>本报告的态度</strong>：<strong>郭沫若的坦诚值得尊敬，其译本的历史地位不容抹杀，但不宜当作准确性的标杆。</strong>
+    </li>
+  </ul>
+  <h3>5.6 ★ 意识形态化解读：1980 年代把浮士德读成「新兴资产阶级进步知识分子的代表」</h3>
+  <p><strong>批评者／被批评者与出处</strong>（均据卫茂平 2019 逐字转引各译本序／题解，页码为该文所引版本页码）：</p>
+  <ul>
+    <li><strong>钱春绮</strong>译本题解结论：「<strong>这个剧本通过浮士德这个人物的发展，体现出新兴资产阶级的进步的知识分子追求为人类社会谋求自由和幸福的理想的目标而努力奋斗的精神……这一生活的真理，在今天仍然具有巨大的意义。</strong>」<span class="tag t-src">原书</span>（歌德 1989:759）
+    </li>
+    <li><strong>董问樵</strong>译本「译序」第三点「政治观点和哲学思想」：把浮士德视为「<strong>资产阶级启蒙思想的代表</strong>」，「<strong>具有不断追求，不断进取，永不满足现状的精神，正与上升和发展时期资本主义要求生产不断扩大，市场不断扩张是相适应的</strong>」<span class="tag t-src">原书</span>（歌德 1982:10）
+    </li>
+    <li><strong>樊修章</strong>译本（1993 出版，译序落款 <strong>1988</strong>）<strong>通篇不见「新兴资产阶级」或「资产阶级启蒙思想的代表」这类话语</strong>，转而强调「<strong>《浮士德》勾勒了文艺复兴以来欧洲三百年历史活动的轨迹</strong>」（歌德 1993:16）——★ <strong>是诸本中最早出现转向迹象的一家</strong>。
+    </li>
+    <li><strong>绿原</strong>译本《前言》把寓意归结为「<strong>自强不息的创造性的生活本身</strong>」，结论是「<strong>歌德的这部杰作仍不失为鼓舞现代人类向前迈进的伟大神话之一</strong>」（歌德 1994:4）——<strong>「自强不息」的框架仍在延续</strong>。
+    </li>
+  </ul>
+  <p><strong>时代背景（可查的三篇）</strong>：<strong>范大灿</strong>《人类的前景是光明的——读歌德的诗剧〈浮士德〉》（<strong>1980</strong>）；<strong>卫文珂</strong>《乐观的悲剧——从〈浮士德〉是否悲剧谈起》（《<strong>读书</strong>》<strong>1983 年第 8 期</strong>）；<strong>简明</strong>《乐观的哲学——从〈浮士德〉谈歌德的哲学思想》（《<strong>读书</strong>》<strong>1984 年第 3 期</strong>）。另有<strong>卢卡契</strong>《〈浮士德〉研究》（<strong>范大灿译</strong>，收入《卢卡契文学论文选》，人民文学出版社 <strong>1986</strong>）与苏联<strong>阿尼克斯特</strong>《歌德与〈浮士德〉——从构思到完成》（<strong>晨曦译</strong>，三联书店 <strong>1986</strong>）——<strong>这两部译著的引入，直接塑造了那一代中国「浮学」的框架</strong>。</p>
+  <p><strong>★ 本报告的态度</strong>：<strong>如实呈现，不当作结论。</strong> 这种「把浮士德读作新兴资产阶级进步知识分子代表」的解读，是<strong>特定时代（1980 年代改革开放初期）的阅读模式</strong>，它与作品本身的复杂性之间有落差——<strong>尤其是它与被弃译的副标题「一部悲剧」直接冲突</strong>（第 5.1 节）。★ 但也要公平地说：<strong>钱春绮本人也承认这部剧「不太容易懂」「有许多意义含糊、晦涩费解的地方」</strong>（第 5.2 节引），<strong>社会政治阐释与具体文本理解之间的「言不由衷」，本身就是接受史的一部分。</strong></p>
+  <p>★ <strong>结构说明</strong>：本书正文分<strong>三篇序 ＋ 第一部（25 场）＋ 第二部（5 幕）</strong>。本部分共 4 节，<strong>编号从 6 起</strong>：<code>## 6</code> 三篇序；<code>## 7</code> 第一部（<strong>内部把 25 场按 6 组逐场覆盖</strong>）；<code>## 8</code> 第二部（<strong>按 5 幕逐一评述</strong>）；<code>## 9</code> 两个赌局的结构再读。每节三段：<strong>「这一部分在做什么」／「关键内容：诗体、场次与结构位置」／「可疑之处」</strong>（均为三级标题）。所有德文引文均取自 <strong>PG #2229／#2230</strong> 公版全文，<strong>可逐场／逐幕定位核对</strong>。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>三篇序：献词／舞台序幕／天上序幕</span><span class="caret">▾</span></h2>
+  <h3>这一部分在做什么</h3>
+  <p>三部序在正式剧情之前立起<strong>三层不同的「说话人」</strong>，把读者的位置先摆好。它们不是三篇同性质的「开场白」，而是<strong>三种体裁、三种语调、三个空间</strong>的递进：</p>
+  <ul>
+    <li><strong>《献词》（Zueignung）</strong>：<strong>歌德自己的声音</strong>。他晚年重理这部写了半生的旧稿，向那些「飘摇的形象」（<code>schwankende Gestalten</code>）——早年构思中的人物——致意。<strong>这是一篇不能归给任何剧中人的抒情诗</strong>，它承认：写这部戏的是个老人，而戏里的青春早已过去（<code>Ihr naht euch wieder, schwankende Gestalten, / Die früh sich einst dem trüben Blick gezeigt.</code>——<strong>你们又近了，飘摇的形象，当年曾初次现于我朦胧的眼前。</strong>）<span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>《舞台序幕》（Vorspiel auf dem Theater）</strong>：<strong>关于戏剧本身的元对话</strong>。剧场经理（Direktor）要票房，诗人（Dichter）要永恒，丑角（Lustige Person）要当下——三人争论「戏该为谁演」。★ 这是全书对「艺术与观众」关系说得最直白的一处，也是理解歌德为什么在剧里<strong>混合雅俗、混用多种格律</strong>的钥匙。
+    </li>
+    <li><strong>《天上序幕》（Prolog im Himmel）</strong>：<strong>全书的框架与前提</strong>。三位天使长（拉斐尔、加百列、米迦勒）颂唱宇宙秩序，梅菲斯特随即登场，向天主抱怨「这个小小的世界之神（人）还是老样子」，并把浮士德作为例子提出来。<strong>天主与梅菲斯特在此立下第一个赌局。</strong>
+    </li>
+  </ul>
+  <h3>关键内容：诗体、场次与结构位置</h3>
+  <p><strong>★ <code>## 6</code> 为什么必须单独立节（BOOK_SPEC 5.2.3 硬性要求，理由如下）</strong>：<strong>《天上序幕》的赌局是全书的框架与前提——没有它，第二部结尾的「救赎」无所依归。</strong> 这不是一句修辞。具体地说：</p>
+  <ol>
+    <li><strong>它先把「游戏规则」定好</strong>。梅菲斯特挑战：<code>Was wettet Ihr? den sollt Ihr noch verlieren!</code>（<strong>你赌什么？你还会输掉他！</strong>）；天主接受，并给出全书最重要的一句前提式判断——<code>Es irrt der Mensch so lang er strebt.</code>（<strong>人只要在追求，就难免迷误。</strong>）<span class="tag t-src">原书</span>。「追求必伴随迷误」，这句在天上说出的话，是全书六十年写作的总纲。
+    </li>
+    <li><strong>它规定了「救赎」的判准</strong>。天主又说：<code>Ein guter Mensch, in seinem dunklen Drange, / Ist sich des rechten Weges wohl bewußt.</code>（<strong>一个善人，在他朦胧的冲动中，仍会意识到正路。</strong>）<span class="tag t-src">原书</span> ⇒ <strong>后来第二部天使救浮士德，救的正是这条「朦胧中仍朝正路」的线</strong>（第 9 节）。
+    </li>
+    <li><strong>它解释了梅菲斯特为什么被允许存在</strong>。天主说：<code>Des Menschen Tätigkeit kann allzu leicht erschlaffen, / er liebt sich bald die unbedingte Ruh; / Drum geb ich gern ihm den Gesellen zu, / Der reizt und wirkt und muß als Teufel schaffen.</code>（<strong>人的行动太容易松弛，他很快会爱上绝对的安逸；所以我乐意给他这个同伴，他来刺激、来推动，作为魔鬼不得不工作。</strong>）<span class="tag t-src">原书</span> ⇒ <strong>梅菲斯特是「刺激者」，不是「对手」</strong>——这个定位在两百年的接受史里被严重简化（第 4b 第 2 条）。
+    </li>
+    <li><strong>它预设了「人不会彻底迷失」这个乐观前提</strong>。天主对梅菲斯特说：<code>Zieh diesen Geist von seinem Urquell ab, / …Und steh beschämt, wenn du bekennen mußt.</code>（<strong>把这个精灵从他的源头引开……当你不得不承认（失败）时，你就羞愧地站着吧。</strong>）<span class="tag t-src">原书</span> ⇒ <strong>结局在开场就已经被预告</strong>，全书剩下的是「它会怎样发生」。
+    </li>
+  </ol>
+  <p><strong>★ 诗体的三篇各不相同</strong>：</p>
+  <ul>
+    <li><strong>《献词》</strong>＝<strong>严格的押韵四行体（abab）</strong>，音调是<strong>挽歌式的、安静的</strong>——因为说话人是个回顾一生的老人。
+    </li>
+    <li><strong>《舞台序幕》</strong>＝<strong>Knittelvers 打油诗体</strong>（四音步、行内粗犷对仗），<strong>故意粗俗、故意带市井腔</strong>——因为它写的是「戏班子」。
+    </li>
+    <li><strong>《天上序幕》</strong>＝<strong>三组四行体颂歌</strong>（拉斐尔、加百列、米迦勒各唱一段，结尾三人合唱重复首句），庄严、对称；梅菲斯特一开口即转为<strong>更松、更讥诮的语调</strong>。
+    </li>
+  </ul>
+  <p>★ <strong>三篇的格律差别本身在说事</strong>：<strong>祭坛（献词，个人抒情）→ 戏台（舞台序幕，市井对话）→ 天廷（天上序幕，庄重合唱）</strong>，歌德用三种不同的「声音」写三个不同的空间。读中译时若全读成散文，这三层声音会塌成一层（第 4、第 5.2 节）。</p>
+  <p><strong>★ 三个可比对的关键位置</strong>：</p>
+  <ul>
+    <li><strong>《献词》第一句</strong>就点明了全书的时间性质——「你们又近了」，<strong>是「再度的靠近」，不是「初次的出现」</strong>。这等于向读者预告：这部戏写的是「重返」，与第二部结尾的「飞升」遥相呼应。
+    </li>
+    <li><strong>《舞台序幕》诗人那一段</strong>（<code>Greift nur hinein ins volle Menschenleben! / Ein jeder lebt's, nicht vielen ist's bekannt, / Und wo ihr's packt, da ist es interessant.</code>——<strong>把手伸进丰满的人生！人人都活着它，只是少有人知道，而你们在哪里抓住它，哪里就有意思。</strong>）<span class="tag t-src">原书</span>——★ <strong>这是歌德对「为什么全剧要混用雅俗、混用格律」的直接回答</strong>：他要抓的是「人生」，而人生不按一种格律走。
+    </li>
+    <li><strong>《天上序幕》末尾梅菲斯特独自留下的那一段</strong>：<code>Von Zeit zu Zeit seh ich den Alten gern, / Und hüte mich, mit ihm zu brechen. / Es ist gar hübsch von einem großen Herrn, / So menschlich mit dem Teufel selbst zu sprechen.</code>（<strong>我时不时乐意看看这位老家伙，也留意不和他闹翻。</strong> 一位大老爷这样富有人情味地跟魔鬼本人谈话，实在漂亮。）<span class="tag t-src">原书</span> ⇒ <strong>魔鬼在《天上序幕》最后一句话里，对天主做了个近乎亲昵的评价</strong>。这一幕一出，全书的基调就定了：<strong>这不是善恶二元的战争剧，而是一场「允许被挑衅的秩序」内部的长期博弈。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li><strong>《天上序幕》是不是「外加上去的」？</strong> 它的位置太关键（把全书装进一个「天主的赌局」里），而剧作其他部分几乎不再直接回到天上。⇒ <strong>本报告认为它不是外加，而是全书的「契约文本」</strong>：正因为它是赌局，所以后续不必反复提起，只需在结尾结算（第 9 节）。
+    </li>
+    <li><strong>梅菲斯特「获准引诱」的神学是否自洽？</strong> 天主一边说「允许」，一边又说会「把浮士德引向清明」（<code>So werd ich ihn bald in die Klarheit führen.</code>）<span class="tag t-src">原书</span>，这使梅菲斯特的角色更像<strong>工具</strong>而非<strong>反派</strong>。★ 这与《约伯记》的结构有直接亲缘关系（天廷＋挑战＋获准试探），但歌德改写了结局——<strong>约伯的结局是「复原」，浮士德的结局是「飞升」</strong>。
+    </li>
+    <li><strong>《舞台序幕》常被当作「可跳过的开场套话」</strong>。★ 但它其实提前交代了歌德的<strong>创作宣言</strong>——诗人那一段（<code>Greift nur hinein ins volle Menschenleben!</code>）是理解他为什么<strong>不肯让全剧统一在一种格律、一种趣味里</strong>的直接证据。
+    </li>
+    <li><strong>三篇序之间的关系是否是「递进」？</strong> 本报告把它读成「个人—舞台—宇宙」的递进。★ 但<strong>歌德本人未在文字中说明这一点</strong>，这是 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>《天上序幕》里天主到底是「全知」还是「在下注」？</strong> ★ 他先说梅菲斯特「<strong>当你不得不承认（失败）时，你就羞愧地站着吧</strong>」，语气像是<strong>胜券在握</strong>；但他又说「<strong>人只要在追求，就难免迷误</strong>」，语气又像<strong>接受不确定</strong>。★ <strong>这两种语气并存，是《天上序幕》最耐读的地方</strong>——<strong>如果天主全知，赌局就是走过场；如果天主也不确定，全书才真有张力。</strong> 本报告倾向后者，标 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>梅菲斯特在《天上序幕》里说的「尘世」到底有多坏？</strong> ★ 他说「<strong>人类在苦难的日子里叫我心疼，我甚至不忍折磨这些可怜人</strong>」（<code>Die Menschen dauern mich in ihren Jammertagen, / Ich mag sogar die Armen selbst nicht plagen.</code>）<span class="tag t-src">原书</span>——★ <strong>魔鬼在这里说的是「怜悯」</strong>。这与他后面对格蕾琴、对浮士德的态度形成极冷的反差。<strong>要么这是反讽，要么魔鬼也并非单一性格。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>第一部（1808）：学者的悲剧与格蕾琴的悲剧</span><span class="caret">▾</span></h2>
+  <h3>这一部分在做什么</h3>
+  <p>第一部写的是<strong>一个人的两次坠落</strong>：先是<strong>学者的坠落</strong>（把学问读到底，发现「我们什么也不能知道」，转而求魔法、签契约）；再是<strong>情人的坠落</strong>（把欲望当生活去活，于是毁掉一个姑娘和她一家）。<strong>两条悲剧用同一个引擎推动：浮士德永远不肯在任何一个「此刻」停留。</strong></p>
+  <p>★ 第一部的「小世界」格局是刻意的：它贴着一个人的私生活走——书斋、城门、酒馆、姑娘的闺房、教堂、地牢。<strong>全部场地都在「一个人能亲身到达」的范围内</strong>，与第二部的宫廷、古典、海岸形成对照。★ 另一个容易被忽略的事实是：<strong>第一部的道德重心并不在浮士德身上</strong>——它在<strong>格蕾琴和她所处的社会</strong>身上。歌德把最多的抒情笔触、最干净的一首诗、唯一一次「天上来的声音」都给了她。</p>
+  <h3>关键内容：诗体、场次与结构位置</h3>
+  <p><strong>格律</strong>：第一部的主体是 <strong>Knittelvers（打油诗体）</strong>——浮士德的独白、梅菲斯特的对白、格蕾琴的民谣式独白都用它。<strong>但歌德在关键处会整段换成别的格律</strong>：</p>
+  <ul>
+    <li><strong>《夜》开场的浮士德独白</strong>是 Knittelvers；但<strong>地灵显现后</strong>的对话转为更庄重的短长格；<strong>《书斋一》结尾的赌约段</strong>用整齐的短长格。
+    </li>
+    <li><strong>《瓦尔普吉斯之夜》用短促、跳荡的自由节奏</strong>（写群魔乱舞）。
+    </li>
+    <li><strong>《瓦尔普吉斯之梦》用四行打油体写插曲</strong>（写戏中戏的滑稽）。
+    </li>
+    <li><strong>《大教堂》一场整段嵌入拉丁文《末日经》</strong>（<code>Dies irae, dies illa / Solvet saeclum in favilla.</code>）——<strong>让教堂的音乐本身成为压垮格蕾琴的声音</strong><span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>《格蕾琴的闺房》与《城墙角》两首抒情诗</strong>用<strong>短行、重章、近乎民谣的格律</strong>——<strong>全剧最朴素的声音留给了她</strong>。
+    </li>
+  </ul>
+  <p><strong>结构</strong>：第一部＝三篇序 ＋ 25 场。<strong>25 场可归为 6 组</strong>，逐场如下。</p>
+  <h4>第一组 学者四场：Nacht／Vor dem Tor／Studierzimmer（一）／Studierzimmer（二）</h4>
+  <p>这一组是全书的<strong>地基</strong>。它用四场把浮士德的处境、动力、赌注依次立起来：<strong>失望（夜）→ 出走（城门口）→ 转向行动（书斋一）→ 签下赌约（书斋二）</strong>。</p>
+  <ul>
+    <li><strong>《夜》（Nacht）</strong>：浮士德独白——<code>Habe nun, ach! Philosophie, / Juristerei und Medizin, / Und leider auch Theologie / Durchaus studiert, mit heißem Bemühn. / Da steh ich nun, ich armer Tor! / Und bin so klug als wie zuvor.</code>（<strong>我已把哲学、法学、医学，可惜还有神学，都热切地读遍了。可我如今站在这儿，一个可怜的傻瓜，聪明得不比从前多一分。</strong>）<span class="tag t-src">原书</span>。★ 这个开场是全剧最有力的一段「知识批判」：他不但否定自己学到的东西，还<strong>否定「教人向善」这件事本身可以做到</strong>（<code>Bilde mir nicht ein, ich könnte was lehren, / Die Menschen zu bessern und zu bekehren.</code>）。他否认地狱与魔鬼、否认良心不安，却承认「<strong>没有一条狗愿意这样活下去</strong>」（<code>Es möchte kein Hund so länger leben!</code>）<span class="tag t-src">原书</span>。他翻开诺斯特拉达姆斯的书，召唤<strong>地灵（Erdgeist）</strong>，地灵在<strong>淡红的火焰</strong>中显现（<code>Es zuckt eine rötliche Flamme, der Geist erscheint in der Flamme.</code>）。★ <strong>全剧第一句名言就在这场诞生</strong>：<code>Du gleichst dem Geist, den du begreifst, / Nicht mir!</code>（<strong>你像你所理解的那个精灵，而并不像我！</strong>）<span class="tag t-src">原书</span>——<strong>地灵的这一句判词，等于预告了浮士德后面全部的失败：他能理解一切，却承受不住他召唤的东西</strong>。地灵消失，助手瓦格纳登场，两人对「学问」的看法针锋相对。
+    </li>
+    <li><strong>《城门口》（Vor dem Tor）</strong>：浮士德与瓦格纳出城，看民众过节：农民在菩提树下跳舞唱歌（<code>Bauern unter der Linde. Tanz und Gesang.</code>）<span class="tag t-src">原书</span>，众人向浮士德致意。★ <strong>这是全剧唯一一次浮士德置身于「普通人的世界」，而他当下的反应是「我不属于这里」</strong>——他说自己身上有「两种东西」（此处是伏笔，完整的话要到《书斋一》）。他独自望向落日，说出全剧最美的一段「太阳—瀑布」比喻（<code>Betrachte, wie in Abendsonne-Glut / …</code>——<strong>看吧，在夕阳的烈焰中</strong>），随即承认「<strong>我们身上的每一样好的东西，都被这冲动拖着往下沉</strong>」<span class="tag t-src">原书</span>。★ <strong>黑色卷毛狗（poodle）在此尾随他</strong>——梅菲斯特的第一次「现形」；瓦格纳看见的是「一条狗」，只有浮士德注意到它「在身后绕出螺旋」。
+    </li>
+    <li><strong>《书斋一》（Studierzimmer）</strong>：浮士德回书斋，决心翻译《约翰福音》，把 <code>Im Anfang war das Wort</code>（太初有道）接连改译为「太初有心（Sinn）」「太初有力（Kraft）」，最后落定为 <strong><code>Im Anfang war die Tat!</code>（太初有为！）</strong><span class="tag t-src">原书</span>。★ <strong>这一个动词的推敲，是理解全剧的钥匙：浮士德把「道」义改成了「行动」——而他一生的问题恰恰在于「行动」总在伤及他人</strong>。随后黑狗化为梅菲斯特，二者初次交锋。浮士德点破他的身份，他自我定性——<code>Ein Teil von jener Kraft, / Die stets das Böse will und stets das Gute schafft.</code>（<strong>那种总想作恶、却总造出善的力量的一部分</strong>）与 <code>Ich bin der Geist, der stets verneint! / Und das mit Recht; denn alles, was entsteht, / Ist wert, daß es zugrunde geht.</code>（<strong>我是永远否定的精神！这有道理：因为一切生成的东西，都值得毁灭。</strong>）<span class="tag t-src">原书</span>。两人随即就「服务」做交易。
+    </li>
+    <li><strong>《书斋二》（Studierzimmer）</strong>：★ <strong>全剧的内层赌局在这里成立</strong>。经过梅菲斯特的种种试探，浮士德提出条件：<code>Werd' ich zum Augenblicke sagen: / Verweile doch! du bist so schön! / Dann magst du mich in Fesseln schlagen, / Dann will ich gern zugrunde gehn!</code>（<strong>若我对那瞬间说：停留一下吧，你真美！你便可以把镣铐加在我身上，我便情愿毁灭！</strong>）<span class="tag t-src">原书</span>。★ <strong>注意动词是条件式（<code>Werd' ich…sagen</code>），不是愿望式</strong>——他要的不是「永远满足」，而是「<strong>如果满足，我就认输</strong>」（第 9 节详论）。契约用血签名，梅菲斯特加上一句<strong>全书最著名的旁白之一</strong>：<code>Blut ist ein ganz besondrer Saft.</code>（<strong>血是一种非常特别的汁液。</strong>）<span class="tag t-src">原书</span>。★ <strong>同场还包含「学生场」</strong>：梅菲斯特冒充浮士德接待新生，对「该学什么」极尽挖苦（劝他签名为「科学之友」），并在其中说出 <strong><code>Grau, teurer Freund, ist alle Theorie, / Und grün des Lebens goldner Baum.</code></strong><span class="tag t-src">原书</span>——★ <strong>说这话的是魔鬼、听的人是学生</strong>（第 4b 第 6 条）。
+    </li>
+  </ul>
+  <p>★ <strong>本组小结</strong>：这四场的推进逻辑是<strong>「认知的失败 → 行动的转向」</strong>。《夜》里浮士德把「知道」判了死刑（<code>Und sehe, daß wir nichts wissen können!</code>——《夜》首段）；《书斋一》里他把「太初有道」改成「太初有为」；《书斋二》里他索性用灵魂去换「行动的机会」。★ <strong>注意这条线的次序：他不是先堕落再求知，而是先发现自己「知也无用」，才去求「行」。</strong> 这正是全书被称为「现代性悲剧」的地方——<strong>浮士德的问题不是欲望太多，而是「知道得太多、却什么也不能改变」</strong>。★ 另一处细节：<strong>梅菲斯特真正的「武器」不是谎言，而是「陪着」</strong>——他从《书斋一》起就在场，一直在场，直到最后。</p>
+  <h4>第二组 赌约的功能性兑现：Auerbachs Keller in Leipzig／Hexenküche</h4>
+  <p>这一组是「兑现赌约」的两个技术动作：<strong>带浮士德去看世界（酒馆）</strong>，然后<strong>把他改造得能进入世界（返老还童）</strong>。</p>
+  <ul>
+    <li><strong>《莱比锡奥尔巴赫地下酒店》（Auerbachs Keller in Leipzig）</strong>：梅菲斯特带浮士德到酒馆，看一群大学生胡闹。★ <strong>这是「大世界」的预演，也是全书最不重要却最生动的一场</strong>——弗洛施（Frosch）唱《可爱的神圣罗马帝国，它到底还怎么撑得住？》（<code>Das liebe Heil'ge Röm'sche Reich, / Wie hält's nur noch zusammen?</code>）<span class="tag t-src">原书</span>，布兰德（Brander）立刻抗议「<strong>这是一首政治歌！</strong>」（<code>Ein garstig Lied! Pfui! ein politisch Lied!</code>）<span class="tag t-src">原书</span>。★ 梅菲斯特随后用魔术让桌上冒出酒、让酒喷成火焰、洒酒者头上燃起鬼火，最后众人以为在互相斗殴——<strong>这一场是在「看」的人与被「看」的魔术之间制造混乱，为第二部第一幕的宫廷戏埋下模板</strong>。
+    </li>
+    <li><strong>《女巫的丹房》（Hexenküche）</strong>：浮士德在猴群环绕的丹房里照见<strong>魔镜</strong>，镜中出现一个「世间女人的典范形象」（<code>Das schönste Bild von einem Weibe</code>）<span class="tag t-src">原书</span>；他喝下魔药，返老还童。★ 女巫之歌唱出 <strong><code>Hexen-Einmaleins</code>（魔女的乘法口诀）</strong>：<code>Du mußt verstehn! / Aus Eins mach Zehn, / Und Zwei laß gehn, / Und Drei mach gleich, / So bist du reich.</code>（<strong>你要明白！把一变成十，把二放过去，把三变成相等，你就富有。</strong>）<span class="tag t-src">原书</span> ⇒ <strong>这一段是无意义的胡话，歌德故意让它「不可解」</strong>——它标记的是「魔法」的本质：<strong>不可推理、只可服从</strong>。★ 魔镜与第二部结尾的「永恒之女性」构成一组呼应（机制三、机制六）：<strong>浮士德一生追逐的「女人的形象」，起点是一面镜子，终点是引领他飞升的那个名字。</strong>
+    </li>
+  </ul>
+  <p>★ <strong>本组小结</strong>：这两场是「技术性」的，却各有一个极高明的地方。<strong>《奥尔巴赫地下酒店》高明在「看与被看」</strong>：浮士德在这里第一次成为「旁观者」（他看学生闹），而梅菲斯特是「表演者」——<strong>这正是他后面在宫廷里的位置</strong>。<strong>《女巫的丹房》高明在「不可解」</strong>：魔女的乘法口诀是刻意写坏的逻辑，<strong>它在全剧最像「咒语」的地方，反而最像「废话」</strong>——歌德借此提醒读者：<strong>魔法不需要道理，只需要服从。</strong> ★ 而<strong>返老还童这一笔，是全剧最大的一个反讽</strong>：浮士德喝的是青春，代价是<strong>他再也不是那个能「自我审判」的人了</strong>（《林窟》里仅剩的一点自省，在喝药之后几乎消失）。</p>
+  <h4>第三组 格蕾琴悲剧（上半）：Straße (I)／Abend／Spaziergang／Der Nachbarin Haus／Straße (II)／Garten／Ein Gartenhäuschen／Wald und Höhle</h4>
+  <p>这一组是<strong>引诱的执行</strong>。八场里浮士德只在《林窟》一场短暂地清醒，其余七场都在梅菲斯特为他铺好的轨道上走。</p>
+  <ul>
+    <li><strong>《街》（一）（Straße I）</strong>：浮士德初见格蕾琴，上前搭话——<code>Mein schönes Fräulein, darf ich wagen, / Meinen Arm und Geleit Ihr anzutragen?</code>（<strong>美丽的小姐，我可以冒昧地献上我的臂膀与陪伴吗？</strong>）<span class="tag t-src">原书</span>。格蕾琴拒绝，退场。★ <strong>这一场确立了她的性格</strong>：她不是被浪漫化的「少女典型」，她是个<strong>在规矩里长大、懂得回避的普通人</strong>；她回答得很干脆（大意「我也不是什么小姐，也不好看；我不用人陪，能自己回家」）——<strong>这是她第一次、也是唯一一次完整地拒绝他</strong>。
+    </li>
+    <li><strong>《黄昏》（Abend）</strong>：浮士德潜入格蕾琴的闺房，看她整衣、收拾、独白，自己在床帐后窥看。★ <strong>这一场是「偷窥」形状的</strong>——浮士德从一开始就把她当作「可以进入的世界」，而非「可以对话的人」；歌德用一个近乎默剧的场景，把「被爱者不知情」写得极冷。
+    </li>
+    <li><strong>《散步》（Spaziergang）</strong>：梅菲斯特带来给格蕾琴的第二只首饰盒（第一只已被她交给母亲、母亲给了神父），并提议通过邻居玛尔特安排幽会。★ <strong>这是把「诱」做成技术活的一场</strong>：赠物—中介—传话，是完整的社会工程。
+    </li>
+    <li><strong>《邻妇之家》（Der Nachbarin Haus）</strong>：格蕾琴来向邻居玛尔特（Marthe）展示首饰，玛尔特替浮士德传话、安排幽会，并以「丈夫死讯」为名让浮士德作伪证。★ <strong>玛尔特是全书唯一的「世俗中介」</strong>——她的存在让悲剧有了社会性：<strong>不是魔鬼在害格蕾琴，是「人情往来」的常态在把它推进去</strong>。
+    </li>
+    <li><strong>《街》（二）（Straße II）</strong>：浮士德独自不安，梅菲斯特催促，并说出那句<strong>对整个诱惑工程的自我评价</strong>——大意是「<strong>只要你自己心里有数，就不必管别人怎么说</strong>」。★ 这一场很短，但它是浮士德意志松动的时刻：<strong>他没反对，他只是不安</strong>。
+    </li>
+    <li><strong>《花园》（Garten）</strong>：浮士德与格蕾琴相会、调情；格蕾琴察觉浮士德「不信教」，直接问他。★ <strong>这是全剧最好的对话场之一</strong>：格蕾琴的判断不是教条，而是<strong>一种朴素的、近似良心的直觉</strong>——她说的不是「你不能不信仰上帝」，而是「我不懂这些，可我觉得你是好人，所以你一定也有信仰」。
+    </li>
+    <li><strong>《园中小屋》（Ein Gartenhäuschen）</strong>：二人在小屋相会，<strong>这一场是他们的第一次（也是全剧唯一一次）亲近</strong>。歌德写得极简、极快——<strong>因为接下来的一切都从这个「快」里长出来</strong>：从这一场到格蕾琴发疯，德文原文只用了不到十场。
+    </li>
+    <li><strong>《森林和洞窟》（Wald und Höhle）</strong>：浮士德独处，向地灵致谢——<code>Erhabner Geist, du gabst mir, gabst mir alles, / Warum ich bat.</code>（<strong>崇高的精灵，你给了我，给了我我祈求的一切。</strong>）<span class="tag t-src">原书</span>；随即承认自己已被欲望拖进深渊：他看见「那个纯真姑娘的影像」被侮辱性的欲望缠住，而他自己「在远处颤抖」。★ <strong>这是浮士德的第一次自我审判</strong>：<strong>他知道自己在毁人</strong>，而且他说得比任何人都清楚。这一场是全书最重要的「道德知情」证据——<strong>后面的崩坏，不能以「不知情」为他开脱。</strong>
+    </li>
+  </ul>
+  <p>★ <strong>本组小结</strong>：这八场里<strong>浮士德几乎不说话</strong>——他看清了、也承认了，然后接着往下走。<strong>歌德把「引诱」写成了一件完全没有幻觉的事</strong>：没有谁被骗，格蕾琴知道他在做什么（她只是不信他会走），浮士德也知道自己在做什么。★ <strong>这才是这场悲剧真正冷的地方：它不是欺骗造成的，它是「知情者」造成的。</strong> 全组唯一一处浮士德说出真情的地方，是《林窟》——<strong>而它出现在欲望最高处、也就是最没有用的时候</strong>。</p>
+  <h4>第四组 格蕾琴悲剧（下半）：Gretchens Stube／Marthens Garten／Am Brunnen／Zwinger／Nacht. Straße vor Gretchens Türe／Dom</h4>
+  <p>这一组是<strong>代价的结算</strong>，而且结算者<strong>不是浮士德，是社会</strong>。</p>
+  <ul>
+    <li><strong>《格蕾琴的闺房》（Gretchens Stube）</strong>：格蕾琴坐在纺车旁唱——<code>Meine Ruh ist hin, / Mein Herz ist schwer; / Ich finde sie nimmer / und nimmermehr.</code>（<strong>我的安宁没了，我的心沉重；我再也找不到安宁，再也找不到。</strong>）<span class="tag t-src">原书</span>。★ <strong>全剧最短、也最完整的一首诗</strong>，把「爱」写成了「失去安宁」；诗中反复出现「他的姿态、他嘴边的微笑、他眼里的力量、他话语的魔力、他握手的触感、还有——他的吻」。<strong>歌德把她全部的欲望写成思念，一点羞耻都不加。</strong>
+    </li>
+    <li><strong>《玛尔特的花园》（Marthens Garten）</strong>：格蕾琴向浮士德追问信仰。她说：<code>Glaubst du an Gott?</code>（<strong>你信上帝吗？</strong>）<span class="tag t-src">原书</span>。浮士德的回答宏大而滑脱（大意「谁能把他命名？谁能宣称『我信他』？……既然你的感觉告诉你我不爱你，我才真是动了情」）。★ <strong>这一场在结构上极重要</strong>：格蕾琴的直觉是对整个浮士德式「追求」的第一个判决——<strong>她说不出道理，但她说对了</strong>。
+    </li>
+    <li><strong>《水井边》（Am Brunnen）</strong>：格蕾琴与丽丝辛（Lieschen）打水，听她讲别的女孩因「两件事」而身败名裂；格蕾琴独自重复那句话，并承认自己也会一样。★ <strong>这一场是纯粹的「社会压力」</strong>：<strong>崩溃不是从内里开始的，是从「别人会怎么说」开始的</strong>。歌德把「闲话」写成凶器。
+    </li>
+    <li><strong>《城墙角》（Zwinger）</strong>：格蕾琴对着「苦恼圣母」（Mater dolorosa）像祈祷——<code>Ach neige, / Du Schmerzenreiche, / Dein Antlitz gnädig meiner Not!</code>（<strong>啊，垂下你的脸吧，你这痛苦满怀者，慈悲地俯视我的困厄！</strong>）<span class="tag t-src">原书</span>。★ <strong>全剧最纯粹的抒情段</strong>，与《格蕾琴的闺房》并列为歌德抒情诗的顶点；她求的不是「饶恕」，是「<strong>救我从耻辱与死亡中出来</strong>」（<code>Hilf! rette mich von Schmach und Tod!</code>）。
+    </li>
+    <li><strong>《夜·格蕾琴门前街道》（Nacht. Straße vor Gretchens Türe）</strong>：★ <strong>格蕾琴的哥哥瓦伦廷（Valentin）与浮士德、梅菲斯特相遇并决斗，被刺中</strong>。瓦伦廷临死诅咒妹妹——「<strong>你的名声，从此就是娼妓的名声</strong>」（大意），并说「<strong>你趁早去当个吧，做个下贱东西吧</strong>」<span class="tag t-src">原书</span>。<strong>谋杀在这里发生，而且是「名誉」而非「爱」在杀人。</strong>
+    </li>
+    <li><strong>《大教堂》（Dom）</strong>：格蕾琴在弥撒中。<strong>邪灵（Böser Geist）</strong>在她耳边数说她的罪——「<strong>你母亲的门槛上是谁的血？……而在你心底下，不是已经有什么在涌动、在惊扰你和你自己了吗？</strong>」（<code>Auf deiner Schwelle wessen Blut? —Und unter deinem Herzen / Regt sich's nicht quillend schon…</code>）<span class="tag t-src">原书</span>；管风琴与拉丁文《末日经》响起（<code>Dies irae, dies illa / Solvet saeclum in favilla.</code>——<strong>大发雷霆的那一天，天地都要化为灰烬</strong>）。格蕾琴昏倒。★ <strong>这是全剧最出色的「声音设计」</strong>：不是魔鬼在说话，而是<strong>教堂的音乐本身在审判她</strong>——<strong>她无法承受的不是恐惧，而是「她仍在信，而信仰正在指控她」。</strong>
+    </li>
+  </ul>
+  <p>★ <strong>本组小结</strong>：这六场是<strong>格蕾琴一个人的戏</strong>——浮士德在其中只有两次出场（《街（二）》《大教堂》外的夜街）。★ 歌德的调度是极清楚的：<strong>当悲剧开始结账，主角被请下了台，留下的是那个要付钱的人</strong>。而结账的执行者依次是：<strong>社会的闲话（水井边）→ 家族的名誉（瓦伦廷）→ 宗教的恐怖（大教堂）</strong>。★ <strong>三个都不是浮士德</strong>。这也就是为什么，读第一部若只盯着浮士德，会完全错过它最好的部分。</p>
+  <h4>第五组 瓦尔普吉斯之夜（两场）：Walpurgisnacht／Walpurgisnachtstraum</h4>
+  <ul>
+    <li><strong>《瓦尔普吉斯之夜》（Walpurgisnacht）</strong>：地点是<strong>哈茨山（Harzgebirg）席尔克与埃伦德一带</strong>（<code>Harzgebirg Gegend von Schierke und Elend</code>），群魔在魔女之夜聚会。梅菲斯特一开场就调侃：「<strong>你不想要一把扫帚吗？我倒希望有一头最壮的公羊。</strong>」（<code>Verlangst du nicht nach einem Besenstiele?</code>）<span class="tag t-src">原书</span>。★ <strong>这一场是「反面镜子」</strong>：浮士德在此狂欢、跳舞，却在场地边缘<strong>看见一个女孩的幻影</strong>——她脸色苍白、脚步沉重，脚上仿佛拴着「一缕红线」（血色的暗示）。<strong>全场魔影喧闹，而真正的格蕾琴此刻正在牢里。</strong> 歌德没有让她在此出场，只给了一个影子，<strong>这是全书最有效的一处「缺席」</strong>。
+    </li>
+    <li><strong>《瓦尔普吉斯之梦，或奥伯龙与蒂坦妮亚的金婚》（Walpurgisnachtstraum oder Oberons und Titanias goldne Hochzeit）</strong>：<strong>一场戏中戏式的插曲</strong>（Intermezzo），用四行打油体写一连串滑稽人物（剧场经理、丑角、跳蚤、蚊子、醉汉等）。★ <strong>它的功能是「瓦解前一秒的崇高」</strong>——歌德故意在全书最魔幻的一夜之后插入一段胡闹。<strong>这是他把「严肃」与「滑稽」并置的典型手法</strong>（机制二），也让第一部以「不庄严」的方式退场，<strong>为第二部的反讽基调提前定音</strong>。
+    </li>
+  </ul>
+  <p>★ <strong>本组小结</strong>：这两场常被当成「插曲」。★ <strong>但它们的位置是有讲究的</strong>：它们被安在<strong>格蕾琴已经崩溃、而浮士德尚未知道（或假装不知道）</strong>的那一段里——<strong>舞台上在狂欢，而悲剧在台外完成</strong>。★ 这是歌德调度上的一个狠招：<strong>他不让观众看格蕾琴的下场，他让观众看浮士德如何不知情地高兴。</strong> ★ 因此，「瓦尔普吉斯之夜」不是休息，是<strong>全剧最不留情的一场</strong>。</p>
+  <h4>第六组 收束：Trüber Tag. Feld／Nacht, offen Feld／Kerker</h4>
+  <ul>
+    <li><strong>《阴郁的日子·旷野》（Trüber Tag. Feld）</strong>：★ <strong>注意：这一场德文原文是散文体的</strong>——它在一部诗剧中忽然转为不押韵的散文（通行本如此处理），是全书罕见的一处文体突变。浮士德怒斥梅菲斯特救不出格蕾琴。梅菲斯特冷冷回答：<strong>「她不是第一个。」（<code>Sie ist die erste nicht.</code>）</strong> 浮士德随即回应：<strong>「天哪！天哪！没有一个人能理解，为什么不止一个生灵坠入这苦难的深渊……」</strong><span class="tag t-src">原书</span>。★ <strong>浮士德在这里第一次承认：他毁掉的不是「一个人」，而是「一类人的第一个」；而梅菲斯特的「她不是第一个」是全书最冷的一句话</strong>。
+    </li>
+    <li><strong>《夜·旷野》（Nacht, offen Feld）</strong>：二人骑马疾驰（<code>Faust, Mephistopheles, auf schwarzen Pferden daherbrausend</code>），经过刑场（<code>Rabenstein</code>），梅菲斯特说「<strong>过去吧！过去吧！</strong>」（<code>Vorbei! Vorbei!</code>）<span class="tag t-src">原书</span>。★ <strong>过场，计时用</strong>；但那句「Vorbei！」会在第二部第五幕被梅菲斯特再说一次（<code>Vorbei! ein dummes Wort.</code>），<strong>成了一个跨部的伏笔</strong>。
+    </li>
+    <li><strong>《地牢》（Kerker）</strong>：★ <strong>第一部的终点</strong>。浮士德冲进牢里要救格蕾琴，格蕾琴已神志不清——她先认出他（<code>Du bist's! O sag es noch einmal!</code>——<strong>是你！再说一遍！</strong>），随后又害怕他（<code>Und weißt du denn, mein Freund, wen du befreist?</code>——<strong>你可知道，我的朋友，你救的是谁？</strong>）<span class="tag t-src">原书</span>；她说自己「<strong>毒死了母亲、淹死了孩子</strong>」（<code>Meine Mutter hab ich umgebracht, / Mein Kind hab ich ertränkt.</code>）<span class="tag t-src">原书</span>；她恳求不要拉她走。最后：
+    <ul>
+      <li>格蕾琴：<code>Heinrich! Mir graut's vor dir.</code>（<strong>亨利！我害怕你。</strong>）<span class="tag t-src">原书</span>
+      </li>
+      <li>梅菲斯特：<code>Sie ist gerichtet!</code>（<strong>她被审判了！</strong>）
+      </li>
+      <li><strong>天上来的声音</strong>：<code>Ist gerettet!</code>（<strong>她得救了！</strong>）
+      </li>
+      <li>格蕾琴（从里面，渐远）：<code>Heinrich! Heinrich!</code>
+      </li>
+    </ul>
+    </li>
+  </ul>
+  <p>★ <strong>第一部的最后一句台词不属于浮士德，也不属于梅菲斯特，而属于格蕾琴，且是喊名字</strong>。<strong>「她得救了」这三个字在第一部结尾就出现了</strong>——这是第二部结尾「救赎」的伏笔（第 8、第 9 节）。★ 还须注意：<strong>格蕾琴在最后一段里明确说「我把自己交给你，天主的审判」（<code>Gericht Gottes! dir hab ich mich übergeben!</code>），并呼唤天使守护她</strong>——<strong>她的得救是她自己的信仰完成的，不是浮士德救的。</strong></p>
+  <p>★ <strong>本组小结</strong>：三部收束戏做的是<strong>「把速度降下来」</strong>——《阴郁的日子》是慢下来的争吵，《夜·旷野》是一次疾驰，《地牢》则几乎是静止的对话。★ <strong>值得注意的是：浮士德在《地牢》里没有成功。</strong> 他不是救出了格蕾琴，而是<strong>被她推开</strong>（<code>Heinrich! Mir graut's vor dir.</code>）。<strong>这是全书唯一一次「浮士德想做一件好事而失败」的场面</strong>——而歌德的安排是：<strong>让他失败，然后把「得救」判给那个他没能救的人。</strong> ★ 第一部的最后三个声音（梅菲斯特的宣判、天上的声音、格蕾琴的名字）叠在一起，留下一个悬空的、没有人回答的问题：<strong>她得救了，那他呢？</strong> 这个问号悬了二十多年，直到第二部才被回答。</p>
+  <h3>可疑之处</h3>
+  <ol>
+    <li><strong>浮士德到底爱不爱格蕾琴？</strong> 文本是分裂的：《林窟》里他自认在毁人，《奥尔巴赫地下酒店》里他又完全放得下。★ <strong>本报告不替读者调和</strong>：这个裂缝本身就是歌德要写的「追求者」——<strong>他每一次都真的投入，也每一次都真的走开</strong>。
+    </li>
+    <li><strong>格蕾琴悲剧是不是「女人被男人毁掉」的老套？</strong> 不完全是。★ 文本把她的崩溃主要归给<strong>社会（水井边的议论、哥哥的名誉观、教堂的审判）</strong>，而不是单纯的「失身」。<strong>谋杀是瓦伦廷为名誉而发动的，格蕾琴是被「规矩」处死的</strong>——这一点常被简化解读抹去。★ 另一点常被抹去的是：<strong>格蕾琴并非全然被动</strong>——她在《花园》里主动问信仰、在《园中小屋》里主动赴约、在地牢里主动选择不接受营救（她不肯走）。
+    </li>
+    <li><strong>「地牢」一场的「她得救了」怎么读？</strong> 这是第一部留下的大问题。若「得救」指宗教救赎，那浮士德的罪就减轻了；若指<strong>格蕾琴以死摆脱了浮士德与梅菲斯特的世界</strong>，那「得救」是对浮士德的判决。★ <strong>本报告倾向后者，但标 <span class="tag t-inf">推断</span></strong>，理由是<strong>歌德把「救」判给了那个被他毁掉的人，而不是他</strong>——而且地牢里她<strong>拒绝了浮士德伸出的手</strong>。
+    </li>
+    <li><strong>《阴郁的日子·旷野》为什么用散文？</strong> ★ 这一场在德文原文（PG #2229）里确为<strong>散文体</strong>（无分行押韵），与全剧诗体形成突兀对照。歌德为什么在这里弃韵？<strong>本报告未能找到歌德本人的说明</strong>（见附录 D3）；一种通行理解是「情绪已不能成诗」，但<strong>这是解释，不是原话</strong>。
+    </li>
+    <li><strong>《瓦尔普吉斯之夜》的幻影到底是不是格蕾琴？</strong> 德文原文并未在幻影出现处直呼其名，只是一个女孩的形象与「一缕红线」的暗示（歌德原稿此处曾写「格蕾琴」后作模糊化处理）。★ <strong>本报告按通行读法理解，但如实标注：这是提示，不是明说。</strong>
+    </li>
+    <li><strong>浮士德在《书斋二》的赌约里，是不是从一开始就在「作弊」？</strong> ★ 赌约的核心是「<strong>若有一刻我说『停留』</strong>」——而<strong>「说」这个动作掌握在他自己手里</strong>。<strong>他永远可以不说。</strong> ⇒ 这一条的推论是：<strong>梅菲斯特接受的其实是一个对他极不利的赌</strong>（他可以等，但不能强迫）。★ 这解释了梅菲斯特在后半场为什么越来越急躁、越来越依赖「替浮士德做事」——<strong>他只能制造让浮士德可能说出那句话的场合，却不能替他开口。</strong> 本报告认为这是理解全书权力关系的一把钥匙，标 <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>第一部的「时间线」是不是有问题？</strong> ★ 格蕾琴从相遇到发疯、怀孕、杀婴，原文跨度<strong>极短</strong>（前后约数月）；而她最后在《大教堂》里已经被全城议论、在《地牢》里已被判刑。<strong>歌德把「社会的处刑速度」压缩得比现实快得多</strong>。⇒ 这是有意的浓缩（写法上的「快」服务于道德上的「不可挽回」），<strong>但它确实不是写实的时序</strong>。
+    </li>
+  </ol>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>第二部（1832）：从宫廷到古典，再到救赎</span><span class="caret">▾</span></h2>
+  <h3>这一部分在做什么</h3>
+  <p>第二部把浮士德从「一个人的私生活」扔进<strong>「大世界」</strong>：皇帝宫廷、纸币实验、古典瓦尔普吉斯之夜、海伦、「自由的土地上自由的人民」。<strong>它写的不是一个人，是「现代人」在一个被历史与象征撑满的空间里的全部行程。</strong></p>
+  <p>★ 一条最实用的理解线索：<strong>第二部是「浮士德逐层解决问题」的过程</strong>——</p>
+  <ul>
+    <li>第一幕：<strong>用魔法解决财政与娱乐</strong>（纸币、假面舞会、海伦幻影）⇒ 魔法进入「公共领域」。
+    </li>
+    <li>第二幕：<strong>用魔法解决「生命本质」</strong>（Homunculus 想「在最好的意义上生成」）⇒ 转向人与自然。
+    </li>
+    <li>第三幕：<strong>用魔法与古典结婚</strong>（浮士德与海伦结合，生子欧福良）⇒ 美的追求及其必然的早夭。
+    </li>
+    <li>第四幕：<strong>用魔法夺取海岸</strong>（从「美学」退回「权力与功业」）。
+    </li>
+    <li>第五幕：<strong>用功业换取救赎</strong>（填海造陆、说出「停留」、被救）⇒ 全书收束。
+    </li>
+  </ul>
+  <p>★ 第二部的<strong>难度分布极不均匀</strong>：第一幕（纸币、宫廷讽刺）与第五幕（老人、纵火、死亡、升天）<strong>几乎不需要注释就能跟随</strong>；第二幕（古典瓦尔普吉斯之夜）与第三幕（海伦）<strong>几乎是纯象征</strong>，第一次读只能取大意。<strong>这不是你的问题，是歌德的设计。</strong></p>
+  <h3>关键内容：诗体、场次与结构位置</h3>
+  <p><strong>★ 第二部的格律比第一部复杂得多，而且换得更频繁</strong>：</p>
+  <ul>
+    <li><strong>第一幕《舒适宜人的地方》</strong>（Anmutige Gegend）用<strong>优雅的四行体</strong>（爱丽儿与精灵的合唱），写浮士德从第一部结尾的惨剧中「睡眠疗法」式地被清洗记忆。★ 幕首一句 <code>Am farbigen Abglanz haben wir das Leben.</code>（<strong>我们拥有的生命，是彩色反射的光。</strong>）<span class="tag t-src">原书</span>——<strong>这句话是整部第二部的美学纲领</strong>。
+    </li>
+    <li><strong>第二幕</strong>的实验室场景用<strong>短长格对白与颂歌体</strong>交织；<strong>古典瓦尔普吉斯之夜</strong>用<strong>多种古典格律（包括挽歌双行体等）拼贴</strong>——<strong>格律的混杂，正是在写「古典世界的一次博览会」</strong>。
+    </li>
+    <li><strong>第三幕《斯巴达，墨涅拉俄斯宫前》</strong>（Vor dem Palaste des Menelas zu Sparta）用<strong>但丁式三行体（Terzinen）</strong>写海伦的独白——<code>Bewundert viel und viel gescholten, Helena, / Vom Strande komm' ich, wo wir erst gelandet sind</code>（<strong>被赞赏过许多，也被责骂过许多的海伦，我从岸边来，我们刚在那里靠岸</strong>）<span class="tag t-src">原书</span>。★ <strong>用《神曲》的格律写古典的海伦，本身就是「古典与近代相遇」的宣告</strong>。
+    </li>
+    <li><strong>第五幕《山谷》（Bergschluchten）</strong>用<strong>自由节奏的合唱</strong>结束全书——<strong>这是与前面所有格律都不一样的「不再属于尘世的格律」</strong>（第 9 节）。
+    </li>
+  </ul>
+  <p><strong>五幕逐一</strong>：</p>
+  <h4>第一幕（Anmutige Gegend 舒适宜人的地方 ／ Kaiserliche Pfalz 皇帝行宫）</h4>
+  <ul>
+    <li><strong>《舒适宜人的地方》</strong>：浮士德在花丛中酣睡，众精灵以爱丽儿（Ariel）为首为他洗去第一部结尾的血与恐怖（<code>Ob er heilig, ob er böse, / Jammert sie der Unglücksmann.</code>——<strong>不管他是圣是恶，不幸的人总令他们怜悯</strong>）<span class="tag t-src">原书</span>。★ 爱丽儿唱的其实是莎士比亚《暴风雨》里的精灵——<strong>歌德用「用莎剧开场」来宣告第二部的文体转向</strong>。浮士德醒来，说自己「<strong>又重新站在了生命的岸边</strong>」，忘掉血案，进入「大世界」。★ <strong>这一幕的功能是「重启」</strong>：不把第一部的心结清空，第二部就无法开始。
+    </li>
+    <li><strong>皇帝行宫（Kaiserliche Pfalz）／王座厅（Saal des Thrones）</strong>：<strong>帝国陷入财政危机</strong>——皇帝与宫廷挥霍无度，国库空虚、四境不宁。梅菲斯特献出<strong>纸币方案</strong>（以地下埋藏的宝藏为担保发行纸币），<strong>皇帝签署、全国流通，财政「复活」</strong>（<code>Der Zettel hier ist tausend Kronen wert.</code>——<strong>这张纸值一千克朗。</strong>）<span class="tag t-src">原书</span>。★ <strong>这是全书最惊人的一个预言性场景</strong>：歌德在 1820 年代写出「凭信用印发的纸」如何凭空创造财富——<strong>比真实历史中的现代纸币理论还早、且写得比经济学家更生动</strong>。<strong>这一幕同时是全书少有的「纯粹喜剧」</strong>：老酒鬼们一边喊「皇帝万岁」，一边把酒窖喝空（<code>Bei "Hoch dem Kaiser!" sprudelt's in den Kellern</code>）<span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>《开阔的厅堂与侧室》（Weitläufiger Saal mit Nebengemächern）</strong>：宫廷<strong>假面舞会</strong>——众神、财神、驭者、幽灵轮番登场，构成一场关于「财富与幻象」的寓言。★ <strong>这一幕是第二部最华丽的「景观戏」</strong>，功能是让魔法正式进入公共生活。
+    </li>
+    <li><strong>《花园》（Lustgarten）／海伦的幻影</strong>：浮士德以魔法召出<strong>帕里斯与海伦的幻影</strong>（<code>Will Helena und Paris vor sich sehn</code>）<span class="tag t-src">原书</span>；浮士德一见海伦就扑上去要抢，魔法被打断，他<strong>被击昏</strong>在地。★ <strong>第二部的主线在此埋下</strong>：他要的不是权力，是<strong>古典美本身</strong>——而<strong>「抢」这个动作，重演了第一部「抢格蕾琴」的模式</strong>（机制三）。
+    </li>
+  </ul>
+  <p>★ <strong>本幕小结</strong>：第一幕的核心不是「纸币」，而是<strong>「魔法如何进入公共领域」</strong>。★ 在第一部，魔法只服务于一个人的欲望（爱、青春）；在第二幕之后，浮士德用它做别的事。<strong>第一幕是这条线的起点：魔法变成了政策。</strong> 还有一处极重要的对比：<strong>第一部里浮士德要的是「格蕾琴」（一个具体的人），第一幕里他要的是「海伦」（一个形象）</strong>——<strong>从人变成形象，是第二部的关键转变</strong>。★ 而「抢形象」比「抢人」更危险：<strong>形象不会被毁，只会被误认。</strong></p>
+  <h4>第二幕（Hochgewölbtes enges gotisches Zimmer 高拱狭窄的哥特式房间 ／ Klassische Walpurgisnacht 古典瓦尔普吉斯之夜）</h4>
+  <ul>
+    <li><strong>《高拱狭窄的哥特式房间》</strong>：浮士德昏迷躺在<strong>旧书斋</strong>，梅菲斯特回到这里（<code>Allunverändert ist es, unversehrt; / Die bunten Scheiben sind, so dünkt mich, trüber</code>——<strong>一切如旧、完好无损；只是彩色玻璃似乎更暗了</strong>）<span class="tag t-src">原书</span>。★ <strong>场景「没变」而人「全变了」，是极漂亮的一笔</strong>：同一个书斋，第一次来时他是走投无路的学者，现在他是昏迷的罪人。
+    </li>
+    <li><strong>《实验室》（Laboratorium）</strong>：助手瓦格纳此时已是学者，用炼金术造出 <strong>Homunculus（人造小人）</strong>——一个装在烧瓶里、只有灵体、渴望「在最好的意义上生成」的存在（<code>Fürwahr, es ist Homunculus!</code>／<code>Und möchte gern im besten Sinn entstehn, / Voll Ungeduld, mein Glas entzweizuschlagen.</code>）<span class="tag t-src">原书</span>。★ <strong>Homunculus 是全书最迷人的一个发明</strong>：他是「纯粹的潜能」——<strong>没有身体、没有过去、只想着「生成」</strong>，是浮士德式追求的抽象化。他能在浮士德昏睡时看清浮士德的梦，并把浮士德引向古典世界。
+    </li>
+    <li><strong>《古典瓦尔普吉斯之夜》（Klassische Walpurgisnacht）</strong>：地点从德国哈茨山转到希腊<strong>法萨卢斯原野（Pharsalische Felder）</strong>，人物换成古典神话学的一整套：<strong>泰勒斯、阿那克萨戈拉、普罗透斯、涅柔斯、伽拉忒亚</strong>等（分布在上佩纽斯河畔、爱琴海岩湾两场）。Homunculus 在此寻求「生成」，<strong>最后在海上与伽拉忒亚（美的诞生）一同碎裂</strong>——他找到了自己的「生成」方式，即毁灭。★ <strong>这是全书最难、也最「学究」的一幕</strong>（第 5.3 节）。<strong>它的功能是：把浮士德从「北方巫术」送到「古典世界」，为海伦一幕开门</strong>；同时用「Homunculus 的碎裂」提前说出第二部第三幕的主题——<strong>纯粹的美只能是瞬间。</strong>
+    </li>
+  </ul>
+  <p>★ <strong>本幕小结</strong>：如果说第一幕是「魔法的社会化」，第二幕就是<strong>「魔法的学术化」</strong>。★ 歌德在此完成了一次极大胆的对接：<strong>让德国中世纪的书斋（瓦格纳的实验室）直通希腊神话的海岸</strong>。而接缝处的人物是 <strong>Homunculus</strong>——<strong>一个既不属于中世纪、也不属于古代的存在</strong>（他是近代实验科学的产物，却只能在古典世界里求得「生成」）。★ <strong>Homunculus 碎裂的那一瞬，是全剧最漂亮的一处「自我了断」：他找到「生成」的办法，就是不再作为未完成之物存在。</strong> 这也是浮士德的镜像——<strong>追求到最后，能得到的只是「作为过程」本身</strong>（机制七）。</p>
+  <h4>第三幕（Vor dem Palaste des Menelas zu Sparta 斯巴达墨涅拉俄斯宫前）</h4>
+  <ul>
+    <li><strong>结构</strong>：三行体写海伦归国，被<strong>福尔基阿斯（Phorkyas，实为梅菲斯特变身）</strong>威胁；海伦逃入北方／中世纪的城堡；<strong>浮士德成为城堡主人，与海伦结合</strong>；生子<strong>欧福良（Euphorion）</strong>。★ 欧福良是<strong>拜伦</strong>的影子——一个美学与自由的天才，年纪轻轻就想飞，坠落而死；<strong>海伦随他而去</strong>，只留下衣裳（<code>Gewand</code>）与面纱在浮士德手里，衣裳化为云，把他托走。
+    </li>
+    <li><strong>★ 这一幕的深层含义</strong>：<strong>古典美（海伦）与近代精神（浮士德）结合，只能生出一个早夭的孩子</strong>；而且<strong>美的实体必然消散，只剩「形式」（衣裳）</strong>。<strong>歌德在此写下自己对「以古典拯救近代」这一理想的判决</strong>——这是第二部最「学者」的一幕，也是最容易读成「炫学」的一幕。
+    </li>
+    <li>★ <strong>一个常被忽略的细节</strong>：海伦的独白以「<strong>被赞赏过许多，也被责骂过许多</strong>」（<code>Bewundert viel und viel gescholten</code>）开头——<strong>歌德让这位「美的化身」第一句话就承认自己的名声是双刃的</strong>。这与中文世界把海伦当作「美的符号」的读法很不一样。
+    </li>
+  </ul>
+  <p>★ <strong>本幕小结</strong>：第三幕是第二部的<strong>顶点，也是最冷的一处</strong>。★ 它的结构本身就是一句判断：<strong>古典美与近代精神结合 → 生出天才 → 天才早夭 → 美化为形式、退回云里</strong>。⇒ <strong>歌德在这里写下了他对「用古典拯救近代」这一整套德国古典主义理想的判决</strong>——而这个判决是在他自己最擅长的领域里作出的（他本人就是这场运动的核心人物之一）。★ <strong>这是全书最像「自我清算」的一幕</strong>；读它的时候不妨记住：<strong>写海伦的人，正是在写自己一生所信的东西的限度。</strong></p>
+  <h4>第四幕（Hochgebirg 高山）</h4>
+  <ul>
+    <li><strong>开场</strong>：浮士德独自在高山，从云中辨认出「一个神一般的女性形象」（<code>ein göttergleiches Fraungebild</code>）<span class="tag t-src">原书</span>——那既是海伦、又是格蕾琴的余韵，随即散为云，只留下「<strong>一团清凉的光雾</strong>」绕着他的胸与额。★ <strong>美已不能占有，只剩追忆</strong>——歌德在这一场把「云」写成「已消散的美」。
+    </li>
+    <li><strong>情节</strong>：浮士德转而投身<strong>权力与功业</strong>：他帮助皇帝打赢一场内战（借助梅菲斯特的幻术军队与三个「大力士」），获得<strong>海岸封地</strong>。他计划的不是享受，而是<strong>填海造陆</strong>——把海水赶走、给千百万人造出可居之地。★ <strong>从「审美的人」到「行动的人」——第二部第四幕是全书唯一一次让浮士德真正「做事」</strong>。★ 但请注意：<strong>他夺取海岸、发动战争的理由是「不义得来的东西，也要用强力拿回来」</strong>（大意），<strong>这一场并没有把「权力」写成善的</strong>。
+    </li>
+  </ul>
+  <p>★ <strong>本幕小结</strong>：第四幕是从「审美」退回「权力」的一幕，也是全书最短、最少象征、最像「政治剧」的一幕。★ 它的重要性在于<strong>它决定了第五幕的性质</strong>：<strong>如果浮士德在第四幕得到的是「封地」，那么第五幕写的就是「一个拥有封地的人如何死」</strong>。★ 另一处结构意义：<strong>第四幕把「浮士德—梅菲斯特」的关系从「主仆」扭成了「合作」</strong>——梅菲斯特去打仗、去赶人、去放火，浮士德负责「想」。<strong>到了第五幕，浮士德甚至已经不太知道梅菲斯特在替他做什么</strong>（他的辩解是「我只是让他去请他们搬家」）。★ <strong>「不知道」在这里不是无辜，是分工。</strong></p>
+  <h4>第五幕（Offene Gegend ／ Palast ／ Tiefe Nacht ／ Mitternacht ／ Großer Vorhof ／ Grablegung ／ Bergschluchten）</h4>
+  <ul>
+    <li><strong>《开阔的田野》（Offene Gegend）</strong>：老夫妻<strong>菲勒蒙与鲍奇斯（Philemon und Baucis）</strong>的小屋立在山坡上，他们是当年救过旅人（那位漂泊者）的人。★ <strong>这一幕是全书唯一一次纯粹写「好人」的段落</strong>——也是对浮士德「进步」的最尖锐的反证：<strong>他的填海工程要拆掉他们的教堂与菩提树</strong>。老人说，他们看见「新造的土地上，夜里有个陌生的火光」。
+    </li>
+    <li><strong>《宫殿》（Palast）</strong>：浮士德已老且富，<strong>但他不能忍受那对老夫妻的小屋和钟声</strong>（那是他「不够绝对」的证明）；他命梅菲斯特去「请他们搬家」（<code>Dort oben sollt ihr sie … verpflanzen</code>之类），<strong>结果小屋被烧、老夫妻与那位旅人一同烧死</strong>。★ <strong>浮士德一生的第二次「毁人」——为了「完美」，为了「绝对的一统」</strong>。<strong>这一段常被解读为对「绝对进步」的批判，但文本并未让浮士德因此受罚</strong>（第 8 节《可疑之处》）。
+    </li>
+    <li><strong>《深夜》（Tiefe Nacht）</strong>：看塔人<strong>林叩斯（Lynkeus）</strong>唱出全书最美的「眼睛之歌」——<code>Zum Sehen geboren, / Zum Schauen bestellt, / Dem Turme geschworen, / Gefällt mir die Welt.</code>（<strong>为看而生，为观而设，向塔立誓，世界令我欢喜。</strong>）；他随后报告：那对老夫妻的小屋起火了（<code>Welch ein greuliches Entsetzen / Droht mir aus der finstern Welt!</code>）。浮士德震怒、诅咒梅菲斯特。★ <strong>一个「为了看」的人，目睹了自己造成的火</strong>——<strong>歌德在用一首最美的歌，配一个最丑的消息。</strong>
+    </li>
+    <li><strong>《午夜》（Mitternacht）</strong>：<strong>四个灰色的女人</strong>（匮乏、罪责、困厄、<strong>忧虑 Sorge</strong>）来临，只有「忧虑」能穿过锁眼进来。<strong>忧虑</strong>问他是否认识她，并把他<strong>吹瞎</strong>——<code>Die Menschen sind im ganzen Leben blind, / Nun, Fauste, werde du's am Ende!</code>（<strong>人一辈子都是盲的；浮士德，如今你也盲到底吧！</strong>）<span class="tag t-src">原书</span>。浮士德却在黑暗中说：<strong>「外面黑夜越深，我心里越亮。」</strong>（<code>Die Nacht scheint tiefer tief hereinzudringen, / Allein im Innern leuchtet helles Licht</code>）<span class="tag t-src">原书</span>，并下令继续开凿。★ <strong>「忧虑」是全书唯一一个真正战胜了浮士德的东西</strong>——不是魔鬼、不是死亡，是<strong>担忧本身</strong>。
+    </li>
+    <li><strong>《大宫殿前庭》（Großer Vorhof des Palasts）／《埋葬》（Grablegung）</strong>：浮士德听见工人在挖土，以为是开渠，其实是<strong>在给他掘墓</strong>。他因此说出了那句——
+    </li>
+  </ul>
+  <blockquote>
+    <p><code>Zum Augenblicke dürft' ich sagen: / Verweile doch, du bist so schön!</code>（<strong>我可以对这瞬间说：停留一下吧，你真美！</strong>）<span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>但<strong>前面还有两句更关键</strong>：<code>Solch ein Gewimmel möcht' ich sehn, / Auf freiem Grund mit freiem Volke stehn.</code>（<strong>我愿看见这样的人潮，在自由的土地上，与自由的人民站在一起。</strong>）以及 <code>Nur der verdient sich Freiheit wie das Leben, / Der täglich sie erobern muß.</code>（<strong>只有每天重新夺取自由与生命的人，才配得上它们。</strong>）<span class="tag t-src">原书</span> ⇒ <strong>他说的不是「我现在满足了」，而是「我愿这成为永恒」——一个愿、一个想，不是一次占有</strong>（第 9 节详论）。随后<strong>时钟停摆</strong>：<code>Die Uhr steht still--</code>／<code>Der Zeiger fällt.</code>／梅菲斯特：<code>Er fällt, es ist vollbracht.</code>／<code>Vorbei! ein dummes Wort.</code>（<strong>完了！——一个愚蠢的词。</strong>）<span class="tag t-src">原书</span>；他唤起群鬼、要按血契取走灵魂，<code>Blut ist ein ganz besondrer Saft</code> 的账单到此结算。</p>
+  <ul>
+    <li><strong>★《山谷》（Bergschluchten）</strong>：<strong>救赎</strong>。天使们以<strong>玫瑰</strong>逼退魔鬼（玫瑰＝爱），随后代表天使合唱：
+    </li>
+  </ul>
+  <blockquote>
+    <p><code>Gerettet ist das edle Glied / Der Geisterwelt vom Bösen, / Wer immer strebend sich bemüht, / Den können wir erlösen.</code>（<strong>精神世界的这个高贵成员，已从恶中得救；凡不断努力者，我们能够救他。</strong>）<span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>升天队伍里出现：<strong>Doctor Marianus</strong>（崇敬圣母者）、<strong>Magna Peccatrix</strong>（大罪妇）、<strong>Mulier Samaritana</strong>（撒马利亚妇人）、<strong>Maria Aegyptiaca</strong>（埃及的玛利亚）——<strong>三位《圣经》里的「被宽恕的女人」</strong>，以及 <strong><code>UNA POENITENTIUM, SONST GRETCHEN GENANNT</code>（一个忏悔者，原名格蕾琴）</strong>。<strong>她向圣母请求，让她去引导浮士德</strong>（<code>Vergönne mir, ihn zu belehren, / Noch blendet ihn der neue Tag.</code>）；<strong>圣母（Mater gloriosa）说：<code>Komm! hebe dich zu höhern Sphären! / Wenn er dich ahnet, folgt er nach.</code>（来吧，升到更高的领域去！若他感觉到你，他就会跟随。）</strong><span class="tag t-src">原书</span>。全书以<strong>神秘合唱（Chorus mysticus）</strong>收束：</p>
+  <blockquote>
+    <p><code>Alles Vergängliche / Ist nur ein Gleichnis; / Das Unzulängliche, / Hier wird's Ereignis; / Das Unbeschreibliche, / Hier ist's getan; / Das Ewig-Weibliche / Zieht uns hinan.</code></p>
+  </blockquote>
+  <p>（<strong>一切无常，不过是比喻；不圆满者，在此成为事件；不可言说者，在此被做成；永恒之女性，引领我们飞升。</strong>）<span class="tag t-src">原书</span></p>
+  <h3>可疑之处</h3>
+  <ol>
+    <li><strong>第五幕的纵火与救赎，是否被「努力」二字一笔勾销？</strong> 菲勒蒙与鲍奇斯被烧死了，浮士德并未因此受审；他得救的理由是 <code>immer strebend</code>（不断努力），而非 <code>gut</code>（善）。★ <strong>这是全书最尖锐的问题</strong>：<strong>救赎的是「努力」这件事，不是「努力的后果」</strong>。本报告认为，歌德的天使救的是「一个人能否在迷误中不停止朝向」，而<strong>被烧死者的账，戏里没有清</strong>——<strong>它留给了读者</strong>（第 9 节）。
+    </li>
+    <li><strong>「永恒之女性」（Das Ewig-Weibliche）到底是什么？</strong> 它可以读成「爱」「母性」「美」「接纳」或「恩典」。★ <strong>本报告标明：歌德未在剧中定义它</strong>，任何把 <code>Ewig-Weibliche</code> 落实为某一个确定概念的解读，都是<strong>加于文本</strong>的（第 4b 第 4 条相关）。★ 但可以确定的是：<strong>它由「三个被宽恕的女人＋格蕾琴＋圣母」这一组人物实现</strong>，而不是一个抽象概念。
+    </li>
+    <li><strong>第二部是不是「拼贴」？</strong> 它由早年片断、古典研读、宫廷讽刺、回忆拼合而成，歌德本人也承认它是「大胆的构想」（与席勒通信中多处可见）<span class="tag t-rep">转述</span>。★ <strong>它的结构统一性是「主题式」的，不是「情节式」的</strong>——这一点必须提前接受，否则会一直觉得它散。
+    </li>
+    <li><strong>Homunculus 与欧福良的处理是否太仓促？</strong> 两个都代表「纯粹的潜能」，两个都在相邻两幕里被叙述性地「处理掉」。★ 这是第二部最常被批评的地方：<strong>它的象征人物往往「用完即弃」，与第一部的人物纵深形成反差。</strong>
+    </li>
+    <li><strong>浮士德在该剧结束时是不是「赢家」？</strong> ★ 文本最后一句话是 <code>Zieht uns hinan</code>（引领<strong>我们</strong>飞升）——<strong>注意是「我们」，不是「他」</strong>。<strong>歌德把结尾写成一句合唱，而不是浮士德的胜利宣言</strong>；飞升的是「我们」——<strong>包括读戏的人</strong>。★ 这一步把「浮士德得救」从一件个人事迹，改写成了一个<strong>呼吁</strong>。
+    </li>
+    <li><strong>第二部到底是「乐观」还是「悲观」？</strong> ★ 这取决于你看哪一半：<strong>看结尾</strong>（玫瑰、宽恕、飞升）＝乐观；<strong>看中间</strong>（纵火、瞎眼、格蕾琴之外的死者）＝悲观。★ 本报告认为，<strong>歌德拒绝在两者之间选边</strong>——他让「个人得救」与「世界仍旧如此」同时成立。<strong>这就是「悲剧」二字在书名里的分量</strong>（第 5.1、第 9 节）。★ 任何把第二部读成纯粹「光明的凯歌」或纯粹「虚无的讽刺」的解读，都在删掉一半文本。
+    </li>
+  </ol>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>两个赌局：全书的结构再读</span><span class="caret">▾</span></h2>
+  <h3>这一部分在做什么</h3>
+  <p>★ <strong>这一节是全书的结构总账。</strong> 它把《天上序幕》的<strong>外层赌局</strong>（天主—梅菲斯特）与《书斋二》的<strong>内层赌局</strong>（浮士德—梅菲斯特）并置，回答一个读者迟早会问的问题：<strong>浮士德明明说出了「停留一下吧」，为什么第二部还是把他救了？</strong> 换句话说——<strong>这个结局在结构上自洽吗？</strong></p>
+  <p><strong>答案是：自洽，但要靠「两个赌局 ＋ 时态」三样东西一起看。</strong></p>
+  <h3>关键内容：诗体、场次与结构位置</h3>
+  <h4>一、先把两个赌局的语言摆清楚</h4>
+  <table>
+    <thead><tr><th></th><th><strong>外层赌局</strong>（天上序幕）</th><th><strong>内层赌局</strong>（书斋二）</th></tr></thead>
+    <tbody>
+      <tr><td>赌的双方</td><td><strong>天主</strong> — <strong>梅菲斯特</strong></td><td><strong>浮士德</strong> — <strong>梅菲斯特</strong></td></tr>
+      <tr><td>赌的标的</td><td>人（浮士德）<strong>会不会在追求中迷失</strong></td><td><strong>会不会有一个瞬间值得让浮士德说「停留」</strong></td></tr>
+      <tr><td>关键原文</td><td><code>Was wettet Ihr? den sollt Ihr noch verlieren!</code>／天主：<code>Es irrt der Mensch so lang er strebt.</code> <span class="tag t-src">原书</span></td><td><code>Werd' ich zum Augenblicke sagen: / Verweile doch! du bist so schön!</code> <span class="tag t-src">原书</span></td></tr>
+      <tr><td>输赢条件</td><td>梅菲斯特若能让他「吃灰」（堕落到底），梅菲斯特赢</td><td>浮士德若说出「停留」，他就输、灵魂归梅菲斯特</td></tr>
+      <tr><td>谁在结算</td><td><strong>天主</strong>（结局由天使执行）</td><td><strong>梅菲斯特</strong>（结局由他宣布，但他不是最终裁量者）</td></tr>
+    </tbody>
+  </table>
+  <h4>二、★ 关键是时态：「停留一下吧」两次都是<strong>条件式/愿望式</strong>，不是<strong>陈述式</strong></h4>
+  <p>这是本报告认为最值钱的一处细读，<strong>而且是德文语法层面的</strong>：</p>
+  <ul>
+    <li>第一次（书斋二）：<code>Werd' ich zum Augenblicke sagen…</code>——<strong>动词是将来式/虚拟条件式</strong>（「<strong>若</strong>我对那瞬间说……」）。他<strong>没有说「此刻真美」</strong>，他签的是<strong>一个若言</strong>。
+    </li>
+    <li>第二次（第二部第五幕）：<code>Zum Augenblicke dürft' ich sagen: / Verweile doch, du bist so schön!</code>——<strong><code>dürft'</code>（dürfte，dürfen 的虚拟式二式）</strong>，直译是「<strong>我可以／我愿能够</strong>对那瞬间说」。★ 而且<strong>它前面紧跟着一个未来式的愿望</strong>：<code>Solch ein Gewimmel möcht' ich sehn, / Auf freiem Grund mit freiem Volke stehn.</code>（<strong>我愿看见这样的人潮，在自由的土地上，与自由的人民站在一起。</strong>）<span class="tag t-src">原书</span>
+    </li>
+  </ul>
+  <p>⇒ <strong>浮士德到死都没有「占有」那个瞬间。</strong> 他说的不是「我满足了，请留下」，而是「<strong>我愿这成为永恒</strong>」——<strong>他对瞬间说的不是「别走」，而是「若能如此，多好」</strong>。★ <strong>梅菲斯特自己也看出了这一点</strong>，他在浮士德死后讥讽：<code>Den letzten, schlechten, leeren Augenblick, / Der Arme wünscht ihn festzuhalten.</code>（<strong>这个可怜人想抓住的，只是最后那个糟糕、空虚的瞬间。</strong>）<span class="tag t-src">原书</span>——<strong>魔的讥讽，恰恰坐实了浮士德抓的不是「美」，而是「未完成」。</strong></p>
+  <h4>三、★ 梅菲斯特输了什么：他赢了一场，却输了另一场</h4>
+  <ul>
+    <li><strong>梅菲斯特「按内层赌约」宣布胜利</strong>：<code>Die Uhr steht still--</code>／<code>Der Zeiger fällt.</code>／<code>Er fällt, es ist vollbracht.</code>（<strong>钟停了，指针落下……它落下了，已成定局。</strong>）<span class="tag t-src">原书</span>——按字面，浮士德说出了那句话，他该赢。
+    </li>
+    <li><strong>但外层赌局的裁量权不在他手里</strong>。★ 外层赌局的标的<strong>不是「浮士德会不会说那句话」，而是「人会不会在追求中迷失」</strong>——而天主预付的判词是：<strong>「人只要在追求，就难免迷误」，但又「一个善人，在朦胧的冲动中，仍会意识到正路」</strong>（<code>Es irrt der Mensch so lang er strebt</code>／<code>Ein guter Mensch, in seinem dunklen Drange, / Ist sich des rechten Weges wohl bewußt.</code>）<span class="tag t-src">原书</span>。<strong>「迷误」不等于「迷失」</strong>——德文用两个不同的词（<code>irren</code>＝走错路；<code>verloren</code>／<code>Verderben</code>＝失落、沉沦）把两者分开。
+    </li>
+    <li><strong>天使的判词用的正是外层赌局的关键词</strong>：<code>Wer immer strebend sich bemüht, / Den können wir erlösen.</code>——<strong><code>strebend</code>（努力、追求）</strong>。天主要的就是这两个字。<strong>梅菲斯特引以为赢的那句话（说出「停留」），恰恰证明了浮士德从未「停留」</strong>：他一生都在 <code>streben</code>，连说「停留」的那一刻，也是在<strong>面向未来</strong>说的。
+    </li>
+  </ul>
+  <p>⇒ <strong>自洽的结论</strong>：<strong>结局不是「违反赌约」，而是「两个赌局分别结算」的结果。</strong> 内层赌局可以判浮士德输（他说了那句话）；但外层赌局——<strong>全书真正的框架</strong>——判的是「追求者是否迷失」，而<strong>浮士德一生从未真正停留</strong>，因此天使能来。★ <strong>这正是 <code>## 6</code> 必须单独立节的理由</strong>：没有《天上序幕》，这个结局就是败笔；有了它，这个结局就是全剧最精巧的一次结算。</p>
+  <h4>四、格蕾琴的位置：她被毁掉，却成了引路人</h4>
+  <p>★ 结尾救赎队伍里的名单，是本节第二件必须指出的事：<strong><code>UNA POENITENTIUM, SONST GRETCHEN GENANNT</code>（一个忏悔者，原名格蕾琴）</strong><span class="tag t-src">原书</span>。<strong>第一部里被浮士德毁掉的那个姑娘，第二部结尾回来引导他。</strong> 而且——★ <strong>她出场时的身份不是「受害者」，是「忏悔者」</strong>；她向圣母请求的，正是<strong>去教导、引导这个曾经毁掉她的人</strong>：</p>
+  <blockquote>
+    <p>她（原文并列标为「DIE EINE BÜSSERIN, SONST GRETCHEN GENANNT」）说：<code>Vergönne mir, ihn zu belehren, / Noch blendet ihn der neue Tag.</code>（<strong>请允许我去教导他，新的白昼还照得他睁不开眼。</strong>）<span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>⇒ <strong>这一步让全书的对称闭环</strong>：第一部的结尾，天上说 <code>Ist gerettet!</code>（她得救了）；第二部的结尾，她回来，把这份「得救」递给浮士德。<strong>歌德的救赎不是浮士德的成就，是格蕾琴的宽恕。</strong> ★ 而且——<strong>格蕾琴在第二部里一句话也不提「你毁了我」</strong>；她只请求「让我去教他」。<strong>这个沉默，比任何控诉都重。</strong></p>
+  <h4>五、诗体的收束：为什么最后一句必须是自由节奏的合唱</h4>
+  <p><code>Chorus mysticus</code> 用<strong>自由节奏（freie Rhythmen）</strong>结束全书，与前面所有格律（Knittelvers、三行体、颂歌体）都不同。★ <strong>这不是随意：全程的格律都在「地上」（人的语言、人的戏），只有最后一段合唱脱离了这个系统</strong>——<strong>格律的消失，本身就是「飞升」的形式标记</strong>。而德文末句 <code>Das Ewig-Weibliche / Zieht uns hinan.</code> 中 <strong><code>hinan</code>（向上）</strong> 与全剧开篇的<strong>向下</strong>（浮士德求地灵、钻入感官深处、<code>Laß in den Tiefen der Sinnlichkeit / Uns glühende Leidenschaften stillen!</code>）形成一对方向相反的词——<strong>全书从「向下」开始，以「向上」结束。</strong> ★ 另一处呼应：第一部《天上序幕》末尾梅菲斯特说「<strong>尘土他将吃，而且吃得高兴，像我的表姐那条著名的蛇</strong>」（<code>Staub soll er fressen, und mit Lust, / Wie meine Muhme, die berühmte Schlange.</code>）<span class="tag t-src">原书</span>——<strong>「吃灰」是魔鬼的赌注，而结局证明他没能兑现</strong>。</p>
+  <h4>六、把「副标题」装回书名之后，这个结局为什么仍然叫「悲剧」</h4>
+  <p>★ 最后回到第 5.1 节的那件事。<strong>若把副标题「一部悲剧」装回去，「浮士德被救」就不再显得突兀了</strong>——因为<strong>「悲剧」在这里指的不是「主角的结局」，而是「主角所代表的那种处境」</strong>：</p>
+  <ul>
+    <li><strong>被救的是浮士德</strong>（一个具体的、有名字的个人）；
+    </li>
+    <li><strong>没有被救的是他所代表的那种追求</strong>——<strong>他到最后也没能停下，他烧掉的人没有被复生，格蕾琴之外的人（菲勒蒙与鲍奇斯）的账没有人替他结</strong>。
+    </li>
+    <li>★ <strong>也就是说：「个人得救」与「处境是悲剧」并不矛盾，反而是同一件事的两面。</strong> 卫茂平 2019 所谓「<strong>洞悉人世的忧患意识</strong>」，说的正是这一层：<strong>歌德既相信「人不会彻底迷失」，又相信「追求者终究要付代价」</strong>。
+    </li>
+  </ul>
+  <p>⇒ <strong>这就是本报告对「结构是否自洽」的最终回答</strong>：<strong>自洽。</strong> 自洽的支点是三样东西——<strong>①《天上序幕》的外层赌局（判准）</strong>、<strong>②两次「停留」句的虚拟式（事实）</strong>、<strong>③格蕾琴的回归（宽恕）</strong>。三者缺一，结局都会塌；三者齐备，结局就是全剧最精巧的一次结算。★ <strong>而「悲剧」二字，是这一结算的落款。</strong></p>
+  <h3>可疑之处</h3>
+  <ol>
+    <li><strong>这套「两个赌局」读法是不是后人加上去的？</strong> ★ 歌德本人<strong>未在剧中明确并置两个赌局</strong>；这个结构是<strong>从文本内部长出来的</strong>，不是文本直接宣告的。<strong>本报告标明：这是结构再读，不是歌德的「使用说明」。</strong> 但它有硬证据支撑：<strong>《天上序幕》的赌局文字、浮士德两次「停留」句的虚拟式、天使判词里的 <code>strebend</code></strong>——这三样都在原文里，可逐一核对 <span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>「迷误（irren）≠ 迷失（verloren）」这个区分，是否被过度强调？</strong> ★ 德文 <code>irren</code> 与 <code>verloren</code> 的确是不同的词，天主的原话是 <code>Es irrt der Mensch so lang er strebt</code>；但<strong>歌德是否真的在做这个语义区分，学界有不同看法</strong>。★ 本报告承认这一步带 <span class="tag t-inf">推断</span> 成分，但它<strong>是可用原文检验的推断</strong>，而非凭空的诠释。
+    </li>
+    <li><strong>浮士德的受害者（格蕾琴一家、菲勒蒙与鲍奇斯）如何交代？</strong> ★ <strong>歌德的戏没有替他们讨账。</strong> 救赎的天平只称「追求」，不称「后果」。<strong>这是本书最不安的地方，也是它被称为「悲剧」而不只是「救赎剧」的理由。</strong> 读到最后，请把菲勒蒙与鲍奇斯的小屋记在心里——<strong>它的火，是这部「救赎」旁边没有熄灭的那一点光。</strong>
+    </li>
+    <li><strong>「被救」的到底是浮士德，还是「追求」本身？</strong> ★ 天使的判词主语是「<strong>凡不断努力者</strong>」（<code>Wer immer strebend sich bemüht</code>），不是「浮士德」。<strong>这句话可以被读成一条普遍规则</strong>，浮士德只是它的一个实例。★ 若是这样，则「浮士德得救」在戏里其实<strong>没有被写成一个道德事件</strong>，而是<strong>一次「类型」的确认</strong>——<strong>读到这里，你会明白为什么卫茂平说这部剧的底色是「洞悉人世的忧患意识」</strong>（第 5.1 节）。
+    </li>
+  </ol>
+</section>
+
+<section id="s11">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>概念／人物</th><th>一句话</th><th>出现在</th></tr></thead>
+    <tbody>
+      <tr><td><strong>浮士德</strong>（Faust／Heinrich）</td><td>读遍一切学问、与魔鬼打赌要求体验「整个人类」的学者</td><td>全书</td></tr>
+      <tr><td><strong>梅菲斯特</strong>（Mephistopheles）</td><td>自称「永远否定的精神」「总想作恶却总造出善的力量的一部分」</td><td>全书（初见于《书斋一》）</td></tr>
+      <tr><td><strong>格蕾琴／玛格蕾特</strong>（Gretchen／Margarete）</td><td>第一部被他毁掉、第二部以「忏悔者」身份引他飞升</td><td>第一部《街》至《地牢》；第二部《山谷》</td></tr>
+      <tr><td><strong>海伦</strong>（Helena）</td><td>古典美的化身；与浮士德结合生子欧福良</td><td>第二部第三幕</td></tr>
+      <tr><td><strong>欧福良</strong>（Euphorion）</td><td>海伦与浮士德之子，少年即坠亡；拜伦的影子</td><td>第二部第三幕</td></tr>
+      <tr><td><strong>瓦格纳</strong>（Wagner）</td><td>浮士德的助手；第二部制造出 Homunculus</td><td>第一部《夜》起；第二部第二幕</td></tr>
+      <tr><td><strong>Homunculus</strong></td><td>烧瓶中的人造小人，「纯粹的潜能」，寻求「生成」后碎裂</td><td>第二部第二幕</td></tr>
+      <tr><td><strong>地灵</strong>（Erdgeist）</td><td>浮士德召来的自然之灵；一句 <code>Du gleichst dem Geist, den du begreifst, / Nicht mir!</code></td><td>第一部《夜》</td></tr>
+      <tr><td><strong>忧虑</strong>（Sorge）</td><td>四个灰衣女人之一；唯一能进门者，把浮士德吹瞎</td><td>第二部第五幕《午夜》</td></tr>
+      <tr><td><strong>菲勒蒙与鲍奇斯</strong>（Philemon und Baucis）</td><td>全书唯一被正面写的普通人；小屋被烧死</td><td>第二部第五幕</td></tr>
+      <tr><td><strong>天上序幕</strong>（Prolog im Himmel）</td><td>天主与梅菲斯特的赌局；全书的框架与前提</td><td>第一部卷首</td></tr>
+      <tr><td><strong>两个赌局</strong></td><td>外层（天主—梅菲斯特）与内层（浮士德—梅菲斯特）</td><td>《天上序幕》与《书斋二》</td></tr>
+      <tr><td><strong>Knittelvers</strong></td><td>打油诗体，四音步对仗体；本书第一部主干</td><td>第一部诸场</td></tr>
+      <tr><td><strong>Terzine</strong></td><td>但丁式三行体；用于海伦</td><td>第二部第三幕</td></tr>
+      <tr><td><strong>小世界／大世界</strong></td><td>第一部＝个人生活；第二部＝历史与象征的场地</td><td>全书结构</td></tr>
+      <tr><td><strong><code>Das Ewig-Weibliche</code></strong></td><td>「永恒之女性」，引领飞升；歌德未定义</td><td>第二部《山谷》末句</td></tr>
+      <tr><td><strong><code>streben</code>（追求／努力）</strong></td><td>全书唯一被正面评价的德性；天使判词的动词</td><td>《天上序幕》《山谷》</td></tr>
+      <tr><td><strong>魔镜</strong>（Spiegel）</td><td>浮士德在女巫丹房照见的「世间女人的典范形象」</td><td>第一部《女巫的丹房》</td></tr>
+      <tr><td><strong>玫瑰</strong>（Rosen）</td><td>天使用以逼退魔鬼的武器；玫瑰＝爱</td><td>第二部《山谷》</td></tr>
+      <tr><td><strong>魔女的乘法口诀</strong>（Hexen-Einmaleins）</td><td>故意不可解的胡话；标记「魔法＝不可推理」</td><td>第一部《女巫的丹房》</td></tr>
+      <tr><td><strong>瓦伦廷</strong>（Valentin）</td><td>格蕾琴之兄；为「名誉」而决斗、临死诅咒妹妹</td><td>第一部《夜·格蕾琴门前街道》</td></tr>
+      <tr><td><strong>玛尔特</strong>（Marthe）</td><td>邻妇；悲剧的「世俗中介」</td><td>第一部《邻妇之家》起</td></tr>
+      <tr><td><strong>林叩斯</strong>（Lynkeus）</td><td>看塔人；「为看而生」的歌者，目睹自己造成的火</td><td>第二部第五幕《深夜》</td></tr>
+      <tr><td><strong>爱丽儿</strong>（Ariel）</td><td>精灵之首；以睡眠洗去浮士德第一部的记忆</td><td>第二部第一幕</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s12">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>德文原文（本报告底本）</strong>：Project Gutenberg <strong>#2229</strong>（<em>Faust: Der Tragödie erster Teil</em>）与 <strong>#2230</strong>（<em>Faust: Der Tragödie zweiter Teil</em>）——本报告全部德文引文的来源，可逐场／逐幕核对。
+    </li>
+    <li><strong>英译（对照用，B 级）</strong>：Bayard Taylor 1870–71 英译（"in the original metres"，Harry Clarke 插图），Project Gutenberg <strong>#14591</strong>。
+    </li>
+    <li><strong>中译</strong>：钱春绮（上海译文 1982，据 Weimar 1958）／董问樵（复旦 1983，据 Weimar 1958 ＋ Hamburger Ausgabe 1976）／绿原（人民文学 1994，据 Reclam 1983；1998 获首届鲁迅文学奖优秀文学翻译彩虹奖）／杨武能（安徽文艺 1998）／潘子立（天津人民 2013，据 Reclam 2000）／樊修章（译林 1993，据 Aufbau 1980）。
+    </li>
+    <li><strong>必读的中文批评文献</strong>：<strong>卫茂平</strong>，《〈浮士德〉汉译及解读考索——兼论其副标题"一部悲剧"的阙如》，《<strong>中国比较文学</strong>》<strong>2019 年第 3 期，第 2–15 页</strong>——本报告第 5.1–5.6 节的核心依据。
+    </li>
+    <li><strong>接受史背景</strong>：<strong>范大灿</strong>《人类的前景是光明的——读歌德的诗剧〈浮士德〉》（<strong>1980</strong>）；<strong>卫文珂</strong>《乐观的悲剧》（《<strong>读书</strong>》<strong>1983 年第 8 期</strong>）；<strong>简明</strong>《乐观的哲学》（《<strong>读书</strong>》<strong>1984 年第 3 期</strong>）；<strong>卢卡契</strong>《〈浮士德〉研究》（范大灿译，人民文学 1986）；<strong>阿尼克斯特</strong>《歌德与〈浮士德〉——从构思到完成》（晨曦译，三联 1986）。
+    </li>
+    <li><strong>歌德本人的其他文字</strong>（用于本报告 <span class="tag t-talk">作者谈话</span> 档）：《<strong>诗与真</strong>》（<em>Dichtung und Wahrheit</em>，自传）＋ <strong>与席勒的通信</strong>（1794–1805）＋ 晚年自述。★ <strong>《歌德谈话录》（Eckermann 1836）是他人记录，属 <span class="tag t-rep">转述</span>，本报告未将其计入 <span class="tag t-talk">作者谈话</span> 档。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s13">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>见同目录 <code>浮士德-来源清单.md</code>。</p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. 董问樵译本的出版年：1982 与 1983 两说并存</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：BOOK_SPEC 记「董问樵 1983（据 Weimar 1958 及 Hamburger Ausgabe 1976）」。我核对的<strong>两个独立来源给出不同年</strong>：卫茂平 2019 所附中译表（中国社科院转载版）记 <strong>复旦大学出版社 1983</strong>；而同一篇文章在《中国比较文学》官网的另一处 PDF 抽取、以及北京大学人文学部刊布的会议论文，记 <strong>复旦大学出版社 1982</strong>。
+    </li>
+    <li><strong>我查到了什么</strong>：<strong>「据 Weimar 1958 ＋ Hamburger Ausgabe 1976 译出」这一点两处一致</strong>；分歧只在出版年。
+    </li>
+    <li><strong>为什么没能定论</strong>：我<strong>未持版权页实物</strong>，无法判定是「1982 首版、1983 重印」还是著录差异。
+    </li>
+    <li>⇒ <strong>以你手中实物的版权页为准。</strong> 本报告正文并记两说。
+    </li>
+  </ul>
+  <h3>D2. 《书斋二》名句六种中译的来源性质</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：BOOK_SPEC 提供的六种译法，出处是<strong>刘岩《洞察人性与历史的 16 部文艺作品》第六讲课件</strong>。
+    </li>
+    <li><strong>我查到了什么</strong>：六种译法在意思方向上<strong>与德文原句一致</strong>（理论＝灰／生命之树＝绿）；但我<strong>未核对任何一种中文实体书</strong>。
+    </li>
+    <li><strong>为什么没能定论</strong>：这些是<strong>课件的汇总转引</strong>，不是逐字核对过的原书页码；其中<strong>樊修章的译法把两句主次颠倒、把 <code>grau</code> 译作「朦胧」</strong>，与其余五家在修辞策略上明显不同——<strong>这既可能是课件转录的偏差，也可能是原译如此，我无法判定。</strong>
+    </li>
+    <li>⇒ <strong>按「据公开译文转引、未核原书」处理</strong>；引用时请以实物为准。
+    </li>
+  </ul>
+  <h3>D3. 《阴郁的日子·旷野》（Trüber Tag. Feld）为何转为散文，我未找到歌德的说明</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：本报告第 7 节指出，第一部《阴郁的日子·旷野》在德文原文（PG #2229）里是<strong>散文体</strong>（无分行押韵），与全剧诗体形成突兀对照。
+    </li>
+    <li><strong>我查到了什么</strong>：<strong>文本事实</strong>我可直接在 PG #2229 上确认（该场确为散文段落）。但<strong>歌德本人为何在此弃韵，我没有找到他本人的说明</strong>。
+    </li>
+    <li><strong>为什么没能定论</strong>：常见解释是「情绪已不能成诗」，但这是<strong>后人的解释，不是歌德的原话</strong>。
+    </li>
+    <li>⇒ <strong>「这一场是散文体」可当事实；「为什么用散文」请视为解释性推断。</strong>
+    </li>
+  </ul>
+  <h3>D4. 「地牢」一场幻影与「格蕾琴」的关系</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：本报告第 7 节称，「瓦尔普吉斯之夜」浮士德所见的女孩幻影<strong>通行读法理解为格蕾琴</strong>。
+    </li>
+    <li><strong>我查到了什么</strong>：德文原文在该处<strong>并未在幻影出现时直呼格蕾琴之名</strong>，只是以一个女孩形象与「一缕红线」之类的暗示呈现。
+    </li>
+    <li><strong>为什么没能定论</strong>：幻影的身份是<strong>提示</strong>而非明说；且歌德原稿此处曾有涂改（据通行校勘说明，早期稿更明确，后作模糊化处理）。
+    </li>
+    <li>⇒ <strong>按通行读法理解，但标明是提示、不是原文断言。</strong>
+    </li>
+  </ul>
+  <h3>D5. 《歌德谈话录》的档位处理（重要）</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：BOOK_SPEC 3.3 明令：《歌德谈话录》（<strong>Eckermann，1836</strong>）是<strong>他人记录</strong>，性质属 <span class="tag t-rep">转述</span>，<strong>不得放进 <span class="tag t-talk">作者谈话</span> 档</strong>。
+    </li>
+    <li><strong>我查到／做了什么</strong>：本报告的 <span class="tag t-talk">作者谈话</span> 档<strong>只使用作者／译者的本人文字</strong>——《诗与真》自传、与席勒的通信、晚年自述；<strong>另在 1 处引「绿原《前言》」时标 <span class="tag t-talk">作者谈话</span>（那是译者而非歌德的文字，已在该处说明性质）</strong>。Eckermann 的谈话录<strong>未进入该档</strong>。
+    </li>
+    <li>⇒ <strong>本报告未使用《歌德谈话录》作为任何引文依据</strong>；若读者见到别处以「歌德说……」引谈话录，请知其为<strong>转述</strong>。
+    </li>
+  </ul>
+  <h3>D6. 我主动排除的来源</h3>
+  <ul>
+    <li><strong>盗版电子书站与整本书 PDF</strong>：检索中确曾出现若干「歌德全集下载」类站点。按本项目契约「只用合法来源，任何目的不例外」，<strong>一律不采用</strong>。
+    </li>
+    <li><strong>AI 生成的 SEO / 聚合内容</strong>：识别到若干自动生成的「名著解读」页，其特征是<strong>伪造场次编号、把第二部写成「四幕」、或给出无法核实的译者与年份</strong>。一律排除。
+    </li>
+    <li><strong>无署名的书评与读书笔记</strong>：用于了解「读者接受」，<strong>不用作任何事实依据</strong>。
+    </li>
+    <li><strong>一个转载版的卫茂平文章页面</strong>（中国社科院网站转载）：我<strong>只用它核对译文与转引段落</strong>，事实性内容回到《中国比较文学》官网条目与出版社著录交叉核对。
+    </li>
+  </ul>
+  <h3>D7. 「谷裕 2022 第二部译注」的著录细节</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：BOOK_SPEC 记「谷裕 2022（第二部译注）」。
+    </li>
+    <li><strong>我查到了什么</strong>：我<strong>未能找到该译注本的完整版权著录</strong>（出版社、ISBN、页数），故<strong>只在正文以「第二部译注本」泛称，未写出版社与年</strong>。
+    </li>
+    <li>⇒ <strong>以实物版权页为准。</strong> 这是本报告唯一一处「只知译者与年份、不知出版社」的条目。
+    </li>
+  </ul>
+  <h3>D8. 剧本行号与通行「行数」编号，本报告未逐行对齐</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：本报告用<strong>场名／幕名＋德文原句</strong>定位，未给出数字行号。
+    </li>
+    <li><strong>我查到了什么</strong>：PG #2229／#2230 的纯文本<strong>不带行号</strong>（通行德文校勘本如 Hamburger Ausgabe 才带行号）。
+    </li>
+    <li><strong>为什么没能定论</strong>：若要与学术文献逐行对齐，需要一个带行号的德文版；<strong>我未使用该版本</strong>。
+    </li>
+    <li>⇒ <strong>本报告全部定位均可凭「场名＋德文原句」在 PG #2229／#2230 上原样检索到</strong>；若需数字行号，请对照带行号的德文校勘本。
+    </li>
+  </ul>
+</section>
+
+<footer>
+  生成于 2026-10-07 · 来源清单与交叉验证记录见同目录 <code>浮士德-来源清单.md</code><br>
+  本页德文引文按 <b>原文 A 级</b> 处理：均出自 <b>Project Gutenberg #2229／#2230</b>，逐场／逐幕可核。<b>中文引文一律为 B 级</b> —— 据卫茂平 2019 与公开引文转引，<b>我未核对中文实体书</b>，措辞请以原书为准。★ 本书最要紧的一条提醒：<b>副标题「一部悲剧（Der Tragödie … Teil）」是书名的一部分，中文译本几乎全部弃译</b>（卫茂平 2019）。带 ⚠ 的条目见附录 D。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>
