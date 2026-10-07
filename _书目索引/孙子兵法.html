@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《孙子兵法》· 索引碎片</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+
+/* ===== 索引碎片页的版式覆盖（无侧栏，单列）===== */
+main{margin:0 auto;max-width:840px;padding:0 22px 90px}
+.hero{padding:40px 0 20px}
+.hero .kick{font-size:11.5px;letter-spacing:.08em;color:var(--ink3);font-weight:600;margin-bottom:6px}
+.frag{margin:20px 0 0;padding:20px 22px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.frag .row{margin:0 0 11px;font-size:14px;color:var(--ink2);line-height:1.75}
+.frag .row>b{color:var(--ink);font-weight:600;margin-right:2px}
+.frag ol.sub{margin:6px 0 0 0;padding-left:22px;font-size:13.5px;color:var(--ink2)}
+.frag ol.sub li{margin:4px 0}
+.frag code{background:var(--hover);padding:1px 5px;border-radius:4px;font-size:.92em}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+.chip{font-size:11.5px;padding:2px 9px;border-radius:5px;background:var(--hover);color:var(--ink2)}
+.cfoot{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
+.cfoot a{font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;text-decoration:none;
+  background:var(--accent-bg);color:var(--accent);border:1px solid var(--linkline)}
+.cfoot a:hover{background:var(--linkhover)}
+.cfoot a.ghost{background:var(--panel);color:var(--ink2);border-color:var(--line2)}
+ol.dir{list-style:none;margin:18px 0 0;padding:0}
+ol.dir li{padding:10px 14px;border:1px solid var(--line);border-radius:9px;background:var(--panel);margin:8px 0}
+ol.dir a{font-weight:600;color:var(--accent);text-decoration:none;font-size:14.5px}
+ol.dir a:hover{text-decoration:underline}
+ol.dir .m{font-size:12.5px;color:var(--ink3);margin-top:3px}
+</style>
+</head>
+<body>
+<div id="ctl"><button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button></div>
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+<header class="hero">
+  <div class="kick">索引碎片 · 孙子兵法</div>
+  <h1>《孙子兵法》</h1>
+<div class="chips"><span class="chip">状态：未标注已读／想读</span><span class="chip">收录：2026-10-07</span><span class="chip">形态：中国古典兵学 / 古典型 —— 全书第一批中国古典</span><span class="chip">核验级别：A（公版全文逐字核对</span></div>
+</header>
+<div class="frag">
+    <div class="row"><b>作者</b>孙武（字长卿，春秋末期齐国人，后仕吴，与伍子胥同时）。★ 「孙武其人是否实有」「十三篇成于何时」本身是持续近千年的学术争议，不是已决问题（详见 5.1）</div>
+    <div class="row"><b>原名</b>《孙子兵法》，又称《孙子》《吴孙子兵法》《孙武兵法》；《史记》称「十三篇」，《汉书·艺文志》著录作「《吴孙子》八十二篇，图九卷」（两说并存）。「兵法」是两汉魏晋的通称，正式命名为《孙子兵法》是隋唐以后的事</div>
+    <div class="row"><b>成书年代</b>约公元前 5 世纪（春秋末至战国初），学界另有战国中期说与「奠基于春秋、完成于战国、定型于秦汉」的分层说</div>
+    <div class="row"><b>★ 公版原文（本报告的底本）</b><strong>Wikisource《十一家註孫子》</strong>（zh.wikisource.org/wiki/十一家註孫子 及十三篇子页）——经文与十一家注文全部逐篇抓取并逐字核对；★ 异文对照用 Wikisource《孫子兵法》白文本与《孫子略解》（曹操注本）；宋人批评原文取《習學記言》卷四十六。★★ 本项目原拟的首选入口 <strong>ctext.org 实测反爬</strong>（返回「you do not have authorization to scrape this page」），<strong>未取到正文、也未绕过</strong> ⇒ <strong>A 级的依据是 Wikisource，不是 ctext.org</strong></div>
+    <div class="row"><b>校理本（★ 锚定版）</b><strong>《十一家注孙子校理》杨丙安 校理</strong>，中华书局「新编诸子集成」（兵家），2012-07 第 2 版，繁体竖排，443 页，ISBN 9787101087635。本报告全部「篇名＋句」定位锚定此本；另有黄朴民《孙子兵法译注》（浙江文艺，2023）可作白话对照</div>
+    <div class="row"><b>其他注本／校本</b>宋 吉天保 辑《十一家注孙子》（曹操、孟氏、李筌、贾林、杜佑、杜牧、陈皞、梅尧臣、王皙、何氏、张预）；宋《武经七书》白文本；清 孙星衍 校《孙子十家注》（Wikimedia Commons 有公版全 PDF）</div>
+    <div class="row"><b>篇幅</b><strong>十三篇</strong>——《计》《作战》《谋攻》《形》《势》《虚实》《军争》《九变》《行军》《地形》《九地》《火攻》《用间》；经文<strong>约 6000 字</strong>（★ 口径不一：本报告据十一家注本经文统计得 <strong>6110 个汉字</strong>；东汉高诱称「《兵法》五千言」；网传「6075 字」是又一统计口径 —— 没有唯一正确的字数）</div>
+    <div class="row"><b>状态</b>未标注已读／想读</div>
+    <div class="row"><b>收录</b>2026-10-07</div>
+    <div class="row"><b>形态</b>★ <strong>中国古典兵学 / 古典型</strong> —— 全书第一批中国古典，逐「篇」深挖（十三篇，非逐章）</div>
+    <div class="row"><b>产出</b><code>孙子兵法/</code> — <code>孙子兵法.md</code>（110,268 B，26,202 汉字）＋ <code>孙子兵法-来源清单.md</code>（12,717 B）＋ <code>孙子兵法-build.json</code></div>
+    <div class="row"><b>结构</b>正文 <strong>13 篇</strong> ＋ 附录；下部逐篇 13 节（编号 6–18，逐篇对应）；上部含一句话定位／全书骨架／核心论点／阅读建议／<strong>版本与注本怎么选</strong>／<strong>流行说法 vs 原文（8 条）</strong>／争议与局限；附录 A–D（D 10 条）</div>
+    <div class="row"><b>核验级别</b><strong>A（公版全文逐字核对，篇名＋句可定位）</strong>。★ 依据为 <strong>Wikisource《十一家註孫子》</strong>，十三篇经文与十一家注文全部逐字核对（剥离注文后经文共 6110 个汉字）。<strong>十三篇全部达 A，无一篇退到 B</strong>。★ 辖区三条：① <strong>中文校理本文本（杨丙安本正文与校记）＝ B</strong>（未持原书）；② <strong>银雀山汉简本释文、篇序与异文＝ B</strong>（未用简牍图版，全部转引自李零、苏芃、黄朴民、王正向）；③ 注文所引史事＝ B/C</div>
+    <div class="row"><b>备注</b></div>
+    <ol class="sub">
+      <li>★★ <strong>《火攻》篇末「慎战」段很可能是全书结语，而非火攻技术</strong>：传世本以《用间》为末，而银雀山篇题木牍以《火攻》为末、《用间》为倒数第二（李零《文史》第十七辑 1983；苏芃《文史》2022 年第 2 期）。这条把《计篇》开篇「兵者，国之大事」与篇末「此安国全军之道也」接成闭环 —— 今天读完《用间》觉得「戛然而止」，可能因为它本来就不是结尾。★ 该推论依赖木牍「火□」残字的一处释读，<strong>已如实标为有条件的推断</strong></li>
+      <li>★★ <strong>《形篇》「守则不足，攻则有余」在简本作「守则有余，攻则不足」——意思完全相反</strong>，而汉代文献引《孙子》多用后者；★ 张预注早已抗议这个读法（「后人谓『不足』为『弱』、『有余』为『强』者，非也」），而曹操注恰恰照传世本解 —— <strong>「你读的每一句都可能是版本的产物」的最直观证据</strong></li>
+      <li>★ <strong>「知彼知己，百战不殆」的注家内战</strong>：王皙、张预、孟氏、李筌四家明说「殆＝危」（王皙原文「殆，危也」），<strong>唯独杜牧写成「故有百战百胜也」</strong> —— 今天流传的「知己知彼，百战百胜」源头很可能就在这类注家松动。★ 另：十一家注里<strong>无一家</strong>把「不战而屈人之兵」读成和平主义，张预反而读成「明赏罚，信号令，完器械，练士卒」</li>
+      <li>★ <strong><span class="tag t-talk">作者谈话</span> 档在本报告的实际用法</strong>：孙武<strong>无任何个人文字留存</strong> ⇒ <strong>本报告不设「孙武访谈」</strong>，该档改用于<strong>注家与校勘者的自述</strong>（曹操《孙子略解·序》、杨丙安点校说明），且<strong>每次使用都写明这不是作者谈话</strong>；<strong>正文实际使用 0 次</strong></li>
+      <li>★ <strong>「6075 字」查不到任何出处</strong>；「曹操删定十三篇」亦非定论（《汉书·艺文志》作八十二篇）</li>
+    </ol>
+    <div class="row"><b>待核实</b>★ D1「6075 字」出处（查无）；★ D2 银雀山《孙子兵法》简数三口径（105／233／约 300 枚）未定；★ D3 篇题木牍「火□」残字释读（「以《火攻》为末篇」的推论依赖此项）；★ D4「隋代玉简《三十六计》」说未采信（与文本内证冲突）；★ D5「曹操是否对十三篇文本做过加工」未核到定论；★ D6「何氏」是否为「何延锡」未核到确凿依据；★ D7 杜牧《注孙子序》原文未见（《樊川文集》未核）；★ D8 银雀山简本整理报告未直读；★ D9 <span class="tag t-talk">作者谈话</span> 口径说明；★ D10「高诱五千言」与本报告 6110 字的统计口径差异</div>
+</div>
+<div class="cfoot">
+  <a href="../孙子兵法/孙子兵法.html">打开阅读页</a>
+  <a class="ghost" href="../孙子兵法/孙子兵法.md">内容正本</a>
+  <a class="ghost" href="../孙子兵法/孙子兵法-来源清单.md">来源清单</a>
+  <a class="ghost" href="孙子兵法.md">本页 Markdown</a>
+</div>
+</main>
+<script>/* 主题切换（本页自用的小脚本，不依赖书页主脚本） */
+(function(){var b=document.getElementById('themebtn');if(!b)return;
+function sync(){b.textContent=(document.documentElement.getAttribute('data-theme')==='dark')?'◐ 浅色':'◐ 深色';}
+b.addEventListener('click',function(){
+  var d=document.documentElement.getAttribute('data-theme')==='dark';
+  var n=d?'light':'dark';
+  document.documentElement.setAttribute('data-theme',n);
+  try{localStorage.setItem('ra-theme',n)}catch(e){}
+  sync();});
+sync();})();</script>
+</body>
+</html>

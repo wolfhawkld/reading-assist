@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《自然哲学的数学原理》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《自然哲学的数学原理》<small>阅读指引与精华解析 · 2026-10-07</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 六个核心论点</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 中文译本怎么选</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s7">6 第一编：物体的运动</a>
+    <a href="#s8">7 第二编：物体（在阻滞介质中）的运动</a>
+    <a href="#s9">8 第三编：宇宙体系（使用数学的论述）</a>
+    <a href="#s10">9 总释（General Scholium）</a>
+    <div class="grp">附录</div>
+    <a href="#s11">A 关键概念与人物速查</a>
+    <a href="#s12">B 延伸阅读</a>
+    <a href="#s13">C 来源清单</a>
+    <a href="#s14">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《自然哲学的数学原理》阅读指引与精华解析</h1>
+  <div class="sub">Philosophiæ Naturalis Principia Mathematica（1687 拉丁文初版；第 2 版 1713；★ 第 3 版 1726 权威本）</div>
+  <div class="meta">
+    <div><b>作者</b>艾萨克·牛顿（Isaac Newton，1643–1727）—— 旧历 1642-12-25 生于林肯郡伍尔索普，1727-03-31 卒于伦敦；剑桥三一学院卢卡斯数学教授（1669 起）、皇家学会会长（1703 起）、皇家造币厂督办／厂长（1696 起）。★ 1727 年已去世，本报告绝不假装他能接受访谈</div>
+    <div><b>成书年代</b>第 1 版 <b>1687</b>（拉丁文，伦敦，皇家学会授权刊行，Joseph Streater 印，Edmund Halley 出资）；第 2 版 <b>1713</b>（Roger Cotes 编，<b>增收「总释」</b>）；★ 第 3 版 <b>1726</b>（Henry Pemberton 编，权威本）。★ 我在公版拉丁全文（Gutenberg #28233）里核到题献页的 IMPRATUR：<b>S. PEPYS, Reg. Soc. PRÆSES.</b>，签发日 <b>Julii 5. 1686</b>，书中纪年「Anno MDCLXXXVII」</div>
+    <div><b>★ 大陆简体版</b><b>两个通行中译本，底本不同</b> —— ① <b>王克迪 译、袁江洋 校</b>，北京大学出版社「科学素养文库·科学元典丛书」，2006-01，354 页，ISBN 978-7-301-09551-5，定价 39.00 元：<b>据 Cajori 校订的 Motte 1729 英译本转译</b>（拉丁→英→中，少两跳的链更长）；② <b>赵振江 译</b>，商务印书馆「汉译世界学术名著丛书」，2006-07，694 页，ISBN 9787100045131：<b>据 1726 年拉丁文第三版译出</b>。★ 读者须先知道自己在读哪一个牛顿（见第 4 节）</div>
+    <div><b>早期中译</b>★ <b>郑太朴</b>（1901–1949）译，商务印书馆 <b>1931</b>，据<b>沃尔夫斯德译本</b>转译——第一个完整的汉译本，缺漏较多，1957 年重印；★ 清末 <b>李善兰</b>（1811–1882）＋<b>伟烈亚力</b>（Alexander Wylie, 1815–1887）＋<b>傅兰雅</b>（John Fryer, 1839–1928）合译《<b>数理格致</b>》（又名《奈端数理》），据英译本，<b>未出版</b>，抄本存剑桥大学图书馆</div>
+    <div><b>★ 书名用字</b>王克迪本编目题名多作《自然哲学<b>之</b>数学原理》（无「的」），赵振江本作《自然哲学<b>的</b>数学原理》；同一本书，检索时两个写法都试</div>
+    <div><b>篇幅</b>★ <b>三编 ＋ 总释</b>：第一编 物体的运动（<b>定义 I–VIII ＋ 运动的公理或定律 I–III ＋ Sects. I–XIV</b>，命题 I–XCVI）／第二编 物体在阻滞介质中的运动（<b>Sects. I–IX</b>，命题 I–LIII）／第三编 宇宙体系（<b>哲学中的推理规则 I–IV ＋ 现象 I–VI ＋ 命题 I–XLII ＋ 月球交会点的运动 ＋ ★★ 总释</b>）；书末另附通俗写法的《宇宙体系》</div>
+    <div><b>荣誉／地位</b>公认的经典力学奠基作；爱因斯坦：「至今还没有可能用一个同样无所不包的统一概念，来替代牛顿的关于宇宙的统一概念」（中译见出版方简介）。★ 但它<b>不是物理教科书</b>——用拉丁文写成，用<b>综合几何 ＋ 首末比（几何化的极限）</b>证明，结构是「定义—公理—命题」，<b>没有微积分记号、没有例题、没有习题</b></div>
+    <div><b>状态</b>未标注已读／想读 —— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 逐字核对了<b>合法公版全文</b>的段落 —— 公版<b>拉丁文原著</b>（Project Gutenberg <b>#28233</b>，1687 年第一版：定义 I–VIII、运动的公理或定律 I–III、第三编开篇的「假说」Hypotheses I–V、第二编「总释」、题献页）与公版 <b>Motte 英译</b>（Project Gutenberg <b>#76404</b>，据第三版系统：第一编定义与全部运动定律及推论、Sect. II 命题 I、Sect. III 命题 XI、第二编末尾总释与 Sect. IX 漩涡批判、第三编开篇、推理规则 I–IV、现象 I–VI、命题 I–VII 及 XIX／XXXVI／XLI、★★ 第三编总释全文）。引文一律给英译并附定位，必要时附拉丁原词</li>
+    <li><span class="tag t-talk">作者谈话</span> ★★ <b>这不是访谈 —— 牛顿 1727 年已去世，本报告绝不假装他能接受采访。</b>本档专用于<b>牛顿本人的其他文字</b>：1692–93 年致 <b>Richard Bentley</b> 的四封信（1692-12-10／1692-3-01-17／1692-3-02-11／1692-3-02-25）、《光学》的「疑问」（Queries，1704／1717）、《原理》第三编总释中的第一人称自述、以及 <i>Commercium Epistolicum</i>（1712／1713）。★ 凡本档引文，正文均写明其出处与日期，并说明它不是访谈</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、学术文献转引、百科或读者笔记，措辞可能与原书有出入。★ 本书中<b>总释的拉丁原句</b>属本档（公版拉丁全文 #28233 是 1687 年第一版，不含总释；拉丁原句经多个独立来源转引一致，我未打开 1726 年第三版扫描页逐字核对）</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    ★ 本书的核验有两处必须分开写的边界。其一，<b>总释是 1713 年第二版才加入的</b>——公版拉丁全文 #28233 是 <b>1687 年第一版</b>，<b>不含总释</b>，因此本报告对总释的<b>英译逐字核对（A 级）</b>，其<b>拉丁原句只标转引（B 级）</b>。其二，<b>中文引文一律另计 B 级</b>——王克迪本、赵振江本、郑太朴本均在版权期内，我只取用其书目、版权页与目录数据，<b>未逐字核对任何一处中文正文</b>，本报告的中文引文都是我自己对英译的转译，不是任何出版物的译文。★ 另有若干版本与译本细节存疑（「第二版 1718 年」这一流传说法是错的，正确为 <b>1713</b>；王克迪本第二编的节数、是否有 1992 年武汉出版社版、清末《数理格致》的存佚），均列入正文附录 D。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（本书分三层，必须分开写）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)"><b>① 英文／拉丁文原文部分：A 级。</b>依据两部<b>合法公版全文</b> —— Project Gutenberg <b>#76404</b>（Motte 1729 英译，据 1846 年纽约 Daniel Adee 版，<i>https://www.gutenberg.org/ebooks/76404</i>）与 Project Gutenberg <b>#28233</b>（1687 年拉丁文第一版，<i>https://www.gutenberg.org/ebooks/28233</i>）。逐字核对的范围：第一编 <b>定义 I–VIII 与全部定义后注释（含绝对时间／绝对空间、水桶实验）</b>、<b>运动的公理或定律 I–III 及注释、推论 I–VI</b>、Sect. I／II 命题 I／III 命题 XI；第二编 <b>末尾「总释」（Sect. VI，摆的实验记录）</b>与 <b>Sect. IX 注释（笛卡尔漩涡批判）</b>；第三编 <b>开篇、哲学中的推理规则 I–IV、现象 I–VI、命题 I–VII 及 XIX／XXXVI／XLI、★★ 总释全文（含脚注 1、2）</b>。<br><b>② 总释的拉丁原句：B 级（转引）。</b>★ 公版拉丁全文 #28233 是 <b>1687 年第一版，不含总释</b>（总释 1713 年才加入），故其拉丁语句经多个独立来源转引一致后才采用，我<b>未打开 1726 年第三版拉丁扫描页逐字核对</b>。<br><b>③ 中文引文部分：B 级。</b>依据王克迪译（北京大学 2006，ISBN 978-7-301-09551-5）、赵振江译（商务印书馆 2006，ISBN 9787100045131）、郑太朴译（商务印书馆 1931）——<b>三本均在版权期内，我未逐字核对中文正文</b>，只作书目与术语对照。<b>②③ 与本报告的中文译文，请以原书与拉丁原文复核。</b></p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>这本书要做的事情只有一件：用几何证明，把天上（行星、月球、彗星、潮汐）和地上（落体、抛体、摆）的运动，装进同一条数学定律里。</strong></p>
+  <p>它的方法是一套严格的公理化程序：先给<strong>定义</strong>（质量、运动的量、惯性、外力、向心力），再立<strong>公理</strong>（三条运动定律），然后用<strong>命题</strong>一节一节地推。第一编是纯粹的数学（什么样的力会产生什么样的轨道），第二编把阻力与流体加进来（顺手把笛卡尔的漩涡说算死），第三编才把这两编的结果对准真实的天空，推出<strong>万有引力</strong>并用它解释月球的运动、岁差、潮汐与彗星 <span class="tag t-src">原书</span>（第三编 命题 I–XLII 的分类，见 Motte 英译第三编目录）。</p>
+  <p>一句话结论（也是全书最该记住的一句）：<strong>「Hitherto I have explained the phænomena of the heavens and of our sea by the power of gravity, but have not yet assigned the cause of this power.」</strong>（到此为止，我已经用重力的力量解释了天空和我们海洋的现象，但还没有指出这种力量的<strong>原因</strong>。）<span class="tag t-src">原书</span>（第三编 总释，Motte 英译；拉丁原句「Hactenus Phænomena cælorum &amp; maris nostri per Vim gravitatis exposui, sed causam Gravitatis nondum assignavi」，见 <code>D1</code>）。</p>
+  <p><strong>它不是什么</strong>：不是物理学教科书（没有例题、没有习题、没有微积分记号）；不是科普读物；也<strong>不是一本关于「力是什么」的物理论著</strong>——牛顿自己反复声明，他给的是力的<strong>数学概念</strong>，不是物理原因。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>下表把《原理》的<strong>全部结构单位</strong>列全。编号沿用拉丁原著与 Motte 英译（两者命题编号一致，可对齐）。★ <strong>不要用页码</strong>：354 页本（王克迪本）与 694 页本（赵振江本）页码完全不同。</p>
+  <table>
+    <thead><tr><th>#</th><th>结构单位</th><th>这一部分讲什么</th><th>它在体系里处于哪一层</th></tr></thead>
+    <tbody>
+      <tr><td>—</td><td><strong>定义 I–VIII</strong>（Definitiones／Definitions）</td><td>物质的量（质量）／运动的量／物质的固有力（惯性）／外力／向心力／向心力的绝对量、加速量、运动量</td><td>术语地基。<strong>没有它，后面的命题无法陈述</strong></td></tr>
+      <tr><td>—</td><td><strong>定义后的注释</strong>（Scholium）</td><td>绝对时间与相对时间、绝对空间与相对空间、绝对运动与相对运动；<strong>水桶实验</strong></td><td>全书唯一一段「形而上学」，也是后世争议最多的一段</td></tr>
+      <tr><td>—</td><td><strong>运动的公理或定律 I–III</strong>（Axiomata sive Leges Motus）</td><td>惯性定律／运动的变化正比于外力／作用与反作用相等</td><td><strong>公理地基</strong>。全书所有命题都由它推出</td></tr>
+      <tr><td>—</td><td><strong>推论 I–VI ＋ 注释</strong></td><td>力的平行四边形（I）／力的合成与分解（II）／运动的量守恒（III）／重心不动（IV）／伽利略相对性（V）／平行加速力（VI）；注释里用摆的实验证明第三定律</td><td>把三定律展开成可用的工具</td></tr>
+      <tr><td><strong>1</strong></td><td><strong>第一编 Sect. I</strong> 首末比方法</td><td>用「最初比与最终比」定义极限</td><td>数学工具层（现代读者最难的一段）</td></tr>
+      <tr><td><strong>1</strong></td><td><strong>第一编 Sect. II</strong> 向心力的确定</td><td>面积定律（命题 I）：在中心力下，等时间扫过等面积</td><td>★ 把开普勒第二定律<strong>证明</strong>成了中心力的必然后果</td></tr>
+      <tr><td><strong>1</strong></td><td><strong>第一编 Sect. III</strong> 偏心圆锥曲线上的运动</td><td>命题 XI：在椭圆轨道上，力反比于到焦点的距离平方</td><td>★ 开普勒第一定律 ⇄ 平方反比</td></tr>
+      <tr><td><strong>1</strong></td><td><strong>第一编 Sect. IV</strong> 由已知焦点求轨道</td><td>给定力、给定焦点，求椭圆／抛物线／双曲线轨道</td><td>数学推演层</td></tr>
+      <tr><td><strong>1</strong></td><td><strong>第一编 Sect. V</strong> 焦点未知时求轨道</td><td>由观测点反求轨道</td><td>数学推演层（应用几何）</td></tr>
+      <tr><td><strong>1</strong></td><td><strong>第一编 Sect. VI</strong> 在已知轨道上求运动</td><td>求给定时刻物体在轨道上的位置（开普勒方程的几何解）</td><td>数学推演层</td></tr>
+      <tr><td><strong>1</strong></td><td><strong>第一编 Sect. VII</strong> 物体的直线上升与下降</td><td>自由落体与竖直上抛</td><td>回归伽利略</td></tr>
+      <tr><td><strong>1</strong></td><td><strong>第一编 Sect. VIII</strong> 任意向心力下的轨道</td><td>由轨道形状反求力的规律</td><td>反问题</td></tr>
+      <tr><td><strong>1</strong></td><td><strong>第一编 Sect. IX</strong> 运动轨道与拱点</td><td>轨道本身在转动时的运动、拱点进动</td><td>为月球拱点与岁差铺垫</td></tr>
+      <tr><td><strong>1</strong></td><td><strong>第一编 Sect. X</strong> 给定曲面上的运动；摆</td><td>曲面上的运动、摆线、摆的等时性</td><td>从天上回到实验</td></tr>
+      <tr><td><strong>1</strong></td><td><strong>第一编 Sect. XI</strong> 相互吸引的物体的运动</td><td>多体问题：命题 LXIX 证明「两个互相吸引的物体的绝对力之比＝它们的质量之比」</td><td>★ 从「物体被吸引」过渡到「物体相互吸引」</td></tr>
+      <tr><td><strong>1</strong></td><td><strong>第一编 Sect. XII</strong> 球体的吸引力</td><td>命题 LXX–LXXVIII：均匀球体对外部质点的吸引力，等同于全部质量集中在球心</td><td>★ 让「把行星当质点」这件事合法化</td></tr>
+      <tr><td><strong>1</strong></td><td><strong>第一编 Sect. XIII</strong> 非球形物体的吸引力</td><td>非球形（球状但不均匀）物体的吸引</td><td>数学推演层</td></tr>
+      <tr><td><strong>1</strong></td><td><strong>第一编 Sect. XIV</strong> 极小物体的运动</td><td>指向大物体各部分的向心力作用下，小物体的运动</td><td>数学推演层（此节被后人读作近似的先声）</td></tr>
+      <tr><td><strong>2</strong></td><td><strong>第二编 Sect. I</strong> 阻力正比于速度</td><td>线性阻力下的运动</td><td>阻力模型一</td></tr>
+      <tr><td><strong>2</strong></td><td><strong>第二编 Sect. II</strong> 阻力正比于速度平方</td><td>平方阻力下的运动</td><td>阻力模型二</td></tr>
+      <tr><td><strong>2</strong></td><td><strong>第二编 Sect. III</strong> 阻力部分正比速度、部分正比平方</td><td>混合阻力</td><td>阻力模型三</td></tr>
+      <tr><td><strong>2</strong></td><td><strong>第二编 Sect. IV</strong> 阻滞介质中的圆运动</td><td>在阻力介质中做圆周运动的物体</td><td>阻力模型四</td></tr>
+      <tr><td><strong>2</strong></td><td><strong>第二编 Sect. V</strong> 流体密度与压缩；流体静力学</td><td>流体的压强、可压缩性</td><td>流体力学基础</td></tr>
+      <tr><td><strong>2</strong></td><td><strong>第二编 Sect. VI</strong> 摆体的运动与阻力（＋本编总释）</td><td>用摆测介质阻力；<strong>本编的总释在这里，是一篇实验报告</strong></td><td>★ 争议最大的一节的邻居：它其实是实验记录</td></tr>
+      <tr><td><strong>2</strong></td><td><strong>第二编 Sect. VII</strong> 流体的运动与抛体的阻力</td><td>流体中运动的物体所受阻力</td><td>流体力学主体</td></tr>
+      <tr><td><strong>2</strong></td><td><strong>第二编 Sect. VIII</strong> 通过流体传播的运动</td><td>波在流体中的传播</td><td>波动理论</td></tr>
+      <tr><td><strong>2</strong></td><td><strong>第二编 Sect. IX</strong> 流体的圆运动</td><td>流体中的圆周运动；★ <strong>注释里正面清算笛卡尔的漩涡说</strong></td><td>★ 全书对外的「战场」</td></tr>
+      <tr><td><strong>3</strong></td><td><strong>第三编 哲学中的推理规则 I–IV</strong></td><td>不设多余原因（I）／同果同因（II）／由实验归纳普遍性质（III）／归纳结论在遇到反例前视为真（IV）</td><td>★ 牛顿的方法论宣言。1–3 条 1713 年才成「规则」，第 4 条 1726 年才加</td></tr>
+      <tr><td><strong>3</strong></td><td><strong>第三编 现象 I–VI</strong>（Phænomena）</td><td>木星系卫星、土星系卫星、五大行星绕日、金星水星（内行星）、各行星的等面积与倍半比、月球</td><td>★ 把观测数据摆成「公理」，这是牛顿式归纳的起点</td></tr>
+      <tr><td><strong>3</strong></td><td><strong>第三编 命题 I–IX</strong>（关于重力）</td><td>木卫、行星、月球所受的力指向中心且按平方反比；月球确实受重力；所有天体互相吸引</td><td>★ 全书的心脏</td></tr>
+      <tr><td><strong>3</strong></td><td><strong>第三编 命题 X–XXIV</strong>（天体与海的运动）</td><td>天体质量比、行星轨道、地球形状（扁球）、岁差（命题 XXXIX）</td><td>检验与推广</td></tr>
+      <tr><td><strong>3</strong></td><td><strong>第三编 命题 XXV–XXXIII</strong>（月球的运动量）</td><td>月球运动的详细理论：<strong>月球交会点的运动</strong></td><td>★ 全书最难、最不精确的部分</td></tr>
+      <tr><td><strong>3</strong></td><td><strong>第三编 命题 XXXVI–XXXVIII</strong>（使海运动之力）</td><td>潮汐</td><td>应用</td></tr>
+      <tr><td><strong>3</strong></td><td><strong>第三编 引理 I–III、命题 XXXIX</strong></td><td>岁差</td><td>应用</td></tr>
+      <tr><td><strong>3</strong></td><td><strong>第三编 引理 IV–XI、命题 XL–XLII</strong></td><td>彗星：求彗星轨道（抛物线）、彗星是天体、彗星轨道的确定</td><td>★ 彗星从「征兆」变成「天体」</td></tr>
+      <tr><td><strong>3</strong></td><td><strong>★★ 第三编 总释</strong>（General Scholium）</td><td>漩涡说的困难／天体的规律与「智慧而强大的存在」／上帝与空间与主宰／<strong>「我不做假说」</strong>／重力原因的未定／「某些极精细的精神」</td><td>★★ 全书最著名、也最被误读的一段</td></tr>
+      <tr><td>附</td><td><strong>《宇宙体系》</strong>（The System of the World）</td><td>第三编的通俗版（牛顿自己说明：第三编原用通俗方法写，后为防争论改成数学命题形式）</td><td>通俗复述，非新增内容</td></tr>
+      <tr><td>附</td><td><strong>索引</strong>（Index to the Principia）</td><td>术语索引</td><td>工具</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法提示</strong>：这本书<strong>不是「一章一个论点」，而是「一个公理系统逐层加材料」</strong>。你要找的「物理结论」几乎全在<strong>第三编</strong>；第一编是数学机器，第二编是一次大规模的排雷（把当时流行的漩涡说证伪），第三编才是把机器对准天空。<strong>如果你只读一部分，读第三编。</strong></p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>六个核心论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：自然哲学应当写成「定义—公理—命题」的形式</h3>
+  <p><strong>主张</strong>：牛顿在《作者序》里给全书定了位：他研究的是「<strong>自然哲学的数学原理</strong>」，方法是「从运动现象求自然界的力，再由这些力去说明其余现象」<span class="tag t-src">原书</span>（Motte 英译，第一版序）。</p>
+  <p><strong>依据</strong>：全书结构本身就是论据：定义 I–VIII 定术语，定律 I–III 立公理，此后所有内容都是「命题—证明—推论」。</p>
+  <p><strong>为什么重要</strong>：这是「<strong>数学化自然哲学</strong>」的样板。它把「讲道理」变成「可证明」：结论要么被证明（Q.E.D.），要么被构造出来（Q.E.I.）。后世物理学论文的体例，源头在这里。</p>
+  <h3>论点二：力是可以用几何「测」出来的，不必先知道它是什么</h3>
+  <p><strong>主张</strong>：牛顿对「力」只作<strong>数学定义</strong>。定义 VIII 之后他明确写道：「我在这里只想给这些力一个<strong>数学的概念</strong>，不去考虑它们的<strong>物理原因和所在</strong>。」<span class="tag t-src">原书</span>（第一编 定义 VIII 后的注释，Motte 英译原文：「For I here design only to give a mathematical notion of those forces, without considering their physical causes and seats.」）</p>
+  <p><strong>依据</strong>：他随后说，他用「吸引」「推斥」「趋向」这些词是<strong>不加区分地混用</strong>的，读者不要以为他在定义作用的种类或方式。</p>
+  <p><strong>为什么重要</strong>：这是全书最容易被误读的一步。<strong>「引力」在牛顿那里是一个描述现象的数学量，不是一种他声称已经理解的物理机制。</strong> 后人把「引力」读成一种实在的、不需要中介的作用，牛顿本人拒绝这个读法（见 <code>## 5.2</code>）。</p>
+  <h3>论点三：天上和地上是同一种力——「月球检验」</h3>
+  <p><strong>主张</strong>：第三编命题 IV 用一串具体数字证明：<strong>使月球留在轨道上的力，就是使苹果落地的力</strong>。他的推理是：设在月距处该力按平方反比增大到地面，则地面物体每秒应落 <strong>15 英尺 1 英寸 1 线</strong>（Paris 制）；而由巴黎的秒摆长度算出的自由落体距离，恰是这个数 <span class="tag t-src">原书</span>（第三编 命题 IV 及其注释）。</p>
+  <p><strong>依据</strong>：月地距离取 60 个地球半径（先按托勒密等人的观测，修正了第谷的折射误差），月球周期取 27 天 7 时 43 分；「若这两种力不同，落体将受两力共同推动，一秒内应落下两倍的距离，这与经验相违」。</p>
+  <p><strong>为什么重要</strong>：<strong>这是全书唯一一次用实验数据「对上」的检验，也是「万有引力」这个名字真正的出生证明。</strong> 在此之前的「引力」只是地球上的一种性质；在此之后，它是宇宙通用的。</p>
+  <h3>论点四：一切物体按质量互相吸引</h3>
+  <p><strong>主张</strong>：第三编命题 V 的推论 1–3 把命题 IV 推向全域：既然金星、水星与木星、土星是同类物体，且<strong>作用与反作用相等（定律 III）</strong>，那么木星吸引它的卫星，太阳吸引所有行星，<strong>一切行星彼此吸引</strong><span class="tag t-src">原书</span>（第三编 命题 V 及推论）。</p>
+  <p><strong>依据</strong>：命题 VII 进一步证明：<strong>指向任何物体的重力，正比于它所含物质的量</strong>；其依据是第一编命题 LXIX（两个互相吸引的物体的绝对力之比 ＝ 两物体的质量之比）<span class="tag t-src">原书</span>。</p>
+  <p><strong>为什么重要</strong>：这条把「引力」从<strong>运动学描述</strong>升级为<strong>相互作用</strong>。后来的「引力质量＝惯性质量」问题（即等效原理的经验基础）就从这里开始。</p>
+  <h3>论点五：笛卡尔的漩涡说站不住——第二编是一次有计划的排雷</h3>
+  <p><strong>主张</strong>：第二编整编都在算「物体在阻滞介质中会怎样运动」，最后在 Sect. IX 的注释里给出结论：<strong>行星不是在物质的漩涡里被带着走的</strong>。理由：漩涡各部分的速度规律，与开普勒式的椭圆轨道＋等面积定律无法同时成立 <span class="tag t-src">原书</span>（第二编 Sect. IX 注释）。</p>
+  <p><strong>依据</strong>：他举火星与金星轨道间距在处女宫初与双鱼宫初约为 3 比 2，若地球真被漩涡带着走，太阳的视日运动在处女宫初应大于 70 分、在双鱼宫初应小于 48 分，而观测恰好相反。</p>
+  <p><strong>为什么重要</strong>：这是 17 世纪<strong>两套宇宙论的总清算</strong>。牛顿不是靠「引力更简洁」取胜，而是<strong>通过计算漩涡必须满足的力学后果，证明它做不到</strong>。★ 这条批判是否公正，见 <code>## 5.4</code>。</p>
+  <h3>论点六：体系需要一个主宰者，但「原因」可以留白</h3>
+  <p><strong>主张</strong>：总释里，牛顿把太阳、行星、彗星这套「<strong>最美丽的系统</strong>」归给一位「智慧而强大的存在」的「<strong>计划与主宰</strong>」<span class="tag t-src">原书</span>（第三编 总释）；紧接着却明确说：<strong>引力性质的原因他还没有从现象中推出来，他不做假说</strong>。</p>
+  <p><strong>依据</strong>：他给出的边界极清楚：「凡是不能从现象中推出的，都应称作假说；而假说，无论是形而上学的还是物理的，无论是关于隐蔽性质的还是力学的，在实验哲学中都没有位置。」<span class="tag t-src">原书</span>（第三编 总释）。</p>
+  <p><strong>为什么重要</strong>：<strong>这两句话放在同一段里，是理解整本书的钥匙</strong>：牛顿把「谁安排了这一切」交给自然哲学（他的原话是「从现象出发讨论上帝，确实属于自然哲学」），却把「引力为什么这样起作用」划在自己方法论的红线之外。后世围绕这句话的争论，见 <code>## 5.1</code>。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <ol>
+    <li><strong>先读第三编，不要从第一页开始。</strong> 第三编的名字就叫「<strong>宇宙体系</strong>」，它是全书唯一直接讲「天空为什么这样转」的部分。建议顺序：总释 → 哲学中的推理规则 → 现象 → 命题 I–VII。
+    </li>
+    <li><strong>回头补第一编的「定义」与「运动定律」。</strong> 这两块是全书对后世影响最大的部分，也是唯一被当教科书教的内容（王克迪本把它们放在目录最前）。
+    </li>
+    <li><strong>第一编的十四节命题，只挑三处看</strong>：Sect. I（首末比，看方法）、Sect. II 命题 I（面积定律）、Sect. III 命题 XI（椭圆 ⇄ 平方反比）。其余十一节是数学推演，<strong>初读可以整段跳过</strong>。
+    </li>
+    <li><strong>第二编只读 Sect. IX 的注释</strong>（漩涡批判）。其余八节是流体阻力计算，除非你对流体力学史有兴趣。
+    </li>
+    <li><strong>总释必须逐字读。</strong> 它是全书唯一一段作者直接对你说话的文字。
+    </li>
+  </ol>
+  <h3>如果你是「已读」</h3>
+  <ol>
+    <li><strong>核对一件事：你读的是哪一版？</strong> 如果你手上是王克迪本，你读的是「<strong>Motte 1729 英译 → Cajori 1934 校订</strong>」这一条链；如果你读的是赵振江本，你读的是「<strong>1726 拉丁第三版</strong>」。<strong>两本的「总释」措辞、命题里的数值、乃至章节划分都可能不同</strong>（见 <code>## 4</code> 与 <code>D6</code>）。
+    </li>
+    <li><strong>把总释当作一篇论战文重读。</strong> 它不是在抒情，它是<strong>回应三件事</strong>：笛卡尔派说引力是「隐蔽性质」、莱布尼茨派说《原理》不是哲学、以及第一版第三编的通俗写法引起的误解。读的时候请找出这三条线索。
+    </li>
+    <li><strong>对照 Cohen 与 Whitman 的 1999 年英译</strong>（University of California Press）。那是 20 世纪最权威的英译，逐页给出拉丁原文的异文与编者说明；本报告的英译引文用的是公版的 Motte 英译，与 1999 年译法在个别词上不同（例如 <code>fingo</code> 译作 frame 还是 feign）。
+    </li>
+    <li><strong>附录 D 里的差异项要当心</strong>：中文世界流传的「第二版 1718 年出版」是错的（是 <strong>1713</strong>），「总释在第一版里就有」也是错的。
+    </li>
+  </ol>
+  <h3>★ 一条可执行的阅读路线（约 60 页）</h3>
+  <table>
+    <thead><tr><th>顺序</th><th>读什么</th><th>大约占全书</th><th>为什么</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>第三编 总释</td><td>很小</td><td>先把作者的方法论与立场拿到手</td></tr>
+      <tr><td>2</td><td>第三编 哲学中的推理规则 I–IV</td><td>很小</td><td>四条，读起来像公理</td></tr>
+      <tr><td>3</td><td>第三编 现象 I–VI</td><td>小</td><td>看牛顿怎么把数据写成「公理」</td></tr>
+      <tr><td>4</td><td>第三编 命题 I–VII</td><td>小</td><td>引力从月球推到全宇宙</td></tr>
+      <tr><td>5</td><td>第一编 定义 I–VIII ＋ 注释</td><td>小</td><td>术语与绝对时空（水桶实验在这）</td></tr>
+      <tr><td>6</td><td>第一编 定律 I–III ＋ 推论 I–VI</td><td>小</td><td>三定律与它们的工具</td></tr>
+      <tr><td>7</td><td>第一编 命题 I（Sect. II）与命题 XI（Sect. III）</td><td>小</td><td>看一次完整的几何证明</td></tr>
+      <tr><td>—</td><td><strong>可跳</strong>：第一编 Sects. V–X、XIII–XIV；第二编 Sects. I–VIII；第三编 命题 XXV–XXXIII（月球理论，最难最不精确）、命题 XL–XLII（彗星轨道构造）</td><td>约全书的四分之三</td><td>都是数学推演或专项应用</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本书中译最重要的一节</strong>：因为《原理》的中译状况里藏着一个大多数读者不知道的事实——<strong>两个通行的中译本，来自两个不同的底本</strong>。</p>
+  <h3>① 底本问题：读者须知道自己在读哪一个牛顿</h3>
+  <table>
+    <thead><tr><th></th><th><strong>王克迪 译 / 袁江洋 校</strong></th><th><strong>赵振江 译</strong></th></tr></thead>
+    <tbody>
+      <tr><td>出版社·年份</td><td>北京大学出版社 · 2006-01</td><td>商务印书馆 · 2006-07</td></tr>
+      <tr><td>丛书</td><td>科学素养文库·科学元典丛书</td><td>汉译世界学术名著丛书（哲学）</td></tr>
+      <tr><td>页数</td><td><strong>354 页</strong></td><td><strong>694 页</strong></td></tr>
+      <tr><td>ISBN</td><td>978-7-301-09551-5（7-301-09551-1）</td><td>9787100045131</td></tr>
+      <tr><td>定价</td><td>39.00 元</td><td>46.00 元</td></tr>
+      <tr><td>★ <strong>底本</strong></td><td><strong>据 Cajori 校订的 Motte 1729 英译本转译</strong>——即「<strong>拉丁原文 → Motte 英译（1729）→ Cajori 校订（1934）→ 王克迪中译</strong>」</td><td><strong>据 1726 年拉丁文第三版译出</strong>——即「<strong>拉丁原文 → 赵振江中译</strong>」，一条链少两跳</td></tr>
+      <tr><td>章节体例</td><td>第一编作「第 1 章…第 14 章」（对应 Sects. I–XIV）</td><td>第一编作「第Ⅰ部分…第ⅩⅣ部分」；第二编作「第Ⅰ…第Ⅸ部分」</td></tr>
+    </tbody>
+  </table>
+  <p><strong>这意味着什么</strong>：</p>
+  <ul>
+    <li><strong>赵振江本的底本更近原本</strong>。它是中文世界第一个（也是目前唯一一个）<strong>直接从 1726 年拉丁第三版译出</strong>的全译本。译者本人在译后记里说：「本书所据的版本是 1726 年出版的《自然哲学的数学原理》拉丁文第三版」，并明确说明 1931 年郑太朴本是「根据沃尔夫斯的德译本翻译的」<span class="tag t-rep">转述</span>（赵振江译本附言，转引自公开的译本介绍页）。
+    </li>
+    <li><strong>王克迪本的可读性可能更好，但它经手更多</strong>。Motte 的 1729 英译本身是「意译」成分较大的经典译本（18 世纪英译的典型风格），再经 Cajori 校订、再译成中文。<strong>你要找某一句话的「牛顿原文措辞」，王克迪本不能作为依据。</strong>
+    </li>
+    <li>⚠ <strong>一个需要注意的差异</strong>：据图书馆编目转录的<strong>王克迪本目录</strong>，第二编只列到<strong>「第 8 章」</strong>，而拉丁原著与赵振江本的第二编都是<strong>九节</strong>（Sect. VI「摆体的运动和阻力」是独立一节）。这可能是编目转录不完整，也可能是中译做了合并——<strong>我未能核实，列为 <code>D6</code></strong>。请你以实物目录为准。
+    </li>
+    <li>⚠ <strong>书名也要注意</strong>：王克迪本的编目题名常作《<strong>自然哲学之数学原理</strong>》（无「的」），赵振江本作《<strong>自然哲学的数学原理</strong>》。<strong>两个书名都指同一本书</strong>，检索时两个都试。
+    </li>
+  </ul>
+  <h3>② 郑太朴 1931 与清末未刊译本</h3>
+  <table>
+    <thead><tr><th>译本</th><th>译者</th><th>年份</th><th>底本</th><th>状况</th></tr></thead>
+    <tbody>
+      <tr><td>《数理格致》（又名《奈端数理》）</td><td><strong>李善兰</strong>（1811–1882）笔述 ＋ <strong>伟烈亚力</strong>（Alexander Wylie，1815–1887）与 <strong>傅兰雅</strong>（John Fryer，1839–1928）口译</td><td>清末（约 1850 年代起）</td><td>据<strong>英译本</strong>转译（据现存剑桥大学图书馆的一个手抄本判断）</td><td>★ <strong>未刊（或仅部分刊出）</strong>。只译出一部分，且「椭圜以下，尚未译出」；有说稿本曾被大同书局借失。<strong>现存抄本在剑桥大学图书馆</strong></td></tr>
+      <tr><td>《自然哲学之数学原理》</td><td><strong>郑太朴</strong>（1901–1949）</td><td><strong>1931</strong></td><td>★ <strong>据沃尔夫斯（Wolffers）德译本转译</strong>（德译本本身又据拉丁文）</td><td>第一个<strong>完整的</strong>汉译本（也是学界所称「第二个非西文译本」，日译本 1930）。商务印书馆出版，1957 年重印。缺漏较多</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>给读者的三条实用结论</strong>：</p>
+  <ol>
+    <li><strong>不要用郑太朴本来核对原文</strong>——它是「拉丁 → 德 → 中」三跳，且缺漏较多。它的价值是<strong>历史价值</strong>（中文世界第一次完整读到《原理》）。
+    </li>
+    <li><strong>李善兰等人的未刊译稿是重要的学术物件，不是可用的读本</strong>。它证明《原理》进入中文世界的时间比通常以为的早得多，但<strong>它没有出版，读者手上不可能有</strong>。
+    </li>
+    <li>★ <strong>注意一个流传的说法</strong>：网上说「李善兰译的《数理格致》1880 年载于《格致汇编》」，另有来源说「译稿散失」。<strong>两说并存，我未能定论</strong>（见 <code>D5</code>）。
+    </li>
+  </ol>
+  <h3>③ 读数学化文本的建议</h3>
+  <p>《原理》难读，但<strong>难的不是数学，是「证明的写法」</strong>。三条建议：</p>
+  <ol>
+    <li><strong>先读「命题陈述」，不读「证明」。</strong> 每条命题都是一句陈述（「若物体在椭圆上运动，求指向焦点的力的规律」），证明只是把它证出来。<strong>你要的是那句话在物理上意味着什么，不是几何步骤。</strong>
+    </li>
+    <li><strong>把「推论」（Cor.）和「注释」（Scholium）当作正文。</strong> 牛顿习惯把最重要的物理结论塞在推论里（例：「所有行星互相吸引」是第三编命题 V 的<strong>推论 3</strong>，不是命题本身）；把最重要的方法论表态塞在注释里（例：绝对时空、漩涡批判、「我不做假说」都在注释／总释里）。<strong>只读命题不读推论，你会漏掉一半。</strong>
+    </li>
+    <li><strong>跳过首末比（Sect. I）。</strong> 那是 17 世纪用几何语言重写极限的一次尝试，对现代读者是纯负担。<strong>你在中学学的极限和微积分已经够用了</strong>；只需要知道：牛顿用「最初比与最终比」替代了「无穷小量」，因为他觉得无穷小量的说法「有些生硬」（原书原文：the hypothesis of indivisibles seems somewhat harsh）。这也是他与莱布尼茨之争的深层原因（见 <code>## 5.3</code>）。
+    </li>
+  </ol>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <p>★ 下表的判据是「<strong>有没有回原文</strong>」。左栏是中文世界（及英文世界）流传最广的说法，右栏是我在<strong>公版原文／英译</strong>里核到的事实与定位。</p>
+  <table>
+    <thead><tr><th>#</th><th>流行说法</th><th>原文／事实（带定位）</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>「牛顿说引力是<strong>超距作用</strong>，不需要任何中介」</td><td>★ <strong>原文：牛顿恰恰否认这一点。</strong> 总释里他说「我还没有能从现象中推出重力性质的原因」，并把「不能从现象推出的」一律排除在实验哲学之外 <span class="tag t-src">原书</span>（<strong>第三编 总释</strong>）。在 <strong>1692/3 年 2 月 25 日致 Richard Bentley 的信</strong>里他说得更直白：「<strong>重力应当是物质固有的、本质的，以致一个物体可以在真空中、无需任何中介地作用于另一个物体、传递力，这在我看来是极大的荒谬</strong>，我相信任何在哲学事务上有思考能力的人都不会陷入它。」<span class="tag t-talk">作者谈话</span></td></tr>
+      <tr><td>2</td><td>「Hypotheses non fingo ＝ 牛顿<strong>反对提出理论</strong>，只要事实」</td><td>★ <strong>原文：他反对的是「从现象推不出来的假设」进入实验哲学。</strong> 总释原句：「凡是不能从现象中推出的，都应称作假说；而假说，无论是形而上学的还是物理的，无论是关于隐蔽性质的还是力学的，在实验哲学中都没有位置。在这种哲学里，命题从现象推出，再由归纳变为一般。」<span class="tag t-src">原书</span>（<strong>第三编 总释</strong>）。★ 注意：<strong>牛顿自己在同一篇总释的末尾就提了一个「假说」式的设想</strong>——一种「极精细的精神」（a most subtle Spirit）弥漫于一切物体之中（见 <code>## 9</code>）。所以「不做假说」是<strong>对方法划界</strong>，不是「不作任何设想」</td></tr>
+      <tr><td>3</td><td>「<strong>苹果砸在牛顿头上</strong>，他因此发现万有引力」</td><td>★ <strong>原文：没有「砸头」。</strong> 最早的一手记录是 <strong>William Stukeley</strong>《艾萨克·牛顿爵士生平怀思录》，记 1726 年 4 月 15 日（牛顿逝世前一年）的一次花园谈话：一个<strong>苹果落地</strong>打断了他的沉思，他自问「为什么苹果总是垂直落向地面，而不斜着或向上」<span class="tag t-rep">转述</span>（Stukeley 手稿完成于 1752，1936 年才出版）。另一个独立来源是伏尔泰《哲学通信》（1733，第十五封信），他从牛顿的外甥女 Catherine Conduitt 处听来。<strong>「砸中头」是后来的添加</strong></td></tr>
+      <tr><td>4</td><td>「牛顿<strong>晚年转向神学</strong>，因此不科学」</td><td>★ <strong>事实：宗教兴趣是终身一贯的，不存在「转向」。</strong> 1692–93 年（他 50 岁前后）与 Bentley 通信时，他开篇就说写《原理》时「有一个目的，就是让思考的人相信有一位神」<span class="tag t-talk">作者谈话</span>（1692-12-10 致 Bentley 信）；1713 年他在<strong>总释</strong>里把神学论证写进了正式出版的第六编（第三编）末尾 <span class="tag t-src">原书</span>。他毕生写下大量圣经年代学与神学手稿（体量远超其物理著作）。<strong>把「科学 vs 宗教」的现代框架套在 17 世纪的人身上，是时代错置</strong></td></tr>
+      <tr><td>5</td><td>「《原理》是一本<strong>物理学教科书</strong>」</td><td>★ <strong>原文：它是「自然哲学的数学原理」。</strong> 它用拉丁文写成，用<strong>综合几何＋首末比</strong>证明，结构是「定义—公理—命题」，<strong>没有微积分记号、没有例题、没有习题</strong>。牛顿自己在第一版序里说，他这本书是「展示自然哲学的数学原理」，而「哲学的全部困难似乎就在于：从运动现象求自然界的力，再由这些力说明其余现象」<span class="tag t-src">原书</span>（第一版 作者序）。它是<strong>论著</strong>，不是教材</td></tr>
+      <tr><td>6</td><td>「牛顿是<strong>用微积分</strong>写《原理》的」</td><td>★ <strong>原文：不是。</strong> 第一编 Sect. I 通篇是「首末比」，命题 XI 的证明是纯几何的；他甚至在 Sect. I 里说，采用「不可分」的说法「显得有些生硬」（the hypothesis of indivisibles seems somewhat harsh），所以改用「最初比与最终比」<span class="tag t-src">原书</span>（第一编 Sect. I 注释）。流数法（fluxions）是他在别处（《分析学》《流数法》）用的工具。<strong>这也是他与莱布尼茨之争的一个侧面</strong>：见 <code>## 5.3</code></td></tr>
+      <tr><td>7</td><td>「《原理》<strong>第一版</strong>就是我们现在读到的样子」</td><td>★ <strong>原文：不是。</strong> 我核到的公版拉丁全文（Gutenberg #28233）是<strong>1687 年第一版</strong>：第三编开篇是<strong>「假说」（HYPOTHESES，Hypoth. I–V）</strong>，而不是「哲学中的推理规则」；<strong>第一版里根本没有「总释」</strong>（全书只有一个「Scholium Generale」，在第二编末尾，内容是摆的实验记录）。「总释」与「我不做假说」是 <strong>1713 年第二版</strong>才加的，四条「规则」直到 <strong>1726 年第三版</strong>才齐 <span class="tag t-src">原书</span>（#28233 拉丁原文；#76404 英译对应位置）</td></tr>
+      <tr><td>8</td><td>「牛顿说『站在巨人的肩膀上』是<strong>讽刺胡克矮</strong>」</td><td>★ <strong>原文：那句出自 1676 年 2 月 5 日致胡克的信，是一句引语（源自 12 世纪的 Bernard of Chartres），且上下文是恭维。</strong> 该信在「巨人」之前先说：笛卡尔（在光学上）迈出了很好的一步，胡克又在几方面增补良多 <span class="tag t-rep">转述</span>（据公开的信件释读；我未逐字核对信件原件）。★ 另需注意：这句话出现在<strong>万有引力争端之前</strong>、两人正想和解之时，<strong>把它读成对胡克身材的讥讽，缺乏文本依据</strong></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是全报告最该细读的一节。</strong>《原理》获得的评价近乎神化，但它引起的争议同样巨大——而且<strong>大部分争议不是「它算错了」，而是「它算对了却不肯解释」</strong>。下面六条按「锋利程度」排列，最后两条回答「它今天还成立吗」。</p>
+  <h3>5.1 ★★ 「不做假说」被误读——这是全书最被误读的一句话</h3>
+  <p><strong>被误读成什么</strong>：牛顿主张「科学只谈事实、不作任何假设」，因此《原理》是「归纳主义」的典型，甚至是「反理论」的。</p>
+  <p><strong>必须回原文纠正</strong>：</p>
+  <blockquote>
+    <p>「Hitherto I have explained the phænomena of the heavens and of our sea by the power of gravity, but have not yet assigned the cause of this power. … But hitherto I have not been able to discover the cause of those properties of gravity from phænomena, and <strong>I frame no hypotheses</strong>; for whatever is not deduced from the phænomena is to be called an hypothesis; and hypotheses, whether metaphysical or physical, whether of occult qualities or mechanical, have no place in experimental philosophy.」<span class="tag t-src">原书</span>（<strong>第三编 总释</strong>，Motte 英译）</p>
+    <p>拉丁原句：「Rationem vero harum gravitatis proprietatum ex phænomenis nondum potui deducere, &amp; <strong>hypotheses non fingo</strong>. Quicquid enim ex phænomenis non deducitur, hypothesis vocanda est…」<span class="tag t-rep">转述</span>（拉丁文本经多个独立来源转引一致，见 <code>D1</code>）</p>
+  </blockquote>
+  <p><strong>逐点澄清</strong>：</p>
+  <ol>
+    <li><strong>他反对的不是「提出理论」，而是</strong>「<strong>把从现象推不出来的假设当作物理解释</strong>」。注意限定词：「metaphysical or physical, or of occult qualities or mechanical」——他点名的是<strong>四类</strong>假设，其中「mechanical」（力学式假设，即笛卡尔式的机械论解释）和「occult qualities」（隐蔽性质，即经院哲学式解释）<strong>是当时两派的主要武器</strong>。
+    </li>
+    <li>★ <strong>同一篇总释的末尾，他自己提了一个极像「假说」的东西</strong>：一种「<strong>极精细的精神</strong>」（a most subtle Spirit）贯穿一切物体，其振动可解释凝聚、电、光、乃至感觉与肌肉运动。原文还补一句：「但这些事情无法用几句话说明，我们也没有足够的实验」。<strong>一个「绝不做假说」的人不会这么写。</strong>
+    </li>
+    <li><strong>这句话是论战产物</strong>。G. E. Smith 指出，牛顿是在<strong>回应对其方法论的抱怨</strong>时，才在 1713 年第二版中把「现象」与「规则」单列成章、并加上总释的 <span class="tag t-src">原书</span>（G. E. Smith,〈The Methodology of the Principia〉, in I. B. Cohen &amp; G. E. Smith 编, <em>The Cambridge Companion to Newton</em>, Cambridge University Press, <strong>2002</strong>, pp. 138–173）。
+    </li>
+  </ol>
+  <p><strong>批评与澄清</strong>：</p>
+  <ul>
+    <li><strong>William Whewell</strong>（1794–1866）：在《归纳科学哲学》（<em>The Philosophy of the Inductive Sciences</em>, London, <strong>1840</strong>, p. 438）里指出，<strong>牛顿本人和开普勒正是靠「使用假说」才有那些发现的</strong>；问题不在用不用假说，而在「<strong>假说是否贴近事实、以及是否随时准备在被事实否定时放弃它</strong>」<span class="tag t-rep">转述</span>。
+    </li>
+    <li>★ <strong>一个冷知识式的反证</strong>：1687 年第一版里，「假说」这个词是被<strong>正当地用在正文标题上</strong>的（第三编开篇就是 HYPOTHESES I–V）；到了 1713 年，牛顿把同一批内容改叫「<strong>规则</strong>」（Rules）与「<strong>现象</strong>」（Phaenomena）<span class="tag t-src">原书</span>（#28233 拉丁第一版 vs #76404 英译第二／三版内容）。<strong>所以更准确的说法或许是：「我不做假说……我管它们叫规则。」</strong>
+    </li>
+  </ul>
+  <h3>5.2 ★★ 引力本质问题：牛顿说了什么，后人做了什么</h3>
+  <p><strong>这是本书最需要分层回答的一条。</strong></p>
+  <table>
+    <thead><tr><th>层次</th><th>牛顿说了什么</th><th>后人做了什么</th></tr></thead>
+    <tbody>
+      <tr><td><strong>现象层</strong></td><td>引力<strong>确实存在</strong>，并按所给出的规律起作用；「对我们来说，重力确实存在，并按我们已说明的规律起作用，就足以解释天体与海洋的一切运动了」<span class="tag t-src">原书</span>（总释）</td><td>直接接受，并当作可计算的对象</td></tr>
+      <tr><td><strong>原因层</strong></td><td>「引力性质的原因，我<strong>还没有能从现象中推出来</strong>」<span class="tag t-src">原书</span>（总释）；「引力<strong>的原因</strong>是我<strong>不假装知道</strong>的」<span class="tag t-talk">作者谈话</span>（1692/3-01-17 致 Bentley 信）</td><td>18 世纪起，「超距作用」被当作牛顿派的正统立场来接受/攻击</td></tr>
+      <tr><td><strong>机制层</strong></td><td>他明确拒绝「物质固有引力」：「<strong>请不要把这种观点归到我头上</strong>（pray do not ascribe that notion to me）」<span class="tag t-talk">作者谈话</span>（同上）；并称「一物体在真空中无需中介地作用于另一物体」是「<strong>极大的荒谬</strong>」<span class="tag t-talk">作者谈话</span>（1692/3-02-25 致 Bentley 信）</td><td>牛顿死后，欧陆（尤其笛卡尔派与莱布尼茨派）与英国牛顿派互指：前者说这是「回复隐蔽性质」，后者把「不需中介的吸引」写进教科书</td></tr>
+      <tr><td><strong>19–20 世纪</strong></td><td>——</td><td>广义相对论（1915）把引力重写成<strong>时空几何</strong>，彻底取消了「超距作用」这个概念：<strong>牛顿当年「拒绝解释原因」的留白，被一个更深的理论填上了</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>结论</strong>：「牛顿主张超距作用」是一个<strong>后人的标签</strong>，不是他的话。他主张的是<strong>「引力的数学规律可以被证明，引力的物理原因我不谈」</strong>。参见 <strong>Andrew Janiak</strong>〈Newton's Philosophy〉, <em>The Stanford Encyclopedia of Philosophy</em>（Fall 2021 Edition）；以及 <strong>Hylarie Kochiras</strong>, <em>Force, Matter, and Metaphysics in Newton's Natural Philosophy</em>（2008）<span class="tag t-rep">转述</span>。</p>
+  <h3>5.3 数学基础的历史性：几何＋极限，而不是流数</h3>
+  <p><strong>问题</strong>：《原理》用的不是微积分记号，而是<strong>综合几何 ＋ 首末比</strong>。这带来两个后果：</p>
+  <ol>
+    <li><strong>现代读者读不懂，主要不是物理难，而是记号难。</strong> 牛顿在 <strong>第一编 Sect. I</strong> 里说，因为「不可分的假说显得有些生硬」，他改用「最初比与最终比」；并写下著名的一句：<strong>「可以反驳说，如果不存在最终比，那么物体到达终点时的速度为零——但恰恰是『到达终点之前』的速度才是最终速度。」</strong>（大意）<span class="tag t-src">原书</span>（第一编 Sect. I 注释，Motte 英译）。<strong>这是一个用几何语言说出的极限论证。</strong>
+    </li>
+    <li><strong>它与莱布尼茨之争纠缠在一起。</strong> 时间线（据剑桥大学图书馆展览说明与公开文献）：
+    </li>
+  </ol>
+  <table>
+    <thead><tr><th>年份</th><th>事件</th></tr></thead>
+    <tbody>
+      <tr><td>1665–66</td><td>牛顿在「奇迹年」的私人笔记中发展出流数法的核心思想（微分—积分互逆），未发表</td></tr>
+      <tr><td>1675–76</td><td>莱布尼茨在巴黎／伦敦期间独立发展出微分法；1675 年写下积分号 ∫</td></tr>
+      <tr><td><strong>1684／1686</strong></td><td><strong>莱布尼茨率先公开发表</strong>微分与积分论文（<em>Acta Eruditorum</em>）</td></tr>
+      <tr><td>1687</td><td>《原理》出版，用首末比语言，未专论流数法本身</td></tr>
+      <tr><td>1699</td><td>Fatio de Duillier（牛顿圈内人）首次暗示莱布尼茨可能得益于牛顿</td></tr>
+      <tr><td><strong>1708</strong></td><td><strong>John Keill（1671–1721）</strong>在《哲学汇刊》上公开指控莱布尼茨「剽窃」</td></tr>
+      <tr><td>1711</td><td>莱布尼茨向皇家学会申诉</td></tr>
+      <tr><td><strong>1712</strong></td><td>皇家学会成立委员会调查——★ <strong>但牛顿时任会长，且报告的定调与起草主要出自他本人之手</strong></td></tr>
+      <tr><td><strong>1713（1 月）</strong></td><td>报告出版，题为 <strong><em>Commercium Epistolicum</strong></em>（《通信集》），裁定有利于牛顿</td></tr>
+      <tr><td>1716</td><td>莱布尼茨在争议未息中去世</td></tr>
+      <tr><td>1722</td><td>《通信集》第二版（伦敦）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>现代科学史的基本共识是：两人各自独立发明了微积分</strong>——「发明在先」的是牛顿（1660 年代），「<strong>发表在先</strong>」的是莱布尼茨（1684）。牛顿一方 1712 年的调查程序本身有瑕疵（<strong>利益相关者主持对自己有利的调查</strong>），这一点已被科学史界普遍承认 <span class="tag t-src">原书</span>（Cambridge University Library, <em>Footprints of the Lion</em> 展览说明，论 <em>Commercium Epistolicum</em>）。★ <strong>请特别注意</strong>：本报告在 <code>## 4b</code> 与 5.1 反复强调的「牛顿用几何写《原理》」，<strong>与「牛顿没有微积分」是两件事</strong>——他有，只是《原理》刻意不用它。</p>
+  <h3>5.4 第二编对笛卡尔漩涡说的批判，是否公正？</h3>
+  <p><strong>牛顿的论证</strong>（第二编 Sect. IX 注释）：如果行星被物质漩涡带着走，那么(a) 漩涡各部分的周期必须满足某个比例，才能让行星轨道满足开普勒第三定律；(b) 但要让各行星的小漩涡能在太阳的大漩涡里安静地运行，太阳漩涡各部分的周期又必须相等；(c) 而太阳与行星绕自身轴的自转，与漩涡运动应有的比例相差极远；(d) 彗星以极扁的轨道自由穿过天空各处的运动，与漩涡的观念「不相容」<span class="tag t-src">原书</span>（第二编 Sect. IX 注释）。</p>
+  <p><strong>反方（当时的）</strong>：</p>
+  <ul>
+    <li><strong>惠更斯（Christiaan Huygens，1629–1695）</strong>——当时欧陆科学界最有分量的人物——在《光论》（<em>Traité de la lumière</em>, <strong>1690</strong>）序言里给出了另一种科学观：力学里的论证<strong>不可能达到几何学那样的确定性</strong>，它的确定性来自「<strong>假设的原理的推论与观测现象完全吻合</strong>」，尤其是「<strong>用假说预言新现象而预言被证实</strong>」<span class="tag t-rep">转述</span>（转引自 G. E. Smith, 2002, 引 Huygens 1690 序）。★ <strong>这句话可以读作对《原理》方法论的一次正面竞争</strong>：你要求「从现象推出」，我认为科学的正道恰恰是「假设—检验」。
+    </li>
+    <li><strong>莱布尼茨</strong>：主张引力若不能给出机械解释，就等于退回了「隐蔽性质」；他在 1689 年的《学者纪事》论文里，正是用微分法去处理「动力学」，并<strong>反对牛顿的引力概念、偏爱笛卡尔的流体漩涡</strong><span class="tag t-src">原书</span>（Edward Worth Library 展览说明，论 Leinitz 1689 论文）。
+    </li>
+  </ul>
+  <p><strong>公正性的判断（我的分层意见，标 <span class="tag t-inf">推断</span>）</strong>：</p>
+  <ul>
+    <li><strong>就「算术后果」而言，牛顿的批判是有效的</strong>：他指出了漩涡说<strong>必须</strong>满足的一组具体比例，而观测不符合。这不是修辞，是计算。
+    </li>
+    <li><strong>但有两处可以质疑</strong>：(a) 他批判的是<strong>笛卡尔式的漩涡</strong>（一种具体的物理机制），而不是「存在某种传播引力的介质」这个更弱的命题——<strong>换句话说，他证伪了一个具体假说，不等于证伪了「引力需要介质」这一大类假说</strong>（他自己后来在总释里提的「精细精神」，其实正落在这一类里）；(b) 他的论证依赖开普勒第三定律与观测数据，而这些数据本身有误差，<strong>他给漩涡说的空间比它实际应有的还要小</strong>。
+    </li>
+    <li>★ <strong>一个必须点明的事实</strong>：<strong>笛卡尔的漩涡说在牛顿之前就已经在失势</strong>（开普勒的椭圆轨道与漩涡的圆轨道前提不兼容）。牛顿所做的是给出<strong>判决性的一击</strong>，不是<strong>唯一的一击</strong>。
+    </li>
+  </ul>
+  <h3>5.5 ★ 「牛顿晚年转向神学」这个通俗叙事的问题</h3>
+  <p><strong>这个叙事的两个版本</strong>：中文教科书的版本是「牛顿晚年滑入唯心主义的泥潭」；英文通俗版的版本是「理性之父晚年迷上了炼金术与末世预言」。<strong>两者都错在同一件事上：把宗教兴趣当成「晚年的退化」。</strong></p>
+  <p><strong>事实</strong>：</p>
+  <table>
+    <thead><tr><th>时间</th><th>证据</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1692–93</strong>（牛顿约 50 岁）</td><td>致 Richard Bentley 四封信：一是写《原理》时「有一个目的，就是让思考的人相信有一位神」；二是反对把引力当作物质固有；三是称超距作用是「极大的荒谬」<span class="tag t-talk">作者谈话</span></td></tr>
+      <tr><td><strong>1713</strong>（第二版）</td><td><strong>总释</strong>公开写入神学论证：「这最美丽的太阳、行星与彗星的系统，只能出自一位智慧而强大的存在的计划与主宰」<span class="tag t-src">原书</span>（第三编 总释）。<strong>这不是私人笔记，是印在书里的。</strong></td></tr>
+      <tr><td><strong>终身</strong></td><td>大量圣经年代学、教会史与神学手稿；他私下持非正统（反三位一体）立场，并策略性地不公开（<strong>Stephen Snobelen</strong> 称之为「尼哥底母主义」Nicodemism）<span class="tag t-rep">转述</span></td></tr>
+    </tbody>
+  </table>
+  <p><strong>叙事是怎么来的</strong>：</p>
+  <ul>
+    <li><strong>John Maynard Keynes</strong> 在 <strong>1936 年 7 月</strong>苏富比「朴茨茅斯收藏」拍卖会上买下牛顿的大批手稿，读后大受震动。他为皇家学会牛顿三百年纪念（原定 1942，因二战延至 1946）写了讲稿《<strong>牛顿其人</strong>》（<em>Newton, the Man</em>）；他 1946 年去世，讲稿由其弟 Geoffrey 于 <strong>1946 年 7 月 17 日</strong>代读。其中一句成为名言：「<strong>牛顿不是理性时代的第一人。他是最后一位魔法师</strong>，最后一位巴比伦人与苏美尔人……」<span class="tag t-src">原书</span>（Keynes, "Newton, the Man", 1946/1947）★ <strong>注意：「最后的魔法师」这句经常被单独摘出来当标题用，但 Keynes 的原意是说他「把宇宙看成一个谜、一份可由纯思维解读的密文」，是在描述他的世界观，不是给他贴「不科学」的标签。</strong>
+    </li>
+    <li>后续研究：<strong>Betty Jo Teeter Dobbs</strong>《牛顿炼金术的基础》（<em>The Foundations of Newton's Alchemy</em>, Cambridge UP, <strong>1975</strong>）与《天才的两副面孔》（<em>The Janus Faces of Genius</em>, Cambridge UP, <strong>1991</strong>）；<strong>Richard S. Westfall</strong>《永不停息：牛顿传》（<em>Never at Rest: A Biography of Isaac Newton</em>, Cambridge UP, <strong>1980</strong>）；<strong>Michael White</strong>《最后的炼金术士：牛顿传》（<em>Isaac Newton: The Last Sorcerer</em>, <strong>1997</strong>）。
+    </li>
+    <li>中文世界的相关讨论：<strong>江晓原</strong>（上海交通大学科学史教授）在〈牛顿与炼金术〉（《新发现》<strong>2018 年第 12 期</strong>）中指出：<strong>「他几乎就是在业余时间弄了个万有引力。」</strong>
+    </li>
+  </ul>
+  <p>★ <strong>正确的说法</strong>：牛顿<strong>从来不是</strong>「科学 vs 宗教」框架里的人物。他的自然哲学、他的神学、他的炼金术，在他自己看来是<strong>同一件事的三个入口</strong>——都是解读上帝写在自然与圣经里的密码。<strong>「转向」这个词本身就是错的。</strong></p>
+  <h3>5.6 ★★ 中译底本问题（本书的专属条目）</h3>
+  <p>这一条在本报告里必须单列，因为<strong>它决定了你手上那本书的每一个字</strong>：</p>
+  <ol>
+    <li><strong>王克迪本</strong>＝拉丁原文 → <strong>Motte 英译（1729）</strong> → <strong>Cajori 校订（1934）</strong> → 中文。<strong>用在三处会有风险</strong>：核对某个命题的原始措辞、比对第一版与第三版的差异、引用带拉丁原词的术语。
+    </li>
+    <li><strong>赵振江本</strong>＝<strong>1726 年拉丁第三版</strong> → 中文。底本更近原本。★ 但要注意：<strong>第三版是最「修订过」的一版</strong>（包含第二版加的「总释」与第三版对规则的改写）。<strong>如果你想看 1687 年第一版说了什么（例如「假说」章），两个中译本都帮不上忙</strong>——它们都以修订后的版本为准。
+    </li>
+    <li>★ <strong>因此，本报告给出的所有英译引文，都取自公版的 Motte 英译（Gutenberg #76404）</strong>，与王克迪本的<strong>英文底本同源</strong>，但中文字句是王克迪的、不是我的。<strong>你需要知道：你在中文里读到的每一句话，至少经过了两次语言转换（拉丁→英→中）。</strong>
+    </li>
+  </ol>
+  <h3>5.7 体裁与可读性：这本书按今天的标准哪里读不下去</h3>
+  <table>
+    <thead><tr><th>障碍</th><th>具体表现</th><th>应对</th></tr></thead>
+    <tbody>
+      <tr><td><strong>语言</strong></td><td>拉丁文（或 18 世纪英译体中文），长句、无小标题、术语无现代对应</td><td>读中译；读第三编</td></tr>
+      <tr><td><strong>数学记号</strong></td><td>全用综合几何（比例、相似三角形、圆锥曲线性质），<strong>无坐标、无符号代数、无微积分</strong></td><td>只看命题陈述；跳过 Sect. I</td></tr>
+      <tr><td><strong>命题编号体系</strong></td><td>命题、定理、问题、引理、推论、注释六种编号交叠，交叉引用极密</td><td>用本报告 <code>## 1</code> 的表定位</td></tr>
+      <tr><td><strong>论证颗粒度</strong></td><td>每条命题独立成篇，前后跳跃（Sect. V 忽然回到纯几何）</td><td>分块读，按 <code>## 3</code> 的路线</td></tr>
+      <tr><td><strong>时代预设</strong></td><td>默认读者熟悉欧几里得、阿波罗尼乌斯、开普勒、惠更斯</td><td>现补：只需知道开普勒三定律、伽利略落体、欧几里得比例论</td></tr>
+    </tbody>
+  </table>
+  <h3>5.8 它今天还成立吗——分角度回答</h3>
+  <table>
+    <thead><tr><th>角度</th><th>结论</th></tr></thead>
+    <tbody>
+      <tr><td><strong>作为物理学</strong></td><td><strong>框架被取代，内容大部分仍精确</strong>。广义相对论取代了牛顿引力（水星近日点进动、引力波、GPS 校时、光线偏折等），但在弱场、低速下牛顿引力精度极高，仍是航天工程与日常计算的标准工具。<strong>运动三定律仍是经典力学的公理。</strong></td></tr>
+      <tr><td><strong>作为数学</strong></td><td><strong>首末比早已被极限与实数理论取代</strong>；但《原理》里的许多结果仍是现代数学的经典（Newton 对阿贝尔积分超越性的拓扑证明，被 V. I. Arnold 认为「超前了 200 年」<span class="tag t-rep">转述</span>）。</td></tr>
+      <tr><td><strong>作为科学方法论的文献</strong></td><td>★ <strong>它的地位不降反升</strong>。G. E. Smith（2002）等一系列研究把《原理》读成一部<strong>方法论的实验</strong>：「从现象推出」到底如何操作，牛顿自己也没有一句话说清，三百年来的争论正由此而来。</td></tr>
+      <tr><td><strong>作为科学史读物</strong></td><td><strong>必读</strong>，但要带着「它是论战、不是教科书」的意识读。总释是本报告推荐的唯一「可以当散文读」的段落。</td></tr>
+      <tr><td><strong>作为入门读物</strong></td><td>★ <strong>不推荐</strong>给零基础读者。给中学生或初读者的替代品：Chandrasekhar《Newton's Principia for the Common Reader》（Oxford, 1995）；或直接读现代力学教材，再回来读《原理》的第三编。</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一个反直觉的判断</strong>：<strong>这本书最经得起时间考验的部分，不是它的物理结论，而是它把「什么是可接受的科学解释」这个问题摆到了台面上的那一段</strong>——总释。<strong>物理内容今天用更简单的语言就能重述，但「我不做假说」这句话引起的争论，三百年来一个字都没有过时。</strong></p>
+  <p>★ <strong>结构说明</strong>：本书正文按「<strong>三编 ＋ 总释</strong>」划分，本部分 <code>## 6</code>–<code>## 9</code> 与之对应。每一编内部，我用 <code>###</code> 归纳该编的<strong>定义／定律／命题群</strong>（第一编 Sects. I–XIV、第二编 Sects. I–IX、第三编 规则＋现象＋命题群）。★ <strong>不复述公式推导</strong>：每个结构单位只回答「它在物理上意味着什么」。定位一律用「<strong>第X编 ＋ 定义／定律／命题号</strong>」，<strong>不用页码</strong>。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>第一编：物体的运动</span><span class="caret">▾</span></h2>
+  <h3>这一编在解决什么</h3>
+  <p><strong>第一编解决的是一个纯数学问题：给定「力」，求「轨道」；给定「轨道」，求「力」。</strong></p>
+  <p>它不含任何关于真实天体的断言——那些留到第三编。第一编做的是<strong>造机器</strong>：把「向心力」这个概念的数学后果推到底，先后走向心力作用下物体的运动规律、离心圆锥曲线轨道的求法、由轨道反求力的规律、多体与球体的吸引。★ <strong>一个必须记住的比例</strong>：第一编占了全书一半以上的篇幅，但它<strong>一条也没说太阳系是怎样的</strong>；它只是在回答「如果力是这样，那么运动会怎样」。</p>
+  <p><strong>这编的成果是一张对照表</strong>（后文会逐条展开）：</p>
+  <table>
+    <thead><tr><th>轨道形状</th><th>力（指向焦点）</th></tr></thead>
+    <tbody>
+      <tr><td>圆（心在圆心）</td><td>正比于距离</td></tr>
+      <tr><td>椭圆（焦点为力心）</td><td>反比于距离<strong>平方</strong></td></tr>
+      <tr><td>抛物线／双曲线（焦点为力心）</td><td>同样反比于距离<strong>平方</strong></td></tr>
+    </tbody>
+  </table>
+  <p>这张表的右边一列，就是<strong>万有引力定律的数学形式</strong>。第一编把它证出来，第三编把它用出去。</p>
+  <h3>关键定义·定律·命题</h3>
+  <p>第一编的「关键内容」分三层：<strong>定义 I–VIII</strong>（术语）→<strong>运动的公理或定律 I–III 与六条推论</strong>（工具）→<strong>Sects. I–XIV 的命题群</strong>（结果）。★ 前两层是《原理》对后世影响最大的部分，也是唯一被当教科书教的内容，所以下面<strong>单独展开</strong>。</p>
+  <h3>定义 I–VIII：牛顿在定义什么（附：绝对时间与绝对空间）</h3>
+  <p>八个定义分成四组，组与组之间是有递进关系的：</p>
+  <p><strong>第一组：两个「量」（定义 I–II）</strong></p>
+  <ul>
+    <li><strong>定义 I（物质的量，quantitas materiæ）</strong>：「由密度与体积共同产生」。★ 这是<strong>质量</strong>的雏形；他在注释里说「就是<strong>重量</strong>的比例」，并说这是由摆的实验准确验证的（<strong>这是「惯性质量＝引力质量」问题的第一次露面</strong>）。他还特意声明：这里不考虑可能有贯穿物体间隙的介质。
+    </li>
+    <li><strong>定义 II（运动的量，quantitas motus）</strong>：「由速度与物质的量共同产生」。★ 这就是<strong>动量</strong>。他补一句：「整体的运动是各部分运动之和」——注意，这是<strong>矢量求和的思想</strong>，只是当时还没有矢量记号。
+    </li>
+  </ul>
+  <p><strong>第二组：两种「力」（定义 III–IV）</strong></p>
+  <ul>
+    <li><strong>定义 III（物质的固有力，vis insita）</strong>：物体抵抗、坚持其现状（静止或匀速直线运动）的能力。他说这个词「可以用一个最有意义的名字」叫作 <strong>vis inertiæ（惯性力）</strong>。★ 注意他的表述的精确：他<strong>不是在说物体「懒」</strong>，而是说这个「力」只在<strong>别的力试图改变它</strong>时才表现出来，且「既可以看作<strong>抵抗</strong>，也可以看作<strong>冲量</strong>」。<strong>他还附带否定了绝对静止的可判定性</strong>：「运动与静止，通常所设想的那样，只是相对地区分；而通常被认为静止的物体，并不总是真的静止。」
+    </li>
+    <li><strong>定义 IV（外力，vis impressa）</strong>：施加于物体、以改变其状态的<strong>作用</strong>。★ 关键句：「这个力只存在于这个作用之中；作用结束时，它就不再留在物体里了。」<strong>这是把「力」定义为一种瞬时的作用，而不是物体的一种持续属性</strong>——这句话是理解「牛顿不做假说」的钥匙之一。
+    </li>
+  </ul>
+  <p><strong>第三组：向心力及其三重量（定义 V–VIII）</strong></p>
+  <ul>
+    <li><strong>定义 V（向心力）</strong>：使物体被吸引或推动、或以任何方式<strong>趋向一个作为中心的点</strong>的力。★ 他举了四个例子：<strong>重力</strong>（物体趋向地心）、<strong>磁力</strong>（铁趋向磁石）、<strong>行星的力</strong>（使行星不断偏离本来会走的直线、改成走曲线轨道）、以及<strong>投石索里石头的离心倾向</strong>。★★ <strong>投石索的例子是全书最好的一个教学比喻</strong>：手给石头的、把石头拉回手中的那个力，就是向心力；石头想飞出去的那个倾向，就是离心倾向。
+    </li>
+    <li>★★ <strong>定义 V 里藏着全书最有名的一段思想实验——「牛顿大炮」</strong>：他写道，如果从山顶以足够大的速度水平抛出一块铅球，它会在落地前跑出两英里；<strong>若速度加倍或十倍，射程也加倍或十倍；继续加大速度，它可能绕地球一整圈、甚至永远不落到地面，而飞入天空继续运动</strong>。然后他立刻说：「<strong>以同样的方式，抛体可以靠重力绕地球转；月球也可以，靠重力、或任何别的把它推向地球的力，不断偏离它本来要走的直线，而在现在这个轨道上运转。</strong>」<span class="tag t-src">原书</span>（第一编 定义 V 及其后的说明）★ <strong>这就是「月球是被抛出去的波」的最初版本，写在定义里，而不是写在命题里。</strong>
+    </li>
+    <li><strong>定义 VI（向心力的绝对量）</strong>：与「从中心传递力量的原因」的效力成正比。他举磁力为例（磁石大小与强度不同）。
+    </li>
+    <li><strong>定义 VII（加速量）</strong>：与「在给定时间内所产生的速度」成正比。★ 这是<strong>加速度</strong>。他明确说：等距处重力处处相同，因为它<strong>同等加速一切落体，无论重轻大小</strong>。
+    </li>
+    <li><strong>定义 VIII（运动量）</strong>：与「在给定时间内所产生的运动的量」成正比。★ 这就是<strong>力（在给定时间内的动量变化）</strong>。他说：<strong>「这些力的量，为简洁起见，我们称之为运动力、加速力和绝对力。」</strong> 并说明三者的分工：<strong>运动力属于物体，加速力属于物体的位置，绝对力属于力的中心。</strong>
+    </li>
+  </ul>
+  <p>★★ <strong>定义 VIII 之后那一段，是全书方法论上最重要的一段话</strong>（必须整段读）：</p>
+  <blockquote>
+    <p>「<strong>我就是以同样的意义把吸引和推斥称为加速的和运动的；并且把吸引、推斥或任何种类趋向中心的倾向这些词互相混用、不加区分，是从数学上、而不是从物理上考虑这些力的；所以，读者不要以为我用这些词的时候是在定义作用的种类或方式、它的原因或物理理由，也不要以为我是在真正的、物理的意义上把力归给某些中心（它们只是数学上的点）。</strong>」<span class="tag t-src">原书</span>（第一编 定义 VIII 后，Motte 英译）</p>
+  </blockquote>
+  <p><strong>然后是「注释」（Scholium）：绝对时间与绝对空间</strong></p>
+  <p>这是第一编（乃至全书）唯一一段形而上学，也是 20 世纪物理学与哲学反复讨论的文本。</p>
+  <ul>
+    <li><strong>绝对时间</strong>：「<strong>就其自身、依其本性而言，均匀地流逝，与任何外在事物无关</strong>」，又叫「持续性」（duration）。相对时间则是「可感的、外在的（不论准确与否、均匀与否）持续性的度量，如小时、日、月、年」。
+    </li>
+    <li><strong>绝对空间</strong>：「<strong>就其本性而言，与任何外在事物无关，永远是相似的、不动的</strong>」。相对空间则是「绝对空间的某个可动的量度或度量」。★ 他加了一句很清楚的话：<strong>绝对空间与相对空间在形状和大小上相同，但并不永远是同一个</strong>——他举例：若地球在动，我们周围的这部分空气相对于地球始终同一，但<strong>就绝对空间而言，它一时是绝对空间的一部分，另一时又是另一部分，因而在绝对意义上是永远变换的</strong>。
+    </li>
+    <li><strong>绝对运动</strong>：「物体从一个绝对位置转移到另一个绝对位置」。★ 接着是<strong>船</strong>的例子：船在航行时，物体相对于船的位置是相对位置；<strong>「但真正的、绝对的运动，是物体在那不动的空间里所处的同一部分的延续」</strong>。他还算了一笔具体账：如果地球那部分以 10010 份的速度向东，船以 10 份向西，船上水手以 1 份向东走，那么这位水手「真正地在不动的空间里」以 <strong>10001 份</strong>的速度向东，而「相对地在陆地上」以 <strong>9 份</strong>向西。
+    </li>
+    <li><strong>★ 水桶实验（Bucket Argument）</strong>：这是全书最著名的一个实验。<strong>用一个长绳吊起的水桶，把绳扭紧，装满水，先让桶与水一起静止；然后让桶突然反向旋转，绳在解扭的同时桶会继续转动一段时间。</strong> 一开始水面是平的；随着桶把运动逐渐传给水，水面开始从中央向四周上升、形成凹面；等到水与桶同步转动、在水中相对静止时，水面凹得最深。★ <strong>牛顿的结论是</strong>：「水的上升表明它有偏离其运动轴的倾向；<strong>而这种倾向并不取决于水相对于周围物体的任何转移，所以真正的圆周运动不能用这种转移来定义</strong>。」<span class="tag t-src">原书</span>（第一编 定义后注释）★★ <strong>这段论述是「绝对空间」这个概念的唯一经验证据</strong>：你能<strong>感觉到</strong>离心倾向，即使你<strong>看不出</strong>相对于任何东西在动。<strong>马赫（Ernst Mach）与爱因斯坦正是从攻击这一点开始的</strong>——这是牛顿力学里最早被相对论动摇的一块。
+    </li>
+    <li>★ 注释的最后一句，是全书对「这本书为什么写」的第二次回答（第一次在作者序）：<strong>「为了这个目的，我才写了这部著作。」</strong>（For to this end it was that I composed it.）<span class="tag t-src">原书</span>（第一编 定义后注释末尾）
+    </li>
+  </ul>
+  <h3>运动的公理或定律 I–III 与六条推论</h3>
+  <p>★★ <strong>这是《原理》对后世影响最大的部分，也是唯一被写进每一本中学物理教材的部分。</strong> 三条定律的拉丁原文很短，值得逐字看：</p>
+  <p><strong>定律 I（惯性定律）</strong></p>
+  <blockquote>
+    <p>拉丁：「<strong>Corpus omne perseverare in statu suo quiescendi vel movendi uniformiter in directum, nisi quatenus a viribus impressis cogitur statum illum mutare.</strong>」<span class="tag t-src">原书</span>（#28233 拉丁第一版）</p>
+    <p>英译：「<strong>Every body perseveres in its state of rest, or of uniform motion in a right line, unless it is compelled to change that state by forces impressed thereon.</strong>」<span class="tag t-src">原书</span>（#76404 Motte 英译）</p>
+  </blockquote>
+  <p>★ <strong>他在解释里举了三个例子</strong>：抛体（只要不被空气阻力与重力打断就一直运动）、陀螺（不因自身而停，只因空气而慢）、行星与彗星（「在更自由的空间里遇到更小的阻力，所以能更长久地保持它们的运动」）。<strong>注意「as much as in it lies／quantum in se est」这个限定</strong>——定律 I 说的是「物体<strong>尽其所能在</strong>保持现状」，这是一个<strong>理想化的陈述</strong>，不是一句关于日常经验的话。★ <strong>这条定律最反直觉的地方在于它否定的是「运动需要持续的推动」</strong>——那是亚里士多德的常识，也是当时大多数人的常识。</p>
+  <p><strong>定律 II（运动的变化正比于外力）</strong></p>
+  <blockquote>
+    <p>拉丁：「<strong>Mutationem motus proportionalem esse vi motrici impressæ, &amp; fieri secundum lineam rectam qua vis illa imprimitur.</strong>」<span class="tag t-src">原书</span></p>
+    <p>英译：「<strong>The alteration of motion is ever proportional to the motive force impressed; and is made in the direction of the right line in which that force is impressed.</strong>」<span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>★ <strong>注意译文里的两个词</strong>：是「<strong>alteration of motion（运动的变化）</strong>」，不是「加速度」；是「<strong>motive force（运动力）</strong>」，不是「力」。<strong>所以这条定律的原始形式是 F ∝ Δ(mv)，不是 F = ma。</strong> 这在物理上是有区别的：前者对变质量的系统也天然成立，后者需要质量不变。他还说：力可以<strong>一次施加</strong>，也可以<strong>逐渐连续施加</strong>，结果相同。 ★ <strong>「沿力的方向」这个限定</strong>是常被忽略的一半：<strong>变化的方向与力的方向一致</strong>——这为推论 I 的平行四边形法则打下了基础。</p>
+  <p><strong>定律 III（作用与反作用）</strong></p>
+  <blockquote>
+    <p>拉丁：「<strong>Actioni contrariam semper &amp; æqualem esse reactionem: sive corporum duorum actiones in se mutuo semper esse æquales &amp; in partes contrarias dirigi.</strong>」<span class="tag t-src">原书</span></p>
+    <p>英译：「<strong>To every action there is always opposed an equal reaction: or the mutual actions of two bodies upon each other are always equal, and directed to contrary parts.</strong>」<span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>★ <strong>他用三个例子讲这条定律</strong>：手指压石头，手指也被石头压；马拉石头，马也被石头拉回去；一个球撞另一个球，前者也受到同样大小的反向变化。★★ <strong>他特意加了一句限定，极其重要</strong>：「<strong>这些作用所产生的是相等的改变，不是在速度上，而是在物体的运动上</strong>（motions）；也就是说，如果物体不受其他阻碍的话」——<strong>「力相等」对应的是「动量变化相等」，不是「速度变化相等」。</strong> 这对轻重不同的物体意味着：轻的获得大速度，重的获得小速度。 ★★ <strong>最后一句是关键中的关键</strong>：「<strong>这条定律在吸引中也成立，将在下一个注释中证明。</strong>」<strong>这句话把定律 III 从「碰撞力学」提升为「引力理论的一部分」</strong>——因为「一切物体互相吸引」正是靠定律 III 与质量比推出的（见第三编命题 V 推论 1）。<strong>没有定律 III，「万有引力」就不能成立。</strong></p>
+  <p><strong>六条推论（Corollaries I–VI）</strong>——这是三定律的「使用说明书」：</p>
+  <table>
+    <thead><tr><th>推论</th><th>内容</th><th>物理意义／后世地位</th></tr></thead>
+    <tbody>
+      <tr><td><strong>I</strong></td><td>一物体受两个同时作用的力，会在同一时间内沿平行四边形的对角线运动</td><td><strong>力的平行四边形法则</strong>。用几何证明（在平行四边形的两条对边上分别到达），证明过程只用了定律 I 与 II</td></tr>
+      <tr><td><strong>II</strong></td><td>由此，任何一个直接的力都可以分解成两个斜的力，反之亦可</td><td>★ 力学的全部「机器」都建在这里：他接着用它推出<strong>杠杆、轮轴、斜面、楔子、螺旋</strong>的力学，并说「<strong>这个推论的用处广及四方，其真理也由此更得证实</strong>」。他还顺带说了「动物的肌腱如何带动骨骼」</td></tr>
+      <tr><td><strong>III</strong></td><td>各物体相互作用时，取同向运动之和、反向运动之差，则「运动的量」不变</td><td>★ <strong>动量守恒定律</strong>。他用一个具体算例（A 有 6 份运动、B 有 10 份运动）说明碰撞前后「和」或「差」恒为 16</td></tr>
+      <tr><td><strong>IV</strong></td><td>两物体或多物体的<strong>公共重心</strong>不因它们之间的相互作用而改变其运动或静止状态；因此不受外来作用时，公共重心或静止、或匀速直线运动</td><td>★ <strong>质心运动定理 / 动量守恒的系统版本</strong>。这是全书处理多体问题的核心工具</td></tr>
+      <tr><td><strong>V</strong></td><td>包含在给定空间内的物体的相对运动，不因该空间是静止还是匀速直线运动而改变</td><td>★ <strong>伽利略相对性原理</strong>。他的证明极简：碰撞的效果只取决于各运动之间的「和」与「差」，而这些在两种情况下相同；他说「我们从<strong>船</strong>的实验中得到清楚的证明」</td></tr>
+      <tr><td><strong>VI</strong></td><td>若物体被沿平行方向的相等加速力推动，它们彼此之间的相对运动与没有被这些力推动时相同</td><td>★ 这是<strong>等效原理的最早形态</strong>（自由落体中的参考系里，重力局部被「消去」）。第三编里用地球与月球同受太阳吸引时必须相互保持相对运动，就靠这条</td></tr>
+    </tbody>
+  </table>
+  <p><strong>★ 定律之后的「注释」（Scholium）——这一段的写法值得单独说</strong></p>
+  <p>牛顿在这里做了一次<strong>实验物理学家的展示</strong>：</p>
+  <ol>
+    <li><strong>他把定律 I–II 与伽利略对上</strong>：由前两条定律与前两条推论，伽利略发现落体遵循「时间的<strong>二次比</strong>」、抛体走抛物线，而「经验与两者相符，只是这些运动被空气阻力稍稍减慢」。
+    </li>
+    <li><strong>他把定律 III 与当时三大几何学家对上</strong>：<strong>Wren、Wallis、Huygens</strong> 各自独立定出了硬物体碰撞与反弹的规则，几乎同时通报皇家学会，且<strong>彼此完全一致</strong>；Wren 用摆的实验证实。
+    </li>
+    <li>★★ <strong>然后他完整报告了自己用摆做的碰撞实验</strong>：球 A、B 用平行等长的绳吊起；先把 A 拉到弧上某点、放它摆动一次、测出它因空气阻力而损失的弧长（RV），取其中间四分之一（ST）作为「从 S 下落到最低点 A 的阻力损失」；再放上 B、让 A 从 S 落下与 B 碰撞，测出 A、B 各自弹到的高度（r 与 k），再用同样的办法把 A、B 的位置修正到「真空里应当到达的位置」（t 与 l）。他说：<strong>「我用十英尺长的摆、用相等与不相等的物体、让物体下落很大的距离（如 8、12、16 英尺）来试验，结果</strong>总是<strong>发现，在没有三英寸误差的范围内，两物体正碰时，它们的运动产生了相等的反向改变，因而作用与反作用总是相等的</strong>。」<span class="tag t-src">原书</span>（第一编 定律后注释）
+    </li>
+    <li><strong>他还预先堵住了反对意见</strong>：有人说这条规则假定物体绝对坚硬或完全弹性，而自然界没有这样的物体；他回答说<strong>实验根本不依赖硬度</strong>——在软的物体上同样成立（弹回的相对速度按弹性力的比例减小）；他报告了具体比例：<strong>羊毛球约为 5 比 9，钢球几乎相同，软木球略小，玻璃球约为 15 比 16</strong>。
+    </li>
+    <li>★★ <strong>最后，他从碰撞转向了吸引</strong>，给出一个漂亮的反证式论证：<strong>若两个相互吸引的物体 A、B，A 对 B 的吸引大于 B 对 A，那么在它们之间放一个障碍物，障碍物受到的 A 的压力就会大于 B 的压力，于是「两物体＋障碍物」这个系统会向 B 的方向不断加速运动下去——这与定律 I 相违（应保持静止或匀速），荒谬。所以吸引必须相等。</strong> 他还做实验：把磁石与铁各放在容器里浮在水面上，<strong>两者不会互相推动，而是相互支撑、最后静止平衡</strong>（说明相互吸引相等）。★★ <strong>然后他立刻把这套论证用到地球上</strong>：「<strong>地球与其各部分之间的引力也是相互的。</strong>」他设想把地球用平面 EG 切为两部分，再用平行平面 HK 切出与 EGF 相等的一块 HKI，证明中间那块 EGKH 不受自身重力倾向任一侧，而 HKI 压向 EGF 的力等于 EGF 的重量——于是<strong>两部分的重量彼此相等</strong>。他还补一句：<strong>「若这两个重量不相等，整个浮在无阻力以太中的地球就会让位于较重的部分，并远离它、永远被带走。」</strong><span class="tag t-src">原书</span>（同上）
+    </li>
+    <li>★ <strong>注释的最后一大段是力学「机器总论」</strong>：杠杆、滑轮组、钟表轮系、螺旋、楔子，以及一条总原则：「<strong>机器的能力与用处只在于：通过减小速度来增大力量，反之亦然</strong>」，并且「要移动给定的重物、或克服任何给定的阻力，求解的方法」是：若做功者与抵抗者的速度与其力成反比，则刚好平衡；若速度差更大，就能克服它。★ <strong>这一段是教科书式的力学概论，也是《原理》里最「实用」的一页。</strong>
+    </li>
+  </ol>
+  <h3>Sects. I–XIV：十四节命题群在证明什么</h3>
+  <p>★ 下面逐节说明「这一节在证明什么、在物理上意味着什么」。<strong>不展开证明过程。</strong></p>
+  <table>
+    <thead><tr><th>节</th><th>标题</th><th>在物理上意味着什么</th></tr></thead>
+    <tbody>
+      <tr><td><strong>I</strong></td><td>首末比方法（定义约束，引出引理 I–XI）</td><td><strong>方法</strong>：用「最初比与最终比」把极限几何化。★ 现代读者可整节跳过；它的历史意义是<strong>在没有极限记号的时代，如何严格处理「无限接近」</strong>。牛顿在此说「不可分的假说显得有些生硬」，所以改用它</td></tr>
+      <tr><td><strong>II</strong></td><td>向心力的确定</td><td>★★ <strong>命题 I（面积定律）</strong>：在指向一个固定中心的力作用下，运动物体在<strong>同一平面</strong>内运动，且向该中心所画的半径<strong>在相等时间内扫过相等的面积</strong>。<strong>这就是开普勒第二定律的证明</strong>——而且反过来用：有面积定律，就<strong>必然</strong>有指向该中心的力。命题 II–X 继续由面积律反求力的规律</td></tr>
+      <tr><td><strong>III</strong></td><td>运动物体在偏心圆锥曲线上的运动</td><td>★★ <strong>命题 XI</strong>：物体在<strong>椭圆</strong>上运动时，指向<strong>焦点</strong>的向心力<strong>反比于到该焦点距离的平方</strong>。<strong>这是全书最著名的一条命题</strong>：它是「开普勒第一定律 ⇄ 平方反比」的双向证明。命题 XII（双曲线）、XIII（抛物线）给出同类结果</td></tr>
+      <tr><td><strong>IV</strong></td><td>由已知焦点求椭圆、抛物线、双曲线的轨道</td><td><strong>反问题</strong>：给定力与焦点，求轨道。★ 命题 XVIII–XX 是纯几何构造（给定焦点、给定期望的轴与通径求轨道）</td></tr>
+      <tr><td><strong>V</strong></td><td>焦点未知时求轨道</td><td>在真实天文观测中，<strong>焦点（太阳位置）不是已知量</strong>；本节给出由若干观测点反求轨道的方法。★ 这一节是<strong>观测几何</strong>，与 Sect. XI 的多体问题一起，是第三编的技术来源</td></tr>
+      <tr><td><strong>VI</strong></td><td>在已知轨道上求运动</td><td>给定轨道与时间，求物体在轨道上的位置。★ 这是<strong>开普勒方程</strong>的几何版；对第三编的月球与彗星计算至关重要</td></tr>
+      <tr><td><strong>VII</strong></td><td>物体的直线上升与下降</td><td>自由落体与竖直上抛的数学理论（含阻力与非阻力两种情形）。★ 回到伽利略，但用更一般的力律重做</td></tr>
+      <tr><td><strong>VIII</strong></td><td>任意向心力作用下的轨道</td><td><strong>最一般的反问题</strong>：给定任意种类的向心力的规律，求轨道形状。★ 本节末尾（命题 XLV）的推论给出了<strong>拱点运动与力律偏差</strong>的关系——第三编用「拱点的静止」来论证平方反比的精确性（见 <code>## 8</code>）</td></tr>
+      <tr><td><strong>IX</strong></td><td>沿运动轨道的物体运动；回（拱）点的运动</td><td>轨道本身在缓慢转动时的情况。★ 为月球拱点与岁差（第三编命题 XXXIX）提供工具。<strong>这是全书最技术、也最少被读的一节之一</strong></td></tr>
+      <tr><td><strong>X</strong></td><td>物体在给定表面上的运动；摆的往复运动</td><td>曲面上的运动、<strong>摆线的等时性</strong>（Huygens 的成果）、摆的受迫振动。★ 这一节把纯数学与实验装置连起来</td></tr>
+      <tr><td><strong>XI</strong></td><td>相互吸引的物体的运动</td><td>★★ <strong>多体问题</strong>。<strong>命题 LXIX</strong>：在若干相互吸引的物体中，若每个都以反比平方的加速力吸引其余，则<strong>两个吸引物体的绝对力之比＝这两个物体的质量之比</strong>。★ 这条命题是「<strong>引力与质量成正比</strong>」的数学来源（第三编命题 VII 直接引用它）。命题 LXV–LXVI 讨论了多体扰动（含著名的「月球运动受太阳扰动」）</td></tr>
+      <tr><td><strong>XII</strong></td><td>球体的吸引力</td><td>★★ <strong>命题 LXX–LXXVIII</strong>：<strong>均匀球体对外部质点的吸引，等同于把全部质量集中在球心</strong>（这是一个极不平凡的定理，不是显而易见的）；对内部质点则吸引力正比于到球心的距离。★★ <strong>这条定理让「把行星、太阳当作质点」这件事从直觉变成定理</strong>——没有它，第三编的一切计算都不是合法的</td></tr>
+      <tr><td><strong>XIII</strong></td><td>非球形物体的吸引力</td><td>非球形（但在同心的球面上密度均匀）物体的吸引。★ 为地球扁球（第三编命题 XIX）提供工具</td></tr>
+      <tr><td><strong>XIV</strong></td><td>极小物体的运动</td><td>一个极小的物体，被任何「极大物体」的各部分以向心力推动时的运动。★ 现代读者常把它读作「质点／连续体／近似方法」的先声，但<strong>牛顿自己没有作这样的推广</strong>，这是后人的解读</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读完第一编应当掌握的三句话</strong>：</p>
+  <ol>
+    <li><strong>面积定律 ⇄ 中心力</strong>（Sect. II 命题 I）。
+    </li>
+    <li><strong>椭圆 ＋ 焦点力心 ⇄ 平方反比</strong>（Sect. III 命题 XI）。
+    </li>
+    <li><strong>球体对外 = 质点</strong>（Sect. XII 命题 LXX–LXXVIII）。
+    </li>
+  </ol>
+  <p><strong>这三句话加起来，就是「用引力解释天体运动」的全部数学前提。</strong></p>
+  <h3>可疑之处</h3>
+  <p>★ <strong>可疑之处不在结论，在「结论与前提之间的距离」。</strong></p>
+  <ol>
+    <li>★★ <strong>首末比是「极限概念的一次几何包装」，而不是严格的极限理论</strong>。它没有 ε–δ 语言，也没有实数完备性；后世（19 世纪柯西、魏尔斯特拉斯）才把极限严格化。<strong>牛顿的论证在当时是严格的，但它的严格性依赖于读者对几何直觉的共享</strong>。这不构成错误，但构成<strong>阅读障碍</strong>，也是现代人「看不懂却在数学上没错」的原因。
+    </li>
+    <li><strong>「力」的数学化留下了一个洞</strong>。定义 VIII 后的注释把「吸引」定义为数学量而不是物理机制——<strong>这在方法论上是聪明的，但在物理上是悬空的</strong>。牛顿自己知道这个洞（所以有总释那句「我还没能推出原因」），但他选择<strong>不填</strong>。选择不填，本身就是一个重大判断，而不是「客观」。
+    </li>
+    <li><strong>定律 III 的困难</strong>。第三定律在现代形式下有若干麻烦：对场、对变质量系统、对非瞬时作用（相对论性）都需要重新表述。★ 但《原理》里的定律 III <strong>只是关于「两个物体彼此施加的力」</strong>，在这个范围内它是实验（摆的碰撞实验）支持的。<strong>把它的适用范围扩大，是后人做的，不是牛顿做的。</strong>
+    </li>
+    <li><strong>水桶实验的推论可能过强</strong>。「水面凹陷」确实表明<strong>存在某种绝对意义上的转动</strong>，但它是否<strong>必须</strong>由「绝对空间」来解释？马赫与爱因斯坦给出了替代方案（相对所有物质的转动），而广义相对论在<strong>部分</strong>上支持了马赫的思路。★★ <strong>这是《原理》里最明确地被后世物理学修正的一段</strong>，虽然它属于「定义后的注释」而非「命题」。
+    </li>
+    <li><strong>第一编完全没有涉及真实天体</strong>。这一点在阅读时容易被忽略：<strong>你在第一编找不到「太阳」「木星」「月球」的任何断言</strong>（除了定义 V 里举的例子）。把它们当真，是第三编的事。<strong>换句话说：第一编是一台空转的机器</strong>；它的正确性不依赖于天空是否真的那样。
+    </li>
+    <li><strong>本节的可信度较高的部分</strong>：命题 I、XI 与命题 LXX–LXXVIII 的<strong>数学内容</strong>是<strong>无可争议的</strong>（今天仍是微积分教材里的标准练习）。<strong>所以对这一编，「可疑之处」应读作「前提的说服力」而不是「结论的正确性」。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>第二编：物体（在阻滞介质中）的运动</span><span class="caret">▾</span></h2>
+  <h3>这一编在解决什么</h3>
+  <p><strong>第二编解决的是第一编刻意回避的那些东西：阻力、流体、摩擦。</strong></p>
+  <p>第一编的前提是一个干净的世界——只有向心力，没有介质。第二编把介质加回来：物体在<strong>按速度或速度平方成比例地阻滞它</strong>的介质中怎样运动？流体本身怎样运动？抛体在流体中受到多大阻力？波怎样在流体中传播？流体能否做圆周运动？</p>
+  <p>★ <strong>但第二编的真实目的是一个「排除法」</strong>：牛顿把「漩涡」所依赖的那套流体力学，一条一条地算出来，最后证明<strong>笛卡尔的漩涡说与天文观测不相容</strong>。他本人在第三编开篇就说了这一点：这套流体力学的结论，「用在场的人的话说，<strong>是用来推翻漩涡说的</strong>」（原文的表述见第三编开篇）。</p>
+  <p><strong>一句话概括</strong>：<strong>第一编证明「如果有引力，那么天体会怎样运动」；第二编证明「如果没有引力，靠流体漩涡，则天体不会那样运动」。</strong></p>
+  <h3>关键定义·定律·命题</h3>
+  <p>第二编没有新的定义与定律；它把第一编的定律 III 与推论用在连续介质上。这一编的「关键内容」是<strong>九节的命题群</strong>与<strong>末尾那篇结论性的注释</strong>。</p>
+  <p><strong>Sects. I–IX：九节命题群在证明什么</strong></p>
+  <table>
+    <thead><tr><th>节</th><th>标题</th><th>在物理上意味着什么</th></tr></thead>
+    <tbody>
+      <tr><td><strong>I</strong></td><td>受阻力的物体，阻力与速度成正比</td><td>线性阻力下的运动（速度按指数衰减）；★ 牛顿指出：这种阻力规律「<strong>更像数学假说，而不是物理的</strong>」<span class="tag t-src">原书</span>（第二编 Sect. I 注释）——<strong>这是他对「假说」这个词的另一次使用</strong>，很值得注意</td></tr>
+      <tr><td><strong>II</strong></td><td>阻力与速度的<strong>平方</strong>成正比</td><td>平方阻力下的运动。★ 这是<strong>空气阻力的更现实模型</strong>；本节含命题 X「求已知介质中的阻力」</td></tr>
+      <tr><td><strong>III</strong></td><td>阻力一部分正比速度、一部分正比速度平方</td><td>混合阻力。★ 这是最接近真实抛体的模型</td></tr>
+      <tr><td><strong>IV</strong></td><td>阻滞介质中的圆运动</td><td>在阻力介质中做圆周运动的物体（会被逐渐拉向中心）</td></tr>
+      <tr><td><strong>V</strong></td><td>流体的密度与压缩；流体静力学</td><td>流体的压强、弹性、可压缩性。★ 含气压与高度的关系（这直接影响第三编对「天体空间里为什么没有阻力」的论证）</td></tr>
+      <tr><td><strong>VI</strong></td><td>摆体的运动与阻力（＋<strong>本编总释</strong>）</td><td>用摆测各种介质的阻力。★ <strong>本编的「总释」（General Scholium）在这里，而不是在第三编末尾</strong>——它是一篇详细的<strong>实验报告</strong>（木球、摆长、弧长、往复次数、损失比例）。★★ <strong>请不要把它与第三编末尾那篇著名的总释混淆</strong>；两者同名、内容完全不同，这是《原理》的一个常见陷阱</td></tr>
+      <tr><td><strong>VII</strong></td><td>流体的运动，及其对抛体的阻力</td><td>流体中运动物体受到的阻力。★ 含著名的<strong>「最不阻力的立体形状」问题</strong>（命题 XXXIV）与其推论——牛顿借此讨论「何种形状受到的阻力最小」，后世常与造船、弹道联系起来</td></tr>
+      <tr><td><strong>VIII</strong></td><td>通过流体传播的运动</td><td>波在流体中的传播。★ 这是<strong>17 世纪最重要的波动理论文本之一</strong>（也是牛顿与惠更斯的波动说对话的一部分）；它讨论速度、密度、弹性之间的关系</td></tr>
+      <tr><td><strong>IX</strong></td><td>流体的圆运动</td><td>流体中圆柱与球体的圆周运动。★★ <strong>本节的注释就是那句判决</strong>：「<strong>Hence it is manifest that the planets are not carried round in corporeal vortices.</strong>」（由此显然，行星不是被物质的漩涡带着转的）<span class="tag t-src">原书</span></td></tr>
+    </tbody>
+  </table>
+  <h3>本编真正的靶子：对笛卡尔漩涡说的清算</h3>
+  <p>★ <strong>这一节是全书对外的战场，值得单独说清。</strong></p>
+  <p><strong>笛卡尔的原说</strong>（René Descartes, <em>Principia Philosophiae</em>, <strong>1644</strong>）：宇宙充满物质，不存在真空；行星被太阳周围的一层<strong>以太漩涡</strong>带动，和河里的浮木被水流带走是同一回事；行星的轨道由漩涡的几何与力学决定。</p>
+  <p><strong>牛顿的论证分四步</strong>（第二编 Sect. IX 注释 <span class="tag t-src">原书</span>）：</p>
+  <ol>
+    <li><strong>内层要求</strong>：让每个行星「由画向太阳的半径扫过与时间成正比的面」，则漩涡各部分的周期必须<strong>正比于它们到太阳距离的平方</strong>（duplicate proportion）。
+    </li>
+    <li><strong>外层要求</strong>：但要让各行星的周期满足<strong>开普勒第三定律</strong>（距离的<strong>倍半比</strong>，sesquiplicate），漩涡各部分的周期又必须正比于距离的<strong>三次方再开方</strong>。
+    </li>
+    <li><strong>★ 这两条要求彼此矛盾。</strong> 而且，要让较小的漩涡（土星、木星系统）能在太阳的大漩涡里「安静而不受干扰地运行」，太阳漩涡各部分的周期还必须<strong>相等</strong>——而太阳与行星绕自身轴的自转，「与所有这些比例都相差很远」。
+    </li>
+    <li><strong>彗星是致命一击</strong>：「彗星的运动极其规则，与行星的运动遵循相同的规律，<strong>绝不可能用漩涡假说解释</strong>；因为彗星以极扁的轨道<strong>自由地穿过天空的一切部分</strong>，这种自由与漩涡的观念不相容。」
+    </li>
+  </ol>
+  <p>★ <strong>他还给了一个量化的反例</strong>：火星与金星轨道之间的距离，在处女宫初与双鱼宫初之比约为 3:2。若地球真的被这层漩涡带着走，那么在该处地球的速度会按 3:2 变化，因而<strong>太阳的视日运动在处女宫初应大于 70 分、在双鱼宫初应小于 48 分</strong>；而观测事实恰好相反 —— 「<strong>于是地球在处女宫初比在双鱼宫初更快，所以漩涡假说与天文现象完全不相容，它与其说解释了天体的运动，不如说把它们搅乱了。</strong>」<span class="tag t-src">原书</span>（同上）</p>
+  <p>★ <strong>为什么这一步重要</strong>：<strong>牛顿不是靠「我的理论更简单」取胜的，而是靠「你的理论必须满足这些比例，而它满足不了」取胜的</strong>。这是一次<strong>以对方自己的物理为前提、推出对方不能接受的结论</strong>的论证，是 17 世纪科学论战里最干净的一击之一。</p>
+  <p>★ <strong>它是否公正</strong>——见 <code>## 5.4</code>，那里给出了惠更斯与莱布尼茨的反面立场，以及我的分层判断。</p>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★★ <strong>第二编的实验数据，是 17 世纪的实验数据</strong>。摆的实验（Sect. VI 总释）用的是木球、粗绳、目测弧长，精度以今天的标准看很低。牛顿自己也在注释里报告了误差范围（「在没有三英寸误差的范围内」）。<strong>《原理》里的实验是「演示性」的，不是「测量性」的</strong>——他要证明的是「作用反作用相等」这个定性结论，而不是精确测出某个系数。<strong>用现代精度要求去读第二编的实验，会得出错误的负面判断。</strong>
+    </li>
+    <li><strong>流体力学部分的物理模型混杂</strong>。第二编同时使用了「稀疏粒子模型」（流体是彼此分离的、碰撞的粒子）与「连续介质模型」，两种图像时有冲突。★ 这在 17 世纪是常态，但它是<strong>第二编今天最难读、也最少被引用的部分</strong>的原因。
+    </li>
+    <li>★ <strong>对漩涡说的批判，批判的是一个「17 世纪版本的漩涡说」</strong>。★ 现代流体力学的<strong>涡旋</strong>（vortex）概念（如涡量守恒、开尔文定理）与笛卡尔的「漩涡」不是一回事；<strong>不能把牛顿对后者的批判，套用来否定前者</strong>。这一点常被中文二手叙述混淆。
+    </li>
+    <li>★★ <strong>一个必须说清的对比</strong>：<strong>第二编的「总释」（Sect. VI）是一篇实验记录；第三编的「总释」是一篇哲学宣言。</strong> 两者同名，写在同一本书里，<strong>内容和语气完全不同</strong>。★ 中文读者若只按「总释」这个名字去找，很可能翻到错的那一篇。<strong>请记住：要读「我不做假说」的那一篇，在第三编末尾。</strong>
+    </li>
+    <li><strong>本节可信度较高的部分</strong>：<strong>流体静力学（Sect. V）与波在流体中的传播（Sect. VIII）</strong>的基本结论至今成立（后者尤其重要：它给出了声速与介质弹性模量、密度的关系式，被拉普拉斯后来修正）。★ 而<strong>阻力定律（Sects. I–IV）是「依假设的模型」推出的</strong>，牛顿自己在 Sect. I 的注释里就承认「更像是数学假说而非物理的」——<strong>这是他对自己工作的诚实标注，值得特别指出。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>第三编：宇宙体系（使用数学的论述）</span><span class="caret">▾</span></h2>
+  <h3>这一编在解决什么</h3>
+  <p><strong>第三编是把前两编的数学机器对准真实的天空，推出万有引力，并用它解释一切可观测的天体运动。</strong></p>
+  <p>★ <strong>它的副标题是「使用数学的论述」</strong>（副题 In the mathematical way），这不是装饰：<strong>牛顿在第三编开篇明确交代，他原本用「通俗的方法」写第三编（好让更多人能读），但后来考虑到没掌握前两编原理的人无法判断结论的强度、也放不下多年的偏见，为免争论，他</strong>把第三编的内容改写成数学命题的形式<strong>，「只让那些先掌握了前两编所立原理的人来读」<span class="tag t-src">原书</span>（第三编 开篇，Motte 英译）。★ </strong>这段话本身就是《原理》最诚实的一处自白<strong>：</strong>他知道这本书会难读，而且他是故意让它这么难读的<strong>——因为易读的版本会被误读。</strong>顺带说，那段「通俗方法」写成的第三编并没有消失，它被单独印出来，就是书末附录的《宇宙体系》。**</p>
+  <p>同一声明里还有一句对读者极有用的话：<strong>不必读前两编的每一条命题</strong>，「<strong>只要仔细读过定义、运动定律，以及第一编的前三节就够了</strong>」，其余命题可按引用和需要随时查阅 <span class="tag t-src">原书</span>（同上）。★★ <strong>这是牛顿亲手给出的「最小阅读集」，本报告 <code>## 3</code> 的路线就是据此排的。</strong></p>
+  <h3>关键定义·定律·命题</h3>
+  <p>第三编没有新定义，但引入了两类<strong>新的结构单位</strong>（「规则」与「现象」），以及一组命题。★ 三者合起来构成一个完整的归纳论证：<strong>从现象出发，经由规则，得到命题。</strong></p>
+  <h3>哲学中的推理规则（Rules of Reasoning in Philosophy，I–IV）</h3>
+  <p>★ <strong>这一组「规则」在不同版本里是不同的东西，这一点必须先说清</strong>（这是我核到的最重要的一条版本事实之一）：</p>
+  <table>
+    <thead><tr><th>版本</th><th>第三编开篇是什么</th></tr></thead>
+    <tbody>
+      <tr><td><strong>第 1 版 1687</strong></td><td>★ <strong>「假说」（HYPOTHESES），编号 Hypoth. I–V</strong> —— 我在公版拉丁全文（Gutenberg #28233）里逐条核到：Hypoth. I（原因不多于真实且足以解释现象者）／Hypoth. II（同类效果有同类原因）／Hypoth. III（任何物体可转化为任何别的物体并逐级获得一切中间程度的性质，<strong>这一条在后来的版本里被彻底改写</strong>）／Hypoth. IV（世界体系的中心是静止的）／Hypoth. V（木星卫星的等面积与倍半比）<span class="tag t-src">原书</span>（#28233 拉丁第一版）</td></tr>
+      <tr><td><strong>第 2 版 1713</strong></td><td>改称「<strong>哲学中的推理规则</strong>」（Regulae philosophandi），共 <strong>3 条</strong>；原 Hypoth. V 等被移到新设的「<strong>现象</strong>」（Phaenomena）章</td></tr>
+      <tr><td><strong>第 3 版 1726</strong></td><td>规则增至 <strong>4 条</strong>（Rule IV 为新增），并对各条给出解释与例证</td></tr>
+      <tr><td><strong>第 1 版 1687</strong></td><td>★★ <strong>第一版没有「总释」</strong>；全书只有第二编末尾一篇同名「Scholium Generale」，是摆的实验记录</td></tr>
+    </tbody>
+  </table>
+  <p><strong>四条规则的内容与意义</strong>：</p>
+  <ul>
+    <li><strong>规则 I（不设多余原因）</strong>：「我们不应承认自然事物的原因，多于既真实又足以解释其现象者。」★ 他给出理由：「<strong>自然不做徒劳之事</strong>，而且，当较少的东西够用时，较多的东西就是徒劳的；因为自然是喜好简单的，不追求多余原因的气派。」<span class="tag t-src">原书</span>（第三编 规则 I）<strong>这是牛顿版的奥卡姆剃刀</strong>，也是他用「一条引力定律解释全部天体运动」的正当性来源。
+    </li>
+    <li><strong>规则 II（同果同因）</strong>：「因此，对同类自然效果，我们必须尽可能指派同类原因。」★ 他举的例子极具代表性：<strong>人与兽的呼吸、欧洲与美洲的石头下落、炉火之光与太阳之光、光在地球上与其他行星上的反射</strong><span class="tag t-src">原书</span>（第三编 规则 II）。★★ <strong>这条规则是「万有引力」得名的直接依据</strong>：<strong>月球的运动与地面落体是「同类效果」，所以它们必须出自「同类原因」</strong>——即同一种力。<strong>第三编命题 IV 的整个论证就建在这一条规则上。</strong>
+    </li>
+    <li><strong>规则 III（归纳普遍性质）</strong>：「物体的性质，凡不容许有程度的加强或减弱、且被发现属于我们实验所及的一切物体的，都应被认为是<strong>一切物体</strong>的普遍性质。」★ 他列举：广延、硬度、不可入性、可动性、<strong>vis inertiæ</strong>。★★ <strong>关键在于他把「引力」也放进了这条规则</strong>：「若由实验与天文观测普遍地表明，地球上的一切物体都朝向地球吸引，且正比于各含物质的量；月球同样按其物质的量朝向地球吸引；另一方面我们的海又朝向月球吸引；一切行星彼此吸引；彗星同样朝向太阳吸引——<strong>那么由这条规则，我们必须普遍地允许：一切物体都赋有相互吸引的原则</strong>。」<span class="tag t-src">原书</span>（第三编 规则 III）★ <strong>紧接着是全书最谨慎的一句声明</strong>：「<strong>并不是我说重力是物体本质固有的（essential）。</strong>」他说，他用 vis insita 只指 vis inertiæ（不变），而「它们的重力是随离开地球的距离而减少的」<span class="tag t-src">原书</span>（同上）。★★ <strong>这一句直接反驳了「牛顿认为引力是物体的本质属性」这个流行说法。</strong>
+    </li>
+    <li><strong>规则 IV（归纳结论在遇到反例前视为真）</strong>：「在实验哲学中，由现象经一般归纳而收集起来的命题，应被视为<strong>精确的或非常近乎真实的</strong>，尽管有与此相反的任何假说可以被想象出来——直到有其他现象出现，使它们可以被弄得更精确、或可以有例外。」★ 他给出的理由是：「必须遵循这条规则，<strong>以免归纳的论证被假说所规避</strong>。」<span class="tag t-src">原书</span>（第三编 规则 IV）★★ <strong>这是全书方法论上最锋利的一句话</strong>：它把「假说」与「归纳」放在了对立面——<strong>假说的功能是「规避」归纳</strong>。★ 著名科学史家 <strong>Alexandre Koyré</strong> 称规则 IV 为牛顿的「<strong>谨慎与良知的规则</strong>」<span class="tag t-rep">转述</span>。
+    </li>
+  </ul>
+  <h3>现象（Phaenomena I–VI）：把观测写成公理</h3>
+  <p>★ <strong>「现象」这一章是牛顿方法论的关键发明</strong>：他<strong>不把天文观测当作「数据」，而当作论证的起点</strong>——凡是写进「现象」的，就是他要论证的前提。</p>
+  <table>
+    <thead><tr><th>现象</th><th>内容</th></tr></thead>
+    <tbody>
+      <tr><td><strong>I</strong></td><td>木星的卫星，由画向木星中心的半径扫过与时间成正比的面积；其周期在固定的恒星背景下，与到木星中心距离的<strong>倍半比</strong>成正比。★ 附<strong>观测数据表</strong>（Borelli、Townly、Cassini 的测距，以及由周期反推的距离）<span class="tag t-src">原书</span>（第三编 现象 I）</td></tr>
+      <tr><td><strong>II</strong></td><td>土星的卫星，同样满足等面积与倍半比（据 Cassini 的观测）</td></tr>
+      <tr><td><strong>III</strong></td><td>五大行星（水、金、火、木、土）绕日，同样扫过与时间成正比的面积；其周期与到太阳距离的<strong>倍半比</strong>成正比</td></tr>
+      <tr><td><strong>IV</strong></td><td>内行星（水星、金星）的等面积与倍半比，可由其相（phases）与视直径的变化直接证明 ★ 这一条的证据类型与其余几条不同：它用的是<strong>金星相位</strong>（伽利略的望远镜观测）</td></tr>
+      <tr><td><strong>V</strong></td><td>各行星（包括地球）在各自轨道上扫过与时间成正比的面积 ★ <strong>综合陈述</strong></td></tr>
+      <tr><td><strong>VI</strong></td><td>月球由画向地球中心的半径扫过与时间成正比的面积；其周期与到地球中心距离的倍半比成正比 ★ 含<strong>月球距离的多种测量口径对照表</strong>（托勒密、Vendelin &amp; Huygens、哥白尼、Street、第谷）<span class="tag t-src">原书</span>（第三编 现象 VI）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>「现象」这一章为什么重要</strong>：它把「开普勒三定律」从「归纳出来的经验规律」提升成了「<strong>论证的公理</strong>」。牛顿接着在命题里做的事，是<strong>从这些现象推出力的性质</strong>——<strong>这正对应他在规则 III 里说的「从现象出发、由归纳变为一般」。</strong> 顺便说：★★ <strong>现象 I–VI 里的表格（木卫周期、行星距离等）都是可核的真实观测数据</strong>，这是《原理》里少见的「数据先行」的部分，也是现代读者最容易验证的部分。</p>
+  <h3>命题群（Prop. I–XLII）与月球交会点的运动</h3>
+  <p>★ 第三编有 42 条命题（另含引理 I–XI），下面按功能分组，<strong>只写「在物理上意味着什么」</strong>。</p>
+  <p><strong>第一组（命题 I–IX）：引力定律的建立——这是全书的心脏</strong></p>
+  <table>
+    <thead><tr><th>命题</th><th>内容</th><th>物理意义</th></tr></thead>
+    <tbody>
+      <tr><td><strong>I</strong>（定理 I）</td><td>使木星卫星偏离直线的力，指向木星中心，且反比于到木星中心距离的平方（据现象 I 与第一编命题 II／III、命题 IV 推论 6）</td><td>卫星系统也服从平方反比</td></tr>
+      <tr><td><strong>II</strong>（定理 II）</td><td>使各行星偏离直线的力，指向太阳，且反比于到太阳中心距离的平方。★ 他补充：这一点「可由<strong>拱点的静止</strong>极其精确地证明」，因为若偏离平方反比一点点，拱点就会明显移动</td><td>★★ <strong>「拱点静止」是一个极精细的判据</strong>：这显示牛顿不是「大致吻合」，而是在用<strong>极高灵敏度</strong>的证据</td></tr>
+      <tr><td><strong>III</strong>（定理 III）</td><td>使月球留在轨道上的力，指向地球，且反比于到地心距离的平方。★ 他处理了月球近地点每月 3°3′ 的缓慢移动，指出这来自太阳的作用，「在此可以忽略」</td><td>月球受力也服从平方反比</td></tr>
+      <tr><td><strong>IV</strong>（定理 IV）</td><td>★★ <strong>月球确实朝向地球吸引，并靠重力的力不断偏离直线运动、留在轨道上。</strong> 他给出完整数值：月球平均距离取 60 个地球半径，周期取 27 天 7 时 43 分，地球周长取 123249600 巴黎尺；由此算出「月球若失去一切运动而落下，一分钟内应落 <strong>15 英尺 1 英寸 1 线</strong>」；再由平方反比放大到地面，得到地面落体一秒内也落同样的距离；而由惠更斯测出的巴黎秒摆（3 巴黎尺 8 线）算出的落体距离<strong>恰好相等</strong>。★ 结尾：「因此，使月球留在轨道上的力，<strong>就是</strong>我们通常称为重力的那个力；因为若重力是另一种力，那么落体受两力共同推动，一秒内应落两倍的距离，<strong>这与经验完全相违</strong>」</td><td>★★ <strong>全书唯一一次「数据对上」的检验，也是万有引力的出生证明。</strong> 它的结构是：<strong>用同一个力、同一套数字，同时算对月球和苹果</strong></td></tr>
+      <tr><td><strong>V</strong>（定理 V）</td><td>木星卫星朝木星吸引，土星卫星朝土星吸引，行星朝太阳吸引。★ <strong>推论 1</strong>：因此有一个朝向一切行星的重力；且由定律 III，一切吸引都是相互的。★ <strong>推论 2</strong>：朝向任何行星的重力反比于到该行星中心距离的平方。★ <strong>推论 3</strong>：★ <strong>所有行星彼此吸引</strong>，所以木星与土星在会合时明显地互相扰动；太阳扰动月球的运动；太阳与月球都扰动我们的海</td><td>★★ <strong>「万有」两个字就写在这里</strong>，而且是写在<strong>推论</strong>里——<strong>这是「只读命题不读推论会漏掉一半」的最好例子</strong></td></tr>
+      <tr><td><strong>VI</strong>（定理 VI）</td><td>一切物体都有正比于其所含物质的量的重力</td><td>★ 引力与质量成正比</td></tr>
+      <tr><td><strong>VII</strong>（定理 VII）</td><td>重力朝向<strong>整体</strong>（行星）的力，是朝向其<strong>各部分</strong>的力合成的；在离开中心的过程中，按距离的平方反比精确减少，「一直到土星的轨道」，由<strong>行星近地点的静止</strong>可以证明这一点；甚至到彗星最远的远日点也成立（若那些远日点也是静止的）</td><td>★★ <strong>这一条把「引力来自物体的每一部分」写成了定理</strong>——即<strong>叠加原理</strong>；它也是「重力＝万有引力」而非「天体特有的力」的关键一步</td></tr>
+      <tr><td><strong>VIII</strong>（定理 VIII）</td><td>同样：若两个球体……相互吸引，则……（在非均匀球体情形下推广）</td><td>推广</td></tr>
+      <tr><td><strong>IX</strong>（定理 IX）</td><td>在朝向太阳的引力作用下，行星的轨道……（含行星在轨道上速度变化的规律）</td><td>由面积律推出速度分布</td></tr>
+    </tbody>
+  </table>
+  <p><strong>第二组（命题 X–XXIV）：天体质量、行星轨道、地球形状、岁差</strong></p>
+  <ul>
+    <li><strong>命题 X（问题 III）</strong>：求行星与太阳的质量比。★ 他由此估算：<strong>太阳／木星／土星／地球／月球的相对质量</strong>——<strong>这是人类第一次「称量」天体</strong>。
+    </li>
+    <li><strong>命题 XI–XIII</strong>：由月球的运动与地球的周日运动，讨论地球与月球的相互作用。
+    </li>
+    <li><strong>★ 命题 XIX（问题 III）</strong>：<strong>求行星的轴与垂直于它的直径之比</strong>（即求地球的扁率）。★ <strong>他由此推出：地球是两极稍扁、赤道略鼓的扁球</strong>，理由是引力随纬度变化＋自转的离心效应。★ 他引用了 Norwood（1635，伦敦—约克）、Picart（亚眠—Malvoisine）、Cassini 父子的子午线测量数据<span class="tag t-src">原书</span>（第三编 命题 XIX）。<strong>这比现代大地测量的精确结果（扁率约 1/298）粗糙，但方向是对的。</strong>
+    </li>
+    <li><strong>命题 XX–XXIV</strong>：潮汐前后的推论、月球运动的一般理论。
+    </li>
+    <li><strong>★ 命题 XXXIX（问题 XX）与引理 I–III</strong>：<strong>求岁差（二分点的进动）</strong>。★ 这是全书另一个漂亮的综合：<strong>地球是扁球 ＋ 太阳与月球对赤道隆起部分的力矩 → 地轴缓慢进动</strong>。这是<strong>第一次从力学上解释岁差</strong>（在此之前它只是一个被观测到的现象）。
+    </li>
+  </ul>
+  <p><strong>第三组（命题 XXV–XXXIII）：月球交会点的运动</strong></p>
+  <p>★ <strong>这是第三编最难、也最不精确的部分</strong>，标题就是「<strong>月球交会点的运动</strong>」。</p>
+  <ul>
+    <li>牛顿要算的是：<strong>月球轨道与黄道的交点（交会点／交点）为何在退行</strong>，以及月球运动的各项主要偏差（出差、二均差、年差等）。
+    </li>
+    <li>★ 他必须同时处理<strong>三个体的引力</strong>（地球—月球—太阳），这是一个<strong>没有精确解</strong>的问题。他用的是<strong>几何近似的逐项扰动法</strong>，把太阳的扰动拆成若干项，分别估计。
+    </li>
+    <li>★ <strong>结果</strong>：他能解释交会点退行的<strong>主要项</strong>，但与观测仍有偏差。<strong>牛顿自己在第三编开篇就承认了这一点</strong>：他原本不打算把月球理论写进第三编，因为「月球的运动太复杂」，而且他的方法还不够精确。★ 他实际上在出版前对月球理论作了大量计算（学界认为这拖慢了他的工作）。
+    </li>
+    <li>★★ <strong>一个重要的史学事实</strong>：<strong>《原理》的月球理论是全书被后人改进最多、也最不成功的部分</strong>。18 世纪（欧拉、克莱罗、达朗贝尔、拉普拉斯）用分析力学重做月球理论，才把偏差算清。<strong>牛顿在这里的困难，本质上不是「算错」，而是「几何扰动法做不到高阶精度」</strong> ——这正好说明他为什么坚持不用更强大的分析工具（他的流数法）。
+    </li>
+    <li>★ <strong>给读者的建议</strong>：<strong>命题 XXV–XXXIII 可以整段跳过</strong>。<strong>它在全书中的阅读价值在于「看牛顿处理三体问题的困难」，而不在于结论</strong>。
+    </li>
+  </ul>
+  <p><strong>第四组（命题 XXXVI–XXXVIII）：海（潮汐）的运动</strong></p>
+  <ul>
+    <li><strong>命题 XXXVI</strong>：求太阳使海运动的力量。★ 他给出具体数：太阳扰动潮汐的力与水受到的引力之比约为 <strong>1 : 38604600</strong> <span class="tag t-src">原书</span>（第三编 命题 XXXVI）。月球的作用约为太阳的两倍多，故<strong>大潮在朔望、小潮在上下弦</strong>。
+    </li>
+    <li><strong>命题 XXXVII</strong>：求月球使海运动的力量。
+    </li>
+    <li><strong>命题 XXXVIII</strong>：求潮汐的形状。
+    </li>
+    <li>★ <strong>在物理上意味着什么</strong>：<strong>这是人类第一次把潮汐从「月亮的呼吸」之类的说法，变成可计算的引力效应</strong>。★ 他也解释了为什么潮汐每天出现两次（因为太阳与月球的吸引在<strong>正对与背对</strong>两处都使海面隆起）。
+    </li>
+  </ul>
+  <p><strong>第五组（命题 XL–XLII 与引理 IV–XI）：彗星</strong></p>
+  <ul>
+    <li><strong>引理 IV–XI</strong>：为彗星轨道计算准备的几何引理。
+    </li>
+    <li><strong>★ 命题 XLI（问题 XXI）</strong>：<strong>由三次观测确定在抛物线上运动的彗星的轨道</strong>。★ 他在开篇说：「这问题极其困难，我试过很多方法……后来我构想了下面的解法，它要简单些」<span class="tag t-src">原书</span>（第三编 命题 XLI）。
+    </li>
+    <li><strong>命题 XLII</strong>：彗星轨道的确定与推广。
+    </li>
+    <li>★★ <strong>在物理上意味着什么——这是第三编另一个革命性的成果</strong>：<strong>彗星不再是大气中的「征兆」，而是与行星同类的天体</strong>，走的是极扁的（接近抛物线的）轨道，服从同一套引力定律，可以在远日点远离到极远处、也可以定期回归。★ 牛顿在总释里也用彗星作为<strong>反驳漩涡说的证据</strong>（见下）。★ 这一条有直接的现实后果：<strong>它把「天空是永恒不变的」与「新星／彗星是重大征兆」这两套古代观念一起取消了。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★★ <strong>月球理论（命题 XXV–XXXIII）的不精确，是本书最明确的技术失败</strong>。牛顿自己清楚，也公开承认（第三编开篇）。★ <strong>但它不是「错误」，而是「工具不足」</strong>：三体问题在当时没有足够强的分析工具。<strong>这一点极重要</strong>：它说明《原理》的「几何方法」是一个<strong>自觉的选择</strong>，而这个选择<strong>有代价</strong>。
+    </li>
+    <li>★ <strong>「现象」的选择是有立场的</strong>。牛顿把某些观测写成「现象」（公理），把另一些写成「命题」（结论）。<strong>这是一个分类工作，而分类本身就带判断</strong>。★ 例如：牛顿没有把「地球上不同纬度的重力相同」写成现象，而是放进命题里用摆的实验处理。<strong>读者应当意识到：「现象」这一章不是数据的全部，而是数据的一个被挑选过的子集。</strong>
+    </li>
+    <li><strong>规则 III 的归纳跳跃</strong>。★ 从「我们实验所及的一切物体都有引力」跳到「<strong>一切物体</strong>都有引力」，这一步的正当性完全依赖规则 III 本身。<strong>而规则 III 恰恰是四条规则里最可疑的一条</strong>——它假定「自然界的性质不随位置改变」（「自然喜好简单，永远自相一致」），这是一个<strong>形而上学前提，不是经验结论</strong>。★ 牛顿自己也知道这一点：他在规则 III 里说「<strong>我们当然不应该为了我们自己所编造的梦与虚妄的虚构，而放弃实验的证据</strong>」——这句话既是反驳对手，也<strong>暴露了规则 III 的循环性</strong>：用什么标准区分「实验的证据」与「自己编造的梦」？<strong>规则 III 自己就是那个标准。</strong>
+    </li>
+    <li>★ <strong>「拱点静止」这条判据的强度，依赖观测精度</strong>。用拱点的缓慢移动去论证平方反比的精确性，是一个非常聪明的思路，但<strong>它只在观测精度所及的范围内有效</strong>。★ 事实是：水星近日点的进动（43″／世纪）<strong>正是这个判据最终失效的地方</strong>——这是广义相对论的三大经典验证之一。<strong>牛顿的判据本身没有错，错的是「静止」这个前提被后来的精度推翻了。</strong>
+    </li>
+    <li>★ <strong>彗星轨道用抛物线近似，是一个简化</strong>。真实彗星轨道是极扁的椭圆，抛物线只是「近日点附近」的近似。牛顿在命题 XLI 里用的是抛物线（"moving in a parabola"），并在命题 XLII 里推广。★ 这一简化对当时的观测精度是够用的，<strong>但它使「周期彗星」的判定变得困难</strong>（抛物线轨道意味着不返回）。<strong>后来哈雷正是靠这一点做出了著名的预言</strong>（1758 年回归）。
+    </li>
+    <li><strong>本节可信度最高的部分</strong>：<strong>命题 I–VII（引力定律的建立）、命题 XL–XLII（彗星）与命题 XXXIX（岁差）</strong>。这三块至今仍是教科书内容，且逻辑链清晰。<strong>最需要保留意见的是命题 XXV–XXXIII（月球理论）。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>总释（General Scholium）</span><span class="caret">▾</span></h2>
+  <h3>这一编在解决什么</h3>
+  <p><strong>总释在解决一个「收尾」问题：全书把「天体会怎么动」算完了，但读者一定会问两个牛顿无法回避的问题——「这一切是怎么来的？」和「引力到底是什么？」总释就是他对这两个问题的</strong>正式回答<strong>。</strong></p>
+  <p>★ <strong>它写于 1713 年（第二版），不是 1687 年</strong>。这一点必须先说清：</p>
+  <ul>
+    <li><strong>第 1 版（1687）里根本没有总释。</strong> 全书唯一一篇「Scholium Generale」在<strong>第二编结尾</strong>，内容是摆的实验记录（木球、弧长、往复次数）。<strong>这一点我在公版拉丁全文（Gutenberg #28233）里逐条核到</strong><span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>总释是 1713 年第二版新增的，1726 年第三版又有修订</strong> <span class="tag t-src">原书</span>（#76404 Motte 英译第三编末尾；版本史见 G. E. Smith 2002 与多来源一致的说明）。
+    </li>
+    <li>★★ <strong>它为什么会被加上</strong>：直接原因是<strong>对第一版方法论的批评</strong>——第一版的第三编用「通俗方法」写成，被欧陆学者（尤其莱布尼茨派）批评「不是哲学」「把隐蔽性质引入了自然哲学」。<strong>总释是牛顿对这些批评的一次总回应</strong>：他既要说明引力不是「隐蔽性质」，又要说明为什么他不解释引力的原因，还要说明这套体系的安排者是谁。★ <strong>换言之：总释不是一段抒情收尾，它是一篇论战文。</strong>
+    </li>
+  </ul>
+  <h3>关键内容：逐句精读</h3>
+  <p>★ <strong>下面按原文顺序逐段精读。</strong> 英译取自公版 Motte 英译（Gutenberg #76404，据 1729 年译本）；<strong>拉丁原句经多个独立来源转引一致，但我未在公版完整拉丁文本中读到第三编总释（#28233 是 1687 年第一版，不含总释），故拉丁文标 <span class="tag t-rep">转述</span></strong>，见 <code>D1</code>。括号内是我的说明。</p>
+  <p><strong>① 开篇：漩涡说的困难</strong></p>
+  <blockquote>
+    <p>「<strong>The hypothesis of vortices is pressed with many difficulties.</strong> That every planet by a radius drawn to the sun may describe areas proportional to the times of description, the periodic times of the several parts of the vortices should observe the duplicate proportion of their distances from the sun; but that the periodic times of the planets may obtain the sesquiplicate proportion of their distances from the sun, the periodic times of the parts of the vortex ought to be in the sesquiplicate proportion of their distances.」<span class="tag t-src">原书</span>（总释第 1 段）</p>
+  </blockquote>
+  <p>★ <strong>说明</strong>：总释<strong>不是从上帝开始，而是从推翻漩涡开始</strong>。这一点常被忽略：<strong>它是一篇论战文的开头，不是一篇神学论文的开头</strong>。他把第二编的计算浓缩成一句「两条比例要求互相矛盾」。</p>
+  <p><strong>② 彗星与阻力</strong></p>
+  <blockquote>
+    <p>「The motions of the comets are exceedingly regular, are governed by the same laws with the motions of the planets, and can by no means be accounted for by the hypothesis of vortices; for comets are carried with very eccentric motions through all parts of the heavens indifferently, with a freedom that is incompatible with the notion of a vortex.」<span class="tag t-src">原书</span>（总释第 2 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>「Bodies projected in our air suffer no resistance but from the air. Withdraw the air, as is done in Mr. Boyle's vacuum, and the resistance ceases; for in this void a bit of fine down and a piece of solid gold descend with equal velocity.」<span class="tag t-src">原书</span>（总释第 3 段）</p>
+  </blockquote>
+  <p>★ <strong>说明</strong>：注意他引的是<strong>波义耳的真空实验</strong>（"Mr. Boyle's vacuum"）——<strong>羽毛与金币等速下落</strong>。<strong>这是「天上没有阻力、所以天体可以永远运动」的实验依据。</strong> 牛顿在这里把实验与天文连成一条链。</p>
+  <p><strong>③ ★★ 第一句神学断言（全书最著名的一句神学话）</strong></p>
+  <blockquote>
+    <p>「<strong>This most beautiful system of the sun, planets, and comets, could only proceed from the counsel and dominion of an intelligent and powerful Being.</strong> And if the fixed stars are the centres of other like systems, these, being formed by the like wise counsel, must be all subject to the dominion of One; especially since the light of the fixed stars is of the same nature with the light of the sun, and from every system light passes into all the other systems: and lest the systems of the fixed stars should, by their gravity, fall on each other mutually, he hath placed those systems at immense distances one from another.」<span class="tag t-src">原书</span>（总释第 4 段）</p>
+  </blockquote>
+  <p>★ <strong>说明</strong>：</p>
+  <ul>
+    <li>★ <strong>「could only proceed from」是一个极强的措辞</strong>——不是「可能出自」，而是「只能出自」。<strong>这是《原理》里最接近「目的论论证」的一句。</strong>
+    </li>
+    <li>★★ <strong>他做了一个天体物理式的推论</strong>：如果恒星也是另一些系统的中心，那么它们<strong>必须都服从同一个主宰</strong>，因为「<strong>恒星的光与太阳的光性质相同，且光从每个系统传到所有其他系统</strong>」——<strong>这是用光的普遍性来论证主宰的唯一性</strong>。
+    </li>
+    <li>★★ <strong>他还给了一个「为什么恒星距离如此之远」的物理解释</strong>：「<strong>以免各恒星系统由于自身的重力互相落到对方身上，他把这些系统互相放在极远的距离上</strong>」——<strong>这是一个用引力理论反推宇宙结构的功能性论证，属于非常大胆的一步。</strong>
+    </li>
+  </ul>
+  <p><strong>④ 上帝是「主宰」而不是「世界之魂」</strong></p>
+  <blockquote>
+    <p>「This Being governs all things, not as the soul of the world, but as Lord over all; and on account of his dominion he is wont to be called Lord God παντοκράτωρ, or Universal Ruler; for God is a relative word, and has a respect to servants…」<span class="tag t-src">原书</span>（总释第 5 段）</p>
+  </blockquote>
+  <p>★ <strong>说明</strong>：</p>
+  <ul>
+    <li>★ <strong>「not as the soul of the world」是直接针对斯宾诺莎式的泛神论</strong>：上帝不是内在于世界的精神，而是<strong>在外的主宰（Lord）</strong>。
+    </li>
+    <li>★ <strong>他做了一个语言学论证</strong>：「God 是一个关系词，与仆人有关系」；他说我们说「我的上帝、你的上帝、以色列的上帝、万神之神、万主之主」，但<strong>不说「我的永恒、你的永恒」</strong>——因为「永恒」「无限」「完美」这些称号<strong>与仆人没有关系</strong>。★ <strong>这个论证的意图很清楚：上帝的本质在「主权／主宰」，不在「无限」这类形而上属性。</strong>
+    </li>
+    <li>★ 他引了 Pocock 博士关于拉丁文 <em>Deus</em> 源自阿拉伯语 <em>du</em>（意为 Lord）的说法（见总释脚注 1）。★ <strong>这段是典型的 17 世纪语文学论证，今天看来并不可靠</strong>，但它是牛顿论证结构的一部分。
+    </li>
+    <li>★ <strong>一句关键</strong>：「<strong>It is the dominion of a spiritual being which constitutes a God</strong>」（构成一个上帝的，是一个精神存在的主宰权）。★ <strong>这解释了为什么牛顿拒绝「自然神论」（deism）的标签</strong>：一个不干预、不主宰的「第一因」在牛顿看来「不过是命运与自然」（"a god without dominion, providence, and final causes, is nothing else but Fate and Nature"）。
+    </li>
+  </ul>
+  <p><strong>⑤ 上帝与空间时间：</strong></p>
+  <blockquote>
+    <p>「He is not eternity or infinity, but eternal and infinite; he is not duration or space, but he endures and is present. He endures for ever, and is every where present; and by existing always and every where, he constitutes duration and space.」<span class="tag t-src">原书</span>（总释第 5 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>「He is omnipresent not virtually only, but also substantially; for virtue cannot subsist without substance. In him are all things contained and moved…」<span class="tag t-src">原书</span>（同上）</p>
+  </blockquote>
+  <p>★ <strong>说明</strong>：</p>
+  <ul>
+    <li>★★ <strong>这一段是牛顿「上帝＝绝对时间与绝对空间的承载者」的表述</strong>：上帝不是「永恒」或「无限」（那只是抽象属性），而是<strong>永恒地、无限地存在</strong>，并<strong>由此构成持续与空间</strong>。★ 这与第一编定义后的注释（绝对时间／绝对空间）<strong>遥相呼应</strong>：<strong>绝对空间之所以是不动的、绝对时间之所以是均匀的，是因为它们「分有」了上帝的永恒与遍在。</strong> ★ <strong>这段是牛顿神学与牛顿物理的直接接口，也是后人（尤其莱布尼茨—克拉克论战）争论的焦点。</strong>
+    </li>
+    <li>★★ <strong>「omnipresent not virtually only, but also substantially」是一个极强的表述</strong>——上帝<strong>实质上</strong>而不是仅仅在效力上遍在。★ 这一句话后来被<strong>莱布尼茨</strong>抓住，指责牛顿把上帝变成了世界的「感觉中枢」（sensorium），是「把上帝拉进了物质世界」（见 Leibniz–Clarke 通信，1715–1716）。<strong>这条反驳是否成立，见 <code>## 5</code></strong>。
+    </li>
+    <li>★ 「<strong>In him are all things contained and moved</strong>」（万物都在他里面被包含和运动）——<strong>这句引的是《圣经》（使徒行传 17:28），牛顿在脚注 2 里列了一长串古代与教会的出处</strong>（毕达哥拉斯、泰勒斯、阿那克萨戈拉、维吉尔、斐洛、阿拉托斯，以及圣保罗、圣约翰、摩西、大卫、所罗门、约伯、耶利米）<span class="tag t-src">原书</span>（总释脚注 2）。★ <strong>这个脚注本身很说明问题：牛顿在为「上帝遍在」这个命题做一次跨传统的文献论证</strong>，也是他说自己反三位一体立场的一种迂回表述。
+    </li>
+  </ul>
+  <p><strong>⑥ 对上帝的认识：只能从造物与目的</strong></p>
+  <blockquote>
+    <p>「We have ideas of his attributes, but what the real substance of any thing is we know not. In bodies, we see only their figures and colours, we hear only the sounds, we touch only their outward surfaces… but their inward substances are not to be known either by our senses, or by any reflex act of our minds: much less, then, have we any idea of the substance of God.」<span class="tag t-src">原书</span>（总释第 6 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>「We know him only by his most wise and excellent contrivances of things, and final causes; we admire him for his perfections; but we reverence and adore him on account of his dominion…」<span class="tag t-src">原书</span>（同上）</p>
+  </blockquote>
+  <p>★ <strong>说明</strong>：</p>
+  <ul>
+    <li>★ <strong>这是一个认识论上的谦逊声明</strong>：我们对任何事物的<strong>实质</strong>都无所知（只看到形状、颜色，听到声音），<strong>对上帝的实质更是如此</strong>。
+    </li>
+    <li>★★ <strong>我们能知道上帝的途径是「他的最智慧和最出色的构造与终极因」</strong>（"his most wise and excellent contrivances of things, and final causes"）。★★ <strong>这是「设计论证」（argument from design）的直接文本</strong>：<strong>牛顿的上帝论证不是从内心体验来的，是从天体结构的规律性来的。</strong> <strong>这也是为什么总释会被放进一本物理书里</strong>——牛顿认为「从现象出发讨论上帝」，<strong>恰恰</strong>属于自然哲学。
+    </li>
+  </ul>
+  <p><strong>⑦ 结尾：关于上帝的话说完了</strong></p>
+  <blockquote>
+    <p>「And thus much concerning God; to discourse of whom from the appearances of things, does certainly belong to Natural Philosophy.」<span class="tag t-src">原书</span>（总释第 6 段末）</p>
+  </blockquote>
+  <p>★★ <strong>说明</strong>：<strong>这是全书最有分量的一句方法论声明之一。</strong> 牛顿在说：<strong>从现象讨论上帝，是自然哲学的本职工作，不是越界。</strong> ★ <strong>这句话把「科学」与「神学」在现代意义上的分工取消了</strong>——它们在他那里是同一项工作的两端。<strong>理解这一点，是理解「牛顿没有『转向』神学」这一事实的关键（见 5.5）。</strong></p>
+  <p><strong>⑧ ★★★ 核心段：重力原因的未定与「我不做假说」</strong></p>
+  <blockquote>
+    <p>「Hitherto we have explained the phænomena of the heavens and of our sea by the power of gravity, but have not yet assigned the cause of this power. This is certain, that it must proceed from a cause that penetrates to the very centres of the sun and planets, without suffering the least diminution of its force; that operates not according to the quantity of the surfaces of the particles upon which it acts (as mechanical causes use to do), but according to the quantity of the solid matter which they contain, and propagates its virtue on all sides to immense distances, decreasing always in the duplicate proportion of the distances.」<span class="tag t-src">原书</span>（总释第 7 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>「<strong>But hitherto I have not been able to discover the cause of those properties of gravity from phænomena, and I frame no hypotheses; for whatever is not deduced from the phænomena is to be called an hypothesis; and hypotheses, whether metaphysical or physical, whether of occult qualities or mechanical, have no place in experimental philosophy. In this philosophy particular propositions are inferred from the phænomena, and afterwards rendered general by induction.</strong>」<span class="tag t-src">原书</span>（总释第 7 段，Motte 英译）</p>
+  </blockquote>
+  <blockquote>
+    <p>拉丁原句（<span class="tag t-rep">转述</span>，见 <code>D1</code>）：「<strong>Rationem vero harum gravitatis proprietatum ex phænomenis nondum potui deducere, &amp; hypotheses non fingo. Quicquid enim ex phænomenis non deducitur, hypothesis vocanda est; &amp; hypotheses seu metaphysicæ, seu physicæ, seu qualitatum occultarum, seu mechanicæ, in philosophia experimentali locum non habent.</strong> In hac philosophia propositiones deducuntur ex phænomenis, &amp; redduntur generales per inductionem.」</p>
+  </blockquote>
+  <p>★★ <strong>逐句拆解这一段（全书最重要的一段）</strong>：</p>
+  <ul>
+    <li><strong>「but have not yet assigned the cause of this power」</strong>：★★ <strong>他先划清界线</strong>——前面解释的是<strong>现象</strong>，不是<strong>原因</strong>。<strong>注意「yet」</strong>：这不是「我不能知道」，而是「<strong>我还没有</strong>从现象中推出来」。<strong>这是一个关于方法进度的陈述，不是一个关于世界本性的陈述。</strong>
+    </li>
+    <li><strong>「This is certain, that it must proceed from a cause that penetrates to the very centres of the sun and planets, without suffering the least diminution of its force」</strong>：★ <strong>他其实给了原因的「性质」限制</strong>：那个原因必须<strong>穿透到太阳与行星的中心而不衰减</strong>。<strong>这是一个很强的物理学断言</strong>——它在说：引力不是从表面起作用的。★ 这句话常被忽略，但它说明<strong>牛顿对引力原因并非一无所说</strong>：他知道它必须穿透物质。
+    </li>
+    <li><strong>「that operates not according to the quantity of the surfaces of the particles… but according to the quantity of the solid matter which they contain」</strong>：★★ <strong>这是在与「机械论的原因」划清界限</strong>：机械原因（碰撞、压力）按<strong>表面</strong>作用，而引力按<strong>所含固体物质的量</strong>作用。<strong>牛顿在这里明确说：引力不像任何已知的机械作用。</strong> 这是他对「你这不是隐蔽性质吗」这一指控的回答：<strong>不，隐蔽性质是按表面的、不可理解的；引力是按质量的、可测量的。</strong>
+    </li>
+    <li><strong>「and I frame no hypotheses」</strong>：★★★ <strong>这就是「我不做假说」</strong>。★ 关于这句的误读，见 <code>## 5.1</code>：它反对的不是「提出理论」，而是<strong>让「从现象推不出来的假设」进入实验哲学</strong>。
+    </li>
+    <li><strong>「hypotheses, whether metaphysical or physical, whether of occult qualities or mechanical」</strong>：★★ <strong>四个限定词点名了当时的四个对手</strong>：形而上学的（经院哲学／莱布尼茨式的充足理由）、物理的（笛卡尔式的机械论）、隐蔽性质的（亚里士多德—经院传统）、力学的（机械论）。<strong>注意「mechanical」在列——这正是笛卡尔漩涡说的类别。</strong>
+    </li>
+    <li><strong>「In this philosophy particular propositions are inferred from the phænomena, and afterwards rendered general by induction」</strong>：★★ <strong>这是牛顿方法论的正面表述</strong>（不只是「不做什么」，还包括「做什么」）：<strong>从现象推出个别命题 → 由归纳变为一般。</strong> ★ 这正是第三编「现象 → 规则 → 命题」三步结构的自我描述。
+    </li>
+  </ul>
+  <p><strong>⑨ 结论句：够了就够了</strong></p>
+  <blockquote>
+    <p>「And to us it is enough that gravity does really exist, and act according to the laws which we have explained, and abundantly serves to account for all the motions of the celestial bodies, and of our sea.」<span class="tag t-src">原书</span>（总释第 7 段末）</p>
+  </blockquote>
+  <p>★★ <strong>说明</strong>：<strong>这是总释的方法论落脚点，也是全书最该记住的一句</strong>。「<strong>就我们而言，够了</strong>」（it is enough）——<strong>他不追求解释原因，只要求解释现象。</strong> ★ 拉丁对应句：「<strong>Et satis est quod Gravitas revera existat, &amp; agat secundum leges a nobis expositas, &amp; ad corporum cælestium &amp; maris nostri motus omnes sufficiat.</strong>」<span class="tag t-rep">转述</span>（见 <code>D1</code>）</p>
+  <p><strong>⑩ 最后一段：「某些极精细的精神」</strong></p>
+  <blockquote>
+    <p>「And now we might add something concerning a certain most subtle Spirit which pervades and lies hid in all gross bodies; by the force and action of which Spirit the particles of bodies mutually attract one another at near distances, and cohere, if contiguous; and electric bodies operate to greater distances, as well repelling as attracting the neighbouring corpuscles; and light is emitted, reflected, refracted, inflected, and heats bodies; and all sensation is excited, and the members of animal bodies move at the command of the will, namely, by the vibrations of this Spirit, mutually propagated along the solid filaments of the nerves… <strong>But these are things that cannot be explained in few words, nor are we furnished with that sufficiency of experiments which is required to an accurate determination and demonstration of the laws by which this electric and elastic Spirit operates.</strong>」<span class="tag t-src">原书</span>（总释第 8 段）</p>
+  </blockquote>
+  <p>★★ <strong>说明</strong>：</p>
+  <ul>
+    <li>★★ <strong>这一段与「我不做假说」构成全书最大的一个张力</strong>：<strong>他刚刚宣布不做假说，紧接着自己提了一个覆盖凝聚、电、光、乃至神经与肌肉运动的「极精细的精神」。</strong> ★ <strong>这不是矛盾，而是「假说」定义的结果</strong>：他在这句里明确说「<strong>但这些事情无法用几句话说明，我们也没有足够的实验</strong>」——<strong>他把这个设想明确标注为「尚不足以确定的东西」，而不是当作解释</strong>。<strong>这恰恰是他在 Rule IV 里说的「假说是用来规避归纳的」的反面：他提出了一个设想，但拒绝用它来解释任何现象。</strong>
+    </li>
+    <li>★★ <strong>这一段是《原理》与《光学》的连接点</strong>：牛顿在《光学》第二版（1717）里把这一设想展开为著名的「<strong>疑问</strong>」（Queries），尤其 Query 21（以太的密度梯度如何导致引力）与 Query 28–31（"<strong>Have not the small particles of bodies certain powers, virtues, or forces, by which they act at a distance?</strong>"）。★ <strong>所以在牛顿的私人思考里，引力是可能有介质解释的——只是他拒绝把这个解释塞进《原理》</strong>。
+    </li>
+    <li>★★ <strong>这一段也是「牛顿到底信不信超距作用」这个问题的答案所在</strong>：<strong>他在公开出版的正文里拒绝解释；他在同一个人的私人／准私人文本里提了一个介质设想；他在给 Bentley 的信里把「无中介的超距作用」称为「极大的荒谬」。三处合起来，结论只能是：他不知道自己也不声称知道——但如果是「无中介的超距」，他倾向认为那是荒谬的。</strong>（见 <code>## 5.2</code>）
+    </li>
+  </ul>
+  <p>★★★ <strong>总释里最关键的三句（如果要只记三句）</strong>：</p>
+  <ol>
+    <li><strong>「I frame no hypotheses; for whatever is not deduced from the phænomena is to be called an hypothesis; and hypotheses, whether metaphysical or physical, whether of occult qualities or mechanical, have no place in experimental philosophy.」</strong><span class="tag t-src">原书</span>（<strong>第三编 总释</strong>）——这是全书流传最广的一句，也是被误读最多的一句。
+    </li>
+    <li><strong>「This most beautiful system of the sun, planets, and comets, could only proceed from the counsel and dominion of an intelligent and powerful Being.」</strong><span class="tag t-src">原书</span>（<strong>第三编 总释</strong>）——全书最强的一句神学断言，也是「牛顿为何在物理书里谈上帝」的答案。
+    </li>
+    <li><strong>「And to us it is enough that gravity does really exist, and act according to the laws which we have explained.」</strong><span class="tag t-src">原书</span>（<strong>第三编 总释</strong>）——全书方法论的落脚点：<strong>只解释现象，不解释原因。</strong>
+    </li>
+  </ol>
+  <h3>可疑之处</h3>
+  <p>★ <strong>总释是全书争议最多的一段，这里的「可疑之处」也最多。</strong></p>
+  <ol>
+    <li>★★ <strong>「I frame no hypotheses」的自相矛盾嫌疑</strong>。<strong>他在同一篇里提了一个「极精细的精神」</strong>；而在一本要求「只让掌握原理的人读」的书里，他却用一整个段落讨论了一个未经实验确定的实体。★ <strong>辩护</strong>：他明确标注了「我们也没有足够的实验」——<strong>这是把设想与解释分开</strong>。★ <strong>批评</strong>：<strong>如果这是合法的，那笛卡尔的漩涡为什么不是？</strong> ★★ <strong>正确的判断（我的意见，标 <span class="tag t-inf">推断</span>）</strong>：<strong>牛顿的界线不在「有没有设想」，而在「设想有没有被用来替代从现象的推导」</strong>。笛卡尔的漩涡是<strong>用来解释</strong>行星运动的（它承担了论证的功能）；牛顿的「精神」是<strong>明确声明不能用来解释</strong>的（它只是被提及）。<strong>这条界线是清楚的，但确实很细——细到两百年来的读者不断踩过去。</strong>
+    </li>
+    <li>★★ <strong>「上帝作为主宰」的论证有一个著名的困难</strong>：<strong>如果上帝需要不断干预来维持体系，那他是否是一个「笨拙的工匠」？</strong> ★ 这正是<strong>莱布尼茨</strong>对牛顿派的著名批评：牛顿的上帝<strong>必须不断上紧世界这台钟</strong>，因为它时刻在损失运动（莱布尼茨—克拉克通信，1715–1716）。★ <strong>牛顿派的回应</strong>（克拉克）是：神的「干预」不是修补，而是持续创造。★★ <strong>这场争论的物理学后果是实在的</strong>：正是从这场争论里，长出了「宇宙会衰退吗」「运动守恒吗」这一类问题，并最终导向 19 世纪的热力学。
+    </li>
+    <li>★★ <strong>「omnipresent… substantially」这句给上帝与空间的关系留下了一个模糊</strong>。★ 莱布尼茨抓住这一点，说牛顿派的上帝需要一个「感觉中枢」（sensorium）来感知事物，<strong>因而把上帝实质化、空间化</strong>。★★ <strong>牛顿本人在《光学》的 Query 31 里确实用了 sensorium 这个词</strong>，所以这条批评不是空穴来风。<strong>它是《原理》文本里可以论证地批评的一处。</strong>
+    </li>
+    <li>★★ <strong>总释的「反三位一体」倾向，是间接表达的</strong>。★ 学界认为总释在<strong>避免</strong>使用三位一体的语言，并且刻意用「主宰」而不是「圣父、圣子、圣灵」的框架来谈上帝（有研究指出它「含蓄地表示支持一神论而反对三位一体」，但<strong>没有在总释中明确讨论这一问题</strong>）<span class="tag t-rep">转述</span>。★★ <strong>这一点对理解牛顿的处境很重要</strong>：他私下持反三位一体立场，<strong>但在公开出版的《原理》里，他选择只说到能说的地方为止</strong>。<strong>这也解释了为什么总释读起来既热烈又含糊。</strong>
+    </li>
+    <li>★★ <strong>一个必须提醒的文本事实</strong>：<strong>总释是 1713 年的文本，不是 1687 年的。</strong> 任何「《原理》里说……」的论断，如果引的是总释，<strong>都必须说明它属于第二版（1713）及以后</strong>。★ 中文世界的很多转述把总释当作「《原理》的结论」，<strong>这在文本上是准确的（它确实是定稿的结论），在版本上是需要标注的</strong>。
+    </li>
+    <li>★ <strong>本节的边界（我必须诚实标注）</strong>：我对总释的<strong>英译是逐字核对的（A 级）</strong>；但<strong>拉丁原句我是通过多个独立来源转引的（B 级）</strong>，因为公版拉丁全文（Gutenberg #28233）是 1687 年第一版，<strong>不包含总释</strong>。★ 若你要引用拉丁原文，<strong>请以 1726 年第三版的拉丁文本（如 archive.org 的拉丁第三版扫描）或 Cohen &amp; Whitman（1999）的编者校注为准</strong>。<strong>这是本报告在本书上最大的一个「未完全闭环」的地方，已列在 <code>D1</code>。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s11">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>概念／人物</th><th>一句话</th><th>出现在</th></tr></thead>
+    <tbody>
+      <tr><td><strong>vis insita / vis inertiæ</strong></td><td>物质的固有力／惯性力：物体坚持现状的能力；只在别的力试图改变它时表现出来</td><td>第一编 定义 III</td></tr>
+      <tr><td><strong>quantitas motus</strong></td><td>运动的量（动量）：速度与物质的量的乘积</td><td>第一编 定义 II</td></tr>
+      <tr><td><strong>vis impressa</strong></td><td>外力：施加于物体以改变其状态的作用；作用结束即不留在物体中</td><td>第一编 定义 IV</td></tr>
+      <tr><td><strong>vis centripeta</strong></td><td>向心力：使物体趋向一个作为中心的点的力</td><td>第一编 定义 V</td></tr>
+      <tr><td><strong>向心力的三量</strong></td><td>绝对量／加速量（加速度）／运动量（力）</td><td>第一编 定义 VI–VIII</td></tr>
+      <tr><td><strong>绝对时间·绝对空间</strong></td><td>与任何外在事物无关的、均匀流逝的时间与不动的空间</td><td>第一编 定义后注释</td></tr>
+      <tr><td><strong>水桶实验</strong></td><td>用水的凹面证明「真正的运动不能用相对转移来定义」，是绝对空间的唯一经验证据</td><td>第一编 定义后注释</td></tr>
+      <tr><td><strong>首末比</strong>（first and last ratios）</td><td>牛顿用来替代「无穷小量」的几何极限论证；现代读者可跳过</td><td>第一编 Sect. I；与莱布尼茨之争见 5.3</td></tr>
+      <tr><td><strong>牛顿大炮</strong></td><td>从山顶以足够速度抛出的物体可以绕地球一圈、甚至永远不落——月球同理</td><td>第一编 定义 V 后的说明</td></tr>
+      <tr><td><strong>月球检验</strong></td><td>用同一套数字同时算对「月球的下落」与「苹果的下落」，证明两者是同一个力</td><td>第三编 命题 IV</td></tr>
+      <tr><td><strong>万有引力</strong></td><td>一切物体按其所含物质的量相互吸引；只被发现于第三编命题 V–VII</td><td>第三编 命题 V 推论 1–3、命题 VI–VII</td></tr>
+      <tr><td><strong>哲学中的推理规则 I–IV</strong></td><td>不设多余原因／同果同因／归纳普遍性质／归纳结论遇反例前视为真</td><td>第三编（★ 1–3 条 1713 年才成「规则」，第 4 条 1726 年才加）</td></tr>
+      <tr><td><strong>现象 I–VI</strong></td><td>把木卫、土卫、行星、内行星、月球的观测写成论证前提</td><td>第三编</td></tr>
+      <tr><td><strong>Hypotheses non fingo</strong></td><td>「我不做假说」；反对让「从现象推不出的假设」进入实验哲学</td><td>第三编 总释（★ 1713 年第二版新增）</td></tr>
+      <tr><td><strong>极精细的精神</strong>（most subtle Spirit）</td><td>总释末尾提到的、可解释凝聚／电／光／神经运动的设想；他明确说实验不足</td><td>第三编 总释末段；展开于《光学》Queries</td></tr>
+      <tr><td><strong>漩涡说</strong></td><td>笛卡尔的宇宙论：行星由以太漩涡带动</td><td>第二编 Sect. IX 注释予以清算</td></tr>
+      <tr><td><strong>彗星</strong></td><td>与行星同类的天体，走极扁轨道，服从同一引力定律</td><td>第三编 命题 XL–XLII</td></tr>
+      <tr><td><strong>Isaac Newton</strong>（1643–1727）</td><td>本书作者；剑桥卢卡斯教授、皇家学会会长、造币厂厂长</td><td>—</td></tr>
+      <tr><td><strong>Edmund Halley</strong>（约 1656–1742）</td><td>促成并出资刊行《原理》第一版；后预言哈雷彗星回归</td><td>成书史</td></tr>
+      <tr><td><strong>Roger Cotes</strong>（1682–1716）</td><td>第二版（1713）编者，撰写著名的编者序</td><td>版本史</td></tr>
+      <tr><td><strong>Henry Pemberton</strong>（1694–1771）</td><td>第三版（1726）编者</td><td>版本史</td></tr>
+      <tr><td><strong>Robert Hooke</strong>（1635–1703）</td><td>与牛顿就万有引力发现权与光学多次争执；1679–80 通信是优先权争议的关键文献</td><td>5.2 与 4b</td></tr>
+      <tr><td><strong>Gottfried Wilhelm Leibniz</strong>（1646–1716）</td><td>独立发明微积分并率先发表；与牛顿的优先权之争见 <em>Commercium Epistolicum</em></td><td>5.3</td></tr>
+      <tr><td><strong>Christiaan Huygens</strong>（1629–1695）</td><td>摆的等时性、秒摆；对《原理》方法论持竞争性立场</td><td>5.4</td></tr>
+      <tr><td><strong>John Keill</strong>（1671–1721）</td><td>1708 年公开指控莱布尼茨剽窃</td><td>5.3</td></tr>
+      <tr><td><strong>Richard Bentley</strong>（1662–1742）</td><td>神学家；1692–93 年与牛顿通信，牛顿在此明确否认「引力是物质固有」</td><td>5.2、5.5</td></tr>
+      <tr><td><strong>John Maynard Keynes</strong>（1883–1946）</td><td>1936 年购得牛顿大批手稿，1946 年讲稿《牛顿其人》提出「最后的魔法师」</td><td>5.5</td></tr>
+      <tr><td><strong>Alexandre Koyré</strong>（1892–1964）</td><td>科学史家；称规则 IV 为「谨慎与良知的规则」</td><td>8</td></tr>
+      <tr><td><strong>I. Bernard Cohen</strong>（1914–2003）</td><td>与 Whitman 合译 1999 年权威英译；与 Koyré 合编 1972 年第三版异文汇编</td><td>4、D</td></tr>
+      <tr><td><strong>Florian Cajori</strong>（1859–1930）</td><td>1934 年校订 Motte 英译——<strong>王克迪中译的底本</strong></td><td>4</td></tr>
+      <tr><td><strong>Richard S. Westfall</strong>（1924–1996）</td><td>《永不停息：牛顿传》（1980）</td><td>5.5</td></tr>
+      <tr><td><strong>Betty Jo Teeter Dobbs</strong>（1930–1994）</td><td>牛顿炼金术研究的奠基者（1975／1991）</td><td>5.5</td></tr>
+      <tr><td><strong>王克迪</strong></td><td>中译者（北大 2006），研究生院哲学博士、中央党校教授；据 Cajori 校订的 Motte 英译转译</td><td>4</td></tr>
+      <tr><td><strong>赵振江</strong></td><td>中译者（商务 2006），据 1726 年拉丁第三版译出</td><td>4</td></tr>
+      <tr><td><strong>郑太朴</strong>（1901–1949）</td><td>1931 年首个完整汉译本译者，据沃尔夫斯德译本转译</td><td>4</td></tr>
+      <tr><td><strong>李善兰</strong>（1811–1882）＋<strong>伟烈亚力</strong>＋<strong>傅兰雅</strong></td><td>清末合译《数理格致》，未刊，抄本藏剑桥大学图书馆</td><td>4</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s12">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>要读原文</strong>：公版 <strong>Motte 英译</strong>（Project Gutenberg #76404，据 1846 年纽约 Daniel Adee 版，含 Chittenden 校订），与公版 <strong>拉丁文第一版</strong>（Project Gutenberg #28233，1687）。★ 二者<strong>不能互相替代</strong>：前者是 1729 年英译（据第三版），后者是 1687 年拉丁第一版。
+    </li>
+    <li><strong>要读权威校订本</strong>：<strong>I. Bernard Cohen &amp; Anne Whitman（trans.）</strong>, <em>Isaac Newton: The Principia, Mathematical Principles of Natural Philosophy</em>, University of California Press, <strong>1999</strong> —— 20 世纪最权威的英译，附拉丁异文与长篇编者导论。<strong>Alexandre Koyré &amp; I. B. Cohen（eds.）</strong>, <em>Isaac Newton's Philosophiae Naturalis Principia Mathematica: The Third Edition (1726) with Variant Readings</em>, Harvard University Press, <strong>1972</strong> —— 逐句比对各版异文。
+    </li>
+    <li><strong>要读方法论</strong>：<strong>G. E. Smith</strong>,〈The Methodology of the Principia〉, in I. B. Cohen &amp; G. E. Smith (eds.), <em>The Cambridge Companion to Newton</em>, Cambridge University Press, <strong>2002</strong>, pp. 138–173 —— 本报告 <code>## 5.1</code> 与 <code>## 5.4</code> 的主要学术依据之一。
+    </li>
+    <li><strong>要读牛顿的其他文字</strong>：《光学》（<em>Opticks</em>, 1704；第二版 1717 增「疑问」Queries，含 Query 21、28–31）；<strong>1692–93 年致 Richard Bentley 四封信</strong>（The Newton Project 有对外公开的抄本转录）；<em>Commercium Epistolicum</em>（1712/1713）。
+    </li>
+    <li><strong>要读一手批评文本</strong>：<strong>Christiaan Huygens</strong>, <em>Traité de la lumière</em>（<strong>1690</strong>）序言——与牛顿方法论正面竞争的一份纲领；<strong>Leibniz–Clarke 通信</strong>（1715–1716）。
+    </li>
+    <li><strong>要给非专业读者的替代读本</strong>：<strong>S. Chandrasekhar</strong>, <em>Newton's Principia for the Common Reader</em>, Oxford University Press, <strong>1995</strong> —— 诺贝尔物理学奖得主逐命题重做《原理》。
+    </li>
+    <li><strong>要懂牛顿这个人</strong>：<strong>Richard S. Westfall</strong>, <em>Never at Rest: A Biography of Isaac Newton</em>, Cambridge University Press, <strong>1980</strong>（最权威的牛顿传记）；<strong>John Maynard Keynes</strong>, "Newton, the Man", <strong>1946/1947</strong>；<strong>Michael White</strong>, <em>Isaac Newton: The Last Sorcerer</em>, <strong>1997</strong>。
+    </li>
+  </ol>
+</section>
+
+<section id="s13">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>见同目录 <code>自然哲学的数学原理-来源清单.md</code>。</p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. ★★ 总释的拉丁原文，我未能从公版完整拉丁文本中核到</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：Gutenberg #28233 标注为 <em>Philosophiæ Naturalis Principia Mathematica</em>（1687），我逐字读到了它的<strong>定义、运动的公理或定律、第三编开篇的「假说」（HYPOTHESES I–V）、以及第二编末尾的「Scholium Generale」</strong>。★ 但<strong>它没有第三编末尾那篇著名的总释</strong>——因为总释是 1713 年第二版才加的。
+    </li>
+    <li><strong>我查到了什么</strong>：总释的<strong>拉丁原句</strong>（「Rationem vero harum gravitatis proprietatum ex phænomenis nondum potui deducere, &amp; hypotheses non fingo…」）在多个独立来源中表述完全一致，其中一处给出 1726 年第三版拉丁本 p. 530 的 archive.org 扫描链接（Cohen &amp; Whitman 1999 英译对应 p. 943）。
+    </li>
+    <li><strong>为什么没能定论</strong>：我<strong>没有</strong>逐字打开 1726 年拉丁第三版的扫描页；因此拉丁文只标 <span class="tag t-rep">转述</span>，<strong>不标 <span class="tag t-src">原书</span></strong>。
+    </li>
+    <li><strong>读者该以什么为准</strong>：引用<strong>英译</strong>以 Motte 英译（Gutenberg #76404，A 级）或 Cohen &amp; Whitman（1999）为准；引用<strong>拉丁原文</strong>请以 1726 年第三版的拉丁文本或 Cohen &amp; Whitman 的编者校注为准。
+    </li>
+  </ul>
+  <h3>D2. 「第二版出版于 1718 年」这一说法是错的，但流传很广</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：一篇流传较广的中文介绍文章（搜狐，〈经典推荐｜牛顿《自然哲学的数学原理》〉）明确写「《原理》的拉丁文第二版于 1718 年出版」，同一段里还写「牛顿逝世的前一年，由彭伯顿编辑的《原理》拉丁文第三版出版」。
+    </li>
+    <li><strong>我查到了什么</strong>：多个独立来源（含版本史论文与百科条目）一致记为 <strong>1713 年第二版（Cotes 编）／1726 年第三版（Pemberton 编）</strong>。★ 「彭伯顿编第三版、牛顿逝世前一年出版」这句是<strong>对的</strong>（1726），但「第二版 1718」<strong>与 1713 冲突</strong>。
+    </li>
+    <li><strong>为什么没能定论</strong>：我没有找到第二版的版权页原件。<strong>1718 这个年份的来源不明</strong>。
+    </li>
+    <li><strong>读者该以什么为准</strong>：<strong>以 1713（第二版）／1726（第三版）为准</strong>。★ 但请注意：<strong>第二版的实际发售时间与版权页年份之间可能有出入</strong>（17 世纪书籍常有此情况），若你在某处看到 1713 与 1718 并存，先查它说的是「版权页年份」还是「实际发售」。
+    </li>
+  </ul>
+  <h3>D3. 中文出版物的「Sect.」译法与章节合并情况，我未能核实</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：王克迪本（北大 2006）的图书馆编目目录显示，<strong>第二编只列到「第 8 章」</strong>，而拉丁原著与赵振江本的对应部分是<strong>九节／九部分</strong>（含 Sect. VI「摆体的运动和阻力」）。★ 赵振江本的目录则完整列出第二卷「第Ⅰ部分–第Ⅸ部分」。
+    </li>
+    <li><strong>我查到了什么</strong>：赵振江本目录（多源一致）：第一编「第Ⅰ部分–第ⅩⅣ部分」、第二编「第Ⅰ部分–第Ⅸ部分」，其中第Ⅵ部分为「论摆体的运动和阻力」。
+    </li>
+    <li><strong>为什么没能定论</strong>：我<strong>未持王克迪本原书</strong>，无法判断那是「编目转录不完整」还是「中译确实合并了一节」。
+    </li>
+    <li><strong>读者该以什么为准</strong>：<strong>以你手中实物的目录为准</strong>。若你发现王克迪本第二编只有 8 节，请核对它是否把 Sect. VI 并入了相邻章节。
+    </li>
+  </ul>
+  <h3>D4. 王克迪本是否有更早的版本（1992 武汉出版社）</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：赵振江本译后记（经公开译本介绍页转引）提到：「<strong>1992 年王克迪先生根据莫特的版本翻译了《原理》，由武汉出版社出版</strong>」。
+    </li>
+    <li><strong>我查到了什么</strong>：我未能在图书馆编目中核到 1992 年武汉出版社的独立书目记录；北大 2006 年版是被广泛编目的现行版本。
+    </li>
+    <li><strong>为什么没能定论</strong>：可能该书流通极少、或该说法本身有误。
+    </li>
+    <li><strong>读者该以什么为准</strong>：本报告以<strong>北大 2006 年版</strong>为王克迪译本的锚定版本；1992 年武汉版<strong>存疑</strong>，若你见到实物，请以版权页为准。
+    </li>
+  </ul>
+  <h3>D5. 清末《数理格致》译稿的存佚，两说并存</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：一个来源（国学迷，〈奈端数理〉）说：李善兰与伟烈亚力、傅兰雅合译的《数理格致》（又名《奈端数理》）<strong>「稿为大同书局借失，译稿可能早已不复存在」</strong>，又说「共译出三册，载于《格致汇编》，1880 年出版」——<strong>同一段里自相矛盾</strong>。另一个来源（赵振江译本介绍）则说「根据现在存在<strong>剑桥大学图书馆</strong>的一个手抄本来判断，他们翻译这本书根据的是英译本」。
+    </li>
+    <li><strong>我查到了什么</strong>：学术界的通行说法是：该译稿<strong>未出版</strong>，只译出一部分（「椭圜以下，尚未译出」），且<strong>现存抄本在剑桥大学图书馆</strong>。
+    </li>
+    <li><strong>为什么没能定论</strong>：「1880 年载于《格致汇编》」与「稿已散失」两说无法调和，我未能找到第三方权威来源裁决。
+    </li>
+    <li><strong>读者该以什么为准</strong>：<strong>以「未出版的残稿、抄本藏剑桥」为准</strong>（这是较通行的说法）；「1880 年刊出」<strong>存疑</strong>。
+    </li>
+  </ul>
+  <h3>D6. 王克迪本的书名与赵振江本的书名不一致</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：王克迪本（北大 2006）的图书馆编目题名多作《<strong>自然哲学之数学原理</strong>》（无「的」字），赵振江本（商务 2006）作《<strong>自然哲学的数学原理</strong>》。而本项目给定的书名为《自然哲学的数学原理》（slug 同名）。
+    </li>
+    <li><strong>我查到了什么</strong>：两个书名指向同一原著；中文出版界两种写法并行，甚至同一出版社的不同印次也可能不同。
+    </li>
+    <li><strong>为什么没能定论</strong>：这属于书名页／编目用字差异，非实质分歧。
+    </li>
+    <li><strong>读者该以什么为准</strong>：<strong>检索时两个写法都试</strong>；本报告正文标题沿用项目给定写法，但引用具体版本时按该版编目题名著录。
+    </li>
+  </ul>
+  <h3>D7. 「牛顿站在巨人的肩膀上」是否讽刺胡克，我未能核到信件原件</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：中文网络广泛流传「这句话是在讥讽驼背矮小的胡克」。
+    </li>
+    <li><strong>我查到了什么</strong>：该句出自 <strong>1676 年 2 月 5 日</strong>牛顿致胡克的信，是<strong>引语</strong>（源自 12 世纪的 Bernard of Chartres）；公开的信件释读指出，紧接在「巨人」之前的两句是在<strong>恭维</strong>胡克（说笛卡尔在光学上迈出了很好的一步、胡克又增补良多），且该信写在<strong>万有引力争端之前</strong>、两人正欲和解之时。
+    </li>
+    <li><strong>为什么没能定论</strong>：我<strong>未逐字核对信件原件</strong>（The Newton Project 有该信转录，我未打开），故标 <span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>读者该以什么为准</strong>：<strong>以 The Newton Project 的信件转录为准</strong>；「讽刺胡克身材」缺乏文本依据。
+    </li>
+  </ul>
+  <h3>D8. 各版「总释」的修订细节，我未能逐条比对</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：通行说法是总释「1713 年加入，1726 年有修订」。但<strong>具体修订了哪些句子</strong>（例如「极精细的精神」一段、关于上帝与空间的段落是否在 1726 年有改动），我未能逐条比对。
+    </li>
+    <li><strong>我查到了什么</strong>：G. E. Smith（2002）与多条百科条目均确认「1713 年加入、1726 年修订」，但未列修订清单。
+    </li>
+    <li><strong>为什么没能定论</strong>：需要 1713 与 1726 两版的<strong>逐句异文对照</strong>（Koyré &amp; Cohen 1972 的书正是做这件事），我未持该书。
+    </li>
+    <li><strong>读者该以什么为准</strong>：<strong>以 Koyré &amp; Cohen（1972）的异文汇编为准</strong>；本报告引用的总释文本<strong>属于第三版（1726）系统</strong>（经 Motte 英译）。
+    </li>
+  </ul>
+  <h3>D9. ★ 我的核验辖区（必须诚实标注）</h3>
+  <ul>
+    <li><strong>A 级（逐字核对了合法公版全文）</strong>：
+    <ul>
+      <li><strong>Motte 英译（Gutenberg #76404）</strong>：第一编 <strong>定义 I–VIII 及全部定义后注释（含水桶实验）</strong>、<strong>运动的公理或定律 I–III 及全部注释</strong>、<strong>推论 I–VI 及注释</strong>、<strong>Sect. I–II 的引理与命题 I</strong>、<strong>Sect. III 命题 XI</strong>、<strong>第二编末尾「总释」（Sect. VI，实验记录）</strong>、<strong>第二编 Sect. IX 注释（漩涡批判）</strong>、<strong>第三编开篇的阅读建议</strong>、<strong>哲学中的推理规则 I–IV</strong>、<strong>现象 I–VI（含表格）</strong>、<strong>第三编命题 I、II、III、IV、V、VI、VII、XIX、XXXVI、XLI</strong>、<strong>★★ 第三编 总释全文（含脚注 1、2）</strong>。
+      </li>
+      <li><strong>拉丁文第一版（Gutenberg #28233）</strong>：<strong>定义 I–VIII 标题与正文、运动的公理或定律 I–III 拉丁原文、第三编开篇的假说 HYPOTHESES I–V、第二编 Scholium Generale、题献页与 Imprimatur（Samuel Pepys，1686-07-05）</strong>。
+      </li>
+    </ul>
+    </li>
+    <li><strong>B 级（有可定位引文，未逐字核对）</strong>：<strong>总释的拉丁原句</strong>；<strong>牛顿致 Bentley 四封信</strong>（经多个独立来源转引一致，未打开 The Newton Project 原件）；<strong>《光学》Queries 的引文</strong>；<strong>Keynes《牛顿其人》的引文</strong>；<strong>Huygens 1690 序言的引文</strong>（经 G. E. Smith 2002 转引）。
+    </li>
+    <li><strong>B 级（中文引文，一律另计）</strong>：<strong>所有中文译本的引文与术语</strong>——王克迪本（北大 2006）、赵振江本（商务 2006）、郑太朴本（商务 1931）<strong>均在版权期内</strong>，我<strong>未逐字核对中文正文</strong>，只用了书目、版权页与目录数据。
+    </li>
+    <li><strong>未读到、不声称核对的内容</strong>：★ <strong>第一编 Sects. IV–XIV 的绝大多数命题正文</strong>（我读了它们的目录标题与命题号，未读证明过程）；★ <strong>第二编 Sects. I–V、VII–VIII 的命题正文</strong>；★ <strong>第三编命题 VIII–XVIII、XX–XXXV、XXXVII–XL、XLII 的正文</strong>；★ <strong>书末《宇宙体系》全篇</strong>。<strong>这些部分本报告的说明依赖目录标题、通行学术共识与二手来源，标 <span class="tag t-rep">转述</span> 或 <span class="tag t-inf">推断</span>。</strong>
+    </li>
+  </ul>
+</section>
+
+<footer>
+  生成于 2026-10-07 · 来源清单与交叉验证记录见同目录 <code>自然哲学的数学原理-来源清单.md</code><br>
+  本页引文按<b>三层核验级别</b>处理：<b>英文／拉丁文原文 A 级</b>（依据合法公版全文 Project Gutenberg #76404 Motte 英译 与 #28233 1687 拉丁初版，覆盖第一编定义与全部运动定律及推论、第二编总释与漩涡批判、第三编开篇／推理规则／现象／关键命题／总释全文）；<b>总释的拉丁原句 B 级</b>（#28233 是 1687 年第一版，<b>不含总释</b>，故拉丁语句为多源转引）；<b>中文引文 B 级</b>（王克迪本、赵振江本、郑太朴本均在版权期内，未逐字核对，本报告中译均为笔者自译）。★ 本书最容易踩的三个坑：<b>①「我不做假说」（Hypotheses non fingo）出自 1713 年第二版新增的第三编「总释」，1687 年第一版里还没有这句话；② 书中同名「总释」有两篇——第二编末尾那篇是摆的实验记录，第三编末尾那篇才是被误读的那一篇；③「总释」1713 年才加入、四条「推理规则」到 1726 年才齐</b>。另请留意：<b>中译底本不同会让你读到两个不同的牛顿</b>（王克迪本据 Motte 英译经 Cajori 校订转译；赵振江本据 1726 年拉丁第三版直译）。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《利维坦》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《利维坦》<small>阅读指引与精华解析 · 2026-10-07</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 六个核心论点</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 中文译本怎么选</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s7">6 第一部分：论人类（第 1–16 章）</a>
+    <a href="#s8">7 第二部分：论国家（第 17–31 章）</a>
+    <a href="#s9">8 第三部分：论基督教体系的国家（第 32–43 章）</a>
+    <a href="#s10">9 第四部分：论黑暗的王国（第 44–47 章）</a>
+    <div class="grp">附录</div>
+    <a href="#s11">A 关键概念与人物速查</a>
+    <a href="#s12">B 延伸阅读</a>
+    <a href="#s13">C 来源清单</a>
+    <a href="#s14">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《利维坦》阅读指引与精华解析</h1>
+  <div class="sub">Leviathan, or The Matter, Forme and Power of a Common Wealth Ecclesiasticall and Civil（1651）</div>
+  <div class="meta">
+    <div><b>作者</b>托马斯·霍布斯（Thomas Hobbes，1588–1679）—— 英国哲学家；牛津出身，长期任卡文迪什家族（德文郡伯爵）家庭教师与秘书；1640 年内战前夕流亡巴黎，<b>《利维坦》即在巴黎写就</b>，1651 年出版后返回英国</div>
+    <div><b>成书年代</b><b>1651</b>（英文初版，题献署「Paris APRILL 15/25 1651」）；<b>1668</b>（拉丁文改写本，在阿姆斯特丹出版，与英文本有实质差异，见第 5.4 节）</div>
+    <div><b>★ 大陆简体版</b><b>黎思复、黎廷弼 译，杨昌裕 校</b>，商务印书馆「汉译世界学术名著丛书」，<b>1985-09 初版，580 页，ISBN 9787100017510</b>；2017-04 纪念版分科本 ISBN 9787100123556。★ 版权页交代「<b>根据伦敦 J.M. 登特父子有限公司 1957 年版译出</b>」</div>
+    <div><b>篇幅</b><b>4 部分 47 章 ＋ 引言 ＋ 综述与结论</b>；章号全书连续 1–47（第一部分 论人类 1–16／第二部分 论国家 17–31／第三部分 论基督教体系的国家 32–43／第四部分 论黑暗的王国 44–47）</div>
+    <div><b>荣誉／地位</b>英语世界最重要的政治哲学著作之一，与柏拉图《理想国》、马基雅维利《君主论》并列为西方政治思想奠基文本；「利维坦」已成为现代国家理论的通用符号；第三、四部分合计约占全书三分之一</div>
+    <div><b>状态</b>未标注已读／想读 —— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> <b>1651 年英文原文</b>（已进入公有领域）：依据 Project Gutenberg #3207（据 Pelican Classics 版编订、源自 1651 年初版）；正文引文均可定位到「第X部分 第 Y 章」</li>
+    <li><span class="tag t-talk">作者谈话</span> ★ 霍布斯<b>已逝（1679）</b>，<b>不是访谈</b>。本书此档只用于<b>他本人的其他文字</b>：《论公民》（1642）、1651 年卷首题献、1668 拉丁本的三篇附录（《论尼西亚信经》《论异端》《论对利维坦的若干反驳》）、《贝希摩斯》</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、学术书评、百科条目或评论者译后记，措辞可能与原书／评论原文有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    ★ 与前几本不同，本书<b>有公版英文全文可逐字核对</b>：依据 Project Gutenberg #3207，<b>引言、第 1–47 章、综述与结论、卷首题献全部读到，47 章逐章覆盖，无降级章</b>。★ 但<b>中文引文另计 B 级</b>：黎译本仍在版权期内，我未逐字核对中文页面，只作术语对照。★ 另有两处须标明：<b>1668 年拉丁本差异</b>据 Noël Malcolm 2012 牛津版导论转述（C 级）；<b>「删节指控针对朱译本而非黎译本」</b>转引自 2025 年澎湃新闻《利维坦》译后记，并已标明是评论者观点。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-07 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)"><b>① 英文原文部分：A 级</b> —— 依据 <b>Project Gutenberg #3207</b>（https://www.gutenberg.org/ebooks/3207 ；该电子本据 Pelican Classics 版编订，源自 1651 年初版），覆盖<b>引言 ＋ 第 1–47 章全部 ＋ 综述与结论 ＋ 卷首题献</b>，47 章逐章取可定位原文，<b>无降级章</b>。</p>
+  <p style="margin:6px 0 0;font-size:12.5px;color:var(--ink3)"><b>② 中文引文部分：B 级</b> —— 依据<b>商务印书馆黎思复、黎廷弼译本</b>（1985-09，580 页，ISBN 9787100017510，据伦敦 J.M. Dent &amp; Sons 1957 年版译出），该译本<b>仍在版权期内</b>，<b>我未逐字核对中文页面</b>，对中译只作术语对照与版本信息引用。</p>
+  <p style="margin:6px 0 0;font-size:12.5px;color:var(--ink3)">★ 另标：<b>拉丁文本（1668）相关表述为 C 级</b>（转引 Noël Malcolm 2012 牛津版导论，未逐条核对拉丁原文）；<b>中译删节指控为 C 级</b>（转引 2025 年澎湃新闻《利维坦》译后记，已标明是评论者观点）。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>这本书要说的是：人是机器，国家是人造的人；而人为了活下去，必须把「自我统治的权利」一次性、无保留地授权给一个承担公共人格的主权者——从感觉一直推到主权者，中间没有断口。</strong></p>
+  <p>霍布斯在引言里把整本书的比喻一次摆出：自然是「上帝用来统治世界的技艺」，而人用技艺造出「一个<strong>人造的动物</strong>」——「因为艺术更进一步，模仿了自然那件理性而最杰出的作品：人。<strong>因为正是靠技艺，才造出了那个被称为『共同体』或『国家』（拉丁文 CIVITAS）的伟大的利维坦，那不过是一个『人造的人』</strong>，虽说比自然人身材更高、力量更大，因为它被造出来就是为了保护、防卫自然人；在这个人造的人身上，<strong>主权是『人造的灵魂』</strong>，给整个身体以生命和运动」<span class="tag t-src">原书</span>（引言）。全书的方法论前提，他也一句话交代了——「<strong>这门学说不容许任何别的证明方式</strong>」，也就是：你只能回到自身去核对<span class="tag t-src">原书</span>（引言，Nosce Teipsum 一段）。</p>
+  <p>一句话结论（霍布斯自己给的公式）：<strong>「我授权并放弃我统治自己的权利，把这个权利交给这个人、或这个由众人组成的会议——条件是，你也把你的权利交给他，并以同样的方式授权他的一切行为。」</strong><span class="tag t-src">原书</span>（第二部分 第 17 章）</p>
+  <p><strong>它不是什么</strong>：不是一本讲「什么样的政府最好」的政体比较手册（霍布斯把政体只分三种，并说暴君、寡头、无政府只是同一批政体「被人厌恶时的别称」）；不是一本主张「朕即国家」的御用宣传；更不是一本可以只看第 13、17、21 三章就以为读完了的书——<strong>它是从感觉推演到教会权力的一个整体</strong>。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>★ 下表把<strong>引言、47 章、综述与结论全部列出</strong>（一行一章）。★ <strong>章号全书连续</strong>，一律写成「<strong>第X部分 第Y章 章名</strong>」；引罗马数字原版时对应「Part II, Ch. XVII」。★ 章名<strong>据英文原题译出</strong>；黎译本的中文章名或有出入（如第 26 章黎译作「论民约法」），<strong>核引用时以你手中版本的目录为准</strong>。</p>
+  <table>
+    <thead><tr><th>#</th><th>部分</th><th>这一章讲什么</th><th>它在体系里处于哪一层</th></tr></thead>
+    <tbody>
+      <tr><td>引言</td><td>卷首</td><td>国家＝人造的人；全书四部分的路线图</td><td>全书的比喻与目录</td></tr>
+      <tr><td>1</td><td>第一部分 论人类</td><td>论感觉</td><td>认识论起点：一切观念来自感觉</td></tr>
+      <tr><td>2</td><td>第一部分</td><td>论想象</td><td>感觉的衰减＝记忆与想象</td></tr>
+      <tr><td>3</td><td>第一部分</td><td>论想象的序列或系列</td><td>思维的联结规律（无导／有导两式）</td></tr>
+      <tr><td>4</td><td>第一部分</td><td>论语言</td><td>语言＝人类社会的可能条件</td></tr>
+      <tr><td>5</td><td>第一部分</td><td>论推理与学术</td><td>「推理即计算」；正确理性问题</td></tr>
+      <tr><td>6</td><td>第一部分</td><td>论自觉运动的内在开端（通称激情）</td><td>激情＝运动的开端：欲望／嫌恶／意志</td></tr>
+      <tr><td>7</td><td>第一部分</td><td>论讨论的终结或决断</td><td>意见、判断、良知；知识只能是条件性的</td></tr>
+      <tr><td>8</td><td>第一部分</td><td>论通常所谓的理智的德性及其相反缺陷</td><td>才智（wit）的自然与习得之分</td></tr>
+      <tr><td>9</td><td>第一部分</td><td>论各种知识的主题</td><td>事实之知 vs 推论之知；科学分类表</td></tr>
+      <tr><td>10</td><td>第一部分</td><td>论权势、价值、地位、尊重及资格</td><td>权势的定义；「最大的权势」＝众人之力的联合</td></tr>
+      <tr><td>11</td><td>第一部分</td><td>论品行的差异</td><td>★ 权力欲无止境；幸福＝欲望的持续推进</td></tr>
+      <tr><td>12</td><td>第一部分</td><td>论宗教</td><td>宗教的自然种子＝对未知的恐惧与对原因的追问</td></tr>
+      <tr><td>13</td><td>第一部分</td><td>论人类幸福与苦难的自然状况</td><td>★★ 自然状态＝人人为敌；「孤独、贫困、卑污、残忍而短寿」</td></tr>
+      <tr><td>14</td><td>第一部分</td><td>论第一与第二自然法以及契约</td><td>★★ 自然权利／自然法／契约／让渡的定义</td></tr>
+      <tr><td>15</td><td>第一部分</td><td>论其他自然法</td><td>★★ 第三至十九条自然法；正义＝守信</td></tr>
+      <tr><td>16</td><td>第一部分</td><td>论人、授权人和由人代表的事物</td><td>★★ 人格、作者、权威、代表——授权的语汇基础</td></tr>
+      <tr><td>17</td><td>第二部分 论国家</td><td>论国家的成因、产生和定义</td><td>★★★ 全书枢纽：授权公式与国家定义</td></tr>
+      <tr><td>18</td><td>第二部分</td><td>论按约建立的主权者的权利</td><td>★★ 主权的十二项权利；主权者不受契约约束</td></tr>
+      <tr><td>19</td><td>第二部分</td><td>论几种按约建立的国家及主权的继承</td><td>三种政体；暴君＝被厌恶的君主制</td></tr>
+      <tr><td>20</td><td>第二部分</td><td>论父权与专制的管辖权</td><td>凭获得而来的国家；其权利与按约建立的相同</td></tr>
+      <tr><td>21</td><td>第二部分</td><td>论臣民的自由</td><td>★★ 自由＝无外在障碍；臣民保留的真正自由</td></tr>
+      <tr><td>22</td><td>第二部分</td><td>论臣民的政治团体与私人团体</td><td>团体＝国家的「肌肉」；代表权受主权限制</td></tr>
+      <tr><td>23</td><td>第二部分</td><td>论主权者的政务大臣</td><td>公职人员的权限来自主权者，不得代理主权</td></tr>
+      <tr><td>24</td><td>第二部分</td><td>论国家的营养与生殖</td><td>国家的「营养」（税收／贸易）与「生殖」（殖民地）</td></tr>
+      <tr><td>25</td><td>第二部分</td><td>论建议</td><td>命令 vs 建议；顾问与主权者的区分</td></tr>
+      <tr><td>26</td><td>第二部分</td><td>论民约法</td><td>★★ 民约法＝主权者的命令；自然法与民约法互相包含</td></tr>
+      <tr><td>27</td><td>第二部分</td><td>论罪行、宥恕与减罪</td><td>罪与罪的构成、免责条件</td></tr>
+      <tr><td>28</td><td>第二部分</td><td>论赏罚</td><td>★★ 惩罚权不从臣民让渡中来；利维坦的比喻来源</td></tr>
+      <tr><td>29</td><td>第二部分</td><td>论国家致弱或解体的因素</td><td>★★ 国家之病：绝对权力不足、私人判断、教权对抗</td></tr>
+      <tr><td>30</td><td>第二部分</td><td>论主权代表者的职责</td><td>主权的职责以「人民的安全」为目的</td></tr>
+      <tr><td>31</td><td>第二部分</td><td>论自然的上帝国</td><td>由自然理性认识的上帝之国；转入第三部分</td></tr>
+      <tr><td>32</td><td>第三部分 论基督教体系的国家</td><td>论基督教体系的政治原理</td><td>信仰须凭自然理性检验；先知的判据</td></tr>
+      <tr><td>33</td><td>第三部分</td><td>论《圣经》篇章的数目、年代、范围、根据和注释</td><td>★ 正典由主权者的权威确立</td></tr>
+      <tr><td>34</td><td>第三部分</td><td>论《圣经》中圣灵、天使和感召的含义</td><td>★ 灵＝气／实体；「非物质的实体」是自相矛盾</td></tr>
+      <tr><td>35</td><td>第三部分</td><td>论《圣经》中上帝的王国、圣、圣洁和圣礼的含义</td><td>「上帝的国」在《圣经》里是<strong>按约建立的国</strong></td></tr>
+      <tr><td>36</td><td>第三部分</td><td>论上帝之语和先知</td><td>「上帝之语」＝关于上帝的教义；先知的判别</td></tr>
+      <tr><td>37</td><td>第三部分</td><td>论奇迹及其用途</td><td>★ 奇迹的判据；奇迹已停止</td></tr>
+      <tr><td>38</td><td>第三部分</td><td>论《圣经》中永生、地狱、得救、来世和赎罪的含义</td><td>★★ 与「永罚／炼狱」辩；灵魂有死论</td></tr>
+      <tr><td>39</td><td>第三部分</td><td>论《圣经》中教会的含义</td><td>教会＝集会，不是等级建制</td></tr>
+      <tr><td>40</td><td>第三部分</td><td>论亚伯拉罕、摩西、大祭司和犹太诸王的上帝国的权利</td><td>★ 亚伯拉罕＝家长兼主权者；政教合一原型</td></tr>
+      <tr><td>41</td><td>第三部分</td><td>论我们神圣救主的职分</td><td>基督的三重职分；「我的国不属这世界」</td></tr>
+      <tr><td>42</td><td>第三部分</td><td>论教权</td><td>★★★ 逐条驳贝拉尔明：教权只是教导权，不是强制权</td></tr>
+      <tr><td>43</td><td>第三部分</td><td>论进入天国所必备的东西</td><td>得救所需信条被压缩到最少；「顺从上帝」的边界</td></tr>
+      <tr><td>44</td><td>第四部分 论黑暗的王国</td><td>论从《圣经》的曲解中产生的黑暗</td><td>★ 黑暗王国＝骗子的联盟；灵魂不死说的后果</td></tr>
+      <tr><td>45</td><td>第四部分</td><td>论魔鬼学及异教徒的其他宗教残余</td><td>★ 魔鬼＝幻象；异教残余如何进入教会</td></tr>
+      <tr><td>46</td><td>第四部分</td><td>论虚无哲学和荒诞传说造成的黑暗</td><td>★ 亚里士多德形而上学与经院神学；「虚无哲学」</td></tr>
+      <tr><td>47</td><td>第四部分</td><td>论这种黑暗所产生的利益及其归属</td><td>★★★ 用「谁得利」原则点名：教皇与罗马教士</td></tr>
+      <tr><td>综述与结论</td><td>卷末</td><td>回顾全书；对批评者的答复；「保护与服从」</td><td>全书的自我定位与政治表态</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法提示</strong>：这张表本身就是霍布斯的<strong>推演路线图</strong>。把 47 章按「链条」看，它分成五段：<strong>① 认识论与人性论（1–12）→ ② 自然状态与自然法（13–15）→ ③ 授权与社会契约（16–18）→ ④ 国家的运作与病理（19–31）→ ⑤ 教会与黑暗王国（32–47）</strong>。★ <strong>第 13–17 章是全书的枢纽，也是「承重墙」最密集的地方</strong>：抽掉第 13 章（战争状态），第 17 章就没有理由；抽掉第 16 章（授权），第 17 章连公式都写不出来。★ <strong>第 32–47 章不是尾注</strong>：它是全书政治结论的<strong>兑现</strong>——如果主权者的权力必须无保留，那么<strong>最大的挑战者就是教会</strong>，所以必须用 16 章把它处理掉。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>六个核心论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：这是一部「推演式」著作——它先把人建成一台机器，再从这台机器推出国家</h3>
+  <p><strong>主张</strong>：霍布斯不是先给政治结论、再找理由，而是<strong>先把「人」还原为一套机械运动</strong>，再从这套运动推出必须建立国家的结论。他说推理是「<strong>计算</strong>」，也就是「<strong>对一般名词的后果进行加减</strong>」<span class="tag t-src">原书</span>（第一部分 第 5 章）；说激情是「<strong>自觉运动的内在开端</strong>」，是「<strong>当这种努力朝向引起它的东西时，就叫欲望</strong>」<span class="tag t-src">原书</span>（第一部分 第 6 章）；说想象「<strong>不过是正在衰退的感觉</strong>」<span class="tag t-src">原书</span>（第一部分 第 2 章）。 <strong>依据</strong>：第 1–9 章几乎全部在做这件事——感觉是运动、影像是残留的运动、思维是影像的序列、语言是给思想加的标记、推理是计算。<strong>政治结论（第 17 章）建立在这些定义之上。</strong> <strong>为什么重要</strong>：★★ <strong>这是全书最容易读丢的一层。</strong> 很多人把它当「政治主张书」，直接跳到第 13 章去看「人人为敌」，于是觉得霍布斯的自然状态是「假设」；但从他自己的路线看，<strong>自然状态不是假设，而是「运动的人」在没有共同权力压制时必然出现的结果</strong>。★ <strong>这也决定了它的可反驳点</strong>：如果他的机械论心理学不成立，整条链就断了——这条批评一直存在（见第 5 节 5.2）。</p>
+  <h3>论点二：幸福不是欲望的满足，而是欲望的持续推进；因此「权力欲」必然无止境</h3>
+  <p><strong>主张</strong>：霍布斯否认古人的「至善」（Summum Bonum）与「终极目的」（Finis Ultimus）：「<strong>一个人的欲望一旦终止，他就活不下去，正如感官和想象一旦停顿一样。幸福是欲望从一物到另一物的持续进步；前一个目标的达成，只不过是通往下一个目标的路。</strong>」他由此给出全书最有名的一条人性假设：<strong>「我把一切人类共有的普遍倾向定为：一种永不停歇、至死方休的『权力欲』（a perpetuall and restlesse desire of Power after power, that ceaseth onely in Death）。」</strong><span class="tag t-src">原书</span>（第一部分 第 11 章） <strong>依据</strong>：他给的理由不是「人贪得无厌」，而是<strong>结构性的</strong>：「因为一个人如果不能获得更多的权力，就无法保证他现有的活下去的手段」<span class="tag t-src">原书</span>（第一部分 第 11 章）。也就是说，<strong>权力欲是「安全感」的副产物，不是道德缺陷</strong>。 <strong>为什么重要</strong>：★ <strong>这一步是自然状态的直接燃料</strong>：如果每个人的欲望都不会停，而资源不会自动增加，那么冲突就是结构性的。★ 同时也要看到：霍布斯的「权势」定义极宽——「<strong>一个人获得某种未来显善之物的现时手段</strong>」（第一部分 第 10 章），财富、名声、朋友、口才、运气全是权势。<strong>这是一个把所有社会资源都「权力化」的定义。</strong></p>
+  <h3>论点三：自然状态＝战争状态——但霍布斯本人承认它「也许从未普遍存在过」</h3>
+  <p><strong>主张</strong>：他说得很清楚：「<strong>在有一个共同权力使人全都敬畏的期间之外，人们就处在所谓的战争状态中；而且这种战争是每一个人对每一个人的战争。</strong>」他随即扩展了「战争」的含义：「战争不只存在于实际交战之中，而存在于一段时间里，交战的意志已足够为人所知……<strong>其余一切时间就是和平。</strong>」<span class="tag t-src">原书</span>（第一部分 第 13 章）后果是那句著名的清单——没有产业、没有耕作、没有航海、没有建筑、没有知识、没有社会，「<strong>最糟的是不断恐惧、随时可能横死；人的生活孤独、贫困、卑污、残忍而短寿</strong>」<span class="tag t-src">原书</span>（第一部分 第 13 章）。 <strong>依据</strong>：三个原因——<strong>竞争、猜疑、荣誉</strong>（Competition, Diffidence, Glory）；并从「你出门要带武器、睡觉要锁门、在自家也要锁箱子」这一日常经验反推。他还引当时美洲的「野蛮民族」为例。 <strong>为什么重要</strong>：★★ <strong>这是全书最被引用的段落，也是最被误读的段落。</strong> 因为它紧接着就有一句常被漏掉的话：「<strong>也许有人会想，从来不曾有过这样的时期和这样的战争状况。我相信，就整个世界而言，它从来不曾普遍如此；但有许多地方，人们今天就这样生活着。</strong>」<span class="tag t-src">原书</span>（第一部分 第 13 章）——<strong>霍布斯自己承认它是「推论」，并接受了历史反例</strong>。⇒ <strong>读这一段，必须连着下一句读</strong>（见第 4b 节与第 5 节 5.2）。</p>
+  <h3>论点四：自然法只是「理性的格言」，在自然状态下只在「内心法庭」上有约束力</h3>
+  <p><strong>主张</strong>：先分清两个词：「<strong>自然权利</strong>（Jus Naturale）是每个人用自己的力量保全自己本性的自由」；「<strong>自然法</strong>（Lex Naturalis）是<strong>由理性发现的训诫或一般规则</strong>，禁止人做毁灭自己生命的事」<span class="tag t-src">原书</span>（第一部分 第 14 章）。第一自然法是「<strong>寻求和平、追随和平</strong>」；第二自然法是从它导出的<strong>互相同意放下权利</strong>——这就是「<strong>你们愿意别人怎样待你们，你们也要怎样待人</strong>」的自然法版<span class="tag t-src">原书</span>（第一部分 第 14 章）。 <strong>依据</strong>：第三自然法是「<strong>人应当履行所订的契约</strong>」，正义从这里开始<span class="tag t-src">原书</span>（第一部分 第 15 章）。全书共列十九条自然法，霍布斯自己把它们压缩成一条「<strong>己所不欲，勿施于人</strong>」<span class="tag t-src">原书</span>（第一部分 第 15 章）。 <strong>为什么重要</strong>：★★ <strong>关键在于约束力的范围</strong>：「<strong>自然法在『内心法庭』（In Foro Interno）上有约束力</strong>，即约束人要有让它们实行的愿望；<strong>但在『外在法庭』（In Foro Externo）上，即把它们付诸行动，并不总是有约束力</strong>」<span class="tag t-src">原书</span>（第一部分 第 15 章）。★ 他还说，这些理性训诫「<strong>被称为法其实是不恰当的，因为它们只是关于保存和防卫自身的结论或定理</strong>」（同章）。<strong>这两句是理解全书「道德哲学」地位的钥匙</strong>，也是 5.2 里泰勒–沃伦德一系争了七十年的话头。</p>
+  <h3>论点五：承重墙在「授权」——主权者的权利不是靠征服，而是靠每个人说出的那句「我授权」</h3>
+  <p><strong>主张</strong>：第 16 章先把语汇备好：<strong>「一个人，当其言行被视为代表他自己、或代表另一个人时，就称为『人格』」</strong>；<strong>「行为者（Actor）以他人之权行事，拥有其言行者就是『作者』（Author）」</strong>；<strong>「做任何行为的权利，就叫做权威（Authority）」</strong><span class="tag t-src">原书</span>（第一部分 第 16 章）。然后第 17 章给出唯一的出路：<strong>「把所有人的权力和力量都授予一个人、或一个由众人组成的会议」</strong>，并说出那句公式：「<strong>我授权并放弃我统治自己的权利……条件是，你也把你的权利交给他。</strong>」<span class="tag t-src">原书</span>（第二部分 第 17 章） <strong>依据</strong>：他给的理由是「<strong>没有刀剑的契约只是空话，完全没有力量保证人的安全</strong>」<span class="tag t-src">原书</span>（第二部分 第 17 章）——即自然法（论点四）不足以保障和平，必须有「刀剑」。 <strong>为什么重要</strong>：★★ <strong>这是全书真正的承重墙，比自然状态那一段更关键。</strong> 因为「利维坦」的合法性<strong>不来自征服、不来自神授，而来自每个个人的授权</strong>：「一群人只有当<strong>被一个人或一个人格所代表</strong>、且每个人都同意时，才成为一个人格……<strong>使众人成为一个人格的，是代表者的统一性，而不是被代表者的统一性</strong>」<span class="tag t-src">原书</span>（第一部分 第 16 章）。★ 霍布斯由此得出主权者的定义：「<strong>一个人格，一大群人通过相互订立契约，每个人都成为他的行为的作者</strong>」<span class="tag t-src">原书</span>（第二部分 第 17 章）。<strong>这个「授权者—承担人格者」的结构，后来正是施米特说「霍布斯的自由主义裂缝」所在</strong>（见第 5 节 5.1）。</p>
+  <h3>论点六：第三、四部分不是附录——它是全书政治结论的「另一半」：主权对教会权威的从属化</h3>
+  <p><strong>主张</strong>：霍布斯在第 31 章开门见山交代第二部分的遗留问题：「<strong>臣民应当对主权者保持单纯的服从，除非服从与上帝的律法相冲突</strong>。要完整地知道这一点，就还剩下要知道<strong>什么是上帝的律法</strong>」<span class="tag t-src">原书</span>（第二部分 第 31 章）。于是第三部分（第 32–43 章）整整 12 章，专门论证<strong>由谁来解释《圣经》</strong>、<strong>什么是得救所必需的信条</strong>、以及<strong>教权究竟是什么</strong>。第 42 章的结论是：<strong>「教权只是教导的权力（The Power Ecclesiasticall Is But The Power To Teach）」</strong>——「如果可以看出，救主没有给教士留下任何<strong>强制的权力</strong>，只留下宣告基督之国、劝人归顺的权力，那么上述争论就全是空的」<span class="tag t-src">原书</span>（第三部分 第 42 章）。 <strong>依据</strong>：第 33 章说「<strong>只有各国主权者权威所确立的书，才是该国具有律法地位的正典</strong>」<span class="tag t-src">原书</span>（第三部分 第 33 章）；第 42 章逐条驳贝拉尔明，并说「<strong>不是西尔维斯特，而是君士坦丁</strong>」才是罗马帝国的最高主教<span class="tag t-src">原书</span>（第三部分 第 42 章）；第四部分第 47 章用「<strong>谁得利</strong>」原则直接点名：「<strong>根据上述『谁得利』的规则，我们可以公正地判定，所有这些属灵黑暗的作者，就是教皇、罗马教士……</strong>」<span class="tag t-src">原书</span>（第四部分 第 47 章）。 <strong>为什么重要</strong>：★★ <strong>这解释了「为什么占了三分之一篇幅」。</strong> 霍布斯的政治对手不是国王，而是<strong>一个能宣称「你不服从我，就是不服从基督」的普世建制</strong>。如果主权者的权力必须无保留，那么<strong>一个与之并立、且自称更高的权力就必须被拆掉</strong>——这就是第三、四部分存在的全部理由。<strong>跳过这 16 章，你就不知道霍布斯为什么要写 47 章。</strong></p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <ol>
+    <li>★★ <strong>先读「引言」＋第二部分第 17 章。</strong> 引言给出全书的比喻（国家＝人造的人）和路线图；第 17 章给出核心公式（「我授权并放弃……」）。<strong>一前一后，你就拿到了这本书的骨架和心脏。</strong> 别急着从第 1 章顺读——从感觉推到语言那五章最容易劝退。
+    </li>
+    <li>★★ <strong>再补「承重墙四章」：第一部分第 13、14、15、16 章。</strong> 这四章（自然状态、两条自然法、契约、人格与授权）是第 17 章的全部前提。<strong>如果你只有一晚，就读这四章加第 17 章。</strong>
+    </li>
+    <li><strong>第 1–12 章可以「跳读＋回看」</strong>：第 1–5 章（感觉／想象／思维序列／语言／推理）是认识论底座，今天读价值主要在「看霍布斯怎么把人心机械化」；第 6 章（激情）和第 10、11 章（权势、品行）才是后面要用的。<strong>第 11 章「权力欲」和第 12 章「宗教」两章，性质上是第 13 章的引信，别跳。</strong>
+    </li>
+    <li>★ <strong>第二部分第 18–31 章要带着一个问题读：哪些是「论证」，哪些是「当时的政治表态」？</strong> 第 21 章（臣民的自由）是全书最有现代价值的一章；第 26 章（民约法）、第 29 章（国家解体）、第 30 章（主权者职责）是主干；第 22–25 章像一部「制度说明书」，可快读。
+    </li>
+    <li>★★ <strong>第三、四部分不要跳。</strong> 但可以换一个读法：<strong>先读第三部分第 42 章（教权）＋第四部分第 47 章（谁得利）</strong>，这两章是这一大块论证的「结论页」；看懂结论后，回头读第 33、34、38、39、40 章，就明白霍布斯为什么要把《圣经》一段一段地拆着用。★ <strong>第 38 章（永生／地狱／得救）和第 42 章最难，但也最能说明「他到底在跟谁打架」。</strong>
+    </li>
+  </ol>
+  <h3>如果你是「已读」</h3>
+  <ol>
+    <li><strong>回头做一次「两层笔记」</strong>：任挑一章，左边写「<strong>霍布斯的论证</strong>」，右边写「<strong>这一步依赖哪些未经证明的前提</strong>」。你会发现右边往往比左边长——尤其是第 6 章（激情＝运动）、第 13 章（自然状态）、第 16 章（授权）。<strong>这个练习能一次把这本书的「推演」性质看清楚。</strong>
+    </li>
+    <li>★ <strong>把「利维坦」这个词在正文里的三次出现标出来</strong>（引言、第 17 章、第 28 章末），并读第 28 章末尾那段——霍布斯自己说明这个比喻来自《约伯记》第 41 章，上帝称利维坦为「<strong>骄傲之王</strong>」，而它「<strong>是有朽的，会衰败，像一切地上生物一样</strong>」<span class="tag t-src">原书</span>（第二部分 第 28 章）。<strong>读完这段，你对「利维坦＝极权」这个流行等式就会有一个来自原文的坐标。</strong>
+    </li>
+    <li>★ <strong>把第 21 章（臣民的自由）与「共和主义自由观」对照读。</strong> 霍布斯坚持「<strong>自由就是没有外在障碍</strong>」（第 21 章），并明确反对「只有共和国里的人才自由」这一说法（他嘲讽地说，卢卡城塔楼上刻着「自由」二字，可那里的人受共同体的约束并不比君士坦丁堡少）。<strong>这正是斯金纳所说的「霍布斯的自由观转向」</strong>（见第 5 节 5.1）。<strong>对照读，你会看到一场延续到今天的争论的原点。</strong>
+    </li>
+    <li><strong>读一读反面的书评与批评</strong>：施米特（1938）、麦克弗森（1962）、波普尔（1945）、以及斯金纳（1998/2008）对霍布斯的「再语境化」。<strong>同一本书，20 世纪给它的判词与 17 世纪的接受史几乎相反</strong>——这个反差本身就是本报告第 5 节的主题。
+    </li>
+  </ol>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是必写项，因为这本书的中译状况有一个别人常常讲错的地方：被指「肆意删节」的是 1934 年的朱敏章译本，不是黎译本。</strong></p>
+  <p><strong>先说最要紧的四条</strong>：</p>
+  <blockquote>
+    <p><strong>⚠ ① 现行通行的锚定本是黎思复、黎廷弼译，杨昌裕校，商务印书馆「汉译世界学术名著丛书」1985-09 初版，580 页，ISBN 9787100017510。</strong> 版权页交代：<strong>「根据伦敦 J.M. 登特父子有限公司 1957 年版译出」</strong>（J. M. Dent &amp; Sons，即「Everyman's Library」系统的底本）。中译正文约 <strong>39.7 万字</strong>。2017-04 商务印书馆另出「汉译世界学术名著丛书 120 年纪念版·分科本·政法类」精装本，580 页，ISBN 9787100123556。</p>
+    <p><strong>⚠ ② 被指「肆意删节」的是朱敏章 1934 年文言译本，不是黎译本。</strong> 朱译本是<strong>汉语学界第一个《利维坦》全译本</strong>，商务印书馆 1934 年出版（「万有文库」本），用<strong>浅近文言</strong>；评论者认为它「由于古汉语缺乏与西方哲学相对应的丰富的术语、概念和语法结构，加上译者对原著理解不精及<strong>肆意删节</strong>，与原文在意思上多有出入」<span class="tag t-rep">转述</span>（澎湃新闻《利维坦》译后记，2025）。★ <strong>本条指控的对象是朱译本，黎译本未见此指控——不要张冠李戴。</strong></p>
+    <p><strong>⚠ ③ 有评论对十余种中译本整体评价很低。</strong> 同一篇译后记称：《利维坦》「在汉语学界几经翻译，却至今没有产生一个经得起推敲、精准可读的译本」；「目前《利维坦》共有十来个中译本，<strong>除了朱敏章译本和黎思复、黎廷弼译本有一定的历史意义和参考价值之外，其余皆不足观</strong>」<span class="tag t-rep">转述</span>（同上）。★ <strong>这是评论者的判断，不是学界共识</strong>——本报告如实转述并标明其性质。</p>
+    <p><strong>⚠ ④ 英文 1651 初版与 1668 拉丁文改写本不是同一本书。</strong> 1668 年拉丁本在阿姆斯特丹出版，<strong>删去了英文的「综述与结论」，另加三篇对话体「附录」</strong>（《论尼西亚信经》《论异端》《论对利维坦的若干反驳》），<strong>第四部分被大幅删削</strong>，并<strong>修改了三位一体等神学论述</strong><span class="tag t-src">原书</span>（依据 Gutenberg #3207 转写者说明与 Noël Malcolm 2012 年牛津版导论所述文本差异；详见第 5 节 5.4）。⇒ <strong>你读到的《利维坦》是哪一版，决定了它的第四部分有多长。</strong></p>
+  </blockquote>
+  <p><strong>版本关系（主要中译本）</strong>：</p>
+  <table>
+    <thead><tr><th>译本</th><th>出版</th><th>底本／语言</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>朱敏章 译</td><td>商务印书馆 1934（万有文库）</td><td>文言</td><td>★ 第一个全译本；被指删节；有开创之功</td></tr>
+      <tr><td>黎思复、黎廷弼 译，杨昌裕 校</td><td>商务印书馆 1985-09（汉译名著）；2017 纪念版</td><td>据伦敦 J.M. Dent &amp; Sons 1957 年版</td><td>★ 现行通行本；未见「删节」指控</td></tr>
+      <tr><td>其他十余种中译本</td><td>各社，近数十年</td><td>不一</td><td>★ 有评论称「皆不足观」（评论者观点）</td></tr>
+    </tbody>
+  </table>
+  <p><strong>★ 该选哪个——三句话结论</strong>：</p>
+  <ol>
+    <li><strong>中文读者 → 首选商务印书馆黎译本</strong>（1985 初版或 2017 纪念版皆可）。它是通行最广、重印最多、术语最稳定的本子；<strong>读的时候记住它的底本是 1957 年 Dent 版，不是 1651 初版</strong>。
+    </li>
+    <li><strong>要做文本研究 → 必须回英文原文。</strong> 推荐 <strong>Gutenberg #3207</strong>（公版、可全文检索、保留 1651 拼写）作入门对照，<strong>Noël Malcolm 编牛津版《利维坦》</strong>（Clarendon Edition，2012，三卷，ISBN 9780199602629）<strong>英、拉丁两版对照排版</strong>作学术引用底本。
+    </li>
+    <li><strong>见到「《利维坦》中译删节严重」的说法，先分辨是哪一个译本</strong>：<strong>若指 1934 年朱敏章文言本，成立；若指黎译本，须另找证据。</strong>
+    </li>
+  </ol>
+  <p><strong>★ 两个必须提醒的坑</strong>：</p>
+  <ol>
+    <li><strong>不要把《利维坦》和霍布斯的其他书搞混</strong>。霍布斯另有《论公民》（<em>De Cive</em>，1642 拉丁文）、《论物体》（<em>De Corpore</em>，1655）、《论人》（<em>De Homine</em>，1658）、《贝希摩斯：英国内战史》（<em>Behemoth</em>，1679 遗稿）等。<strong>《贝希摩斯》常被当作《利维坦》的姊妹篇与反面</strong>：在霍布斯的比喻里，「利维坦」＝强大的世俗国家主权，「贝希摩斯」＝其敌人即教会权威<span class="tag t-rep">转述</span>（中文百科及多篇介绍一致）。
+    </li>
+    <li><strong>不要用「利维坦」这个词去检索别的书</strong>。「利维坦」已成通用政治术语，大量当代著作（如施米特《霍布斯国家学说中的利维坦》、各种「数字利维坦」研究）都用它作书名的题眼，<strong>它们都不是霍布斯这本书</strong>。
+    </li>
+  </ol>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <p>★ 这一节的目的，是把你<strong>以为</strong>知道的和书里<strong>实际写的</strong>对一遍。每条都给出<strong>章句定位</strong>（英文原文依据 Gutenberg #3207，1651 初版拼写）。</p>
+  <table>
+    <thead><tr><th>流行说法</th><th>原文／事实</th></tr></thead>
+    <tbody>
+      <tr><td>「利维坦＝极权国家／利维坦式极权」</td><td>★ 霍布斯在<strong>正文里只用了「利维坦」三次</strong>：引言（国家＝「人造的人」）、第二部分第 17 章（国家＝「有朽的上帝」）、<strong>第二部分第 28 章末</strong>（说明比喻来源）。★ 第 28 章他亲口写明出处：「<strong>我把他的治理者比作利维坦，这个比喻取自《约伯记》第 41 章最后两节；上帝在那里展示了利维坦的大能之后，称他为『骄傲之王』</strong>」，并补一句——「<strong>但他是有朽的，会衰败，像一切地上生物一样</strong>」<span class="tag t-src">原书</span>（第二部分 第 28 章）。⇒ <strong>「利维坦」首先是一个取自《约伯记》的比喻，指「作为人造之人的国家」，且被明说是有朽的</strong>；「极权」是 20 世纪政治学往里读进去的</td></tr>
+      <tr><td>「霍布斯主张专制／拥护绝对王权」</td><td>★ 他明确<strong>把政体只分三种</strong>（君主制／民主制／贵族制），并说「<strong>暴君、寡头、无政府并不是别的政体形式，而是同一批形式被人厌恶时的别称</strong>」<span class="tag t-src">原书</span>（第二部分 第 19 章）；还反复强调<strong>主权的「权利」在三种政体里完全相同</strong>（第二部分 第 18、19 章）。★ 更关键的是<strong>合法性的来源</strong>：主权者的权利<strong>不来自神授或征服</strong>，而来自每个个人的<strong>授权</strong>——「我授权并放弃我统治自己的权利」<span class="tag t-src">原书</span>（第二部分 第 17 章）。⇒ <strong>它是一部「授权论」，不是一个「专制论」</strong>；把「绝对主权」直接等同「支持专制君主」，是把论证和政府形式混为一谈</td></tr>
+      <tr><td>「自然状态＝人人为敌，只是霍布斯的比喻／思想实验」</td><td>★ <strong>两种说法都不全对</strong>。霍布斯确实说它<strong>部分上是推论</strong>——「<strong>也许有人会想，从来不曾有过这样的时期和这样的战争状况。我相信，就整个世界而言，它从来不曾普遍如此</strong>」<span class="tag t-src">原书</span>（第一部分 第 13 章）；但他<strong>紧接着给出实例</strong>：「<strong>但有许多地方，人们今天就这样生活着。因为许多地方的野蛮民族……根本就没有政府</strong>」，并说美洲土著「<strong>今天仍以那种残忍的方式生活</strong>」<span class="tag t-src">原书</span>（第一部分 第 13 章）。★ 所以：<strong>它是「从激情推出的推论」，但霍布斯不认为它纯属虚构</strong>——他用「美洲土著」和「内战」两个例子为它找经验支点</td></tr>
+      <tr><td>「霍布斯是自由主义先驱／个人主义者」</td><td>★ 两边都有原文支撑，<strong>这不是事实之争而是读法之争</strong>。<strong>支持「个人主义」的一面</strong>：他反复坚持「<strong>一切人依其本性都是平等的</strong>」「<strong>没有任何义务不是来自人自己的某种行为</strong>」<span class="tag t-src">原书</span>（第二部分 第 21 章），且保留臣民<strong>不可让渡的自我保全权</strong>（第 21 章）。<strong>支持「非自由主义」的一面</strong>：他要求「<strong>单纯的服从</strong>」（第二部分 第 31 章），把「<strong>私人判断善恶</strong>」列为<strong>瓦解国家的阴谋学说</strong>（第二部分 第 29 章）。★ 20 世纪的两种对立读法（施米特、麦克弗森 vs. 奥克肖特、斯金纳）<strong>都能从原文里找到依据</strong>——见第 5 节 5.1</td></tr>
+      <tr><td>「国家像巨兽／利维坦是海怪，所以霍布斯在说国家是吃人的怪物」</td><td>★ <strong>原文里没有这个意思</strong>。引言里的比喻是<strong>机械性的</strong>：国家是「<strong>人造的人</strong>」、「<strong>主权是人造的灵魂</strong>」、「<strong>官吏是人造的关节</strong>」、「<strong>赏罚是神经</strong>」、「<strong>财富是力量</strong>」、「<strong>人民的安全是它的事业</strong>」、「<strong>和睦是健康，动乱是疾病，内战是死亡</strong>」<span class="tag t-src">原书</span>（引言）。★ 这是<strong>一个身体（body politic）的古老比喻</strong>，不是「怪兽吃人」。<strong>「巨兽／海怪」的联想来自 20 世纪对书名的再诠释</strong>（施米特就专门讨论过这个「政治象征」的命运）</td></tr>
+      <tr><td>「霍布斯反宗教／是唯物论无神论者」</td><td>★ <strong>要分层看</strong>。他确实<strong>反对「可与肉体分离的灵魂」</strong>——「<strong>『非物质的实体』这两个词连在一起，就互相取消，就像说『非物质的物体』一样</strong>」<span class="tag t-src">原书</span>（第三部分 第 34 章），并主张<strong>灵魂有死、死后待复活</strong>。★ 但他<strong>不反对有神论本身</strong>：第 31 章专门论证「<strong>自然的上帝国</strong>」（凭自然理性认识的上帝之国），第 32 章说「<strong>我们不应放弃感觉和经验，也不应放弃（那是上帝无疑的话语）我们的自然理性</strong>」<span class="tag t-src">原书</span>（第三部分 第 32 章）。⇒ <strong>他反对的是「教会作为独立强制权力」，以及经院神学对「无形实体」的滥用</strong>；把他读成「反宗教」，就把第三部分 12 章的论证全抹掉了</td></tr>
+      <tr><td>「霍布斯说人天生邪恶／人性本恶」</td><td>★ <strong>原文恰恰相反</strong>：「<strong>人的欲望和其他激情本身并不是罪</strong>」<span class="tag t-src">原书</span>（第一部分 第 13 章）。他还说，说人性本恶，是把「<strong>自然状态下的行为</strong>」误当成了「<strong>罪</strong>」：「<strong>在人们知道有法律禁止之前，从这些激情产生的行为也不是罪……而在制定法律之前，人们不可能知道法律</strong>」<span class="tag t-src">原书</span>（第一部分 第 13 章）。⇒ <strong>霍布斯不是道德谴责者，他是结构性解释者</strong>：冲突不是因为人坏，而是因为<strong>没有共同权力</strong></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本报告最该细读的一节。</strong> 《利维坦》的<strong>影响力极大</strong>（它是现代国家理论、社会契约论、乃至国际关系现实主义的重要源头），<strong>但 20 世纪以来围绕它的读法之争极其激烈</strong>，而且<strong>争论的焦点常常不是「霍布斯说了什么」，而是「霍布斯属于哪个传统」</strong>。下面六条按重头戏顺序排，末尾回答「今天读还成立吗」。★ <strong>每条批评都带姓名、著作、出版社／刊物、年份。</strong></p>
+  <h3>5.1 ★★ 「利维坦＝极权主义」的标签之争：施米特、波普尔、与剑桥学派的对立读法</h3>
+  <p><strong>这不是一个统一的反方，而是三派彼此也不同意的读法：</strong></p>
+  <ul>
+    <li><strong>卡尔·施米特（Carl Schmitt，1888–1985）</strong>，《<strong>霍布斯国家学说中的利维坦：一个政治象征的意义与失败</strong>》（<em>Der Leviathan in der Staatslehre des Thomas Hobbes</em>），<strong>1938</strong>（汉堡；英译 <em>The Leviathan in the State Theory of Thomas Hobbes</em>，Greenwood，1996）。★ <strong>施米特的读法常被简化成「霍布斯＝极权主义祖师」，但他本人恰恰反对这个等式</strong>：他在 1937 年的文章《霍布斯与笛卡尔的国家机械论》里，<strong>批评法国天主教哲学家 Joseph Vialatoux 把霍布斯的利维坦等同法西斯的读法</strong>，主张霍布斯取这个象征是「<strong>半带反讽的</strong>」，意在表达一种「<strong>17 世纪巴洛克式的代表观</strong>」而非领袖崇拜<span class="tag t-rep">转述</span>（转引自 Jerónimo Rilla，〈The Visibility of the State〉，<em>Political Theory</em>，2026）。★★ <strong>施米特的真正批评是反过来的</strong>：霍布斯<strong>留下了「内心思想自由」这道口子</strong>——国家能管人的外在顺从，却管不了内心的信仰；<strong>这道「个人自由的内在保留地」就是「杀死利维坦的种子」</strong>（施米特语「the seed of death that destroyed the mighty leviathan」）。⇒ <strong>施米特把霍布斯读作「失败的绝对主义者」，恰恰因为他不够极权。</strong>
+    </li>
+    <li><strong>卡尔·波普尔（Karl Popper，1902–1994）</strong>，《<strong>开放社会及其敌人</strong>》（<em>The Open Society and Its Enemies</em>），<strong>1945</strong>（Routledge）。波普尔把霍布斯列在「<strong>对开放社会的反动</strong>」一系中，批评他的主权学说<strong>取消了个人对国家的道德批判权利</strong>；但<strong>波普尔对霍布斯的处理篇幅很短</strong>（他的主要火力对准柏拉图、黑格尔、马克思），<strong>把「波普尔主要批霍布斯」当作常识是夸张的</strong><span class="tag t-inf">推断</span>（依据该书目录与索引中霍布斯条目稀少）。★ 另有<strong>伯特兰·罗素</strong>在《西方政治哲学史》（1945）第 53 章「霍布士的利维坦」里判其「<strong>逻辑一贯，但以恐惧为心理学基础</strong>」，并称他「为独裁主义开辟了道路」<span class="tag t-rep">转述</span>（罗素《西方哲学史》，中译本）。
+    </li>
+    <li><strong>剑桥学派（Quentin Skinner 等）</strong>：<strong>昆廷·斯金纳</strong>，〈<strong>Hobbes's Changing Conception of Liberty</strong>〉等系列论文；《<strong>Liberty before Liberalism</strong>》，<strong>Cambridge University Press，1998</strong>；《<strong>Hobbes and Republican Liberty</strong>》，<strong>Cambridge University Press，2008</strong>（268 页，ISBN 9780521886765）。★ 斯金纳的主张是<strong>历史的而非评判的</strong>：霍布斯的「自由＝没有外在障碍」这套定义，<strong>是对当时共和派（neo-Roman）「自由＝不依赖他人意志」的自由观的系统性拆解</strong>，而这一拆解<strong>有明确的论战对象</strong>——内战中主张「君主制下人人都是奴隶」的议会派与共和派作家。⇒ <strong>在斯金纳看来，读《利维坦》第 21 章必须放回 1640–1650 年代的英格兰论战</strong>，否则就会把一场「定义权之争」误读成一段中立的概念分析。
+    </li>
+    <li><strong>★ 两派的对立依据都能在原文里找到</strong>——这正是这场争论值得读的原因：
+    <ul>
+      <li><strong>支持「绝对论」的原文</strong>：主权者<strong>不受民约法约束</strong>（「<strong>因为他既能立法，也能废法，他可以在任何时候免除自己受此法约束</strong>」，第二部分第 26 章）；臣民<strong>不得反对主权者的建立</strong>，且<strong>主权者不因违约而被罢免</strong>（第二部分第 18 章）。
+      </li>
+      <li><strong>支持「自由主义先驱」的原文</strong>：臣民<strong>不可让渡的自我保全权</strong>（第 21 章）；「<strong>每个人都有服从主权者的义务，只到他有能力保护他们的时候为止</strong>」（第二部分第 21 章，即<strong>保护与服从的对等性</strong>）；<strong>内心信仰不受强制</strong>，因为「<strong>人间的治理者无法察知内心的思想和信仰</strong>」<span class="tag t-src">原书</span>（第三部分 第 40 章）。
+      </li>
+    </ul>
+    </li>
+    <li><strong>另一条重要的读法线</strong>：<strong>迈克尔·奥克肖特（Michael Oakeshott，1901–1990）</strong> 为 Blackwell 版《利维坦》所写的导论（1946），把霍布斯读成<strong>一个「个人主义」的哲学家</strong>——国家不设定人生目标，只规定人们追求目标时的界限（即所谓「<strong>副词性的法律观</strong>」）<span class="tag t-rep">转述</span>（转引自 Noël Malcolm，〈Citizen Hobbes〉，<em>London Review of Books</em> 6(19)，1984）。<strong>这一读法与麦克弗森（见 5.2）针锋相对。</strong>
+    </li>
+  </ul>
+  <h3>5.2 ★★ 社会契约论的内部困难：「自然状态是历史还是思想实验」，以及「主权者不受契约约束」</h3>
+  <p><strong>（a）「自然状态」的地位问题。</strong> 霍布斯自己的文本是<strong>矛盾的</strong>：他一边说「<strong>我相信，就整个世界而言，它从来不曾普遍如此</strong>」（第一部分第 13 章），一边用「美洲土著」与「内战」作经验例证。★ 学界因此分成两读：<strong>当作「历史描述」</strong>（则要面对人类学反例）、<strong>当作「反事实的思想实验」</strong>（则要问：一个从未发生的情形，如何能承担规范性的证明责任？）。<strong>霍布斯本人的方法论承诺（「这门学说不容许任何别的证明方式」）站在「思想实验」这一侧，但他写的语气常像在描述事实</strong><span class="tag t-inf">推断</span>。 <strong>（b）「主权者不受契约约束」的结构性危险。</strong> 原文极硬：「<strong>因为握着主权的那个人，他的主权是由人们相互之间的契约、而不是由他与任何臣民之间的契约授与的，所以在主权者一方不可能发生违约</strong>；因而任何臣民也不能以破坏契约为借口，摆脱对主权者的服从」<span class="tag t-src">原书</span>（第二部分 第 18 章）。★ <strong>这条推论带来的后果是：契约理论里「人民可以因违约而撤销授权」的机制被拆掉了</strong>——而这正是后来所有「抵抗权」理论必须重新论证的起点。 <strong>（c）最著名的一组学理争论：泰勒–沃伦德论题（the Taylor–Warrender thesis）。</strong></p>
+  <ul>
+    <li><strong>A. E. Taylor</strong>，〈<strong>The Ethical Doctrine of Hobbes</strong>〉，<strong>1938</strong>（后收入 <em>Philosophical Studies</em>，Macmillan，1934–62 各版；该文常被系于 1938 年）。他主张：霍布斯的伦理学说<strong>若与他的利己心理学拆开，其实是一套严格的义务论（deontology）</strong>，且「<strong>令人想起康德的若干特征命题</strong>」。
+    </li>
+    <li><strong>Howard Warrender（1922–1985）</strong>，《<strong>霍布斯的政治哲学：他的义务理论</strong>》（<em>The Political Philosophy of Hobbes: His Theory of Obligation</em>），<strong>Oxford：Clarendon Press，1957</strong>（中译：唐学亮译，商务印书馆）。★ Warrender 的核心主张是：<strong>霍布斯并没有把道德的「应当」还原为审慎的「必须」</strong>；<strong>政治义务不是社会契约创造的新义务，而是源于「服从自然法」这一先在的道德义务</strong>，而自然法之所以有约束力，是因为<strong>它们是上帝的命令</strong>；主权者的作用只是提供「<strong>使之有效的条件</strong>」（sufficient security），而不是义务的来源。⇒ <strong>在这一读法下，霍布斯离自然法传统比人们以为的近得多。</strong>
+    </li>
+    <li><strong>追随与反对</strong>：<strong>F. C. Hood</strong>，《<strong>The Divine Politics of Thomas Hobbes</strong>》，<strong>Oxford：Clarendon Press，1964</strong>（把霍布斯读成一套以神命为基础的基督教政治学）；★ <strong>反对方</strong>：<strong>昆廷·斯金纳</strong>在 1964 年的早期文章里<strong>同时批评麦克弗森与沃伦德–胡德两派</strong>，认为他们的读法「<strong>在历史意义上不可信</strong>」——理解霍布斯的义务论，需要的<strong>不是他的社会经济学，也不是神学，而是 1649 年查理一世被处决后「宣誓效忠」（Engagement）之争的具体处境</strong><span class="tag t-rep">转述</span>（Skinner 访谈，收入 <em>Encountering the Past</em>，2020）。
+    </li>
+    <li>★ <strong>另一种唯物论读法</strong>：<strong>C. B. Macpherson（麦克弗森，1911–1987）</strong>，《<strong>The Political Theory of Possessive Individualism: Hobbes to Locke</strong>》，<strong>Oxford：Clarendon Press，1962</strong>——他把霍布斯读成<strong>「占有性个人主义」的代言人</strong>：霍布斯的自然状态背后，是<strong>17 世纪市场社会中「以占有为目的」的人</strong>；<strong>理查德·塔克（Richard Tuck）</strong> 的《<strong>Natural Rights Theories: Their Origin and Development</strong>》（<strong>Cambridge University Press，1979</strong>）则对沃伦德一系提出「<strong>最尖锐的批评</strong>」<span class="tag t-rep">转述</span>（转引自 Malcolm，<em>LRB</em>，1984）。
+    </li>
+    <li><strong>★ 一句话总结这条线</strong>：<strong>「霍布斯的义务论到底是审慎主义还是神命论，至今没有定论」</strong>——这不是本报告能裁决的问题，但<strong>读者必须知道：把《利维坦》读成「赤裸裸的强权即公理」，在学界是被强烈反对的一种读法</strong>。
+    </li>
+  </ul>
+  <h3>5.3 宗教与政治：第三、四部分对教会权威的从属化，以及「黑暗王国」的攻击对象</h3>
+  <p><strong>事实（有原文可定位）</strong>：</p>
+  <ul>
+    <li>教权被降格为教导权：<strong>「教权只是教导的权力」</strong>；<strong>「使徒和福音的牧师是我们的老师，不是我们的司令；他们的训示不是法律，而是有益的建议」</strong><span class="tag t-src">原书</span>（第三部分 第 42 章）。
+    </li>
+    <li>正典由主权者确立：<strong>「只有各国主权者权威所确立的书，才是该国具有律法地位的正典」</strong><span class="tag t-src">原书</span>（第三部分 第 33 章）。
+    </li>
+    <li>教会＝集会，不是等级：<strong>「教会在不指建筑物时，就是希腊城邦里的 Ecclesia，即被召集起来听长官讲话的公民集会」</strong><span class="tag t-src">原书</span>（第三部分 第 39 章）。
+    </li>
+    <li><strong>「黑暗王国」是什么</strong>：「<strong>无非是一个骗子的联盟，为了在此世获得对人的统治，用黑暗而错误的学说，熄灭人心中自然之光与福音之光</strong>」<span class="tag t-src">原书</span>（第四部分 第 44 章）。★ <strong>第 47 章用「谁得利」原则直接点名</strong>：「<strong>根据上述『谁得利』的规则，我们可以公正地判定，所有这些属灵黑暗的作者，就是教皇、罗马教士，以及一切尽力把下列教义植入人心的人……</strong>」<span class="tag t-src">原书</span>（第四部分 第 47 章）——具体列举的教义包括「<strong>炼狱、赎罪券、驱魔、圣徒祈祷</strong>」，理由是它们「<strong>使教士致富、使人畏惧其权力</strong>」<span class="tag t-src">原书</span>（第四部分 第 47 章）。
+    </li>
+    <li><strong>★ 同时要说清一个常被忽略的事实</strong>：霍布斯<strong>不止批天主教</strong>。第 29 章他说得很明白：「<strong>并不仅是罗马教士声称上帝的国是此世的……</strong>」<span class="tag t-src">原书</span>（第四部分 第 47 章末）；第 47 章里他还<strong>点名长老派（Presbytery）</strong>：「<strong>但是在长老派接掌这一职分的地方……</strong>」<span class="tag t-src">原书</span>（第四部分 第 47 章）。⇒ <strong>他的对手是「一切主张独立于国家的教会权力」，天主教与长老派在他眼里是同一问题的两面。</strong>
+    </li>
+    <li><strong>学理争议</strong>：★ 这类「把教会置于国家之下」的主张，在当时与今天都有强烈反弹。<strong>施米特（1938）</strong> 就把霍布斯「<strong>管外在顺从、不管内心信仰</strong>」的做法视为国家丧失「实质真理」的开端；<strong>近代的神学批评则指霍布斯把「上帝的国」彻底此世化、政治化</strong>（如关于他「<strong>灵魂有死论</strong>」「<strong>上帝是物体</strong>」的争议，见 5.4）。⇒ <strong>第 40–43 章不是「附带的神学讨论」，而是把神学当作政治权力的论证来拆解——这正是它今天仍引起争论的原因。</strong>
+    </li>
+  </ul>
+  <h3>5.4 文本史：1651 英文初版与 1668 拉丁文版的差异；中译底本与原文的距离</h3>
+  <ul>
+    <li><strong>★★ 两个版本不是同一本书。</strong> 依据 <strong>Noël Malcolm 编《Thomas Hobbes: Leviathan》（Clarendon Edition of the Works of Thomas Hobbes, III，Oxford University Press，2012，三卷，ISBN 9780199602629，定价 £195）</strong> 的英、拉丁对照与导读，主要差异如下：
+    <ol>
+      <li><strong>拉丁本删去了英文的「</strong>A Review, and Conclusion<strong>」</strong>，代之以<strong>三篇对话体附录</strong>：《<strong>De Symbolo Niceno</strong>》（论尼西亚信经）、《<strong>De Haeresi</strong>》（论异端）、《<strong>De quibusdam Objectionibus contra Leviathan</strong>》（论对利维坦的若干反驳）——<strong>且英文「综述与结论」里关于「向征服者归顺」的论证，在拉丁本里被更适合复辟时期与欧陆读者的材料取代</strong><span class="tag t-rep">转述</span>（同前）。
+      </li>
+      <li><strong>第四部分「论黑暗的王国」被大幅删削</strong>；对长老派的批评<strong>被调低</strong>（因为 1668 年拉丁本是在阿姆斯特丹出版、面向欧陆读者）<span class="tag t-rep">转述</span>（同上）。
+      </li>
+      <li><strong>神学论述改了</strong>：Malcolm 指出这些改动<strong>不是「损控」或单纯防迫害</strong>，而是霍布斯<strong>有意发展一套新神学</strong>——他<strong>未确认任何可辨识的三位一体论</strong>，<strong>重申复活后蒙选者将回到地上生活</strong>，并<strong>更明确地主张上帝是物体、人的灵魂有死</strong><span class="tag t-rep">转述</span>（同上）。
+      </li>
+      <li><strong>历史背景</strong>：<strong>1666 年议会曾谴责此书</strong>；<strong>佩皮斯（Samuel Pepys）1668-09-03 日记</strong>记《利维坦》「如今被人争相购求」，二手价从 8 先令涨到 24 先令、卖到 30 先令<span class="tag t-rep">转述</span>（转引自 A. R. Waller 编 Cambridge 1904 版导言，<strong>公版</strong>）。
+  <p>★ <strong>另有一条被否证过的假说</strong>：法国学者 <strong>François Tricaud</strong> 曾主张「拉丁文本其实是英文本的初稿」，<strong>但 Malcolm 一系指出该假说在文献上不成立</strong>（霍布斯曾多次为 Henry Stubbe 的英译拉丁稿改稿，说明英文本发表数年后仍无完整拉丁本）<span class="tag t-rep">转述</span>（同前）。</p>
+      </li>
+    </ol>
+    </li>
+    <li><strong>★ 中译底本与原文的距离</strong>：黎译本<strong>据伦敦 J. M. Dent &amp; Sons 1957 年版译出</strong>——这是一个<strong>现代通行英文底本</strong>，与 1651 初版在拼写、标点、边注编排上都有差异；而<strong>它没有包含 1668 拉丁本的三篇附录</strong>。⇒ <strong>中文读者手上的《利维坦》是「1651 英文本（经 20 世纪重排）」，不是「1668 拉丁本」，也不是「两版对照本」。</strong> ★ 若要引用两版差异，<strong>必须回 Malcolm 2012 版或 Gutenberg #3207 对照使用</strong>。
+    </li>
+  </ul>
+  <h3>5.5 ★★ 中译状况：被指删节的是 1934 年朱敏章译本，不是黎译本</h3>
+  <p><strong>（a）事实澄清（这条必须写清，别张冠李戴）：</strong></p>
+  <ul>
+    <li><strong>被指「肆意删节」的是朱敏章 1934 年文言译本。</strong> 有译后记明确写道：朱译本「由于古汉语缺乏与西方哲学相对应的丰富的术语、概念和语法结构，加上译者对原著理解不精及<strong>肆意删节</strong>，朱译本与原文在意思上多有出入」<span class="tag t-rep">转述</span>（澎湃新闻《利维坦》译后记，2025）。★ <strong>本条指控的对象是朱译本。</strong>
+    </li>
+    <li><strong>黎思复、黎廷弼译本未见此类「删节」指控</strong>，且被同一篇评论列为「有一定历史意义和参考价值」的两本之一<span class="tag t-rep">转述</span>（同上）。
+  <p><strong>（b）评论者的整体判断（如实转述，标明其性质）：</strong></p>
+    </li>
+    <li>同一篇译后记称：《利维坦》「<strong>在汉语学界几经翻译，却至今没有产生一个经得起推敲、精准可读的译本</strong>」；「目前《利维坦》共有十来个中译本，<strong>除了朱敏章译本和黎思复、黎廷弼译本有一定的历史意义和参考价值之外，其余皆不足观</strong>」<span class="tag t-rep">转述</span>（同上）。★ <strong>这是评论者个人的判断，不是学界公论</strong>；本报告引用它，是因为它是对中文译况<strong>最有信息量的一手评论之一</strong>，而不是把它当作判决。
+  <p><strong>（c）由此带来的阅读后果</strong>：</p>
+    </li>
+    <li><strong>术语不统一</strong>：<code>Common-wealth</code>（共同体／国家）、<code>Soveraigne</code>（主权者）、<code>Publique Minister</code>（政务大臣）、<code>Person</code>／<code>Author</code>／<code>Authority</code>（人格／作者／权威）、<code>Law of Nature</code>（自然法）等核心词，在不同中译本里译名不同，<strong>跨译本对读时会「对不上号」</strong>。
+    </li>
+    <li><strong>底本不透明</strong>：黎译本版权页交代了底本（Dent 1957），但<strong>并非所有中译本都交代底本</strong>；<strong>不交代底本，就无法判断它有没有 1668 拉丁本的内容</strong>。
+    </li>
+    <li><strong>对「人格—授权」术语链尤其敏感</strong>：第 16 章那组 <code>Person / Actor / Author / Authority</code> 是全书承重墙，<strong>中译若把 <code>Author</code> 与 <code>Actor</code> 混译，第 17 章的授权公式就散了</strong>。⇒ <strong>读第 16–18 章时，建议对照英文原文一遍。</strong>
+    </li>
+  </ul>
+  <h3>5.6 霍布斯的时代与立场：英国内战（1642–1651）与「秩序恐惧」如何塑造了整本书</h3>
+  <ul>
+    <li><strong>时间线</strong>：<strong>1640 年</strong>霍布斯因《法律要义》（<em>The Elements of Law</em>）手稿流传、恐被议会追究而<strong>流亡巴黎</strong>；<strong>1642 年</strong>英国内战爆发，同年他出版《论公民》（<em>De Cive</em>，拉丁文）；<strong>1649 年 1 月</strong>查理一世被处决；<strong>1651 年</strong>《利维坦》在伦敦出版（题献署 <strong>Paris，1651 年 4 月 15/25 日</strong>）；<strong>1660 年</strong>王政复辟；<strong>1666 年</strong>议会谴责《利维坦》；<strong>1668 年</strong>拉丁文本在阿姆斯特丹出版。
+    </li>
+    <li><strong>★ 写作压力直接写在书里</strong>：
+    <ul>
+      <li><strong>题献</strong>里他说得最直白：「<strong>在一条两面受敌的路上——一边的人要求过大的自由，另一边的人要求过多的权威——要想毫发无伤地穿过两者之间的关隘，是很难的。</strong>」<span class="tag t-src">原书</span>（卷首题献，致 Francis Godolphin）
+      </li>
+      <li><strong>题献里还有一句极重要的话</strong>，解释了第三、四部分为什么要写：他承认自己<strong>引用《圣经》经文的用意与常人不同</strong>，理由是「<strong>它们正是敌人用来攻击世俗权力的『外垒』（the Outworks of the Enemy）</strong>」<span class="tag t-src">原书</span>（同上）。
+      </li>
+      <li><strong>第 29 章</strong>把「内战」列为国家解体的首要原因之一，并<strong>点名批评「读古希腊罗马的政治与历史书」会引发叛乱</strong>——因为那些书写着「<strong>杀暴君是合法的</strong>」，于是<strong>弑君（Regicide）被改叫「诛暴君」（Tyrannicide）就合法了</strong><span class="tag t-src">原书</span>（第二部分 第 29 章）。
+      </li>
+      <li><strong>「综述与结论」</strong>里有一整段专论「<strong>一个人何时成为征服者的臣民</strong>」——即面对 1649 年后既成政权，<strong>宣誓效忠（Engagement）到底应不应该</strong>的问题；结论是：<strong>其义务随保护能力而生灭</strong><span class="tag t-src">原书</span>（综述与结论）。★ 这一条<strong>直接回应了当时最尖锐的现实问题</strong>：查理一世已死、共和国当政，英国人该不该效忠？
+      </li>
+      <li><strong>私人哀悼</strong>：他在「综述与结论」里罕见地写下一句私人的话——<strong>他认识一个人，兼具「判断的清明与想象的广阔、理性的力量与优雅的辩才、战阵之勇与对法律的敬畏」，那就是他「最高贵、最敬重的朋友 Sidney Godolphin 先生」，此人「在内战初起时不幸阵亡」</strong><span class="tag t-src">原书</span>（综述与结论）。★ 题献也正是献给其兄 Francis Godolphin。<strong>这是全书里最接近个人情感的一段。</strong>
+      </li>
+    </ul>
+    </li>
+    <li><strong>★ 必须分清的两件事</strong>：「内战造成的秩序恐惧塑造了霍布斯的问题意识」是一个<strong>有文本支撑的判断</strong>（上述四处原文）；但<strong>「因为怕内战，所以推出主权绝对」不是一步逻辑必然</strong>——中间的每一步（自然状态、自然法、授权）都要单独检验。<strong>相关≠因果，这一点在本报告里必须守住</strong>（本项目的已知陷阱之一）。
+    </li>
+  </ul>
+  <h3>5.7 这本书今天读还成立吗</h3>
+  <p><strong>大体成立的</strong>：</p>
+  <ul>
+    <li><strong>「没有共同权力，就没有正义的标准」这一结构性洞见</strong>——霍布斯把「正义」定义为「<strong>履行有效契约</strong>」，并指出「<strong>在建立共同权力之前，正义无从谈起</strong>」<span class="tag t-src">原书</span>（第一部分 第 15 章）。<strong>这个「制度先于规范」的问题设定，至今是国家理论无法绕开的起点。</strong>
+    </li>
+    <li><strong>「保护与服从的对等性」</strong>——「<strong>臣民对主权者的义务，只在他有能力保护他们之际存在</strong>」<span class="tag t-src">原书</span>（第二部分 第 21 章；综述与结论再度重申为「<strong>保护与服从的相互关系</strong>」）。★ <strong>这条是全书最接近「现代政治正当性」的论据</strong>，也是它不能被简单贴上「专制」标签的硬证据。
+    </li>
+    <li><strong>「授权—代表」的语汇</strong>：现代民主理论、法人理论、乃至代议制讨论中的「authorization」「representation」，<strong>很大程度上继承了第 16 章的这套语汇</strong>。
+    </li>
+    <li><strong>对「两重主权」的警觉</strong>（第 29 章「一个自相分裂的王国站立不住」）：<strong>它在一国之内不能有两个最高权威</strong>这个命题，是后来「主权不可分割」论的经典表述。
+    </li>
+  </ul>
+  <p><strong>要打折的</strong>：</p>
+  <ul>
+    <li><strong>机械论心理学</strong>（感觉＝运动、激情＝运动开端）——按 5.2 处理：<strong>这是全书最脆弱的一层，也是最不该当作「科学结论」接受的一层</strong>。若这一步不成立，「自然状态必然发生」的推论就没有它自称的力量。
+    </li>
+    <li><strong>「主权者不受契约约束」「臣民不得更换政体」</strong>——按 5.2 处理：<strong>这是它政治结论中最被反驳的一环</strong>，也是「抵抗权」理论必须重新处理的地方。
+    </li>
+    <li><strong>对教会权威的彻底从属化（第 32–43 章）</strong>——按 5.3 处理：<strong>把教权降为教化权，是 17 世纪英格兰政治的特殊解法</strong>；在宗教多元的今天，<strong>它既被引为「政教分离」的早期论述，也被批为「国家对良心的僭越」</strong>。
+    </li>
+    <li><strong>「灵魂有死」「上帝是物体」等神学立场</strong>——按 5.4 处理：<strong>这是霍布斯在自然哲学与神学之间的一次强行缝合</strong>；1668 拉丁本里这些立场被进一步强化，<strong>说明他并不认为自己在妥协</strong>。
+    </li>
+  </ul>
+  <p>★ <strong>一个反直觉的判断</strong>：<strong>这本书最耐读的部分，恰恰是它最「不政治」的部分。</strong> 第 4 章「语言是社会与和平的可能条件」、第 5 章「推理即计算」、第 6 章对激情的形式化描述、第 21 章对「自由」一词的概念清理——<strong>这些不依赖任何会被后续研究推翻的具体政治主张，靠的是清晰的区分和漂亮的文风</strong>。★ 而它最有影响的结论（授权论、主权不可分割），<strong>恰恰最需要读者自己去检验它的前提</strong>——这是这本 1651 年的书在 2026 年仍然值得读的真正理由：<strong>它把「国家为什么可以有权力」这个问题，第一次完整地摆成了「从人到国家的一条链」，而链上每一环，今天都还能被单独拿出来质疑。</strong></p>
+  <p>★ <strong>结构说明</strong>：本书 <strong>4 部分 47 章</strong>。本部<strong>按「部分」深挖（<code>## 6</code>–<code>## 9</code>）</strong>，但<strong>每一部分内部逐章评述该部分下辖的全部章</strong>，<strong>一章不少</strong>（第一部分 16 ＋ 第二部分 15 ＋ 第三部分 12 ＋ 第四部分 4 ＝ 47）。每部分开头是「<strong>这一部分在推演什么</strong>」与「<strong>关键论证与概念</strong>」，中间是<strong>逐章评述</strong>，末尾是「<strong>可疑之处</strong>」。★ 章号一律写「<strong>第X部分 第 Y 章 章名</strong>」（章号全书连续 1–47，不按部分重新编号）。★ 全部英文引文依据 <strong>Gutenberg #3207</strong>（据 Pelican Classics 版、源自 1651 初版），保留原拼写。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>第一部分：论人类（第 1–16 章）</span><span class="caret">▾</span></h2>
+  <h3>这一部分在推演什么</h3>
+  <p>这一部分是<strong>全书的地基</strong>，也是被现代读者跳得最多的一部分。它要解决的问题只有一个：<strong>「人」到底是什么？</strong> 霍布斯的回答不是道德的，而是<strong>物理的与机械的</strong>——人是一台由外部物体推动的机器：外部物体压迫感官 → 产生「感觉」；感觉的残留与衰减 → 产生「想象」与「记忆」；想象的序列 → 组成「思维」；用名词给思想立标记 → 产生「语言」；对名词做加减 → 就是「推理」；体内的微小运动朝向或背离某物 → 就是「激情」；激情持续推进 → 就是「幸福」；而为了不断保证未来的幸福，人必然追求权力 → <strong>「至死方休的权力欲」</strong>。<strong>把这一切放进一个没有共同权力的空间，就得到第 13 章的自然状态</strong>；把自然状态再交给理性去处理，就得到第 14–15 章的自然法；要让自然法落实，就需要第 16 章的「人格—授权」语汇。</p>
+  <p>★ <strong>一句话记住这一部分</strong>：<strong>它是把「人」拆成零件的一整套说明书</strong>——第 1–9 章是「零件」（感觉、想象、语言、推理、知识），第 10–12 章是「动力」（权势、品行、宗教），第 13–16 章是「总装」（自然状态、自然法、授权）。<strong>后面第二部分的国家，全部由这些零件搭成。</strong></p>
+  <h3>关键论证与概念</h3>
+  <ul>
+    <li><strong>感觉＝运动</strong>：一切观念无不出自感官，且「<strong>运动只能产生运动</strong>」<span class="tag t-src">原书</span>（第一部分 第 1 章）。这是全书的第一块基石，也是最容易被忽略的假定。
+    </li>
+    <li><strong>想象＝衰退的感觉</strong>：「<strong>想象因此不过是正在衰退的感觉</strong>」<span class="tag t-src">原书</span>（第一部分 第 2 章）——记忆、梦、幻象都是同一个机制的不同名字。
+    </li>
+    <li><strong>推理＝计算</strong>：「<strong>推理不过是对我们凭以标记和表示思想的一般名词的后果进行加减</strong>」<span class="tag t-src">原书</span>（第一部分 第 5 章）。★ 由此产生「正确理性」（Right Reason）的难题：<strong>没有一个人的理性、或任何数目之人的理性，构成确定性</strong>——所以争议必须交由<strong>仲裁者</strong>。<strong>这是第 17 章主权者作为「判断者」的伏笔。</strong>
+    </li>
+    <li><strong>激情＝运动的内在开端</strong>：「<strong>这些在步行、说话、打击等可见行为之前、在人体内部发生的微小运动开端，通常称为『努力』（ENDEAVOUR）</strong>」<span class="tag t-src">原书</span>（第一部分 第 6 章）；「<strong>在斟酌中最后的欲望或嫌恶，就是我们所称的意志</strong>」<span class="tag t-src">原书</span>（第一部分 第 6 章）。
+    </li>
+    <li><strong>权势＝未来的手段</strong>：「<strong>一个人的权势，普遍地说，就是他目前拥有的、借以获得某种未来显善之物的手段</strong>」；「<strong>人类最大的权势，是由多数人的权势经同意联合在一个人身上所构成的那种权势</strong>」<span class="tag t-src">原书</span>（第一部分 第 10 章）。
+    </li>
+    <li><strong>权力欲无止境</strong>：「<strong>一种永不停歇、至死方休的权力欲</strong>」<span class="tag t-src">原书</span>（第一部分 第 11 章）。
+    </li>
+    <li><strong>宗教的自然种子</strong>：对原因的追问＋对未知的恐惧＝「<strong>对未来时间的焦虑</strong>」<span class="tag t-src">原书</span>（第一部分 第 12 章）。
+    </li>
+    <li><strong>自然状态＝战争状态</strong>（第 13 章）、<strong>自然权利与自然法的定义</strong>（第 14 章）、<strong>十九条自然法</strong>（第 15 章）、<strong>人格—作者—权威</strong>（第 16 章）——见下列逐章。
+    </li>
+  </ul>
+  <h3>第一部分 第 1 章 论感觉</h3>
+  <p>霍布斯开篇就定调：「<strong>关于人的思想，我先单个地考察，然后再考察它们的序列或相互依赖。</strong>」单个的思想「<strong>每一个都是我们身外某个物体之性质或偶性的表象</strong>」。核心命题只有一句——「<strong>它们全体的本源，就是我们所谓的『感觉』；因为人心中的任何观念，最初都全部或部分地生于感官</strong>」<span class="tag t-src">原书</span>（第一部分 第 1 章）。感官之所以产生颜色、声音、气味，「<strong>在我们这些被压迫者身上，除了运动之外别无他物（因为运动只能产生运动）</strong>」；所以颜色、声音<strong>不在物体里</strong>，而在感觉者身上。★ 章末顺手放了一炮：经院哲学讲「<strong>可见的种</strong>」「<strong>可听的种</strong>」「<strong>可理解的种</strong>」是「<strong>无意义的言语</strong>」<span class="tag t-src">原书</span>（第一部分 第 1 章）——<strong>这是全书第一次与亚里士多德传统开战</strong>，也是第四部分的前奏。</p>
+  <h3>第一部分 第 2 章 论想象</h3>
+  <p>「<strong>当一个物体静止时，除非有他物推动，它将永远静止</strong>」是无人怀疑的；但「<strong>一个物体在运动时，除非有他物阻止，将永远运动</strong>」——霍布斯说，人们因为在自己身上看到「运动之后会疲倦」，就以己度物，以为万物都「<strong>向往休息</strong>」，这是「<strong>把欲望和对保全自己的知识（这连人都没有）荒谬地归于无生命之物</strong>」<span class="tag t-src">原书</span>（第一部分 第 2 章）。由此推出「想象是衰退的感觉」；记忆是「<strong>感觉的衰退</strong>」；梦是睡眠中的想象。★ 本章还附带一个对后世影响很大的推论：<strong>因为想象是感觉的残留，所以不来自感觉的东西，人无法想象</strong>——这是后来他讨论「无形实体不可能被想象」「精灵＝幻象」的起点（第三、四部分反复使用）。</p>
+  <h3>第一部分 第 3 章 论想象的序列或系列</h3>
+  <p>思想不是随意相接的：「<strong>我们没有任何想象不是先由感觉（全部或部分）得来，所以我们也没有任何从一个想象到另一个想象的过渡，不是先在感觉中有过类似的过渡</strong>」<span class="tag t-src">原书</span>（第一部分 第 3 章）。序列分两种：<strong>无导的</strong>（「<strong>像在梦中一样游荡</strong>」）与<strong>有导的</strong>（受欲望或恐惧引导）。★ 本章有一段极生动的例证：他说在自己国家当前的<strong>内战</strong>中，有人问「<strong>一枚罗马铜币值多少</strong>」，看似离题，其实链条很清楚——<strong>战争的念头引出把国王交到敌人手里，那又引出把基督交出去，再引出那三十块钱（基督被出卖的价钱）</strong><span class="tag t-src">原书</span>（第一部分 第 3 章）。★ <strong>这是全书里最能说明「写作处境」的段落之一：内战的焦虑直接进入了认识论的举例。</strong></p>
+  <h3>第一部分 第 4 章 论语言</h3>
+  <p>「<strong>最崇高、最有用的发明是语言</strong>」，它由「<strong>名词或其称谓以及它们的连接</strong>」构成，「<strong>人们借以登记自己的思想、在思想过去后召回它们、并相互宣告</strong>」——「<strong>没有它，人间就不会有国家、社会、契约、和平，只会像狮子、熊和狼之间那样</strong>」<span class="tag t-src">原书</span>（第一部分 第 4 章）。语言的用处有四种：<strong>标记记忆、表示思想、互相告知、以及「用词引起情绪」</strong>。★ 本章还有一段关于「<strong>名词的滥用</strong>」的著名并列——滥用语言的方式包括「<strong>用词无定义、用词比喻、把情绪当事实陈述、以及用言语互相伤害</strong>」；而<strong>「真」与「假」只属于语言，不属于事物</strong>：「<strong>真与假是言语的属性，不是事物的属性；没有言语的地方，既没有真也没有假</strong>」<span class="tag t-src">原书</span>（第一部分 第 4 章）。★ <strong>这一句是理解全书「定义先行」方法的关键。</strong></p>
+  <h3>第一部分 第 5 章 论推理与学术</h3>
+  <p>「推理＝计算」在这一章给出完整定义：「<strong>当一个人推理时，他所做的不过是从诸部分的相加构想到一个总和，或从一数减另一数构想出差额</strong>」<span class="tag t-src">原书</span>（第一部分 第 5 章）。★ 紧接着是全章最关键的推论：<strong>「正确理性」在哪里？</strong> 霍布斯说，「<strong>并不是一个人的理性、也不是任何数目的个人的理性构成确定性</strong>」，正如一笔账不会因为很多人同意就算对；因此<strong>在争议中，双方必须共同设立一个「仲裁者或法官」</strong>，否则争议「<strong>不是诉诸武力，就是因缺乏自然确立的正确理性而无法裁断</strong>」<span class="tag t-src">原书</span>（第一部分 第 5 章）。★ <strong>这一步是承重墙的隐蔽一环</strong>：它把「真理」问题转成「谁有权威裁断」的问题——<strong>这正是后来主权者作为最高判断者的雏形，也是 5.1 里「共识真理观」批评的靶子。</strong></p>
+  <h3>第一部分 第 6 章 论自觉运动的内在开端（通称激情）</h3>
+  <p>生命有两种运动：<strong>生命运动</strong>（血液、脉搏、呼吸）与<strong>动物运动</strong>（行走、说话）。后者「<strong>取决于一个先在的思想</strong>」，故“<strong>想象是一切自觉运动的内在开端</strong>”。这些「<strong>微小的运动开端</strong>」叫「<strong>努力</strong>」（Endeavour）：朝向某物叫<strong>欲望</strong>，背离某物叫<strong>嫌恶</strong>；所欲望者谓<strong>爱</strong>，所嫌恶者谓<strong>恨</strong>；既不欲望也不嫌恶者谓<strong>轻视</strong><span class="tag t-src">原书</span>（第一部分 第 6 章）。★ 本章还给出对「意志」的一个<strong>反经院</strong>的定义：「<strong>意志就是在斟酌中最后的那个欲望</strong>」，并批评「<strong>意志是理性的欲望</strong>」这个通行定义——「<strong>因为若如此，就不会有违反理性的自愿行为了</strong>」<span class="tag t-src">原书</span>（第一部分 第 6 章）。★ 并有一个常被忽略的要点：<strong>出于对后果恐惧的行为，也是自愿的</strong>——「<strong>不仅出于贪婪、野心、情欲等对所欲之物的欲望的行为，是自愿的行为；出于嫌恶、或出于对不做的后果的恐惧的行为，也是自愿的行为</strong>」<span class="tag t-src">原书</span>（第一部分 第 6 章）。<strong>这一点直接支撑第二部分第 20 章「因恐惧而订的契约仍然有效」。</strong></p>
+  <h3>第一部分 第 7 章 论讨论的终结或决断</h3>
+  <p>讨论分为心灵的与语言的两种。<strong>斟酌中最后的欲望＝意志</strong>；<strong>探寻真理中最后的意见＝判断</strong>；而「<strong>在关乎善恶的问题上，交替的欲望之整条链叫斟酌；在关乎真伪的问题上，交替的意见之整条链叫怀疑</strong>」<span class="tag t-src">原书</span>（第一部分 第 7 章）。★ 本章最有分量的一句是认识论的：<strong>「任何讨论都不可能以对事实的绝对知识告终」</strong>——对事实的知识本源于感觉与记忆（这是「绝对知识」），而对「后果」的知识（即科学）<strong>只能是条件性的</strong>：「<strong>没有人能通过推理知道这事是、曾经是或将是的；只能知道：若此，则彼</strong>」<span class="tag t-src">原书</span>（第一部分 第 7 章）。★ 章末谈到「良知」（Conscience）：它本义是「<strong>共同知道</strong>」，后来被借用来指「<strong>人对自己隐秘事实和隐秘思想的知识</strong>」，最后被人用作「<strong>自己的意见</strong>」的尊称，仿佛改变它就是不合法——<strong>霍布斯对这一语义漂移是不以为然的</strong><span class="tag t-src">原书</span>（第一部分 第 7 章）。</p>
+  <h3>第一部分 第 8 章 论通常所谓的理智的德性及其相反的缺陷</h3>
+  <p>德性＝「<strong>因其卓越而被看重、且在于比较的东西</strong>」<span class="tag t-src">原书</span>（第一部分 第 8 章）。理智德性分<strong>自然的</strong>与<strong>获得的</strong>：自然才智「<strong>由想象之敏捷（思绪迅速相接）与指向某个被认可的目标的稳定引导</strong>」构成，其主要形式是「<strong>判断</strong>」与「<strong>想象</strong>」；缺陷对应「<strong>迟钝</strong>」与「<strong>妄想</strong>」（如把幻想当事实、把比喻当证明）。获得性的德性，霍布斯列了<strong>良好的心智／辩才／谨慎等</strong>。★ 本章有一处重要区分：他把「<strong>机智</strong>」（good wit）说得极具相对性——「<strong>同一件事，在不同人眼里可以是才智，也可以是愚蠢</strong>」；<strong>并且他明说「分寸得体」之类属于「小道德」，不在他关心之列</strong>（第一部分第 11 章复述此意）。<strong>这一章的技术性很强，但它的功能是给后面的「激情」与「品行」搭台阶。</strong></p>
+  <h3>第一部分 第 9 章 论各种知识的主题</h3>
+  <p>知识分两类：<strong>事实之知</strong>（感觉与记忆，是「<strong>绝对知识</strong>」，证人所需）与<strong>推论之知</strong>（「<strong>从一封断言推及另一封断言</strong>」，是「<strong>条件性的</strong>」，哲学家所需）<span class="tag t-src">原书</span>（第一部分 第 9 章）。<strong>事实之知的登记叫「历史」</strong>（分自然史与公民史）；<strong>推论之知的登记叫「哲学」</strong>。★ 章末给出<strong>一张科学分类表</strong>，把哲学分为「<strong>自然哲学</strong>」「<strong>政治与哲学</strong>（含伦理学、政治学）」等，<strong>这是全书结构的一次自我声明</strong>：霍布斯是在「科学分类」的框架里给自己定位的，<strong>《利维坦》在他眼里属于「公民哲学」的一支</strong>。★ 这一章常被跳读，但它是理解全书「为什么从感觉讲起」的最好依据。</p>
+  <h3>第一部分 第 10 章 论权势、价值、地位、尊重及资格</h3>
+  <p>「<strong>权势</strong>」的完整定义：「<strong>一个人目前拥有的、借以获得某种未来显善之物的手段</strong>」，分<strong>自然的</strong>（体力、容貌、谨慎、技艺、口才、高贵）与<strong>获得的</strong>（财富、名声、朋友、好运）<span class="tag t-src">原书</span>（第一部分 第 10 章）。★ 最有政治意味的一句是：<strong>「人类最大的权势，是由多数人的权势经同意联合在一个人身上所构成的那种权势」——这就是国家的权势</strong><span class="tag t-src">原书</span>（第一部分 第 10 章）。其余条目（价值、地位、尊重、资格）大多是在给「荣誉」这类社会现象做减法：<strong>价值不是绝对的内在属性，而是「别人对你权势的评价」</strong>；「<strong>尊重</strong>」是「<strong>对权势的内在认可</strong>」，「<strong>荣誉</strong>」是「<strong>这种认可的外在表现</strong>」。★ 这一章读起来像社会学词条，实则为第 13 章「<strong>荣誉之争是冲突三大原因之一</strong>」提供了概念准备。</p>
+  <h3>第一部分 第 11 章 论品行的差异</h3>
+  <p>「品行」在这里<strong>不是礼仪举止</strong>，而是「<strong>关乎人类和平共处与团结的那些品质</strong>」<span class="tag t-src">原书</span>（第一部分 第 11 章）。本章第一句就否定了古人的道德哲学：<strong>「没有至善（Finis Ultimus，终极目的），也没有最大的善（Summum Bonum），像旧道德哲学的书里所说的那样」</strong>；因为「<strong>一个人的欲望一旦终止，他就活不下去，正如感官和想象一旦停顿一样</strong>」<span class="tag t-src">原书</span>（第一部分 第 11 章）。接着是那句名言：「<strong>我把一切人类共有的普遍倾向定为：一种永不停歇、至死方休的权力欲。</strong>」并给出结构性理由：「<strong>并非总是因为他希望获得比已达成的更大的强烈快乐，而是因为他不能保证现有的、过好日子的权力和手段，除非获得更多</strong>」<span class="tag t-src">原书</span>（第一部分 第 11 章）。★ 章末另有几条重要的「品行」：<strong>爱好竞争 → 争斗</strong>；<strong>爱好安逸 → 服从</strong>；<strong>畏惧死亡与伤害 → 服从</strong>；<strong>爱好知识 → 服从</strong>；<strong>以及「对同一事物评价不同 → 争论」</strong>。★ <strong>本章与第 13 章合起来，是「自然状态必然性」的完整论证。</strong></p>
+  <h3>第一部分 第 12 章 论宗教</h3>
+  <p>宗教不是启示的产物，而是<strong>人的自然结构的产物</strong>。霍布斯列了四条自然成因：<strong>① 对原因的追问</strong>；<strong>② 看到事物有开端就追问其原因</strong>；<strong>③ 对未来的观察与对后果的恐惧</strong>；<strong>④ 把偶然事物当作预兆</strong>。核心概念是「<strong>对未来时间的焦虑（anxiety of the time to come）</strong>」——「<strong>每个不断努力保全自己、谋求所欲之物的人，都不可能不处于对未来的永久忧虑中</strong>」，他把这种人比作被鹰啄食肝脏的<strong>普罗米修斯</strong>（「<strong>普罗米修斯，解作『明智的人』</strong>」）<span class="tag t-src">原书</span>（第一部分 第 12 章）。★ 因此「<strong>宗教的自然种子</strong>」是<strong>恐惧与无知</strong>，而<strong>宗教的社会形态</strong>取决于谁在管理这种恐惧（他举罗马人的「<strong>宗教监护官</strong>」为例）。★ <strong>本章是第三、四部分的前哨</strong>：如果宗教的自然根源是恐惧，那么「<strong>用宗教来统治人的人</strong>」就有一套可分析的利益结构——第 47 章正是这条线的终点。</p>
+  <h3>第一部分 第 13 章 论人类幸福与苦难的自然状况</h3>
+  <p>★★ <strong>全书最著名的一章。</strong> 三段论证：<strong>① 平等</strong>——「<strong>自然使人在身心能力上如此平等</strong>」，即使体力有别，「<strong>最弱的人也有足够的力量杀死最强的人，或靠密谋，或靠与他人联合</strong>」<span class="tag t-src">原书</span>（第一部分 第 13 章）；<strong>② 由平等生猜疑</strong>——两人欲同一物而不能共享，即成敌人；<strong>③ 由猜疑生战争</strong>——「<strong>最合理的自保方式就是先发制人（Anticipation）</strong>」。于是「<strong>在人们没有共同权力使他们全部敬畏的时期，他们就处在所谓的战争状态中；这种战争是每一个人对每一个人的战争</strong>」；战争不只在交战，更在「<strong>交战的意志已足够为人所知的那段时间</strong>」。后果清单：「<strong>没有产业、没有耕作、没有航海、没有建筑、没有工具、没有知识、没有时间、没有艺术、没有文字、没有社会；最糟的是不断恐惧、随时可能横死；人的生活孤独、贫困、卑污、残忍而短寿</strong>」<span class="tag t-src">原书</span>（第一部分 第 13 章）。★ <strong>本章有两处必须连读的限定</strong>：其一，「<strong>也许有人会想，从来不曾有过这样的时期……我相信，就整个世界而言，它从来不曾普遍如此，但有许多地方，人们今天就这样生活着</strong>」（用美洲土著为例）；其二，「<strong>人的欲望和其他激情本身并不是罪</strong>」——<strong>在未立法之前，无所谓罪</strong><span class="tag t-src">原书</span>（第一部分 第 13 章）。★ 章末给出出口：「<strong>使人倾向于和平的激情，是怕死、对舒适生活所需之物的欲望、以及希望靠勤劳获得它们</strong>」——这三者就是第 14–15 章自然法的心理基础。</p>
+  <h3>第一部分 第 14 章 论第一与第二自然法以及契约</h3>
+  <p>先立两组定义：<strong>自然权利</strong>＝「<strong>每个人用自己的力量、按自己的判断与理性，为保全自身本性即生命，而做任何他认为是适当手段之事的自由</strong>」；<strong>自然法</strong>＝「<strong>由理性发现的训诫或一般规则，禁止人做毁灭自己生命、或剥夺保全生命手段的事</strong>」<span class="tag t-src">原书</span>（第一部分 第 14 章）。★ 并明确区分：<strong>权利在于「做或不做」的自由；法律则规定并约束你只能取其一</strong>——「<strong>法律与权利之别，正如义务与自由之别</strong>」<span class="tag t-src">原书</span>（第一部分 第 14 章）。<strong>第一自然法</strong>：「<strong>寻求和平、追随和平</strong>」；<strong>第二自然法</strong>：「<strong>当别人也愿意时，为和平与自保之故，一个人应愿意放下他对一切事物的权利，并满足于拥有与他对他人所允许的同样多的自由</strong>」——即「<strong>己所不欲，勿施于人</strong>」<span class="tag t-src">原书</span>（第一部分 第 14 章）。★ 「契约」=「<strong>相互转移权利</strong>」；只交付实物者为「<strong>信约（Pact / Covenant）</strong>」。★ 本章还定下一条对全书至关重要的规则：<strong>「不强求人放弃自我防卫的诺言是无效的」</strong><span class="tag t-src">原书</span>（第一部分 第 14 章），以及<strong>在无共同权力保障时，相互信任的契约无效</strong>——<strong>这正是第 17 章「没有刀剑的契约只是空话」的出处。</strong></p>
+  <h3>第一部分 第 15 章 论其他自然法</h3>
+  <p><strong>第三自然法</strong>：「<strong>人们应当履行所订的契约</strong>」——「<strong>没有它，契约就是徒然，只是空话</strong>」；而<strong>正义与不义的起源</strong>就在这里：「<strong>不义的定义，就是未履行契约</strong>」<span class="tag t-src">原书</span>（第一部分 第 15 章）。★ 但霍布斯随即补上一句极关键的限定：<strong>「正义与所有权都始于国家的设立」</strong>——「<strong>在建立共同权力之前，无所谓正义，也无所谓所有权</strong>」<span class="tag t-src">原书</span>（第一部分 第 15 章）。此后他列出第四至十九条自然法：<strong>感恩、相互适应（合群）、宽恕、报复只着眼于未来的善、不羞辱他人、承认他人与自己平等、不要求特权、公道（无偏私）、公用之物共享或按比例分配、以及「把无法分割之物委托给仲裁」等</strong><span class="tag t-src">原书</span>（第一部分 第 15 章）。★ 章末有三条结论必须记住：<strong>① 全部自然法可压缩为一句「己所不欲，勿施于人」</strong>；<strong>② 自然法「在内心法庭上永远有约束力，在外在法庭上则只在有安全保证时才有效」</strong>；<strong>③ 「这些理性的训诫被人称为法其实不恰当，因为它们只是关于保存和防卫自身的结论或定理」</strong><span class="tag t-src">原书</span>（第一部分 第 15 章）。</p>
+  <h3>第一部分 第 16 章 论人、授权人和由人代表的事物</h3>
+  <p>★★ <strong>第 17 章的语汇准备，全书承重墙之一。</strong> 定义链如下：<strong>「人格」</strong>＝「<strong>其言语或行为被考虑为属于自己的、或代表他人的那种人</strong>」；<strong>「自然人格」</strong>＝言行算自己的；<strong>「人为人格（Artificiall Person）」</strong>＝代表他人的。★ 词源：<strong>「Person 在拉丁文里指舞台上用来遮脸的面具，由舞台转用于任何言语与行为的代表者」</strong>——「<strong>人格就是演员（Actor）</strong>」<span class="tag t-src">原书</span>（第一部分 第 16 章）。然后是关键的三分：<strong>「行为者（Actor）」</strong>＝其言行被他人所拥有者；<strong>「作者（Author）」</strong>＝拥有其言行者；<strong>「权威（Authority）」</strong>＝「<strong>做任何行为的权利</strong>」<span class="tag t-src">原书</span>（第一部分 第 16 章）。★ 由此得出：<strong>「行为者以权威订立的契约，与作者自己订立的一样约束作者」</strong>（第 16 章）。★ 最后是「多如何成一」的命题：<strong>「一群人，当被一个人格代表、且每个人都同意时，就成了一个人格；使众人成为一个的，是代表者的统一性，而不是被代表者的统一性」</strong>；<strong>「这群人自然不是『一』而是『多』，所以他们不能算作一个人，只能算作他们所代表者一切行为的许多作者」</strong><span class="tag t-src">原书</span>（第一部分 第 16 章）。★ <strong>第 17 章的授权公式，全部建立在这一章的四个定义上。</strong></p>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一部分的可信度，取决于你是否接受它的第一块基石——而这块基石恰恰没有证明。</strong></p>
+  <ol>
+    <li>★★ <strong>「感觉＝运动」「激情＝运动」是一句形而上学的断言，不是经验发现。</strong> 霍布斯说「<strong>运动只能产生运动</strong>」<span class="tag t-src">原书</span>（第一部分 第 1 章），并据此推出颜色声音不在物体里。<strong>这一步是他整个体系的地基，但他并未给出实验证据</strong>——它更像一个<strong>方法论承诺</strong>（像伽利略那样把一切还原为运动）。⇒ <strong>若这一步不接受，后面「自然状态必然发生」的「必然」就失去了力道</strong>。★ 这就是 5.2 里「机械论心理学是全书最脆弱一层」的具体位置。
+    </li>
+    <li>★★ <strong>「权力欲至死方休」是一个普遍命题，但它的证据是「否则无法保证现有的手段」——这个理由只在「他人也可能增权」的前提下成立</strong>，而那个前提又依赖第 13 章的猜疑。<strong>这是一段可以质疑的循环。</strong>
+    </li>
+    <li>★ <strong>第 13 章的两句话自相张力</strong>：一边说「<strong>我相信它从来不曾普遍如此</strong>」（承认是推论／思想实验），一边用「<strong>美洲土著今天仍如此生活</strong>」作经验例证。★ <strong>前者把自然状态定位为概念工具，后者把它定位为对现实的描述</strong>——霍布斯自己在两种用法间滑动。<strong>读第 13 章的正确姿势，是把它当作「这两种用法的混合物」来读。</strong>
+    </li>
+    <li>★ <strong>第 15 章末尾「自然法只是定理，不是法」这句自我修正，削弱了前面「自然法是法」的表述</strong>——这是霍布斯体系里一处<strong>未被完全缝合的接缝</strong>，也是泰勒–沃伦德论题（5.2）的文本根据。
+    </li>
+    <li><strong>第 12 章对宗教的「自然成因」分析，是解释性的而非神学性的</strong>——它把宗教还原为恐惧与无知的产物。★ 这在 17 世纪是危险主张；<strong>它是否为「无神论」，本报告不能裁决</strong>，但<strong>第 31 章「自然的上帝国」的存在说明霍布斯要的不是取消宗教，而是重新定义它</strong>（见第三部分）。
+    </li>
+  </ol>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>第二部分：论国家（第 17–31 章）</span><span class="caret">▾</span></h2>
+  <h3>这一部分在推演什么</h3>
+  <p>这一部分是<strong>全书的结论区</strong>，也是被引用最多、被误读最多的一段。它回答一个问题：<strong>自然状态既然不可忍受，出路究竟是什么？</strong> 霍布斯的答案是一条唯一的通路：<strong>授权（Authorization）</strong>。第 16 章已经把语汇备好（人格／行为者／作者／权威），第 17 章就给出那条公式——<strong>每个人对每个人说：「我授权并放弃我统治自己的权利，把这个权利交给这个人、或这个由众人组成的会议。」</strong> 从这一授权，第 18 章推出主权者的<strong>十二项权利</strong>（其中最关键也最受争议的一项，是「<strong>主权者不受契约约束</strong>」）；第 19–20 章处理政体形式（<strong>只有三种</strong>）与凭征服而来的主权；第 21 章处理<strong>臣民的自由</strong>（这是全部分里最有现代价值、也最容易被误读的一章）；第 22–25 章是制度细节（团体、公职人员、国家的营养与生殖、建议）；第 26 章处理<strong>民约法</strong>（法是什么、谁立法、自然法与民约法的关系）；第 27–28 章处理罪与罚；第 29–30 章是全书最有现实指向的两章——<strong>国家为什么会解体，以及主权者该做什么</strong>；第 31 章则把问题交棒给第三部分：<strong>什么是上帝的律法？</strong></p>
+  <p>★ <strong>一句话记住这一部分</strong>：<strong>它的核心不是「主权者有多大权力」，而是「主权者的权力从哪里来」。</strong> 霍布斯的回答是：<strong>从小写的每一个个人那里来，经「授权」这一行为汇成大写的主权者。</strong> 这个结构决定了它既可以被读成「绝对主义」，也可以被读成「一切合法权力都源于个人同意」——后面那种读法正是现代政治理论从它那里继承的东西。</p>
+  <h3>关键论证与概念</h3>
+  <ul>
+    <li><strong>授权公式（第 17 章）</strong>：「<strong>我授权并放弃我统治自己的权利……条件是，你也把你的权利交给他。</strong>」——这是全书最承重的一句话。
+    </li>
+    <li><strong>国家的定义（第 17 章）</strong>：「<strong>一个人格，一大群人通过相互订立的契约，每个人都成为他的行为的作者，以便他能为了他们的和平与共同防卫，使用他们全体的力量与手段。</strong>」
+    </li>
+    <li><strong>「有朽的上帝」（第 17 章）</strong>：「<strong>这就是那个伟大的利维坦的产生，或者更虔敬地说，是有朽的上帝的产生；我们在不朽的上帝之下，要向它求得和平与防卫。</strong>」
+    </li>
+    <li><strong>主权者不受契约约束（第 18 章）</strong>：「<strong>在主权者一方不可能发生违约，因而任何臣民也不能以破坏契约为借口摆脱服从。</strong>」
+    </li>
+    <li><strong>三种政体（第 19 章）</strong>：君主制／民主制／贵族制；<strong>暴君与寡头只是同一批政体被厌恶时的别称</strong>。
+    </li>
+    <li><strong>自由＝无外在障碍（第 21 章）</strong>；<strong>「恐惧与自由是相容的」</strong>；<strong>臣民保有自我保全的自由</strong>。
+    </li>
+    <li><strong>民约法＝主权者的命令（第 26 章）</strong>；<strong>「自然法与民约法互相包含」，自然法是民约法的一部分</strong>。
+    </li>
+    <li><strong>惩罚权不从臣民让渡中来（第 28 章）</strong>：「<strong>臣民并没有把惩罚的权利交给主权者，他们只是放下自己的权利，从而加强了他去运用他自己的权利。</strong>」
+    </li>
+    <li><strong>国家之病（第 29 章）</strong>：绝对权力不足、<strong>私人判断善恶</strong>、<strong>教权对抗俗权</strong>、读希腊罗马的书。
+    </li>
+    <li><strong>主权者职责（第 30 章）</strong>：「<strong>人民的安全</strong>」——包括「<strong>不只是保全生命，还包括每个人凭合法勤劳、无危险地为自己取得的、生活上的一切其他满足</strong>」。
+    </li>
+  </ul>
+  <h3>第二部分 第 17 章 论国家的成因、产生和定义</h3>
+  <p>★★★ <strong>全书枢纽。</strong> 论证分两步。<strong>第一步否证</strong>：自然法（第 14–15 章）本身不足以维持和平——「<strong>自然法若没有某种权力的威吓使它们被遵守，就与我们的自然激情相悖</strong>」；因此「<strong>没有刀剑的契约只是空话，完全没有力量保证人的安全</strong>」<span class="tag t-src">原书</span>（第二部分 第 17 章）。<strong>第二步构造</strong>：唯一的办法是「<strong>把所有人的权力和力量都授予一个人、或一个由众人组成的会议，把众人的意志用多数票还原为一个意志</strong>」。然后他给出那段著名的授权公式：<strong>「我授权并放弃我统治自己的权利，把这个权利交给这个人、或这个由众人组成的会议——条件是，你也把你的权利交给他，并以同样的方式授权他的一切行为。」</strong> 接下来两句是全书分量最重的：「<strong>这样做了之后，如此结合为一个人格的一群人，就叫做共同体（COMMON-WEALTH），拉丁文叫 CIVITAS。这就是那个伟大的利维坦的产生，或者更虔敬地说，是有朽的上帝的产生；我们在不朽的上帝之下，要向它求得和平与防卫。</strong>」<span class="tag t-src">原书</span>（第二部分 第 17 章）★ 本章还包含一段常被漏读的<strong>「为什么动物能、人不能」</strong>比较（<strong>蜜蜂和蚂蚁</strong>）：他说动物社会之所以稳定，是因为它们<strong>没有荣誉之争、公私利益一致、不批评治理、没有口才去把善说成恶、不知追究伤害、且其一致是自然的而非契约的</strong><span class="tag t-src">原书</span>（第二部分 第 17 章）。★ <strong>这一段的现代意义极强：它把「人类政治的困难」归因于语言与自我意识，而不是「人性本恶」。</strong></p>
+  <h3>第二部分 第 18 章 论按约建立的主权者的权利</h3>
+  <p><strong>主权的十二项权利</strong>，逐条从第 17 章的授权推出。最重要的几条：<strong>① 臣民不得改变政体形式</strong>（因为一旦授权就是每人对每人的约束）；<strong>② 主权权不可被剥夺</strong>——「<strong>因为握着主权的那个人，其主权是由人们相互之间的契约、而不是由他与臣民之间的契约授予的，所以在主权者一方不可能发生违约；因而任何臣民也不能以破坏契约为借口，摆脱服从</strong>」<span class="tag t-src">原书</span>（第二部分 第 18 章）；<strong>③ 无人能不义地抗议主权者的建立</strong>（包括当初投票反对者）；<strong>④ 臣民不得控告主权者</strong>（因为那等于控告自己）；<strong>⑤ 不得惩罚主权者</strong>；<strong>⑥ 主权者有权决定哪些学说可以公开讲授</strong>；<strong>⑦ 有权制定规则以裁定争议、决定诉讼的裁判者</strong>；<strong>⑧ 有权宣战媾和</strong>；<strong>⑨ 有权选任一切官员、大臣、顾问</strong>；<strong>⑩ 有权奖赏惩罚</strong>；<strong>⑪ 有权决定荣衔与尊卑次序</strong>；<strong>⑫ 有审理一切争议的最终权力</strong>。★ 章末有一段很重要的话：<strong>「主权这种巨大权威是不可分割的，不可分割地附属在主权之上」</strong>——并嘲讽「国王权力大于每个臣民、却小于全体臣民」的说法是<strong>自相矛盾</strong>，因为「<strong>全体</strong>」若指作为一个人的集合体，那它的权力就是主权者的权力<span class="tag t-src">原书</span>（第二部分 第 18 章）。★ <strong>这一章是「绝对主权论」最集中的地方，也是所有「抵抗权」理论必须面对的一堵墙。</strong></p>
+  <h3>第二部分 第 19 章 论几种按约建立的国家及主权的继承</h3>
+  <p><strong>政体只有三种</strong>：<strong>君主制</strong>（代表者为一人）、<strong>民主制</strong>（代表者为全体集会）、<strong>贵族制</strong>（代表者为一部分人）；「<strong>此外不可能有别的政体</strong>」<span class="tag t-src">原书</span>（第二部分 第 19 章）。★ 然后是那句著名的话：<strong>「暴君、寡头并不是别的政体形式，而是同一批形式被人厌恶时的别称」</strong>——「<strong>对君主制不满的人称它为暴君制，对贵族制不满的人称它为寡头制，对民主制不满的人称它无政府</strong>」<span class="tag t-src">原书</span>（第二部分 第 19 章）。★ 这是霍布斯<strong>对「政体分类学」的一次彻底拒绝</strong>：在他看来，好坏判断是情绪，形式只有三个。<strong>本章还有一条极重要的推论</strong>：<strong>主权一旦建立，就不能有第二个「同一批人民的代表者」</strong>——否则就是「<strong>竖立两个主权者</strong>」，把人群重新拖回战争状态<span class="tag t-src">原书</span>（第二部分 第 19 章）。★ 其余篇幅处理继承，结论是：<strong>继承规则由现任主权者决定</strong>。</p>
+  <h3>第二部分 第 20 章 论父权与专制的管辖权</h3>
+  <p><strong>凭获得（Acquisition）而来的主权</strong>：当一个人或一个会议因<strong>恐惧死亡或束缚</strong>而使他人授权其一切行为时，就是「<strong>凭武力获得的国家</strong>」。★ 关键命题：<strong>这种主权与「按约建立」的主权，其权利和后果完全相同</strong>——「<strong>主权在两者中的权利和后果是一样的</strong>」<span class="tag t-src">原书</span>（第二部分 第 20 章）。★ 霍布斯由此回应一个反对意见：<strong>「因恐惧而订的契约无效」是错的</strong>——「<strong>若这成立，那么任何政体中都没有人能受约束去服从了</strong>」；他区分「<strong>因恐惧而承诺</strong>」与「<strong>对无权承诺之物作承诺</strong>」：前者有效，后者无效<span class="tag t-src">原书</span>（第二部分 第 20 章）。父权（父对子女）在此被归入同一结构：<strong>不是因为生育，而是因为子女的默认同意或未被及时反抗</strong>。★ <strong>本章的内容在今天读来最不舒服</strong>（把征服与家族都纳入同一「授权」框架），但它正是第 17 章逻辑的必然延伸——<strong>「恐惧」在霍布斯那里从来不是自由的否定</strong>。</p>
+  <h3>第二部分 第 21 章 论臣民的自由</h3>
+  <p>★★ <strong>全书最有现代价值、也最被误读的一章。</strong> 先给定义：「<strong>自由（或曰自由权），按其本义，指的是『没有反对』；所谓反对，我指外在的运动障碍</strong>」——并强调这一定义<strong>同样适用于无理性的、无生命的事物</strong>（水被堤岸围住时不自由、石头静止时不是「缺自由」而是「缺能力」）<span class="tag t-src">原书</span>（第二部分 第 21 章）。「<strong>一个自由人，就是在他凭力量和智慧所能做的事上，不被阻止去做他有意志要做的事的人</strong>」<span class="tag t-src">原书</span>（第二部分 第 21 章）。★ 由此推出三个关键论断：<strong>① 恐惧与自由相容</strong>（「<strong>一个人因怕船沉而把货物抛入海中，他仍然是非常自愿地这样做</strong>」）；<strong>② 自由与必然相容</strong>（人的意志也在因果链中）；<strong>③ 「古人所赞扬的自由，是主权者的自由，不是个人的自由」</strong>——他举出著名的例子：<strong>「卢卡城的塔楼上到今天还刻着『自由』（LIBERTAS）几个大字；但谁也不能由此推断，那里的个人比在君士坦丁堡享有更多的自由」</strong><span class="tag t-src">原书</span>（第二部分 第 21 章）。★ 章末是本章的正题：<strong>臣民真正的自由</strong>——「<strong>臣民在所有那些权利不能由契约转让他人的事情上，都保有自由</strong>」，其中<strong>首先是自我保全</strong>（「<strong>不强求人放弃自我防卫的诺言无效</strong>」）；<strong>其次，凡法律未加规定之处，臣民有按自己判断行事的自由</strong>——「<strong>臣民最大的自由，取决于法律的沉默</strong>」<span class="tag t-src">原书</span>（第二部分 第 21 章）。★ 还有一条极重要的对等句：<strong>「臣民对主权者的义务，只在他有能力保护他们之际存在；因为人在无人能保护时依自然保护自己的权利，是不能由任何契约放弃的。」</strong><span class="tag t-src">原书</span>（第二部分 第 21 章）</p>
+  <h3>第二部分 第 22 章 论臣民的政治团体与私人团体</h3>
+  <p>「<strong>团体（Systemes）</strong>」＝「<strong>以同一利益或同一事业而结合起来的若干人</strong>」，是国家的「<strong>类似部分或肌肉</strong>」<span class="tag t-src">原书</span>（第二部分 第 22 章）。分<strong>正规</strong>（有代表者）与<strong>不正规</strong>（无代表者的聚集）；正规之中，<strong>绝对的</strong>只有国家本身，其余都是<strong>从属的</strong>（依赖主权者授权）。从属团体又分<strong>政治团体</strong>（由主权者授权设立）与<strong>私人团体</strong>（由臣民彼此或由外国授权设立）。★ 核心命题：<strong>「一切政治团体中，代表者的权力总是有限的；限定它的，是主权者的权力」</strong><span class="tag t-src">原书</span>（第二部分 第 22 章）。★ 本章的政治指向很清楚：<strong>任何臣民团体都不能拥有「无限权力」，因为无限权力就是绝对主权</strong>——<strong>这是霍布斯对「中间团体」「行会」「自治市」「教会组织」的一律设限</strong>。★ 章末讨论「不正规的聚集」（市集、人群）：<strong>无害且未被禁止者为合法，用意恶劣或人数众多而目的不明者为非法</strong>。</p>
+  <h3>第二部分 第 23 章 论主权者的政务大臣</h3>
+  <p>「<strong>政务大臣</strong>」＝「<strong>由主权者（无论君主或会议）委任在某个事务上、以权威代表国家人格的人</strong>」<span class="tag t-src">原书</span>（第二部分 第 23 章）。★ 一个精细的区分：<strong>主权者同时具有「自然人格」与「政治人格」，因此侍候其自然人格者（内廷仆人、管家）不是政务大臣</strong>；只有<strong>在公共事务的管理上服务者</strong>才是。其余篇幅按职能列述：<strong>总揽行政者</strong>（摄政、护国公）、<strong>地方治理者</strong>（总督、副王）、<strong>掌管军民者</strong>（将领）、<strong>掌管财政者</strong>、<strong>掌管教务者</strong>等。★ 全章的要点是<strong>权限的来源</strong>：<strong>政务大臣的权力完全依赖主权者的意志，并且不能代表主权者本人</strong>——「<strong>因为代表者只能有一个</strong>」。<strong>这一章读起来像官制手册，实则在划一条线：所有官员都只是「授权链」上的一环，没有独立权力。</strong></p>
+  <h3>第二部分 第 24 章 论国家的营养与生殖</h3>
+  <p>把国家比作<strong>人造的人</strong>的身体，做解剖学式的列举：<strong>营养</strong>＝<strong>土地与海的产品</strong>（「<strong>从我们共同母亲『陆地』和『海洋』这两个乳房里，上帝通常要么无偿给予，要么以劳动为代价卖给人类</strong>」）；<strong>消化与输送</strong>＝<strong>货币与税收／贸易的管道</strong>；<strong>「脉络」</strong>＝<strong>把血液（货币）送回心脏（国库）再输送出去的收税官与司库</strong><span class="tag t-src">原书</span>（第二部分 第 24 章）。★ <strong>「生殖」＝殖民地（Plantations, or Colonies）</strong>：从国家派出去定居的人群；成形的殖民地<strong>要么自成一国、脱离母邦</strong>（则母邦只保留「荣誉与友谊」），<strong>要么与母邦保持统一而成为行省</strong>；其权利「<strong>完全取决于主权者授权他们去殖民的许可或特许状</strong>」<span class="tag t-src">原书</span>（第二部分 第 24 章）。★ 这一章对理解 17 世纪英国的殖民与重商政策背景有用，<strong>理论含量相对低，可快读</strong>。</p>
+  <h3>第二部分 第 25 章 论建议</h3>
+  <p>本章是一堂<strong>语言辨析课</strong>：<strong>命令（Command）／建议（Counsell）／劝诫（Exhortation）</strong> 三者都可用「你去做这件事」这一句式说出，于是「<strong>人们对事物的性质判断如此谬误，莫过于把建议当命令、或把命令当建议</strong>」<span class="tag t-src">原书</span>（第二部分 第 25 章）。★ 定义：<strong>命令</strong>＝「<strong>说『做这个』或『不要做这个』，除说话者自己的意志之外不期待别的理由</strong>」——因此<strong>命令者为的是自己的利益</strong>；<strong>建议</strong>＝「<strong>说话者据以引出结论、或从结论推出手段的理由</strong>」——因此<strong>建议者为的是被建议者的利益</strong><span class="tag t-src">原书</span>（第二部分 第 25 章）。★ 由此推出一条政治上很硬的结论：<strong>「顾问不能因其建议而受罚，除非他的建议不合法」</strong>，以及<strong>「君主在征求意见时应分开听取，以免多数人随声附和」</strong>。<strong>这一章短，但它是全书里少见的「技术性宪制建议」。</strong></p>
+  <h3>第二部分 第 26 章 论民约法</h3>
+  <p>★★ <strong>法律理论的核心章。</strong> 定义：<strong>民约法</strong>＝「<strong>共同体以言语、文字或其他充分意志表示，命令每个臣民在区分权利与错误时所应遵守的规则</strong>」<span class="tag t-src">原书</span>（第二部分 第 26 章）。★ 由此推出七条：<strong>① 立法者只有主权者</strong>；<strong>② 主权者不受民约法约束</strong>——「<strong>因为他能立法也能废法，随时可免除自己受此法约束；故他本来就不受它约束</strong>」，且「<strong>没有人能约束自己</strong>」<span class="tag t-src">原书</span>（第二部分 第 26 章）；<strong>③ 习惯的法律效力来自主权者的默许，不来自时间</strong>；<strong>④ 自然法与民约法互相包含</strong>——「<strong>自然法在一切国家中都是民约法的一部分；反过来，民约法也是自然法的一部分</strong>」<span class="tag t-src">原书</span>（第二部分 第 26 章）；<strong>⑤ 一国之内的属民之法由主权者决定</strong>；<strong>⑥ 国王与议会的法令都是法，其效力来源相同</strong>；<strong>⑦ 法律必须有充分表示，否则不生效</strong>。★ 本章对人类法律史有一句概括：<strong>「所有法律，成文的与不成文的，都可以按其权威来源分类」</strong>，并按罗马法传统逐条对英国制度（<strong>Acts of Parliament、House of Commons 的命令、判例、衡平</strong>）作类比<span class="tag t-src">原书</span>（第二部分 第 26 章）。★ <strong>本章还有一条常被忽略的收束</strong>：<strong>「法律的目的是限制自然自由，使人们不致互相伤害，而能互助并联合抵御共同的敌人」</strong>——「<strong>没有这种限制，就不可能有和平</strong>」<span class="tag t-src">原书</span>（第二部分 第 26 章）。</p>
+  <h3>第二部分 第 27 章 论罪行、宥恕与减罪</h3>
+  <p><strong>罪（Sinne）</strong>＝「<strong>不仅是对法律的违犯，也是对立法者的任何蔑视</strong>」——「<strong>因为这种蔑视一下子破坏了立法者的全部法律</strong>」<span class="tag t-src">原书</span>（第二部分 第 27 章）。<strong>罪行（Crime）</strong>＝「<strong>由行为或言语作出的、法律所禁止之事，或法律所命令之事的疏漏</strong>」——「<strong>所以每个罪行都是罪，但不是每个罪都是罪行</strong>」<span class="tag t-src">原书</span>（第二部分 第 27 章）。★ 这一区分很实用：<strong>「想要偷窃或杀人，只是罪，尽管它从未表现为言语或事实——因为只有上帝能看透人的思想，可以把它算作账」</strong><span class="tag t-src">原书</span>（第二部分 第 27 章）。★ 本章还有一段值得注意的宽容表述：<strong>他把「心中最初的思想冲动」也算作罪的人视为「对自己和他人过分严厉」</strong>，并说「<strong>我承认，在这方面宁可错在另一端更安全</strong>」<span class="tag t-src">原书</span>（第二部分 第 27 章）。★ 其余篇幅列出<strong>重罪与轻罪的判别标准</strong>（危害国家者最重）、以及<strong>免除与减轻罪责的条件</strong>（无行为能力、不知法、被迫、正当防卫等）。</p>
+  <h3>第二部分 第 28 章 论赏罚</h3>
+  <p>★ 先给定义：<strong>惩罚</strong>＝「<strong>由公共权威对某人施加的恶，因为此人做了或漏做了该权威判定为违法的事，目的是使人们的意志更容易服从</strong>」<span class="tag t-src">原书</span>（第二部分 第 28 章）。★ 然后是本部分最著名的一个理论难题：<strong>惩罚权从何而来？</strong> 霍布斯的回答很特别：<strong>它不来自臣民让渡</strong>——「<strong>在建立共同体时，每个人放弃的是防卫他人的权利，而不是防卫自己的权利</strong>」；「<strong>共同体（或代表它的人）所拥有的惩罚权，不是建立在其臣民的让与或赠予之上</strong>」，而是因为<strong>在共同体建立前，每个人本就有「对一切事物的权利」</strong>，惩罚权是从这份原始权利中<strong>「不是被给予，而是被留给」主权者的</strong><span class="tag t-src">原书</span>（第二部分 第 28 章）。★★ <strong>接着是全书最关键的一段文本之一，也是本报告第 4b 节第一条的原文依据</strong>：「<strong>至此我已经阐明了人的本性（人的骄傲和其他激情迫使他服从政府），以及他的治理者的巨大权力——我把他的治理者比作利维坦，这个比喻取自《约伯记》第 41 章最后两节；上帝在那里展示了利维坦的大能之后，称他为『骄傲之王』。</strong>『<strong>地上没有可与他相比的。他一被造出来，就无所畏惧。他看见一切高处的都在他以下；他是所有骄傲之子的王。</strong>』<strong>但因为他是有朽的，会衰败，像一切地上生物一样；又因为天上（虽然不是地上）有他应当敬畏、并应服从其律法者；所以我将在接下来的几章里谈谈他的疾病、他死亡的原因，以及他应当服从哪些自然法。</strong>」<span class="tag t-src">原书</span>（第二部分 第 28 章）★ <strong>这一段既是「利维坦」书名的自我注解，也是第 29 章的转场。</strong></p>
+  <h3>第二部分 第 29 章 论国家致弱或解体的因素</h3>
+  <p>★★ <strong>全书政治指向最鲜明的一章——它是「诊断书」。</strong> 国家之死的三个层次：<strong>① 制度不完善</strong>（如主权者自愿放弃了必要的权力，或<strong>把主权分割</strong>）；<strong>② 有毒的学说</strong>；<strong>③ 外部暴力</strong>。★ <strong>核心的一句话</strong>：真正的危险来自「<strong>一个自相分裂的王国</strong>」——「<strong>若一个人是主权者，另一个人是至尊者；一个国家能立法，另一个能制教规；那就必然形成两个国家，同一个臣民受两个主人管辖，这个王国就自相分裂而站立不住</strong>」<span class="tag t-src">原书</span>（第二部分 第 29 章）。★ 他列出「<strong>煽动性学说</strong>」数条，其中名为「<strong>私人判断善恶</strong>」的那条最要紧：「<strong>每个私人都是善恶行为的判断者</strong>」——霍布斯说，这在自然状态里是真的，但在国家里，「<strong>善恶行为的尺度是民约法，判断者是立法者</strong>」；<strong>若人人凭私判决定从与不从，国家就会瓦解</strong><span class="tag t-src">原书</span>（第二部分 第 29 章）。★ 另一条是「<strong>凡违背良心所为即是罪</strong>」——他把「<strong>良心</strong>」等同于「<strong>判断</strong>」，并说<strong>判断可能是错的</strong>，<strong>在国家里，法律才是公共的良心</strong><span class="tag t-src">原书</span>（第二部分 第 29 章）。★ 还有一条极有时代感的诊断：<strong>读古希腊罗马的政治与历史书会引发叛乱</strong>——因为那些书<strong>把「杀暴君」说成合法的</strong>，「<strong>于是他们不叫弑君（Regicide），而叫诛暴君（Tyrannicide）</strong>」<span class="tag t-src">原书</span>（第二部分 第 29 章）。★ 章末把「<strong>教权与俗权对抗</strong>」那一病比作「<strong>癫痫</strong>」（犹太人视为一种鬼附）。</p>
+  <h3>第二部分 第 30 章 论主权代表者的职责</h3>
+  <p><strong>主权的职责＝「谋求人民的安全」</strong>，而他立刻把「安全」扩大：<strong>「这里所谓的安全，不是指仅仅保全生命，而是指每个人凭合法勤劳、无危险、无损害于共同体地为自己取得的、生活上的一切其他满足」</strong><span class="tag t-src">原书</span>（第二部分 第 30 章）。★ 手段是<strong>公开的教导</strong>（教义与榜样）＋<strong>良好的法律</strong>。★ 然后是一长串「<strong>主权者不得做</strong>」的事项，其中最著名的一条是：<strong>主权者不得把任何一项「主权的基本权利」（第 18 章所列）转让或放弃</strong>——「<strong>因为放弃手段的人，也就放弃了目的</strong>」<span class="tag t-src">原书</span>（第二部分 第 30 章）。★ 本章还有一条值得现代读者注意的内容：<strong>主权者应当以「良好法律」而非「多量法律」为目标</strong>——「<strong>法律多，不是因为有好处，而是因为贪利</strong>」；以及<strong>法官应如何裁判、赏罚应如何施行</strong>。★ <strong>第 30 章是霍布斯「积极国家」的一面</strong>：主权不只是保护，还包含<strong>教化与福祉</strong>（这是后来「福利国家」「教育国家」争论会用到的一段）。</p>
+  <h3>第二部分 第 31 章 论自然的上帝国</h3>
+  <p><strong>第二部分与第三部分的铰链，也是全书最容易被跳过的一章。</strong> 开篇交代任务：「<strong>臣民应当对主权者保持单纯的服从，除非这种服从与上帝的律法相冲突</strong>……所以要完整知道臣民的义务，就还差一件事：<strong>要知道什么是上帝的律法</strong>」<span class="tag t-src">原书</span>（第二部分 第 31 章）。★ 「<strong>自然的上帝国</strong>」＝<strong>上帝凭其全能对一切人的统治</strong>（区别于「<strong>凭约建立的上帝国</strong>」）；「<strong>把上帝的这种权力称作『国』，是隐喻的用法</strong>」，因为「<strong>只有用言语统治臣民、以赏罚许诺与威吓者为王</strong>」<span class="tag t-src">原书</span>（第二部分 第 31 章）。★ 本章的<strong>自然惩罚</strong>一段很有力：「<strong>人的行为在这一生中没有一件不是一长串后果的开端……放纵自然被疾病惩罚；鲁莽被不幸惩罚；不义被敌人的暴力惩罚；骄傲被毁灭惩罚；怯懦被压迫惩罚；君主的疏忽统治被叛乱惩罚；而叛乱被屠杀惩罚。</strong>」<span class="tag t-src">原书</span>（第二部分 第 31 章）★ 第二部分在此收束，收束句极为坦率：<strong>「考虑到这一学说与世界大多数地方——尤其西方那些从罗马和雅典接受了道德学问的地方——的实践如此不同……我几乎要相信我的这番努力是无用的，就像柏拉图的国家一样。但当我再想到，自然正义的科学是主权者及其主要大臣唯一必需的科学……我又恢复了一些希望：我的这部著作，有一天会落到一位主权者手中，他会亲自考虑它（因为它简短，而且我认为清楚）……把这一思辨的真理转化为实践的效用。」</strong><span class="tag t-src">原书</span>（第二部分 第 31 章）</p>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一部分是全书争议的震中，可疑之处最密集。</strong></p>
+  <ol>
+    <li>★★ <strong>第 18 章「主权者不受契约约束」是整栋建筑最脆的一根柱。</strong> 它的全部依据是「<strong>主权者不是契约的一方</strong>」（第 18 章）——但第 17 章的公式里明明写着<strong>每个人对每个人</strong>说「条件是，你也把你的权利交给他」；<strong>如果条件是相互的，为什么主权者不受条件约束？</strong> ★ 霍布斯的回答是「<strong>主权者根本没参与这个契约</strong>」，但这样一来，<strong>「授权」就成了一次单向且不可撤回的让渡</strong>——这正是 5.2 里「社会契约论内部困难」的核心。<strong>今天的读者几乎不会接受这个结论，但必须看清它的推论步骤。</strong>
+    </li>
+    <li>★★ <strong>第 21 章「自由＝无外在障碍」是一个经过选择的定义，不是中立的分析。</strong> 霍布斯在章首<strong>先给出定义，再据此判定「自由人」</strong>——而共和派（neo-Roman）的定义是「<strong>自由＝不依赖他人意志</strong>」。★ <strong>两个定义都能自洽，差别在于它们把「奴役」放在哪里。</strong> 斯金纳（2008）指出：<strong>霍布斯这套定义有明确的论战对象</strong>，是<strong>针对内战时期议会派「君主制下人人都是奴隶」的口号</strong>（见第 5 节 5.1）。⇒ <strong>读第 21 章时，把「定义」与「论战目的」分开看。</strong>
+    </li>
+    <li>★★ <strong>第 29 章「私人判断善恶是瓦解国家的毒学说」，与第 21 章「法律未规定处臣民有自由」之间存在张力。</strong> 前者要求<strong>判断权归主权者</strong>，后者承认<strong>法外有自由</strong>。★ 张力可以调和（法外自由不涉及根本判断），<strong>但霍布斯在文本上并未把这条线画得很清</strong>——这是后世「霍布斯到底给个人留了多少空间」之争的文本基础（施米特正是抓住这一点说「利维坦里有自由主义的裂缝」）。
+    </li>
+    <li>★ <strong>第 26 章「自然法是民约法的一部分」把自然法的解释权交给了主权者</strong>——这使自然法<strong>丧失了「可以用来约束主权者」的功能</strong>。★ 沃伦德一系（5.2）正是要论证「自然法的义务不依赖主权者」，但<strong>文本上，霍布斯在第 26 章几乎把这条路堵死了</strong>。<strong>这条内在冲突至今没有公认的解法。</strong>
+    </li>
+    <li>★ <strong>第 20 章把「凭征服而来的主权」与「按约建立的主权」说成「权利完全相同」</strong>——<strong>这是全书最容易引发道德反感的推论</strong>。它的逻辑是自洽的（都基于「恐惧下的授权」），但<strong>它等于取消了「同意」与「被迫」的实质差别</strong>。⇒ <strong>本条不需要替霍布斯圆场：直接指出它与直觉的冲突即可。</strong>
+    </li>
+    <li>★ <strong>第 22–25 章的制度细节在今天的法律／政治学意义上仍不可靠</strong>（如把英国议会、判例、衡平都放进「主权者授权」的框架）。<strong>这部分可作为 17 世纪政治语汇的史料读，不宜当作制度分析。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>第三部分：论基督教体系的国家（第 32–43 章）</span><span class="caret">▾</span></h2>
+  <h3>这一部分在推演什么</h3>
+  <p>★ <strong>这一部分占全书约三分之一，却常被中文读者整段跳过——这是读《利维坦》最大的漏读。</strong> 它的任务承接第 31 章的悬问：<strong>「什么是上帝的律法？」</strong> 霍布斯的方法<strong>不是放弃理性去信</strong>，恰恰相反，他声明<strong>要用自然理性去检验一切自称神启的东西</strong>——「<strong>我们不应放弃感觉和经验，也不应放弃（那是上帝无疑的话语）我们的自然理性；它们是上帝交在我们手里的才能，不该包在帕子里</strong>」<span class="tag t-src">原书</span>（第三部分 第 32 章）。于是这一部分做了一件极大胆的事：<strong>把「上帝的国」「圣灵」「天使」「教会」「永生」「地狱」「教权」这些词，一个一个放回《圣经》的语言与语境里，重新确定它们的含义</strong>；而几乎每一个词被重新确定之后，<strong>结论都指向同一个方向：解释《圣经》的权力、决定得救所需信条的权力、以及「教权」本身，都落在主权者手里，而不在一个独立的教会等级手里。</strong></p>
+  <p>★ <strong>为什么必须占这么大篇幅？</strong> 因为霍布斯的问题设定是<strong>主权不可分割</strong>（第 29 章：「一个自相分裂的王国站立不住」）。而在他所处的英格兰，<strong>唯一有实力与「主权」争夺「最高权力」的建制，就是教会</strong>——天主教的教皇制，以及长老派的教会治理。★ 所以他必须<strong>从根上拆掉「教会是一个独立的、有强制权的、与世俗国家并立的国」这个前提</strong>。这不是「神学附录」，而是<strong>第 17–18 章结论的兑现</strong>：如果主权者的权力必须无保留，那么<strong>任何自称更高的权力都必须被论证为「只是教导权」</strong>。</p>
+  <p>★ <strong>一句话记住这一部分</strong>：<strong>它的目标不是把宗教取消，而是把宗教「国家化」</strong>——保留信仰，取消教会作为竞争性权力中心的地位。</p>
+  <h3>关键论证与概念</h3>
+  <ul>
+    <li><strong>信仰须受自然理性检验（第 32 章）</strong>：「<strong>上帝的语词中虽有许多超出理性的东西（即无法由自然理性证明或反驳的），但没有任何违反理性的东西</strong>；若看似违反，错在我们<strong>解释不当或推理有误</strong>」<span class="tag t-src">原书</span>（第三部分 第 32 章）。
+    </li>
+    <li><strong>先知的判据（第 32、36 章）</strong>：自称受神启者「<strong>可能犯错，而且更可能撒谎</strong>」；判别先知要靠<strong>真教义＋奇迹</strong>。
+    </li>
+    <li><strong>正典由主权者确立（第 33 章）</strong>：「<strong>只有各国主权者权威所确立的书，才是该国具律法地位的正典</strong>」<span class="tag t-src">原书</span>（第三部分 第 33 章）。
+    </li>
+    <li><strong>「非物质的实体」自相矛盾（第 34 章）</strong>：「<strong>『非物质的实体』这两个词连在一起，就互相取消，就像说『非物质的物体』一样</strong>」<span class="tag t-src">原书</span>（第三部分 第 34 章）。
+    </li>
+    <li><strong>「上帝的国」是「按约建立的国」（第 35 章）</strong>：在《圣经》里，「<strong>上帝的国</strong>」多指<strong>以色列人投票选上帝为王、与他立约的那个国</strong>，而<strong>不是「死后的荣耀之国」</strong>。
+    </li>
+    <li><strong>奇迹的判据（第 37 章）</strong>：奇迹必须<strong>稀有且无已知自然原因</strong>；<strong>奇迹的用途是使人信服使者的使命</strong>。
+    </li>
+    <li><strong>灵魂有死、死后待复活（第 38 章）</strong>：与「永罚／炼狱」辩，主张<strong>灵魂不是自存的非物质实体</strong>。
+    </li>
+    <li><strong>教会＝集会（第 39 章）</strong>：「<strong>教会在不指建筑物时，就是希腊城邦里的 Ecclesia，即被召集来听长官讲话的公民集会</strong>」<span class="tag t-src">原书</span>（第三部分 第 39 章）。
+    </li>
+    <li><strong>亚伯拉罕＝家长兼主权者（第 40 章）</strong>：「<strong>凡上帝未直接对其说话的人，都应当从自己的主权者那里领受上帝的实证命令</strong>」<span class="tag t-src">原书</span>（第三部分 第 40 章）。
+    </li>
+    <li><strong>教权只是教导权（第 42 章）</strong>：★ 全部分的核心结论。
+    </li>
+    <li><strong>得救所需信条（第 43 章）</strong>：★ 被压缩到极少。
+    </li>
+  </ul>
+  <h3>第三部分 第 32 章 论基督教体系的政治原理</h3>
+  <p>本章定下方法：<strong>用自然理性处理神启</strong>。第一句便是全书神学方法论的纲领：前文「<strong>只从自然原理出发</strong>」，现在要加进「<strong>上帝意志的超自然启示</strong>」；但<strong>理性不能被放弃</strong>——「<strong>我们不应放弃感觉和经验，也不应放弃我们的自然理性</strong>」，因为<strong>它们正是上帝交在人手里的才能，不该「包在帕子里」</strong><span class="tag t-src">原书</span>（第三部分 第 32 章）。★ 随之提出「<strong>使理解力顺服</strong>」（Captivity of the Understanding）的解释：这不是<strong>把理智交给别人的意见</strong>，而是<strong>把意志交给应受服从者</strong>——「<strong>感觉、记忆、理解、理性、意见都不在我们意志的支配之下</strong>」，我们所能做的是<strong>不与之争、照所命的说与行</strong><span class="tag t-src">原书</span>（第三部分 第 32 章）。★ 然后是关于「<strong>神如何对人说话</strong>」的一段分析：直接启示无法向他人证明；「<strong>说上帝在梦里对他说话，不过等于说他梦见上帝说话了</strong>」；「<strong>说他看见异象或听见声音</strong>」是半睡半醒的梦；「<strong>说他凭超自然灵感说话</strong>」只是「<strong>他有一种强烈的说话欲望或自我看法，却提不出自然的充分理由</strong>」<span class="tag t-src">原书</span>（第三部分 第 32 章）。★ 结论：<strong>自称受启示者「可能犯错，而且更可能撒谎」</strong>，因此需要判据。</p>
+  <h3>第三部分 第 33 章 论《圣经》篇章的数目、年代、范围、根据和注释</h3>
+  <p>★ <strong>这一章要证明的是「正典的来源是政治性的，不是教会性的」。</strong> 核心句：<strong>「《圣经》各卷之所以成为正典，是因为它们被各国主权者的权威确立为如此」</strong>——「<strong>我所能承认的《旧约》圣书，只是那些被英格兰教会权威命令承认的</strong>」<span class="tag t-src">原书</span>（第三部分 第 33 章）。★ 他随即处理《圣经》各卷的<strong>成书年代与作者问题</strong>：摩西五经不可能全由摩西所写（因为其中记述了摩西之死与埋葬）；《约书亚记》等亦同理；并指出<strong>正典的边界（哪些是「次经」）本身有历史分歧</strong>（约瑟夫斯计 22 卷以合希伯来字母数，耶罗米计 8 卷先知、9 卷圣录等）<span class="tag t-src">原书</span>（第三部分 第 33 章）。★★ <strong>本章在《圣经》批判学史上地位极高</strong>——它是<strong>近代早期最早系统质疑摩西五经作者身份的文本之一</strong>（比斯宾诺莎《神学政治论》早一年）。★ 但霍布斯的结论<strong>不是「所以圣经不可信」，而是「所以谁来确定正典，是政治问题」</strong>——这一步把他引向「<strong>主权者解释《圣经》</strong>」。</p>
+  <h3>第三部分 第 34 章 论《圣经》中圣灵、天使和感召的含义</h3>
+  <p>★ <strong>这是全书唯物论最直白的一章。</strong> 「<strong>宇宙是一切物体的总和，其中没有任何真实的部分不是物体</strong>」；因此「<strong>非物质实体（Substance Incorporeall）两个词连在一起就互相取消，就像说『非物质的物体』</strong>」<span class="tag t-src">原书</span>（第三部分 第 34 章）。★ 由此重新解释一系列词：<strong>「灵」（Spirit）在《圣经》中多指「气」「风」「呼吸」</strong>，或指<strong>上帝的特殊作用</strong>，或指<strong>人的性情与意向</strong>（如「<strong>神赐给他另一个心</strong>」）；<strong>「天使」（Angel）本义是「使者」</strong>，可以指<strong>人</strong>（如施洗约翰被称为使者），也可以是<strong>幻象</strong>；<strong>「感召」（Inspiration）本义是「吹气」</strong>，被隐喻性地用于<strong>上帝把生命或恩赐吹入人</strong>。★ <strong>结论是方法论的</strong>：<strong>凡《圣经》说「灵」，先看它是否是在说「气」「风」「气息」，不要一上手就假定有一个「无实体的灵魂」</strong>。★ 这一章直接为第 44、45 章「<strong>灵魂不死说与魔鬼学都是外来物</strong>」铺路。</p>
+  <h3>第三部分 第 35 章 论《圣经》中上帝的王国、圣、圣洁和圣礼的含义</h3>
+  <p>★ 关键命题：<strong>「上帝的国」在《圣经》里是「恰当地被如此称呼的一个国，是由以色列人以特别方式投票、通过与他们所立的约、选择上帝为王而建立的」</strong>——「<strong>在《圣经》的大多数地方，它有这个意思；只是很少作隐喻用</strong>」<span class="tag t-src">原书</span>（第三部分 第 35 章）。★ 因此他反对当时神学家（Divines）的通行用法——<strong>把「上帝的国」一概理解为「死后的永恒至福」或「圣化的恩典」</strong>；在他看来，那是<strong>把《圣经》的政治语汇神学化</strong>。★ 其余篇幅处理：「<strong>圣（Holy）</strong>」＝<strong>因专属于上帝而分别出来</strong>；「<strong>圣洁</strong>」＝<strong>这种分别的属性</strong>；「<strong>圣礼（Sacrament）</strong>」＝<strong>上帝用以使我们不忘其约的可见标记</strong>。★ <strong>本章的政治效果很清楚</strong>：既然「上帝的国」是一个<strong>按约建立的、有人民、有主权者的国</strong>，那么它<strong>在（旧约时代）就是以色列的世俗国，在（新约时代）其王权则不由此世的强制权行使</strong>——<strong>这就为「教会没有强制权」提供了圣经学基础。</strong></p>
+  <h3>第三部分 第 36 章 论上帝之语和先知</h3>
+  <p><strong>「上帝之语（Word of God）」不是指一个单词，而是指「一段完整的言语或论述」</strong>——「<strong>说者、所说之事，两者都可以叫上帝之语</strong>」；在《圣经》里，它有时指<strong>上帝所说的话</strong>，有时指<strong>关于上帝及其治理的教义</strong>（这时它等同于「神学」）<span class="tag t-src">原书</span>（第三部分 第 36 章）。★ 由此他给出一个极其重要的推论：<strong>许多被当作「上帝亲自说的话」的经文，其实只是「关于上帝的话」</strong>——<strong>这一区分是全书拆解「教会权威自称有神启」的基础</strong>。★ 后半章处理<strong>先知</strong>：先知有两种——<strong>其一为「被上帝直接呼召、说出上帝命令」者</strong>（如亚伯拉罕、摩西），<strong>其二为「凭自然理性认识上帝、并教导他人」者</strong>；并强调<strong>判别先知要靠教义与奇迹，而非自称</strong>。★ 本章的一个重要限定是：<strong>「上帝以何种方式超自然地对摩西说话，经文并未说明」</strong>——霍布斯对不可知处<strong>明说不可知</strong>，这在全书里是难得的谨慎姿态。</p>
+  <h3>第三部分 第 37 章 论奇迹及其用途</h3>
+  <p><strong>奇迹（Miracle）＝「令人惊异的上帝的作为」，也叫「奇事（Wonders）」</strong><span class="tag t-src">原书</span>（第三部分 第 37 章）。★ 判据有两条：<strong>① 「奇异」</strong>——<strong>同类事从未或极少发生</strong>；<strong>② 「无法想象它由自然手段造成」</strong>——「<strong>但当我们看到某种可能的自然原因时，无论同类事多么罕见，我们就不再惊奇，也不把它当作奇迹</strong>」<span class="tag t-src">原书</span>（第三部分 第 37 章）。★ 他举的例子很具体：<strong>「如果一匹马或一头牛说话，那是奇迹；因为这事既奇异，又难以想象其自然原因」</strong>；而<strong>「人生人虽然同样不明其机制，却因为常见而不是奇迹」</strong>；<strong>「第一道彩虹是奇迹（因为它是第一次，且是上帝给挪亚的记号），而今天的彩虹不是」</strong><span class="tag t-src">原书</span>（第三部分 第 37 章）。★ 全章的结论是双重的：<strong>① 奇迹的用途是使不信者信服使者的使命；② 而既然福音已被接受、正典已立，则「奇迹的时代已经过去」</strong>——因此<strong>今日无人能凭奇迹主张新的启示</strong>。★ <strong>这一条把「教会靠新奇迹主张新权力」的路封死了。</strong></p>
+  <h3>第三部分 第 38 章 论《圣经》中永生、地狱、得救、来世和赎罪的含义</h3>
+  <p>★ <strong>本章开启全书最激烈的一段神学辩论（对「永罚」「炼狱」）</strong>，理由说得很世俗：<strong>「任何国家若允许主权者之外的任何人拥有给予比生命更大奖赏、施加比死亡更大惩罚的权力，就不可能维持」</strong><span class="tag t-src">原书</span>（第三部分 第 38 章）——<strong>因为「永罚」正是这样一种权力</strong>。★ 然后他逐词重解：<strong>「永生」在《圣经》里多指「在复活之后、在地上（新天新地）的生命」</strong>，而不指<strong>死后立刻进入的无形至福；「永死」指复活后受刑罚的死，而非「永不停歇地折磨一个无形灵魂」</strong>；<strong>「救赎」指「以代价赎回」</strong>。★ 由此推出<strong>灵魂有死论</strong>：<strong>人的灵魂不是自然不灭的实体，死后处于「睡着」般的状态，直到复活</strong>。★ 他在此加了一句很特别的<strong>服从声明</strong>：「<strong>（在这问题上，以及在一切取决于《圣经》的问题上，我都服从我的主权者共同体所授权的《圣经》解释）</strong>」<span class="tag t-src">原书</span>（第三部分 第 38 章）。★ <strong>这一章的历史后果很重</strong>：<strong>它把「炼狱」的整个装置（为亡者祈祷、赎罪券、施舍）从根上取消</strong>——因为<strong>若灵魂在死后无知觉，则炼狱无从谈起</strong>（详见第 44、47 章）。</p>
+  <h3>第三部分 第 39 章 论《圣经》中教会的含义</h3>
+  <p><strong>「教会」（Ecclesia）在《圣经》里有多种含义</strong>：有时指<strong>上帝的殿</strong>（这是隐喻用法）；<strong>但「教会」在非指建筑时，就是希腊城邦里的 Ecclesia，即被召集起来听长官讲话的公民集会</strong>——罗马人称之为 Concio，说话者称 Ecclesiastes；<strong>由合法权威召集的，是「合法的教会」，由骚乱召集的，是「混乱的教会」</strong><span class="tag t-src">原书</span>（第三部分 第 39 章）。★ 因此<strong>「教会」= 聚会、会众、信众的整体</strong>，<strong>而不是一个等级建制</strong>。★ 这一章的关键推论是：<strong>当《圣经》说「基督的教会」，它指的是「所有基督徒的会众」</strong>；<strong>而「教会」若要作为一个「人格」行动（如作出决定、开除教籍），就必须由某个代表者来代表它</strong>——<strong>而那个代表者是谁，就是下一章（第 40 章）要解决的</strong>。★ <strong>一句话：把「教会」的建制性含义剥离，是「教权降为教导权」这一结论的语汇前提。</strong></p>
+  <h3>第三部分 第 40 章 论亚伯拉罕、摩西、大祭司和犹太诸王的上帝国的权利</h3>
+  <p>★ <strong>本章是全书「政教合一」的圣经学论证。</strong> <strong>亚伯拉罕是「凭约建立的上帝的国」中的第一人</strong>：上帝只对亚伯拉罕说话，<strong>所以他的家人与后裔要经由他领受上帝的实证命令</strong>——由此得出<strong>第一条结论</strong>：「<strong>凡上帝未直接对其说话的人，都应当从自己的主权者那里领受上帝的实证命令</strong>」<span class="tag t-src">原书</span>（第三部分 第 40 章）。★ <strong>第二条结论</strong>：<strong>亚伯拉罕有权惩罚那些自称有「私人灵启」而反对其宗教命令的人</strong>——「<strong>所以今天主权者也有权惩罚任何以其私人灵启对抗法律的人</strong>」<span class="tag t-src">原书</span>（第三部分 第 40 章）。★ 之后他梳理摩西、大祭司、士师、列王的权力更迭，指出<strong>在犹太国里，宗教权威与世俗权威曾一度分离（士师记时代），结果是「各人任意而行」的内乱</strong>；<strong>到列王时代二者重新合一</strong>。★ 本章还给出一条极重要的限定：<strong>「人对上帝的内在思想与信仰，人间的治理者无法察知（因为只有上帝知道人心），因此它不出于命令，也不受法律约束」</strong><span class="tag t-src">原书</span>（第三部分 第 40 章）——★ <strong>这就是施米特所说「霍布斯坦白留下的自由主义裂缝」的原文位置</strong>（见第 5 节 5.1）。</p>
+  <h3>第三部分 第 41 章 论我们神圣救主的职分</h3>
+  <p><strong>基督的职分分三部分</strong>：<strong>① 救赎者（Redeemer）</strong>——<strong>在第一次降临时借十字架上的牺牲完成</strong>；<strong>② 牧者／教师／先知（Pastor, Counsellour, Teacher）</strong>——<strong>转化被拣选者，部分在他在世时、部分借其仆人继续进行，直到再来</strong>；<strong>③ 王（King）</strong>——<strong>在再来之后，对蒙选者作永恒的统治</strong><span class="tag t-src">原书</span>（第三部分 第 41 章）。★ 他特别解释「救赎」的机制：<strong>并非单凭一个无罪者的死就按严格正义满足了所有人的罪，而是「在上帝的慈悲里，他乐意接受这样的牺牲」</strong>；并以《利未记》第 16 章的<strong>赎罪祭与「替罪羊」</strong>为图像<span class="tag t-src">原书</span>（第三部分 第 41 章）。★ <strong>本章最重要的是「基督的王权不在此世行使」这一限定</strong>——它为第 42 章的结论（<strong>教会没有强制权</strong>）提供根据：<strong>既然基督的国不属于此世、其王权要等再来时才行使，那么他的在世代理者（教士）就不能在此世以他的名义要求强制服从</strong>。</p>
+  <h3>第三部分 第 42 章 论教权</h3>
+  <p>★★★ <strong>第三部分的核心，也是全书最长的一章——它的靶子是红衣主教贝拉尔明（Cardinal Bellarmine）。</strong> 开篇区分两个时期：<strong>基督升天后到「君主与世俗主权者皈依」之前的时期，教权在使徒及其所立者手中</strong>；<strong>而在基督教主权者出现之后，情形不同</strong>。★ 然后给出全章的命题：<strong>「教权只是教导的权力（The Power Ecclesiasticall Is But The Power To Teach）」</strong>——「<strong>若可以看出，我们的救主没有给教士留下任何强制的权力，只留下宣告基督之国、劝人归顺的权力；使徒与福音的牧师是我们的老师，不是我们的司令；他们的训示不是法律，而是有益的建议——那么上述全部争论就都是空的。</strong>」<span class="tag t-src">原书</span>（第三部分 第 42 章）★ 他随即<strong>逐条驳贝拉尔明《论争》（De Controversiis）第三卷</strong>关于教皇教权的诸问题，并给出一个著名的收束：<strong>「如果『罗马主教』指的是教会的君主或最高牧者，那么不是西尔维斯特，而是君士坦丁（第一位基督教皇帝）才是那个主教；正如君士坦丁，一切基督教皇帝按其权利都是罗马帝国的最高主教——我说的是罗马帝国，不是全基督教世界；因为其他基督教主权者在各自领土内有同样的权利。」</strong><span class="tag t-src">原书</span>（第三部分 第 42 章）★ 本章还包括一段关于<strong>三位一体</strong>的独特解释：<strong>「上帝被代表（即被人格化）了三次，故可以说他是三个位格」</strong>——<strong>父由摩西代表，子由基督以人身份代表，圣灵由使徒及其后继者在教导职分中代表</strong><span class="tag t-src">原书</span>（第三部分 第 42 章）。★ 并有一长段论证<strong>基督教君主有权施洗、祝圣、任命牧者</strong>（「<strong>国王若精通学问，本可以凭其职位之权亲自讲学，如同他授权他人在大学讲学一样</strong>」）<span class="tag t-src">原书</span>（第三部分 第 42 章）。★ <strong>本章是全书政治结论的兑现页：教会被彻底纳入主权者的授权链。</strong></p>
+  <h3>第三部分 第 43 章 论进入天国所必备的东西</h3>
+  <p><strong>开篇的问题设定极为现实</strong>：「<strong>在基督教国家中，最常见的内战借口，长期来自一个尚未充分解决的难题：当上帝与人同时命令相反之事时，如何同时服从两者。</strong>」<span class="tag t-src">原书</span>（第三部分 第 43 章）★ 霍布斯的解法是<strong>大幅压缩「得救所必需的信条」</strong>：<strong>若世俗主权者的命令可以在不丧失永生的前提下被服从，那么不服从就是不义的</strong>——引《新约》「<strong>仆人当凡事服从主人</strong>」「<strong>儿女当凡事服从父母</strong>」「<strong>文士和法利赛人坐在摩西的位上，凡他们所吩咐你们的，你们都要遵行</strong>」；<strong>只有当命令的服从会导致「永死」时，才适用「不要怕那杀身体不能杀灵魂的」</strong><span class="tag t-src">原书</span>（第三部分 第 43 章）。★ 因此「<strong>得救所需的信条</strong>」被他压到极少：核心就是<strong>「耶稣是基督」</strong>（并加上若干基本条款）；<strong>其余一切「可有可无的信条」，服从主权者即可</strong><span class="tag t-src">原书</span>（第三部分 第 43 章）。★★ <strong>本章是全书最锋利的政治结论</strong>：<strong>它把「宗教异议」压缩到一个极小的核心，从而使国家在绝大多数宗教问题上取得正当权威</strong>。★ 这也解释了霍布斯为什么敢说「<strong>服从上帝而非人</strong>」这句话<strong>只适用于「凭约建立的上帝的国」，不适用于「凭自然的上帝的国」</strong><span class="tag t-src">原书</span>（参见第三部分第 35 章与第 43 章的自洽）。</p>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一部分的可疑之处，性质与前面不同——它主要是「这套解经法能不能成立」的问题。</strong></p>
+  <ol>
+    <li>★★ <strong>霍布斯的解经是高度选择性的。</strong> 他大量使用《圣经》，但<strong>用哪一段、弃哪一段，标准是「能否支持主权不可分割」</strong>。⇒ <strong>这不是中立的解经学，而是「为了政治结论而挑选经文」的辩护性写作</strong>。★ 他在「题献」里其实自己承认了这一点——他说自己<strong>引用经文的用意与常人不同</strong>，因为<strong>那些经文「正是敌人用来攻击世俗权力的『外垒』」</strong><span class="tag t-src">原书</span>（卷首题献）。
+    </li>
+    <li>★★ <strong>第 34 章「非物质实体自相矛盾」这一步，是唯物论形而上学的宣判，不是《圣经》字义的结论。</strong> 他把「灵」一律还原为「气／风／象征」，<strong>这在语义上是可辩护的（希伯来文 ruach、希腊文 pneuma 确有「气」义），但它不能证明「不存在非物质的灵」</strong>。⇒ <strong>读者要区分「词义考据」与「形而上主张」——霍布斯把两者叠在了一句里。</strong>
+    </li>
+    <li>★ <strong>第 33 章对摩西五经作者的质疑，在《圣经》批判学史上价值很高；但他随即用它推出「正典由主权者确立」</strong>——★ <strong>从「作者考据」到「解释权归谁」，中间缺一环</strong>：书的作者有争议，<strong>不等于「只有主权者能定正典」</strong>。<strong>这一步是政治推论，不是考据结论。</strong>
+    </li>
+    <li>★ <strong>第 42 章驳贝拉尔明，在文献上并不完整</strong>：他主要针对贝拉尔明《论争》第三卷，<strong>并未系统处理其他天主教与长老派的论证</strong>（也没有正面回应「教会独立于国家的圣经根据」的全部经文）。⇒ <strong>它是强势的论战文本，不是完备的教会论研究。</strong>
+    </li>
+    <li>★★ <strong>第 43 章把得救信条压到极少，是全书最激进的一步。</strong> 它带来一个<strong>至今仍具争议的后果</strong>：<strong>国家在宗教问题上的权威被放到极大，而「良心异议」的空间被压到极小（几乎只剩下「若服从会丧失永生」这一条）</strong>。★ <strong>今天读这一章，最容易读出的不是「宽容」，而是「国家对良心的管理」</strong>——这正是 5.3 里「教会权威从属化」争议的文本核心。<strong>不要把它读成「政教分离」，它更接近「国家统辖宗教」。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>第四部分：论黑暗的王国（第 44–47 章）</span><span class="caret">▾</span></h2>
+  <h3>这一部分在推演什么</h3>
+  <p>第四部分只有 4 章，篇幅不长（<strong>且 1668 年拉丁本还把它大幅删削</strong>），但它是<strong>全书火药味最重、政治指向最赤裸的一部分</strong>。它要回答的是：<strong>既然教会不该拥有独立强制权，那么「黑暗的王国」究竟是谁的国？是谁在维持它？</strong> 霍布斯先给出「黑暗王国」的定义（第 44 章），再追查<strong>它的四个来源</strong>——<strong>① 对《圣经》的曲解</strong>（第 44 章）、<strong>② 异教的魔鬼学残余</strong>（第 45 章）、<strong>③ 虚无的哲学与荒诞的传说</strong>（第 46 章）、<strong>④ 以及这一切带来的利益</strong>（第 47 章）。★ 最后第 47 章用西塞罗式的「<strong>谁得利（Cui Bono）</strong>」原则，把账算到具体的人头上。</p>
+  <p>★ <strong>一句话记住这一部分</strong>：<strong>它不是「神学收尾」，而是「起诉书」。</strong> 前三十一章立论，第三部分拆解对手的圣经学根据，第四部分则<strong>点出对方的名字与动机</strong>。</p>
+  <h3>关键论证与概念</h3>
+  <ul>
+    <li><strong>黑暗王国＝骗子的联盟（第 44 章）</strong>：「<strong>无非是一个骗子的联盟，为了在此世获得对人的统治，用黑暗而错误的学说，熄灭人心中自然之光与福音之光</strong>」<span class="tag t-src">原书</span>（第四部分 第 44 章）。
+    </li>
+    <li><strong>黑暗的四个来源</strong>：<strong>曲解经文／魔鬼学／虚无哲学／荒诞传说</strong>（第 44–46 章）＋<strong>利益归属</strong>（第 47 章）。
+    </li>
+    <li><strong>魔鬼＝幻象（第 45 章）</strong>：古代人<strong>把脑中的影像误当身外之物</strong>，「<strong>仿佛死人不是住在自己脑子里，而是住在空气、天上或地狱里；不是幻象，而是鬼魂</strong>」<span class="tag t-src">原书</span>（第四部分 第 45 章）。
+    </li>
+    <li><strong>「虚无哲学」（vain philosophy，第 46 章）</strong>：亚里士多德的形而上学与经院神学——「<strong>他们用圣经的原子撒在人们眼前，把一切都弄得更晦暗</strong>」<span class="tag t-src">原书</span>（第四部分 第 46 章、第 44 章末）。
+    </li>
+    <li><strong>谁得利（第 47 章）</strong>：★ 「<strong>根据上述『谁得利』的规则，我们可以公正地判定，所有这些属灵黑暗的作者，就是教皇、罗马教士……</strong>」<span class="tag t-src">原书</span>（第四部分 第 47 章）。
+    </li>
+    <li><strong>炼狱装置的经济学（第 47 章）</strong>：★ 用<strong>炼狱、赎罪券、驱魔、圣徒祈祷</strong>换取<strong>金钱与敬畏</strong>。
+    </li>
+  </ul>
+  <h3>第四部分 第 44 章 论从《圣经》的曲解中产生的黑暗</h3>
+  <p><strong>定义先行</strong>：「<strong>黑暗的王国</strong>」——「<strong>无非是一个骗子的联盟，为了在此世获得对人的统治，用黑暗而错误的学说，熄灭人心中自然之光与福音之光，从而使人不适宜于接受将要来的上帝的国</strong>」<span class="tag t-src">原书</span>（第四部分 第 44 章）。★ 然后他追查<strong>第一个来源：对《圣经》的曲解</strong>。他指出<strong>基督的教会并未完全脱离黑暗</strong>——「<strong>在基督教世界里，几乎从使徒时代起，就有相互排挤、外战与内战、因自身境遇的一点不顺就绊倒、因他人一点显赫就嫉妒、奔向同一目标（幸福）却走不同的路——若不是我们处在黑夜中，至少也是雾中；我们因此仍在黑暗里。</strong>」<span class="tag t-src">原书</span>（第四部分 第 44 章）★ 接着他把曲解经文的后果集中到一个点上：<strong>「灵魂不死」这一教义</strong>——<strong>因为一旦假定人死后有无形的灵魂尚存，就必然会追问它在哪里，于是引出「炼狱」以及随之而来的整套装置</strong>。★ 章末有一段关于「<strong>把《圣经》当作原子撒在眼前</strong>」的比喻，直指那些<strong>「不追求真理而追求自身利益」的解释者</strong><span class="tag t-src">原书</span>（第四部分 第 44 章）。</p>
+  <h3>第四部分 第 45 章 论魔鬼学及异教徒的其他宗教残余</h3>
+  <p>★ <strong>本章是全书唯物论最彻底的一章，方法是「心理学式的祛魅」。</strong> 论证从视觉的机制开始：物体的影像印在感官上，「<strong>人们难以把这些存在于想象中的影像，设想为不是真实存在于身外之物</strong>」；<strong>因为影像消散时他们不知其去向，于是把它们当作「无实体的东西」</strong>，说它们「<strong>可以披上气做的身体，在愿意时显形</strong>」；<strong>另一派人则说它们是空气或以太构成的有生命的物体</strong>——<strong>但两派都同意把它们统称为「魔鬼（DAEMONS）」</strong><span class="tag t-src">原书</span>（第四部分 第 45 章）。★ 然后他给出那句极形象的评语：<strong>「这就像一个人说他在镜子里看见了自己的鬼魂，或在河里看见了星星的鬼魂；或者把太阳的日常显像（直径约一尺）称为那个照亮整个可见世界的太阳的魔鬼或鬼魂。」</strong><span class="tag t-src">原书</span>（第四部分 第 45 章）★ 后半章的关键一步是<strong>政治学的</strong>：<strong>异教的统治者正是利用这种恐惧来统治</strong>——「<strong>异教的共同体的治理者们，就借着确立这种魔鬼学（诗人作为异教宗教的主要祭司，特别从事或受尊崇于此）来规范人们的恐惧，以服务于公共和平与臣民的服从</strong>」，并<strong>把魔鬼分成「善的」与「恶的」——前者作「马刺」促人守法，后者作「缰绳」阻人违法</strong><span class="tag t-src">原书</span>（第四部分 第 45 章）。★ <strong>这一段的现代性很强：它是「宗教作为统治技术」这一分析的一个早期样本。</strong></p>
+  <h3>第四部分 第 46 章 论虚无哲学和荒诞传说造成的黑暗</h3>
+  <p>先给<strong>哲学的定义</strong>：「<strong>哲学是从任何事物的生成方式获得其性质的知识，或从性质获得某种可能的生成方式的知识，以便能在物质与人力允许的范围内产生人生所需的效果</strong>」<span class="tag t-src">原书</span>（第四部分 第 46 章）。★ 由定义得出四条排除：<strong>哲学不包括「经验（谨慎）」</strong>（因为动物也有）、<strong>不包括错误的结论</strong>、<strong>不包括超自然启示</strong>（因为非由推理获得）、<strong>也不包括「凭作者的权威而来的学问」</strong>——「<strong>那只是信仰，不是知识</strong>」<span class="tag t-src">原书</span>（第四部分 第 46 章）。★ 然后他列出「<strong>虚无哲学</strong>」的具体来源：<strong>亚里士多德的形而上学与「实体形式」「本质」等词</strong>、<strong>经院学者的「胡言乱语」</strong>、<strong>以及杂糅异教与基督教的「荒诞传说」</strong>（如<strong>炼狱、鬼魂游荡、驱魔、圣徒显灵</strong>等）。★ 他把这一切的后果总结为一句：<strong>它们使人们「把虚无哲学的鬼火（Ignis Fatuus）误当作福音之光」</strong><span class="tag t-src">原书</span>（第四部分 第 47 章，参第 46 章）。★ <strong>本章是全书对经院哲学最集中、最不留情的一次清算。</strong></p>
+  <h3>第四部分 第 47 章 论这种黑暗所产生的利益及其归属</h3>
+  <p>★★★ <strong>第四部分的收束，也是全书政治指控的顶点。</strong> 开篇借西塞罗讲的一个罗马法官的习惯——<strong>在证词不足时，问原告「谁得利（Cui Bono）」</strong>——作为全章的判准：「<strong>在一切推定中，没有比行为的利益更能清楚地指明行为者的了。</strong>」<span class="tag t-src">原书</span>（第四部分 第 47 章）★ 然后他逐条列出<strong>黑暗带来的「世俗利益」</strong>：<strong>① 「战斗的教会就是上帝的国」这一错误的教义</strong>，使<strong>教士成为「上帝的公仆」，从而有权治理教会、并（因为教会与国家是同一批人）治理国家</strong>——「<strong>教皇因此使一切基督教君主的臣民相信，不服从他就是不服从基督本人</strong>」，这是一种「<strong>对整个基督教世界的普遍君主权（an universall Monarchy over all Christendome）</strong>」<span class="tag t-src">原书</span>（第四部分 第 47 章）；<strong>② 由此引申的种种</strong>：<strong>炼狱与赎罪券使教士致富</strong>、<strong>魔鬼学与驱魔使民众畏服</strong>、<strong>经院神学（亚里士多德的形而上学、伦理学、政治学，以及经院学者的琐碎区分与晦涩语言）使他们能把这些错误掩盖起来</strong><span class="tag t-src">原书</span>（第四部分 第 47 章）。★ 全章的最后一句是全书最直接的点名：<strong>「因此，根据上述『谁得利』的规则，我们可以公正地判定，所有这些属灵黑暗的作者，就是教皇、罗马教士，以及一切尽力把下列教义植入人心的人……」</strong><span class="tag t-src">原书</span>（第四部分 第 47 章）。★ 但霍布斯<strong>并未只针对罗马</strong>——他紧接着说明：「<strong>并不仅是罗马教士声称上帝的国是此世的……</strong>」，并在同一章内<strong>点名长老派</strong>（「<strong>在长老派接掌这一职分的地方……</strong>」）<span class="tag t-src">原书</span>（第四部分 第 47 章）。★ <strong>第 47 章之后，全书最后由「综述与结论」收官。</strong></p>
+  <h3>可疑之处</h3>
+  <p>★ <strong>这一部分可信度最低、也最需要读者警惕——因为它从「论证」滑向了「指控」。</strong></p>
+  <ol>
+    <li>★★ <strong>第 47 章是「动机归因」，不是「事实证明」。</strong> 「<strong>谁得利</strong>」是一个<strong>推定规则</strong>（他自己也说是「推定」），<strong>它能指出嫌疑人，不能证明罪名</strong>。⇒ <strong>读到「教皇与罗马教士是属灵黑暗的作者」时，必须分清这是「霍布斯的政治指控」，不是「已证成的历史结论」。</strong>
+    </li>
+    <li>★★ <strong>他的祛魅是有选择性的。</strong> 他用同一套唯物论把异教的「魔鬼」解释为幻象，<strong>却并未用同样彻底的方式处理基督教的「奇迹」与「灵」</strong>（第 37 章仍给奇迹留了位置，只是说「奇迹的时代已过」）。⇒ <strong>这是一处可以质疑的不对称：为什么异教的灵是幻象，而基督教的灵却不必是？</strong>
+    </li>
+    <li>★ <strong>第 45 章对「异教魔鬼学」与「教会魔鬼学」的谱系联系，是论断性的</strong>。他说「<strong>圣徒显灵、驱魔、炼狱里的火</strong>」是<strong>异教残余</strong>——<strong>这一谱系勾勒在 17 世纪很有冲击力，但它缺严格的历史考证</strong>（哪些具体教义在哪一环节从异教进入，他并未逐一交代）。
+    </li>
+    <li>★ <strong>第 46 章对亚里士多德与经院哲学的清算极为粗暴。</strong> 他把形而上学一概称为「<strong>虚无哲学</strong>」，<strong>这与他在第一部分（第 1 章）就已开始的「反经院」姿态一脉相承，但代价是</strong>：<strong>他并未真正处理经院哲学里值得认真对待的问题</strong>（如共相、实体、因果的形而上分析）。⇒ <strong>把它当作「反经院宣言」读，不要当作「对经院哲学的公平评价」。</strong>
+    </li>
+    <li>★ <strong>一个文本史层面的可疑之处</strong>：<strong>第四部分恰恰是 1668 年拉丁本被删削最多的部分</strong>（见第 5 节 5.4）。这意味着一件事：<strong>霍布斯晚年自己可能也意识到这一部分的政治风险最大</strong>——<strong>读者手上的英文版第四部分之所以「火力全开」，部分原因是它写于 1649–1650 年那个相对宽松、且他人在巴黎的窗口</strong>。⇒ <strong>同一部书，读者读到的是哪一版，直接决定第四部分有多尖锐。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s11">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>概念／人物</th><th>一句话</th><th>出现在</th></tr></thead>
+    <tbody>
+      <tr><td><strong>利维坦（Leviathan）</strong></td><td>取自《约伯记》第 41 章的比喻；霍布斯用以称「作为人造之人的国家」，且明言它「有朽」</td><td>引言、第 17 章、第 28 章末</td></tr>
+      <tr><td><strong>人造的人（Artificiall Man）</strong></td><td>国家＝人造的身体：主权是灵魂，官吏是关节，赏罚是神经</td><td>引言</td></tr>
+      <tr><td><strong>努力（Endeavour）</strong></td><td>人体内微小运动的开端；朝向＝欲望，背离＝嫌恶</td><td>第 6 章</td></tr>
+      <tr><td><strong>权力欲（desire of Power after power）</strong></td><td>「永不停歇、至死方休」——一切人的普遍倾向</td><td>第 11 章</td></tr>
+      <tr><td><strong>自然状态（state of Nature）</strong></td><td>无共同权力时的「一切人反对一切人的战争」</td><td>第 13 章</td></tr>
+      <tr><td><strong>自然权利（Jus Naturale）</strong></td><td>用自身力量保全生命的自由</td><td>第 14 章</td></tr>
+      <tr><td><strong>自然法（Lex Naturalis）</strong></td><td>由理性发现的训诫；共十九条，可归结为「己所不欲，勿施于人」</td><td>第 14–15 章</td></tr>
+      <tr><td><strong>内心法庭／外在法庭（in foro interno / externo）</strong></td><td>自然法在内心永远有约束力，在外在则只在有安全时有效</td><td>第 15 章</td></tr>
+      <tr><td><strong>人格／行为者／作者／权威</strong></td><td>代表结构的基本语汇：权威＝做某行为的权利</td><td>第 16 章</td></tr>
+      <tr><td><strong>授权（Authorise）</strong></td><td>「我授权并放弃我统治自己的权利……」</td><td>第 17 章</td></tr>
+      <tr><td><strong>主权者（Soveraigne）／臣民（Subject）</strong></td><td>承担国家人格者／其余所有人</td><td>第 17 章</td></tr>
+      <tr><td><strong>有朽的上帝（Mortall God）</strong></td><td>利维坦的别称：我们在不朽的上帝之下向它求得和平</td><td>第 17 章</td></tr>
+      <tr><td><strong>三种政体</strong></td><td>君主制／民主制／贵族制；暴君、寡头是别称</td><td>第 19 章</td></tr>
+      <tr><td><strong>自由＝无外在障碍</strong></td><td>霍布斯的「消极自由」定义；恐惧与自由相容</td><td>第 21 章</td></tr>
+      <tr><td><strong>保护与服从的对等性</strong></td><td>服从义务随保护能力而生灭</td><td>第 21 章、综述与结论</td></tr>
+      <tr><td><strong>民约法（Civill Law）</strong></td><td>主权者的命令；自然法与民约法互相包含</td><td>第 26 章</td></tr>
+      <tr><td><strong>国家之病</strong></td><td>绝对权力不足、私人判断善恶、教权对抗俗权</td><td>第 29 章</td></tr>
+      <tr><td><strong>自然的上帝国</strong></td><td>上帝凭全能对一切人的统治；区别于「凭约建立的国」</td><td>第 31 章</td></tr>
+      <tr><td><strong>教权＝教导权</strong></td><td>教士是老师不是司令；其训示是建议不是法律</td><td>第 42 章</td></tr>
+      <tr><td><strong>黑暗的王国</strong></td><td>骗子的联盟，用错误学说熄灭自然之光与福音之光</td><td>第 44 章</td></tr>
+      <tr><td><strong>谁得利（Cui Bono）</strong></td><td>判定「黑暗的作者」的推定规则</td><td>第 47 章</td></tr>
+      <tr><td><strong>Thomas Hobbes</strong></td><td>作者；1651 年于巴黎写就本书</td><td>—</td></tr>
+      <tr><td><strong>Francis Godolphin</strong></td><td>本书题献对象；其兄 Sidney Godolphin 在内战中阵亡</td><td>卷首题献</td></tr>
+      <tr><td><strong>Cardinal Bellarmine</strong></td><td>第 42 章的主要论战对象（《论争》）</td><td>第 42 章</td></tr>
+      <tr><td><strong>Carl Schmitt</strong></td><td>《霍布斯国家学说中的利维坦》1938；主张「内心自由」是杀死利维坦的种子</td><td>第 4b、5.1 节</td></tr>
+      <tr><td><strong>Quentin Skinner</strong></td><td>《Liberty before Liberalism》1998／《Hobbes and Republican Liberty》2008；重定第 21 章的论战语境</td><td>第 5.1 节</td></tr>
+      <tr><td><strong>A. E. Taylor／Howard Warrender</strong></td><td>「泰勒–沃伦德论题」：霍布斯的义务论是神命论而非审慎论</td><td>第 5.2 节</td></tr>
+      <tr><td><strong>C. B. Macpherson</strong></td><td>《占有性个人主义》1962；把霍布斯读成市场社会的代言人</td><td>第 5.2 节</td></tr>
+      <tr><td><strong>Noël Malcolm</strong></td><td>牛津版《利维坦》主编（2012）；英、拉丁两版对照</td><td>第 4、5.4 节</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s12">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>原文与版本（首要）</strong>：<em>Leviathan</em>（1651）全文，Project Gutenberg #3207（<code>https://www.gutenberg.org/ebooks/3207</code>）——公版、可全文检索、保留初版拼写；<strong>Noël Malcolm 编《Thomas Hobbes: Leviathan》</strong>，Clarendon Edition of the Works of Thomas Hobbes III，Oxford University Press，2012，三卷，ISBN 9780199602629（英、拉丁对照，学术引用底本）。
+    </li>
+    <li><strong>霍布斯自己的其他文字（本报告 <span class="tag t-talk">作者谈话</span> 档的来源）</strong>：《论公民》（<em>De Cive</em>，1642，拉丁文；英译 <em>Philosophicall Rudiments</em>，1651）；《贝希摩斯：英国内战史》（<em>Behemoth</em>，1679 遗稿）；<strong>1651 拉丁本《利维坦》的三篇附录</strong>（《论尼西亚信经》《论异端》《论对利维坦的若干反驳》，1668）；本书<strong>卷首题献</strong>（致 Francis Godolphin，1651）。★ <strong>全部为文本，不是访谈——霍布斯逝于 1679 年。</strong>
+    </li>
+    <li><strong>20 世纪的三种对立读法</strong>：Carl Schmitt，<em>Der Leviathan in der Staatslehre des Thomas Hobbes</em>，1938（英译 Greenwood，1996）；Michael Oakeshott 为 Blackwell 版《利维坦》所写的导论，1946；C. B. Macpherson，<em>The Political Theory of Possessive Individualism</em>，Clarendon Press，1962。
+    </li>
+    <li><strong>自由观的论战（读第 21 章的必备对手文本）</strong>：Quentin Skinner，<em>Liberty before Liberalism</em>，Cambridge University Press，1998；<em>Hobbes and Republican Liberty</em>，Cambridge University Press，2008（268 页，ISBN 9780521886765）；对照 Philip Pettit，<em>Republicanism: A Theory of Freedom and Government</em>，Oxford University Press，1997。
+    </li>
+    <li><strong>义务论之争</strong>：A. E. Taylor，〈The Ethical Doctrine of Hobbes〉，1938；Howard Warrender，<em>The Political Philosophy of Hobbes: His Theory of Obligation</em>，Clarendon Press，1957（中译：唐学亮译，商务印书馆）；F. C. Hood，<em>The Divine Politics of Thomas Hobbes</em>，Clarendon Press，1964。
+    </li>
+    <li><strong>中文世界的入门与研究</strong>：黎思复、黎廷弼译《利维坦》（商务印书馆「汉译世界学术名著丛书」，1985）；唐学亮译沃伦德《霍布斯的政治哲学：义务理论》（商务印书馆）。
+    </li>
+  </ol>
+</section>
+
+<section id="s13">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>见同目录 <code>利维坦-来源清单.md</code>。</p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. 「利维坦」这个词的语源，霍布斯自己的说明与流行的「巨兽」联想</h3>
+  <ul>
+    <li><strong>可确认的</strong>：霍布斯在正文里<strong>至少三次</strong>用「利维坦」（引言、第 17 章、第 28 章末），并在<strong>第 28 章末明确交代</strong>：这个比喻<strong>取自《约伯记》第 41 章最后两节</strong>，上帝在那里称利维坦为「<strong>骄傲之王（King of the Proud）</strong>」，且它「<strong>是有朽的</strong>」<span class="tag t-src">原书</span>（第二部分 第 28 章）。
+    </li>
+    <li>❌ <strong>未能核实的</strong>：中文与英语世界广泛流传的「利维坦＝吞噬一切的巨兽／海怪，故霍布斯暗示国家是吃人的怪物」——<strong>我没有在《利维坦》正文里找到任何支持这一读法的句子</strong>。★ 该读法的来源<strong>很可能是 20 世纪对书名的再诠释</strong>（施米特 1938 专论「政治象征」，是其中一环），<strong>不是霍布斯本人的用法</strong>。⇒ <strong>本报告按原文处理，不作「巨兽＝怪物」的推断。</strong>
+    </li>
+    <li>★ 另有一条<strong>未能定论</strong>的细节：<strong>1651 年初版著名的卷首铜版画（hundreds of small men 组成主权者身体、手持剑与牧杖）的刻工是谁</strong>，学界无定论（有 Keith Brown 1978 推测为 Wenceslaus Hollar，但<strong>未获公认</strong>）<span class="tag t-rep">转述</span>。⇒ <strong>本报告只描述画面内容，不指认刻工。</strong>
+    </li>
+  </ul>
+  <h3>D2. 「利维坦＝极权主义」的标签，各派依据并不一致</h3>
+  <ul>
+    <li><strong>可确认的</strong>：<strong>施米特（1938）</strong> 恰恰<strong>反对</strong>把霍布斯的利维坦等同法西斯式的极权（他批评 Vialatoux 1937 的这一读法）；他的批评是「<strong>霍布斯留下了内心自由的口子，所以利维坦失败了</strong>」<span class="tag t-rep">转述</span>（转引自 Rilla，<em>Political Theory</em>，2026）。
+    </li>
+    <li>★ <strong>未能定论的</strong>：「霍布斯是否应被列为极权主义思想源头」——<strong>这取决于把「主权绝对」与「极权统治」看作一回事还是两回事</strong>。★ 支持「两者不同」的关键原文是：<strong>内心信仰不受强制</strong>（第三部分第 40 章）、<strong>臣民保留自我保全的自由</strong>（第 21 章）、<strong>保护与服从的对等性</strong>（第 21 章）。⇒ <strong>本报告不采用「利维坦＝极权」这一等式，但如实记录该标签的存在与其批评者。</strong>
+    </li>
+  </ul>
+  <h3>D3. 1651 英文版与 1668 拉丁版的具体差异条目，未能逐条核对原文</h3>
+  <ul>
+    <li><strong>可确认的</strong>（依据 Malcolm 2012 版导读的二手转述与 1904 年 A. R. Waller 编剑桥版导言）：<strong>拉丁本删去「综述与结论」、加三篇对话体附录、第四部分被大幅删削、对长老派的批评被调低、神学论述（三位一体、灵魂有死、上帝是物体）被强化</strong>。
+    </li>
+    <li>❌ <strong>未能逐条核对的</strong>：<strong>上述每一条差异的拉丁原文</strong>（我不读拉丁文，<strong>未逐条比对拉丁文本</strong>）。⇒ <strong>本报告的相关表述一律按「转述」处理</strong>；若需逐条引用，请以 <strong>Malcolm 2012 牛津版</strong>（英、拉丁对照）为准。
+    </li>
+    <li>★ 另有一处<strong>被否证过的假说</strong>应记下：<strong>François Tricaud 曾主张「拉丁文本是英文本的初稿」</strong>，Malcolm 一系以「霍布斯曾为 Stubbe 的拉丁译稿改稿」为证<strong>否定之</strong>。
+    </li>
+  </ul>
+  <h3>D4. 中译「删节」指控的对象——本报告已定位，但源头只有一手评论</h3>
+  <ul>
+    <li><strong>可确认的</strong>：「<strong>肆意删节</strong>」这一指控，出自 2025 年澎湃新闻的一篇《利维坦》译后记，<strong>明确指向 1934 年朱敏章文言译本</strong>，并称其「<strong>与原文在意思上多有出入</strong>」；<strong>黎思复、黎廷弼译本未见此指控</strong><span class="tag t-rep">转述</span>。
+    </li>
+    <li>❌ <strong>未能核实的</strong>：<strong>该指控的「删节」具体删了哪些章节／段落，以及删节的比例</strong>——<strong>我没有朱译本实体，未逐页比对</strong>。⇒ <strong>本报告只转述「存在此指控」与「指控对象是朱译本」，不对删节程度下判断。</strong>
+    </li>
+    <li>★ <strong>另请注意</strong>：同一篇译后记还称十余种中译本「<strong>除朱、黎两种外皆不足观</strong>」，并称「<strong>至今没有产生一个经得起推敲、精准可读的译本</strong>」——★ <strong>这是评论者个人的判断，不是学界共识</strong>，本报告如实转述并标明其性质。
+    </li>
+  </ul>
+  <h3>D5. 黎译本的底本（伦敦 J. M. Dent and Sons 1957 年版）具体是哪一个系列，未能核死</h3>
+  <ul>
+    <li><strong>可确认的</strong>：黎译本版权页交代「<strong>根据伦敦 J.M. 登特父子有限公司 1957 年版译出</strong>」<span class="tag t-rep">转述</span>（出版信息，多方一致）。
+    </li>
+    <li>❌ <strong>未能核实的</strong>：这个 1957 年 Dent 版<strong>是否即 Everyman's Library 系统的某一次印次</strong>、<strong>其正文编订者与依据的底本（1651 初版？还是后来的校订本？）</strong>——<strong>我未见到该英文本的版权页</strong>。⇒ <strong>本报告只写「据 Dent 1957 年版」，不推断其编订来源</strong>；读者若要精确定位中译与原文的差异，<strong>应以英文底本为准</strong>。
+    </li>
+  </ul>
+  <h3>D6. 波普尔对霍布斯的实际处理篇幅</h3>
+  <ul>
+    <li><strong>可确认的</strong>：<strong>波普尔《开放社会及其敌人》（1945）</strong> 把霍布斯归入「<strong>对开放社会的反动</strong>」一系，批评其主权学说取消了对国家的道德批判权利<span class="tag t-rep">转述</span>（通行介绍口径一致）。
+    </li>
+    <li>★ <strong>需要提醒的</strong>：<strong>波普尔全书的主要火力集中在对柏拉图、黑格尔、马克思的批评</strong>，<strong>对霍布斯的处理篇幅很短、且并非该书主线</strong>。⇒ <strong>把「波普尔主要批霍布斯」当作常识，是夸张的</strong>；本报告在 5.1 里已标明这一点为 <span class="tag t-inf">推断</span>（依据该书目录与索引中霍布斯条目稀少）。<strong>若读者见到强调「波普尔对霍布斯的批判」的中文说法，建议回到原书核对其篇幅。</strong>
+    </li>
+  </ul>
+  <h3>D7. 罗素对霍布斯的判词，本报告只作了转述</h3>
+  <ul>
+    <li><strong>可确认的</strong>：罗素《西方哲学史》（1945）<strong>卷三第 8 章题为「霍布士的利维坦」</strong>，判其「<strong>逻辑一贯，但以恐惧为心理学基础</strong>」，并称其为独裁主义开辟了道路<span class="tag t-rep">转述</span>（中译本）。
+    </li>
+    <li>❌ <strong>未能逐字核对的</strong>：该章的具体英文原句。⇒ <strong>本报告相关表述按「转述」处理</strong>，不作逐字引用。
+    </li>
+  </ul>
+  <h3>D8. 《贝希摩斯》的成书与出版时间</h3>
+  <ul>
+    <li><strong>可确认的</strong>：<em>Behemoth</em> 是霍布斯关于<strong>英国 1640–1660 年内战</strong>的历史分析，<strong>被视为《利维坦》的姊妹篇</strong>；在霍布斯的比喻中，「<strong>利维坦</strong>」＝世俗国家主权，「<strong>贝希摩斯</strong>」＝其敌人即教会权威<span class="tag t-rep">转述</span>（中文百科与多篇介绍一致）。
+    </li>
+    <li>❌ <strong>未能核实的</strong>：<strong>该书的成书年代与初版年份</strong>（常见的表述是「1679 年遗稿／1682 年出版」，但<strong>我未以 2–3 个独立来源核实具体年份</strong>）。⇒ <strong>本报告不给出《贝希摩斯》的具体成书／出版年份</strong>，仅说明其性质与「姊妹篇」关系。
+    </li>
+  </ul>
+</section>
+
+<footer>
+  生成于 2026-10-07 · 来源清单与交叉验证记录见同目录 <code>利维坦-来源清单.md</code><br>
+  本页引文分两级处理：<b>英文原文为 A 级</b>（依据 Project Gutenberg #3207，据 Pelican Classics 版、源自 1651 初版，覆盖引言、全部 47 章与综述及结论）；<b>中文引文为 B 级</b>（依据商务印书馆黎思复、黎廷弼译本，我未逐字核对中文页面，只作术语对照）。★ 另标注：1668 年拉丁本差异依 Noël Malcolm 2012 牛津版导论的转述（C 级）；「中译删节指控针对 1934 年朱敏章文言本、而非黎译本」依 2025 年澎湃新闻译后记的转述（评论者观点）。★ 本书是一部<b>推演式论著</b>——从感觉、想象、语言、推理、激情、权力欲一路推到自然状态、自然法、授权与主权者，<b>第 13–17 章是枢纽</b>；<b>第三、四部分（第 32–47 章）不是附录</b>，而是全书论证的另一半。因此<b>第 5 节（争议与局限）刻意写得最实</b>：本书影响极大，而围绕它的读法之争（施米特 1938、波普尔 1945、麦克弗森 1962、斯金纳 1998／2008、沃伦德 1957）<b>比它的一般介绍更稀缺</b>。★ 请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

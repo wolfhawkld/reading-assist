@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《孙子兵法》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《孙子兵法》<small>阅读指引与精华解析 · 2026-10-07</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 六个核心论点</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 版本与注本怎么选</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s7">6 计篇：庙算与诡道</a>
+    <a href="#s8">7 作战篇：战争的经济学</a>
+    <a href="#s9">8 谋攻篇：全胜与「知彼知己」</a>
+    <a href="#s10">9 形篇：先为不可胜</a>
+    <a href="#s11">10 势篇：奇正与「势」</a>
+    <a href="#s12">11 虚实篇：主动权与「避实击虚」</a>
+    <a href="#s13">12 军争篇：以迂为直</a>
+    <a href="#s14">13 九变篇：权变与「将之五危」</a>
+    <a href="#s15">14 行军篇：相敌之法</a>
+    <a href="#s16">15 地形篇：六地与六败</a>
+    <a href="#s17">16 九地篇：投之亡地然后存</a>
+    <a href="#s18">17 火攻篇：五种火攻与全书结语</a>
+    <a href="#s19">18 用间篇：五间与先知</a>
+    <div class="grp">附录</div>
+    <a href="#s20">A 关键概念与人物速查</a>
+    <a href="#s21">B 延伸阅读</a>
+    <a href="#s22">C 来源清单</a>
+    <a href="#s23">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《孙子兵法》阅读指引与精华解析</h1>
+  <div class="sub">孫子兵法（《孫子》《吳孫子兵法》《孫武兵法》）／ Sunzi Bingfa（The Art of War）</div>
+  <div class="meta">
+    <div><b>作者</b>孙武（字长卿，春秋末期齐国人，后仕吴，与伍子胥同时）—— ★ <b>「孙武其人是否实有」「十三篇成于何时」本身是持续近千年的学术争议</b>，不是已决问题（南宋叶适起有怀疑，见正文 5.1）</div>
+    <div><b>成书年代</b>约公元前 5 世纪（春秋末至战国初之间）—— 另有战国中期说，以及「<b>奠基于春秋，完成于战国，定型于秦汉</b>」的分层说（杨丙安）</div>
+    <div><b>★ 大陆简体版</b><b>《十一家注孙子校理》，杨丙安 校理</b>，中华书局「新编诸子集成·兵家」，<b>2012-07 第 2 版</b>，繁体竖排，443 页，ISBN 9787101087635，定价 46.00 元。★ 本报告全部「篇名＋句」的定位均锚定此本</div>
+    <div><b>篇幅</b>十三篇（计／作战／谋攻／形／势／虚实／军争／九变／行军／地形／九地／火攻／用间）；经文<b>约 6000 字</b>——本报告据十一家注经文统计得 <b>6110 个汉字</b>，东汉高诱称「五千言」，网传「6075 字」无出处（见附录 D1）</div>
+    <div><b>荣誉／地位</b>被誉为「兵学圣典」「百代谈兵之祖」「东方兵学的鼻祖」；<b>现存最早的中国兵书</b>，也是世界公认最早的军事理论著作之一。日本称孙子为「兵圣」，与孔子「文武并立」</div>
+    <div><b>状态</b>未标注已读／想读 —— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 可定位到「<b>篇名＋句（＋注者）</b>」的公版原文——十一家注本的<b>经文与注文</b>，据 Wikisource《十一家註孫子》逐篇核对。凡引注文均具名到「曹操注」「杜牧注」等，不笼统说「古注」</li>
+    <li><span class="tag t-talk">作者谈话</span> ★ <b>孙武无任何个人文字留存，本报告不设「孙武访谈」</b>。此档改指<b>注家与校勘者的自述</b>（曹操《孙子略解·序》、杨丙安校理说明）——<b>这不是作者谈话</b>；正文实际使用 0 次（见附录 D9）</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、百科条目、报刊转述，或<b>经人转引</b>的一手文献（如杜牧《注孙子序》只见转引）</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本书为<b>公有领域古籍</b>，其经文与注文有合法公版全文可核。★ 本报告 A 级的依据是 <b>Wikisource《十一家註孫子》</b>——本项目施工图指定的首选入口 ctext.org 实测<b>反爬、未取到正文</b>，故改用同表所列「交叉核对」入口（详见来源清单第〇节）。★ 需要提示：A 级只针对<b>文本事实</b>；<b>银雀山简本的释文与篇序、杨丙安校理本的校记</b>均非我直接核对，属 B 级。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-07）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)"><b>经文与注文：A 级</b>——依据 <b>Wikisource《十一家註孫子》</b>（zh.wikisource.org/wiki/十一家註孫子 及十三篇子页），<b>十三篇经文与十一家注文全部逐字核对</b>（剥离注文后经文共 6110 个汉字）。★ <b>本项目指定的首选入口 ctext.org 反爬、未取到正文</b>，因此 A 级的依据是 Wikisource，不是 ctext.org。<br><b>中文校理本与简本材料：B 级</b>——杨丙安《十一家注孙子校理》我<b>未持原书</b>；银雀山简本的释文、篇序与异文<b>全部转引自李零、苏芃、黄朴民、王正向</b>，未直接使用简牍图版或整理报告。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>这本书要说的是：战争是国家存亡的大事，所以先要在庙堂上算清楚敌我的五事七计，再决定打不打、怎么打；真打起来，最高明的是让对方没打就服了，其次才是打赢。</strong></p>
+  <p>十三篇不是「一本讲怎么用计的书」，而是<strong>一套从「要不要打」到「怎么打、在什么地方打、用什么手段打、靠什么情报打」的完整决策链</strong>。它的起点是《计》（庙算胜负），终点原本可能是《火攻》篇末那段「慎战」结语——<strong>从「兵者，国之大事，不可不察也」开篇，到「此安国全军之道也」收尾，首尾说的是同一件事：对战争要慎之又慎</strong> <span class="tag t-src">原书</span>。</p>
+  <p>一句话结论（也是全书最该记住的一句，引自原经文）：<strong>「兵者，國之大事，死生之地，存亡之道，不可不察也。」</strong>（《计篇》开篇 <span class="tag t-src">原书</span>）</p>
+  <p><strong>它不是什么</strong>：不是一本「计谋手册」（「三十六计」是另一本书，晚出约两千年，见 4b 与 5.6）；不是「阴险狡诈之术」（诡道只占《计篇》一小段，全书主干是实力、制度、地形与情报）；也不是企业管理的操作指南——<strong>它的语境是春秋车战与诸侯争霸，直接移植到非对抗性的商业关系里，缺一个中介环节</strong>（见 5.4）。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>下表十三篇一行一条。★ 篇名以<strong>十一家注本／银雀山简本所用原名</strong>为准（即《计》《形》《势》，而非传世坊刻常加的「始计」「军形」「兵势」——见 4b）。「这一篇在体系里处于哪一层」一列，用的是<strong>从决策到执行、从一般原则到特殊手段</strong>的推进逻辑。</p>
+  <table>
+    <thead><tr><th>#</th><th>篇</th><th>这一篇讲什么</th><th>在体系里处于哪一层</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>计</td><td>出兵之前先在庙堂上比较敌我「五事」（道、天、地、将、法）与「七计」，算清胜负；提出「兵者，诡道也」</td><td>★ 总纲：全书的决策起点与胜负判据</td></tr>
+      <tr><td>2</td><td>作战</td><td>战争是资源消耗战（「日费千金」），所以主张速决、因粮于敌、胜敌而益强</td><td>战略层之一：战争的代价与后勤</td></tr>
+      <tr><td>3</td><td>谋攻</td><td>「全国为上，破国次之」；「上兵伐谋」；「不战而屈人之兵」；「知彼知己，百战不殆」</td><td>战略层之二：以最小代价求全胜，并给出「知胜有五」</td></tr>
+      <tr><td>4</td><td>形</td><td>先为不可胜，以待敌之可胜；「胜兵先胜而后求战」；度、量、数、称、胜</td><td>用兵原则之一：实力与「先胜」的静态基础</td></tr>
+      <tr><td>5</td><td>势</td><td>以正合，以奇胜；奇正相生；「势如彍弩，节如发机」；择人而任势</td><td>用兵原则之二：由实力转化的动态能量</td></tr>
+      <tr><td>6</td><td>虚实</td><td>致人而不致于人；「形人而我无形」；避实击虚；「兵无常势，水无常形」</td><td>用兵原则之三：主动权与「避实击虚」的机动</td></tr>
+      <tr><td>7</td><td>军争</td><td>以迂为直，以患为利；倍道兼行的代价；「其疾如风，其徐如林」；治气、治心、治力、治变</td><td>用兵原则之四：与敌争夺先机</td></tr>
+      <tr><td>8</td><td>九变</td><td>圮地无舍、衢地交合等「五地」；「君命有所不受」；将之「五危」</td><td>用兵原则之五：权变与将帅的性格风险</td></tr>
+      <tr><td>9</td><td>行军</td><td>处山、处水、处斥泽、处平陆「四军之利」；三十二种「相敌」征候；「令之以文，齐之以武」</td><td>环境层之一：行军与观察敌情</td></tr>
+      <tr><td>10</td><td>地形</td><td>通、挂、支、隘、险、远「六地」；走、弛、陷、崩、乱、北「六败」；「视卒如婴儿」</td><td>环境层之二：地形与军队管理</td></tr>
+      <tr><td>11</td><td>九地</td><td>散、轻、争、交、衢、重、圮、围、死「九地」；「投之亡地然后存」；「始如处女，后如脱兔」</td><td>环境层之三：深入敌境的战略态势</td></tr>
+      <tr><td>12</td><td>火攻</td><td>五种火攻目标与天时条件；「以火佐攻者明」，但水攻更强；篇末一大段「慎战」文字</td><td>特殊手段；★ 篇末很可能是全书结语（见 5.2）</td></tr>
+      <tr><td>13</td><td>用间</td><td>因间、内间、反间、死间、生间「五间」；「先知者……必取于人」；反间最重</td><td>情报层：全书的收束（传世本次序）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法提示</strong>：这张表本身就是一条证据链，但<strong>它有一个必须点破的问题</strong>——<strong>传世本的「逻辑井然」，可能是后人编次的结果</strong>。银雀山汉简本的篇题木牍显示，<strong>以《火攻》为末篇、以《用间》为倒数第二篇</strong>，与传世本恰好对调（李零〈《孙子》篇题木牍初论〉，《文史》第十七辑，1983）<span class="tag t-rep">转述</span>。也就是说：<strong>这条「从决策到情报」的链，读起来顺，但它未必是孙武原来排的</strong>（见 5.2）。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>六个核心论点</span><span class="caret">▾</span></h2>
+  <p>★ 本书是<strong>格言体、韵语体</strong>，不是「论点＋论据」的论著，所以这里说的「论点」是<strong>这本书在做什么、靠什么做的</strong>。</p>
+  <h3>论点一：这是一本「庙算」之书——先算胜负，再决定打不打</h3>
+  <p><strong>主张</strong>：全书的入口不是战术，是<strong>决策</strong>。《计篇》把出兵前的优劣比较叫作「庙算」：比较敌我「五事」（道、天、地、将、法）与「七计」（主孰有道、将孰有能、天地孰得、法令孰行、兵众孰强、士卒孰练、赏罚孰明），算下来「多算胜，少算不胜，而况于无算乎」<span class="tag t-src">原书</span>（《计篇》末段）。</p>
+  <p><strong>依据</strong>：曹操注：「計者，選將、量敵、度地、料卒、遠近、險易，計於廟堂也。」张预注：「古者興師命將，必致齋於廟，授以成算，然後遣之，故謂之『廟算』。」<span class="tag t-src">原书</span>（十一家注本《计篇》篇题下）</p>
+  <p><strong>为什么重要</strong>：这条决定了全书的性质——<strong>它不是教你怎么打，是先教你要不要打</strong>。「先算后打」这个顺序一旦被忽略，《孙子兵法》就会被读成一本纯粹的「取胜技巧集」，那正是第 4b 节要拆的误读。</p>
+  <h3>论点二：战争是消耗战，所以「兵闻拙速，未睹巧之久」</h3>
+  <p><strong>主张</strong>：《作战篇》算了一笔账——「馳車千駟，革車千乘，帶甲十萬，千里饋糧……日費千金」，然后给出全书最冷的一句：「故兵聞拙速，未睹巧之久也。夫兵久而國利者，未之有也。」<span class="tag t-src">原书</span>（《作战篇》）<strong>宁可打得笨拙而快，不要打得巧妙而久</strong>。</p>
+  <p><strong>依据</strong>：紧接着的「國之貧於師者遠輸，遠輸則百姓貧……百姓之費，十去其七；公家之費……十去其六」<span class="tag t-src">原书</span>（《作战篇》），是全书少见的财政明细；解法是「取用於國，因糧於敵」与「勝敵而益強」。</p>
+  <p><strong>为什么重要</strong>：把「速」理解成「奇袭快攻」是误读。<strong>孙子的「速」是对「消耗」的恐惧，不是对「精彩」的追求</strong>——这一段是全书经济理性最强的地方。</p>
+  <h3>论点三：「不战而屈人之兵」是理想，但全书主干是「战胜策」</h3>
+  <p><strong>主张</strong>：《谋攻篇》说「是故百戰百勝，非善之善者也；不戰而屈人之兵，善之善者也」<span class="tag t-src">原书</span>——<strong>注意：这句话把「百战百胜」明确贬为「非善之善」</strong>，而不是把它当最高境界。</p>
+  <p><strong>依据</strong>：全篇的层层递进是「全國為上，破國次之」→「上兵伐謀，其次伐交，其次伐兵，其下攻城」→「必以全爭於天下，故兵不頓而利可全」<span class="tag t-src">原书</span>（《谋攻篇》）。</p>
+  <p><strong>为什么重要</strong>：★ <strong>这是本书最被高估的一句</strong>。黄朴民指出：《孙子兵法》十三篇中<strong>讲「全胜策」的只有《谋攻》一篇，其余各篇均以「战胜策」为主</strong>；后人推崇《孙子兵法》的基点，其实是它行之有效的「战胜策」<span class="tag t-src">原书</span>（黄朴民〈走出《孙子兵法》的阅读误区〉，《光明日报》2023-02-18；另见其《孙子兵法十八讲》，浙江文艺出版社 2023）。<strong>把「不战而屈人之兵」当全书主旨，是把六分之一篇当成了全部。</strong></p>
+  <h3>论点四：胜在「先胜」——先造不可胜之势，再等可胜之机</h3>
+  <p><strong>主张</strong>：《形篇》说「昔之善戰者，先爲不可勝，以待敵之可勝」，「不可勝在己，可勝在敵」，所以「勝兵先勝而後求戰，敗兵先戰而後求勝」<span class="tag t-src">原书</span>（《形篇》）。<strong>胜利是战前造出来的，不是战场上碰出来的。</strong></p>
+  <p><strong>依据</strong>：《形篇》给出的量化框架是「度→量→數→稱→勝」，用「以鎰稱銖」比优劣悬殊；《虚实篇》把它推进为「致人而不致於人」的主动权；《势篇》讲实力如何转成「势」。</p>
+  <p><strong>为什么重要</strong>：★ 这条是《孙子兵法》与「三十六计」式思维的分水岭——<strong>孙子讲的是实力与准备，不是临场取巧</strong>。见 4b 第 5 条。</p>
+  <h3>论点五：全书一半在讲「地」与「间」——环境与情报</h3>
+  <p><strong>主张</strong>：十三篇里有<strong>三篇专讲地形／态势</strong>（《行军》《地形》《九地》），一篇专讲<strong>情报</strong>（《用间》）。《九地》列出散、轻、争、交、衢、重、圮、围、死九种战场态势并给对策；《用间》给出因间、内间、反间、死间、生间五种间谍，并断言「先知者，不可取於鬼神……必取於人」<span class="tag t-src">原书</span>。</p>
+  <p><strong>依据</strong>：《行军篇》的「相敌三十二法」（「衆樹動者，來也……鳥集者，虛也；夜呼者，恐也」）是全书最细的观察清单；《用间》说「三軍之事，莫親於間，賞莫厚於間，事莫密於間」<span class="tag t-src">原书</span>。</p>
+  <p><strong>为什么重要</strong>：<strong>「知彼知己」不是一句口号，它对应的是全书近三分之一的篇幅</strong>。凡是把《孙子兵法》读成「心灵鸡汤＋奇谋妙计」的，都漏掉了这两块最实的部分。</p>
+  <h3>论点六：全书的收尾是「慎战」，不是「善战」</h3>
+  <p><strong>主张</strong>：《火攻篇》末尾说「主不可以怒而興師，將不可以愠而致戰」「亡國不可以復存，死者不可以復生」「故明君慎之，良將警之，此安國全軍之道也」<span class="tag t-src">原书</span>（《火攻》末段）。<strong>这已不是火攻的技术，而是全书的价值观收束。</strong></p>
+  <p><strong>依据</strong>：苏芃据银雀山汉简篇题木牍（以《火攻》为末篇）主张：<strong>这段文字本来是全书的结语</strong>，传世本把《用间》挪到末篇后，它就被「湮没」在了《火攻》里（苏芃〈《孙子兵法·火攻》「不修其功」「良将修之」解诂〉，《文史》2022 年第 2 期）<span class="tag t-rep">转述</span>。</p>
+  <p><strong>为什么重要</strong>：<strong>这一条把开篇「兵者，国之大事，死生之地，存亡之道，不可不察也」和篇末「安国全军之道」接成了一个闭环</strong>。它也是 5.2 那条文本发现的核心——<strong>读《孙子兵法》读到《火攻》最后一句话就停下，可能比读完《用间》更接近古本的原意</strong>。</p>
+  <h3>论点七：全书给「将」的位置极高，也给他压了最重的责任</h3>
+  <p><strong>主张</strong>：在十三篇里，「将」是唯一被单独反复评说的角色。《计篇》把「将」列入五事之一（「將者，智、信、仁、勇、嚴也」）；《谋攻篇》说「夫將者，<strong>國之輔也</strong>，輔周則國必強，輔隙則國必弱」；《作战篇》更直接说「故知兵之將，<strong>生民之司命，國家安危之主也</strong>」<span class="tag t-src">原书</span>。<strong>把将帅抬到「民之司命」的高度，是先秦文献里少见的。</strong></p>
+  <p><strong>依据</strong>：与这份抬举配套的，是一整套「将权」主张——《九变篇》「<strong>君命有所不受</strong>」；《地形篇》「故戰道必勝，主曰無戰，必戰可也；戰道不勝，主曰必戰，無戰可也」「<strong>進不求名，退不避罪，唯人是保</strong>」；《谋攻篇》「将能而君不御者胜」（列在「知胜有五」之中）<span class="tag t-src">原书</span>。另一方面，全书也给出「<strong>將有五危</strong>」（必死可杀、必生可虏、忿速可侮、廉洁可辱、爱民可烦）与《地形篇》的「六败」——<strong>把失败一律归到将身上</strong>。</p>
+  <p><strong>为什么重要</strong>：★ <strong>这是全书最政治性的一条</strong>。它要求<strong>军权在战场上独立于君主</strong>——「阃外之事，将军制之」。放在世袭君主制里，这是一个显著的表态；<strong>它也解释了为什么《孙子兵法》历代既是武学经典、又常被君主警惕</strong>。同时，这条与论点六（慎战）构成全书对将帅的双重要求：<strong>既要敢独断，又要能克制</strong>。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <ol>
+    <li><strong>先读四篇「承重墙」：《计》→《谋攻》→《形》→《虚实》</strong>。这四篇给出全书的决策框架（庙算）、目标（全胜）、基础（先胜）与手法（避实击虚）。读完这四篇，你已经读懂了《孙子兵法》八成的思想。
+    </li>
+    <li><strong>再补《作战》与《军争》</strong>。《作战》讲代价，《军争》讲先机——这两篇是全书的「现实主义」部分。
+    </li>
+    <li><strong>《行军》《地形》《九地》三篇可当「工具箱」按需翻</strong>。它们最技术、最多清单（相敌三十二法、六地六败、九地九策），也最容易劝退；<strong>除非你要研究军事史，挑你感兴趣的一段读即可</strong>。
+    </li>
+    <li><strong>《九变》与《火攻》《用间》必读，但读法要特别</strong>：读《九变》看「君命有所不受」与「将之五危」；读《火攻》<strong>一定要读到最后一段</strong>（那是可能的全书结语）；读《用间》看孙子对情报的极端重视。
+    </li>
+    <li><strong>怎么读极短古文</strong>：① <strong>不要用页码，用篇名＋句</strong>——不同版本页码完全不同，篇名和句是通用的。② <strong>出声读</strong>，哪怕是默念节奏；本书大量排比与韵语（「其疾如風，其徐如林，侵掠如火，不動如山」）在眼里读不出味道。③ <strong>第一次不要查注</strong>，先把经文走完一遍；第二遍再带着第 5 节的问题读。④ <strong>遇到看不懂的，先看曹操注</strong>——曹注最短，但往往一句到位。
+    </li>
+    <li>★ <strong>配一份「敌情简报」再读</strong>：读之前先知道学界在争什么（孙武有没有其人、十三篇是不是原貌、火攻末段是不是结语），第 5 节就是这份简报。<strong>带着它读，你会读出一个更清醒的孙子。</strong>
+    </li>
+  </ol>
+  <h3>如果你是「已读」</h3>
+  <ol>
+    <li><strong>回头核对一件事</strong>：你记住的「知己知彼，百战不殆」，原文到底怎么写？《谋攻篇》作「<strong>知彼知己</strong>者，百戰不殆」——<strong>是「知彼」在前</strong>，而且「殆」是「危险、困乏」，不是「胜利」（见 4b 第 2 条）。这一处能看出你读的是原文还是转述。
+    </li>
+    <li><strong>重读《形篇》「守則不足，攻則有餘」这一句，然后去看银雀山简本怎么写</strong>。简本作「<strong>守則有餘，攻則不足</strong>」，意思完全反过来；汉代文献引《孙子》也多用后者（见 5.3）。<strong>这一句是「传世本未必是原貌」的最直观证据。</strong>
+    </li>
+    <li><strong>重读《火攻》最后一段，并把它和《计篇》第一句对读</strong>。同一双手，开篇说「不可不察」，篇末说「慎之警之」。<strong>这段之间发生了什么，是文本学上最值得追问的事。</strong>
+    </li>
+    <li><strong>做一次「三系统对读」</strong>：找同一段（建议用《计篇》「校之以計」或《势篇》「如轉圓石於千仞之山」），在<strong>十一家注本、武经本、银雀山简本</strong>三处看它的样子。你会立刻明白「版本」不是学术摆设（5.2、5.3）。
+    </li>
+    <li><strong>对照一份现代注本</strong>（杨丙安《十一家注孙子校理》或黄朴民《孙子兵法译注》），注意两者<strong>对同一句的理解分歧</strong>——那正是读古典最值钱的地方。
+    </li>
+  </ol>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>版本与注本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本报告必需的，因为《孙子兵法》的「版本状况」比多数古籍复杂：它有三个各自独立的版本系统，而且网上卖的书绝大多数不告诉你是哪一个。</strong></p>
+  <p><strong>先说最要紧的三条</strong>：</p>
+  <blockquote>
+    <p><strong>⚠ ①《孙子兵法》有三大版本系统，不是「一个固定文本」。</strong> 分别是<strong>竹简本</strong>（1972 年银雀山出土的西汉早期抄本）、<strong>武经本</strong>（宋代《武经七书》白文）、<strong>十一家注本</strong>（宋代吉天保辑的集注本）。<strong>三者互有异文，且各有优劣</strong>（见下）。</p>
+    <p><strong>⚠ ② 今天通行、也是学界通用的底本，是「十一家注本」。</strong> 你要买注释本，<strong>认「十一家注」这三个字</strong>——它不是「第十一个版本的注」，而是<strong>汇集十一家注的集注本</strong>。</p>
+    <p><strong>⚠ ③ 不要把《孙子兵法》和《三十六计》买在一起还当成一本书。</strong> 市面上大量「孙子兵法与三十六计」合刊本，把两本相距约两千年的书并排印；<strong>它们是两部书</strong>（见 4b 第 1 条、5.6）。</p>
+  </blockquote>
+  <p><strong>三大版本系统对比</strong>：</p>
+  <table>
+    <thead><tr><th></th><th>竹简本</th><th>武经本</th><th>十一家注本（★ 推荐底本）</th></tr></thead>
+    <tbody>
+      <tr><td>年代／发现</td><td>1972 年 4 月山东临沂银雀山一号汉墓出土，西汉早期抄本</td><td>宋神宗元丰六年（1083）颁行《武经七书》中的《孙子》</td><td>南宋绍兴年间初刻，现存诸宋本当刊于乾道年间</td></tr>
+      <tr><td>形态</td><td>残简，一号墓出《孙子兵法》233 枚（可缀合编号），另有篇题木牍</td><td>白文无注（南宋孝宗刊本删去魏武帝注）；元丰初刊本原带魏武注</td><td>经文＋十一家注文并列，分上中下三卷</td></tr>
+      <tr><td>优点</td><td><strong>现存最早实物</strong>；可用于校勘传世本，纠正多处讹误（见 5.3）</td><td>白文干净，是宋代「国家钦定武学经典」的形态，适合只看经文</td><td><strong>注文最全</strong>（曹操、孟氏、李筌、贾林、杜佑、杜牧、陈皞、梅尧臣、王皙、何氏、张预），并可看历代读法</td></tr>
+      <tr><td>缺点</td><td><strong>残缺不全</strong>，仅存约三分之一内容与少量佚文，<strong>篇序与传世本不同</strong></td><td>无注，读不懂的地方无从参照</td><td>注文繁复，初读易被注释带着走；宋本有编排上的时代错乱</td></tr>
+      <tr><td>用途</td><td>版本校勘、早期文本研究</td><td>对照异文</td><td>★ <strong>日常阅读与引用的通用底本</strong></td></tr>
+    </tbody>
+  </table>
+  <p><strong>★ 为什么「杨丙安校理本」是当前首选</strong>：</p>
+  <ol>
+    <li><strong>底本可靠</strong>：它以<strong>宋刊《十一家注孙子》</strong>为底本——这是十一家注系统现存最好的版本，也是学界公认版本价值最高的一支。
+    </li>
+    <li><strong>校勘工作最完整</strong>：杨丙安除保持经文、注文原貌外，<strong>对脱讹疏误之处作了 700 多条校记，分别附在各篇之后</strong>；序中还对成书与流传作了详细考证（据中华书局／国家出版发行信息公共服务平台书目著录）<span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>附录就是一份文献地图</strong>：书后收《孙子本传》《注孙子序》《孙子后序》《十家注孙子遗说并序》《孙子集注序》《孙子兵法序》《孙子叙录》等——<strong>读注家史，附录比正文更有用</strong>。
+    </li>
+    <li><strong>它已是学术界的通用参照本</strong>：国防大学陈曦译注「三全本」《孙子兵法》即以杨丙安校理本为底本；关万维〈《孙子兵法》成书时间新证〉亦参考此本<span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>它是繁体的，这不是障碍而是优点</strong>：本书经文有大量异体与通假（「圮地」的「圮」、「𦮼秆」的「𦮼」），<strong>简体转写本身就会丢信息</strong>。
+    </li>
+  </ol>
+  <p><strong>★ 版本参考信息（据中华书局书目与南京师范大学等编目）</strong>：《十一家注孙子校理》，杨丙安 校理，中华书局「新编诸子集成·兵家」，<strong>2012-07 第 2 版，443 页，ISBN 9787101087635，定价 46.00 元</strong>；另有 2016-04 精装典藏本（485 页，ISBN 9787101116755）、2018-04 本（ISBN 978-7-101-13112-3）、2021-11 本（ISBN 9787101016154，404 页）等。初版于 1999 年。<strong>该书曾入选「首届向全国推荐优秀古籍整理图书活动」推荐书目</strong>。</p>
+  <p><strong>★ 另外三条实用的版本知识</strong>：</p>
+  <ol>
+    <li><strong>清代的校本</strong>：<strong>孙星衍</strong>以明万历《道藏·孙子》为底本，参校《北堂书钞》《通典》《太平御览》等，校订成《孙子十家注》，<strong>订正了宋本编排的时代错乱，影响很大</strong>——在宋本重新被发现之前，它长期是通行本（据黄朴民〈《孙子》的著录、流传及版本〉）<span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>两个必须提醒的坑</strong>：① <strong>不要只看「孙子兵法」四个字买书</strong>——「全解」「活学活用」「商战版」多数不是校理本，注解来源不明。② <strong>不要相信网上「某人删定十三篇」「某版本有第 X 篇」的说法</strong>——原书<strong>只有十三篇</strong>；任何提到「第十四篇」的正文内容，都值得怀疑（见附录 D）。
+    </li>
+    <li><strong>要不要白话本，怎么挑</strong>：<strong>要</strong>——<strong>没有白话本，绝大多数读者进不去古汉语这一关</strong>。但请按下面的顺序用：
+    <ul>
+      <li><strong>第一本：找个白话译注本通读一遍</strong>，目的是把十三篇的骨架走完。选本时只需确认两件事：<strong>它标不标明底本</strong>（好的译注会写「据《十一家注孙子》」或「据宋本」）、<strong>它有没有篇题解题</strong>。
+      </li>
+      <li><strong>第二本：再去对杨丙安校理本原文</strong>。这一步才是真正读书——<strong>把白话本当拐杖，把校理本当正文</strong>。
+      </li>
+      <li><strong>一个可用的对照</strong>：<strong>黄朴民《孙子兵法译注》</strong>（浙江文艺出版社，2023）有每篇的题解与札记，「题解提纲挈领，札记阐述作者独到心得，并针对篇目中的一些疑难点、争议处条分缕析」<span class="tag t-rep">转述</span>（出版方介绍），适合作为「白话＋争议」的合体入门；<strong>陈曦译注的「三全本」《孙子兵法》则以杨丙安校理本为底本</strong>，底本意识更明确。
+      </li>
+      <li>★ <strong>一条判断原则</strong>：<strong>凡是一上来就讲「商战」「职场」「人生」的，先放回去</strong>——它对你理解原文几乎没有帮助，而且往往会替你把「孙子说」偷换成「后人说」（见 4b 与 5.4）。
+      </li>
+    </ul>
+    </li>
+  </ol>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节的判据是：你有没有真的回到原文。</strong> 下表 8 条，每条给出<strong>篇名＋句的定位</strong>，均据十一家注本经文逐字核对。</p>
+  <table>
+    <thead><tr><th>流行说法</th><th>原文／事实（带定位）</th></tr></thead>
+    <tbody>
+      <tr><td><strong>「《孙子兵法》就是三十六计」</strong></td><td><strong>错，是两本书。</strong>《孙子兵法》全书只有十三篇（计→用间），<strong>通篇无「三十六计」一语</strong> <span class="tag t-src">原书</span>（十三篇篇目）。「三十六计，走为上」最早见于《南齐书·王敬则传》（南朝），<strong>且「三十六」原是虚数，言其多</strong>；《三十六计》一书成书一般认为在<strong>明末清初</strong>，历代公私书目（《汉书·艺文志》《隋书·经籍志》《四库全书总目提要》等）<strong>均未著录</strong>，直到 1941 年才在陕西邠县以抄本面目出现（见 5.6）<span class="tag t-rep">转述</span></td></tr>
+      <tr><td><strong>「知己知彼，百战百胜／百战不殆」</strong></td><td><strong>两处都错。</strong>《谋攻篇》原文是「故曰：<strong>知彼知己</strong>者，百戰不殆；不知彼而知己，一勝一負；不知彼，不知己，每戰必殆」——<strong>（a）是「知彼」在前，不是「知己」在前</strong>；<strong>（b）「殆」义为「危险、困弊」，不是「胜」</strong>；「百战不殆」＝「百战都不会陷入危险」，<strong>不是「百战百胜」</strong> <span class="tag t-src">原书</span>（《谋攻篇》末段）。有意思的是，同篇前面刚说过「百戰百勝，非善之善者也」——<strong>孙子并不把「百战百胜」当最高目标</strong></td></tr>
+      <tr><td><strong>「百战百胜是兵家最高境界」</strong></td><td><strong>原文明确贬低它。</strong>《谋攻篇》：「是故<strong>百戰百勝，非善之善者也；不戰而屈人之兵，善之善者也</strong>。」<span class="tag t-src">原书</span> 黄朴民也指出：「只說『百戰不殆』，不講『百戰百勝』」，且十三篇中讲「全胜」的仅《谋攻》一篇 <span class="tag t-src">原书</span>（黄朴民，2023）</td></tr>
+      <tr><td><strong>「曹操把八十二篇删定成了十三篇」</strong></td><td><strong>需分开说。</strong>（a）《史记·孙子吴起列传》记阖闾语「<strong>子之十三篇，吾尽观之矣</strong>」，<strong>比曹操早约三百年</strong>，可见十三篇在曹操之前已是定本；《汉书·艺文志》另著录「《吴孙子》八十二篇，图九卷」。（b）唐<strong>杜牧《注孙子序》</strong>主张孙武书原有数十万言、「<strong>皆曹操削其繁剩，笔其精粹，以成此书</strong>」——<strong>这是「曹操删定」说的源头</strong>。<strong>十一家注本卷首按语直接驳斥</strong>：「然《史記》稱十三篇，在《漢志》之前，不得以後來附益者爲本書，<strong>牧之言固未可以爲據也</strong>」<span class="tag t-src">原书</span>（Wikisource《十一家註孫子》卷首题识）。⇒ 今天较稳妥的说法是：<strong>曹操是就「十三篇」作注（《孙子略解》），而非把八十二篇删成十三篇</strong>；银雀山简本出土后，更否定了「删削八十二篇为十三篇」的传言 <span class="tag t-rep">转述</span></td></tr>
+      <tr><td><strong>「孙子主张以巧取胜」</strong></td><td><strong>只有一半对。</strong>全书主干是实力与准备：《形篇》「<strong>先爲不可勝，以待敵之可勝</strong>」「勝兵先勝而後求戰」，并用「以鎰稱銖」讲优劣悬殊；《计篇》要你先算「五事七计」。<strong>「奇」「诡」只占很小篇幅</strong>（《计篇》一段「兵者，詭道也」，《势篇》讲「以正合，以奇勝」）。黄朴民：「<strong>诡诈只是《孙子兵法》的一部分，绝不等于《孙子兵法》的全部</strong>」<span class="tag t-src">原书</span>（黄朴民，2023）</td></tr>
+      <tr><td><strong>「《孙子兵法》是商战／管理圣经」</strong></td><td><strong>这是现代商业社会的再造。</strong>孙子的语境是<strong>春秋车战与诸侯争霸</strong>，其对手是「敌」：原文「<strong>兵者，詭道也</strong>」（《计篇》）、「<strong>兵以詐立</strong>」（《军争篇》），都是<strong>战场上对敌</strong>的手段。黄朴民：「<strong>兵以诈立，但商不可诈立</strong>」——现代商业竞争是<strong>非对抗性矛盾</strong>，要讲诚信、讲双赢，<strong>不能不加区别地把「诡诈之道」搬进企业管理和商业运作</strong> <span class="tag t-src">原书</span>（黄朴民〈走出《孙子兵法》的阅读误区〉，《光明日报》2023-02-18）</td></tr>
+      <tr><td><strong>「孙子是和平主义者，主张不战」</strong></td><td><strong>望文生义。</strong>《谋攻篇》的「不戰而屈人之兵」是<strong>以最小代价达成屈服</strong>，不是放弃战争；同篇接着讲「十則圍之，五則攻之」「以虞待不虞者勝」，全书更有《火攻》《用间》等纯战斗与情报篇。黄朴民把「将『不战而屈人之兵』理解为『和平主义』」直接归入<strong>「歪曲原意，郢书燕说」</strong> <span class="tag t-src">原书</span>（黄朴民，2023）。★ 孙子诚然「慎战」（《火攻》末段），但「慎战」≠「非战」</td></tr>
+      <tr><td><strong>「《孙子兵法》6075 字」（或「六千字」为定论）</strong></td><td><strong>字数没有唯一标准答案，看底本。</strong>本报告据<strong>十一家注本经文</strong>（Wikisource《十一家註孫子》十三篇）统计得 <strong>6110 个汉字</strong>；东汉高诱注《吕氏春秋》称「（孙武）《兵法》<strong>五千言</strong>」；网传「6075 字」是又一统计口径。<strong>不同底本、不同统计方式（含不含标点、算不算异体字）结果都不同</strong> <span class="tag t-src">原书</span>（本报告统计）／<span class="tag t-rep">转述</span>（高诱说）。⇒ <strong>「约六千字」是合理表述，「6075 字」不能当定论</strong></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本报告最该细读的一节。</strong>《孙子兵法》被赞美了两千五百年，<strong>而赞美是最廉价的信息</strong>。下面六条按「问题的硬度」排序，最后回答「今天读还成立吗」。<strong>每条批评都给出姓名＋文章／书名＋刊物／出版社＋年份。</strong></p>
+  <h3>5.1 ★★ 作者与成书年代之争（这是所有争议的母题）</h3>
+  <p><strong>怀疑孙武其人者与出处</strong>：</p>
+  <ul>
+    <li><strong>叶适</strong>（南宋），《习学记言序目》卷四十六：<strong>「凡謂穰苴、孫武者，皆辯士妄相標指，非事實。」</strong>他注意到《左传》详载吴破楚入郢、伍子胥与太宰嚭一一叙及，<strong>独不及身为大将的孙武</strong>；又论「將能而君不御」是战国才有的事，因而断定《孙子兵法》乃「<strong>春秋末戰國初山林處士所爲</strong>」<span class="tag t-src">原书</span>（《习学记言》卷四十六，四库全书本）。
+    </li>
+    <li><strong>陈振孙</strong>（南宋），《直斋书录解题》卷十二：<strong>「孫武事吳闔廬而不見於《左氏傳》，未知其果何時人也？」</strong>
+    </li>
+    <li><strong>全祖望</strong>（清），《鲒埼亭集》卷二十一：推叶适之说，谓「<strong>水心疑吳原未嘗有此人，而其事其書皆縱橫家所僞爲者</strong>」。
+    </li>
+    <li><strong>姚际恒</strong>（清），《古今伪书考》：孙武「其有耶？其無耶……<strong>皆不可得而知也</strong>」。
+    </li>
+    <li><strong>钱穆</strong>（现代），《先秦诸子系年·孙武辨》：<strong>「其人与书，盖皆出后人伪托。」</strong>
+    </li>
+    <li><strong>齐思和</strong>（现代），〈孙子兵法著作时代考〉（载《中国史探研》，中华书局）：<strong>「孫武實未必有其人，十三篇乃戰國之書。」</strong>
+    </li>
+    <li><strong>牟庭</strong>（清），《雪泥书屋杂志》卷二：主张「<strong>古有伍子胥，無孫武</strong>」，孙武即伍子胥。★ 其说「过于离谱，很少人信从」（黄朴民语）。
+    </li>
+  </ul>
+  <p><strong>疑其人而存其书者</strong>：<strong>梅尧臣</strong>（北宋，《孙子注》，见欧阳修〈孙子注后序〉）称此书乃「<strong>戰國相傾之說也</strong>」；<strong>姚鼐</strong>（清），《惜抱轩文集》卷五〈读孙子〉：「吳容有孫武者，而十三篇非自所著」；<strong>梁启超</strong>，《汉书·艺文志·诸子略考释》：「<strong>此書未必孫武所著。當是戰國人依托。</strong>」</p>
+  <p><strong>★★ 银雀山汉简的证据意义（这条最重要）</strong>：1972 年 4 月，山东临沂银雀山一号、二号汉墓出土竹简近五千枚（一号墓 4942 枚），<strong>《孙子兵法》与失传近两千年的《孙膑兵法》同墓出土</strong> <span class="tag t-rep">转述</span>（山东博物馆「银雀山汉简文化展」说明，2025；《国家人文历史》2013 年第 1 期）。其中 <strong>0233 号简「吴王问孙子曰……」（《吴问》）、0108 号简「齐威王问用兵孙子曰……」（《见吴王》一系）</strong>，<strong>证实孙武仕吴、孙膑仕齐各有其人各有兵法</strong>，与《史记》《汉书》记载吻合 <span class="tag t-src">原书</span>（光明日报〈银雀山《孙子兵法》佚文学术价值略说〉，2015-12-16）。⇒ <strong>「孙武、孙膑是否一人」「《孙子兵法》《孙膑兵法》是否一书」这两个旧疑，基本被解决</strong>。</p>
+  <p><strong>★ 但成书年代仍未决。</strong> 李零指出：简本证明「孙武与孙膑为两人」<strong>只能证实《史记》所记汉代的看法，不能作为推翻「成书于战国」的依据</strong>；他主张《孙子兵法》「大约是从春秋末期的吴国开始，到战国中期的齐国最终完成」<span class="tag t-rep">转述</span>（李零说，转引自光明日报〈《孙子兵法》的作者到底是谁〉，2023-04-26）。<strong>杨丙安</strong>则认为《孙子兵法》「<strong>奠基于春秋，完成于战国，定型于秦汉</strong>」<span class="tag t-rep">转述</span>。⇒ <strong>今天较有共识的表述是：书与孙武学派有关，但成书是分层累积的过程，不是一个时间点、一个人。</strong></p>
+  <h3>5.2 ★★「十三篇」是不是原始形态（篇序与《火攻》结语问题）</h3>
+  <p><strong>这是全书最值钱的文本发现，务必读。</strong></p>
+  <p><strong>（a）竹简本篇序与传世本不同。</strong> 银雀山出土的<strong>篇题木牍</strong>（写有十三篇篇题，虽有残损）显示：<strong>《用间》居倒数第二，《火攻》居最末</strong>——与传世本（以《用间》殿后）<strong>恰好对调</strong> <span class="tag t-rep">转述</span>（李零〈《孙子》篇题木牍初论〉，《文史》第十七辑，1983；苏芃，《文史》2022 年第 2 期；黄朴民〈《孙子兵法》的篇序以及内在逻辑〉）。李零并释木牍末「<strong>七埶三千</strong>」四字为<strong>后七篇的总称与总字数</strong>（「埶」即「势」之古字，「三千」为后七篇字数）<span class="tag t-rep">转述</span>（同上）。据<strong>王正向《孙子十三篇竹简本校理》</strong>（军事科学出版社，2009）统计，传世本与简本「十三篇」中<strong>只有《计》《形》《军争》《地形》《九地》五篇篇次一致</strong>，其余八篇次序不同 <span class="tag t-rep">转述</span>。</p>
+  <p><strong>（b）《火攻》末段很可能是全书结语。</strong> 苏芃主张：传世本以《用间》为末篇是后世编次的产物；<strong>在西汉前期的传本中，《火攻》才是末篇</strong>。据此，《火攻》篇末「夫戰勝攻取，而不修其功者凶……故明君慎之，良將警之，<strong>此安國全軍之道也</strong>」这一段「慎战」文字，<strong>不只是《火攻》的末章，更是全书的结语</strong>——它与开篇「兵者，国之大事……不可不察也」<strong>一首一尾，遥相呼应</strong>；只因后世篇次调整，这段结语才「湮没在了《火攻》篇里，遂成千古疑案」<span class="tag t-src">原书</span>（苏芃〈《孙子兵法·火攻》「不修其功」「良将修之」解诂〉，《文史》2022 年第 2 期；其讲座纪要见华中师范大学历史文献研究所「舜徽讲坛」第六期，2022-05-27）。</p>
+  <p><strong>★ 这两人为什么重要</strong>：它把「十三篇是不是原始形态」从猜测变成了<strong>有出土实物支撑的假说</strong>。黄朴民由此进一步主张：<strong>传世本以「战争规律性」为立足点（重可操作性），简本以「兵凶战危」的战争价值观为出发点（重必然性）</strong>，而<strong>简本的篇序「似乎更接近孙子撰写兵书的本意」</strong> <span class="tag t-src">原书</span>（黄朴民〈银雀山汉墓竹简《孙子兵法》之文献学价值刍议〉，2013）。</p>
+  <h3>5.3 ★ 银雀山简本的释读与异文（简文与传世本差在哪）</h3>
+  <p>简本残缺，仅存约三分之一内容（计约 2300 余字，另有少量佚文），<strong>与宋本有 100 多处不同</strong> <span class="tag t-rep">转述</span>（《国家人文历史》2013 年第 1 期）。这些异文正是研究重点，<strong>举三例（均可在两本中逐字对照）</strong>：</p>
+  <table>
+    <thead><tr><th>篇</th><th>传世本（十一家注／武经本）</th><th>银雀山简本</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>形</td><td><strong>守則不足，攻則有餘</strong></td><td><strong>守則有餘，攻則不足</strong></td><td>★ 意思完全相反。曹操注「吾所以守者，力不足也；所以攻者，力有餘也」正是照传世本解的；而汉代文献征引《孙子》<strong>多用「攻不足，守有余」</strong>——<strong>说明简本文义与汉人引文一致，传世本或是辗转传抄致误</strong> <span class="tag t-src">原书</span>（黄朴民〈银雀山汉墓竹简《孙子兵法》之文献学价值刍议〉，2013；苏芃讲座 2022）</td></tr>
+      <tr><td>行军</td><td><strong>令之以文，齊之以武</strong></td><td><strong>合之以文，齊之以武</strong></td><td>苏芃主张「<strong>令</strong>」当为「<strong>合</strong>」的字形之讹；黄朴民亦称「『合之以文』明显优胜于『令之以文』」 <span class="tag t-src">原书</span>（苏芃，北京语言大学讲座「《孙子兵法》校读研究四题」；黄朴民，2013）</td></tr>
+      <tr><td>作战</td><td><strong>卒善而養之</strong></td><td><strong>卒共而養之</strong></td><td>「善」「共」形近致异。黄朴民指出传世本「<strong>上将军</strong>」的「<strong>军</strong>」字乃<strong>衍文</strong>；竹简本《形篇》「<strong>无奇胜</strong>」之语在传世本中「悄然失踪」，竹简本《计篇》「<strong>顺逆，兵胜也</strong>」亦被删去 <span class="tag t-src">原书</span>（黄朴民，2013）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>怎么看待简本与传世本</strong>：黄朴民给出一个不偏袒的判断——「<strong>汉简本可资参考，但不宜对其过于迷信</strong>」；因为传世本是刘向、任宏诸人<strong>综合勘比众多古抄本、择善而从</strong>后形成的定本，<strong>其质量应该胜过汉简本</strong> <span class="tag t-src">原书</span>（黄朴民访谈，《中国社会科学报》2025-06-19）。⇒ <strong>两边都要看，而不是「出土的必然更好」。</strong></p>
+  <h3>5.4 ★★「兵学经典」与现代误用（语境错置）</h3>
+  <p><strong>这是本书今天最现实、也最被滥用的一条。</strong></p>
+  <p><strong>批评者与出处</strong>：<strong>黄朴民</strong>（中国人民大学国学院教授）三篇连续的文章／演讲：〈走出《孙子兵法》的阅读误区〉，《光明日报》2023-02-18（转载《文摘报》2023-03-01）；〈今天，我们如何「正读」《孙子兵法》〉，人民网云南频道 2023-02-18；与浙江文艺出版社《孙子兵法译注》《孙子兵法十八讲》，2023 <span class="tag t-src">原书</span>。</p>
+  <p><strong>他批什么</strong>：他把误读归为三类——</p>
+  <ol>
+    <li><strong>歪曲原意，郢书燕说</strong>：「脱离孙子论述的语境，简单地比附与迎合现实的需要」；例如<strong>把「不战而屈人之兵」理解为「和平主义」</strong>，就是望文生义。
+    </li>
+    <li><strong>取其一点，不及其余</strong>：「许多人心目中，对《孙子兵法》只有一个印象，即诡道」，<strong>但「诡诈只是《孙子兵法》的一部分，绝不等于全部」</strong>。
+    </li>
+    <li><strong>生搬硬套，乱贴标签</strong>：★ <strong>「兵以诈立」，但「商不可诈立」</strong>。因为<strong>现代商业竞争是「非对抗性矛盾」，要讲诚信、讲利益均沾</strong>；而《孙子兵法》讲的是<strong>对付敌人的手段</strong>，全盘照搬会「道德无底线，造成严重的诚信危机」<span class="tag t-src">原书</span>（黄朴民，2023）。
+    </li>
+  </ol>
+  <p><strong>★ 为什么这条重要</strong>：把《孙子兵法》讲成「商战／管理圣经」，是<strong>现代商业社会的再造</strong>——它把<strong>春秋车战时代、以「敌」为对象的对抗性军事原则</strong>，直接搬到<strong>以合作为前提的非对抗性市场关系</strong>里，<strong>缺一个中介环节</strong>（这个中介是什么、能不能建起来，本身有争议）。<span class="tag t-inf">推断</span></p>
+  <p><strong>★ 一条来自外部的口供</strong>：<strong>熊剑平</strong>〈《孙子兵法》海外接受的特点和启示〉钩沉：因文化差异，一些外国学者批评「<strong>慎战</strong>」思想是「<strong>胆小鬼</strong>」，称书中只有「奸诈狡猾」，还有学者指其「<strong>只是短小、精干的格言警句</strong>」「<strong>没有描绘实施的细节</strong>」<span class="tag t-rep">转述</span>。<strong>这些批评未必公允，但它们指出的「格言体缺论证」是真问题</strong>（见 5.7）。</p>
+  <h3>5.5 ★ 注家史的价值与问题（尤其唐代注家用后世战例的时代错置）</h3>
+  <p><strong>价值</strong>：曹操《孙子略解》是<strong>现存最早的《孙子》注本</strong>，其注「简明切要」，「为日后『武经本』系统、『十家注』系统等所有注本的<strong>祖本</strong>」<span class="tag t-rep">转述</span>（黄朴民〈《孙子》的著录、流传及版本〉）。宋代<strong>张预</strong>之注「集诸家之长，成一家之言」，且「<strong>注意发明《孙子兵法》各篇之间的内在联系，而不仅仅是孤立地只言片语作注</strong>」；<strong>梅尧臣</strong>之注「高度重视探究本义精粹」，用「<strong>以智胜</strong>」「<strong>以威胜</strong>」「<strong>以力胜</strong>」九字说透「上兵伐谋／其次伐交／其次伐兵」的要领 <span class="tag t-src">原书</span>（黄朴民，同上）。</p>
+  <p><strong>问题</strong>：</p>
+  <ol>
+    <li><strong>最早的注反而最简</strong>。曹操注极简（常只数字），<strong>该注的地方常不注</strong>——初读时你会指望它解惑，结果它只是点到为止（原文可验：十一家注本《计篇》「道者，令民與上同意也」下，曹操注仅「謂道之以教令。危者，危疑也」一句）<span class="tag t-src">原书</span>。
+    </li>
+    <li>★ <strong>唐代注家用后世战例解春秋兵法，存在时代错置</strong>。李筌、杜牧、张预等大量征引<strong>远晚于孙武的战例与文献</strong>：如<strong>张预注《计篇》引唐代李靖《军镜》</strong>；<strong>李筌注《计篇》引「秦王姚兴征秃发傉檀」「汉将陈豨反、高祖白登之围」</strong>；<strong>杜牧注《计篇》引「曹公袁绍官渡之战」「韩信渡夏阳」</strong> <span class="tag t-src">原书</span>（十一家注本《计篇》注文）。<strong>这些战例生动、有用，但它们是用一千多年后的战争经验去「验证」春秋兵法</strong>——这叫「时代错置」：<strong>可以说明这条原则的适用面，不能说明孙子当时就是这么想的</strong>。
+    </li>
+    <li><strong>杜佑的注其实来自《通典》</strong>，并非专为《孙子》而作，把它与杜牧、李筌并列在「十一家」里，本身是<strong>汇集体的编排现象</strong>，不是十一个人各自写了一部注 <span class="tag t-inf">推断</span>（据十一家注本编排体例与《通典》收《孙子》文的情况）。
+    </li>
+  </ol>
+  <p>★ <strong>对本报告的影响</strong>：本报告引用注文时，<strong>一律写明「曹操注」「杜牧注」，不笼统说「古注」</strong>；并在需要时标明该注所引战例的<strong>时代晚于孙武</strong>。</p>
+  <h3>5.6 ★ 与《三十六计》的关系（常见混淆的澄清）</h3>
+  <p><strong>《三十六计》不是《孙子兵法》</strong>，两者是<strong>两部不同的书</strong>，相差约两千年。</p>
+  <ul>
+    <li><strong>「三十六计，走为上」的语源</strong>：最早见于《南齐书·王敬则传》（南朝宋齐之际），原是<strong>虚数</strong>（言其多），后来成书才把「三十六」坐实 <span class="tag t-rep">转述</span>（学习强国／湖北日报〈咬文嚼字：《孙子兵法》讲了三十六计？〉）。
+    </li>
+    <li><strong>成书年代</strong>：《三十六计》一书<strong>一般认为成书于明末清初</strong>（另说元明以后）。判据是书中<strong>引用了唐以后的材料</strong>（如杜甫诗句、南宋战例、元曲故事），<strong>且历代官私书目均未著录</strong> <span class="tag t-rep">转述</span>（天津日报 2025-07-07；人民网云南频道 2023-09-01）。
+    </li>
+    <li><strong>它以抄本面目出现得很晚</strong>：<strong>1941 年</strong>在陕西邠县（今彬州）由书摊发现抄本，1941 年成都兴华印刷所翻印；<strong>1961 年</strong>「叔和」在《光明日报》撰文〈关于「三十六计，走为上策」〉<strong>首次公开记述</strong> <span class="tag t-rep">转述</span>（人民网云南频道 2023-09-01；天津日报 2025-07-07）。⇒ <strong>今天市面上的《三十六计》，其文本史不到百年。</strong>
+    </li>
+    <li>★ <strong>有一条相反的说法需要标注</strong>：2009 年中国新闻网等报道，山东学者<strong>谢祥皓、赵承凤</strong>据一件「隋代玉简」主张《三十六计》成书于南北朝、作者为<strong>檀道济</strong> <span class="tag t-rep">转述</span>（中国新闻网，2009-09-07）。<strong>此说未获学界普遍接受</strong>——该玉简的<strong>真伪与释读本身有争议</strong>，且与「书中引及唐宋元材料」这一文本内证相冲突。<strong>本报告不采信其为定论。</strong>
+    </li>
+    <li><strong>两句必须记住的结论</strong>：①《孙子兵法》十三篇<strong>没有哪一篇提到「三十六计」</strong>；②<strong>《三十六计》并非对《孙子兵法》思想的提炼</strong>——它「广集民间三十六个成语作标题，用《易经》加以分析，博采历代战例」，<strong>与《孙子兵法》关系不大</strong>（学习强国语）<span class="tag t-rep">转述</span>。
+    </li>
+  </ul>
+  <h3>5.7 ★ 体裁与可读性：这本书按今天的标准，哪里读不下去</h3>
+  <p><strong>这不是「古文难」一句话能打发的，它有三层具体障碍。</strong></p>
+  <p><strong>（a）语言层的距离。</strong> 本书是两千五百年前的古汉语，且<strong>大量使用当时的口语与军事术语</strong>：「曲制、官道、主用」「分數、形名」「方馬埋輪」「齊勇若一」——<strong>这些词在先秦之后就不再通行，连唐代注家都要逐字解释</strong>。更要命的是<strong>排比与省略极多</strong>：一句「能而示之不能，用而示之不用，近而示之遠，遠而示之近」，<strong>主语、宾语、条件全部省略，全靠读者自己补</strong>。⇒ <strong>这决定了「读古文」这件事在本书上无法绕过</strong>，任何「白话全解」都已经是别人的理解。</p>
+  <p><strong>（b）论证层的缺失。</strong> 外国学者批评本书「<strong>只是短小、精干的格言警句</strong>」「<strong>没有描绘实施的细节</strong>」<span class="tag t-rep">转述</span>（熊剑平〈《孙子兵法》海外接受的特点和启示〉钩沉）。<strong>这条批评抓住了本书的方法特征</strong>：全书几乎<strong>不给论证</strong>——「兵聞拙速，未睹巧之久也」是断言，「先爲不可勝，以待敵之可勝」是断言，「投之亡地然後存」也是断言。<strong>它能被后世不断引用，恰恰因为它足够抽象；它容易被误读，也恰恰因为它足够抽象。</strong> ⇒ <strong>每读一句「孙子说」，都要自己补上「为什么」——而这一步，注家做的和现代读者做的往往不是同一件事。</strong></p>
+  <p><strong>（c）版本层的不确定。</strong> 你读到的每一句，<strong>都可能是某个版本、某个注家的产物</strong>：《形篇》「守則不足，攻則有餘」与简本「守則有餘，攻則不足」相反（5.3）；《谋攻篇》「校之以計」在别本作「校之以七計」（6）；《军争篇》「以佚待勞」在杨丙安校理本所据白文一系作「以怯待勞」（12）。<strong>「孙子到底说了什么」，有一部分问题根本不是理解问题，而是文本问题。</strong> ⇒ <strong>这是古典文本的宿命，也是它比现代书更需要「带着版本意识读」的原因。</strong></p>
+  <p><strong>★ 一句实话</strong>：《孙子兵法》是<strong>世界上篇幅最短、内容最抽象、注解史最长</strong>的兵书之一——<strong>这三件事是同一件事</strong>。它读起来「句句都懂、通篇难通」，不是读者的问题，是文本的性质。</p>
+  <h3>5.8 这本书今天读还成立吗</h3>
+  <p><strong>大体成立的</strong>（且不依赖任何可能被未来研究推翻的实证）：</p>
+  <ul>
+    <li><strong>「先算后打」的决策观</strong>（《计篇》庙算五事七计）——<strong>这套「先评估再行动」的框架，只要决策场景存在，就还有效</strong>。
+    </li>
+    <li><strong>「先为不可胜，以待敌之可胜」</strong>（《形篇》）——<strong>实力与准备优先于取巧</strong>，这一条几乎不受时代影响。
+    </li>
+    <li><strong>「知彼知己」与情报的价值</strong>（《用间》）——<strong>信息不对称仍然是竞争的核心</strong>。
+    </li>
+    <li><strong>「慎战」与代价意识</strong>（《作战》的财政账、《火攻》末段的结语）——<strong>这两处是本书最不容易被误用、也最耐读的部分</strong>。
+    </li>
+  </ul>
+  <p><strong>要打折的</strong>：</p>
+  <ul>
+    <li><strong>具体战术原则的时代性</strong>：《军争》的「百里而争利，则擒三将军」、《行军》的「绝山依谷」、《九地》的「焚舟破釜」，<strong>都绑在春秋车战、步兵与无现代火力的条件下</strong>；把它们当操作手册直接照搬，是 5.4 说的语境错置。
+    </li>
+    <li><strong>「兵者，诡道也」的普适性</strong>：<strong>它是对敌手段，不是一般行为准则</strong>。用在对内管理、对客户、对合作伙伴上，<strong>是把军事伦理误当商业伦理</strong>。
+    </li>
+    <li><strong>「格言体缺论证」这个方法上的弱点</strong>：外国学者批它「只是短小精干的格言警句」「没有描绘实施的细节」<span class="tag t-rep">转述</span>（熊剑平钩沉）。<strong>它的优点是可迁移，缺点是每一步都要读者自己补上「为什么」——这是为什么它容易被误读的真正原因。</strong>
+    </li>
+    <li><strong>文本本身的稳定性</strong>：你读的每一句，<strong>都可能是某个版本、某个注家的产物</strong>（5.2、5.3），<strong>而不是「孙武的原话」</strong>。
+    </li>
+  </ul>
+  <p>★ <strong>一个反直觉的判断</strong>：<strong>这本书最耐读、也最经得起时间考验的部分，恰恰不是那些「妙计」，而是它对战争代价的清醒。</strong>《作战篇》算「日费千金」「百姓之费，十去其七」；《火攻》末段说「亡国不可以复存，死者不可以复生」。<strong>这些句子不需要任何军事知识就能读懂，也不需要任何版本校勘就被承认</strong>——它们比「三十六计」更古老，也比「商战智慧」更现代。</p>
+  <p>★ <strong>结构说明</strong>：本书正文<strong>十三篇</strong>。本部分<strong>逐篇</strong>对应，<strong>编号从 6 起连续到 18</strong>。★ <strong>篇名用十一家注本／竹简本的原名</strong>（计、作战、谋攻、形、势、虚实、军争、九变、行军、地形、九地、火攻、用间），<strong>不用</strong>传世坊刻常见的「始计」「军形」「兵势」——那三个「始」「军」「兵」是后人加的（见 4b）。★ <strong>定位一律用「篇名＋句」</strong>，不用页码；引竹简本时写明「银雀山汉简本」；引注文时写明「曹操注」「杜牧注」等。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>计篇：庙算与诡道</span><span class="caret">▾</span></h2>
+  <h3>这一篇在讲什么</h3>
+  <p><strong>「这一仗该不该打、打之前怎么算清楚」——全书的总纲与决策入口。</strong></p>
+  <p>全篇四层：① 定性——「兵者，國之大事，死生之地，存亡之道，不可不察也」<span class="tag t-src">原书</span>；② <strong>五事</strong>——道、天、地、将、法，逐项定义（「道者，令民與上同意也」「將者，智、信、仁、勇、嚴也」「法者，曲制、官道、主用也」）；③ <strong>七计</strong>——主孰有道、将孰有能、天地孰得、法令孰行、兵众孰强、士卒孰练、赏罚孰明；④ <strong>诡道十二句</strong>——「能而示之不能……攻其無備，出其不意」，最后落到「夫未戰而廟算勝者，得算多也」<span class="tag t-src">原书</span>。</p>
+  <p>★ 这一篇的信息密度是全书最高的：<strong>它在两千多年前就把「决策」拆成了「评估要素清单＋比较打分＋保密与欺骗」三层</strong>。</p>
+  <h3>关键论断与注家分歧</h3>
+  <ul>
+    <li><strong>篇名的两个「计」</strong>。曹操注：「<strong>計者，選將、量敵、度地、料卒、遠近、險易，計於廟堂也</strong>」——「计」是<strong>动词，计算</strong>。李筌注：「計者，兵之上也……故孫子論兵，亦以計爲篇首」；杜牧注：「<strong>計，算也</strong>……於廟堂之上，先以彼我之五事計算優劣，然後定勝負」；张预注引《管子》「計先定於內，而後兵出境」<span class="tag t-src">原书</span>（《计篇》篇题下注）。⇒ <strong>十一家全都把「计」读成「庙堂上的计算」，不是「计谋」。</strong>
+    </li>
+    <li>★ <strong>一处必须点出的异文</strong>：十一家注本作「故經之以五事，<strong>校之以計</strong>，而索其情」；而通行的白文本（如《武经》系统）多作「<strong>校之以七计</strong>」<span class="tag t-src">原书</span>（对照 Wikisource《十一家註孫子·计篇》与《孫子兵法》白文本）。<strong>这一字之差决定了「七计」是原文还是曹操注补出来的</strong>——因为曹操注正说「謂下五事、<strong>七計</strong>，求彼我之情也」。<strong>如果经文原作「校之以計」，那「七计」的「七」就可能来自注家</strong>。
+    </li>
+    <li><strong>「地者」的定义也有异文</strong>：十一家注本作「地者，<strong>遠近、險易、廣狹、死生</strong>也」；白文本多「<strong>高下</strong>」二字，作「高下、遠近、險易、廣狹、死生」<span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>诡道十二句的注</strong>：曹操注「<strong>兵無常形，以詭詐爲道</strong>」；张预注一口气举了四个战例说明诡道——「曳柴揚塵，欒枝之譎也；萬弩齊發，孫臏之奇也；千牛俱奔，田單之權也；囊沙壅水，淮陰之詐也」，并引唐代<strong>李靖《军镜》</strong> <span class="tag t-src">原书</span>（《计篇》「兵者，詭道也」下注）。★ <strong>这里就是 5.5 说的「时代错置」的第一个典型：用唐代兵书与汉代以后的战例，去解春秋兵法。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★ <strong>「将听吾计，用之必胜，留之」这一句，注家几乎一致读成「孙武向吴王自荐」</strong>。陈皞注：「孫武以書干闔閭曰：『聽用吾計策，必能勝敵，我當留之不去……』以此感動闔閭」；张预注：「孫子謂：今將聽吾所陳之計……我乃留此矣……<strong>以此辭激吳王而求用</strong>」<span class="tag t-src">原书</span>。<strong>问题在于：这个读法假定「十三篇是干谒之作」，而这一假定本身是被怀疑派质疑的</strong>（见 5.1）。<strong>若「将」读作「将领（裨将）」，句子意思就变成「将领听我的计则留用」，与自荐无关</strong>——孟氏注正是这样读的（「將，裨將也」）。<strong>这是全篇最大的语法歧义。</strong>
+    </li>
+    <li><strong>「庙算」的「算」是什么？</strong> 李筌注搬出《太一遁甲》「置算之法，因六十算已上爲多算，六十算已下爲少算」，<strong>把「算」讲成了术数式的筹码</strong> <span class="tag t-src">原书</span>。现代读者应警惕：<strong>「多算胜，少算不胜」的「算」，在文本里是「庙堂上的权衡」，不是「算命」。</strong>
+    </li>
+    <li><strong>诡道与「道」的张力。</strong> 同篇先说「道者，令民與上同意也」（这是儒家式的民心论），后说「兵者，詭道也」（这是反儒家的欺诈论）。<strong>两者在《计篇》里并置而未被调和</strong>——曹操注试图切分：「詭者，所以求勝敵；<strong>御衆必以信也</strong>」（王皙注同此意）<span class="tag t-src">原书</span>。<strong>这个「对内讲信、对外讲诈」的二分，是十一家注家共同补上的，不是经文自己说的。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>作战篇：战争的经济学</span><span class="caret">▾</span></h2>
+  <h3>这一篇在讲什么</h3>
+  <p><strong>「打仗要花多少钱、所以必须打快」——全书最现实、也最容易被跳过的一篇。</strong></p>
+  <p>全篇三层：① 算账——「馳車千駟，革車千乘，帶甲十萬，千里饋糧……<strong>日費千金</strong>，然後十萬之師舉矣」；② 推论——「其用戰也勝，久則鈍兵挫銳……<strong>兵聞拙速，未睹巧之久也</strong>」「夫兵久而國利者，未之有也」；③ 解法——「<strong>取用於國，因糧於敵</strong>」「故智將務食於敵，食敵一鍾，當吾二十鍾」，最后是「<strong>兵貴勝，不貴久</strong>」<span class="tag t-src">原书</span>。</p>
+  <p>★ 篇末两句是全书的重量级断语：「故知兵之將，<strong>生民之司命，國家安危之主也</strong>」——<strong>把将帅抬到了「民之司命」的高度，也把责任压在了他身上</strong>。</p>
+  <h3>关键论断与注家分歧</h3>
+  <ul>
+    <li><strong>「其用戰也勝，久則鈍兵挫銳」的断句</strong>：十一家注本这样断（「勝」属上读）；另有版本断作「其用戰也，<strong>勝久</strong>則鈍兵挫銳」（「胜」与「久」连读，意为「即使胜，久也钝兵」）<span class="tag t-src">原书</span>。<strong>两种断句都说得通，但意思略有不同</strong>——前者是「一旦用战并取胜，久拖就钝兵」，后者是「胜利拖延太久也钝兵」。
+    </li>
+    <li><strong>「因粮于敌」的注</strong>：曹操、李筌、杜牧均就此发挥。★ <strong>叶适（南宋）在《习学记言》卷四十六里对这一段给出了全书最尖锐的批评之一</strong>：他举《左传》辕涛涂、城濮之战、邲之战的例子说，「雖春秋用兵劣於前世，然<strong>未有指敵以爲食者</strong>；至於後世剽劫掠奪無所不有，而<strong>此書以爲智將，則赤眉黃巾紛紛起矣</strong>」<span class="tag t-src">原书</span>（《习学记言》卷四十六，四库全书本）。⇒ <strong>叶适的指控是：把「因粮于敌」写成「智将」，等于为后世劫掠提供了经典依据。这是一条真正的道德批评，不是文本问题。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★ <strong>「兵聞拙速，未睹巧之久也」，叶适认为它「未深考」</strong>。他的反驳是：「<strong>巧者能久，拙者不能速</strong>」，并举「武王一戎衣而天下大定」「高宗伐鬼方」「周公诛管蔡之党」「齐桓楚庄图霸」——<strong>这些成功的战争恰恰都很久</strong>；而「諸葛亮雖無功亦能久暴師而不困」<span class="tag t-src">原书</span>（同上）。⇒ <strong>叶适指出的是：孙子把「久」一概当坏事，是把它与「拙」绑定了，而历史上「久」与「巧」并不互斥。</strong>
+    </li>
+    <li><strong>「食敵一鍾，當吾二十鍾」的「二十倍」怎么来的？</strong> 经文只给结论，不给算法；李筌、杜牧等人的注也主要是就「省转运之费」发挥。<strong>这个数字应当理解为「转运损耗的夸张表达」，不是精确比例</strong> <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>「卒善而養之」（传世本）与竹简本「卒共而養之」</strong> 是 5.3 里的异文举例之一。<strong>两种文字都通，但「善」「共」形近，谁是原文难以定</strong> <span class="tag t-src">原书</span>（对照两本）。
+    </li>
+  </ol>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>谋攻篇：全胜与「知彼知己」</span><span class="caret">▾</span></h2>
+  <h3>这一篇在讲什么</h3>
+  <p><strong>「以最小代价让对方屈服」——全书被引用最多、也被误读最多的一篇。</strong></p>
+  <p>全篇六层：① 「<strong>全國爲上，破國次之</strong>……全伍爲上，破伍次之」；② <strong>「是故百戰百勝，非善之善者也；不戰而屈人之兵，善之善者也」</strong>；③ 「<strong>上兵伐謀，其次伐交，其次伐兵，其下攻城</strong>」；④ 「故用兵之法：十則圍之，五則攻之，倍則分之」；⑤ <strong>「知勝有五」</strong>；⑥ 末段「故曰：<strong>知彼知己者，百戰不殆</strong>；不知彼而知己，一勝一負；不知彼，不知己，每戰必殆」<span class="tag t-src">原书</span>。</p>
+  <p>★ <strong>这一篇是全书的「战绩表」与「误读榜」双重冠军</strong>：被引用最多的三句（不战而屈人之兵、上兵伐谋、知彼知己）全在这里，被误传最多的三句也全在这里（见 4b 第 2、3、6 条）。</p>
+  <h3>关键论断与注家分歧</h3>
+  <ul>
+    <li>★★ <strong>「不战而屈人之兵」的注家分歧极大，而且分得很精彩</strong>：
+    <ul>
+      <li><strong>曹操注</strong>：「<strong>未戰而敵自屈服</strong>」——最短、最直。
+      </li>
+      <li><strong>杜牧注</strong>：「<strong>以計勝敵</strong>」。
+      </li>
+      <li><strong>陈皞注</strong>：举<strong>韩信采李左车之计，「馳咫尺之書，不戰而下燕城」</strong>——<strong>这是「靠一封信降一城」的实指</strong>。
+      </li>
+      <li><strong>孟氏注</strong>：「<strong>重廟勝也</strong>」——把全胜说拉回《计篇》的庙算。
+      </li>
+      <li><strong>王皙注</strong>：「<strong>兵貴伐謀，不務戰也</strong>」。
+      </li>
+      <li><strong>何氏注</strong>：举<strong>后汉王霸</strong>「堅卧不出……安坐不動」而敌自退的实例。
+      </li>
+      <li>★ <strong>张预注</strong>：「<strong>明賞罰，信號令，完器械，練士卒</strong>，暴其所長，使敵從風而靡，則爲大善」——<strong>注意：张预把「不战而屈人之兵」解成了「把赏罚、号令、器械、士卒都做扎实」，这是实力论，不是绥靖论</strong> <span class="tag t-src">原书</span>（《谋攻篇》注）。
+  <p>⇒ <strong>十条注里，没有一条把它读成「和平主义」</strong>——这直接支持 5.4 里黄朴民那句「把『不战而屈人之兵』理解为『和平主义』属于望文生义」。</p>
+      </li>
+    </ul>
+    </li>
+    <li>★★ <strong>「知彼知己」一句的注，本身就是「殆≠胜」的最好证据</strong>：
+    <ul>
+      <li><strong>王皙注</strong>：「<strong>殆，危也</strong>。謂校盡彼我之情，知勝而後戰，則<strong>百戰不危</strong>」。
+      </li>
+      <li><strong>张预注</strong>：「……苟能知之，<strong>雖百戰不危也</strong>」。
+      </li>
+      <li><strong>孟氏注</strong>：「審知彼己強弱、利害之勢，<strong>雖百戰實無危殆也</strong>」。
+      </li>
+      <li><strong>李筌注</strong>：「量力而拒敵，<strong>有何危殆乎</strong>？」
+      </li>
+      <li>★ <strong>但杜牧注却写成</strong>：「……校量已定，優劣短長皆先見之，然後兵起，<strong>故有百戰百勝也</strong>」<span class="tag t-src">原书</span>（《谋攻篇》注）。
+  <p>⇒ <strong>十一家注里有四家明说「殆＝危」，而杜牧一个人把它写成了「百战百胜」——注家自己就在这里打了架。</strong> 今天流传的「知己知彼，百战百胜」，源头很可能就是这类注家的松动。</p>
+      </li>
+    </ul>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★ <strong>「全胜」在全书的实际比重</strong>。黄朴民指出：「《孙子兵法》十三篇中提到『全胜策』的也就《谋攻》一篇，其余各篇均以『战胜策』为主」<span class="tag t-src">原书</span>（黄朴民，2023）。<strong>这一篇是全书唯一讲「不战」的篇，把它当全书主旨，是用一篇压了十二篇。</strong>
+    </li>
+    <li><strong>「攻城」的贬斥与全书其他部分的矛盾</strong>。《谋攻》说「其下攻城」，且说攻城「三月而後成……殺士三分之一，而城不拔者，此攻之災也」；但《九地》有「其城可拔，其國可隳」，全书并未放弃攻城。<strong>这不算硬矛盾，但说明「其下攻城」是对优先级的排序，不是绝对禁止</strong> <span class="tag t-inf">推断</span>。
+    </li>
+    <li>★ <strong>一大段「注解式正文」的嫌疑</strong>。黄朴民指：《谋攻篇》「其下攻城」之后的「<strong>攻城之法，爲不得已</strong>……此攻之災也」一大段文字，<strong>很可能是后人解释「为何攻城为下策」的增益内容</strong>，未必是孙子本人的话 <span class="tag t-src">原书</span>（黄朴民〈《孙子》的著录、流传及版本〉）。<strong>这提醒我们：十三篇里也可能混有后世增附的文字。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>形篇：先为不可胜</span><span class="caret">▾</span></h2>
+  <h3>这一篇在讲什么</h3>
+  <p><strong>「胜利是在开战前就造好的」——全书的实力论基石。</strong></p>
+  <p>全篇四层：① 「昔之善戰者，<strong>先爲不可勝，以待敵之可勝</strong>。不可勝在己，可勝在敵」；② 「不可勝者，守也；可勝者，攻也」；③ 「<strong>勝兵先勝而後求戰，敗兵先戰而後求勝</strong>」；④ 「兵法：一曰度，二曰量，三曰數，四曰稱，五曰勝。地生度，度生量，量生數，數生稱，稱生勝」，最后以「<strong>以鎰稱銖</strong>」和「決積水於千仞之谿」作结 <span class="tag t-src">原书</span>。</p>
+  <p>★ 篇名「形」是<strong>态势／格局</strong>之意（不是「形象」），讲的是<strong>未战之前敌我实力与部署所构成的「形」</strong>。</p>
+  <h3>关键论断与注家分歧</h3>
+  <ul>
+    <li>★★ <strong>「守則不足，攻則有餘」——这一句是全篇、也可能是全书最重要的一处异文</strong>。
+    <ul>
+      <li><strong>曹操注</strong>（依传世本）：「<strong>吾所以守者，力不足也；所以攻者，力有餘也。</strong>」李筌、梅尧臣从之 <span class="tag t-src">原书</span>。
+      </li>
+      <li>★ <strong>但张预注提出异议</strong>：「吾所以守者，謂取勝之道有所不足，故且待之；吾所以攻者，謂勝敵之事已有其餘，故出擊之。言非百勝不戰，非萬全不鬬也。<strong>後人謂『不足』爲『弱』，『有餘』爲『強』者，非也。</strong>」<span class="tag t-src">原书</span>（《形篇》注）——<strong>张预明确指出：把「不足／有余」理解成「兵力弱／强」是错的。</strong>
+      </li>
+      <li>★★ <strong>银雀山汉简本作「守則有餘，攻則不足」</strong>，意思与传世本<strong>完全相反</strong>；而汉代文献征引《孙子》<strong>多用「攻不足，守有余」</strong> <span class="tag t-src">原书</span>（黄朴民〈银雀山汉墓竹简《孙子兵法》之文献学价值刍议〉，2013；苏芃讲座，2022）。⇒ <strong>传世本这一句很可能是辗转传抄的讹误</strong>（见 5.3）。
+      </li>
+    </ul>
+    </li>
+    <li><strong>「善守者，藏於九地之下；善攻者，動於九天之上」</strong>：曹操注「因山川、丘陵之固者，藏於九地之下；因天時之變者，動於九天之上」<span class="tag t-src">原书</span>——<strong>把「九地／九天」解成实指的山川与天时</strong>，而非神秘化。
+    </li>
+    <li><strong>「戰勝而天下曰善，非善之善者也」</strong>：这一句与《谋攻》的「百战百胜，非善之善者也」是同一逻辑的两次表述——<strong>孙子对「赢得漂亮」本身不感兴趣，他只关心「赢得稳」。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li><strong>「度、量、数、称、胜」这一串在文本中无解释</strong>。《形篇》直接罗列「地生度，度生量，量生数，数生称，称生胜」，<strong>中间四个环节各自指什么，经文没说，全靠注家补</strong>（杜牧、张预等人的注各有说法）。<strong>这是全书最像「框架图」而不像「话」的一段，读时须自己补桥</strong> <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>「先为不可胜」的消极性</strong>。这一条被现代管理学大量引用，但它的原意<strong>只解决「不被击败」，不解决「击败对方」</strong>——经文自己说「不能使敵之可勝」。<strong>把它说成「孙子教你如何取胜」，是取了一半</strong> <span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>「以鎰稱銖」的比喻里没有「巧」的位置</strong>。全篇的取胜图景是<strong>压倒性的优势（二十两对半两）</strong>，不是均势下的妙算。⇒ <strong>这与「诡道」的叙事张力很大</strong>：<strong>《形篇》要的是「赢得不必赢」，而《计篇》讲的是「骗」——两者在全书里并未被统一。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s11">
+  <h2><span class="num">10</span><span>势篇：奇正与「势」</span><span class="caret">▾</span></h2>
+  <h3>这一篇在讲什么</h3>
+  <p><strong>「实力如何转化为可用的能量」——全书的动力学篇。</strong></p>
+  <p>全篇五层：① 「凡治衆如治寡，<strong>分數</strong>是也；鬬衆如鬬寡，<strong>形名</strong>是也……<strong>奇正</strong>是也；兵之所加，如以碬投卵者，<strong>虛實</strong>是也」；② 「凡戰者，<strong>以正合，以奇勝</strong>」，并以「五聲」「五色」「五味」说明「奇正之變，不可勝窮」；③ 「<strong>激水之疾，至於漂石者，勢也</strong>；鷙鳥之疾，至於毁折者，節也」，故「<strong>勢如彍弩，節如發機</strong>」；④ 「亂生於治，怯生於勇，弱生於彊」；⑤ 收束于「<strong>求之於勢，不責於人</strong>」「如轉圓石於千仞之山者，勢也」<span class="tag t-src">原书</span>。</p>
+  <p>★ 「势」是全书最难译的概念：<strong>它不是「实力」，也不是「气势」，而是「态势所蓄的能量」</strong>——山上的圆石、张满的弩机。</p>
+  <h3>关键论断与注家分歧</h3>
+  <ul>
+    <li><strong>「以正合，以奇勝」</strong>：曹操注「<strong>正者當敵，奇兵從傍擊不備也</strong>」；杜佑注同此；何氏注则举战例说明——<strong>战国廉颇被赵括取代、秦「張二奇兵以刼之」，以及隋代唐高祖备突厥</strong> <span class="tag t-src">原书</span>（《势篇》注）。⇒ <strong>注家一致把「奇」读成「侧翼突袭的别军」，而不是「奇谋」</strong>——<strong>今人读的「出奇制胜」，其实把「奇」从「部队部署」偷换成了「计谋」。</strong>
+    </li>
+    <li><strong>「勢如彍弩，節如發機」</strong>：曹操注「<strong>在度不遠，發則中也</strong>」；李筌注「<strong>勢尚疾，節務速</strong>」；陈皞注「弩之發機，近則易中；戰之遇敵，疾則易捷」<span class="tag t-src">原书</span>。⇒ <strong>「节」被解成「距离的接近」与「时间的短促」</strong>——这是全书最技术性的一组注。
+    </li>
+    <li><strong>「求之於勢，不責於人」</strong>：这一句是<strong>管理学引用率最高的孙子句之一</strong>，但原意是「善于指挥的人依靠态势，不苛求个别士兵」——<strong>它不是「不追究人的责任」，而是「用系统而非个人去赢」</strong> <span class="tag t-inf">推断</span>。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★ <strong>「奇正相生，如循環之無端」在文本里没有操作定义</strong>。经文只说「奇正之變，不可勝窮」，<strong>不给任何判据说明什么算奇、什么算正、何时互变</strong>。<strong>注家只能靠战例补，而战例无法证明普适性</strong> <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>「亂生於治，怯生於勇，弱生於彊」高度可疑的断句与读法</strong>。曹操注把它读成「治乱、勇怯、强弱是相互转化的」；但<strong>也可读成「敌之乱，由我之治所生」</strong>（即我治故敌乱）。<strong>两种读法在注家里都存在，经文本身不判</strong> <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>武经本与十家注本在此篇有异文</strong>：武经本作「如轉<strong>石</strong>於千仞之山者，勢也」，「石」前<strong>缺</strong>「圆」字；十家注本作「如轉<strong>圓石</strong>」<span class="tag t-rep">转述</span>（《宋刊武经七书》著录说明）。<strong>一字之差，画面略有不同</strong>——有「圆石」才更贴「圆则行」的木石之性。
+    </li>
+  </ol>
+</section>
+
+<section id="s12">
+  <h2><span class="num">11</span><span>虚实篇：主动权与「避实击虚」</span><span class="caret">▾</span></h2>
+  <h3>这一篇在讲什么</h3>
+  <p><strong>「让敌人听我的、而不是我跟着敌人跑」——全书的机动与主动权篇。</strong></p>
+  <p>全篇五层：① 「凡先處戰地而待敵者佚，後處戰地而趨戰者勞。故善戰者，<strong>致人而不致於人</strong>」；② 「攻而必取者，攻其所不守也……<strong>微乎微乎，至於無形；神乎神乎，至於無聲，故能爲敵之司命</strong>」；③ 「<strong>形人而我無形，則我專而敵分</strong>……<strong>無所不備，則無所不寡</strong>」；④ 「故策之而知得失之計，作之而知動靜之理，形之而知死生之地，角之而知有餘不足之處」；⑤ 收束于「<strong>夫兵形象水</strong>……<strong>兵無常勢，水無常形</strong>，能因敵變化而取勝者，謂之神」<span class="tag t-src">原书</span>。</p>
+  <p>★ 「虚实」讲的不是「真假」，而是<strong>「兵力部署的厚薄」</strong>——避实击虚＝避开敌人的强点，打它的空档。</p>
+  <h3>关键论断与注家分歧</h3>
+  <ul>
+    <li><strong>「兵無常勢，水無常形」</strong>：曹操注「<strong>勢盛必衰，形露必敗，故能因敵變化，取勝若神</strong>」；王皙注「<strong>兵有常理，而無常勢；水有常性，而無常形</strong>」<span class="tag t-src">原书</span>（《虚实篇》注）。⇒ <strong>王皙这一句是全篇最好的纲要：「变」的是势，不变的是理。</strong>
+    </li>
+    <li><strong>「我專而敵分」的算术</strong>：经文说「我專爲一，敵分爲十，是以十攻其一也」——<strong>这是全书少见的量化推演，与《形篇》的「度、量、数、称、胜」呼应</strong> <span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>「無所不備，則無所不寡」</strong>：黄朴民把它与全书的「矛盾的重点论」联系起来——<strong>关照全面不等于平均用力；优势若不能集中，就会「四面开花，全面受敌」而归于消失</strong> <span class="tag t-src">原书</span>（黄朴民〈今天，我们如何「正读」《孙子兵法》〉，2023）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★ <strong>「越人之兵雖多，亦奚益於勝敗哉」暴露了写作语境</strong>。经文用<strong>越国</strong>作例子——<strong>这是春秋末吴越争霸的直接背景</strong>，说明《虚实篇》至少是<strong>在吴越语境下</strong>写定或整理过的。<strong>这条内证常被用来支持「成书与吴国有关」</strong>（与 5.1 的争论相关）<span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>「形兵之極，至於無形」与「因形而錯勝於衆，衆不能知」之间的跳跃</strong>。经文从「无形」（自己不被敌人看见）突然跳到「因形而错胜于众」（别人看不懂我怎么赢），<strong>中间缺一步解释</strong>；十一家注（杜牧、王皙、张预）各自的补法不同 <span class="tag t-src">原书</span>。
+    </li>
+    <li>★ <strong>「故其戰勝不復，而應形於無窮」是一句被后来战争史反复引用的原则，但它在本篇里只是一句断言，没有例证</strong>。<strong>「不重复用同一招」这条经验，注家举的是韩信的「背水阵」之类，而那些战例本身发生在孙子之后</strong> <span class="tag t-inf">推断</span>。
+    </li>
+  </ol>
+</section>
+
+<section id="s13">
+  <h2><span class="num">12</span><span>军争篇：以迂为直</span><span class="caret">▾</span></h2>
+  <h3>这一篇在讲什么</h3>
+  <p><strong>「抢在敌人之前到达该到的地方」——先机篇，也是全书最讲「速度代价」的一篇。</strong></p>
+  <p>全篇五层：① 「凡用兵之法：將受命於君，合軍聚衆，交和而舍，<strong>莫難於軍爭</strong>。軍爭之難者，<strong>以迂爲直，以患爲利</strong>」；② 逐级量化行军代价——「百里而爭利，則擒三將軍，勁者先，疲者後，<strong>其法十一而至</strong>；五十里……<strong>其法半至</strong>；三十里……<strong>三分之二至</strong>」；③ 「故兵以詐立，以利動，以分合爲變者也」，并以<strong>「其疾如風，其徐如林，侵掠如火，不動如山，難知如陰，動如雷震」</strong> 六喻形容；④ 引《军政》讲金鼓旌旗；⑤ 收束于「故三軍可奪氣，將軍可奪心」与「<strong>朝氣銳，晝氣惰，暮氣歸</strong>」，最后给出「高陵勿向……<strong>圍師必闕，窮宼勿迫</strong>」八条具体戒律 <span class="tag t-src">原书</span>。</p>
+  <h3>关键论断与注家分歧</h3>
+  <ul>
+    <li><strong>「軍爭爲利，軍爭爲危」</strong>：曹操注「<strong>善者則以利，不善者則以危</strong>」；贾林注「我軍先至，得其便利之地，則爲利；彼敵先據其地，我三軍之衆馳往爭之，則<strong>敵佚我勞，危之道也</strong>」<span class="tag t-src">原书</span>。⇒ <strong>十一家注把「军争」两面都点到了：抢到先机是利，抢的过程本身是危。</strong>
+    </li>
+    <li><strong>「其疾如風，其徐如林……」六喻</strong>：这是全书最著名的排比，被《文心雕龙》赞为「辭如珠玉」<span class="tag t-rep">转述</span>（琅琊新闻网〈沂蒙文化密码〉，2025）。
+    </li>
+    <li><strong>「以治待亂，以靜待譁」「以近待遠，以佚待勞，以飽待飢」</strong>：经文把它分成「治气」「治心」「治力」「治变」四类——<strong>这是全书唯一一处给「士气与节奏」做分类的地方</strong> <span class="tag t-src">原书</span>。★ 杨丙安校理本此段作「以怯待勞」（见白文本），而多数版本作「<strong>以佚待勞</strong>」——<strong>又是一处一字异文</strong>（「佚」与「怯」形音皆近）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★ <strong>「百里而爭利，則擒三將軍」的「三将军」是什么建制？</strong> 春秋车战时代的「三军」编制，与后世的「三将军」不一定同指；<strong>十一家注各家说法不一</strong>，<strong>这一处属于「经文有数字、注家无定解」的典型</strong> <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>「其法十一而至」等三组数字（十分之一、一半、三分之二）</strong>：经文给得很具体，<strong>但没说这些比例的经验来源</strong>。<strong>可以理解为对「远距离强行军会大量掉队」的概括，不宜当精确统计</strong> <span class="tag t-inf">推断</span>。
+    </li>
+    <li>★ <strong>「掠鄉分衆，廓地分利」的伦理问题</strong>。这两句讲<strong>就地掠夺乡村、分兵占地得利</strong>——<strong>它是「因粮于敌」的具体化，也正是叶适在《作战篇》批评的那一点（为后世劫掠提供依据）</strong> <span class="tag t-src">原书</span>。<strong>现代「商战」引用《军争》时，几乎从不引这一句。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s14">
+  <h2><span class="num">13</span><span>九变篇：权变与「将之五危」</span><span class="caret">▾</span></h2>
+  <h3>这一篇在讲什么</h3>
+  <p><strong>「什么时候可以不按常规、甚至不按君命办」——全书最短、也最凝练的权变篇。</strong></p>
+  <p>全篇三层：① 「圮地無舍，衢地交合，絶地無留，圍地則謀，死地則戰」——<strong>五地</strong>；② 「<strong>塗有所不由，軍有所不擊，城有所不攻，地有所不爭，君命有所不受</strong>」——<strong>五利</strong>；③ 「是故智者之慮，必雜於利害」，最后给出「<strong>將有五危</strong>」：必死可杀、必生可虏、忿速可侮、廉洁可辱、爱民可烦 <span class="tag t-src">原书</span>。</p>
+  <p>★ <strong>「君命有所不受」</strong> 是这一篇最著名的一句，也是全书最具政治风险的一句。</p>
+  <h3>关键论断与注家分歧</h3>
+  <ul>
+    <li><strong>「君命有所不受」</strong>：曹操注「<strong>苟便於事，不拘於君命也</strong>」；贾林注「決必勝之機，不可推於君命；苟利社稷，專之可也」；孟氏注引「<strong>無敵於前，無君於後，閫外之事，將軍制之</strong>」；杜牧注引《尉缭子》「兵者，凶器也……<strong>無天於上，無地於下，無敵於前，無主於後</strong>」<span class="tag t-src">原书</span>（《九变篇》注）。⇒ <strong>注家一致把它读成「战场判断优先于君主指令」，这是「将权」的经典表述。</strong>
+    </li>
+    <li>★★ <strong>「九變」这个词本身，注家自己就说不清</strong>。张预注在句末明确记录了两派读法：「自『塗有所不由』至此（共五条），<strong>爲五利</strong>。<strong>或曰：自『圮地無舍』至『地有所不爭』爲九變</strong>，謂此<strong>九事</strong>皆不從……」<span class="tag t-src">原书</span>（《九变篇》注）——<strong>注意：第一派把「五地＋五利」分开算，第二派把两者合起来数成「九事」，可五地五利加起来是十，不是九。</strong> ⇒ <strong>「九变」的「九」到底指哪九件事，注家没有共识</strong>（见下「可疑之处」）。
+    </li>
+    <li><strong>「將有五危」的「愛民，可煩也」</strong>：这一条最反直觉——<strong>爱民怎么会是危险？</strong> 经文的意思是：<strong>过度爱惜士卒而不肯付出代价，会被敌人用小利害牵制骚扰</strong>。这正是「仁而不可为将」的兵家逻辑 <span class="tag t-inf">推断</span>。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★★ <strong>篇名「九变」与内容对不上，是全书最明显的文本问题之一</strong>。「五地」＋「五利」＝十项，「九」从何来？<strong>注家有四种说法</strong>（合数九事、去掉一项、指「九地之变」、泛言「多变」），<strong>没有人能拿出一个公认的答案</strong> <span class="tag t-src">原书</span>（张预注已记录两说）。<strong>这一处也是「十三篇未必是原有结构」的一个内证</strong>（见 5.2）。
+    </li>
+    <li><strong>全篇无独立「九变」定义</strong>。《九变》开篇先说「凡用兵之法，將受命於君，合軍聚衆」，<strong>与《军争篇》开篇完全重复</strong>（《军争》也是「將受命於君，合軍聚衆，交和而舍」）。<strong>两篇开头的重复，是「篇与篇之间存在交错」的迹象</strong> <span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>「君命有所不受」在全书中的地位，与「将者，国之辅也」（《谋攻》）存在张力</strong>。<strong>《谋攻》要求君「不御」将，《九变》要求将「不受命」</strong>——<strong>两者合起来是相当激进的「军权独立」主张</strong>，这在一个世袭君主制里是显著的政治表态 <span class="tag t-inf">推断</span>。
+    </li>
+  </ol>
+</section>
+
+<section id="s15">
+  <h2><span class="num">14</span><span>行军篇：相敌之法</span><span class="caret">▾</span></h2>
+  <h3>这一篇在讲什么</h3>
+  <p><strong>「怎么扎营、怎么看敌人的破绽」——全书最像「操作手册」的一篇。</strong></p>
+  <p>全篇四层：① <strong>处军四法</strong>——「絶山依谷，視生處高」为处山之军；「絶水必遠水」「令半濟而擊之」为处水上之军；「絶斥澤，惟亟去無留」为处斥泽之军；「平陸處易，而右背高，前死後生」为处平陆之军，并说「凡此四軍之利，<strong>黃帝之所以勝四帝也</strong>」；② <strong>地形禁忌</strong>——「絶澗、天井、天牢、天羅、天陷、天隙，必亟去之」；③ ★★ <strong>「相敌三十二法」</strong>——「衆樹動者，來也；衆草多障者，疑也。鳥起者，伏也；獸駭者，覆也。塵高而銳者，車來也……杖而立者，飢也……<strong>鳥集者，虛也；夜呼者，恐也</strong>……數賞者，窘也；數罰者，困也」；④ 收束于治军——「卒未親附而罰之，則不服」「<strong>令之以文，齊之以武，是謂必取</strong>」<span class="tag t-src">原书</span>。</p>
+  <h3>关键论断与注家分歧</h3>
+  <ul>
+    <li>★ <strong>「相敌三十二法」是全书最「技术」的一段，也是最有文献价值的一段</strong>——<strong>它保留了大量先秦军事观察的经验条目</strong>。十一家注在这三十余条上<strong>注得很简</strong>（多数只有杜牧、张预的少量补充），<strong>说明注家自己对这些条目也不多发挥</strong> <span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>「令之以文，齊之以武」</strong>：曹操注「<strong>文，仁也；武，法也</strong>」；杜牧注引晏子评司马穰苴「<strong>文能附衆，武能威敵</strong>」；张预注引《尚书》「<strong>威克厥愛，允濟；愛克厥威，允罔功</strong>」，并设问「《書》言先威也，孫武先愛，何也？」然后解释——<strong>王者之于民心已附，故先爱</strong> <span class="tag t-src">原书</span>（《行军篇》注）。⇒ <strong>张预这一段是全十一家注里少见的「注家自设问答」，把「威／爱先后」的问题摆到台面上。</strong>
+    </li>
+    <li>★ <strong>异文</strong>：竹简本作「<strong>合</strong>之以文」，传世本作「<strong>令</strong>之以文」；苏芃主张「令」为「合」的字形之讹，黄朴民亦以为「合之以文」更优 <span class="tag t-src">原书</span>（苏芃，北京语言大学讲座；黄朴民，2013）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★ <strong>「黃帝之所以勝四帝也」是一句来历不明的话</strong>。经文说「凡此四軍之利，黃帝之所以勝四帝也」——<strong>「黄帝伐四帝」的故事在传世文献里没有对应记载</strong>。银雀山汉简里正有一篇佚文《<strong>黄帝伐赤帝</strong>》，<strong>显然是就这一句作说明的</strong>（黄朴民指其一为对《行军篇》此语的阐释）<span class="tag t-src">原书</span>（黄朴民〈《孙子》的著录、流传及版本〉）。⇒ <strong>这一条反过来证明：十三篇之外，确有「外篇」性质的解释性文字存在。</strong>
+    </li>
+    <li><strong>三十二条相敌法的分类标准缺失</strong>。经文把它们平铺直叙，<strong>没有说明是按「敌军动作／地形／士气／将领」哪一类分</strong>，<strong>这正是「格言体缺论证」的典型</strong>（见 5.7）。
+    </li>
+    <li><strong>「平陸處易，而右背高，前死後生」的「前死后生」不可解</strong>。<strong>十一家注各家说法不一</strong>，今天读来仍是全书最难的句子之一 <span class="tag t-inf">推断</span>。
+    </li>
+  </ol>
+</section>
+
+<section id="s16">
+  <h2><span class="num">15</span><span>地形篇：六地与六败</span><span class="caret">▾</span></h2>
+  <h3>这一篇在讲什么</h3>
+  <p><strong>「地有六种，败有六种，都不是天灾，是人的问题」——地形篇，也是全书罕见的一次「军事失败归因分析」。</strong></p>
+  <p>全篇四层：① <strong>六地</strong>——通、挂、支、隘、险、远，各给对策（如「通形者，先居高陽，利糧道」）；② ★ <strong>六败</strong>——走、弛、陷、崩、乱、北，并明说「<strong>凡此六者，非天之災，將之過也</strong>」，逐条给出成因（「夫勢均，以一擊十，曰走」「卒強吏弱，曰弛」「吏強卒弱，曰陷」「大吏怒而不服，遇敵懟而自戰，將不知其能，曰崩」……）；③ 「<strong>視卒如嬰兒</strong>，故可與之赴深谿；視卒如愛子，故可與之俱死」，但立刻补一句「厚而不能使，愛而不能令，亂而不能治，<strong>譬若驕子，不可用也</strong>」；④ 收束于「<strong>知彼知己，勝乃不殆；知天知地，勝乃不窮</strong>」<span class="tag t-src">原书</span>。</p>
+  <h3>关键论断与注家分歧</h3>
+  <ul>
+    <li>★ <strong>「非天之災，將之過也」是全篇的论点</strong>。<strong>孙子把六种败局一律归因于将帅</strong>（兵力部署、吏卒关系、指挥失控、判断失误），<strong>这是全书最系统的「领导责任论」</strong> <span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>「視卒如嬰兒……譬若驕子，不可用也」</strong>：李筌注「若撫之如此，得其死力也」；杜牧注举<strong>吴起为将、与士卒最下者同衣食、亲吮士卒疽疮</strong>的故事，并引<strong>卒母哭</strong>的名场面（「往年，吳公吮其父，其父不旋踵而死於敵；今復吮此子，妾不知其死所矣！」）<span class="tag t-src">原书</span>（《地形篇》注）。⇒ <strong>杜牧这个注极有名，但它是「用战国吴起的故事注春秋兵法」——又是一处 5.5 说的时代错置。</strong>
+    </li>
+    <li>★ <strong>「故戰道必勝，主曰無戰，必戰可也；戰道不勝，主曰必戰，無戰可也」</strong>：这是<strong>《九变》「君命有所不受」的正面表述</strong>，且紧接着说「<strong>進不求名，退不避罪，唯人是保</strong>，而利合於主，國之寶也」<span class="tag t-src">原书</span>——<strong>这是全书对将帅职业道德最完整的一次陈述。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★ <strong>「知彼知己，勝乃不殆；知天知地，勝乃不窮」与《谋攻篇》的「知彼知己者，百戰不殆」高度重复</strong>。两篇各有一个版本，<strong>措辞不同（多出「知天知地」），逻辑也不同（此处是「胜乃不殆／不穷」）</strong>。<strong>这种重复，是「十三篇之间既有承接也有并置」的证据</strong> <span class="tag t-src">原书</span>。
+    </li>
+    <li><strong>「六地」与《九地》的「九地」、与《行军》的「四军」三套地形分类互不对应</strong>。<strong>同一本书里出现了三套不同的地形学</strong>（六地／九地／处山处水处斥泽处平陆），<strong>彼此既不完全重合也不相互引用</strong>。⇒ <strong>这是「十三篇可能由不同层次的文本组成」的最强内证之一</strong> <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>「厚而不能使，愛而不能令，亂而不能治，譬若驕子」</strong>——这句与同篇开头的「视卒如婴儿」<strong>在同一段里构成自我张力</strong>：<strong>既要求像爱婴儿一样爱兵，又警告不能爱成骄子</strong>。<strong>这不是矛盾，但它的平衡点完全依赖将帅的临场判断，经文不给判据</strong> <span class="tag t-inf">推断</span>。
+    </li>
+  </ol>
+</section>
+
+<section id="s17">
+  <h2><span class="num">16</span><span>九地篇：投之亡地然后存</span><span class="caret">▾</span></h2>
+  <h3>这一篇在讲什么</h3>
+  <p><strong>「深入敌境之后，仗该怎么打」——全书最长、也最凶险的一篇。</strong></p>
+  <p>全篇五层：① <strong>九地</strong>——散、轻、争、交、衢、重、圮、围、死，逐一定义并给对策（「散地則無戰，輕地則無止……<strong>圍地則謀，死地則戰</strong>」）；② 「兵之情主速，乘人之不及，由不虞之道，攻其所不戒也」；③ ★★ <strong>「投之無所往，死且不北」</strong>与<strong>「投之亡地然後存，陷之死地然後生」</strong>——<strong>把士兵逼到绝路反而能激发死战</strong>；④ 「將軍之事，靜以幽，正以治」，并说可「能愚士卒之耳目，使之無知」，<strong>「帥與之期，如登高而去其梯」「焚舟破釜，若驅羣羊」</strong>；⑤ 收束于<strong>「始如處女，敵人開戶；後如脫兔，敵不及拒」</strong><span class="tag t-src">原书</span>。</p>
+  <h3>关键论断与注家分歧</h3>
+  <ul>
+    <li>★ <strong>「投之亡地然後存，陷之死地然後生」</strong>：曹操注「必殊死戰，在亡地無敗者。孫臏曰：『兵恐不投之死地也。』」；李筌注举「<strong>韓信水上軍</strong>」；梅尧臣注「<strong>地雖曰亡，力戰不亡；地雖曰死，死戰不死</strong>」；何氏注详引<strong>韩信井陉背水阵</strong>全过程 <span class="tag t-src">原书</span>（《九地篇》注）。⇒ <strong>十一家注在这一条上高度一致，且都用「背水一战」来解释。</strong>
+    </li>
+    <li>★ <strong>「始如處女，敵人開戶；後如脫兔，敵不及拒」</strong>：曹操、李筌注「<strong>處女示弱，脫兔往疾也</strong>」；王皙注举<strong>田单守即墨</strong>；张预注「守則如處女之弱，令敵懈怠，是以啓隙；攻則猶脫兔之疾，乘敵倉卒，是以莫禦」，并引《史记》田单事 <span class="tag t-src">原书</span>。⇒ <strong>十个字里含一整套「示弱—蓄势—暴起」的节奏，是全书最凝练的句子之一。</strong>
+    </li>
+    <li><strong>「能愚士卒之耳目，使之無知」</strong>：这一句在现代常被当作「愚民」的证据引用。但<strong>上下文是「將軍之事」的一条</strong>——<strong>它讲的是行军路线的保密（「易其居，迂其途，使人不得慮」），不是对国民的愚化</strong> <span class="tag t-inf">推断</span>。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★★ <strong>《九地篇》与《军争篇》《九变篇》大段重复</strong>。经文「<strong>是故不知諸侯之謀者，不能預交；不知山林、險阻、沮澤之形者，不能行軍；不用鄉導者，不能得地利</strong>」三句，<strong>《军争篇》已有完全相同的文字</strong> <span class="tag t-src">原书</span>（对照两篇经文）；<strong>篇中又出现了与《九变》「五地」重复的一串。</strong> 宋人<strong>蒋百里等</strong>曾赞「十三篇结构缜密，次序井然，固有不能增减一字，不能颠倒一篇者」<span class="tag t-rep">转述</span>（蒋百里等《孙子浅说·绪言》），<strong>但《九地》的重复直接挑战了这个说法</strong> <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>「九地」的九类在两处给出（前段一次、中段「凡為客之道」后又一次），且措辞略有不同</strong>。<strong>同一篇里两次列举「九地」，本身就是文本层积的痕迹</strong> <span class="tag t-src">原书</span>。
+    </li>
+    <li>★ <strong>「焚舟破釜」在武经本中无此四字</strong>（《九地篇》），<strong>十家注本则有</strong> <span class="tag t-rep">转述</span>（《宋刊武经七书》著录说明：「《九地篇》中，《十家注》本增『焚舟破釜』4 字，不如《武经》本善」）。<strong>这是「版本系统之间互有优劣」的直接例证</strong>（见第 4 节）。
+    </li>
+  </ol>
+</section>
+
+<section id="s18">
+  <h2><span class="num">17</span><span>火攻篇：五种火攻与全书结语</span><span class="caret">▾</span></h2>
+  <h3>这一篇在讲什么</h3>
+  <p><strong>「火攻怎么做」＋「全书最后的告诫」——表面上讲火，实质上收束全书。</strong></p>
+  <p>前段三层：① <strong>五种火攻</strong>——火人、火积、火辎、火库、火队；② <strong>天时</strong>——「發火有時，起火有日……月在箕、壁、翼、軫也，凡此四宿者，<strong>風起之日也</strong>」（这是全书唯一的星象条件）；③ <strong>战术要点</strong>——「火發於內，則早應之於外」「火發上風，無攻下風」，并说「以火佐攻者明，<strong>以水佐攻者強</strong>。水可以絶，不可以奪」<span class="tag t-src">原书</span>。</p>
+  <p>★ <strong>后段是全书的重量级结语</strong>：「夫戰勝攻取，而不修其功者凶，命曰『費留』。故曰：明主慮之，良將修之，<strong>非利不動，非得不用，非危不戰</strong>。<strong>主不可以怒而興師，將不可以愠而致戰</strong>……怒可以復喜，慍可以復悅，<strong>亡國不可以復存，死者不可以復生</strong>。故明君慎之，良將警之，<strong>此安國全軍之道也</strong>」<span class="tag t-src">原书</span>。</p>
+  <h3>关键论断与注家分歧</h3>
+  <ul>
+    <li>★★ <strong>篇末「慎战」段落的注家读法，恰好支持「它是全书结语」这一判断</strong>：杜牧注「<strong>警，言戒之也</strong>」；梅尧臣注「<strong>主當慎重，將當警懼</strong>」；张预注「<strong>君常慎於用兵，則可以安國；將常戒於輕戰，則可以全軍</strong>」<span class="tag t-src">原书</span>（《火攻篇》末段注）。⇒ <strong>十条注文没有一条在讲「火」——大家都把它当作「用兵的总告诫」来注。</strong>
+    </li>
+    <li>★★ <strong>苏芃的文本发现</strong>（《文史》2022 年第 2 期）：银雀山汉简篇题木牍以《火攻》为末篇，<strong>说明在西汉前期的传本中，《火攻》是全书最后一篇</strong>；那么这一整段「慎战」文字「<strong>不僅是《火攻》的末章，更是全书的結語</strong>」，与《计篇》开篇一首一尾、遥相呼应。<strong>传世本把《用间》挪到末篇后，这段结语就「湮沒在了《火攻》篇里，遂成千古疑案」</strong> <span class="tag t-src">原书</span>（苏芃，2022）。
+    </li>
+    <li><strong>「以火佐攻者明，以水佐攻者强」</strong>：<strong>水攻可以把敌军隔绝，但不能把敌军的物资夺为己用</strong>（「水可以絶，不可以奪」）——<strong>这是一句极冷静的功利比较，注家也都这么读</strong> <span class="tag t-src">原书</span>。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★★ <strong>篇题与篇末的「不搭」，是全书最著名的文本疑案</strong>。<strong>火攻的技术内容只占前半篇</strong>，后半段（「夫戰勝攻取……此安國全軍之道也」）<strong>与「火」几乎无关</strong>。<strong>历代学者试图从「火攻」本身去解释它，都不太有说服力</strong>；<strong>直到苏芃用银雀山篇题木牍给出「它是全书结语」的解释</strong> <span class="tag t-src">原书</span>（苏芃，2022；其讲座纪要）。★ <strong>但请注意：这是一个「假说」，不是已定的结论</strong>——它依赖木牍的缀合释读（「火」后一字有残泐，李零释为「隊」），而<strong>简本本身残缺</strong> <span class="tag t-rep">转述</span>。
+    </li>
+    <li>★ <strong>「月在箕、壁、翼、軫也，凡此四宿者，風起之日也」是全篇最可疑的科学内容</strong>。<strong>把「起风之日」与二十八宿中的四个星宿绑定，属于当时的天文占候观念</strong>；十一家注（杜牧等）试图解释说「箕主风」之类。<strong>读的时候应当把它当作「战国秦汉的占候知识」，不是气象学</strong> <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>「費留」一词无定解</strong>。经文说「不修其功者凶，命曰『費留』」——<strong>「费留」究为何意，注家说法不一</strong>（有解「耗费而滞留」，有解为专名）。<strong>这也是「格言体留白太多」的一例</strong> <span class="tag t-inf">推断</span>。
+    </li>
+  </ol>
+</section>
+
+<section id="s19">
+  <h2><span class="num">18</span><span>用间篇：五间与先知</span><span class="caret">▾</span></h2>
+  <h3>这一篇在讲什么</h3>
+  <p><strong>「先知敌情」——传世本的末篇，也是全书对情报的最终加冕。</strong></p>
+  <p>全篇四层：① <strong>算情报的性价比</strong>——「凡興師十萬，出征千里……日費千金」，相守数年争一日之胜，却「<strong>愛爵禄百金，不知敵之情者，不仁之至也</strong>」；② ★ <strong>「先知者，不可取於鬼神，不可象於事，不可驗於度，必取於人，知敵之情者也」</strong>——<strong>明确排除鬼神、类比与星象</strong>；③ <strong>五间</strong>——因间（乡人）、内间（官人）、反间（敌间）、死间（传假情报者）、生间（回来报告者），并说「<strong>五間俱起，莫知其道，是謂神紀</strong>」；④ ★ <strong>「非聖智不能用間，非仁義不能使間，非微妙不能得間之實」</strong>，最后以伊尹、吕牙（「<strong>昔殷之興也，伊摯在夏；周之興也，呂牙在殷</strong>」）作结 <span class="tag t-src">原书</span>。</p>
+  <h3>关键论断与注家分歧</h3>
+  <ul>
+    <li>★ <strong>「非仁義不能使間」是全篇最反直觉的一句。</strong> 杜牧注「先量間者之性，誠實多智，然後可用之」；<strong>陈皞注</strong>「仁者有恩以及人，義者得宜而制事。主將者，既能仁結而義使，則<strong>間者盡心而覘察，樂爲我用也</strong>」；孟氏注引太公「仁義著，則賢者歸之」；梅尧臣注「撫之以仁，示之以義，則能使」；王皙注「<strong>仁結其心，義激其節</strong>」<span class="tag t-src">原书</span>（《用间篇》注）。⇒ <strong>注家的共识是：间谍是要用「仁义」去笼络的——因为间谍随时可能叛变，只能用信义维系。</strong> 这是全书对「情报人员管理」的独特洞见。
+    </li>
+    <li><strong>「先知者，不可取於鬼神」</strong>：这是<strong>全书最「理性主义」的一句</strong>，也是它与同时代占候、卜筮文献最明显的分野。<strong>放在《火攻篇》刚讲完星象（「月在箕、壁、翼、軫」）之后读，反差极大</strong> <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>「五间之事，主必知之，知之必在於反間，故反間不可不厚也」</strong>：<strong>反间（策反敌方的间谍）是五间的枢纽</strong>——<strong>这一条是全书对情报工作最具体的操作建议</strong> <span class="tag t-src">原书</span>。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★ <strong>《用间》作为全书末篇，是传世本的安排，未必是原貌</strong>。按银雀山篇题木牍，<strong>《用间》是倒数第二，《火攻》才是末篇</strong>（见 5.2）。<strong>若简本为古，那么全书真正的结尾是《火攻》篇末那段「慎战」结语，而不是《用间》的「五间」</strong> <span class="tag t-src">原书</span>（苏芃，2022）。★ <strong>这也解释了为什么今天很多人读完《用间》觉得「全书戛然而止」——它可能真的不是结尾。</strong>
+    </li>
+    <li><strong>「死間者，爲誑事於外，令吾間知之，而傳於敵間也」的伦理与代价</strong>。<strong>死间是明知会被处死而派出的</strong>；经文对这种代价<strong>完全不置一词</strong>，只说「五間俱起」。<strong>这是全书最冷的一处，也是「慎战」之外的另一个面向</strong> <span class="tag t-inf">推断</span>。
+    </li>
+    <li><strong>「殷之興也，伊摯在夏；周之興也，呂牙在殷」把伊尹、吕尚说成间谍</strong>。<strong>这是把「贤臣去国」重述为「高级间谍活动」</strong>——<strong>与传世文献对伊尹、吕尚的主流叙述（辅佐明君）有出入</strong>。<strong>十一家注并未对此提出异议</strong>，说明在兵家谱系里，这是一种被接受的读法 <span class="tag t-inf">推断</span>。
+    </li>
+  </ol>
+</section>
+
+<section id="s20">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>概念／人物</th><th>一句话</th><th>出现在</th></tr></thead>
+    <tbody>
+      <tr><td><strong>庙算</strong></td><td>出兵前在庙堂上比较敌我优劣、预算胜负</td><td>《计篇》（曹操注：「計於廟堂也」）</td></tr>
+      <tr><td><strong>五事</strong></td><td>道、天、地、将、法——决定胜负的五个要素</td><td>《计篇》</td></tr>
+      <tr><td><strong>七计</strong></td><td>主孰有道、将孰有能、天地孰得、法令孰行、兵众孰强、士卒孰练、赏罚孰明</td><td>《计篇》</td></tr>
+      <tr><td><strong>诡道</strong></td><td>「能而示之不能……攻其无备，出其不意」的对敌手段</td><td>《计篇》（曹操注：「兵無常形，以詭詐爲道」）</td></tr>
+      <tr><td><strong>全胜</strong></td><td>「全国为上，破国次之」；以最小代价使敌屈服</td><td>《谋攻篇》（★ 全书仅此一篇集中讲）</td></tr>
+      <tr><td><strong>先胜</strong></td><td>「先为不可胜，以待敌之可胜」「胜兵先胜而后求战」</td><td>《形篇》</td></tr>
+      <tr><td><strong>奇正</strong></td><td>「以正合，以奇胜」——正兵当敌、奇兵侧击</td><td>《势篇》（曹操注：「正者當敵，奇兵從傍擊不備也」）</td></tr>
+      <tr><td><strong>势</strong></td><td>态势所蓄的能量（「势如彍弩」「如转圆石于千仞之山」）</td><td>《势篇》</td></tr>
+      <tr><td><strong>虚实</strong></td><td>兵力部署的厚薄；避实击虚</td><td>《虚实篇》</td></tr>
+      <tr><td><strong>致人而不致于人</strong></td><td>调动敌人而不被敌人调动（主动权）</td><td>《虚实篇》</td></tr>
+      <tr><td><strong>相敌三十二法</strong></td><td>从敌军营垒、草木、鸟兽、士卒状态判断其虚实</td><td>《行军篇》</td></tr>
+      <tr><td><strong>令之以文，齐之以武</strong></td><td>以仁恩令之、以威刑齐之（竹简本作「合之以文」）</td><td>《行军篇》</td></tr>
+      <tr><td><strong>六地／六败</strong></td><td>通挂支隘险远六种地形；走弛陷崩乱北六种败局（「非天之灾，将之过也」）</td><td>《地形篇》</td></tr>
+      <tr><td><strong>九地</strong></td><td>散轻争交衢重圮围死九种战场态势</td><td>《九地篇》</td></tr>
+      <tr><td><strong>五间</strong></td><td>因间、内间、反间、死间、生间（「先知者……必取于人」）</td><td>《用间篇》</td></tr>
+      <tr><td><strong>慎战</strong></td><td>「主不可以怒而兴师……此安国全军之道也」</td><td>《火攻》末段（★ 疑为全书结语，苏芃说）</td></tr>
+      <tr><td><strong>孙武</strong></td><td>字长卿，春秋末期齐人，后仕吴；相传为本书作者</td><td>全书；《史记·孙子吴起列传》</td></tr>
+      <tr><td><strong>孙膑</strong></td><td>战国中期齐人；银雀山同墓出土《孙膑兵法》</td><td>5.1（简本证据）</td></tr>
+      <tr><td><strong>曹操（155–220）</strong></td><td>《孙子略解》作者，现存最早注本；注极简</td><td>十一家注（如《计篇》《形篇》注）</td></tr>
+      <tr><td><strong>杜牧（唐）</strong></td><td>十一家中影响最大的第二大注家；广征博引，且把「不殆」写成「百战百胜」</td><td>《谋攻篇》《地形篇》注</td></tr>
+      <tr><td><strong>张预（北宋）</strong></td><td>集诸家之长，善发明篇与篇的联系；明确反对把「不足／有余」读成「弱／强」</td><td>《形篇》《九变篇》《火攻篇》注</td></tr>
+      <tr><td><strong>梅尧臣（北宋）</strong></td><td>以「以智胜／以威胜／以力胜」九字说透「上兵伐谋」</td><td>《谋攻篇》注</td></tr>
+      <tr><td><strong>李筌（唐）</strong></td><td>依《遁甲》注《孙子》，自成一家</td><td>《计篇》《虚实篇》注</td></tr>
+      <tr><td><strong>杜佑（唐）</strong></td><td>《通典》作者；其「注」多取自《通典》，非专为《孙子》而作</td><td>十一家注（编排现象，见 5.5）</td></tr>
+      <tr><td><strong>吉天保（宋）</strong></td><td>辑《十一家注孙子》者</td><td>第 4 节</td></tr>
+      <tr><td><strong>杨丙安</strong></td><td>《十一家注孙子校理》校理者；撰 700 余条校记</td><td>第 4 节（★ 本项目锚定本）</td></tr>
+      <tr><td><strong>叶适（南宋）</strong></td><td>《习学记言序目》卷四十六疑孙武其人，「皆辩士妄相标指，非事实」</td><td>5.1、7、9</td></tr>
+      <tr><td><strong>钱穆</strong></td><td>《先秦诸子系年·孙武辨》：「其人与书，盖皆出后人伪托」</td><td>5.1</td></tr>
+      <tr><td><strong>齐思和</strong></td><td>〈孙子兵法著作时代考〉：「孙武实未必有其人，十三篇乃战国之书」</td><td>5.1</td></tr>
+      <tr><td><strong>李零</strong></td><td>释银雀山篇题木牍「七埶三千」；主张成书自春秋末吴国至战国中期齐国</td><td>5.2 / 5.1</td></tr>
+      <tr><td><strong>黄朴民</strong></td><td>系统清理「阅读误区」；「兵以诈立，但商不可诈立」</td><td>5.4（★ 本报告最重要的一条现代批评）</td></tr>
+      <tr><td><strong>苏芃</strong></td><td>主张《火攻》末段「慎战」文字为全书结语（银雀山篇题木牍为据）</td><td>5.2、17</td></tr>
+      <tr><td><strong>王正向</strong></td><td>《孙子十三篇竹简本校理》（军事科学出版社，2009）：十三篇中仅五篇篇次一致</td><td>5.2</td></tr>
+      <tr><td><strong>孙星衍（清）</strong></td><td>以《道藏·孙子》为底本校订《孙子十家注》</td><td>第 4 节</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s21">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>最该先读的一篇（现代批评）</strong>：<strong>黄朴民</strong>〈走出《孙子兵法》的阅读误区〉，《光明日报》<strong>2023-02-18</strong>（转载《文摘报》2023-03-01）——把「歪曲原意」「取其一点」「生搬硬套」三类误读一次讲清，并给出「兵可诈立，商不宜诈立」的判据。<strong>读本书前先读它。</strong>
+    </li>
+    <li><strong>文本发现的原典论文</strong>：<strong>苏芃</strong>〈《孙子兵法·火攻》「不修其功」「良将修之」解诂〉，《<strong>文史</strong>》<strong>2022 年第 2 期</strong>——「《火攻》末段是全书结语」这条最值钱的发现，就出在这里。
+    </li>
+    <li><strong>简本研究的入门</strong>：<strong>李零</strong>〈《孙子》篇题木牍初论〉，《<strong>文史</strong>》<strong>第十七辑，1983</strong>——篇题木牍的首次系统研究，是后来所有篇序讨论的起点；另可参 <strong>王正向</strong>《<strong>孙子十三篇竹简本校理</strong>》，军事科学出版社，<strong>2009</strong>。
+    </li>
+    <li><strong>文献学总览</strong>：<strong>黄朴民</strong>〈《孙子》的著录、流传及版本〉——把「十三篇／八十二篇」「竹简本／武经本／十一家注本」的来源讲得最清楚；另可参其〈银雀山汉墓竹简《孙子兵法》之文献学价值刍议〉（2013）与访谈〈透视银雀山汉简《孙子兵法》学术价值〉，《中国社会科学报》<strong>2025-06-19</strong>。
+    </li>
+    <li><strong>一句话澄清《三十六计》</strong>：<strong>学习强国</strong>〈咬文嚼字：《孙子兵法》讲了三十六计？〉（湖北日报转载）——「通篇无三十六计一语」这个基本事实的最短说明；对照 <strong>天津日报</strong> 2025-07-07 关于《三十六计》成书与 1941 年抄本面世的记述。
+    </li>
+    <li><strong>你要读的底本</strong>：<strong>《十一家注孙子校理》</strong>，杨丙安 校理，中华书局「新编诸子集成·兵家」，<strong>2012-07 第 2 版</strong>——<strong>本报告全部引文的定位系统都锚定于此</strong>；白话对照可用 <strong>黄朴民《孙子兵法译注》</strong>（浙江文艺出版社，2023）。
+    </li>
+  </ol>
+</section>
+
+<section id="s22">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>见同目录 <code>孙子兵法-来源清单.md</code>。</p>
+</section>
+
+<section id="s23">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. 「6075 字」这个数字，我查不到可靠出处</h3>
+  <p>中文网络上「《孙子兵法》6075 字」流传极广，但<strong>没有任何一个我找到的来源给出这个数字的底本、统计口径或出处</strong>。本报告据 <strong>Wikisource《十一家註孫子》十三篇经文</strong>统计得 <strong>6110 个汉字</strong>；东汉高诱注《吕氏春秋》称「（孙武）《兵法》<strong>五千言</strong>」。⇒ <strong>数字随底本与统计方式（是否含标点、异体字如何计）而变，「约六千字」是稳妥表述。</strong> 若你在某处见到「6075 字」并附带权威出处，请以那处为准。</p>
+  <h3>D2. 银雀山《孙子兵法》的简数，我找到三种口径</h3>
+  <ul>
+    <li><strong>233 枚</strong>：多家报道（如琅琊新闻网、今日头条 2025）称一号墓出《孙子兵法》<strong>233 枚</strong>，与本项目给定的「233 枚可缀合编号」一致。
+    </li>
+    <li><strong>105 枚</strong>：光明日报〈西汉《兵法》竹简：为孙武、孙膑正名〉（2013-01-22）记「《孙子兵法》（<strong>105 枚</strong>）、〈孙膑兵法〉（232 枚）」。
+    </li>
+    <li><strong>约 300 余枚</strong>：另有来源称《孙子兵法》<strong>约 300 余枚</strong>。
+  <p>⇒ <strong>三种口径可能是「出土枚数／可缀合编号数／计入残片数」的不同算法。</strong> 本报告正文采用 <strong>233 枚（可缀合编号）</strong>，并在此并列其余口径。同样，《孙膑兵法》亦有 <strong>222 枚／232 枚</strong>两说。</p>
+    </li>
+  </ul>
+  <h3>D3. 篇题木牍「火」后那个字，以及「七埶三千」的释读，都依赖缀合</h3>
+  <p>木牍上《火攻》篇题作「<strong>火□</strong>」，「火」后一字<strong>有残泐</strong>。李零认为左半从「阜」，<strong>似是「隊」字</strong>，故该篇题对应《火攻》篇 <span class="tag t-rep">转述</span>（李零，1983，经苏芃与《中国青年网》转引）。李零并把木牍末「<strong>七埶三千</strong>」释为<strong>后七篇的总称与总字数</strong>（「埶」同「势」，「三千」是后七篇字数）。⇒ <strong>「以《火攻》为末篇」这一关键推论，依赖这一处释读</strong>；而简本残损，<strong>释读本身有不确定性</strong>。<strong>这就是为什么苏芃的「全书结语」说应当被当作「强假说」而不是「定论」。</strong></p>
+  <h3>D4. 《三十六计》「隋代玉简」说，我未能核实，且它与文本内证冲突</h3>
+  <p>2009 年中国新闻网等报道，山东学者<strong>谢祥皓、赵承凤</strong>据一件刻有「开皇十六年十一月一日，何震刻」的<strong>玉简</strong>，主张《三十六计》成书于南北朝、作者为<strong>檀道济</strong>，从而把成书时间「上推千年」<span class="tag t-rep">转述</span>（中国新闻网，2009-09-07）。<strong>但</strong>：① 该玉简的<strong>真伪与释读</strong>我未能找到独立的学术鉴定；② 它与<strong>「书中引用了杜甫诗句、南宋战例、元曲故事」这一文本内证直接冲突</strong>；③ 学界主流仍认为《三十六计》成书于<strong>明末清初</strong>。⇒ <strong>本报告不采信「隋玉简」说为定论</strong>，仅在 5.6 标注其存在。</p>
+  <h3>D5. 「曹操删定了十三篇」——正确表述需要分层</h3>
+  <p>流行说法「曹操删定十三篇」至少混淆了三件事：① <strong>十三篇是曹操之前就有的</strong>（《史记》记阖闾语「子之十三篇，吾尽观之矣」）；② <strong>杜牧《注孙子序》</strong>说过「曹操削其繁剩，笔其精粹，以成此书」——这是该说的源头；③ <strong>《十一家註孫子》卷首按语已驳斥杜牧</strong>（「牧之言固未可以为据也」）<span class="tag t-src">原书</span>。⇒ 较稳妥的表述是：<strong>曹操是就「十三篇」作注（《孙子略解》），而非把《汉志》所载八十二篇删成十三篇</strong>。★ <strong>但「曹操是否对十三篇文本做过加工」仍有讨论空间</strong>（有学者认为武经本《孙子》的文字加工「大约出自曹操之手」），<strong>我未能核实到定论</strong>。</p>
+  <h3>D6. 「十一家」到底是哪十一家，特别是「何氏」是谁</h3>
+  <p>本项目与多数来源列名为：<strong>曹操、孟氏、李筌、贾林、杜佑、杜牧、陈皞、梅尧臣、王皙、何氏、张预</strong>。但<strong>「何氏」的具名有分歧</strong>：多数来源只作「何氏」，另有来源作「<strong>何延锡</strong>」（如凤凰网〈《孙子兵法》短短六千多字 为何魅力这么大？〉）。⇒ <strong>「何氏＝何延锡」这条我未能核到确凿的文献依据，存疑。</strong> 另需注意：<strong>孟氏</strong>一般认为是<strong>南朝梁人</strong>（非唐代）；<strong>杜佑</strong>的「注」多取自《通典》。<strong>「十一家」是一个汇集体的编排名单，不等于十一个人各写了一部注。</strong></p>
+  <h3>D7. 杜牧《注孙子序》的原文，我只见到转引与转述</h3>
+  <p>「曹操削其繁剩，笔其精粹，以成此书」这句，我是从 <strong>Wikisource《十一家註孫子》卷首题识</strong>（它明确写作「杜牧亦谓……」）与<strong>光明日报</strong>〈西汉《兵法》竹简：为孙武、孙膑正名〉（2013-01-22，「唐代杜牧说，孙武的兵法原有数十万言，曹操削其繁剩，笔其精粹，以成此书」）两处转引读到，<strong>未见到杜牧《樊川文集》原书</strong>。⇒ <strong>措辞可信、来源两处一致，但均属转引</strong>（B 级）。</p>
+  <h3>D8. 「《孙子兵法》被译成多少种语言」——本报告不采用任何具体数字</h3>
+  <p>中文来源常说「被译成英、日、法、德、俄等<strong>十几种</strong>语言」，也有说更多。★ <strong>这些数字都没有给出可核的权威清单，且口径互不一致</strong>（是「语种」还是「译本种数」？《三十六计》的译本常被混入统计？）。⇒ <strong>本报告不采用任何具体数字。</strong> 可确认的两条硬事实是：<strong>至晚唐代已传入日本</strong>；<strong>1593 年朝鲜将其译成谚文，是目前所知最早的译本</strong> <span class="tag t-rep">转述</span>。</p>
+  <h3>D9. <span class="tag t-talk">作者谈话</span> 一档的口径说明（重要）</h3>
+  <p>本书作者孙武<strong>无任何个人文字留存</strong>，因此本报告<strong>不设「孙武访谈」</strong>。<span class="tag t-talk">作者谈话</span> 一档改用于<strong>注家与校勘者的自述</strong>：</p>
+  <ul>
+    <li><strong>曹操《孙子略解·序》</strong>（Wikisource《孫子略解·序》全文可核）——「吾觀兵書戰策多矣，孫武所著深已……而但世人未之深亮訓說，況文煩富行於世者，失其旨要，故撰為略解焉」<span class="tag t-src">原书</span>。<strong>这是曹操自述为什么要注《孙子》，不是孙武的话。</strong>
+    </li>
+    <li><strong>杨丙安《十一家注孙子校理》的点校说明／代序</strong>——本项目给定的锚定本，其校记与考证为正文多处所依据。
+  <p>★ <strong>凡使用该档，本报告均在正文写明「这不是作者谈话」。</strong> 本报告最终<strong>未在正文以 <span class="tag t-talk">作者谈话</span> 标注任何一条</strong>——因为上述材料或属「注家自述」（已在 5.5 以具名注文形式引用），或属「校勘者说明」（已在第 4 节引用）。<strong>在此如实说明：该档在本报告正文中实际使用为零次。</strong></p>
+    </li>
+  </ul>
+  <h3>D10. 三套地形分类（四军／六地／九地）的成因，我未能定论</h3>
+  <p>《行军篇》讲「处山、处水、处斥泽、处平陆」四类，《地形篇》讲「通、挂、支、隘、险、远」六地，《九地篇》讲「散、轻、争、交、衢、重、圮、围、死」九地。<strong>三套分类互不重合、也互不引用。</strong> ⇒ 这<strong>显然是「十三篇并非一次写定」的重要内证</strong>，但<strong>三套分类是「不同来源的材料被汇集」还是「同一作者在不同篇中采用了不同视角」，我未能找到定论</strong> <span class="tag t-inf">推断</span>。<strong>读者宜把它当作一个开放问题。</strong></p>
+</section>
+
+<footer>
+  生成于 2026-10-07 · 来源清单与交叉验证记录见同目录 <code>孙子兵法-来源清单.md</code><br>
+  本页引文按 <b>A 级（公版全文逐字核对）</b>处理：十三篇经文与十一家注文依据 <b>Wikisource《十一家註孫子》</b> 逐篇核对，引文一律可定位到「篇名＋句（＋注者）」。★ <b>中译与校理本文本、银雀山简本材料为 B 级</b>（未逐字核对／系转引）。★《孙子兵法》是<b>被后世层层加码</b>的典型：请以原文为准，并先问一句「这是十一家注本、武经本，还是竹简本说的」。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>
