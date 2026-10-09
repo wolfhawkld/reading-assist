@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《物种起源》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《物种起源》<small>阅读指引与精华解析 · 2026-10-09</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 五个核心论点</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 中文译本怎么选</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 逐章深挖</div>
+    <a href="#s7">6 导论（Introduction）</a>
+    <a href="#s8">7 第 1 章 家养状态下的变异</a>
+    <a href="#s9">8 第 2 章 自然状态下的变异</a>
+    <a href="#s10">9 第 3 章 生存斗争</a>
+    <a href="#s11">10 第 4 章 自然选择</a>
+    <a href="#s12">11 第 5 章 变异的法则</a>
+    <a href="#s13">12 第 6 章 学说的难点</a>
+    <a href="#s14">13 第 7 章 本能</a>
+    <a href="#s15">14 第 8 章 杂交</a>
+    <a href="#s16">15 第 9 章 地质记录的不完整性</a>
+    <a href="#s17">16 第 10 章 古生物的演替</a>
+    <a href="#s18">17 第 11 章 地理分布</a>
+    <a href="#s19">18 第 12 章 地理分布·续</a>
+    <a href="#s20">19 第 13 章 生物的相互亲缘关系：形态学：胚胎学：退化器官</a>
+    <a href="#s21">20 第 14 章 复述与结论</a>
+    <div class="grp">附录</div>
+    <a href="#s22">A 关键概念与人物速查</a>
+    <a href="#s23">B 延伸阅读</a>
+    <a href="#s24">C 来源清单</a>
+    <a href="#s25">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《物种起源》阅读指引与精华解析</h1>
+  <div class="sub">On the Origin of Species by Means of Natural Selection, or the Preservation of Favoured Races in the Struggle for Life（1859）</div>
+  <div class="meta">
+    <div><b>作者</b>查尔斯·达尔文（Charles Darwin，1809–1882），英国博物学家；剑桥出身，1831–1836 年随皇家海军「贝格尔号」（H.M.S. Beagle）环球考察近五年；自称 <b>agnostic（不可知论者）</b>，从不说自己是无神论者</div>
+    <div><b>初版</b><b>1859 年 11 月 24 日</b>，伦敦 John Murray 出版，初版印 <b>1,250 册，当日售罄</b></div>
+    <div><b>★ 版本史（本书解读的第一入口）</b>达尔文生前共出 <b>6 版</b>：第 1 版 1859／第 2 版 1860-01-07／第 3 版 1861／第 4 版 1866／第 5 版 1869／第 6 版 1872。<b>第 6 版篇幅比第 1、2 版多出约三分之一</b>（本报告实测三版公版全文体积：970 KB → 1303 KB）；<b>20 世纪前 80 年的中译底本几乎都是第 6 版</b></div>
+    <div><b>★ 中译（核心判据是「据哪一版」）</b><b>周建人、叶笃庄、方宗熙 译</b>（三联书店 1954–1956，<b>据第 6 版</b>，影响最大）；<b>苗德岁 译</b>（译林出版社 2013／2020，<b>据牛津世界经典丛书第 2 版</b>）；另有马君武（1920，文言）、谢蕴贞等早期译本</div>
+    <div><b>篇幅与结构</b>《物种起源》＝ <b>导论（Introduction）＋ 14 章</b>（第 1 版结构）；第 3 版起另加一篇《学说发展简史》。作者自称全书是一篇 <b>one long argument（一个长篇论证）</b></div>
+    <div><b>★ 公版原文（本报告的底本）</b><b>Project Gutenberg #1228（1859 年第 1 版）／#22764（1860 年第 2 版）／#2009（1872 年第 6 版）</b>——<b>三版均为公版全文，本报告已实测下载并逐段核对</b>。★ 本书是全批唯一「第 1 版与第 6 版都有公版全文」的一本，故<b>每处关键引文均标明出自哪一版</b></div>
+    <div><b>地位</b>生命科学的第一部奠基文本；与《自然哲学的数学原理》（1687）同列「论证型」科学著作谱系；「演化」「自然选择」「生存斗争」等词已成为通用语汇</div>
+    <div><b>状态</b>未标注已读／想读 —— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 《物种起源》<b>英文原文</b>（已进入公有领域）：依据 <b>Project Gutenberg #1228（第 1 版）／#22764（第 2 版）／#2009（第 6 版）</b>；引文一律定位到「<b>第 N 章</b>」<b>并标明版次</b>（如「第 3 章，第 1 版」），凡涉版本差异处<b>三版并列</b></li>
+    <li><span class="tag t-talk">作者谈话</span> ★ 达尔文<b>已逝（1882）</b>，<b>这不是访谈</b>。本书此档只用于<b>他本人的其他文字</b>：《自传》（Autobiography，1876 年写成、1887 年由其子 Francis 编成出版）、《贝格尔号航海记》（1839）、<b>Darwin Correspondence Project</b>（剑桥大学公开在线书信）</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、科学史叙述、版本史文献或译者访谈，措辞可能与原文有出入（凡涉当代科学史与争议史者一律按此档处理）</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    ★ 本书<b>有公版英文全文可逐字核对，而且是最要紧的三个版本同时可得</b>：依据 <b>Project Gutenberg #1228（1859 第 1 版）／#22764（1860 第 2 版）／#2009（1872 第 6 版）</b>，<b>三版的导论与第 1–14 章全部读到，逐章取可定位原文，无降级章</b>。★ 但<b>中文引文另计 B 级</b>：周译本（据第 6 版）与苗译本（据第 2 版）均仍在版权期内，我未逐字核对中文页面，只作版本信息引用与术语对照。★ <b>本书的第一入口是版本，不是章节</b>——凡涉第 1／2／6 版差异处（卷首引语、结尾「由造物主」、第 4 章定义与「比喻地说」、第 9 章 Weald 年数、第 4 章「适者生存」），本报告<b>三版并列逐处标明</b>。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-09 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)"><b>① 英文原文部分：A 级</b> —— 依据 <b>Project Gutenberg #1228（第 1 版）／#22764（第 2 版）／#2009（第 6 版）</b>（https://www.gutenberg.org/ebooks/1228 、 /22764 、 /2009 ），三份均<b>实测 HTTP 200 可下载</b>（970,611／981,007／1,302,998 字节）；覆盖<b>三版的导论 ＋ 第 1–14 章</b>（第 6 版另有《学说发展简史》），<b>无降级章</b>。</p>
+  <p style="margin:6px 0 0;font-size:12.5px;color:var(--ink3)"><b>② 中文引文部分：B 级</b> —— 依据<b>周建人、叶笃庄、方宗熙译本</b>（三联书店 1954–1956，据第 6 版）与<b>苗德岁译本</b>（译林出版社 2013／2020，据牛津第 2 版），该等译本<b>仍在版权期内</b>，<b>我未逐字核对中文页面</b>；本报告中文引文为<b>笔者自译或据公开引文转引</b>。</p>
+  <p style="margin:6px 0 0;font-size:12.5px;color:var(--ink3)">★ 凡涉<b>当代科学史、版本争议史、译者访谈</b>的表述（Keith Thomson、苗德岁访谈、牛津 1860 辩论的「传说」判定、斯宾塞与华莱士的词源、现代综合等），<b>一律按「转述」处理</b>。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>这本书要说的是：物种不是被分别创造出来的，而是共同祖先在「生存斗争」中经「自然选择」逐渐分歧、留存下来的后裔；而达尔文用 14 章来证明，这一条机制能同时解释育种、化石、地理分布、形态与胚胎上的全部主要事实——他把它写成了一篇自设反方、再逐条驳倒的长篇论证。</strong></p>
+  <p>达尔文在导论里把话说得很朴素：他随贝格尔号环球航行时，「<strong>南美洲生物的分布，以及该大陆现存生物与古生物之间的地质关系</strong>」这两组事实使他深受触动，觉得「<strong>它们似乎能对物种的起源这一问题投下一些光——那被我们最伟大的哲学家之一称作『谜中之谜』（mystery of mysteries）的问题</strong>」<span class="tag t-src">原书</span>（导论，第 1 版）。全书的方法论也一句话交代：这本书只是<strong>一份摘要（Abstract）</strong>，因为「<strong>我的工作已近完成，但要完整写出来还需两三年，而我的健康又大不如前</strong>」，所以先把它印出来<span class="tag t-src">原书</span>（导论，第 1 版）。</p>
+  <p>一句话结论（达尔文自己给的公式）：<strong>「我把这种有利变异的保存与有害变异的汰除，称为自然选择。」</strong> <span class="tag t-src">原书</span>（第 4 章，<strong>第 1 版原句</strong>）。而第 6 版把这句改成了：「<strong>我把有利的个体差异与变异的保存、以及有害变异的毁灭，称为自然选择，或曰适者生存（the Survival of the Fittest）。</strong>」<span class="tag t-src">原书</span>（第 4 章，第 6 版）。</p>
+  <p><strong>它不是什么</strong>：不是一本「进化＝进步」的进步主义宣言（达尔文用的是 <strong>descent with modification</strong>，全书<strong>「evolution」一词只在最末一句以被动的「evolved」出现一次</strong>）；不是一本证明「人由猴子变来」的人类学著作（<strong>全书只有一句话提到人类</strong>，在第 14 章）；更不是一本可以只看第 4 章标题就以为读完了的书——<strong>它是一部从鸽子育种一直讲到火山岛陆鸟的论著。</strong></p>
+  <p><strong>★ 三句话先给你安上「坐标系」，以免读歪</strong>：<strong>① 它要证明的是「一个机制」</strong>——变异 ＋ 生存斗争 ＋ 差异存活，而不是「物种会变」这个结论（后者早有前人）；<strong>② 它最有力的地方不是机制本身，而是「解释范围」</strong>——化石、地理、分类、形态、胚胎、退化器官这六类事实被同一条机制串起来（第 9–14 章）；<strong>③ 它最弱的地方不是「错」，而是「缺」</strong>——缺一套遗传机制（第 5 章坦白）与一个可靠的年龄尺度（第 9、10 章向开尔文让步）。<strong>把这三句记住，就能在「达尔文到底强在哪、弱在哪」这个问题上不被口号牵着走。</strong></p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>★ 下表把<strong>导论与 14 章全部列出</strong>（一行一章）。★ <strong>章号据第 1 版</strong>（顺序在六版中大体不变）；章名<strong>据英文原题译出</strong>，周建人等中译本的中文章名或有出入（<strong>核引用时以你手中版本的目录为准</strong>）。★ <strong>第 6 版在导论之前另加了一篇《本书第一版问世前关于物种起源的学说发展简史》（An Historical Sketch…）</strong>，那是全书的「第七个前置单元」，本表单列一行。</p>
+  <table>
+    <thead><tr><th>#</th><th>单元</th><th>这一章讲什么</th><th>它在论证里处于哪一层</th></tr></thead>
+    <tbody>
+      <tr><td>导论（Introduction）</td><td>卷首</td><td>缘起、贝格尔号、华莱士、《摘要》的性质</td><td>全书的缘起与路线图</td></tr>
+      <tr><td>0</td><td>历史简述（An Historical Sketch，<strong>第 3 版起新增</strong>）</td><td>从前达尔文时代到 1859 年的演化观点编年</td><td>学术史交代（<strong>第 1、2 版没有</strong>）</td></tr>
+      <tr><td>1</td><td>家养状态下的变异</td><td>变异、习性、相关生长、遗传；家鸽育种</td><td>机制的「人工选择」类比：人能做到，自然更能</td></tr>
+      <tr><td>2</td><td>自然状态下的变异</td><td>个体差异、存疑物种、大属物种变异更多</td><td>把「人工选择」的原料搬到自然界</td></tr>
+      <tr><td>3</td><td>生存斗争</td><td>广义而比喻性的「生存斗争」；马尔萨斯与几何增长</td><td>★ 机制的第一个前提：繁殖过剩 → 斗争</td></tr>
+      <tr><td>4</td><td>自然选择</td><td>★★ 自然选择的定义；性选择；性状分歧；「生命之树」</td><td>★★★ 全书枢纽：「自然」不是意志，是结果</td></tr>
+      <tr><td>5</td><td>变异的法则</td><td>用进废退、相关生长、返祖；变异的因果我们所知甚少</td><td>机制的「原料」从何而来（承认无知）</td></tr>
+      <tr><td>6</td><td>学说的难点</td><td>★★ 眼睛等极端完善器官；过渡类型缺失；「自然界不跳步」</td><td>★★ 主动设反方：全书最诚实的一章</td></tr>
+      <tr><td>7</td><td>本能</td><td>寄生蜂、杜鹃、奴役蚁、蜂巢几何；中性不育昆虫</td><td>把「本能」也纳入自然选择</td></tr>
+      <tr><td>8</td><td>杂交</td><td>物种杂交的不育、变种杂交的可育</td><td>用「不育」检验物种界线（结论是：不是绝对界线）</td></tr>
+      <tr><td>9</td><td>地质记录的不完整性</td><td>化石为什么残缺；时间尺度；地层间断</td><td>★ 解释「为什么没看到过渡类型」（第 6 章难点的续）</td></tr>
+      <tr><td>10</td><td>古生物的演替</td><td>新物种缓慢出现；物种一旦灭绝不复返；灭绝</td><td>用地质学检验共祖（含<strong>地球年龄</strong>之争）</td></tr>
+      <tr><td>11</td><td>地理分布</td><td>屏障、单一起源中心、散布手段、冰期</td><td>用生物地理检验共祖（跨洋分布之难）</td></tr>
+      <tr><td>12</td><td>地理分布·续</td><td>淡水生物、海洋岛屿、岛屿生物与最近大陆的亲缘</td><td>★ 加拉帕戈斯：共祖的最强个案</td></tr>
+      <tr><td>13</td><td>生物的相互亲缘关系：形态学：胚胎学：退化器官</td><td>分类、同源器官、胚胎相似、退化器官</td><td>★★ 理论的最强证据：不靠化石也能证明共祖</td></tr>
+      <tr><td>14</td><td>复述与结论</td><td>复述难点与解答；「由造物主吹入」；「生命之树」的收束</td><td>全书的自我结算与展望</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法提示</strong>：这张表本身就是达尔文的<strong>论证路线图</strong>。把导论和 14 章按「链条」看，它分成四段：<strong>① 机制的设立（第 1–4 章：家养变异 → 自然变异 → 生存斗争 → 自然选择）→ ② 机制的补漏（第 5 章变异来源、第 6–8 章三大难点：器官、本能、杂交）→ ③ 用两大证据体系检验（第 9–12 章：地质记录与地理分布）→ ④ 归纳与统一解释（第 13–14 章）</strong>。★ <strong>第 4 章是全书的枢纽</strong>：抽掉第 3 章（斗争），第 4 章就没有前提；抽掉第 4 章（选择），后面十章的「解释」全部无处落地。★ <strong>第 6 章不是弱项，是方法</strong>：达尔文<strong>主动列出一整章「难点」</strong>，把「眼睛怎么可能演化出来」「过渡类型为什么找不到」摆上台面再逐条处理——<strong>这是本书最可学的一种写作姿态</strong>。</p>
+  <p>★ <strong>三个版本，三个数字（本报告实测，供你判断自己手上是哪一版）</strong>：</p>
+  <table>
+    <thead><tr><th>版本</th><th>PG 编号</th><th>实测体积（纯文本）</th><th>关键判据（一眼可辨）</th></tr></thead>
+    <tbody>
+      <tr><td><strong>第 1 版（1859）</strong></td><td><strong>#1228</strong></td><td>约 <strong>970 KB</strong></td><td>引语<strong>两条</strong>；结尾「<strong>吹入</strong>」（无「由造物主」）；<strong>无</strong>「适者生存」；<strong>无</strong>学说发展简史</td></tr>
+      <tr><td><strong>第 2 版（1860）</strong></td><td><strong>#22764</strong></td><td>约 <strong>981 KB</strong></td><td>引语<strong>三条</strong>（多 Butler）；结尾「<strong>由造物主吹入</strong>」；<strong>无</strong>「适者生存」；<strong>无</strong>学说发展简史</td></tr>
+      <tr><td><strong>第 6 版（1872）</strong></td><td><strong>#2009</strong></td><td>约 <strong>1303 KB</strong></td><td>引语三条；结尾「由造物主吹入」；<strong>有</strong>「适者生存」；<strong>有</strong>学说发展简史；<strong>Weald 三亿年数字已删</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>用法</strong>：<strong>下载任意一版后，用上面四条判据中的任意一条，就能在三十秒内确认版次</strong>；而<strong>三版体积的差异（970 KB → 1303 KB）本身就是「第 6 版多出约三分之一」这一说法的量度</strong><span class="tag t-src">原书</span>（本报告实测）。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>五个核心论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：物种不是分别创造的——共同祖先 ＋ 性状分歧 ＝「descent with modification」</h3>
+  <p><strong>主张</strong>：达尔文在导论里就给出全书唯一的理论主张——「<strong>我完全相信，物种不是不变的（species are not immutable）；那些属于所谓同一属的物种，是某些通常已经灭绝的物种的直系后裔</strong>」<span class="tag t-src">原书</span>（导论，第 2 版；第 1 版措辞基本相同）。★ 他刻意<strong>不用「进化（evolution）」这个词</strong>，用的是 <strong>descent with modification（带有饰变的由来）</strong>。 <strong>依据</strong>：第 1–2 章先证「变异普遍存在」，第 3–4 章给机制，第 9–14 章给证据。★ <strong>关键是他把「分类」本身当成证据</strong>：如果物种是分别创造的，「属」「科」这些层级只应是一套人为的归档法；但若共祖成立，<strong>层级结构就是亲缘关系的自然投影</strong>——第 13 章整章就在论证这一点。 <strong>为什么重要</strong>：★★ <strong>这是全书被压缩成一句口号的论点，也最容易被读浅。</strong> 「物种会变」在 1859 年并非全新想法（拉马克、其祖父伊拉斯谟斯·达尔文、《创造的遗迹》都提过），<strong>达尔文的独创不是「变」，而是「怎么变」</strong>——用一个<strong>无需意志、无需目的</strong>的机制把变异的方向解释掉。所以只记住「进化论」，等于把这本书最要紧的那一步（机制）删掉了。</p>
+  <h3>论点二：机制＝变异 ＋ 生存斗争 ＋ 差异存活，也就是「自然选择」</h3>
+  <p><strong>主张</strong>：「<strong>我把这种有利变异的保存与有害变异的汰除，称为自然选择</strong>」<span class="tag t-src">原书</span>（第 4 章，第 1 版）。机制的四个要件在第 4 章里依次摆出：<strong>① 个体有变异</strong>（第 1–2 章）；<strong>② 繁殖过剩导致生存斗争</strong>（第 3 章）；<strong>③ 有利变异者更可能存活并繁殖</strong>（第 4 章）；<strong>④ 变异可遗传</strong>（第 1、5 章）。 <strong>依据</strong>：他用的不是空推理，而是<strong>育种实践的类比</strong>——第 1 章整章写<strong>家鸽</strong>：所有家鸽品种「<strong>都源自岩鸽（Columba livia）</strong>」，而鸽的品种差异之大，「<strong>足够让自然学家把它们当作不同的属</strong>」<span class="tag t-src">原书</span>（第 1 章）。★ 既然<strong>人在几十年里就能靠选育造出这么大的差异</strong>，自然在<strong>几千、几百万年</strong>里更可以<span class="tag t-src">原书</span>（第 1、4 章）。 <strong>为什么重要</strong>：★ 这一步使「物种可变」从<strong>哲学猜想</strong>变成<strong>可检验的机制</strong>——这是它区别于所有前辈演化思想的地方。★ 同时它也留下了全书最大的空白：<strong>「变异从何而来」达尔文答不出</strong>（第 5 章承认「我们对变异法则的无知是深刻的」，第 6 版原句），只能诉诸「用进废退」与「环境直接影响」——<strong>这处空白要到 20 世纪「现代综合」才被遗传学补上</strong>。</p>
+  <h3>论点三：「生存斗争」是广义而比喻性的——它不是「丛林法则」</h3>
+  <p><strong>主张</strong>：第 3 章开门就给了定义，而且<strong>特意加上限定</strong>：「<strong>我应当预先说明，我是在一种广义而比喻性的意义（a large and metaphorical sense）上使用『生存斗争』这个术语的，其中包括一个生物对另一个生物的依存，尤其包括——这一点更重要——不只是个体的生存，还有留下后代上的成功。</strong>」<span class="tag t-src">原书</span>（第 3 章，第 1 版；第 6 版作 "in a large and metaphorical sense"，同义）。 <strong>依据</strong>：他给了三个层层递进的例子来定界——「<strong>两只犬类在食物短缺时，才算真正在为争食而斗争</strong>」；「<strong>沙漠边缘的一株植物，说是与干旱作斗争，其实更准确地说它依赖于水分</strong>」；「<strong>一株年产千粒种子、平均只有一粒长成的植物，说它与已覆盖地面的同种及异种植物作斗争，才更确切</strong>」<span class="tag t-src">原书</span>（第 3 章）。★ 更关键的一句是：<strong>这整套斗争之所以必然发生，是因为「生物按几何级数增长」</strong>——「<strong>这就是马尔萨斯（Malthus）的学说，以多重的力量应用于整个动物界与植物界</strong>」<span class="tag t-src">原书</span>（第 3 章，第 1 版）。 <strong>为什么重要</strong>：★★ <strong>「物竞天择、弱肉强食、丛林法则」是后人对这一章的挪用，不是达尔文的定义。</strong> 达尔文的「斗争」<strong>首先是统计性的</strong>（生得多、活下来的少），<strong>其次包含依存与互助</strong>（他明说「包括一个生物对另一个生物的依存」）；而<strong>「丛林法则」是斯宾塞式社会达尔文主义的讲法</strong>——用「斗争」去为无节制的竞争背书，<strong>这与第 3 章原文正相反</strong>（原文里斗争的<strong>最激烈处，「是个体与变种之间，即同种之间」</strong>，恰恰不是「强者吃掉弱者」）。见第 4b 节与第 5 节。</p>
+  <h3>论点四：「自然选择」里的「自然」不是意志，是结果——达尔文亲口否认自己在拟人</h3>
+  <p><strong>主张</strong>：达尔文非常清楚「选择」这个词会被读成「有谁在选择」，所以两处<strong>亲自澄清</strong>。第 4 章：<strong>「自然选择每天每时都在全世界检视着每一种变异，哪怕是最细微的……」</strong>——但紧接着的全书经典澄清在<strong>第 6 版</strong>：「<strong>有人说我把自然选择说成一种主动的力量或神；可是，谁又会反对一个作者说万有引力统治着行星的运动呢？人人都知道这类比喻表达是什么意思……我很难避免把『自然』人格化；但我所谓『自然』，不过指许多自然法则的集合作用与产物；而所谓法则，指我们所查明的各种事件的先后序列。</strong>」<span class="tag t-src">原书</span>（第 4 章，<strong>第 6 版</strong>）。 <strong>依据</strong>：达尔文为此还<strong>把原句改软</strong>——<strong>第 1 版作「It may be said that natural selection is daily and hourly scrutinising…」；第 6 版加了一个词，作「It may metaphorically be said that natural selection is daily and hourly scrutinising…」</strong>（「可以说是」「比喻地说」）<span class="tag t-src">原书</span>（第 4 章，两版对比）。★ <strong>这个词是跨版本可以逐字对照的改动，也是「达尔文自己知道这是隐喻」的直接证据。</strong> <strong>为什么重要</strong>：★★ 这条是理解全书科学性质的钥匙：<strong>自然选择不是一种力、不是一个主体、也没有目的</strong>，它只是「<strong>差异存活这件事反复发生</strong>」的一个名字。★ 所以「自然选择是为了……」「大自然选择了……」这类句式，严格说都不是达尔文的用法。<strong>同一澄清还顺带否掉了斯宾塞式读法</strong>——斯宾塞把「适者生存」拿来给自由竞争做辩护，而达尔文的原意里「适（fit）」<strong>只是「更适应此时此地的环境」，不是「更强、更好、更高级」</strong>。</p>
+  <h3>论点五：理论的力量来自「解释范围」——它同时解释化石、地理、形态与胚胎</h3>
+  <p><strong>主张</strong>：达尔文在第 13 章把话挑明：<strong>「形态学」「胚胎学」「退化器官」这三组事实，若用『独立创造』解释，全是彼此无关的孤立事实；若用『共祖』解释，则它们是同一个原因的四张面孔。</strong> 他的原话是：「<strong>在变异的连续轻微、且不一定发生在生命极早期、并在相应时期被遗传这一原理上，我们就能理解胚胎学上那些主要事实</strong>」<span class="tag t-src">原书</span>（第 13 章，第 1 版）。 <strong>依据</strong>：<strong>同源器官</strong>——「<strong>同一纲内各成员的许多部分，无论用途如何不同，都按同一模式构造</strong>」，他命名为 <strong>unity of type（模式的统一）</strong><span class="tag t-src">原书</span>（第 13 章）；<strong>胚胎相似</strong>——「<strong>同一纲的胚胎，在早期阶段极为相似</strong>」；<strong>退化器官</strong>——「<strong>退化、萎缩或废弃的器官</strong>」只能用「祖先曾用过、后来废弃」来解释。★ 第 14 章他把这条总结为一个比喻：<strong>共同祖先就像「生命之树」（the great Tree of Life）的主干</strong>，灭绝的物种是折断的枝条，现存的物种是顶端的嫩芽<span class="tag t-src">原书</span>（第 4 章末与第 14 章）。 <strong>为什么重要</strong>：★★ <strong>这是本书区别于一切「猜想式演化论述」的根本。</strong> 一部理论的价值不在能解释<strong>它自己举的例子</strong>，而在能<strong>统一解释那些原本互不相干的事实</strong>：化石记录、岛屿生物、冰期分布、同源器官、胚胎、退化器官——<strong>它们分属四五个不同学科，却都被同一条机制串起来。</strong> 这正是本书第 9–14 章那六章存在的理由，也是「它是一个长篇论证」这句话的真正含义。</p>
+  <p>★ <strong>五条论点之间的依赖关系（先把骨架搭好，再读下部）</strong>：<strong>论点一是要证明的结论</strong>（共祖）；<strong>论点二是证明它的机制</strong>（自然选择）；<strong>论点三是机制的第一个前提</strong>（斗争，且要防止它被读成「丛林法则」）；<strong>论点四是机制的性质澄清</strong>（「自然」不是意志，是防止被读成「有神在选择」）；<strong>论点五是机制的说服力来源</strong>（解释范围，是「凭什么信它」）。★ <strong>顺序不能颠倒</strong>：先有斗争（三）才有选择（二），先有选择（二）才谈得上共祖（一），而共祖（一）要靠解释范围（五）来兑现。⇒ <strong>下部第 1–14 章，就是这五条论点按序落地的一段一段的论证。</strong></p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <ol>
+    <li>★★ <strong>先定版本，再开书。</strong> 这是本书唯一的「第一入口」。<strong>若你只想读一遍：读第 1 版</strong>（PG #1228，或任何据第 1 版的重印本）——它<strong>更短、更清晰、论证更紧</strong>，也是<strong>真正改变了世界的那一版</strong>。<strong>若你要看达尔文最终的立场，或要对照通行的周译本，才读第 6 版。</strong> ★ 一句话：<strong>第 1 版是「达尔文的想法」，第 6 版是「达尔文对批评者的回答」。</strong>
+    </li>
+    <li>★★ <strong>先读第 3、4 章，再回头读第 1、2 章。</strong> 第 3 章（生存斗争）与第 4 章（自然选择）是机制的引擎，也最像「论点」；第 1 章（家鸽）与第 2 章（自然变异）是原料。<strong>如果你只有一晚，就读第 3 章 ＋ 第 4 章，加上第 14 章最后两页。</strong>
+    </li>
+    <li>★ <strong>第 6 章（学说的难点）不要跳，而且要在第 4 章之后立刻读。</strong> 这一章是<strong>达尔文自己列出的反方清单</strong>：眼睛（「<strong>我坦率承认，以为它能由自然选择形成，似乎是最荒谬不过的</strong>」<span class="tag t-src">原书</span>，第 6 章）、过渡类型缺失、本能（第 7 章）、杂交不育（第 8 章）。<strong>读这一章的正确姿势是：把它当成一份「作者主动交出的弱点清单」来看，而不是当成待背的结论。</strong>
+    </li>
+    <li><strong>第 5 章可以快读，但要记住它的坦白</strong>：达尔文在这一章<strong>承认「我们对变异法则的无知是深刻的」</strong>（第 6 版原句）——<strong>这是全书最重要的一处自认空白</strong>，也是后来孟德尔遗传学要填的洞。
+    </li>
+    <li>★ <strong>第 9–12 章按「证据类型」读，不必逐句读</strong>：第 9–10 章用<strong>化石与地质</strong>检验，第 11–12 章用<strong>地理分布</strong>检验。<strong>第 12 章的加拉帕戈斯是全书最漂亮的一个个案</strong>，值得细读<span class="tag t-src">原书</span>（第 12 章）。
+    </li>
+  </ol>
+  <h3>如果你是「已读」</h3>
+  <ol>
+    <li>★★ <strong>做一次「第 1 版 vs 第 6 版」的对照阅读——这是这本书最值钱的读法。</strong> 至少核对四处：<strong>卷首引语</strong>（第 2 版起多一条 Butler）、<strong>第 4 章自然选择定义</strong>（第 6 版多「或曰适者生存」）、<strong>第 4 章「检视」句</strong>（第 6 版多一个「比喻地说」）、<strong>第 14 章结尾</strong>（第 2 版起多「由造物主」）。<strong>读完这四处，你就知道「我读的《物种起源》是哪一版」为什么是第一要紧的问题。</strong>
+    </li>
+    <li>★ <strong>把「达尔文主动列难点」这条写作策略标出来。</strong> 他<strong>用一整章（第 6 章）＋ 两整章（第 7、8 章）处理自己的难点</strong>，再在第 9–10 章为「化石缺失」专门辩护。<strong>这种「先把反方摆足再回答」的结构，在科学写作里至今罕见。</strong>
+    </li>
+    <li>★ <strong>读第 13 章时，把「同源器官—胚胎相似—退化器官」列成一张三列对照表</strong>，左边写「独立创造该怎么解释」，右边写「共祖该怎么解释」。★ 你会发现：<strong>右边全是一句话，左边要么无解、要么需要额外假设</strong>。<strong>这一张表就是全书的证据内核。</strong>
+    </li>
+    <li><strong>读一读反面与后来的修正</strong>：<strong>开尔文（William Thomson，后为 Lord Kelvin）对地球年龄的质疑</strong>（它逼达尔文在第 6 版里删掉第 1 版的「三亿年」估算）；<strong>孟德尔 1866 年的遗传论文</strong>（达尔文至死未读到）；以及<strong>20 世纪「现代综合」（modern synthesis）</strong>如何补上遗传机制。<strong>这些不是「达尔文的错误」，而是他把问题摆出来之后的后续。</strong>
+    </li>
+  </ol>
+  <h3>★ 三个最容易读错的地方（无论读第几版都适用）</h3>
+  <ol>
+    <li><strong>把「自然选择」读成「有意志的选择者」</strong>——达尔文本人在第 6 版里专门澄清过（「<strong>我所谓『自然』，不过指许多自然法则的集合作用与产物</strong>」<span class="tag t-src">原书</span>，第 4 章）。<strong>读到「自然选择偏好……」时，请自动在心里补上「比喻地说」。</strong>
+    </li>
+    <li><strong>把「生存斗争」读成「弱肉强食」</strong>——第 3 章的定义里<strong>明确包括「依存」</strong>，且<strong>最激烈处在同种之间</strong>。<strong>达尔文的「斗争」首先是统计性的（生得多、活下来的少），不是「强者吃弱者」。</strong>
+    </li>
+    <li><strong>把「适应」读成「更高级／更进步」</strong>——「适（fit）」<strong>只指「更适应此时此地的环境」</strong>，<strong>不含价值等级</strong>。★ 这是「进化＝进步」误读的源头，也是社会达尔文主义的入口。
+    </li>
+  </ol>
+  <h3>★ 如果你只有两小时：一条最小路线图</h3>
+  <ol>
+    <li><strong>先花 15 分钟读导论最后两页</strong>（核心主张「物种不是不变的」）<span class="tag t-src">原书</span>（导论）。
+    </li>
+    <li><strong>再花 45 分钟读第 3 章与第 4 章</strong>：第 3 章读「<strong>广义而比喻性的</strong>」那一段定义 ＋ 马尔萨斯那一段；第 4 章读「<strong>定义句</strong>」「<strong>检视句</strong>」「<strong>自然不是意志的澄清段</strong>」「<strong>生命之树</strong>」。★ <strong>这四段加起来不到十页，却是全书的引擎。</strong>
+    </li>
+    <li><strong>花 30 分钟读第 6 章开头（眼睛）与第 14 章最后两页</strong>（「由造物主吹入」＋「宏伟」）<span class="tag t-src">原书</span>（第 6、14 章）。
+    </li>
+    <li><strong>剩下 30 分钟，跳读第 13 章</strong>，只看「模式的统一」「胚胎相似」「退化器官」三个小标题下的段落<span class="tag t-src">原书</span>（第 13 章）。
+  <p>★ <strong>两小时之后，你手上就有了「机制（3、4）＋ 难点（6）＋ 证据（13）＋ 收束（14）」这四根柱子</strong>——其余九章都是这四根柱子在不同学科里的展开。</p>
+    </li>
+  </ol>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是必写项，而且对本书来说，选译本的唯一关键判据不是「文笔」，是「据哪一版」。</strong> 中译的差异首先是<strong>底本差异</strong>，其次才是风格差异——<strong>选错版本，等于读了一本不同的书。</strong></p>
+  <p><strong>先说最要紧的四条</strong>：</p>
+  <blockquote>
+    <p><strong>⚠ ① 影响最大、通行最广的是周建人、叶笃庄、方宗熙合译本。</strong> 三联书店 <strong>1954–1956</strong> 年出版，<strong>据第 6 版</strong>译出；后由商务印书馆等多种版本重印（另有叶笃庄修订本等）。★ <strong>它据的是第 6 版——就是说，你在这本里读到的「由造物主」「适者生存」，都是第 1 版没有的。</strong> 中译正文中的术语（自然选择／生存斗争／性状分歧）也基本由这个系统稳定下来。</p>
+    <p><strong>⚠ ② 学界评价很高的是苗德岁译本。</strong> 译林出版社 <strong>2013 年</strong>初版（<strong>2020 年</strong>又有新版），<strong>据牛津世界经典丛书（Oxford World's Classics）第 2 版（2008 修订版）</strong>译出。★ 与周译「据第 6 版」相对，<strong>苗译据的是第 2 版</strong>——<strong>两者的底本相差 12 年、篇幅相差三分之一，可以说是「不同的书」。</strong></p>
+    <p><strong>⚠ ③ 「牛津世界经典丛书为何用第 2 版」本身就说明了版本选择的逻辑。</strong> 苗德岁在访谈里解释过：牛津版<strong>1996 年版与 2008 修订版都采用第 2 版</strong>，理由是<strong>第 2 版纠正了第 1 版的一些明显错误，但整体变动极小</strong>（第 2 版距第 1 版仅一个半月，未重排版，主要是校订）；<strong>而第 6 版为了回应（很多是错误的）批评，被改得「连篇累牍」、偏离了原立场</strong><span class="tag t-rep">转述</span>（苗德岁访谈，果壳网；中新网 2014-01-10 报道口径一致）。</p>
+    <p><strong>⚠ ④ 「据哪一版」是唯一关键判据。</strong> 中译版本之间的实质差异，<strong>不是译笔好坏，而是底本不同</strong>。⇒ <strong>凡遇到「《物种起源》中译」，先问一句：它据第几版？</strong> 若答「第 6 版」，那你读到的<strong>结尾有「由造物主」</strong>；若答「第 1 版／第 2 版」，则<strong>没有</strong>（第 2 版有的版本差异见下）。★ <strong>中文读者最常踩的坑，是以为所有中译本都在译同一本书。</strong></p>
+  </blockquote>
+  <p><strong>版本关系（主要中译本）</strong>：</p>
+  <table>
+    <thead><tr><th>译本</th><th>出版</th><th>底本</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td><strong>马君武 译</strong></td><td>1920</td><td>文言，早期译本</td><td>★ 汉语世界最早的系统译本之一（文言）</td></tr>
+      <tr><td><strong>谢蕴贞 等</strong></td><td>早期</td><td>不一</td><td>早期中译谱系之一</td></tr>
+      <tr><td><strong>周建人、叶笃庄、方宗熙 译</strong></td><td>三联书店 <strong>1954–1956</strong></td><td>★ <strong>据第 6 版</strong></td><td>★★ 影响最大、通行最广；后有多种重印</td></tr>
+      <tr><td><strong>苗德岁 译</strong></td><td>译林出版社 <strong>2013／2020</strong></td><td>★ <strong>据牛津世界经典丛书第 2 版（2008）</strong></td><td>★ 学界评价很高；与周译「可以说是完全不同的一本书」</td></tr>
+      <tr><td>其他据第 6 版的近代译本</td><td>各社</td><td>第 6 版</td><td>★ <strong>通行旧译本多数据第 6 版</strong></td></tr>
+    </tbody>
+  </table>
+  <p><strong>★ 该选哪个——三句话结论</strong>：</p>
+  <ol>
+    <li><strong>中文读者、只想读一遍 → 首选苗德岁译本</strong>（据第 2 版，是当代达尔文研究者更推重的底本，且文笔流畅）。<strong>若你手上只有周译本，也完全可以读，但要记住它据第 6 版。</strong>
+    </li>
+    <li><strong>做文本研究 → 必须回英文原文，而且必须指明版次。</strong> 推荐用 <strong>Project Gutenberg #1228（第 1 版）</strong> 与 <strong>#2009（第 6 版）</strong>；<strong>第 2 版用 #22764</strong>。★ <strong>本书的三份公版全文都已实测可下载</strong>（见来源清单的「公版入口实测记录」）。
+    </li>
+    <li><strong>见到「《物种起源》」时，先分辨它是第几版</strong>：<strong>结尾有「由造物主」的，是第 2 版及以后；没有的，是第 1 版。</strong>
+    </li>
+  </ol>
+  <p><strong>★ 两个必须提醒的坑</strong>：</p>
+  <ol>
+    <li><strong>不要把《物种起源》和达尔文的其他书搞混。</strong> 达尔文另有《贝格尔号航海记》（1839，环行记）、《动物和植物在家养下的变异》（1868，<strong>泛生论 pangenesis 在此</strong>）、《人类的由来及性选择》（1871，<strong>人类起源真正在此展开</strong>）、《人与动物的情感表达》（1872）等。★ <strong>想读「人从哪来」，该读的是 1871 年那本，不是《物种起源》</strong>——本书里关于人类只有一句话。
+    </li>
+    <li><strong>不要把「evolution」当成达尔文的技术术语去找。</strong> ★ <strong>第 1 版全书里，「evolution」这个词只在最末一句以「evolved」的形式出现一次</strong>（「endless forms most beautiful and most wonderful have been, and are being, evolved」<span class="tag t-src">原书</span>，第 14 章末），此外全是 <strong>descent with modification</strong>。<strong>检索「evolution」会大量漏掉本书的核心讨论。</strong>
+    </li>
+  </ol>
+  <p><strong>★ 实操：拿到一个中译本，怎么一眼判断它据第几版？</strong></p>
+  <ol>
+    <li><strong>看结尾最后一句</strong>：若出现「<strong>由造物主</strong>吹入（breathed by the Creator）」→ <strong>第 2 版及以后</strong>；若只有「<strong>被吹入（breathed into）</strong>」→ <strong>第 1 版</strong>。★ <strong>这是最快的判据。</strong>
+    </li>
+    <li><strong>看卷首引语有几条</strong>：<strong>两条（Whewell ＋ Bacon）→ 第 1 版；三条（中间多一条 Butler）→ 第 2 版及以后</strong><span class="tag t-src">原书</span>（题页，三版实测）。
+    </li>
+    <li><strong>看有没有「适者生存」</strong>：<strong>有 → 第 5 版（1869）及以后</strong>；<strong>没有 → 第 1–4 版</strong><span class="tag t-src">原书</span>（第 4 章，三版实测）。
+    </li>
+    <li><strong>看有没有那篇《学说发展简史》</strong>：<strong>有 → 第 3 版（1861）及以后</strong>；<strong>没有 → 第 1、2 版</strong><span class="tag t-src">原书</span>（第 6 版开头）。
+  <p>⇒ <strong>这四条判据，任何一条都能让你在不看版权页的情况下定出底本版次。</strong></p>
+    </li>
+  </ol>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <p>★ 这一节的目的，是把你<strong>以为</strong>知道的和书里<strong>实际写的</strong>对一遍。每条都给出<strong>章句定位</strong>（并标明依据哪一版；英文原文依据 PG #1228 第 1 版／#2009 第 6 版／#22764 第 2 版）。</p>
+  <table>
+    <thead><tr><th>流行说法</th><th>原文／事实</th></tr></thead>
+    <tbody>
+      <tr><td>「达尔文那本书就叫《物种起源》」</td><td>★ <strong>全名有后半段</strong>：<em>On the Origin of Species <strong>by Means of Natural Selection, or the Preservation of Favoured Races in the Struggle for Life</strong></em>——「<strong>或：在生存斗争中有利种族的保存</strong>」<span class="tag t-src">原书</span>（第 1 版题页）。⇒ <strong>「by Means of Natural Selection」与「在生存斗争中有利种族的保存」都是书名的正身</strong>，不是副标题宣传语。★ 另注：坊间常说要找「自然选择」，<strong>它就在书名正文里</strong></td></tr>
+      <tr><td>「<strong>马克思要把《资本论》献给达尔文，被达尔文拒绝</strong>」</td><td>★★ <strong>这是误传。</strong> 事实是<strong>马克思亲笔签名把《资本论》德文版赠给达尔文</strong>，那本书<strong>至今在达尔文故居（Down House）的书橱里</strong>；<strong>被达尔文不予理会的，是马克思女婿（爱德华·艾威林）写的一本书</strong>，不是《资本论》。⇒ <strong>不存在「马克思要献书、达尔文拒绝」这回事</strong>（史料交叉一致；列入附录 D）</td></tr>
+      <tr><td>「<strong>适者生存（survival of the fittest）是达尔文发明的词</strong>」</td><td>★★ <strong>是斯宾塞（Herbert Spencer）造的词</strong>——他在读完《物种起源》后，于 <strong>1864 年《生物学原理》</strong> 首次使用；<strong>华莱士 1866 年 7 月写信</strong>建议达尔文改用这个词，达尔文 <strong>1868 年《家养变异》</strong> 先用，<strong>1869 年第 5 版《物种起源》</strong> 才把它作为「自然选择」的同义语加进去。★ <strong>第 1 版全书里没有「fittest」这个词</strong>（本报告实测：三版 grep 结果，1 版零命中）。第 6 版原文：「<strong>我把……称为自然选择，或曰适者生存（or the Survival of the Fittest）</strong>」<span class="tag t-src">原书</span>（第 4 章，第 6 版）</td></tr>
+      <tr><td>「<strong>进化＝进步</strong>」</td><td>★ <strong>达尔文不用「evolution」这个词</strong>：第 1 版里「evolution」<strong>只在末句以「evolved」出现一次</strong>，全书核心术语是 <strong>descent with modification（带有饰变的由来）</strong><span class="tag t-src">原书</span>（第 14 章末及全书）。★ 而且他明确说「适（fit）」<strong>只是更适应此时此地的环境</strong>，<strong>不含「更高级／更进步」之义</strong><span class="tag t-src">原书</span>（第 4 章，第 6 版澄清段）。⇒ <strong>「进化＝进步」是后世的社会解读，不是本书的说法</strong></td></tr>
+      <tr><td>「<strong>达尔文证明了人是从猴子变来的</strong>」</td><td>★ <strong>《物种起源》全书只有一句话提到人类</strong>：「<strong>关于人类的起源及其历史，将会得到许多启示（Light will be thrown on the origin of man and his history）</strong>」<span class="tag t-src">原书</span>（第 14 章，<strong>第 1 版</strong>；第 6 版作「Much light will be thrown on…」）。<strong>全书没有一章讨论人类</strong>。⇒ <strong>人类起源的系统论证在 1871 年的《人类的由来及性选择》，不在本书</strong></td></tr>
+      <tr><td>「<strong>第 6 版是定本，读第 6 版最准</strong>」</td><td>★ <strong>第 6 版其实是「被批评改坏的版本」。</strong> PG 官方把 #2009 标为 "considered the definitive edition"<span class="tag t-src">原书</span>（PG #2009 头部说明），但<strong>当代达尔文研究者大多更推重第 1 版</strong>：第 6 版<strong>篇幅比第 1、2 版多出约三分之一</strong>，为回应（多为错误的）批评而<strong>越来越依赖拉马克式「获得性遗传」</strong>，并大量回应<strong>开尔文的地球年龄</strong>问题。★ 苗德岁即据此<strong>弃第 6 版而取第 2 版</strong>作译林版底本<span class="tag t-rep">转述</span>（苗德岁访谈）。⇒ <strong>「第 6 版＝定本」是一句需要打问号的话</strong>（详见第 5 节 5.1）</td></tr>
+      <tr><td>「<strong>生存斗争＝弱肉强食的丛林法则</strong>」</td><td>★ <strong>达尔文的定义恰恰相反</strong>：「<strong>我是在一种广义而比喻性的意义上使用『生存斗争』的，其中包括一个生物对另一个生物的依存……</strong>」，并给出「<strong>植物与干旱</strong>」「<strong>一株产千粒种子的植物与其他植物</strong>」这类<strong>统计性、相依性</strong>的例子<span class="tag t-src">原书</span>（第 3 章，第 1 版／第 6 版）。★ 他更明说<strong>斗争最激烈处是「同种之间」</strong>，而非「强者吃掉弱者」<span class="tag t-src">原书</span>（第 3 章）。⇒ <strong>「丛林法则」是斯宾塞式社会达尔文主义的挪用，不是达尔文的定义</strong>（详见第 5 节 5.4）</td></tr>
+      <tr><td>「<strong>自然选择是一种有意志的、主动选择的力量</strong>」</td><td>★ <strong>达尔文自己否掉了这个读法</strong>：「<strong>有人说我把自然选择说成一种主动的力量或神；可是……我所谓『自然』，不过指许多自然法则的集合作用与产物</strong>」<span class="tag t-src">原书</span>（第 4 章，<strong>第 6 版</strong>）。★ 为此他<strong>把第 1 版的「It may be said」在 第 6 版改成「It may metaphorically be said」</strong>（加「比喻地说」）<span class="tag t-src">原书</span>（第 4 章，两版对比）。⇒ <strong>「自然选择」是一个结果的名字，不是一个主体的行为</strong></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本报告最该细读的一节。</strong> 《物种起源》的地位极高，<strong>但围绕它最有价值的争论，往往不是「达尔文对不对」（这一层早由现代生物学回答），而是「哪一版才是达尔文」「他到底主张了什么」以及「后人把哪些不是他的东西算在了他头上」。</strong> 下面六条按重头戏顺序排，末尾回到「今天读还成立吗」。★ <strong>每条批评都带姓名、著作／刊物、年份。</strong></p>
+  <h3>5.1 ★★ 版本之争：第 1 版 vs 第 6 版，以及中译底本的选择</h3>
+  <p><strong>（a）「修订版不如初版」这个著名判断。</strong></p>
+  <ul>
+    <li><strong>Keith Thomson</strong>（耶鲁研究生院前院长、科学史家）在 <strong><em>American Scientist</strong></em> 的专栏里指出：<strong>若要在科学经典里举「修订版不如初版」的例子，《物种起源》是经典一例</strong>。★ 他的理由是：达尔文为回应（<strong>多为错误的</strong>）批评，<strong>越来越求助于拉马克式「获得性遗传」</strong>，并把大量笔墨花在<strong>开尔文的地球年龄</strong>问题上，<strong>破坏了第 1 版构思之精巧与行文之顺畅</strong><span class="tag t-rep">转述</span>（Keith Thomson，<em>American Scientist</em>）。
+    </li>
+    <li><strong>苗德岁的复述与决策（可直接引用的中文一手评论）</strong>：苗德岁在访谈中说，达尔文「<strong>为了回应同时代人的批评（尤其是有关地球的年龄以及缺乏遗传机制等方面的批评），做了连篇累牍的答复，甚至『违心』的妥协，以至于越来越偏离其原先的正确立场（譬如越来越求助于拉马克的『获得性性状的遗传』的观点）</strong>」，并总结：「<strong>现在看来……那些对他的批评很多是错误的，而他的答复往往也是错误的。结果，新增的很多零乱的线索与内容，完全破坏了第一、二版的精巧的构思、缜密的立论、有力的申辩以及文字的顺畅。</strong>」<span class="tag t-rep">转述</span>（苗德岁，果壳网访谈）。⇒ <strong>他据此选定牛津第 2 版（2008）为译林版底本。</strong>
+    </li>
+    <li>★ <strong>英国学界与教科书界的同一判断</strong>：一篇广为流传的研究生读书建议直说——「<strong>读第 1 版</strong>」；并称「<strong>第 6 版主要只有历史意义</strong>」，因为<strong>达尔文为回应批评做了大幅修改，而多数批评是站不住脚的，所以第 1 版实际上比第 6 版更正确</strong><span class="tag t-rep">转述</span>（Oikos 期刊博客 "Darwin's Origin of Species: notes for your reading group"）。
+    </li>
+    <li>★★ <strong>本报告的实测证据（这是「版本之争」不只是观点之争的硬材料）</strong>：<strong>第 1 版与第 6 版的篇幅差异，可以直接量出来</strong>——本报告抓到的三份公版纯文本，#1228（1 版）约 970 KB、#22764（2 版）约 981 KB、<strong>#2009（6 版）约 1303 KB</strong>。<strong>第 6 版比第 1 版多出约 35% 的体量</strong>，与「篇幅多出三分之一」的说法一致<span class="tag t-src">原书</span>（三份 PG 文本实测）。
+    </li>
+  </ul>
+  <p><strong>（b）第 2 版「向宗教界让步」的三处（苗德岁指出，本报告已逐处回原文核实）</strong>：</p>
+  <ol>
+    <li><strong>卷首引语</strong>：<strong>第 1 版只有两条</strong>（Whewell ＋ Bacon）；<strong>第 2 版起在中间插入 Butler《启示宗教之类比》</strong> 的一段——「<strong>『自然』一词唯一明确的意思，就是『被规定、被固定、被确定的』；因为凡属自然的，正如超自然或奇迹一样，都需要并且预设一个智能实体的作用</strong>」<span class="tag t-src">原书</span>（题页，第 1 版对比第 2、6 版）。★ <strong>本报告实测确认：第 1 版无 Butler 条，第 2 版（#22764）与第 6 版（#2009）都有。</strong>
+    </li>
+    <li><strong>结尾「由造物主」</strong>：<strong>第 1 版作「having been originally breathed into a few forms or into one」；第 2 版起作「having been originally breathed by the Creator into a few forms or into one」</strong><span class="tag t-src">原书</span>（第 14 章末，三版并列）。★ <strong>「by the Creator（由造物主）」四字，第 1 版没有。</strong>
+    </li>
+    <li><strong>宗教人士的赞语</strong>：<strong>第 1 版全书没有「religious」一词</strong>（本报告实测：第 1 版 grep「religious」<strong>零命中</strong>）；<strong>第 2 版起出现</strong>「<strong>我看不出本书的观点有任何理由会震撼任何人的宗教情感（shock the religious feelings of any one）。一位著名的作者兼神职人员曾写信告诉我……</strong>」这一整段<span class="tag t-src">原书</span>（第 14 章，第 2 版；第 6 版另加了一段牛顿—莱布尼茨的类比）。⇒ <strong>这一处「向宗教界让步」的原文依据最硬</strong>：它整段都是第 2 版新增的。
+    </li>
+  </ol>
+  <p><strong>（c）由此带来的阅读后果</strong>：<strong>「你读的《物种起源》是哪一版」决定你读到的是哪一种达尔文</strong>——第 1 版是<strong>一位谨慎但立场清晰的自然学者</strong>；第 2 版起是<strong>一位不断向批评低头、并开始向宗教情感让步的作者</strong>；第 6 版是<strong>一位把余生都用来答复批评者的人</strong>。★ <strong>这不是文字问题，是这本书的「精神面貌」问题。</strong></p>
+  <h3>5.2 达尔文与华莱士：1858 年林奈学会联合宣读，与 1859 年达尔文先出书</h3>
+  <ul>
+    <li><strong>事实（有原文可定位）</strong>：达尔文在导论里自己交代了这件事——「<strong>我更要这样做，是因为正在研究马来群岛自然史的华莱士先生（Mr. Wallace），已就物种起源得出了与我几乎完全相同的普遍结论。去年他寄给我一篇关于这个问题的论文……由莱伊尔爵士（Sir Charles Lyell）转给林奈学会，发表在学会杂志第三卷上。</strong>」<span class="tag t-src">原书</span>（导论，第 1 版）。★ <strong>1858 年 7 月 1 日</strong>，林奈学会联合宣读了华莱士的论文与达尔文 1844 年旧稿的摘录；<strong>1859 年 11 月</strong>，达尔文先出了书。
+    </li>
+    <li><strong>要分清的几点</strong>：
+    <ol>
+      <li><strong>自然选择是两人独立提出的</strong>：华莱士 1858 年在马来群岛（今印尼）的德那第岛写下几乎相同的机制<span class="tag t-rep">转述</span>（通行的科学史叙述一致）。
+      </li>
+      <li><strong>「谁在先」是学界公认的「共同发现」案例</strong>，但<strong>达尔文拥有二十年的积累与一本 1859 年的书</strong>，这是「优先权」事实上归他的结构性原因<span class="tag t-inf">推断</span>。
+      </li>
+      <li>★ <strong>后来的分歧</strong>：华莱士在<strong>自然选择能不能解释人类的心智与道德</strong>上，与达尔文分道扬镳——华莱士认为不能（转向唯灵论），<strong>达尔文认为能</strong>（1871 年《人类的由来》即针对此）<span class="tag t-rep">转述</span>（科学史通行叙述）。
+      </li>
+    </ol>
+    </li>
+    <li>⇒ <strong>本报告不采用「华莱士被达尔文抢了功」这类简化读法</strong>：达尔文导论里<strong>主动写明</strong>华莱士的贡献与联合宣读一事<span class="tag t-src">原书</span>（导论），<strong>这本身就否掉了「抢功」的叙事。</strong>
+    </li>
+  </ul>
+  <h3>5.3 宗教与科学：达尔文的不可知论，与牛津 1860 年辩论的「传说」</h3>
+  <ul>
+    <li><strong>达尔文自己的立场</strong>：他自称 <strong>agnostic（不可知论者）</strong>，<strong>从不说自己是无神论者</strong><span class="tag t-rep">转述</span>（通行的达尔文研究叙述；他 1879 年致 John Fordyce 的信里有对不可知论的自陈，属 <span class="tag t-talk">作者谈话</span> 范畴）。★ 他在第 2 版加的「由造物主」与「看不出会震撼任何人的宗教情感」两句，<strong>正是这种立场的产物</strong><span class="tag t-src">原书</span>（第 14 章，第 2 版）。
+    </li>
+    <li>★★ <strong>牛津 1860 年辩论的「大猩猩祖父还是祖母」那句名言——须核实，本报告已核实为「传说成分很重」</strong>：
+    <ul>
+      <li><strong>可确认的</strong>：<strong>1860 年 6 月 30 日</strong>在英国科学促进会（BAAS）牛津会议上，<strong>牛津主教 Samuel Wilberforce</strong> 与 <strong>T. H. Huxley（「达尔文的斗牛犬」）</strong> 之间确有一场交锋；<strong>会议是真实的</strong>，<strong>Drapers、Hooker 等也在场并发言</strong><span class="tag t-rep">转述</span>（Linda Hall Library；Royal Society 期刊 <em>Notes and Records</em> 2015 论文）。
+      </li>
+      <li>❌ <strong>须打问号的</strong>：<strong>Wilberforce 到底问的是「祖父还是祖母」，Huxley 到底怎么回敬的</strong>——★ <strong>当年没有现场速记</strong>；<strong>「I would rather be the offspring of two apes…」这段名言，是 1880–1900 年代由达尔文之子 Francis Darwin 与 Huxley 之子 Leonard Huxley 在各自的《生平与书信》里「重述」出来的，源头主要是 Huxley 本人及其盟友</strong><span class="tag t-rep">转述</span>（<em>Notes and Records</em>，2015：该「传说」是在事发 20 多年后被「重述、部分重新发明」的）。
+      </li>
+      <li>⇒ <strong>本报告的处理</strong>：把「祖父还是祖母」与 Huxley 的妙答<strong>当作「流传很广的传说」</strong>，<strong>引时要标明「无当日公开记录、系 1880–1900 年代追述」</strong>，<strong>不当史实引用</strong>。★ 顺带一说：<strong>Wilberforce 本人并非无知之辈</strong>——他是废奴运动领袖 William Wilberforce 之子，皇家学会会士，当天他试图从<strong>科学而非神学</strong>角度反驳<span class="tag t-rep">转述</span>（Linda Hall Library）。
+      </li>
+    </ul>
+    </li>
+  </ul>
+  <h3>5.4 社会达尔文主义：「适者生存」是斯宾塞的词——「社会达尔文主义」不是达尔文的主张</h3>
+  <ul>
+    <li>★★ <strong>这是本书最常被混淆的一条，且有原文可定位</strong>：
+    <ul>
+      <li><strong>「适者生存」的出处是斯宾塞</strong>：<strong>Herbert Spencer</strong> 在 <strong>1864 年《生物学原理》（Principles of Biology）</strong> 里首次使用，<strong>明确把它等同于达尔文的「自然选择」</strong><span class="tag t-rep">转述</span>（Darwin Correspondence Project，"Survival of the fittest" 条目）。
+      </li>
+      <li><strong>达尔文是被建议后采用的</strong>：<strong>华莱士 1866 年 7 月 2 日</strong>致信达尔文，主张改用斯宾塞的说法以免「自然选择」被读成拟人；<strong>达尔文 1868 年《家养变异》</strong> 先用，<strong>1869 年第 5 版《物种起源》</strong> 才正式引入<span class="tag t-rep">转述</span>（Darwin Correspondence Project）。★ <strong>本报告实测：第 1 版全书「fittest」零命中；第 6 版第 4 章有「or the Survival of the Fittest」。</strong>
+      </li>
+      <li><strong>达尔文本人对这个词是有保留的</strong>：他接受了它作为「同义辅助短语」，<strong>但从未放弃「自然选择」</strong><span class="tag t-rep">转述</span>（Darwin Correspondence Project）。
+      </li>
+    </ul>
+    </li>
+    <li><strong>「社会达尔文主义」与达尔文的关系</strong>：★ <strong>把「适者生存」拿来为无节制的自由竞争、种族等级、殖民扩张背书，是 19 世纪末某些作者（斯宾塞一系及其后继）的做法，不是达尔文本人的主张</strong>。★ 达尔文在<strong>第 3 章</strong>里恰恰说<strong>斗争最激烈处是「同种之间」</strong>，并在<strong>第 7 章</strong>里写<strong>蚁群、蜂群那种「个体牺牲为群体」的本能也能被自然选择解释</strong>——<strong>这两处都与社会达尔文主义的「弱肉强食」读法正相反</strong><span class="tag t-src">原书</span>（第 3、7 章）。⇒ <strong>「社会达尔文主义」是一个「以达尔文为名、与达尔文原文相冲突」的思想运动</strong>，这是本报告最重要的一条辨析。
+    </li>
+  </ul>
+  <h3>5.5 遗传机制的空白：孟德尔 1866 年发表、达尔文未读到；越修订越向拉马克让步</h3>
+  <ul>
+    <li>★★ <strong>这是本书最大的科学空白，也是它「越改越糟」的技术原因。</strong>
+    <ul>
+      <li><strong>孟德尔（Gregor Mendel）1866 年</strong>发表了豌豆杂交的遗传规律，<strong>但达尔文没有读到</strong>（他读到的杂交文献里没有孟德尔这篇）<span class="tag t-rep">转述</span>（科学史通行叙述）。
+      </li>
+      <li><strong>达尔文自己的遗传理论是「泛生论（pangenesis）」</strong>——他在 <strong>1868 年《家养变异》</strong> 里提出「<strong>芽球（gemmules）</strong>」假说，<strong>带有明显的拉马克式获得性遗传色彩</strong><span class="tag t-rep">转述</span>（科学史通行叙述；本报告实测：《物种起源》第 1 版与第 6 版正文里都<strong>没有</strong>「gemmules／pangenesis」字样，泛生论在 1868 年那本书里，不在本书）。
+      </li>
+      <li><strong>第 5 章的坦白</strong>：达尔文在这一章明说「<strong>我们对变异法则的无知是深刻的（Our ignorance of the laws of variation is profound）</strong>」<span class="tag t-src">原书</span>（第 5 章，第 6 版）。★ <strong>这是全书最重要的自认空白。</strong>
+      </li>
+      <li><strong>补救的时间</strong>：直到 <strong>1930–1950 年代「现代综合」（modern synthesis）</strong>——R. A. Fisher、J. B. S. Haldane、Sewall Wright、Theodosius Dobzhansky、Ernst Mayr、Julian Huxley 等把孟德尔遗传学与自然选择整合起来，<strong>达尔文的机制才第一次有了可靠的遗传学底</strong><span class="tag t-rep">转述</span>（科学史通行叙述）。⇒ <strong>关于「孟德尔—达尔文—现代综合」这条线，须注意：它是「后来的进展」，不是「达尔文的错误」。</strong>
+      </li>
+    </ul>
+    </li>
+  </ul>
+  <h3>5.6 「生命之树」的当代修正：水平基因转移与内共生学说对「树」这一隐喻的挑战</h3>
+  <ul>
+    <li><strong>达尔文的比喻</strong>：全书结尾把共同祖先比作「<strong>生命之树（the great Tree of Life）</strong>」——「<strong>正如芽苞由生长生出新芽，这些新芽如果茁壮，就会向四面八方长出并压过许多较弱的枝条；我相信，由世代相传，伟大的生命之树也是如此，它用枯枝与断枝填满地壳，又用不断分叉、美丽的枝条覆盖地表。</strong>」<span class="tag t-src">原书</span>（第 4 章末，第 1 版）。★ 这是他关于「共同祖先 ＋ 分歧」最凝练的一次表达。
+    </li>
+    <li>★ <strong>后来的挑战（须标明是后来的进展，不是达尔文的错误）</strong>：
+    <ul>
+      <li><strong>水平基因转移（horizontal gene transfer）</strong>：<strong>Carl Woese</strong> 等指出，<strong>微生物之间的基因横向转移很普遍</strong>，因此<strong>单细胞生命的早期演化更像一张「网」而非一棵「树」</strong><span class="tag t-rep">转述</span>（Woese 及微生物演化研究，20 世纪末以来）。
+      </li>
+      <li><strong>内共生学说（endosymbiotic theory）</strong>：<strong>Lynn Margulis</strong> 主张<strong>线粒体、叶绿体来自被吞入的细菌</strong>，<strong>真核细胞的「祖先」本身就是一次融合</strong><span class="tag t-rep">转述</span>（Margulis，1967 起）。
+      </li>
+      <li>⇒ <strong>本报告的处理</strong>：<strong>这些是对「树」这一隐喻的补充与限定，不是对共祖本身的否定</strong>；<strong>「树」在动物、植物等后生生物层面依然成立</strong>（<strong>真核生物「主干」处的网状结构</strong>才是争议区）。★ <strong>引这一类材料时，必须标明它是 20 世纪后半叶以来的研究，不能写成「达尔文错了」。</strong>
+      </li>
+    </ul>
+    </li>
+  </ul>
+  <h3>5.7 这本书今天读还成立吗</h3>
+  <p><strong>大体成立的</strong>：</p>
+  <ul>
+    <li><strong>共同祖先 ＋ 自然选择</strong>：<strong>今天生物学的统一框架</strong>。分子生物学（DNA 序列的层级相似性）、古生物学、生物地理学<strong>都独立地支持共祖</strong><span class="tag t-rep">转述</span>（现代生物学通行叙述）。
+    </li>
+    <li><strong>「自然」不是意志、是结果</strong>：这一澄清<strong>今天依然是科学写作的纪律</strong>——说「自然选择偏好……」时，要清楚这是隐喻<span class="tag t-src">原书</span>（第 4 章，第 6 版澄清段）。
+    </li>
+    <li><strong>「同源—胚胎—退化器官」这一组证据的逻辑</strong>：<strong>它今天依然是「演化」最有说服力的一类论证</strong>（第 13 章）。
+    </li>
+  </ul>
+  <p><strong>要打折的</strong>：</p>
+  <ul>
+    <li><strong>遗传机制（第 5 章）</strong>——按 5.5 处理：<strong>达尔文答不出「变异从何而来」，只能诉诸用进废退／环境直接影响</strong>；<strong>这一整块已被遗传学取代</strong>。
+    </li>
+    <li><strong>地球年龄（第 9、10 章）</strong>——★ <strong>达尔文信「地球极老」，第 1 版里甚至给出「三亿年」量级的估算</strong>（尼德谷／Weald 的剥蚀计算，作「306,662,400 年」<span class="tag t-src">原书</span>，第 9 章，<strong>第 1 版</strong>）；<strong>第 6 版把这个数字拿掉了</strong>，换成对 Ramsay、Jukes、Geikie、<strong>Croll</strong> 的引述，并借 Croll 的「<strong>一张纸带八十三英尺四英寸代表一百万年</strong>」的比喻讨论时间<span class="tag t-src">原书</span>（第 9 章，<strong>第 6 版</strong>）。<strong>开尔文的物理估算（当时认为地球只有几千万年）逼达尔文让步</strong>，<strong>而后来的放射性测年证明达尔文的方向是对的、开尔文错在没算地热之外的热源</strong><span class="tag t-rep">转述</span>（科学史通行叙述）。⇒ <strong>这一处「达尔文被迫让步」是本书里最讽刺的一段：他让步的地方，他其实是对的。</strong>
+    </li>
+    <li><strong>「用进废退」与「获得性遗传」的某些表述（第 1、5 章）</strong>——按 5.5 处理：<strong>已被遗传学否定</strong>（魏斯曼等人的工作）。
+    </li>
+  </ul>
+  <p>★ <strong>一个反直觉的判断</strong>：<strong>这本书最耐读的部分，恰恰是它「最不结论」的部分。</strong> 第 3 章的定义辨析、第 4 章对「拟人化」的自我澄清、第 6 章主动列出的难点、第 13 章的同源—胚胎—退化三段论——<strong>这些靠的是清晰的区分与坦诚的姿态，不依赖任何会被后续研究推翻的具体主张</strong>。★ 而它最有名的结论（自然选择、生存斗争）<strong>恰恰最需要读者把它放回「它当时要反驳什么」的语境里</strong>——<strong>这是这本 1859 年的书在 2026 年仍值得读的真正理由：它把「物种从哪来」这个问题，第一次完整地摆成了「从育种到化石、从岛屿到胚胎的一条链」，而链上每一环，至今仍能被单独拿出来检验。</strong></p>
+  <p>★ <strong>六条争议，一句话格局</strong>：<strong>第 1 条（版本）</strong> 告诉你「你读的是哪个达尔文」；<strong>第 2 条（华莱士）</strong> 告诉你「这不只是一个人的功劳」；<strong>第 3 条（宗教）</strong> 告诉你「他与宗教界的真实距离」；<strong>第 4 条（斯宾塞）</strong> 告诉你「最常被算在他头上的那句话不是他造的」；<strong>第 5 条（遗传）</strong> 告诉你「他缺什么」；<strong>第 6 条（生命之树）</strong> 告诉你「他的隐喻后来怎样被修正」。★★ <strong>这六条里，只有第 5 条是与科学内容直接相关的（缺机制），另外五条都是「归属与解释」问题</strong>——<strong>这正是这本书与普通科学著作最不同的地方：它的争议大半不在「对错」，而在「谁说的、哪一版、被谁拿去用了」。</strong></p>
+  <p>★ <strong>最后补一条常被忽略、但与本报告主线直接相关的局限：达尔文对「证据的可得性」极度诚实，却对「证据的独立性」不够警惕。</strong> 他反复说「<strong>化石记录极端不完整</strong>」「<strong>我们对变异法则的无知是深刻的</strong>」「<strong>我从不让读者以为我掌握了我并不掌握的东西</strong>」<span class="tag t-src">原书</span>（第 5、9 章）；★ 但他<strong>很少追问「同一个来源的证据，能不能互相独立地支持结论」</strong>——<strong>例如第 13 章的分类、形态、胚胎三组事实，都来自同一批标本与同一种比较方法</strong><span class="tag t-inf">推断</span>。⇒ <strong>这并不是他的过错（当时的证据学还没有这个概念），但它是今天读他的时候必须自己补上的一课：一部论证的说服力，既要看「证据多不多」，也要看「证据是不是同源的」。</strong></p>
+  <p>★ <strong>结构说明</strong>：本书下部按 <strong>导论 ＋ 14 章</strong> 深挖（<code>## 6</code>–<code>## 20</code>，共 <strong>15 节</strong>），<strong>一章一节，14 章一个不漏</strong>。每节三段：「<strong>这一章在回答什么问题</strong>」／「<strong>关键论证与例证</strong>」／「<strong>可疑之处</strong>」。★★ <strong>凡第 1 版与第 6 版（或第 2 版）有实质差异处，本报告逐处在相应章节点出</strong>，不把版本差异堆到第 4b 节。★ 英文引文依据 <strong>PG #1228（第 1 版，1859）／#2009（第 6 版，1872）／#22764（第 2 版，1860）</strong>，<strong>每处标明版次</strong>。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>导论（Introduction）</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么问题</h3>
+  <p>导论回答三个问题：<strong>这本书为什么现在就要出版？它是什么性质的书？它的核心主张是什么？</strong> ★ 达尔文的回答很直接：这不是他计划中的那部大书，而是<strong>一份被形势逼出来的「摘要（Abstract）」</strong>。他在导论里交代了缘起（贝格尔号）、二十年的积累（1837 年起积累事实、1844 年写出提纲），以及<strong>唯一促使他提前出版的事件——华莱士</strong>。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li><strong>缘起</strong>：他在贝格尔号上担任博物学者，「<strong>南美洲生物的分布，以及该大陆现存生物与古生物之间的地质关系</strong>」使他深受触动，觉得「<strong>它们似乎能对物种的起源这一问题投下一些光——那被我们最伟大的哲学家之一称作『谜中之谜』（mystery of mysteries）的问题</strong>」<span class="tag t-src">原书</span>（导论，第 1 版）。
+    </li>
+    <li><strong>性质</strong>：他明说「<strong>这本书只是一份摘要（This Abstract…）</strong>」，因为「<strong>我的工作已近完成，但要完整写出来还需两三年，而我的健康又大不如前</strong>」<span class="tag t-src">原书</span>（导论，第 1 版）。★ 他还预先打了预防针：<strong>书里不能给参考文献和出处</strong>，「<strong>我在这里只能给出我所得出的普遍结论，附以少量举例</strong>」<span class="tag t-src">原书</span>（导论）。
+    </li>
+    <li><strong>华莱士与联合宣读</strong>：「<strong>我更要这样做，是因为正在研究马来群岛自然史的华莱士先生，已就物种起源得出了与我几乎完全相同的普遍结论……由莱伊尔爵士转给林奈学会，发表在学会杂志第三卷上。</strong>」<span class="tag t-src">原书</span>（导论，第 1 版）。★ 这是达尔文<strong>主动</strong>写下的，<strong>否掉了「抢功」叙事</strong>。
+    </li>
+    <li><strong>核心主张</strong>（导论末）：「<strong>我完全相信，物种不是不变的；那些属于所谓同一属的物种，是某些通常已经灭绝的物种的直系后裔。</strong>」<span class="tag t-src">原书</span>（导论，第 2 版；第 1 版大意相同）。
+    </li>
+    <li>★★ <strong>卷首引语——版本差异的第一处硬证据</strong>：<strong>第 1 版题页只有两条引语</strong>——Whewell《布里奇沃特论集》（「<strong>物质世界中的事件并不是由神力在个别场合的一次次干预所造成，而是靠普遍法则的建立</strong>」）与 Bacon《学问的推进》<span class="tag t-src">原书</span>（题页，第 1 版）。<strong>第 2 版起，在这两条之间插进了 Butler《启示宗教类比》的一条</strong>：「<strong>『自然』一词唯一明确的意思，就是『被规定、被固定、被确定的』；因为凡属自然的，正如超自然或奇迹一样，都需要并且预设一个智能实体的作用。</strong>」<span class="tag t-src">原书</span>（题页，第 2 版／第 6 版）。★ <strong>本报告实测确认：第 1 版无 Butler 条，第 2、6 版都有。</strong>
+    </li>
+    <li>★ <strong>第 6 版的另一处「前置单元」</strong>：<strong>第 3 版（1861）起，导论之前另加了一篇《本书第一版问世前关于物种起源的学说发展简史》（An Historical Sketch…）</strong>，从前达尔文时代讲到 1858 年<span class="tag t-src">原书</span>（第 6 版开头）。<strong>第 1、2 版没有这一篇。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★ <strong>「Abstract（摘要）」这个词名不副实</strong>：这本书初版就有四百多页，<strong>读者按「摘要」预期去读会严重低估它的体量</strong>——达尔文说它是「摘要」，是相对他心里那部未写成的大书而言<span class="tag t-src">原书</span>（导论）。
+    </li>
+    <li>★ <strong>卷首引语的选择本身有立场</strong>：Whewell 与 Bacon 两条<strong>都在讲「科学不违反宗教」</strong>；第 2 版又加了 Butler 那条<strong>更直白的「需预设智能实体」</strong>。<strong>这些引语不是随机选的</strong>，而是<strong>达尔文对宗教界的一次姿态表态</strong><span class="tag t-inf">推断</span>（依据三条引语内容与第 2 版的插入时机）。
+    </li>
+    <li>★ <strong>「不给参考文献」这一条后来成了长期负担</strong>：因为达尔文在导论里承诺「<strong>日后会把全部事实与出处详加出版</strong>」，<strong>这个承诺在他有生之年并未以他所设想的形式兑现</strong>（他后来出的是《家养变异》等专著，不是原计划的大书）<span class="tag t-rep">转述</span>（达尔文研究通行叙述）。
+    </li>
+    <li>★ <strong>导论里没有提「孟德尔」「遗传」「基因」这类词，也没有为「变异从哪来」做任何铺垫</strong>：<strong>它只交代了缘起、性质与核心主张</strong><span class="tag t-src">原书</span>（导论）。⇒ <strong>这说明达尔文在开篇就把「机制」与「机制的燃料」分开了处理</strong>——<strong>燃料（变异）留给第 5 章，而第 5 章正是全书最坦白的一章。</strong> ★ <strong>读导论时不必期待「理论全貌」，它是一封「出版说明信」。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>第 1 章 家养状态下的变异</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么问题</h3>
+  <p><strong>人能不能把一种生物改造成面目全非的品种？</strong> 达尔文要用一个<strong>人做得到、而且做到过</strong>的例子，来为「自然选择」立一个类比的支点：<strong>如果人在几十年里能造出这么大的差异，自然在漫长得多的岁月里更能。</strong> 这一章的标题虽叫「家养变异」，实质是<strong>全书机制的「演示实验」</strong>。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>★★ <strong>家鸽（全书最著名的一组例子）</strong>：达尔文用大量篇幅讲<strong>鸽的育种史</strong>。他断言<strong>所有家鸽品种都源自一个野生种——岩鸽（Columba livia）</strong>：「<strong>所有家鸽都源自岩鸽（Columba livia），包括……</strong>」<span class="tag t-src">原书</span>（第 1 章，第 1 版）。★ 他给出的震撼对照是：<strong>品种之间的差异之大，「足够让一位自然学家把它们判为不同的属」</strong>——而 breeders（育种者）<strong>只用了几十年</strong>就做到了<span class="tag t-src">原书</span>（第 1 章）。他还讲了中国、印度等地<strong>养鸽史的文献证据</strong>，说明<strong>育种者的选择是「无意识」也能生效的</strong>。
+    </li>
+    <li><strong>四个机制词</strong>：达尔文在这一章确立了<strong>变异（variability）— 习性（habit）— 相关生长（correlation of growth）— 遗传（inheritance）</strong> 这四件事，构成第 5 章「变异法则」的预演<span class="tag t-src">原书</span>（第 1 章）。
+    </li>
+    <li><strong>「无意识选择」（unconscious selection）</strong>：他说育种者<strong>往往并没有明确的目标</strong>，只是「<strong>留着最好的、丢掉最差的</strong>」，<strong>但久而久之差异就积累起来了</strong><span class="tag t-src">原书</span>（第 1 章）。★ <strong>这一点对全书极重要</strong>：它说明<strong>选择不需要一个有意识的「选择者」，只需要持续的差异淘汰</strong>——这正是第 4 章「自然」不是意志的伏笔。
+    </li>
+    <li><strong>相关生长（correlation of growth）</strong>：他举「<strong>鸽子身上某处变异常伴随另一处变异</strong>」这类例子，说明<strong>性状不是彼此独立地变的</strong><span class="tag t-src">原书</span>（第 1 章）。
+    </li>
+    <li>★★ <strong>他为什么敢说「所有家鸽同源」（原文逐字）</strong>：达尔文先承认<strong>品种间差异之大</strong>——「<strong>若把一个球胸鸽（pouter）和一个扇尾鸽（fantail）拿给鸟类学家看，他很可能把它们判为不同的属</strong>」；然后给出他的断定：「<strong>尽管鸽的品种之间差异如此之大，我完全相信自然学者们的通常看法是正确的，即它们全都源自岩鸽（Columba livia）</strong>」。★ <strong>他的理由是排除法</strong>：<strong>若不承认同源，就必须假定它们来自「至少七八个野生祖先」</strong>，而「<strong>这些假想的祖先要么至今仍存在于它们当初被驯化的地方而不为鸟类学家所知（这极不可能），要么已在野外灭绝</strong>」<span class="tag t-src">原书</span>（第 1 章，第 1 版）。⇒ <strong>「单一起源」在这里不是信念，是一个「排除更多假设」的推理。</strong>
+    </li>
+    <li><strong>「人能做，自然更能」的原句</strong>：他说人靠的是「<strong>累积性的选择（man's power of accumulative selection）</strong>」——「<strong>自然给出连续的变异，人则把它们朝某个方向累加起来</strong>」<span class="tag t-src">原书</span>（第 1 章）。★ 这一句是第 4 章「自然选择」的直接原型。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★ <strong>「用进废退」的拉马克色彩已经在这里出现</strong>：达尔文把「<strong>习性（use and disuse）</strong>」列为变异的一个原因，<strong>这就默认了「获得性可遗传」</strong>——而这正是他后来被诟病的地方（见第 5 章与第 5 节 5.5）。
+    </li>
+    <li>★ <strong>「人为选择：自然选择」的类比，力度是有限的</strong>：人在<strong>有意识</strong>地选，自然没有；人<strong>几十年</strong>，自然<strong>几百万年</strong>。达尔文自己清楚这一点（他在第 4 章反复说「<strong>自然选择的尺度比人慢得多</strong>」<span class="tag t-src">原书</span>，第 4 章），<strong>但这一章的行文语气，仍容易让读者把两者直接对等</strong><span class="tag t-inf">推断</span>。
+    </li>
+    <li>★ <strong>家鸽「单一起源」的论断在当时已带论战性</strong>：达尔文相信所有家鸽来自<strong>一个</strong>野生种，<strong>这与当时一些育种者「多起源」的看法相对</strong><span class="tag t-src">原书</span>（第 1 章）。<strong>这是全书第一次把「单一起源」当作方法论原则用上</strong>，而它恰是共祖学说的缩影<span class="tag t-inf">推断</span>。
+    </li>
+  </ol>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>第 2 章 自然状态下的变异</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么问题</h3>
+  <p><strong>上一章讲的是「人养的」，这一章要问：野外的生物也在变吗？</strong> 如果变异只在家养条件下出现，自然选择就没有原料。<strong>达尔文必须证明「变异在自然状态下同样普遍存在」</strong>，而且要说清一个难点：<strong>如果到处都在变，为什么我们还能把生物分成「物种」？</strong></p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li><strong>个体差异（individual differences）是普遍的</strong>：达尔文说，<strong>同一批后代之间总有细微差别</strong>，这种差异是<strong>自然选择的原料</strong><span class="tag t-src">原书</span>（第 2 章）。
+    </li>
+    <li><strong>「存疑物种」（doubtful species）</strong>：他花大篇幅讨论<strong>那些介于「种」与「变种」之间、让分类学家吵个不停的形式</strong>，指出<strong>「种」与「变种」的分界线是人为的、程度上的，不是种类上的</strong><span class="tag t-src">原书</span>（第 2 章）。
+    </li>
+    <li>★ <strong>两条统计性规律（全书最有分量的一步）</strong>：① 「<strong>分布广、扩散多、常见（wide-ranging, much diffused, and common）的物种，变异最多</strong>」；② 「<strong>任何一个国家里，大属（the larger genera）的物种，比小属的物种变异更多</strong>」<span class="tag t-src">原书</span>（第 2 章）。★ 达尔文的解释是：<strong>在同一个大属里，物种关系近、结构相近，所以更可能把彼此的差异看成「变种」</strong>——<strong>大属的物种，其实就是「正在分化中的物种」</strong><span class="tag t-src">原书</span>（第 2 章）。
+    </li>
+    <li>★ <strong>「初生种」（incipient species）</strong>：他把<strong>明显的变种</strong>称为「<strong>初生的物种</strong>」——「<strong>我所说的那些明显的变种，就是初生的物种</strong>」<span class="tag t-src">原书</span>（第 2 章）。★ <strong>这是全书枢纽性的一个词</strong>：它把「变种（variety）」与「物种（species）」变成<strong>同一条连续谱上的两端</strong>，而不是两类东西。
+    </li>
+    <li>★★ <strong>「优势种最容易产生变种」（本节最完整的一段原文）</strong>：达尔文的表格显示——「<strong>在任何有限的地区里，最常见（个体最多）的物种、以及在自己国内分布最广的物种，往往会生出变异，且变异之明显足以被植物学著作记录下来。因此，正是那些最繁盛的、或可称为优势种（dominant species）的物种——它们分布最广、在国内最扩散、个体最多——最容易产生明显的变种，或者说我所认为的初生种。</strong>」<span class="tag t-src">原书</span>（第 2 章，第 1 版）。★ 他的解释是<strong>结构性的</strong>：「<strong>因为变种若要多少站住脚，就必然要与该国其他居民斗争；那么已经在斗争中占优势的物种，最有可能留下后代——这些后代虽有些许改变，却仍继承了使它们父母得以占优势的那些长处。</strong>」<span class="tag t-src">原书</span>（第 2 章，第 1 版）。⇒ <strong>「优势种变异更多」这一条，是把「选择」的逻辑提前用在了「变异」上。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★★ <strong>这里有一处「循环论证」之嫌</strong>：他用「大属的物种变异更多」来支持「变异导致物种分化」，但<strong>「大属」本身又是按「物种多」定义的</strong>——<strong>大属物种多，可能正因为它「更容易被算作变种」</strong>。达尔文对这个循环<strong>有所察觉但并不完全解决</strong><span class="tag t-inf">推断</span>（依据第 2 章论证结构）。
+    </li>
+    <li>★ <strong>「物种／变种界线人为」的论断，与全书别处对「物种」的用法有张力</strong>：他一边说界线是任意的，一边在第 8、13 章里大量使用「物种」这个词做论证单位<span class="tag t-inf">推断</span>。★ <strong>这不是致命伤，但读时要留意：达尔文的「物种」在不同章里弹性很大。</strong>
+    </li>
+    <li>★ <strong>「变异普遍」的证据多为植物与鸟</strong>：统计对象集中在<strong>植物、鸟类、甲壳类</strong>，<strong>哺乳类的例子相对少</strong><span class="tag t-inf">推断</span>（依据第 2 章举例分布）。
+    </li>
+  </ol>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>第 3 章 生存斗争</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么问题</h3>
+  <p><strong>如果变异是随机的，为什么会有方向？</strong> 达尔文要在这一章给出一条<strong>筛选压力</strong>：<strong>生物按几何级数增长，而食物与空间有限，于是必然有大量个体活不下来——这就是「生存斗争」。</strong> ★ <strong>这是自然选择的第一个前提。</strong> 而本章更重要的任务是<strong>给「生存斗争」下一个精确的定义</strong>，以挡住后世的误读。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>★★ <strong>原文定义（本报告逐字核对，两版并列）</strong>：<strong>第 1 版</strong>作——「<strong>我应当预先说明，我是在一种广义而比喻性的意义（a large and metaphorical sense）上使用『生存斗争』这个术语的，其中包括一个生物对另一个生物的依存，尤其包括——这一点更重要——不只是个体的生存，还有留下后代上的成功。</strong>」<span class="tag t-src">原书</span>（第 3 章，第 1 版）。<strong>第 6 版</strong>把句首简化为「<strong>我是在一种广义而比喻性的意义上使用这个术语的</strong>」（因为章名已含「生存斗争」），<strong>其余内容一字未改</strong><span class="tag t-src">原书</span>（第 3 章，第 6 版）。★ <strong>这是我们判断「生存斗争 ≠ 丛林法则」的原文依据。</strong>
+    </li>
+    <li><strong>三个定界例</strong>：① 「<strong>两只犬类在食物短缺时，才算真正在为争食而斗争</strong>」；② 「<strong>沙漠边缘的一株植物，说是与干旱作斗争，其实更准确地说它依赖于水分</strong>」；③ 「<strong>一株年产千粒种子、平均只有一粒长成的植物，说它与已覆盖地面的同种及异种植物作斗争，才更确切</strong>」<span class="tag t-src">原书</span>（第 3 章，第 1 版）。
+    </li>
+    <li>★★ <strong>马尔萨斯与几何级数</strong>：「<strong>每一生物在其自然寿命中产生的卵或种子，必有一大部分在某个时期、某个季节被毁灭，否则按几何级数增加的原理，它的数目就会迅速增大到任何国家都供养不起。因此……每种情形下都必有生存斗争。</strong>」紧接着是那句关键话：「<strong>这就是马尔萨斯（Malthus）的学说，以多重的力量应用于整个动物界与植物界。</strong>」<span class="tag t-src">原书</span>（第 3 章，第 1 版）。
+    </li>
+    <li><strong>象的繁殖计算</strong>：他算了一头「<strong>所有已知动物中最慢的繁殖者</strong>」——<strong>象</strong>：假设三十岁开始生育、九十岁停止、一生产三对，<strong>五百年后，从一对起会有一千五百万头象</strong><span class="tag t-src">原书</span>（第 3 章，第 1 版）。★ <strong>这是「繁殖过剩」最温和也最有说服力的一个算例。</strong>
+    </li>
+    <li>★ <strong>斗争最激烈处在「同种之间」</strong>：达尔文明说，<strong>同一物种的个体与变种之间的斗争最为激烈，因为它们在需求上最相近</strong><span class="tag t-src">原书</span>（第 3 章）。★ <strong>这一条恰好反驳了「弱肉强食、异种相残」的直觉图景。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★★ <strong>马尔萨斯式的论证，前提是「食物供给不会同步增加」</strong>：这在<strong>单物种内部</strong>大体成立，但<strong>移用到整个「动物界与植物界」时，是一个很强的整体假设</strong>（达尔文把它当「多重的力量」而非严格模型用）<span class="tag t-inf">推断</span>。
+    </li>
+    <li>★★ <strong>「生存斗争」这个词被社会达尔文主义挪用，达尔文本人负有一定责任</strong>：他承认这是一个「比喻性」的词，<strong>却仍选了一个带强烈人类竞争联想的词</strong>（第 4 版之前他一直用这个词）。★ 后果是<strong>「斗争」被读成「竞争」，又被读成「弱肉强食」</strong>——<strong>这与原文正相反</strong>（原文最激烈处在同种之间，且明确含「依存」）<span class="tag t-src">原书</span>（第 3 章）。
+    </li>
+    <li>★ <strong>本章的例证严重偏向植物</strong>：三个定界例、几何级数的算例，<strong>几乎全是植物或象</strong>；<strong>本章几乎没有写捕食者—被捕食者那种「直接斗争」的实例</strong><span class="tag t-inf">推断</span>（依据第 3 章举例分布）。⇒ <strong>达尔文的「斗争」比大众印象更「统计」、更「相依」，也更「植物」。</strong>
+    </li>
+    <li>★★ <strong>「马尔萨斯」这个名字，是理解全书的钥匙之一</strong>：达尔文<strong>公开承认机制的灵感来自马尔萨斯</strong>——「<strong>这就是马尔萨斯的学说，以多重的力量应用于整个动物界与植物界</strong>」<span class="tag t-src">原书</span>（第 3 章，第 1 版）。★ <strong>这一步在思想史上极重要</strong>：<strong>「人口压力 → 竞争 → 选择」这套逻辑，本来就是从经济学搬来的</strong>；而<strong>同一套逻辑随后又被社会达尔文主义者搬回社会</strong>，<strong>形成一个「从社会来、到社会去」的循环</strong><span class="tag t-inf">推断</span>。⇒ <strong>理解这一点，就能理解为什么「自然选择」这个词天生带着被误用的风险。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s11">
+  <h2><span class="num">10</span><span>第 4 章 自然选择</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么问题</h3>
+  <p><strong>前两章给了原料（变异）与压力（斗争），这一章要给出机制本身。</strong> 本章是<strong>全书的枢纽</strong>：它定义自然选择、区分「自然选择」与「性选择」、解释<strong>性状为什么越分越开（性状分歧）</strong>，并留下全书最著名的一个比喻——<strong>生命之树</strong>。★ 它同时承担了一个自我澄清的任务：<strong>说清「自然选择」里的「自然」不是意志。</strong></p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>★★ <strong>定义句（1 版 vs 6 版，本报告逐字核对）</strong>：
+    <ul>
+      <li><strong>第 1 版</strong>：「<strong>我把这种有利变异的保存与有害变异的汰除，称为自然选择（I call Natural Selection）。</strong>」<span class="tag t-src">原书</span>（第 4 章，第 1 版）。
+      </li>
+      <li><strong>第 6 版</strong>：「<strong>我把有利的个体差异与变异的保存、以及有害变异的毁灭，称为自然选择，或曰适者生存（I have called Natural Selection, or the Survival of the Fittest）。</strong>」<span class="tag t-src">原书</span>（第 4 章，第 6 版）。★ <strong>「或曰适者生存」是第 5 版（1869）才加的</strong>（见第 5 节 5.4）。
+      </li>
+    </ul>
+    </li>
+    <li>★★ <strong>「检视」句与它跨版本的软化</strong>：<strong>第 1 版</strong>作「<strong>可以说，自然选择每天每时都在全世界检视着每一种变异，哪怕最细微的……</strong>」（It may be said that natural selection is daily and hourly scrutinising…）<span class="tag t-src">原书</span>（第 4 章，第 1 版）。<strong>第 6 版加了一个词</strong>：「<strong>可以说（比喻地，metaphorically），自然选择每天每时都在全世界检视着最细微的变异……</strong>」<span class="tag t-src">原书</span>（第 4 章，第 6 版）。★ <strong>这个词的添加，是「达尔文知道这是隐喻」的直接证据。</strong>
+    </li>
+    <li>★★ <strong>「自然」不是意志的正式澄清（第 6 版）</strong>：「<strong>有人说我把自然选择说成一种主动的力量或神；可是，谁又会反对一个作者说万有引力统治着行星的运动呢？人人都知道这类比喻表达是什么意思……我很难避免把『自然』人格化；但我所谓『自然』，不过指许多自然法则的集合作用与产物；而所谓法则，指我们所查明的各种事件的先后序列。</strong>」<span class="tag t-src">原书</span>（第 4 章，第 6 版）。★ <strong>本报告实测：这一段在第 1 版里没有</strong>（第 1 版没有「Several writers have misapprehended or objected to the term Natural Selection」这一段）——<strong>它是为回应批评而增补的。</strong>
+    </li>
+    <li><strong>性选择（sexual selection）</strong>：达尔文在本章把它与自然选择区分开——<strong>性选择不是关于「活下去」，而是关于「留下后代」</strong>（如雄孔雀的尾羽）<span class="tag t-src">原书</span>（第 4 章）。
+    </li>
+    <li><strong>性状分歧（divergence of character）</strong>：他解释<strong>为什么同一地区内的生物会越分越开</strong>——<strong>后代的生态位分得越开，就越能共存</strong><span class="tag t-src">原书</span>（第 4 章）。
+    </li>
+    <li>★★ <strong>「生命之树」（the great Tree of Life）</strong>：全书最著名的比喻在本章末出现——「<strong>正如芽苞由生长生出新芽，这些新芽如果茁壮，就会向四面八方长出并压过许多较弱的枝条；我相信，由世代相传，伟大的生命之树也是如此，它用枯枝与断枝填满地壳，又用不断分叉、美丽的枝条覆盖地表。</strong>」<span class="tag t-src">原书</span>（第 4 章末，第 1 版）。
+    </li>
+    <li>★ <strong>「有利」是怎么判定的（回答本节下一条「可疑之处」）</strong>：达尔文给出的判据<strong>不是「更强」「更大」，而是「更适合当时当地的环境」</strong>——他用的是「<strong>在生存的复杂战斗中（in the great and complex battle of life）</strong>」这一说法<span class="tag t-src">原书</span>（第 4 章）。★ 而「<strong>适应</strong>」的参照物<strong>永远是该生物所处的具体条件</strong>，<strong>不是一张「进步阶梯」</strong>。⇒ <strong>这是「适应 ≠ 进步」的原文依据。</strong>
+    </li>
+    <li><strong>人工选择 vs 自然选择的尺度对照（本章反复强调）</strong>：达尔文承认<strong>人只能在「外部的、可见的」性状上做选择</strong>，而<strong>自然选择作用于「每一个内部器官、每一丝体质差异、整个生命机器」</strong>，且<strong>时间尺度不可同日而语</strong><span class="tag t-src">原书</span>（第 4 章）。★ 所以本章的类比<strong>不是「人＝自然」，而是「人有意识的选育，是自然无意识淘汰的一个缩影」</strong>。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★★ <strong>机制要求「有利变异」先存在，但达尔文没有解释「变异从何而来」</strong>：本章的论证<strong>默认变异是现成的</strong>，<strong>把「变异来源」推给第 5 章</strong>——而第 5 章的答案是「<strong>我们无知</strong>」。★ <strong>这是全书最要害的一处空缺。</strong>
+    </li>
+    <li>★★ <strong>「有利（favourable）」是事后判断</strong>：什么叫「有利」？<strong>在事后看谁活下来了才知道</strong>。⇒ <strong>读者要警惕「事后合理化」的风险</strong>（后世所谓「适应主义纲领」的批评就是从这里来的）<span class="tag t-inf">推断</span>。
+    </li>
+    <li>★ <strong>第 6 版的澄清段本身说明「拟人」批评有多强</strong>：达尔文不得不加「<strong>比喻地说</strong>」、不得不写一整段解释「<strong>自然只是法则的集合</strong>」<span class="tag t-src">原书</span>——<strong>这说明「自然选择」这个命名从一开始就是有风险的</strong><span class="tag t-inf">推断</span>（第 4 章，第 6 版）。
+    </li>
+    <li>★★ <strong>本章是全书中「版本差异最需要留心」的一章</strong>：<strong>定义句（第 1 版 vs 第 6 版）、「检视」句（加「比喻地说」）、澄清段（第 6 版才有）——三处差异全在这一章</strong><span class="tag t-src">原书</span>（第 4 章，两版对比）。★ <strong>原因不难理解：自然选择是全书最容易被误读的概念，也是批评最集中的靶子。</strong> ⇒ <strong>若你只打算对照一处的版本差异，就对照第 4 章。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s12">
+  <h2><span class="num">11</span><span>第 5 章 变异的法则</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么问题</h3>
+  <p><strong>变异是从哪来的？它有规律可循吗？</strong> 这是第 4 章留下的洞。★ <strong>本章的答案，坦率得令人意外</strong>：达尔文列举了若干「法则」（用进废退、相关生长、返祖等），<strong>但同时承认——我们对变异法则的知识是极其有限的</strong>。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li><strong>被达尔文列为「法则」的几条</strong>：① <strong>环境条件的直接作用</strong>；② <strong>用进废退（use and disuse）</strong>——「<strong>器官用得多则加强，用得少则退化</strong>」；③ <strong>相关生长（correlation of growth）</strong>；④ <strong>返祖（reversion）</strong>——「<strong>退回到久已消失的性状</strong>」；⑤ <strong>补偿与生长经济</strong><span class="tag t-src">原书</span>（第 5 章）。
+    </li>
+    <li>★★ <strong>全章最要紧的一句坦白</strong>：「<strong>我们对变异法则的无知是深刻的（Our ignorance of the laws of variation is profound）。</strong>」<span class="tag t-src">原书</span>（第 5 章，第 6 版；第 1 版亦有同义表述）。★ <strong>这是全书最重要的一处自认空白</strong>——第 4 章的机制能不能成立，<strong>全看这一章能不能兑现；而这一章坦白兑不了</strong>。
+    </li>
+    <li><strong>用进废退的典型例</strong>：他说<strong>家养动物的某些器官因为不用而萎缩</strong>，野生状态下<strong>某些洞穴动物的眼睛退化</strong>，都可用「用进废退」解释<span class="tag t-src">原书</span>（第 5 章）。★ <strong>这些例子今天多已被「选择」或「中性」解释取代</strong>。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★★ <strong>「用进废退」＝拉马克式获得性遗传，与自然选择机制存在张力</strong>：如果「<strong>用进废退得来的性状可遗传</strong>」，那么<strong>变异就有了方向性（由使用决定）</strong>，这<strong>与「变异随机、选择定方向」的机制不完全一致</strong><span class="tag t-inf">推断</span>。★ <strong>达尔文本人在两者之间游移</strong>，<strong>越到后来越偏拉马克</strong>（见第 5 节 5.5）。
+    </li>
+    <li>★★ <strong>本章与孟德尔擦肩</strong>：<strong>孟德尔 1866 年</strong>发表遗传规律，<strong>达尔文未读到</strong>；他的遗传理论要到 <strong>1868 年《家养变异》</strong> 里以「<strong>泛生论（pangenesis）／芽球（gemmules）</strong>」的形式出现<span class="tag t-rep">转述</span>（科学史通行叙述）。⇒ <strong>本书里没有一套可用的遗传理论</strong>——这是它最大的局限。
+    </li>
+    <li>★ <strong>「法则」这个词用得过宽</strong>：达尔文列的多是<strong>现象的归纳</strong>（「用得多就强」），<strong>不是机制</strong><span class="tag t-inf">推断</span>（依据第 5 章论证方式）。
+    </li>
+    <li>★★ <strong>本章与第 4 章的机制存在一个未被缝合的接缝</strong>：<strong>第 4 章说变异的命运由「选择」决定</strong>（变异本身无方向）；<strong>第 5 章却承认变异的</strong>来源<strong>里有「用进废退」这种</strong>由使用决定方向<strong>的因素</strong>。★ 两句话不致命地冲突，但<strong>它们让「变异随机」这个前提变得模糊</strong>——<strong>这正是后世讨论「达尔文主义到底有多『达尔文』」时会反复回到的地方</strong><span class="tag t-inf">推断</span>。⇒ <strong>读第 5 章时，请把它当成一份「作者自认的空白清单」，而不是一份机制说明。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s13">
+  <h2><span class="num">12</span><span>第 6 章 学说的难点</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么问题</h3>
+  <p>★★ <strong>这一章是全书最诚实的一章，也可能是最值得学的一章。</strong> 达尔文明知道自己的学说有难点，<strong>于是主动列出一整章来讲它们</strong>——「<strong>从理论上看，有哪些困难？</strong>」他要回答的是：<strong>这些难点能不能在不放弃机制的前提下处理掉。</strong> ★ 本章的方法论姿态，比它的具体内容更值得记住：<strong>先把反方摆足，再逐条回应。</strong></p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>★★ <strong>眼睛（全书最著名的一处「自曝其短」）</strong>：「<strong>设想眼睛，连同它那为对不同距离调焦、为让不同光量进入、为校正球面与色差而设的无可比拟的构造，竟能由自然选择形成——我坦率承认，这似乎是最荒谬不过的（absurd in the highest possible degree）。</strong>」但紧接着他给出条件式论证：「<strong>然而理性告诉我：如果从完美复杂的眼到极不完美简单的眼，存在许多渐变，且每一级对拥有者都有用；如果眼能发生哪怕极微小的变异且可遗传；如果任何变异对生物在变化的环境下有用——那么，相信一个完美的眼能由自然选择形成，尽管对我们的想象力而言难以逾越，却很难说是真正不可能的。</strong>」<span class="tag t-src">原书</span>（第 6 章，第 1 版）。
+    </li>
+    <li><strong>其他被列出的难点</strong>：<strong>过渡类型的缺失</strong>（为什么找不到中间形态）；<strong>「自然界不跳步」（Natura non facit saltum）</strong>——他把它当作一条指导原则<span class="tag t-src">原书</span>（第 6 章）；<strong>电鱼的发电器官</strong>这类「<strong>特殊难点</strong>」<span class="tag t-src">原书</span>（第 6 章）。
+    </li>
+    <li>★ <strong>本报告实测的一个有趣细节</strong>：<strong>第 1 版的第 6 章把「中性不育昆虫」列为「最严重的难点之一」，但明确说「这个例子留到下一章（本能）去谈」</strong>：「<strong>其中最严重的一个是中性昆虫……但这个例子放到下一章讨论。</strong>」<span class="tag t-src">原书</span>（第 6 章，第 1 版）。⇒ <strong>第 6 与第 7 章在结构上是连体的</strong>。
+    </li>
+    <li><strong>结尾的收束</strong>：第 6 章以「<strong>模式的统一（unity of type）与生存条件</strong>」这两大法则收尾，指出<strong>自然选择能同时解释它们</strong><span class="tag t-src">原书</span>（第 6 章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★★ <strong>眼睛那段是「可能性论证」，不是「构造性证明」</strong>：达尔文证明的是「<strong>在若干「如果」成立时，眼睛的演化并非不可能</strong>」，<strong>不是「眼睛确实是这样演化出来的」</strong>——他会说<strong>你只要接受「渐变有用且可遗传」</strong>。★ <strong>这个论证的强度，完全取决于那几个「如果」</strong><span class="tag t-inf">推断</span>（依据第 6 章原文的条件式结构）。
+    </li>
+    <li>★★ <strong>「自然界不跳步」是一条被当成前提的公理</strong>：达尔文用它来排除「大跳跃」，<strong>但它本身是先验的</strong>——<strong>后世争议最大的正是这一条</strong>（<strong>间断平衡论</strong>在 1972 年提出「演化常有快速跳跃」，就是针对它）<span class="tag t-rep">转述</span>（Eldredge &amp; Gould，1972，「punctuated equilibria」）。⇒ <strong>本章最脆弱的一环，是它把渐变当成了不可让渡的前提。</strong>
+    </li>
+    <li>★ <strong>本章的难点清单其实是不完整的</strong>：<strong>遗传机制的缺失、变异来源不明</strong>这两个真正的难点，<strong>达尔文没有在本章列出</strong>（它们藏在第 5 章的坦白里）<span class="tag t-inf">推断</span>。⇒ <strong>这意味着「学说的难点」这一章，只列了对手看得到的难点，没列自己看得见的难点。</strong>
+    </li>
+    <li>★★ <strong>「难点」章的写法本身值得单拎出来学</strong>：达尔文<strong>没有回避、也没有淡化</strong>自己的弱点，而是<strong>把它们排成一张清单，一处一处地答</strong>——甚至把最难的一处（<strong>中性不育昆虫</strong>）<strong>公开说「这留到下一章（本能）再谈」</strong><span class="tag t-src">原书</span>（第 6 章，第 1 版）。★ <strong>这是一种「先把最坏的说尽，再慢慢赢回来」的论证策略</strong>，与今天很多论著的「先立结论、再找材料」正好相反。⇒ <strong>即使你不赞同他的结论，这一章也值得当作「如何诚实写作」的样本读。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s14">
+  <h2><span class="num">13</span><span>第 7 章 本能</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么问题</h3>
+  <p><strong>「本能」看起来最像「设计」，它也能被自然选择解释吗？</strong> 如果一只蜜蜂能造出精确的六边形蜂房、一只寄生蜂能把卵下到别的虫体内，<strong>这些「精巧设计」若不靠智能，靠什么？</strong> ★ <strong>本章要回答的是：本能不是被赋予的固定程序，而是可以被「渐变＋选择」逐步塑造出来的东西。</strong> 而本章真正的硬骨头，是第 6 章推到这里的那个「最严重的难点」——<strong>中性不育昆虫</strong>。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li><strong>本能的四个例子</strong>：<strong>寄生蜂</strong>（把卵产在宿主体内）；<strong>杜鹃</strong>（把蛋下在别种鸟的巢里）；<strong>奴役蚁（slave-making ants）</strong>（抢别种蚁的蛹当劳力）；<strong>蜜蜂的造巢本能</strong><span class="tag t-src">原书</span>（第 7 章）。
+    </li>
+    <li>★ <strong>蜂巢的几何（本章最漂亮的论证）</strong>：达尔文指出，<strong>蜂的六边形蜂房是「最省蜡」的解法</strong>，而<strong>蜂并不懂几何</strong>——<strong>自然选择只需让「造得稍省蜡」的蜂群多留下后代，就能一步步逼近六边形</strong><span class="tag t-src">原书</span>（第 7 章）。★ <strong>这是「本能＝优化结果、不是知识」最清楚的例子。</strong>
+    </li>
+    <li>★★ <strong>中性不育昆虫（他把「本能」章最难的一段留在这里）</strong>：<strong>工蜂、工蚁都是不育的雌性</strong>，<strong>它们自己不留后代</strong>，那「<strong>让工蜂更会干活</strong>」的变异<strong>怎么被选择保留？</strong> 达尔文的答案是<strong>选择作用于「家系（family）」而非个体</strong>——「<strong>这个例子初看是无法克服的难点……但我相信，只要记住选择既可以作用于个体，也可以作用于家系，难点就消失了。</strong>」<span class="tag t-src">原书</span>（第 7 章，第 1 版）。★ <strong>本报告实测：第 6 章曾明说「中性昆虫的例子留到下一章讨论」</strong>（第 6 章，第 1 版）；<strong>这一章正是对那个承诺的兑现。</strong>
+    </li>
+    <li><strong>本能是可以「渐变」的</strong>：他举出<strong>同一种蜂的不同蜂群、造巢水平不同</strong>，以及<strong>不同蚁种的「工蚁／兵蚁」分化程度不同</strong>，来支撑「本能也是渐变的」<span class="tag t-src">原书</span>（第 7 章）。
+    </li>
+    <li>★ <strong>「奴役蚁」与「寄生本能」的分层</strong>：他把<strong>奴役蚁抢蛹</strong>、<strong>杜鹃寄巢</strong>、<strong>寄生蜂产卵于宿主</strong>这三类「寄生本能」按<strong>依赖程度</strong>排成一条谱，指出<strong>有些蚁种完全依赖奴隶、有些只是偶尔掠抢</strong>，<strong>这就给了「渐变」一条经验线索</strong><span class="tag t-src">原书</span>（第 7 章）。★ <strong>这是他的标准手法：把一个「非此即彼」的难题，改造成一条「程度谱」。</strong>
+    </li>
+    <li>★ <strong>本能的「错误」也是证据</strong>：他指出<strong>蜂有时会造错巢、蚁有时会走错路</strong>，<strong>说明本能不是不可错的「神授程序」</strong><span class="tag t-src">原书</span>（第 7 章）。⇒ <strong>「本能会出错」这一点，恰好说明它是可以被选择修改的。</strong>
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★★ <strong>「家系选择」是达尔文为化解中性昆虫难点而引入的补丁</strong>：它<strong>在逻辑上可行，但在当时缺乏遗传学支撑</strong>（要让「家系层面」的选择成立，需要一整套遗传机制）<span class="tag t-rep">转述</span>（现代生物学对「亲缘选择／家系选择」的通行处理，20 世纪才系统化）。★ <strong>这是本书里又一个「方向对、工具缺」的案例。</strong>
+    </li>
+    <li>★ <strong>「本能＝固定程序」这一设定，与「本能可变」有张力</strong>：达尔文既要证明本能<strong>足够稳定</strong>（否则无法遗传），又要证明它<strong>足够可变</strong>（否则选择无从下手）<span class="tag t-inf">推断</span>。
+    </li>
+    <li>★ <strong>本章的例子几乎全是昆虫与鸟</strong>：<strong>寄生蜂、杜鹃、蚁、蜂</strong>——<strong>没有哺乳类「本能」的系统讨论</strong><span class="tag t-inf">推断</span>（依据第 7 章举例分布）。★ 而 1872 年的《人与动物的情感表达》才是他对「本能／情绪」的系统展开。
+    </li>
+  </ol>
+</section>
+
+<section id="s15">
+  <h2><span class="num">14</span><span>第 8 章 杂交</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么问题</h3>
+  <p><strong>物种之间杂交往往不育，而同一物种的不同变种杂交通常可育——这能不能当成「物种」与「变种」的硬界线？</strong> ★ <strong>如果这条界线绝对，那么「物种」就是一个天然的单位，共祖学说会遇到麻烦</strong>；如果这条界线<strong>只是程度问题</strong>，那么它反而<strong>支持</strong>「物种是从变种过渡来的」。<strong>达尔文要论证的是后者。</strong></p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li><strong>两位「毕生投入此事的观察者」</strong>：他引用 <strong>Kölreuter</strong> 与 <strong>Gärtner</strong>——「<strong>我无法研究这两位勤勉可敬的观察者的著作而不被杂交不育的普遍性深深打动</strong>」<span class="tag t-src">原书</span>（第 8 章，第 1 版）。★ 但他随即指出<strong>他们的处理有循环</strong>：<strong>Kölreuter 在十个「本应不育却可育」的案例里，直接把那两个形式判为变种</strong><span class="tag t-src">原书</span>（第 8 章）。
+    </li>
+    <li><strong>不育是「程度」，不是「全或无」</strong>：<strong>Gärtner 不得不一粒一粒地数种子，才能显示存在不育</strong><span class="tag t-src">原书</span>（第 8 章）。⇒ <strong>达尔文的结论是：不育程度「处处不同、不是普遍的」</strong><span class="tag t-src">原书</span>（第 8 章）。
+    </li>
+    <li>★★ <strong>核心论断：不育「不是一种特殊赋予（not a special endowment），而是附随于其他差异之上的」</strong>——即<strong>不育是两套彼此不协调的生殖系统相遇的副产物，不是上帝为了维持物种界线而设的栅栏</strong><span class="tag t-src">原书</span>（第 8 章）。★ <strong>这是本章最反神学、也最讲机制的一句。</strong>
+    </li>
+    <li><strong>变种杂交的可育性</strong>：他举出<strong>家养变种杂交、以及野外「存疑形式」杂交可育</strong>的例子，说明<strong>「变种—物种」的可育性也是连续谱</strong><span class="tag t-src">原书</span>（第 8 章）。
+    </li>
+    <li><strong>结论</strong>：<strong>「不育性」不能作为物种的定义性界线</strong>；它<strong>只是一个统计上常见的相关现象</strong><span class="tag t-src">原书</span>（第 8 章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★★ <strong>「不育是副产物」在当时只是一个断言，没有机制</strong>：<strong>为什么两套生殖系统相遇就不育？</strong> 达尔文答不出——<strong>这要等到遗传学与生殖生物学才能回答</strong><span class="tag t-rep">转述</span>（现代生物学的通行处理）。★ <strong>这是本书里第 N 个「结论对、论证薄」的地方。</strong>
+    </li>
+    <li>★★ <strong>本章内部有大量「例外」</strong>：达尔文自己列举了<strong>物种杂交可育、变种杂交不育</strong>的诸多反例<span class="tag t-src">原书</span>（第 8 章）。⇒ <strong>本章的说服力，靠的是「例外足够多」这个事实本身</strong>——<strong>这在方法论上是「用不整齐来证明界线不绝对」，逻辑上是站得住的，但读起来最容易觉得「证据零散」。</strong>
+    </li>
+    <li>★ <strong>「不育」在本书里的功能是纯防御性的</strong>：本章<strong>不为共祖提供新证据，只是拆掉一个可能被用来反驳共祖的界线</strong><span class="tag t-inf">推断</span>（依据第 8 章论证方向）。★ 读它时<strong>不必期待新机制，它是一章「拆墙」的章。</strong>
+    </li>
+    <li>★ <strong>本章的行文有一个现代读者会觉得奇怪的特点——大量篇幅在「结账别人的实验」</strong>：<strong>Kölreuter 与 Gärtner 的成果被逐条核对、逐条挑刺</strong>，<strong>达尔文自己的新实验反而少</strong><span class="tag t-src">原书</span>（第 8 章）。⇒ <strong>这也解释了本章为何读起来琐碎</strong>：<strong>它在做「文献清理」，而不是「提出新证据」。</strong> ★ 若你时间有限，<strong>读本章只需抓住一句结论即可：不育是程度谱、是副产物、不是物种的界线。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s16">
+  <h2><span class="num">15</span><span>第 9 章 地质记录的不完整性</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么问题</h3>
+  <p>★★ <strong>第 6 章列出的最大难点是「为什么找不到过渡类型」</strong>。这一章（与第 10 章）<strong>用两整章的篇幅来回答它</strong>。达尔文的答案是：<strong>问题不在演化没发生过，而在「地质记录极端不完整」</strong>——<strong>地层是断的、沉积是慢的、化石是极少被保存下来的</strong>。★ 这是全书<strong>唯一一个用「为什么证据没出现」来为正题辩护的论证</strong>，因此也最需要小心读。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li><strong>「化石记录极端不完整」</strong>：他反复使用这个判断——「<strong>正如我相信的那样，问题在于地质记录的极端不完整</strong>」<span class="tag t-src">原书</span>（第 9 章，第 1 版）。他列出四个原因：<strong>沉积速率与剥蚀速率的对比</strong>、<strong>地层之间的巨大间断</strong>、<strong>化石保存条件的苛刻</strong>、<strong>古生物采集的贫乏</strong><span class="tag t-src">原书</span>（第 9 章）。
+    </li>
+    <li>★★ <strong>尼德谷（Weald）的计算——本报告实测的第 1／2 版 vs 第 6 版差异</strong>：
+    <ul>
+      <li><strong>第 1 版</strong>：达尔文<strong>自己算出一个具体数字</strong>——「<strong>按此速率，尼德谷的剥蚀必得花去 306,662,400 年；也就是说，约三亿年。</strong>」并说「<strong>很可能自第二纪晚期以来，已过了远长于三亿年的时光</strong>」<span class="tag t-src">原书</span>（第 9 章，<strong>第 1 版</strong>）。
+      </li>
+      <li><strong>第 2 版</strong>：<strong>同一个数字仍在</strong>（实测：第 2 版「<strong>306,662,400 years; or say three hundred million</strong>」）<span class="tag t-src">原书</span>（第 9 章，第 2 版）。
+      </li>
+      <li><strong>第 6 版</strong>：★ <strong>这个数字被拿掉了</strong>。取而代之的是对 <strong>Ramsay、Jukes、Geikie、Croll</strong> 等人「<strong>亚空气剥蚀（subaërial degradation）比海浪侵蚀更重要</strong>」的引述，以及 <strong>Croll 的著名比喻</strong>——「<strong>取一条长八十三英尺四英寸的纸条……在它一端标出十分之一英寸；这十分之一英寸代表一百年，整条纸带则代表一百万年。</strong>」<span class="tag t-src">原书</span>（第 9 章，<strong>第 6 版</strong>）。
+      </li>
+    </ul>
+    </li>
+    <li>★ <strong>这一处改动的意义</strong>：<strong>第 1 版的「三亿年」是一个具体、可被攻击的数字；第 6 版换成了一组「时间尺度很大、但不敢给数字」的讨论。</strong> ⇒ <strong>开尔文的地球年龄批评，在这里留下了最清楚的痕迹</strong>（见第 5 节 5.7）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★★ <strong>「记录不完整」是「可检验的预测」，还是「免罪符」？</strong> ★ 这是本章最大的方法论争议：<strong>若每次找不到过渡类型都归因于「记录不全」，那么这个解释原则上不能被反驳</strong>。★ 达尔文<strong>并非完全没有给出可检验的一面</strong>（他预言<strong>未来会在某些地层找到中间类型</strong>，且<strong>中间类型应出现在特定位置</strong>）<span class="tag t-inf">推断</span>（依据第 9 章若干具体推断）。<strong>但读者必须警惕：这一章的解释力，很大一部分来自「地质确实不全」这一事实，而不是来自机制本身。</strong>
+    </li>
+    <li>★★ <strong>第 1 版的三亿年数字，是一个「被自己删掉的预测」</strong>：它<strong>不是错在数量级</strong>（现代测年显示地球约 45 亿年，<strong>达尔文的方向是对的</strong>），<strong>而是错在他无法为自己的估算辩护</strong>（当时的物理学家按开尔文的热学估算只有几千万年）<span class="tag t-rep">转述</span>（科学史通行叙述）。⇒ <strong>第 6 版删掉它，是一次「向物理学让步」的典型动作。</strong>
+    </li>
+    <li>★ <strong>本章与第 10 章是一组，不能拆开读</strong>：<strong>第 9 章解释「为什么化石断」，第 10 章讲「化石序列本身说了什么」</strong><span class="tag t-inf">推断</span>（依据两章分工）。
+    </li>
+    <li>★★ <strong>本章最能训练「读证据的能力」——请把它的两类句子分开看</strong>：一类是<strong>关于地层与沉积的事实判断</strong>（「<strong>化石保存极其偶然</strong>」「<strong>地层之间的间断极大</strong>」），这类<strong>今天大体成立</strong>；另一类是<strong>由这些事实推出的结论</strong>（「<strong>因此找不到过渡类型不奇怪</strong>」），这类<strong>是一个解释，不是一个观察</strong><span class="tag t-inf">推断</span>。★ <strong>把「事实」与「解释」分开，你就会发现：本章真正硬的部分是前一类，真正需要打问号的是后一类。</strong> ⇒ <strong>这个读法也适用于全书——达尔文最可靠的，往往是他对「事实有多难得到」的判断。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s17">
+  <h2><span class="num">16</span><span>第 10 章 古生物的演替</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么问题</h3>
+  <p><strong>如果化石记录是不完整的，那么化石序列本身还能告诉我们什么？</strong> ★ 达尔文的答案是：<strong>化石记录虽然断，但它显示的模式与「共祖＋自然选择」正好吻合</strong>——<strong>新物种是缓慢、陆续出现的；物种一旦灭绝就不再回来；同一地区会延续同一类型；生物类群的兴替彼此相关。</strong> 这是<strong>用地质学正面检验机制</strong>的一章。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li><strong>模式的五条</strong>：① 「<strong>新物种缓慢而陆续地出现</strong>」；② 「<strong>不同类群的变率不同</strong>」；③ 「<strong>物种一旦消失就不再重现（Species once lost do not reappear）</strong>」；④ 「<strong>类群的兴替遵循与单个物种相同的规则</strong>」；⑤ <strong>灭绝（On Extinction）</strong><span class="tag t-src">原书</span>（第 10 章目录）。
+    </li>
+    <li>★ <strong>「物种一旦消失就不再重现」是一条很强的规律</strong>：它<strong>直接打击「重复创造」的想法</strong>——<strong>若物种是分别创造的，凭什么灭绝后不再造回来？</strong> 而<strong>若物种有共同祖先，灭绝就是枝条折断，断了的枝不会再长回去</strong><span class="tag t-src">原书</span>（第 10 章）。★ <strong>这是本章最有力的一步。</strong>
+    </li>
+    <li><strong>灭绝的机制</strong>：达尔文把<strong>灭绝</strong>解释为<strong>竞争失败的结果</strong>——<strong>在自然选择之下，改良着的类型会挤掉未改良的类型</strong><span class="tag t-src">原书</span>（第 10 章）。
+    </li>
+    <li>★ <strong>同一地区延续同一类型</strong>：他发现<strong>澳大利亚的哺乳类化石与现存的有袋类相近</strong>、<strong>南美洲的化石与现存南美类型相近</strong>——<strong>这是「地理连续性」的最早证据之一</strong><span class="tag t-src">原书</span>（第 10 章）。
+    </li>
+    <li>★★ <strong>第 6 版在本章与第 9 章大幅扩充了「地质时间」的讨论</strong>（直接回应地球年龄之争）：<strong>本报告实测，第 6 版有大量关于 Croll、Ramsay 的引述与「几百万／几千万／几亿年」的讨论</strong><span class="tag t-src">原书</span>（第 6 版第 9、10 章）。⇒ <strong>「第 6 版比第 1 版多出的三分之一篇幅，很大一部分花在了这里」</strong><span class="tag t-inf">推断</span>（依据两版文本量对比）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★★ <strong>「物种一旦消失便不再重现」在今天的古生物学里被修正</strong>：<strong>「重复型」（iterative／homoplasy）</strong>现象存在——<strong>相似的形式可以在不同谱系里独立演化出来</strong>（如多次独立出现的「鲸类体型」「仙人掌形态」）<span class="tag t-rep">转述</span>（现代古生物学通行叙述）。★ <strong>但要注意：这与达尔文的原则不矛盾——回来的是「相似形态」，不是「同一个血统」</strong>；达尔文的原意（<strong>同一血统不再重现</strong>）<strong>依然成立</strong>。
+    </li>
+    <li>★ <strong>「灭绝＝竞争失败」的解释过于单一</strong>：<strong>大规模灭绝（如二叠纪末、白垩纪末）的主因很可能是灾变（撞击、火山、气候）而非竞争</strong><span class="tag t-rep">转述</span>（现代地质学通行叙述）。★ <strong>达尔文没有讨论「灾变式灭绝」</strong>——<strong>这是他「渐变论」立场的一个必然盲区</strong><span class="tag t-inf">推断</span>。
+    </li>
+    <li>★ <strong>本章依赖化石的「层位顺序」，而层位又依赖</strong>沉积速率假设<strong>：</strong>与第 9 章同源的问题**（时间估算不可靠）<span class="tag t-inf">推断</span>。
+    </li>
+    <li>★★ <strong>「同一地区延续同一类型」这一条，今天仍然是最强的古生物地理证据之一</strong>：<strong>南美洲的化石犰狳／树懒与现存的同类相近，澳大利亚的化石有袋类与现存有袋类相近</strong><span class="tag t-src">原书</span>（第 10 章；达尔文举南美例子）。★ 它的力量在于<strong>独立于「渐变还是跳跃」之争</strong>——<strong>无论演化快慢，「同一地方住着一家子」这件事，只有共祖讲得通</strong><span class="tag t-inf">推断</span>。⇒ <strong>相比第 9 章的辩护性论证，本章这一类「正面证据」更值得重点读。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s18">
+  <h2><span class="num">17</span><span>第 11 章 地理分布</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么问题</h3>
+  <p><strong>生物为什么这样分布？</strong> 这是达尔文在贝格尔号上最初的触动所在。★ 他要排除一个竞争解释：<strong>「分布由物理条件决定」</strong>——<strong>如果每个地方都有「适合当地的类型」，那就不需要共祖</strong>。<strong>达尔文要证明的恰恰相反：物理条件相同的地方，生物可以截然不同；而相隔遥远的地方，生物却可以有亲缘关系。</strong></p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li><strong>物理条件解释不了分布</strong>：他指出<strong>同一纬度、相似气候的不同大陆，生物可以完全不同</strong>（如<strong>南美与南非</strong>）；<strong>同一大陆内部，不同气候的地方生物却相近</strong><span class="tag t-src">原书</span>（第 11 章）。
+    </li>
+    <li>★ <strong>屏障（barriers）</strong>：海洋、山脉、沙漠是分布的屏障；<strong>屏障一旦形成或消失，分布就随之改变</strong>——<strong>「重要性在屏障」</strong><span class="tag t-src">原书</span>（第 11 章）。
+    </li>
+    <li>★ <strong>「同一大陆的生物彼此亲缘」</strong>：他认为<strong>每个大陆的生物有共同的「创造中心（centres of creation）」</strong>，<strong>从中心向四周扩散并发生变异</strong><span class="tag t-src">原书</span>（第 11 章）。
+    </li>
+    <li><strong>散布手段</strong>：他列举了<strong>气候变化</strong>、<strong>海陆升降</strong>、<strong>偶发手段（occasional means）</strong>（如<strong>种子随洋流、随鸟足泥、随木材漂流</strong>）<span class="tag t-src">原书</span>（第 11 章）。
+    </li>
+    <li>★★ <strong>冰期分布</strong>：他提出<strong>在冰期，北极与温带生物向南推移；冰期结束后，温带上山、部分留存在高山与北方</strong>——<strong>这解释了「高山植物与北极植物为何相近」</strong><span class="tag t-src">原书</span>（第 11 章）。★ <strong>这是生物地理学的一个经典假说，至今仍是解释高山—北极断分布的主流框架之一</strong><span class="tag t-rep">转述</span>（现代生物地理学通行叙述）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★★ <strong>「散布手段」多为推测，且缺证据</strong>：<strong>种子能漂浮多远、能活多久</strong>，<strong>达尔文只能举零散的观察</strong>（他做过一些浸泡种子的实验，但本章多为举例）<span class="tag t-src">原书</span>（第 11 章）。★ 这也是<strong>第 11–12 章最容易被现代读者觉得「论据单薄」的地方</strong><span class="tag t-inf">推断</span>。
+    </li>
+    <li>★ <strong>「创造中心」这个词本身就带着旧框架</strong>：他一边用「<strong>centres of creation</strong>」（继承当时的用语），一边论证<strong>生物从中心扩散并变异</strong><span class="tag t-src">原书</span>（第 11 章）。⇒ <strong>用词与论证有张力</strong>——<strong>「创造中心」其实已经是「我反对创造」的语境下的一个过渡词</strong><span class="tag t-inf">推断</span>。
+    </li>
+    <li>★ <strong>本章与第 12 章合起来才是完整的生物地理论证</strong>：<strong>第 11 章讲「大陆上的分布」，第 12 章讲「岛屿上的分布」</strong><span class="tag t-inf">推断</span>（依据两章分工）。
+    </li>
+    <li>★★ <strong>本章的论证结构是一次「排除法」，值得当成逻辑练习读</strong>：<strong>先排除「物理条件决定分布」</strong>（同一气候下可以有完全不同的生物圈），<strong>再排除「各自独立创造」</strong>（相隔遥远的大陆上，生物却彼此亲缘），<strong>最后只剩「共祖 ＋ 迁移 ＋ 变异」</strong><span class="tag t-inf">推断</span>（依据第 11 章论证层次）。★ <strong>读者可自问：这三个选项是否穷尽？</strong> 达尔文没有讨论「趋同演化」这个可能（<strong>不同血统独立演化出相似形态</strong>）——<strong>这一条要到后来才被系统研究</strong><span class="tag t-rep">转述</span>（现代生物地理学通行叙述）。⇒ <strong>这也是全书通病的一个缩影：排除法的说服力，取决于「选项是否穷尽」。</strong>
+    </li>
+    <li>★ <strong>「屏障」这一概念的现代延续</strong>：<strong>达尔文把海洋、山脉、沙漠视为「屏障」</strong>——<strong>今天生物地理学（biogeography）的基本框架，仍是从「屏障与通道」出发</strong><span class="tag t-src">原书</span>（第 11 章；<span class="tag t-rep">转述</span> 现代生物地理学）。
+    </li>
+  </ol>
+</section>
+
+<section id="s19">
+  <h2><span class="num">18</span><span>第 12 章 地理分布·续</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么问题</h3>
+  <p><strong>岛屿上的生物是怎么来的？</strong> ★ <strong>如果岛屿生物是就地独立创造的，为什么它们总是像「最近大陆」的物种？</strong> 这一章把论证压到一个最尖锐的个案上——<strong>加拉帕戈斯群岛</strong>。<strong>这是全书地理证据的顶点。</strong></p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>★★ <strong>加拉帕戈斯（本报告逐字核对的最强个案）</strong>：「<strong>关于岛屿生物，对我们最突出、最重要的事实，是它们与最邻近大陆的生物有亲缘关系，却又不完全同种。……我仅举加拉帕戈斯群岛一例——它位于赤道之下，距南美洲海岸五百至六百英里。这里几乎每一件陆地与水中产物，都带着无可置疑的美洲印记。</strong>」<span class="tag t-src">原书</span>（第 12 章，第 1 版）。★ 他给出的数字是：「<strong>有二十六种陆鸟，其中二十五种被古尔德先生（Mr. Gould）判为特有种，据信是在这里被创造的；然而这些鸟在每一个特征上、在习性、姿态与鸣声上，与美洲物种的相近都极为明显。</strong>」<span class="tag t-src">原书</span>（第 12 章，第 1 版）。★★ <strong>紧接着是全章最有力的一问</strong>：「<strong>为什么这些据信只在加拉帕戈斯被创造、别处没有的物种，却带着如此明显的美洲印记？……岛屿的生活条件、地质性质、高度、气候，都不足以解释这一点。</strong>」<span class="tag t-src">原书</span>（第 12 章，第 1 版）。
+    </li>
+    <li><strong>海洋岛屿缺两大类</strong>：<strong>两栖类（Batrachians）与陆栖哺乳类</strong>在海洋岛屿上<strong>普遍缺失</strong><span class="tag t-src">原书</span>（第 12 章）。★ 达尔文的解释是：<strong>海水会杀死蛙卵、陆栖哺乳类也难以跨越海洋</strong>——<strong>这恰恰说明「分布受制于散布能力」，而非「创造的安排」</strong><span class="tag t-src">原书</span>（第 12 章）。
+    </li>
+    <li><strong>淡水生物</strong>：本章开头先处理<strong>淡水生物如何跨洋分布</strong>（如<strong>鱼卵、水鸟带来的水生植物</strong>）<span class="tag t-src">原书</span>（第 12 章）。
+    </li>
+    <li>★ <strong>结论：岛屿生物 = 「从最近来源殖民 ＋ 随后就地改造」</strong>：「<strong>关于岛屿的物种与最邻近大陆的物种之关系，我认为最可取的观点是：从最近来源殖民，并伴随随后的变异与改造。</strong>」<span class="tag t-src">原书</span>（第 12 章，第 1 版）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★★ <strong>加拉帕戈斯是「最漂亮」的个案，也是「最特殊」的个案</strong>：它<strong>离大陆够远（隔离）又够近（能迁入）</strong>，<strong>火山岛够年轻（时间窗清楚）</strong>——<strong>这种「恰到好处」的条件，使它成为一个理想案例，但也提醒读者不要拿它当普遍模式</strong><span class="tag t-inf">推断</span>。
+    </li>
+    <li>★ <strong>「岛屿生物与最近大陆亲缘」的解释，与「创造中心」用的是同一个词</strong>：达尔文<strong>在第 11、12 章都用了「创造」语汇</strong>（<strong>这是当时行文的习惯</strong>）<span class="tag t-src">原书</span>（第 11、12 章）。★ 读时<strong>要把「据信被创造」读成「当时流传说被创造」</strong>，不是达尔文自己的论点。
+    </li>
+    <li>★ <strong>本章对「两栖类缺失」的解释很有说服力，但结论只用了「海水盐度」一条</strong>：<strong>现代研究显示「海洋岛屿缺蛙」还有其他因素（如生境、竞争）</strong><span class="tag t-rep">转述</span>（现代生物地理学通行叙述）。⇒ <strong>结论方向大体不变，单因解释偏简。</strong>
+    </li>
+    <li>★★ <strong>加拉帕戈斯在本章的用法，是「把最强的个案放到最后」</strong>：★ <strong>达尔文不是先讲加拉帕戈斯再推一般规律，而是先立「岛屿生物应与最近大陆亲缘」这一通则，再用加拉帕戈斯当压倒性的样本</strong><span class="tag t-inf">推断</span>（依据第 12 章论序）。⇒ <strong>这也是全书通篇的论证习惯：先给机制，再给「只有在机制下才不奇怪」的事实。</strong> ★ <strong>明白这一点，你就能理解为什么第 9–14 章读起来像「逐类清点证据」——它们不是新论证，是同一论证在不同学科里的复现。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s20">
+  <h2><span class="num">19</span><span>第 13 章 生物的相互亲缘关系：形态学：胚胎学：退化器官</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么问题</h3>
+  <p>★★ <strong>这一章是全书论证的最强处。</strong> 它要回答：<strong>那些「分类学」「形态学」「胚胎学」「退化器官」上的事实，为什么非要共祖才能解释？</strong> ★ <strong>一句话：因为若不共祖，这一大堆事实就只能是一堆互不相干的巧合。</strong> 达尔文在这一章把「解释范围」这张牌打到最大。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li>★★ <strong>分类学（classification）</strong>：<strong>「自然系统（natural system）」——「类下有类」（groups subordinate to groups）</strong>，是分类学的根本事实。★ 达尔文的主张是：<strong>如果物种是独立创造的，这套层级只是人为的归档；但若共祖成立，层级就是亲缘关系的自然投影</strong><span class="tag t-src">原书</span>（第 13 章）。★ 原话大意：「<strong>若物种是分别创造的，那么分类的困难与规则就没有解释了。</strong>」<span class="tag t-src">原书</span>（第 13 章）。
+    </li>
+    <li>★★ <strong>形态学（Morphology）与「模式的统一（unity of type）」</strong>：「<strong>在自然学者看来，同一纲成员的许多部分，无论用途如何不同，都按同一模式构造——这就是所谓『模式的统一』。</strong>」★ 他举例：<strong>人手、鼹鼠的前爪、马的前腿、蝙蝠的翅、海豹的鳍</strong>，<strong>骨骼排列相同</strong><span class="tag t-src">原书</span>（第 13 章）。★ <strong>若独立创造，为什么给「挖土的手」「飞行的翅」「游泳的鳍」用同一套图纸？</strong>
+    </li>
+    <li>★★ <strong>胚胎学（Embryology）</strong>：「<strong>同一纲的胚胎，在早期阶段极为相似……胚胎学上的主要事实，只有在变异不在极早期发生、并在相应时期被遗传这一原理上，才能理解。</strong>」<span class="tag t-src">原书</span>（第 13 章，第 1 版）。★ <strong>他进一步说，胚胎的相似性反映了共同祖先的形态</strong>——<strong>这是一种「胚胎重演」的雏形思路</strong>（后世称 Haeckel 的「重演律」<strong>过度化</strong>了这一思路，须与达尔文区分）<span class="tag t-rep">转述</span>（现代发育生物学对「重演律」的批评，20 世纪以来）。
+    </li>
+    <li>★★ <strong>退化器官（Rudimentary organs）</strong>：「<strong>退化、萎缩或废弃的器官</strong>」——如<strong>某些蛇的骨盆残余、鲸的髋骨残余</strong><span class="tag t-src">原书</span>（第 13 章）。★ <strong>退化器官是「独立创造论」最难解释的一类事实</strong>：<strong>若每个器官都是被设计来干活的，一个「没用的残留」设计来干什么？</strong> 而共祖一解释就通：<strong>祖先用过，后来不用了。</strong>
+    </li>
+    <li>★★ <strong>退化器官这一段的原文（本报告逐字核对，极值得背下来）</strong>：「<strong>现在我已经给出了关于退化器官的主要事实。反思这些事实，人人都会感到惊愕：因为那让我们清楚地看出大多数器官是精巧地适应于某些用途的推理能力，同时也同样清楚地告诉我们，这些退化或萎缩的器官是不完善的、无用的。</strong>」<span class="tag t-src">原书</span>（第 13 章，第 1 版）。★ <strong>紧接着的关键一步</strong>：他进一步指出，<strong>退化器官在胚胎期反而更明显</strong>——「<strong>成年个体里的退化器官，常被说成保留着胚胎的状态</strong>」<span class="tag t-src">原书</span>（第 13 章）。⇒ <strong>「退化 ＋ 胚胎期更明显」这两条合起来，只有「祖先曾有用、后来废弃」一个解释讲得通</strong>，这就是本节的要害。
+    </li>
+    <li><strong>总结</strong>：这一章把<strong>全部「形态—胚胎—退化」事实</strong>归到<strong>同一条机制</strong>之下——这就是论点五。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★★ <strong>「模式统一」的解释，与「适应」的解释存在张力</strong>：<strong>若自然选择只关心「好用」，为什么会保留「同一套图纸」而不各造最省的？</strong> 达尔文的答案是<strong>「遗传的保守性」</strong>——<strong>但这一点他并无机制</strong><span class="tag t-inf">推断</span>。★ <strong>现代的说法是「发育约束与共同祖先」，达尔文只给了「共同祖先」。</strong>
+    </li>
+    <li>★★ <strong>本章最容易引出「循环论证」的指责</strong>：<strong>用分类系统证明共祖，又用共祖解释分类系统</strong>——<strong>若不给独立的证据（化石、地理），这套论证是自洽但封闭的</strong><span class="tag t-inf">推断</span>。★ <strong>达尔文的对策是：他把第 9–12 章（化石、地理）放在这一章之前</strong>，正是为了<strong>先给独立证据，再用第 13 章统一归纳</strong><span class="tag t-inf">推断</span>（依据全书章序）。
+    </li>
+    <li>★ <strong>「退化器官」的个别反例</strong>：某些「退化器官」后来被证明<strong>还有功能</strong>（如<strong>阑尾的免疫功能、鲸髋骨的支撑功能</strong>）<span class="tag t-rep">转述</span>（现代解剖学通行叙述）。⇒ <strong>「退化」是一个程度问题，不是「全无用处」的代名词</strong>——<strong>引这类例子时须留余地。</strong>
+    </li>
+    <li>★★ <strong>本章是全书的「归纳之巅」，也是版本差异相对最小的一章</strong>：★ <strong>本报告实测，第 1 版与第 6 版在这一章的骨架几乎一致</strong>（分类—形态—胚胎—退化四段）<span class="tag t-src">原书</span>（第 13 章，两版对比）。⇒ <strong>这说明达尔文自己对「解释范围」这一块最有把握</strong>——<strong>他改的是回应批评的部分（第 9、10 章的时间、第 4 章的措辞），没怎么改这一章。</strong> ★ <strong>「作者在哪里最自信，就最不改动」——这是一个可以从版本史里读出来的信号。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s21">
+  <h2><span class="num">20</span><span>第 14 章 复述与结论</span><span class="caret">▾</span></h2>
+  <h3>这一章在回答什么问题</h3>
+  <p><strong>把全书的论证收束起来。</strong> ★ 这一章做三件事：<strong>① 复述并逐条回顾难点与解答</strong>；<strong>② 结算全书的态度（包括那句著名的「由造物主」）</strong>；<strong>③ 给出全书最有名的一段收尾——「生命之树」的抒情与「宏伟（grandeur）」</strong>。★ 这一章也是<strong>版本差异最集中</strong>的地方。</p>
+  <h3>关键论证与例证</h3>
+  <ul>
+    <li><strong>复述</strong>：他逐条复述了<strong>第 6、7、8 章的难点</strong>（过渡类型、本能、杂交不育）与<strong>第 9–13 章的证据</strong>（化石、地理、形态、胚胎、退化器官），<strong>强调「所有这些事实都指向共祖」</strong><span class="tag t-src">原书</span>（第 14 章）。
+    </li>
+    <li>★★ <strong>关于人类的一句话（全书唯一）</strong>：<strong>第 1 版</strong>作「<strong>关于人类的起源及其历史，将会投下一些光（Light will be thrown on the origin of man and his history）。</strong>」<strong>第 6 版</strong>作「<strong>关于人类的起源及其历史，将会投下许多光（Much light will be thrown on…）</strong>」<span class="tag t-src">原书</span>（第 14 章，两版对比）。★ <strong>全书关于人类，只有这一句。</strong>
+    </li>
+    <li>★★ <strong>宗教让步段（第 2 版起新增）</strong>：<strong>第 1 版没有「religious」一词</strong>（实测零命中）；<strong>第 2 版起出现</strong>：「<strong>我看不出本书的观点有什么理由会震撼任何人的宗教情感。一位著名的作者兼神职人员曾写信告诉我，他已经逐渐明白：相信造物主最初创造了少数几种能够自行发展成其他必要形式的原始类型，与相信他需要不断进行新的创造行为来填补其法则作用所留下的空缺，同样是关于神性的高贵观念。</strong>」<span class="tag t-src">原书</span>（第 14 章，第 2 版）。★ <strong>第 6 版又在前头加了一段「牛顿—莱布尼茨」的类比</strong>——「<strong>记得人类最伟大的发现，即万有引力定律，当年也曾被莱布尼茨攻击为『颠覆了自然宗教，并由此颠覆了启示宗教』</strong>」<span class="tag t-src">原书</span>（第 14 章，第 6 版）。
+    </li>
+    <li>★★ <strong>结尾句（本书最著名的一段，三版并列）</strong>：
+    <ul>
+      <li><strong>第 1 版</strong>：「<strong>生命及其蕴含之力能，最初是被吹入寥寥几个或单个类型之中（originally breathed into a few forms or into one）；而在这个行星按照固定的引力法则运转的同时，从如此简单的开端，无数最美丽、最奇妙的类型已经、并且仍在演化着（have been, and are being, evolved）。</strong>」<span class="tag t-src">原书</span>（第 14 章末，<strong>第 1 版</strong>）。
+      </li>
+      <li><strong>第 2 版起</strong>：「……<strong>最初由造物主吹入（originally breathed by the Creator into）寥寥几个或单个类型之中……</strong>」<span class="tag t-src">原书</span>（第 14 章末，<strong>第 2 版／第 6 版</strong>）。★ <strong>「by the Creator（由造物主）」四字，第 1 版没有。</strong>
+      </li>
+      <li>★ <strong>前一句</strong>（两版共有）：「<strong>从自然的战争、从饥荒与死亡之中，最崇高的目标——高等动物的产生——直接随之而来。</strong>」<span class="tag t-src">原书</span>（第 14 章末）。
+      </li>
+    </ul>
+    </li>
+    <li><strong>展望</strong>：他说<strong>未来有广阔的研究领域</strong>，并提到<strong>心理学将建立在斯宾塞的渐进基础上</strong><span class="tag t-src">原书</span>（第 14 章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★★ <strong>「由造物主」的插入，是全书最著名的一处版本争议</strong>：<strong>它究竟是一次「向宗教的妥协」，还是一次「修辞上的圆场」？</strong> ★ 两种读法各有支持：<strong>支持「妥协」的</strong>是它与第 2 版卷首 Butler 引语、以及那段「不震撼宗教情感」同时出现（<strong>三处让步集中在同一版</strong>）；<strong>支持「圆场」的</strong>是<strong>达尔文并未改动全书其余任何论证</strong>，且他自称 agnostic<span class="tag t-inf">推断</span>。⇒ <strong>本报告的判断是：这三处让步是真的，但它们没有改变全书的科学内容</strong>——<strong>变的是措辞与姿态，不是机制。</strong>
+    </li>
+    <li>★★ <strong>全书的收尾把「evolved」用了一次，却全篇不用「evolution」</strong>：<strong>这既是达尔文对术语的克制，也让「进化论」这个后起之名一直与本名错位</strong><span class="tag t-src">原书</span>（第 14 章末）。
+    </li>
+    <li>★ <strong>第 14 章仍没有交代「遗传机制」</strong>：<strong>这本该是结论章必须结算的一笔</strong>——<strong>它在第 5 章欠下了，到最后一章仍未还</strong><span class="tag t-inf">推断</span>。★ <strong>这是这本书「论证完整、机制不完整」的最清楚体现。</strong>
+    </li>
+    <li>★★ <strong>本章的收尾是全书「文风」的高峰，也是被引用最滥的一段——请回原文读全</strong>：从「<strong>从自然的战争、从饥荒与死亡之中，最崇高的目标——高等动物的产生——直接随之而来</strong>」，到「<strong>生命及其蕴含之力能，最初（由造物主）吹入寥寥几个或单个类型之中</strong>」，再到「<strong>在这个行星按照固定的引力法则运转的同时，从如此简单的开端，无数最美丽、最奇妙的类型已经、并且仍在演化着</strong>」<span class="tag t-src">原书</span>（第 14 章末，<strong>第 1 版／第 2 版</strong>）。★ <strong>这一段的前两句讲机制（战争与死亡 → 高等动物），后两句讲尺度（引力法则 → 漫长岁月）</strong>——<strong>它把全书从「机制」抬到「图景」</strong>。⇒ <strong>这就是「grandeur（宏伟）」一词的位置：它不属于论证，属于论证之后的视野。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s22">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>概念／人物</th><th>含义</th><th>定位</th></tr></thead>
+    <tbody>
+      <tr><td><strong>descent with modification</strong></td><td>带有饰变的由来；达尔文的实际术语（<strong>不用「evolution」</strong>）</td><td>导论及全书</td></tr>
+      <tr><td><strong>Natural Selection</strong></td><td>自然选择＝有利变异的保存、有害变异的汰除</td><td>第 4 章（<strong>第 1 版定义句</strong>）</td></tr>
+      <tr><td><strong>Survival of the Fittest</strong></td><td>「适者生存」；<strong>斯宾塞 1864 年造词</strong>，第 5 版起引入</td><td>第 4 章（<strong>第 6 版</strong>才出现）</td></tr>
+      <tr><td><strong>Struggle for Existence</strong></td><td>生存斗争；<strong>「广义而比喻性的」</strong>，含「依存」</td><td>第 3 章</td></tr>
+      <tr><td><strong>Malthus（马尔萨斯）</strong></td><td>几何级数增长 → 繁殖过剩 → 斗争</td><td>第 3 章</td></tr>
+      <tr><td><strong>Unity of Type</strong></td><td>「模式的统一」：同纲成员按同一模式构造</td><td>第 13 章（第 6 章末亦提）</td></tr>
+      <tr><td><strong>Tree of Life</strong></td><td>生命之树；共同祖先 ＋ 分歧的比喻</td><td>第 4 章末</td></tr>
+      <tr><td><strong>incipient species</strong></td><td>初生种；明显的变种</td><td>第 2 章</td></tr>
+      <tr><td><strong>divergence of character</strong></td><td>性状分歧</td><td>第 4 章</td></tr>
+      <tr><td><strong>rudimentary organs</strong></td><td>退化器官</td><td>第 13 章</td></tr>
+      <tr><td><strong>Natura non facit saltum</strong></td><td>「自然界不跳步」；达尔文引作指导原则</td><td>第 6 章</td></tr>
+      <tr><td><strong>Charles Darwin</strong></td><td>作者（1809–1882）；贝格尔号 1831–1836</td><td>全书；导论</td></tr>
+      <tr><td><strong>Alfred Russel Wallace</strong></td><td>1858 年独立提出自然选择，促成林奈学会联合宣读</td><td>导论；第 5 节 5.2</td></tr>
+      <tr><td><strong>T. H. Huxley</strong></td><td>「达尔文的斗牛犬」；1860 年牛津辩论主角之一</td><td>第 5 节 5.3</td></tr>
+      <tr><td><strong>Charles Lyell／Joseph Hooker</strong></td><td>莱伊尔（地质学）、胡克（植物学）；1858 年联合宣读的推手</td><td>导论</td></tr>
+      <tr><td><strong>Asa Gray</strong></td><td>美国植物学家；达尔文在北美的支持者</td><td>第 5 节</td></tr>
+      <tr><td><strong>Herbert Spencer</strong></td><td>「适者生存」的造词者；社会达尔文主义相关</td><td>第 5 节 5.4</td></tr>
+      <tr><td><strong>Gregor Mendel</strong></td><td>孟德尔；1866 年发表遗传规律，<strong>达尔文未读到</strong></td><td>第 5 节 5.5</td></tr>
+      <tr><td><strong>Keith Thomson</strong></td><td>「一版不如一版」论的提出者（<em>American Scientist</em>）</td><td>第 5 节 5.1</td></tr>
+      <tr><td><strong>苗德岁</strong></td><td>译林版译者；据第 2 版，主张「修订得越来越糟」</td><td>第 4 节；第 5 节 5.1</td></tr>
+      <tr><td><strong>周建人、叶笃庄、方宗熙</strong></td><td>三联版（1954–56）译者；<strong>据第 6 版</strong></td><td>第 4 节</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s23">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>原文与版本（首要，且必须指明版次）</strong>：<em>On the Origin of Species</em>，<strong>第 1 版（1859）＝ Project Gutenberg #1228</strong>（<code>https://www.gutenberg.org/ebooks/1228</code>）；<strong>第 6 版（1872）＝ #2009</strong>（<code>https://www.gutenberg.org/ebooks/2009</code>）；<strong>第 2 版（1860）＝ #22764</strong>（<code>https://www.gutenberg.org/ebooks/22764</code>）。★ <strong>三份皆为公版全文，本报告均已实测下载并逐段核对。</strong>
+    </li>
+    <li><strong>学术版（引用底本）</strong>：<strong>《牛津世界经典丛书》（Oxford World's Classics）版</strong>，<strong>1996 年版与 2008 修订版均采用第 2 版</strong>（苗德岁译林版即据此）；另有<strong>哈佛 1959 年百年纪念影印版</strong>（附 <strong>Ernst Mayr</strong> 导论）与 <strong>James T. Costa《The Annotated Origin》</strong>（第 1 版影印＋页边注，<strong>保留第 1 版原页码，便于对照学术文献</strong>）。
+    </li>
+    <li><strong>达尔文的其他文字（本报告 <span class="tag t-talk">作者谈话</span> 档的来源）</strong>：<strong>《自传》（Autobiography，1876 年写成、1887 年由其子 Francis 编成出版）</strong>；<strong>《贝格尔号航海记》（Journal of Researches…，1839）</strong>；<strong>Darwin Correspondence Project</strong>（剑桥大学公开在线，<code>https://www.darwinproject.ac.uk/</code>，<strong>含 "Fake Darwin: myths and misconceptions" 专题</strong>）。★ <strong>全部为文本，不是访谈——达尔文逝于 1882 年。</strong>
+    </li>
+    <li><strong>版本史与「一版不如一版」</strong>：<strong>Keith Thomson</strong> 在 <strong><em>American Scientist</strong></em> 的相关专栏；<strong>苗德岁访谈</strong>（果壳网；中新网 2014-01-10 报道）；<strong>Oikos 期刊博客</strong> "Darwin's Origin of Species: notes for your reading group"。
+    </li>
+    <li><strong>争议史</strong>：<strong>牛津 1860 年辩论</strong>——Royal Society 期刊 <strong><em>Notes and Records</strong></em> 论文 <em>A Yankee at Oxford…</em>（2015）；Linda Hall Library 的 Wilberforce 条目。<strong>适者生存的词源</strong>——<strong>Darwin Correspondence Project</strong>，"Survival of the fittest" 条目。
+    </li>
+    <li><strong>中文世界的入门</strong>：<strong>苗德岁 译《物种起源》</strong>（译林出版社，2013／2020，据牛津第 2 版）；<strong>周建人、叶笃庄、方宗熙 译《物种起源》</strong>（三联书店，1954–1956，据第 6 版）。
+    </li>
+  </ol>
+</section>
+
+<section id="s24">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>见同目录 <code>物种起源-来源清单.md</code>。</p>
+</section>
+
+<section id="s25">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. 「马克思要把《资本论》献给达尔文但被拒」这条误传的原始出处</h3>
+  <ul>
+    <li><strong>可确认的</strong>：<strong>这条是误传</strong>——<strong>马克思确实亲笔签名把《资本论》德文版赠予达尔文，那本书至今在达尔文故居（Down House）的书橱里</strong>；<strong>被达尔文不予理会的是马克思女婿（爱德华·艾威林）写的一本书，不是《资本论》</strong><span class="tag t-rep">转述</span>（史料交叉一致）。
+    </li>
+    <li>❌ <strong>未能核实的</strong>：<strong>这条误传最早从哪个文本／哪一年开始流传</strong>——<strong>我没能找到它的确切源头</strong>。⇒ <strong>本报告只写「这是误传」与事实本身，不追述误传的出处。</strong>
+    </li>
+  </ul>
+  <h3>D2. 第 2 版「删 9 句、增 30 句」这一具体数字的来源</h3>
+  <ul>
+    <li><strong>可确认的</strong>：<strong>第 2 版（1860-01-07）距第 1 版仅一个半月，未重排版、页数相同，主要是印刷、标点、拼写、语法、措辞的订正</strong><span class="tag t-rep">转述</span>（苗德岁访谈与多篇介绍一致）；<strong>本报告实测确认了其中三处最大让步</strong>（卷首 Butler 引语、「由造物主」、宗教情感段）。
+    </li>
+    <li>❌ <strong>未能核实的</strong>：<strong>「删 9 句、增 30 句」这个精确数字的出处</strong>——<strong>我未能找到做这一计数的原始文献</strong>。⇒ <strong>本报告不引用这一具体数字</strong>，只写「第 2 版改动以校订为主，另有少量实质增删」。
+    </li>
+  </ul>
+  <h3>D3. 「第 6 版删去了书名开头的 On」这一说法</h3>
+  <ul>
+    <li><strong>可确认的</strong>：<strong>PG #2009 的元数据标题</strong>作 "The Origin of Species by Means of Natural Selection"（<strong>无 On</strong>），<strong>而其转录的第 6 版题页</strong>作 "On the Origin of Species"（<strong>有 On</strong>）<span class="tag t-src">原书</span>（PG #2009 头部与题页）。
+    </li>
+    <li>❌ <strong>未能核实的</strong>：<strong>1872 年第 6 版原版题页究竟有无「On」</strong>——<strong>PG 转录本身前后不一致，我无法据此判定</strong>。⇒ <strong>本报告在正文里不使用「第 6 版删去 On」这一说法</strong>，列为待核实。
+    </li>
+  </ul>
+  <h3>D4. 「一位著名的作者兼神职人员」是否确指 Charles Kingsley</h3>
+  <ul>
+    <li><strong>可确认的</strong>：<strong>第 2 版起</strong>，第 14 章出现「<strong>一位著名的作者兼神职人员（a celebrated author and divine）曾写信告诉我……</strong>」这一段<span class="tag t-src">原书</span>（第 14 章，第 2 版）。
+    </li>
+    <li>❌ <strong>未能核实的</strong>：<strong>达尔文在书里没有点名</strong>；<strong>「此人＝Charles Kingsley」是后世学者的判断</strong>——<strong>我未能核对该学者判断所依据的那封信的原始文本</strong>。⇒ <strong>本报告在正文中写「据后世研究普遍认为指 Charles Kingsley」，并按 <span class="tag t-rep">转述</span> 处理。</strong>
+    </li>
+  </ul>
+  <h3>D5. 牛津 1860 年辩论的原始记述</h3>
+  <ul>
+    <li><strong>可确认的</strong>：<strong>辩论本身真实存在</strong>（1860-06-30，BAAS 牛津会议）；<strong>「祖父还是祖母」的提问与 Huxley 的妙答，没有当日公开记录</strong>——<strong>现存记述主要是 1880–1900 年代由 Francis Darwin 与 Leonard Huxley 追述、并在其后被反复重述的版本</strong><span class="tag t-rep">转述</span>（<em>Notes and Records</em>，2015；Linda Hall Library）。
+    </li>
+    <li>❌ <strong>未能核实的</strong>：<strong>当日是否有任何独立于 Huxley 一方的记录</strong>——<strong>我未能找到。</strong> ⇒ <strong>本报告不把那句名言当作史实引用</strong>（正文已标明为「流传很广的传说」）。
+    </li>
+  </ul>
+  <h3>D6. 《动物和植物在家养下的变异》（1868）中「泛生论」与《物种起源》的关系</h3>
+  <ul>
+    <li><strong>可确认的</strong>：<strong>「泛生论（pangenesis）／芽球（gemmules）」是在 1868 年《家养变异》里提出的</strong>；<strong>本报告实测：《物种起源》第 1 版与第 6 版正文均无「gemmules／pangenesis」字样</strong><span class="tag t-src">原书</span>（两版 grep 实测）。
+    </li>
+    <li>❌ <strong>未能核实的</strong>：<strong>《物种起源》第 5、6 版里是否有对「泛生论」的间接暗示</strong>（如泛泛提到「遗传物质的假说」而不用该词）——<strong>我未逐节核查全书所有相关段落</strong>。⇒ <strong>本报告只说「泛生论在 1868 年那本书里」，不断言《物种起源》里绝无相关讨论。</strong>
+    </li>
+  </ul>
+  <h3>D7. 「第 6 版篇幅比第 1 版多出三分之一」的精确口径</h3>
+  <ul>
+    <li><strong>可确认的</strong>：<strong>本报告实测三份 PG 纯文本</strong>——#1228（第 1 版）≈ 970 KB、#22764（第 2 版）≈ 981 KB、#2009（第 6 版）≈ 1303 KB；<strong>第 6 版比第 1 版大约 34%</strong><span class="tag t-src">原书</span>（实测文件大小）。
+    </li>
+    <li>★ <strong>须留意的</strong>：<strong>「多出三分之一」是通行说法</strong>（苗德岁、多篇介绍均如此表述），<strong>但 PG 文本的字节数含目录、索引、编者附注，不等于「正文汉字／词数」</strong>；<strong>因此本报告只写「实测约多出三分之一（据 PG 全文体积）」</strong>，不把它当成精确的正文页数比。
+    </li>
+  </ul>
+  <h3>D8. 中译本的底本信息（尤其中译诸本的「据第几版」）</h3>
+  <ul>
+    <li><strong>可确认的</strong>：<strong>周建人、叶笃庄、方宗熙译本据第 6 版</strong>；<strong>苗德岁译本据牛津世界经典丛书第 2 版（2008）</strong><span class="tag t-rep">转述</span>（苗德岁访谈；出版信息）。
+    </li>
+    <li>❌ <strong>未能核实的</strong>：<strong>马君武（1920）文言本、谢蕴贞等早期译本各自据第几版</strong>——<strong>我未见到这些译本的版权页或序言</strong>。⇒ <strong>本报告只写「另有马君武、谢蕴贞等早期译本」，不指认其底本版次。</strong>
+    </li>
+  </ul>
+  <h3>D9. 中译引文的逐字核对</h3>
+  <ul>
+    <li>★ <strong>本报告的中文引文，均为笔者自译，或据公开引文转引，未核对中文实体书</strong>（周译本、苗译本均<strong>仍在版权期内</strong>）。⇒ <strong>凡正文出现的「中文译文」，一律按 B 级处理</strong>，<strong>不声称逐字核对过中文页面</strong>。★ 读者若要做逐字比对，<strong>请以英文原文（三版）为准。</strong>
+    </li>
+  </ul>
+</section>
+
+<footer>
+  生成于 2026-10-09 · 来源清单与交叉验证记录见同目录 <code>物种起源-来源清单.md</code><br>
+  本页引文分两级处理：<b>英文原文为 A 级</b>（依据 Project Gutenberg 第 1 版 #1228、第 2 版 #22764、第 6 版 #2009，三版均为公版全文，逐章覆盖、标明版次）；<b>中文引文为 B 级</b>（依据周建人／叶笃庄／方宗熙译本与苗德岁译本，我未逐字核对中文页面，只作版本信息引用与术语对照）。★ 本书的<b>第一入口是版本，不是章节</b>：达尔文生前把这本书改了六次，<b>而且越改越不像是同一本书</b>——卷首引语（第 2 版起多一条 Butler）、全书结尾（第 2 版起多「由造物主」四字）、第 4 章「自然选择」的定义（第 5 版起多「或曰适者生存」）、第 9 章的「三亿年」估算（第 6 版已删）——<b>这四处差异，本报告都回原文逐字核对，并三版并列</b>。★ 另有三条最常被混淆的事实已逐条掰开：<b>「适者生存」是斯宾塞 1864 年造的词</b>（第 1 版全书没有「fittest」）、<b>「生存斗争」在原文里是「广义而比喻性的」且包含「依存」</b>（第 3 章定义，与社会达尔文主义的「丛林法则」正相反）、<b>全书关于人类只有一句话</b>（第 14 章）。★ 请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

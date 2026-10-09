@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《社会契约论》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《社会契约论》<small>阅读指引与精华解析 · 2026-10-09</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 五个核心论点</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 中文译本怎么选</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 逐卷深挖</div>
+    <a href="#s7">6 第一卷：从自然状态到社会契约（9 章）</a>
+    <a href="#s8">7 第二卷：主权、公意与立法（12 章）</a>
+    <a href="#s9">8 第三卷：政府的形式（18 章）</a>
+    <a href="#s10">9 第四卷：投票、罗马制度与公民宗教（9 章）</a>
+    <div class="grp">附录</div>
+    <a href="#s11">A 关键概念与人物速查</a>
+    <a href="#s12">B 延伸阅读</a>
+    <a href="#s13">C 来源清单</a>
+    <a href="#s14">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《社会契约论》阅读指引与精华解析</h1>
+  <div class="sub">Du contrat social ou principes du droit politique（1762）</div>
+  <div class="meta">
+    <div><b>作者</b>让-雅克·卢梭（Jean-Jacques Rousseau，1712–1778）—— 生于日内瓦共和国、终身保持「日内瓦公民」身份；法国启蒙时代最重要的政治哲学家与文学家之一；<b>《社会契约论》与《爱弥儿》同在 1762 年出版</b></div>
+    <div><b>成书年代</b><b>1762</b>（阿姆斯特丹 Marc-Michel Rey 出版；扉页标称日内瓦，实际出版地在阿姆斯特丹）。★ 1762 年出版后<b>立即在巴黎与日内瓦被查禁、当众焚毁</b></div>
+    <div><b>★ 依据版本</b>英文：<b>Project Gutenberg #46333</b>（G. D. H. Cole 译，据 J. M. Dent &amp;amp; Sons「Everyman's Library」本，Ernest Rhys 主编）；法文：<b>Wikisource 的 Beaulavon 1903 版</b>与 <b>1762 原版</b>（Rousseau - Du contrat social 1762a.djvu）</div>
+    <div><b>篇幅</b><b>4 卷 48 章</b>：第一卷 9 章／第二卷 12 章／第三卷 18 章／第四卷 9 章。★ 卢梭自述本书是<b>一部更大著作的残片</b>（那部大书即未完成的《政治制度论》）</div>
+    <div><b>荣誉／地位</b>法国大革命的「圣经」、现代人民主权论与民主理论的重要源头之一；「社会契约」「公意」「主权在民」等概念已成通用政治语汇；★ 也是 20 世纪「极权民主」批评的靶心</div>
+    <div><b>状态</b>未标注已读／想读 —— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> <b>1762 年法文原文与 1913 年 Cole 英译</b>（均已进入公有领域）：法文据 Wikisource 的 <b>Beaulavon 1903 版</b>与 <b>1762 原版</b>；英文据 <b>Project Gutenberg #46333</b>（Cole 译，Everyman's Library）。正文引文均可定位到「<b>第X卷 第 Y 章</b>」</li>
+    <li><span class="tag t-talk">作者谈话</span> ★ 卢梭<b>已逝（1778）</b>，<b>不是访谈</b>。本书此档只用于<b>他本人的其他文字</b>：《忏悔录》（1782／1789 遗著）、《爱弥儿》（1762）、<b>致 Malesherbes 的四封信（1762）</b>、《论人类不平等的起源》（1755）。★ 特别提醒：<b>《忏悔录》不是客观史料</b>（卢梭晚年患被害妄想），此档文字须与作品分开读</li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、学术书评、百科条目或出版史通说，措辞可能与原文／评论原文有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    ★ 本书<b>有公版英文全文与法文原文可逐字核对</b>：英文据 Project Gutenberg #46333（Cole 译，Everyman's Library），<b>《社会契约论》4 卷 48 章全部读到，逐章覆盖，无降级章</b>；法文据 Wikisource 的 <b>Beaulavon 1903 版</b>（何兆武中译所据底本）与 <b>1762 原版</b>，关键句给法文原句＋英译。★ 但<b>中文引文另计 B 级</b>：何兆武译本与李平沤译本均在版权期内，我未逐字核对中文页面，只作术语与版本对照。★ 另有两处实测发现须标明：<b>constitution.org 把 Cole 译本标为「Translated 1782」（错，Cole 生于 1889）</b>；<b>Wikisource 的 Beaulavon 转录本把「迫使自由」句的 par tout le corps 误录为 partout le corps</b>（以 1762 原版为准）。带 ⚠ 的条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-09 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)"><b>① 原文部分：A 级</b> —— 英文依据 <b>Project Gutenberg #46333</b>（https://www.gutenberg.org/ebooks/46333 ；Cole 译，据 Everyman's Library 本），覆盖<b>《社会契约论》4 卷 48 章全部 ＋ Cole 导论 ＋ 三篇论文正文</b>；法文依据 <b>Wikisource 的 Beaulavon 1903 版</b>与 <b>1762 原版</b>（分页核对）。<b>48 章逐章取可定位原文，无降级章</b>。</p>
+  <p style="margin:6px 0 0;font-size:12.5px;color:var(--ink3)"><b>② 中文引文部分：B 级</b> —— 依据<b>何兆武译本</b>（商务印书馆，1963 初版／1980 修订，据 Beaulavon 1903 法文版）与<b>李平沤译本</b>（商务印书馆，据 Pléiade 法文版），二者<b>均在版权期内</b>，<b>我未逐字核对中文页面</b>，对中译只作版本信息与术语对照；正文引文均为<b>笔者据英／法原文自译</b>。</p>
+  <p style="margin:6px 0 0;font-size:12.5px;color:var(--ink3)">★ 另标：<b>《忏悔录》相关表述为「作者谈话」档</b>（非客观史料）；<b>1762 年查禁焚毁、法国大革命接受史等为「转述」</b>（未核一手档）。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>这本书要说的是：人本来是自由的，但文明社会给人套上了枷锁；问题不是回到没有枷锁的状态（回不去，也不该回去），而是找出「什么能使枷锁正当」——卢梭的答案是：当每个人把自己连同全部力量都交给「全体」、由「公意」来统治时，服从就不是服从别人，而是服从自己，因而仍是自由的。</strong></p>
+  <p>卢梭自己把这个问题摆在开篇：<code>L'homme est né libre, &amp; par-tout il est dans les fers.</code>（<strong>人生而自由，却无往不在枷锁之中</strong>）<span class="tag t-src">原书</span>（第一卷 第 1 章，<strong>1762 原版拼写</strong>；现代排印多作 <code>partout</code>）。★ <strong>紧接着的一句最容易被忽略</strong>：「<strong>What can make it legitimate? That question I think I can answer.</strong>」（<strong>什么能使它正当？我想我能回答这个问题。</strong>）<span class="tag t-src">原书</span>（第一卷 第 1 章，Cole 译）。<strong>全书就是对这个「正当性」问题的回答。</strong></p>
+  <p>一句话结论（卢梭自己给的社会公约公式）：<strong>「我们每个人都以其自身及其全部的力量共同置于公意的最高指导之下，并且我们在共同体中接纳每一个成员作为全体之不可分割的一部分。」</strong>（<code>Chacun de nous met en commun sa personne et toute sa puissance sous la suprême direction de la volonté générale</code>）<span class="tag t-src">原书</span>（第一卷 第 6 章）。</p>
+  <p><strong>它不是什么</strong>：</p>
+  <ul>
+    <li><strong>不是「回到自然状态」的号召</strong>——卢梭明确说那条路<strong>回不去</strong>：一旦进入社会，人就「<strong>被迫以另一种原则行事，在倾听自己的倾向之前先请教自己的理性</strong>」，他<strong>从不主张退回森林</strong>（见第 4b 节第 ③ 条）。
+    </li>
+    <li><strong>不是「公意＝多数票」</strong>——卢梭专门区分 <code>volonté générale</code>（公意）与 <code>volonté de tous</code>（众意）：<strong>前者只看共同利益，后者只是各人私意的总和</strong>（第二卷 第 3 章）。
+    </li>
+    <li><strong>不是只讲「人民主权」</strong>——<strong>政府论占了第三卷整整 18 章</strong>，第四卷还谈<strong>投票、罗马人民大会、保民官、独裁、监察官与公民宗教</strong>。跳过第三、四卷，等于只读了半本。
+    </li>
+    <li><strong>不是一本「读一句就够」的格言集</strong>——它的每一个结论，都挂在前一步的推导上：<strong>抽掉「主权不可转让」，第三卷的政府论就悬空</strong>。
+    </li>
+  </ul>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>★ 下表把<strong>4 卷 48 章全部列出</strong>（<strong>一行一卷，卷内章号从 1 重新起算</strong>）。★ 章名据 1762 初版／Beaulavon 1903 法文原题译出，<strong>与 Gutenberg #46333（Cole 译）的英文章名、以及各种中译或有出入</strong>——核引用时<strong>以你手中版本的目录为准</strong>。★ 定位一律写「<strong>第X卷 第Y章 章名</strong>」。</p>
+  <table>
+    <thead><tr><th>卷</th><th>章号区间</th><th>各章题目（48 章全列）</th></tr></thead>
+    <tbody>
+      <tr><td><strong>第一卷 从自然状态到社会契约</strong>（论人如何从自然状态进入社会状态，以及此契约的诸根本条件）</td><td>第 1–9 章</td><td><strong>1</strong> 本卷主旨／<strong>2</strong> 论最初的社会／<strong>3</strong> 论最强者的权利／<strong>4</strong> 论奴隶制／<strong>5</strong> 论必须追溯到一个最初的约定／★<strong>6</strong> 论社会公约／★★<strong>7</strong> 论主权者（<strong>「迫使自由」在此章末</strong>）／<strong>8</strong> 论公民状态／<strong>9</strong> 论所有权</td></tr>
+      <tr><td><strong>第二卷 论立法</strong>（论主权、公意与法律）</td><td>第 1–12 章</td><td><strong>1</strong> 论主权不可转让／<strong>2</strong> 论主权不可分割／★<strong>3</strong> 论公意是否会出错（<strong>公意 vs 众意</strong>）／<strong>4</strong> 论主权权力的界限／<strong>5</strong> 论生死权／★<strong>6</strong> 论法律／★★<strong>7</strong> 论立法者（<strong>「要为人类立法，须是神」</strong>）／<strong>8</strong> 论人民／<strong>9</strong> 论人民（续）／<strong>10</strong> 论人民（续）／<strong>11</strong> 论各种立法体系／<strong>12</strong> 论法律的分类</td></tr>
+      <tr><td><strong>第三卷 论政治法，即政府的形式</strong></td><td>第 1–18 章</td><td><strong>1</strong> 政府总论／<strong>2</strong> 论构成不同政府形式的原则／<strong>3</strong> 论政府的分类／<strong>4</strong> 论民主制／<strong>5</strong> 论贵族制／<strong>6</strong> 论君主制／<strong>7</strong> 论混合政府／<strong>8</strong> 论并非一切政府形式都适合一切国家／<strong>9</strong> 论好政府的标志／<strong>10</strong> 论政府的滥用及其堕落倾向／<strong>11</strong> 论政治体的死亡／<strong>12</strong> 论如何维持主权权威（一）／<strong>13</strong> 论如何维持主权权威（二）／<strong>14</strong> 论如何维持主权权威（三）／★<strong>15</strong> 论议员或代表／★★<strong>16</strong> 论政府的创制绝不是一项契约／<strong>17</strong> 论政府的创制／<strong>18</strong> 论如何防止政府的篡权</td></tr>
+      <tr><td><strong>第四卷 论政治法（续），并阐明巩固国家体制的方法</strong></td><td>第 1–9 章</td><td><strong>1</strong> 论公意不可摧毁／<strong>2</strong> 论投票／<strong>3</strong> 论选举／<strong>4</strong> 论罗马人民大会／<strong>5</strong> 论保民官制／<strong>6</strong> 论独裁制／<strong>7</strong> 论监察官制／★★<strong>8</strong> 论公民宗教（<strong>全书最受争议的一章</strong>）／<strong>9</strong> 结论</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法提示</strong>：这张表本身就是卢梭的<strong>论证路线图</strong>。48 章可按「链条」分成五段：<strong>① 契约的成立（第一卷）→ ② 主权与立法（第二卷）→ ③ 政府与它的病理（第三卷）→ ④ 制度补丁与宗教（第四卷）→ ⑤ 结论（第四卷 第 9 章）</strong>。★★ <strong>承重墙最密集处是：第一卷 第 6–7 章（社会公约与主权者）＋ 第二卷 第 1–4 章（主权的四个属性）＋ 第三卷 第 1 章（政府总论）＋ 第三卷 第 16 章（政府不是契约）</strong>：抽掉任何一处，后面的推演都塌。★ <strong>第四卷最后一章「结论」只有一小段</strong>——卢梭自己承认，他本想接着写<strong>国际法、通商、战争权、同盟、谈判与条约</strong>，但那「<strong>是一个过于庞大的新题目</strong>」<span class="tag t-src">原书</span>（第四卷 第 9 章）。<strong>这正是「本书是一部更大著作的残片」这句话的落点。</strong></p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>五个核心论点</span><span class="caret">▾</span></h2>
+  <h3>论点一：问题不是「枷锁」，而是「什么能使枷锁正当」</h3>
+  <p><strong>主张</strong>：卢梭开篇第一句是描述（<code>L'homme est né libre, &amp; par-tout il est dans les fers</code>），<strong>但真正的命题是他紧接的第二问</strong>：「<strong>什么能使它正当？我想我能回答这个问题。</strong>」<span class="tag t-src">原书</span>（第一卷 第 1 章）。他在卷首给全书定题：「<strong>我要探讨的是：在社会的秩序中，是否可能存在某种合法而可靠的治理规则，把人当作实际的样子、把法律当作可能的样子来考察。</strong>」<span class="tag t-src">原书</span>（第一卷 卷首）。 <strong>依据</strong>：他明确否认「强力产生权利」——「<strong>最强者从来不会强大到足以永远做主人，除非他把强力转化为权利、把服从转化为义务</strong>」<span class="tag t-src">原书</span>（第一卷 第 3 章）；并说「<strong>强力是一种物理的力量，我看不出它有什么道德效果</strong>」<span class="tag t-src">原书</span>（第一卷 第 3 章）。<strong>既然强力不产生权利，合法性就只能来自约定</strong>——这是全书第一步。 <strong>为什么重要</strong>：★★ <strong>这是全书最容易被跳过、却最要紧的一步。</strong> 因为它把政治哲学的问题从「谁有权力」改成「<strong>什么样的权力是正当的</strong>」。★ 也正因为它是一个<strong>规范性问题</strong>，卢梭的自然状态<strong>不是一部历史叙述</strong>，而是一个「<strong>推理的起点</strong>」——这决定了后面对它的评价方式（见下部第一卷「可疑之处」）。</p>
+  <h3>论点二：社会公约的解法是「全体对全体」，而不是「臣民对君主」</h3>
+  <p><strong>主张</strong>：社会公约的条款「<strong>可以归结为一条：每个结合者及其全部权利都完全让渡给整个共同体</strong>」<span class="tag t-src">原书</span>（第一卷 第 6 章）。★ 但<strong>关键在让渡的对象</strong>：「<strong>每个人既然把自己交给所有人，也就等于没有交给任何人；并且，由于在每个结合者身上，人们获得了自己所让与他人的同样权利，人们就得到了自己所丧失的一切的等价物，以及保全自己所有之物的更大力量。</strong>」<span class="tag t-src">原书</span>（第一卷 第 6 章）。 <strong>依据</strong>：他给的理由是「<strong>只要有任何一个人保留下某些权利，而且没有一个共同的上司能够在他们与公众之间作出裁断，那么每一个人既然在某一点上自己作判官，就会要求在所有点上都自己作判官；自然状态就会继续下去，结合体就必然变成专制的或无效的。</strong>」<span class="tag t-src">原书</span>（第一卷 第 6 章）。 <strong>为什么重要</strong>：★★ <strong>这是理解「为什么是契约而不是服从」的钥匙。</strong> 因为<strong>缔约的另一方不是某个君主，而是「全体」</strong>——「<strong>我们每个人都……共同置于公意的最高指导之下</strong>」<span class="tag t-src">原书</span>（第一卷 第 6 章）。★ 这个「<strong>向全体让渡、因而不向任何人让渡</strong>」的结构，正是卢梭此后一切结论（主权不可转让、政府只是执行者）的地基；<strong>也是后世「卢梭＝极权」批评的靶心所在</strong>（见第 5 节 5.1 与 5.2）。</p>
+  <h3>论点三：主权不可转让、不可分割——主权者是人民本身，不是人民的代表</h3>
+  <p><strong>主张</strong>：「<strong>主权既然只是公意的运用，就永远不能转让；主权者既然只是一个集体存在，就只能由它自己来代表自己。权力可以传递，但意志不能。</strong>」<span class="tag t-src">原书</span>（第二卷 第 1 章）又：「<strong>主权为了同一个理由也是不可分割的；因为意志要么是公意，要么不是</strong>」<span class="tag t-src">原书</span>（第二卷 第 2 章）。★ 他指出，把主权切成「立法权／行政权／税收权／司法权／战争权」的政治学家，就像把一个人砍成「一个只有眼睛、一个只有手臂、一个只有脚」再拼起来（第二卷 第 2 章）。 <strong>依据</strong>：更硬的一条推论在第四卷 第 1 章：「<strong>公意永远是稳固、不变而纯粹的；但它会被其他凌驾于其上的意志所支配。</strong>」<span class="tag t-src">原书</span>（第四卷 第 1 章）——即<strong>公意本身不会被消灭，只会被掩盖</strong>。★ 到了第三卷 第 15 章，他直接点名批评英国的代议制：「<strong>英国人民自以为是自由的；他们大错特错了。他们只有在选举议员的那一刻才是自由的；议员一旦选出，人民就是奴隶，就等于零。</strong>」<span class="tag t-src">原书</span>（第三卷 第 15 章）。 <strong>为什么重要</strong>：★★ <strong>这条把「人民主权」从一句口号变成了一个结构性主张</strong>：<strong>主权不能被「代表」，只能被「执行」</strong>——政府所做的一切，都只是主权者委托出去的「执行」，<strong>不是主权的转让</strong>。★ 这也解释了第四卷为什么还要谈<strong>投票、罗马人民大会</strong>：如果主权只能由人民亲自行使，那么<strong>人民如何集会、如何投票、如何避免被派系操纵</strong>，就是这本书必须处理的技术问题（第四卷 第 1–4 章）。</p>
+  <h3>论点四：政府不是主权者，而是主权者雇用的执行者——「政府的创制绝不是一项契约」</h3>
+  <p><strong>主张</strong>：卢梭把<strong>立法权</strong>（属于人民主权者）与<strong>行政权</strong>（需要一个「代理人」）分清：政府是「<strong>在臣民与主权者之间设立的一个中间体，用以使两者相互对应，并负责执行法律、维护公民自由与政治自由</strong>」<span class="tag t-src">原书</span>（第三卷 第 1 章）。★★ 第三卷 第 16 章标题就是结论：「<strong>政府的创制绝不是一项契约</strong>」——「<strong>国家里只有一种契约，那就是结社行为，它本身就排除了任何第二种契约。</strong>」<span class="tag t-src">原书</span>（第三卷 第 16 章） <strong>依据</strong>：他给出的理由是「<strong>最高权威既不能被转让，也不能被修改；限制它就是摧毁它。主权者在自己头上设立一个上级，是荒谬而矛盾的。</strong>」<span class="tag t-src">原书</span>（第三卷 第 16 章）。因此，<strong>政府成员不是「缔约的另一方」，而是「官员」</strong>——「<strong>他们不是人民的主人，而是人民的公仆；人民可以随意设立和撤销他们</strong>」<span class="tag t-src">原书</span>（第三卷 第 18 章）。 <strong>为什么重要</strong>：★★ <strong>这是全书区分「主权」与「政府」的枢纽</strong>，也是它最容易被误读的地方：<strong>政府手握实际权力，却始终只是「执行者」</strong>。★ 由此也带来一个卢梭自己承认的结构性难题：<strong>政府有一种「天然的」堕落倾向</strong>——「<strong>个别意志不断反对公意，政府就不断地与主权对抗……迟早，君主必然要压制主权者、破坏社会契约</strong>」<span class="tag t-src">原书</span>（第三卷 第 10 章）。<strong>卢梭的政府论因此一半是「形式分类」，一半是「病理学」</strong>（见下部第三卷）。</p>
+  <h3>论点五：「迫使自由」与公民宗教：自由的两个「强制」条件</h3>
+  <p><strong>主张</strong>：★★ 社会公约若要「<strong>不流于空文</strong>」，就<strong>暗含</strong>一项条款：<strong>不服从公意者，全体将迫使他服从</strong>。卢梭的原话是：<code>quiconque refusera d'obéir à la volonté générale, y sera contraint par tout le corps : ce qui ne signifie autre chose sinon qu'on le forcera d'être libre</code>——「<strong>任何拒绝服从公意的人，全体就要迫使他服从公意；这无非是说，人们要迫使他自由。</strong>」<span class="tag t-src">原书</span>（第一卷 第 7 章，<strong>1762 原版</strong>）。另一项「强制」出现在第四卷 第 8 章：<strong>公民宗教</strong>——主权者可以规定一整套「<strong>纯属公民的信仰条款</strong>」，「<strong>虽然不能强迫任何人相信，却可以把不信者逐出国家</strong>」<span class="tag t-src">原书</span>（第四卷 第 8 章）。 <strong>依据</strong>：卢梭给「迫使自由」的理由是<strong>结构性</strong>的：「<strong>因为正是这个条件，使每个公民在把自己交给祖国时，免受一切人身依附</strong>」<span class="tag t-src">原书</span>（第一卷 第 7 章）。★ 他给「公民宗教」的理由也是政治性的：<strong>它要维护的是「社会性」</strong>，「<strong>没有它，一个人就不能成为良好的公民或忠实的臣民</strong>」<span class="tag t-src">原书</span>（第四卷 第 8 章）。 <strong>为什么重要</strong>：★★ <strong>这两处是全书后世评价最低、争议最大、也最常被断章引用的地方。</strong>「迫使自由」被<strong>以赛亚·伯林（1958）</strong>当作「积极自由」滑向专制的标本；「公民宗教」被<strong>塔尔蒙（1952）</strong>视为「极权民主」的雏形。★ <strong>但两面都有反驳者，也有原文依据</strong>（见第 4b 节第 ① 条、第 5 节 5.1 与 5.2）。<strong>读这两处，最重要的是回到上下文，而不是引用那五个字。</strong></p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <ol>
+    <li>★★ <strong>先读「第一卷 第 1、6、7、8 章」。</strong> 第 1 章给出全书的问题（什么使枷锁正当）；第 6 章给出社会公约的公式（向全体让渡）；第 7 章给出主权者（含那句「迫使自由」）；第 8 章给出「人因契约而发生的转变」。<strong>这四章读完，你就拿到了全书的心脏</strong>，也避免了「只背一句口号」的陷阱。
+    </li>
+    <li>★★ <strong>再读「第二卷 第 1–4 章」。</strong> 这四章是「主权的四个属性」——不可转让、不可分割、不会出错、有界限。<strong>它们是第三卷政府论的全部前提。</strong> 如果你只有一晚，读第一卷 第 6–8 章 ＋ 第二卷 第 1–4 章。
+    </li>
+    <li>★ <strong>第三卷要带着一张「双栏表」读</strong>：左边写「卢梭在给政府分类（民主／贵族／君主／混合）」，右边写「卢梭在说政府如何必然腐化（收缩、篡权、死亡）」。<strong>第三卷 第 1 章（政府总论）与 第 10 章（滥用与堕落）是两根主轴</strong>；第 16 章（政府不是契约）是全卷最硬的一句结论。
+    </li>
+    <li>★★ <strong>第四卷 第 8 章（公民宗教）不要跳，但也不要孤立地读。</strong> 先读第四卷 第 1–3 章（公意不可摧毁、投票、选举），再读第 8 章——你会看到「公民宗教」是<strong>卢梭为「社会纽带为何会松脱」开出的第二道药方</strong>（第一道是第二卷 第 12 章的「风尚与舆论」）。
+    </li>
+    <li><strong>第四卷 第 4 章（罗马人民大会）可以「资料式」读</strong>：它是卢梭拿罗马史当「制度实验记录」来用的地方，篇幅不短，<strong>读法是「看他如何用历史给理论找模型」，不必逐条记制度细节</strong>。
+    </li>
+  </ol>
+  <h3>如果你是「已读」</h3>
+  <ol>
+    <li>★★ <strong>做一次「承重墙压力测试」</strong>：任挑一个结论（例如「主权不可转让」），回到它依赖的每一步去问「这一步成立吗」。★ 你会发现：<strong>「主权不可转让」依赖「公意不能被代表」，而后者又依赖「意志不能转让」这条近乎定义性的前提</strong>——<strong>整条链的硬度，取决于最初那几条定义的硬度</strong>（这正是第 5 节 5.2 的争论处）。
+    </li>
+    <li>★★ <strong>把「迫使自由」那一句放回全书语境里再读一遍</strong>（第一卷 第 7 章末，见第 4b 节第 ① 条引足上下文）。★ <strong>关键在它后面紧接的半句</strong>：卢梭说这个条件「<strong>使每个公民在把自己交给祖国时，免受一切人身依附</strong>」。<strong>他要解决的是「人对人的依附」，不是「人对国家的依附」</strong>——<strong>这个区分决定了你怎么判这一句</strong>。
+    </li>
+    <li>★ <strong>把第三卷 第 15 章（议员或代表）与第四卷 第 2、3 章（投票、选举）连起来读。</strong> 卢梭对「代议制」的批评极其彻底（「<strong>英国人民只有在选举那一刻是自由的</strong>」），但这意味着他必须回答「<strong>那么大的国家怎么让人民亲自集会</strong>」——<strong>他给的答案是周期性的、无需召集的公民大会</strong>（第三卷 第 12–14、18 章）。<strong>这条线今天是评「参与式民主 vs 代议民主」的历史原点。</strong>
+    </li>
+    <li><strong>读一读反面的批评与辩护</strong>：以赛亚·伯林《两种自由概念》（1958）、J. L. 塔尔蒙《极权主义民主的起源》（1952）、恩斯特·卡西尔（1932／1945 的反驳）、以及剑桥学派（如 <strong>Robert Wokler</strong> 的卢梭研究）。<strong>同一句话，20 世纪的判词与 18 世纪的语境几乎相反</strong>——这个反差本身就是第 5 节的主题。
+    </li>
+  </ol>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是必写项，因为这本书的中译状况有两条别人常常讲错的地方：一是「据哪一版法文」决定了译本的性格，二是英译者 Cole 的生年常被误标。</strong></p>
+  <p><strong>先说最要紧的四条</strong>：</p>
+  <blockquote>
+    <p><strong>⚠ ① 现行最通行的中文全译本是何兆武译，商务印书馆「汉译世界学术名著丛书」，1963 年初版、1980 年修订。</strong> 它<strong>据 Beaulavon 1903 年法文版</strong>译出——<strong>这正是本报告法文原文所用的底本之一</strong>（Wikisource 有全文）。⇒ <strong>要用中文引用时，何译与法文 Beaulavon 版可以逐句对照；这是它的最大优点。</strong></p>
+    <p><strong>⚠ ② 另一条路线是李平沤译，商务印书馆，据 Pléiade（《七星文库》）法文版。</strong> ★ <strong>Beaulavon 1903 与 Pléiade 是两套不同的现代校勘本</strong>：二者的<strong>标点、分段、异文取舍与注释体例不同</strong>，因此<strong>何译与李译在「依据文本」这一层就分叉</strong>。⇒ <strong>「何兆武 vs 李平沤」不是文笔之别，而是底本之别</strong>（见第 5 节 5.6）。</p>
+    <p><strong>⚠ ③ 最早的汉译是马君武的文言译本（1918 年）。</strong> 它据法文译出，用<strong>文言</strong>，是汉语世界最早的《社会契约论》译本；评论者一般认为它<strong>有开创之功、但不宜作现代阅读底本</strong>（术语与句式都已隔代）。★ 马君武另有《物种起源》等文言译本，是中译史上的重要人物。</p>
+    <p><strong>⚠ ④ 英译本的年份陷阱：G. D. H. Cole（1889–1959）的英译首次出版于 1913 年</strong>（Everyman's Library，J. M. Dent），<strong>但 constitution.org 的网页把它标成「Translated 1782 by G. D. H. Cole」——1782 年 Cole 还没出生。</strong> 本报告已<strong>直接访问该页面并截图核对</strong>（见来源清单「公版入口实测记录」）。⇒ <strong>见到「Cole 译于 1782」的说法，可直接判定为错误。</strong></p>
+  </blockquote>
+  <p><strong>版本关系（主要中译本）</strong>：</p>
+  <table>
+    <thead><tr><th>译本</th><th>出版</th><th>底本／语言</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>马君武 译</td><td>1918</td><td>法文，<strong>文言</strong></td><td>★ 汉语世界最早译本；有开创之功，不宜作现代底本</td></tr>
+      <tr><td>何兆武 译</td><td>商务印书馆，<strong>1963 初版／1980 修订</strong></td><td><strong>Beaulavon 1903 法文版</strong></td><td>★ 现行最通行全译本；与 Beaulavon 版可逐句对照</td></tr>
+      <tr><td>李平沤 译</td><td>商务印书馆</td><td><strong>Pléiade 法文版</strong></td><td>★ 底本与何译不同（七星文库本）</td></tr>
+      <tr><td>陈阳 等</td><td>各社</td><td>不一</td><td>另有若干译／编译本，底本多不透明</td></tr>
+    </tbody>
+  </table>
+  <p><strong>★ 该选哪个——三句话结论</strong>：</p>
+  <ol>
+    <li><strong>中文读者 → 首选何兆武译本</strong>（商务印书馆，1963 初版／1980 修订）。它是通行最广、重印最多、术语最稳定的本子；<strong>读的时候记住它的底本是 Beaulavon 1903 法文版</strong>。
+    </li>
+    <li><strong>要做文本研究 → 回法文原文。</strong> 推荐 <strong>Wikisource 的 Beaulavon 1903 版全文</strong>（公版、可全文检索，且正是何译底本）作入门对照；需要「七星文库」系统则用 <strong>Pléiade 版</strong>（李平沤译所据）。
+    </li>
+    <li><strong>读英译 → 首选 Cole 译（PG #46333）</strong>（公版、全文可得），但要<strong>记住它是 1913 年的译文、不是 1782 年</strong>。
+    </li>
+  </ol>
+  <p><strong>★ 两个必须提醒的坑</strong>：</p>
+  <ol>
+    <li><strong>不要把《社会契约论》和卢梭的其他书搞混</strong>。卢梭另有《论人类不平等的起源和基础》（1755，即「第二篇论文」）、《论政治经济学》（1755）、《给达朗贝尔的信》（1758）、《爱弥儿》（1762，含《一个萨瓦省牧师的信仰自白》）、《忏悔录》（1782／1789 遗著）、《一个孤独漫步者的遐想》（1782 遗著）等。★ <strong>PG #46333 恰好把《社会契约论》与「第一篇论文」「第二篇论文」「论政治经济学」合订在一起</strong>——<strong>这既是便利，也是陷阱：引用时要看清是「契约」还是「论文」</strong>（见来源清单）。
+    </li>
+    <li><strong>不要用「社会契约」这个词去检索别的书</strong>。「社会契约」已是通用政治术语，大量著作（霍布斯《利维坦》第 17 章、洛克《政府论》下篇、罗尔斯《正义论》等）都围绕它，<strong>它们都不是卢梭这本书</strong>。★ 尤其注意：<strong>霍布斯与洛克也讲社会契约，三者的结构完全不同</strong>（霍布斯是「授权给主权者」、洛克是「信托可撤销」、卢梭是「向全体让渡、主权在人民」）。
+    </li>
+  </ol>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <p>★ 这一节的目的，是把你<strong>以为</strong>知道的和书里<strong>实际写的</strong>对一遍。每条都给出<strong>卷章定位</strong>（法文据 1762 初版／Beaulavon 1903 版，英文据 Gutenberg #46333 的 Cole 译）。</p>
+  <table>
+    <thead><tr><th>流行说法</th><th>原文／事实</th></tr></thead>
+    <tbody>
+      <tr><td>「人生而自由却无往不在枷锁之中」是全书<strong>结论</strong>／是卢梭的<strong>主张</strong></td><td>★ 它是<strong>开篇第一个句子</strong>，且<strong>紧跟着就是一个提问</strong>：<code>L'homme est né libre, &amp; par-tout il est dans les fers. Tel se croit le maître des autres, qui ne laisse pas d'être plus esclave qu'eux. Comment ce changement s'est-il fait ? Je l'ignore. Qu'est-ce qui peut le rendre légitime ? Je crois pouvoir résoudre cette question.</code>（<strong>人生而自由，却无往不在枷锁之中。自以为是一切主人的人，反而比一切人更是奴隶。这个变化是怎么发生的？我不知道。什么能使它正当？我想我能回答这个问题。</strong>）<span class="tag t-src">原书</span>（<strong>第一卷 第 1 章</strong>，1762 原版拼写）。⇒ <strong>这句是「问题」，不是「结论」</strong>；全书回答的是「<strong>什么能使它正当</strong>」</td></tr>
+      <tr><td>「Cole 译本译于 1782 年」</td><td>★★ <strong>错。</strong> G. D. H. Cole <strong>生于 1889、卒于 1959</strong>；他的英译<strong>首次出版于 1913 年</strong>（Everyman's Library，J. M. Dent &amp; Sons）。★ <strong>constitution.org 的《社会契约论》页面顶部明写「Translated 1782 by G. D. H. Cole」</strong>——<strong>本报告已访问该页核实</strong>。⇒ <strong>1782 年 Cole 尚未出生</strong>，这是网页的年份错误</td></tr>
+      <tr><td>「卢梭主张回到自然状态」</td><td>★ <strong>原文恰恰相反。</strong> 他把自然状态当作<strong>推理的起点</strong>，并明确说<strong>回不去</strong>：社会状态下的人「<strong>被迫以另一种原则行事，在倾听自己的倾向之前，先请教自己的理性</strong>」<span class="tag t-src">原书</span>（<strong>第一卷 第 8 章</strong>）；他甚至说，「<strong>自由可以说已经得到，却永远不能重新获得</strong>」<span class="tag t-src">原书</span>（<strong>第二卷 第 8 章</strong>）。⇒ <strong>他反对「回到森林」，主张的是「在文明社会里重建正当性」</strong></td></tr>
+      <tr><td>「公意就是多数人的意见」</td><td>★ <strong>原文明确区分两个词</strong>：<code>volonté générale</code>（公意）与 <code>volonté de tous</code>（众意）。<code>Il y a souvent bien de la différence entre la volonté de tous et la volonté générale ; celle-ci ne regarde qu'à l'intérêt commun ; l'autre regarde à l'intérêt privé, et n'est qu'une somme de volontés particulières</code>（<strong>众意与公意之间常有很大差别：公意只着眼于共同利益，众意则着眼于私人利益，只是各人私意的总和</strong>）<span class="tag t-src">原书</span>（<strong>第二卷 第 3 章</strong>）。⇒ <strong>公意 ≠ 多数票</strong>；卢梭还特别说，<strong>若存在大到压倒其余的派系，结果就不再是公意</strong>（同章）</td></tr>
+      <tr><td>「《社会契约论》讲的就是人民主权」</td><td>★ <strong>只说了三分之一。</strong> 全书 48 章中，<strong>第三卷整整 18 章讲「政府的形式」</strong>（民主／贵族／君主／混合、政府如何维持与防篡权），<strong>第四卷 9 章讲投票、罗马人民大会、保民官、独裁、监察官与公民宗教</strong>。⇒ <strong>它同时是一部「政府论」＋「制度技术手册」＋「公民宗教论」</strong>；只读第一卷等于漏掉大半本</td></tr>
+      <tr><td>「卢梭是法国人，所以深受法国启蒙运动影响」</td><td>★ <strong>他的身份是「日内瓦公民」</strong>——1762 初版的署名与卷首都强调这一点，第二卷 第 8 章他还借机谈日内瓦。★ 他与<strong>百科全书派（伏尔泰、狄德罗、达朗贝尔等）长期对立</strong>：他写《给达朗贝尔的信》（1758）反对在日内瓦设剧院，与伏尔泰公开交恶。⇒ <strong>把他读成「法国启蒙的代表」会掩盖他与启蒙主流的分歧</strong>（他是启蒙的<strong>内部批评者</strong>）</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本报告最该细读的一节。</strong> 《社会契约论》的<strong>影响极大</strong>（它是法国大革命的「圣经」、现代民主理论与人民主权论的源头之一），<strong>但 20 世纪以来围绕它的读法之争极其激烈</strong>，而且<strong>争论的焦点常常不是「卢梭说了什么」，而是「卢梭属于哪个传统」</strong>。下面六条按重头戏顺序排。★ <strong>每条批评都带姓名、著作、年份。</strong></p>
+  <h3>5.1 ★★ 「迫使自由」的解释之争：伯林（1958）的批评与卡西尔（1932／1945）的反驳</h3>
+  <p><strong>这不是一个统一的反方，而是一场延续至今的读法之争</strong>：</p>
+  <ul>
+    <li><strong>以赛亚·伯林（Isaiah Berlin，1909–1997）</strong>，〈<strong>两种自由概念</strong>〉（<em>Two Concepts of Liberty</em>），<strong>1958</strong>（牛津就职演讲；后收入 <em>Four Essays on Liberty</em>，Oxford University Press，<strong>1969</strong>）。★ 伯林区分「<strong>消极自由</strong>」（不受干涉的程度）与「<strong>积极自由</strong>」（做自己主人、自我实现）；他主张<strong>「积极自由」容易被偷换为「更高的自我」对「较低的自我的强制」</strong>，即<strong>「强迫你成为自由」</strong>——而卢梭的 <code>on le forcera d'être libre</code> 正是这一滑动的<strong>经典标本</strong><span class="tag t-rep">转述</span>（伯林 1958）。
+    </li>
+    <li><strong>恩斯特·卡西尔（Ernst Cassirer，1874–1945）</strong>，<em>Das Problem Jean-Jacques Rousseau</em>（<strong>1932</strong>）；英译 <em>The Question of Jean-Jacques Rousseau</em>（<strong>1954</strong>）；另有 <em>Rousseau, Kant, Goethe</em>（<strong>1945</strong>，中译常作《卢梭·康德·歌德》）。★ 卡西尔的主张是<strong>反对把卢梭读成极权主义的先驱</strong>：他认为<strong>卢梭的「公意」是一个规范性理想，不是「多数人的实际意志」</strong>；把「迫使自由」读成「国家强迫个人」，是<strong>把卢梭的问题（人如何不依附于人）与 20 世纪的集权混为一谈</strong><span class="tag t-rep">转述</span>（卡西尔 1932／1945）。
+    </li>
+    <li><strong>★ 两派的对立依据都能在原文里找到</strong>——这正是这场争论值得读的原因：
+    <ul>
+      <li><strong>支持伯林一方（「迫使自由＝强制」）的原文</strong>：「<strong>任何拒绝服从公意的人，全体就要迫使他服从；这无非是说，人们要迫使他自由</strong>」<span class="tag t-src">原书</span>（<strong>第一卷 第 7 章</strong>）；以及<strong>公民宗教</strong>里「<strong>可以把不信者逐出国家</strong>」「<strong>若公开承认这些信条之后又行为如同不信，则处以死刑</strong>」<span class="tag t-src">原书</span>（<strong>第四卷 第 8 章</strong>）。
+      </li>
+      <li><strong>支持卡西尔一方（「不可断章取义」）的原文</strong>：<strong>同一句的紧接后半</strong>——这个条件「<strong>使每个公民在把自己交给祖国时，免受一切人身依附</strong>」<span class="tag t-src">原书</span>（<strong>第一卷 第 7 章</strong>）；以及<strong>主权权力的界限</strong>——「<strong>主权者不能对臣民施加任何对共同体无用的束缚，甚至也不能这样意愿</strong>」<span class="tag t-src">原书</span>（<strong>第二卷 第 4 章</strong>）；还有「<strong>公民最大的自由，取决于法律的沉默</strong>」这一保存于第四卷的自趣。
+      </li>
+    </ul>
+    </li>
+    <li>★ <strong>一句话总结这条线</strong>：<strong>「迫使自由」到底是不是「强制自由」，取决于你把它读成「使人摆脱人身依附」还是「国家强迫个人」</strong>——<strong>前者是卢梭的语境，后者是 20 世纪的投影</strong>；两种读法<strong>都能从原文里找到一半依据</strong>，因此<strong>本报告不裁决，只把两方的姓名、著作与年份摆出</strong>。
+    </li>
+  </ul>
+  <h3>5.2 ★★ 公意与「极权民主」的关联：塔尔蒙（1952）的指控</h3>
+  <p><strong>（a）指控的原文依据（卢梭确实写得很硬）：</strong></p>
+  <ul>
+    <li>「<strong>任何拒绝服从公意的人，全体就要迫使他服从</strong>」<span class="tag t-src">原书</span>（第一卷 第 7 章）；「<strong>若有人公开承认公民宗教的信条之后又行为如同不信，则处以死刑</strong>」<span class="tag t-src">原书</span>（第四卷 第 8 章）。
+    </li>
+    <li><strong>主权不可分割、不可代表</strong>（第二卷 第 1–2 章），且<strong>不允许派系（partial societies）存在</strong>——「<strong>如果公意要能表达出来，国家之内就不能有部分性的社团，每个公民只能思考自己的想法</strong>」<span class="tag t-src">原书</span>（第二卷 第 3 章）。
+  <p><strong>（b）指控与辩护：</strong></p>
+    </li>
+    <li><strong>J. L. 塔尔蒙（Jacob L. Talmon，1916–1980）</strong>，《<strong>极权主义民主的起源</strong>》（<em>The Origins of Totalitarian Democracy</em>），<strong>1952</strong>（Secker &amp; Warburg）。★ 他提出一种「<strong>政治救世主义</strong>」类型：预设<strong>唯一真理与唯一公意</strong>，从而<strong>把不赞同者当作「应该被强迫自由」的对象</strong>——<strong>卢梭被他列为这一传统的开端</strong><span class="tag t-rep">转述</span>（塔尔蒙 1952）。
+    </li>
+    <li>★ <strong>反驳方</strong>：<strong>卡西尔（1932）</strong> 已先于塔尔蒙反驳此种读法；更晚有 <strong>Robert Wokler</strong>、<strong>Patrick Riley</strong>（《The General Will before Rousseau》，Princeton，<strong>1986</strong>）等指出：<strong>「公意」在卢梭那里源自一个神学—道德传统，其含义是「意志的普遍性」（对象普遍、主体普遍），不是「多数人的实际选择」</strong><span class="tag t-rep">转述</span>（Riley 1986）。
+  <p><strong>（c）与《论人类不平等的起源》（1755）的连续性：</strong></p>
+    </li>
+    <li>★ 塔尔蒙一系的读法依赖一个判断：<strong>《社会契约论》的「公意」与《论人类不平等的起源》的道德批判是同一条线</strong>——即<strong>「自然人的自由」被「社会人的德性」取代，而德性由「公意」来定义</strong>。⇒ <strong>要把这条线看清，必须同时读 1755 年的《论人类不平等的起源》</strong>（<strong>PG #46333 里正好收了这篇，含其附录</strong>，见来源清单）。★ 本报告对此标 <span class="tag t-inf">推断</span>：<strong>两本书的关系至今有争议</strong>（「断裂说」与「连续说」并存）。
+    </li>
+  </ul>
+  <h3>5.3 ★★ 卢梭的生平与人格：《忏悔录》的可靠性问题</h3>
+  <ul>
+    <li><strong>可确认的事实</strong>：卢梭与<strong>黛莱丝·勒瓦瑟（Thérèse Levasseur）</strong> 同居多年，<strong>先后把五个孩子送进育婴堂（Enfants-Trouvés）</strong>，此事他<strong>在《忏悔录》里自认</strong>（第八卷）<span class="tag t-talk">作者谈话</span>（《忏悔录》，1782／1789 遗著出版）。★ 他<strong>晚年患被害妄想</strong>（迫害感、与休谟的著名决裂、在各处流亡），其自述文字<strong>带有强烈的自我辩护与受害叙事色彩</strong>。
+    </li>
+    <li><strong>★ 关键提醒（本报告必须说清）</strong>：<strong>《忏悔录》不是客观史料。</strong> 它是一部<strong>文学作品式的自我建构</strong>，卢梭<strong>自己说它要「毫无隐瞒地展示一个人」</strong>，但<strong>选择写什么、如何解释，本身是叙事</strong>。⇒ <strong>凡引用《忏悔录》说明卢梭生平或意图，一律按 <span class="tag t-talk">作者谈话</span> 处理，不当中立史料</strong>。
+    </li>
+    <li><strong>学理争议</strong>：<strong>「卢梭的生活是否决定了他的理论」</strong>——从<strong>19 世纪的评论者到 20 世纪的传记作者（如 Lester G. Crocker、Maurice Cranston）</strong> 都讨论过，但<strong>把「人格缺陷」当作「理论证伪」是逻辑错误</strong>（<strong>人身论证</strong>）<span class="tag t-inf">推断</span>。★ 另一方面，<strong>把「把五个孩子送进育婴堂」与《爱弥儿》的「教育论」并置</strong>，是一个<strong>广为人知的反讽</strong>，但它<strong>不能替代对《社会契约论》的具体论证的检验</strong>。
+    </li>
+  </ul>
+  <h3>5.4 ★★ 宗教观：第 4 卷第 8 章「公民宗教」是反教权，还是新式的国家宗教？</h3>
+  <ul>
+    <li><strong>原文说了什么</strong>：卢梭把历史上的宗教分为三类——<strong>「人的宗教」（福音的、纯道德的、无庙宇祭祀）／「公民的宗教」（与国家绑定、有守护神与法定仪式）／「教士的宗教」（给人两套立法、两个祖国，即罗马基督教）</strong><span class="tag t-src">原书</span>（第四卷 第 8 章）。他批评<strong>第三种最坏</strong>（「<strong>凡破坏社会统一的都一文不值</strong>」），说<strong>第二种好在其把敬神与爱法结合、坏在其建立在谎言上并容易变成排他</strong>；结论是<strong>主权者应规定一套「纯属公民的信仰条款」</strong>（来世、赏善罚恶、社会契约与法律的神圣性等），<strong>以「社会情感」而非「宗教教条」的名义</strong><span class="tag t-src">原书</span>（第四卷 第 8 章）。
+    </li>
+    <li><strong>争议的两个方向</strong>：
+    <ul>
+      <li><strong>「反教权」读法</strong>：★ 本章<strong>明确攻击罗马基督教</strong>「<strong>给人两套立法、两个祖国，使人在宗教与公民身份之间无法同时忠诚</strong>」<span class="tag t-src">原书</span>（第四卷 第 8 章），并<strong>盛赞霍布斯</strong>「<strong>是唯一看到这个祸害并敢于提出补救的基督教作家</strong>」<span class="tag t-src">原书</span>（第四卷 第 8 章）——<strong>因此它被读作「政教合一／国家对教会的收编」，是反教权的、亲国家统一的</strong>。
+      </li>
+      <li><strong>「新式国家宗教」读法</strong>：★ 但本章<strong>同时给了主权者「逐出不信者」与「处死不守信的伪信者」的权力</strong><span class="tag t-src">原书</span>（第四卷 第 8 章）——<strong>因此它被读作「用国家宗教取代教会宗教」，是一种更彻底的国家对良心的管理</strong>。
+      </li>
+    </ul>
+    </li>
+    <li><strong>接受史</strong>：★ <strong>法国大革命期间，本章被不同派别各取所需</strong>：<strong>雅各宾派</strong>借「公民宗教」构想<strong>「最高主宰节」（Fête de l'Être suprême）</strong>；而<strong>教会与保守派</strong>则据此攻击革命是「卢梭式的新宗教」<span class="tag t-rep">转述</span>（大革命史与卢梭接受史的通说）。⇒ <strong>同章被两方同时引用，正说明它的两面性。</strong>
+    </li>
+  </ul>
+  <h3>5.5 ★★ 文本流传：1762 年出版后即被查禁；Beaulavon 1903 与 Pléiade 的差异</h3>
+  <ul>
+    <li><strong>查禁与焚毁</strong>：★ 《社会契约论》<strong>1762 年在阿姆斯特丹出版</strong>（Marc-Michel Rey；扉页标称日内瓦），<strong>同年即在巴黎被查禁、当众焚毁</strong>；<strong>日内瓦也查禁并焚毁此书</strong>；卢梭本人因此<strong>被迫逃离，先避居纳沙泰尔（属普鲁士），后辗转英国、最终回巴黎</strong><span class="tag t-rep">转述</span>（卢梭传记与出版史通说）。★ 与之同年出版的《爱弥儿》<strong>同样被查禁焚毁</strong>。
+    </li>
+    <li><strong>版本谱系</strong>：★ <strong>1762 初版</strong>（Marc-Michel Rey）→ 卢梭身后<strong>遗稿整理</strong>（如《日内瓦手稿》部分内容）→ <strong>19 世纪多种校勘本</strong> → <strong>Beaulavon 1903 版</strong>（Société nouvelle de librairie et d'édition，巴黎；含 Beaulavon 的导论与注释，<strong>何兆武中译所据</strong>）→ <strong>Pléiade（《七星文库》）版</strong>（Gallimard，<strong>李平沤中译所据</strong>）。★ <strong>两个现代校勘本在标点、分段、异文取舍与注释上不同</strong>，因此<strong>「据哪一版」直接决定译本的细节</strong>（见 5.6）。
+    </li>
+    <li><strong>★ 本报告实际核对的两条法文通道</strong>：<strong>Wikisource 的 Beaulavon 1903 版全文</strong>（<code>Du contrat social (Édition Beaulavon 1903)/Texte entier</code>，1.42 MB HTML）与 <strong>1762 原版</strong>（<code>Rousseau - Du contrat social 1762a.djvu</code>，可分页取原文）。★ 核对中发现一处<strong>转录瑕疵</strong>：Beaulavon 的 Wikisource 转录本<strong>把「迫使自由」一句中的 <code>par tout le corps</code>（由全体）误录为 <code>partout le corps</code></strong>——<strong>1762 原版作 <code>par tout le corps</code></strong>（见来源清单「公版入口实测记录」第 3 条）。<strong>这是「二手转写不能替代原文」的一个具体样本。</strong>
+    </li>
+  </ul>
+  <h3>5.6 ★★ 英译与中译：Cole 被误标 1782；何兆武与李平沤的路线差异</h3>
+  <ul>
+    <li><strong>英译</strong>：★ <strong>G. D. H. Cole（1889–1959）的英译首版于 1913 年</strong>（Everyman's Library，J. M. Dent &amp; Sons），<strong>是 20 世纪最通行的英译之一</strong>，本报告所用 <strong>PG #46333</strong> 即此译本。★ <strong>constitution.org 的页面把该译本标为「Translated 1782」</strong>——<strong>本报告已实测核实</strong>（见来源清单）。<strong>1782 年 Cole 尚未出生，这是明确的年份错误。</strong>
+    </li>
+    <li><strong>中译</strong>：★ <strong>何兆武译（商务印书馆，1963 初版／1980 修订）据 Beaulavon 1903 法文版</strong>；<strong>李平沤译（商务印书馆）据 Pléiade 法文版</strong>。
+    <ul>
+      <li><strong>何译的优点</strong>：★ 与 <strong>Beaulavon 1903 版</strong>可逐句对照（本报告法文原文即用此版），<strong>术语稳定、通行最广、重印最多</strong>。
+      </li>
+      <li><strong>李译的优点</strong>：★ 据 <strong>Pléiade</strong>（学界公认的权威校勘本），<strong>在文本的「最新校订」意义上更接近学术标准</strong>。
+      </li>
+      <li><strong>★ 由此带来的问题</strong>：<strong>「何兆武 vs 李平沤」首先不是文笔之别，而是底本之别</strong>；<strong>同一句话在两译中的标点、分段乃至措辞可能因底本不同而分叉</strong>——<strong>跨译本对读时若发现「对不上」，先查底本，再论译文</strong>。
+      </li>
+    </ul>
+    </li>
+    <li><strong>早期译本</strong>：★ <strong>马君武 1918 年文言译本</strong>（据法文）是汉语世界最早的《社会契约论》译本；<strong>它与 1920 年马君武的《物种起源》文言译本一起，是清末民初中译史上的一条线</strong>。★ <strong>另有陈阳等译本，底本多不透明。</strong>
+    </li>
+  </ul>
+  <h3>5.7 这本书今天读还成立吗</h3>
+  <p><strong>大体成立的</strong>：</p>
+  <ul>
+    <li><strong>「正当性」问题本身</strong>——「<strong>什么能使权力正当</strong>」这个问题，<strong>至今是政治哲学无法绕开的起点</strong>。★ 卢梭把「强力」与「权利」分开（第一卷 第 3 章），这一步今天仍是最基本的区分。
+    </li>
+    <li><strong>「主权在民、政府只是受托执行」的结构</strong>——<strong>现代宪政理论里「主权／治权」两分</strong>，与卢梭的「主权者／政府」两分<strong>在问题设定上高度相关</strong>（尽管解决方式不同）。
+    </li>
+    <li><strong>对「代议制会稀释主权」的批判</strong>——第三卷 第 15 章对英国代议制的批评，<strong>是「参与式民主」思潮的历史原点</strong>，今天仍在被引用。
+    </li>
+    <li><strong>「法律应是普遍对象」的法治观</strong>——第二卷 第 6 章「<strong>法律只考虑臣民的集合体与抽象的行为，从不考虑某一个别的人或行为</strong>」<span class="tag t-src">原书</span>（第二卷 第 6 章），<strong>是「法律普遍性」这一法治原则的经典表述</strong>。
+    </li>
+  </ul>
+  <p><strong>要打折的</strong>：</p>
+  <ul>
+    <li><strong>「迫使自由」与「公民宗教」的强制条款</strong>——按 5.1、5.4 处理：<strong>这是全书最被现代读者抵触的两处</strong>，也是「卢梭＝极权」批评的落点；<strong>读它们必须连着上下文，尤其是「免受人身依附」那半句</strong>。
+    </li>
+    <li><strong>「公意不可出错」的强主张</strong>——按 5.2 处理：<strong>「公意永远正确」的命题，与「人民的审议往往出错」并存于第二卷 第 3 章</strong>，卢梭用「公意 vs 众意」来缝合二者；<strong>这一缝合是否成功，是 200 年来的争论处</strong>。
+    </li>
+    <li><strong>对「派系／中间团体」的彻底否定</strong>——第二卷 第 3 章要求「<strong>国家之内不能有部分性社团</strong>」<span class="tag t-src">原书</span>（第二卷 第 3 章）。★ <strong>在多元社会里，这条被广泛认为不可行</strong>：现代民主恰以<strong>政党与利益团体</strong>为常态。
+    </li>
+    <li><strong>「小国寡民式的直接集会」预设</strong>——第三卷 第 12–14 章要求人民<strong>周期性亲自集会</strong>，这在现代大国<strong>缺乏可操作性</strong>；<strong>这也是第四卷 第 4 章的「罗马大会」为什么要用历史模型来补</strong>。
+    </li>
+  </ul>
+  <p>★ <strong>一个反直觉的判断</strong>：<strong>这本书最耐读的部分，恰恰是它最「不口号」的部分。</strong> 第二卷 第 6 章「法律的定义」（普遍对象）、第三卷 第 1 章「政府总论」（主权与政府的比例关系）、第三卷 第 10 章「政府的堕落倾向」——<strong>这些不依赖任何会被后续历史推翻的具体政治主张，靠的是清晰的区分与漂亮的结构</strong>。★ 而它最有影响的结论（公意、迫使自由、公民宗教），<strong>恰恰最需要读者自己回到上下文去检验</strong>——<strong>这是这本 1762 年的小书在今天仍然值得读的真正理由：它把「政治权力怎样才能正当」这个问题，搭成了一台从「自然状态」到「公民宗教」的完整机器，而机器上的每一颗齿轮，今天都还能被单独拿出来质问。</strong></p>
+  <p>★ <strong>结构说明</strong>：本书 <strong>4 卷 48 章</strong>。本部<strong>按「卷」深挖（<code>## 6</code>–<code>## 9</code>）</strong>，<strong>每一卷内部逐章评述该卷下辖的全部章</strong>，<strong>一章不少</strong>（第一卷 9 ＋ 第二卷 12 ＋ 第三卷 18 ＋ 第四卷 9 ＝ 48）。每卷开头是「<strong>这一卷在回答什么问题</strong>」与「<strong>关键内容：概念机器</strong>」，中间是<strong>逐章要点</strong>，末尾是「<strong>可疑之处</strong>」。★ 章号一律写「<strong>第X卷 第 Y 章 章名</strong>」（<strong>卷内章号从 1 重新起算</strong>）。★ 英文引文依据 <strong>Gutenberg #46333（Cole 译）</strong>；法文引文依据 <strong>1762 原版与 Beaulavon 1903 版</strong>（Wikisource）。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>第一卷：从自然状态到社会契约（9 章）</span><span class="caret">▾</span></h2>
+  <h3>这一卷在回答什么问题</h3>
+  <p>这一卷是<strong>全书的地基</strong>，它只回答一个问题的前半：<strong>人本来自由，为什么会进入「枷锁」，而这一步在什么条件下才可能是正当的？</strong> 卢梭的处理办法是<strong>逐条排除那些「看起来像正当性」的东西</strong>——</p>
+  <ul>
+    <li><strong>家庭不是政治社会的模型</strong>（第 2 章）：家庭是「<strong>唯一自然的结合</strong>」，但它的维系靠「<strong>约定</strong>」，且「<strong>孩子一旦不需要父亲，自然的纽带就解体</strong>」<span class="tag t-src">原书</span>（第一卷 第 2 章）；因此<strong>父权不能推出政治权力</strong>。
+    </li>
+    <li><strong>强力不是权利</strong>（第 3 章）：「<strong>最强者从来不会强大到足以永远做主人，除非他把强力转化为权利、把服从转化为义务</strong>」；<strong>「权利」这个词加在强力上，什么也没添加</strong><span class="tag t-src">原书</span>（第一卷 第 3 章）。
+    </li>
+    <li><strong>奴隶制不成立</strong>（第 4 章）：「<strong>放弃自己的自由，就是放弃做人的资格、放弃做人的权利，甚至放弃做人的义务</strong>」<span class="tag t-src">原书</span>（第一卷 第 4 章）。
+    </li>
+    <li><strong>如此，一切「事实上的支配」都被排除，只剩一条出路：「最初的约定」</strong>（第 5 章）。
+    </li>
+    <li><strong>然后是社会公约本身</strong>（第 6 章）与它的产物<strong>主权者</strong>（第 7 章）、<strong>公民状态</strong>（第 8 章）、<strong>所有权</strong>（第 9 章）。
+    </li>
+  </ul>
+  <p>★ <strong>一句话记住这一卷</strong>：<strong>它做的是「排除法 + 一步构造」</strong>——先把「父权／强力／奴役」三种「伪正当性」逐个拆掉，再用「社会公约」造出唯一一条「正当性」通道。<strong>第 6–7 章是承重墙</strong>。</p>
+  <h3>逐章要点</h3>
+  <p><strong>第 1 章 本卷主旨</strong>：全书的问题设定。★ 开篇第一句（<code>L'homme est né libre, &amp; par-tout il est dans les fers</code>）后紧跟提问「<strong>什么能使它正当</strong>」<span class="tag t-src">原书</span>（第一卷 第 1 章）。他明确<strong>把「强力问题」与「正当性问题」分开</strong>：只谈强力，则「<strong>人民被迫服从时就做得对，一旦能挣脱就挣得更好</strong>」；但<strong>社会秩序「是一种神圣的权利，是一切其他权利的基础」，它「不是出自自然，因而必须建立在约定之上」</strong><span class="tag t-src">原书</span>（第一卷 第 1 章）。★ 全书的「合法性」主题在此定调。</p>
+  <p><strong>第 2 章 论最初的社会</strong>：★ 家庭是「<strong>唯一自然的结合</strong>」，但<strong>父子关系只有「在需要父亲保护时才延续」</strong>，此后「<strong>自然的纽带解体</strong>」「<strong>家庭本身只靠约定维持</strong>」<span class="tag t-src">原书</span>（第一卷 第 2 章）。他由此攻击<strong>格劳秀斯（Grotius）</strong>与<strong>霍布斯</strong>：「<strong>格劳秀斯以事实立权利</strong>」；并把「<strong>人类分成一群群牲畜，每群有一个主子为其吞食而看管</strong>」讽刺为霍布斯的结论<span class="tag t-src">原书</span>（第一卷 第 2 章）。★ <strong>本章确立一个关键区分：自然关系 ≠ 政治正当性。</strong></p>
+  <p><strong>第 3 章 论最强者的权利</strong>：★★ 全书第一个「排除」。<code>Le plus fort n'est jamais assez fort pour être toujours le maître, s'il ne transforme sa force en droit &amp; l'obéissance en devoir.</code>——「<strong>最强者从来不会强大到足以永远做主人，除非他把强力转化为权利、把服从转化为义务</strong>」<span class="tag t-src">原书</span>（第一卷 第 3 章，1762 原版）。★ 他连用两个论证：<strong>① 若强力产生权利，则权利随强力而变</strong>（「<strong>强力一消失，权利就消失</strong>」）；<strong>② 「服从强力是必要的行动，不是意志的行动</strong>」<span class="tag t-src">原书</span>（第一卷 第 3 章）。⇒ <strong>「最强者的权利」是一个自相矛盾的短语。</strong></p>
+  <p><strong>第 4 章 论奴隶制</strong>：★ 第二个排除。<strong>「既然没有人对自己同胞拥有自然的权威，既然强力不产生任何权利，那么约定就是一切合法权威的基础。」</strong><span class="tag t-src">原书</span>（第一卷 第 4 章）他逐条驳「<strong>一个人可以出卖自己为奴</strong>」：<strong>「放弃自己的自由，就是放弃做人的资格」</strong>；<strong>「说一个奴隶的儿子生而为奴，就是说他生来不是人」</strong><span class="tag t-src">原书</span>（第一卷 第 4 章）。★ <strong>本章还是全书对「战争不能产生奴役」的正面论证处：战争是国与国的关系，不是人与人的关系。</strong></p>
+  <p><strong>第 5 章 论必须追溯到一个最初的约定</strong>：★ 全书的「收束点」。既然<strong>强力、父权、奴役都不能产生正当性</strong>，那么「<strong>在考察人民如何选择国王之前，先要考察人民如何成为人民</strong>」<span class="tag t-src">原书</span>（第一卷 第 5 章）。⇒ <strong>「人民」本身是约定的产物，不是自然的事实</strong>；这一步是下面「社会公约」的直接前提。</p>
+  <p><strong>第 6 章 论社会公约</strong>：★★★ <strong>承重墙之一。</strong> 先摆出问题：「<strong>要找出一种结合形式，使它能用全部共同力量来保护每个结合者的人身与财物，且在其中每个人虽与全体联合，却仍然只服从自己、仍然像以前一样自由。</strong>」<span class="tag t-src">原书</span>（第一卷 第 6 章）。<strong>解法</strong>：条款「<strong>归结为一条——每个结合者及其全部权利都完全让渡给整个共同体</strong>」；其理由是<strong>「把自己交给所有人，就是没有交给任何人」</strong>，且<strong>条件对所有人相同</strong><span class="tag t-src">原书</span>（第一卷 第 6 章）。★ 公式：<code>Chacun de nous met en commun sa personne et toute sa puissance sous la suprême direction de la volonté générale</code>（<strong>我们每个人都以其自身及其全部力量共同置于公意的最高指导之下</strong>）<span class="tag t-src">原书</span>（第一卷 第 6 章）。★ 由此产生「<strong>道德与集体的共同体</strong>」，它<strong>被它的成员称为「国家」（被动时）／「主权者」（主动时）／「政权」（与他者相比时）</strong>；成员<strong>集体称「人民」，个别称「公民」（参与主权时）与「臣民」（服从法律时）</strong><span class="tag t-src">原书</span>（第一卷 第 6 章）。★ 他特别加注：<strong>「Citizen」与「townsman」不是一回事</strong>，<strong>「房屋造就城市，公民造就城邦」</strong><span class="tag t-src">原书</span>（第一卷 第 6 章注）。</p>
+  <p><strong>第 7 章 论主权者</strong>：★★★ <strong>承重墙之一，也是「迫使自由」所在章。</strong> ① 论证「<strong>共同体不能对自己设定义务</strong>」：「<strong>主权者不能对自己施加一条它不能违反的法律</strong>」，故<strong>「没有任何一种根本法能约束人民共同体——连社会契约本身也不能」</strong><span class="tag t-src">原书</span>（第一卷 第 7 章）。② 论证「<strong>主权无需对臣民提供保证</strong>」：<strong>主权者由个人组成，不可能有与臣民相反的利益</strong><span class="tag t-src">原书</span>（第一卷 第 7 章）。③ 但<strong>臣民对主权者的关系</strong>需要保证，于是有那句：<code>quiconque refusera d'obéir à la volonté générale, y sera contraint par tout le corps : ce qui ne signifie autre chose sinon qu'on le forcera d'être libre</code>——「<strong>任何拒绝服从公意的人，全体就要迫使他服从；这无非是说，人们要迫使他自由。</strong>」★ <strong>紧接的下一句是理解这句的钥匙</strong>：<code>car telle est la condition qui donnant chaque Citoyen à la Patrie le garantit de toute dépendance personnelle</code>——「<strong>因为正是这个条件，使每个公民在把自己交给祖国时，免受一切人身依附。</strong>」<span class="tag t-src">原书</span>（第一卷 第 7 章，1762 原版）。⇒ <strong>「迫使」的对象是「人对人的依附」，方式是「让他服从自己参与制定的公意」。</strong></p>
+  <p><strong>第 8 章 论公民状态</strong>：★ 从自然状态进入公民状态，人发生「<strong>非常显著的变化</strong>」：<strong>「正义代替了本能」</strong>，「<strong>义务的声音代替了生理的冲动、权利代替了欲念</strong>」<span class="tag t-src">原书</span>（第一卷 第 8 章）。★ 他给出「<strong>收支表</strong>」：<strong>丧失的是「自然的自由」与「对一切事物的无限权利」；得到的是「公民的自由」与「对自己所有之物的所有权」</strong><span class="tag t-src">原书</span>（第一卷 第 8 章）。★ 再加一项：<strong>「道德的自由」，因为「只有它使人真正成为自己的主人」——「因为单凭欲念的冲动就是奴役，而服从我们为自己制定的法律就是自由」</strong><span class="tag t-src">原书</span>（第一卷 第 8 章）。⇒ <strong>这里给出全书的「自由」定义：自由不是「想做什么就做什么」，而是「服从自己参与制定的法」。</strong></p>
+  <p><strong>第 9 章 论所有权</strong>：★ 谈财产如何随契约转入共同体。<strong>「每个成员在共同体成立时，就把他当时的全部所有物连同自己一并交给了它」</strong>；<strong>国家对其成员的一切财物拥有主权，但对其他国家则只靠「先占权」</strong><span class="tag t-src">原书</span>（第一卷 第 9 章）。★ 他给出「<strong>先占权（right of the first occupier）</strong>」的三个条件（<strong>无人居住、只占所需、以劳动与耕作占有</strong>）<span class="tag t-src">原书</span>（第一卷 第 9 章）。⇒ <strong>本章把「财产」也纳入契约框架</strong>：<strong>所有权在公民状态下被「转换」而非「取消」。</strong></p>
+  <h3>关键内容：概念机器</h3>
+  <ul>
+    <li><strong>四种「结合」的排除与一条通道</strong>：<strong>父权／强力／奴役／先占</strong>都不是正当性来源 → 只剩<strong>社会公约</strong>。
+    </li>
+    <li><strong>让渡公式</strong>：<code>Chacun de nous met en commun sa personne et toute sa puissance sous la suprême direction de la volonté générale</code>（第一卷 第 6 章）。
+    </li>
+    <li><strong>主权者＝人民自己</strong>：国家（被动）／主权者（主动）／政权（对外）；<strong>人民（集体）／公民（个别·参与主权）／臣民（个别·服从法律）</strong>（第一卷 第 6 章）。
+    </li>
+    <li><strong>「迫使自由」的完整语境</strong>：「<strong>任何拒绝服从公意的人，全体就要迫使他服从……因为正是这个条件，使每个公民在把自己交给祖国时，免受一切人身依附。</strong>」<span class="tag t-src">原书</span>（第一卷 第 7 章）。
+    </li>
+    <li><strong>自由的重新定义</strong>：<strong>「欲念的冲动是奴役，服从自己制定的法律是自由」</strong><span class="tag t-src">原书</span>（第一卷 第 8 章）。
+    </li>
+    <li><strong>道德自由 vs 自然自由</strong>：丧失「自然的自由」（以个人力量为界），换得「公民的自由」（以公意为界）＋「所有权」（以正式权利为据）<span class="tag t-src">原书</span>（第一卷 第 8 章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★★ <strong>「完全让渡」是否等于「无保留的服从」？</strong> 条款要求「<strong>把全部权利完全让渡给整个共同体</strong>」（第一卷 第 6 章）。★ 反驳者（如伯林一系）会问：<strong>若主权者（全体）在定义上不可能与臣民利益相反，那么「臣民仍需被保证」这一点从何而来？</strong> 卢梭自己承认<strong>臣民对主权者的忠诚「若没有保证手段就没有保障」</strong>（第一卷 第 7 章）——<strong>这一句本身就暗示「全体」与「个人」之间存在张力</strong>，而这正是 5.1／5.2 争论的文本根据。
+    </li>
+    <li>★★ <strong>「迫使自由」的语义裂缝</strong>：卢梭说它的目的是「<strong>免受一切人身依附</strong>」（第一卷 第 7 章），但<strong>「由全体迫使」这个手段本身就需要一个「谁来判定你不服从公意」的机制</strong>——而这套机制恰恰是<strong>主权者（全体）</strong>。⇒ <strong>「防止人身依附」的手段，是否可能带来「对全体的依附」？</strong> 这是本条争论的实质，<strong>本报告不裁决</strong>。
+    </li>
+    <li>★ <strong>自然状态是「历史」还是「假设」？</strong> 卢梭在《论人类不平等的起源》里的自然状态更接近「历史想象」，在《社会契约论》里则更接近「<strong>推理的起点</strong>」。★ 本卷<strong>没有像霍布斯那样明说「它也许从未存在」</strong>，但<strong>第二卷 第 8 章「自由可以得到、却永远不能重新获得」的论断，暗示他并不主张「回去」</strong>。⇒ <strong>它是规范性推演的起点，不是人类学断言</strong>（<span class="tag t-inf">推断</span>，依据全书结构）。
+    </li>
+    <li>★ <strong>「最初的约定」与「社会公约」是两个约定还是一个？</strong> 第 5 章说「<strong>必须追溯到一个最初的约定</strong>」，第 6 章讲「<strong>社会公约</strong>」。★ 卢梭<strong>并未把「最初的约定」明确列为独立于社会公约的第二步</strong>，读时容易把「人民如何成为人民」（第 5 章）与「人民如何自我约束」（第 6 章）混淆。⇒ <strong>这是全书一处需要读者自己缝合的接缝。</strong>
+    </li>
+    <li>★ <strong>对「所有权」的处理偏简</strong>：第 9 章把财产纳入契约，但<strong>未充分讨论「无产者」在让渡全部所有物（包括自己劳动）后的地位</strong>；这与第三卷 第 15 章「<strong>当公民宁愿用钱而不是亲自服务时，国家就离崩溃不远了</strong>」<span class="tag t-src">原书</span>（第三卷 第 15 章）形成对照，<strong>但两处并未打通</strong>。
+    </li>
+  </ol>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>第二卷：主权、公意与立法（12 章）</span><span class="caret">▾</span></h2>
+  <h3>这一卷在回答什么问题</h3>
+  <p>社会公约造出了「主权者」，但<strong>主权者是什么性质、它如何行动</strong>还未展开。第二卷就是对「主权」的<strong>四个属性</strong>（<strong>不可转让／不可分割／不会出错／有界限</strong>）与「<strong>立法</strong>」（法律是什么、谁立法、为谁立法、立什么法）的系统化。它分成两半：</p>
+  <ul>
+    <li><strong>第 1–5 章＝主权的属性</strong>：不可转让（1）、不可分割（2）、不会出错但审议会出错（3）、有界限（4）、生死权（5）。
+    </li>
+    <li><strong>第 6–12 章＝立法</strong>：法律的定义（6）、立法者（7）、人民（8–10）、立法体系（11）、法律的分类（12）。
+    </li>
+  </ul>
+  <p>★ <strong>一句话记住这一卷</strong>：<strong>它把「人民主权」从一句口号，变成了一组「主权有哪些性质、法律如何生成」的命题。</strong> ★★ <strong>核心区分是 <code>volonté générale</code>（公意）与 <code>volonté de tous</code>（众意）</strong>——这是卢梭政治学说的「心脏」，也是后世一切争论的起点。</p>
+  <h3>逐章要点</h3>
+  <p><strong>第 1 章 论主权不可转让</strong>：★ <strong>主权＝公意的运用</strong>，故不能转让；<strong>「主权者只能由它自己来代表自己」</strong>，<strong>「权力可以传递，意志不能」</strong><span class="tag t-src">原书</span>（第二卷 第 1 章）。他推论：<strong>「人民若只是承诺服从，那么它凭这一行为本身就已解体、丧失其为人民的资格；一旦有了主人，就没有主权者了。」</strong><span class="tag t-src">原书</span>（第二卷 第 1 章）★ 并留下一句重要的补白：「<strong>只要主权者不反对，统治者的命令也可以被当作公意；在这种情况下，普遍的沉默就被视为人民的同意。</strong>」<span class="tag t-src">原书</span>（第二卷 第 1 章）⇒ <strong>「沉默即同意」是卢梭留给「代议／默许」的一个小门缝。</strong></p>
+  <p><strong>第 2 章 论主权不可分割</strong>：★ <strong>「意志要么是公意，要么不是」</strong>，故主权不可分割<span class="tag t-src">原书</span>（第二卷 第 2 章）。★ 他讽刺把主权切成「<strong>强力与意志／立法权与行政权／税收权、司法权与战争权／内政与外交权</strong>」的政治学家：<strong>像把一个人拆成几段身体再拼起来</strong><span class="tag t-src">原书</span>（第二卷 第 2 章）。⇒ ★ <strong>「主权不可分割」为第三卷的「政府只是执行权」埋下伏笔</strong>：<strong>政府的功能是「从主权中流出的」（emanations），不是「主权的一部分」。</strong></p>
+  <p><strong>第 3 章 论公意是否会出错</strong>：★★★ <strong>全书最著名的概念区分在此。</strong> ① <strong>「公意永远是对的，并倾向于公共利益」，但「人民的审议并不总是同样正确」</strong>：<code>La volonté générale est toujours droite, mais le jugement qui la guide n'est pas toujours éclairé.</code>（<strong>公意永远是公正的，但指导它的判断并不总是明智的。</strong>）<span class="tag t-src">原书</span>（第二卷 第 3 章，另一处作第二卷 第 6 章末；Beaulavon 版与 1762 原版分段不同）。② ★★ <strong>公意 vs 众意</strong>：<code>Il y a souvent bien de la différence entre la volonté de tous et la volonté générale ; celle-ci ne regarde qu'à l'intérêt commun ; l'autre regarde à l'intérêt privé, et n'est qu'une somme de volontés particulières... ôtez de ces mêmes volontés les plus et les moins qui s'entre-détruisent, reste pour somme des différences la volonté générale.</code>（<strong>众意与公意之间常有很大差别：公意只看共同利益，众意只看私人利益，只是各人私意的总和……若从这些意志中减去相互抵消的正负差额，剩下的差额总和就是公意。</strong>）<span class="tag t-src">原书</span>（第二卷 第 3 章）。③ ★ <strong>派系的破坏性</strong>：<strong>「如果存在部分性社团……票数就不再按人计算，而按社团计算」</strong>；<strong>「若有一个社团大到压倒其余，结果就不再是差额总和，而只是一个差额；此时就没有公意了」</strong><span class="tag t-src">原书</span>（第二卷 第 3 章）。⇒ <strong>这一章是全书被引用最多、也最被误读的一章。</strong></p>
+  <p><strong>第 4 章 论主权权力的界限</strong>：★ 主权虽<strong>绝对、神圣、不可侵犯</strong>，但<strong>「不能超出公意约定的界限」</strong>；<strong>「每个人都可以随意处置这些约定留给他的财物与自由」</strong><span class="tag t-src">原书</span>（第二卷 第 4 章）。★ 他明确：<strong>「主权者不能对臣民施加任何对共同体无用的束缚，甚至不能这样意愿；因为无论按理性法则还是自然法则，没有原因的事都不会发生。」</strong><span class="tag t-src">原书</span>（第二卷 第 4 章）。⇒ <strong>这是卢梭为「绝对主权」设下的唯一一道内在限制：主权只能为公共用途而行使。</strong> ★ 他并重申「<strong>让渡」其实是「有利的交换」</strong>：换来的是「<strong>更稳定可靠的生活</strong>」「<strong>以自然独立换公民自由</strong>」<span class="tag t-src">原书</span>（第二卷 第 4 章）。</p>
+  <p><strong>第 5 章 论生死权</strong>：★ 回答「<strong>个人无处置自己生命之权，何能把它转给主权者？</strong>」——卢梭说问题提错了：<strong>「每个人都有权冒着生命危险来保全生命」</strong>（<strong>为逃火而跳窗不算自杀</strong>）<span class="tag t-src">原书</span>（第二卷 第 5 章）。★ 结论：<strong>「公民不再是危险之判断者；当君主说『为国家利益你应当去死』，他就应当去死，因为他此前一直是靠这个条件安全地活着的。」</strong><span class="tag t-src">原书</span>（第二卷 第 5 章）★ 关于<strong>死刑</strong>：「<strong>我们同意在自己成为凶手时去死，正是为了不成为凶手的牺牲品</strong>」；且<strong>「频繁的惩罚总是政府软弱或懈怠的标志」</strong><span class="tag t-src">原书</span>（第二卷 第 5 章）。⇒ ★ <strong>本章是「主权对生命的权力」这一尖锐问题的卢梭版回答，也是后世批评最集中的文本之一。</strong></p>
+  <p><strong>第 6 章 论法律</strong>：★★ <strong>法律理论的核心章。</strong> ① <strong>「什么是法律？」</strong>：<strong>「当全体人民为全体人民作出规定时……这一行为就是我所谓的法律。」</strong><span class="tag t-src">原书</span>（第二卷 第 6 章）。② ★ <strong>法律的普遍性</strong>：<code>la loi considère les sujets en masse et les actions comme abstraites, jamais un homme comme individu ni une action particulière</code>（<strong>法律只考虑臣民的集合体与抽象的行为，从不考虑某一个人或某一个别行为</strong>）<span class="tag t-src">原书</span>（第二卷 第 6 章）。⇒ <strong>法律可以规定特权、阶级、世袭君主制，但不能指名授予——「凡以个别对象为职能的，都不属于立法权」</strong><span class="tag t-src">原书</span>（第二卷 第 6 章）。③ ★ <strong>「公意永远正确，但引导它的判断未必明智」</strong>——由此引出<strong>「立法者」的必要</strong><span class="tag t-src">原书</span>（第二卷 第 6 章末／第 7 章前）。⇒ <strong>本章给出「法治」的经典定义：法律＝普遍意志＋普遍对象。</strong></p>
+  <p><strong>第 7 章 论立法者</strong>：★★ <strong>全书最富争议也最富想象力的一章。</strong> ① <strong>立法者需要的近乎神</strong>：<code>Il faudrait des dieux pour donner des lois aux hommes.</code>（<strong>要为人类立法，须是神。</strong>）<span class="tag t-src">原书</span>（第二卷 第 7 章）。② ★ <strong>立法者的位置极其特殊</strong>：<strong>「这一职务……无论在哪方面都不进入共和国的体制之内：它是一种个人性的、超乎其上的职能」</strong>；<strong>「支配人的不应当支配法律，支配法律的不应当支配人」</strong><span class="tag t-src">原书</span>（第二卷 第 7 章）。③ ★ <strong>立法者不能靠强力或理性说服，只能「求助于另一种权威」</strong>：<strong>「托神之口」</strong>——<strong>「这就是历代各民族的缔造者不得不求助于神明的干预、把自己的智慧归给诸神的原因」</strong><span class="tag t-src">原书</span>（第二卷 第 7 章）。⇒ ★ <strong>本章把「立法」与「神话／宗教」联系起来，直接通向第四卷 第 8 章的「公民宗教」。</strong></p>
+  <p><strong>第 8 章 论人民</strong>：★ 立法要<strong>先考察人民是否「成熟」</strong>：<strong>「大多数民族，像大多数人一样，只有在青年时期才可塑」</strong>；<strong>「自由可以得到，却永远不能重新获得」</strong><span class="tag t-src">原书</span>（第二卷 第 8 章）。★ 他以<strong>俄罗斯</strong>为例：<strong>「彼得有模仿的天才，却没有真正的天才……他想让臣民变成德国人或英国人，而他们本该成为俄国人」</strong><span class="tag t-src">原书</span>（第二卷 第 8 章）。⇒ <strong>本章是「立法时机论」：早熟的立法会毁掉人民。</strong></p>
+  <p><strong>第 9 章 论人民（续）</strong>：★ 谈<strong>国土大小与人口</strong>：<strong>「国家越大，人民越难以集会和相互认识」</strong>；<strong>「一个国土过大、人口过多的国家，其政府必然无力」</strong><span class="tag t-src">原书</span>（第二卷 第 9 章）。⇒ <strong>这是「小国宜民主、大国宜君主」（第三卷 第 3 章）的前置论证。</strong></p>
+  <p><strong>第 10 章 论人民（续）</strong>：★ 谈<strong>人口与土地产出、气候的关系</strong>：<strong>「一个国家如果在耕地之外没有剩余，就无力供养多余人口」</strong><span class="tag t-src">原书</span>（第二卷 第 10 章）。★ 他给「<strong>度数／纬度带</strong>」一套粗糙的对应（寒带嗜战、温带适法、热带生奢），<strong>并明说这是「大略」</strong><span class="tag t-src">原书</span>（第二卷 第 10 章）。⇒ <strong>本章的「气候─政体」论是孟德斯鸠式的，也是本书最经不起细勘的一章</strong>（见「可疑之处」）。</p>
+  <p><strong>第 11 章 论各种立法体系</strong>：★ <strong>一切立法的两大目标＝自由与平等</strong>：<code>liberté, parce que toute dépendance particulière est autant de force ôtée au corps de l'État ; égalité, parce que la liberté ne peut subsister sans elle</code>（<strong>自由，因为一切人身依附都等于从国家身上夺去的力；平等，因为没有平等自由就不能存在</strong>）<span class="tag t-src">原书</span>（第二卷 第 11 章）。★ 他对「<strong>平等</strong>」的界定<strong>不是财产绝对相等</strong>，而是「<strong>任何公民都不得富到能买另一个人，也不得穷到被迫出卖自己</strong>」<span class="tag t-src">原书</span>（第二卷 第 11 章）。⇒ ★ <strong>本章是全书最接近「社会主义式诉求」的一段</strong>（尽管卢梭仍以「小私有者」为理想）。</p>
+  <p><strong>第 12 章 论法律的分类</strong>：★ 把法律分为四类：<strong>政治法（宪法／根本法，调节主权者对国家的比例）／民法（调节成员之间与成员对国家）／刑法（调节不服从与惩罚）／风尚、习俗与舆论（「第四种法律」）</strong><span class="tag t-src">原书</span>（第二卷 第 12 章）。★★ 他特别强调<strong>第四种——风尚与习俗</strong>：「<strong>它不刻在大理石或铜表上，而刻在公民心里；它构成国家的真正体制……这是立法者暗中所致力的部分</strong>」<span class="tag t-src">原书</span>（第二卷 第 12 章）。⇒ ★ <strong>本章的「第四种法律」是理解「公民宗教」的伏笔：卢梭深知，法律不能覆盖全部，必须有一种「不成文的社会纽带」。</strong></p>
+  <h3>关键内容：概念机器</h3>
+  <ul>
+    <li><strong>公意 vs 众意</strong>：<code>volonté générale</code>（只看共同利益）≠ <code>volonté de tous</code>（私意之和）；<strong>公意＝各私意相互抵消后的「差额总和」</strong>（第二卷 第 3 章）。
+    </li>
+    <li><strong>主权的四属性</strong>：<strong>不可转让</strong>（1）、<strong>不可分割</strong>（2）、<strong>永远公正而审议未必明智</strong>（3、6）、<strong>受「公共用途」限制</strong>（4）。
+    </li>
+    <li><strong>法律＝普遍意志作用于普遍对象</strong>：<strong>不指名、不个别</strong>（第二卷 第 6 章）。
+    </li>
+    <li><strong>立法者的悖论</strong>：<strong>「要为人类立法，须是神」</strong>；<strong>立法者既不在体制内、又要托神之名立法</strong>（第二卷 第 7 章）。
+    </li>
+    <li><strong>立法的两大目标</strong>：<strong>自由与平等</strong>——<strong>平等不是财产均等，而是「无人富到能买人、无人穷到须卖身」</strong>（第二卷 第 11 章）。
+    </li>
+    <li><strong>第四种法律</strong>：<strong>风尚、习俗、舆论</strong>——不成文，却「构成国家的真正体制」（第二卷 第 12 章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★★ <strong>「公意永远正确」与「人民审议常出错」如何并存？</strong> 卢梭用「<strong>公意 ≠ 众意</strong>」来缝合：<strong>公意是「抵消私意后剩下的、指向共同利益的那个意志」，众意是私意的算术总和。</strong> ★ 但<strong>「公意」要如何被识别？</strong> 卢梭的回答依赖<strong>「充分知情、且公民之间不相互勾结」</strong>（第二卷 第 3 章）——<strong>这几乎是一个理想化的预设</strong>。⇒ <strong>「公意」的操作性，是 200 年来最大的争议处</strong>（见第 5 节 5.2）。
+    </li>
+    <li>★★ <strong>「迫使自由」的判定权在谁手里？</strong> 严格说，<strong>公意的判定权在「全体」</strong>——但<strong>「全体」如何在没有部分性社团、没有派系的情况下形成判断？</strong> 卢梭给的答案是<strong>「取消中间团体＋公民各自独立判断」</strong>（第二卷 第 3 章）。★ <strong>在现代多元社会，这条被广泛认为不可行</strong>；<strong>也正是在这里，「公意」可能被操纵</strong>——<strong>这是塔尔蒙一系批评的实质。</strong>
+    </li>
+    <li>★ <strong>第 5 章「生死权」的推论过强</strong>：从「<strong>有权冒生命危险保全生命</strong>」直接推出「<strong>君主命令你为国赴死，你就应当去死</strong>」<span class="tag t-src">原书</span>（第二卷 第 5 章）。★ <strong>反驳者会问：把「冒风险」等同于「接受无限度的生命处置权」，这个跳跃是否成立？</strong> 本报告标 <span class="tag t-inf">推断</span>：<strong>这一步的强度取决于「社会条约的目的＝保全缔约者」这一前提能延伸多远。</strong>
+    </li>
+    <li>★ <strong>第 7 章「立法者」的民主赤字</strong>：卢梭<strong>同时要求立法者「不在体制之内」又「支配法律」</strong>，还<strong>要「托神之名」</strong><span class="tag t-src">原书</span>（第二卷 第 7 章）。★ <strong>这带来一个结构难题：如果人民是主权者、法律由人民批准，那么「立法者」的角色是否等于「精英操纵」？</strong> 卢梭的自我辩护是<strong>「立法者只能起草、不能批准；批准权在人民」</strong><span class="tag t-src">原书</span>（第二卷 第 7 章）——★ <strong>但「起草者」与「被号召托神之名」的组合，仍让「立法者」带有强烈的权威主义色彩。</strong>
+    </li>
+    <li>★ <strong>第 10 章「气候与政体」的粗糙</strong>：卢梭的「纬度带─民情」论<strong>缺乏经验依据，且带明显刻板印象</strong>（如「<strong>寒带嗜战、热带生奢</strong>」）<span class="tag t-src">原书</span>（第二卷 第 10 章）。★ 这一章<strong>主要起「立法需因地制宜」的过渡作用</strong>，<strong>其具体的环境决定论不应被当作科学结论接受</strong>。
+    </li>
+  </ol>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>第三卷：政府的形式（18 章）</span><span class="caret">▾</span></h2>
+  <h3>这一卷在回答什么问题</h3>
+  <p>社会公约造出主权者，立法赋予其意志，但<strong>「国家还需要一种执行的力量」</strong>——第三卷就是要回答：<strong>政府是什么？它有多少种形式？它为什么会腐化？人民如何防止政府篡权？</strong> ★ 这是全书<strong>最长的一卷（18 章）</strong>，内容可分四个章群：</p>
+  <ul>
+    <li><strong>第 1–3 章＝政府总论</strong>：政府的定义、构成原则、分类。
+    </li>
+    <li><strong>第 4–7 章＝四种政府形式</strong>：民主制、贵族制、君主制、混合政府。
+    </li>
+    <li><strong>第 8–11 章＝政府与环境／衰亡</strong>：适配性、好坏标准、滥用与堕落、政治体的死亡。
+    </li>
+    <li><strong>第 12–18 章＝主权维持与防篡权</strong>：如何维持主权权威、议员或代表、政府创制不是契约、如何防止篡权。
+    </li>
+  </ul>
+  <p>★ <strong>一句话记住这一卷</strong>：<strong>它是全书的「工程学」部分</strong>——<strong>主权（意志）已定，现在要造一台「执行意志的机器」，并搞清这台机器为什么会失控。</strong> ★★ <strong>全卷最硬的一句结论在 第 16 章：政府的创制「绝不是一项契约」。</strong></p>
+  <h3>逐章要点</h3>
+  <p><strong>第 1 章 政府总论</strong>：★★ <strong>承重墙之一。</strong> ① <strong>「每一自由行动都由两种原因共同产生：一种是道德的，即决定行动的意志；一种是物理的，即执行行动的力量。」</strong> 政治体同样分「<strong>立法权（意志）</strong>」与「<strong>行政权（力量）</strong>」<span class="tag t-src">原书</span>（第三卷 第 1 章）。② ★ <strong>政府定义</strong>：「<strong>在臣民与主权者之间设立的一个中间体，用以使两者相互对应，并负责执行法律、维护公民自由与政治自由。</strong>」<span class="tag t-src">原书</span>（第三卷 第 1 章）。③ ★ <strong>政府成员称「官员（magistrats）」或「国王（rois）」即「治理者」，整个机构称「君主（prince）」</strong><span class="tag t-src">原书</span>（第三卷 第 1 章）。④ <strong>「政府是从主权者那里得到它给人民的命令的」</strong>；<strong>政府只有通过主权者才存在</strong><span class="tag t-src">原书</span>（第三卷 第 1 章）。⇒ ★ <strong>主权（立法）与政府（行政）的两层结构在此确立。</strong></p>
+  <p><strong>第 2 章 论构成不同政府形式的原则</strong>：★ 谈「<strong>政府中官员人数的比例</strong>」：<strong>国家越大，政府相对越应收缩</strong>（<strong>官员数少的政府，力更强</strong>）<span class="tag t-src">原书</span>（第三卷 第 2 章）。★ 他提出「<strong>政府与主权者、臣民之间的连续比例</strong>」，并以「<strong>人数</strong>」当最易表达的例子（如十万人的国家，每个公民主权占十万分之一）<span class="tag t-src">原书</span>（第三卷 第 2 章）。⇒ <strong>本章给出「小国宜民主、中等国家宜贵族、大国宜君主」的雏形</strong>（详见第 3 章）。</p>
+  <p><strong>第 3 章 论政府的分类</strong>：★ <strong>政府按「掌握最高行政权的人数」分为三类</strong>：<strong>全体或多数人掌权＝民主制</strong>；<strong>少数人掌权＝贵族制</strong>；<strong>一人掌权＝君主制（王制）</strong><span class="tag t-src">原书</span>（第三卷 第 3 章）。★ 他补充：<strong>这三种形式都能再分级</strong>（民主可扩至全体、也可缩至一半；贵族可从「一半人」缩到「最少数几人」），<strong>且三种可混合</strong><span class="tag t-src">原书</span>（第三卷 第 3 章）。★★ 那句著名的适配规律在此：「<strong>民主政府适宜小国，贵族政府适宜中等国家，君主政府适宜大国。</strong>」<span class="tag t-src">原书</span>（第三卷 第 3 章）。⇒ ★ <strong>这是「政体形式与规模」的经典命题</strong>，其推导依赖第 2 章的「比例」论。</p>
+  <p><strong>第 4 章 论民主制</strong>：★ <strong>民主制的内在矛盾</strong>：<strong>「立法者与执法者是同一批人，这使政府在某种意义上成为『没有政府的政府』」</strong><span class="tag t-src">原书</span>（第三卷 第 4 章）。★ 他给出那个著名判断：<strong>「若严格理解这个词，从来不曾有过真正的民主制，也永远不会有。」</strong><span class="tag t-src">原书</span>（第三卷 第 4 章）——理由是「<strong>多数人统治而少数人被统治，是违反自然秩序的</strong>」，且<strong>人民不可能永远集会</strong><span class="tag t-src">原书</span>（第三卷 第 4 章）。★ 他还列出民主制要求的苛刻条件（<strong>极小的国家、极简的风尚、高度的平等、极少的奢侈</strong>）<span class="tag t-src">原书</span>（第三卷 第 4 章）。★★ 章末名句：<strong>「若有一种人民是神，他们会用民主制来统治自己。这样完美的政府不适合人。」</strong><span class="tag t-src">原书</span>（第三卷 第 4 章）。</p>
+  <p><strong>第 5 章 论贵族制</strong>：★ 分三种：<strong>自然的、选举的、世袭的</strong>——<strong>第一种只适合「简单的民族」，第三种是最坏的，第二种是最好的（即真正所谓的贵族制）</strong><span class="tag t-src">原书</span>（第三卷 第 5 章）。★ 他指出<strong>选举的理由</strong>：<strong>「在民主制下，一切公民生来就是官员；但在这里，官职只限于少数人，而这些人只有靠选举才能成为官员。」</strong><span class="tag t-src">原书</span>（第三卷 第 5 章）。★ 但他也承认<strong>贵族制是「私人利益开始支配公共力量」的形态</strong>——「<strong>集团利益在这里开始比公意更少地支配公共权力，而一种不可避免的倾向又夺走了法律的一部分行政力量</strong>」<span class="tag t-src">原书</span>（第三卷 第 5 章）。⇒ <strong>选举贵族制是卢梭「相对认可」的形式。</strong></p>
+  <p><strong>第 6 章 论君主制</strong>：★ <strong>君主制＝「一个自然人代替集体存在」</strong>：<strong>行政的一切力量都汇于一人之手</strong>——<strong>「阿基米德静坐岸边就能拖曳大船」的比喻，用来形容一位善治的君主</strong><span class="tag t-src">原书</span>（第三卷 第 6 章）。★ 但他随即给出<strong>最尖锐的批评</strong>：<strong>「国王们想成为绝对的，人们却远远地喊着说，最好的办法是让人民爱戴自己……这种劝诫在宫廷里永远会被嘲笑。」</strong><span class="tag t-src">原书</span>（第三卷 第 6 章）；<strong>「他们首要的私利，是让人民软弱、贫困、无法反抗。」</strong><span class="tag t-src">原书</span>（第三卷 第 6 章）。★ 他批评<strong>世袭君主制「用孩子、怪物或傻瓜来做国家的首脑」</strong><span class="tag t-src">原书</span>（第三卷 第 6 章）。⇒ ★ <strong>本章也是「马基雅维利其实是教人民」那段名论所在</strong>：<strong>「他的《君主论》是共和派的书。」</strong><span class="tag t-src">原书</span>（第三卷 第 6 章）。</p>
+  <p><strong>第 7 章 论混合政府</strong>：★ <strong>混合政府的必要与风险</strong>：<strong>「严格说来，没有单一的政府形式」，政府可「在上下两极限之间分配」，从而产生混合形式</strong><span class="tag t-src">原书</span>（第三卷 第 7 章）。★ 他指出<strong>混合的用意是「在一个政府过强时用另一部分来平衡」</strong>，但<strong>混合也容易造成部门间的拉锯</strong>。⇒ <strong>本章篇幅短，功能是给第 2、3 章的「比例」补一个例外项。</strong></p>
+  <p><strong>第 8 章 论并非一切政府形式都适合一切国家</strong>：★ <strong>「每一种政府形式在某种情况下是最好的，在另一种情况下是最坏的。」</strong><span class="tag t-src">原书</span>（第三卷 第 8 章）★ 他重申<strong>规模与形式的匹配</strong>，并引入<strong>土地肥沃程度</strong>（<strong>肥沃宜君主制、贫瘠宜民主制</strong>）与<strong>气候</strong>的考量<span class="tag t-src">原书</span>（第三卷 第 8 章）。⇒ ★ <strong>本章是第三卷的「环境适配论」总结</strong>，与第二卷 第 9–10 章呼应。</p>
+  <p><strong>第 9 章 论好政府的标志</strong>：★ <strong>「最好的政府」这个问题没有绝对答案</strong>；能回答的是「<strong>如何判断一个民族治理得好坏</strong>」。★ 卢梭给出的唯一标志是<strong>人口</strong>：<code>le plus sûr signe ... c'est leur nombre et leur population</code>——<strong>「最可靠的标志是人口的增长与繁盛；在没有外来帮助、无归化、无殖民地的情况下，公民繁衍最多的政府，无疑就是最好的政府。」</strong><span class="tag t-src">原书</span>（第三卷 第 9 章）。⇒ ★ <strong>这是本书最「经验化」的一章，也最容易被现代读者质疑</strong>（见「可疑之处」）。</p>
+  <p><strong>第 10 章 论政府的滥用及其堕落倾向</strong>：★★ <strong>全卷的「病理学」核心。</strong> ① <strong>政府必然倾向堕落</strong>：<strong>「个别的意志不断与公意作对，政府就不断地与主权对抗……迟早，君主必然要压制主权者、破坏社会契约。」</strong><span class="tag t-src">原书</span>（第三卷 第 10 章）。② ★ <strong>两种堕落方式</strong>：<strong>「收缩」（从民主→贵族→君主，即由多人向少数人集中）</strong> 与 <strong>「国家解体」</strong><span class="tag t-src">原书</span>（第三卷 第 10 章）。③ ★ <strong>「收缩」是政府的「自然倾向」</strong>——<strong>「政府从不改变形式，除非它的力量消耗殆尽、衰弱到无法维持现状。」</strong><span class="tag t-src">原书</span>（第三卷 第 10 章）。④ <strong>国家解体有两种</strong>：<strong>君主篡夺主权</strong>（政府本身收缩）或<strong>政府成员分别篡权</strong>（先出现无政府，再出现「一圈篡权者」）<span class="tag t-src">原书</span>（第三卷 第 10 章）。⇒ ★ <strong>这一章为第 18 章「防篡权」提供了全部依据。</strong></p>
+  <p><strong>第 11 章 论政治体的死亡</strong>：★ <strong>「政治体也像人的身体一样，一出生就开始死亡，本身带着毁灭的原因。」</strong><span class="tag t-src">原书</span>（第三卷 第 11 章）。★ <strong>「政治体的生命原则在于主权权威。立法权是国家的心脏，行政权是它的头脑。」</strong><span class="tag t-src">原书</span>（第三卷 第 11 章）——<strong>「头脑可以麻痹而人仍活着，但心脏一旦停止功能，动物就死了。」</strong><span class="tag t-src">原书</span>（第三卷 第 11 章）。★ 他推论：<strong>「国家不是靠法律而是靠立法权才能维持。」</strong><span class="tag t-src">原书</span>（第三卷 第 11 章）。⇒ <strong>本章把「立法权＝心脏」定为全书最强的比喻之一。</strong></p>
+  <p><strong>第 12 章 论如何维持主权权威（一）</strong>：★ <strong>主权者除立法外没有别的力量</strong>，故<strong>「它只能通过法律来行动」</strong>；<strong>「主权者除了法律之外不能别有所为」</strong><span class="tag t-src">原书</span>（第三卷 第 12 章）。★ 因此<strong>它需要「定期的集会」</strong>——<strong>「主权者一进入集会，政府的一切管辖权就停止。」</strong><span class="tag t-src">原书</span>（第三卷 第 12 章）。⇒ <strong>这是第四卷 第 2–3 章「投票与选举」的直接前提。</strong></p>
+  <p><strong>第 13 章 论如何维持主权权威（二）</strong>：★ <strong>集会的频率与国家的需要成比例</strong>：<strong>「国家越强，人民就越应当经常集会……」</strong>；反之，<strong>「一个衰弱的国家无力承受频繁集会」</strong><span class="tag t-src">原书</span>（第三卷 第 13 章）。⇒ <strong>把「主权→集会」这一要求与「国家规模」挂钩。</strong></p>
+  <p><strong>第 14 章 论如何维持主权权威（三）</strong>：★ <strong>集会的召集方式</strong>：<strong>「人民一旦合法集会，主权者的一切权力即告中断，最卑微的公民也如最显赫的官员一样神圣不可侵犯。」</strong><span class="tag t-src">原书</span>（第三卷 第 14 章）。★ 他主张<strong>这种集会「应由法律规定的周期性召集，无需任何特别召集」</strong>——<strong>「因为这是唯一能防止政府篡权的办法」</strong><span class="tag t-src">原书</span>（第三卷 第 14 章）。⇒ ★ <strong>这是卢梭对「如何防止政府吃掉主权」的操作性回答。</strong></p>
+  <p><strong>第 15 章 论议员或代表</strong>：★★ <strong>全书对「代议制」最直白的一击。</strong> ① <strong>「一旦公共服务不再是公民的主要事务，一旦他们宁愿用钱而不是亲自服务，国家就离崩溃不远了。」</strong><span class="tag t-src">原书</span>（第三卷 第 15 章）。② ★ <strong>「主权不能被代表」</strong>：「<strong>主权不能被代表，理由正与它不能被转让相同</strong>」<span class="tag t-src">原书</span>（第三卷 第 15 章）。★ <strong>「人民的议员不是、也不可能是人民的代表，他们只是人民的办事员，不能作任何最终决定。凡人民未亲自批准的法律，都是无效的，根本不算法律。」</strong><span class="tag t-src">原书</span>（第三卷 第 15 章）。③ ★ <strong>英国例证</strong>：<strong>「英国人民自以为是自由的；他们大错特错了。他们只有在选举议员的那一刻才是自由的；议员一旦选出，人民就是奴隶，就等于零。」</strong><span class="tag t-src">原书</span>（第三卷 第 15 章）。④ <strong>代议制是「封建的产物」</strong>：「<strong>代表制是近代的发明，源出封建政府</strong>」<span class="tag t-src">原书</span>（第三卷 第 15 章）。⇒ ★ <strong>本章是「直接民主 vs 代议民主」争论的历史原点，也是今天最常被引用的卢梭段落之一。</strong></p>
+  <p><strong>第 16 章 论政府的创制绝不是一项契约</strong>：★★★ <strong>全卷最硬的结论。</strong> ① 通常有人认为「<strong>人民与其所设的统治者之间有一种契约</strong>」——卢梭说<strong>不可能</strong>：<strong>「最高权威既不能被修改，也不能被转让；限制它就是摧毁它。主权者在自己头上设立一个上级，是荒谬而矛盾的。」</strong><span class="tag t-src">原书</span>（第三卷 第 16 章）。② <strong>「这种契约是一种特殊的契约，它会是某项个别行为，因而既不是法律、也不是主权行为，所以是不合法的。」</strong><span class="tag t-src">原书</span>（第三卷 第 16 章）。③ ★ <strong>「国家里只有一种契约，那就是结社行为，它本身就排除了第二种契约的存在。」</strong><span class="tag t-src">原书</span>（第三卷 第 16 章）。⇒ ★ <strong>这一句把「政府」彻底降格为「主权者的委托执行」，是全书「主权／政府」两层结构的关键句。</strong></p>
+  <p><strong>第 17 章 论政府的创制</strong>：★ <strong>政府创制是一个「复合行为」</strong>：<strong>① 主权者规定「应有一个政府以某种形式设立」——这一部分是法律；② 人民任命受托治理的人——这一部分是个别行为</strong><span class="tag t-src">原书</span>（第三卷 第 17 章）。★ 为解释「政府尚未存在时，人民如何任命官员」，他给出「<strong>主权瞬间转为民主制</strong>」的解释：<strong>「通过全体对全体的一种新关系，公民成为官员，从普遍行为过渡到个别行为，从立法过渡到执行。」</strong><span class="tag t-src">原书</span>（第三卷 第 17 章）。★ 他以<strong>英国下议院转为「全院委员会」</strong>为例<span class="tag t-src">原书</span>（第三卷 第 17 章）。⇒ ★ <strong>本章是全书最技术性、也最抽象的一章。</strong></p>
+  <p><strong>第 18 章 论如何防止政府的篡权</strong>：★ <strong>「政府的创制不是契约，而是法律；行政权的受托者不是人民的主人，而是人民的官员；人民可以随意设立和撤销他们；对他们而言，不存在什么契约，只有服从。」</strong><span class="tag t-src">原书</span>（第三卷 第 18 章）。★ <strong>防止篡权的手段 ＝ 周期性集会</strong>：<strong>「这些集会……应当以两个不能取消、且分别表决的提案开场」</strong>——<strong>①「主权者是否愿意保留现有的政府形式？」②「人民是否愿意把行政权继续交给目前执政的人？」</strong><span class="tag t-src">原书</span>（第三卷 第 18 章）。★★ 最后他重申第 7 章的论点：<strong>「国家里没有任何一种根本法是不可撤销的，连社会契约本身也不例外；因为如果全体公民集会一致同意破坏它，它无疑会被非常合法地破坏。」</strong><span class="tag t-src">原书</span>（第三卷 第 18 章）。⇒ ★ <strong>本章是第三卷的收束，也是「人民随时可以更换政府」这一主张的最强表述。</strong></p>
+  <h3>关键内容：概念机器</h3>
+  <ul>
+    <li><strong>两层结构</strong>：<strong>主权者（立法·意志）／政府（行政·力量）</strong>；<strong>政府是「中间体」，不是主权者</strong>（第三卷 第 1 章）。
+    </li>
+    <li><strong>政府形式三分类</strong>：<strong>民主制（全体／多数）／贵族制（少数）／君主制（一人）</strong>（第三卷 第 3 章）；适配规律：<strong>小国宜民主、中等宜贵族、大国宜君主</strong>。
+    </li>
+    <li><strong>政府的堕落倾向</strong>：<strong>「收缩」（民主→贵族→君主）＋「国家解体」（篡权）</strong>；<strong>它一出生就带着毁灭的原因</strong>（第三卷 第 10、11 章）。
+    </li>
+    <li><strong>立法权＝心脏，行政权＝头脑</strong>（第三卷 第 11 章）。
+    </li>
+    <li><strong>政府创制不是契约</strong>：<strong>「国家里只有一种契约，那就是结社行为。」</strong><span class="tag t-src">原书</span>（第三卷 第 16 章）。
+    </li>
+    <li><strong>防篡权的唯一手段</strong>：<strong>周期性、无需召集的公民集会</strong>，以两个提案开场（是否保留政府形式／是否保留现任执政者）（第三卷 第 18 章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★★ <strong>「政府创制不是契约」是否取消了人民对政府的制度化约束？</strong> 卢梭把政府降为「可随时撤销的委托」（第三卷 第 16、18 章）。★ <strong>问题在于：如果一切政府都只是「委托」，那么政府的一切行为如何被法律约束？</strong> 卢梭给的答案是<strong>周期性集会 + 两个提案</strong>——<strong>但这套机制在大型国家里几乎无法实施</strong>。⇒ <strong>「政府不是契约」这条结论，在制度设计上代价很大。</strong>
+    </li>
+    <li>★★ <strong>第 9 章「人口是衡量好政府的唯一标志」过于单一。</strong> ★ <strong>人口增长受战争、瘟疫、经济周期、移民等大量非政治因素影响</strong>，把它当作「好政府的可靠标志」在经验上站不住。⇒ 本报告标 <span class="tag t-inf">推断</span>：<strong>这一章是本书「经验论证」最薄弱处</strong>。
+    </li>
+    <li>★ <strong>第 6 章对君主制的批评与「大国宜君主」的结论存在张力。</strong> 一方面，第 3、8 章说<strong>大国宜君主制</strong>；另一方面，第 6 章又把君主制批得很重（「<strong>国王们首要的私利是让人民软弱、贫困</strong>」）。★ 卢梭的调和是<strong>「君主制强力但危险，共和国温和但需要小国」</strong>——★ <strong>但这个调和本身依赖「规模」这一单一变量，未处理「制度约束」问题。</strong>
+    </li>
+    <li>★ <strong>第 15 章对代议制的全盘否定是否可行？</strong> 卢梭坚持<strong>主权不能代表、只能由人民亲自行使</strong><span class="tag t-src">原书</span>（第三卷 第 15 章）。★ <strong>在现代大规模社会，直接集会不具可操作性</strong>——这迫使他只能靠<strong>「周期性集会」</strong>来替代（第 12–14、18 章），<strong>而这个替代方案同样难以在百万人口以上的国家实现</strong>。⇒ <strong>这是卢梭「参与式民主」理想的现实瓶颈。</strong>
+    </li>
+    <li>★ <strong>第 2 章「连续比例」的数学化是「借来的比喻」。</strong> 卢梭用「<strong>人口平方根</strong>」之类说法来推算政府应有多强，<strong>但他自己承认「道德的量不容许几何的精确」</strong><span class="tag t-src">原书</span>（第三卷 第 2 章）。★ ⇒ <strong>这部分应读作「修辞性的模型」，不是可计算的公式。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>第四卷：投票、罗马制度与公民宗教（9 章）</span><span class="caret">▾</span></h2>
+  <h3>这一卷在回答什么问题</h3>
+  <p>第三卷谈完了「政府如何维持与防止篡权」，第四卷转向<strong>「主权如何在实践中运作」</strong>：<strong>只要人民还集会、还投票、还保有一种「社会纽带」，主权就活着；一旦这些机制失灵，主权就被架空。</strong> 本卷可分三块：</p>
+  <ul>
+    <li><strong>第 1–3 章＝公意与投票</strong>：公意不可摧毁、投票、选举。
+    </li>
+    <li><strong>第 4–7 章＝罗马制度与「制度补丁」</strong>：罗马人民大会、保民官制、独裁制、监察官制。
+    </li>
+    <li><strong>第 8–9 章＝公民宗教与结论</strong>：公民宗教（全书最受争议的一章）、结论。
+    </li>
+  </ul>
+  <p>★ <strong>一句话记住这一卷</strong>：<strong>它是「主权运作的实践手册 + 一份古代制度样本 + 一份争议药方」。</strong> ★★ <strong>第 8 章「公民宗教」是全书被引用最多、批判最烈的部分；第 9 章「结论」则是一段被时间打断的收尾。</strong></p>
+  <h3>逐章要点</h3>
+  <p><strong>第 1 章 论公意不可摧毁</strong>：★ <strong>「只要若干人集会而自认为一个整体，他们就只有一个意志，即关乎共同保存与公共幸福的意志。」</strong><span class="tag t-src">原书</span>（第四卷 第 1 章）。★ 但当社会纽带松弛、私利抬头时，<strong>「公意就变得沉默」</strong>；不过——★★ <strong>「公意并没有被消灭或败坏：它永远稳固、不变而纯粹；它只是被其他凌驾于其上的意志所支配。」</strong><span class="tag t-src">原书</span>（第四卷 第 1 章）。★ 他补充：<strong>「即使一个人为钱出卖自己的选票，他也没有消灭心中的公意，只是回避了它。」</strong><span class="tag t-src">原书</span>（第四卷 第 1 章）。⇒ ★ <strong>本章是「公意永远正确」命题的最强辩护处，也是 5.2 争论的文本中心之一。</strong></p>
+  <p><strong>第 2 章 论投票</strong>：★ <strong>投票的状态是「政治体健康状况」的指标</strong>：<strong>「集会上越是一致，公意就越占优势；反之，冗长的辩论、纷争与喧嚣，则宣告私利的得势与国家的衰败。」</strong><span class="tag t-src">原书</span>（第四卷 第 2 章）。★ 他给出投票规则的<strong>经验性判据</strong>（<strong>公意越难辨认、国家越衰败，所需多数票就应越高</strong>）<span class="tag t-src">原书</span>（第四卷 第 2 章）。★ 并重申：<strong>「只有一种法律从其性质上需要全体一致同意，那就是社会契约；因为公民的结合是一切行为中最自愿的。」</strong><span class="tag t-src">原书</span>（第四卷 第 2 章）——<strong>「说一个奴隶的儿子生而为奴，就是说他不生而为人。」</strong><span class="tag t-src">原书</span>（第四卷 第 2 章）。</p>
+  <p><strong>第 3 章 论选举</strong>：★ <strong>两种选举方式：「选择」与「抽签」</strong>。★ 卢梭指出：<strong>「抽签适合民主制（因为在那里，官职对所有人一视同仁，机会平等；且抽签不使人不满）」</strong>；<strong>「选择则适合贵族制与君主制」</strong><span class="tag t-src">原书</span>（第四卷 第 3 章）。★ 但<strong>当官职需要专门才能时（如军职），宜用选择；当官职只需常识与公正时（如元老院），可用抽签</strong><span class="tag t-src">原书</span>（第四卷 第 3 章）。⇒ ★ <strong>本章是全书少见的「制度技术」章，与第三卷 第 18 章配套。</strong></p>
+  <p><strong>第 4 章 论罗马人民大会</strong>：★ 卢梭用<strong>长篇篇幅重建罗马的三种「人民大会」（库里亚大会／百人团大会／部落大会）及其投票方式</strong>。★ 他这么做有明确目的：<strong>「一个尚未有成熟体制的新生民族，如何行使最高权力」</strong>——<strong>罗马是「最自由、最强大的民族如何行使主权」的样本</strong><span class="tag t-src">原书</span>（第四卷 第 4 章）。★ 他也坦承<strong>罗马早期史料「多半是传说」</strong><span class="tag t-src">原书</span>（第四卷 第 4 章）。⇒ ★ <strong>本章的功能是「给直接民主找一个可参照的历史模型」，读法可偏「资料式」。</strong></p>
+  <p><strong>第 5 章 论保民官制</strong>：★ <strong>保民官（tribunate）是「制度的平衡器」</strong>：当各部分之间无法维持比例时，就设置一个<strong>不进入任何机构、不分享立法或行政权、却能「阻止一切」的官职</strong>：<strong>「它自己不能做任何事，却能阻止任何事发生。」</strong><span class="tag t-src">原书</span>（第四卷 第 5 章）。★ 他说保民官「<strong>是法律的护持者</strong>」，<strong>「被明智地调和的保民官制，是一个好宪法能有的最强支持；但只要它的力量略微过大，就会颠覆整个国家」</strong><span class="tag t-src">原书</span>（第四卷 第 5 章）。⇒ ★ <strong>本章是「否决权／宪法法院」这类制度的历史前驱。</strong></p>
+  <p><strong>第 6 章 论独裁制</strong>：★ <strong>「法律的僵化使得它在某些情况下可能酿成灾难」</strong>——<strong>因此需要</strong>一种<strong>「在危机时刻把公共安全托付给最值得托付的人」</strong>的机制=<strong>独裁（dictatorship）</strong><span class="tag t-src">原书</span>（第四卷 第 6 章）。★ 但他给出<strong>严厉的限定</strong>：<strong>「只有最大的危险才能抵消改变公共秩序的危险；法律的神圣权力，只有在国家存亡之际才可以暂被中止。」</strong><span class="tag t-src">原书</span>（第四卷 第 6 章），<strong>且期限必须极短</strong>。⇒ ★ <strong>本章是全书最容易被「断章赞成独裁」的地方，必须连着「严格限定」一起读。</strong></p>
+  <p><strong>第 7 章 论监察官制</strong>：★ <strong>监察官（censorship）不是舆论的裁判者，只是舆论的宣示者</strong>：<strong>「法律是公意的宣示，监察则是公共判断的宣示。」</strong><span class="tag t-src">原书</span>（第四卷 第 7 章）。★ 他给出<strong>关键限定</strong>：<strong>「监察官制可以维护风尚，但不能恢复风尚。要在法律还有力量时设立监察官；一旦法律失去力量，一切希望就都没了。」</strong><span class="tag t-src">原书</span>（第四卷 第 7 章）。⇒ ★ <strong>本章是第二卷 第 12 章「第四种法律（风尚）」的实践对应。</strong></p>
+  <p><strong>第 8 章 论公民宗教</strong>：★★★ <strong>全书最受争议的一章。</strong> ① <strong>三类宗教</strong>：<strong>「人的宗教」（福音的、纯道德的、无庙宇祭祀）／「公民的宗教」（与国家绑定、有守护神与法定仪式）／「教士的宗教」（给人两套立法、两个祖国，即罗马基督教）</strong><span class="tag t-src">原书</span>（第四卷 第 8 章）。② <strong>对三类的评判</strong>：<strong>第三种最坏</strong>（「<strong>凡破坏社会统一的都一文不值</strong>」）；<strong>第二种好在其把敬神与爱法结合、坏在其建立在谎言上并易变成排他</strong>；<strong>第一种虽崇高，却「与政治体没有特殊关系」，因此「对社会纽带的维系没有助益」</strong><span class="tag t-src">原书</span>（第四卷 第 8 章）。③ ★ <strong>盛赞霍布斯</strong>：「<strong>在一切基督教作家中，只有霍布斯看到了这个祸害并敢于提出补救</strong>」——<strong>即把「鹰的两个头」重新合一、恢复政治统一</strong><span class="tag t-src">原书</span>（第四卷 第 8 章）。④ ★★ <strong>结论：主权者应规定一套「纯属公民的信仰条款」</strong>：<code>Il y a donc une profession de foi purement civile dont il appartient au souverain de fixer les articles</code>——<strong>「因此，有一种纯属公民的信仰条款，其条目由主权者来规定；它不是宗教教条，而是社会性的情感……」</strong><span class="tag t-src">原书</span>（第四卷 第 8 章）。<strong>正面条款</strong>：<strong>全能、明智、仁慈而具有预见的神；来世；善人的幸福；恶人的惩罚；社会契约与法律的神圣性</strong>；<strong>反面条款</strong>：<strong>只有一条——不宽容</strong><span class="tag t-src">原书</span>（第四卷 第 8 章）。⑤ ★ 强制条款：<strong>「虽然它不能强迫任何人相信这些条款，却可以把不信者逐出国家；不是因为他不敬神，而是因为他反社会、不能真诚地爱法律与正义。」</strong><span class="tag t-src">原书</span>（第四卷 第 8 章）<strong>「若有人在公开承认这些条款之后，行为却如同不信，则处以死刑——因为他犯了最重的罪：在法律面前撒谎。」</strong><span class="tag t-src">原书</span>（第四卷 第 8 章）。⑥ <strong>宽容的界线</strong>：<strong>「凡是说『教会之外无救恩』的人，都应被逐出国家，除非国家就是教会、君主就是教皇。」</strong><span class="tag t-src">原书</span>（第四卷 第 8 章）。⇒ ★ <strong>本章把「宗教」当作「社会纽带（social bond）」来处理，是 5.4 争论的中心。</strong></p>
+  <p><strong>第 9 章 结论</strong>：★★ <strong>被时间打断的收尾。</strong> 卢梭说：<strong>「我已经确立了政治权利的真正原则，并试图给国家一个它自己赖以立足的基础；接下来我本应加强它的对外关系，包括国际法、通商、战争权与征服权、公法、同盟、谈判与条约等等。但这一切是一个过于庞大的新题目，远超出我狭窄的范围。我本应始终把自己限制在一个更有限的领域内。」</strong><span class="tag t-src">原书</span>（第四卷 第 9 章）。⇒ ★★ <strong>这段「结论」只有一小段，却把「本书是一部更大著作的残片」这句话落在了实处</strong>——<strong>那部更大的著作，就是未完成的《政治制度论》。</strong></p>
+  <h3>关键内容：概念机器</h3>
+  <ul>
+    <li><strong>公意不可摧毁</strong>：它「<strong>永远稳固、不变而纯粹</strong>」，只是会被其他意志「<strong>凌驾</strong>」（第四卷 第 1 章）。
+    </li>
+    <li><strong>投票＝政治体健康指标</strong>：<strong>越一致＝公意越占优势</strong>；<strong>越喧嚣＝私利越得势</strong>（第四卷 第 2 章）。
+    </li>
+    <li><strong>选举的两法</strong>：<strong>抽签（宜民主）／选择（宜贵族与君主）</strong>（第四卷 第 3 章）。
+    </li>
+    <li><strong>制度补丁三件套</strong>：<strong>保民官（阻止一切的平衡器）／独裁（危机时的临时授权）／监察官（舆论的宣示者）</strong>（第四卷 第 5–7 章）。
+    </li>
+    <li><strong>公民宗教</strong>：<strong>公民信仰条款由主权者规定</strong>；<strong>可逐出不信者</strong>；<strong>可处死「在法律面前撒谎」的伪信者</strong>；<strong>不宽容是唯一的反面条款</strong>（第四卷 第 8 章）。
+    </li>
+    <li><strong>「残片」自述</strong>：<strong>国际法、通商、战争与条约「是一个过于庞大的新题目」</strong>（第四卷 第 9 章）。
+    </li>
+  </ul>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★★ <strong>第 8 章「公民宗教」的强制条款，是全书对现代读者最不友好的一处。</strong> 主权者<strong>规定信条、逐出不信者、处死伪信者</strong><span class="tag t-src">原书</span>（第四卷 第 8 章）。★ <strong>反驳者的质疑是直接的：这与「主权不能对臣民施加无用束缚」（第二卷 第 4 章）如何一致？「社会性」的判定权在谁手里？</strong> ⇒ <strong>本报告不裁决，但必须指出这是全书内在张力最尖锐的一处</strong>（见 5.4）。
+    </li>
+    <li>★★ <strong>第 1 章「公意不可摧毁」与第 2 章「投票显示国家衰败」存在张力。</strong> 若公意<strong>永远纯粹</strong>，那<strong>「被凌驾」的公意如何能被识别、被恢复？</strong> 卢梭的答案是<strong>周期性集会 + 禁止派系</strong>（第二卷 第 3 章、第三卷 第 18 章）。★ ⇒ <strong>「公意不可摧毁」在概念上很强，但在操作上依赖一套极难维持的条件。</strong>
+    </li>
+    <li>★ <strong>第 6 章「独裁制」容易被断章取用。</strong> ★ 卢梭确实为<strong>危机时的临时独裁</strong>留了位置，但<strong>同时给了极严的限定</strong>（「<strong>只有最大的危险才</strong>」「<strong>国家存亡之际</strong>」「<strong>期限极短</strong>」）<span class="tag t-src">原书</span>（第四卷 第 6 章）。⇒ <strong>读这一章的正解，是把它读成「宪法的紧急状态条款」，而不是「独裁的辩护」。</strong>
+    </li>
+    <li>★ <strong>第 4 章「罗马人民大会」的史料性偏弱。</strong> 卢梭本人承认<strong>罗马早期史料「多半是传说」</strong><span class="tag t-src">原书</span>（第四卷 第 4 章）。★ ⇒ <strong>把它当作「用历史给理论找模型」来读，不要当作可靠的罗马制度史。</strong>
+    </li>
+    <li>★ <strong>第 9 章「结论」的缺席本身就是一种「可疑之处」。</strong> 卢梭<strong>明说国际法、通商、战争权等被略去</strong><span class="tag t-src">原书</span>（第四卷 第 9 章）。★ ⇒ <strong>因此《社会契约论》严格说是一部「未完成的体系」中的「国内政治权利」部分</strong>；<strong>把它当「完整的政治哲学体系」来评价，本身就超出它的范围。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s11">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>概念／人物</th><th>一句话</th><th>出现在</th></tr></thead>
+    <tbody>
+      <tr><td><strong>公意（volonté générale）</strong></td><td>只看共同利益、由各私意差额抵消后形成的意志；<strong>不等于多数票</strong></td><td>第二卷 第 3 章；第三卷 第 15 章；第四卷 第 1–2 章</td></tr>
+      <tr><td><strong>众意（volonté de tous）</strong></td><td>各人私意的算术总和，着眼于私人利益</td><td>第二卷 第 3 章</td></tr>
+      <tr><td><strong>社会公约公式</strong></td><td>「我们每个人都以其自身及其全部力量共同置于公意的最高指导之下……」</td><td>第一卷 第 6 章</td></tr>
+      <tr><td><strong>主权者（Souverain）／国家／政权</strong></td><td>同一公共人格的三种称呼：主动时／被动时／与他者相比时</td><td>第一卷 第 6 章</td></tr>
+      <tr><td><strong>公民（Citoyen）／臣民（Sujet）</strong></td><td>参与主权时／服从法律时</td><td>第一卷 第 6 章</td></tr>
+      <tr><td><strong>「迫使自由」</strong></td><td>「任何拒绝服从公意的人，全体就要迫使他服从；这无非是说，人们要迫使他自由。」</td><td>第一卷 第 7 章末</td></tr>
+      <tr><td><strong>自然自由 vs 公民自由 vs 道德自由</strong></td><td>以个人力量为界／以公意为界／服从自己制定的法</td><td>第一卷 第 8 章</td></tr>
+      <tr><td><strong>主权不可转让、不可分割</strong></td><td>「权力可以传递，意志不能」；意志「要么是公意，要么不是」</td><td>第二卷 第 1–2 章</td></tr>
+      <tr><td><strong>主权的界限</strong></td><td>主权者不能对臣民施加「对共同体无用」的束缚</td><td>第二卷 第 4 章</td></tr>
+      <tr><td><strong>法律＝普遍意志＋普遍对象</strong></td><td>法律不指名、不个别</td><td>第二卷 第 6 章</td></tr>
+      <tr><td><strong>立法者</strong></td><td>「要为人类立法，须是神」；立法者不在体制内、且要「托神之名」</td><td>第二卷 第 7 章</td></tr>
+      <tr><td><strong>自由与平等</strong></td><td>一切立法的两大目标；平等＝「无人富到能买人、无人穷到须卖身」</td><td>第二卷 第 11 章</td></tr>
+      <tr><td><strong>第四种法律</strong></td><td>风尚、习俗、舆论——不成文却构成「国家的真正体制」</td><td>第二卷 第 12 章</td></tr>
+      <tr><td><strong>政府</strong></td><td>臣民与主权者之间的中间体，负责执行法律</td><td>第三卷 第 1 章</td></tr>
+      <tr><td><strong>立法权＝心脏／行政权＝头脑</strong></td><td>国家靠立法权而非法律维持</td><td>第三卷 第 11 章</td></tr>
+      <tr><td><strong>政府创制不是契约</strong></td><td>「国家里只有一种契约，那就是结社行为」</td><td>第三卷 第 16 章</td></tr>
+      <tr><td><strong>防篡权</strong></td><td>周期性、无需召集的公民集会，以两个提案开场</td><td>第三卷 第 18 章</td></tr>
+      <tr><td><strong>保民官制</strong></td><td>「不能做任何事，却能阻止任何事」的平衡器</td><td>第四卷 第 5 章</td></tr>
+      <tr><td><strong>公民宗教</strong></td><td>主权者规定「纯属公民的信仰条款」；可逐出不信者、处死伪信者</td><td>第四卷 第 8 章</td></tr>
+      <tr><td><strong>Thomas Hobbes</strong></td><td>卢梭赞其「唯独看到政教冲突之祸并敢提补救」</td><td>第四卷 第 8 章</td></tr>
+      <tr><td><strong>Grotius</strong></td><td>被卢梭批评「以事实立权利」</td><td>第一卷 第 2、4 章；第二卷 第 2 章</td></tr>
+      <tr><td><strong>Isaiah Berlin</strong></td><td>《两种自由概念》（1958）；以「迫使自由」为「积极自由」滑向专制的标本</td><td>第 5.1 节</td></tr>
+      <tr><td><strong>Ernst Cassirer</strong></td><td>《卢梭问题》（1932）／《卢梭·康德·歌德》（1945）；反对把卢梭读成极权先驱</td><td>第 5.1 节</td></tr>
+      <tr><td><strong>J. L. Talmon</strong></td><td>《极权主义民主的起源》（1952）；把「公意」列为极权民主的开端</td><td>第 5.2 节</td></tr>
+      <tr><td><strong>G. D. H. Cole</strong></td><td>本报告所用英译者（1889–1959）；首版 1913 年，<strong>被 constitution.org 误标为 1782</strong></td><td>第 4、5.6 节</td></tr>
+      <tr><td><strong>Beaulavon 1903</strong></td><td>何兆武中译所据法文底本；Wikisource 有全文</td><td>第 4、5.5 节</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s12">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>原文与版本（首要）</strong>：<em>Du contrat social</em>（1762）英文全文，Project Gutenberg #46333（<code>https://www.gutenberg.org/ebooks/46333</code>，Cole 译）——公版、可全文检索；法文原文，Wikisource <strong>Beaulavon 1903 版</strong>（<code>Du contrat social (Édition Beaulavon 1903)/Texte entier</code>，何译所据）与 <strong>1762 原版</strong>（<code>Rousseau - Du contrat social 1762a.djvu</code>）。
+    </li>
+    <li><strong>卢梭自己的其他文字（本报告 <span class="tag t-talk">作者谈话</span> 档的来源）</strong>：《忏悔录》（<em>Les Confessions</em>，1782／1789 遗著）、《爱弥儿》（<em>Émile</em>，1762，含《一个萨瓦省牧师的信仰自白》）、《论人类不平等的起源和基础》（1755）、<strong>《致 Malesherbes 的四封信》（1762）</strong>、<strong>《给达朗贝尔的信》（1758）</strong>。★ <strong>全部为文本，不是访谈——卢梭逝于 1778 年</strong>；且<strong>《忏悔录》不是客观史料</strong>。
+    </li>
+    <li><strong>20 世纪的对立读法</strong>：Isaiah Berlin，〈Two Concepts of Liberty〉，1958（收入 <em>Four Essays on Liberty</em>，Oxford，1969）；Ernst Cassirer，<em>The Question of Jean-Jacques Rousseau</em>，1932／英译 1954；<em>Rousseau, Kant, Goethe</em>，1945；J. L. Talmon，<em>The Origins of Totalitarian Democracy</em>，1952。
+    </li>
+    <li><strong>公意概念的思想史</strong>：Patrick Riley，<em>The General Will before Rousseau</em>，Princeton University Press，1986。
+    </li>
+    <li><strong>中译与研究</strong>：何兆武译《社会契约论》（商务印书馆，1963 初版／1980 修订，据 Beaulavon 1903 法文版）；李平沤译（商务印书馆，据 Pléiade 法文版）；（早期）马君武 1918 文言译本。
+    </li>
+    <li><strong>相关对照</strong>：霍布斯《利维坦》第 17 章（授权给主权者）、洛克《政府论》下篇（信托可撤销）——<strong>三种社会契约论的结构完全不同</strong>，对照读最能看清卢梭的位置。
+    </li>
+  </ol>
+</section>
+
+<section id="s13">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>见同目录 <code>社会契约论-来源清单.md</code>。</p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. Beaulavon 1903 版 Wikisource 转录本的一处瑕疵（已定位，但个别字未能据多源完全定死）</h3>
+  <ul>
+    <li><strong>可确认的</strong>：1762 原版中「迫使自由」一句作 <code>y sera contraint par tout le corps</code>（<strong>由全体</strong>）<span class="tag t-src">原书</span>（第一卷 第 7 章，1762 原版，分页核对）；而 <strong>Wikisource 的 Beaulavon 1903 转录本把此处录为 <code>partout le corps</code></strong>——<strong>本报告已实测该差异</strong>。
+    </li>
+    <li>❌ <strong>未能完全定死的</strong>：该 <code>partout</code> 究竟是<strong>Beaulavon 1903 印刷本原文如此</strong>，还是<strong>Wikisource 转录时的 OCR 错误</strong>。★ 我<strong>未能见到 Beaulavon 1903 的实体书影</strong>，只能比对 1762 原版与通行本。⇒ <strong>本报告正文以 1762 原版为准，并注明转录本差异。</strong>
+    </li>
+  </ul>
+  <h3>D2. Cole 英译首次出版的确切年份与 Everyman 印次</h3>
+  <ul>
+    <li><strong>可确认的</strong>：<strong>G. D. H. Cole 生于 1889 年</strong>；PG #46333 版权页显示该译本收入 <strong>J. M. Dent &amp; Sons（伦敦与多伦多）、E. P. Dutton（纽约）的 Everyman's Library</strong>，<strong>Ernest Rhys 主编</strong><span class="tag t-src">原书</span>（PG #46333 卷首）。
+    </li>
+    <li>❌ <strong>未能逐页核实的</strong>：该译本<strong>首次出版的确切年份（通说为 1913 年）与 PG 所用印次</strong>——<strong>PG 电子本未标印刷年份</strong>。⇒ <strong>本报告采「通说 1913 年、Everyman's Library」的表述</strong>，不把具体印次写死。
+    </li>
+  </ul>
+  <h3>D3. constitution.org 标注年份错误的复核</h3>
+  <ul>
+    <li><strong>可确认的</strong>：<strong>constitution.org 的《社会契约论》页面顶部明写「Translated 1782 by G. D. H. Cole, public domain」</strong>——<strong>本报告已直接访问该页（<code>https://www.constitution.org/jjr/socon.htm</code>，跟随 301 重定向后取得正文）</strong>并核实此标注<span class="tag t-src">原书</span>（网页原文）。
+    </li>
+    <li>❌ <strong>未能核实的</strong>：该页面<strong>由何时、何人放入此年份</strong>，以及<strong>是否有其他镜像页沿用了这一错误</strong>。⇒ <strong>本报告只确认「该页如此标注」，并据 Cole 生年（1889）判定「1782」为错误。</strong>
+    </li>
+  </ul>
+  <h3>D4. 何兆武译本与李平沤译本的底本差异细节</h3>
+  <ul>
+    <li><strong>可确认的</strong>：<strong>何兆武译据 Beaulavon 1903 法文版</strong>；<strong>李平沤译据 Pléiade 法文版</strong>（多篇出版说明与译介一致）。
+    </li>
+    <li>❌ <strong>未能逐句核对的</strong>：<strong>两译在具体章节上因底本不同而产生的措辞／分段差异</strong>——<strong>我没有两译的实体书，未逐页比对</strong>。⇒ <strong>本报告只写「底本不同 ⇒ 路线不同」，不举具体译文差异。</strong>
+    </li>
+  </ul>
+  <h3>D5. 1762 年查禁与焚毁的具体文献依据</h3>
+  <ul>
+    <li><strong>可确认的</strong>：<strong>《社会契约论》与《爱弥儿》同在 1762 年出版后遭查禁、当众焚毁，卢梭被迫流亡</strong><span class="tag t-rep">转述</span>（卢梭传记与出版史的通说，多源一致）。
+    </li>
+    <li>❌ <strong>未能核到一手档的</strong>：<strong>巴黎高等法院／日内瓦当局查禁令的具体文本与日期</strong>——<strong>我未查阅当时的法令原件或权威档案转录</strong>。⇒ <strong>本报告按通说表述，标 <span class="tag t-rep">转述</span>。</strong>
+    </li>
+  </ul>
+  <h3>D6. 《忏悔录》中「五个孩子送进育婴堂」的细节与史料性质</h3>
+  <ul>
+    <li><strong>可确认的</strong>：<strong>卢梭在《忏悔录》中自认把与黛莱丝·勒瓦瑟所生的五个孩子送进育婴堂</strong><span class="tag t-talk">作者谈话</span>（《忏悔录》第八卷）。
+    </li>
+    <li>❌ <strong>未能独立核实的</strong>：<strong>具体年份、孩子数目与去向的独立档案佐证</strong>——<strong>这些主要来自卢梭自述与传记转述</strong>。★ 且<strong>《忏悔录》本身不是客观史料</strong>（见 5.3）。⇒ <strong>本报告按 <span class="tag t-talk">作者谈话</span> 处理，不当作中立史实。</strong>
+    </li>
+  </ul>
+  <h3>D7. 「法国大革命各派各取所需地使用第 4 卷第 8 章」的具体接受史</h3>
+  <ul>
+    <li><strong>可确认的</strong>：<strong>雅各宾派借「公民宗教」构想「最高主宰节」（Fête de l'Être suprême，1794）</strong>；<strong>保守派与教会则据本章攻击革命</strong><span class="tag t-rep">转述</span>（大革命史与卢梭接受史的通说）。
+    </li>
+    <li>❌ <strong>未能逐条核到一手文献的</strong>：<strong>各派具体在哪些演讲／小册子里引用本章</strong>。⇒ <strong>本报告只写「被两方引用」这一结构性事实，不虚构具体引文。</strong>
+    </li>
+  </ul>
+</section>
+
+<footer>
+  生成于 2026-10-09 · 来源清单与交叉验证记录见同目录 <code>社会契约论-来源清单.md</code><br>
+  本页引文分两级处理：<b>原文为 A 级</b>（英文据 Project Gutenberg #46333 的 Cole 译、法文据 Wikisource 的 Beaulavon 1903 版与 1762 原版，覆盖第 1–4 卷全部 48 章）；<b>中文引文为 B 级</b>（依据何兆武、李平沤两译本，我未逐字核对中文页面，只作术语与版本对照）。★ 另标注：constitution.org 把 Cole 译本标为「Translated 1782」是错的（Cole 生年 1889）；Wikisource 的 Beaulavon 转录本把「迫使自由」句的 par tout le corps 误录为 partout le corps。★ 本书是一部<b>精密的概念机器</b>，而非一句口号：开篇「人生而自由」是<b>问题</b>不是结论，全书回答的是「什么能使枷锁正当」；<b>「迫使自由」必须连着下一句「使每个公民免受一切人身依附」一起读</b>。★ 因此<b>第 5 节（争议与局限）刻意写得最实</b>：本书影响极大，而围绕它的读法之争（伯林 1958、卡西尔 1932／1945、塔尔蒙 1952、Riley 1986）<b>比它的一般介绍更稀缺</b>。★ 请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

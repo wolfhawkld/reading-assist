@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《资本论》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《资本论》<small>阅读指引与精华解析 · 2026-10-09</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 五个核心论点</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 中文译本怎么选</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 逐篇深挖</div>
+    <a href="#s7">6 第一卷（上）：商品、货币与绝对剩余价值（第 I–III 篇）</a>
+    <a href="#s8">7 第一卷（下）：相对剩余价值、工资与积累（第 IV–VIII 篇）</a>
+    <a href="#s9">8 第二卷：资本的流通过程（3 篇 21 章）</a>
+    <a href="#s10">9 第三卷：资本主义生产的总过程（7 篇）</a>
+    <a href="#s11">10 第四卷与全书结构再读：恩格斯编纂问题</a>
+    <div class="grp">附录</div>
+    <a href="#s12">A 关键概念与人物速查</a>
+    <a href="#s13">B 延伸阅读</a>
+    <a href="#s14">C 来源清单</a>
+    <a href="#s15">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《资本论》阅读指引与精华解析</h1>
+  <div class="sub">Das Kapital. Kritik der politischen Oekonomie（1867–1894）</div>
+  <div class="meta">
+    <div><b>书名</b><b>《资本论》</b>（Das Kapital. Kritik der politischen Oekonomie，直译「资本·政治经济学批判」）；英译通行题 <i>Capital: A Critique of Political Economy</i></div>
+    <div><b>作者</b><b>卡尔·马克思（Karl Marx，1818–1883）</b> —— 德国哲学家、经济学家、革命者；<b>生前只亲手编定出版了第 1 卷</b></div>
+    <div><b>成书年代</b><b>第 1 卷 1867-09-14</b>（汉堡 Otto Meissner 出版社，首印 1,000 册）；<b>第 2 卷 1885</b>、<b>第 3 卷 1894</b> 由<b>恩格斯据马克思手稿编成</b>；<b>第 4 卷《剩余价值理论》</b>由<b>卡尔·考茨基编，1905–1910</b>（三卷四册）</div>
+    <div><b>★ 结构</b>三卷 ＋ 第 4 卷。第 1 卷《资本的生产过程》<b>8 篇 33 章 ＋ 附录《价值形式》</b>；第 2 卷《资本的流通过程》<b>3 篇 21 章</b>；第 3 卷《资本主义生产的总过程》<b>7 篇 52 章</b>。★ 合计 <b>18 篇</b>（英文通行本口径）</div>
+    <div><b>★ 依据版本（公版全文）</b>★ <b>英文公版全文三卷</b>，来自 marxists.org：<b>1867-c1</b>（Moore／Aveling 译、Engels 编，1887）／<b>1885-c2</b>（I. Lasker 译，据 Progress Publishers 1956）／<b>1894-c3</b>（苏联马列主义研究院 1959 年版，International Publishers）。★ <b>Project Gutenberg 上没有《资本论》英文全译本</b>（只有《政治经济学批判》#46423）</div>
+    <div><b>★ 中文译本</b>★ 首个中文全译本＝<b>郭大力、王亚南译（1938，读书生活出版社，据德文版译出）</b>；现行通行本＝<b>人民出版社 2004 年版</b>（第 1 卷校订依据 MEGA² II/10，第 2、3 卷退回柏林狄茨版，学界有批评）</div>
+    <div><b>★ 核验级别</b>★ <b>英文原文：A</b>（辖区＝<b>第 1／2／3 卷各自的 marxists.org 公版全文</b>，可定位到卷／篇／章／原句）；★ <b>中文引文：B</b>（全部为笔者据英文自译，未核中译本页面）—— <b>原文 A 与中文 B 两句分开写，不合并</b></div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> ★ <b>三卷英文公版全文</b>（可逐句定位）：marxists.org <b>第 1 卷 1867-c1</b>（Moore／Aveling 译、Engels 编，1887）、<b>第 2 卷 1885-c2</b>、<b>第 3 卷 1894-c3</b>。★ 凡标此档者，均可在 marxists.org 按「卷／篇／章」找到对应原句。★ <b>但第 2、3 卷是恩格斯的编纂本，不作「马克思本人的定论」</b></li>
+    <li><span class="tag t-talk">作者谈话</span> ★ <b>马克思已逝（1883），本档不是访谈</b>。本档只用于<b>马克思本人的「书外」文字</b>：<b>1867 年第 1 版序言</b>、<b>1873 年第 2 版跋</b>、<b>1866-10-13 致库格曼的信</b>（四册计划）、《1857–1858 年经济学手稿》导言、1859 年《政治经济学批判》序言。★ <b>★★ 第 2、3 卷是恩格斯的编纂，不是马克思的话——凡涉此两卷，本档不适用</b></li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、学术评介、版本学通行记载，或我据通行记载的转述，措辞可能与原始文献有出入（如 MEGA²「第 2 卷改动逾 5,000 处」、英国圈地史的当代评价、中译底本批评）</li>
+    <li><span class="tag t-inf">推断</span> 我自己的推理，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    ★ 本书<b>有公版英文全文可逐句核对</b>：三卷分别来自 marxists.org 的 1867-c1／1885-c2／1894-c3，<b>18 篇目录与关键章句逐条实测</b>。★ 但有三点必须写明：<b>① 中文引文另计 B 级</b>（全部自译，未核中译本页码）；<b>② 第 1 卷由马克思定稿，第 2、3 卷由恩格斯据手稿编成，本报告凡涉此两卷一律不写作「马克思的定论」</b>；<b>③ Project Gutenberg 上没有《资本论》英文全译本</b>（只有《政治经济学批判》#46423）。★ 另标：<b>第 1 卷德文第 1 版为「6 章 22 节」</b>，与英文通行本「8 篇 33 章」的差异主要在「原始积累」是否独立成篇。带 ⚠ 的条目见附录 D（D1–D11）。
+  </p>
+  <h3>引文核验级别（2026-10-09 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)"><b>① 英文原文部分：A 级</b> —— 依据 marxists.org 三卷公版全文：<b>第 1 卷</b> https://www.marxists.org/archive/marx/works/1867-c1/（Moore／Aveling 译、Engels 编，1887，<b>8 篇 33 章 ＋ 附录《价值形式》</b>）；<b>第 2 卷</b> …/1885-c2/（I. Lasker 译，据 Progress Publishers 1956，<b>3 篇 21 章</b>）；<b>第 3 卷</b> …/1894-c3/（苏联 1959 年版、International Publishers，<b>7 篇 52 章</b>）。★ <b>三卷均实测 HTTP 200，目录与关键章句逐条核对</b>。</p>
+  <p style="margin:6px 0 0;font-size:12.5px;color:var(--ink3)"><b>② 中文引文部分：B 级</b> —— 全部为笔者据英文公版全文自译，<b>未核对任何中译本的页面或页码</b>；各中译本译法与底本不统一（郭王据德文、人民社 2004 第 2、3 卷据柏林狄茨版），故不以某一中译本为据。</p>
+  <p style="margin:6px 0 0;font-size:12.5px;color:var(--ink3)">★ 另标：<b>MEGA² 相关数字（第 2 卷改动逾 5,000 处）为 C 级</b>（转引中国社科网／中央党史和文献研究院一系评介，未核 MEGA² 原卷）；<b>英国圈地史的当代评价为 C 级</b>（转述经济史研究的一般结论，未列专门研究页码）。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>《资本论》要说的是：资本主义生产方式不是永恒的自然秩序，而是一套有起点、有机制、也有内在矛盾的历史关系——它的财富来自对「劳动力」这种特殊商品的购买与使用，它的运转靠的是价值的增殖与资本的积累，而它的起点（原始积累）是用暴力与立法铺出来的，不是「勤俭致富」的传说。</strong></p>
+  <p>它在这条<strong>政治经济学线</strong>上，接的是<strong>亚当·斯密《国富论》（1776）</strong>：斯密第一次把国民财富的来源从「金银」移到「劳动」，把「劳动分工」当作财富增长的引擎；而《资本论》接着问——<strong>既然财富来自劳动，那为什么劳动者越劳动越穷、占有者越占有越多？</strong> ★ 它与书目里既有的《国富论》构成一对：<strong>《国富论》问的是「财富如何增长」，《资本论》问的是「财富增长时谁得到了什么」。</strong> ★ 与斯密对「分工」的乐观不同，马克思在第 14 章里看到的是<strong>「局部工人」的残缺化</strong>——<strong>同一个「分工」，两个人的判断相反，这正是政治经济学这条线的张力所在。</strong></p>
+  <p>一句话结论（也是全书承重墙的一句，出自第 1 卷第 1 章第 4 节「商品拜物教」）：<strong>「在商品生产者的社会里，人与人之间的确定的社会关系，在他们眼中采取了物与物之间关系的那种虚幻形式。」</strong><span class="tag t-src">原书</span>（第 1 卷第 1 章第 4 节；英文原文：<em>it is a definite social relation between men, that assumes, in their eyes, the fantastic form of a relation between things</em>）★ 这句话是全书方法论的钥匙：<strong>《资本论》要做的，就是把「物与物的关系」还原为「人与人的关系」。</strong></p>
+  <p>★ 马克思在 1867 年序言里有一句常被忽略、却点破全书野心的话：<strong>「工业较发达的国家向工业较不发达的国家所显示的，只是后者未来的景象。」</strong><span class="tag t-talk">作者谈话</span>（1867 年第 1 版序言；英文原文：<em>The country that is more developed industrially only shows, to the less developed, the image of its own future.</em>）★ <strong>它说明：马克思写的不是「英国一国的经济报道」，而是一个他认为具有普遍性的运动规律</strong>——<strong>这也正是它后来被反复检验、也被反复批评的原因。</strong></p>
+  <p><strong>它不是什么</strong>：不是一本「主张平分财产」的宣传册（它对「未来社会怎么组织」几乎不着笔墨，全书找不到一段成体系的制度设计）；不是一本只谈「剥削不道德」的道德批判（它的力气全在<strong>机制分析</strong>——价值怎么形成、剩余价值怎么产生、资本怎么积累、利润怎么转化为生产价格）；更不是一本可以只看第 1 卷前几章就以为读完了的书——<strong>它的论证要走到第 3 卷的利润、利息、地租，才走完「从抽象到具体」的全程</strong>。</p>
+  <p>★ <strong>三个最常用的入口（给第一次读的人）</strong>：<strong>① 想抓骨架</strong>——读第 1 卷序跋 ＋ 第 1 章第 4 节「拜物教」＋ 第 6 章「劳动力」；<strong>② 想看故事</strong>——读第 1 卷第 10 章「工作日」＋ 第 26–33 章「原始积累」；<strong>③ 想看争议</strong>——读第 3 卷第 9 章「转形」＋ 第 13–15 章「利润率趋向下降」。</p>
+  <p>★ <strong>它和书目里已有的《国富论》怎么摆</strong>：<strong>两本是「一条线的两端」，不是「两个观点」</strong>。《国富论》处理的是「市场经济如何带来财富」，立场是<strong>体系性的辩护与改良</strong>；《资本论》处理的是「同样的市场经济为什么必然产生分裂与危机」，立场是<strong>体系性的批判与重写</strong>。★ <strong>两本对读，政治经济学从「古典」到「批判」的转折就一目了然。</strong></p>
+  <p>★ <strong>写作背景（读它时要放在心里的时间线）</strong>：马克思 1848 年与恩格斯合写《共产党宣言》；1849 年流亡伦敦，此后长期在大英博物馆的阅览室工作；<strong>1857–1858 年</strong>写下后来被称为<strong>《政治经济学批判大纲》</strong>（Grundrisse）的庞大手稿；<strong>1859 年</strong>出版<strong>《政治经济学批判》</strong>（今由 PG #46423 收录英文版）；<strong>1867 年</strong>《资本论》第 1 卷问世。★ <strong>也就是说，《资本论》不是一部「一时写成的论战小册子」，而是十九年研究（1850 年代至 1867 年）的产物</strong>——<strong>它的每一个概念都经过了反复打磨，这也是它读起来「密度极大」的原因。</strong> <span class="tag t-rep">转述</span>（写作史依据通行的马克思传记与年表）</p>
+  <p>★ <strong>一句话提醒</strong>：<strong>这本书的读者分两类，各有各的陷阱。</strong> 一类<strong>把它当「政治立场书」</strong>，于是只看结论、跳过论证——结果是既没读懂经济分析，也没看清文本的复杂性；另一类<strong>把它当「纯经济学课本」</strong>，于是只看公式、不问前提——结果是把一部关于「社会关系」的书读成了「数学练习」。★ <strong>本报告下部逐篇把「论证怎么走」与「它为何这样走」分开写，正是为了同时避开这两个陷阱。</strong></p>
+  <p>★ <strong>三种读法（按你的目的选一种，别指望一种读法解决所有问题）</strong>：</p>
+  <table>
+    <thead><tr><th>读法</th><th>目的</th><th>怎么读</th><th>代价</th></tr></thead>
+    <tbody>
+      <tr><td><strong>① 思想史读法</strong></td><td>知道这本书「在思想史上说了什么」</td><td>读序跋 ＋ 第 1 章 ＋ 第 26 章 ＋ 第 3 卷第 48 章</td><td>拿不到机制细节</td></tr>
+      <tr><td><strong>② 机制读法</strong></td><td>弄懂「价值—剩余价值—积累」怎么运转</td><td>读第 1 卷全卷，重点第 1、6、8、9、23–25 章</td><td>读不到分配与价格那一层</td></tr>
+      <tr><td><strong>③ 争论读法</strong></td><td>弄懂「它为什么至今被争」</td><td>读第 3 卷第 1–2、13–15 篇 ＋ <code>## 5</code> 的六条争议</td><td>需要一定经济学与数学耐心</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>三种读法可以叠加，但顺序很重要</strong>：<strong>先思想史（知道它要干什么）→ 再机制（知道它怎么干）→ 最后争论（知道它哪里可被质疑）。</strong> ★ <strong>反过来读（先争论再机制），最常见的后果是「记住了一堆批评，却不知道在批评什么」。</strong></p>
+  <p>★ <strong>三条警告（写在最前面，省得读完才后悔）</strong>：</p>
+  <ol>
+    <li>★ <strong>别把「第 1 卷」当「全书」。</strong> 第 1 卷只讲到「资本的生产过程」，<strong>利润、利息、地租、价格全在第 3 卷</strong>——<strong>只看第 1 卷就下结论，等于只看上半场的比分。</strong>
+    </li>
+    <li>★ <strong>别把「马克思的手稿」与「恩格斯的成书」当一回事。</strong> 第 2、3 卷是编的，<strong>这个事实不削弱它们的重要性，但它要求你在引用时多一层自觉</strong>（见 <code>## 10</code>）。
+    </li>
+    <li>★ <strong>别把「分析工具」与「政治结论」混成一件东西。</strong> 本报告只处理前者——<strong>「文本说了什么」与「后人用它做了什么」，是两个不同层面的问题</strong>（见 <code>## 5</code> 第 6 条）。
+    </li>
+  </ol>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>★ 下表把 <strong>三卷 18 篇</strong>逐篇列出（<strong>一行一篇</strong>）。★ <strong>篇号按卷内重新编号</strong>（第 1 卷为罗马数字 I–VIII，第 2 卷为 1–3，第 3 卷为 1–7），<strong>章号按卷内连续编号</strong>。★ <strong>篇名与章号区间依据 marxists.org 英文通行本的实测目录</strong>（第 1 卷＝<strong>8 篇 33 章 ＋ 附录《价值形式》</strong>；第 2 卷＝<strong>3 篇 21 章</strong>；第 3 卷＝<strong>7 篇 52 章</strong>），与德文通行本略有差异（见文末注解①）。</p>
+  <table>
+    <thead><tr><th>卷</th><th>篇</th><th>篇名</th><th>章号区间</th><th>这一篇在讲什么</th></tr></thead>
+    <tbody>
+      <tr><td>第 1 卷 资本的生产过程</td><td>I</td><td>商品与货币</td><td>第 1–3 章</td><td>★ 全书地基：商品二重性、劳动二重性、价值形式、商品拜物教、货币</td></tr>
+      <tr><td>第 1 卷</td><td>II</td><td>货币转化为资本</td><td>第 4–6 章</td><td>★ 资本总公式 G—W—G′ 及其矛盾；<strong>「劳动力」与「劳动」的区分</strong></td></tr>
+      <tr><td>第 1 卷</td><td>III</td><td>绝对剩余价值的生产</td><td>第 7–11 章</td><td>劳动过程与价值增殖过程；不变／可变资本；剩余价值率；<strong>工作日</strong></td></tr>
+      <tr><td>第 1 卷</td><td>IV</td><td>相对剩余价值的生产</td><td>第 12–15 章</td><td>协作、分工与工场手工业、<strong>机器与大工业</strong>、补偿理论之争</td></tr>
+      <tr><td>第 1 卷</td><td>V</td><td>绝对剩余价值与相对剩余价值的生产</td><td>第 16–18 章</td><td>两者的结合；劳动力价格与剩余价值的量的变化；各种公式</td></tr>
+      <tr><td>第 1 卷</td><td>VI</td><td>工资</td><td>第 19–22 章</td><td>工资形式掩盖剩余劳动；计时工资、计件工资、工资的国民差异</td></tr>
+      <tr><td>第 1 卷</td><td>VII</td><td>资本的积累过程</td><td>第 23–25 章</td><td>简单再生产、剩余价值转化为资本、<strong>资本主义积累的一般规律</strong></td></tr>
+      <tr><td>第 1 卷</td><td>VIII</td><td>所谓原始积累</td><td>第 26–33 章</td><td>★ 血腥立法史；资本主义关系的历史起源；现代殖民理论</td></tr>
+      <tr><td>第 2 卷 资本的流通过程</td><td>1</td><td>资本形态变化及其循环</td><td>第 1–6 章</td><td>★ 货币资本／生产资本／商品资本三种循环与「总循环」、流通费用</td></tr>
+      <tr><td>第 2 卷</td><td>2</td><td>资本周转</td><td>第 7–17 章</td><td>周转时间、固定资本与流动资本、年剩余价值率</td></tr>
+      <tr><td>第 2 卷</td><td>3</td><td>社会总资本的再生产和流通</td><td>第 18–21 章</td><td>★ 两大部类的再生产图式：简单再生产与扩大再生产</td></tr>
+      <tr><td>第 3 卷 资本主义生产的总过程</td><td>1</td><td>剩余价值转化为利润与利润率</td><td>第 1–7 章</td><td>成本价格、利润、利润率；利润率与剩余价值率的关系</td></tr>
+      <tr><td>第 3 卷</td><td>2</td><td>利润转化为平均利润</td><td>第 8–12 章</td><td>★ <strong>「转形问题」</strong>：一般利润率的形成、价值转化为生产价格</td></tr>
+      <tr><td>第 3 卷</td><td>3</td><td>利润率趋向下降的规律</td><td>第 13–15 章</td><td>资本有机构成提高导致的一般利润率下降及其反作用因素</td></tr>
+      <tr><td>第 3 卷</td><td>4</td><td>商品资本与货币资本转化为商业资本与货币经营资本</td><td>第 16–20 章</td><td>商业资本、商业利润、货币经营资本及其历史</td></tr>
+      <tr><td>第 3 卷</td><td>5</td><td>利润分为利息与企业主收入·生息资本</td><td>第 21–36 章</td><td>生息资本、信用、虚拟资本、银行资本、通货学派之争</td></tr>
+      <tr><td>第 3 卷</td><td>6</td><td>超额利润转化为地租</td><td>第 37–47 章</td><td>级差地租 I 与 II、绝对地租、资本主义地租的发生</td></tr>
+      <tr><td>第 3 卷</td><td>7</td><td>各种收入及其源泉</td><td>第 48–52 章</td><td>★ 「三位一体公式」、竞争的假象、阶级；全书收束（未写完）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法提示一：这张表本身就是一条抽象—具体阶梯。</strong> 第 1 卷的八篇按顺序是「商品→货币→资本→劳动力→剩余价值→剩余价值的形态→工资→积累→原始积累」；<strong>每一篇比上一篇多一个「具体规定」</strong>。第 2 卷把视角从「生产」转到「流通」，第 3 卷再把「利润、利息、地租」这些「看得见的形式」请上台。★ <strong>读它最常见的错法，是从第 1 卷第 1 篇直接跳到第 3 卷去抄「利润率下降」的结论——中间那 30 章正是这个结论的全部前提。</strong></p>
+  <p>★ <strong>读法提示二（三卷的「确定性等级」不同，必须分开记）</strong>：</p>
+  <table>
+    <thead><tr><th>卷</th><th>文本状态</th><th>本报告的处理</th></tr></thead>
+    <tbody>
+      <tr><td>第 1 卷</td><td><strong>马克思亲自定稿</strong>（1867 德文第 1 版；1872–75 法文版为最后校订）</td><td>可作「马克思的定论」引用</td></tr>
+      <tr><td>第 2 卷</td><td><strong>恩格斯据手稿编成</strong>（1885）</td><td>★ 引文可定位，但<strong>不作「马克思定论」</strong></td></tr>
+      <tr><td>第 3 卷</td><td><strong>恩格斯据手稿编成</strong>（1894），<strong>结尾第 52 章中断</strong></td><td>★ 同上，且须记「文本未完成」</td></tr>
+      <tr><td>第 4 卷</td><td><strong>考茨基编</strong>（1905–1910）</td><td>★ 同上，且<strong>不在恩格斯计划内</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读法提示三（一个数字上的小注）</strong>：<strong>「三卷」的章数合计是 33 ＋ 21 ＋ 52 ＝ 106 章</strong>（英文通行本）。★ <strong>但这不是「106 个独立专题」</strong>——<strong>第 1 卷第 1 章的六节、第 2 卷第 20 章的四大块、第 3 卷第 5 篇的十几章，各自都是「一个论点的长展开」</strong>。<strong>看篇而不看章，才不会迷路。</strong></p>
+  <p>★ <strong>注解①（第 1 卷的版本篇章差异，务必写清三个口径，不要只写一个数就完事）</strong>：</p>
+  <table>
+    <thead><tr><th>版本</th><th>年</th><th>篇章形态</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>德文第 1 版</td><td><strong>1867</strong></td><td><strong>6 章 22 节</strong></td><td>篇章结构与后来不同；《价值形式》作为<strong>附录</strong>单列</td></tr>
+      <tr><td>法文版</td><td><strong>1872–1875</strong></td><td><strong>8 篇 33 章</strong></td><td>★ <strong>马克思亲自校订的最后一个版本</strong></td></tr>
+      <tr><td>德文第 2 版</td><td><strong>1882</strong></td><td><strong>7 篇 25 章</strong></td><td>马克思生前最后一版</td></tr>
+      <tr><td>英文版</td><td><strong>1887</strong></td><td><strong>8 篇 33 章</strong></td><td>Moore／Aveling 译、Engels 编</td></tr>
+      <tr><td>德文第 4 版</td><td><strong>1890</strong></td><td><strong>7 篇 25 章</strong></td><td>恩格斯编，<strong>国际通行本</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>「7 篇 25 章」与「8 篇 33 章」两口径的主要差异，就在「原始积累」是否独立成篇</strong>——德文通行本把「原始积累」并入「资本的积累过程」这一篇（于是第 1 卷只剩 7 篇、章数重组为 25 章），英文通行本则把它单列为<strong>第 VIII 篇</strong>（占第 26–33 章共 8 章）。⇒ <strong>本报告正文一律以 marxists.org 实际目录（8 篇 33 章）为准书写，并在本节与 <code>## 4b</code> 并记这一差异。</strong></p>
+  <p>★ <strong>注解②（第 4 卷《剩余价值理论》的性质，务必写清）</strong>：<strong>第 4 卷不是恩格斯编的，也不是马克思自己编定的</strong>。它是马克思原计划的「理论史」第四册的手稿，<strong>由卡尔·考茨基（Karl Kautsky）编成三卷四册，1905–1910 年出版</strong>，<strong>不在恩格斯的编纂计划之内</strong>（恩格斯只作了准备便去世）。★ 因此，<strong>把《资本论》说成「三卷」还是「四卷」，问的是「马克思计划」还是「通行出版形态」两个不同的问题</strong>（详见 <code>## 10</code>）。</p>
+  <p>★ <strong>读法提示四（三条容易混淆的「几卷／几篇／几章」）</strong>：</p>
+  <ul>
+    <li><strong>「卷」＝出版单位</strong>：<strong>三卷</strong>（第 1 卷 1867；第 2 卷 1885；第 3 卷 1894），加上后出的<strong>第 4 卷</strong>（考茨基编，1905–1910）。
+    </li>
+    <li><strong>「篇」＝马克思自己的结构单位</strong>：<strong>18 篇</strong>（8＋3＋7）。
+    </li>
+    <li><strong>「章」＝最小的分析单位</strong>：<strong>106 章</strong>（33＋21＋52，英文通行本口径）。
+  <p>★ <strong>三个数字都对，问的不是一回事。</strong> 见到「《资本论》有 X 卷」的说法时，先问：<strong>它说的是「卷」还是「册（计划）」还是「本（中译分册）」？</strong></p>
+    </li>
+  </ul>
+  <p>★ <strong>读法提示五（一个实用的「三个问题」）</strong>：拿到任何一篇，先问三件事——① <strong>它比上一篇多了什么规定？</strong>（抽象→具体的阶梯）② <strong>它用了什么材料？</strong>（概念推演／历史史料／统计／前人学说评注）③ <strong>它的结论如果推翻，哪一篇最先塌？</strong> ★ <strong>第三个问题最能帮你识别「承重墙」</strong>：<strong>第 1 卷第 1 章、第 6 章、第 25 章，第 3 卷第 9 章——这四处一旦不成立，全书都会松动。</strong></p>
+  <p>★ <strong>读法提示六（18 篇的「材料类型」，帮你决定怎么读）</strong>：</p>
+  <table>
+    <thead><tr><th>篇</th><th>主要材料</th><th>读法</th></tr></thead>
+    <tbody>
+      <tr><td>第 1 卷 第 I 篇</td><td>概念推演</td><td>★ 慢读，逐节过</td></tr>
+      <tr><td>第 1 卷 第 II 篇</td><td>概念推演（推理张力最大）</td><td>★ 慢读，跟住「三步棋」</td></tr>
+      <tr><td>第 1 卷 第 III 篇</td><td>概念 ＋ 大量工厂史料（第 10 章）</td><td>概念慢读，第 10 章可跳读</td></tr>
+      <tr><td>第 1 卷 第 IV 篇</td><td>概念 ＋ 技术史（第 14、15 章）</td><td>概念慢读，史料选读</td></tr>
+      <tr><td>第 1 卷 第 V 篇</td><td>公式推演</td><td>★ 可速读，抓结论</td></tr>
+      <tr><td>第 1 卷 第 VI 篇</td><td>形式分析</td><td>短，但极关键，慢读</td></tr>
+      <tr><td>第 1 卷 第 VII 篇</td><td>概念 ＋ 统计（第 25 章）</td><td>★ 第 23、25 章必精读</td></tr>
+      <tr><td>第 1 卷 第 VIII 篇</td><td>历史叙事</td><td>★ 可独立读，像历史书</td></tr>
+      <tr><td>第 2 卷 三篇</td><td>技术分析</td><td>★ 抓三件事即可（见 <code>## 8</code>）</td></tr>
+      <tr><td>第 3 卷 第 1–3 篇</td><td>概念 ＋ 公式</td><td>★ 第 9、13 章必精读</td></tr>
+      <tr><td>第 3 卷 第 4–6 篇</td><td>概念 ＋ 大量当时金融史料</td><td>抓「分配对象」即可</td></tr>
+      <tr><td>第 3 卷 第 7 篇</td><td>概念总结</td><td>★ 第 48 章必精读，第 52 章看「中断」</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一句话</strong>：<strong>「材料是概念推演的，慢读；材料是史料的，选读；材料是公式的，抓结论。」</strong> ——<strong>这张表能把你从「逐字死磕 2000 页」里救出来。</strong></p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>五个核心论点</span><span class="caret">▾</span></h2>
+  <p>★ 本书是<strong>叙事型非虚构论著</strong>，但它的论证是层层递进的「从抽象到具体」，故以<strong>五个核心论点</strong>给出骨架（三段式：主张／依据／为什么重要）。</p>
+  <h3>论点一：商品的二重性与劳动的二重性——全书的第一块地基</h3>
+  <p><strong>主张</strong>：商品同时是<strong>使用价值</strong>（物的有用性）与<strong>价值</strong>（人类劳动的凝结）；而生产商品的劳动同时是<strong>具体劳动</strong>（创造使用价值）与<strong>抽象劳动</strong>（形成价值）。<strong>「价值」不是物的天然属性，而是凝结在商品中的人类劳动的社会形式。</strong></p>
+  <p><strong>依据</strong>：第 1 卷第 1 章从「一个商品如何能与另一个商品相交换」入手，推出<strong>价值实体＝抽象人类劳动的凝结</strong>、<strong>价值量＝社会必要劳动时间</strong>；再由<strong>价值形式</strong>（简单的、扩大的、一般的、货币的）推演出<strong>货币的必然产生</strong>——★ <strong>货币不是被发明的，而是价值形式自身发展的必然结果</strong>。章末第 4 节「商品拜物教」给出结论式的表述：商品世界把<strong>人与人的社会关系</strong>呈现为<strong>物与物的关系</strong><span class="tag t-src">原书</span>（第 1 卷第 1 章第 4 节）。★ 马克思为此写了一整节：<strong>「商品乍看之下是一件很平常的东西，但分析表明，它实在是一件很古怪的东西，充满了形而上学的微妙和神学的怪诞。」</strong><span class="tag t-src">原书</span>（第 1 卷第 1 章第 4 节）</p>
+  <p><strong>为什么重要</strong>：★★ <strong>这是全书方法论的底座。</strong> 后面每一层（货币、资本、剩余价值、利润、地租）都是在这一层上「长出」的。★ 它也是全书最难的一章——马克思自己在 1867 年序言里提醒：<strong>「万事开头难，这在一切科学中都一样。因此，理解第一章、特别是分析商品的那一节，会最困难。」</strong><span class="tag t-talk">作者谈话</span>（1867 年第 1 版序言）他说这一章要借助的<strong>不是显微镜和化学试剂，而是「抽象力」</strong><span class="tag t-src">原书</span>（第 1 卷 1867 年序言）。★ <strong>这也解释了为什么很多人读《资本论》卡在第 1 章</strong>——<strong>它不是「难在术语」，而是难在「要求读者习惯一种把可观察的价格还原为不可观察的价值的思维」。</strong></p>
+  <h3>论点二：「劳动力」不是「劳动」——剩余价值的秘密全在这一步</h3>
+  <p><strong>主张</strong>：工人出卖给资本家的，<strong>不是「劳动」，而是「劳动力」</strong>（即劳动能力）。<strong>劳动力是一种特殊商品：它的使用价值恰恰在于它能创造出大于自身价值的价值。</strong></p>
+  <p><strong>依据</strong>：第 1 卷第 6 章给出定义——<strong>「所谓劳动力或劳动能力，应理解为存在于人的身体中的、人的肉体与精神能力的总和，人在生产任何使用价值时都要运用它。」</strong><span class="tag t-src">原书</span>（第 1 卷第 6 章；英文原文：<em>By labour-power or capacity for labour is to be understood the aggregate of those mental and physical capabilities existing in a human being, which he exercises whenever he produces a use-value of any description.</em>）★ 劳动力的<strong>价值</strong>由维持它的<strong>生活资料的价值</strong>决定，而它在一天中<strong>创造的价值</strong>可以<strong>大于</strong>这个价值——差额即<strong>剩余价值</strong>。★ 马克思还特意点出「自由劳动者」的<strong>双重含义</strong>：劳动者<strong>「自由」得一无所有</strong>（没有生产资料），又<strong>「自由」得可以出卖自己的劳动力</strong>——<strong>「free in the double sense」</strong><span class="tag t-src">原书</span>（第 1 卷第 6 章）。</p>
+  <p><strong>为什么重要</strong>：★★ <strong>这一步解决了古典经济学的死结。</strong> 斯密、李嘉图都看到了「劳动创造价值」，却无法解释<strong>在等价交换的前提下利润从何而来</strong>——因为若出卖的是「劳动」，则工资＝劳动的全部价值，利润无处生根。★ <strong>把出卖对象改为「劳动力」，等价交换与剩余价值就同时成立了</strong>。⇒ <strong>读《资本论》，若把这两个词混为一谈，后面全部读不通</strong>（这是本报告 4b 节第 ④ 条）。★ <strong>这一步也是第 5 章「总公式的矛盾」的唯一出口</strong>：剩余价值<strong>不能</strong>产生于流通（等价交换），<strong>也</strong>不能产生于流通之外；<strong>只有「劳动力」这种商品，能在流通中被买到、又在使用中创造超过其自身价值的东西。</strong></p>
+  <h3>论点三：剩余价值的两种生产方式与「机器」的重塑——资本如何改造生产过程</h3>
+  <p><strong>主张</strong>：剩余价值有两种生产途径——<strong>绝对剩余价值</strong>（延长工作日）与<strong>相对剩余价值</strong>（缩短必要劳动时间、提高生产率）。而<strong>机器大工业</strong>是相对剩余价值生产的最高形态，它把工人从「工具的使用者」变成「机器的附属物」。</p>
+  <p><strong>依据</strong>：第 1 卷第 7–11 章从<strong>劳动过程</strong>与<strong>价值增殖过程</strong>的统一讲起，到<strong>不变资本与可变资本</strong>的区分、<strong>剩余价值率 = m/v</strong>，再到第 10 章<strong>几乎整章的工作日斗争史</strong>（英国工厂立法）；第 12–15 章讲<strong>协作、分工与工场手工业、机器与大工业</strong>，并讨论<strong>「机器排挤工人」与补偿理论的争论</strong><span class="tag t-src">原书</span>（第 1 卷第 10、13、14、15 章）。★ 第 8 章的关键区分是：<strong>不变资本</strong>（生产资料）在生产中<strong>只转移价值、不创造价值</strong>；<strong>可变资本</strong>（购买劳动力）<strong>创造大于自身价值的新价值</strong>——<strong>这是《资本论》对古典经济学的一个关键贡献</strong>。</p>
+  <p><strong>为什么重要</strong>：★★ <strong>它把「剥削」从道德词变成了机制词。</strong> 工作日不是自然给定的，而是<strong>斗争的结果</strong>；机器不是中性的，它被资本采用是为了<strong>把相对剩余价值制度化</strong>。★ 第 15 章里关于「机器是否会排挤工人」的讨论，<strong>至今仍是「技术进步与就业」这一现代议题的最早系统文本</strong>。★ 第 14 章则把斯密的「分工」翻转过来：斯密在《国富论》里以制针工场证明分工提高生产力，马克思在<strong>同一个例子上看到「工人被片面化」</strong>——<strong>两人对同一事实给出相反的判断，这是全书与《国富论》对话最直接的一处。</strong></p>
+  <h3>论点四：积累、产业后备军与「资本主义积累的一般规律」</h3>
+  <p><strong>主张</strong>：剩余价值不断转化为新资本（<strong>积累</strong>），而资本有机构成的提高会<strong>不断制造出相对过剩人口</strong>，即<strong>产业后备军</strong>。<strong>一极是财富的积累，另一极是贫困的积累。</strong></p>
+  <p><strong>依据</strong>：第 1 卷第 23–25 章从<strong>简单再生产</strong>讲到<strong>剩余价值转化为资本</strong>，再到<strong>一般规律</strong>。★ 原文写下：<strong>「在一极是财富的积累，同时在另一极，即在把它作为资本来生产的阶级方面，是贫困、劳动折磨、受奴役、无知、粗野和道德堕落的积累。」</strong><span class="tag t-src">原书</span>（第 1 卷第 25 章；英文原文：<em>Accumulation of wealth at one pole is, therefore, at the same time accumulation of misery, agony of toil slavery, ignorance, brutality, mental degradation, at the opposite pole</em>）★ 并指出相对过剩人口<strong>「属于资本，好像是在资本的要求下生出来的」</strong><span class="tag t-src">原书</span>（第 1 卷第 25 章）。★ 第 23 章「简单再生产」的意义常被低估：<strong>即使资本家把全部剩余价值都消费掉，再生产也会反复生产出「资本关系」本身</strong>——<strong>工人每一轮都重新作为「一无所有的劳动者」出场。</strong></p>
+  <p><strong>为什么重要</strong>：★★ <strong>这是全书最具当代感的机制之一</strong>：「产业后备军」不是失业的偶然，而是<strong>资本积累的结构性产物</strong>，它反过来<strong>压低在业工人的工资、强化资本的议价能力</strong>。★ 无论是否接受它的全部结论，<strong>「失业与积累之间的结构性关联」这个提问方式，是现代经济学无法绕开的一环</strong>。★ 但也要注意：<strong>第 25 章的论断是关于「两极之间关系」的命题，不是「工资必然绝对下降」的数值预言</strong>（见 4b 节末条）。</p>
+  <h3>论点五：原始积累——资本关系的历史起点不是「勤俭」，而是暴力与立法</h3>
+  <p><strong>主张</strong>：资本主义<strong>不是从自然状态长出来的</strong>，它有一个<strong>历史起点</strong>：直接生产者被<strong>剥夺</strong>其生产资料（土地），从而被迫成为出卖劳动力的「自由」劳动者。这个过程，马克思称之为<strong>「所谓原始积累」</strong>。</p>
+  <p><strong>依据</strong>：第 1 卷第 26–33 章（英文通行本第 VIII 篇）。第 26 章给出全篇的讽刺性框架：<strong>「这种原始积累在政治经济学中所起的作用，同原罪在神学中所起的作用几乎一模一样。」</strong><span class="tag t-src">原书</span>（第 1 卷第 26 章；英文原文：<em>This primitive accumulation plays in Political Economy about the same part as original sin in theology.</em>）★ 它拆掉的是一个<strong>「勤劳者积累财富、懒汉沦落」的神话</strong>——<strong>「很久以前有两种人：一种是勤劳、聪明，而且首先是节俭的精英；另一种是懒汉和流氓，挥霍掉了自己的财物还不止。」</strong><span class="tag t-src">原书</span>（第 1 卷第 26 章）第 31 章的著名结语是：<strong>「资本来到世间，从头到脚，每个毛孔都滴着血和肮脏的东西。」</strong><span class="tag t-src">原书</span>（第 1 卷第 31 章；英文原文：<em>capital comes dripping from head to foot, from every pore, with blood and dirt.</em>）</p>
+  <p><strong>为什么重要</strong>：★★ <strong>它把「资本主义」从「自然秩序」改写成「历史产物」。</strong> 一旦资本关系有起点，它就有可能<strong>有终点</strong>——这是全书政治结论的文本根据。★ 同时要注意：<strong>这一篇的史学依据（15–18 世纪英国圈地史）在当代经济史研究中有争议</strong>（见 <code>## 5</code> 第 5 条），<strong>「文本说了什么」与「史实如何」是两件事</strong>。★ 第 33 章「现代殖民理论」从反面补足了这个论点：<strong>在殖民地，因为土地可以自由取得，「雇佣工人」无法被制造出来</strong>——<strong>韦克菲尔德的理论反过来证明了原始积累（即「剥夺」）的必要性。</strong></p>
+  <p>★ <strong>五个论点的关系不是并列，而是层层加码</strong>：论点一给「价值」，论点二给「剩余价值的来源」，论点三给「剩余价值的生产方式」，论点四给「剩余价值的去向与后果」，论点五给「这套关系的起源」。<strong>抽掉任何一层，后面都无从谈起。</strong></p>
+  <p>★ <strong>五个论点的一句话版本（便于记忆）</strong>：</p>
+  <table>
+    <thead><tr><th>论点</th><th>一句话</th><th>关键章</th><th>若要核原文</th></tr></thead>
+    <tbody>
+      <tr><td>一</td><td>价值是抽象劳动的凝结，人与人被物与物盖住</td><td>第 1 章</td><td>第 1 章第 1、4 节</td></tr>
+      <tr><td>二</td><td>出卖的是「劳动力」不是「劳动」，差额即剩余价值</td><td>第 6 章</td><td>第 6 章</td></tr>
+      <tr><td>三</td><td>绝对靠延长工时，相对靠提高生产率，机器是最强形态</td><td>第 7–15 章</td><td>第 8、10、15 章</td></tr>
+      <tr><td>四</td><td>积累制造产业后备军，一极财富一极贫困</td><td>第 23–25 章</td><td>第 23、25 章</td></tr>
+      <tr><td>五</td><td>资本关系有起点，起点是暴力剥夺与立法</td><td>第 26–33 章</td><td>第 26、31 章</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一个「对照组」记法</strong>：<strong>把这五点与《国富论》对应着记</strong>——<strong>斯密的「分工→财富」对应论点三（但判断相反）；斯密的「看不见的手」对应论点一（但马克思要问「为什么看不见的是人和人的关系」）；斯密的「资本积累」对应论点四（但马克思加了「后备军」这一层）。</strong> ★ <strong>这样记，政治经济学这条线就成了一条「对话链」。</strong></p>
+  <p>★ <strong>五个论点各自的一段深读（把每个论点「往下再钻一层」）</strong>：</p>
+  <p><strong>一、为什么「价值」必须是一个「不可观察」的范畴。</strong> ★ 第 1 章最容易被现代读者误解的一点是：<strong>马克思不是在做「价格理论」，而是在做「价格背后的东西」的理论。</strong> ★ 价格是一双眼睛就能看到的（一磅糖多少钱）；而「价值」是<strong>永远看不到的</strong>——<strong>它只能被「推出」：因为不同商品能按稳定比例相交换，所以它们背后必有一个「共同的东西」；而这个共同的东西不能是使用价值（使用价值各不相同、无从比较），只能是「凝结的人类劳动」。</strong> ★ 这是<strong>一个「溯因推理」（inference to the best explanation）</strong>，不是一次测量。★ <strong>理解了这一点，就理解了为什么第 3 卷第 9 章会成为全书最麻烦的地方</strong>——<strong>「转形」要做的，恰恰是把一个不可观察的量（价值）与一个可观察的量（价格）之间的桥搭起来</strong>（<code>## 5</code> 第 3 条、<code>## 9</code>）。★ <strong>一句话：价值的「不可观察性」不是《资本论》的缺陷，而是它的起点设定</strong>——<strong>也正是所有争论从这里开始的原因。</strong></p>
+  <p><strong>二、「劳动力」这一步之差，到底改变了什么。</strong> ★ 把出卖对象从「劳动」改成「劳动力」，看起来只是一个用词，实则是<strong>一次「把不可能变成可能」的操作</strong>。★ 我们把它写成四步看：<strong>① 若出卖的是「劳动」，则按等价交换，工资＝劳动所创造的全部价值 ⇒ 剩余价值＝0；② 但资本家明明拿到了剩余价值 ⇒ 矛盾；③ 唯一的出路是：工人出卖的</strong>不是「劳动」本身，而是「劳动能力」<strong>；④ 劳动能力是一种</strong>特殊的商品<strong>——</strong>它的价值由生活资料决定，而它的使用（即劳动）能创造出超过其自身价值的价值。<strong> ★ </strong>于是「等价交换」与「剩余价值」就不再冲突：<strong> </strong>流通过程中一切按等价交换进行，剩余价值却在使用劳动力这个「使用价值」的过程中被生产出来。<strong> ★ </strong>这就是全书唯一一次「剩余价值的来源」定义，也是它最不容含混的一步。<strong>★ 顺带说清一个常被混淆的层次：</strong>「劳动力」是商品，「劳动」是过程<strong>——</strong>前者被买、被卖、有价格；后者是购买之后发生的事情，本身没有价格。<strong> ★ </strong>说「劳动的价格」在马克思看来是「不合理的用语」，但它是「由生产关系本身产生的现象形式」<strong>（第 1 卷第 19 章）——</strong>这正通向后来的「工资」一篇。**</p>
+  <p><strong>三、「机器」这一章为什么是全书最常被误读的一章之一。</strong> ★ 第 15 章常被读成「控诉机器」，但它的论点其实更冷静：<strong>机器本身不是问题，问题在于「机器被资本采用的方式」。</strong> ★ 它有三层论证：<strong>① 机器提高生产率 ⇒ 降低生活资料价值 ⇒ 缩短必要劳动时间 ⇒ 增加相对剩余价值；② 机器把技能从工人身上「转移」到机器上 ⇒ 削弱工人对自身技能的垄断 ⇒ 可以用更低廉的劳动力（历史上是女工与童工）⇒ 增强资本对劳动的支配；③ 「机器排挤工人」是要具体分析的，因为补偿「不是自动的、也不必然抵消」</strong>（<code>## 7</code> 第 IV 篇）。★ <strong>所以在马克思这里，「技术进步」与「工人处境」是两个必须分开谈的问题</strong>——<strong>技术进步是事实，它带来的分配后果是另一件事。</strong> ★ <strong>这也解释了为什么这一章在 20 世纪的每一次「自动化—就业」讨论里都会被重新翻出来。</strong></p>
+  <p><strong>四、「贫困化」必须分成三种不同的命题。</strong> ★ 第 25 章的那句「两极积累」在大众传播里常被压缩成「工人会越来越穷」——<strong>但这一个压缩至少混淆了三个不同的命题</strong>：<strong>① 相对命题</strong>：<strong>财富在一极积累时，另一极的贫困（作为一个相对位置）也在加深</strong>；<strong>② 绝对命题</strong>：<strong>工人的实际工资或生活水平会长期绝对下降</strong>；<strong>③ 结构命题</strong>：<strong>资本积累会结构性地生产出「相对过剩人口」，从而持续压低劳动的议价能力。</strong> ★ <strong>原文最有力的是第 ③ 条（产业后备军机制），最容易证伪的是第 ② 条</strong>——<strong>本报告把三者分开写，正是为了不把「机制」误读成「数值预言」</strong>（<code>## 5</code> 第 4 条、4b 节末条）。★ <strong>一个提问方式的转变比一个数字结论更持久</strong>——<strong>「失业与积累之间有没有结构性关联」这个问题，今天仍在被讨论。</strong></p>
+  <p><strong>五、「原始积累」的双重功能：它既是历史叙述，也是逻辑前提。</strong> ★ 第 26–33 章表面上是<strong>一部英国 15–18 世纪的剥夺史</strong>，但它在全书里承担的是<strong>一个逻辑任务</strong>：<strong>打断那个「循环论证」</strong>——<strong>「资本积累以资本主义生产为前提，而资本主义生产又以资本积累为前提」。</strong> ★ <strong>为了说明「最初的资本从哪来」，必须假设一个「先于资本主义积累的积累」，这就是「原始积累」。</strong> ★ 于是这一篇同时是<strong>历史</strong>（圈地、血腥立法、殖民）与<strong>逻辑</strong>（全书需要一个「起点」）——<strong>这两条线在文本里是缠在一起的</strong>。★ <strong>这也是为什么对它的批评会分成两类</strong>：<strong>批评史料细节的（历史学），与批评「起点假设」本身的（经济学与哲学）</strong>——<strong>本报告 <code>## 5</code> 第 5 条处理前者，不处理后者。</strong></p>
+  <p>★ <strong>五段深读合起来看，有一条共同的线索</strong>：<strong>《资本论》的每一个关键概念，都在做同一件事——把「看起来自然、独立、自明的东西」还原为「历史性的社会关系」。</strong> <strong>价值的自然性、价格的自明性、机器的中立性、贫困的偶然性、资本的永恒性——五者逐个被拆开。</strong></p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <ol>
+    <li>★★ <strong>先读「导读三件套」：第 1 卷第 1 版序言 ＋ 第 2 版跋 ＋ 第 1 章第 4 节「商品拜物教」。</strong> 序跋给出全书的问题意识与方法——★ 马克思在 1873 年跋里写下全书最著名的方法论自述：<strong>「我的辩证方法，从根本上说，不仅与黑格尔的不同，而且是它的直接对立面。」</strong><span class="tag t-talk">作者谈话</span>（1873 年第 2 版跋）；而「拜物教」一节给出全书的中心命题。<strong>这三块读完，你就有了一张地图。</strong>
+    </li>
+    <li>★★ <strong>再攻「承重墙两章」：第 1 卷第 1 章（尤其第 1、4 节）与第 6 章。</strong> 第 1 章给「价值」，第 6 章给「劳动力」——<strong>《资本论》的全部机关都装在这两章里</strong>。★ 第 1 章可以<strong>慢读</strong>，读不懂就停在第 1 节，先把「使用价值／价值」「具体劳动／抽象劳动」两对词分清；<strong>清不清这两对词，决定了后面 30 章能不能读。</strong>
+    </li>
+    <li><strong>第 1 卷第 7–11 章是「最像经济学」的一段</strong>：价值增殖过程、不变／可变资本、剩余价值率、工作日。★ <strong>第 10 章「工作日」几乎是英国工厂立法史</strong>，读起来像史料汇编——可以<strong>跳读</strong>，但要读它的<strong>开头与结尾</strong>，那里有「工作日不是自然常数」的核心论断。
+    </li>
+    <li>★ <strong>第 1 卷第 26–33 章（原始积累）可以单独读。</strong> 它是全书<strong>最像历史书</strong>、也<strong>最有争议</strong>的一部分（英国圈地史、血腥立法、现代殖民理论）。<strong>如果你时间有限、又只想看一段《资本论》，就读第 26 章。</strong>
+    </li>
+    <li>★★ <strong>第 2、3 卷不要一开始就碰。</strong> 第 2 卷（资本的流通过程）<strong>技术性最强</strong>，适合在读完第 1 卷后、带着「资本的三种形态怎么转」的问题去读；第 3 卷（总过程）才是<strong>利润、利息、地租</strong>这些「看得见的形式」的登场处——<strong>但那是恩格斯的编纂，读时要把这件事记在心上</strong>（见 <code>## 10</code>）。
+    </li>
+  </ol>
+  <h3>如果你是「已读」</h3>
+  <ol>
+    <li><strong>做一次「抽象阶梯」练习</strong>：把第 1 卷的篇名按顺序抄一遍（商品→货币→资本→剩余价值→工资→积累→原始积累），在旁边写「这一篇比上一篇<strong>多了哪个具体规定</strong>」。★ <strong>你会发现《资本论》的第 1 卷是一条严格上升的抽象—具体阶梯，而不是七零八落的专题。</strong>
+    </li>
+    <li>★ <strong>把「转形问题」当成一个独立问题来读</strong>：第 1 卷全篇讲「价值」，第 3 卷第 1–2 篇才把「价值」转成「生产价格」，于是<strong>总价格＝总价值</strong>能成立，但<strong>单个部门的「价格」会偏离「价值」</strong>。★ <strong>这个偏离是 20 世纪一切「《资本论》到底成不成立」争论的焦点</strong>（见 <code>## 5</code> 第 3 条与 <code>## 9</code>）。
+    </li>
+    <li>★ <strong>把「第 1 卷是马克思的，第 2、3 卷是恩格斯的」这件事做成读书笔记的一栏。</strong> 读第 2、3 卷时，凡遇到「马克思到底是不是这个意思」的判断，都要标注「此处为恩格斯编纂文本」，再去查 MEGA² 的异文（见 <code>## 10</code>）。★ <strong>这不是吹毛求疵，而是读一部「未由作者亲自定稿」的大书的必要纪律。</strong>
+    </li>
+    <li><strong>对照《国富论》读第 1 卷第一篇与第 14 章</strong>：斯密的「劳动分工」是《国富论》开篇的引擎，<strong>《资本论》第 14 章（分工与工场手工业）恰恰是对斯密的系统性回应与推进</strong>——同一个「分工」，斯密看到「富裕」，马克思看到「工人被片面化」。<strong>两本对照读，政治经济学这条线就立起来了。</strong>
+    </li>
+  </ol>
+  <h3>最容易读错的三处（先知道，少走弯路）</h3>
+  <ol>
+    <li>★ <strong>把「劳动力」读成「劳动」</strong>：第 6 章的这一步一旦读错，剩余价值的产生就永远是个谜。
+    </li>
+    <li>★ <strong>把「第 1 卷的价值」与「第 3 卷的价格」当成一回事</strong>：<strong>它们之间隔着「转形」</strong>，而这个「隔」正是全书最大的争议所在。
+    </li>
+    <li>★ <strong>把「产业后备军」读成「失业是资本主义的阴谋」</strong>：<strong>原文讲的是结构机制</strong>（积累制造相对过剩人口），<strong>不是一个关于动机的指控</strong>。
+    </li>
+  </ol>
+  <h3>一条「最短路线」（如果你时间有限）</h3>
+  <p>★ <strong>只读三段，也能拿到这本书的骨架</strong>：</p>
+  <ol>
+    <li><strong>第 1 卷第 1 章第 4 节「商品拜物教」</strong>——拿到方法论（物与物的关系背后是人与人的关系）。
+    </li>
+    <li><strong>第 1 卷第 6 章「劳动力的买和卖」</strong>——拿到剩余价值的机关（出卖的是劳动力，不是劳动）。
+    </li>
+    <li><strong>第 1 卷第 26 章「原始积累的秘密」</strong>——拿到历史维度（资本关系有起点，不是自然的）。
+  <p>★ <strong>这三段合起来不到 40 页，却是全书的三根桩。</strong> 剩下的，都是在这三根桩上「长出来」的。</p>
+    </li>
+  </ol>
+  <h3>★ 如果你「读不下去」：三个可操作的办法</h3>
+  <ol>
+    <li>★★ <strong>先读「二手地图」，再回原文。</strong> <strong>不要一上来就硬啃第 1 章</strong>。可以先用一篇靠谱的导读（或本报告的上部）拿到「这本书要干什么」的整体图景，再回原文——<strong>带着问题读，比空白着读效率高得多。</strong> ★ <strong>注意</strong>：二手导读的版本归属往往不准（尤其「几卷」「谁译的」），<strong>读时报以怀疑，关键事实回原文或回本报告第 4 节核。</strong>
+    </li>
+    <li>★ <strong>「倒着读」第 1 卷里的社会史部分。</strong> 第 1 卷第 10 章（工作日）、第 25 章（贫困统计）、第 26–33 章（原始积累）<strong>都是叙事性的，好读</strong>；先读它们，<strong>你对「这本书在讲什么社会」就会有一个具体印象</strong>，再回第 1 章读那些抽象概念，会轻松很多。
+    </li>
+    <li>★ <strong>用「三个符号」当拐棍</strong>：<strong>W（商品）、G（货币）、m（剩余价值）</strong>。★ <strong>全书大部分公式都能用这三个符号串起来</strong>：<strong>W—G—W</strong>（为买而卖）、<strong>G—W—G′</strong>（为卖而买）、<strong>G′ = G + ΔG</strong>、<strong>m′ = m/v</strong>。<strong>把这三个符号画在一张纸上，边读边往里放。</strong>
+    </li>
+  </ol>
+  <h3>★ 如果你要写读书笔记：一张可复用的模板</h3>
+  <p>★ <strong>每读完一篇，填四个格子</strong>（这是本报告下部「逐章要点」的方法来源）：</p>
+  <table>
+    <thead><tr><th>格子</th><th>要填什么</th><th>例（第 1 卷第 6 章）</th></tr></thead>
+    <tbody>
+      <tr><td><strong>① 这一篇比上一篇多了什么规定</strong></td><td>抽象阶梯的下一级</td><td>「从『资本』到『剩余价值的来源』」</td></tr>
+      <tr><td><strong>② 它的核心命题</strong></td><td>一句话</td><td>「工人出卖的是劳动力，不是劳动」</td></tr>
+      <tr><td><strong>③ 它的关键证据</strong></td><td>章句／史料／公式</td><td>「劳动力定义；free in the double sense」</td></tr>
+      <tr><td><strong>④ 它被谁质疑、怎么质疑</strong></td><td>姓名＋年份＋主张</td><td>「转形问题：Böhm-Bawerk 1896」</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>填满这张表，你就同时得到了「结构」与「争议」两样东西。</strong> ★ <strong>特别注意第 ④ 格</strong>：<strong>《资本论》的每一篇几乎都对应着一条后来的争论</strong>——<strong>第 1、6 章对应「价值是否可测量」；第 25 章对应「贫困化理论」；第 3 卷第 9 章对应「转形」；第 3 卷第 13 章对应「利润率下降」。</strong></p>
+  <h3>★ 一个「对照阅读」的清单（与《国富论》并读）</h3>
+  <p>★ <strong>如果你想同时握住「古典」与「批判」两条线，按下面四处对照读</strong>：</p>
+  <table>
+    <thead><tr><th>主题</th><th>《国富论》（1776）</th><th>《资本论》（1867）</th></tr></thead>
+    <tbody>
+      <tr><td><strong>分工</strong></td><td>第一篇第 1 章：制针工场，分工提高生产率</td><td>第 1 卷第 14 章：分工使工人「片面化」为「局部工人」</td></tr>
+      <tr><td><strong>价值／价格</strong></td><td>第一篇第 5–7 章：劳动是价值的尺度</td><td>第 1 卷第 1 章 ＋ 第 3 卷第 9 章：价值与生产价格</td></tr>
+      <tr><td><strong>资本积累</strong></td><td>第二篇：资本积累与「生产性劳动」</td><td>第 1 卷第 23–25 章：积累与产业后备军</td></tr>
+      <tr><td><strong>分配</strong></td><td>第一篇第 8–11 章：工资、利润、地租</td><td>第 3 卷第 48 章：三位一体公式的批判</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>四处对照读完，「政治经济学线」就从《国富论》的乐观，走到《资本论》的批判——这条线本身就成了一部思想史。</strong></p>
+  <h3>★ 一份可执行的排程：12 周读完三卷</h3>
+  <p>★ <strong>《资本论》读不完，多半不是难，而是「没有排程」。</strong> 下面这张表按「每周一个单元」排，<strong>原则是「概念章慢读、史料章选读、公式章抓结论」</strong>（对应第 1 节「读法提示六」）：</p>
+  <table>
+    <thead><tr><th>周</th><th>内容</th><th>目标</th><th>提醒</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>第 1 卷 第 1 版序言 ＋ 第 2 版跋 ＋ 第 1 章第 1–2 节</td><td>建立「价值／劳动二重性」两对词</td><td>★ 最慢的一周，别赶</td></tr>
+      <tr><td>2</td><td>第 1 章第 3–4 节 ＋ 附录《价值形式》</td><td>拿到「货币必然性」与「拜物教」</td><td>★ 第 4 节是方法论钥匙</td></tr>
+      <tr><td>3</td><td>第 2–3 章</td><td>拿到「私人劳动／社会劳动」与货币五职能</td><td>第 3 章可较快</td></tr>
+      <tr><td>4</td><td>第 4–6 章</td><td>★★ 拿到「劳动力」这一步</td><td>★ 三章连读，不拆</td></tr>
+      <tr><td>5</td><td>第 7–11 章</td><td>剩余价值率、不变／可变资本、工作日</td><td>第 10 章史料可跳读</td></tr>
+      <tr><td>6</td><td>第 12–15 章</td><td>相对剩余价值、分工、机器</td><td>第 15 章史料选读</td></tr>
+      <tr><td>7</td><td>第 16–22 章</td><td>两种剩余价值的结合、工资形式</td><td>第 17 章公式可速读</td></tr>
+      <tr><td>8</td><td>第 23–25 章</td><td>★★ 积累、产业后备军、一般规律</td><td>★ 第 23、25 章必精读</td></tr>
+      <tr><td>9</td><td>第 26–33 章</td><td>原始积累、殖民反证</td><td>★ 可当历史书读</td></tr>
+      <tr><td>10</td><td>第 2 卷 三篇</td><td>三形态三循环、固定／流动、两大部类</td><td>★ 抓三件事即可</td></tr>
+      <tr><td>11</td><td>第 3 卷 第 1–15 章</td><td>利润、平均利润、转形、利润率下降</td><td>★ 第 9、13 章必精读</td></tr>
+      <tr><td>12</td><td>第 3 卷 第 16–52 章</td><td>商业资本、生息资本、地租、三位一体公式</td><td>★ 第 48 章收尾，第 52 章看中断</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>三条使用说明</strong>：<strong>① 这张表是「第一遍」的排程，不是「读完」的排程</strong>——<strong>第 1 章与第 3 卷第 9 章，值得第二轮再读一遍。</strong> ★ <strong>② 第 5、10、11 周是最容易放弃的三处</strong>（第 10 章史料、第 2 卷技术性、第 3 卷公式密度），<strong>遇到卡壳就按「抓结论」原则跳过细节，先往下走</strong>——<strong>《资本论》是「回头再读」比「原地死磕」更有效的一本书。</strong> ★ <strong>③ 如果你只有 3 周</strong>：第 1 周读「序跋＋第 1 章第 4 节＋第 6 章」，第 2 周读「第 23、25、26 章」，第 3 周读「第 3 卷第 9 章＋第 48 章」——<strong>这六块能拿到全书的骨架与争议点。</strong></p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是必写项，因为这本书有一个别人常按错方向去找的坑：Project Gutenberg 上根本没有《资本论》的英文全译本。</strong></p>
+  <p><strong>先说最要紧的五条</strong>：</p>
+  <blockquote>
+    <p><strong>⚠ ① Project Gutenberg 上没有《资本论》英文全译本。</strong> 实测 PG 上马克思的英文书，只有 <strong>《政治经济学批判》（<em>A Contribution to the Critique of Political Economy</em>，#46423）</strong>，<strong>没有《资本论》任何一卷的英文全译</strong>。★ <strong>别按 PG 编号去找它——会扑空。</strong>（PG 上另有西班牙文《El capital》#67939、希腊文《Το κεφάλαιον》#37098 等译本，<strong>都不是英文全本</strong>。）英文公版全文的入口是 <strong>marxists.org</strong> 与 <strong>archive.org 的 Kerr 扫描</strong>。</p>
+    <p><strong>⚠ ② 英文公版全文的可靠入口是 marxists.org 三卷</strong>：第 1 卷 <code>…/1867-c1/</code>（<strong>Moore／Aveling 译、Engels 编，1887</strong>，8 篇 33 章 ＋ 附录）、第 2 卷 <code>…/1885-c2/</code>（<strong>I. Lasker 译，据 Progress Publishers 1956</strong>，3 篇 21 章）、第 3 卷 <code>…/1894-c3/</code>（<strong>苏联马列主义研究院 1959 年版</strong>，7 篇 52 章）。★ 另有一组 <strong>Untermann 译本 PDF</strong>（<code>…/1867-c1/untermann/</code>），<strong>但那是 PDF，本报告不作引文依据</strong>。</p>
+    <p><strong>⚠ ③ 英文第 1 卷的通行本是「8 篇 33 章」，德文通行本是「7 篇 25 章」，差异主要在「原始积累」是否独立成篇。</strong> 见第 1 节注解①。</p>
+    <p><strong>⚠ ④ 首个中文全译本是郭大力、王亚南译本，1938 年由读书生活出版社出版，据德文版译出。</strong> 这是<strong>中译史的里程碑</strong>——此前的中译都只是部分或间接转译。</p>
+    <p><strong>⚠ ⑤ 2004 年人民出版社版第 1 卷的校订依据是 MEGA² II/10（仍是德文第 4 版），第 2、3 卷则退回柏林狄茨版</strong> —— 学界对此有批评，<strong>本报告如实转述并标明出处</strong>（见来源清单）。</p>
+  </blockquote>
+  <p><strong>中文译本谱系</strong>：</p>
+  <table>
+    <thead><tr><th>译本</th><th>出版</th><th>底本／语言</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td><strong>陈启修</strong> 译</td><td>1930</td><td>据日译，<strong>仅第 1 卷第 1 分册</strong></td><td>早期节译，未译全</td></tr>
+      <tr><td><strong>潘冬舟</strong> 译</td><td>1930 年代</td><td>据德文／日文</td><td>早期译本，<strong>未能译全</strong></td></tr>
+      <tr><td><strong>王思华</strong> 译</td><td>1930 年代</td><td>据德文</td><td>早期译本</td></tr>
+      <tr><td><strong>侯外庐、王思华</strong> 译</td><td>1932 起</td><td>据德文／法文</td><td>★ 早期较系统的译本</td></tr>
+      <tr><td><strong>郭大力、王亚南</strong> 译</td><td><strong>1938</strong>（读书生活出版社）</td><td>★ <strong>据德文版</strong></td><td>★★ <strong>首个中文全译本</strong>，中译史里程碑</td></tr>
+      <tr><td><strong>人民出版社</strong> 新版</td><td><strong>2004</strong>；另有《马恩文集》第 5–7 卷（2009）</td><td>据德文重新校订</td><td>★ 现行通行本；<strong>第 1 卷据 MEGA² II/10，第 2、3 卷退回柏林狄茨版</strong>（学界有批评）</td></tr>
+    </tbody>
+  </table>
+  <p><strong>★ 该选哪个——三句话结论</strong>：</p>
+  <ol>
+    <li><strong>中文读者 → 首选人民出版社 2004 年版</strong>（或《马恩文集》2009 版第 5–7 卷）。它是现行最通行的学术版；<strong>但要知道它的第 2、3 卷底本相对保守</strong>。
+    </li>
+    <li><strong>要做文本研究 → 必须回英文或德文原文。</strong> 英文推荐 <strong>marxists.org 三卷</strong>（公版、可全文检索）作入门对照；<strong>Kerr 版扫描（archive.org）</strong>作版本佐证。<strong>德文原版另有 MLWerke 的在线全文</strong>（marxists.org 第 1 卷页有链接）。
+    </li>
+    <li><strong>见到「《资本论》在古腾堡计划里有全译本」的说法，直接判定为错。</strong> PG 只有《政治经济学批判》（#46423）。★ 这是本报告第 4b 节与来源清单都单独列出的一条。
+    </li>
+  </ol>
+  <p><strong>★ 中译史为什么值得单列一节</strong>：《资本论》的中译不是「一次翻译」，而是<strong>一条跨越三十年的接力</strong>——<strong>1930 年代的几种译本都只能译出片段</strong>（陈启修据日译只出第 1 分册，潘冬舟、王思华也未能译全），<strong>直到 1938 年郭大力、王亚南的全译本才第一次让中文读者读到完整的三卷</strong>。★ <strong>这也是为什么「据哪一版」在这里格外重要</strong>：<strong>早年译本多据日译（转译），郭王译本据德文（直译）</strong>——<strong>底本不同，术语与判断都会不同。</strong></p>
+  <p>★ <strong>术语是一个跨译本的「对不上号」问题</strong>：<strong>「劳动力／劳动能力」「剩余价值／剩余价值率」「不变资本／可变资本」「固定资本／流动资本」「生产价格」「原始积累」</strong>——这些核心词在不同中译本里的译法并不完全统一；★ <strong>尤其「劳动力」与「劳动」</strong>：<strong>若某一译本在这两个词上区分不清，第 1 卷第 6 章的关键一步就读不出来。</strong> ⇒ <strong>选用中译本时，建议先翻到第 1 卷第 6 章，看它是否把「劳动力（Arbeitskraft）」与「劳动（Arbeit）」明确区分开。</strong> ★ <strong>这是一个极简的「译本体检」。</strong></p>
+  <p>★ <strong>三条底本对照（便于判断你手上的本子）</strong>：</p>
+  <table>
+    <thead><tr><th>底本</th><th>特征</th><th>影响</th></tr></thead>
+    <tbody>
+      <tr><td>德文第 1 版（1867）</td><td>6 章 22 节，价值形式作附录</td><td>早期译本（部分）所据；<strong>结构与通行本差异最大</strong></td></tr>
+      <tr><td>德文第 2、4 版</td><td>7 篇 25 章</td><td>德文通行本；<strong>「原始积累」并入积累篇</strong></td></tr>
+      <tr><td>法文版／英文版</td><td>8 篇 33 章</td><td>英文通行本所据；<strong>「原始积累」独立成篇</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一个实用的判断法</strong>：<strong>打开你手上中译本的目录，数一数第 1 卷是 7 篇还是 8 篇。</strong> ——<strong>8 篇的，其结构接近英文／法文口径；7 篇的，接近德文口径。</strong> ★ <strong>两种都对，但它们对「原始积累」的处理不同</strong>（见第 1 节注解①）。</p>
+  <p><strong>★ 两个必须提醒的坑</strong>：</p>
+  <ol>
+    <li><strong>不要把《资本论》与马克思别的书搞混</strong>：1859 年的《政治经济学批判》（<em>Zur Kritik der Politischen Oekonomie</em>）是《资本论》的<strong>前身与初稿</strong>——马克思在 1867 年序言里写明，<strong>「我面前这部著作的第 1 卷，是我 1859 年出版的《政治经济学批判》的续篇」</strong><span class="tag t-src">原书</span>（第 1 卷 1867 年序言）；<strong>《政治经济学批判大纲》（《1857–1858 年经济学手稿》）</strong>是更早的手稿；<strong>《剩余价值理论》</strong>则是《资本论》第 4 卷。
+    </li>
+    <li><strong>不要用「资本论」三个字去检索别的书</strong>：「资本」已是通用经济学术语，大量当代著作（如皮凯蒂《21 世纪资本论》）都用它作书名题眼，<strong>它们都不是马克思这本书</strong>。
+    </li>
+  </ol>
+  <p>★ <strong>核心术语的德—英—中对照（这是「对不上号」问题的解药）</strong>：</p>
+  <table>
+    <thead><tr><th>德文（原）</th><th>英文（通行译法）</th><th>中文（通行译法）</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>Ware</td><td>commodity</td><td>商品</td><td>第 1 卷的起点</td></tr>
+      <tr><td>Gebrauchswert</td><td>use-value</td><td>使用价值</td><td>质的问题</td></tr>
+      <tr><td>Tauschwert</td><td>exchange value</td><td>交换价值</td><td>量的表现</td></tr>
+      <tr><td>Arbeit</td><td>labour</td><td>劳动</td><td>★ 与下一条严格区分</td></tr>
+      <tr><td>Arbeitskraft</td><td>labour-power</td><td>劳动力（劳动能力）</td><td>★★ 第 6 章的承重墙</td></tr>
+      <tr><td>Mehrwert</td><td>surplus value</td><td>剩余价值</td><td>全书的中心范畴</td></tr>
+      <tr><td>Verwertung</td><td>valorization</td><td>价值增殖</td><td>资本运动的实质</td></tr>
+      <tr><td>konstantes Kapital</td><td>constant capital</td><td>不变资本</td><td>只转移价值</td></tr>
+      <tr><td>variables Kapital</td><td>variable capital</td><td>可变资本</td><td>创造新价值</td></tr>
+      <tr><td>fixes Kapital</td><td>fixed capital</td><td>固定资本</td><td>价值分批转移</td></tr>
+      <tr><td>zirkulierendes Kapital</td><td>circulating capital</td><td>流动资本</td><td>价值一次转移</td></tr>
+      <tr><td>Produktionspreis</td><td>price of production</td><td>生产价格</td><td>第 3 卷第 9 章</td></tr>
+      <tr><td>Ursprüngliche Akkumulation</td><td>primitive accumulation</td><td>原始积累</td><td>第 26–33 章</td></tr>
+      <tr><td>Warenfetischismus</td><td>commodity fetishism</td><td>商品拜物教</td><td>第 1 章第 4 节</td></tr>
+      <tr><td>Ausbeutung</td><td>exploitation</td><td>剥削</td><td>m′ 所度量者</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>三点使用提醒</strong>：★ <strong>① 「劳动力」与「劳动」在任何语言里都必须分开记</strong>——<strong>德文 Arbeitskraft／Arbeit，英文 labour-power／labour，中文「劳动力」／「劳动」，三处都对应着一个不能合并的区分。</strong> ★ <strong>② 「固定／流动」与「不变／可变」是两对范畴</strong>（<code>## 8</code> 第 2 篇）——<strong>德文的 fixes／zirkulierendes 与 konstantes／variables 是两组不同的词，不是同义词。</strong> ★ <strong>③ 「生产价格」（Produktionspreis）不等于日常说的「出厂价／成本价」</strong>——<strong>它是「成本价格＋平均利润」，是价值经过转形之后的形态。</strong> ★ <strong>把这三点记牢，「术语对不上号」的问题就解决了大半。</strong></p>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <p>★ 这一节的目的，是把你<strong>以为</strong>知道的和书里<strong>实际写的</strong>对一遍。每条都给出<strong>卷／篇／章定位</strong>（英文原文依据 marxists.org 三卷全文）。</p>
+  <table>
+    <thead><tr><th>流行说法</th><th>原文／事实</th></tr></thead>
+    <tbody>
+      <tr><td>「《资本论》是 3 卷（或 4 卷）」</td><td>★ <strong>两种数法各有其据，但不该混着说。</strong> 通行出版形态是<strong>三卷 ＋ 后出的《剩余价值理论》</strong>；而马克思 1866-10-13 致库格曼的信里，原计划是<strong>四册</strong>（生产过程／流通过程／总过程的各种形式／理论史）<span class="tag t-talk">作者谈话</span>（1866-10-13 致库格曼信）。★ <strong>「4 卷」的说法把「理论史」也算成《资本论》的一卷——它确实常被称作「第 4 卷」，但它是考茨基编的，不在恩格斯计划内</strong>（第 1 节注解②、<code>## 10</code>）</td></tr>
+      <tr><td>「PG 上有《资本论》英文全译本」</td><td>★★ <strong>没有。</strong> 实测 Project Gutenberg 上马克思的英文书只有 <strong>《政治经济学批判》（#46423）</strong>；《资本论》任何一卷的英文全译<strong>均未收</strong>。英文公版全文的入口是 <strong>marxists.org</strong>（第 1 卷 <code>…/1867-c1/</code>，8 篇 33 章）与 <strong>archive.org 的 Kerr 扫描</strong>（第 4 节 ⚠①）</td></tr>
+      <tr><td>「马克思只写了第 1 卷，后两卷是恩格斯写的」</td><td>★ <strong>措辞要准确</strong>：<strong>手稿是马克思的，编辑是恩格斯的</strong>。马克思留下大量未整理手稿（第 2 卷部分写于 1863–1878 年），<strong>恩格斯在马克思去世后编成第 2 卷（1885）与第 3 卷（1894）</strong>。「写」与「编」不是一回事——<strong>但也不能因此说后两卷「完全是马克思的原意」</strong>（MEGA² 显示恩格斯整理第 2 卷改动逾 5,000 处，见 <code>## 5</code> 第 2 条与 <code>## 10</code>）</td></tr>
+      <tr><td>「劳动力」与「劳动」不分</td><td>★ <strong>这是第 1 卷第 6 章的关键区分，混用会使全书崩解。</strong> 马克思的定义是：工人出卖的是<strong>劳动力（劳动能力）</strong>，不是<strong>劳动</strong>本身<span class="tag t-src">原书</span>（第 1 卷第 6 章）。★ 若出卖的是「劳动」，则按等价交换，工资＝劳动的全部价值，<strong>剩余价值无从产生</strong>。<strong>这一步是全书承重墙</strong>（论点二）</td></tr>
+      <tr><td>「剩余价值 = 利润」</td><td>★ <strong>两者不是一回事。</strong> 剩余价值是<strong>第 1 卷</strong>层面的范畴；利润是<strong>第 3 卷</strong>层面的、经过<strong>「转形」</strong>后的形式。<strong>第 3 卷第 1 篇</strong>讲剩余价值转化为利润、剩余价值率转化为利润率；<strong>第 2 篇</strong>讲利润转化为平均利润、价值转化为生产价格<span class="tag t-src">原书</span>（第 3 卷第 1–2 篇）。★ <strong>总价格＝总价值可以成立，但单个部门的「价格」会偏离「价值」</strong>——这正是「转形问题」的由来（<code>## 5</code> 第 3 条）</td></tr>
+      <tr><td>「『工人阶级的圣经』是马克思自己的说法」</td><td>★ <strong>不是。</strong> 这句评价出自<strong>恩格斯为 1886 年英文版写的序言</strong>：<strong>「《资本论》在欧洲大陆常被称为『工人阶级的圣经』。」</strong><span class="tag t-src">原书</span>（1886 年英文版序言，恩格斯作；英文原文：<em>"Das Kapital" is often called, on the Continent, "the Bible of the working class."</em>）★ <strong>这是恩格斯的评价与转述，不是马克思的话</strong>——马克思生前只出到第 1 卷</td></tr>
+      <tr><td>「《资本论》第 1 卷英文是恩格斯译的」</td><td>★ <strong>不是。</strong> 第 1 卷英文是 <strong>Samuel Moore 与 Edward Aveling 译</strong>（<strong>Aveling 是马克思的小女儿爱琳娜的丈夫</strong>），<strong>恩格斯任编辑并写序</strong>。1886 年英文版序言里恩格斯明确交代了分工：<strong>第 10、11 章由 Aveling 译，其余由 Moore 译</strong><span class="tag t-src">原书</span>（1886 年英文版序言）</td></tr>
+      <tr><td>「马克思在《资本论》里预言工人会越来越穷（绝对贫困化）」</td><td>★ <strong>原文的表述是「相对」的，不是简单的「绝对越来越穷」。</strong> 第 1 卷第 25 章的原句是「在一极是财富的积累，同时在另一极……是贫困、劳动折磨、受奴役、无知、粗野和道德堕落的积累」<span class="tag t-src">原书</span>（第 1 卷第 25 章），谈的是<strong>两极之间的对立积累</strong>。★ <strong>把这个论断读成「工资必然绝对下降」，是把一个关于「关系」的命题读成了一个关于「数值」的命题</strong>（本报告不裁决它在经验上成不成立，见 <code>## 5</code> 第 4 条）</td></tr>
+      <tr><td>「《资本论》讲的就是英国工厂的黑暗」</td><td>★ <strong>它确实大量取材于英国</strong>（第 10 章的工作日史、第 15 章的工厂立法、第 25 章的贫困统计），<strong>但它的目标不是「揭黑」而是「机制」</strong>。★ 马克思在 1867 年序言里的名言是：<strong>「工业较发达的国家向工业较不发达的国家所显示的，只是后者未来的景象。」</strong><span class="tag t-talk">作者谈话</span>（1867 年第 1 版序言）——<strong>他要写的是「一般趋势」，英国只是「最成熟的样本」。</strong></td></tr>
+      <tr><td>「第 2 卷、第 3 卷是马克思亲手定稿的」</td><td>★ <strong>不是。</strong> 马克思生前<strong>只定稿出版了第 1 卷</strong>；<strong>第 2 卷（1885）、第 3 卷（1894）由恩格斯据手稿编成</strong>，<strong>第 3 卷结尾第 52 章「阶级」手稿中断</strong><span class="tag t-src">原书</span>（第 3 卷第 52 章）。★ <strong>所以引用第 2、3 卷时，「这是马克思的定论」这句话要加保留</strong>（<code>## 5</code> 第 2 条、<code>## 10</code>）</td></tr>
+      <tr><td>「《资本论》第 1 卷的法文版只是译本」</td><td>★ <strong>不是「只是译本」。</strong> 法文版（1872–1875）是<strong>马克思亲自校订的最后一个版本</strong>，且<strong>篇章形态为 8 篇 33 章</strong>（与德文第 1 版的 6 章 22 节不同）<span class="tag t-rep">转述</span>（版本学通行记载）。★ <strong>所以法文版在文本史上有独立地位，不是第 1 版的「翻版」。</strong></td></tr>
+      <tr><td>「『原始积累』讲的是古代的事，与今天无关」</td><td>★ <strong>马克思的问题是「资本关系从哪来」，而不是「古代发生了什么」</strong>。★ 第 26 章的框架是<strong>对「资本天生如此」这一信念的拆解</strong>：<strong>「这种原始积累在政治经济学中所起的作用，同原罪在神学中所起的作用几乎一模一样。」</strong><span class="tag t-src">原书</span>（第 1 卷第 26 章）★ <strong>即使史学细节被修正，「资本关系有历史起点」这一命题仍然是这一篇的核心。</strong></td></tr>
+      <tr><td>「《资本论》第 1 卷也是恩格斯编的」</td><td>★★ <strong>不是。</strong> <strong>第 1 卷是马克思亲自定稿出版的</strong>（1867 德文第 1 版；1872–75 法文版为最后校订，1882 德文第 2 版）；<strong>恩格斯编的是第 2、3 卷</strong>，并编订了<strong>德文第 3、4 版与英文版</strong>。★ <strong>把「第 1 卷」也算进「恩格斯编纂」，是常见的一步错位</strong>——<strong>它会让「哪一卷是作者定论」这个问题彻底失焦</strong>（<code>## 1</code> 读法提示二、<code>## 10</code>）</td></tr>
+      <tr><td>「三卷是从同一个手稿里顺下来的」</td><td>★ <strong>不是。三卷的手稿状态差别很大。</strong> 第 1 卷<strong>完整定稿</strong>；第 2 卷手稿<strong>有多个版本、彼此有差异</strong>（恩格斯在序言里说明）；第 3 卷手稿<strong>完成度不均</strong>（第 5 篇尤甚）、<strong>结尾中断</strong>。★ <strong>所以「第 X 卷说……」这句话的确定性，随卷次而不同</strong>——<strong>三卷不能当作同一种文本状态来引用</strong>（<code>## 10</code>）</td></tr>
+      <tr><td>「不精通黑格尔就读不了《资本论》」</td><td>★ <strong>不必这样自我设限。</strong> 读第 1 卷的<strong>最低门槛是「原理性的抽象力」</strong>（把可观察的价格还原为不可观察的价值），<strong>不是黑格尔的术语</strong>。★ <strong>马克思自己在 1873 年跋里说明：他的辩证方法与黑格尔「截然相反」</strong><span class="tag t-talk">作者谈话</span>（1873 年第 2 版跋）——<strong>用黑格尔哲学来读第 1 章有助益，但不是入场券。</strong> ★ <strong>真正会卡住初读者的，是第 1 章的形式化推演，而不是「辩证法」。</strong></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本报告最该细读的一节。</strong> 《资本论》的影响极大，<strong>但 20 世纪以来围绕它的争论极其激烈</strong>，而且<strong>争论的焦点常常不是「马克思说了什么」，而是「这些文本能否成立、以及它们与后来的实践是什么关系」</strong>。下面六条按重头戏顺序排。★ <strong>每条批评都带姓名、著作、出版社／刊物、年份。</strong> ★ <strong>凡涉政治评价的部分，本报告只写「文本说了什么」与「后人用它做了什么」两件事，不做政治判断。</strong></p>
+  <h3>5.1 版本与结构：三个篇章口径，以及中译据哪个版本</h3>
+  <ul>
+    <li><strong>篇章口径</strong>：<strong>德文第 1 版 6 章 22 节／法文版与英文版 8 篇 33 章／德文第 2、4 版 7 篇 25 章</strong>（第 1 节注解①）。★ <strong>差异主要在「原始积累」是否独立成篇。</strong>
+    </li>
+    <li><strong>中译据哪个版本是选译本的唯一关键判据</strong>：<strong>郭大力、王亚南 1938 年全译本据德文版</strong>；<strong>人民出版社 2004 年版据德文重新校订</strong>，★ <strong>学界指出其第 1 卷校订依据是 MEGA² II/10（仍是德文第 4 版），而第 2、3 卷则退回柏林狄茨版</strong>——<strong>这个批评本报告如实转述，出处见来源清单</strong>。
+    </li>
+    <li><strong>一个必须记住的事实</strong>：<strong>马克思生前只编定出版了第 1 卷</strong>。所以谈「《资本论》的篇章结构」，<strong>第 1 卷与第 2、3 卷的确定性不是同一等级</strong>（见 5.2）。
+    </li>
+    <li>★ <strong>一个直接的阅读后果</strong>：<strong>你手上不同版本的《资本论》，第 1 卷的「篇数」可能不一样</strong>——德文通行本是 7 篇，英文通行本是 8 篇。<strong>这不是谁「错」了，而是「原始积累」被放在了「篇」这一级还是「章」这一级。</strong>
+    </li>
+  </ul>
+  <h3>5.2 ★★ 恩格斯编纂问题：MEGA² 显示第 2 卷改动逾 5,000 处</h3>
+  <ul>
+    <li><strong>事实</strong>：<strong>MEGA²（《马克思恩格斯全集》历史考证版）的文献学研究显示，恩格斯在整理第 2 卷时，删改、增补、变更序列超过 5,000 处</strong>；<strong>且恩格斯整理时没有查阅过一本马克思写作时参考过的书</strong><span class="tag t-rep">转述</span>（转引自中国社会科学网／中央党史和文献研究院一系的评介文章，具体篇名与年份见来源清单）。
+    </li>
+    <li><strong>争论的两面</strong>：
+    <ul>
+      <li><strong>一面</strong>：有学者认为，<strong>这些改动涉及对马克思思想的「恩格斯式」理解</strong>——即恩格斯以自己的一套体系（尤其是「自然辩证法」式的普遍规律）去整合马克思的手稿。
+      </li>
+      <li><strong>另一面</strong>：<strong>也有学者为恩格斯辩护</strong>，指出手稿本身极其零乱（马克思留下大量并列的、未定稿的段落），<strong>不做编辑工作根本无法成书</strong>；且<strong>恩格斯反复声明自己的编辑性质</strong>，并保留了可核对的原始材料。
+      </li>
+    </ul>
+    </li>
+    <li>★ <strong>本报告的处理</strong>：<strong>只写「MEGA² 显示了什么」与「后人据此提出了什么批评」两件事</strong>；<strong>不裁决谁对</strong>。★ <strong>但要明确一条界线</strong>：<strong>读第 2、3 卷时，「这是马克思的意思」这句话，在文献学上是需要加保留的。</strong>
+    </li>
+    <li>★ <strong>「MEGA²」是什么（读到这里需要的一个背景）</strong>：<strong>MEGA 是德文 <em>Marx-Engels-Gesamtausgabe</em>（《马克思恩格斯全集》历史考证版）的缩写</strong>；<strong>第 2 次刊行（MEGA²）自 1975 年起陆续出版</strong>，其特点是<strong>把同一部著作的不同稿本、异文、修改过程并列印出</strong>（区别于只印「最终定本」的旧版全集）。★ <strong>所以 MEGA² 提供的不是「一个新的《资本论》」，而是「一部可以看到写作过程的《资本论》」</strong>——★ <strong>「恩格斯整理第 2 卷改动逾 5,000 处」这类结论，只有在有了稿本对照之后才可能提出。</strong> ★ <strong>对普通读者而言，实用的一条是</strong>：<strong>凡引用第 2、3 卷时遇到「马克思到底是不是这个意思」的疑问，MEGA² 的相应卷次是可查的最终依据</strong>；<strong>本报告没有逐条核对 MEGA² 原卷</strong>（见附录 D3），凡涉此项的一律按 <span class="tag t-rep">转述</span> 处理。
+    </li>
+  </ul>
+  <h3>5.3 ★★ 劳动价值论与「转形问题」（transformation problem）</h3>
+  <p>★ <strong>这是全书最著名、也最技术性的一条争议。</strong> 问题出在<strong>从「价值」到「价格」的那一步</strong>：</p>
+  <ul>
+    <li><strong>问题的提出</strong>：第 1 卷说商品按<strong>价值</strong>交换，第 3 卷说资本主义下商品按<strong>生产价格</strong>（成本价格＋平均利润）交换。<strong>若各生产部门的资本有机构成不同，则「按价值交换」与「按生产价格交换、且各部门获得平均利润率」不能同时成立</strong> —— 除非总价值＝总价格、总剩余价值＝总利润这两个总量恒等式仍然成立。
+    </li>
+    <li><strong>批评一方</strong>：<strong>欧根·冯·庞巴维克（Eugen von Böhm-Bawerk）</strong>，《<strong>卡尔·马克思及其体系的终结</strong>》（<em>Zum Abschluss des Marxschen Systems</em>），<strong>1896</strong>（英译 <em>Karl Marx and the Close of His System</em>，<strong>1898</strong>）。★ 他主张<strong>第 1 卷与第 3 卷自相矛盾</strong>，劳动价值论因而「自我终结」。
+    </li>
+    <li><strong>解决一方</strong>：<strong>拉迪斯劳斯·冯·博特凯维茨（Ladislaus von Bortkiewicz）</strong>，两篇论文（<strong>1906–07</strong>，载 <em>Archiv für Sozialwissenschaft und Sozialpolitik</em>）。★ 他用<strong>联立方程</strong>处理「价值→价格」的转换，指出<strong>要同时满足两个总量恒等式，必须把「价值」和「价格」的求解写成线性方程组</strong>——这是后世一切转形问题解法的数学起点。
+    </li>
+    <li><strong>另一条路线</strong>：<strong>皮耶罗·斯拉法（Piero Sraffa）</strong>，《<strong>用商品生产商品</strong>》（<em>Production of Commodities by Means of Commodities</em>），<strong>Cambridge University Press，1960</strong>。★ 斯拉法用「标准商品」重建了一套<strong>不依赖劳动价值论</strong>的价格与分配理论。⇒ <strong>它既可以看作「放弃劳动价值论仍可讲清价格」的证明，也可以看作「把《资本论》的合理内核抽出来」的尝试</strong>——<strong>两种读法长期并存</strong>。
+    </li>
+    <li>★ <strong>争点的精确位置（便于自查）</strong>：<strong>问题就是「两个总量恒等式」——「总价值＝总价格」与「总剩余价值＝总利润」在「转形」之后是否仍然成立。</strong> ★ <strong>若成立，则「价值」虽不可见，却仍在背后支配「价格」；若不成立，则「劳动价值论」就只是一个多余的中间层。</strong> ★ <strong>这正是 Bortkiewicz 与 Sraffa 两条路线的分岔口</strong>：<strong>一条要用联立方程把恒等式「解出来」，一条干脆用「标准商品」绕开劳动价值论。</strong> ★ <strong>1980 年代以来还出现过「新解释」（New Interpretation）等路线，主张换一种方式定义「价值」，以恢复两个恒等式</strong><span class="tag t-rep">转述</span>（本报告只提示线索，不展开评述）。
+    </li>
+    <li>★ <strong>一句话总结这条线</strong>：<strong>「第 1 卷的价值理论与第 3 卷的价格理论能否相容」，至今没有公认的结论。</strong> 本报告只呈现三方的文本位置与主张，不替读者裁决。
+    </li>
+  </ul>
+  <h3>5.4 利润率趋向下降的规律：第 3 卷核心「规律」的经验困难</h3>
+  <ul>
+    <li><strong>文本说什么</strong>：第 3 卷第 3 篇（第 13–15 章）论证：随着<strong>资本有机构成</strong>（不变资本／可变资本）提高，<strong>一般利润率有下降趋势</strong>，但有一系列<strong>反作用因素</strong>（如剥削程度提高、生产资料便宜化、相对过剩人口等）<span class="tag t-src">原书</span>（第 3 卷第 13、14 章）。第 15 章更进一步：<strong>「资本主义生产的真正限制是资本本身。」</strong><span class="tag t-src">原书</span>（第 3 卷第 15 章）
+    </li>
+    <li><strong>经验困难</strong>：<strong>利润率是否真的「长期趋向下降」，是 20 世纪争论最久、也最没有定论的问题之一</strong>。★ <strong>批评者</strong>指出，实证数据（不同国家、不同时期）<strong>既出现过下降，也出现过上升</strong>，该「规律」难以写成可检验的经济学命题；<strong>支持者</strong>则主张关键在<strong>长时段趋势</strong>与<strong>反作用因素的识别</strong>，不能拿短期数据证伪。
+    </li>
+    <li>★ <strong>本报告的处理</strong>：<strong>只写「文本说了什么」与「后人用什么批评它」，不判定它是否成立。</strong>
+    </li>
+    <li>★ <strong>为什么它难被证伪（一个方法上的说明）</strong>：<strong>第 14 章列出的「反作用因素」是一张开放的清单</strong>——<strong>只要可以不断加入新的反作用因素，「规律」就永远能与「观察到的利润率上升」相容。</strong> ★ <strong>这在科学哲学上被称为「可证伪性」问题</strong>（本报告只指出这一结构，不替读者判定）。★ <strong>换一个角度</strong>：<strong>也有人主张该规律的价值不在「预测」，而在「揭示资本积累的内在张力」</strong>——<strong>这两种期待本身就不一样。</strong>
+    </li>
+  </ul>
+  <h3>5.5 「原始积累」的史学争议：文本与当代经济史的距离</h3>
+  <ul>
+    <li><strong>文本说什么</strong>：第 1 卷第 26–33 章（英文通行本第 VIII 篇）叙述英国 15–18 世纪的<strong>圈地、剥夺农民、血腥立法、殖民</strong>，得出「资本关系起源于暴力剥夺」的结论<span class="tag t-src">原书</span>（第 1 卷第 26–33 章）。
+    </li>
+    <li><strong>争议</strong>：<strong>马克思所述的英国圈地史，与当代经济史研究之间有一段距离</strong>——例如<strong>圈地的规模、时段、以及「被剥夺者是否都成了工厂工人」</strong>这些环节，<strong>后来学者的估计并不完全一致</strong><span class="tag t-rep">转述</span>（转述须标出处，具体见来源清单）。★ <strong>但也要分清</strong>：<strong>对这一篇史料的细节质疑，与对这一篇「资本关系有历史起点」这一命题的否定，是两件事</strong>。
+    </li>
+    <li>★ <strong>本报告的处理</strong>：<strong>把它写成「文本的史学依据在当代研究中有争论」，而不是「历史就是这样」。</strong>
+    </li>
+  </ul>
+  <h3>5.6 20 世纪的实践与文本的关系</h3>
+  <ul>
+    <li>★★ <strong>这一条要极其克制。</strong> 《资本论》既是一部<strong>分析工具</strong>，也长期被当作<strong>政治纲领的依据</strong>。<strong>但这两种用法是两件事</strong>：
+    <ul>
+      <li><strong>作为分析工具</strong>：它的<strong>价值理论、剩余价值概念、积累与危机机制</strong>，无论是否被接受，都是现代政治经济学与经济学说史<strong>必须处理的对象</strong>。
+      </li>
+      <li><strong>作为纲领依据</strong>：「后人用它做了什么」属于<strong>历史与实践</strong>的领域，<strong>与「文本说了什么」不是同一个层面的问题</strong>。
+      </li>
+    </ul>
+    </li>
+    <li>★ <strong>本报告只指出这一点区分，不做任何政治评价。</strong> <strong>凡涉及 20 世纪具体历史事件的评价，请以专门的历史研究为准，本报告不承担这一判断。</strong>
+    </li>
+  </ul>
+  <h3>5.7 六条争议的一张总表（便于对照）</h3>
+  <table>
+    <thead><tr><th>#</th><th>争议</th><th>谁提出</th><th>出处与年份</th><th>争的是什么</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>版本与篇章</td><td>版本学研究</td><td>德文各版／中译校订说明</td><td>三个口径；中译据哪一版</td></tr>
+      <tr><td>2</td><td>恩格斯编纂</td><td>MEGA² 文献学一系</td><td>MEGA²／评介文章（见来源清单）</td><td>第 2 卷 5,000 余处改动意味着什么</td></tr>
+      <tr><td>3</td><td>转形问题</td><td>Böhm-Bawerk；Bortkiewicz；Sraffa</td><td>1896；1906–07；1960</td><td>第 1 卷价值论与第 3 卷价格论能否相容</td></tr>
+      <tr><td>4</td><td>利润率趋向下降</td><td>各方</td><td>第 3 卷第 13–15 章与后续实证</td><td>该「规律」能否经验验证</td></tr>
+      <tr><td>5</td><td>原始积累史学</td><td>经济史学者</td><td>见来源清单</td><td>圈地史细节与「资本有历史起点」命题</td></tr>
+      <tr><td>6</td><td>实践与文本</td><td>——</td><td>——</td><td>「后人用它做了什么」≠「文本说了什么」</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一句话总结这一节</strong>：<strong>六条争议里，第 1、2、6 条是「关于文本本身」的，第 3、4、5 条是「关于文本能否成立」的。</strong> ——<strong>分清这两类，才不会把「文献学问题」与「经济学问题」混为一谈。</strong></p>
+  <p>★ <strong>结构说明</strong>：本书 <strong>3 卷 18 篇</strong>。本部按<strong>卷</strong>分组深挖（<code>## 6</code>–<code>## 10</code>，即 <strong>第 1 卷上半 ＋ 第 1 卷下半 ＋ 第 2 卷 ＋ 第 3 卷 ＋ 结构再读</strong>），<strong>每一节内部逐篇评述该节下辖的全部篇</strong>，<strong>一篇不漏</strong>：第 1 卷 8 篇（<code>## 6</code> 三篇 ＋ <code>## 7</code> 五篇）＋ 第 2 卷 3 篇（<code>## 8</code>）＋ 第 3 卷 7 篇（<code>## 9</code>）＝ <strong>18 篇</strong>。★ <code>## 10</code> 是<strong>结构再读</strong>，不占篇号，承担「第 4 卷性质／恩格斯编纂争议／三卷＋第 4 卷整体结构」三件事。★ <strong>定位体例</strong>：用「第 1 卷第 X 章」「第 2 卷第 X 篇」「第 3 卷第 X 章」，不用页码（各版页码互不相同）。★ <strong>每节末尾的「可疑之处」是本报告自我审查的地方</strong>：凡我未能核实、或版本有分歧的，都在那里写明。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>第一卷（上）：商品、货币与绝对剩余价值（第 I–III 篇）</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本报告为什么在「第 I–III 篇」与「第 IV–VIII 篇」之间断开，而不是把第 1 卷对半砍？</strong> 因为第 1 卷有一个<strong>自然的分水界</strong>：<strong>第 I–III 篇完成的是「价值—货币—剩余价值」这套「概念奠基」</strong>（从最抽象的商品，到货币，到「劳动力」这一步的关键区分，再到剩余价值的一般概念与它的量的规定）；<strong>第 IV–VIII 篇转入的是「剩余价值的具体形态与它的社会后果」</strong>（相对剩余价值与机器、工资形式、积累与原始积累）。★ <strong>前一段回答「剩余价值是什么、怎么来的」，后一段回答「它长什么样、把人和社会带向何处」</strong>——<strong>这条分界比「篇幅对半」更能说明第 1 卷的结构。</strong> ★ 本节的三篇，是全书最抽象、也最承重的部分。</p>
+  <h3>第 I 篇 商品与货币（第 1–3 章）</h3>
+  <p><strong>这一篇在回答什么问题</strong>：<strong>为什么资本主义的分析要从「一个商品」开始？</strong> 马克思的回答是：在资本主义社会里，<strong>社会的财富表现为「商品的庞大堆积」</strong>——<strong>「在资本主义生产方式占统治的社会里，财富表现为『商品的庞大堆积』，单个商品则是它的元素形式。」</strong><span class="tag t-src">原书</span>（第 1 卷第 1 章开篇；英文原文：<em>The wealth of those societies in which the capitalist mode of production prevails, presents itself as "an immense accumulation of commodities," its unit being a single commodity.</em>）★ 于是他主张，分析必须从<strong>细胞</strong>开始——<strong>「对资产阶级社会来说，商品的形态……是它的经济细胞形式。」</strong><span class="tag t-src">原书</span>（1867 年序言）★ 这一篇要解决的，是「一个物怎么会有价值」「货币又为什么必然出现」这两个最基础的问题。</p>
+  <p><strong>关键内容</strong>：</p>
+  <ul>
+    <li><strong>商品二重性</strong>：使用价值（物的有用性，质的问题）与价值（人类劳动的凝结，量的问题）。★ <strong>价值的实体是抽象人类劳动</strong>，价值量由<strong>社会必要劳动时间</strong>决定——<strong>「社会必要劳动时间，是在现有社会正常生产条件下、以社会平均的熟练程度和劳动强度生产某种使用价值所需的时间。」</strong><span class="tag t-src">原书</span>（第 1 卷第 1 章）
+    </li>
+    <li>★ <strong>劳动二重性</strong>：<strong>具体劳动</strong>创造使用价值（裁缝的劳动与织工的劳动是不同的、具体的），<strong>抽象劳动</strong>形成价值（两者都耗费了人类劳动力，作为「人类劳动」而无差别）。★ 这是第 1 章最难也最关键的一步——<strong>同一劳动过程的两个方面，不是两种劳动</strong>。★ 马克思说，这个区分是<strong>《资本论》「最好的地方」之一</strong>——<strong>它解决了「为什么不同质的东西可以按量相等相交换」这个古典经济学的死结。</strong>
+    </li>
+    <li><strong>价值形式</strong>：从<strong>简单的价值形式</strong>（20 码麻布＝1 件上衣）→ <strong>扩大的价值形式</strong> → <strong>一般的价值形式</strong> → <strong>货币形式</strong>。★ <strong>货币不是被发明的，而是价值形式自身发展的必然结果</strong>——<strong>「理解货币形式的困难，无非是理解一般等价形式的困难。」</strong><span class="tag t-src">原书</span>（第 1 卷第 1 章第 3 节）★ 马克思还举了那个著名的等式：<strong>「20 码麻布＝1 件上衣」</strong>——<strong>在这个等式里，上衣取得了「等价形式」，它的使用价值成了麻布的价值的表现。</strong> 第 1 卷附录《价值形式》即专论此点（见文末说明）。
+    </li>
+    <li><strong>商品拜物教</strong>（第 1 章第 4 节）：★ <strong>全书方法论的中心命题</strong>——<strong>「在商品生产者的社会里，人与人之间的确定的社会关系，在他们眼中采取了物与物之间关系的那种虚幻形式。」</strong><span class="tag t-src">原书</span>（第 1 卷第 1 章第 4 节）★ 马克思把它与<strong>宗教世界的类比</strong>并列：<strong>「在那里，人脑的产物表现为赋有生命的、彼此发生关系并同人发生关系的独立存在的东西；在商品世界里，人手的产物也是这样。我把这叫做拜物教。」</strong><span class="tag t-src">原书</span>（同上）<strong>商品的神秘性不在于它的使用价值，而在于它把「社会关系」显现为「物的属性」。</strong> ★ 他还举了两个对照：<strong>鲁滨逊的孤岛</strong>（一个人的劳动，关系一目了然）与<strong>中世纪的农奴</strong>（「人身依赖」使关系是透明的）——<strong>只有在商品生产的社会里，人与人的关系才被「物的关系」盖住。</strong>
+    </li>
+    <li><strong>第 2 章「交换过程」</strong>：商品必须<strong>通过交换</strong>才能证明自己是价值；<strong>商品世界的矛盾（私人劳动与社会劳动的矛盾）在交换中暴露</strong>。★ 交换的困难在于：<strong>每个商品所有者都想用自己的商品换别人的商品，但「你的商品对别人是否是社会所需要的」是一个私人无法事先知道的问题。</strong>
+    </li>
+    <li><strong>第 3 章「货币或商品流通」</strong>：货币的五种职能——<strong>价值尺度、流通手段、货币贮藏、支付手段、世界货币</strong>。★ 马克思还指出<strong>货币的「形式变换」中已经埋下危机的可能</strong>——<strong>「危机的可能性」已经包含在「商品与货币的对立」里</strong><span class="tag t-src">原书</span>（第 1 卷第 3 章）：<strong>卖与买在时间上被分离，就使「卖了不买」成为可能。</strong>
+    </li>
+  </ul>
+  <p><strong>逐章要点</strong>：</p>
+  <ul>
+    <li><strong>第 1 章「商品」是全书的「微积分」</strong>：它分四节——<strong>第 1 节 使用价值与价值</strong>（两个因素）、<strong>第 2 节 体现在商品中的劳动的二重性</strong>、<strong>第 3 节 价值形式或交换价值</strong>、<strong>第 4 节 商品的拜物教性质及其秘密</strong>。★ <strong>四节是「层层加码」的</strong>：第 1 节立「价值」，第 2 节讲「价值由什么劳动形成」，第 3 节讲「价值如何表现出来（货币）」，第 4 节讲「价值形式为什么会造成幻觉」。★ <strong>很多人只读第 1、4 节，跳过第 2、3 节——结果是把「拜物教」读成一句感慨，而不是一个从价值形式推出的结论。</strong>
+    </li>
+    <li><strong>第 1 节的「等式结构」是全章的钥匙</strong>：<strong>「20 码麻布＝1 件上衣」</strong>——<strong>左边的麻布是「相对价值形式」，右边的上衣是「等价形式」</strong>。★ 马克思的洞察是：<strong>价值不能自己表现自己，必须借另一个商品来表现</strong>——<strong>这就是「价值形式」的全部秘密，也是货币必然产生的逻辑起点。</strong>
+    </li>
+    <li><strong>第 2 章的枢纽句是「私人劳动与社会劳动的矛盾」</strong>：<strong>商品生产者的劳动，一方面是私人劳动（我自己决定怎么干），另一方面又必须是社会劳动（社会承认我的产品有用）。</strong> ★ <strong>这个「必须被社会承认」的环节，只有通过「把商品卖出去」才能完成</strong>——<strong>而这恰恰是不确定的</strong>。★ <strong>「危机」的最抽象根源，就在这个「不确定」里。</strong>
+    </li>
+    <li><strong>第 3 章的货币五职能，顺序是有讲究的</strong>：<strong>价值尺度 → 流通手段 → 货币贮藏 → 支付手段 → 世界货币</strong>。★ <strong>前两个是「货币作为商品交换中介」的基本职能，后三个是「货币独立出来」的形态</strong>。★ <strong>「支付手段」的引入带来一个新东西：债务关系</strong>——<strong>「卖与买在时间上的分离」由此制度化，而这正是信用与危机的雏形。</strong>
+    </li>
+  </ul>
+  <p><strong>可疑之处</strong>：</p>
+  <ol>
+    <li><strong>「抽象劳动」的可操作性是全篇第一个争议点</strong>：<strong>如何把不同质的劳动还原为「无差别的抽象劳动」？</strong> 马克思以「社会必要劳动时间」来定量，但<strong>「社会必要」本身依赖一个均衡状态</strong>——<strong>在一个没有均衡的现实经济里，「社会必要劳动时间」如何确定？</strong> 这一步在后来被反复追问（参见 <code>## 5</code> 第 3 条）。
+    </li>
+    <li><strong>「价值的实体是劳动」这一命题本身</strong>：<strong>它与「价格由供求决定」是紧张关系</strong>——第 1 卷先确立价值，把供求放在次要位置；而<strong>在经验层面，价格是直接可观察的，价值不是</strong>。这个「不可观察性」是后世一切争论的根。
+    </li>
+    <li>★ <strong>第 1 章第 3 节的「价值形式」在德文第 1 版里是作为全书附录单独印出的</strong>（《价值形式》），<strong>后来才并入正文</strong>——<strong>你手上不同版本的第 1 章，长度可能不同</strong>（第 1 节注解①）。
+    </li>
+  </ol>
+  <h3>第 II 篇 货币转化为资本（第 4–6 章）</h3>
+  <p><strong>这一篇在回答什么问题</strong>：<strong>货币怎么会变成资本？</strong> 商品流通的公式是 <strong>W—G—W</strong>（为买而卖，目的是取得另一种使用价值），资本的总公式却是 <strong>G—W—G′</strong>（为卖而买，且要收回更多的钱）。★ <strong>「G′ = G + ΔG」，这个 ΔG（剩余价值）从哪里来？</strong> 这是全书最核心的问题。</p>
+  <p><strong>关键内容</strong>：</p>
+  <ul>
+    <li><strong>资本的总公式</strong>（第 4 章）：★ <strong>G—W—G′</strong>。<strong>货币转化为资本的关键，是「为了更多的货币而买」</strong>。★ 马克思指出，<strong>G—W—G′ 与 W—G—W 的区别不只是「顺序」（先买后卖 vs 先卖后买）</strong>，而是<strong>目的本身不同</strong>：<strong>W—G—W 的两端使用价值不同（为的是取得另一种有用的东西），G—W—G′ 的两端本质相同、只有量不同（为的是拿回更多的钱）。</strong> ★ 于是 G—W—G′ 的<strong>目的没有终点</strong>——<strong>「作为资本的货币的流通本身就是目的，因为价值的增殖只发生在这个不断更新的运动里。」</strong>
+    </li>
+    <li><strong>总公式的矛盾</strong>（第 5 章）：★★ <strong>剩余价值不能产生于流通</strong>（因为交换遵循等价原则，买卖双方谁也不能多占）；<strong>也不能产生于流通之外</strong>（因为在流通之外，商品不受其他商品所有者接触，无法增殖）。★ <strong>这就是「总公式的矛盾」——一个必须在「等价交换」的前提下解释剩余价值的死结。</strong> 马克思的结论句是：<strong>「货币转化为资本，必须根据商品交换的内在规律来说明，因此必须以等价物的交换为出发点。」</strong><span class="tag t-src">原书</span>（第 1 卷第 5 章）
+    </li>
+    <li><strong>★ 第 6 章的解答</strong>：<strong>关键在「劳动力」这种特殊商品。</strong> 工人出卖的不是「劳动」而是「劳动力」；<strong>劳动力的价值由维持它的生活资料决定，而它的使用（劳动）能创造出大于自身价值的价值</strong><span class="tag t-src">原书</span>（第 1 卷第 6 章）。★ 定义原文见论点二。<strong>「劳动力」的特别之处在于：它是唯一一种「使用价值本身就是价值源泉」的商品。</strong> ★ 马克思还指出，劳动力成为商品需要<strong>两个条件</strong>：<strong>① 劳动者是自由人，能自由出卖自己的劳动力；② 劳动者一无所有，除了劳动力没有别的商品可卖。</strong>
+    </li>
+    <li><strong>「自由劳动者」的双重含义</strong>：劳动者<strong>「自由」得一无所有</strong>（没有生产资料，无法自己劳动），又<strong>「自由」得可以出卖自己的劳动力</strong>——<strong>马克思特意点出「free in the double sense」</strong><span class="tag t-src">原书</span>（第 1 卷第 6 章）。<strong>资本主义关系的出现，前提正是这个双重意义上的「自由」。</strong> ★ 有一段作为过渡的著名描写：<strong>「劳动力占有者与货币占有者在市场上相遇……两人都是平等的商品所有者，只是一个是买者、一个是卖者，因而都是法律上平等的人。一个笑容满面、雄心勃勃；另一个战战兢兢、畏缩不前、像卖自己的皮一样，除了皮以外没有别的可卖。」</strong><span class="tag t-src">原书</span>（第 1 卷第 6 章）
+    </li>
+  </ul>
+  <p><strong>逐章要点</strong>：</p>
+  <ul>
+    <li><strong>第 4 章的任务是「提出公式，不解释」</strong>：<strong>G—W—G′</strong>。★ <strong>注意马克思的措辞</strong>：他不是说「资本＝钱生钱」，而是说<strong>「作为资本的货币，其流通的目的是交换价值本身」</strong>——<strong>W—G—W 的目的是「取得使用价值」，G—W—G′ 的目的是「取得更多价值」，这个差别决定了两种流通的「无限性」不同。</strong>
+    </li>
+    <li><strong>第 5 章的任务是「堵死三条路」</strong>：<strong>① 剩余价值不能来自「贱买贵卖」（等价交换下人人如此，谁也没有特权）；② 不能来自「个别商人的欺诈」（一人所得即另一人所失，总量不变）；③ 不能来自「流通之外」（那里不产生价值）。</strong> ★ <strong>三条路堵完，读者被迫接受：剩余价值必须「在流通中产生，又不在流通中产生」——唯一的出口是「买到一种特殊商品」。</strong> ★ <strong>这一章的逻辑张力，是全书最精彩的一段推理。</strong>
+    </li>
+    <li><strong>第 6 章的任务是「给出那个特殊商品」</strong>：<strong>劳动力</strong>。★ <strong>它的特殊在于：它的使用价值（劳动）能创造出大于它自身价值的价值</strong>——<strong>这是全书唯一一处「价值源泉」的定义。</strong> ★ <strong>马克思特别强调劳动力成为商品的「历史条件」</strong>：<strong>不是「人性」使然，而是「劳动者被剥夺了生产资料」的结果</strong>——<strong>这一点直接通向后来的第 VIII 篇「原始积累」。</strong> ★ <strong>所以第 6 章与第 26–33 章，是隔了三百页的「一个论点的两头」。</strong>
+    </li>
+  </ul>
+  <p><strong>可疑之处</strong>：</p>
+  <ol>
+    <li><strong>「劳动力的价值」如何计算</strong>——它包含一个<strong>历史的与道德的要素</strong>（<strong>「所谓必要生活资料的范围本身是历史的产物」</strong><span class="tag t-src">原书</span>第 1 卷第 6 章），<strong>意味着它不是纯生理的常数</strong>。★ <strong>这使「剥削程度」的测量从一开始就需要历史—规范判断</strong>。
+    </li>
+    <li><strong>第 4 章的 G—W—G′</strong> 与 <strong>第 5 章「矛盾」</strong>、<strong>第 6 章「解答」</strong> 是一条极紧凑的三步棋。★ <strong>若把它读成三个独立专题，第 6 章的力量就丢了</strong>——<strong>它的全部意义就在于「堵死其他所有出口之后，只剩劳动力这一条路」。</strong>
+    </li>
+    <li>★ <strong>「劳动力」概念本身是一个理论建构</strong>：<strong>现实中工人并不「分期出卖」劳动能力，而是按时间（计时）或按件（计件）获得报酬</strong>——<strong>第 6 章与第 19 章「工资」之间，隔着一个「形式与本质」的落差</strong>（这正是第 VI 篇要处理的）。
+    </li>
+  </ol>
+  <h3>第 III 篇 绝对剩余价值的生产（第 7–11 章）</h3>
+  <p><strong>这一篇在回答什么问题</strong>：<strong>剩余价值在工厂里是怎么被生产出来的？</strong> 从「劳动过程」与「价值增殖过程」的统一入手，给出<strong>剩余价值率</strong>，再把<strong>工作日的长度</strong>作为斗争的对象。</p>
+  <p><strong>关键内容</strong>：</p>
+  <ul>
+    <li><strong>劳动过程与价值增殖过程</strong>（第 7 章）：★ <strong>劳动过程</strong>是「制造使用价值的有目的的活动」，是<strong>人与自然之间的物质变换</strong>——<strong>「劳动过程，就其本身看，是人和自然之间的过程，是人以自身的活动来引起、调整和控制人和自然之间的物质变换的过程。」</strong><span class="tag t-src">原书</span>（第 1 卷第 7 章）★ <strong>价值增殖过程</strong>是「超过一定点而延长了的价值形成过程」。<strong>两者的统一即资本主义生产过程</strong>。★ <strong>这一步是全书少有的「非历史」的自然基础</strong>：<strong>不论社会形式如何，人总要劳动、总要和自然打交道。</strong>
+    </li>
+    <li><strong>两个关键概念</strong>：<strong>必要劳动时间</strong>（再生产劳动力自身价值所需的时间）与<strong>剩余劳动时间</strong>（超过这一点的劳动时间）。★ <strong>剩余价值就来自剩余劳动时间。</strong>
+    </li>
+    <li><strong>不变资本与可变资本</strong>（第 8 章）：★ <strong>不变资本</strong>（生产资料）在生产中<strong>只转移价值、不创造价值</strong>（其价值量不变）；<strong>可变资本</strong>（购买劳动力）<strong>创造大于自身价值的新价值</strong>（其价值量可变）。<strong>这一区分是《资本论》对古典经济学的一个关键贡献。</strong> ★ 马克思用它批评了<strong>「资本是积累起来的劳动」这种说法</strong>——<strong>因为只有可变资本才创造新价值。</strong>
+    </li>
+    <li><strong>剩余价值率 = m/v</strong>（第 9 章）：<strong>剩余劳动时间／必要劳动时间的比率</strong>，是<strong>剥削程度的准确表现</strong>——<strong>「剩余价值率是劳动力受资本剥削的程度的准确表现。」</strong><span class="tag t-src">原书</span>（第 1 卷第 9 章）。★ 马克思用多种公式表达它，指出<strong>另一种公式（m/(c+v)）会「掩盖」它的真实来源</strong>。
+    </li>
+    <li><strong>工作日</strong>（第 10 章）：★ <strong>本章几乎整章是英国工厂立法史</strong>，从 14 世纪一直讲到 19 世纪，<strong>长达数十页</strong>。核心论断是：<strong>工作日的界限不是自然给定的，而是在资本家与工人之间斗争的产物</strong>。★ 原文：<strong>「工作日的长度因此是在一个界限内变动的，这个界限的两端：下限是劳动力自身再生产所需的劳动时间；上限则受两个限制——劳动力的生理极限与社会道德的极限。但这两个限制都极有弹性，容许很大的变动。」</strong><span class="tag t-src">原书</span>（第 1 卷第 10 章）★ 本章结尾记录了<strong>英国工人为「十小时工作日」而进行的长期斗争</strong>——<strong>从 1833 年工厂法到 1847 年十小时法案，再到 1860 年代。</strong>
+    </li>
+    <li><strong>剩余价值率与剩余价值量</strong>（第 11 章）：给出公式，说明剩余价值量由<strong>剩余价值率</strong>与<strong>被剥削的劳动力数量</strong>共同决定——<strong>「剩余价值量＝一个工人提供的剩余价值 × 被剥削的工人人数。」</strong>
+    </li>
+  </ul>
+  <p><strong>逐章要点</strong>：</p>
+  <ul>
+    <li><strong>第 7 章是「劳动过程」与「价值增殖过程」两套语言的叠加</strong>：<strong>前者说「人在改变自然」（人类学语言），后者说「价值在增加」（经济学语言）。</strong> ★ <strong>马克思的写法是：先讲「劳动过程」的一般规定（劳动、劳动对象、劳动资料），再讲「价值增殖过程」的特殊规定——同一个过程，用两套词看。</strong> ★ <strong>这一步是理解第 8 章「不变／可变」的前提。</strong>
+    </li>
+    <li><strong>第 8 章的关键，是「生产资料的价值只是被转移」</strong>：★ <strong>机器、原料不「创造」新价值，只是把自己的价值「搬」到产品里</strong>——<strong>所以叫「不变资本」</strong>；<strong>而购买劳动力的那部分资本，能在生产中生出大于自身的价值</strong>——<strong>所以叫「可变资本」。</strong> ★ <strong>这一区分使「资本为什么能增殖」这个问题第一次有了准确答案：只有可变资本在增殖。</strong>
+    </li>
+    <li><strong>第 9 章把「剥削程度」变成一个比率</strong>：<strong>m′ = m/v = 剩余劳动时间／必要劳动时间</strong>。★ <strong>它是「相对量」，不受资本大小影响</strong>——<strong>这正是它的用处：它让不同规模、不同行业的剥削程度可以比较。</strong> ★ <strong>马克思还指出，若用 m/(c+v) 表达，就会把「剩余价值的来源」藏起来</strong>——<strong>这是第 3 卷「利润率」问题的伏笔。</strong>
+    </li>
+    <li><strong>第 10 章的结构本身就是一份史料清单</strong>：★ <strong>它按时间顺序铺开：14 世纪的劳工法 → 15–17 世纪的延长工时 → 1833 年工厂法 → 1847 年十小时法案 → 1860 年代的斗争。</strong> ★ <strong>马克思的论点不是「资本家残忍」，而是「工作日的长度本来就没有自然界限」</strong>——<strong>它只能由「阶级力量的对比」和「法律」来确定。</strong> ★ <strong>「权利同权利相对抗，而这两种权利都同样是商品交换规律所承认的。在平等的权利之间，力量就起决定作用。」</strong><span class="tag t-src">原书</span>（第 1 卷第 10 章）<strong>这句是第 10 章的理论内核。</strong>
+    </li>
+    <li><strong>第 11 章是全篇的「求和」</strong>：<strong>把第 9 章的「率」乘以「人数」，得到「量」。</strong> ★ <strong>它证明了：剥削的规模不只靠「剥削得多狠」，也靠「被剥削的人有多少」</strong>——<strong>这一点通向第 25 章的「产业后备军」。</strong>
+    </li>
+  </ul>
+  <p><strong>可疑之处</strong>：</p>
+  <ol>
+    <li><strong>「不变资本只转移价值、不创造价值」是一个理论定义，不是可以直接测量的量</strong>——<strong>如何把「转移」与「新创造」在会计上分开</strong>，是后世争论的一部分。★ <strong>这一点与「三卷的转形问题」是连在一起的</strong>（第 3 卷处理利润时，必须依赖第 1 卷的这一定义）。
+    </li>
+    <li><strong>第 10 章的工厂立法史采用了大量当时文献</strong>（工厂视察员报告、议会蓝皮书）。★ <strong>这些史料真实，但「引用方式」带有强烈的论证目的</strong>；读它要与<strong>经济史专门研究</strong>对读（参见 <code>## 5</code> 第 5 条的方法论提示）。
+    </li>
+    <li>★ <strong>第 10 章是全书最「文学」的一章</strong>——它读起来不像经济学，更像一部社会史。<strong>很多人是从这一章爱上《资本论》的，也很多人只记住了这一章而忽略了它的「理论位置」</strong>（它是为了给「绝对剩余价值」一个量上的边界）。
+    </li>
+  </ol>
+  <h3>可疑之处（第一卷上半）</h3>
+  <ol>
+    <li>★ <strong>第 I–III 篇是一条严格的「概念奠基链」</strong>：商品→货币→资本→劳动力→剩余价值。<strong>任何一环抽掉，后面都塌</strong>。★ <strong>最容易读丢的是第 6 章那一步</strong>（把出卖对象从「劳动」改为「劳动力」）——它不是术语游戏，而是全书唯一能让「等价交换＋剩余价值」同时成立的支点。
+    </li>
+    <li>★ <strong>「抽象劳动」与「社会必要劳动时间」这两个概念，在第 1 卷里是「定义」，不是「经验发现」</strong>。★ <strong>把它们当作可测量的实体，是很多误读的来源</strong>；把它们当作<strong>理论建构</strong>，才读得进后面的争论。
+    </li>
+    <li>★ <strong>第 1 卷第 1 章的难度是结构性的，不是文笔问题</strong>——<strong>它要求在「价格可观察」的表层之下，先建立一套「价值不可观察」的深层语言</strong>。<strong>读它慢一点是正常的，读快了反而会漏掉全部机关。</strong>
+    </li>
+  </ol>
+  <p>★★ <strong>第一卷上半的四段深读（把「概念奠基」这一段的四个关节再钻一层）</strong>：</p>
+  <p><strong>一、价值形式的「四步走」，本质是一次「必然性证明」。</strong> ★ 第 1 章第 3 节从<strong>简单的价值形式</strong>（20 码麻布＝1 件上衣）起步，经<strong>扩大的价值形式</strong>（麻布＝上衣＝茶叶＝……），到<strong>一般的价值形式</strong>（一切商品＝麻布），再到<strong>货币形式</strong>（一切商品＝金）。★ <strong>马克思要证明的不是「历史上人们逐渐选出了金银」，而是「价值形式的内在逻辑 compelled 出货币」</strong>——<strong>因为「价值」不能自己表现自己，它必须借一个「等价物」来表现；而当这个「等价物」被社会固定下来时，它就是货币。</strong> ★ <strong>所以货币不是「方便交换的发明」，而是「价值形式发展的必然终点」。</strong> ★ <strong>读这一节的窍门，是把「20 码麻布＝1 件上衣」当作一个方程来读</strong>：★ <strong>在这个方程里，上衣不再是一件「有用的衣服」，而成了「麻布价值的化身」</strong>——<strong>它的使用价值退到背后，成了「价值的镜子」。</strong> ★ <strong>马克思真正想让人看到的，是「等价形式的神秘性」：</strong> <strong>为什么「处于等价形式」的那个商品，看起来「天生」就具有价值？</strong> ——<strong>答案在第 4 节：因为它是社会关系被「物化」的结果。</strong> ★ <strong>所以第 3 节与第 4 节是连在一起的一步：第 3 节推出货币的必然，第 4 节说明这种「必然」为什么会被体验为「物自身的属性」。</strong></p>
+  <p><strong>二、第 5 章「三种堵法」的结构，是全书写得最漂亮的一段推理。</strong> ★ 它像一次<strong>排谬法（reductio）</strong>的连续操作：★ <strong>① 若剩余价值来自「流通中的不等价交换」</strong>（贱买贵卖）——<strong>但一个人的所得恰是另一个人的所失，剩余价值总量并不会增加</strong>；并且<strong>若人人都能贱买贵卖，则交换规律本身就瓦解了</strong>。★ <strong>② 若剩余价值来自「商人的欺诈」</strong>——<strong>同样只是再分配，不产生新价值</strong>。★ <strong>③ 若剩余价值来自「流通之外」</strong>——<strong>但商品在流通之外不与其他商品所有者接触，价值不会自行增大</strong>。★ <strong>三条路都堵死，剩下的唯一可能是：</strong> <strong>「剩余价值不能在流通中产生，也不能在流通之外产生……它必须在流通中发生，又不在流通中发生」</strong>——<strong>这个表面上的悖论，唯一的出口就是「买到一种在使用中能创造价值的商品」，即劳动力。</strong> ★ <strong>这段推理的力量不在于「证明劳动力是唯一解」，而在于「让你在读到第 6 章之前，已经无法接受别的答案」</strong>——★ <strong>这正是马克思的写法：</strong> <strong>先把出路一条条封死，再让答案作为「唯一的剩余选项」出现。</strong> ★ <strong>读第 4–6 章，最好一口气读，不要拆开——拆开就丢掉了这层「被迫接受」的推理张力。</strong></p>
+  <p><strong>三、「剩余价值率」是一个把「道德问题」转成「比率问题」的装置。</strong> ★ 第 9 章把「剥削」写成 <strong>m′ = m/v</strong>（剩余价值／可变资本＝剩余劳动时间／必要劳动时间）。★ <strong>这个比率的妙处在于：它与资本的大小无关、与行业规模无关，因而可以在不同企业、不同部门之间比较。</strong> ★ <strong>它把「资本主义是否剥削」这个容易滑向道德争论的问题，转成了一个可以被讨论、被估算、被比较的量。</strong> ★ 但要注意：★ <strong>这个「量」依赖两个前提</strong>——<strong>① 「劳动力的价值」可被界定（而它含一个「历史的与道德的要素」）；② 「必要劳动时间」与「剩余劳动时间」可被区分（而它们在现实里是同一段连续时间）。</strong> ★ <strong>所以 m′ 是一个「理论比率」，不是会计科目。</strong> ★ 这一点在读到第 3 卷时会变得重要：<strong>第 3 卷要讲「利润率」，而利润率的分母是「全部预付资本」——于是同一个剥削过程，在第 1 卷表现为 m/v，在第 3 卷表现为 m/(c+v)，两者相差一个「有机构成」因子。</strong> ★ <strong>第 1 卷把它们分开，第 3 卷把它们连起来——这一「分」一「连」，正是三卷结构的骨架。</strong></p>
+  <p><strong>四、「概念奠基」与「历史叙事」在这一段里的交错方式，值得单独学一次。</strong> ★ 第 I 篇（商品与货币）几乎全是<strong>概念推演</strong>；第 II 篇（货币转化为资本）也是<strong>概念推演</strong>；到了第 III 篇，<strong>第 7–9、11 章是概念与公式，而第 10 章忽然插入近半部英国工厂立法史</strong>。★ <strong>这一「交错」不是体例不统一，而是一种方法论</strong>：<strong>概念给出「必然性」，史料给出「现实性」</strong>——<strong>马克思要证明的不是「资本家碰巧很坏」，而是「工作日的界限本来就没有自然常数，只能由斗争与法律确定」，而工厂立法史正是这个命题的现实证据。</strong> ★ <strong>同一结构在下半卷重复出现：</strong> <strong>第 12–14 章是概念（相对剩余价值、协作、分工），第 15 章塞进大量工厂法史料；第 23–24 章是概念（再生产、积累），第 25 章塞进贫困统计。</strong> ★ <strong>掌握这个「概念—史料」交替的节律，是读第 1 卷最实用的一项技能</strong>——<strong>它告诉你「哪里必须慢读」（概念），「哪里可以选读」（史料），以及「两者在哪里咬合」。</strong></p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>第一卷（下）：相对剩余价值、工资与积累（第 IV–VIII 篇）</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本段与 <code>## 6</code> 的分界理由已在上节说明</strong>：<strong>上一段给「剩余价值是什么」，本段给「它长什么样、把人和社会带向何处」。</strong> ★ 这一段的五篇，是第 1 卷里<strong>最具体、最社会史化、也最有争议</strong>的部分。</p>
+  <h3>第 IV 篇 相对剩余价值的生产（第 12–15 章）</h3>
+  <p><strong>这一篇在回答什么问题</strong>：<strong>不延长工作日，怎么也能多剥削？</strong> 答案是<strong>提高劳动生产率，缩短「必要劳动时间」</strong>——这就是<strong>相对剩余价值</strong>。</p>
+  <p><strong>关键内容</strong>：</p>
+  <ul>
+    <li><strong>相对剩余价值的概念</strong>（第 12 章）：<strong>在工作日长度不变的前提下，通过缩短必要劳动时间、相应延长剩余劳动时间来增加剩余价值。</strong> ★ <strong>注意它的「社会性」</strong>：<strong>它不是单个资本家提高自己的生产率就能实现的</strong>——<strong>只有当整个部门（乃至整个社会）的生产率提高、从而使工人的生活资料变便宜时，必要劳动时间才真正缩短。</strong> ★ <strong>单个资本家先提高生产率，拿到的是「超额剩余价值」；当大家都提高后，「超额」消失，必要劳动时间才普遍缩短。</strong>
+    </li>
+    <li><strong>协作</strong>（第 13 章）：<strong>许多人同时、同地、为同一资本而协作劳动</strong>，产生的<strong>「社会生产力」</strong>大于个人生产力之和。★ <strong>协作本身不是资本主义发明的，但资本主义把它变成了组织生产的方式</strong>——<strong>「协作」在马克思这里既是技术事实，也是资本的权力形式。</strong> ★ 马克思特别指出<strong>「协作的管理」</strong>：<strong>指挥、协调、监督的功能，最初是「社会劳动过程本身的需要」，但在资本主义下变成了「资本的职能」。</strong>
+    </li>
+    <li><strong>分工与工场手工业</strong>（第 14 章）：★ <strong>这一章是对亚当·斯密「分工」论的直接回应</strong>。斯密在《国富论》开篇以<strong>制针工场</strong>说明分工提高生产率；<strong>马克思接着指出：在工场手工业里，分工使工人「片面化」，把他变成「局部工人」（Teilarbeiter）</strong>——<strong>同一个「分工」，斯密看到「富裕」，马克思看到「工人的残缺化」</strong>。★ 马克思还区分了<strong>「社会内部的分工」与「工场内部的分工」</strong>：<strong>前者靠商品交换联结（各个独立生产者之间的分工），后者靠资本的命令联结（同一个工场内部的分工）</strong>——<strong>这一区分是第 14 章的理论核心。</strong>
+    </li>
+    <li><strong>机器与大工业</strong>（第 15 章）：★ <strong>本章是全书最厚的一章之一</strong>。要点：① <strong>机器不是中性的技术</strong>，它被资本采用是为了<strong>提高相对剩余价值</strong>、<strong>削弱工人对自己技能的垄断</strong>；② <strong>机器使工人从「工具的主人」变成「机器的附属物」</strong>——<strong>「在机器上，劳动的技巧被转移到机器上，工人的技术被剥夺了。」</strong>；③ <strong>「机器排挤工人」</strong>——马克思讨论了<strong>「补偿理论」</strong>（即「机器排挤工人会造出新岗位」的说法），<strong>指出补偿不是自动的、也不必然抵消</strong>。★ 第 15 章还包含<strong>大量关于工厂立法、工时长、童工、女工的材料</strong>，并提前使用了第 2 卷的「机器如何缩短必要劳动」的分析。
+    </li>
+  </ul>
+  <p><strong>逐章要点</strong>：</p>
+  <ul>
+    <li><strong>第 12 章给出「相对剩余价值」的准确定义</strong>：<strong>「通过缩短必要劳动时间、相应地延长剩余劳动时间而生产的剩余价值，叫做相对剩余价值。」</strong> ★ <strong>它与「绝对剩余价值」的关系是：绝对剩余价值是「延长工作日」，相对剩余价值是「在同一工作日里重分蛋糕」。</strong> ★ <strong>关键在于：这个「重分」不能靠单个资本家，必须靠「整个社会生产率的提高」——于是「相对剩余价值」天然是一个「社会性」范畴。</strong>
+    </li>
+    <li><strong>第 13 章「协作」是「资本主义生产的起点形式」</strong>：<strong>许多人被同一个资本雇来、在同一场所、同一时间、为同一目的劳动。</strong> ★ <strong>马克思指出，协作产生的「集体力」大于个人之和</strong>——<strong>但这份「超额生产力」并不归工人，而归资本</strong>——<strong>「因为它是由资本把工人联合起来的。」</strong> ★ <strong>这一步为「分工」「机器」两章定了调：「生产力是社会性的，占有却是私人的。」</strong>
+    </li>
+    <li><strong>第 14 章是全篇的「理论心脏」</strong>：<strong>它要回答「分工到底带来什么」</strong>。★ <strong>马克思的答法是双重的</strong>：<strong>从技术看，分工提高效率；从工人看，分工把完整的手艺人变成「局部工人」——只会一道工序，离开工场就毫无用处。</strong> ★ <strong>「工场手工业的分工，使工人成为某种局部劳动的终身器官。」</strong> ★ <strong>这与《国富论》的乐观判断正相反</strong>——<strong>斯密看到的「富庶」，在马克思这里同时是「工人的残缺化」。</strong>
+    </li>
+    <li><strong>第 15 章「机器与大工业」是全卷最长的一章，可分三层读</strong>：★ <strong>第一层是「机器与工具的区别」</strong>——<strong>工具是人的器官的延伸，机器则有一个「动力—传动—工作机」的结构，人成了「看管者」；</strong> ★ <strong>第二层是「机器对工人的影响」</strong>——<strong>机器把技能从工人身上转到机器上，于是可以用童工、女工，可以延长工时、提高强度；</strong> ★ <strong>第三层是「机器排挤工人与补偿理论」</strong>——<strong>「被机器排挤的工人，会不会被新行业吸收？」马克思的回答是：短期内不会自动、也不会必然。</strong> ★ <strong>第 15 章还有一个理论收获：它提前说明了「机器如何使必要劳动时间缩短」——这为第 2 卷的周转分析埋线。</strong>
+    </li>
+  </ul>
+  <p><strong>可疑之处</strong>：</p>
+  <ol>
+    <li>★ <strong>「机器排挤工人」与「补偿理论」之争至今没有结束</strong>——<strong>这是「技术进步与就业」这一现代议题的最早系统文本</strong>。★ 承认「补偿不是自动的」与承认「长期确有新岗位产生」，<strong>两者可以并存</strong>（本报告不裁决）。
+    </li>
+    <li><strong>第 15 章的材料带有强烈的时代色彩</strong>（19 世纪英国工厂状况），<strong>把它当作 19 世纪社会史读，比当作普遍规律读更可靠</strong>。
+    </li>
+    <li>★ <strong>「相对剩余价值」的实现需要「全部门生产率提高」，这个论证在第 14、15 章里是靠「历史叙事」完成的</strong>——<strong>它是「概念」与「历史」的混合</strong>，读时要分清哪一步是逻辑、哪一步是史料。
+    </li>
+  </ol>
+  <h3>第 V 篇 绝对剩余价值与相对剩余价值的生产（第 16–18 章）</h3>
+  <p><strong>这一篇在回答什么问题</strong>：<strong>两种剩余价值的结合，以及劳动力价格与剩余价值量的各种组合。</strong></p>
+  <p><strong>关键内容</strong>：</p>
+  <ul>
+    <li><strong>绝对剩余价值与相对剩余价值</strong>（第 16 章）：★ <strong>两者不是互斥的，而是同一过程的两个侧面</strong>——资本主义生产总是同时依靠<strong>延长工作日</strong>与<strong>提高生产率</strong>。★ <strong>「绝对」与「相对」的区分是分析工具，不是两种不同的资本。</strong> ★ 马克思指出，<strong>从资本主义生产的「历史趋势」看，相对剩余价值的生产是主导形式</strong>，因为它使剥削不再受「生理极限」的约束。
+    </li>
+    <li><strong>劳动力价格与剩余价值的量的变化</strong>（第 17 章）：给出<strong>三种要素</strong>（工作日长度、劳动强度、劳动生产率）变化时，<strong>劳动力价格与剩余价值量</strong>的各种组合公式。★ <strong>这是第 1 卷最「经济学化」的一章</strong>，<strong>长篇公式推演</strong>，也是最少被读的一章。★ 它的核心是：<strong>这三种要素的变化方向与幅度不同，会对「劳动力价格」和「剩余价值量」产生不同的、有时相反的影响。</strong>
+    </li>
+    <li><strong>剩余价值率的各种公式</strong>（第 18 章）：把剩余价值率用不同方式表达，其中一种<strong>掩盖了它的真实来源</strong>——<strong>为下一篇「工资」作铺垫</strong>：<strong>「剩余价值率……在另一种公式里，它表现为资本的自行增殖率。」</strong><span class="tag t-src">原书</span>（第 1 卷第 18 章）★ <strong>这一章的功能，是把第 9 章的「剥削率」与第 1 卷后面要用的「利润率」之间搭一座桥，同时指出这座桥会被「掩盖」。</strong>
+    </li>
+  </ul>
+  <p><strong>逐章要点</strong>：</p>
+  <ul>
+    <li><strong>第 16 章回答「绝对与相对是不是两种东西」</strong>：★ <strong>不是。</strong> <strong>任何现实的生产都同时在做两件事：延长工时（绝对）与提高生产率（相对）。</strong> ★ <strong>「绝对／相对」是「抽象出的两个侧面」，不是「两种资本」</strong>——<strong>把它们当成互斥的类型，是初学者最常见的误会。</strong> ★ <strong>马克思还指出，从历史进程看，相对剩余价值的生产越来越占主导</strong>——因为<strong>工作日有生理上限，而生产率没有。</strong>
+    </li>
+    <li><strong>第 17 章是一张「三变量表」，是第 1 卷里最像「数理经济学」的一章</strong>：<strong>三个变量＝工作日长度、劳动强度、劳动生产率；两个结果＝劳动力价格、剩余价值量。</strong> ★ <strong>马克思逐一推演「若一个变量变、其他不变，会怎样」</strong>——<strong>得到的结论是：生产率提高会使劳动力价格下降（生活资料变便宜）而剩余价值增加；工作日延长会使剩余价值增加而劳动力价格可能不变。</strong> ★ <strong>这一章的价值在于「训练读者用变量思维读《资本论》」。</strong>
+    </li>
+    <li><strong>第 18 章只有几页，却是「承前启后」的一章</strong>：★ <strong>它把剩余价值率用「m/(c+v)」等不同形式重写，指出这些形式「掩盖了来源」</strong>——<strong>这正是第 3 卷「利润率」要处理的问题的先声。</strong> ★ <strong>用几句话记住第 16–18 章：第 16 章说「两种剩余价值是一体两面」，第 17 章说「怎么变都会影响分配」，第 18 章说「换个写法就会看不清来源」。</strong>
+    </li>
+  </ul>
+  <p><strong>可疑之处</strong>：★ <strong>第 17 章的组合分析是充分条件式的（「若……则……」）</strong>，<strong>不是经验规律</strong>——<strong>马克思在这里做的是逻辑推演，不是统计预测</strong>。<strong>把它读成「预言」是常见的误读。</strong> ★ 本卷三篇是「过渡性」的：<strong>它们的功能是把第 III、IV 篇的结论「一般化」，为第 VI 篇「工资」铺路。</strong></p>
+  <h3>第 VI 篇 工资（第 19–22 章）</h3>
+  <p><strong>这一篇在回答什么问题</strong>：<strong>工资的形式为什么掩盖了剩余价值？</strong> 答案是：<strong>「工资」这一形式，让「全部劳动都得到了报酬」看起来像是真的。</strong></p>
+  <p><strong>关键内容</strong>：</p>
+  <ul>
+    <li><strong>劳动力价值转化为工资</strong>（第 19 章）：★ <strong>核心命题</strong>——<strong>工人的工资表现为「劳动的报酬」，而实际上只是「劳动力价值的货币表现」</strong>。<strong>「在资产阶级社会的表面上，工人的工资表现为劳动的价格，表现为对一定量劳动支付的一定量货币。」</strong><span class="tag t-src">原书</span>（第 1 卷第 19 章）★ <strong>正是这个「转化」，把「必要劳动」与「剩余劳动」的区分藏了起来</strong>——<strong>工人看起来「全部时间都在为自己劳动」，而实际上有一部分是无偿的。</strong> ★ 马克思指出：<strong>「劳动的价值」这个说法本身是「不合理的用语」，是「由生产关系本身产生的形式」</strong>——<strong>不能用「用语不精确」去纠正它，因为它是「现象的形式」。</strong>
+    </li>
+    <li><strong>计时工资</strong>（第 20 章）：★ <strong>按小时计酬如何强化剥削</strong>——<strong>在计时工资下，延长工作日与提高劳动强度都不增加单位时间的工资。</strong>
+    </li>
+    <li><strong>计件工资</strong>（第 21 章）：★ <strong>计件工资的「自我加压」特性</strong>——<strong>它让工人自己拼命，还让工人之间互相竞争。</strong> ★ 马克思指出，<strong>计件工资是最适合资本主义生产方式的工资形式</strong>——<strong>因为它在工人身上「培养」出一种「自己是自己的监工」的机制。</strong>
+    </li>
+    <li><strong>工资的国民差异</strong>（第 22 章）：★ <strong>不同国家工资水平不同，需要结合「劳动强度」与「劳动生产率」来比较</strong>——<strong>马克思明确指出，用货币工资直接跨国比较是没有意义的</strong>。
+    </li>
+  </ul>
+  <p><strong>逐章要点</strong>：</p>
+  <ul>
+    <li><strong>第 19 章是「工资」这一篇的理论核心，只有十几页但极重</strong>：★ <strong>它处理的不是「工资高低」，而是「工资这个形式本身」。</strong> <strong>同一个现象（工人得到一笔钱），用「劳动的价格」讲，和用「劳动力的价格」讲，效果完全不同</strong>：<strong>前者说「全部劳动都得到了报酬」，后者说「报酬只是劳动力的价值，剩余劳动的部分是无偿的」。</strong> ★ <strong>马克思的结论是：形式本身就具有「掩盖」作用，不需要任何欺骗</strong>——<strong>这正是全书「表面现象 vs 内在关系」这一方法的一次典型运用。</strong>
+    </li>
+    <li><strong>第 20 章「计时工资」讲的是「按时间计酬的陷阱」</strong>：★ <strong>在计时工资下，如果延长工作日，小时工资可能不变甚至下降</strong>——<strong>因为「日工资」或「周工资」是一个固定数，被摊到更多小时上。</strong> ★ <strong>马克思指出：这正是「强制加班」的经济机制。</strong>
+    </li>
+    <li><strong>第 21 章「计件工资」是「最适合资本主义的工资形式」</strong>：★ <strong>计件把「监督」变成了「自我监督」</strong>——<strong>工人为了多拿，自己延长工时、自己提高强度；</strong> ★ <strong>而且计件工资下，工人之间会互相竞争</strong>——<strong>「计件工资是资本家进行欺诈和剥削的最丰富的源泉。」</strong> ★ <strong>马克思的判断是：计件工资使「工人成为自己的监工」。</strong>
+    </li>
+    <li><strong>第 22 章「工资的国民差异」是「比较方法」的一课</strong>：★ <strong>同样一小时，在甲国与乙国所「包含」的劳动强度不同，因此货币数额不可直接比。</strong> ★ <strong>马克思的主张是：比较各国工资，必须先把「劳动强度」与「生产率」折算进去</strong>——<strong>这一方法，今天读来仍不过时。</strong>
+    </li>
+  </ul>
+  <p><strong>可疑之处</strong>：★ <strong>「工资」这一篇篇幅不长，但它是全书结构上的一个枢纽</strong>：<strong>它解释了为什么「表面上的等价交换」能够长期维持</strong>。★ <strong>跳过它，读者会一直问「为什么工人看不出自己被骗」</strong>——<strong>答案就在这里：因为工资这个形式本身，就是在说「你劳动多少，我就付多少」。</strong> ★ 同时也要注意：<strong>「劳动力价值转化为工资」是「形式分析」，不是「欺骗指控」</strong>——<strong>马克思强调的是「形式本身的作用」，不是「资本家撒了谎」。</strong></p>
+  <h3>第 VII 篇 资本的积累过程（第 23–25 章）</h3>
+  <p><strong>这一篇在回答什么问题</strong>：<strong>剩余价值怎么变成新资本，以及这个过程的长期后果是什么？</strong></p>
+  <p><strong>关键内容</strong>：</p>
+  <ul>
+    <li><strong>简单再生产</strong>（第 23 章）：★ <strong>即使资本家把剩余价值全花掉，再生产也会反复生产出「资本关系」本身</strong>——<strong>工人每一轮都重新作为「一无所有的劳动者」出场</strong>。★ <strong>「简单再生产本身，就不断再生产出资本与雇佣劳动的分离。」</strong><span class="tag t-src">原书</span>（第 1 卷第 23 章）★ <strong>这一章的意义在于：它说明资本关系不是一次性的，而是「每一轮再生产都在重造」的。</strong> ★ 马克思还指出：<strong>「把资本主义生产过程当作一个不断更新的过程来看，它就不只是生产商品、生产剩余价值，它还生产和再生产资本关系本身：一方面是资本家，另一方面是雇佣工人。」</strong>
+    </li>
+    <li><strong>剩余价值转化为资本</strong>（第 24 章）：★ <strong>资本积累＝把剩余价值重新投入生产</strong>。<strong>「积累就是资本的规模不断扩大的再生产。」</strong>★ 马克思批评了「节欲论」（资本来自资本家的「节制消费」）——<strong>「他把剩余价值转化为资本，也就是把剩余产品转化为资本，是为了……」</strong> ★ 他还分析了<strong>「原始资本」与「追加资本」的关系</strong>：<strong>今天的资本，追溯到底都是「无酬的剩余劳动」。</strong>
+    </li>
+    <li><strong>资本主义积累的一般规律</strong>（第 25 章）：★★ <strong>全篇最重要的一章</strong>。要点：① <strong>资本有机构成的提高</strong>（机器替代人）会<strong>不断制造出相对过剩人口</strong>（<strong>产业后备军</strong>）；② <strong>产业后备军</strong>「属于资本，好像是在资本的要求下生出来的」<span class="tag t-src">原书</span>（第 1 卷第 25 章）——<strong>「过剩的」人口不是「多余的」，而是资本积累的常态</strong>；③ <strong>「在一极是财富的积累，同时在另一极……是贫困、劳动折磨、受奴役、无知、粗野和道德堕落的积累。」</strong><span class="tag t-src">原书</span>（第 1 卷第 25 章）★ 马克思给这一规律命名：<strong>「这就是资本主义积累的绝对的、一般的规律。」</strong><span class="tag t-src">原书</span>（第 1 卷第 25 章）★ 第 25 章还讨论了<strong>「相对过剩人口的三种形式」</strong>（流动的、潜在的、停滞的）与<strong>「贫困的积累」的机制</strong>。
+    </li>
+  </ul>
+  <p><strong>逐章要点</strong>：</p>
+  <ul>
+    <li><strong>第 23 章「简单再生产」常被当作「准备章节」跳过，其实它是全篇的第一个结论</strong>：★ <strong>它的论证是「把生产过程当作一个不断重复的过程来看」</strong>——<strong>一次生产过程看起来是「资本家买了东西、卖了东西」，重复看就发现：工人拿到的工资，本来就是他自己上一轮创造的产品的一部分。</strong> ★ <strong>「工人今天得到的，是他昨天生产的一部分。」</strong> ★ <strong>这一步把「等价交换」的表象第一次撕开。</strong>
+    </li>
+    <li><strong>第 24 章的三件武器</strong>：★ <strong>① 反驳「节欲论」</strong>（资本不是来自资本家的「克制消费」，而是来自剩余劳动）；<strong>② 指出「原始资本」与「追加资本」都终归于无酬劳动</strong>；<strong>③ 给出「积累率」这一分析工具</strong>（剩余价值分割为「积累基金」与「消费基金」）。★ <strong>第 24 章的著名论断是：资本积累的实质，是「剩余价值资本化」。</strong>
+    </li>
+    <li><strong>第 25 章是全书最长、最富争议、也最「社会科学」的一章</strong>：★ <strong>它的论证链是：资本积累 → 资本有机构成提高 → 对劳动需求相对减少 → 相对过剩人口（产业后备军）→ 压低工资、强化资本 → 两极积累。</strong> ★ <strong>马克思用了大量英国官方统计（济贫法报告、工厂视察员报告、公共卫生报告）来支撑</strong>——<strong>这是《资本论》里「实证色彩」最重的一段。</strong> ★ <strong>关键判断是「相对」而非「绝对」</strong>：<strong>过剩人口是「相对于资本增殖的需要」而言的过剩，不是「绝对多余的」。</strong>
+    </li>
+    <li><strong>第 25 章的三个子概念值得单独记</strong>：★ <strong>「资本有机构成」＝c/v</strong>（不变资本与可变资本之比）；<strong>「相对过剩人口」＝产业后备军</strong>；<strong>「绝对的一般规律」＝两极积累的表述</strong>。★ <strong>这三个词，是后来一切「马克思主义经济学」讨论失业的逻辑起点。</strong>
+    </li>
+  </ul>
+  <p><strong>可疑之处</strong>：</p>
+  <ol>
+    <li>★★ <strong>「产业后备军」与「两极积累」是全书最具当代感、也最受争议的一段</strong>（见 <code>## 5</code> 第 4 条）。★ <strong>它的力量在「机制」——失业与积累的结构性关联；它的争议在「预测」——报酬与贫困的长期走向。</strong> <strong>本报告把两者分开写。</strong>
+    </li>
+    <li><strong>第 25 章引用了大量当时的统计数据与文献</strong>（如英格兰与威尔士的贫困统计、爱尔兰的农业状况），<strong>其分析框架（有机构成、后备军）在今天的劳动经济学里既被使用、也被改写</strong>。
+    </li>
+    <li>★ <strong>「一般规律」这个名字本身带有很强的理论抱负</strong>，<strong>而它的经验基础主要是 19 世纪中叶的英国</strong>——<strong>把「英国样本」与「一般规律」分开读，是必要的谨慎。</strong>
+    </li>
+  </ol>
+  <h3>第 VIII 篇 所谓原始积累（第 26–33 章）</h3>
+  <p><strong>这一篇在回答什么问题</strong>：<strong>资本关系最初是怎么来的？</strong> 答案是：<strong>不是「勤俭致富」，而是暴力剥夺。</strong></p>
+  <p><strong>关键内容</strong>：</p>
+  <ul>
+    <li><strong>原始积累的秘密</strong>（第 26 章）：★ <strong>「这种原始积累在政治经济学中所起的作用，同原罪在神学中所起的作用几乎一模一样。」</strong><span class="tag t-src">原书</span>（第 1 卷第 26 章）★ 它拆掉的是政治经济学的一个<strong>神话</strong>：<strong>「勤劳者积累财富、懒汉沦落」</strong>——<strong>马克思用一大段讽刺把这套「原罪」叙事复述出来，然后说：「这种乏味的儿童故事，每天都有人向我们宣讲，用来为财产辩护。」</strong><span class="tag t-src">原书</span>（第 1 卷第 26 章）
+    </li>
+    <li><strong>农民土地的被剥夺</strong>（第 27 章）：★ 英国圈地运动——<strong>直接生产者的土地被剥夺，成为「一无所有」的自由劳动者</strong>。★ 马克思把这一过程称作<strong>「对人民土地的剥夺」</strong>，并指出<strong>它构成了「资本关系的前史」</strong>。★ 他还指出：<strong>「对农业生产者即农民的剥夺，是资本关系形成的前史的全部内容。」</strong>
+    </li>
+    <li><strong>血腥立法</strong>（第 28 章）：★ <strong>针对被剥夺者的立法</strong>——<strong>从 15 世纪末起，对流浪者、乞讨者的残酷惩罚</strong>（鞭打、烙印、割耳、处死）。★ <strong>「被剥夺者」不仅失去土地，还被法律强迫去当雇佣工人</strong>——<strong>「这样，被暴力剥夺了土地、被驱逐出来而变成了流浪者的农村居民，又通过这种可怕的立法，被打上了烙印，被鞭打、被烙铁烫、被折磨，被迫接受了雇佣劳动制度。」</strong><span class="tag t-src">原书</span>（第 1 卷第 28 章）
+    </li>
+    <li><strong>农业资本家的产生</strong>（第 29 章）与<strong>农业革命对工业的反作用</strong>（第 30 章）：★ <strong>国内市场如何随着「自给自足的农民」被消灭而形成</strong>——<strong>农民被剥夺后，必须去市场上购买生活资料，于是「国内市场」被创造出来。</strong>
+    </li>
+    <li><strong>工业资本家的产生</strong>（第 31 章）：★ 殖民、国债、税收、保护关税——<strong>结语：资本「从头到脚，每个毛孔都滴着血和肮脏的东西」</strong><span class="tag t-src">原书</span>（第 1 卷第 31 章）。★ 马克思还指出<strong>殖民制度、国债制度、现代税收制度和保护关税制度，是「原始积累的不同方法」</strong>。
+    </li>
+    <li><strong>资本主义积累的历史趋势</strong>（第 32 章）：★ <strong>「剥夺者被剥夺」</strong>（expropriation of the expropriators）的著名表述——<strong>「资本主义生产由于自然过程的必然性，造成了对自身的否定。这是否定的否定。」</strong><span class="tag t-src">原书</span>（第 1 卷第 32 章）
+    </li>
+    <li><strong>现代殖民理论</strong>（第 33 章）：★ <strong>韦克菲尔德（Edward Gibbon Wakefield）的殖民理论</strong>——<strong>在殖民地，因为土地可以自由取得，「雇佣工人」无法被制造出来</strong>，<strong>这一章反过来证明了原始积累的必要性</strong>：<strong>「皮尔先生把价值五万英镑的生活资料和生产资料从英国带到……斯旺河畔，却忘了把英国的生产关系也带出去。」</strong><span class="tag t-src">原书</span>（第 1 卷第 33 章）
+    </li>
+  </ul>
+  <p><strong>逐章要点</strong>：</p>
+  <ul>
+    <li><strong>第 26 章是「全篇的定调章」</strong>：★ <strong>它先指出一个「循环论证」</strong>——<strong>「资本积累以资本主义生产为前提，而资本主义生产又以资本积累为前提。」</strong> ★ <strong>为了打破这个循环，必须假设一个「先于资本主义积累的积累」——即「原始积累」。</strong> ★ <strong>然后马克思用「原罪」的比喻，把这套叙事当成一桩「神学故事」来拆解</strong>——<strong>这是全书最锋利的一段修辞。</strong>
+    </li>
+    <li><strong>第 27–28 章是「从史料到论点」的两步</strong>：★ <strong>第 27 章给「剥夺」的具体过程</strong>（圈地、教会地产的没收、公有地的圈占）；<strong>第 28 章给「剥夺之后的立法」</strong>（血腥立法把流浪者变成雇佣工人）。★ <strong>这两章合起来证明了一件事：</strong> <strong>「自由劳动者」不是天生的，而是「被制造」出来的</strong>——<strong>先有「被剥夺」，才有「自由得一无所有」。</strong>
+    </li>
+    <li><strong>第 29–30 章常被忽略，但它们是「国内市场」的起源</strong>：★ <strong>农民被剥夺后，不能再自给自足，必须去市场上买布、买工具——于是「国内市场」被创造出来。</strong> ★ <strong>马克思的洞见是：</strong> <strong>「农村的被剥夺」，同时是「工业资本国内市场的形成」</strong>——<strong>剥夺与市场，是一枚硬币的两面。</strong>
+    </li>
+    <li><strong>第 31 章列举了「原始积累的方法清单」</strong>：★ <strong>殖民制度、国债制度、现代税收制度、保护关税制度</strong>——<strong>马克思把它们都称为「原始积累的不同方法」。</strong> ★ <strong>它的结语（「血和肮脏的东西」）是全书被引用最多的一句，但它只是这段清单的收尾，不是全篇的「口号」。</strong>
+    </li>
+    <li><strong>第 32 章的「否定的否定」与第 33 章的「殖民反证」，是「一头一尾」</strong>：★ <strong>第 32 章给出「历史趋势」（剥夺者被剥夺）；第 33 章用殖民地的「反例」证明「原始积累的必要性」</strong>（在土地自由的地方，资本无法制造出雇佣工人）。★ <strong>两章合起来，完成了「资本关系有起点」这一命题的闭合。</strong>
+    </li>
+  </ul>
+  <p>★ <strong>一段深读：第 33 章为什么是全篇最巧妙的一步。</strong> ★ 第 33 章处理的是<strong>爱德华·吉本·韦克菲尔德（Edward Gibbon Wakefield）的「系统殖民」理论</strong>。★ <strong>韦克菲尔德的困境是</strong>：<strong>在英国，资本与雇佣工人是「现成」的；可到了殖民地（如美洲、澳洲），因为土地可以自由取得，工人宁可自己当小农，也不愿进工厂当雇佣工人</strong>——<strong>于是「资本」到了新大陆，却没有「雇佣工人」可用。</strong> ★ <strong>韦克菲尔德的方案是「人为制造无产者」</strong>：<strong>由政府把土地价格定得足够高，使工人一时买不起地，只有先做工攒钱</strong>——<strong>用一个人为的土地价格，来「制造出雇佣工人」。</strong> ★ <strong>马克思对这个方案的评语，就是那句著名的讽刺</strong>：<strong>「皮尔先生把价值五万英镑的生活资料和生产资料从英国带到斯旺河畔，却忘了把英国的生产关系也带出去。」</strong><span class="tag t-src">原书</span>（第 1 卷第 33 章）★ <strong>这句讽刺的理论含量极高</strong>：<strong>它说明「资本」不是一堆物（机器、粮食、钱），而是一套社会关系</strong>——<strong>没有「一无所有的劳动者」这一条件，机器与粮食就只是机器与粮食，不会变成「资本」。</strong> ★ <strong>所以第 33 章的功能是「反证」</strong>：<strong>它用一个「原始积累缺席」的场景，反过来证明了原始积累的必要性</strong>——<strong>资本主义不是「有资本就能有」，它需要一整套「把人变成雇佣工人」的历史条件。</strong> ★ <strong>这一章最常被跳读，但它其实是整部第 1 卷的逻辑收口</strong>：<strong>第 6 章说「劳动力成为商品需要两个条件」；第 26–32 章说「这两个条件是怎么被制造出来的」；第 33 章说「若没有这一制造过程，资本就不成其为资本」。</strong> ★ <strong>三部合起来，「资本是历史产物」这一命题才算真正闭合。</strong></p>
+  <p><strong>可疑之处</strong>：</p>
+  <ol>
+    <li>★ <strong>本篇的史学依据（英国 15–18 世纪圈地史）在当代经济史研究中有争论</strong>（见 <code>## 5</code> 第 5 条）。★ <strong>「文本说了什么」与「史实如何」，是两件事。</strong>
+    </li>
+    <li>★ <strong>第 32 章的「剥夺者被剥夺」（expropriation of the expropriators）是全卷唯一一处带有强烈目的论色彩的历史断言</strong><span class="tag t-src">原书</span>（第 1 卷第 32 章）。★ <strong>本报告如实标出它的位置与性质，不做预测性解读。</strong>
+    </li>
+    <li>★ <strong>第 33 章「现代殖民理论」在结构上是一个「反证」</strong>：<strong>它用殖民地这个「没有原始积累」的反面例子，证明了原始积累的必要性</strong>——<strong>这一章常被跳读，但它是全篇论证的收口。</strong>
+    </li>
+  </ol>
+  <h3>可疑之处（第一卷下半）</h3>
+  <ol>
+    <li>★ <strong>第 IV–VIII 篇是一条「后果链」</strong>：相对剩余价值（技术）→ 工资（形式）→ 积累（机制）→ 原始积累（起源）。<strong>把它读成五个独立专题，就丢掉了它的推进关系。</strong>
+    </li>
+    <li>★ <strong>第 VIII 篇在英文通行本里是独立的一篇（第 VIII 篇，第 26–33 章），在德文通行本里并入「资本的积累过程」</strong>——<strong>读不同版本时，这一篇的「份量感」会不同</strong>（第 1 节注解①）。
+    </li>
+    <li>★ <strong>第 1 卷的下半有大量 19 世纪英国的史料</strong>（工厂法、贫困报告、殖民地档案），<strong>它们既是《资本论》的力量所在，也是它最「时代化」的部分</strong>——<strong>读的时候要一直记着「这是 1867 年的英国」。</strong>
+    </li>
+  </ol>
+  <p>★★ <strong>第一卷下半的四段深读（把「后果链」这一段的四个关节再钻一层）</strong>：</p>
+  <p><strong>一、「分工」这一章：同一事实，两种判断——这是全书与《国富论》对话最尖锐的一处。</strong> ★ 斯密与马克思面对的是<strong>同一个现象</strong>：<strong>分工提高生产率</strong>。★ <strong>斯密的判断是「富裕」</strong>——分工使每人生产得更多，从而社会更富。★ <strong>马克思的判断是「双重」的</strong>：<strong>在生产率的层面，他完全接受分工提高效率；在工人的层面，他指出分工把「完整的手艺人」拆成了「只做一道工序的局部工人」</strong>——<strong>「工场手工业的分工，使工人成为某种局部劳动的终身器官」。</strong> ★ <strong>所以两人不是「一个对、一个错」，而是「在看同一事实的不同侧面」</strong>：★ <strong>斯密看的是「总产出」，马克思看的是「产出者本人」。</strong> ★ <strong>这也提示了一种读法</strong>：<strong>当你看到「技术进步使总产出增加」与「技术进步使某些工人被淘汰」两个说法并存时，不必急着判定谁对——它们可能正是斯密视角与马克思视角的重现。</strong> ★ <strong>第 14 章的理论贡献还有一层</strong>：<strong>它区分了「社会内部的分工」（各独立生产者通过交换联结）与「工场内部的分工」（同一工场里通过资本命令联结）</strong>——<strong>前者是「无政府状态下的自发秩序」，后者是「有计划的专制」；两种分工在同一社会里并存，这本身就是资本主义的一个特征。</strong></p>
+  <p><strong>二、「工资」这一篇：全书最容易被当成「纯技术章节」跳过、实际上最「政治」的一篇。</strong> ★ 为什么说它「政治」？因为它回答了<strong>整部《资本论》最要紧的一个「接受问题」</strong>：★ <strong>如果剩余价值真的存在，为什么工人自己看不见、也不觉得被剥削？</strong> ★ <strong>第 19 章给出的答案是：不是靠欺骗，而是靠「形式」。</strong> ★ <strong>「工资」这个形式，把「劳动力价值的货币表现」呈现为「劳动的报酬」</strong>——<strong>于是「全部劳动都得到了报酬」看起来就是真的。</strong> ★ <strong>工人每天上班、按小时或按件领钱，这个经验与「他整天都在为自己劳动」完全吻合；而「剩余劳动」这一部分，被形式本身藏在了「另一种公式」里。</strong> ★ <strong>所以这一篇的功能是解释「表象的稳定性」</strong>——<strong>它说明资本主义的「表面等价交换」不是一次骗局，而是一种每天都在自我确认的日常经验。</strong> ★ <strong>马克思自己强调的是「形式本身的作用」，而不是「资本家撒了谎」</strong>——<strong>这一点极重要：把它读成「道德指控」，就丢掉了第 19 章全部的理论含量。</strong></p>
+  <p><strong>三、「积累」这一篇的三层，必须按顺序咬合，缺一层就散架。</strong> ★ <strong>第一层（第 23 章，简单再生产）</strong>：<strong>即使资本家把剩余价值全部消费掉，再生产也会反复生产出「资本关系」本身</strong>——<strong>工人每一轮都重新作为「一无所有的劳动者」出场。</strong> ★ <strong>第二层（第 24 章，剩余价值转化为资本）</strong>：<strong>积累＝把剩余价值重新投入生产；资本不是来自资本家的「节欲」，而是来自无酬的剩余劳动。</strong> ★ <strong>第三层（第 25 章，一般规律）</strong>：<strong>资本有机构成提高 ⇒ 对劳动的需求相对减少 ⇒ 相对过剩人口（产业后备军）⇒ 压低工资、强化资本 ⇒ 两极积累。</strong> ★ <strong>三层的逻辑关系是「由静到动、由单轮到长期」</strong>：★ <strong>第 23 章说明「一轮再生产就足以重造关系」；第 24 章说明「多轮再生产会把剩余价值变成新资本」；第 25 章说明「长期积累会制造出产业后备军」</strong>——<strong>没有第 23 章的「再生产出关系」，第 25 章的「后备军」就缺少基础；没有第 24 章的「资本化」，第 25 章的「有机构成提高」就无从发生。</strong> ★ <strong>读第 25 章时若觉得它「结论太强」，请回看前两章——它的力量来自前面两层铺垫，而不是这一章单独的一记重锤。</strong></p>
+  <p><strong>四、「原始积累」的两种读法，是理解它「争议性」的钥匙。</strong> ★ <strong>读法 A（史学读法）</strong>：<strong>把第 26–33 章当作一部英国 15–18 世纪的剥夺史来读</strong>——<strong>圈地、教会地产没收、公有地圈占、血腥立法、殖民与国债。</strong> ★ <strong>这一读法下，争点落在「史料细节」上</strong>：<strong>圈地的规模、时段、被剥夺者的实际去向</strong>（<code>## 5</code> 第 5 条）。★ <strong>读法 B（逻辑读法）</strong>：<strong>把这一篇当作全书的一个「起点设定」来读</strong>——<strong>它要打断「资本积累以资本主义生产为前提，而后者又以资本积累为前提」这个循环</strong>，<strong>为全书引入一个「先于资本主义积累的积累」。</strong> ★ <strong>这一读法下，争点落在「起点假设是否必要、是否正确」上</strong>——<strong>它不依赖任何一条史料的真伪。</strong> ★ <strong>两种读法都对，但不能混着用</strong>：★ <strong>用史料细节去否定整个论点，或用逻辑必要性去担保证史料的准确性，都是滑步。</strong> ★ <strong>至于第 32 章那句「剥夺者被剥夺」</strong>（<span class="tag t-src">原书</span>第 1 卷第 32 章），<strong>它是全卷唯一一处带强烈目的论色彩的历史断言</strong>——★ <strong>它在文本中的位置很特殊：夹在「史料」与「殖民反证」之间，像是作者对这段历史趋向的一个总结性判断。</strong> ★ <strong>本报告如实标出它的位置与性质，既不当它是「预言」，也不当它是「修辞」。</strong></p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>第二卷：资本的流通过程（3 篇 21 章）</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本卷由恩格斯编成，1885 年出版</strong>（马克思手稿 1863–1878 年写成）。★ <strong>本卷是全三卷里技术性最强、也最少被读完的一卷。</strong> 它处理的问题是：<strong>资本在流通过程中如何保持自己、并不断回到起点？</strong> ★ <strong>一句话：第 1 卷处理「资本的生产过程」（剩余价值怎么产生），第 2 卷处理「资本的流通过程」（资本在生产领域与流通领域之间如何循环、周转，社会总资本如何再生产）</strong>——<strong>第 1 卷问「钱怎么生出钱」，第 2 卷问「钱怎么转起来」。</strong> ★ <strong>读第 2 卷只要抓住三件事就够</strong>：<strong>资本的三形态与三循环、固定资本与流动资本的区别、两大部类的再生产图式。</strong> ★ <strong>一个常被忽略的点</strong>：<strong>第 2 卷的「流通」不是「买卖」，而是「资本在运动中依次采取的形态」</strong>——<strong>这与日常语言的「流通」不同。</strong></p>
+  <h3>第 1 篇 资本形态变化及其循环（第 1–6 章）</h3>
+  <p><strong>这一篇在回答什么问题</strong>：<strong>资本在运动中要经过哪些形态、回到起点的路怎么走？</strong></p>
+  <p><strong>关键内容</strong>：</p>
+  <ul>
+    <li>★ <strong>资本的三种形态</strong>：<strong>货币资本、生产资本、商品资本</strong>；<strong>三种循环</strong>：<strong>货币资本的循环、生产资本的循环、商品资本的循环</strong>。★ <strong>资本不是「一堆物」，而是「一个会变换形态的运动」。</strong>
+    </li>
+    <li><strong>货币资本的循环</strong>（第 1 章）：★ 公式是 <strong>M—C … P … C′—M′</strong>（货币→商品〔劳动力＋生产资料〕→<strong>生产过程 P</strong>→新商品→更多的货币）<span class="tag t-src">原书</span>（第 2 卷第 1 章）。★ <strong>它与第 1 卷的 G—W—G′ 相连，但加入了生产阶段 P</strong>——<strong>这正是第 1 卷与第 2 卷的接合点</strong>。★ 马克思把公式写作 <strong>M—C&lt;LMP … P … C′—M′</strong>（L 表示劳动力，MP 表示生产资料；C&lt;LMP 表示「一分为二」地买进劳动力和生产资料）。
+    </li>
+    <li><strong>生产资本的循环</strong>（第 2 章）：<strong>起点是生产，终点也是生产</strong>——<strong>它把「再生产」作为常态</strong>（简单再生产、扩大再生产、货币积累、准备金）。★ <strong>这一循环最能显示「资本主义生产是连续的过程」。</strong>
+    </li>
+    <li><strong>商品资本的循环</strong>（第 3 章）：<strong>起点是商品，终点也是商品</strong>——<strong>它强调「总产品」的实现问题</strong>。★ <strong>马克思指出：这一循环的起点 C′ 已经包含剩余价值，所以它从一开始就是「总产品」的形式。</strong>
+    </li>
+    <li><strong>三种循环的统一</strong>（第 4 章）：★ <strong>只有把三种循环当作「总循环」来看，资本才是连续的</strong>——<strong>任一种循环单独看，都会「中断」</strong>。★ 马克思强调<strong>「三种循环是同一资本运动的三个侧面，必须同时存在」</strong>——<strong>不是「依次经过三个阶段」，而是「三种循环在时间上并存」。</strong> ★ <strong>这是第 2 卷第 1 篇最重要的一句话。</strong>
+    </li>
+    <li><strong>流通时间与流通费用</strong>（第 5、6 章）：★ <strong>纯粹的流通费用</strong>（买卖时间、簿记、货币）<strong>不创造价值</strong>；<strong>储备费用与运输费用</strong>则<strong>分情况讨论</strong>（有些创造价值，有些只是追加费用）。★ <strong>「簿记」被列为「纯粹流通费用」</strong>——<strong>这一点在后来的经济核算理论里被反复引用。</strong>
+    </li>
+  </ul>
+  <p><strong>逐章要点</strong>：</p>
+  <ul>
+    <li><strong>第 1–3 章是「一个公式的三种看法」</strong>：★ <strong>同样一个资本，从「货币出发」看，是货币资本的循环；从「生产出发」看，是生产资本的循环；从「商品出发」看，是商品资本的循环。</strong> ★ <strong>三章不是三个对象，是「同一个过程」的三面</strong>——<strong>这一点在读第 4 章之前必须建立，否则会把它们读成「三种资本」。</strong>
+    </li>
+    <li><strong>第 4 章是全篇的「结论章」，只有十几页</strong>：★ <strong>它说：把三种循环合起来看，资本运动才是「连续」的</strong>——<strong>而在现实中，正是「连续性」经常被打断（比如「卖不出去」）。</strong> ★ <strong>马克思由此提出「总循环」的概念</strong>——<strong>资本是「同时处在三种形态里」的。</strong> ★ <strong>这一章是理解第 2 卷与「经济危机」关系的入口。</strong>
+    </li>
+    <li><strong>第 5、6 章的「流通费用」有一个反直觉的分类</strong>：★ <strong>买卖时间、簿记、货币——这些「纯粹流通费用」不创造价值</strong>（<strong>它们只是「价值形式的变换」所必须的开销</strong>）；<strong>而运输、储备——这些「追加费用」分情况</strong>（运输会创造价值，因为它是生产过程在流通中的延续）。★ <strong>这个分类的意义在于：它区分了「为流通而花的钱」与「为生产而花的钱」</strong>——<strong>这一区分在后来的商业成本理论里一直有回声。</strong>
+    </li>
+  </ul>
+  <p><strong>可疑之处</strong>：★ <strong>「资本三形态—三循环」是第 2 卷的骨架</strong>。<strong>把它简化成「资本要经过三个阶段」，会丢掉「三种循环必须同时并存」这个要点</strong>——<strong>马克思强调的是「连续性」，不是「顺序」。</strong> ★ <strong>两个符号 L 与 MP 的引入，是理解第 2 卷公式的钥匙</strong>——<strong>它把第 1 卷的「劳动力」概念带进了流通分析。</strong></p>
+  <h3>第 2 篇 资本周转（第 7–17 章）</h3>
+  <p><strong>这一篇在回答什么问题</strong>：<strong>资本转一圈要多久、转多快对剩余价值有什么影响？</strong></p>
+  <p><strong>关键内容</strong>：</p>
+  <ul>
+    <li><strong>周转时间与周转次数</strong>（第 7 章）：★ <strong>周转时间＝生产时间 ＋ 流通时间</strong>；<strong>周转次数＝一年／周转时间</strong>。
+    </li>
+    <li><strong>固定资本与流动资本</strong>（第 8–11 章）：★ <strong>注意：这不是第 1 卷的「不变资本／可变资本」</strong>——<strong>这是按「价值转移方式」划分的另一对范畴</strong>。★ <strong>两对范畴容易混，是读第 2 卷最大的坑</strong>：<strong>不变／可变按「是否创造价值」分；固定／流动按「价值如何转移」分</strong>（<strong>流动资本的价值一次转移到产品中，固定资本的价值多次、分批转移</strong>）。★ <strong>第 10–11 章</strong>批注了<strong>重农学派、亚当·斯密、李嘉图</strong>关于固定资本与流动资本的学说，<strong>并指出斯密把两者混同于「不变／可变」的错误</strong>——<strong>这在马克思看来是一个「根本性的混乱」。</strong>
+    </li>
+    <li><strong>周转对资本量的影响</strong>（第 12–15 章）：<strong>劳动期间、生产时间、流通时间</strong>如何影响<strong>预付资本量</strong>。★ <strong>马克思指出：周转越慢，需要的预付资本越多</strong>——<strong>这就是「重工业」与「轻工业」在资本需求上的差别。</strong>
+    </li>
+    <li><strong>可变资本的周转与年剩余价值率</strong>（第 16 章）：★ <strong>同样的剩余价值率，因周转速度不同，年剩余价值率可以不同</strong>——<strong>这是第 2 卷给出的一个独立结论</strong>。★ 年剩余价值率 <strong>M′ = m′·n</strong>（n 为可变资本的年周转次数）。★ <strong>第 16 章还讨论了「二重意义上的周转」</strong>（一年内可变资本被使用的次数）。★ <strong>它揭示了一个反直觉的结论：同一剥削率下，周转越快，一年里榨取到的剩余价值越多</strong>——<strong>这也解释了资本家为什么热衷于「加速周转」。</strong>
+    </li>
+    <li><strong>剩余价值的流通</strong>（第 17 章）：<strong>剩余价值如何被实现与再投入</strong>。
+    </li>
+  </ul>
+  <p><strong>逐章要点</strong>：</p>
+  <ul>
+    <li><strong>第 7 章「周转时间」是「时间维度」的引入</strong>：★ <strong>资本要「转一圈」，才算完成一次完整的增殖</strong>——<strong>这一圈里，一半时间在生产、一半时间在流通。</strong> ★ <strong>周转速度因此成为一个独立的变量：它不改变剥削率，却改变「一年能剥削几次」。</strong>
+    </li>
+    <li><strong>第 8–11 章是「四章合一」的一组</strong>：★ <strong>第 8 章给「固定／流动」的定义与区别；第 9 章讲「总周转」；第 10 章评斯密与重农学派的「固定／流动」学说；第 11 章评李嘉图。</strong> ★ <strong>马克思这一组的重点是「纠错」</strong>：<strong>斯密把「固定／流动」与「不变／可变」混同，是「政治经济学的一个根本错误」</strong>——<strong>因为它把「价值转移方式」与「是否创造价值」这两件不同的事搅在一起。</strong> ★ <strong>读第 2 卷时，这一组是最需要慢读的地方。</strong>
+    </li>
+    <li><strong>第 12–15 章讲「周转如何影响预付资本」</strong>：★ <strong>劳动期间越长（如修铁路）、流通时间越长（如远洋贸易），需要的预付资本越多。</strong> ★ <strong>一个直接推论：周转越慢的行业，进入门槛越高</strong>——<strong>这是「资本密集」这一概念在《资本论》里的原型。</strong>
+    </li>
+    <li><strong>第 16 章「年剩余价值率」是第 2 卷最漂亮的一个结论</strong>：★ <strong>设剩余价值率 m′ 不变，但可变资本一年周转 n 次，则年剩余价值率 M′ = m′·n。</strong> ★ <strong>它把「剥削率」与「周转速度」相乘，得出「一年实际的榨取强度」</strong>——<strong>这为第 3 卷讲「利润率」铺了路。</strong>
+    </li>
+  </ul>
+  <p><strong>可疑之处</strong>：</p>
+  <ol>
+    <li>★ <strong>「固定／流动」与「不变／可变」两对范畴的关系</strong>，是<strong>第 2 卷最容易被讲错的地方</strong>。★ <strong>马克思本人把它们严格区分；后世不少通俗读物把它们混同</strong>——<strong>本报告明确指出：两对范畴对应两组不同的问题</strong>（前者关于「价值转移方式」，后者关于「是否创造价值」）。
+    </li>
+    <li>★ <strong>第 16 章的「年剩余价值率」是《资本论》里最「技术」的概念之一</strong>——<strong>它是「利润率」与「剩余价值率」之间的一个中间环节</strong>，第 3 卷讲利润率时要用到它。
+    </li>
+    <li>★ <strong>本卷的「周转」概念，是理解第 3 卷「利润率」的关键</strong>：<strong>同样的资本，周转越快，年利润率越高</strong>——<strong>这使「利润率」不再是一个固定的量，而是一个与周转速度相关的量</strong>（第 3 卷第 4 章专论此点）。
+    </li>
+  </ol>
+  <h3>第 3 篇 社会总资本的再生产和流通（第 18–21 章）</h3>
+  <p><strong>这一篇在回答什么问题</strong>：<strong>整个社会的资本：生产出来的东西，怎么能在「价值」和「实物」两方面都找到买主、又能重新投入？</strong></p>
+  <p><strong>关键内容</strong>：</p>
+  <ul>
+    <li><strong>导论与前人评述</strong>（第 18、19 章）：★ 第 19 章<strong>批判斯密与重农学派</strong>——<strong>斯密把社会总产品的价值只分解为 v+s，漏掉了 c（不变资本部分）</strong>。★ <strong>「斯密的教条」是第 3 篇反复纠错的对象</strong>——<strong>马克思指出：斯密把「产品的价值」与「产品中新创造的价值」混为一谈。</strong>
+    </li>
+    <li><strong>两大部类</strong>（第 20 章）：★ <strong>第 I 部类＝生产资料的生产；第 II 部类＝消费资料的生产</strong>。
+    </li>
+    <li><strong>简单再生产</strong>（第 20 章）：★ <strong>核心公式：I(v+s) = IIc</strong>——<strong>第 I 部类的可变资本与剩余价值，必须等于第 II 部类的不变资本</strong>。<strong>社会总产品的各部分必须各自在价值与实物两方面都得到补偿</strong>。★ 第 20 章还讨论了<strong>「两个部类内部的交换」「货币流通的中介作用」「固定资本的补偿」</strong>等极为细致的环节。★ <strong>马克思把这一图式称作「社会总资本再生产的关键」。</strong>
+    </li>
+    <li><strong>扩大再生产</strong>（第 21 章）：★ <strong>要扩大再生产，就必须把一部分剩余价值转化为追加的不变资本与可变资本</strong>，并给出<strong>两个「图式」</strong>（第一次例证、第二次例证）。★ <strong>马克思用它说明：扩大再生产不是「凭空多生产」，而是「结构调整」的结果</strong>——<strong>第 I 部类必须比第 II 部类增长得更快。</strong>
+    </li>
+  </ul>
+  <p><strong>逐章要点</strong>：</p>
+  <ul>
+    <li><strong>第 18 章是「导论」，它把问题提得非常清楚</strong>：★ <strong>第 1 卷和第 2 卷前面讲的都是「单个资本」；这一篇要讲的是「社会总资本」</strong>——<strong>于是出现一个新问题：所有的资本加在一起，生产出来的东西能不能「卖掉」、能不能「买回」？</strong> ★ <strong>这就是所谓「实现问题」。</strong>
+    </li>
+    <li><strong>第 19 章是「清场」</strong>：★ <strong>马克思逐一清理重农学派、斯密、以及斯密之后的学者的错误</strong>，核心是<strong>「斯密的教条」</strong>——<strong>把社会总产品的价值只分解为工资＋剩余价值（v+s），忘掉了不变资本（c）。</strong> ★ <strong>马克思指出：若真如此，社会就永远无法「补偿」已消耗的生产资料。</strong> ★ <strong>这一章读起来枯燥，但它是第 20 章「两大部类」的必要前提。</strong>
+    </li>
+    <li><strong>第 20 章「简单再生产」是全篇的核心</strong>：★ <strong>它把社会生产分成两大部类：生产资料的部类（I）与消费资料的部类（II）</strong>。★ <strong>关键等式是 I(v+s) = IIc</strong>——<strong>第 I 部类工人与资本家的消费需求，必须与第 II 部类的生产资料需求相对应。</strong> ★ <strong>马克思还细分成「IIa 必要生活资料」与「IIb 奢侈品」两个分部类，并处理「货币如何中介这些交换」「固定资本如何分批补偿」等极细的环节。</strong> ★ <strong>这套图式后来被称作「再生产图式」，是马克思主义经济学里最常被引用的分析工具。</strong>
+    </li>
+    <li><strong>第 21 章「扩大再生产」把「积累」放进图式</strong>：★ <strong>前提条件是把剩余价值分成「追加的不变资本、追加的可变资本、资本家的消费」三份。</strong> ★ <strong>马克思给出了两次数值例证</strong>，并指出<strong>「第 I 部类必须优先增长」</strong>——<strong>这一结论后来成为讨论「社会主义工业化道路」的重要文本依据</strong>（本报告只指出文本位置，不作引申）。
+    </li>
+  </ul>
+  <p><strong>可疑之处</strong>：</p>
+  <ol>
+    <li>★★ <strong>再生产图式是《资本论》里最被后世「使用」的部分之一</strong>——<strong>从列宁、罗莎·卢森堡到现代马克思主义经济学，都从两大部类出发讨论「实现问题」与「危机」</strong>。★ <strong>麻烦也在这里</strong>：<strong>该图式假设两部类按比例平衡，而现实中「不平衡」正是危机的来源</strong>——<strong>「图式」与「危机」之间的张力，是 20 世纪争论的另一条线。</strong> <strong>它是一个分析框架，不是对现实经济的直接描述。</strong>
+    </li>
+    <li>★ <strong>第 2 卷全卷由恩格斯编纂成书</strong>（见 <code>## 10</code>）。<strong>读这两篇时，「这是马克思的定稿吗」这个问题尤其突出</strong>——★ 恩格斯在序言里说明，第 2 卷的手稿有多个版本、且彼此有差异。
+    </li>
+  </ol>
+  <h3>可疑之处（第二卷）</h3>
+  <ol>
+    <li>★ <strong>本卷是三卷里最「不政治」、也最少被读完的一卷</strong>，但<strong>它是第 3 卷的必要前置</strong>——<strong>没有第 2 卷的「周转」概念，第 3 卷讲利润率时「资本周转对利润率的影响」就无从下手</strong>（第 3 卷第 4 章）。
+    </li>
+    <li>★ <strong>本卷技术性强，读法建议</strong>：<strong>只要抓住三件事就够</strong>——<strong>资本的三形态与三循环、固定资本与流动资本的区别、两大部类的再生产图式</strong>。<strong>其余细节（流通费用、准备金、货币材料再生产）可以在需要时回查。</strong>
+    </li>
+    <li>★ <strong>本卷的「未完成感」比第 1 卷强</strong>：<strong>恩格斯在序言里多处说明手稿的状态，并把不同版本的异文并列</strong>——<strong>这既是第 2 卷的财富，也提醒读者它的文本性质。</strong>
+    </li>
+  </ol>
+  <p>★★ <strong>第二卷的两段深读</strong>：</p>
+  <p><strong>一、为什么说第 2 卷是「危机的钥匙」，尽管它自己几乎不谈危机。</strong> ★ 第 1 卷处理的是「剩余价值怎么被生产出来」，回答的是<strong>「源头」</strong>；第 2 卷处理的是「资本怎么循环与周转」，回答的是<strong>「通道」</strong>。★ <strong>危机的可能性，在第 1 卷第 3 章已经埋下</strong>（卖与买在时间上分离 ⇒ 「卖了不买」成为可能）；<strong>但真正让这个可能性变成现实性的，是第 2 卷揭示的「连续性要求」</strong>：★ <strong>资本必须同时处在货币资本、生产资本、商品资本三种形态里</strong>（第 4 章「总循环」）——<strong>任一种循环中断，整个运动就停摆。</strong> ★ <strong>而现实中，正是「连续性」经常被打断：</strong> <strong>商品卖不出去（商品资本无法回到货币形态）、原料到不了（货币资本无法转成生产资本）、机器停着（固定资本的价值转移受阻）。</strong> ★ <strong>所以第 2 卷的「技术分析」有一个隐藏的政治经济学后果：</strong> <strong>它把「危机」从「偶然的事故」变成了「资本运动的内在要求所派生出来的必然可能性」。</strong> ★ <strong>后来的马克思主义经济学讨论「实现问题」「比例失调」「生产过剩」，其文本起点都在第 2 卷</strong>——<strong>这也解释了为什么它看起来最「不政治」，却最不能被跳过。</strong></p>
+  <p><strong>二、两大部类图式的「用途」与「限度」，必须同时记住。</strong> ★ <strong>用途</strong>：<strong>它是第一个把「社会总产品如何在价值与实物两方面得到补偿」写成可解体系的分析框架</strong>——<strong>I(v+s)=IIc 这个等式，把「消费」与「投资」放在同一个账上，这在马克思之前没有人系统地做过。</strong> ★ <strong>它的方法论贡献甚至超出马克思主义传统</strong>：<strong>现代增长理论里的「两部门模型」与它的思路是相通的</strong>（虽然术语与目的完全不同）。★ <strong>限度</strong>：<strong>图式假设两个部类之间按比例平衡</strong>——<strong>而这恰恰是它在分析危机时的弱点：如果一切都「按比例」，危机就无从发生；可现实中「比例失调」正是危机的常态。</strong> ★ <strong>于是出现一个长期争论：</strong> <strong>「再生产图式」到底是「理想均衡的模型」，还是「危机理论的预备」？</strong> ★ <strong>列宁与罗莎·卢森堡从这里出发走向了不同的方向</strong>（<code>## B</code> 第 7 条）——<strong>一个用它论证「资本主义可以在俄国发展」，一个用它论证「资本主义必须不断向外扩张」</strong>（本报告只指出文本位置，不展开评述）。★ <strong>一句话：</strong> <strong>这套图式的价值在「框架」，争议在「它能否被直接用来谈危机」。</strong></p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>第三卷：资本主义生产的总过程（7 篇）</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本卷由恩格斯编成，1894 年出版</strong>（<strong>恩格斯逝世前一年</strong>）。★ <strong>本卷是全书「从抽象到具体」的最后一站</strong>：<strong>利润、平均利润、利息、地租——这些是资本主义经济中「看得见的形式」</strong>。★ <strong>一句话：第 1 卷讲「价值」，第 3 卷讲「价格」——而这两者之间的「转形」，是本卷的核心，也是全书最受争议的一步。</strong></p>
+  <h3>第 1–3 篇 利润、平均利润与利润率趋向下降</h3>
+  <p><strong>这三篇在回答什么问题</strong>：<strong>剩余价值怎么变成「利润」，又怎么变成「平均利润」？为什么一般利润率会有下降趋势？</strong></p>
+  <p><strong>关键内容</strong>：</p>
+  <ul>
+    <li><strong>成本价格与利润</strong>（第 1 章）：★ <strong>成本价格 k = c + v</strong>。<strong>剩余价值一旦表现为「耗费掉的资本」的增加额，就转化为利润</strong>。★ <strong>「剩余价值，作为全部预付资本的这样一种观念上的产物，取得了利润这个转化形式。」</strong><span class="tag t-src">原书</span>（第 3 卷第 1 章）
+    </li>
+    <li><strong>利润率 = m/(c+v)</strong>（第 2 章）：★ <strong>注意：利润率的分母是全部资本，剩余价值率的分母只是可变资本</strong>——<strong>因此利润率总是小于剩余价值率</strong>。★ <strong>利润率 = m/(c+v)；剩余价值率 = m/v</strong>。
+    </li>
+    <li><strong>利润率与剩余价值率的关系</strong>（第 3 章）：给出两者相互换算的公式（涉及资本有机构成、周转、剩余价值率）。
+    </li>
+    <li>★★ <strong>一般利润率的形成与价值转化为生产价格</strong>（第 8–9 章）：★★ <strong>这是「转形问题」的文本出处</strong>。<strong>各部门的不同利润率，通过竞争形成一般（平均）利润率；商品不再按价值、而是按生产价格（成本价格＋平均利润）出售</strong><span class="tag t-src">原书</span>（第 3 卷第 9 章）。★ 第 9 章标题原文即「<strong>一般利润率的形成（平均利润率）与商品价值转化为生产价格</strong>」；★ 原文：<strong>「这些生产价格的前提是一般利润率的存在，而生产价格则是商品价值的转化形式。」</strong><span class="tag t-src">原书</span>（第 3 卷第 9 章）
+    </li>
+    <li><strong>市场价值与市场价格</strong>（第 10 章）：<strong>市场价值由「社会必要劳动时间」的某一标准条件决定，市场价格围绕市场价值波动</strong>。★ <strong>并讨论了「超额利润」的来源。</strong>
+    </li>
+    <li><strong>工资波动对生产价格的影响</strong>（第 11 章）；<strong>补充说明</strong>（第 12 章）。
+    </li>
+    <li>★ <strong>利润率趋向下降的规律</strong>（第 13–15 章）：<strong>资本有机构成提高 → 一般利润率有下降趋势</strong>（第 13 章）——<strong>「随着资本主义生产方式的发展，一般利润率有下降的趋势。」</strong><span class="tag t-src">原书</span>（第 3 卷第 13 章）；<strong>反作用因素</strong>（第 14 章：剥削程度提高、工资压低、生产资料便宜化、相对过剩人口、对外贸易等）；<strong>内部矛盾的展开</strong>（第 15 章）——<strong>「资本主义生产的真正限制是资本本身。」</strong><span class="tag t-src">原书</span>（第 3 卷第 15 章）★ 第 15 章还讨论了<strong>过剩、投机、危机</strong>。
+    </li>
+  </ul>
+  <p><strong>逐章要点</strong>：</p>
+  <ul>
+    <li><strong>第 1–3 篇是一条「从剩余价值到利润率」的下坡路</strong>：★ <strong>第 1 章把「剩余价值」变成「利润」（因为资本家看到的是「全部预付资本带来的增加额」）；第 2 章把「剩余价值率」变成「利润率」；第 3 章给出两者的换算。</strong> ★ <strong>每一步都是「一个抽象层次的下降」</strong>——<strong>读者最要小心的，是「利润率低于剩余价值率」这个结论</strong>（因为前者分母更大）。**
+    </li>
+    <li><strong>第 8–9 章是第 3 卷的「心脏」，也是「转形问题」的原产地</strong>：★ <strong>第 8 章先论证：资本有机构成不同、周转不同，各部门的利润率本来各不相同；</strong> ★ <strong>第 9 章再论证：通过部门之间的竞争（资本从低利润部门流向高利润部门），形成一个「一般（平均）利润率」，于是商品按「生产价格」（成本价格＋平均利润）出售。</strong> ★ <strong>「生产价格」是「价值的转化形式」</strong>——<strong>这一步一旦成立，「价值」与「价格」的关系就成了全书最大的争议（<code>## 5</code> 第 3 条）。</strong>
+    </li>
+    <li><strong>第 10–12 章是「补丁与注解」</strong>：★ <strong>第 10 章处理「市场价值」与「市场价格」的关系（并讨论超额利润）；第 11 章处理「工资波动对生产价格的影响」；第 12 章是补充说明。</strong> ★ <strong>这三章读起来像「技术附录」，但它们回答的是「市场价值究竟由哪一档生产条件决定」这个实际问题。</strong>
+    </li>
+    <li><strong>第 13–15 章是「规律三部曲」</strong>：★ <strong>第 13 章立「规律」（有机构成提高→利润率下降）；第 14 章列「反作用因素」；第 15 章讲「内部矛盾」并推出「资本主义生产的真正限制是资本本身」。</strong> ★ <strong>这一组的逻辑结构，本身就是「一种理论如何面对反例」的样本。</strong>
+    </li>
+  </ul>
+  <p><strong>可疑之处</strong>：</p>
+  <ol>
+    <li>★★ <strong>第 9 章是「转形问题」的原产地</strong>。<strong>它要同时满足「总价值＝总价格」与「总剩余价值＝总利润」两个恒等式，但单个部门的「价值」与「生产价格」并不相等</strong>——<strong>Böhm-Bawerk 1896 由这里发起批评，Bortkiewicz 1906–07 由这里提出解法</strong>（<code>## 5</code> 第 3 条）。★ <strong>这一争议至今没有公认结论。</strong>
+    </li>
+    <li>★ <strong>第 13 章「利润率趋向下降」的经验困难</strong>（<code>## 5</code> 第 4 条）。<strong>本报告只写文本与批评，不判定成立与否。</strong>
+    </li>
+    <li>★ <strong>第 1–3 篇的编纂痕迹相对较轻</strong>（手稿较完整），<strong>但仍是恩格斯编的</strong>——<strong>「文本说了什么」与「马克思本人的定论」之间，仍要保留一层</strong>（见 <code>## 10</code>）。
+    </li>
+  </ol>
+  <h3>第 4–6 篇 商业资本、生息资本与地租</h3>
+  <p><strong>这三篇在回答什么问题</strong>：<strong>产业资本之外的「商业资本」「生息资本」「土地所有者」，如何分走剩余价值？</strong></p>
+  <p><strong>关键内容</strong>：</p>
+  <ul>
+    <li><strong>商业资本与商业利润</strong>（第 16–20 章）：★ <strong>商业资本不创造剩余价值，但参与剩余价值的分配</strong>——<strong>商业利润是对产业工人所创剩余价值的一种扣除</strong>。★ 第 16 章讲<strong>商品经营资本</strong>，第 17 章讲<strong>商业利润</strong>，第 18 章讲<strong>商业资本的周转</strong>，第 19 章讲<strong>货币经营资本</strong>，第 20 章是一段<strong>商业资本的历史</strong>。★ <strong>一个关键的推论：商业资本「不创造价值却参与分配」，这正是它「看起来能自己生钱」的原因。</strong>
+    </li>
+    <li>★ <strong>生息资本与信用</strong>（第 21–36 章）：★ <strong>这是第 3 卷最长的一段</strong>。要点：<strong>利息是平均利润的一部分</strong>（第 21、22 章）；<strong>企业主收入与利息的分割</strong>（第 23 章）；<strong>生息资本的关系外化</strong>（第 24 章）；<strong>信用与虚拟资本</strong>（第 25 章）；<strong>货币资本的积累及其对利息率的影响</strong>（第 26 章）；★ <strong>第 27 章「信用在资本主义生产中的作用」</strong>；<strong>银行资本</strong>（第 29 章）；<strong>货币资本与现实资本</strong>（第 30–32 章）；<strong>信用制度下的流通手段</strong>（第 33 章）；<strong>通货原理与 1844 年英国银行立法</strong>（第 34 章）；<strong>贵金属与汇率</strong>（第 35 章）；<strong>前资本主义的关系</strong>（第 36 章）。★ 第 33–35 章记录了<strong>通货学派与银行学派之争</strong>。★ <strong>「虚拟资本」这一概念，是这一段对后世影响最大的贡献之一。</strong>
+    </li>
+    <li>★ <strong>地租</strong>（第 37–47 章）：<strong>级差地租 I 与 II</strong>（第 38–44 章）、<strong>绝对地租</strong>（第 45 章）、<strong>建筑地段地租与矿山地租、土地价格</strong>（第 46 章）、<strong>资本主义地租的发生</strong>（第 47 章）。★ <strong>地租是「超额利润的转化形式」</strong>。★ 第 37 章是<strong>导论</strong>，明确<strong>地租研究的对象是「资本主义农业中的超额利润如何转化为地租」</strong>。★ <strong>级差地租 I 与 II 的区别</strong>：<strong>I 来自土地肥力与位置的差别，II 来自连续投资的生产率差别。</strong>
+    </li>
+  </ul>
+  <p><strong>逐章要点</strong>：</p>
+  <ul>
+    <li><strong>第 16–20 章是「商业资本」的一组</strong>：★ <strong>第 16 章给「商品经营资本」的定义；第 17 章讲商业利润的来源（对产业剩余价值的扣除）；第 18 章讲商业资本的周转；第 19 章讲「货币经营资本」；第 20 章讲商人的历史。</strong> ★ <strong>核心结论是：商业资本不创造价值，却参与分配</strong>——<strong>正因如此，它看起来像是「自己会生钱」，这是「资本拜物教」的一个新形态。</strong>
+    </li>
+    <li><strong>第 21–36 章是第 3 卷最长的一组，也是「离定稿最远」的一段</strong>：★ <strong>它的主线是「生息资本」</strong>——<strong>货币作为「可以生息的商品」被借贷，利息成为「平均利润的一部分」。</strong> ★ <strong>第 23 章「利息与企业主收入」把一个利润分成两部分</strong>（借贷资本的利息＋经营资本的企业主收入）；<strong>第 25 章引入「信用与虚拟资本」</strong>；<strong>第 27 章讲信用的作用</strong>；<strong>第 29–32 章讲银行资本与「货币资本 vs 现实资本」</strong>；<strong>第 33–35 章进入「通货学派与银行学派之争」</strong>（围绕 1844 年英国银行法）。★ <strong>「虚拟资本」与「信用」的分析，是这一段对后世影响最大的贡献。</strong>
+    </li>
+    <li><strong>第 37–47 章是「地租」一组，可分三段</strong>：★ <strong>第 37 章导论；第 38–44 章讲级差地租（I 与 II）；第 45–47 章讲绝对地租与地租的历史发生。</strong> ★ <strong>级差地租 I 来自土地肥力／位置的差别，级差地租 II 来自同一块地上连续投资的生产率差别</strong>——<strong>两者都是「超额利润」被土地所有者拿走。</strong> ★ <strong>「绝对地租」是马克思对李嘉图的补充</strong>：<strong>由于农业资本有机构成较低，农产品按价值（而非生产价格）出售，从而产生一个「绝对」的超额（本报告只述文本，不展开争论）。</strong>
+    </li>
+  </ul>
+  <p>★ <strong>一段补记：第 5 篇（生息资本与信用）的「当代回声」——为什么这一篇今天读来最有现实感。</strong> ★ 第 21–36 章是第 3 卷最长、最杂、也最「离定稿最远」的一段，<strong>但它贡献了全书在 20 世纪被引用最多的两个概念：</strong> <strong>「生息资本」与「虚拟资本」。</strong> ★ <strong>「生息资本」的要害在于「关系的颠倒」</strong>：<strong>利润本来是剩余价值的一部分，但在生息资本的形式下，它看起来像是「资本本身自然而然的产物」</strong>——<strong>「G—G′」，钱生出钱，中间的生产过程被抹掉了。</strong> ★ <strong>马克思把这种「省略中介」的形式称作「资本拜物教的最彻底的形式」</strong>——<strong>它比商品拜物教更彻底，因为这里连「物」都省了，只剩下「金额生出金额」。</strong> ★ <strong>「虚拟资本」则指由信用与所有权凭证（债券、股票等）构成的、本身不是现实资本的那一层资本</strong>——<strong>它随信用制度扩张，可以与现实生产资本脱节。</strong> ★ <strong>这一区分（虚拟资本 vs 现实资本）在马克思那里是分析性的，不是道德性的</strong>：<strong>它不预设「虚拟资本一定要崩溃」，只指出「它可以在脱离现实生产的条件下自我膨胀」。</strong> ★ <strong>20 世纪的每一次金融危机讨论，几乎都要回到这一篇找语言</strong>——<strong>本报告只指出这个文本位置，不对任何具体历史事件下判断。</strong> ★ <strong>一个阅读提醒</strong>：<strong>这一篇被公认「离定稿最远」</strong>，<strong>恩格斯在编辑时也说明其手稿完成度不均</strong>（<code>## 10</code>、附录 D6）——<strong>所以引用它时要格外注意「这是编纂本」这一层。</strong></p>
+  <p><strong>可疑之处</strong>：</p>
+  <ol>
+    <li>★ <strong>第 5 篇（生息资本与信用）篇幅巨大、内容极杂</strong>，<strong>且恩格斯在编辑时说明这一部分手稿的完成度不均</strong><span class="tag t-rep">转述</span>（见恩格斯为第 3 卷所写的序言，<code>## 10</code>）。★ <strong>读它要有「这是编纂本」的自觉</strong>——<strong>这一部分被公认是第 3 卷里「离定稿最远」的一段。</strong>
+    </li>
+    <li>★ <strong>地租理论（第 6 篇）是马克思与李嘉图地租论的对话</strong>，<strong>其「绝对地租」概念的公允性在农业经济学界长期有争论</strong>——<strong>它不是从经验观察直接得出的，而是从劳动价值论推出的一项理论主张。</strong>
+    </li>
+    <li>★ <strong>第 4–6 篇的分工（商业／生息／地租）是「按剩余价值的分割对象」组织的</strong>，<strong>不是按行业分的</strong>——<strong>读的时候要看「这部分收入凭什么分到剩余价值」，而不是「这个行业怎么运作」。</strong>
+    </li>
+  </ol>
+  <h3>第 7 篇 各种收入及其源泉（第 48–52 章）</h3>
+  <p><strong>这一篇在回答什么问题</strong>：<strong>社会上的三种收入（利润、地租、工资）看起来各有各的来源，它们真的是三回事吗？</strong></p>
+  <p><strong>关键内容</strong>：</p>
+  <ul>
+    <li>★★ <strong>三位一体公式</strong>（第 48 章）：<strong>「资本—利润（企业主收入＋利息），土地—地租，劳动—工资，这就是三位一体的公式。」</strong><span class="tag t-src">原书</span>（第 3 卷第 48 章；英文原文：<em>Capital — profit (profit of enterprise plus interest), land — ground-rent, labour — wages, this is the trinity formula</em>）★ <strong>马克思指出：这个公式把三种收入说成来自三种不同的源泉（资本、土地、劳动），从而掩盖了它们共同的来源——剩余价值。</strong> ★ 而<strong>劳动这个「源泉」在公式里恰恰是最没有支配权的</strong>——<strong>「在这个公式里，劳动被放在与资本、土地并列的地位，仿佛三者是平等的源泉。」</strong> ★ <strong>三位一体公式是「资本主义生产方式的完成形态」：一切关系都被物化、被说成「自然的」。</strong>
+    </li>
+    <li><strong>关于生产过程的分析</strong>（第 49 章）；<strong>竞争的假象</strong>（第 50 章）；<strong>分配关系与生产关系</strong>（第 51 章）——★ <strong>马克思强调「分配关系不过是生产关系的另一面」</strong>，不能脱离生产谈分配。
+    </li>
+    <li>★ <strong>阶级</strong>（第 52 章）：<strong>全书的最后一章</strong>——<strong>但马克思只写了几行就中断了</strong>：<strong>「单纯劳动力的所有者、资本的所有者、土地所有者——他们各自的收入源泉是工资、利润和地租——也就是说，雇佣工人、资本家和土地所有者，形成建立在资本主义生产方式基础上的现代社会的三大阶级。」</strong><span class="tag t-src">原书</span>（第 3 卷第 52 章）★ <strong>手稿在此中断</strong>——<strong>《资本论》没有写完。</strong>
+    </li>
+  </ul>
+  <p><strong>逐章要点</strong>：</p>
+  <ul>
+    <li><strong>第 48 章「三位一体公式」是「表象批判」的巅峰</strong>：★ <strong>它把三种收入的形式（利润、地租、工资）与其「表面源泉」（资本、土地、劳动）并置</strong>，指出<strong>这个公式的效力恰恰在于：它让「剩余价值的共同来源」彻底消失。</strong> ★ <strong>马克思说：在这个公式里，「资本主义生产方式的神秘化、社会关系的物化，达到了顶点。」</strong> ★ <strong>读第 48 章，要把它当作全书方法论的「收官之作」：前面所有的「还原」，都在这里做最后一次。</strong>
+    </li>
+    <li><strong>第 49–51 章是「过渡三章」</strong>：★ <strong>第 49 章「关于生产过程的分析」；第 50 章「竞争的假象」；第 51 章「分配关系与生产关系」。</strong> ★ <strong>它们的共同功能是：在「阶级」这一章之前，先把「分配由生产决定」这个命题钉死</strong>——<strong>「分配关系不过是生产关系的另一面。」</strong>
+    </li>
+    <li><strong>第 52 章「阶级」只有短短几段，然后手稿中断</strong>：★ <strong>它给出「三大阶级」的经典表述（雇佣工人、资本家、土地所有者）</strong>——<strong>但马克思正要讨论「什么构成一个阶级」这个问题时，手稿戛然而止。</strong> ★ <strong>这一「断」本身，成了《资本论》文本史上最著名的一个「未完成」。</strong> ★ <strong>它也提示读者：整部《资本论》的「结论」，实际上是被「未完成」这句话托住的。</strong>
+    </li>
+  </ul>
+  <p><strong>可疑之处</strong>：★ <strong>第 52 章的残缺本身就说明了《资本论》的未完成性</strong>：★ <strong>三卷里，第 1 卷是马克思定稿的，第 2、3 卷是恩格斯编的，而第 3 卷的结尾还是断的</strong>。<strong>这个文本状态，是理解全书的一个基本事实</strong>（见 <code>## 10</code>）。★ <strong>「三位一体公式」这一章的批判对象是「经济学把三种收入说成三个独立源泉」</strong>——<strong>它是全书对「表象」的最后一次清算：把「看得见的形式」还原为「看不见的关系」。</strong></p>
+  <h3>可疑之处（第三卷）</h3>
+  <ol>
+    <li>★ <strong>本卷是全三卷里「最像经济学」、也最容易与第 1 卷「对不上号」的一卷</strong>——<strong>因为它的核心动作（转形）恰恰是要在两个层面（价值与价格）之间架桥。</strong>
+    </li>
+    <li>★ <strong>本卷的编纂痕迹最重</strong>（恩格斯编、手稿不均、结尾中断）。<strong>本报告的立场</strong>：<strong>「文本说了什么」照写，「这是否等于马克思本人定论」存疑</strong>——见 <code>## 10</code>。
+    </li>
+    <li>★ <strong>本卷的「利润—利息—地租」三篇合起来，才是「总过程」</strong>——<strong>单独读某一段都会失真</strong>：<strong>利息脱离利润、地租脱离超额利润，就都读不通。</strong>
+    </li>
+  </ol>
+  <p>★★ <strong>第三卷的三段深读</strong>：</p>
+  <p><strong>一、「转形问题」的精确位置：麻烦究竟出在哪一步。</strong> ★ 把它拆成四步看，就一目了然：★ <strong>第 1 步（第 1 卷）</strong>：<strong>商品按「价值」交换，价值＝凝结的社会必要劳动时间。</strong> ★ <strong>第 2 步（第 3 卷第 8 章）</strong>：<strong>不同部门的有机构成不同、周转不同 ⇒ 若都按价值交换，则各部门的利润率必然不同。</strong> ★ <strong>第 3 步（第 3 卷第 9 章）</strong>：<strong>但资本主义的现实是：资本在部门之间流动，追逐更高的利润率，于是形成一个「一般（平均）利润率」；商品不再按价值、而按生产价格（成本价格＋平均利润）出售。</strong> ★ <strong>第 4 步（麻烦所在）</strong>：<strong>如果各部门都按生产价格出售，那么「商品的价格总和」还等于「价值总和」吗？「利润总和」还等于「剩余价值总和」吗？</strong> ★ <strong>马克思的立场是：两个总量恒等式都成立</strong>——<strong>「总体而言，价格总和＝价值总和；利润总和＝剩余价值总和」。</strong> ★ <strong>批评者的反驳是：这个「成立」必须依赖特定条件（例如各部门的有机构成恰好对称、或必须用特殊的「价值」定义），而这些条件在一般情形下不成立。</strong> ★ <strong>Böhm-Bawerk 1896 正是从「第 1 卷与第 3 卷不一致」这一点发起攻击</strong>；<strong>Bortkiewicz 1906–07 则指出：要把「价值→价格」写成联立方程组，就必须放弃「各个部门的『转化前价值』与『转化后价格』两个总量都分别相等」这一过强的要求。</strong> ★ <strong>Sraffa 1960 走了第三条路：干脆用「标准商品」重建价格与分配，不再需要「价值」这个中间层。</strong> ★ <strong>一句话</strong>：<strong>「麻烦」不在第 3 卷第 9 章的推导本身，而在「推导完之后，两个总量恒等式是否还能同时守住」</strong>——<strong>这是「价值」这个概念在全书中最吃力的一刻。</strong></p>
+  <p><strong>二、「利润率趋向下降」为什么是全书最脆弱的一环。</strong> ★ 把它与「转形」相比，就能看出脆弱点不同：<strong>「转形」是「逻辑上能否自洽」的问题；「利润率下降」是「经验上能否验证」的问题。</strong> ★ 第 13 章立论的方式是：<strong>有机构成提高 ⇒ 相对剩余价值不变时，一般利润率必然下降</strong>。★ <strong>但第 14 章立刻列出一长串「反作用因素」</strong>：<strong>剥削程度提高、工资被压低、生产资料便宜化、相对过剩人口的存在、对外贸易、股份资本的增长等</strong>——<strong>马克思自己就指出：这些因素可以「抵消、延缓和部分阻断」该规律。</strong> ★ <strong>于是出现一个结构性的困难</strong>：<strong>「规律」加上一张「抵消因素」的开放清单，就几乎无法被任何一组数据证伪</strong>——<strong>无论观察到利润率下降或上升，都可以被解释。</strong> ★ <strong>这在方法论上被称为「可证伪性」问题</strong>（<code>## 5</code> 第 4 条）。★ <strong>但这并不等于这一章没有价值</strong>：<strong>它的价值可能不在「预测」而在「揭示资本积累的内在张力」</strong>——<strong>即资本越是提高生产率（从而抬高有机构成），就越是在削弱自己利润率的根基。</strong> ★ <strong>换句话说，这一章真正说的或许不是「利润率会下降」，而是「资本积累有一个内在的自我限制倾向」</strong>——<strong>这两种读法的期待本来就不一样，争论至今没有定论。</strong></p>
+  <p><strong>三、「三位一体公式」为什么能当全书的收官。</strong> ★ 第 48 章把资本主义社会里最「自明」的一组公式摆出来：<strong>资本—利润，土地—地租，劳动—工资。</strong> ★ <strong>它在日常生活中看起来完全自然：</strong> <strong>出钱的拿利润，出地的拿地租，出力的拿工资</strong>——<strong>三种收入，三个来源，各得其所。</strong> ★ <strong>马克思的批判不是「三种收入不该存在」，而是「这个公式把『共同的来源』抹掉了」</strong>：★ <strong>利润、地租、工资其实是同一块蛋糕（剩余价值）的不同切法</strong>——<strong>而公式让它们看起来像三个彼此独立、各有正当源泉的收入。</strong> ★ <strong>更关键的是「劳动」在这组公式里的位置</strong>：<strong>它与「资本」「土地」并列，仿佛三者是平等的「生产要素」</strong>——<strong>而实际上，「劳动」这一项根本不能支配自己创造的那部分价值。</strong> ★ <strong>所以第 48 章是全书方法论的收官之作：</strong> <strong>前面每一篇都在把「物与物的关系」还原为「人与人的关系」，到了第 48 章，这种「还原」被推到了最极致——连「收入」这种最日常的东西，都被指出是「社会关系的物化形式」。</strong> ★ <strong>一本书用这样的方式收束，本身就是一种声明：</strong> <strong>它要拆的，不是某一项制度，而是「把历史性的社会关系看成自然事实」这种思维方式本身。</strong> ★ <strong>而它的最后一章（第 52 章「阶级」）恰恰在正要展开时中断——</strong> <strong>这个「中断」，是《资本论》文本史上最著名的一个未完成</strong>（<code>## 10</code>）。</p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">10</span><span>第四卷与全书结构再读：恩格斯编纂问题</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本节是结构再读，承担三件事</strong>：① <strong>第 4 卷《剩余价值理论》的性质</strong>；② <strong>恩格斯编纂第 2、3 卷的争议</strong>；③ <strong>三卷 ＋ 第 4 卷的整体结构</strong>。</p>
+  <h3>一、第 4 卷《剩余价值理论》——它不是马克思编的，也不在恩格斯计划内</h3>
+  <ul>
+    <li><strong>它是什么</strong>：马克思原计划的<strong>第四册「理论史」</strong>的手稿——<strong>一部关于「剩余价值理论」的历史，从重商主义一直讲到马克思自己</strong>。<strong>由卡尔·考茨基编成三卷四册，1905–1910 年出版。</strong>
+    </li>
+    <li><strong>两个关键事实</strong>：① <strong>它不是马克思自己编定的</strong>（手稿未整理、结构未定）；② <strong>它也不在恩格斯的编纂计划之内</strong>——<strong>恩格斯只作了准备便去世了</strong>（1895）。
+    </li>
+    <li>★ <strong>所以「《资本论》是几卷」这个问题的答案是分层的</strong>：<strong>马克思的计划＝四册；恩格斯的出版＝三卷；加上考茨基编的《剩余价值理论》，通行形态才成了「三卷＋第 4 卷」。</strong> ★ <strong>一个常见的混乱，是把「第 4 卷」当成「《资本论》的第四部分正文」</strong>——<strong>它不是正文，是「理论史」。</strong> ★ <strong>第 4 卷的价值在于：它保存了马克思对斯密、李嘉图、重农学派的系统评注</strong>——<strong>读它，能看到《资本论》正文背后的「对话者」。</strong>
+    </li>
+  </ul>
+  <h3>二、恩格斯编纂第 2、3 卷的争议</h3>
+  <ul>
+    <li><strong>基本事实</strong>：<strong>马克思留下大量手稿（第 2 卷部分写于 1863–1878 年，第 3 卷写于 1863–1883 年）</strong>，<strong>恩格斯在马克思去世后编成第 2 卷（1885）与第 3 卷（1894）</strong>。<strong>恩格斯本人反复声明这只是「编辑」，并在序言里交代了手稿状态。</strong>
+    </li>
+    <li><strong>文献学发现</strong>：★ <strong>MEGA² 的研究显示，恩格斯整理第 2 卷时，删改、增补、变更序列超过 5,000 处</strong>；<strong>且恩格斯整理时没有查阅过一本马克思写作时参考过的书</strong><span class="tag t-rep">转述</span>（出处见来源清单）。★ <strong>有学者据此认为其中涉及对马克思思想的「恩格斯式」理解</strong>——<strong>尤其是恩格斯对「体系完整性」的追求，可能改变了手稿的开放性与多义性。</strong>
+    </li>
+    <li><strong>争论的两面</strong>：★ <strong>批评者</strong>强调「恩格斯不是我注」；<strong>辩护者</strong>强调手稿极其零乱、不做编辑无法成书，<strong>且恩格斯保留了可核对的原始材料、并公开说明了自己的编辑原则</strong>。★ <strong>本报告只写这两面，不裁决</strong>（详见 <code>## 5</code> 第 2 条）。
+    </li>
+    <li>★ <strong>一个必要的区分</strong>：<strong>「第 1 卷是马克思定稿的」与「第 2、3 卷是恩格斯编纂的」，不是同一个确定性等级。</strong> <strong>本报告凡涉第 2、3 卷的判断，一律不当作「马克思本人的定论」。</strong>
+    </li>
+    <li>★ <strong>一个反向的提醒</strong>：<strong>不要因为「是恩格斯编的」就轻视第 2、3 卷</strong>——<strong>它们包含了马克思关于流通、利润、信用、地租的最完整论述</strong>；<strong>正确的态度是「读它、同时标注它的文本性质」，而不是「因为不确定就跳过」。</strong>
+    </li>
+  </ul>
+  <h3>三、三卷 ＋ 第 4 卷的整体结构：计划的四册 vs 出版的三卷</h3>
+  <ul>
+    <li><strong>马克思 1866 年 10 月 13 日致库格曼的信</strong>给出最初的四册计划<span class="tag t-talk">作者谈话</span>（1866-10-13 致库格曼信）：
+    <ol>
+      <li><strong>资本的生产过程</strong>；
+      </li>
+      <li><strong>资本的流通过程</strong>；
+      </li>
+      <li><strong>总过程的各种形式</strong>；
+      </li>
+      <li><strong>理论史</strong>。
+      </li>
+    </ol>
+    </li>
+    <li><strong>实际出版形态</strong>：<strong>前三册成为第 1、2、3 卷</strong>；<strong>第四册（理论史）成为《剩余价值理论》（考茨基编，1905–1910）</strong>。★ <strong>内容扩充是「计划四册」变成「出版三卷＋第 4 卷」的原因</strong>（马克思在 1867 年序言里已说明第 1 卷是 1859 年《政治经济学批判》的续篇，并交代了内容的分工）。
+    </li>
+    <li><strong>★ 一条贯穿全书的线索</strong>：<strong>《资本论》的结构之所以是「三卷」，是因为马克思在写作中不断把「具体的东西」往后推</strong>——<strong>把利润、利息、地租层层推到第 3 卷，正是「从抽象到具体」的方法要求</strong>。★ <strong>所以「三卷」不只是出版史的偶然，也是方法论的产物。</strong> ★ <strong>这也是为什么第 3 卷看起来最像「经济学」：因为它处理的是读者最熟悉、也最容易被当成「最终事实」的那一层。</strong>
+    </li>
+    <li>★ <strong>一个对照</strong>：<strong>第 1 卷的终点（原始积累）问的是「资本从哪来」，第 3 卷的终点（三位一体公式）问的是「收入看起来从哪来」</strong>——<strong>一个是历史的起点问题，一个是表象的清算问题</strong>。<strong>全书在这两个「起源问题」上收束。</strong>
+    </li>
+  </ul>
+  <p>★ <strong>「计划 vs 出版」一张表</strong>：</p>
+  <table>
+    <thead><tr><th>马克思的设想（1866 年致库格曼信）</th><th>实际出版</th><th>编者</th><th>年份</th></tr></thead>
+    <tbody>
+      <tr><td>第一册 资本的生产过程</td><td>第 1 卷</td><td><strong>马克思本人</strong></td><td>1867</td></tr>
+      <tr><td>第二册 资本的流通过程</td><td>第 2 卷</td><td><strong>恩格斯</strong></td><td>1885</td></tr>
+      <tr><td>第三册 总过程的各种形式</td><td>第 3 卷</td><td><strong>恩格斯</strong></td><td>1894</td></tr>
+      <tr><td>第四册 理论史</td><td>《剩余价值理论》</td><td><strong>考茨基</strong></td><td>1905–1910</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一句话记住这张表</strong>：<strong>「四册的计划，三卷的出版，一位（恩格斯）的编辑，另一位（考茨基）的补编。」</strong> ★ <strong>而其中唯一由马克思亲手定稿的，只有第 1 卷。</strong></p>
+  <h3>可疑之处（结构再读）</h3>
+  <ol>
+    <li>★ <strong>《资本论》是一部「未完成的书」</strong>：<strong>第 1 卷定稿，第 2、3 卷由恩格斯编，第 3 卷结尾（第 52 章「阶级」）中断，第 4 卷由考茨基编。</strong> ★ <strong>任何把它当作一部「作者亲笔完整著作」来引用的做法，都忽略了它的文本状态。</strong>
+    </li>
+    <li>★ <strong>「恩格斯编纂」这一争议，本报告的处理原则是</strong>：<strong>只写文本事实与文献学发现，不做政治评价，也不替任何一方下结论。</strong>
+    </li>
+    <li>★ <strong>一个文本学的后果</strong>：<strong>由于第 2、3 卷是编纂本，「《资本论》第 X 卷说……」这种句式在学术写作里通常要注明版本与编者</strong>——<strong>严谨的做法是写「恩格斯编第 2 卷（1885）第 X 篇」或「MEGA² 相应卷次」。</strong> ★ <strong>这既是对文献的尊重，也是避免把「编辑的判断」当成「作者的定论」。</strong>
+    </li>
+  </ol>
+  <p>★★ <strong>一段收尾的深读：「未完成」对一部书意味着什么。</strong> ★ 一般的书，读者可以假定「作者说的就是他想的」；<strong>但《资本论》不允许这样假定</strong>。★ 它的文本状态是分层的：<strong>第 1 卷是作者亲自定稿（1867，且 1872–75 法文版为最后校订）；第 2、3 卷是编者据手稿编成（1885、1894）；第 3 卷结尾（第 52 章「阶级」）手稿中断；第 4 卷是另一位编者编成的「理论史」。</strong> ★ <strong>这个状态会产生三种后果</strong>：★ <strong>① 引用后果</strong>：<strong>凡涉第 2、3 卷的判断，都不能简单写成「马克思认为」</strong>——<strong>因为「马克思的手稿」与「恩格斯的编排」之间有一层编辑中介。</strong> ★ <strong>② 阅读后果</strong>：<strong>第 3 卷那些看起来最「完整」的部分（如第 5 篇生息资本与信用），恰恰可能离定稿最远</strong>——<strong>「读起来顺」不等于「定稿」。</strong> ★ <strong>③ 解释后果</strong>：<strong>当第 1 卷与第 3 卷出现张力时（转形问题），究竟判定为「马克思本人的难题」还是「编纂造成的断层」，本身就是一个需要文本学证据的问题</strong>——<strong>不能凭印象裁决。</strong> ★ <strong>所以本报告反复提醒「文本状态」，不是要削弱这本书，而是为了让读者对它的「确定性」有一个准确的估计</strong>：★ <strong>它既是 19 世纪最严密的经济学批判著作，也是一部作者未能亲手完成的大书——这两件事同时为真。</strong> ★ <strong>一个成熟的读法，是同时拿得住这两件事：</strong> <strong>既不因为「未完成」就轻视它，也不因为「影响巨大」就把它当成一部无缝隙的圣典。</strong></p>
+  <p>★ <strong>全书结构再读的一张全景表（把本书所有「结构线索」汇到一处）</strong>：</p>
+  <table>
+    <thead><tr><th>线索</th><th>内容</th><th>关键处</th></tr></thead>
+    <tbody>
+      <tr><td><strong>抽象—具体阶梯</strong></td><td>商品→货币→资本→剩余价值→工资→积累→原始积累（第 1 卷）；流通（第 2 卷）；利润／利息／地租（第 3 卷）</td><td>第 1 卷 8 篇的顺序</td></tr>
+      <tr><td><strong>计划 vs 出版</strong></td><td>马克思计划「四册」；实际出版「三卷＋第 4 卷」</td><td>1866-10-13 致库格曼信</td></tr>
+      <tr><td><strong>确定性分层</strong></td><td>第 1 卷定稿；第 2、3 卷恩格斯编；第 4 卷考茨基编</td><td>本报告 <code>## 6</code>–<code>## 10</code></td></tr>
+      <tr><td><strong>承重墙四处</strong></td><td>第 1 卷第 1 章（价值）、第 6 章（劳动力）、第 25 章（后备军）、第 3 卷第 9 章（转形）</td><td><code>## 5</code> 第 3、4 条</td></tr>
+      <tr><td><strong>两个总量恒等式</strong></td><td>总价值＝总价格；总剩余价值＝总利润</td><td>第 3 卷第 9 章及以后争论</td></tr>
+      <tr><td><strong>概念—史料交替</strong></td><td>概念章与史料章交错出现（第 10、15、25 章）</td><td>第 1 卷下半</td></tr>
+      <tr><td><strong>两次「起源追问」</strong></td><td>第 1 卷末问「资本从哪来」；第 3 卷末问「收入看起来从哪来」</td><td>第 26–33 章；第 48 章</td></tr>
+      <tr><td><strong>一处「中断」</strong></td><td>第 3 卷第 52 章「阶级」手稿中断</td><td>全书结尾</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一句话把这张表串起来</strong>：<strong>《资本论》的结构不只是「三卷的目录编排」，而是「一套论证如何从最抽象的概念，一路走到最具体的日常表象，并在走到尽头时留了一个中断」</strong>——<strong>理解这条线，比记住任何一条结论都重要。</strong></p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>概念／人物</th><th>一句话</th><th>出现在</th></tr></thead>
+    <tbody>
+      <tr><td><strong>商品二重性</strong></td><td>商品同时是使用价值与价值</td><td>第 1 卷第 1 章</td></tr>
+      <tr><td><strong>劳动二重性</strong></td><td>具体劳动造使用价值，抽象劳动成价值</td><td>第 1 卷第 1 章</td></tr>
+      <tr><td><strong>社会必要劳动时间</strong></td><td>现有社会正常生产条件下、以平均熟练与强度生产某商品所需的时间</td><td>第 1 卷第 1 章</td></tr>
+      <tr><td><strong>商品拜物教</strong></td><td>人与人的关系表现为物与物的关系</td><td>第 1 卷第 1 章第 4 节</td></tr>
+      <tr><td><strong>劳动力</strong></td><td>劳动能力；工人出卖的是它，不是「劳动」</td><td>第 1 卷第 6 章</td></tr>
+      <tr><td><strong>剩余价值</strong></td><td>劳动力创造的价值超过其自身价值的差额</td><td>第 1 卷第 6–9 章</td></tr>
+      <tr><td><strong>剩余价值率（m/v）</strong></td><td>剥削程度的准确表现</td><td>第 1 卷第 9 章</td></tr>
+      <tr><td><strong>不变资本／可变资本</strong></td><td>按「是否创造价值」划分</td><td>第 1 卷第 8 章</td></tr>
+      <tr><td><strong>固定资本／流动资本</strong></td><td>按「价值如何转移」划分（★ 与上一条不同）</td><td>第 2 卷第 2 篇</td></tr>
+      <tr><td><strong>绝对／相对剩余价值</strong></td><td>延长工作日／缩短必要劳动时间</td><td>第 1 卷第 10–12 章</td></tr>
+      <tr><td><strong>局部工人（Teilarbeiter）</strong></td><td>工场手工业中因分工而「片面化」的工人</td><td>第 1 卷第 14 章</td></tr>
+      <tr><td><strong>产业后备军</strong></td><td>资本积累制造出的相对过剩人口</td><td>第 1 卷第 25 章</td></tr>
+      <tr><td><strong>原始积累</strong></td><td>资本关系的历史起点：暴力剥夺</td><td>第 1 卷第 26–33 章</td></tr>
+      <tr><td><strong>资本三形态</strong></td><td>货币资本／生产资本／商品资本</td><td>第 2 卷第 1 篇</td></tr>
+      <tr><td><strong>两大部类</strong></td><td>第 I 部类＝生产资料，第 II 部类＝消费资料</td><td>第 2 卷第 3 篇</td></tr>
+      <tr><td><strong>生产价格</strong></td><td>成本价格＋平均利润；由价值「转形」而来</td><td>第 3 卷第 9 章</td></tr>
+      <tr><td><strong>年剩余价值率</strong></td><td>剩余价值率乘以可变资本年周转次数</td><td>第 2 卷第 16 章</td></tr>
+      <tr><td><strong>虚拟资本</strong></td><td>由信用与所有权凭证「虚拟」出的资本</td><td>第 3 卷第 25 章</td></tr>
+      <tr><td><strong>级差地租／绝对地租</strong></td><td>地租的两种形式；地租＝超额利润的转化形式</td><td>第 3 卷第 38–47 章</td></tr>
+      <tr><td><strong>三位一体公式</strong></td><td>资本—利润，土地—地租，劳动—工资</td><td>第 3 卷第 48 章</td></tr>
+      <tr><td><strong>Karl Marx</strong></td><td>作者，1818–1883</td><td>全书</td></tr>
+      <tr><td><strong>Friedrich Engels</strong></td><td>第 2、3 卷的编纂者，1886 年英文版序作者</td><td>第 2、3 卷与序跋</td></tr>
+      <tr><td><strong>Samuel Moore／Edward Aveling</strong></td><td>第 1 卷英译者（后者是马克思的女婿）</td><td>1887 年英译本</td></tr>
+      <tr><td><strong>Karl Kautsky</strong></td><td>第 4 卷《剩余价值理论》的编者</td><td>1905–1910</td></tr>
+      <tr><td><strong>Böhm-Bawerk</strong></td><td>1896 年批评劳动价值论</td><td><code>## 5</code></td></tr>
+      <tr><td><strong>Bortkiewicz</strong></td><td>1906–07 年提出转形问题的方程解法</td><td><code>## 5</code></td></tr>
+      <tr><td><strong>Sraffa</strong></td><td>1960 年另建一套不依赖劳动价值论的价格理论</td><td><code>## 5</code></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s13">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <ol>
+    <li>★ <strong>想读懂「转形问题」</strong>：<strong>Böhm-Bawerk《Karl Marx and the Close of His System》（1896 / 英译 1898）</strong> 与 <strong>Bortkiewicz（1906–07）</strong> 两篇论文对照读——<strong>一个发起问题，一个给出方程解</strong>。
+    </li>
+    <li>★ <strong>想读懂「恩格斯编纂之争」</strong>：查 <strong>MEGA²（《马克思恩格斯全集》历史考证版）</strong> 的相关卷次与文献学研究，以及中国社会科学网／中央党史和文献研究院的评介文章（具体篇名与年份见来源清单）。
+    </li>
+    <li><strong>想读懂「第 3 卷与第 1 卷的落差」</strong>：<strong>Sraffa《Production of Commodities by Means of Commodities》（CUP，1960）</strong>——<strong>无论赞成与否，它都是「离开劳动价值论能不能讲价格」这一问题最有力的一次回答</strong>。
+    </li>
+    <li><strong>原文与全译</strong>：<strong>marxists.org 三卷英文全文</strong>（第 1 卷 <code>…/1867-c1/</code>、第 2 卷 <code>…/1885-c2/</code>、第 3 卷 <code>…/1894-c3/</code>）；<strong>archive.org 的 Kerr 版扫描</strong>（第 1 卷 1906）；<strong>德文原版见 MLWerke 在线上全文</strong>。
+    </li>
+    <li><strong>中文读本</strong>：<strong>郭大力、王亚南译本（1938，首个中文全译本，据德文）</strong>与<strong>人民出版社 2004 年版</strong>对读——★ <strong>留意两版在术语与句读上的差异，以及 2004 版第 2、3 卷底本较保守这一事实</strong>。
+    </li>
+    <li>★ <strong>对照读</strong>：<strong>亚当·斯密《国富论》（1776）第一篇「论劳动分工」</strong> 与 <strong>《资本论》第 1 卷第 14 章</strong>——<strong>同一个「分工」，两种判断</strong>。
+    </li>
+    <li>★ <strong>想了解「第 2 卷的再生产图式」的后续</strong>：<strong>列宁《俄国资本主义的发展》</strong> 与 <strong>罗莎·卢森堡《资本积累论》（1913）</strong> 都是从两大部类出发的著名推进——<strong>它们是「第 2 卷如何被接着写」的两个样本</strong>（本报告只提示线索，不展开评述）。
+    </li>
+    <li>★ <strong>想看「第 1 卷里的社会史」的独立价值</strong>：<strong>恩格斯《英国工人阶级状况》（1845）</strong> 与《资本论》第 1 卷第 10、15、25 章对读——<strong>同一批工厂史料，两种写法</strong>（前者是调查报道，后者是理论论证）。
+    </li>
+    <li>★ <strong>想了解「版权与公版」的实际情况</strong>：<strong>marxists.org 三卷入口</strong>与 <strong>archive.org 的 Kerr 版扫描</strong>——<strong>注意 PG 上没有《资本论》英文全译本</strong>（第 4 节 ⚠①）。
+    </li>
+    <li>★ <strong>想读「中国接受史」</strong>：<strong>郭大力、王亚南 1938 年全译本的出版史</strong>，以及 <strong>2004 年人民出版社版的校订说明</strong>——<strong>中译史本身是一段思想史。</strong>
+    </li>
+    <li>★ <strong>想读「价值形式」这一节的独立文本</strong>：<strong>《资本论》德文第 1 版把《价值形式》作为附录单独印出</strong>，<strong>后来才并入第 1 章</strong>——★ <strong>把「附录版」与「正文版」对读，是观察马克思如何改写论证的一个小窗口</strong>（第 1 节注解①）。
+    </li>
+    <li>★ <strong>想建立「时间线」</strong>：把 <strong>1859《政治经济学批判》→ 1867 第 1 卷 → 1885 第 2 卷 → 1894 第 3 卷 → 1905–1910 第 4 卷</strong> 排成一条线，标注<strong>每一环的编者</strong>——★ <strong>这条线上的每一格，「谁写的」与「谁编的」都不一样</strong>，<strong>它是理解《资本论》文本史最短的一条路径。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s14">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>见同目录 <code>资本论-来源清单.md</code>。</p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. marxists.org 第 2、3 卷的译者与底本</h3>
+  <ul>
+    <li><strong>实测</strong>：第 2 卷页面标注 <strong>「Source: Progress Publishers, Moscow 1956, translated by I. Lasker」</strong>；第 3 卷页面标注 <strong>「Source: Institute of Marxism-Leninism, USSR, 1959; Publisher: International Publishers, NY」</strong>，<strong>未标译者</strong>。
+    </li>
+    <li>★ <strong>这与 BOOK_SPEC 假定的「Untermann 译本」不一致</strong>。<strong>marxists.org 另有一组 Untermann 译本的 PDF</strong>（<code>…/1867-c1/untermann/volume-1.pdf</code> 等），<strong>但 PDF 未逐页核对，也不作引文依据</strong>。
+    </li>
+    <li>⇒ <strong>本报告如实写成「第 2 卷为 Lasker 译／Progress 1956；第 3 卷为苏联 1959 年版、未标译者；Untermann 译本另有 PDF 存在」</strong>，<strong>未能确证 marxists.org 的 HTML 第 2、3 卷与 Untermann 译本的字句关系</strong>。
+    </li>
+  </ul>
+  <h3>D2. 「8 篇 33 章」与德文「7 篇 25 章」的逐章对照</h3>
+  <ul>
+    <li>本报告第 1 节的篇章表<strong>依据 marxists.org 英文通行本实际目录</strong>（8 篇 33 章）<strong>核实无误</strong>；★ <strong>但「7 篇 25 章」的德文通行本逐章对应表，本报告未能逐条抓取核对</strong>（只有 BOOK_SPEC 与通行记载），⇒ <strong>两口径的「章号如何一一对应」，本报告未逐条列出。</strong>
+    </li>
+  </ul>
+  <h3>D3. MEGA²「5,000 余处改动」的原始出处</h3>
+  <ul>
+    <li>本报告转述的「MEGA² 显示恩格斯整理第 2 卷改动逾 5,000 处」「整理时未查阅马克思参考过的书」，<strong>来自中国社会科学网／中央党史和文献研究院一系的评介文章</strong>；★ <strong>本报告未能核到 MEGA² 原文卷次与页码</strong>，⇒ <strong>该两处数字与表述按 <span class="tag t-rep">转述</span> 处理，具体出处年份见来源清单。</strong>
+    </li>
+  </ul>
+  <h3>D4. 中译年份与底本的多重口径</h3>
+  <ul>
+    <li><strong>郭大力、王亚南译本</strong>：本报告记 <strong>1938（读书生活出版社）</strong>；★ <strong>另有「1938 起陆续出版」「1947 全部出齐」等口径</strong>，<strong>未能以两独立来源核死</strong>。
+    </li>
+    <li><strong>人民出版社 2004 年版</strong>：★ <strong>其第 1 卷据 MEGA² II/10、第 2、3 卷退回柏林狄茨版</strong>这一批评，<strong>本报告转述自二手评介，未核对版权页与校订说明原件。</strong>
+    </li>
+  </ul>
+  <h3>D5. 英文第 1 卷各章译者分工的细节</h3>
+  <ul>
+    <li><strong>恩格斯 1886 年英文版序言</strong>明确：<strong>第 10、11 章由 Aveling 译，其余由 Moore 译</strong>；★ <strong>但序言同时提到「爱琳娜·马克思协助校订引文」</strong>，<strong>具体到每一章的校订分工，本报告未逐章核对。</strong>
+    </li>
+  </ul>
+  <h3>D6. 第 3 卷手稿状态与恩格斯序言的细节</h3>
+  <ul>
+    <li>恩格斯为第 3 卷所写序言<strong>交代了手稿的完成度不均</strong>（尤其第 5 篇「生息资本与信用」）。★ <strong>本报告据通行记载转述，未逐字核对恩格斯序言原文</strong>，⇒ <strong>按 <span class="tag t-rep">转述</span> 处理。</strong>
+    </li>
+  </ul>
+  <h3>D7. 「圈地史」与当代经济史的差距</h3>
+  <ul>
+    <li>本报告在 <code>## 5</code> 第 5 条写明「马克思所述英国圈地史与当代经济史研究之间有一段距离」，★ <strong>但具体的争论点（圈地规模、时段、被剥夺者的去向）本报告未列出带页码的专门研究</strong>，⇒ <strong>该条按 <span class="tag t-rep">转述</span> 处理，读者须另查经济史专著。</strong>
+    </li>
+  </ul>
+  <h3>D8. archive.org Kerr 版的年份</h3>
+  <ul>
+    <li><strong>archive.org 元数据把 <code>capitalcritiqueo01/02/03marx</code> 三条的年份统一记为 1906</strong>（出版者 C.H. Kerr &amp; Company，芝加哥）；★ <strong>而通行说法是「第 1 卷 1906／第 2 卷 1907／第 3 卷 1909」</strong>。★ <strong>两说并存，本报告以 archive.org 元数据为准并在此并记。</strong>
+    </li>
+  </ul>
+  <h3>D9. 第 1 卷德文第 1 版的「6 章 22 节」逐章表</h3>
+  <ul>
+    <li>本报告采用 BOOK_SPEC 核实的「德文第 1 版 6 章 22 节」这一口径；★ <strong>但该版的逐章标题与章号，本报告未能从原始版本书影或校勘本逐条核对</strong>，⇒ <strong>按通行记载处理。</strong>
+    </li>
+  </ul>
+  <h3>D10. 第 1 卷法文版（1872–1875）的篇章结构与校订程度</h3>
+  <ul>
+    <li>本报告记「法文版为 <strong>8 篇 33 章</strong>，且是<strong>马克思亲自校订的最后一个版本</strong>」<span class="tag t-rep">转述</span>（版本学通行记载）。★ <strong>但本报告未逐章核对法文版与德文第 2 版的差异</strong>，⇒ <strong>「8 篇 33 章」与「马克思校订到何种程度」两项，均按通行记载处理。</strong> ★ <strong>读者若要核，须查法文版影印本或 MEGA² 的相应卷次。</strong>
+    </li>
+  </ul>
+  <h3>D11. 「工人阶级的圣经」一句的原文精确措辞</h3>
+  <ul>
+    <li>本报告引恩格斯 1886 年英文版序言的 <strong>「《资本论》在欧洲大陆常被称为『工人阶级的圣经』」</strong><span class="tag t-src">原书</span>（1886 年英文版序言）。★ <strong>该句在英文原文中是恩格斯的转述（"is often called"），本报告据此标注为「恩格斯的转述与评价，不是马克思的话」</strong>；★ <strong>但其在序言中的确切段落位置，本报告未逐句核对，⇒ 按已抓取页面文本处理。</strong>
+    </li>
+  </ul>
+</section>
+
+<footer>
+  生成于 2026-10-09 · 来源清单与交叉验证记录见同目录 <code>资本论-来源清单.md</code><br>
+  本页引文分两级处理：<b>英文原文为 A 级</b>（依据 marxists.org 三卷公版全文，第 1 卷 1867-c1、第 2 卷 1885-c2、第 3 卷 1894-c3，18 篇目录与关键章句逐条实测）；<b>中文引文为 B 级</b>（全部自译，未核中译本页面）。★ 三件事须记：<b>① Project Gutenberg 上没有《资本论》英文全译本</b>（只有《政治经济学批判》#46423），英文公版入口是 marxists.org 与 archive.org 的 Kerr 版扫描；<b>② 第 1 卷由马克思定稿，第 2、3 卷由恩格斯编成，第 3 卷结尾第 52 章手稿中断</b>，故本报告凡涉第 2、3 卷不写作「马克思的定论」；<b>③ 英文通行本「8 篇 33 章」与德文通行本「7 篇 25 章」的差异，主要在「原始积累」是否独立成篇</b>。★ 本书是一部<b>层层递进的「从抽象到具体」论著</b>——从商品、货币、资本、剩余价值，一路推到利润、利息、地租；<b>第 1 卷第 1 章、第 6 章、第 25 章与第 3 卷第 9 章是四根承重墙</b>；<b>第 3 卷第 9 章的「转形」与第 13–15 章的「利润率趋向下降」是全书争议最集中处</b>，因此<b>第 5 节（争议与局限）刻意写得最实</b>。★ 请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

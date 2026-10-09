@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《几何原本》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《几何原本》<small>阅读指引与精华解析 · 2026-10-09</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 核心主题与结构机制</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 中文译本怎么选</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 逐卷深挖</div>
+    <a href="#s7">6 总论：公理体系与全书的演绎结构</a>
+    <a href="#s8">7 第一卷：平面几何的基础（48 命题）</a>
+    <a href="#s9">8 第二至四卷：几何代数、圆与内接多边形（14＋37＋16 命题）</a>
+    <a href="#s10">9 第五、六卷：比例论与相似形（25＋33 命题）</a>
+    <a href="#s11">10 第七至九卷：数论（39＋27＋36 命题）</a>
+    <a href="#s12">11 第十卷：无理量（115 命题）· 全书最大的一卷</a>
+    <a href="#s13">12 第十一至十三卷：立体几何与正多面体（39＋18＋18 命题）</a>
+    <a href="#s14">13 结构再读：为什么它是「最成功的教科书」</a>
+    <div class="grp">附录</div>
+    <a href="#s15">A 关键概念与人物速查</a>
+    <a href="#s16">B 延伸阅读</a>
+    <a href="#s17">C 来源清单</a>
+    <a href="#s18">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《几何原本》阅读指引与精华解析</h1>
+  <div class="sub">Στοιχεῖα（Stoicheia）；拉丁化 Elementa；中文名《几何原本》由明末徐光启与利玛窦 1607 年合译时定下</div>
+  <div class="meta">
+    <div><b>作者</b>欧几里得（Εὐκλείδης／Euclid，约公元前 300 年，亚历山大里亚）。★★ <b>生平几乎无可靠记载</b>——没有任何自述文字、书信或同时代记述；后世关于他的描述主要出自公元 5 世纪新柏拉图主义者 <b>Proclus</b> 的《欧几里得原本第一卷注》，属<b>后世建构</b>。★★ <b>因此本书的「作者谈话」档宣告不使用</b></div>
+    <div><b>成书年代</b><b>约公元前 300 年</b>（亚历山大里亚）。★ 具体年份无法确证；「公元前 300 年」是学界通用近似值。传世的所谓「第 14、15 卷」是<b>后人续作</b>（第 14 卷一般归 Hypsicles，约公元前 2 世纪），<b>不属于欧几里得</b></div>
+    <div><b>★ 依据版本</b><b>T. L. Heath《The Thirteen Books of Euclid's Elements》</b>（Cambridge University Press，<b>1908</b> 初版；<b>1926</b> 第 2 版；<b>Dover 1956</b> 重印）——据 <b>Heiberg 希腊文校勘本</b>（Teubner，<b>1883–1888</b>）译出，附长篇导论与逐命题注疏。<b>这是全 13 卷的标准英译</b></div>
+    <div><b>★ 本报告的原文底本</b>★ <b>Perseus Digital Library 的 Heath 英译全文</b>（<b>Perseus:text:1999.01.0086</b>，据 Dover 1956 重印，即 Heath 1926 第 2 版系统），并可对照 <b>Perseus 的 Heiberg 希腊文</b>（<b>Perseus:text:1999.01.0085</b>）。★ <b>全 13 卷逐命题可访问</b>；archive.org 另有 Heath 1908 三卷原版扫描（Vol I Books I–II／Vol II Books III–IX／Vol III Books X–XIII＋附录）</div>
+    <div><b>★ 大陆简体版</b><b>蓝纪正、朱恩宽《欧几里得几何原本》</b>，陕西科学技术出版社，<b>2003</b>（中文世界较完整的学术性译本，约 40 余万字）；<b>张卜天 译《几何原本》</b>，商务印书馆，<b>2020</b>；<b>李彩菊 译</b>，北京理工大学出版社，<b>2017</b>。★ <b>买之前务必确认是否含第 VII 卷与第 X 卷（数论、无理量）</b></div>
+    <div><b>★ 中译史（四百年断层）</b>★★ <b>1607</b> 徐光启＋利玛窦 合译，据 <b>Clavius（克拉维乌斯）校订增补的拉丁文本（15 卷）</b>，<b>只译出前 6 卷</b>，定名《几何原本》——「几何」与点、线、面、平行线、角、三角形等术语由此确立；<b>1857</b> 李善兰＋伟烈亚力 续译<b>后 9 卷</b>；<b>1865</b>（同治四年）曾国藩金陵官署刻本为 <b>15 卷中译本首次全帙刊刻</b>。★ 在 1607–1857 的 250 年里，中文读者读到的《几何原本》<b>没有第 VII 卷及以后</b></div>
+    <div><b>篇幅</b>★★ <b>13 卷，465 个命题</b>（I 48／II 14／III 37／IV 16／V 25／VI 33／VII 39／VIII 27／IX 36／X 115／XI 39／XII 18／XIII 18）。<b>第 1 卷以 23 个定义＋5 个公设＋5 条公理开篇</b>；全书定义共 119 个。★ <b>第 X 卷 115 命题，占全书近四分之一</b></div>
+    <div><b>荣誉／地位</b>★★ 关于本书传播最广的评语是「<b>发行量仅次于《圣经》</b>」——★ <b>本报告写成「常见说法，具体统计口径不明」，不作事实断言</b>。可确认的是：它是<b>西方世界使用时间最长（逾 2,000 年）的教科书</b>，也是<b>「公理化—演绎体系」这一知识形式的原型</b>——牛顿《自然哲学的数学原理》、斯宾诺莎《伦理学》、霍布斯《利维坦》都直接仿其体例</div>
+    <div><b>状态</b>未标注已读／想读 —— 本报告两层结构同时满足</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 逐字核对了<b>合法公版英译／希腊文</b>的段落 —— <b>Perseus Digital Library 的 Heath 英译</b>（<b>Perseus:text:1999.01.0086</b>，据 Dover 1956 重印＝Heath 1926 第 2 版；底本为 Heiberg 希腊文校勘本）与 <b>Perseus 的 Heiberg 希腊文</b>（<b>1999.01.0085</b>）。★ <b>覆盖全 13 卷</b>，逐句引文可定位；<b>定位一律用「卷 ＋ 命题号」</b>（如 I.47、V.def.5、IX.20、X.1、XIII.18），<b>不用页码、不用行号</b></li>
+    <li><span class="tag t-talk">作者谈话</span> ★★★ <b>本档不使用 —— 宣告不用。</b>欧几里得（约公元前 3 世纪）<b>没有任何著作自述、没有书信、生平无可信记载</b>；后世关于他的说法（含托勒密一世请他讲几何被拒等轶事）主要出自 <b>Proclus（约 410–485）</b>，属<b>后世建构</b>，本报告一律归入「转述」档。<b>本报告绝不假装能访谈欧几里得</b></li>
+    <li><span class="tag t-rep">转述</span> 来自二手概括、后世注疏（如 Proclus）、学术文献转引或百科条目，措辞可能与原文有出入。★ 本报告中<b>Proclus 的归属清单</b>（Book V 归 Eudoxus、VII–IX 归毕达哥拉斯学派、XIII 归 Theaetetus）、<b>Saccheri／Lobachevsky／Bolyai／Riemann 的年份与主张</b>、<b>Heath 译本导论的若干判语</b>、<b>徐光启序文</b>均属本档</li>
+    <li><span class="tag t-inf">推断</span> 我的推理，无直接来源支撑（如「第 X 卷的分类可能是为第 XIII 卷正多面体服务」这类解释性判断）</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    ★★ <b>本书最须先说清的一件事：本报告的「作者谈话」档不使用。</b>欧几里得约公元前 3 世纪人，<b>没有任何自述文字、没有书信、生平无可信记载</b>——后世关于他的描述（包括 Proclus《欧几里得原本第一卷注》里的那些）属<b>后世建构</b>，本报告一律归入「转述」档（与本书目《伊利亚特》等口传作品同理，见技能坑 38）。★ 本书的核验辖区须分两句写、不合并：<b>① 原文：A 级</b> —— 依据 Perseus 的 Heath 英译（据 Dover 1956 重印＝Heath 1926 第 2 版；底本为 Heiberg 1883–1888 希腊文校勘本）与 Heiberg 希腊文，<b>覆盖全 13 卷</b>（本报告逐字核对过的命题：第 I 卷全部 5 公设与 5 公理、I.47、II.11（另核希腊文）、III.20、IV.16、V.def.5、VI.4、VII.2、VIII.1、IX.20、IX.36、X.1（另核希腊文）、XI.21、XII.2、XIII.18）；<b>② 中文引文：B 级</b> —— 徐光启／利玛窦 1607、李善兰／伟烈亚力 1857、曾国藩金陵本 1865、蓝纪正／朱恩宽 2003、张卜天 2020、李彩菊 2017 <b>均在版权期内或无法逐字核对</b>，只作版本信息与术语对照，<b>本报告所有中文译文均为笔者自译，非任何出版物译文</b>。★ 另标 <b>B／C 级</b>：Proclus 的归属清单、非欧几何的年份线索、Heath 导论的判语、徐光启序文。★ 带 ⚠ 的条目见正文附录 D。
+  </p>
+  <h3>引文核验级别（本书分两层，必须分开写）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)"><b>① 英译／希腊文原文部分：A 级。</b>依据 <b>Perseus Digital Library</b> —— Heath 英译全文（<i>https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0086</i>，据 <b>Dover 1956</b> 重印＝<b>Heath 1926 第 2 版</b>；其底本为 <b>Heiberg 1883–1888</b> 希腊文校勘本）与 Heiberg 希腊文（<i>…/text?doc=Perseus:text:1999.01.0085</i>）。★ <b>覆盖全 13 卷，逐命题可访问</b>；archive.org 另有 <b>Heath 1908 三卷原版扫描</b>（Vol I <i>archive.org/details/bub_gb_UhgPAAAAIAAJ</i>＝Books I–II／Vol II <i>thirteenbookseu02heibgoog</i>＝Books III–IX／Vol III <i>thirteenbookseu03heibgoog</i>＝Books X–XIII＋附录）三卷俱全，用于确认「全 13 卷」的物理可及性。<br><b>② 中文引文部分：B 级。</b>徐光启／利玛窦（1607）、李善兰／伟烈亚力（1857）、曾国藩金陵本（1865）、蓝纪正／朱恩宽（2003，陕西科学技术出版社）、张卜天（2020，商务印书馆）、李彩菊（2017，北京理工大学出版社）——<b>均在版权期内或无法逐字核对</b>，只取用书目、版权页与版本信息，<b>未逐字核对任何一处中文正文</b>。★ <b>本报告所有中文译文均为笔者自译</b>。<b>②与本报告的中文译文，请以原书与英译／希腊文复核。</b></p>
+  <p style="margin:6px 0 0;font-size:12.5px;color:var(--ink3)">★★ <b>另须标明</b>：<b>PG #21076 只有前六卷</b>（Casey《The First Six Books of the Elements of Euclid》），★ <b>绝不能当「全本」引用</b>；「《几何原本》发行量仅次于《圣经》」是<b>常见说法、统计口径不明</b>，不作事实断言；「欧几里得原书 13 卷」与「含后人续作的 15 卷本」是两个口径。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>这部书要做的事情只有一件：把关于「大小与形状」的全部已知知识，从尽可能少、尽可能显明的几条前提出发，一条一条地证明出来——并让每一个结论都能追溯到最初那几行字。</strong></p>
+  <p>它的方法是<strong>公理化—演绎法</strong>：先给<strong>定义</strong>（点、线、面、角、圆……），再立<strong>公设</strong>（5 条）与<strong>公理</strong>（5 条），然后从 I.1 开始逐命题推。第 I 卷是平面几何的地基（三角形、平行线、平行四边形），末两题（I.47、I.48）是<strong>勾股定理及其逆</strong> <span class="tag t-src">原书</span>（I.47：在直角三角形中，直角所对边上的正方形等于夹直角两边上的正方形之和）；第 II 卷是「几何化的代数」，第 III–IV 卷讲圆与内接多边形，第 V–VI 卷是<strong>比例论与相似形</strong>（比例论据 Eudoxus，是全书最精妙的一卷）；第 VII–IX 卷是<strong>数论</strong>（含<strong>素数无穷多</strong> IX.20 与<strong>完全数</strong> IX.36）；<strong>第 X 卷是全书最长的一卷（115 命题），处理无理量的分类</strong>；第 XI–XIII 卷是立体几何，<strong>最后一题 XIII.18 证明正多面体只有五种</strong> <span class="tag t-src">原书</span>（XIII.18）。</p>
+  <p>一句话结论（也是全书最该记住的一件事）：<strong>欧几里得的伟大不在于他证明了什么，而在于他证明了「证明」这件事可以系统化。</strong> ★ 现代数学最看重的「定义清楚、前提最少、推理可查」这套习惯，《几何原本》是它的第一个完整样板；而 1899 年希尔伯特的《几何基础》，正是<strong>用同一套方法把《几何原本》重写了一遍</strong>，把欧几里得隐含而未言明的假设全部补上（详见 <code>## 5</code> 与 <code>## 13</code>）。</p>
+  <p><strong>它不是什么</strong>：① 不是「几何习题集」——它是<strong>演绎体系</strong>，命题的价值在于「它被证明了」，不在于「它会出现在考卷上」；② 不是「只有几何」——<strong>第 V–X 卷是比例论与数论</strong>；③ <strong>不是欧几里得一个人的原创</strong>——按 Proclus 的说法，它<strong>汇集了前人成果</strong>（比例论归 Eudoxus、数论部分归毕达哥拉斯学派、正多面体研究归 Theaetetus，★ <strong>此为转述</strong>）；④ 不是「绝对严密的现代公理系统」——它有<strong>隐含假设</strong>（如「两圆相交必有两个交点」从未被证明），要等 1899 年的希尔伯特来补。</p>
+  <p>★ <strong>这本书有三种读法，对应三类读者</strong>：</p>
+  <table>
+    <thead><tr><th>读法</th><th>读什么</th><th>得到什么</th></tr></thead>
+    <tbody>
+      <tr><td><strong>① 读「结构」</strong>（推荐给大多数读者）</td><td><strong>23 定义 ＋ 5 公设 ＋ 5 公理 ＋ I.29 ＋ XIII.18 ＋ <code>## 13</code></strong></td><td>★ <strong>看清「一个体系如何从几条前提长出来」</strong></td></tr>
+      <tr><td><strong>② 读「方法」</strong>（推荐给数学／科学史读者）</td><td>★ <strong>V.def.5（比例论）、X.1（穷竭法）、IX.20（反证）、VII.2（算法）</strong></td><td>★ <strong>看清「在缺少现代工具的时代，古人如何把事情做严格」</strong></td></tr>
+      <tr><td><strong>③ 读「历史」</strong>（推荐给科学史／思想史读者）</td><td>★ <strong><code>## 4</code>（中译史）、<code>## 5</code>（争议）、<code>## 13</code>（影响）</strong></td><td>★ <strong>看清「一部书如何塑造两千年的知识形式」</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>三种读法可以只选一种</strong>——<strong>本报告的价值，在于把三条路都标出来，并说清每条路的终点在哪里</strong>（具体路线见 <code>## 3</code>）。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>下表把《几何原本》的<strong>全部 13 卷</strong>列全。★ <strong>不要用页码</strong>：Heath 三卷本、希腊文校勘本与各种中译本的页码完全不同，本报告一律用<strong>「卷 ＋ 命题号」</strong>定位（如 I.47、X.1、XIII.18）。</p>
+  <table>
+    <thead><tr><th>卷</th><th>主题</th><th>命题数</th><th>它在体系里处于哪一层</th></tr></thead>
+    <tbody>
+      <tr><td><strong>I</strong></td><td>平面几何基础：三角形、平行线、平行四边形；<strong>末两题是勾股定理及其逆</strong></td><td><strong>48</strong></td><td>地基。含全书的 23 定义、5 公设、5 公理</td></tr>
+      <tr><td><strong>II</strong></td><td>几何代数（面积变换）：用面积语言表述的代数恒等式</td><td><strong>14</strong></td><td>把乘法与恒等式「翻译」成面积关系</td></tr>
+      <tr><td><strong>III</strong></td><td>圆：弦、切线、割线、圆心角与圆周角</td><td><strong>37</strong></td><td>圆的几何学</td></tr>
+      <tr><td><strong>IV</strong></td><td>圆内接与外切正多边形（含正五边形、正十五边形）</td><td><strong>16</strong></td><td>把「可作图的正多边形」推到底</td></tr>
+      <tr><td><strong>V</strong></td><td><strong>比例论</strong>（据 Eudoxus，适用于不可公度量）</td><td><strong>25</strong></td><td>★ 全书最精妙的一卷。「相等之比」的定义绕开了无理数</td></tr>
+      <tr><td><strong>VI</strong></td><td>相似形：把第 V 卷的比例论用到平面图形上</td><td><strong>33</strong></td><td>比例论的第一批「用户」</td></tr>
+      <tr><td><strong>VII</strong></td><td>初等数论：<strong>辗转相除法（VII.2）</strong>、最大公约数、素数</td><td><strong>39</strong></td><td>把比例论移植到「数」上</td></tr>
+      <tr><td><strong>VIII</strong></td><td>连比例（成连比的数、几何中项）</td><td><strong>27</strong></td><td>数论中的连续比例</td></tr>
+      <tr><td><strong>IX</strong></td><td>数论的应用：<strong>素数无穷多（IX.20）</strong>、完全数（IX.36）</td><td><strong>36</strong></td><td>数论的高峰，最后回到几何（IX.36 的完全数）</td></tr>
+      <tr><td><strong>X</strong></td><td><strong>无理量</strong>：二次／四次无理量的分类，<strong>全书最大的一卷</strong></td><td><strong>115</strong></td><td>★ 篇幅超过全书的五分之一；穷竭法的技术基础（X.1）在此</td></tr>
+      <tr><td><strong>XI</strong></td><td>立体几何：直线与平面、平行六面体、立体角</td><td><strong>39</strong></td><td>三维的地基</td></tr>
+      <tr><td><strong>XII</strong></td><td>面积与体积：<strong>穷竭法</strong>——圆面积、球体积、锥体体积</td><td><strong>18</strong></td><td>★ 微积分思想的远祖</td></tr>
+      <tr><td><strong>XIII</strong></td><td><strong>正多面体</strong>：球内接五种正多面体；<strong>结论：正多面体只有五种</strong></td><td><strong>18</strong></td><td>★ 全书的终章与拱顶石</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>合计 465 命题</strong>（48＋14＋37＋16＋25＋33＋39＋27＋36＋115＋39＋18＋18 ＝ <strong>465</strong>）；<strong>23 个定义（第 I 卷开篇）＋ 5 个公设 ＋ 5 条公理</strong>。★ <strong>定义总数 119 个</strong>（散在各卷卷首，第 I 卷 23 个）。</p>
+  <p><strong>第五条公设与五条公理（原文）</strong>——这是全书的「前提」，必须照原文列出（英译据 Perseus 的 Heath 译本，<code>Perseus:text:1999.01.0086</code>；中文为笔者自译）：</p>
+  <p><strong>五条公设（Postulates，希腊文 αἰτήματα）</strong>：</p>
+  <table>
+    <thead><tr><th>#</th><th>英文（Heath 译）</th><th>中文（笔者自译）</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>To draw a straight line from any point to any point.</td><td>由任意一点到任意一点可作一条直线。</td></tr>
+      <tr><td>2</td><td>To produce a finite straight line continuously in a straight line.</td><td>一条有限直线可以沿直线继续延长。</td></tr>
+      <tr><td>3</td><td>To describe a circle with any centre and distance.</td><td>以任意中心与任意距离可作一个圆。</td></tr>
+      <tr><td>4</td><td>That all right angles are equal to one another.</td><td>所有直角彼此相等。</td></tr>
+      <tr><td><strong>5</strong></td><td>★ <strong>That, if a straight line falling on two straight lines make the interior angles on the same side less than two right angles, the two straight lines, if produced indefinitely, meet on that side on which are the angles less than the two right angles.</strong></td><td>★ <strong>若一条直线与两条直线相交，且同侧内角之和小于两个直角，则这两条直线无限延长后必相交于内角之和小于两直角的那一侧。</strong></td></tr>
+    </tbody>
+  </table>
+  <p><strong>五条公理（Common Notions，Heath 译作「common notions」，即「共同概念」）</strong>：</p>
+  <table>
+    <thead><tr><th>#</th><th>英文（Heath 译）</th><th>中文（笔者自译）</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Things which are equal to the same thing are also equal to one another.</td><td>等于同量之量彼此相等。</td></tr>
+      <tr><td>2</td><td>If equals be added to equals, the wholes are equal.</td><td>等量加等量，其和相等。</td></tr>
+      <tr><td>3</td><td>If equals be subtracted from equals, the remainders are equal.</td><td>等量减等量，其差相等。</td></tr>
+      <tr><td>4</td><td>Things which coincide with one another are equal to one another.</td><td>能彼此重合的量彼此相等。</td></tr>
+      <tr><td>5</td><td>The whole is greater than the part.</td><td>整体大于部分。</td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>一个必须点明、且常被混淆的区别：在希腊传统里，「公设」与「公理」是两类不同的东西。</strong> 公设（αἰτήματα，aitēmata，直译是「所要求的东西」）是<strong>针对本门学科（几何）所设定</strong>的前提（如「可作一个圆」）；公理（κοιναὶ ἔννοιαι，koinai ennoiai，「共同概念」）是<strong>适用于一切推理的普遍原则</strong>（如「整体大于部分」）。<strong>是中世纪以后的抄本与译本把两者混称，把「公设」也算作「不需要证明的自明真理」。</strong> ★ 这一混称，正是后世对<strong>第五条公设</strong>不满的深层原因——人们<strong>把它误当成一条「和『整体大于部分』一样自明的公理」</strong>，却发现它一点也不自明（详见 <code>## 5.1</code> 与 <code>## 4b</code>）。</p>
+  <p>★ <strong>读法提示</strong>：这本书<strong>不是「一章一个论点」，而是「一个前提系统逐层加材料」</strong>。你<strong>不要指望记住 465 个命题</strong>；要抓住的是<strong>三层结构</strong>：① <strong>第 I、V、XI 卷</strong>分别给出平面、比例、立体的<strong>地基</strong>；② <strong>第 II、III、IV、VI、VII、VIII、IX、XII 卷</strong>是给地基<strong>加材料</strong>；③ <strong>第 IX 卷末的第 36 命题与第 XIII 卷的整个结尾</strong>，是全书的<strong>两处拱顶石</strong>（完全数与五种正多面体）。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>核心主题与结构机制</span><span class="caret">▾</span></h2>
+  <p>★ 这一节不写「五个论点」，因为《几何原本》<strong>是一个体系，不是一本有论点的论著</strong>。下面回答两个问题：<strong>它在做什么（主题）？靠什么手段做（机制）？</strong></p>
+  <h3>主题一：把知识收进一个「可核查的推理链」</h3>
+  <p><strong>做什么</strong>：欧几里得做的是<strong>知识的组织工程</strong>。在他之前，希腊的几何知识（泰勒斯、毕达哥拉斯学派、希波克拉底、欧多克索斯等人）已经相当丰富——但它<strong>散落、重叠、互相依赖不明</strong>。欧几里得的贡献是<strong>选出一组前提，把其余全部变成结论</strong>。</p>
+  <p><strong>靠什么手段</strong>：<strong>「每个命题只能引用在它之前已经证明过的东西」。</strong> 这是全书最硬的一条纪律。你可以在任何一处看到它：<strong>I.5（等腰三角形底角相等）的证明只引用了 I.4、I.3 与公理</strong>；<strong>I.29（内错角相等）是全书中第一个引用第五条公设的命题</strong>——而在它之前的 28 个命题，欧几里得<strong>一次都没有用过第五条公设</strong>。★ 这个「延迟」不是偶然，它<strong>本身就是一条结构性的证据</strong>（详见主题三与 <code>## 6</code>）。</p>
+  <p><strong>为什么重要</strong>：这条纪律把「几何」从<strong>一门手艺</strong>变成<strong>一个系统</strong>。手艺靠经验与直觉，系统靠<strong>可追踪的依赖关系</strong>：任何一个命题错了，你都能查出它连累到后面哪些命题。</p>
+  <h3>主题二：把「证明」与「作图」分开——两种结论，两个结尾</h3>
+  <p><strong>做什么</strong>：欧几里得的命题有<strong>两种</strong>：<strong>定理</strong>（theorem，只断言某事成立）与<strong>问题／作图题</strong>（problem，要求<strong>作出</strong>某个对象）。全书的两个结尾语，正是这一区分的标志：<strong>Q.E.D.</strong>（<em>ὅπερ ἔδει δεῖξαι</em>，「此即所欲证者」，用于定理）与 <strong>Q.E.F.</strong>（<em>ὅπερ ἔδει ποιῆσαι</em>，「此即所欲作者」，用于作图）。</p>
+  <p><strong>靠什么手段</strong>：<strong>作图题的三步法——分析、作、证。</strong> 以 <strong>I.1（在给定线段上作等边三角形）</strong> 为例，欧几里得的写法是标准模板：① <strong>先说要作出什么</strong>（在 AB 上作等边三角形）；② <strong>作两圆并取交点</strong>（以 A 为心、AB 为半径作圆，以 B 为心、AB 为半径作圆，两圆交于 C）；③ <strong>再证明</strong>作出的图形确实满足要求（AC ＝ AB，BC ＝ AB，故 AC ＝ BC，三角形等边）。★ <strong>注意第②步里那个隐而不宣的假设</strong>：「两圆必相交于一点」——<strong>这个结论欧几里得从未证明过</strong>，它依赖图形的<strong>连续性直觉</strong>，是后世希尔伯特要补的洞之一（详见 <code>## 5.4</code>）。</p>
+  <p><strong>为什么重要</strong>：<strong>「问题」与「定理」的区分，让几何同时成为一门「可以动手做」与「可以严格证」的学问。</strong> 全书 465 命题中，相当一部分是作图题（尤其第 I、II、IV、VI 卷）；正五边形的可作性、黄金分割的可作性，都靠这个「先作出、再证明」的两段式。</p>
+  <h3>主题三：从不自明的「第五条」到全书最著名的结构事实</h3>
+  <p><strong>做什么</strong>：前四条公设都短、都像「操作说明」（可作直线、可延长、可作圆、直角相等）；<strong>第五条公设却长得离谱</strong>，而且<strong>读起来更像一条待证的定理</strong>——它讲的是两条直线在什么条件下会相交。</p>
+  <p><strong>靠什么手段</strong>：★ <strong>欧几里得的做法是「能不用就不用」。</strong> 从 I.1 到 I.28，<strong>28 个命题一次都没有引用第五条公设</strong>；直到 <strong>I.29（一条直线与两条平行线相交，则内错角相等、同位角相等、同旁内角互补）</strong>，它才<strong>第一次被引用</strong>。★ <strong>此后凡是涉及平行线的命题（I.29–I.48、第 VI 卷相似形、第 XI 卷立体几何的平行关系），都必须依赖它。</strong></p>
+  <p><strong>为什么重要</strong>：★★ <strong>这个「延迟使用」是全书最重要的结构性事实。</strong> 它说明：<strong>可以有一大块几何（前 28 命题加上所有不涉及平行线的部分）完全不依赖第五条公设</strong>——后人把这块叫「<strong>绝对几何</strong>」。<strong>非欧几何之所以能诞生，正是因为这一步被看清楚：既然前 28 命题不需要第五条，那么把第五条换成它的否定，前面的结论依然成立，只是后面的会变成另一套几何</strong>（详见 <code>## 5.1</code> 与 <code>## 13</code>）。</p>
+  <h3>主题四：用「比例」而不是「数」来处理连续量</h3>
+  <p><strong>做什么</strong>：毕达哥拉斯学派发现<strong>正方形的对角线与边不可公度</strong>（√2 不是有理数）之后，希腊几何陷入危机：<strong>如果「两个量之比」只能用在可公度的量上，那么大量图形的相似关系就无法陈述</strong>。</p>
+  <p><strong>靠什么手段</strong>：<strong>第 V 卷的比例论据欧多克索斯（Eudoxus，约公元前 390–337）</strong>。★ 它的核心是 <strong>V.def.5</strong>——<strong>用「任意等倍」的比较来定义「相等之比」</strong>：若对任意的等倍（m·a 与 m·c、n·b 与 n·d），m·a 与 n·b、m·c 与 n·d 的三种关系（大于／等于／小于）总是一致的，就说 a∶b ＝ c∶d。★★ <strong>这个定义的关键在于：它根本不问「比值的数值是多少」，只问两组量按任意倍数比较时「谁大谁小」是否同步。</strong> 因此<strong>即使两个量不可公度（比值为无理数），比例关系依然可以被严格定义与推理</strong>——<strong>欧多克索斯用「比较」绕开了「求值」，也就绕开了无理数</strong>。这是一种高度成熟的分析技术，思想史家视为<strong>实数理论的远祖</strong>（19 世纪戴德金分割与它同构）。</p>
+  <p><strong>为什么重要</strong>：<strong>没有第 V 卷，就没有第 VI 卷的相似形、没有第 X 卷的无理量、没有第 XII 卷的穷竭法。</strong> 它是全书<strong>技术含量最高、也被后人研究得最透</strong>的一卷；希尔伯特重建几何时，也专门处理了「比例」的公理地位。</p>
+  <h3>主题五：把「无限逼近」变成严格的证明工具——穷竭法</h3>
+  <p><strong>做什么</strong>：<strong>第 XII 卷要证的是「圆面积之比 ＝ 直径平方之比」（XII.2）、「锥体体积 ＝ 同底同高柱体的三分之一」（XII.7 等）、「球体积之比 ＝ 直径立方之比」（XII.18）</strong>。这些结论<strong>今天用积分几行就写出来了</strong>，但在没有极限概念的时代，怎么严格证明？</p>
+  <p><strong>靠什么手段</strong>：★★ <strong>穷竭法（method of exhaustion）</strong>，其逻辑基础是 <strong>X.1</strong>：<strong>从任一量中减去超过其半的量，再从余量中减去超过其半的量，如此不断重复，最终必留下一个比任何预给的更小的量还小的量</strong> <span class="tag t-src">原书</span>（X.1）。<strong>证明的套路是「双归谬」</strong>：以 XII.2 为例，要证「圆 ABCD ∶ 圆 EFGH ＝ BD² ∶ FH²」。欧几里得<strong>先假设这个比等于某个比 EFGH 小的面积 S</strong>，然后在圆内<strong>不断内接边数加倍的相似多边形</strong>，用 X.1 把「圆减多边形」的差压到小于「圆减 S」，由此推出 S 既大于又小于某多边形，<strong>矛盾</strong>；再假设比等于某个更大的面积，<strong>同样矛盾</strong>——<strong>两个方向的不可能排除掉，剩下的只能是相等</strong> <span class="tag t-src">原书</span>（XII.2 的证明结构，含对 X.1 的引用）。</p>
+  <p><strong>为什么重要</strong>：<strong>这是微积分「极限」思想的直接源头。</strong> 它没有符号、没有「无穷小」，但<strong>把「无限过程」的结果用「有限的反证」严格锁定了</strong>。阿基米德后来用它求抛物线弓形面积与球体积，17 世纪的卡瓦列里、乃至牛顿、莱布尼茨的「不可分量法」，都是这条线的后代（本报告《自然哲学的数学原理》一篇里，牛顿为回避「不可分」而发明的「首末比」，也正是同一个问题的又一次回答）。</p>
+  <h3>主题六：证明的「书写格式」——综合法，以及它为什么这么难读</h3>
+  <p><strong>做什么</strong>：★ <strong>《几何原本》的证明全部用「综合法」（synthesis）写</strong>——<strong>即「从已知推到结论」</strong>：<strong>摆出已知、一步步推出结论、最后写 Q.E.D.</strong> ★ 与之相对的是<strong>「分析法」（analysis）</strong>——<strong>从结论倒推回已知</strong>。★★ <strong>一个常被忽略的事实：欧几里得本人是「先用分析法找证明、再用综合法写出来」的</strong>（<strong>Pappus、Proclus 都记载古人这样做</strong>，属 <span class="tag t-rep">转述</span>）；<strong>但他只把综合法的成品留在书里</strong>。</p>
+  <p><strong>靠什么手段</strong>：</p>
+  <ol>
+    <li>★ <strong>只写「成品」，不写「怎么想到的」</strong>：<strong>书里看不到「为什么要作这条辅助线」的动机</strong>，<strong>只看得到「作这条辅助线，于是……」</strong>。★ <strong>这是《几何原本》难读的第一原因</strong>——<strong>它把「发现的过程」全部删掉了</strong>，只留<strong>「验证的过程」</strong>。
+    </li>
+    <li>★ <strong>固定的语言模板</strong>：「设……」「我要证……」「因为……所以……」「同理」「故……」「此即所欲证」——<strong>这套模板让证明可核查，但也让它读起来像「一连串不容置疑的断言」</strong>。
+    </li>
+    <li>★ <strong>图形是必须的</strong>：<strong>欧几里得的每条证明都默认读者看着一个图</strong>（<strong>命题里的字母 A、B、C 是图上的点</strong>）——<strong>你若没有图，很多「所以」会莫名其妙</strong>。
+    </li>
+  </ol>
+  <p><strong>为什么重要</strong>：★★ <strong>理解这一点，能解释读者最常见的一种挫败感：「每一步我都看得懂，但合起来我不知道他在干什么。」</strong> ★ <strong>原因不是读者笨，而是综合法把「目标」藏起来了</strong>——<strong>要读懂，必须自己反推「他为什么作这条辅助线」，也就是在脑子里重做一遍分析法。</strong> ★ <strong>这也解释了为什么后世会有「分析法」的传统</strong>（<strong>笛卡尔的解析几何、乃至现代的「构造性证明」，都是对综合法的一种补充</strong>）。</p>
+  <h3>★ 一个「依赖链」的例子：从公设到 I.47</h3>
+  <p>★ <strong>把「只能引用前面的东西」这条纪律具体化，最清楚的办法是追踪一条依赖链。</strong> 以 <strong>I.47（勾股定理）</strong> 为例，<strong>它的证明直接引用了 I.4、I.14、I.41、I.46 与公理 2（C.N.2）</strong>：</p>
+  <table>
+    <thead><tr><th>I.47 用到</th><th>它又用到</th><th>它最终依赖到</th></tr></thead>
+    <tbody>
+      <tr><td><strong>I.4（边角边全等）</strong></td><td>「移动图形」＋ 公设 1–3</td><td>★ <strong>依赖「移动」这个未证的直觉</strong>（见 <code>## 6</code> 的结构承重墙）</td></tr>
+      <tr><td><strong>I.14（两角成一直线）</strong></td><td>I.13（邻角）、公理</td><td>公设与公理</td></tr>
+      <tr><td><strong>I.41（平行四边形 ＝ 2×三角形）</strong></td><td>I.34、I.37、I.38</td><td>★ <strong>I.34 依赖 I.29（平行线的性质），I.29 依赖 Post.5</strong></td></tr>
+      <tr><td><strong>I.46（作正方形）</strong></td><td>I.11（作垂线）、I.3、I.31</td><td>★ <strong>I.31 作平行线（不用 P5），I.11 作垂线（不用 P5）；但 I.46 的图依赖 I.29 一系</strong></td></tr>
+      <tr><td><strong>公理 2（C.N.2）</strong></td><td>—</td><td>公理</td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>这条链说明两件事</strong>：① <strong>I.47 虽然看起来是「面积算一算」，但它站在 I.4（全等）、I.14（角）、I.41（面积）、I.46（正方形）四组结论上，而这四组又各自往下扎根</strong>；② <strong>链条的底端有两处「悬空」</strong>——<strong>I.4 的「移动」与 I.29 的 Post.5</strong>。★★ <strong>这正是「公理化体系」的真实样子：越往上，结论越华丽；越往下，前提越少，而「悬空」的地方也越显眼。</strong></p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <h3>如果你是「想读」</h3>
+  <ol>
+    <li>★★ <strong>先读第 1 卷的「三件套」，不要从命题开始。</strong> 顺序是：<strong>定义（23 个）→ 五条公设 → 五条公理</strong>。这三块是<strong>全书的地基</strong>，也是最容易被跳过、却最该逐字读的部分。★ 读的时候问自己一个问题：「这 5 条公设里，哪一条不像『前提』而像『结论』？」——<strong>答案是第 5 条，而这就是全书的钥匙。</strong>
+    </li>
+    <li><strong>然后读第 1 卷的这几条</strong>：I.1（作等边三角形，看「作图题」的标准写法）、I.4（边角边全等，全书第一个全等判定）、I.5（等腰三角形底角相等，看证明开始「引用前命题」）、<strong>I.29（第一次使用第五条公设，标记绝对几何的边界）</strong>、<strong>I.47（勾股定理，看纯面积的证明，不是代数证明）</strong>。★ <strong>其余命题可以只读陈述、不读证明。</strong>
+    </li>
+    <li><strong>想看不依赖第五条公设的那一半</strong>：读完 I.28 <strong>停下来</strong>，翻到 <code>## 6</code> 与 <code>## 13</code> 关于「绝对几何」的说明，再回来读 I.29——<strong>你会立刻感到第五条公设的介入</strong>。
+    </li>
+    <li>★ <strong>第 V 卷如果读不下去，直接跳到 V.def.5 一个定义。</strong> 第 V 卷的 25 个命题全是比例论的「代数」，但<strong>它的灵魂只在 V.def.5 那一段话里</strong>。读懂了 V.def.5（「任意等倍比较同步」），第 V 卷和第 VI 卷就打开了一半。
+    </li>
+    <li><strong>数论部分只读两题</strong>：<strong>VII.2（辗转相除法／欧几里得算法）</strong> 与 <strong>IX.20（素数无穷多）</strong>。前者是<strong>今天每一个程序员的「工具箱」里都有的算法</strong>，后者是<strong>数学史上最著名的一次反证法</strong>。
+    </li>
+    <li><strong>立体几何只读两题</strong>：<strong>XII.2（圆面积之比，穷竭法的样板）</strong> 与 <strong>XIII.18（正多面体只有五种，全书的终点）</strong>。
+    </li>
+  </ol>
+  <h3>如果你是「已读」</h3>
+  <ol>
+    <li>★★ <strong>核对一件事：你读的是「全本」还是「前六卷」？</strong> 中文世界流传最广的旧译（乃至某些电子本、某些「节选本」）<strong>只含前六卷</strong>——<strong>第 VII 卷以后（数论、无理量、立体几何）根本没有</strong>。<strong>这在中文世界是一个持续了近四百年的断层</strong>（1607 年只译出前六卷，直到 1857 年才续译后九卷，1865 年才有 15 卷全帙），详见 <code>## 4</code>。★ <strong>如果你手上那本没有第 VII 卷及以后，你读的就不是《几何原本》。</strong>
+    </li>
+    <li><strong>把「第五条公设」当成一个独立的研究对象重读。</strong> 从 I.29 开始，<strong>标记每一个引用它的命题</strong>，你会看到<strong>第五条公设像一根承重柱一样支撑着相似形与立体几何</strong>。这就是两千年争议的来源（详见 <code>## 5.1</code>）。
+    </li>
+    <li><strong>对照希尔伯特的《几何基础》（1899）。</strong> 希尔伯特<strong>把《几何原本》重写了一遍</strong>，把欧几里得<strong>未定义或未言明的概念</strong>（「之间」「合同」「连续」）全部显式公理化，并<strong>列出欧几里得隐含使用的假设</strong>（如「两圆相交」「直线上的点有序」）。<strong>读过希尔伯特再回看欧几里得，你会看清「公理化」这件事在两千年里进步了什么。</strong>
+    </li>
+    <li><strong>附录 D 里的差异项要当心</strong>：中文世界流传的「《几何原本》有 15 卷」「欧几里得原书 15 卷」是<strong>把后人的续作算了进去</strong>；「发行量仅次于《圣经》」是<strong>常见说法、口径不明</strong>。
+    </li>
+  </ol>
+  <h3>★ 一条可执行的阅读路线（约 40 页，只读关键命题）</h3>
+  <table>
+    <thead><tr><th>顺序</th><th>读什么</th><th>位置</th><th>为什么</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><strong>23 定义 ＋ 5 公设 ＋ 5 公理</strong></td><td>第 I 卷卷首</td><td>全书地基；第 5 公设是钥匙</td></tr>
+      <tr><td>2</td><td><strong>I.1、I.4、I.5</strong></td><td>第 I 卷</td><td>看「作图题」与「全等」的标准写法</td></tr>
+      <tr><td>3</td><td><strong>I.29</strong></td><td>第 I 卷</td><td>★ 第五条公设第一次被使用</td></tr>
+      <tr><td>4</td><td><strong>I.47（勾股定理）</strong></td><td>第 I 卷</td><td>★ 纯面积证明，不是代数证明</td></tr>
+      <tr><td>5</td><td><strong>II.11（黄金分割作图）</strong></td><td>第 II 卷</td><td>看「面积语言」如何做代数</td></tr>
+      <tr><td>6</td><td><strong>V.def.5（比例的定义）</strong></td><td>第 V 卷</td><td>★★ 全书技术含量最高的一个定义</td></tr>
+      <tr><td>7</td><td><strong>VII.2（辗转相除法）</strong></td><td>第 VII 卷</td><td>今天仍在用的算法</td></tr>
+      <tr><td>8</td><td><strong>IX.20（素数无穷多）</strong></td><td>第 IX 卷</td><td>★ 反证法的样板</td></tr>
+      <tr><td>9</td><td><strong>X.1（穷竭法原理）</strong></td><td>第 X 卷</td><td>第 XII 卷的工具</td></tr>
+      <tr><td>10</td><td><strong>XII.2（圆面积之比）</strong></td><td>第 XII 卷</td><td>★ 穷竭法的完整演示</td></tr>
+      <tr><td>11</td><td><strong>XIII.18（五种正多面体）</strong></td><td>第 XIII 卷</td><td>★ 全书的终点</td></tr>
+      <tr><td>—</td><td><strong>可跳</strong>：第 III、IV 卷大部分命题；第 VI 卷除 VI.2、VI.4、VI.8 外；第 VIII 卷全卷；第 X 卷除 X.1 外；第 XI 卷除 XI.21 外</td><td>—</td><td>都是技术性推演，不影响对结构的把握</td></tr>
+    </tbody>
+  </table>
+  <h3>★ 三条最常见的误读（读之前先拆掉）</h3>
+  <ol>
+    <li>★★ <strong>「《几何原本》＝ 一本几何书」</strong>。<strong>这是最普遍、也最妨碍理解的误读。</strong> 13 卷里，<strong>第 V–X 卷（比例论、数论、无理量）占了 217 个命题</strong>——<strong>接近全书的一半</strong>。★ <strong>把它当「平面几何课本」，你就会在第 VII 卷开始怀疑「这是不是同一本书」。</strong> <strong>正解</strong>：<strong>它是一本「用演绎法整理的数学知识总集」，「几何」只是其中最大的一块</strong>（见 <code>## 4b</code> 第 2 条）。
+    </li>
+    <li>★★ <strong>「公设和公理都是不证自明的真理」</strong>。<strong>这是中世纪以后才有的说法。</strong> <strong>希腊传统里，公设是「要求对方承认的操作前提」（这就是为什么要「要求」——它是可以要求、也可以不给的），公理才是「普遍适用于推理」的原则。</strong> ★ <strong>把公设读成「自明真理」，你会无法理解第五条公设为什么引人怀疑了两千年</strong>（<strong>一条明摆着的操作规则，换掉它本来就没什么好奇怪的</strong>）。<strong>正解</strong>：<strong>公设与公理是两类东西</strong>（见 <code>## 1</code> 与 <code>## 4b</code> 第 3 条）。
+    </li>
+    <li>★★ <strong>「读《几何原本》就是记住 465 个命题」</strong>。<strong>完全反向。</strong> ★ <strong>没有人需要记住 465 个命题</strong>——<strong>现代数学早已把它们重新组织、重新证明，更好的版本满地都是。</strong> ★★ <strong>读它的唯一理由，是看「一个体系如何从几条前提长成 465 个结论」</strong>。<strong>正解</strong>：<strong>读结构、读方法、读「哪里悬空」</strong>（见 <code>## 2</code> 与 <code>## 3</code>）。
+    </li>
+  </ol>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是本书中译最重要的一节</strong>：因为《几何原本》的中译史里藏着一个<strong>大多数读者不知道的事实</strong>——<strong>中文世界在近四百年里，长期只读过这本书的前六卷</strong>。</p>
+  <h3>① 四百年断层：1607 年前六卷 → 1857 年后九卷 → 1865 年全帙</h3>
+  <table>
+    <thead><tr><th>年份</th><th>事件</th><th>关键事实</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1607</strong></td><td>★★ <strong>徐光启 ＋ 利玛窦（Matteo Ricci）合译《几何原本》</strong></td><td>据 <strong>Clavius（克拉维乌斯）校订增补的拉丁文本《欧几里得原本》（15 卷）</strong>，<strong>但只译出前 6 卷</strong>。★ 「<strong>几何</strong>」这个学科名与<strong>点、线、面、平行线、角、三角形</strong>等基本术语<strong>都由这个译本定下</strong>（音义兼取：geo- 音译为「几何」，兼取中文「衡量大小」之义）</td></tr>
+      <tr><td><strong>1857</strong></td><td><strong>李善兰 ＋ 伟烈亚力（Alexander Wylie）续译后 9 卷</strong></td><td>距前六卷首次译出已 <strong>250 年</strong></td></tr>
+      <tr><td><strong>1865</strong>（同治四年）</td><td><strong>曾国藩金陵官署刻本</strong></td><td>★ <strong>15 卷中译本首次全帙刊刻</strong>——中文世界<strong>第一次可以完整读到《几何原本》</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>这个四百年断层本身，就是一条重要的思想史事实。</strong> 在 1607 到 1857 之间，中文读者<strong>读到的是「只有平面几何的欧几里得」</strong>：<strong>第 V 卷的比例论、第 VII–IX 卷的数论、第 X 卷的无理量、第 XI–XIII 卷的立体几何与正多面体，全部缺席</strong>。<strong>「几何」在中文语境里长期等于「平面图形」</strong>，这个误解的根，就在这 250 年的缺口里（详见 <code>## 5.6</code>）。</p>
+  <p>★ <strong>徐光启的名言要引</strong>（出自《几何原本》序，须以原书为准）：</p>
+  <blockquote>
+    <p>「此书为益，能令学理者祛其浮气，练其精心；学事者资其定法，发其巧思。故举世无一人不当学。」<span class="tag t-rep">转述</span>（徐光启《刻几何原本序》；<strong>本报告未逐字核对明刻本原文，转引自公开的序文引录</strong>）</p>
+  </blockquote>
+  <h3>② 现代中译：三条可选路线</h3>
+  <table>
+    <thead><tr><th>译本</th><th>出版社·年份</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td><strong>蓝纪正、朱恩宽《欧几里得几何原本》</strong></td><td>陕西科学技术出版社 · <strong>2003</strong></td><td>中文世界至今<strong>较完整的学术性译本</strong>，附译序与注释；约 40 余万字</td></tr>
+      <tr><td><strong>张卜天 译《几何原本》</strong></td><td>商务印书馆 · <strong>2020</strong></td><td>近年较通行的全译本，译者为科学史与科学哲学译者</td></tr>
+      <tr><td><strong>李彩菊 译</strong></td><td>北京理工大学出版社 · <strong>2017</strong></td><td>面向大众的译本</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>给读者的三条实用结论</strong>：</p>
+  <ol>
+    <li>★★ <strong>认准「13 卷全本」再买。</strong> 中文出版物里，<strong>「只含前六卷」的版本极多</strong>（历史译本、节选本、青少年版、以 Casey 前六卷为底本的电子本都属此类）。<strong>买之前看一眼目录：有没有第 VII 卷（数论）与第 X 卷（无理量）</strong>——<strong>没有，就不是全本。</strong>
+    </li>
+    <li><strong>想核对原文措辞，用英译（Heath）而不是中译。</strong> 中译经过了<strong>「希腊文 → 拉丁文 → 中译」或「希腊文 → 英译 → 中译」</strong>的多重转换；<strong>若你要查某个术语或命题的原始表述，直接查 Heath 英译（Perseus）或希腊文（Heiberg）</strong>。
+    </li>
+    <li><strong>不要拿「只含前六卷」的本子去核对第 VII 卷以后的命题。</strong> 这是本报告 <code>## 4b</code> 第一条要纠正的错误（<strong>PG #21076 只是前六卷</strong>）。
+    </li>
+  </ol>
+  <h3>③ 为什么「前六卷」特别容易被误当成全本</h3>
+  <p>★ <strong>这不是巧合，而是有历史原因的</strong>：</p>
+  <ol>
+    <li>★★ <strong>1607 年的《几何原本》只有前六卷，而它成了三百多年里中文世界唯一能读到的版本</strong>——<strong>「《几何原本》＝ 前六卷」在中文语境里是一个持续了近四百年的默认设定</strong>（见 <code>## 5.6</code>）；
+    </li>
+    <li>★ <strong>前六卷的内容自成一体</strong>：<strong>它恰好覆盖「平面几何从公理到相似形」的完整链条</strong>——<strong>读完前六卷，读者会有一种「我读完了」的错觉</strong>（<strong>因为第 I–VI 卷确实构成一个相对闭合的体系</strong>）；
+    </li>
+    <li>★ <strong>教材传统强化了这个印象</strong>：<strong>19 世纪以来西方的中学几何教材多以「欧几里得前六卷＋第 XI 卷（立体）」为蓝本</strong>（<strong>如 Hall 与 Stevens《A Text-Book of Euclid's Elements, Books I–VI and XI》，1893</strong>）——<strong>「欧几里得＝前六卷（＋立体）」成了教科书层面的惯例</strong>；
+    </li>
+    <li>★ <strong>因此，Casey 的《First Six Books》（PG #21076）、各种「欧几里得几何」节选本、乃至许多中译本，都只含前六卷</strong>——<strong>它们的名字里其实写着「First Six Books」或「平面几何」，只是读者常常不看</strong>。
+    </li>
+  </ol>
+  <p>★★ <strong>给读者的判据（再看一次）</strong>：<strong>打开目录，找「第 VII 卷（论数）」与「第 X 卷（论无理量）」——有，才是全本；没有，就是前六卷。</strong></p>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <p>★ 下表的判据是「<strong>有没有回原文</strong>」。左栏是中文世界（及英文世界）流传最广的说法，右栏是我在<strong>公版英译／希腊文</strong>里核到的事实与定位。★ <strong>引文定位一律用「卷 ＋ 命题号」</strong>。</p>
+  <table>
+    <thead><tr><th>#</th><th>流行说法</th><th>原文／事实（带定位）</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>★★ 「<strong>Project Gutenberg #21076 就是《几何原本》全本</strong>」</td><td>★ <strong>事实：不是。</strong> PG #21076 的书名是 <strong><em>The First Six Books of the Elements of Euclid</strong></em>，<strong>编者 John Casey（1820–1891）</strong>，<strong>只有前六卷</strong> <span class="tag t-src">原书</span>（PG #21076 电子本标题页与目录）。要找全 13 卷，请用 <strong>Perseus 的 Heath 英译</strong>（<code>Perseus:text:1999.01.0086</code>）或 <strong>archive.org 的 Heath 1908 三卷本</strong></td></tr>
+      <tr><td>2</td><td>「《几何原本》<strong>全是几何</strong>」</td><td>★ <strong>事实：13 卷里有一大半不是图形。</strong> <strong>第 V 卷是比例论</strong>（适用于一切量，含不可公度量）、<strong>第 VII–IX 卷是数论</strong>（辗转相除法 VII.2、素数无穷多 IX.20）、<strong>第 X 卷是 115 个命题的无理量分类</strong> <span class="tag t-src">原书</span>（各卷命题与主题，见 Heath 译本目录）。<strong>第 VII–X 卷合计 217 个命题，接近全书的二分之一</strong></td></tr>
+      <tr><td>3</td><td>「<strong>公设与公理是一回事</strong>，都是『不证自明的真理』」</td><td>★ <strong>事实：在希腊传统里是两类。</strong> 公设（αἰτήματα，「所要求的东西」，5 条，<strong>针对几何</strong>）与公理（κοιναὶ ἔννοιαι，「共同概念」，5 条，<strong>普遍适用于一切推理</strong>）<strong>本是两类</strong> <span class="tag t-src">原书</span>（第 I 卷 5 公设与 5 公理并列，Heath 译本分列）。<strong>把两者混称为「自明真理」，是中世纪以后的事</strong> —— <strong>正是这个混称，让第五条公设（P5）显得「不够自明」而引发两千年争议</strong>（见 <code>## 5.1</code>）</td></tr>
+      <tr><td>4</td><td>「<strong>勾股定理是欧几里得发现的</strong>」</td><td>★ <strong>事实：欧几里得给出的是第一个系统证明，不是发现。</strong> <strong>I.47</strong> 的陈述是「在直角三角形中，直角所对边上的正方形等于夹直角两边上的正方形之和」，其证明是<strong>纯粹的面积相等推理</strong>（作两个正方形、作平行线 AL，证明平行四边形 BL ＝ 正方形 GB、CL ＝ 正方形 HC，相加）<span class="tag t-src">原书</span>（I.47 全文）。★ 定理本身在欧几里得之前已为巴比伦人与毕达哥拉斯学派所知；<strong>欧几里得的贡献是把「为什么成立」写成了可核查的证明</strong></td></tr>
+      <tr><td>5</td><td>「<strong>欧几里得发明了公理化方法</strong>」</td><td>★ <strong>事实：他是集大成者，不是首创。</strong> 按 <strong>Proclus</strong>（公元 5 世纪）的说法，《原本》<strong>汇集了前人成果</strong>：<strong>第 V 卷比例论归 Eudoxus、第 VII–IX 卷数论归毕达哥拉斯学派、第 XIII 卷正多面体研究归 Theaetetus</strong> <span class="tag t-rep">转述</span>（Proclus《欧几里得原本第一卷注》，据 Heath 译本导论转引）。★ 公理化—演绎的<strong>形式</strong>在欧几里得之前已有（如希波克拉底的《几何原本》），<strong>欧几里得做的是把这个形式用到极致</strong></td></tr>
+      <tr><td>6</td><td>「<strong>《几何原本》的发行量仅次于《圣经》</strong>」</td><td>★ <strong>事实：这是广泛流传的说法，但具体统计口径不明。</strong> 本报告<strong>不把它当事实断言</strong>。可以确认的是：它<strong>被使用了逾 2,000 年</strong>、是<strong>西方历史上被注释、翻译、讲授最多的数学文本之一</strong> <span class="tag t-rep">转述</span>（多种普及读物的通行说法，<strong>未见可靠统计来源</strong>）。★ 参见 <code>## 5.5</code></td></tr>
+      <tr><td>7</td><td>「<strong>《几何原本》有 15 卷</strong>」</td><td>★ <strong>事实：欧几里得的《原本》是 13 卷。</strong> 传世的所谓「第 14、15 卷」是<strong>后人续作</strong>（第 14 卷一般归 <strong>Hypsicles</strong>，约公元前 2 世纪，讲正多面体的比较；第 15 卷更晚，讲正多面体的内接）<span class="tag t-rep">转述</span>（据 Heath 译本附录与通行版本学）。★★ <strong>注意徐光启、利玛窦所据的 Clavius 拉丁本是「15 卷」本</strong>——<strong>「15 卷」是那个含后人续作的版本，不是欧几里得的原本</strong>（见 <code>## 4</code> 与 <code>D2</code>）</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节是全报告最该细读的一节。</strong>《几何原本》被奉为「严密」的典范，但它引起的争议同样巨大——而且<strong>大部分争议不是因为「它错了」，而是因为「它的前提到底成不成立」</strong>。下面六条按重要程度排列，<strong>第一条是全书最重要的一条</strong>。</p>
+  <h3>5.1 ★★ 第五条公设：2,300 年的争议（本书最重要的一条）</h3>
+  <p><strong>争议的对象</strong>：第 1 卷第 5 公设（<strong>平行公设</strong>，今缩写 <strong>P5</strong>）——<strong>若一条直线与两条直线相交，且同侧内角之和小于两直角，则这两条直线无限延长后必相交于内角较小的一侧</strong> <span class="tag t-src">原书</span>（第 I 卷 公设 5）。</p>
+  <p><strong>为什么它就是问题</strong>：<strong>前四条公设都短、都像「允许你动手做某件事」</strong>（作直线、延长、作圆、直角相等）；<strong>第五条却长、复杂，而且描述的是「两条直线会不会相交」——这听起来像一条应该被证明的定理，而不像一个可以「要求」的前提。</strong> ★ 更要命的是：欧几里得<strong>自己在 I.29 才第一次使用它</strong>，前 28 个命题一次未用。★ <strong>这个「延迟」说明连欧几里得都隐约感到它特殊</strong>——能不用就不用。</p>
+  <p><strong>完整线索（这是本条的要点）</strong>：</p>
+  <table>
+    <thead><tr><th>时间</th><th>人物</th><th>做了什么</th></tr></thead>
+    <tbody>
+      <tr><td>约 5 世纪</td><td><strong>Proclus</strong>（新柏拉图主义者）</td><td>在《欧几里得原本第一卷注》里<strong>转述并质疑</strong>第五条：他提到有人（如托勒密的对手 <strong>Ptolemy</strong>、以及 <strong>Geminus</strong>）认为<strong>它可以被证明</strong>，并自己尝试给出证明 <span class="tag t-rep">转述</span></td></tr>
+      <tr><td>9–13 世纪</td><td>阿拉伯数学家（如 <strong>al-Jawhari、Omar Khayyam、Nasir al-Din al-Tusi</strong>）</td><td>沿同一路线尝试<strong>证明</strong>第五条，或<strong>用等价命题替换</strong>它（如「三角形内角和 ＝ 两直角」、<strong>Playfair 公理</strong>：过直线外一点恰可作一条平行线）<span class="tag t-rep">转述</span></td></tr>
+      <tr><td><strong>1733</strong></td><td><strong>Saccheri</strong>（耶稣会士）</td><td>★ <strong>关键一步</strong>：他用<strong>反证法</strong>——<strong>假设第五条不成立</strong>，用「萨凯里四边形」向下推，<strong>一路推出一些结论，直到遇到了「与已知不容」的地方才停手</strong>。★ <strong>史家公认他实际上已经触到了非欧几何的门，但他自己以为那是「矛盾」，于是收笔</strong> <span class="tag t-rep">转述</span>（Saccheri, <em>Euclides ab omni naevo vindicatus</em>, 1733）</td></tr>
+      <tr><td><strong>1829</strong></td><td><strong>Lobachevsky</strong>（俄国）</td><td>★★ <strong>公开宣布：第五条不能证明，且它的否定构成一门自洽的几何</strong>（双曲几何），并<strong>发表</strong> <span class="tag t-rep">转述</span>（Lobachevsky, <em>On the Principles of Geometry</em>, 1829）</td></tr>
+      <tr><td><strong>1832</strong></td><td><strong>Bolyai</strong>（匈牙利）</td><td>★★ <strong>独立地得出同一结论</strong>，由其父 <strong>Farkas Bolyai</strong> 作为附录（Appendix）附在父著后出版 <span class="tag t-rep">转述</span>（Bolyai, <em>Appendix</em>, 1832）</td></tr>
+      <tr><td><strong>1854</strong></td><td><strong>Riemann</strong></td><td>★ <strong>从更一般的立场出发</strong>（曲率、流形），指出<strong>可以有无限多种自洽的几何</strong>，<strong>欧氏几何只是一种「曲率为零」的特例</strong> <span class="tag t-rep">转述</span>（Riemann, 就职演讲 1854，1868 年发表）</td></tr>
+      <tr><td>1868 起</td><td><strong>Beltrami、Klein、Poincaré</strong></td><td>用<strong>欧氏几何内部的模型</strong>（如庞加莱圆盘）<strong>证明非欧几何与欧氏几何「相对一致」</strong>——<strong>若欧氏几何无矛盾，则非欧几何也无矛盾</strong> <span class="tag t-rep">转述</span></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>结论（也是本书的钥匙）</strong>：<strong>第五条公设的否定，不是「让几何出错」，而是「换了一门几何」。</strong> 从此「几何」不再是<strong>唯一</strong>的一套真理，而是<strong>一族</strong>可以由不同公理系统定义的数学结构。<strong>这一转变的起点，就是对《几何原本》一条前提的不信任。</strong></p>
+  <p>★ <strong>补充：P5 的几种「等价形式」</strong>——<strong>它们都被证明与 P5 等价</strong>（<strong>即：接受其中任意一条，就能推出 P5，反之亦然</strong>）。★ <strong>这张表能帮你理解「为什么这条公设这么大动静」</strong>：</p>
+  <table>
+    <thead><tr><th>等价命题</th><th>内容</th><th>备注</th></tr></thead>
+    <tbody>
+      <tr><td><strong>P5 原式</strong></td><td>同侧内角之和小于两直角 ⇒ 两直线在该侧相交</td><td>欧几里得 公设 5</td></tr>
+      <tr><td><strong>Playfair 公理</strong></td><td>过直线外一点，<strong>恰有且仅有一条</strong>平行线</td><td>★ <strong>今天教材最常用的形式</strong>（归给 Playfair，1795）</td></tr>
+      <tr><td><strong>三角形内角和 ＝ 两直角</strong></td><td>即 I.32</td><td>★ <strong>它依赖 P5，故与 P5 等价</strong></td></tr>
+      <tr><td><strong>平行线的「唯一性」</strong></td><td>两直线若都平行于第三条，则互相平行（I.30）在某形式下等价</td><td>—</td></tr>
+      <tr><td><strong>存在相似而不全等的三角形</strong></td><td>任意两个等角三角形对应边成比例（VI.4）</td><td>★ <strong>双曲几何里这条不成立</strong>（见 <code>## 9</code>）</td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>注意这张表的方法论意义</strong>：<strong>当人们试图「证明 P5」时，往往是在用一个与它等价的命题去证它——这就是「循环论证」</strong>。★ <strong>Saccheri 之所以能触到非欧几何却以为出了矛盾，很大程度上就是被这种「等价性网络」困住了</strong>：<strong>他以为自己在制造矛盾，其实只是造出了另一门几何。</strong></p>
+  <p>★ <strong>本报告的划界</strong>：上面这条线索的<strong>人物与年份</strong>来自通行的数学史叙述（Heath 译本导论、通行科学史著作），<strong>均标 <span class="tag t-rep">转述</span></strong>——<strong>本报告没有逐字核对 Saccheri 1733、Lobachevsky 1829、Bolyai 1832 的原著</strong>（见 <code>D3</code>）。</p>
+  <h3>5.2 「欧几里得是否原创」：Proclus 的归属清单</h3>
+  <p><strong>争议的对象</strong>：<strong>《原本》里有多少是欧几里得自己的，多少是前人的？</strong></p>
+  <p><strong>Proclus 的转述（须标明是转述）</strong>：<strong>Proclus</strong>（约 410–485）在《欧几里得原本第一卷注》里给出一份归属清单 <span class="tag t-rep">转述</span>（据 Heath 译本导论转引 Proclus）：</p>
+  <ul>
+    <li><strong>第 V 卷的比例论归 Eudoxus</strong>（欧多克索斯，约公元前 390–337）——这是<strong>学界基本公认的一条</strong>（V.def.5 的「任意等倍比较法」是欧多克索斯的著名发明）；
+    </li>
+    <li><strong>第 VII–IX 卷的数论归毕达哥拉斯学派</strong>——但<strong>很难确证具体是谁</strong>；
+    </li>
+    <li><strong>第 XIII 卷的正多面体研究归 Theaetetus</strong>（泰阿泰德，约公元前 417–369）。
+    </li>
+  </ul>
+  <p><strong>必须点明的一点</strong>：★★ <strong>Proclus 是欧几里得之后七百多年的人，他说的不是目击，而是依据更早的传闻（他自己的史料是 Geminus、Eudemus 等人）。</strong> 所以这份清单<strong>只能当「一种有影响的说法」，不能当定论</strong>。★ 现代版本学与数学史研究认为：<strong>《原本》大量取材于前人，但「把它组织成一个演绎体系」这件事，一般归给欧几里得本人</strong>（Heath 译本导论持此说）。★ <strong>史料对他的生平一无所知，正是「他是否原创」这个问题永远悬而未决的原因。</strong></p>
+  <h3>5.3 文本流传：Theon 抄本、1808 年梵蒂冈抄本与 Heiberg 校勘本</h3>
+  <p><strong>争议的对象</strong>：<strong>我们今天读到的《几何原本》，是不是欧几里得写的那个？</strong></p>
+  <p><strong>关键事实</strong>：</p>
+  <table>
+    <thead><tr><th>时间</th><th>事件</th></tr></thead>
+    <tbody>
+      <tr><td>4 世纪</td><td>★ <strong>Theon of Alexandria 的抄本（Theonine recension）长期通行</strong>——<strong>中世纪流传的《原本》绝大多数是 Theon 编订过的本子</strong>（他做了相当多的改写与补充），<strong>欧几里得的原貌被遮蔽</strong></td></tr>
+      <tr><td><strong>1808</strong></td><td>★★ <strong>François Peyrard 在梵蒂冈图书馆发现 MS. Vat. 190（梵蒂冈抄本）</strong>——这是一个<strong>比 Theon 抄本更早、未受 Theon 改写</strong>的本子。★ <strong>这一发现改变了《原本》校勘的基础</strong>：从此学界可以<strong>区分「欧几里得的文字」与「Theon 的增改」</strong> <span class="tag t-rep">转述</span></td></tr>
+      <tr><td><strong>1883–1888</strong></td><td>★ <strong>Heiberg 出版希腊文校勘本《Euclidis Elementa》</strong>（Teubner）——<strong>综合梵蒂冈抄本等材料，成为现代标准文本</strong>；<strong>Heath 1908 英译即据这个本子译出</strong> <span class="tag t-src">原书</span>（Perseus 的希腊文即 Heiberg 校勘本，<code>Perseus:text:1999.01.0085</code>）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>结论</strong>：<strong>欧几里得的「原稿」早已不存</strong>；我们读到的文本，是<strong>「梵蒂冈抄本一系 ＋ Heiberg 校勘」的产物</strong>。★ 但这<strong>不影响</strong>《几何原本》作为「稳定书面文本」的地位——它<strong>不是荷马式的口传作品</strong>，而是<strong>有可追踪的抄本传统与校勘史</strong>的著作（这正是本报告用「卷 ＋ 命题号」而不用「行号」定位的原因）。</p>
+  <h3>5.4 希尔伯特的公理化重写（1899）</h3>
+  <p><strong>争议的对象</strong>：<strong>《几何原本》究竟有多严密？</strong></p>
+  <p><strong>关键事实</strong>：<strong>David Hilbert《几何基础》（<em>Grundlagen der Geometrie</em>，1899）</strong> 用<strong>现代公理化方法把《几何原本》重写了一遍</strong>，并指出欧几里得<strong>隐含使用、却从未言明的假设</strong> <span class="tag t-rep">转述</span>（Hilbert, <em>Grundlagen der Geometrie</em>, 1899）：</p>
+  <ul>
+    <li><strong>「点、线、面之外还有未定义的基本概念」</strong>：欧几里得<strong>定义了「点」「线」，但定义是循环的</strong>（「点是没有部分的东西」）；希尔伯特则<strong>干脆不定义，只规定它们满足哪些公理</strong>（「点、线、面」由公理隐式定义）；
+    </li>
+    <li><strong>「之间（between）」</strong>：欧几里得<strong>大量使用「C 在 A、B 之间」</strong>，但<strong>从没给出这个概念的公理</strong>（希尔伯特补了「顺序公理」）；
+    </li>
+    <li><strong>「合同／全等（congruence）」</strong>：欧几里得用「移动图形使重合」（公理 4），但<strong>从未说明移动是什么</strong>（希尔伯特补了「合同公理」）；
+    </li>
+    <li>★★ <strong>「连续性」</strong>：<strong>I.1 里「两圆相交于一点」从未被证明</strong>——它依赖<strong>图形的连续性直觉</strong>；希尔伯特补了<strong>「完备性公理」</strong>（以及用<strong>帕施公理／Pasch 公理</strong>处理「直线与三角形边相交」之类的直觉结论）。
+    </li>
+  </ul>
+  <p>★ <strong>结论（本报告的分层意见）</strong>：<strong>《几何原本》在它自己的时代是严格的，但它的严格性依赖「读者共享的图形直觉」。</strong> 这不是「错误」，而是<strong>「严密性标准」两千年来提高了</strong>。★ <strong>希尔伯特的工作，恰恰证明了《几何原本》的价值</strong>：<strong>它值得被重写，本身就是一个体系能得到的最高评价。</strong></p>
+  <h3>5.5 ★ 「发行量仅次《圣经》」之说：常见说法，口径不明</h3>
+  <p><strong>说法</strong>：<strong>「《几何原本》是人类历史上发行量仅次于《圣经》的书」</strong>——这句评语在中文与英文通俗读物里流传极广。</p>
+  <p><strong>本报告的处理</strong>：★★ <strong>必须写成「常见说法，具体统计口径不明」，不得当作事实断言。</strong> 理由是：</p>
+  <ol>
+    <li><strong>「发行量」本身缺少可比的统计</strong>：<strong>古代与中世纪的抄本如何计数？印刷术普及前的手抄本算不算「发行」？各语言译本如何合并？</strong> —— <strong>口径不同，结论可以差几个数量级</strong>；
+    </li>
+    <li><strong>没找到可靠的一次统计来源</strong>：本报告<strong>未找到</strong>任何给出<strong>具体数据与统计方法</strong>的权威来源（<strong>见 <code>D4</code></strong>）；
+    </li>
+    <li><strong>可以确认的是「传播广度」而非「印数」</strong>：它<strong>被使用了逾 2,000 年、被译成多种语言、是西方历史上被注释与讲授最多的数学文本之一</strong>——<strong>这些是可核的</strong>；<strong>「仅次于《圣经》」这一具体排名，是不可核的</strong>。
+    </li>
+  </ol>
+  <h3>5.6 ★ 中译史的四百年断层（本书的专属条目）</h3>
+  <p><strong>争议的对象</strong>：<strong>中文世界的《几何原本》，与欧几里得的《几何原本》，中间隔了多久、缺了多少？</strong></p>
+  <p><strong>关键事实（详见 <code>## 4</code>）</strong>：<strong>1607 年只译出前六卷 → 1857 年续译后九卷 → 1865 年 15 卷全帙首刻</strong>。</p>
+  <p><strong>为什么这是「局限」而不只是「史实」</strong>：</p>
+  <ol>
+    <li>★★ <strong>在 1607–1857 的 250 年里，中文读者读到的《几何原本》没有第 VII 卷以后</strong>——<strong>数论、无理量、立体几何、正多面体全部缺席</strong>。<strong>中文语境的「几何」因此长期等于「平面几何」</strong>；
+    </li>
+    <li>★ <strong>这与「西方读到的欧几里得」有实质差别</strong>：<strong>第 V 卷（比例论）与第 X 卷（无理量）是全书技术含量最高的两卷</strong>，<strong>它们在中文世界的缺席，意味着中文数学传统长期没有接触到欧多克索斯式的「用比较绕开无理数」的分析技术</strong>；
+    </li>
+    <li>★ <strong>这一点直到今天仍有回声</strong>：中文出版物里<strong>「只含前六卷」的版本极多</strong>，<strong>「《几何原本》＝平面几何课本」的印象至今普遍</strong>（见 <code>## 4</code> 与 <code>## 4b</code> 第 2 条）。
+    </li>
+  </ol>
+  <p>★ <strong>结构说明</strong>：本书正文按「<strong>13 卷</strong>」划分，本部分 <code>## 6</code>–<code>## 12</code> 与之对应（<code>## 6</code> 是总论、<code>## 13</code> 是结构再读，不占卷号）。★ <strong>不复述命题的完整证明</strong>：每个结构单位只回答「它在解决什么问题、用什么方法、哪里可疑」。定位一律用「<strong>卷 ＋ 命题号</strong>」（如 I.47、V.def.5、X.1、XIII.18），<strong>不用页码、不用行号</strong>。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>总论：公理体系与全书的演绎结构</span><span class="caret">▾</span></h2>
+  <h3>这一节在解决什么问题</h3>
+  <p><strong>这一节要回答一个问题：这部书凭什么能运行两千多年？</strong> 答案是<strong>它的「前提—推理」结构</strong>：一组极小的前提（23 定义 ＋ 5 公设 ＋ 5 公理），加上一条纪律（<strong>每个命题只引用前面的东西</strong>），就能推出 465 个结论。</p>
+  <p>★ 在进入任何一卷之前，必须先看清<strong>三件事</strong>：<strong>定义在做什么、公设与公理的分工、以及第五条公设为什么特殊。</strong></p>
+  <h3>定义、公设、公理：三块不同的地基</h3>
+  <p><strong>第一块：定义（第 I 卷 23 个）。</strong> 欧几里得先声明术语。开头几个定义很「哲学化」：</p>
+  <ul>
+    <li><strong>定义 1</strong>：<strong>点是没有部分的东西</strong>（Σημεῖόν ἐστιν, οὗ μέρος οὐθέν）；
+    </li>
+    <li><strong>定义 2</strong>：<strong>线是有长度而无宽度的东西</strong>；
+    </li>
+    <li><strong>定义 3</strong>：<strong>线的两端是点</strong>；
+    </li>
+    <li><strong>定义 4</strong>：<strong>直线是它上面的点一样地平放着的线</strong>；
+    </li>
+    <li><strong>定义 5–8</strong>：<strong>面、平面</strong>等。
+    </li>
+  </ul>
+  <p>★ <strong>读法要点</strong>：<strong>这些「定义」不是现代意义的形式定义</strong>——「点是没有部分的东西」<strong>既不能证明也不能使用</strong>，它更像是<strong>在给读者一个直观</strong>。★ <strong>真正的「定义」职责，后来是由公理承担的</strong>（这正是希尔伯特 1899 年做的事，见 <code>## 5.4</code>）。第 I 卷的定义里<strong>真正被反复使用的</strong>，是后面那些「操作性」的定义：<strong>角、直角、锐角、钝角、平行线、三角形、四边形、圆</strong>等。</p>
+  <p><strong>第二块与第三块：5 条公设 ＋ 5 条公理（原文见 <code>## 1</code>）。</strong></p>
+  <p>★ <strong>分工</strong>：<strong>公设（αἰτήματα，「要求」）针对几何</strong>——「可作直线」「可延长」「可作圆」「直角相等」「平行公设」；<strong>公理（κοιναὶ ἔννοιαι，「共同概念」）针对一切推理</strong>——「等于同量者相等」「等量加等量相等」「整体大于部分」等。</p>
+  <p>★★ <strong>一个必须记住的现代误解</strong>：<strong>今天的人常把「公设」与「公理」都当成「不证自明的真理」</strong>——<strong>但在希腊传统里，公设是「要求对方承认的操作前提」，不是「自明真理」。</strong> ★ 「可以作一个圆」<strong>谈不上什么『自明』，它只是几何这门手艺的一个操作规则</strong>。<strong>把公设读成「自明真理」，会让你看不懂第五条公设为什么困扰了人们两千年</strong>——<strong>因为一个操作前提，本来就是可以换的</strong>（详见 <code>## 5.1</code>）。</p>
+  <p><strong>第 I 卷 23 个定义里，真正被反复使用的那些（Heath 译文要点）</strong>：</p>
+  <table>
+    <thead><tr><th>定义</th><th>内容</th><th>被谁反复使用</th></tr></thead>
+    <tbody>
+      <tr><td><strong>d.1–d.4</strong></td><td>点／线／线的两端／直线</td><td>全书</td></tr>
+      <tr><td><strong>d.8</strong></td><td><strong>平面</strong>：面上的直线都平坦地放置于其上</td><td>第 XI 卷立体几何</td></tr>
+      <tr><td><strong>d.9</strong></td><td><strong>平面角</strong>：一条线上一点引出的两条线之间的倾斜</td><td>第 I、III、VI 卷</td></tr>
+      <tr><td><strong>d.10</strong></td><td><strong>直角</strong>：一条直线与另一条直线相交成相邻的等角</td><td>★ I.4 之后的全部角论证</td></tr>
+      <tr><td><strong>d.11</strong></td><td><strong>钝角／锐角</strong></td><td>第 I 卷</td></tr>
+      <tr><td><strong>d.14</strong></td><td><strong>图形</strong>：被边界所包含的东西</td><td>第 I、VI 卷</td></tr>
+      <tr><td><strong>d.15</strong></td><td><strong>圆</strong>：由一条线包围、其中有一个点使到它的所有直线相等</td><td>第 III、IV、XII 卷</td></tr>
+      <tr><td><strong>d.17</strong></td><td><strong>直径</strong></td><td>第 III 卷</td></tr>
+      <tr><td><strong>d.19–d.22</strong></td><td><strong>各种三角形</strong>（等边／等腰／不等边；直角／钝角／锐角）</td><td>第 I、VI 卷</td></tr>
+      <tr><td><strong>d.23</strong></td><td>★★ <strong>平行线</strong>：在同一平面内、向两个方向无限延长都不相交的直线</td><td>★ <strong>全书「平行」概念的一切论证，包括 I.27–I.31 与第五条公设</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>注意 d.23</strong>：<strong>「平行线」被定义为「无限延长也不相交」</strong>——<strong>这个定义是「否定的」（说它们不会相遇）</strong>，<strong>而第五条公设却断言它们「在某种条件下一定会相遇」</strong>。★★ <strong>一个「永不相遇」的定义，配上一个「必然相遇」的公设，这正是第五条公设别扭的根源</strong>（详见 <code>## 5.1</code>）。</p>
+  <p>★ <strong>第 I 卷 23 个定义全文一览（英译据 Perseus 的 Heath 译本；中文为笔者自译，参差处以原文为准）</strong>：</p>
+  <table>
+    <thead><tr><th>#</th><th>内容</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>点是没有部分的东西</td></tr>
+      <tr><td>2</td><td>线是有长度而无宽度的东西</td></tr>
+      <tr><td>3</td><td>线的两端是点</td></tr>
+      <tr><td>4</td><td>直线是它上面的点一样地平放着的线</td></tr>
+      <tr><td>5</td><td>面是只有长度和宽度而无厚度的东西</td></tr>
+      <tr><td>6</td><td>面的边界是线</td></tr>
+      <tr><td>7</td><td>平面是它上面的直线一样地平放着的面</td></tr>
+      <tr><td>8</td><td>平面角是平面上两条相交（且不共线）的直线之间的倾斜</td></tr>
+      <tr><td>9</td><td>当包含角的线是直线时，这个角叫直线角</td></tr>
+      <tr><td>10</td><td>当一条直线与另一条直线相交、且两侧邻角相等时，每个角都是直角，这条直线叫垂线</td></tr>
+      <tr><td>11</td><td>钝角是大于直角的角</td></tr>
+      <tr><td>12</td><td>锐角是小于直角的角</td></tr>
+      <tr><td>13</td><td>边界是某物的末端</td></tr>
+      <tr><td>14</td><td>图形是被一个或多个边界所包含的东西</td></tr>
+      <tr><td>15</td><td>圆是由一条线包围的平面图形，其中有一个点使所有到它的直线相等</td></tr>
+      <tr><td>16</td><td>这个点叫圆心</td></tr>
+      <tr><td>17</td><td>直径是过圆心、两端都在圆上的直线，它把圆平分</td></tr>
+      <tr><td>18</td><td>半圆是被直径和它所截的弧所包含的图形</td></tr>
+      <tr><td>19</td><td>直线形是被直线所围成的图形；三边形／四边形／多边形</td></tr>
+      <tr><td>20</td><td>等边三角形是三边相等的三角形</td></tr>
+      <tr><td>21</td><td>等腰三角形是只有两边相等的三角形</td></tr>
+      <tr><td>22</td><td>不等边三角形是三边都不等的三角形</td></tr>
+      <tr><td>23</td><td>★★ 平行线是同一平面内、向两个方向无限延长都不相交的直线</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读这张表的两个注意点</strong>：① ★ <strong>第 1–14 个定义基本是「描述性」的</strong>（点、线、面、角、直角……），<strong>它们为后面的命题提供词汇</strong>；② ★ <strong>第 15–23 个定义是「构造性／分类性」的</strong>（圆、各种三角形、平行线），<strong>它们是后面命题的主要对象</strong>。★★ <strong>值得留意：欧几里得把「平行线」放在最后（d.23）——这与他把第五条公设放在最后（P5）是一致的：全书最「麻烦」的两个概念，都被安排在定义的末尾。</strong></p>
+  <h3>全书的结构承重墙：四道必须过的关</h3>
+  <p>★ <strong>把 465 个命题压在同一个前提集里，会有几个「必须过」的关键节点</strong>——<strong>它们决定了后面的命题能不能成立</strong>。这四道关，就是《几何原本》的「结构承重墙」：</p>
+  <table>
+    <thead><tr><th>关</th><th>是哪一刻</th><th>决定什么</th><th>代价</th></tr></thead>
+    <tbody>
+      <tr><td><strong>第一关：全等的定义</strong></td><td><strong>I.4（边角边）</strong></td><td><strong>全书的「相等三角形」从此可用</strong></td><td>★ <strong>I.4 用「移动图形使重合」证明，而「移动」既未定义也未列为公设</strong>——这是全书第一个「隐含假设」（希尔伯特补了合同公理）</td></tr>
+      <tr><td><strong>第二关：平行公设的启用</strong></td><td><strong>I.29</strong></td><td><strong>一切平行线、内角和、相似形、立体几何的平行关系</strong></td><td>★ <strong>必须接受 P5</strong>；<strong>此前 28 个命题不用它</strong>，此后几乎所有命题都间接依赖它</td></tr>
+      <tr><td><strong>第三关：比例论的建立</strong></td><td><strong>V.def.5</strong></td><td><strong>第 VI 卷相似形、第 X 卷无理量、第 XII 卷穷竭法</strong></td><td>★ <strong>必须接受「任意等倍比较」这套迂回的定义</strong>；否则无理数的「比」无法陈述</td></tr>
+      <tr><td><strong>第四关：连续性的假设</strong></td><td><strong>I.1（两圆相交）、X.1（穷竭原理）</strong></td><td><strong>作图题的可行性、穷竭法的收敛性</strong></td><td>★ <strong>「两圆必有交点」「不断取超过一半终将任意小」都靠直觉</strong>——这是希尔伯特补「顺序公理＋完备性公理」的地方</td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>四道关合起来说明一件事：</strong> 《几何原本》的严密性，<strong>在每一道关上都留了一个「靠图形直觉补上」的洞</strong>。<strong>这不是它的耻辱，而是它的诚实</strong>——<strong>它把这些洞留在了明处，让两千年后的人能一个个把它补上</strong>（希尔伯特 1899；见 <code>## 5.4</code>）。</p>
+  <h3>演绎结构：为什么「只能引用前面的东西」</h3>
+  <p>★★ <strong>这是全书最硬的一条纪律</strong>：<strong>每个命题的证明，只能引用（a）定义、（b）公设与公理、（c）在它之前已经证明过的命题。</strong></p>
+  <p><strong>它带来的三个后果</strong>：</p>
+  <ol>
+    <li><strong>可追踪</strong>：任一命题的真假，<strong>都能沿引用链一路追回到前提</strong>。★ 这也是为什么「第几条引用了第五条公设」是<strong>可查的</strong>——见下一节。
+    </li>
+    <li><strong>有严格的「进路顺序」</strong>：<strong>大部分命题不能提前</strong>。比如<strong>第 I 卷必须先建立「全等」（I.4、I.8、I.26）与「平行线」（I.27–I.31），才能谈「三角形内角和」（I.32）</strong>——I.32 需要 I.29 的平行线性质，而 I.29 需要第五条公设。
+    </li>
+    <li><strong>有「断点」</strong>：<strong>凡触及平行线、连续性、比例的地方，就是结构承重墙的位置。</strong> ★ 这也是全书争议的分布图——<code>## 5.1</code>（P5）、<code>## 5.4</code>（连续性与两圆相交）、<code>## 9</code>（比例论 Eudoxus）都在这道墙上。
+    </li>
+  </ol>
+  <h3>★★ 第五条公设的「延迟使用」：到 I.29</h3>
+  <p>★★ <strong>这是全书最重要的结构性证据，必须单独说。</strong></p>
+  <table>
+    <thead><tr><th>命题区间</th><th>是否引用第 5 公设</th></tr></thead>
+    <tbody>
+      <tr><td><strong>I.1 – I.28</strong></td><td>★ <strong>完全没有引用</strong>（可逐条核对 Heath 译本证明中的引用）</td></tr>
+      <tr><td><strong>I.29</strong></td><td>★★ <strong>第一次引用</strong>——「一条直线与两条平行线相交，则内错角相等、同位角相等、同旁内角互补」</td></tr>
+      <tr><td>I.29 之后</td><td>凡涉及平行线、角之和、相似形、立体几何的命题，<strong>都必须依赖它</strong></td></tr>
+    </tbody>
+  </table>
+  <p><strong>I.29 的原文（Heath 译）</strong>：</p>
+  <blockquote>
+    <p>「A straight line falling on parallel straight lines makes the alternate angles equal to one another, the exterior angle equal to the interior and opposite angle, and the interior angles on the same side equal to two right angles.」<span class="tag t-src">原书</span>（I.29；★ 该证明中<strong>首次出现</strong>对 Postulate 5 的引用）</p>
+  </blockquote>
+  <p>★★ <strong>这个「前半部分不需要第五条公设」的事实，就是非欧几何的入口。</strong> 后人把 <strong>「不依赖第五公设的那一部分几何」</strong> 称作<strong>「绝对几何」</strong>（absolute geometry）。★ <strong>它的意思是：把第五公设换成任何一条与它矛盾的公理，绝对几何的全部结论（I.1–I.28 及一切不涉平行线的命题）依然成立。</strong> 因此<strong>非欧几何不是「一堆错的几何」，而是「从同一组前提出发、只在一条公理上做别的选择」的几何。</strong></p>
+  <h3>可疑之处</h3>
+  <ol>
+    <li><strong>「定义」的循环与空转</strong>：「点是没有部分的东西」<strong>既不能证也不能用</strong>；<strong>定义「面」用「线」、定义「线」用「点」</strong>——这套定义的<strong>形式地位</strong>，是现代逻辑出现之后才被真正看清的（希尔伯特 1899 见 <code>## 5.4</code>）。
+    </li>
+    <li>★ <strong>隐含假设清单</strong>：<strong>两圆相交（I.1）</strong>、<strong>「之间」未定义</strong>、<strong>「移动／重合」未说明</strong>、<strong>直线与直线的交点与相接关系由图形直觉保证</strong>——这些<strong>在欧几里得那里都是「看得见」的，却都不是从公设推出来的</strong>。
+    </li>
+    <li>★ <strong>「公设」与「公理」的混称</strong>：<strong>中世纪后的抄本把两者并列成「自明真理」</strong>，<strong>掩盖了公设的「操作前提」性质</strong>，<strong>直接导致了第五条公设的误会</strong>（见 <code>## 5.1</code>）。
+    </li>
+    <li><strong>本节可信度较高的部分</strong>：<strong>「I.1–I.28 不依赖 P5」与「I.29 首次引用 P5」是可逐条核对的文本事实</strong>（Heath 译本的证明里<strong>明确标出引用</strong>），<strong>不属推测</strong>。
+    </li>
+  </ol>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>第一卷：平面几何的基础（48 命题）</span><span class="caret">▾</span></h2>
+  <h3>这一卷在解决什么问题</h3>
+  <p><strong>第 1 卷要建立「平面图形」的全部基本功</strong>：<strong>全等三角形、平行线、平行四边形、以及勾股定理</strong>。★ 它是全书的<strong>地基</strong>——<strong>后面 12 卷反复引用第 1 卷</strong>，<strong>没有第 1 卷就没有任何东西</strong>。</p>
+  <p><strong>这一卷的骨架</strong>：</p>
+  <table>
+    <thead><tr><th>命题区间</th><th>在建立什么</th></tr></thead>
+    <tbody>
+      <tr><td><strong>I.1–I.3</strong></td><td>三个基本作图：<strong>等边三角形（I.1）</strong>、<strong>从一点作线段等于已知线段（I.2）</strong>、<strong>从较大线段截取等于较小线段（I.3）</strong></td></tr>
+      <tr><td><strong>I.4–I.8、I.26</strong></td><td>★ <strong>全等三角形</strong>：<strong>边角边（I.4）</strong>、<strong>边边边（I.8）</strong>、<strong>角边角与角角边（I.26）</strong>；★ <strong>I.5（等腰三角形底角相等）</strong> 与 <strong>I.6（逆命题）</strong> 是著名的「驴桥」（<em>pons asinorum</em>，中世纪学生的一道坎）</td></tr>
+      <tr><td><strong>I.9–I.12</strong></td><td>作图：<strong>平分角（I.9）</strong>、<strong>平分线段（I.10）</strong>、<strong>作垂线（I.11、I.12）</strong></td></tr>
+      <tr><td><strong>I.13–I.15</strong></td><td>角的性质：<strong>邻补角（I.13）</strong>、<strong>对顶角相等（I.15）</strong></td></tr>
+      <tr><td><strong>I.16–I.21</strong></td><td>三角形的边角关系：<strong>外角大于任一内对角（I.16）</strong>、<strong>大边对大角（I.18）</strong>、<strong>三角形两边之和大于第三边（I.20）</strong></td></tr>
+      <tr><td><strong>I.22–I.26</strong></td><td>三角形作图与全等（补足 I.26 的两种情形）</td></tr>
+      <tr><td><strong>I.27–I.31</strong></td><td>★ <strong>平行线</strong>：<strong>同位角相等则两直线平行（I.27、I.28）</strong>、★ <strong>I.29（第一次用 P5：平行线的性质）</strong>、<strong>过直线外一点作平行线（I.31）</strong></td></tr>
+      <tr><td><strong>I.32–I.34</strong></td><td><strong>三角形内角和 ＝ 两直角（I.32）</strong>、<strong>平行四边形的对边对角相等（I.34）</strong></td></tr>
+      <tr><td><strong>I.35–I.45</strong></td><td><strong>等积变换</strong>：同底同高的平行四边形／三角形面积相等；<strong>作平行四边形等于已知三角形（I.42）</strong></td></tr>
+      <tr><td><strong>I.46</strong></td><td>作正方形</td></tr>
+      <tr><td><strong>I.47–I.48</strong></td><td>★★ <strong>勾股定理（I.47）及其逆（I.48）</strong></td></tr>
+    </tbody>
+  </table>
+  <h3>关键命题与证明方法</h3>
+  <p>★★ <strong>I.47 勾股定理——必须看清这是「面积证明」而非「代数证明」。</strong></p>
+  <p><strong>命题陈述（Heath 译）</strong>：</p>
+  <blockquote>
+    <p>「In right-angled triangles the square on the side subtending the right angle is equal to the squares on the sides containing the right angle.」（在直角三角形中，直角所对边上的正方形等于夹直角两边上的正方形之和。）<span class="tag t-src">原书</span>（I.47）</p>
+  </blockquote>
+  <p><strong>证明思路（★ 不是 a² ＋ b² ＝ c²，而是面积的拼合）</strong>：</p>
+  <ol>
+    <li>在斜边 <strong>BC</strong> 上作正方形 <strong>BDEC</strong>，在直角边 BA、AC 上分别作正方形 GB、HC（用到 <strong>I.46 作正方形</strong>）；
+    </li>
+    <li>过 A 作 <strong>AL ∥ BD</strong>，连接 AD、FC；
+    </li>
+    <li>★ <strong>关键一步用「同底同高」</strong>：<strong>平行四边形 BL 与三角形 ABD 同底（BD）、同在两平行线之间，故 BL ＝ 2×△ABD</strong>（用到 <strong>I.41</strong>）；<strong>正方形 GB 与三角形 FBC 同底（FB）、同在两平行线之间，故 GB ＝ 2×△FBC</strong>；
+    </li>
+    <li>★ <strong>再用「边角边全等」证明 △ABD ≌ △FBC</strong>（DB ＝ BC，AB ＝ FB，夹角 ∠DBA ＝ ∠FBC，用到 <strong>I.4</strong>）；
+    </li>
+    <li>于是 <strong>BL ＝ GB</strong>；同理 <strong>CL ＝ HC</strong>；<strong>两个正方形之和 ＝ 整个斜边正方形</strong> <span class="tag t-src">原书</span>（I.47 证明）。
+    </li>
+  </ol>
+  <p>★ <strong>为什么必须强调「面积」</strong>：<strong>欧几里得的证明里没有任何代数符号</strong>——<strong>没有 a²、没有乘法、没有等号代换</strong>（虽然第 II 卷会用面积语言做代数）。<strong>他比较的是「平行四边形 BL」与「正方形 GB」这两个几何对象</strong>，靠的是<strong>「同底同高的平行四边形相等」</strong>（I.35、I.41）与<strong>三角形全等</strong>（I.4）。★ <strong>这不是「古代人不会代数才绕弯」</strong>——<strong>面积法是当时唯一能处理「无理数长度」的工具</strong>：<strong>如果边长是无理数，「平方」就不是一个可乘的数，而是一个可以比较的「面积对象」</strong>。这与第 V 卷的比例论是同一个思路（见 <code>## 9</code>）。</p>
+  <p>★★ <strong>一个流传很广的细节：「风车图」（Bride's Chair）。</strong> ★ <strong>I.47 的图形是三个正方形围着一个直角三角形</strong>，<strong>因为形状像一把转动的风车</strong>，<strong>中世纪把它叫「新娘的椅子」（Bride's Chair）或「驴桥」之后的又一道坎</strong>。★ <strong>这个图形后来成了「勾股定理」的通用符号</strong>——<strong>你只要看到三个正方形围一个直角三角形，就知道是 I.47</strong>。★ <strong>但要注意：图形本身不构成证明</strong>；<strong>欧几里得的证明靠的是「两个平行四边形的相等」，图形只是它的视觉呈现</strong>。</p>
+  <p>★ <strong>I.47 与 I.48 的关系</strong>：<strong>I.48 是逆定理</strong>——<strong>若「一边上的正方形 ＝ 另两边上的正方形之和」，则该三角形是直角三角形</strong>。★★ <strong>逆定理在数学上并不自动成立</strong>（<strong>「若 P 则 Q」成立，不保证「若 Q 则 P」成立</strong>），<strong>所以欧几里得专门证了 I.48</strong>。★ <strong>两个命题的证明都用面积法</strong>——<strong>这也说明欧几里得对「面积法」这套工具的信心</strong>。</p>
+  <p><strong>其余关键命题</strong>：</p>
+  <ul>
+    <li><strong>I.1（作等边三角形）</strong>：★ <strong>「作图题」的标准模板</strong>——作两圆取交点、再证明。★★ <strong>但它隐含了「两圆必有交点」这个未证前提</strong>（详见 <code>## 6</code> 与 <code>## 5.4</code>）。
+    </li>
+    <li><strong>I.4（边角边全等）</strong>：★★ <strong>全书的第一个全等判定，也是一处著名的争议点。</strong> 欧几里得<strong>用「把一个三角形叠到另一个上」（superposition，移动图形使重合）来证明</strong>——<strong>但「移动」本身既未定义，也未列为公设</strong>。★ 这被后世（含希尔伯特）视为《几何原本》的一个<strong>真正的方法论漏洞</strong>（见 <code>## 5.4</code>）。
+    </li>
+    <li><strong>I.5（等腰三角形底角相等，「驴桥」）</strong>：★ 中世纪学生读到这里的著名难关。「驴桥」这个绰号有两说：或因为它<strong>是几何入门的第一道真坎</strong>，或因为<strong>证明的图形像一座桥</strong>。
+    </li>
+    <li><strong>I.29（首次用 P5）</strong>：★★ <strong>全书的「结构断点」</strong>（详见 <code>## 6</code>）。<strong>证明的关键是：若内错角不相等，则两直线不平行</strong>——<strong>这里必须用 P5 才能把「不平行」翻译成「相交」</strong>。
+    </li>
+    <li><strong>I.32（三角形内角和）</strong>：★ <strong>用 I.29 作一条平行线，把三个内角「搬」到一个顶点上凑成两直角</strong>——<strong>这是「三角形内角和 ＝ 180°」的原始证明</strong>。★ <strong>它依赖 P5</strong>；在非欧几何里<strong>它不成立</strong>（双曲几何里内角和 <strong>小于</strong> 两直角，椭圆几何里 <strong>大于</strong>）。<strong>这就是为什么「内角和 ＝ 180°」常被后人拿来当第五公设的等价形式。</strong>
+    </li>
+  </ul>
+  <p>★ <strong>第 1 卷其余命题的一句话功能（Heath 译本目录）</strong>：</p>
+  <table>
+    <thead><tr><th>命题</th><th>内容</th><th>一句话意义</th></tr></thead>
+    <tbody>
+      <tr><td><strong>I.2</strong></td><td>从一给定点作一条线段等于已知线段</td><td>★ <strong>作图的「搬运」工具</strong>，靠 I.1 与「作圆」</td></tr>
+      <tr><td><strong>I.3</strong></td><td>从较大线段截取一段等于较小线段</td><td>作图的「截取」工具</td></tr>
+      <tr><td><strong>I.6</strong></td><td>若三角形两角相等，则夹边相等</td><td>I.5 的逆命题</td></tr>
+      <tr><td><strong>I.8</strong></td><td><strong>边边边全等（SSS）</strong></td><td>★ 第二个全等判定；<strong>证明也用「叠合」，因此与 I.4 同病</strong></td></tr>
+      <tr><td><strong>I.9、I.10</strong></td><td>平分一个角／一条线段</td><td>基本作图</td></tr>
+      <tr><td><strong>I.11、I.12</strong></td><td>由线上一点／线外一点作垂线</td><td>基本作图，第 III 卷大量使用</td></tr>
+      <tr><td><strong>I.13</strong></td><td>两直线相交，邻角之和 ＝ 两直角</td><td>角的加法</td></tr>
+      <tr><td><strong>I.14、I.15</strong></td><td>若两角之和 ＝ 两直角则两线成一直线／<strong>对顶角相等</strong></td><td>★ <strong>I.15 是初中几何的经典题</strong></td></tr>
+      <tr><td><strong>I.16</strong></td><td>三角形外角大于任一内对角</td><td>★ <strong>它不依赖 P5</strong>（属绝对几何），但它的加强版「外角 ＝ 两内对角之和」需要 I.32，故需要 P5</td></tr>
+      <tr><td><strong>I.17</strong></td><td>三角形任意两角之和小于两直角</td><td>★ <strong>VI.4 的证明要用它</strong>（见 <code>## 9</code>）</td></tr>
+      <tr><td><strong>I.18、I.19</strong></td><td>大边对大角／大角对大边</td><td>边角比较</td></tr>
+      <tr><td><strong>I.20</strong></td><td><strong>三角形两边之和大于第三边</strong></td><td>★ 也叫「欧几里得定理」，三角形不等式的原始形式</td></tr>
+      <tr><td><strong>I.21</strong></td><td>三角形内一点到两顶点的距离之和小于另两边之和</td><td>I.20 的推广</td></tr>
+      <tr><td><strong>I.22</strong></td><td>由三条给定线段作三角形</td><td>作图题（<strong>需满足 I.20 的条件</strong>）</td></tr>
+      <tr><td><strong>I.23</strong></td><td>在给定直线上作一个等于已知角的角</td><td>作图工具</td></tr>
+      <tr><td><strong>I.24、I.25</strong></td><td>两边相等时夹角大者底边大（及其逆）</td><td>边角比较的收尾</td></tr>
+      <tr><td><strong>I.26</strong></td><td><strong>角边角与角角边全等（ASA／AAS）</strong></td><td>★ <strong>第三个全等判定；★ 它是唯一一个不用「移动」而用「反证」证的全等判定</strong>——<strong>这点常被忽略，却是全书方法论上的一个亮点</strong></td></tr>
+      <tr><td><strong>I.27、I.28</strong></td><td>内错角相等／同旁内角互补 ⇒ 两直线平行</td><td>★ <strong>平行线的「判定」（第一半）</strong>，<strong>不用 P5</strong></td></tr>
+      <tr><td><strong>I.30</strong></td><td>平行于同一直线的两条直线互相平行</td><td>平行线的传递性</td></tr>
+      <tr><td><strong>I.31</strong></td><td>过直线外一点作已知直线的平行线</td><td>★ <strong>作图题，不用 P5</strong>（<strong>用 I.23、I.27</strong>）</td></tr>
+      <tr><td><strong>I.33、I.34</strong></td><td>平行四边形的对边对角相等</td><td>★ <strong>I.34 是第 I 卷余下大量命题的工具</strong></td></tr>
+      <tr><td><strong>I.35–I.38</strong></td><td>同底同高（同在两平行线间）的平行四边形／三角形面积相等</td><td>★ <strong>等积变换的基础</strong></td></tr>
+      <tr><td><strong>I.39–I.41</strong></td><td>面积相等 ⇒ 高相等／同底同高的三角形与平行四边形之比</td><td>★ <strong>I.41 是 I.47 的关键工具（「平行四边形 ＝ 2×同底同高的三角形」）</strong></td></tr>
+      <tr><td><strong>I.42–I.45</strong></td><td>作平行四边形／直线形等于已知图形（且满足给定角）</td><td>面积变换的作图题</td></tr>
+      <tr><td><strong>I.46</strong></td><td>作正方形</td><td>★ <strong>I.47 的前置</strong></td></tr>
+      <tr><td><strong>I.48</strong></td><td><strong>勾股定理的逆定理</strong>：若一边上的正方形等于另两边上的正方形之和，则该三角形为直角三角形</td><td>★ <strong>I.47 的逆</strong>，<strong>同样用面积法</strong>（引 I.47、I.3、I.11）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>从这张表可以看到第 I 卷的组织逻辑</strong>：<strong>先立「全等」（I.4、I.8、I.26）→ 再做「角的加减」（I.13–I.15）→ 再建「平行线」（I.27–I.31）→ 再用平行线推「内角和」（I.32）→ 再进入「等积变换」（I.35–I.45）→ 最后用等积变换证「勾股定理」（I.47–I.48）</strong>。★★ <strong>每一段都依赖前一段，这就是「只能引用前面的东西」的实际样子。</strong></p>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★★ <strong>隐含假设</strong>：<strong>I.1 的「两圆相交」</strong>、<strong>I.4 的「移动图形」</strong>、<strong>「C 在 A、B 之间」的用法</strong>——<strong>这些都不是从公设推出的</strong>，而是<strong>依赖图形直觉</strong>（详见 <code>## 6</code> 与 <code>## 5.4</code>）。★ <strong>这不构成「欧几里得算错了」，而构成「他的严密性标准与后世不同」。</strong>
+    </li>
+    <li>★ <strong>I.4 的证明方式</strong>：<strong>若把「移动」取消，I.4 就无法证</strong>。★ <strong>希尔伯特把「合同公理」单列，正是要解决这个问题。</strong>
+    </li>
+    <li><strong>I.2、I.3 的「构造」有依赖循环之嫌</strong>：<strong>I.1 依赖「两圆相交」，I.2 依赖 I.1</strong>——<strong>这一串作图的合法性最终挂在那个未证的连续性假设上。</strong>
+    </li>
+    <li><strong>本节可信度说明</strong>：<strong>I.4、I.29、I.32、I.47 的证明结构与引用关系，我逐条核对过 Heath 英译</strong>（<span class="tag t-src">原书</span>）；<strong>「两圆相交」「移动」等隐含假设的现代判语，来自希尔伯特 1899 一系的讨论</strong>（<span class="tag t-rep">转述</span>）。
+    </li>
+  </ol>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>第二至四卷：几何代数、圆与内接多边形（14＋37＋16 命题）</span><span class="caret">▾</span></h2>
+  <h3>这一组卷在解决什么问题</h3>
+  <p><strong>第 II–IV 卷是第 1 卷之后的「加材料」</strong>：<strong>第 II 卷用面积做代数</strong>、<strong>第 III 卷讲圆</strong>、<strong>第 IV 卷讲圆内接与外切正多边形</strong>。★ <strong>三卷合起来，把「平面上的基本图形」基本讲完</strong>，为第 V–VI 卷的比例论与相似形铺路。</p>
+  <h3>第二卷：几何代数（14 命题）</h3>
+  <p><strong>这一卷在解决什么问题</strong>：★★ <strong>它要做的是「把代数恒等式翻译成面积关系」</strong>——<strong>在没有符号代数的时代，用「矩形」「正方形」的拼合来表达乘法与恒等式</strong>。</p>
+  <p><strong>关键命题与证明方法</strong>：</p>
+  <ul>
+    <li>★ <strong>II.11（黄金分割作图）</strong>：★★ <strong>第 II 卷最著名的一条。</strong> 命题陈述（据希腊文 Heiberg 本，<code>Perseus:text:1999.01.0085</code>）：
+    </li>
+  </ul>
+  <blockquote>
+    <p>τὴν δοθεῖσαν εὐθεῖαν τεμεῖν ὥστε τὸ ὑπὸ τῆς ὅλης καὶ τοῦ ἑτέρου τῶν τμημάτων περιεχόμενον ὀρθογώνιον ἴσον εἶναι τῷ ἀπὸ τοῦ λοιποῦ τμήματος τετραγώνῳ.</p>
+    <p>（把已知线段截成两段，使「整段与其中一段所构成的矩形」等于「余下那段上的正方形」。）<span class="tag t-src">原书</span>（II.11）</p>
+  </blockquote>
+  <p>★ <strong>这就是「黄金分割」的作图</strong>：设线段 AB 被截于 H，则 <strong>AB × BH ＝ AH²</strong>——<strong>即 H 是 AB 的黄金分割点</strong>。<strong>证明用 II.6 与 I.47（巴门尼德式的面积代换）</strong>。★ <strong>II.11 的重要性在于：它把「一条无理比例」变成「一个可以作出的图形」</strong>——<strong>正五边形（IV.10–11）、正十二面体（XIII）都依赖它</strong>。</p>
+  <ul>
+    <li><strong>II.12 与 II.13</strong>：★ <strong>相当于余弦定理</strong>——<strong>II.13 是「钝角三角形对角边的平方 ＝ 两邻边平方和 ＋ 两倍邻边与射影之积」的几何版</strong>（「锐角」情形是 II.13）。<strong>用面积法表述，不用三角函数。</strong>
+    </li>
+    <li><strong>II.1–II.10、II.14</strong>：★ <strong>一系列恒等式</strong>，如 <strong>II.4：（a ＋ b）² ＝ a² ＋ 2ab ＋ b²（面积形式）</strong>；<strong>II.14：作一个正方形等于已知的直线形</strong>——这是一条<strong>求「平方根／求面积等积正方形」的作图</strong>，<strong>是第 X 卷无理量构造的技术基础</strong>。
+    </li>
+  </ul>
+  <p>★ <strong>第 II 卷 14 命题与现代代数的对照（Heath 译本目录；「a、b」为面积语言，非符号代数）</strong>：</p>
+  <table>
+    <thead><tr><th>命题</th><th>内容（面积语言）</th><th>对应的现代恒等式／操作</th></tr></thead>
+    <tbody>
+      <tr><td><strong>II.1</strong></td><td>若有两线段，其矩形 ＝ 各段与整段的矩形之和</td><td><strong>a(b ＋ c) ＝ ab ＋ ac</strong></td></tr>
+      <tr><td><strong>II.2、II.3</strong></td><td>线段被任意截，整段上的正方形 ＝ 两段上正方形之和 ＋ 两倍两段矩形</td><td><strong>（a ＋ b）² ＝ a² ＋ b² ＋ 2ab</strong></td></tr>
+      <tr><td><strong>II.4</strong></td><td>同上（标准形式）</td><td><strong>（a ＋ b）² 的展开</strong></td></tr>
+      <tr><td><strong>II.5、II.6</strong></td><td>「线段被平分又加长／截取」的矩形关系</td><td>★ <strong>II.5、II.6 就是 II.11 的直接工具</strong>（黄金分割）</td></tr>
+      <tr><td><strong>II.7、II.8</strong></td><td>线段上的正方形与分段正方形的关系</td><td><strong>（a ＋ b）² − a² − b² ＝ 2ab</strong></td></tr>
+      <tr><td><strong>II.9、II.10</strong></td><td>线段被平分又被不等分时的平方关系</td><td><strong>a² ＋ b² ＝ 2（中段² ＋ 偏移²）</strong></td></tr>
+      <tr><td><strong>II.11</strong></td><td>★★ <strong>把线段截成「整段×小段 ＝ 大段²」</strong></td><td>★ <strong>黄金分割的作图</strong></td></tr>
+      <tr><td><strong>II.12</strong></td><td>钝角三角形对边平方 ＝ 两邻边平方和 ＋ 2×邻边×射影</td><td><strong>余弦定理（钝角情形）</strong></td></tr>
+      <tr><td><strong>II.13</strong></td><td>同上（锐角情形），减号</td><td><strong>余弦定理（锐角情形）</strong></td></tr>
+      <tr><td><strong>II.14</strong></td><td>★ <strong>作一个正方形等于已知的直线形</strong></td><td>★ <strong>求面积的平方根（等积正方形）</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>注意第 II 卷的整体写法</strong>：<strong>每条命题的「证明」都是一次「矩形拼合」</strong>——<strong>把几个矩形搬来搬去、拼成一个大的正方形或矩形，然后说「相等」</strong>。★ <strong>「a²」、「ab」这些记号在原文里没有</strong>；<strong>「a²」对应的是「线段 a 上的正方形」</strong>，<strong>「ab」对应的是「以 a、b 为边的矩形」</strong>。<strong>读第 II 卷，要把「平方」读成「正方形」、「乘积」读成「矩形」。</strong></p>
+  <p><strong>可疑之处</strong>：<strong>第 II 卷的「代数」不是现代代数</strong>——<strong>它没有符号、没有方程、没有「未知数」</strong>，全部靠<strong>矩形与正方形的拼合</strong>。★ <strong>读它时不要把「a²」直接套进去</strong>，否则会看不出它到底在干什么。★ <strong>另一个事实</strong>：<strong>第 II 卷被后人（尤其 19 世纪）读作「几何代数」，这个读法本身是解释性的</strong>，欧几里得<strong>没有说自己在做代数</strong>。</p>
+  <h3>第三卷：圆（37 命题）</h3>
+  <p><strong>这一卷在解决什么问题</strong>：★★ <strong>把「圆」讲透</strong>——弦、切线、割线、圆心角、圆周角、内接四边形、幂（两条弦交点所分线段之积）。</p>
+  <p><strong>关键命题与证明方法</strong>：</p>
+  <ul>
+    <li><strong>III.1–III.3</strong>：确定圆心、弦的性质。
+    </li>
+    <li>★ <strong>III.16（切线与切线角）</strong>：<strong>切线与过切点的弦所成的角</strong>（切线角）——<strong>欧几里得处理了一个「退化角」问题</strong>（切线角比任何直线角都小），<strong>这是古代数学对「角」概念的一次精细处理</strong>。
+    </li>
+    <li><strong>III.18、III.19</strong>：<strong>过切点的半径垂直于切线</strong>、<strong>切线与圆相切的性质</strong>。
+    </li>
+    <li>★ <strong>III.20（圆心角是圆周角的两倍）</strong>：★★ <strong>第 III 卷最重要的定理之一。</strong>
+    </li>
+  </ul>
+  <blockquote>
+    <p>「In a circle the angle at the centre is double of the angle at the circumference, when the angles have the same circumference as base.」（同弧所对的圆心角是圆周角的两倍。）<span class="tag t-src">原书</span>（III.20）</p>
+  </blockquote>
+  <p><strong>证明</strong>：连 AE 并延长到 F；由 EA ＝ EB 得 ∠EAB ＝ ∠EBA（用 <strong>I.5</strong>），再由外角定理得 ∠BEF ＝ 2∠EAB（用 <strong>I.32</strong>）；同理 ∠FEC ＝ 2∠EAC；两式相加即得 <span class="tag t-src">原书</span>（III.20）。★ <strong>注意：这个证明用了 I.32，而 I.32 用了 P5——所以圆周角定理间接依赖平行公设。</strong></p>
+  <ul>
+    <li>★ <strong>III.21、III.22</strong>：<strong>III.21（同弧上的圆周角相等）</strong>、<strong>III.22（圆内接四边形对角互补）</strong>——都是 III.20 的直接推论。
+    </li>
+    <li><strong>III.31（泰勒斯定理）</strong>：★ <strong>半圆所对的圆周角是直角</strong>——<strong>III.20 的特例</strong>，★ 常被归给泰勒斯（<strong>但归给他的说法是转述</strong>）。
+    </li>
+    <li>★ <strong>III.35、III.36（幂定理）</strong>：<strong>两条弦相交，各自两段之积相等（III.35）</strong>、<strong>切线长的平方等于割线与圆外段之积（III.36）</strong>——<strong>这就是现代「点对圆的幂」的来源</strong>。
+    </li>
+  </ul>
+  <p>★ <strong>第 III 卷 37 命题的分组（Heath 译本目录）</strong>：</p>
+  <table>
+    <thead><tr><th>命题区间</th><th>在建立什么</th></tr></thead>
+    <tbody>
+      <tr><td><strong>III.1–III.3</strong></td><td><strong>确定圆心（III.1）</strong>、<strong>弦的性质（III.2、III.3）</strong></td></tr>
+      <tr><td><strong>III.4–III.10</strong></td><td><strong>弦与直径的垂直关系</strong>、<strong>到圆心等距的弦相等（III.14）</strong>、<strong>最长的弦是直径（III.15）</strong></td></tr>
+      <tr><td><strong>III.16–III.19</strong></td><td>★ <strong>切线与切线角（III.16）</strong>、<strong>过切点的半径垂直于切线（III.18）</strong>、<strong>切线的判定（III.19）</strong></td></tr>
+      <tr><td><strong>III.20–III.22</strong></td><td>★★ <strong>圆心角 ＝ 2×圆周角（III.20）</strong>、<strong>同弧圆周角相等（III.21）</strong>、<strong>内接四边形对角互补（III.22）</strong></td></tr>
+      <tr><td><strong>III.23–III.29</strong></td><td><strong>同弦上的弓形角相等（III.21 系）</strong>、<strong>圆内接／外接图形中的弦与角</strong></td></tr>
+      <tr><td><strong>III.30–III.34</strong></td><td><strong>平分弧（III.30）</strong>、<strong>作弓形（III.33、III.34）</strong></td></tr>
+      <tr><td><strong>III.35–III.37</strong></td><td>★ <strong>幂定理（两条弦／两条割线／切线与割线）</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一个必须点明的结构事实</strong>：★★ <strong>III.20（圆周角定理）的证明用了 I.32（三角形内角和），而 I.32 用了 I.29，I.29 用了 P5</strong>——<strong>所以整个「圆」的理论，也是建立在第五条公设之上的</strong>。★ <strong>第 III 卷没有任何「不属于绝对几何」的独立城墙</strong>——<strong>它整卷都挂在平行公设那条链上。</strong></p>
+  <p><strong>可疑之处</strong>：★ <strong>第 III 卷大量依赖「圆与直线/圆与圆的位置关系」</strong>，<strong>而「两圆相交」「两圆相切」的判定又依赖图形直觉</strong>（同 I.1 的问题）；★ <strong>III.20 之后的一串定理都间接挂着 P5（经 I.32）</strong>——<strong>第 III 卷的几何，不属于「绝对几何」</strong>。</p>
+  <h3>第四卷：圆内接与外切正多边形（16 命题）</h3>
+  <p><strong>这一卷在解决什么问题</strong>：★★ <strong>把「可作图的正多边形」推到底</strong>——<strong>在给定圆内作正三角形、正方形、正五边形、正六边形、正十五边形</strong>，并作它们的外切形与内切／外切圆。</p>
+  <p><strong>关键命题与证明方法</strong>：</p>
+  <ul>
+    <li><strong>IV.1–IV.5</strong>：在圆内作与已知线段相等的弦，及内接三角形、外切三角形。
+    </li>
+    <li>★ <strong>IV.6–IV.9</strong>：<strong>内接与外切正方形</strong>。
+    </li>
+    <li>★★ <strong>IV.10–IV.11（正五边形）</strong>：<strong>这是第 IV 卷的拱顶石</strong>——<strong>IV.10 用 II.11 的黄金分割在圆内作等腰三角形，使其底＝顶角的两倍</strong>，从而<strong>构造正五边形</strong>；IV.11 作外切正五边形。★ <strong>正五边形的可作性，靠的是黄金分割（II.11）</strong>——<strong>而黄金分割的可作性，又靠第 II 卷的面积代数</strong>。★★ <strong>这条依赖链（II.11 → IV.10 → XIII 的正十二面体）是全书最漂亮的一条「技术承重链」。</strong>
+    </li>
+    <li>★ <strong>IV.15（正六边形）</strong>：<strong>正六边形的边 ＝ 圆的半径</strong>（因为正六边形由六个等边三角形组成）——<strong>它是为数不多的「心算即可验证」的命题</strong>。
+    </li>
+    <li>★★ <strong>IV.16（正十五边形）</strong>：★★ <strong>本报告直接核对过这条。</strong>
+    </li>
+  </ul>
+  <blockquote>
+    <p>「In a given circle to inscribe a fifteen-angled figure which shall be both equilateral and equiangular.」（在已知圆内作一个等边且等角的正十五边形。）<span class="tag t-src">原书</span>（IV.16）</p>
+  </blockquote>
+  <p><strong>证明思路</strong>：<strong>在圆内取正三角形的边 AC 与正五边形的边 AB</strong>（用到 IV.2、IV.11）；<strong>三角形边对应 5 段（圆被分成 15 段），五边形边对应 3 段，故余下的 BC 对应 2 段；平分 BC 得每段 1 段</strong>；<strong>于是得到 15 等分的圆，从而作出正十五边形</strong> <span class="tag t-src">原书</span>（IV.16）。★ <strong>注意：正十五边形之所以可作，是因为 3 与 5 互素、15 ＝ 3×5</strong>——<strong>这条命题是「用两种已知正多边形合成新正多边形」的样板</strong>。</p>
+  <p>★ <strong>第 IV 卷 16 命题的分组与「可作清单」</strong>：</p>
+  <table>
+    <thead><tr><th>命题</th><th>作出什么</th><th>关键依赖</th></tr></thead>
+    <tbody>
+      <tr><td><strong>IV.1、IV.2</strong></td><td>在圆内作等于已知线段的弦／作内接于圆且与已知三角形等角的三角形</td><td>I.23、III.31</td></tr>
+      <tr><td><strong>IV.3–IV.5</strong></td><td>作圆的外切三角形、内接与外切于给定三角形</td><td>III.16、I.9</td></tr>
+      <tr><td><strong>IV.6–IV.9</strong></td><td>★ <strong>内接与外切正方形</strong>（并作其内切／外切圆）</td><td>I.46、III.31</td></tr>
+      <tr><td><strong>IV.10–IV.12</strong></td><td>★★ <strong>正五边形（IV.10–IV.11）</strong> 与外切正五边形（IV.12）</td><td>★★ <strong>依赖 II.11（黄金分割）</strong></td></tr>
+      <tr><td><strong>IV.13–IV.14</strong></td><td>内接／外切于给定正五边形的圆</td><td>IV.11、III.9</td></tr>
+      <tr><td><strong>IV.15</strong></td><td>★ <strong>正六边形</strong>（边 ＝ 半径）与外切形</td><td>I.15、III.31</td></tr>
+      <tr><td><strong>IV.16</strong></td><td>★★ <strong>正十五边形</strong>（用正三角形 × 正五边形合成）</td><td>IV.2、IV.11、III.30</td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>第 IV 卷真正的意义，不在于「会作几个正多边形」，而在于它给出了「正多边形的可作性判据」的雏形</strong>：<strong>凡能由「正三角形与正五边形」通过「加减整除」得到的正多边形，都可作</strong>。★ <strong>这就是「3、5 可作，故 15 可作；3、4 可作，故 12 可作」的来源</strong>——<strong>而「7、9、11 不可作」的严格证明，要等到 19 世纪代数方程理论（高斯 1796 正十七边形、Wantzel 1837 一般判据）</strong>。</p>
+  <p><strong>可疑之处</strong>：★ <strong>第 IV 卷只处理「可作图的正多边形」</strong>：<strong>正三角形、正方形、正五边形、正六边形、正十五边形</strong>——<strong>正七边形、正九边形、正十一边形都不在</strong>（<strong>正七边形不可用尺规作出，直到 1796 年高斯才证明正十七边形可作</strong>）。★★ <strong>不要把「第 IV 卷」读成「正多边形的一般理论」——它是一份「可作清单」。</strong></p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>第五、六卷：比例论与相似形（25＋33 命题）</span><span class="caret">▾</span></h2>
+  <h3>这一组卷在解决什么问题</h3>
+  <p>★★ <strong>第 V 卷是全书技术含量最高的一卷，第 VI 卷是它的第一个大用户。</strong> 第 V 卷要给「<strong>两个量之比</strong>」一个<strong>严格的定义</strong>，使<strong>即使两个量不可公度（比值为无理数）</strong>，「它们之比等于另一对量之比」也仍然有意义；第 VI 卷<strong>把这个比例论用到平面图形上</strong>，得到相似形的全套定理。</p>
+  <p>★ <strong>为什么需要它</strong>：毕达哥拉斯学派发现<strong>√2 不可公度</strong>后，<strong>「比」的定义出了麻烦</strong>——<strong>如果「比」必须是一个数，而无理数还没被接受，那么大量相似关系就无法陈述</strong>。★ <strong>欧多克索斯的解法是：不谈「比是什么数」，只谈「两组量在任意等倍下比较时是否同步」。</strong></p>
+  <h3>第五卷：比例论（25 命题）</h3>
+  <p><strong>这一卷在解决什么问题</strong>：★★ <strong>给「比」与「相等之比」下定义，并推出比例的全部运算法则</strong>（合比、分比、交比、等比等）。</p>
+  <p><strong>关键命题与证明方法</strong>：</p>
+  <ul>
+    <li>★★ <strong>V.def.5</strong>：<strong>第 V 卷的灵魂，也是全书技术含量最高的一个定义。</strong>
+    </li>
+  </ul>
+  <blockquote>
+    <p>「Magnitudes are said to be in the same ratio, the first to the second and the third to the fourth, when, if any equimultiples whatever be taken of the first and third, and any equimultiples whatever of the second and fourth, the former equimultiples alike exceed, are alike equal to, or alike fall short of, the latter equimultiples respectively taken in corresponding order.」</p>
+    <p>（若取第一、第三量的任意等倍，又取第二、第四量的任意等倍，则前一对等倍与后一对等倍比较时，<strong>总是同时大于、同时等于、或同时小于</strong>，就说第一量比第二量、第三量比第四量成相同之比。）<span class="tag t-src">原书</span>（V.def.5）</p>
+  </blockquote>
+  <p>★★ <strong>这个定义的妙处</strong>：<strong>它不问「比值是多少」，只问「按任意倍数比较时，谁大谁小是否同步」。</strong> 因此<strong>即使两个量不可公度（比值为无理数），「a∶b ＝ c∶d」依然可以被严格定义</strong>——<strong>欧多克索斯用「比较」绕开了「求值」，也就绕开了无理数</strong>。★ <strong>19 世纪戴德金的「实数分割」（Dedekind cut）与它同构</strong>；<strong>它被视为实数理论的远祖</strong> <span class="tag t-rep">转述</span>（Heath 译本导论指出其与 Dedekind 分割的对应）。</p>
+  <p>★ <strong>用现代语言重述一遍（帮助理解，不是原文）</strong>：<strong>说 a∶b ＝ c∶d，就是要求「对任意正有理数比值 m∶n，a 与 (n/m)b 的大小关系，和 c 与 (n/m)d 的大小关系永远一致」</strong>。★★ <strong>换句话说：欧几里得没有说「a/b 这个数等于 c/d 这个数」，而是说「a、b 的『大小位置』和 c、d 的『大小位置』在所有有理刻度上完全同步」</strong>——<strong>这恰好是「两个实数相等」的最原始定义</strong>。★ <strong>这就是为什么 19 世纪的戴德金分割、康托基本列，会在两千年后「重新发现」欧多克索斯</strong>：<strong>要定义无理数，绕不开「用有理数去夹」这个思想，而 V.def.5 已经是它了。</strong></p>
+  <ul>
+    <li><strong>V.1–V.15</strong>：比例的基本运算：<strong>等倍的性质（V.1）</strong>、<strong>交比（V.16）</strong>、<strong>合比与分比（V.17、V.18）</strong>、<strong>等比（V.22）</strong>。
+    </li>
+    <li>★ <strong>V.def.5 之后的「定义 6–10」</strong>：<strong>复比、相似比等</strong>。★ <strong>V.def.7</strong> 定义「<strong>量 a 与 b 之比大于 c 与 d 之比</strong>」——<strong>这是对「不等比」的严格处理</strong>，<strong>是 V.def.5 的配套</strong>。
+    </li>
+    <li>★★ <strong>V.25（本卷最后一题）</strong>：<strong>「两个量在任意等倍下比较总是一致」的确认</strong>——与 V.def.5 呼应。
+    </li>
+  </ul>
+  <p>★ <strong>第 V 卷 25 命题的分组（Heath 译本目录）</strong>：</p>
+  <table>
+    <thead><tr><th>命题区间</th><th>在建立什么</th></tr></thead>
+    <tbody>
+      <tr><td><strong>V.1–V.6</strong></td><td><strong>等倍的性质</strong>：<strong>等量的同倍相等（V.1）</strong>、<strong>部分与整体的倍比关系（V.5、V.6）</strong></td></tr>
+      <tr><td><strong>V.7–V.13</strong></td><td><strong>比例的基础运算</strong>：<strong>相等之比的等倍仍相等（V.7）</strong>、<strong>a∶b ＞ c∶d ⇒ a∶c ＞ b∶d 等（V.8–V.13）</strong></td></tr>
+      <tr><td><strong>V.14–V.19</strong></td><td>★ <strong>交比（V.16）</strong>、<strong>合比（V.17）</strong>、<strong>分比（V.18）</strong>、<strong>转比</strong>——<strong>比例论的「四则运算」</strong></td></tr>
+      <tr><td><strong>V.20–V.23</strong></td><td><strong>等比（ex aequali，V.22）</strong>、<strong>扰动比（V.23）</strong>——★ <strong>VI.4 的证明直接引 V.22</strong></td></tr>
+      <tr><td><strong>V.24、V.25</strong></td><td>★ <strong>V.24：同比例的数对仍成比例</strong>；<strong>V.25：本卷的收束</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>第 V 卷的「难」有一半来自结构</strong>：<strong>它把 25 个命题全部写成「任意等倍」的形式</strong>，<strong>每个证明都要「设任意倍数 m、n，比较 m·a 与 n·b……」</strong> —— <strong>现代人读起来会觉得很「啰嗦」</strong>。★ <strong>但这不是啰嗦，而是必须</strong>：<strong>在承认无理数之前，这是唯一能把「比」讲严格的方式</strong>。<strong>第 V 卷用「比较」代替「求值」，正好避开了「比值是无理数」这个无法处理的麻烦。</strong></p>
+  <p><strong>可疑之处</strong>：★ <strong>第 V 卷的归属</strong>：<strong>据 Proclus 转述，比例论归 Eudoxus</strong>（见 <code>## 5.2</code>，<strong>标 <span class="tag t-rep">转述</span></strong>）。★ <strong>第 V 卷的「难」不在结论，而在形式</strong>：<strong>全部用「任意等倍」的语言写，没有现代符号</strong>，<strong>现代读者会觉得它「绕」</strong>——<strong>但它绕得有必要，绕的是无理数这道坎</strong>。★ <strong>一个必须点明的事</strong>：<strong>V.def.5 的数理地位，要到 19 世纪才被真正理解</strong>（Dedekind、Dedekind 1872、Heath 译本导论）——<strong>在两千多年里，它其实是一条「用对了但没被完全读懂」的定义</strong>。</p>
+  <h3>第六卷：相似形（33 命题）</h3>
+  <p><strong>这一卷在解决什么问题</strong>：★★ <strong>把第 V 卷的比例论用到平面图形上</strong>——<strong>相似三角形的判定、角平分线定理、相似形面积比、黄金分割的进一步应用</strong>。</p>
+  <p><strong>关键命题与证明方法</strong>：</p>
+  <ul>
+    <li>★ <strong>VI.2（平行于三角形一边的直线截两边成比例）</strong>：<strong>相似形的入门定理</strong>，也是 <strong>VI.4</strong> 等命题的工具。
+    </li>
+    <li>★★ <strong>VI.4（相似三角形对应边成比例）</strong>：★★ <strong>本报告直接核对过这条。</strong>
+    </li>
+  </ul>
+  <blockquote>
+    <p>「In equiangular triangles the sides about the equal angles are proportional, and those are corresponding sides which subtend the equal angles.」（等角三角形中，夹等角的边成比例，且对应边是那些对等角的边。）<span class="tag t-src">原书</span>（VI.4）</p>
+  </blockquote>
+  <p><strong>证明思路</strong>：<strong>把两个等角三角形摆成 BC 与 CE 在一条直线上</strong>；<strong>由 ∠ABC ＋ ∠ACB ＜ 两直角（I.17）及 ∠ACB ＝ ∠DEC，得 BA、ED 延长后必相交</strong>——★ <strong>这里用了 I.Post.5</strong> <span class="tag t-src">原书</span>（VI.4 证明，含对 I.17 与 Post.5 的引用）；设交于 F，则 <strong>FACD 是平行四边形</strong>，由 <strong>VI.2</strong> 得 <strong>BA∶AF ＝ BC∶CE</strong>，再由 <strong>交比（V.16）</strong> 与 <strong>等比（V.22）</strong> 逐步推出对应边成比例 <span class="tag t-src">原书</span>（VI.4）。★ <strong>注意：VI.4 的证明依赖 Post.5</strong>——<strong>相似形整个建立在平行公设之上。</strong></p>
+  <ul>
+    <li>★ <strong>VI.8（直角三角形斜边上的高）</strong>：<strong>斜边上的高把三角形分成两个与原三角形相似的小三角形</strong>——★ <strong>它的推论给出「直角边是斜边与射影的比例中项」</strong>，<strong>是 II.13、XIII.18 反复引用的工具</strong>（<strong>XIII.18 就引用了 VI.8</strong>）。
+    </li>
+    <li>★ <strong>VI.12、VI.13</strong>：<strong>求三个已知量的第四比例项</strong>、<strong>求两个已知量的比例中项</strong>——★ <strong>第 X 卷与第 XIII 卷的构造工具</strong>。
+    </li>
+    <li>★ <strong>VI.16、VI.19、VI.20</strong>：<strong>矩形与比例的关系（VI.16）</strong>、<strong>相似三角形面积比 ＝ 对应边平方比（VI.19）</strong>、<strong>相似多边形可分解为相似三角形（VI.20）</strong>——★ <strong>VI.19 是第 XII 卷「圆面积比 ＝ 直径平方比」的技术前身</strong>（<strong>圆不是多边形，所以要靠穷竭法逼近，见 <code>## 12</code></strong>）。
+    </li>
+    <li>★ <strong>VI.30（把已知线段截成中外比）</strong>：<strong>黄金分割的另一个作法</strong>（与 II.11 呼应），<strong>XIII.17 的正十二面体靠它</strong>。
+    </li>
+  </ul>
+  <p>★ <strong>第 VI 卷 33 命题的分组（Heath 译本目录）</strong>：</p>
+  <table>
+    <thead><tr><th>命题区间</th><th>在建立什么</th></tr></thead>
+    <tbody>
+      <tr><td><strong>VI.1</strong></td><td><strong>同高的三角形／平行四边形面积比 ＝ 底之比</strong></td><td>★ <strong>比例论用于面积的入口</strong></td></tr>
+      <tr><td><strong>VI.2–VI.4</strong></td><td>★★ <strong>平行截比例（VI.2）</strong>、<strong>等角三角形对应边成比例（VI.4）</strong>——<strong>相似形的基础</strong></td></tr>
+      <tr><td><strong>VI.5–VI.8</strong></td><td><strong>相似判定（VI.5、VI.6、VI.7）</strong>、★ <strong>直角三角形斜边上的高（VI.8）</strong></td></tr>
+      <tr><td><strong>VI.9–VI.13</strong></td><td>★ <strong>求等分线段与第四／第三比例项（VI.9–VI.12）</strong>、<strong>求比例中项（VI.13）</strong>——<strong>第 X、XIII 卷的构造工具</strong></td></tr>
+      <tr><td><strong>VI.14–VI.19</strong></td><td><strong>矩形与比例（VI.16）</strong>、<strong>相似三角形／多边形面积比 ＝ 对应边平方比（VI.19、VI.20）</strong>——★ <strong>XII.2 的前身</strong></td></tr>
+      <tr><td><strong>VI.20–VI.23</strong></td><td><strong>相似多边形的分解与比例</strong></td></tr>
+      <tr><td><strong>VI.24–VI.30</strong></td><td><strong>相似平行四边形（VI.24）</strong>、<strong>作相似形等于已知形（VI.25）</strong>、★ <strong>VI.30 黄金分割的另作</strong></td></tr>
+      <tr><td><strong>VI.31</strong></td><td>★ <strong>「勾股定理的推广」</strong>：直角三角形两直角边上的图形的和 ＝ 斜边上的相似图形</td><td>★ <strong>它是 I.47 的「相似形版」，也是全书最漂亮的一条推广之一</strong></td></tr>
+      <tr><td><strong>VI.32、VI.33</strong></td><td>三角形与平行四边形的相似关系；<strong>同圆中圆心角之比 ＝ 弧之比</strong></td><td>收束</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>第 VI 卷的地位</strong>：★★ <strong>它是「比例论」与「几何图形」的接合点</strong>——<strong>第 V 卷提供了「比」的机器，第 VI 卷把机器装上图形</strong>。★ <strong>从第 VI 卷开始，「相似」「比例」「面积比」成为一体</strong>，<strong>第 X 卷的无理量构造、第 XII 卷的穷竭法、第 XIII 卷的正多面体，全部要用第 VI 卷的结论</strong>。★★ <strong>VI.31 值得单独一提：它把一个「面积等式」（I.47 的勾股定理）推广成「任意相似图形的等式」</strong>——<strong>例如「以两直角边为边的半圆面积和 ＝ 以斜边为边的半圆面积」</strong>。<strong>这条命题说明：欧几里得知道勾股定理不只是关于正方形的，而是关于一切相似形的</strong>。</p>
+  <p><strong>可疑之处</strong>：★★ <strong>第 VI 卷完全建立在第五条公设之上</strong>（VI.2、VI.4 都需要平行线性质，VI.4 的证明直接引 Post.5）——<strong>在非欧几何里，相似形理论会整体改变</strong>（双曲几何里不存在「大小不同但形状相同」的相似三角形）。★ <strong>第 VI 卷与第 V 卷的关系</strong>：<strong>第 VI 卷是 V 的应用</strong>，<strong>但两者对「比」的处理口径必须一致</strong>——<strong>这也是希尔伯特重建比例公理时特别小心的地方</strong>。</p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">10</span><span>第七至九卷：数论（39＋27＋36 命题）</span><span class="caret">▾</span></h2>
+  <h3>这一组卷在解决什么问题</h3>
+  <p>★★ <strong>第 VII–IX 卷是「数论」</strong>——<strong>把第 V 卷的比例论移植到「整数」上</strong>，并推出<strong>最大公约数（辗转相除法）、素数、完全数</strong>。★ <strong>它们不是几何，却插在几何著作的第 5–6 卷与第 X–XIII 卷之间</strong>，这是《几何原本》结构上一个常被忽略的事实。</p>
+  <p>★ <strong>一个必须说清的前提</strong>：「数」在希腊语境里指<strong>自然数（≥2）</strong>，<strong>不承认 1 是数，也不承认分数是数</strong>（分数以「比」的形式处理）。★ <strong>所以第 VII 卷的「比例」是「数的比」</strong>，与第 V 卷「量之比」<strong>并列但不同对象</strong>——<strong>这就是为什么第 V 卷与第 VII 卷的「比例」定义看起来相似却又不同</strong>。</p>
+  <p>★★ <strong>一个更深的问题：几何书为什么中间插进三卷数论？</strong> 这是《几何原本》结构上最常被问到的疑问之一。<strong>几种解释并存</strong>（本报告并列，不作定论）：</p>
+  <ul>
+    <li><strong>解释 A（技术依赖）</strong>：<strong>第 X 卷的无理量理论大量依赖「数的理论」</strong>——<strong>「可公度／不可公度」要靠「数的比」来刻画</strong>；<strong>因此第 VII–IX 卷是第 X 卷的前置</strong>。
+    </li>
+    <li><strong>解释 B（传统归属）</strong>：<strong>据 Proclus 转述，第 VII–IX 卷的内容来自毕达哥拉斯学派的数论研究</strong>（<span class="tag t-rep">转述</span>，见 <code>## 5.2</code>）——<strong>欧几里得把它们收录进来，是在整理当时已有的数学知识</strong>。
+    </li>
+    <li><strong>解释 C（主题一致）</strong>：★ <strong>在希腊人看来，「数」与「量」同属「可比较的大小」</strong>——<strong>比例论既能用于量，也能用于数</strong>，<strong>所以数论与几何属于同一门学问（「数学」）的两支</strong> <span class="tag t-inf">推断</span>。
+  <p>★ <strong>本报告不对「哪种解释对」下结论</strong>；★ <strong>但可以确定的是：第 VII–IX 卷不是「跑题的插叙」，而是第 X 卷与第 XIII 卷无法绕开的一环。</strong></p>
+    </li>
+  </ul>
+  <h3>第七卷：初等数论（39 命题）</h3>
+  <p><strong>这一卷在解决什么问题</strong>：★★ <strong>给「数的比」下定义，并建立整除、最大公约数、素数的基本理论。</strong></p>
+  <p><strong>关键命题与证明方法</strong>：</p>
+  <ul>
+    <li>★★ <strong>VII.2（辗转相除法／欧几里得算法）</strong>：★★ <strong>本报告直接核对过这条，它是「历史上最著名的算法」。</strong>
+    </li>
+  </ul>
+  <blockquote>
+    <p>「Given two numbers not prime to one another, to find their greatest common measure.」（已知两个不互素的数，求它们的最大公约数。）<span class="tag t-src">原书</span>（VII.2）</p>
+  </blockquote>
+  <p><strong>证明思路（就是「辗转相除」）</strong>：设两数 AB、CD。<strong>若 CD 整除 AB，则 CD 即为所求最大公约数</strong>（显然）；<strong>若不能整除，则「从较大的数中不断减去较小的数」，最终必留下一个数，它能整除前一个数</strong>（因为若最后留下单位 1，则 AB、CD 互素，与假设矛盾——★ <strong>此处引 VII.1</strong>）；<strong>设 CD 量尽 BE 余 EA，EA 量尽 DF 余 FC，而 CF 量尽 AE；则 CF 同时量尽 AB、CD，且是最大公约数</strong>（<strong>再证「最大」：若有更大的数 G 量尽 AB、CD，则由 G 量尽 CD 而 CD 量尽 BE，得 G 量尽 BE，进而量尽余数，最后「大数量尽小数」，矛盾</strong>）<span class="tag t-src">原书</span>（VII.2 全文）。 ★★ <strong>这条命题为什么重要</strong>：<strong>它是今天计算机科学入门课上的「欧几里得算法」，用来求两个整数（以及多项式的）最大公约数</strong>。<strong>两千三百年后仍在每一天的代码里运行</strong>，是本书「实用性」最强的一条。</p>
+  <ul>
+    <li><strong>VII.1（互相减、直到余数整除）</strong>：<strong>VII.2 的前置定理</strong>（用于证明「不会无限进行下去」）。
+    </li>
+    <li>★ <strong>VII.3、VII.4</strong>：<strong>求三个数的最大公约数、最小公倍数</strong>。
+    </li>
+    <li>★★ <strong>VII.31（任何合数都能被某个素数整除）</strong>：<strong>素数存在性的基础</strong>，<strong>IX.20 要用它</strong>。
+    </li>
+    <li><strong>VII.30（若素数整除两数之积，则整除其中之一）</strong>：★ <strong>算术基本定理的关键一步</strong>（<strong>「唯一分解」在 IX.14</strong>）。
+    </li>
+    <li>★ <strong>VII.def.20、VII.def.22</strong>：<strong>比例、完全数的定义</strong>（<strong>完全数 ＝ 等于其真因子之和的数</strong>——IX.36 要用）。
+    </li>
+  </ul>
+  <p>★ <strong>第 VII 卷 39 命题的分组（Heath 译本目录）</strong>：</p>
+  <table>
+    <thead><tr><th>命题区间</th><th>在建立什么</th></tr></thead>
+    <tbody>
+      <tr><td><strong>VII.1–VII.3</strong></td><td>★★ <strong>辗转相除法（VII.2，欧几里得算法）</strong>、<strong>三个数的最大公约数</strong></td></tr>
+      <tr><td><strong>VII.4–VII.10</strong></td><td><strong>最小公倍数</strong>、<strong>分数运算的「数论版」</strong>（<strong>部分、若干部分</strong>）</td></tr>
+      <tr><td><strong>VII.11–VII.19</strong></td><td><strong>比例与数的比</strong>（<strong>VII.14 等比、VII.17–VII.19 乘积与比例</strong>）——★ <strong>IX.36 与 VIII.1 反复引用</strong></td></tr>
+      <tr><td><strong>VII.20–VII.24</strong></td><td>★ <strong>「最小数」的性质</strong>：<strong>成同比例的最小数组互素（VII.21）、最小数互相量尽（VII.20）</strong></td></tr>
+      <tr><td><strong>VII.25–VII.29</strong></td><td><strong>互素的判定</strong>、<strong>素数互素（VII.29）</strong></td></tr>
+      <tr><td><strong>VII.30–VII.39</strong></td><td>★ <strong>VII.31（合数有素因子）</strong>、<strong>求素数的「筛法」雏形（VII.32）</strong>、<strong>任意多个数的最小公倍数（VII.34–VII.39）</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>一个必须点明的「术语陷阱」</strong>：<strong>第 VII 卷的「比例」与第 V 卷的「比例」不是同一套定义</strong>。<strong>第 V 卷处理「量」（连续的，可以不可公度）</strong>，<strong>第 VII 卷处理「数」（离散的，自然数）</strong>。★ <strong>两套定义形式相似却对象不同</strong>——<strong>这就是为什么第 V 卷与第 VII 卷的「比例」要分开讲</strong>，<strong>也是为什么《几何原本》里会有「两组比例论」</strong>。★ 现代读者<strong>常把两者混为一谈，这是读第 V–IX 卷最容易踩的坑</strong>。</p>
+  <p><strong>可疑之处</strong>：★ <strong>「1 不是数」</strong>：希腊数论把 1 当作「单位」而非「数」——<strong>因此 VII 卷很多命题的表述与现代不同</strong>（如「素数无穷多」的表述是「素数比任何给定的素数之集合都多」，见 IX.20）。★ <strong>第 VII 卷的「比例」与第 V 卷的「比例」不是同一套东西</strong>（<strong>一个作用于自然数，一个作用于连续量</strong>），<strong>读的时候要分清</strong>。</p>
+  <h3>第八卷：连比例（27 命题）</h3>
+  <p><strong>这一卷在解决什么问题</strong>：★ <strong>第 VIII 卷讲「连比例」——即一串数按同一个比连续排列（a∶b∶c∶…）</strong>。<strong>它把 VII 卷的比例推广到「多个数的连续比」</strong>，并研究<strong>几何中项、平方数与立方数</strong>。</p>
+  <p><strong>关键命题与证明方法</strong>：</p>
+  <ul>
+    <li>★ <strong>VIII.1</strong>：★ <strong>本报告直接核对过这条。</strong>
+    </li>
+  </ul>
+  <blockquote>
+    <p>「If there be as many numbers as we please in continued proportion, and the extremes of them be prime to one another, the numbers are the least of those which have the same ratio with them.」（若有任意多个数成连比例，且其首末两数互素，则这些数是具有相同比的最小的一组数。）<span class="tag t-src">原书</span>（VIII.1）</p>
+  </blockquote>
+  <p><strong>证明</strong>：<strong>用反证法</strong>——设 E、F、G、H 是更小的同比例数；由 <strong>VII.14（等比）</strong> 得 A∶D ＝ E∶H，但 <strong>A、D 互素故最小（VII.21）</strong>，<strong>最小数以相同次数量尽可能与之成同比的数</strong>（<strong>VII.20</strong>），于是 <strong>A 量尽 E，大数量尽小数，矛盾</strong> <span class="tag t-src">原书</span>（VIII.1）。</p>
+  <ul>
+    <li><strong>VIII.2–VIII.4</strong>：<strong>连续成比例的数列的构造</strong>。
+    </li>
+    <li>★★ <strong>VIII.8、VIII.9、VIII.11、VIII.18–VIII.27</strong>：<strong>平方数之间有一个几何中项（VIII.11）</strong>、<strong>立方数之间有两个中项</strong>、<strong>相似平面数／相似立体数的性质</strong>——★ <strong>这一串是第 IX 卷「平方数与立方数」的前置</strong>。
+    </li>
+  </ul>
+  <p>★ <strong>第 VIII 卷的结构</strong>：<strong>它只做一件事，就是把「连比例」讲透</strong>。</p>
+  <table>
+    <thead><tr><th>命题区间</th><th>在建立什么</th></tr></thead>
+    <tbody>
+      <tr><td><strong>VIII.1–VIII.3</strong></td><td>★ <strong>成连比且首末互素的数是同比例的最小数组（VIII.1）</strong>；<strong>连比例的构造</strong></td></tr>
+      <tr><td><strong>VIII.4–VIII.9</strong></td><td><strong>连比例中的平方数与立方数</strong>：<strong>VIII.8（连比例中的平方与立方关系）</strong>、<strong>VIII.9</strong></td></tr>
+      <tr><td><strong>VIII.10–VIII.15</strong></td><td>★ <strong>平方数之间有一个中项（VIII.11）</strong>、<strong>立方数之间有两个中项（VIII.12）</strong></td></tr>
+      <tr><td><strong>VIII.16–VIII.27</strong></td><td>★ <strong>相似平面数与相似立体数的判定</strong>：<strong>VIII.18（两数之比 ＝ 平方数之比 ⇒ 两数相似平面数）</strong>、<strong>VIII.20</strong>、<strong>VIII.27（立方数的判定）</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>第 VIII 卷为什么不可缺</strong>：★ <strong>IX.20（素数无穷多）与 IX.36（完全数）都要求「平方数与立方数」的结论</strong>——<strong>IX.36 的完全数公式涉及 2ⁿ − 1 与 2ⁿ⁻¹ 的乘积，本质上是一条「连比例与立方数」的结论</strong>。★★ <strong>把第 VIII 卷跳过去，第 IX 卷的 IX.20 与 IX.36 会看不懂它们「凭什么」。</strong></p>
+  <p><strong>可疑之处</strong>：★ <strong>第 VIII 卷是全书「最被跳过」的一卷</strong>——<strong>它是纯技术性的（连比例的代数性质），没有 IX.20 那种「明星命题」</strong>。★ 但它<strong>在结构上不可缺</strong>：<strong>VIII.18（平方数之间有一个中项）与 VIII.20（相似平面数的性质）是 IX.20 与 IX.36 的工具</strong>。</p>
+  <h3>第九卷：数论的应用（36 命题）</h3>
+  <p><strong>这一卷在解决什么问题</strong>：★★ <strong>第 IX 卷是数论的高峰</strong>——<strong>它证明了「素数无穷多」（IX.20）与「偶完全数公式」（IX.36）</strong>。★ <strong>两题都是数学史上最著名的命题之一。</strong></p>
+  <p><strong>关键命题与证明方法</strong>：</p>
+  <ul>
+    <li>★★ <strong>IX.20（素数无穷多）</strong>：★★ <strong>本报告直接核对过这条，它是全书最著名的反证法。</strong>
+    </li>
+  </ul>
+  <blockquote>
+    <p>「Prime numbers are more than any assigned multitude of prime numbers.」（素数比任何给定的素数集合都多。）<span class="tag t-src">原书</span>（IX.20）</p>
+  </blockquote>
+  <p><strong>证明思路（反证 ＋ 构造）</strong>：<strong>设已知的素数为 A、B、C</strong>（<strong>注意：不是假设「只有这三个」，而是对任意给定的有限集合</strong>）；<strong>取它们的最小公倍数 DE，并加上单位 DF，得到 EF ＝ A·B·C ＋ 1</strong> <span class="tag t-src">原书</span>（IX.20，原文用「最小的被 A、B、C 量尽的数 DE」并加单位）。★ <strong>然后分两种情形</strong>：</p>
+  <ul>
+    <li><strong>若 EF 是素数</strong>：则 A、B、C、EF 是比 A、B、C 更多的素数；
+    </li>
+    <li><strong>若 EF 不是素数</strong>：则它被某个素数 G 量尽（<strong>引 VII.31</strong>）；<strong>G 不等于 A、B、C 中任何一个</strong>——<strong>因为若 G 是其中之一，则 G 同时量尽 DE 与 EF，从而量尽余数（单位 DF），这是荒谬的</strong> <span class="tag t-src">原书</span>（IX.20）。
+  <p>★★ <strong>两种情形都得出「存在比给定集合更多的素数」，故素数无穷多。</strong> ★ <strong>这个证明的形式极其干净，两千三百年来几乎原封不动地写进每一本数论教材。</strong> ★ <strong>一个常被误说的点</strong>：<strong>欧几里得构造的是 N ＝ p₁p₂…pₙ ＋ 1（或它的一小部分构造），但他没有说「N 一定是新素数」</strong>——<strong>他说的是「N 要么本身是新素数，要么有一个新的素因子」</strong>。<strong>把这个证明误说成「N 必是素数」是常见的转述错误</strong>（详见 <code>D5</code>）。</p>
+    </li>
+  </ul>
+  <ul>
+    <li>★★ <strong>IX.36（偶完全数公式）</strong>：★★ <strong>本报告直接核对过这条。</strong>
+    </li>
+  </ul>
+  <blockquote>
+    <p>「If as many numbers as we please beginning from an unit be set out continuously in double proportion, until the sum of all becomes prime, and if the sum multiplied into the last make some number, the product will be perfect.」（若从单位起有任意多个数成倍比连续排列，直到它们的和成为素数；若把这个和乘以最后一个数得到一个数，则该数是完全数。）<span class="tag t-src">原书</span>（IX.36）</p>
+  </blockquote>
+  <p><strong>证明思路</strong>：★ <strong>设 1, 2, 4, …, 2ⁿ⁻¹ 之和 E ＝ 2ⁿ − 1 为素数，且 D ＝ 2ⁿ⁻¹，则 E×D 是完全数。</strong> 欧几里得<strong>证明 E×D 恰好等于它的全部真因子之和</strong>——<strong>用的是「倍比数列求和＋因子清点」</strong>（引 <strong>IX.35</strong>）<span class="tag t-src">原书</span>（IX.36 全文）。★ <strong>历史上是「欧几里得—欧拉定理」的前半</strong>（欧拉在 18 世纪补上「偶完全数必为这种形式」的后半）。★ <strong>IX.36 是全书一个漂亮的收束</strong>：<strong>它把数论的成果与「比例」重新接上</strong>，也<strong>与第 XIII 卷的「正多面体」遥相呼应</strong>（<strong>两者都涉及「2ⁿ − 1」型的数</strong>）。</p>
+  <ul>
+    <li>★ <strong>IX.14（算术基本定理：合数的素因子分解唯一）</strong>：★ <strong>数论的核心定理之一</strong>，<strong>IX.20 与 IX.36 的深层基础</strong>（<strong>「唯一分解」在希腊没有现代的形式，但 IX.14 已给出实质</strong>）。
+    </li>
+  </ul>
+  <p>★ <strong>第 IX 卷 36 命题的分组（Heath 译本目录）</strong>：</p>
+  <table>
+    <thead><tr><th>命题区间</th><th>在建立什么</th></tr></thead>
+    <tbody>
+      <tr><td><strong>IX.1–IX.6</strong></td><td><strong>连比例的乘积性质</strong>（<strong>IX.1 连比例之积仍成连比例</strong>）</td></tr>
+      <tr><td><strong>IX.7–IX.13</strong></td><td><strong>单位与数的比例结构</strong>：<strong>IX.8、IX.9（连比例的前项分配）</strong>、<strong>IX.11（平方数之间）</strong></td></tr>
+      <tr><td><strong>IX.14</strong></td><td>★ <strong>算术基本定理的实质</strong>：<strong>被最小素数整除的合数，其分解唯一（在「素数乘积」的意义上）</strong></td></tr>
+      <tr><td><strong>IX.15–IX.19</strong></td><td><strong>连比例中「三个数之积」等关系</strong></td></tr>
+      <tr><td><strong>IX.20</strong></td><td>★★ <strong>素数无穷多（本卷的明星命题）</strong></td></tr>
+      <tr><td><strong>IX.21–IX.26</strong></td><td><strong>偶数的素数分解（IX.21）</strong>、<strong>奇数的分解（IX.24）</strong></td></tr>
+      <tr><td><strong>IX.27–IX.35</strong></td><td><strong>奇偶性与平方数</strong>：<strong>IX.27（奇数的平方仍是奇数）</strong>、<strong>IX.35（倍比数列求和公式的几何版）</strong></td></tr>
+      <tr><td><strong>IX.36</strong></td><td>★★ <strong>偶完全数公式（本卷的另一个明星命题）</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>第 IX 卷为什么是「数论的高峰」</strong>：<strong>它把前两卷（VII 的比例、VIII 的连比例）的工具，用在两个「极值」问题上</strong>——<strong>IX.20 问「素数有多少」（答：无穷多）</strong>，<strong>IX.36 问「什么样的数是完全数」（答：2ⁿ⁻¹(2ⁿ − 1)，若 2ⁿ − 1 是素数）</strong>。★★ <strong>两个问题一个向「无限」、一个向「结构」，都用同一套比例论工具，这就是第 VII–IX 卷作为「一个整体」的证明。</strong></p>
+  <p><strong>可疑之处</strong>：★ <strong>IX.20 的「构造」有时代印记</strong>：<strong>「最小的被 A、B、C 量尽的数」与「加单位」这套说法，是回避「乘法记号」的结果</strong>——<strong>现代读法 N ＝ p₁p₂…pₙ ＋ 1 是准确的重述，但要记住原文没有这个记号。</strong> ★ <strong>IX.36 只处理「偶完全数」</strong>——<strong>奇完全数是否存在至今未知</strong>（<strong>这是数学史上最古老的未解问题之一</strong>）。★ <strong>第 IX 卷的定理里，「算术基本定理」（唯一分解）直到 IX.14 才出现</strong>，<strong>它被排在素数无穷多之前</strong>——<strong>这个顺序有依赖关系上的必要性</strong>（<strong>IX.20 要用 VII.31，而 VII.31 是 IX.14 的一小部分</strong>）。</p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">11</span><span>第十卷：无理量（115 命题）· 全书最大的一卷</span><span class="caret">▾</span></h2>
+  <h3>这一卷在解决什么问题</h3>
+  <p>★★ <strong>第 X 卷是全书篇幅最大的一卷：115 个命题，超过全书五分之一</strong>。<strong>它要做的事只有一件：把「无理量」分类。</strong> ★ <strong>这是《几何原本》里最被后世讨论、也最被普通读者跳过的部分。</strong></p>
+  <p>★ <strong>背景</strong>：<strong>第 V 卷的比例论解决了「不可公度的量如何比较」</strong>，但<strong>没有回答「不可公度的量有哪些种类」</strong>。★★ <strong>第 X 卷就是对「可由有理量与平方根表达的无理量」做一次系统分类</strong>——<strong>它把无理量分成十几类，并给出每一类的构造与性质。</strong></p>
+  <p>★ <strong>为什么第 X 卷这么长（115 命题，占全书近四分之一）</strong>——<strong>三种解释并存</strong>（本报告并列，不作定论）：</p>
+  <ol>
+    <li><strong>技术上的必然</strong>：<strong>「不可公度的量」的「合成与分解」组合极多</strong>——<strong>两个无理量相加／相减／相乘／相除，结果可以是不同的类型</strong>，<strong>要穷尽这些情形，命题数自然暴涨</strong>；
+    </li>
+    <li>★ <strong>它可能与「正多面体」的构造有关</strong>：★★ <strong>第 XIII 卷的正二十面体（XIII.16）与正十二面体（XIII.17）的棱长，属于「major」与「apotome」两族无理直线</strong>——<strong>第 X 卷的分类，正是为了给这两种正多面体的构造提供「可识别的对象」</strong>。★ <strong>若这个解释成立，那么第 X 卷的「长」就不是冗余，而是「为全书终点服务的必要准备」</strong>（<span class="tag t-inf">推断</span>）；
+    </li>
+    <li><strong>它可能是早期论文的整理</strong>：<strong>Heath 指出第 X 卷部分定义「可能是后世增补」</strong>，<strong>且该卷所依赖的素材（Theaetetus 一系）比欧几里得早</strong>（<span class="tag t-rep">转述</span>，见 <code>## 5.2</code>、<code>D6</code>）。
+    </li>
+  </ol>
+  <p>★ <strong>无论哪种解释成立，读第 X 卷的正确姿势都是一样的：不要试图读完 115 个命题，读 X.1（穷竭法原理）与它的定义，就抓住了它「在体系里的功能」。</strong></p>
+  <h3>关键命题与证明方法</h3>
+  <p>★★ <strong>X.1（穷竭法原理）——本卷的技术基石，也是第 XII 卷的关键工具。</strong> 本报告直接核对过这条：</p>
+  <blockquote>
+    <p>「Two unequal magnitudes being set out, if from the greater there be subtracted a magnitude greater than its half, and from that which is left a magnitude greater than its half, and if this process be repeated continually, there will be left some magnitude which will be less than the lesser magnitude set out.」</p>
+    <p>（设有两个不相等的量，若从较大的量减去大于其半的量，再从余量减去大于其半的量，如此不断重复，最终必留下一个量，它比原先所设的较小量还小。）<span class="tag t-src">原书</span>（X.1）</p>
+  </blockquote>
+  <p><strong>证明思路</strong>：<strong>设 AB、C 两量。先把 C 反复乘（即累加）到大于 AB（引 V.def.4 的「阿基米德性质」）</strong>；<strong>把 DE（C 的若干倍）分成若干份 DF、FG、GE 等于 C</strong>；<strong>从 AB 中依次减去大于其半的 BH、HK……直到份数与 DE 的分份数相等</strong>；<strong>逐份比较</strong>，<strong>每一步「剩余」都严格递减</strong>，<strong>最后剩下的 AK 比 C 小</strong>（<strong>证法核心是「逐项比较 ＋ 反证」</strong>）<span class="tag t-src">原书</span>（X.1 全文）。</p>
+  <p>★ <strong>X.1 为什么重要</strong>：★★ <strong>它是穷竭法的全部逻辑基础。</strong> <strong>第 XII 卷证明「圆面积之比 ＝ 直径平方之比」时，正是用 X.1 把「圆减内接多边形」的差压到任意小</strong>（见 <code>## 12</code>）。<strong>换言之：X.1 是《几何原本》里最接近「极限存在性」的一条命题</strong>——<strong>它保证了「不断取超过一半」这个过程一定能达到任意精度。</strong></p>
+  <p><strong>其余关键内容</strong>：</p>
+  <ul>
+    <li>★ <strong>X.2–X.18</strong>：建立「可公度量」与「不可公度量」的基本理论（<strong>X.2</strong> 是「两量若不可公度，则不存在共同量度」；<strong>X.9</strong> 是「可公度的平方关系」等）。
+    </li>
+    <li>★★ <strong>X.19 之后</strong>：★ <strong>转向「以有理直线为基础的矩形与直线」</strong>——<strong>欧几里得把无理直线分成十余类，各自命名</strong>：<strong>「中项」（medial）</strong>、<strong>「二项式」（binomial）</strong>、<strong>「余项／后项」（apotome）</strong> 等 <span class="tag t-rep">转述</span>（Heath 译本把第 X 卷定义分为三组，并指出其中部分定义<strong>可能是后世增补</strong>）。
+    </li>
+    <li>★ <strong>X.73–X.115</strong>：★ <strong>对「由有理量与中项合成」的各种无理直线做最后的分类</strong>（<strong>「二项式直线」「余项直线」的各阶</strong>）——★ <strong>这一大段的技术性极强，是现代读者最容易迷失的地方。</strong>
+    </li>
+  </ul>
+  <p>★ <strong>第 X 卷的逻辑结构（据 Heath 译本导论的「三组定义」分法）</strong>：</p>
+  <table>
+    <thead><tr><th>区间</th><th>在做什么</th><th>注释</th></tr></thead>
+    <tbody>
+      <tr><td><strong>定义（第 1 组）</strong></td><td>「有理直线」「可公度量」「不可公度量」</td><td>★ Heath 指出，第 X 卷的<strong>部分定义</strong>（「有理直线」的若干「阶」）<strong>可能是后世增补</strong></td></tr>
+      <tr><td><strong>X.1–X.18</strong></td><td>★ <strong>穷竭法原理（X.1）</strong>；<strong>两类量的可分性（X.2）</strong>；<strong>「量尽」与「比」的关系（X.5）</strong></td><td>★ X.1 是<strong>第 XII 卷的工具</strong>，<strong>不属于「分类」而属于「分析基础」</strong></td></tr>
+      <tr><td><strong>X.19–X.72</strong></td><td>★ <strong>「中项」与「余项」的构造与性质</strong>：以「有理直线」为基准，作各种不可公度的直线</td><td>★ 技术主体</td></tr>
+      <tr><td><strong>X.73–X.115</strong></td><td>★ <strong>「二项式直线」与「余项直线」的六个「阶」</strong>，及它们的合成与分解</td><td>★ 末尾的分类；★ <strong>X.115 是全书最长的一卷的最后一题</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>一句话概括第 X 卷</strong>：<strong>它把「由有理数经过有限次开平方得到的一类数」（即二次无理数的层级）</strong>——<strong>按其「可构造方式」分成十几类，并给每一类命名、证明其性质。</strong> ★ <strong>欧几里得没有给出「为什么这样分」的统一原则</strong>，<strong>这正是它难读的原因</strong>（详见 <code>## 5</code> 与 <code>D6</code>）。</p>
+  <h3>可疑之处</h3>
+  <ol>
+    <li>★★ <strong>第 X 卷的冗长，是本书最常被讨论的「可疑之处」。</strong> <strong>115 个命题、大量名词、极度技术化</strong>——★ <strong>一种有力的解释是：它是「该卷所依赖的早期文本（Theaetetus 一系）的整理」，而非欧几里得的新创</strong>；<strong>Heath 本人就把 X 卷的定义分为三组，并指出其中有些（如「有理直线」的若干「阶」）</strong>可能是<strong>后世增补</strong> <span class="tag t-rep">转述</span>（Heath 译本第 X 卷导论）。
+    </li>
+    <li>★ <strong>「分类」的动机不明确</strong>：<strong>为什么偏偏要分成这十几类？</strong> ★ <strong>现代数学史的一种解释是：它们对应「由有理数经过有限次开平方得到的一类数」</strong>——<strong>即所谓「二次无理数」的层级</strong>（<strong>这已是很晚的读法</strong>）。★ <strong>欧几里得自己没有给出「为什么这样分类」的统一原则</strong>，<strong>这也是第 X 卷最难读的原因。</strong>
+    </li>
+    <li>★ <strong>第 X 卷的文本稳定性存疑</strong>：<strong>由于极长、极技术，它是全书「抄本分歧与后世增改最多」的一卷</strong>——<strong>从 Theon 抄本到 Heiberg 校勘，X 卷的异文最多</strong>（见 <code>## 5.3</code>）。
+    </li>
+    <li>★ <strong>本节可信度说明</strong>：<strong>X.1 的命题与证明，我逐条核对过 Heath 英译与 Heiberg 希腊文</strong>（<span class="tag t-src">原书</span>）；<strong>「X 卷分类的动机」「Heath 把定义分三组」「部分定义属增补」这些判语，来自 Heath 译本导论</strong>（<span class="tag t-rep">转述</span>）；<strong>X.2–X.115 的绝大部分命题，本报告只核对到「卷、命题号、主题」，未逐条读证明。</strong>
+    </li>
+  </ol>
+</section>
+
+<section id="s13">
+  <h2><span class="num">12</span><span>第十一至十三卷：立体几何与正多面体（39＋18＋18 命题）</span><span class="caret">▾</span></h2>
+  <h3>这一组卷在解决什么问题</h3>
+  <p>★★ <strong>第 XI–XIII 卷把整部书从「平面」提升到「空间」，并以「正多面体只有五种」收束全书。</strong> ★ <strong>三卷的分工</strong>：<strong>第 XI 卷</strong>建立立体的地基（直线与平面、平行六面体、立体角）；<strong>第 XII 卷</strong>用<strong>穷竭法</strong>求<strong>圆、锥、柱、球</strong>的面积与体积；<strong>第 XIII 卷</strong>作出并比较<strong>五种正多面体</strong>，<strong>以 XIII.18 证明「正多面体只有五种」终结全书</strong>。</p>
+  <h3>第十一卷：立体几何（39 命题）</h3>
+  <p><strong>这一卷在解决什么问题</strong>：★ <strong>给三维空间建立与第 1 卷平行的地基</strong>：<strong>直线与平面的位置关系、两平面的夹角、平行六面体、立体角。</strong></p>
+  <p><strong>关键命题</strong>：</p>
+  <ul>
+    <li>★ <strong>XI.1–XI.19</strong>：直线与平面、平面与平面的基本关系（<strong>平行的判定与性质</strong>）。
+    </li>
+    <li>★★ <strong>XI.20、XI.21（立体角的性质）</strong>：★ <strong>本报告直接核对过 XI.21。</strong>
+    </li>
+  </ul>
+  <blockquote>
+    <p>「Any solid angle is contained by plane angles less than four right angles.」（任何立体角由小于四个直角的平面角所围成。）<span class="tag t-src">原书</span>（XI.21）</p>
+  </blockquote>
+  <p><strong>证明思路</strong>：<strong>设立体角 A 由三个平面角 ∠BAC、∠CAD、∠DAB 围成</strong>；<strong>取 B、C、D 连成三角形 BCD</strong>；<strong>由 XI.20（三角形中任意两边之和大于第三边，用于「面角」）</strong> 得到六个面角之和大于三个面角 ∠CBD、∠BCD、∠CDB 之和；<strong>而后三者 ＝ 两直角（I.32）</strong>，<strong>故六个面角之和大于两直角</strong>；<strong>再由三三角形 ABC、ACD、ADB 的内角和 ＝ 六直角</strong>，<strong>减去那六个大于两直角的面角</strong>，<strong>得 ∠BAC ＋ ∠CAD ＋ ∠DAB ＜ 四直角</strong> <span class="tag t-src">原书</span>（XI.21）。★ <strong>注意：XI.21 用了 I.32，而 I.32 用了 Post.5——立体几何也间接依赖平行公设。</strong></p>
+  <ul>
+    <li>★ <strong>XI.21 的结构意义</strong>：★★ <strong>它正是 XIII.18 证明「正多面体只有五种」的关键工具</strong>——<strong>因为「围成一个立体角的平面角之和必须小于四个直角」，所以能围成立体角的「正多边形」种类是有限的</strong>（见下 XIII.18）。
+    </li>
+    <li>★ <strong>XI.32–XI.39（平行六面体）</strong>：<strong>等底等高的平行六面体体积相等／成比例</strong>——★ <strong>这是第 XII 卷体积论的立体版基础</strong>。
+    </li>
+  </ul>
+  <p>★ <strong>第 XI 卷 39 命题的分组（Heath 译本目录）</strong>：</p>
+  <table>
+    <thead><tr><th>命题区间</th><th>在建立什么</th></tr></thead>
+    <tbody>
+      <tr><td><strong>XI.1–XI.8</strong></td><td>★ <strong>直线与平面、平面与平面的平行／垂直关系</strong>（<strong>XI.4–XI.6 是立体几何的入门</strong>）</td></tr>
+      <tr><td><strong>XI.9–XI.14</strong></td><td><strong>直线与平面的垂直判定</strong>、<strong>两平面垂直的判定</strong></td></tr>
+      <tr><td><strong>XI.15–XI.19</strong></td><td><strong>两平面的位置关系</strong>、<strong>XI.18、XI.19（垂直平面与直线）</strong></td></tr>
+      <tr><td><strong>XI.20</strong></td><td>★ <strong>立体角由平面角围成</strong>——<strong>XI.21 的前置</strong></td></tr>
+      <tr><td><strong>XI.21</strong></td><td>★★ <strong>任何立体角由小于四个直角的平面角围成</strong></td></tr>
+      <tr><td><strong>XI.22–XI.31</strong></td><td><strong>平行六面体与棱柱的构造与性质</strong>（<strong>XI.31 平行六面体的分类</strong>）</td></tr>
+      <tr><td><strong>XI.32–XI.39</strong></td><td>★ <strong>等底等高的平行六面体体积相等／成比例</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>第 XI 卷的意义</strong>：<strong>它把第 I 卷的「平面地基」在三维里重做了一遍</strong>——<strong>直线对平面 ＝ 直线对直线；平面对平面 ＝ 直线对直线；立体角 ＝ 平面角。</strong> ★ <strong>但这重做不是机械的</strong>：<strong>三维里多了「两条异面直线」这种新现象</strong>（<strong>第 I 卷没有</strong>），<strong>也是「立体角必须小于四直角」（XI.21）这种新定理</strong>——<strong>而 XI.21 正是 XIII.18 的关键工具</strong>。</p>
+  <h3>第十二卷：面积与体积 · 穷竭法（18 命题）</h3>
+  <p><strong>这一卷在解决什么问题</strong>：★★ <strong>用穷竭法证明「曲线形」的面积与体积</strong>——<strong>圆面积、锥体体积、球体积</strong>。★ <strong>这是全书与「微积分」关系最近的一卷。</strong></p>
+  <p><strong>关键命题与证明方法</strong>：</p>
+  <ul>
+    <li>★★ <strong>XII.2（圆面积之比 ＝ 直径平方之比）</strong>：★★ <strong>本报告直接核对过这条全文，它是穷竭法的样板。</strong>
+    </li>
+  </ul>
+  <blockquote>
+    <p>「Circles are to one another as the squares on the diameters.」（圆与圆之比等于其直径平方之比。）<span class="tag t-src">原书</span>（XII.2）</p>
+  </blockquote>
+  <p><strong>证明结构（双归谬）</strong>：</p>
+  <ol>
+    <li><strong>反设</strong> 圆 ABCD ∶ 圆 EFGH ＝ BD² ∶ FH² <strong>不成立</strong>，而等于某个比圆 EFGH <strong>小的面积 S</strong>；
+    </li>
+    <li><strong>在圆 EFGH 内不断作边数加倍的内接正多边形</strong>（<strong>先内接正方形，再平分各弧、内接八边形、十六边形……</strong>），<strong>由 X.1 知「圆减内接多边形」的差终将小于「圆减 S」</strong>；
+    </li>
+    <li><strong>于是内接多边形 EKFLGMHN ＞ S</strong>；
+    </li>
+    <li><strong>在圆 ABCD 内作与它相似的多边形 AOBPCQDR</strong>，由 <strong>XII.1（相似多边形之比 ＝ 对应边平方比）</strong> 及比例运算，<strong>推得「圆 ABCD 与内接多边形」之比 ＝ 「S 与内接多边形」之比</strong>（引 <strong>V.11、V.16</strong>）；
+    </li>
+    <li><strong>但圆 ABCD ＞ 内接多边形，故 S ＞ 内接多边形</strong>——<strong>与第 3 步「内接多边形 ＞ S」矛盾</strong>；
+    </li>
+    <li><strong>「比某个更小的面积」不可能；同理「比某个更大的面积」也不可能；故只能是「相等」</strong> <span class="tag t-src">原书</span>（XII.2 全文，含对 X.1、XII.1、V.11、V.16 的引用）。
+  <p>★★ <strong>这套「排除过大与过小、只剩相等」的论证，就是穷竭法的标准形式。</strong></p>
+    </li>
+  </ol>
+  <ul>
+    <li>★★ <strong>XII.7、XII.10（锥体体积 ＝ 同底同高柱体的三分之一）</strong>：★ <strong>棱锥（XII.7）与圆锥（XII.10）都成立</strong>——<strong>同样用穷竭法</strong>（<strong>把锥体分割成一层层棱柱，用 X.1 逼近</strong>）。
+    </li>
+    <li>★★ <strong>XII.18（球体积之比 ＝ 直径立方之比）</strong>：★ <strong>用球内接多边形旋转体逼近</strong>，<strong>引 XII.2、XII.16（球的截面性质）</strong>。★ <strong>这条命题是阿基米德最喜欢引用的《原本》结论之一</strong>。
+    </li>
+  </ul>
+  <p>★ <strong>穷竭法与微积分：像什么、不像什么</strong>（这一段是本节的判断，标 <span class="tag t-inf">推断</span>）：</p>
+  <table>
+    <thead><tr><th>维度</th><th>穷竭法（第 XII 卷）</th><th>微积分（17 世纪起）</th></tr></thead>
+    <tbody>
+      <tr><td><strong>核心思想</strong></td><td>★ <strong>「逼近 ＋ 双归谬」</strong>：用内接／外切多边形夹住曲线形，再把差压到任意小</td><td>★ <strong>「极限 ＋ 求积」</strong>：直接算极限</td></tr>
+      <tr><td><strong>能不能「发现」结论</strong></td><td>★ <strong>不能</strong>——它只能证明「已经知道的」结论</td><td>★ <strong>能</strong>——它是发现工具</td></tr>
+      <tr><td><strong>有没有「无穷小」这个概念</strong></td><td>★ <strong>没有</strong>（<strong>这正是它与微积分的分界</strong>）</td><td>★ <strong>有</strong>（<strong>牛顿避开了它，用「首末比」；莱布尼茨用了它，引发争议</strong>）</td></tr>
+      <tr><td><strong>严格性来自</strong></td><td>★ <strong>X.1（阿基米德性质）与反证法</strong></td><td>★ <strong>19 世纪的 ε–δ 语言与实数完备性</strong></td></tr>
+      <tr><td><strong>关系</strong></td><td>★★ <strong>穷竭法是极限思想的「远祖」，不是微积分</strong></td><td>★★ <strong>柯西、魏尔斯特拉斯把「极限」讲严格之后，微积分与穷竭法在逻辑上才真正接上</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>一句话</strong>：<strong>穷竭法「做对了微积分要做的事，却没有微积分的语言」。</strong> ★ <strong>这也解释了为什么阿基米德能算出 π 的上下界与抛物线弓形面积，却没能发展出微积分</strong>——<strong>他缺的不是思想，而是「代数化的极限」（符号与方程）</strong>。<strong>这一步要等到 17 世纪笛卡尔的解析几何与牛顿—莱布尼茨的微积分才补上。</strong></p>
+  <ul>
+    <li>★ <strong>XII.17（球体积的分割）</strong>：★ <strong>与 XIII 卷的「内接正多面体」配合</strong>——<strong>为 XIII.13–XIII.17 的「球内接正多面体」提供体积比较的基础</strong>。
+    </li>
+  </ul>
+  <p>★ <strong>第 XII 卷 18 命题的分组（Heath 译本目录）</strong>：</p>
+  <table>
+    <thead><tr><th>命题区间</th><th>证明什么</th></tr></thead>
+    <tbody>
+      <tr><td><strong>XII.1</strong></td><td>★ <strong>相似多边形的比 ＝ 对应边平方比</strong>（<strong>穷竭法的前置</strong>；<strong>它是 VI.19、VI.20 的立体版</strong>）</td></tr>
+      <tr><td><strong>XII.2</strong></td><td>★★ <strong>圆面积之比 ＝ 直径平方之比</strong>（<strong>穷竭法的样板</strong>）</td></tr>
+      <tr><td><strong>XII.3–XII.6</strong></td><td><strong>扇形、弓形与圆的比例</strong></td></tr>
+      <tr><td><strong>XII.7–XII.10</strong></td><td>★ <strong>棱锥（XII.7）与圆锥（XII.10）＝ 同底同高柱体的三分之一</strong></td></tr>
+      <tr><td><strong>XII.11–XII.15</strong></td><td><strong>等底等高的锥体体积相等／成比例</strong>、<strong>相似锥体的体积比</strong></td></tr>
+      <tr><td><strong>XII.16</strong></td><td><strong>球的截面性质</strong>（<strong>两球截面圆之比 ＝ 到球心距离的平方关系</strong>）</td></tr>
+      <tr><td><strong>XII.17、XII.18</strong></td><td>★ <strong>球的分割（XII.17）</strong>、★ <strong>球体积之比 ＝ 直径立方之比（XII.18）</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>一个必须点明的事</strong>：<strong>第 XII 卷全是「比」的命题，没有一个是「求值」的</strong>。<strong>欧几里得说的是「圆 ∶ 圆 ＝ d² ∶ d²」，不是「圆面积 ＝ πr²」</strong>。★★ <strong>这个区别很重要</strong>：<strong>「圆面积公式」需要「圆的面积 ∝ r²」＋「比例常数 π」，而 π 的数值要到阿基米德（约公元前 250）才用穷竭法算出（3 又 10/71 ＜ π ＜ 3 又 1/7）</strong>。<strong>《几何原本》只做完了「成比例」这一半，把「求常数」留给了后人</strong>——<strong>这正说明「穷竭法是验证工具、不是发现工具」</strong>。</p>
+  <p><strong>可疑之处</strong>：★ <strong>穷竭法是「验证工具」而非「发现工具」</strong>：<strong>它能严格证明一个「已知的」结论，但不能告诉你结论是什么</strong>——<strong>圆面积公式（πr²）在《几何原本》里根本没有出现，欧几里得只给出「圆与圆之比 ＝ 直径平方比」（XII.2）</strong>。★★ <strong>这一点极重要：不要把 XII.2 读成「欧几里得算出了 π」</strong>——<strong>他算的是「两个圆的比」，不是「圆与正方形的比」</strong>；<strong>π 的近似值要到阿基米德才给出</strong>。★ <strong>穷竭法依赖 X.1（阿基米德性质），而阿基米德性质本身依赖「量可以无限细分」的直觉</strong>——<strong>这也是希尔伯特要补公理的地方之一</strong>。</p>
+  <h3>第十三卷：正多面体（18 命题）· 全书的终点</h3>
+  <p><strong>这一卷在解决什么问题</strong>：★★ <strong>第 XIII 卷是全书最后一卷，也是全书的拱顶石</strong>——<strong>它在球内作出五种正多面体，比较它们的棱长，并以 XIII.18 证明「正多面体只有五种」。</strong></p>
+  <p>★ <strong>背景</strong>：<strong>柏拉图《蒂迈欧》把五种正多面体对应火、土、气、水、天（十二面体）</strong>——<strong>因此这五种立体在希腊有特殊的「宇宙论」地位</strong>。★ <strong>《几何原本》用 XIII 卷把它们全部严格作出并证明「再无其他」。</strong></p>
+  <p><strong>关键命题</strong>：</p>
+  <ul>
+    <li>★★ <strong>XIII.13–XIII.17</strong>：★ <strong>在球内作正四面体（13）、正八面体（14）、正六面体／立方体（15）、正二十面体（16）、正十二面体（17）</strong>——★ <strong>其中正十二面体（XIII.17）依赖黄金分割（II.11、VI.30）</strong>，<strong>正二十面体（XIII.16）依赖「major」无理量（X 卷的分类）</strong>。★★ <strong>这条依赖链把它们与全书前半部分全部接上</strong>：<strong>XIII 卷站在 II、IV、VI、X、XI、XII 卷的肩膀上。</strong>
+    </li>
+    <li>★★ <strong>XIII.18（正多面体只有五种）</strong>：★★ <strong>本报告直接核对过这条全文。</strong>
+    </li>
+  </ul>
+  <blockquote>
+    <p>「To set out the sides of the five figures and to compare them with one another.」／并证「<strong>no other figure, besides the said five figures, can be constructed which is contained by equilateral and equiangular figures equal to one another</strong>」（除这五种外，不存在其他由相等的等边等角图形围成的立体。）<span class="tag t-src">原书</span>（XIII.18）</p>
+  </blockquote>
+  <p><strong>证明思路（「只有五种」的那一半）</strong>：</p>
+  <ol>
+    <li><strong>一个立体角至少要由三个平面角围成</strong>（两个平面角不能围成立体角）；
+    </li>
+    <li><strong>用等边三角形围立体角</strong>：<strong>三个</strong>围成正四面体，<strong>四个</strong>围成正八面体，<strong>五个</strong>围成正二十面体；★ <strong>六个不行</strong>——<strong>因为等边三角形的每个角是「两直角的三分之二」，六个之和 ＝ 四直角，而由 XI.21 立体角必须小于四直角</strong> <span class="tag t-src">原书</span>（XIII.18，含对 XI.21 的引用）；
+    </li>
+    <li><strong>用正方形围</strong>：<strong>三个</strong>围成正方体；<strong>四个不行</strong>（四个直角 ＝ 四直角，违反 XI.21）；
+    </li>
+    <li><strong>用正五边形围</strong>：<strong>三个</strong>围成正十二面体；<strong>四个不行</strong>（每个角 ＝ 一直角又五分之一，四个之和 ＞ 四直角）；
+    </li>
+    <li><strong>用边数更多的正多边形</strong>：<strong>三个的角之和已 ≥ 四直角，都不行</strong>；
+    </li>
+    <li><strong>故只有五种</strong> <span class="tag t-src">原书</span>（XIII.18）。
+  <p>★★ <strong>这个证明的关键工具是 XI.21</strong>——<strong>「立体角的平面角之和必须小于四直角」</strong>。★ <strong>而 XI.21 用 I.32，I.32 用 Post.5</strong>——<strong>全书最后一题的「唯一性」，最终挂在第五条公设上</strong>。★ <strong>这个事实本身就是全书结构的一个绝妙注脚：从第一条公设到最后一题，欧几里得的体系是一根完整的链。</strong></p>
+    </li>
+  </ol>
+  <p>★ <strong>第 XIII 卷 18 命题的分组（Heath 译本目录）</strong>：</p>
+  <table>
+    <thead><tr><th>命题区间</th><th>在做什么</th></tr></thead>
+    <tbody>
+      <tr><td><strong>XIII.1–XIII.5</strong></td><td>★ <strong>「中外比」（黄金分割）的进一步性质</strong>——<strong>为 XIII.13–XIII.17 作准备</strong></td></tr>
+      <tr><td><strong>XIII.6–XIII.11</strong></td><td>★ <strong>正五边形、正十边形与「中外比」的关系</strong>：<strong>XIII.8、XIII.9（正五边形内部的中外比）</strong>、<strong>XIII.10（正五边形与正十边形的边）</strong></td></tr>
+      <tr><td><strong>XIII.12</strong></td><td>★ <strong>等边三角形的性质</strong>（<strong>用于正四面体</strong>）</td></tr>
+      <tr><td><strong>XIII.13–XIII.17</strong></td><td>★★ <strong>在球内作正四面体（13）、正八面体（14）、立方体（15）、正二十面体（16）、正十二面体（17）</strong></td></tr>
+      <tr><td><strong>XIII.18</strong></td><td>★★ <strong>比较五种正多面体的棱长，并证明「再无其他」</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>第 XIII 卷站在全书多少卷的肩膀上</strong>：<strong>它要用第 II 卷（黄金分割 II.11）、第 IV 卷（正五边形 IV.10–11）、第 VI 卷（相似形 VI.8、VI.30）、第 X 卷（正二十面体棱长的「major」无理量分类）、第 XI 卷（立体角 XI.21）、第 XII 卷（球的分割 XII.17）</strong>。★★ <strong>换句话说：第 XIII 卷是「全书技术的总验收」——它把前面 12 卷的成果全部用上，才把五种正多面体立起来。</strong> 这也是<strong>2000 年来无数学者认为「《几何原本》整部书就是为了 XIII 卷而写」的原因</strong>（<strong>此说属一种解释性观点，非欧几里得自述</strong>）。</p>
+  <p><strong>可疑之处</strong>：★ <strong>XIII.18 证明了「正多面体只有五种」，但它没有讨论「为什么这五种与球的关系如此特殊」</strong>——<strong>「球内接」的选择，带有柏拉图式的宇宙论动机，欧几里得本人未加说明</strong>。★ <strong>正多面体的现代「分类定理」用欧拉公式（V − E ＋ F ＝ 2）几行即可证</strong>（<strong>欧拉 1750 前后</strong>）——<strong>《几何原本》的证明更「几何」、更依赖 XI.21，但不比欧拉公式差</strong>。★ <strong>注意</strong>：<strong>XIII 卷只处理「正多面体」</strong>，<strong>没有处理「半正多面体」（阿基米德立体）</strong>——<strong>那是更晚的研究</strong>。</p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">13</span><span>结构再读：为什么它是「最成功的教科书」</span><span class="caret">▾</span></h2>
+  <h3>这一节在回答什么</h3>
+  <p>★ <strong>前面 12 节把 13 卷的内容讲了一遍。这一节要回答三个「元问题」</strong>：<strong>它为什么能当教材两千年？它如何塑造了后世的著作？它对今天的意义是什么？</strong></p>
+  <h3>① 为什么它能当教材 2,000 年：「定义—公设—命题—证明」的可移植性</h3>
+  <p>★★ <strong>《几何原本》的正文内容，今天有一大半已经不在中学课本里</strong>（<strong>第 VII–X 卷的数论与无理量几乎不再讲</strong>）。<strong>但它作为「教材」的地位从未真正倒塌</strong>，原因是<strong>它提供了一种「形式」，而这个形式可以装任何内容</strong>：</p>
+  <table>
+    <thead><tr><th>要素</th><th>内容</th><th>为什么可移植</th></tr></thead>
+    <tbody>
+      <tr><td><strong>定义</strong></td><td>先把术语说清</td><td><strong>任何学科都需要先「说清概念」</strong></td></tr>
+      <tr><td><strong>公设／公理</strong></td><td>少数几条被「要求」接受的前提</td><td><strong>任何体系都需要「起点」</strong></td></tr>
+      <tr><td><strong>命题</strong></td><td>待证或待作的结论</td><td><strong>任何推理都需要「结论」这一栏</strong></td></tr>
+      <tr><td><strong>证明</strong></td><td>只能引用前面已证的东西</td><td>★★ <strong>这是最关键的一条：「引用只能向后」</strong></td></tr>
+      <tr><td><strong>Q.E.D. / Q.E.F.</strong></td><td>定理与作图两个结尾语</td><td><strong>区分「断言」与「构造」</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>这五个要素合起来，就是「什么是好的论证」的一个模板。</strong> 后世无数著作<strong>直接套用这个模板</strong>，把「几何」换成它们自己的研究对象——<strong>这就是它「可移植」的意思。</strong></p>
+  <h3>② 它如何塑造了后世的著作：斯宾诺莎、牛顿、霍布斯</h3>
+  <p>★★ <strong>这一条是本项目「公理化方法线」的起点</strong>（<strong>《几何原本》（约公元前 300）→《自然哲学的数学原理》（1687）→《物种起源》（1859）</strong>）：</p>
+  <ul>
+    <li><strong>斯宾诺莎《伦理学》（<em>Ethica</em>，1677 年遗著出版）</strong>：★★ <strong>最彻底的仿作</strong>——<strong>它直接采用「定义—公理—命题—证明—推论」的体例</strong>，<strong>每一条命题都标出「证明」并引用前面的命题</strong>，<strong>连附录（论情感）都像一份「命题序列」</strong>。★ <strong>斯宾诺莎的友人甚至认为，他是真的把「几何顺序」（ordine geometrico）当成获得真理的方法</strong>，而不只是一种文体。
+    </li>
+    <li><strong>牛顿《自然哲学的数学原理》（1687）</strong>：★ <strong>正文用「定义—公理（运动定律）—命题—证明」写成</strong>，<strong>命题用综合几何证明，不用微积分记号</strong>（<strong>本报告《自然哲学的数学原理》一篇详述</strong>）。★★ <strong>牛顿在第三编开篇明确交代：他原本用「通俗的方法」写第三编，后为避免争论改写成「数学命题的形式」——「只让先掌握了前两编所立原理的人来读」。</strong> <strong>这句话就是《几何原本》式文体的自我意识：「难读」是刻意的，因为「易读」会被误读。</strong>
+    </li>
+    <li><strong>霍布斯《利维坦》（1651）</strong>：★ <strong>采用「定义—推论」的推演式写法</strong>（<strong>从感觉、想象、语言、激情一路推到主权者</strong>）；★ <strong>霍布斯本人是《几何原本》的公开崇拜者</strong>（<strong>据说他中年时在一位绅士的书房里偶然翻到《几何原本》I.47，读后大为震动，从此转向哲学</strong>——★ <strong>此轶事的细节见 Aubrey 的《名人小传》，属转述</strong>）。★ 不过<strong>《利维坦》并不是严格意义上的「公理系统」</strong>，<strong>它的「公理」其实是「定义」与「经验概括」的混合</strong>（<strong>这是后世对它的一种重要批评，见《利维坦》报告 <code>## 5</code></strong>）。
+    </li>
+    <li>★ <strong>顺带</strong>：<strong>笛卡尔、伽利略、哥白尼</strong>都受《几何原本》式方法影响（<strong>哥白尼《天体运行论》第一编即以「公设／公理」的体例展开</strong>）——<strong>这是「几何化自然哲学」更大的一条线。</strong>
+    </li>
+  </ul>
+  <h3>③ 希尔伯特的《几何基础》（1899）：把同一套方法重写一遍</h3>
+  <p>★★ <strong>这是「结构再读」里最该讲的一件事。</strong> <strong>David Hilbert《几何基础》（1899）</strong> 做了一件看似「拆台」、实则「加冕」的事：<strong>他用现代公理化方法，把《几何原本》重写了一遍</strong>（详见 <code>## 5.4</code>）。★ 他做的三件事：</p>
+  <ol>
+    <li><strong>取消「定义的循环」</strong>：<strong>不再定义「点、线、面」，而让公理隐式地规定它们</strong>（<strong>「点是……的东西」被换成「点、线、面满足以下公理」</strong>）；
+    </li>
+    <li><strong>补上欧几里得隐含的概念</strong>：<strong>「之间」（顺序公理）、「合同」（合同公理）、「连续」（完备性公理）</strong>；
+    </li>
+    <li>★★ <strong>指出欧几里得</strong>（如 I.1）<strong>依赖图形直觉的结论</strong>——<strong>「两圆相交」「直线与三角形边相交」这类「看得见」的事实，被证明是需要公理保证的</strong>。
+    </li>
+  </ol>
+  <p>★★ <strong>希尔伯特还提出了「一个好的公理系统必须满足三件事」</strong>——<strong>这套标准，是评价《几何原本》最锋利的尺子</strong>：</p>
+  <table>
+    <thead><tr><th>标准</th><th>什么意思</th><th>《几何原本》达标吗</th></tr></thead>
+    <tbody>
+      <tr><td><strong>一致性（consistency）</strong></td><td><strong>从公理推不出矛盾</strong></td><td>★ <strong>欧几里得未讨论</strong>；<strong>非欧几何出现后，一致性问题才被提出</strong>（<strong>1868 年起用模型证明「相对一致」</strong>）</td></tr>
+      <tr><td><strong>独立性（independence）</strong></td><td><strong>每条公理不能被其他公理推出</strong></td><td>★★ <strong>这正是第五条公设 2,300 年争议的核心</strong>——<strong>如果 P5 能由其他公设推出，它就不该是公设</strong>；<strong>Saccheri、Lobachevsky、Bolyai 的工作最终证明「P5 独立」</strong></td></tr>
+      <tr><td><strong>完备性（completeness）</strong></td><td><strong>公理足以推出该领域的一切真理</strong></td><td>★ <strong>欧几里得未讨论</strong>；★ <strong>哥德尔 1931 不完备性定理</strong>表明，<strong>任何足够强的、一致的形式系统都不可能「完备」</strong>（<strong>本报告《数学原理》一篇详述</strong>）</td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>这张表说明：</strong> 《几何原本》<strong>在「独立性」这一条上，恰恰因为第五条公设而「未达标」，却因此推动了整个数学</strong>；<strong>在「一致性」与「完备性」这两条上，要等到 20 世纪才有工具来讨论</strong>——<strong>而这套工具（形式化、模型论、不完备性定理）又是从《几何原本》开启的传统里长出来的。</strong></p>
+  <p>★ <strong>希尔伯特自己的工作起名叫「几何基础」（Grundlagen der Geometrie），而不是「几何学」</strong>——<strong>这件事本身说明：到 19 世纪末，「讨论一个体系的基础」已经成了一门独立的学问。</strong> ★★ <strong>而《几何原本》是这门学问的第一个对象。</strong></p>
+  <h3>④ 非欧几何的诞生：源于对第五条公设的怀疑</h3>
+  <p>★★ <strong>这是全书影响最深远的后果</strong>（详见 <code>## 5.1</code>）。<strong>非欧几何的诞生，不是「有人算错了」，而是「有人终于问对了问题」：</strong></p>
+  <ul>
+    <li><strong>问题</strong>：<strong>第五公设（P5）到底能不能从其他公设证出来？</strong>
+    </li>
+    <li><strong>Saccheri（1733）</strong>：<strong>用反证法假设 P5 不成立，推出了一串「奇怪但不矛盾」的结论，却以为那是矛盾而收笔</strong>；
+    </li>
+    <li><strong>Lobachevsky（1829）与 Bolyai（1832）</strong>：<strong>独立地宣布「P5 不可证，其否定构成一门自洽几何」</strong>；
+    </li>
+    <li><strong>Riemann（1854）</strong>：<strong>从曲率与流形的角度，指出可以有无限多种自洽几何</strong>；
+    </li>
+    <li><strong>1868 起（Beltrami、Klein、Poincaré）</strong>：<strong>用欧氏几何内部的模型，证明非欧几何与欧氏几何「相对一致」</strong>。
+    </li>
+  </ul>
+  <p>★★ <strong>结论</strong>：<strong>「几何」于是从「唯一的真理」变成「一族可以由公理定义的结构」。</strong> <strong>这个转变的起点，就是《几何原本》里那条最不像公设的公设。</strong> ★ <strong>一个两千年前的前提，两千年后炸开了整个数学——这就是「公理化方法」的威力，也是《几何原本》留给后世最大的礼物。</strong></p>
+  <h3>⑤ 它今天还成立吗——分角度回答</h3>
+  <table>
+    <thead><tr><th>角度</th><th>结论</th></tr></thead>
+    <tbody>
+      <tr><td><strong>作为几何教材</strong></td><td><strong>内容大部分被取代</strong>（<strong>第 VII–X 卷退出教学</strong>；<strong>中学几何已改用希尔伯特式或更简化的公理</strong>）；★ 但<strong>「全等」「相似」「圆」的基本定理仍有不可替代的历史与教学价值</strong></td></tr>
+      <tr><td><strong>作为数学文本</strong></td><td>★ <strong>大部分命题在数学上无可争议</strong>（I.47、IX.20、XII.2、XIII.18 等今天仍是标准内容）；★ <strong>它的严密性标准已被超越</strong>（希尔伯特 1899），<strong>但这不是「错」而是「进步」</strong></td></tr>
+      <tr><td><strong>作为方法论文献</strong></td><td>★★ <strong>地位不降反升</strong>。<strong>它是「公理化—演绎」这一知识形式的第一份完整样板</strong>；<strong>现代数学、逻辑学、计算机科学的「形式系统」概念，都能追溯到它</strong>。★ 希尔伯特 1899 之后，<strong>「把一个体系公理化」成了一个标准动作</strong>（<strong>集合论、算术、概率论、力学都做过这件事</strong>）</td></tr>
+      <tr><td><strong>作为科学史读物</strong></td><td><strong>必读</strong>，但要带着「<strong>它不是一本几何习题集，而是一个体系的公开建造过程</strong>」的意识读</td></tr>
+      <tr><td><strong>作为入门读物</strong></td><td>★ <strong>对普通读者不推荐通读</strong>。<strong>替代路径</strong>：<strong>读「23 定义 ＋ 5 公设 ＋ 5 公理 ＋ I.1/I.4/I.29/I.47 ＋ V.def.5 ＋ VII.2 ＋ IX.20 ＋ X.1 ＋ XII.2 ＋ XIII.18」这一组约 40 页</strong>（见 <code>## 3</code>）；<strong>或读 Heath 译本的长篇导论</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一个反直觉的判断</strong>：<strong>这本书最经得起时间考验的部分，不是任何一个命题，而是「它把 465 个结论放进同一个前提集里」这件事本身。</strong> <strong>命题会被更新，公理会被替换，证明会被写得更好——但「先立前提、再逐条推、只准向后引用」这套做法，两千年一个字都没有过时。</strong></p>
+  <h3>⑥ 它留给后世的三份遗产</h3>
+  <p>★ <strong>把前面的内容收束成三句话</strong>：《几何原本》留下的，不是几何，而是<strong>三样东西</strong>。</p>
+  <table>
+    <thead><tr><th>遗产</th><th>是什么</th><th>今天在哪里能看到它</th></tr></thead>
+    <tbody>
+      <tr><td><strong>① 「公理化—演绎」这一知识形式</strong></td><td><strong>定义—公设—命题—证明，且只准向后引用</strong></td><td>★★ <strong>现代数学的每一本教科书、每一个形式系统（集合论 ZFC、皮亚诺算术、概率论 Kolmogorov 公理、力学、热力学）都还在用这套形式</strong></td></tr>
+      <tr><td><strong>② 「可证明性」这一标准</strong></td><td><strong>一个结论要么被证明，要么是前提</strong>——<strong>中间没有「看起来对」的灰色地带</strong></td><td>★★ <strong>现代逻辑学与计算机科学（</strong>形式验证、定理证明器 Coq／Lean<strong>）的源头</strong></td></tr>
+      <tr><td><strong>③ 「不信任公理」这一开端</strong></td><td>★★ <strong>第五条公设引发的 2,300 年怀疑</strong></td><td>★★ <strong>非欧几何、黎曼几何、乃至广义相对论赖以建立的时空几何——全部从「怀疑第五条」开始</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>注意这第三份遗产的特殊性</strong>：<strong>前两份是「正面成果」，第三份却是「负面成果」——它是「一个体系被怀疑之后长出的新东西」。</strong> ★ <strong>这恰恰是《几何原本》最深刻的地方：它不仅教人「怎么建一个体系」，还（在不经意间）教人「怎么去拆一个体系」。</strong> <strong>欧几里得写下第五条公设时，大概不会想到，正是这条他不情愿使用、又无法删除的前提，在两千三百年后炸开了整个数学。</strong></p>
+  <h3>⑦ 一个思想实验：如果第五条公设不是真的</h3>
+  <p>★ <strong>把 <code>## 5.1</code> 的线索再往前推一步，用「思想实验」的方式看非欧几何</strong>——<strong>这是理解「公理化方法」威力最快的一条路</strong>。</p>
+  <p><strong>设定</strong>：<strong>把「绝对几何」（I.1–I.28 及一切不依赖 P5 的命题）保留，只把 P5 换掉。</strong></p>
+  <table>
+    <thead><tr><th>选择</th><th>得到的几何</th><th>标志性结论（与欧氏几何对照）</th></tr></thead>
+    <tbody>
+      <tr><td><strong>P5 成立</strong>（欧几里得）</td><td><strong>欧氏几何</strong></td><td><strong>三角形内角和 ＝ 两直角；过线外一点恰有一条平行线；相似三角形可以大小不同而形状相同</strong></td></tr>
+      <tr><td><strong>P5 不成立：过线外一点可以有不止一条平行线</strong></td><td>★ <strong>双曲几何</strong>（Lobachevsky 1829／Bolyai 1832）</td><td>★ <strong>三角形内角和 ＜ 两直角</strong>（<strong>内角和随面积增大而减小</strong>）；★ <strong>不存在「大小不同但相似」的三角形</strong>（<strong>相似即全等</strong>）</td></tr>
+      <tr><td><strong>P5 不成立：过线外一点没有任何平行线</strong></td><td>★ <strong>椭圆几何／黎曼几何</strong>（Riemann 1854）</td><td>★ <strong>三角形内角和 ＞ 两直角</strong>；<strong>「直线」成为有限长的闭曲线</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>这个实验说明三件事</strong>：① <strong>P5 不是「显然的」</strong>——<strong>它的否定也不自相矛盾</strong>；② <strong>换掉一条公理，得到的不只是「错的几何」，而是「另一套自洽的几何」</strong>；③ ★★ <strong>1868 年起（Beltrami、Klein、Poincaré）用欧氏几何内部的「模型」证明了：若欧氏几何无矛盾，则非欧几何也无矛盾</strong>——<strong>换言之，非欧几何的「合法性」最终靠欧氏几何来担保。</strong> ★ <strong>这就是《几何原本》的终极讽刺：它想给几何找一个唯一的基础，结果却证明了「基础是可以有很多种的」。</strong></p>
+  <h3>⑧ 一句话收束</h3>
+  <p>★ <strong>如果只能记住一件事，请记住这个</strong>：<strong>《几何原本》真正的发明，不是勾股定理、不是素数无穷多、不是正多面体——而是「把道理放进一个可以检查的链子里」这件事。</strong> ★★ <strong>在这个意义上，它比它里面的任何一条命题都活得更久：命题会过时，方法不会。</strong> <strong>两千年后的今天，当你写下一份「定义 1、公理 1、定理 1、证明」的文档时，你用的就是欧几里得的格式。</strong></p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>概念／人物</th><th>一句话</th><th>出现在</th></tr></thead>
+    <tbody>
+      <tr><td><strong>定义（ὅρος）</strong></td><td>对术语的说明；第 I 卷 23 个，全书 119 个</td><td>各卷卷首</td></tr>
+      <tr><td><strong>公设（αἴτημα，postulate）</strong></td><td>针对几何的「操作前提」，共 5 条</td><td>第 I 卷卷首</td></tr>
+      <tr><td><strong>公理（κοινὴ ἔννοια，common notion）</strong></td><td>适用于一切推理的普遍原则，共 5 条</td><td>第 I 卷卷首</td></tr>
+      <tr><td><strong>第五条公设（P5，平行公设）</strong></td><td>「同侧内角之和小于两直角则两线必相交于该侧」；★ <strong>I.1–I.28 完全未用，I.29 首次引用</strong></td><td>第 I 卷 公设 5</td></tr>
+      <tr><td><strong>Q.E.D. / Q.E.F.</strong></td><td>定理／作图题的两个结尾语（「此即所欲证／作者」）</td><td>全书命题末</td></tr>
+      <tr><td><strong>绝对几何</strong></td><td>不依赖 P5 的那部分命题（I.1–I.28 及一切不涉平行线者）</td><td>近代概念，源自 I.29 前后的断点</td></tr>
+      <tr><td><strong>穷竭法</strong></td><td>用「取超过一半、不断重复」逼近并「双归谬」锁定结论的证明法</td><td>逻辑基础在 <strong>X.1</strong>；用于 <strong>XII</strong> 卷</td></tr>
+      <tr><td><strong>比例论（据 Eudoxus）</strong></td><td>用「任意等倍比较同步」定义「相等之比」，绕开无理数</td><td><strong>V.def.5</strong>；应用于第 VI 卷</td></tr>
+      <tr><td><strong>黄金分割</strong></td><td>把线段截成「整段×小段 ＝ 大段²」</td><td><strong>II.11</strong>、<strong>VI.30</strong>；用于 <strong>IV.10</strong>、<strong>XIII.17</strong></td></tr>
+      <tr><td><strong>辗转相除法（欧几里得算法）</strong></td><td>用「反复相减／相除」求最大公约数</td><td><strong>VII.2</strong></td></tr>
+      <tr><td><strong>素数无穷多</strong></td><td>反证 ＋ 构造 N ＝ p₁p₂…pₙ ＋ 1（或取新素因子）</td><td><strong>IX.20</strong></td></tr>
+      <tr><td><strong>完全数公式</strong></td><td>若 2ⁿ − 1 为素数，则 2ⁿ⁻¹(2ⁿ − 1) 为完全数</td><td><strong>IX.36</strong></td></tr>
+      <tr><td><strong>无理量分类</strong></td><td>把二次／四次无理直线分成十余类（中项、二项式、余项等）</td><td>第 X 卷（115 命题）</td></tr>
+      <tr><td><strong>正多面体只有五种</strong></td><td>正四、正六、正八、正十二、正二十面体；用 XI.21 排除其余</td><td><strong>XIII.18</strong></td></tr>
+      <tr><td><strong>欧几里得（Εὐκλείδης，约公元前 300）</strong></td><td>本书作者；亚历山大里亚；★ <strong>生平几乎无可靠记载，无任何自述</strong></td><td>—</td></tr>
+      <tr><td><strong>Eudoxus（约公元前 390–337）</strong></td><td>比例论（第 V 卷）的作者（据 Proclus 转述）</td><td><code>## 5.2</code>、<code>## 9</code></td></tr>
+      <tr><td><strong>Theaetetus（约公元前 417–369）</strong></td><td>正多面体研究（第 XIII 卷）的归属者（据 Proclus 转述）</td><td><code>## 5.2</code>、<code>## 12</code></td></tr>
+      <tr><td><strong>Hypsicles（约公元前 2 世纪）</strong></td><td>所谓「第 14 卷」的作者，<strong>非欧几里得</strong></td><td><code>## 4b</code> 第 7 条</td></tr>
+      <tr><td><strong>Proclus（约 410–485）</strong></td><td>新柏拉图主义者；《欧几里得原本第一卷注》——<strong>关于欧几里得生平与《原本》归属的主要（唯一）早期史料来源</strong>，属后世建构</td><td><code>## 0</code>、<code>## 5.2</code></td></tr>
+      <tr><td><strong>Theon of Alexandria（4 世纪）</strong></td><td>其抄本（Theonine recension）长期通行，遮蔽了欧几里得原貌</td><td><code>## 5.3</code></td></tr>
+      <tr><td><strong>François Peyrard</strong></td><td><strong>1808 年</strong>在梵蒂冈发现 MS. Vat. 190（早于 Theon 的抄本）</td><td><code>## 5.3</code></td></tr>
+      <tr><td><strong>J. L. Heiberg（1854–1928）</strong></td><td>希腊文校勘本《Euclidis Elementa》（1883–1888）；<strong>Heath 1908 英译即据此</strong></td><td><code>## 0</code>、<code>## 5.3</code></td></tr>
+      <tr><td><strong>T. L. Heath（1861–1940）</strong></td><td>《The Thirteen Books of Euclid's Elements》（1908／1926）——<strong>全 13 卷标准英译</strong></td><td><code>## 0</code>、<code>## 4</code></td></tr>
+      <tr><td><strong>David Hilbert（1862–1943）</strong></td><td>《几何基础》（<em>Grundlagen der Geometrie</em>，1899）——用现代公理化重写《原本》</td><td><code>## 5.4</code>、<code>## 13</code></td></tr>
+      <tr><td><strong>John Casey（1820–1891）</strong></td><td><strong>PG #21076</strong> 的编者（《First Six Books》）——★ <strong>只有前六卷</strong></td><td><code>## 4</code>、<code>## 4b</code> 第 1 条</td></tr>
+      <tr><td><strong>徐光启（1562–1633）／利玛窦（Matteo Ricci，1552–1610）</strong></td><td><strong>1607 年</strong>合译《几何原本》<strong>前六卷</strong>，据 Clavius 拉丁本；「几何」及基本术语由此确立</td><td><code>## 4</code></td></tr>
+      <tr><td><strong>李善兰（1811–1882）／伟烈亚力（Alexander Wylie，1815–1887）</strong></td><td><strong>1857 年</strong>续译<strong>后九卷</strong></td><td><code>## 4</code></td></tr>
+      <tr><td><strong>曾国藩（1811–1872）</strong></td><td><strong>1865 年</strong>金陵官署刻本——<strong>15 卷中译本首次全帙刊刻</strong></td><td><code>## 4</code></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>关键命题一览（只列本报告重点评述的命题；定位用「卷 ＋ 命题号」）</strong>：</p>
+  <table>
+    <thead><tr><th>命题</th><th>一句话</th><th>出现在</th></tr></thead>
+    <tbody>
+      <tr><td><strong>I.1</strong></td><td>在给定线段上作等边三角形（作图题模板；隐含「两圆相交」）</td><td><code>## 6</code>、<code>## 7</code></td></tr>
+      <tr><td><strong>I.4</strong></td><td>边角边全等（第一个全等判定；用「移动」证明）</td><td><code>## 7</code>、<code>## 6</code></td></tr>
+      <tr><td><strong>I.5</strong></td><td>等腰三角形底角相等（「驴桥」）</td><td><code>## 7</code></td></tr>
+      <tr><td><strong>I.26</strong></td><td>角边角与角角边全等（唯一不用「移动」的全等判定）</td><td><code>## 7</code></td></tr>
+      <tr><td><strong>I.29</strong></td><td>★ 平行线的性质（<strong>第五条公设第一次被引用</strong>）</td><td><code>## 6</code>、<code>## 7</code></td></tr>
+      <tr><td><strong>I.32</strong></td><td>三角形内角和 ＝ 两直角（依赖 P5）</td><td><code>## 7</code></td></tr>
+      <tr><td><strong>I.41</strong></td><td>平行四边形 ＝ 2×同底同高的三角形（I.47 的工具）</td><td><code>## 7</code></td></tr>
+      <tr><td><strong>I.47</strong></td><td>★★ 勾股定理（面积证明）</td><td><code>## 0</code>、<code>## 7</code>、<code>## 2</code></td></tr>
+      <tr><td><strong>I.48</strong></td><td>勾股定理的逆定理</td><td><code>## 7</code></td></tr>
+      <tr><td><strong>II.11</strong></td><td>★ 黄金分割作图</td><td><code>## 8</code>、<code>## 12</code></td></tr>
+      <tr><td><strong>II.12、II.13</strong></td><td>余弦定理（钝角／锐角情形的几何版）</td><td><code>## 8</code></td></tr>
+      <tr><td><strong>II.14</strong></td><td>作正方形等于已知直线形（求等积正方形）</td><td><code>## 8</code></td></tr>
+      <tr><td><strong>III.16</strong></td><td>切线与切线角</td><td><code>## 8</code></td></tr>
+      <tr><td><strong>III.20</strong></td><td>圆心角 ＝ 2×圆周角</td><td><code>## 8</code></td></tr>
+      <tr><td><strong>III.35、III.36</strong></td><td>幂定理（两弦／割线与切线）</td><td><code>## 8</code></td></tr>
+      <tr><td><strong>IV.10、IV.11</strong></td><td>正五边形（依赖 II.11）</td><td><code>## 8</code></td></tr>
+      <tr><td><strong>IV.15</strong></td><td>正六边形（边 ＝ 半径）</td><td><code>## 8</code></td></tr>
+      <tr><td><strong>IV.16</strong></td><td>正十五边形（3 × 5 合成）</td><td><code>## 8</code></td></tr>
+      <tr><td><strong>V.def.5</strong></td><td>★★ 比例的定义（任意等倍比较同步；绕开无理数）</td><td><code>## 2</code>、<code>## 9</code></td></tr>
+      <tr><td><strong>V.22</strong></td><td>等比（ex aequali）</td><td><code>## 9</code></td></tr>
+      <tr><td><strong>VI.2</strong></td><td>平行截比例</td><td><code>## 9</code></td></tr>
+      <tr><td><strong>VI.4</strong></td><td>等角三角形对应边成比例（证明引 Post.5）</td><td><code>## 9</code></td></tr>
+      <tr><td><strong>VI.8</strong></td><td>直角三角形斜边上的高</td><td><code>## 9</code>、<code>## 12</code></td></tr>
+      <tr><td><strong>VI.19</strong></td><td>相似三角形面积比 ＝ 对应边平方比</td><td><code>## 9</code>、<code>## 12</code></td></tr>
+      <tr><td><strong>VI.30</strong></td><td>把线段截成中外比（黄金分割另作）</td><td><code>## 9</code>、<code>## 12</code></td></tr>
+      <tr><td><strong>VI.31</strong></td><td>勾股定理的「相似形推广」</td><td><code>## 9</code></td></tr>
+      <tr><td><strong>VII.2</strong></td><td>★★ 辗转相除法（欧几里得算法）</td><td><code>## 0</code>、<code>## 10</code></td></tr>
+      <tr><td><strong>VII.31</strong></td><td>合数必有素因子（IX.20 的工具）</td><td><code>## 10</code></td></tr>
+      <tr><td><strong>VIII.1</strong></td><td>连比例且首末互素者是最小数组</td><td><code>## 10</code></td></tr>
+      <tr><td><strong>VIII.11</strong></td><td>平方数之间有一个中项</td><td><code>## 10</code></td></tr>
+      <tr><td><strong>IX.14</strong></td><td>算术基本定理的实质</td><td><code>## 10</code></td></tr>
+      <tr><td><strong>IX.20</strong></td><td>★★ 素数无穷多（反证 ＋ 构造）</td><td><code>## 0</code>、<code>## 10</code>、<code>D5</code></td></tr>
+      <tr><td><strong>IX.36</strong></td><td>★★ 偶完全数公式</td><td><code>## 10</code></td></tr>
+      <tr><td><strong>X.1</strong></td><td>★★ 穷竭法原理（第 XII 卷的工具）</td><td><code>## 11</code>、<code>## 12</code></td></tr>
+      <tr><td><strong>X.73–X.115</strong></td><td>无理直线的分类（二项式／余项的各阶）</td><td><code>## 11</code></td></tr>
+      <tr><td><strong>XI.20、XI.21</strong></td><td>立体角的性质（XI.21 是 XIII.18 的工具）</td><td><code>## 12</code></td></tr>
+      <tr><td><strong>XI.32–XI.39</strong></td><td>等底等高的平行六面体体积成比例</td><td><code>## 12</code></td></tr>
+      <tr><td><strong>XII.1</strong></td><td>相似多边形之比 ＝ 对应边平方比</td><td><code>## 12</code></td></tr>
+      <tr><td><strong>XII.2</strong></td><td>★★ 圆面积之比 ＝ 直径平方之比（穷竭法样板）</td><td><code>## 0</code>、<code>## 12</code></td></tr>
+      <tr><td><strong>XII.7、XII.10</strong></td><td>锥体 ＝ 同底同高柱体的三分之一</td><td><code>## 12</code></td></tr>
+      <tr><td><strong>XII.18</strong></td><td>球体积之比 ＝ 直径立方之比</td><td><code>## 12</code></td></tr>
+      <tr><td><strong>XIII.13–XIII.17</strong></td><td>球内接五种正多面体</td><td><code>## 12</code></td></tr>
+      <tr><td><strong>XIII.18</strong></td><td>★★ 正多面体只有五种（全书终点）</td><td><code>## 0</code>、<code>## 12</code></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s16">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>要读原文（英译）</strong>：<strong>Perseus Digital Library 的 Heath 英译全文</strong>（<code>Perseus:text:1999.01.0086</code>，据 Dover 1956 重印，即 Heath 1926 第 2 版），<strong>全 13 卷、逐命题可定位</strong>——★ 这是本报告的 A 级英译依据。<strong>希腊文</strong>见 <code>Perseus:text:1999.01.0085</code>（Heiberg 校勘本）。
+    </li>
+    <li><strong>要读权威校订本</strong>：<strong>T. L. Heath（trans.）</strong>, <em>The Thirteen Books of Euclid's Elements</em>, Cambridge University Press, <strong>1908</strong>（第 2 版 <strong>1926</strong>；Dover 重印）——<strong>全 13 卷标准英译，附长篇导论与逐命题注疏</strong>；<strong>archive.org 三卷本</strong>可核（Vol I Books I–II／Vol II Books III–IX／Vol III Books X–XIII ＋ 附录）。
+    </li>
+    <li><strong>要读希腊文校勘本</strong>：<strong>J. L. Heiberg</strong>, <em>Euclidis Elementa</em>, Teubner, <strong>1883–1888</strong>。
+    </li>
+    <li><strong>要读版本史</strong>：<strong>J. L. Heiberg</strong> 的校勘导论；<strong>François Peyrard</strong> 1808 年对梵蒂冈抄本 MS. Vat. 190 的发现说明（见 <code>## 5.3</code>）。
+    </li>
+    <li><strong>要读现代公理化重写</strong>：<strong>David Hilbert</strong>, <em>Grundlagen der Geometrie</em>, <strong>1899</strong>（英译 <em>Foundations of Geometry</em>）——<strong>理解「欧几里得的严密性差在哪里」的最佳入口</strong>。
+    </li>
+    <li><strong>要读非欧几何</strong>：<strong>Saccheri</strong>（1733）、<strong>Lobachevsky</strong>（1829）、<strong>Bolyai</strong>（1832）、<strong>Riemann</strong>（1854）——<strong>关于第五条公设的完整线索</strong>（见 <code>## 5.1</code>）。
+    </li>
+    <li><strong>要给非专业读者的替代读本</strong>：<strong>读「23 定义 ＋ 5 公设 ＋ 5 公理 ＋ 关键命题组」约 40 页</strong>（见 <code>## 3</code> 的阅读路线）；<strong>或 Heath 译本的长篇导论</strong>（它本身就是一部《几何原本》小史）。
+    </li>
+    <li><strong>中文译本</strong>：<strong>蓝纪正、朱恩宽《欧几里得几何原本》</strong>（陕西科学技术出版社，2003）；<strong>张卜天 译《几何原本》</strong>（商务印书馆，2020）。★ <strong>买之前确认是否含第 VII 卷及以后</strong>（见 <code>## 4</code>）。
+    </li>
+    <li><strong>要读「欧几里得这个人」</strong>：★ <strong>几乎无可靠史料</strong>——<strong>关于他的生平，主要（唯一）的早期来源是 Proclus 的《欧几里得原本第一卷注》</strong>（见 <code>## 5.2</code>）；<strong>现代科学史著作对此都只能「转述 Proclus 并说明其不可靠」</strong>。
+    </li>
+    <li><strong>要读「第五条公设」专题</strong>：★ <strong>关于 P5 的完整线索</strong>，除 <code>## 5.1</code> 的年份表外，<strong>可读通行的非欧几何史专著</strong>（本报告未逐字核对各原著，见 <code>D3</code>）。
+    </li>
+    <li><strong>要读「中世纪与阿拉伯的传承」</strong>：★ <strong>《几何原本》经阿拉伯世界保存与注释后才重回欧洲</strong>（<strong>al-Jawhari、Omar Khayyam、Nasir al-Din al-Tusi 等都注释过</strong>）——★ <strong>这条「传承链」本报告只在 <code>## 5.1</code> 一笔带过，未展开</strong>（<strong>读者若感兴趣，它是《几何原本》研究里独立的一大块</strong>）。
+    </li>
+    <li><strong>要读「中国古代的几何」</strong>：★ <strong>与本报告相关的对照</strong>——<strong>《九章算术》（约公元 1 世纪成书）</strong> 走的是<strong>另一条路线：以「问题—算法」为中心，不以「公理—演绎」为中心</strong>。★★ <strong>《几何原本》与《九章算术》的对照，是理解「中西数学传统差异」的经典入口</strong>——<strong>徐光启 1607 年据 Clavius 本译出前六卷，正是把「演绎传统」引入中文世界的第一次尝试</strong>（见 <code>## 4</code>、<code>## 5.6</code>）。
+    </li>
+  </ol>
+</section>
+
+<section id="s17">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>见同目录 <code>几何原本-来源清单.md</code>。</p>
+</section>
+
+<section id="s18">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <h3>D1. ★★ 我实际「逐条读到」的命题范围（核验辖区）</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：Heath 英译全 13 卷在 Perseus 上<strong>逐命题可访问</strong>（本报告已实测 I、III、IV、V、VI、VII、VIII、IX、X、XI、XII、XIII 卷的具体命题页面；第 II 卷命题页因服务端 503 间歇性失败，改以希腊文页与既有命题页交叉确认）。
+    </li>
+    <li><strong>我查到了什么</strong>：<strong>★ 我逐字核对过英译原文的命题</strong>包括：<strong>第 I 卷全部 5 条公设与 5 条公理</strong>、<strong>I.47</strong>、<strong>II.11（希腊文＋英译）</strong>、<strong>III.20</strong>、<strong>IV.16</strong>、<strong>V.def.5</strong>、<strong>VI.4</strong>、<strong>VII.2</strong>、<strong>VIII.1</strong>、<strong>IX.20</strong>、<strong>IX.36</strong>、<strong>X.1</strong>、<strong>XI.21</strong>、<strong>XII.2</strong>、<strong>XIII.18</strong>。
+    </li>
+    <li><strong>为什么没能逐条读完</strong>：<strong>全书 465 命题</strong>，本报告按「结构优先」原则选取<strong>每卷的关键命题</strong>逐条核对，<strong>第 II–IV、VI、VIII、X、XI、XII 卷的多数命题只核对到「卷、命题号、主题」</strong>，<strong>未逐条读证明</strong>。
+    </li>
+    <li><strong>读者该以什么为准</strong>：<strong>引用具体命题的原文，请回 Perseus 的 Heath 英译（<code>1999.01.0086</code>）或 Heiberg 希腊文（<code>1999.01.0085</code>）逐条核对</strong>；<strong>本报告未逐条读证明的命题，相关说明据 Heath 译本导论与命题标题，属 <span class="tag t-rep">转述</span>。</strong>
+    </li>
+  </ul>
+  <h3>D2. 「《几何原本》有 15 卷」的两种口径</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：中文资料常说「《几何原本》15 卷」，<strong>徐光启、利玛窦所据的 Clavius 拉丁本也标 15 卷</strong>。
+    </li>
+    <li><strong>我查到了什么</strong>：<strong>欧几里得的《原本》是 13 卷</strong>；<strong>「第 14 卷」（据 Hypsicles）与「第 15 卷」是后人续作</strong>（见 <code>## 4b</code> 第 7 条）。★ <strong>Clavius 的拉丁本把续作一并收入，故标 15 卷</strong>——<strong>「15 卷」是那个版本的口径，不是欧几里得原本的口径。</strong>
+    </li>
+    <li><strong>为什么没能完全定论</strong>：<strong>第 15 卷的具体作者与成书年代，本报告未逐条核实</strong>（通行说法是更晚的希腊注疏传统）。
+    </li>
+    <li><strong>读者该以什么为准</strong>：<strong>说「欧几里得的《原本》」用 13 卷；说「含续作的传世本」可用 15 卷，并注明含后人续作。</strong>
+    </li>
+  </ul>
+  <h3>D3. 非欧几何线索的年份与人物，属转述</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：<code>## 5.1</code> 给出 <strong>Proclus → Saccheri（1733）→ Lobachevsky（1829）／Bolyai（1832）→ Riemann（1854）→ Beltrami／Klein／Poincaré（1868 起）</strong> 的完整线索。
+    </li>
+    <li><strong>我查到了什么</strong>：这些<strong>人物与年份</strong>来自<strong>通行的数学史叙述与 Heath 译本导论</strong>，<strong>多个来源一致</strong>。
+    </li>
+    <li><strong>为什么没能定论</strong>：<strong>本报告没有逐字核对 Saccheri 1733、Lobachevsky 1829、Bolyai 1832 的原著</strong>，故该线索<strong>一律标 <span class="tag t-rep">转述</span></strong>。
+    </li>
+    <li><strong>读者该以什么为准</strong>：<strong>以数学史专著（如 Heath 译本导论、通行的非欧几何史）为准</strong>；<strong>若需精确定位，请查上述各原著的出版页。</strong>
+    </li>
+  </ul>
+  <h3>D4. 「发行量仅次于《圣经》」的统计来源，未能核实</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：中文与英文通俗读物广泛流传「《几何原本》是发行量仅次于《圣经》的书」。
+    </li>
+    <li><strong>我查到了什么</strong>：<strong>可以确认的是「传播广度」</strong>（<strong>使用逾 2,000 年、注释与讲授极多</strong>）；<strong>「具体发行量／排名」未找到任何给出数据与口径的可靠来源。</strong>
+    </li>
+    <li><strong>为什么没能定论</strong>：<strong>古代抄本、各语言译本、各时代印次的「发行量」缺少可比统计</strong>。
+    </li>
+    <li><strong>读者该以什么为准</strong>：<strong>写成「常见说法，具体统计口径不明」</strong>（见 <code>## 5.5</code>），<strong>不得当作事实断言</strong>。
+    </li>
+  </ul>
+  <h3>D5. IX.20 的常见转述错误：「N 必是素数」</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：中文与英文的许多普及读物把 IX.20 的证明写成「<strong>构造 N ＝ p₁p₂…pₙ ＋ 1，N 是素数，故矛盾</strong>」。
+    </li>
+    <li><strong>我查到了什么</strong>：<strong>原文的论证是两分情形</strong>——<strong>「EF 要么本身是素数，要么被某个素数 G 量尽」，两种情形都得出「存在新的素数」（引 VII.31）</strong> <span class="tag t-src">原书</span>（IX.20 全文）。★★ <strong>原文并未断言「N 必是素数」</strong>——<strong>N 可以只是「有一个不在原集合中的素因子」</strong>（例如 2·3·5·7·11·13 ＋ 1 ＝ 30031 ＝ 59×509，本身不是素数）。
+    </li>
+    <li><strong>为什么没能定论</strong>：这不是「未核实」，而是<strong>一种被广泛误传的转述</strong>；本报告按原文改为「<strong>要么本身是新素数、要么有一个新的素因子</strong>」。
+    </li>
+    <li><strong>读者该以什么为准</strong>：<strong>以 Heath 英译的 IX.20 原文为准</strong>（<span class="tag t-src">原书</span>）。
+    </li>
+  </ul>
+  <h3>D6. 第 X 卷的分类动机与文本稳定性</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：第 X 卷 115 命题，<strong>把无理直线分成十余类</strong>，但<strong>欧几里得未说明「为什么这样分」</strong>。
+    </li>
+    <li><strong>我查到了什么</strong>：<strong>Heath 译本导论把 X 卷定义分为三组，并指出其中部分「可能是后世增补」</strong>；<strong>现代数学史的一种解释是：这些分类对应「二次无理数」的层级</strong>（<span class="tag t-rep">转述</span>）。
+    </li>
+    <li><strong>为什么没能定论</strong>：<strong>本报告未逐条读第 X 卷的 115 个证明</strong>，<strong>分类动机的「统一原则」在学界本身有分歧</strong>。
+    </li>
+    <li><strong>读者该以什么为准</strong>：<strong>以 Heath 译本第 X 卷导论与相关数学史研究为准</strong>；<strong>本报告对 X 卷的说明止于「卷、命题号、主题」这一层。</strong>
+    </li>
+  </ul>
+  <h3>D7. 徐光启序文与 Clavius 底本的细节</h3>
+  <ul>
+    <li><strong>我遇到了什么</strong>：本报告引用了徐光启《刻几何原本序》的名句，并称徐、利所据为 <strong>Clavius 校订增补的拉丁本</strong>。
+    </li>
+    <li><strong>我查到了什么</strong>：<strong>引文与底本说法来自公开的序文引录与版本介绍</strong>（多源一致）。
+    </li>
+    <li><strong>为什么没能定论</strong>：<strong>我未逐字核对 1607 年明刻本的序文原件，也未核对 Clavius 拉丁本的版本页</strong>，故该引用标 <span class="tag t-rep">转述</span>。
+    </li>
+    <li><strong>读者该以什么为准</strong>：<strong>以明刻本《几何原本》原序与 Clavius 拉丁本的版本页为准。</strong>
+    </li>
+  </ul>
+  <h3>D8. ★ 我的核验辖区（必须诚实标注）</h3>
+  <ul>
+    <li><strong>A 级（逐字核对了合法公版英译／希腊文）</strong>：<strong>Heath 英译（Perseus <code>1999.01.0086</code>）</strong> 的 <strong>第 I 卷 5 公设、5 公理，I.47、III.20、IV.16、V.def.5、VI.4、VII.2、VIII.1、IX.20、IX.36、X.1、XI.21、XII.2、XIII.18</strong>；<strong>Heiberg 希腊文（Perseus <code>1999.01.0085</code>）</strong> 的 <strong>II.11、X.1</strong>。★ <strong>覆盖范围为「全 13 卷均有可定位的公版全文入口」</strong>（Heath 三卷＝Books I–II／III–IX／X–XIII＋附录，archive.org 三卷俱全；Perseus 逐命题可访问 I–XIII）。
+    </li>
+    <li><strong>B 级（有可定位信息，未逐字核对原文）</strong>：<strong>第 II、III、IV、VI、VIII、X、XI、XII 卷的多数命题</strong>（只核对到「卷、命题号、主题」）；<strong>Proclus 的归属清单</strong>（经 Heath 译本导论转引）；<strong>Saccheri／Lobachevsky／Bolyai／Riemann 的年份与主张</strong>；<strong>徐光启序文</strong>；<strong>「发行量仅次于《圣经》」之说</strong>。
+    </li>
+    <li><strong>B 级（中文引文，一律另计）</strong>：<strong>所有中文译本的术语与版本信息</strong>——徐光启／利玛窦 1607、李善兰／伟烈亚力 1857、曾国藩金陵本 1865、蓝纪正／朱恩宽 2003、张卜天 2020、李彩菊 2017 —— <strong>均在版权期内或无法逐字核对</strong>，只作版本信息与术语对照；<strong>本报告所有中文译文均为笔者自译，非任何出版物译文。</strong>
+    </li>
+    <li><strong>未读到、不声称核对的内容</strong>：★ <strong>第 X 卷 115 命题中除 X.1 外的证明过程</strong>；★ <strong>第 II–IV、VI、VIII、XI、XII 卷的多数命题的证明过程</strong>；★ <strong>Heath 译本的长篇导论与逐命题注疏全文</strong>（只用到其中的版本史与归属信息）；★ <strong>archive.org 三卷本扫描的逐页内容</strong>（只用于确认「全 13 卷」的物理可及性）。
+    </li>
+  </ul>
+</section>
+
+<footer>
+  生成于 2026-10-09 · 来源清单与交叉验证记录见同目录 <code>几何原本-来源清单.md</code><br>
+  本页引文分两级处理：<b>英译／希腊文原文为 A 级</b>（依据 Perseus Digital Library 的 Heath 英译与 Heiberg 希腊文，<b>覆盖全 13 卷</b>；archive.org 的 Heath 1908 三卷本三卷俱在）；<b>中文引文为 B 级</b>（徐光启／利玛窦 1607、李善兰／伟烈亚力 1857、曾国藩金陵本 1865、蓝纪正／朱恩宽 2003、张卜天 2020、李彩菊 2017 均在版权期内或无法逐字核对，<b>本报告中文译文均为笔者自译</b>）。★★ <b>本书的「作者谈话」档宣告不使用</b>——欧几里得约公元前 3 世纪人，<b>没有任何自述文字、没有书信、生平无可可靠记载</b>（Proclus 的转述属后世建构，归「转述」档）。★ 本书最容易踩的三个坑：<b>① PG #21076 只是 Casey 编的「前六卷」，不是全本；② 「几何原本全是几何」是误解——第 V 卷是比例论、第 VII–IX 卷是数论、第 X 卷是无理量分类，第 VII–X 卷合计 217 命题，接近全书一半；③ 中文世界在 1607–1857 的近四百年里，长期只读过它的前六卷</b>。另请留意：<b>第五条公设在 I.29 才第一次被使用（前 28 个命题一次未用），这个「延迟」正是非欧几何的入口</b>。请以原书与英译／希腊文为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>
