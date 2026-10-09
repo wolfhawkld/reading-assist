@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《流浪地球》· 索引碎片</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+
+/* ===== 索引碎片页的版式覆盖（无侧栏，单列）===== */
+main{margin:0 auto;max-width:840px;padding:0 22px 90px}
+.hero{padding:40px 0 20px}
+.hero .kick{font-size:11.5px;letter-spacing:.08em;color:var(--ink3);font-weight:600;margin-bottom:6px}
+.frag{margin:20px 0 0;padding:20px 22px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.frag .row{margin:0 0 11px;font-size:14px;color:var(--ink2);line-height:1.75}
+.frag .row>b{color:var(--ink);font-weight:600;margin-right:2px}
+.frag ol.sub{margin:6px 0 0 0;padding-left:22px;font-size:13.5px;color:var(--ink2)}
+.frag ol.sub li{margin:4px 0}
+.frag code{background:var(--hover);padding:1px 5px;border-radius:4px;font-size:.92em}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+.chip{font-size:11.5px;padding:2px 9px;border-radius:5px;background:var(--hover);color:var(--ink2)}
+.cfoot{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
+.cfoot a{font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;text-decoration:none;
+  background:var(--accent-bg);color:var(--accent);border:1px solid var(--linkline)}
+.cfoot a:hover{background:var(--linkhover)}
+.cfoot a.ghost{background:var(--panel);color:var(--ink2);border-color:var(--line2)}
+ol.dir{list-style:none;margin:18px 0 0;padding:0}
+ol.dir li{padding:10px 14px;border:1px solid var(--line);border-radius:9px;background:var(--panel);margin:8px 0}
+ol.dir a{font-weight:600;color:var(--accent);text-decoration:none;font-size:14.5px}
+ol.dir a:hover{text-decoration:underline}
+ol.dir .m{font-size:12.5px;color:var(--ink3);margin-top:3px}
+</style>
+</head>
+<body>
+<div id="ctl"><button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button></div>
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+<header class="hero">
+  <div class="kick">索引碎片 · 流浪地球</div>
+  <h1>《流浪地球》</h1>
+<div class="chips"><span class="chip">状态：未标注已读／想读</span><span class="chip">收录：2026-10-09</span><span class="chip">形态：概念型 —— ★★ 本批新增的第三种形态（前两种为叙事型／教材型）</span><span class="chip">核验级别：三段式（三句分开写、不合并）</span></div>
+</header>
+<div class="frag">
+    <div class="row"><b>作者</b>刘慈欣（Liu Cixin，<strong>1963–</strong> ），山西阳泉人；写本篇时为<strong>火力发电厂的计算机工程师</strong></div>
+    <div class="row"><b>原名</b>中文<strong>中篇</strong>《流浪地球》（英译题名 <em>The Wandering Earth</em>）</div>
+    <div class="row"><b>初版</b><strong>2000 年《科幻世界》第 7 期</strong>；中篇，<strong>约 2.3 万字</strong>；获 <strong>2000 年度中国科幻银河奖特等奖</strong>（第十二届，首届特等奖）</div>
+    <div class="row"><b>英译与版本</b>收入同名英译选集 <em>The Wandering Earth</em>；★ <strong>两条版本线</strong> —— <strong>A 版：2013 年 Guomi 电子版（11 篇，编目记译者「Holger Nahm ; Ken Liu」，476 页）</strong>；<strong>B/C 版：五位译者集体署名</strong>（Head of Zeus／Tor 等）。★★ <strong>同名篇的英译者姓名「两说并存」</strong>（一说 <strong>Ken Liu</strong>，一说 <strong>Holger Nahm</strong>），<strong>本页推断</strong>这是两条版本线的<strong>编目口径差异</strong>，未能确证</div>
+    <div class="row"><b>报告底本</b>★★ <strong>中文原著无合法全文</strong>；英文方面依据<strong>出版方 Macmillan 官方商品页内嵌的英译第 1 章节选</strong>；其余依据＝出版方公开目录与商品页信息、<strong>作者本人访谈</strong>、他人评传（董仁威《穿越2012：中国科幻名家评传》，人民邮电出版社 2012-10）、英译版编目与英文批评文献</div>
+    <div class="row"><b>状态</b>未标注已读／想读</div>
+    <div class="row"><b>收录</b>2026-10-09</div>
+    <div class="row"><b>形态</b><strong>概念型</strong> —— ★★ 本批新增的第三种形态（前两种为叙事型／教材型）。因中文原著无合法全文，下部不做逐章原文深挖，改做 <strong>中篇骨架 ＋ 核心概念深挖 ＋ 争议与批评 ＋ 作者谈话（创作考古）＋ 版本·衍生与接受</strong></div>
+    <div class="row"><b>产出</b><code>流浪地球/</code> — <code>流浪地球.md</code>（96,491 B，<strong>22,254 汉字</strong>）＋ <code>流浪地球-来源清单.md</code>（16,379 B）＋ <code>流浪地球-build.json</code></div>
+    <div class="row"><b>结构</b>上部 <code>## 0</code>–<code>## 5</code>（含 <code>## 4b</code> 流行说法 vs 原文）＋ 下部 <code>## 6</code>–<code>## 10</code>（<strong>5 节</strong>：中篇骨架「四章结构与五步逃亡」／核心概念深挖／争议与批评／作者谈话：一份「创作考古」／版本·衍生与接受）＋ 附录 <strong>A–D</strong>（<strong>D 待核实项 7 条</strong>）</div>
+    <div class="row"><b>核验级别</b>★★ <strong>三段式（三句分开写、不合并）</strong>。<strong>① 英文原文（节选）：A 级</strong> —— 辖区＝<strong>英译第 1 章《The Braking Era》开头约 1,300–1,400 词</strong>（Macmillan 官方商品页「Read Excerpt」样本，入口 <code>https://us.macmillan.com/books/9781250796820</code>，自测 200／129,518 B，节选正文 8,149 字符，自 <em>I have never seen the night.</em> 起至 <em>…on our endless travels through outer space?</em> 止，页脚 <code>Copyright © 2013</code>）。<strong>② 中文原著：C 级</strong> —— 无合法全文，<strong>一切中文引句均为二手转引、未核对原著、不给页码</strong>。<strong>③ 作者谈话：A 级</strong> —— 入口＝《航空知识》主编 <strong>王亚男独家专访</strong>（2019；搜狐号转载页实测 200／33,543 B）。★ <strong>出此辖区一律不可引用</strong>；该英译节选<strong>无中文对照</strong>，<strong>不能</strong>用来反推中文原文用词</div>
+    <div class="row"><b>备注</b></div>
+    <ol class="sub">
+      <li>★★ <strong>本批首次遇到「在世作家 ＋ 无合法全文」的组合</strong>，也首次<strong>正式启用「作者谈话」档</strong> —— <strong>与前 54 本的情形正好相反</strong>（前 54 本作者多已逝世，该档只能「宣告不用」或改用于译者／校勘者自述）</li>
+      <li>★★ <strong>定级过程中的一次关键实测与裁决</strong>：《流浪地球》原按「无官方节选 ⇒ 整体 C」处理，子代理也偏保守（只登记为「可升级项」）；<strong>本轮亲自复核 Macmillan 官方商品页，确认内嵌英译第 1 章开头约 1,300–1,400 词</strong>（逐句比对 12 句英文引文<strong>全部命中</strong>）⇒ <strong>裁决开极小辖区、升级为「英文节选 A」</strong>，返工后 <span class="tag t-src">原书</span> 由 0 → <strong>23 处</strong>，<strong>皆注明「英译第 1 章」</strong></li>
+      <li>★★ <strong>一处「评传被误当作者原话」的纠正</strong>：中国作家网 <code>chinawriter.com.cn/2013/…/159591.html</code> <strong>实测确认是董仁威《穿越2012：中国科幻名家评传》的样章</strong>（人民邮电 2012-10），属<strong>他人转述</strong>、<strong>只能作 <span class="tag t-rep">转述</span></strong>；而「<strong>原计划六篇、最终只完成两篇</strong>」另有<strong>作者原话</strong>（《航空知识》专访）⇒ 归 <span class="tag t-talk">作者谈话</span>，<strong>不因评传也提及而降档</strong></li>
+      <li>★★ <strong>同一作者的两本书辖区差一个数量级</strong>：《三体》有 <strong>8 篇</strong>官方节选、《流浪地球》只有 <strong>1 段</strong> ⇒ <strong>「本书是 A」不能顺推「同作者另一本也是 A」</strong>，这是本批诚实性的一部分</li>
+      <li>★ <strong>「译者自述」一路为零材料</strong>；<strong>书评人</strong>（Alexis Ong、Jared Shurin、Jaymee Goh 等）与<strong>他人评传</strong>一律 <span class="tag t-rep">转述</span>，<strong>不得与作者谈话混同</strong></li>
+      <li>★★ <strong>抓取坑</strong>：<code>reactormag.com/author/cixin-liu/</code>、<code>headofzeus.com/books/the-wandering-earth</code> <strong>403</strong>（反爬，同 URL 前后一次 200 一次 403，不稳定）；<code>torforgeblog.com</code> <strong>已并入主站</strong>（重定向到 Macmillan／Tor 首页）；<code>pornokitsch.com</code> 书评页<strong>连接失败（000）</strong>；<code>vip.chinawriter.com.cn</code> 2019 评述 <strong>406</strong>。★ 出版方<strong>免费放出的唯一完整短篇</strong>是选集里的<strong>另一篇《With Her Eyes》</strong>，<strong>同名篇没有免费全文</strong></li>
+      <li>★★ <strong>侵权站排除清单</strong>：<code>99csw.com</code>（盗版全文）／<code>sohu.com/a/294226578_728014</code>（标题自认「原著全文」的侵权转载）／<code>sfworld.vercel.app</code>／<code>libgen.*</code>／<code>dujingdian.cn</code>／<code>id.scribd.com</code> OCR／<code>hjkeen.net</code>／S3 桶托管的整本书 PDF／GitHub UGC 抓取的带行号摘抄集 —— <strong>本轮均未访问、未使用</strong>；维基镜像（<code>profilbaru.com</code>／<code>owiki.org</code> 等）<strong>只作索引用，不作事实依据</strong></li>
+      <li>★ <strong>内容纪律</strong>：本篇涉及特定历史时期与群体冲突作为叙事背景，本页<strong>只做文学分析</strong>，<strong>不做任何现实评价，也不展开背景本身</strong>（Orliński 的政治寓意解读<strong>已知而主动不采用</strong>）</li>
+      <li>★ <strong>连线提醒</strong>：本页<strong>不把《三体》的「黑暗森林」等概念搬来解释《流浪地球》</strong> —— 后者是「太阳灾变」母题，逻辑不同</li>
+    </ol>
+    <div class="row"><b>待核实</b>★ <strong>D.1</strong> 同名篇英译者姓名<strong>两说并存</strong>（Ken Liu vs Holger Nahm），无一手版权页可比对；★ <strong>D.2</strong> 出版方节选的辖区与实测数据（★ 本页定级的直接相关项，<strong>已升级为「英文原文（节选）：A」</strong>）；★ <strong>D.3</strong> 电影与《流浪地球 2》的完整制作信息（出品方、编剧署名、票房数字 — <strong>本页不写票房</strong>）；★ <strong>D.4</strong> 漫画改编的改编者与绘者姓名（出版方页入口 403）；★ <strong>D.5</strong> 中文原句的准确用词（★ <strong>本页最大的一处空缺</strong> —— 无任何合法中文全文）；★ <strong>D.6</strong> 中文侧是否存在未公开的文本差异（只能说「未见记录」，<strong>不能断言「不存在差异」</strong>）；★ <strong>D.7</strong> A 版（2013 Guomi）与 B/C 版的篇目是否严格一一对应</div>
+</div>
+<div class="cfoot">
+  <a href="../流浪地球/流浪地球.html">打开阅读页</a>
+  <a class="ghost" href="../流浪地球/流浪地球.md">内容正本</a>
+  <a class="ghost" href="../流浪地球/流浪地球-来源清单.md">来源清单</a>
+  <a class="ghost" href="流浪地球.md">本页 Markdown</a>
+</div>
+</main>
+<script>/* 主题切换（本页自用的小脚本，不依赖书页主脚本） */
+(function(){var b=document.getElementById('themebtn');if(!b)return;
+function sync(){b.textContent=(document.documentElement.getAttribute('data-theme')==='dark')?'◐ 浅色':'◐ 深色';}
+b.addEventListener('click',function(){
+  var d=document.documentElement.getAttribute('data-theme')==='dark';
+  var n=d?'light':'dark';
+  document.documentElement.setAttribute('data-theme',n);
+  try{localStorage.setItem('ra-theme',n)}catch(e){}
+  sync();});
+sync();})();</script>
+</body>
+</html>

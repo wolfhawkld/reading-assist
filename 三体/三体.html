@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《三体》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《三体》<small>阅读指引与精华解析 · 2026-10-09</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 核心主题与结构机制</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 中文版本与英译怎么选</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 深度解析</div>
+    <a href="#s7">6 三部曲骨架：从「地球往事」到「死神永生」</a>
+    <a href="#s8">7 第一部《三体》：36 章</a>
+    <a href="#s9">8 第二部《黑暗森林》：序章 ＋ 三部</a>
+    <a href="#s10">9 第三部《死神永生》：六部</a>
+    <a href="#s11">10 核心概念深挖</a>
+    <a href="#s12">11 争议与批评</a>
+    <a href="#s13">12 作者谈话</a>
+    <a href="#s14">13 版本、译本与跨媒介</a>
+    <div class="grp">附录</div>
+    <a href="#s15">A 三部曲总目与章目索引</a>
+    <a href="#s16">B 术语对照表（中英）</a>
+    <a href="#s17">C 关键年表</a>
+    <a href="#s18">D 待核实项（≥5 条）</a>
+    <a href="#s19"> E 官方节选精读（全译 ＋ 注解）</a>
+    <a href="#s20"> F 概念问答（速查）</a>
+    <a href="#s21"> G 三部曲关键场景一览</a>
+    <a href="#s22"> H 常见误读速查（十二条）</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《三体》阅读指引与精华解析</h1>
+  <div class="sub">把道德放进名叫宇宙的压力机：从两条公理推出的一整套文明生存推演</div>
+  <div class="meta">
+    <div><b>作者</b>刘慈欣（Liu Cixin，1963– ），山西阳泉人；写《三体》时为山西娘子关发电厂的计算机工程师，业余写作</div>
+    <div><b>首次发表</b>一《三体》：2006 年 5–12 月《科幻世界》连载（34 章）→ 2008-01 重庆出版社单行本（36 章＋后记，章节顺序有调整）；二《三体Ⅱ·黑暗森林》：2008-05；三《三体Ⅲ·死神永生》：2010-11。英译三部由 Tor 出版，<b>两位译者</b>：Ken Liu（2014-11-11）／Joel Martinsen（2015-07-15）／Ken Liu（2016-09-20）</div>
+    <div><b>依据版本</b>中文原著<b>在版权保护期内、无任何可用的合法全文</b>；本页依据＝① 出版方在 Tor.com／Reactor 官方授权发布的<b>英文节选</b>（逐条实测通过，见来源清单「合法入口实测记录」）；② <b>作者本人撰写或口述的文字</b>（Reactor 两篇长文、英译版后记、中国作家网与《新京报》访谈）；③ 官方目录与出版信息；④ 署名可查的批评与接受史文献。逐条出处见《三体-来源清单.md》</div>
+    <div><b>核验级别</b>原文（英译节选）＝<b>A</b>（辖区＝第一部英译第 1–3 章＋「宇宙闪烁」段＋「周文王与长夜」段；第二部序章＋上部「面壁者」开头；第三部第一部开篇＋「Yun Tianming」段＋「Cheng Xin」段；<b>辖区之外不作本档引文</b>）／原文（中文原著）＝<b>C</b>（无可用合法全文，中文原句一律二手转引、<b>未核对原著</b>）／作者谈话＝<b>A</b>（作者本人的文章、后记与访谈）</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注说明</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> （官方节选）★★ <b>本档只覆盖出版方授权的英文节选，辖区＝</b>第一部英译<b>第 1–3 章</b>（The Madness Years／Silent Spring／Red Coast I）＋「宇宙闪烁」段＋「周文王与长夜」段；第二部<b>序章</b>（含两条公理）＋<b>上部「面壁者」开头</b>；第三部<b>第一部开篇</b>（May 1453, C.E.／The Death of the Magician）＋「Yun Tianming」段＋「Cheng Xin」段。★ 以上八篇均由 Tor.com／Reactor <b>官方授权发布</b>，逐条实测 HTTP 200（见《三体-来源清单.md》第三节）。★★ <b>辖区之外（第一部第 4–36 章、第二部其余部分、第三部其余五部）一律不作本档引文</b>——凡涉这些部分只标「转述」或「推断」。★ 每处引文均注明出自<b>哪一部哪一章</b>，<b>中文为笔者自译</b>。</li>
+    <li><span class="tag t-talk">作者谈话</span> （作者本人）★ <b>本批正式启用本档，且与前 54 本的情形相反</b>：前 54 本作者多已逝世，本档只能「宣告不用」或改用于译者／校勘者自述；<b>本批作者（刘慈欣，1963– ）在世</b>，公开访谈与自述极多 ⇒ 本档依据＝<b>作者本人撰写、出版方发布的文章</b>（Reactor，2014-05-07／2016-09-20）、<b>作者为英译本写的后记</b>（中译转载）、以及<b>作者本人接受的访谈</b>（中国作家网／《北京晚报》2015-02-12；《新京报》2018-11-11）。<b>这不是虚构访谈。</b>★ 边界：<b>译者自述单列</b>（刘宇昆《谈翻译三体》计入「转述」），<b>书评人的话不算作者的话</b>。</li>
+    <li><span class="tag t-rep">转述</span> （二手转引）★★ <b>本页所有中文引句一律在本档</b>：中文原著三册在版权保护期内、无可用合法全文，一切中文引句均为<b>二手转引，均未核对原著</b>，也不给页码。★ 此外，<b>译者自述</b>（刘宇昆《谈翻译三体》，2014-11-27）、<b>书评与论文</b>（Nan Z. Da、Niall Alexander、张悦、陈楸帆、维舟等）、<b>百科与书目条目</b>，也一律计入本档。★ <b>不得把本档内容当成作者原话。</b></li>
+    <li><span class="tag t-inf">推断</span> （由证据推出，未确证）★ 本页凡标本档处，都是<b>依据现有证据推出、但未能确证</b>的判断。例：第二、三部各官方节选在中文原著中的<b>确切对应章次</b>（中文 36 章口径与英译各源所述章数的换算），以及因英译三册<b>译者不同</b>而在人物语气与叙述节奏上产生的差异程度。⇒ 该类推断均列入正文附录 D「待核实项」。</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    ★ 把三条边界再复述一遍：① <b>「原书」档只覆盖出版方授权的英文节选</b>——辖区＝第一部英译第 1–3 章＋两段，第二部序章＋上部开头，第三部第一部开篇＋两段；<b>辖区之外一律不作引文</b>，且绝不把「读了英译节选」写成「读了原著」；② <b>「作者谈话」只收作者本人的文字与口述</b>（文章、后记、访谈），<b>译者自述与书评不在本档</b>；③ <b>一切中文引句都在「转述」档</b>，均为二手转引、未核对原著，不给页码。★ 补充：《三体》有出版方授权节选、《流浪地球》没有，<b>这个差别本身就是本批诚实的一部分</b>，<b>不得把本书的 A 级顺延给同作者的另一本</b>。
+  </p>
+  ★ 本页属<b>概念型</b>：中文原著无合法全文 ⇒ 本页不做逐章原文深挖，改做八件事——<b>三部曲骨架</b>、<b>三部各自的章节结构与可疑之处</b>、<b>核心概念深挖</b>（宇宙社会学两条公理 → 猜疑链 → 技术爆炸 → 黑暗森林 → 威慑 → 掩体与黑域 → 降维打击 → 归零）、<b>争议与批评</b>、<b>作者谈话</b>、<b>版本、译本与跨媒介</b>。★ 内容纪律：凡涉及现实历史背景的段落，本页<b>只做文学分析</b>（叙事结构、人物动机、隐喻、接受史），<b>不做任何现实政治评价，也不展开历史事件本身</b>。★ 连线提醒：<b>「黑暗森林」是《三体》的概念，不要拿它解释《流浪地球》</b>——后者是「太阳灾变」母题，逻辑不同。
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>《三体》三部曲要做的事情只有一件：把一个文明在宇宙尺度上的生存处境，当成一道可以推演的题来做——先给出几条极简的「宇宙社会学」公理，再从公理推出黑暗森林、威慑、降维打击这一整套结论，最后把结论摊在读者面前，问一句：如果真是这样，人类配不配活下去？</strong></p>
+  <p>它的方法是<strong>思想实验的连环嵌套</strong>：叶文洁在杨冬墓前给出的两条公理（<span class="tag t-src">原书</span>，第二部序章，实测通过）→ 罗辑由此推出「黑暗森林法则」→ 法则支撑起「威慑」＝同归于尽的博弈 → 威慑失效后又引出「广播」「掩体」「黑域」「二向箔」一层层加码（<code>## 10</code> 逐一拆解）。★ <strong>整部三部曲不是「讲一个故事」，而是「把一种可能性的宇宙推到底」。</strong></p>
+  <p>★ <strong>一句话结构</strong>：<strong>先立公理，再推结论，再验结论，最后把结论推到宇宙尽头。</strong> 每一部都换一次「押注方式」——押在「更高的文明」（一）→ 押在「个人的秘密」（二）→ 押在「道德本身」（三）；★ 而每一次押注都失败，失败的方式一次比一次彻底。</p>
+  <p>★★ <strong>一句话结论（也是全书最该记住的一件事）</strong>：<strong>刘慈欣真正在写的，不是外星人，而是「道德在生存压力下会不会变形」这道题。</strong> 他把地球放进一台叫「宇宙」的压力机里，看哪些价值先碎、哪些价值最后才碎。★ 作者自己把末日写成一座「宏大的思想实验实验室」，让现实世界的道德与价值体系承受「像黏土一样可塑」的压力（<span class="tag t-talk">作者谈话</span>，Reactor 2016-09-20）。★ <strong>这就是为什么它读起来像硬科幻，落点却始终是伦理。</strong></p>
+  <p><strong>它是什么</strong>（三条）：</p>
+  <table>
+    <thead><tr><th>它是什么</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td><strong>① 一部「公理化—推演式」的小说</strong></td><td>★ 两条公理 → 黑暗森林 → 威慑 → 降维 → 归零，<strong>是一条有起点、可追溯的推理链</strong>，不是点子的堆叠</td></tr>
+      <tr><td><strong>② 一部关于「道德可塑性」的长篇论证</strong></td><td>★ 作者自述其方法是<strong>改变虚构世界的前提</strong>，看「现实世界中光明与崇高的东西」会不会变成「黑暗与邪恶的」（<span class="tag t-talk">作者谈话</span>，2016-09-20）</td></tr>
+      <tr><td><strong>③ 一部中文科幻的「破圈」样本</strong></td><td>★ 它把中文科幻带进西方视野，也把「翻译史如何塑造一部作品」变成一个可观察的案例（<code>## 4</code>、<code>## 13</code>）</td></tr>
+    </tbody>
+  </table>
+  <p><strong>它不是什么</strong>（四条）：① 不是「外星人入侵小说」——入侵只是起步的发动机，真正被讨论的是<strong>文明之间能不能沟通</strong>；② 不是「科技乐观主义预言」——它对技术进步的基调是<strong>怀疑与焦虑</strong>（<span class="tag t-talk">作者谈话</span>，2014-05-07）；③ <strong>不是「人物小说」</strong>——作者自称「<strong>人物只是讲故事的一个工具</strong>」，人物在小说里「只是符号」（<span class="tag t-rep">转述</span>，张悦，《文艺报》／中国作家网，2021-12-29；<span class="tag t-talk">作者谈话</span>，《新京报》，2018-11-11）；④ <strong>不是「黑暗森林」的教义书</strong>——作者本人明确否认那是他的宇宙观（<code>## 4b</code>）。</p>
+  <p>★★ <strong>如果你只读一页，请读这三句</strong>：</p>
+  <ol>
+    <li><strong>两条公理</strong>（第二部序章，<span class="tag t-src">原书</span>）：<strong>「生存是文明的第一需要」＋「文明不断增长和扩张，而宇宙的物质总量保持不变」。</strong>
+    </li>
+    <li><strong>方法论</strong>（同处，<span class="tag t-src">原书</span>）：<strong>「像欧几里得几何一样，你先立下几条简单的公理，再以它们为基础推演出一个完整的理论体系。」</strong>
+    </li>
+    <li><strong>作者的立场</strong>（2014-05-07，<span class="tag t-talk">作者谈话</span>）：<strong>「我在《三体》里写那个最糟糕的宇宙，是出于一种希望：我们能努力去争取一个最好的地球。」</strong>
+    </li>
+  </ol>
+  <p>★ <strong>这部书有三种读法，对应三类读者</strong>：</p>
+  <table>
+    <thead><tr><th>读法</th><th>读什么</th><th>得到什么</th></tr></thead>
+    <tbody>
+      <tr><td><strong>① 读「概念」</strong>（推荐给大多数读者）</td><td>★ <strong><code>## 10</code> 的十个概念 ＋ <code>## 1</code> 的骨架表</strong></td><td>看清<strong>一套宇宙社会学的推演链如何搭起来</strong></td></tr>
+      <tr><td><strong>② 读「结构」</strong>（推荐给写作／叙事研究者）</td><td>★ <strong><code>## 6</code> 三倍尺度 ＋ <code>## 7/8/9</code> 三部章目 ＋ <code>## 2</code></strong></td><td>看清<strong>纪元跳时 ＋ 视角轮换 ＋ 思想实验嵌套</strong>这三件工具怎么配合</td></tr>
+      <tr><td><strong>③ 读「文学生产」</strong>（推荐给批评／翻译／出版研究者）</td><td>★ <strong><code>## 4</code> 中英结构差异 ＋ <code>## 5</code> 争议 ＋ <code>## 12</code> 作者谈话 ＋ <code>## 13</code> 版本译本</strong></td><td>看清<strong>一部中文科幻如何被翻译史与奖项史重新塑造</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>三种读法可以只选一种</strong>——本报告的价值，在于把三条路都标出来，并说清每条路的终点在哪里（具体路线见 <code>## 3</code>）。</p>
+  <p>★★ <strong>再补一句关于「怎么用它」的话</strong>：★ 这本书最容易被误用的方式，是<strong>把小说里的规则当作分析现实的工具</strong>。★ 作者自己就注意到这种现象——<strong>他记录过，中国的互联网从业者会在论坛上把「黑暗森林理论」当作行业竞争的隐喻</strong>（<span class="tag t-talk">作者谈话</span>，2014-05-07）。★★ <strong>一个隐喻能被这样使用，说明它有力；但把它当成「规律」，就背离了作者写它的初衷。</strong> 本报告的建议是：<strong>读它的时候尽情推演，用完之后记得把它放回书里</strong>（<code>## 11</code> 第二条）。</p>
+  <p>★★ <strong>最后，把「一句话定位」再压缩成三句，方便你带走</strong>：</p>
+  <ol>
+    <li><strong>它是一部「公理化的小说」</strong>：<strong>两条公理，推出一个宇宙</strong>。
+    </li>
+    <li><strong>它是一道伦理题</strong>：<strong>当生存压过来，道德还剩多少空间</strong>。
+    </li>
+    <li><strong>它是一份「被翻译史改造过」的文本</strong>：<strong>中文版与英译版，开篇不同、读法不同</strong>。
+    </li>
+  </ol>
+  <p>★ <strong>如果你只能记一句，请记第 2 句</strong>——★ <strong>因为它解释了为什么这部小说会有那么多争论，也解释了为什么它值得争论</strong>。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>★★ <strong>下表是三部曲的总骨架，一行一部。</strong>★ <strong>本报告全部定位只用「部／章／节／时间点」</strong>——中文原著无合法全文，<strong>不用页码</strong>；有英文节选的地方写「英译第 N 章」。★★ <strong>本节依据＝官方目录与公开资料，非逐章原文核验。</strong></p>
+  <table>
+    <thead><tr><th>部</th><th>书名</th><th>首次发表</th><th>中文结构</th><th>英译名／译者</th></tr></thead>
+    <tbody>
+      <tr><td><strong>一</strong></td><td><strong>《三体》</strong></td><td>2006 年 5–12 月《科幻世界》连载 → 2008-01 重庆出版社单行本</td><td><strong>36 章 ＋ 后记</strong>（连载版 34 章；单行本<strong>调整了章节顺序</strong>）</td><td><em>The Three-Body Problem</em>／<strong>Ken Liu</strong>（Tor，2014-11-11）</td></tr>
+      <tr><td><strong>二</strong></td><td><strong>《三体Ⅱ·黑暗森林》</strong></td><td>2008 年 5 月</td><td><strong>序章 ＋ 上部「面壁者」（1–5）＋ 中部「咒语」（1–4）＋ 下部「黑暗森林」（1–3）</strong></td><td><em>The Dark Forest</em>／<strong>Joel Martinsen</strong>（Tor，2015-07-15）</td></tr>
+      <tr><td><strong>三</strong></td><td><strong>《三体Ⅲ·死神永生》</strong></td><td>2010 年 11 月</td><td><strong>六部</strong>（部内各章以「时间，事件」为题）＋ 跋《这些无限空间的永恒沉默》</td><td><em>Death's End</em>／<strong>Ken Liu</strong>（Tor，2016-09-20）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>第二部的结构（细看）</strong>：★ 它不是按「章」编号，而是<strong>按三部分命名</strong>（上部／中部／下部），每部分再分小节（<span class="tag t-rep">转述</span>，中文目录，未核对原著）。★ <strong>这三部分的名字本身就是剧情预告</strong>：「面壁者」（<strong>设局</strong>）→「咒语」（<strong>试验</strong>）→「黑暗森林」（<strong>验证</strong>）。★★ <strong>一个可注意的技术点</strong>：第二部<strong>没有给三部分加「总标题」之外的解释</strong>，读者要靠内容自己拼出「设局—试验—验证」这个三步结构（<span class="tag t-inf">推断</span>）。</p>
+  <p><strong>第一部《三体》36 章清单</strong>（<span class="tag t-rep">转述</span>，中文单行本目录，多源一致，<strong>未核对原著</strong>）：</p>
+  <table>
+    <thead><tr><th>章</th><th>标题</th><th>章</th><th>标题</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>科学边界</td><td>19</td><td>聚会</td></tr>
+      <tr><td>2</td><td>台球</td><td>20</td><td>三体、爱因斯坦、单摆、大撕裂</td></tr>
+      <tr><td>3</td><td>射手和农场主</td><td>21</td><td>三体、远征</td></tr>
+      <tr><td>4</td><td>三体、周文王、长夜</td><td>22</td><td>地球叛军</td></tr>
+      <tr><td>5</td><td>叶文洁</td><td>23</td><td>红岸之五</td></tr>
+      <tr><td>6</td><td>宇宙闪烁之一</td><td>24</td><td>红岸之六</td></tr>
+      <tr><td>7</td><td>疯狂年代</td><td>25</td><td>叛乱</td></tr>
+      <tr><td>8</td><td>寂静的春天</td><td>26</td><td>雷志成、杨卫宁之死</td></tr>
+      <tr><td>9</td><td>红岸之一</td><td>27</td><td>无人忏悔</td></tr>
+      <tr><td>10</td><td>宇宙闪烁之二</td><td>28</td><td>伊文斯</td></tr>
+      <tr><td>11</td><td>大史</td><td>29</td><td>第二红岸基地</td></tr>
+      <tr><td>12</td><td>三体、墨子、烈焰</td><td>30</td><td>地球三体运动</td></tr>
+      <tr><td>13</td><td>红岸之二</td><td>31</td><td>两个质子</td></tr>
+      <tr><td>14</td><td>红岸之三</td><td>32</td><td>古筝行动</td></tr>
+      <tr><td>15</td><td>红岸之四</td><td>33</td><td>监听员</td></tr>
+      <tr><td>16</td><td>三体、哥白尼、宇宙橄榄球、三日凌空</td><td>34</td><td>智子</td></tr>
+      <tr><td>17</td><td>三体问题</td><td>35</td><td>虫子</td></tr>
+      <tr><td>18</td><td>三体、牛顿、冯·诺依曼、秦始皇、三日连珠</td><td>36</td><td>尾声·遗址</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读这张表要读出三件事</strong>：① <strong>「三体、」开头的章有 8 个</strong>（4、12、16、18、20、21——再加 17「三体问题」）——<strong>它们构成整条「游戏线」</strong>；② <strong>「红岸」开头的章有 6 个</strong>（9、13、14、15、23、24）——<strong>它们构成叶文洁的前史线</strong>；③ <strong>第 7 章「疯狂年代」与第 8 章「寂静的春天」夹在中段</strong>——★ <strong>这两章正是英译版提到全书开头的那两章</strong>（<span class="tag t-talk">作者谈话</span>，2015-02-12）。</p>
+  <p><strong>第三部《死神永生》六部与各章标题</strong>（<span class="tag t-rep">转述</span>，据<strong>国家出版发行信息公共服务平台</strong>目录，<strong>未核对原著</strong>；原文题为「时间，事件」格式）：</p>
+  <table>
+    <thead><tr><th>部</th><th>各章标题</th></tr></thead>
+    <tbody>
+      <tr><td><strong>第一部</strong></td><td>公元 1453 年 5 月，魔法师之死／危机纪元元年，生命选项／危机纪元 4 年，云天明／危机纪元 1–4 年，程心／危机纪元 5–7 年，阶梯计划</td></tr>
+      <tr><td><strong>第二部</strong></td><td>威慑纪元 12 年，「青铜时代号」／威慑纪元 13 年，审判／威慑纪元 61 年，执剑人／威慑纪元 62 年，奥尔特星云外，「万有引力号」／威慑纪元 62 年 11 月 28 日 16:00–16:17，威慑控制中心／（同刻，奥尔特星云外）／威慑后一小时，失落的世界／威慑后六十天，失落的世界／威慑后第一年，澳大利亚／（略）／威慑后第一天至第五天，奥尔特星云外</td></tr>
+      <tr><td><strong>第三部</strong></td><td>广播纪元 7 年，程心／广播纪元 7 年，智子／广播纪元 7 年，云天明／广播纪元 7 年，云天明的童话／广播纪元 8 年，命运的抉择／广播纪元 8 年，地-日拉格朗日点</td></tr>
+      <tr><td><strong>第四部</strong></td><td>掩体纪元 11 年，掩体世界／掩体纪元 11 年，「光速二号」／掩体纪元 11 年，星环城</td></tr>
+      <tr><td><strong>第五部</strong></td><td>掩体纪元 67 年，银河系猎户旋臂／掩体纪元 67 年，「星环号」／掩体纪元 66 年，太阳系外围／掩体纪元 67 年，冥王星／掩体纪元 67 年，二维太阳系</td></tr>
+      <tr><td><strong>第六部</strong></td><td>银河纪元 409 年，我们的星星／时间开始后约 170 亿年，我们的星星／时间之外，我们的宇宙</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读这张表也要读出三件事</strong>：① <strong>部内各章完全按「时间，事件」命名</strong>——★ <strong>这不是章节目录，这是「编年史的条目」</strong>；② <strong>第二部里有一组「同刻」的章</strong>（「威慑纪元 62 年 11 月 28 日 16:00–16:17，威慑控制中心」与「（同刻，奥尔特星云外）」）——★★ <strong>这是「同一时刻、两个地点」的并置叙事</strong>，是第三部最讲究的结构设计之一；③ <strong>第六部只有三章，却跨越 170 亿年</strong>——★ <strong>时间跨度与章数完全不成比例</strong>，这正是 <code>## 11</code> 要讨论的问题。</p>
+  <p>★★ <strong>注意：第三部的「部名」另有一套流传的概括式叫法</strong>（如「时间之外的往事／威慑纪元／广播纪元／掩体纪元／太阳系之死／宇宙之死」）。★ <strong>那套名字不是原书目录，而是二手网页对内容的概括命名。</strong> 本报告一律用上表的<strong>原文标题</strong>，并在 <code>## 4b</code> 单独列一条点明这套概括名的存在（<span class="tag t-rep">转述</span>）。</p>
+  <p><strong>纪年体系（第三部自创，<span class="tag t-rep">转述</span>，未核对原著）</strong>：危机纪元（公元 201X–2208）→ 威慑纪元（2208–2270）→ 威慑后（2270–2272）→ 广播纪元（2272–2332）→ 掩体纪元（2333–2400）→ 银河纪元。★ <strong>这套纪年本身是一种叙事工具</strong>：它把「历史」变成可以切换的坐标，让读者用「纪元」而非「年份」感受时间跨度。★★ <strong>注意一个细节</strong>：<strong>纪元名里带着「威慑」「广播」「掩体」这些策略名</strong>——<strong>这意味着「时代的名字」是由「人类选了哪条求生路线」决定的</strong>，而不是由某个王朝或某个年份决定的（<span class="tag t-inf">推断</span>）。</p>
+  <p>★★ <strong>关于本书的目录，还有一层值得说明的东西：目录本身就是内容。</strong> ★ 三部曲的目录有三种「写法」，<strong>每一种都在替作者说话</strong>：</p>
+  <ul>
+    <li><strong>第一部用「章号 ＋ 标题」</strong>：★ <strong>标题里有大量「三体、周文王、长夜」式的并列</strong>——<strong>它提示读者：这一部是「两条线并置」</strong>（<code>## 7</code>）。
+    </li>
+    <li><strong>第二部用「序章 ＋ 三个命名部分」</strong>：★ <strong>「面壁者／咒语／黑暗森林」三个名字，就是一套完整的论证步骤</strong>——<strong>它提示读者：这一部是「推演结构」</strong>（<code>## 8</code>）。
+    </li>
+    <li><strong>第三部用「时间，事件」</strong>：★ <strong>它把小说目录写成了一部编年史的条目</strong>——<strong>它提示读者：这一部是「历史」</strong>（<code>## 9</code>）。
+    </li>
+  </ul>
+  <p>★★ <strong>把三种目录写法放在一起，你会看到一个漂亮的整体设计</strong>：<strong>两条线 → 一套论证 → 一部编年史</strong>。★ <strong>这就是为什么本报告坚持用「原文标题」而不是那套二手概括名</strong>——<strong>因为原书目录的「写法」本身，就是作者设计的一部分</strong>（<code>## 4b</code> 第⑦条）。★★ <strong>一个可操作的建议</strong>：<strong>下次读《三体》，先花两分钟只看目录</strong>——<strong>你会先得到这本书的「结构」，再得到它的「故事」。</strong></p>
+  <p>★ <strong>与本书目既有的连线（写清对应关系）</strong>：</p>
+  <table>
+    <thead><tr><th>本书目里的书</th><th>与《三体》的连线</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td><strong>《孙子兵法》《战争论》</strong></td><td>黑暗森林＝威慑理论；猜疑链＝博弈论上的第一击优势</td><td>★ 「不战而屈人之兵」的宇宙版</td></tr>
+      <tr><td><strong>《失控》《AI 3.0》</strong></td><td>智子＝技术锁死；「机器人」一词出自恰佩克《R.U.R.》（书目暂无，可提）</td><td>★ 「锁死的是能力，不是存在」</td></tr>
+      <tr><td><strong>《物种起源》</strong></td><td>宇宙社会学两条公理与「生存是第一需要」的达尔文式底色</td><td>★ 「适应」＝变成别的东西</td></tr>
+      <tr><td><strong>《几何原本》《数学原理》</strong></td><td>三体问题＝公理化方法在<strong>不可积系统</strong>上的边界</td><td>★ 序章原句直接点名「欧几里得几何」</td></tr>
+      <tr><td><strong>《梦的解析》《乌合之众》</strong></td><td>群体非理性／集体决策的文学标本（《三体》里也有「人类选择」的段落）</td><td>★ 与《流浪地球》的「叛乱」段同源</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>关于这张连线表，有三点要说清</strong>：① <strong>这些连线是本报告的「对读」建议，不是「影响关系」</strong>——★ <strong>没有证据表明作者读过书目里的这几本</strong>（<span class="tag t-inf">推断</span>）；② <strong>连线只在「问题层面」成立</strong>：<strong>黑暗森林与威慑理论，讨论的是同一个「第一击优势」问题；宇宙社会学与达尔文，共享同一个「生存压力」前提</strong>；③ ★★ <strong>其中唯一有「作者本人证据」的连线，是《几何原本》</strong>——<strong>因为序章原句亲自点名「像欧几里得几何一样」</strong>（<span class="tag t-src">原书</span>，第二部 Prologue）。★★ <strong>本报告建议把这张表当作「阅读地图」用</strong>：<strong>读《三体》时想到某一本，就回去翻那一本</strong>——<strong>这比记「谁影响了谁」有用得多。</strong></p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>核心主题与结构机制</span><span class="caret">▾</span></h2>
+  <p>★ <strong>这一节回答的是「这部作品在做什么、靠什么手段做的」，不是情节复述。</strong>《三体》三部曲的核心机制有三件，缺一不可。</p>
+  <p><strong>机制一：纪元跳时（把「历史的密度」压进篇幅）。</strong></p>
+  <p>★★ 三部曲的时间尺度大约是这样放大的：第一部 ≈ 40 年（1960 年代到当代）→ 第二部 ≈ 200 年（加入冬眠与「危机纪元」）→ 第三部 ≈ 千万年与宇宙热寂。★ <strong>手段有两件</strong>：</p>
+  <ul>
+    <li><strong>① 冬眠</strong>：人物可以睡过几个世纪，于是同一个角色（如罗辑、程心）能横跨多个时代，<strong>充当读者在时间里的锚</strong>。
+    </li>
+    <li><strong>② 纪元切分</strong>：用「危机纪元／威慑纪元／广播纪元／掩体纪元／银河纪元」给时间分段，<strong>让读者不需要记年份，只需要记「哪个时代」</strong>。
+    </li>
+  </ul>
+  <p>★★ <strong>代价是什么</strong>：<strong>每一个时代都只能被匆匆写成一幅「时代剪影」，而不是一段完整的生活</strong>——<strong>深度让位给了跨度</strong>。★★ 作者本人对第三部的自述正好印证了这一点：他本想画一幅「面对末日的社会的全景图」，写一部「<strong>科幻版《战争与和平》或路遥《平凡的世界》</strong>」，但发现<strong>一部长篇装不下</strong>，只好<strong>退回到科幻的传奇笔法</strong>——「<strong>未来被写成一部传奇史，由少数几个像传说人物一样的角色创造</strong>」，并自评这种写法「<strong>在理性上是不真实的</strong>」（<span class="tag t-talk">作者谈话</span>，Reactor 2016-09-20）。★ <strong>这段话是理解第三部一切缺点的钥匙</strong>（<code>## 9</code>、<code>## 11</code>）。</p>
+  <p>★ <strong>一个具体的写法示例</strong>（<span class="tag t-src">原书</span>，第三部「Yun Tianming」段，实测通过）：书中借角色之口，把「四百年后」比作「<strong>明朝的人担心四百年后</strong>」——<strong>用历史的尺度来校准未来的尺度</strong>。★★ <strong>这是「纪元跳时」最经济的一种写法：不解释科技，只给一个时间锚点。</strong></p>
+  <p><strong>机制二：视角轮换（把「整体的人类」拆成几个立场）。</strong></p>
+  <p>★ 三部曲几乎每一部都切换主角：第一部是<strong>叶文洁与汪淼（双线）</strong>，第二部是<strong>罗辑与章北海（两条暗线）</strong>，第三部是<strong>程心（贯穿）与云天明的童话（嵌套叙事）</strong>。★★ <strong>这不是「换主角」，而是「换立场」</strong>：</p>
+  <table>
+    <thead><tr><th>角色</th><th>代表什么立场</th><th>出现的部</th></tr></thead>
+    <tbody>
+      <tr><td><strong>叶文洁</strong></td><td>对人类绝望、把希望交给「更高的文明」</td><td>一（核心）、二（序章）</td></tr>
+      <tr><td><strong>罗辑</strong></td><td>被迫承担、用欺骗与威慑换生存</td><td>二（核心）、三</td></tr>
+      <tr><td><strong>章北海</strong></td><td>「为了生存先动手」的军事理性</td><td>二</td></tr>
+      <tr><td><strong>程心</strong></td><td>「当代共识的道德」</td><td>三（核心）</td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>这套轮换让「人类」始终以整体出现，却通过不同立场被反复检验</strong>——作者自称这是他作品受全球欢迎的原因之一（<span class="tag t-talk">作者谈话</span>，《新京报》，2018-11-11）。★★ <strong>注意程心这个立场的特殊之处</strong>：<strong>她的观点几乎是「读者自己的观点」</strong>——<strong>这就是为什么她招人厌：她替人类做了「我们会做的选择」，然后承担了那个选择的后果</strong>（<span class="tag t-inf">推断</span>，本报告的分析；作者本人的说法见 <code>## 12</code>）。</p>
+  <p><strong>机制三：思想实验嵌套（把「设定」变成「推演」）。</strong></p>
+  <p>★ 这是三部曲最独特的一件工具。它不直接讲故事，而是<strong>在故事里再放一个思想实验</strong>，让角色去推演它：</p>
+  <table>
+    <thead><tr><th>层</th><th>思想实验</th><th>它推出了什么</th></tr></thead>
+    <tbody>
+      <tr><td><strong>①</strong></td><td><strong>宇宙社会学公理</strong>（第二部序章，叶文洁之口）</td><td>推出<strong>黑暗森林</strong></td></tr>
+      <tr><td><strong>②</strong></td><td><strong>黑暗森林</strong></td><td>推出<strong>猜疑链与技术爆炸</strong></td></tr>
+      <tr><td><strong>③</strong></td><td><strong>威慑</strong></td><td>推出<strong>执剑人的孤独</strong></td></tr>
+      <tr><td><strong>④</strong></td><td><strong>二向箔</strong></td><td>推出<strong>宇宙作为战争废墟</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>关键在「嵌套」</strong>：每一层思想实验都<strong>不是独立的点子，而是上一层推演出来的结果</strong>。★ 这正是「概念型」作品与「点子集」的分界——<strong>它有一个可追溯的推理链</strong>（<code>## 10</code> 会把这根链完整画出来）。★ 作者本人把这种方法叫「<strong>可能性的文学</strong>」：科幻不是预测未来，而是「<strong>把未来的各种可能性排列出来</strong>」（<span class="tag t-talk">作者谈话</span>，中国作家网 2015-02-12）。★★ <strong>而《三体》排列出来的，是「最糟糕的一种」。</strong></p>
+  <p>★ <strong>三件机制与三部曲尺度放大的关系</strong>：</p>
+  <table>
+    <thead><tr><th>部</th><th>尺度</th><th>主导机制</th><th>检验的核心命题</th></tr></thead>
+    <tbody>
+      <tr><td><strong>一《三体》</strong></td><td>≈ 40 年</td><td><strong>双线切换</strong>（现实线／三体游戏线）</td><td><strong>「绝望」从何而来，如何转化为行动</strong></td></tr>
+      <tr><td><strong>二《黑暗森林》</strong></td><td>≈ 200 年</td><td><strong>视角轮换 ＋ 思想实验</strong></td><td><strong>「威慑」能否成立，代价是谁来背</strong></td></tr>
+      <tr><td><strong>三《死神永生》</strong></td><td>千万年</td><td><strong>纪元跳时 ＋ 嵌套童话</strong></td><td><strong>「道德」在生存压力下值不值钱</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>这三件机制共同服务于同一个母题</strong>：<strong>在宇宙尺度上，人类共同体的边界在哪里，道德还管不管用</strong>。</p>
+  <p>★★ <strong>三件机制各自的「账单」</strong>（本报告把三件工具的代价列成一张表，这是 <code>## 11</code> 全部批评的总纲）：</p>
+  <table>
+    <thead><tr><th>机制</th><th>它买到了什么</th><th>它付出了什么</th></tr></thead>
+    <tbody>
+      <tr><td><strong>纪元跳时</strong></td><td>★ 让「千万年」装进「一本书」</td><td>★ <strong>代价：时代只剩剪影，人物只剩坐标</strong>（<code>## 9</code>、<code>## 11</code> 第四条）</td></tr>
+      <tr><td><strong>视角轮换</strong></td><td>★ 让「人类」作为一个整体被检验</td><td>★ <strong>代价：没有一个角色能承载读者的长期情感</strong>（<code>## 11</code> 第四条）</td></tr>
+      <tr><td><strong>思想实验嵌套</strong></td><td>★ 让「推演」本身成为情节</td><td>★ <strong>代价：高潮常常是「想通了」而不是「发生了」</strong>（<code>## 13</code> 第五条）</td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>把这张表与 <code>## 11</code> 对照着读，你会发现一件事</strong>：<strong>批评者抱怨的每一个「缺点」，都能在三件机制的「代价」一栏里找到位置</strong>——★ <strong>换句话说，这些缺点不是失误，而是这套写法的固定支出</strong>（<span class="tag t-inf">推断</span>）。★ <strong>这不等于说它们不该被批评</strong>；★ <strong>但它意味着：如果你想保留三部曲的力量，你就得同时接受它的账单</strong>。★★ <strong>这就是「概念型」作品最诚实的一句话</strong>：<strong>你不能只要它的尺度，不要它的空。</strong> ★ 这也是为什么三部曲可以被读成一部<strong>关于「道德的可塑性」的长篇论证</strong>（<code>## 11</code> 会给出批评方的不同意见）。</p>
+  <p>★★ <strong>最后补一句关于「反讽」的话</strong>：★ 三部曲的两次关键「反转」都建立在同一种结构上——<strong>「人类以为自己在做正确的事，结果事与愿违」</strong>。★ 第二部里，<strong>人类换掉最强硬的执剑人、选出最善良的那一位，直接导致威慑失效</strong>；★ 这种「<strong>好感即失守</strong>」的结构，与本书目《乌合之众》处理的「群体非理性」是同一家族的问题（<span class="tag t-inf">推断</span>，本报告的分析；<code>## 10</code> 第⑦条、<code>## 11</code>）。</p>
+  <p>★★ <strong>补一层：这套机制最直接的一个后果，是「人物」与「命题」的关系被倒转了。</strong> ★ 在通常的小说里，<strong>人物是目的，情节是手段</strong>；★ 在《三体》里，<strong>命题是目的，人物是手段</strong>——★★ <strong>人物被写出来，是为了让某一种立场「有一个可以说话的身体」</strong>（<span class="tag t-talk">作者谈话</span>，2018-11-11：人物「只是符号」）。★★ <strong>这个倒转既带来了三部曲最大的力量（尺度与概念可以无限扩张），也带来了它最大的弱点（读者很难对角色产生持续的情感依赖）</strong>——<strong><code>## 11</code> 的整个第四条讨论，其实就是这个倒转的账单。</strong></p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <p>★ <strong>先读哪一部？</strong> ★★ <strong>本报告的建议是：按一到三的顺序读，但把第二部当「真正的主场」。</strong> ★ 第一部是<strong>建立世界观与人物前史</strong>（叶文洁的动机、三体世界的来历）；第二部才是<strong>整套宇宙社会学的论证正场</strong>（公理 → 黑暗森林 → 威慑）；第三部是<strong>把论证推到宇宙尺度并检验道德</strong>。★ 许多英文读者与评论者都认为<strong>第二部是三卷里最平衡的一部</strong>（<span class="tag t-rep">转述</span>，<code>## 11</code> 会给出两方评价）。</p>
+  <p>★ <strong>三条具体的读法路线</strong>：</p>
+  <table>
+    <thead><tr><th>路线</th><th>章节／节次</th><th>适合谁</th></tr></thead>
+    <tbody>
+      <tr><td><strong>「最短路径」（约 1 部）</strong></td><td>★ <strong>第二部全书 ＋ 本书 <code>## 10</code> ＋ <code>## 12</code></strong></td><td>只想弄懂「黑暗森林到底是什么、作者怎么想」的读者</td></tr>
+      <tr><td><strong>「标准路径」（约 2 部）</strong></td><td>★ <strong>第二部 ＋ 第三部 ＋ <code>## 5</code>＋<code>## 11</code></strong></td><td>想看清「道德命题如何被推到极限」的读者</td></tr>
+      <tr><td><strong>「完整路径」（三部全读）</strong></td><td>★ <strong>三部全读 ＋ 本书全部</strong></td><td>想做翻译／叙事／接受史研究的读者</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>读的时候要盯住三样东西</strong>：</p>
+  <ol>
+    <li><strong>公理出现的位置</strong>——两条公理出现在<strong>第二部序章</strong>，是全书推理链的起点，务必记住原话（<code>## 10</code>）。
+    </li>
+    <li><strong>「代价」的出现</strong>——每个解法（威慑、掩体、黑域、小宇宙）都标了代价，★ <strong>这些代价才是作者真正想讨论的东西</strong>（<code>## 10</code> 逐条列出）。
+    </li>
+    <li><strong>作者的自我否认</strong>——读完全书，务必回到 <code>## 12</code>，看作者怎么亲口否认「黑暗森林＝我的宇宙观」（<code>## 4b</code>）。
+    </li>
+  </ol>
+  <p>★ <strong>中文版还是英文版？</strong> ★ 见 <code>## 4</code>。<strong>简答</strong>：中文是原著语言，读中文最接近作者的文字意图（作者自述其语言「特别平实」，见 <code>## 12</code>）；英文版的价值在于<strong>两位译者的处理不同</strong>，且<strong>英译把第一部开篇结构做了调整</strong>（<span class="tag t-talk">作者谈话</span>，2015-02-12）。★ <strong>两版对读，本身就是理解这部书「如何被翻译史改造」的最佳方式。</strong></p>
+  <p>★ <strong>不建议的读法</strong>：把《三体》读成「黑暗森林法则科普」或「科技预测书」。★★ <strong>作者本人最反对的就是这种读法</strong>（<span class="tag t-talk">作者谈话</span>，中国作家网 2015-02-12：「《三体》所描写的是最糟糕的宇宙，不等于我真的认为宇宙就是这样」）。★ 另一种要避免的读法是<strong>把「人物扁平」当作纯粹的缺点来读</strong>——★ <strong>它更像是一种方法带来的代价，而不是一次失误</strong>（<code>## 11</code> 第四条给出两方意见）。</p>
+  <p>★★ <strong>三份「章节级」的具体建议</strong>（本报告给出，可直接照做）：</p>
+  <table>
+    <thead><tr><th>你想要的</th><th>读这些</th><th>理由</th></tr></thead>
+    <tbody>
+      <tr><td><strong>只想弄懂「黑暗森林」</strong></td><td>★ 第二部<strong>序章 ＋ 中部 ＋ 下部</strong></td><td>这三段构成完整的「立公理 → 试验 → 验证」</td></tr>
+      <tr><td><strong>只想看「概念怎么用」</strong></td><td>★ 第三部<strong>第五部 ＋ 第六部</strong> ＋ 本报告 <code>## 10</code></td><td>「降维打击」与「归零」在这一段兑现</td></tr>
+      <tr><td><strong>只想看「作者怎么想」</strong></td><td>★ 本报告 <code>## 12</code> ＋ 第二部<strong>序章</strong></td><td>一个是作者自述，一个是概念原点</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>还有一个常被忽略的「读前准备」</strong>：★★ <strong>如果你要读第二部，请先确认自己记得第一部的两件事</strong>——<strong>一是「智子锁死了人类的基础物理」，二是「三体舰队已经在路上」</strong>。★ 因为第二部<strong>全部的策略讨论，都是建立在这两件事之上的</strong>；★ <strong>缺了这两条前提，面壁计划、破壁人、威慑都会显得没有来由</strong>（<code>## 8</code>）。★ <strong>同样的道理</strong>：<strong>要读第三部，至少要记得第二部结尾的「威慑已经建立」</strong>——<strong>否则「执剑人」这个词会完全落空</strong>（<code>## 9</code>）。</p>
+  <p>★ <strong>一条「不推荐顺序」的提醒</strong>：★ <strong>不要从第三部开始读</strong>。★★ <strong>因为第三部的前三分之一几乎全是「对前两部的结算」</strong>——<strong>没有前两部的积累，读者会把「执剑人」「水滴」「云天明」都当成陌生人</strong>。★ <strong>这不是「阅读门槛」，而是「呼应结构」</strong>（<code>## 6</code>）。</p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>中文版本与英译怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <strong>注意：这部作品本来就是中文写的，所以本节不写「中译本怎么选」，而写「中文版本之间的差异」与「英译版本的路线差异」。</strong></p>
+  <p><strong>A. 中文版本的差异</strong></p>
+  <table>
+    <thead><tr><th>版本</th><th>关键差异</th></tr></thead>
+    <tbody>
+      <tr><td><strong>《科幻世界》连载版（2006 年 5–12 月）</strong></td><td><strong>34 章</strong>；★ <strong>单行本后来调整了章节顺序</strong></td></tr>
+      <tr><td><strong>重庆出版社单行本（2008-01）</strong></td><td><strong>36 章 ＋ 后记</strong>；★ 主体文本按中文读者的阅读习惯编排（见下）</td></tr>
+      <tr><td>后续各社再版／典藏版／纪念版</td><td>通行说法是主体文本一致，差异多在装帧、附序、插页与收录的番外（<span class="tag t-rep">转述</span>，未核对各版版权页）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>真正的「版本差异」不在封面，而在结构</strong>：中文单行本<strong>为顺利出版，把大量社会问题描写「移到了小说的中央」</strong>；作者原稿本在<strong>开头</strong>就用不小篇幅交代这部分（<span class="tag t-talk">作者谈话</span>，中国作家网／《北京晚报》，2015-02-12）。★ 这条差异对<strong>中文版读者的阅读体验</strong>影响很直接：中文版是<strong>先进入后回望</strong>，英译版则是<strong>先直面再展开</strong>。</p>
+  <p>★ <strong>一个必须说清的边界</strong>：★ <strong>连载版 34 章 → 单行本 36 章，「增了什么、删了什么」本报告未能确证</strong>（列入附录 D）。★ <strong>凡引用「36 章」，都应说明所据为单行本。</strong></p>
+  <p><strong>B. 英译版本的路线差异</strong></p>
+  <p>★★ <strong>英译三册由两位译者完成，路线明显不同</strong>：</p>
+  <ul>
+    <li><strong>Ken Liu（刘宇昆）译第一部与第三部</strong>。★ 他的处理特点是<strong>加注与考订</strong>：他自述「为了使得这本以中国历史文化为基础的小说被英语读者所理解，我必须给原文加上必要背景介绍的脚注」；「<strong>可是脚注是有侵略性的工具，因而我决定尽可能少地使用脚注</strong>」；「我必须<strong>重新进行书中的计算</strong>，查阅科学文献原件，咨询相关科学家来决定该使用何种术语」（<span class="tag t-rep">转述</span>，刘宇昆《谈翻译三体》，中国作家网，2014-11-27——★ <strong>这是译者自述，不是作者谈话</strong>）。★ 他还自述读了<strong>纯数学与天体物理学的论文</strong>、收集了<strong>关于那段历史和中文经典的历史细节</strong>、并<strong>采访了经历过那段历史的人们</strong>（同上；<span class="tag t-rep">转述</span>，中国作家网 2015-02-12 亦转述其自述）。
+    </li>
+    <li><strong>Joel Martinsen（周华）译第二部</strong>。★ 评论者普遍注意到<strong>第二部的脚注比第一部少、历史语境更少、动作更多</strong>（<span class="tag t-rep">转述</span>，Michael Senft 书评，WesternSFA，2015——★ 书评人之言，非作者之言）。★ 但需注意：<strong>这一差异未必全出自译者，也可能是文本需求不同</strong>（该评论者自己也这样提示）。
+    </li>
+  </ul>
+  <p>★★ <strong>中英结构差异（本报告的核心事实之一，作者亲口确认）</strong>：</p>
+  <blockquote>
+    <p>我当时出版中文小说的时候，为了顺利出版，将很多社会问题的描写移到了小说的中央，做了很大的改动，而我的原稿中其实它们是在一开头就用了不小的篇幅交代的，国内的英文出版代理也说想把这部分弱化，但<strong>我和刘宇昆都坚持把它们放到最前面</strong>。<span class="tag t-talk">作者谈话</span>（中国作家网／《北京晚报》，2015-02-12）</p>
+  </blockquote>
+  <p>★ <strong>实测印证</strong>：<strong>英译第 1 章「The Madness Years」以「China, 1967」开篇，第 2 章「Silent Spring」写大兴安岭，第 3 章「Red Coast I」</strong>——这三章在中文单行本里对应的是<strong>第 7、8、9 章</strong>（<span class="tag t-rep">转述</span>，中文目录，未核对原著）。★★ <strong>换言之：英译把中文版的第 7–9 章提到了全书最前面</strong>，这与作者亲述「坚持把它们放到最前面」完全一致（<span class="tag t-src">原书</span>，英译第 1–3 章，实测通过）。</p>
+  <p>★ <strong>第三部英译的节选</strong>也印证了英译的结构：Reactor 官方节选 <strong>「The Death of the Magician」（May 1453, C.E.）</strong> 标为 <strong>PART I</strong> 的开篇（<span class="tag t-src">原书</span>，实测通过），★ 即英文版把「魔法师之死」放在<strong>第三部的第一卷第一章</strong>。</p>
+  <p>★ <strong>选版建议</strong>（不写套话，只给判断）：① <strong>读原著语言 → 中文重庆出版社单行本</strong>（或据其排印的通行再版）；② <strong>读翻译研究／对照阅读 → 英文 Tor 三册</strong>，并<strong>盯住 Ken Liu 与 Martinsen 的脚注差别</strong>；③ <strong>一定要避开的坑</strong>：以任何<strong>未授权全文站或他人托管 PDF</strong> 冒充「原书」——★ 本报告的英文引文<strong>只来自出版方授权的官方节选</strong>（见来源清单）。</p>
+  <p>★ <strong>再加一条具体的对照建议</strong>：★ <strong>读英译时，请特别留意「脚注」这个变量</strong>。★ <strong>刘宇昆自述他决定「尽可能少地使用脚注」，因为「脚注是有侵略性的工具」</strong>（<span class="tag t-rep">转述</span>，2014-11-27）；★★ <strong>而评论者注意到，第二部的脚注比第一部更少、历史语境也更少</strong>（<span class="tag t-rep">转述</span>，WesternSFA 书评，2015——★ 但该评论者也提示，<strong>这可能同时是文本本身的需求</strong>）。★★ <strong>于是「脚注密度」本身成了一个可观察的指标</strong>：<strong>它标记着译者在「保持原作风味」与「让新读者读得下去」之间选了哪一边</strong>（<span class="tag t-rep">转述</span>，刘宇昆自述，2014-11-27）。★ <strong>对读者来说，最直接的用法是</strong>：<strong>如果你读的是英译，遇到一个「看不懂但又没脚注」的地方，那多半就是译者的取舍之处</strong>（<span class="tag t-inf">推断</span>）。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本表把关于《三体》流传最广的说法，逐条对照原文／作者本人的说法。</strong>★ <strong>定位只用「部／章／节／时间点」，不用页码</strong>（中文原著无合法全文）。</p>
+  <table>
+    <thead><tr><th>#</th><th>流行说法</th><th>实际情况</th><th>定位／出处</th></tr></thead>
+    <tbody>
+      <tr><td>①</td><td><strong>「《三体》就是三部曲的书名」</strong></td><td>★★ <strong>总题是《地球往事》（<em>Remembrance of Earth's Past</em>）</strong>；「三体」是<strong>全系列的俗名</strong>，作者亲口说明「中文读者习惯用《三体》称呼整部作品」</td><td><span class="tag t-talk">作者谈话</span>，Reactor 2014-05-07；<span class="tag t-rep">转述</span> 百科与书目</td></tr>
+      <tr><td>②</td><td><strong>「刘慈欣凭《三体》获雨果奖」</strong></td><td>★ <strong>是第一部《三体》获 2015-08-23 雨果奖最佳长篇</strong>，译本为 Ken Liu 所译；★ <strong>亚洲小说首获该奖</strong></td><td><span class="tag t-rep">转述</span>，2015-08-23 雨果奖；<code>## 13</code></td></tr>
+      <tr><td>③</td><td><strong>「黑暗森林法则是刘慈欣的宇宙观」</strong></td><td>★★ <strong>作者本人明确否认</strong>：「《三体》所描写的是最糟糕的宇宙，<strong>不等于我真的认为宇宙就是这样</strong>」；原话「科幻文学是一种可能性的文学……《三体》所排列出来的可能性<strong>恰恰是最糟糕的一种</strong>」</td><td><span class="tag t-talk">作者谈话</span>，中国作家网 2015-02-12</td></tr>
+      <tr><td>④</td><td><strong>「英译版弱化或删改了历史背景」</strong></td><td>★★ <strong>恰恰相反</strong>：作者与 Ken Liu <strong>共同坚持把社会问题描写「放到最前面」</strong>（中文版曾把它移到中部）</td><td><span class="tag t-talk">作者谈话</span>，2015-02-12；<span class="tag t-src">原书</span> 英译第 1–3 章</td></tr>
+      <tr><td>⑤</td><td><strong>「刘慈欣很重视人物塑造」</strong></td><td>★ <strong>他自述「人物只是讲故事的一个工具」</strong>；「人物在小说只是符号，比如<strong>程心只是一个象征着正义的符号而已</strong>」</td><td><span class="tag t-rep">转述</span>，张悦（2021-12-29）引录作者访谈原话；<span class="tag t-talk">作者谈话</span>，《新京报》2018-11-11</td></tr>
+      <tr><td>⑥</td><td><strong>「第三部是三部曲里最不受重视的」</strong></td><td>★ <strong>作者与出版社确实都不看好第三部</strong>（认为中文读者不关心遥远未来），<strong>但市场结果恰恰相反——正是第三部让整个系列火起来</strong></td><td><span class="tag t-talk">作者谈话</span>，Reactor 2014-05-07／2016-09-20</td></tr>
+      <tr><td>⑦</td><td><strong>「第三部的部名是『时间之外的往事』『太阳系之死』等」</strong></td><td>★ <strong>不是原书目录</strong>，而是<strong>二手网页对第三部六个部分的概括命名</strong>；原书各章标题是「时间，事件」格式</td><td><span class="tag t-rep">转述</span>，二手概括，未核对原著；原文标题见 <code>## 1</code></td></tr>
+      <tr><td>⑧</td><td><strong>「《三体》是硬科幻，所以它的设定都是真的」</strong></td><td>★ <strong>作者把「改变宇宙自然法则」当作武器写成一种「可能性」</strong>，并未主张其为真；批评方亦指出二向箔等设定「像魔法」</td><td><span class="tag t-talk">作者谈话</span>，2016-09-20；<span class="tag t-rep">转述</span>，维舟，2024</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>本表共八条</strong>，覆盖<strong>书名、奖项、宇宙观、翻译、人物观、第三部地位、部名、科学性</strong>八个最常被误传的点。★ <strong>每一条都能在正文对应小节里找到展开</strong>。</p>
+  <p>★★ <strong>为什么这张表值得单独占一节？</strong> ★ 因为《三体》是本项目书系里<strong>「流行说法与原文偏离最严重」的一本</strong>——★ 它的很多「名句」其实<strong>不是书里的句子</strong>（<strong>例如把「黑暗森林」讲成一条物理定律，或把「第三部部名」当成原书目录</strong>）。★★ <strong>这不是读者的问题，而是「一部现象级作品必然遭遇的命运」</strong>：<strong>当一个概念足够有力，它就会被从书里拿出来、独立使用</strong>——★ <strong>作者本人正是最早记录这一现象的人</strong>（<span class="tag t-talk">作者谈话</span>，2014-05-07，他记录了 IT 从业者对「黑暗森林理论」的挪用）。★★ <strong>本报告把这张表放在「速览」的末尾，用意是</strong>：<strong>先给你八条「防误读」，再带你进正文</strong>——<strong>因为一旦带着这八条误读进正文，读到的就不再是这本书了。</strong></p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本节六条，每条带姓名 ＋ 出处 ＋ 年份。</strong>★ <strong>凡涉及现实历史背景处只做文学分析。</strong></p>
+  <p><strong>第一条：性别表征。</strong> ★ 批评方一：<strong>Nan Z. Da（《China at World's End》，Public Books，2015-07-15）</strong> 评叶文洁形象，写道「<strong>There is something unthinkingly misogynist about this portrayal of a Chinese woman traumatized by history.</strong>」（<strong>把一位被历史创伤塑造的中国女性这样写，其中有些东西是未经反思的厌女</strong>——笔者自译）。★ 她还指出：为了给故事足够的叙事杠杆，「<strong>小说必须让一位像叶文洁这样的女性保持静止——先是受到赞美，最终被污名化</strong>」。★ 批评方二：<strong>张悦《建构中国科幻文学的女性话语空间》（《文艺报》／中国作家网，2021-12-29）</strong> 系统讨论<strong>程心与林云</strong>，指出「刘慈欣在潜意识的男性思维下，他对女性的理解还不够深刻」，「<strong>男性角色确实要比女性角色来得更加丰富，也更加讨喜</strong>」。★★ <strong>作者本人的回应见第四条</strong>（<span class="tag t-talk">作者谈话</span>，2016-09-20 与 2018-11-11）。★ 另有一条独立来源指出，《三体》中「<strong>塑造了或许是中国科幻文学史上最为复杂立体的女性角色——叶文洁与程心</strong>」（<span class="tag t-rep">转述</span>，陈楸帆《科幻中的女性主义书写》，《光明日报》，2018-09-26）——★ <strong>说明这一争议在中文批评界内部也有不同评价。</strong></p>
+  <p><strong>第二条：社会达尔文主义指控。</strong> ★ 指控方认为：<strong>宇宙社会学两条公理</strong>（生存是文明第一需要／文明不断扩张而宇宙物质总量不变）被批评为<strong>把社会达尔文主义搬上宇宙尺度</strong>（<span class="tag t-rep">转述</span>，维舟《〈三体〉的逻辑漏洞》，2024，网络长文，多家站点转载；<strong>未核对原始发表</strong>）。★ 同一批评传统还指出：<strong>黑暗森林法则「看似是未来的，实则是几乎所有传统社会都有的倾向：外部世界是危险的」</strong>，并引用人类学家马林诺夫斯基关于「对异己群体的基本态度是敌视和不信任」的观察（同上）。★★ <strong>作者的反驳</strong>：他自称写的是「<strong>最糟糕的可能性</strong>」而非信念——「《三体》所排列出来的可能性恰恰是最糟糕的一种」；且<strong>《三体》的宇宙观不等于他的宇宙观</strong>（<span class="tag t-talk">作者谈话</span>，中国作家网 2015-02-12）。★ <strong>本报告并陈两方，并指出这是一场「文本接受」层面的争论，不是「作者动机」层面的争论</strong>（<code>## 11</code> 第二条）。</p>
+  <p><strong>第三条：科学硬伤。</strong> ★ <strong>维舟《〈三体〉的逻辑漏洞》（2024）</strong> 提出三类质疑：① <strong>三体人动机</strong>——「三体人攻击地球的动机是什么？好像仅仅是看中地球这个家园比他们自家的更好」；② <strong>黑暗森林的可证伪性</strong>——<strong>距离太远的星际文明之间互动是否可能</strong>（他引用冯·赫尔纳关于文明平均寿命与距离的假定）；③ <strong>二向箔「犹如魔法一般的技术」</strong>，认为它缺乏像霍伊尔《黑云压境》那样的科学设想探求（<span class="tag t-rep">转述</span>，维舟，2024，<strong>未核对原始发表</strong>）。★ <strong>反方</strong>：也有评论者（如 <span class="tag t-rep">转述</span>，timeteam 书评，2016）认为<strong>当代物理与宇宙学理论被「以全然可信的方式织进故事」</strong>。★ 两方并陈，本报告不替任何一方下结论。</p>
+  <p><strong>第四条：程心形象与「人物只是工具」。</strong> ★★ <strong>作者 2016 年长文正面回应</strong>：<strong>程心是「当代公认的正确道德与价值观的代表」</strong>，「<strong>身披光明与正义走向末日</strong>」（原文：<code>Cheng Xin, the protagonist, is a representative of what are, by contemporary consensus, the correct morals and values of humanity. Bathed in light and justice, she strides into the apocalypse.</code>）<span class="tag t-talk">作者谈话</span>（Reactor，2016-09-20）。★ <strong>批评方</strong>：<strong>Niall Alexander（Reactor，2016）</strong> 称程心「<strong>她也有一个锚的性格，也就是说……没有性格</strong>」（原文：<code>she also has an anchor's personality, which is to say, you know… none.</code>）；<strong>Michael A. Morrison（<em>World Literature Today</em>，2017）</strong> 也认为程心「<strong>太过单薄，撑不起这部小说</strong>」，「当她长时间不在场时，我们就失去了与故事的情感联系」。★★ <strong>作者另一次回应</strong>：他自述「<strong>其实自己根本就没有想过性别问题</strong>」，且<strong>程心「最初设定是男性，之后才改为女性」</strong>，「人物在小说只是符号，比如<strong>程心只是一个象征着正义的符号而已</strong>」（<span class="tag t-talk">作者谈话</span>，《新京报》，2018-11-11）。</p>
+  <p><strong>第五条：中英版结构差异。</strong> ★★ <strong>作者 2015 年亲述</strong>：中文单行本把社会问题描写「移到了小说的中央」，<strong>英译时他与 Ken Liu 坚持挪回最前面</strong>（<span class="tag t-talk">作者谈话</span>，2015-02-12）。★ <strong>译者视角</strong>：<strong>刘宇昆《谈翻译三体》（2014-11-27）</strong> 自述其加注与改写的取舍——「<strong>脚注是有侵略性的工具</strong>，因而我决定尽可能少地使用脚注」；并「<strong>重新进行书中的计算</strong>，查阅科学文献原件，咨询相关科学家」（<span class="tag t-rep">转述</span>，译者自述，<strong>非作者谈话</strong>）。★ 本条是<strong>翻译史事实</strong>，与政治评价无关。</p>
+  <p><strong>第六条：奖项与接受语境。</strong> ★ <strong>事实</strong>：<strong>2015-08-23，《三体》第一部获雨果奖最佳长篇，为亚洲小说首获该奖</strong>；2015-02 获星云奖提名；第三部获 <strong>2017 轨迹奖</strong>；2019-09-23 入选「新中国 70 年 70 部长篇小说典藏」；北美销量逾 100 万套（<span class="tag t-rep">转述</span>，多个出版与新闻来源）。★ <strong>翻译在其中的角色</strong>：英文版由 Ken Liu 译出，是西方读者接触本作的第一步；★ <strong>本报告只写文学与奖项史事实</strong>，不涉及任何现实政治评价。</p>
+  <p>★ <strong>关于第四条，还有一句话必须补上</strong>：★ 作者自述<strong>程心「最初设定是男性，之后才改为女性」</strong>（<span class="tag t-talk">作者谈话</span>，《新京报》，2018-11-11）。★★ <strong>这句话常被引用来「证明」作者不在意性别</strong>——★ 但<strong>从文学分析的角度看，它其实提出了一个更有意思的问题</strong>：<strong>如果程心本来是男性，这个角色还会被这样批评吗？</strong> ★ <strong>本报告不给答案</strong>（<span class="tag t-inf">推断</span>）；★ <strong>但可以指出</strong>：<strong>批评方（Nan Z. Da、张悦）所谈的，并不只是「性别比例」，而是「哪一种性格被分配给了哪一种人」</strong>——<strong>这是一个更深的问题，无法靠「改成女性」或「改回男性」来解决</strong>（<code>## 11</code> 第一条）。</p>
+  <p>★ <strong>一条补记（作者自评）</strong>：★ 作者承认<strong>第三部「不是一部完美的作品」</strong>，但「<strong>它是我最想写的那种科幻小说</strong>」（<span class="tag t-talk">作者谈话</span>，Reactor 2016-09-20）。★★ <strong>把这句话和上面六条放在一起看，会发现一个有趣的事实：作者对第三部的自我评价，与批评者的许多意见方向一致——他只是「选择了仍然要写」。</strong></p>
+  <p>★ <strong>再补一条：本节六条里，有一条最容易被忽略，却最能说明这本书的性质</strong>——<strong>那就是第五条（中英版结构差异）</strong>。★★ <strong>因为它是唯一一条「作者主动出来作证」的争议</strong>：<strong>他不是在辩护，而是在陈述一个事实</strong>——<strong>中文版为了出版改了结构，英译版又改了回来</strong>。★★ <strong>把它和第一条（性别表征）、第四条（程心）放在一起看，会看到一个共同的模式</strong>：<strong>这本书的许多「争议」，最后都指向同一件事——「谁在决定这个故事被怎样读」</strong>：<strong>是作者、是译者、是出版社、还是读者？</strong>（<span class="tag t-inf">推断</span>，本报告的分析）</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>三部曲骨架：从「地球往事」到「死神永生」</span><span class="caret">▾</span></h2>
+  <p>★★ <strong>本节要先说清楚一件事：本报告讨论的是「三部曲合页」，也就是把三部长篇当成一个整体来读。</strong>★ <strong>本节依据＝官方目录与公开资料，非逐章原文核验。</strong></p>
+  <p><strong>（一）它是「合页」，不是「三本各自独立的书」。</strong></p>
+  <p>★ 三部的<strong>总题</strong>是《地球往事》（<em>Remembrance of Earth's Past</em>），作者亲口说明；「三体」是<strong>俗名</strong>（<span class="tag t-talk">作者谈话</span>，2014-05-07）。★ 三部的名字分别是 <strong>《三体》／《黑暗森林》／《死神永生》</strong>（英文 <em>The Three-Body Problem</em> / <em>The Dark Forest</em> / <em>Death's End</em>）。★★ <strong>「地球往事」这个总题本身就是一张说明书</strong>：它提示你——<strong>这三本书讲的是「地球」这个文明的「往事」，而叙述者站在一个已经结束的时间点上回望</strong>。★ 第三部的最后一章标题正是「时间之外，我们的宇宙」（<span class="tag t-rep">转述</span>，第三部目录），<strong>呼应了这个「回望」的位置</strong>。★★ <strong>一个细节值得注意</strong>：作者说「中文读者习惯用《三体》称呼整部作品」（<span class="tag t-talk">作者谈话</span>，2014-05-07）——<strong>「俗名压过正名」这件事本身，恰好说明这部三部曲在中文读者心里是「一个东西」，而不是「三部书」。</strong></p>
+  <p><strong>（二）三部的关系：不是「续集」，而是「同一条时间线的三次放大」。</strong></p>
+  <p>★★ <strong>这是本报告最想先纠正的一种读法。</strong> 一般系列小说是「同一批人物往后走」；《三体》三部曲则是<strong>把同一道题在同一根时间线上放大三次</strong>：</p>
+  <table>
+    <thead><tr><th>部</th><th>时间尺度（约）</th><th>放大的是什么</th><th>仍未变的命题</th></tr></thead>
+    <tbody>
+      <tr><td><strong>一《三体》</strong></td><td><strong>≈ 40 年</strong>（1960 年代 → 当代）</td><td>从「一个人对人类绝望」到「一个文明开始备战」</td><td>文明之间<strong>能不能</strong>沟通</td></tr>
+      <tr><td><strong>二《黑暗森林》</strong></td><td><strong>≈ 200 年</strong>（危机纪元 → 威慑纪元）</td><td>从「一个文明备战」到「两个文明对峙」</td><td>威慑<strong>能不能</strong>成立</td></tr>
+      <tr><td><strong>三《死神永生》</strong></td><td><strong>千万年 → 宇宙热寂</strong></td><td>从「两个文明对峙」到「整个宇宙是战争废墟」</td><td>道德<strong>还能不能</strong>算数</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>「放大」的手段是冬眠与纪元</strong>：人物可以跨越时代，于是作者不必换主角就能展示「几百年后世界如何」。★★ <strong>代价也随之放大</strong>：每一代的细节都被压缩，<strong>越往后，人物越像坐标点，而不像人</strong>——这正是 <code>## 11</code> 里批评最集中的地方。★ 作者本人对此的解释是「<strong>人物只是讲故事的一个工具</strong>」（<span class="tag t-rep">转述</span>，张悦 2021 引录），并承认第三部「<strong>不得不用传奇的方式写未来史</strong>」（<span class="tag t-talk">作者谈话</span>，2016-09-20）。</p>
+  <p><strong>（三）三部的「对照结构」。</strong> ★ 三部曲在叙事上做了一件很讲究的事：<strong>每一部都让「人类的某种集体选择」与「宇宙的某种规律」对撞</strong>。</p>
+  <table>
+    <thead><tr><th>部</th><th>人类这边的集体选择</th><th>宇宙这边的规律</th><th>对撞的结果</th></tr></thead>
+    <tbody>
+      <tr><td><strong>一</strong></td><td>一部分人（ETO）<strong>希望被更高级文明接管</strong></td><td>「监听员」式的善意与「黑暗森林」式的猜疑并存</td><td>★ <strong>「谁来代表人类发言」的危机</strong></td></tr>
+      <tr><td><strong>二</strong></td><td>选出四位面壁者，<strong>把希望押在个人的秘密计划上</strong></td><td>猜疑链＋技术爆炸 → 黑暗森林</td><td>★ <strong>威慑成立，但代价是「一个人的孤独」</strong></td></tr>
+      <tr><td><strong>三</strong></td><td><strong>在「人性」与「生存」之间反复摇摆</strong></td><td>降维打击、黑域、宇宙归零</td><td>★ <strong>道德被证明是奢侈品，也是最后的遗产</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>这张表是理解全书的一把钥匙</strong>：作者其实在<strong>每一部都换一次「押注方式」</strong>——押在「更高的文明」（一）→ 押在「个人的秘密」（二）→ 押在「道德本身」（三）。★ <strong>而每一次押注都失败</strong>，失败的方式一次比一次彻底。★★ <strong>这不是悲观主义的口号，而是一种结构性的论证</strong>：把三种最常见的希望逐一试过，然后展示它们的边界（<code>## 11</code>、<code>## 12</code> 会给出作者自述与批评方的不同解读）。</p>
+  <p><strong>（四）三部的「共同道具」。</strong> ★ 三部曲里有几样东西<strong>反复出现，串起整个系列</strong>：</p>
+  <table>
+    <thead><tr><th>道具／设定</th><th>在第一部</th><th>在第二部</th><th>在第三部</th></tr></thead>
+    <tbody>
+      <tr><td><strong>智子</strong></td><td>锁死基础物理（第 34 章）</td><td>监视全人类，逼出面壁计划</td><td>与人类共处（「广播纪元 7 年，智子」）</td></tr>
+      <tr><td><strong>威慑</strong></td><td>——</td><td>罗辑建立（下部）</td><td>威慑的兑付与崩溃（第二部）</td></tr>
+      <tr><td><strong>冬眠</strong></td><td>——</td><td>罗辑借此跨越 200 年</td><td>程心借此贯穿全书</td></tr>
+      <tr><td><strong>云天明</strong></td><td>——</td><td>——</td><td>以「童话」传递情报（第三部）</td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>这张表说明一件事</strong>：★ <strong>第三部并不是「重新开一个故事」，而是把前两部埋下的道具一次性用掉</strong>——<strong>智子、威慑、冬眠都在第三部结算</strong>。★ <strong>这就是「合页」的含义：三本书共用一套零件。</strong></p>
+  <p>★★ <strong>补一层：三部曲的三次「结算」。</strong> ★ 如果你把三部曲当成「合页」，会发现它做了三次<strong>同一类型的结算</strong>——<strong>每一次都把前面积累的「解法」用光</strong>：</p>
+  <table>
+    <thead><tr><th>次</th><th>结算的是</th><th>结果</th></tr></thead>
+    <tbody>
+      <tr><td><strong>第一次</strong></td><td>「个人的秘密」</td><td>★ 面壁者的计划被识破；<strong>欺骗这条路走不通</strong></td></tr>
+      <tr><td><strong>第二次</strong></td><td>「威慑」</td><td>★ 执剑人被替换；<strong>同归于尽这条路走不通</strong></td></tr>
+      <tr><td><strong>第三次</strong></td><td>「技术方案」</td><td>★ 掩体／黑域／曲率驱动各有代价；<strong>逃这条路走不通</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>三次结算之后，剩下的只有「让渡」（<code>## 10</code> 第⑩条）。</strong> ★ <strong>这就是为什么「合页读法」重要</strong>：<strong>单读第三部，你会觉得结尾突然；合起来读，你会发现结尾是被前面两次结算逼出来的</strong>（<span class="tag t-inf">推断</span>，本报告的分析）。</p>
+  <p><strong>（五）本节的诚实声明。</strong> ★ <strong>本节的全部结构信息来自官方目录与公开资料</strong>（国家出版发行信息公共服务平台、出版社书目页等），<strong>我没有逐章核对中文原著</strong>（无可用的合法全文）。★ 凡属<strong>结构骨架</strong>的判断，均可由目录交叉验证；凡属<strong>对叙事效果的判断</strong>，均为文学分析，读者可以不同意。</p>
+  <p>★★ <strong>补一层：这部三部曲是「预言」还是「寓言」？</strong> ★ 这个问题几乎决定了你怎么读它。★ <strong>把它读成「预言」，你会去问：黑暗森林是真的吗？二向箔可能吗？</strong> ★ <strong>把它读成「寓言」，你会去问：它想让我看见什么？</strong> ★★ <strong>作者自己的答案在前者与后者之间，但更靠近后者</strong>：<strong>他说科幻「不是传统中人们想象的那样去预测未来」，而是「把未来的各种可能性排列出来」</strong>（<span class="tag t-talk">作者谈话</span>，2015-02-12）。★★ <strong>本报告把这条称为「三步走」</strong>：</p>
+  <table>
+    <thead><tr><th>步</th><th>如果你这样读</th><th>你会得到</th></tr></thead>
+    <tbody>
+      <tr><td><strong>① 当成预言</strong></td><td>追问它是否成立</td><td>★ 会读到一堆「科学硬伤」，然后失去兴趣（<code>## 5</code> 第三条）</td></tr>
+      <tr><td><strong>② 当成寓言</strong></td><td>追问它在演示什么</td><td>★ 会读到「道德在压力下如何变形」，并开始思考</td></tr>
+      <tr><td><strong>③ 当成「可能性文学」</strong></td><td>追问「如果是这样，会怎样」</td><td>★ 会读到作者真正的玩法：<strong>用公理搭一个宇宙，然后看里面的人怎么办</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>本报告推荐第 ③ 种读法</strong>——<strong>因为它同时保住了「科学的乐趣」与「伦理的重量」，也最接近作者本人的自述</strong>（<code>## 12</code> 第二条）。★ <strong>一个简单的判据</strong>：<strong>如果你读完只记住了「黑暗森林」，那你读的是第 ① 种；如果你读完开始想「那程心该怎么办」，你读的是第 ③ 种。</strong></p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>第一部《三体》：36 章</span><span class="caret">▾</span></h2>
+  <h3>这一部在讲什么</h3>
+  <p>★ 第一部要建立的是<strong>整套三部曲的「动机」与「世界观前史」</strong>：为什么有人会<strong>主动召唤外星文明</strong>，以及那个文明<strong>为什么非来不可</strong>。★ 它用<strong>两条线</strong>交替推进：</p>
+  <ul>
+    <li><strong>现实线（叶文洁／汪淼）</strong>：一个物理学家的女儿，在经历家庭破碎与荒野劳改后，进入一个秘密的军事监听基地（红岸基地），并<strong>向宇宙发出了信号</strong>；几十年后，一名纳米材料学家（汪淼）被卷入一连串科学家自杀事件，通过一款叫《三体》的虚拟游戏，逐步拼出真相（<span class="tag t-rep">转述</span>，中文目录与公开资料，未核对原著）。
+    </li>
+    <li><strong>游戏线（三体世界）</strong>：一款 VR 游戏，用<strong>周文王、墨子、哥白尼、牛顿、爱因斯坦</strong>等人物重演一个<strong>被三颗太阳折磨的文明</strong>的历史——它在「<strong>恒纪元</strong>」与「<strong>乱纪元</strong>」之间反复灭绝与重生，最终决定<strong>远征地球</strong>。
+    </li>
+  </ul>
+  <p>★★ <strong>这两条线的关系是本部的结构核心</strong>：<strong>现实线提供「动机」（叶文洁为何绝望），游戏线提供「必要性」（三体人为何必须来）</strong>。★ 二者在<strong>第 34 章「智子」</strong>合流——读者得知<strong>三体人用「智子」锁死了人类的基础物理</strong>，而远征舰队已经在路上（<span class="tag t-rep">转述</span>，中文目录）。</p>
+  <p>★★ <strong>一个常被忽略的要点</strong>：★ <strong>第一部的「三体游戏」不是装饰，而是「设定说明书」的替代品</strong>。★ 如果不用游戏，作者就必须<strong>用大段说明文</strong>去交代一个异星文明的地理、气候、社会与历史；★ 用游戏，作者就能<strong>让读者在「玩」的过程中接受设定</strong>。★★ <strong>这是「嵌套叙事」的第一次使用，也是全书最重要的技术选择之一</strong>（<code>## 10</code> 会把它与第三部的「云天明的童话」放在一起讲）。</p>
+  <p>★ <strong>实测可引的开篇</strong>（<span class="tag t-src">原书</span>，<strong>英译第 1 章「The Madness Years」，实测通过</strong>）：英文版以「<strong>China, 1967</strong>」标定时间地点，开篇是一段派系冲突的场面：</p>
+  <blockquote>
+    <p><em>The Red Union had been attacking the headquarters of the April Twenty-eighth Brigade for two days. Their red flags fluttered restlessly around the brigade building like flames yearning for firewood.</em></p>
+    <p>（红联已经攻打「四·二八」兵团总部两天了。他们的红旗在兵团大楼四周不安地飘动，像渴望着柴火的火焰。——笔者自译）</p>
+  </blockquote>
+  <p>★★ <strong>请注意这里的技术细节</strong>：<strong>这是一个「以具体压宏大」的写法</strong>——叙事把一段复杂的冲突，压进一幅极具体的画面（旗、楼、柴火），<strong>而且用的是「火渴望木头」这种带一点危险的比喻</strong>。★ 这就是作者自述的「<strong>把语言透明化，让读者忽略语言而直接看到要阐释的东西</strong>」的具体做法（<span class="tag t-talk">作者谈话</span>，中国作家网 2015-02-12）。★★ <strong>更值得注意的是「谁在看」</strong>：开篇用的是<strong>一个孩子（叶文洁）的视角</strong>——<strong>整部三部曲的第一句描写，就是「一个孩子看着大人互相攻击」</strong>，这为全书的「对人类失望」埋下了第一颗钉子。</p>
+  <p>★ <strong>另一处实测可引的场面</strong>（<span class="tag t-src">原书</span>，<strong>英译第 2 章「Silent Spring」，实测通过</strong>）：叶文洁在<strong>大兴安岭</strong>伐木——</p>
+  <blockquote>
+    <p><em>Following the loud chant, a large Dahurian larch, thick as the columns of the Parthenon, fell with a thump, and Ye Wenjie felt the earth quake.</em></p>
+    <p>（随着一声响亮的号子，一棵粗如帕特农神庙石柱的兴安落叶松轰然倒地，叶文洁感到大地在震动。——笔者自译）</p>
+  </blockquote>
+  <p>★★ <strong>这一段的重量在「比较」上</strong>：★ 作者让叶文洁<strong>把倒下的巨树想象成一具尸体，甚至想象那是她的父亲</strong>（<span class="tag t-src">原书</span>，同章，实测通过）——<strong>「砍树」与「丧父」在同一个句子里被并置</strong>。★★ <strong>这是全书最重要的一个情感装置：对「文明破坏自然」的痛感，与对「人类互相残害」的痛感，被写成了同一种痛。</strong> ★ 这就是为什么叶文洁后来的选择（<strong>把希望交给外星文明</strong>）在叙事上是<strong>可信的</strong>——<strong>她已经不再相信人类</strong>（<code>## 10</code> 第①条会把它接回「公理」）。</p>
+  <h3>结构骨架</h3>
+  <p>★ <strong>第一部共 36 章 ＋ 后记</strong>。★ <strong>本形态规定：此处把该部章目全列</strong>（<span class="tag t-rep">转述</span>，中文单行本目录，<strong>未核对原著</strong>；★ 完整 36 章清单见 <code>## 1</code>）。★ <strong>仅列章名不够，本报告要标出章目之间的「功能分组」</strong>：</p>
+  <table>
+    <thead><tr><th>功能组</th><th>章号</th><th>做什么用</th></tr></thead>
+    <tbody>
+      <tr><td><strong>① 当代悬疑线</strong></td><td>1–3、6、10、11、17、19、31、32、35</td><td>科学家自杀、宇宙闪烁、古筝行动、三体组织覆灭</td></tr>
+      <tr><td><strong>② 叶文洁前史线</strong></td><td>5、7、8、9、13、14、15、23、24、26、27</td><td>家庭破碎 → 大兴安岭 → 红岸基地 → 发出信号</td></tr>
+      <tr><td><strong>③ 三体游戏线</strong></td><td>4、12、16、18、20、21、34</td><td>三体文明史：周文王、墨子、哥白尼、牛顿、爱因斯坦、远征</td></tr>
+      <tr><td><strong>④ 组织与对抗线</strong></td><td>22、25、28、29、30</td><td>地球叛军、ETO、第二红岸基地</td></tr>
+      <tr><td><strong>⑤ 终局</strong></td><td>33、34、36</td><td>监听员、智子、尾声·遗址 ＋ 后记</td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>这张分组表揭示了一个关键的叙事设计：全书三线（悬疑／前史／游戏）交替出现，而叶文洁的前史线被拆散分散在全书中部。</strong>★ <strong>对照英译</strong>：英译版把<strong>第 7、8、9 章提到最前</strong>（<span class="tag t-src">原书</span>，英译第 1–3 章实测；<span class="tag t-talk">作者谈话</span>，2015-02-12），<strong>等于把「前史线」在开篇就铺开</strong>——这是中英两版<strong>最实在的结构差异</strong>（<code>## 4</code>、<code>## 5</code>）。</p>
+  <p>★ <strong>三体游戏线为什么重要？</strong> ★★ 因为它<strong>把整部小说的设定「免费」讲完了</strong>：游戏用历史人物重演三体世界的规律，读者在<strong>不知不觉中</strong>接受了一个异星文明的全部背景。★ <strong>这是一种「嵌套叙事」的雏形</strong>，到第三部会发展成<strong>云天明童话</strong>那样的完整内嵌故事（<code>## 9</code>、<code>## 10</code>）。</p>
+  <p>★★ <strong>一个可引证的具体场面</strong>（<span class="tag t-src">原书</span>，<strong>英译「Three Body: King Wen of Zhou and the Long Night」段，实测通过</strong>）：游戏中，周文王背着一个<strong>沙漏</strong>当计时器，因为「<strong>太阳不能用来计时</strong>」：</p>
+  <blockquote>
+    <p><em>“The sun? How can the sun tell us the time? We’re in the midst of a Chaotic Era.”</em></p>
+    <p>（「太阳？太阳怎么能告诉我们时间？我们正处在乱纪元中。」——笔者自译）</p>
+  </blockquote>
+  <p>★ 紧接着，同伴喊出那句反复出现的话：<strong>“This is a Chaotic Era!”</strong>（「这是乱纪元！」）★ <strong>这句台词本身就是世界观说明书</strong>：在一个<strong>日出日落毫无规律</strong>的世界里，「时间」必须<strong>用人力去守住</strong>。★★ <strong>注意这个隐喻的重量</strong>：<strong>一个连时间都无法信任的文明，必然把「生存」放在「道德」之上</strong>——这为三体人的一切行为埋下了合理性（<code>## 10</code> 会把它接回「宇宙社会学」）。</p>
+  <p>★★ <strong>「乱纪元」这一段还有一层更细的设计</strong>：★ 周文王在游戏里<strong>一路讨论「规律」</strong>——他说自己要去赵歌（原文作 Zhao Ge）向纣王<strong>献上一部精确的历法</strong>，因为「<strong>预测太阳的运行只有在赵歌才可能，那里是阴阳交汇之地</strong>」（<span class="tag t-src">原书</span>，同段，实测通过）。★★ <strong>这几乎就是「宇宙社会学」的预演</strong>：<strong>一个在混乱中寻找规律的文明，和一个试图从几条公理推出整个宇宙的人类</strong>——<strong>两者是同一件事的两面</strong>（<span class="tag t-inf">推断</span>，本报告的分析）。</p>
+  <p>★ <strong>游戏里还有一处极佳的「设定演示」</strong>：书中描写三体人<strong>可以把身体「脱水」成一张皮卷起来</strong>，需要时再泡水复原（<span class="tag t-src">原书</span>，同段，实测通过）。★★ <strong>这个设定的功能不是猎奇，而是「解释文明形态」</strong>：<strong>一个必须靠「集体脱水、集体复活」才能熬过乱纪元的文明，天然会把「个体的存续」看得比「个体的尊严」轻</strong>。★ <strong>这是全书第一篇关于「生存压力如何改写伦理」的演示</strong>（<code>## 10</code> 第①条）。</p>
+  <h3>可疑之处</h3>
+  <p>★ <strong>本节的「可疑」不是指「作者写错了」，而是指「叙事上有值得追问的缝隙」</strong>——本形态要求每一部都做这一步。</p>
+  <ul>
+    <li><strong>① 叶文洁的「动机转折」够不够充分？</strong> ★ 批评方（<span class="tag t-rep">转述</span>，维舟，2024）质疑其行为逻辑；★ 支持方（<span class="tag t-rep">转述</span>，Nan Z. Da，2015）则认为她的动机「一开始很复杂，随后变成一种<strong>平直而冷酷的决心</strong>」，并把这视为<strong>人物塑造的成功</strong>。★ 本报告指出：<strong>这是一个「被写成一个功能性转折」的人物</strong>——她承担的是<strong>全书最重要的一个动作（发出信号）</strong>，而作者自己承认人物是「工具」（<span class="tag t-rep">转述</span>，张悦 2021）。★ <strong>读者若在这一点上感到不适，正是 <code>## 5</code> 第一、四条争议的源头。</strong> ★ 另一个可追问的点是：<strong>「个人创伤 → 文明级别的决定」这个跳跃，是否需要更多中间环节？</strong>（<span class="tag t-inf">推断</span>）
+    </li>
+    <li><strong>② 「三体游戏」的说明性会不会太强？</strong> ★ 游戏线承担了<strong>几乎全部的异星文明设定</strong>，因此<strong>对白常常变成「教材式讲解」</strong>。★★ <strong>这是作者自述的取舍</strong>：他要把语言「透明化」，让读者直接看到设定（<span class="tag t-talk">作者谈话</span>，2015-02-12）。★ 代价是<strong>游戏线的文学质感弱于现实线</strong>。
+    </li>
+    <li><strong>③ 英译节选与中文版章号的对应，存在口径问题。</strong> ★ <strong>我实测的英译第 1–3 章</strong>＝「The Madness Years」「Silent Spring」「Red Coast I」，对应中文版<strong>第 7–9 章</strong>（<span class="tag t-rep">转述</span>）。★★ <strong>但英译全书到底如何重排、共多少章，各源口径不一</strong>——★ <strong>本报告不臆测，列入附录 D 待核实项。</strong>
+    </li>
+    <li><strong>④ 「36 章」这个数字本身有版本史。</strong> ★ <strong>连载版 34 章 → 单行本 36 章</strong>（<span class="tag t-rep">转述</span>，公开资料）。★ 引用「36 章」时应说明<strong>所据版本</strong>。
+    </li>
+    <li><strong>⑤ 「当代线」与「前史线」的张力被结构放大了。</strong> ★ 中文本把前史线放在中段，<strong>读者会先建立对三体世界的悬念，再回头理解动机</strong>；★★ <strong>这是一种「延迟解释」的结构，它让第一部的阅读体验更接近悬疑小说</strong>（<span class="tag t-inf">推断</span>）。★ 而英译本把前史线提前，<strong>阅读体验更接近「历史—启示录」</strong>——<strong>同一部小说，因为章节顺序不同，可以被读成两种类型</strong>。
+    </li>
+  </ul>
+  <h3>一段细读（英译第 1 章：盖革计数器与老师之死）</h3>
+  <p><strong>英文原句</strong>（<span class="tag t-src">原书</span>，英译第 1 章「The Madness Years」，实测通过）：</p>
+  <blockquote>
+    <p><em>Ruan was sitting on the chair before her desk, her eyes closed. Wenjie stood next to Ruan and gently caressed her professor’s forehead, face, and hands—all cold. Wenjie had noticed the empty sleeping pill bottle on the desk as soon as she came in. … She could no longer feel grief. She was now like a Geiger counter that had been subjected to too much radiation, no longer capable of giving any reaction, noiselessly displaying a reading of zero.</em></p>
+  </blockquote>
+  <p><strong>中文全译</strong>（笔者自译）：</p>
+  <blockquote>
+    <p>阮老师坐在书桌前的椅子上，双眼闭着。文洁站在她身边，轻轻抚过老师的额头、脸和手——都是冰凉的。她一进门就看见了桌上那只空了的安眠药瓶。……她已经感觉不到悲痛了。此时的她像一台承受了过量辐射的盖革计数器，不再能给出任何反应，无声地显示着读数零。</p>
+  </blockquote>
+  <p><strong>注解</strong>：★★★ <strong>这是英译第 1 章里最重要的一处比喻，也是理解叶文洁这个人的钥匙。</strong> 作者没有写「她麻木了」，而是写她「<strong>像一台被照射过量的盖革计数器</strong>」——★★ <strong>用一个物理仪器，写一种心理状态</strong>：<strong>计数器不是「没有读数」，而是「读数归零」</strong>。★★ <strong>这个比喻的可怕之处在于它的「不可逆」</strong>：<strong>盖革计数器被过度辐射后会永久损坏</strong>——<strong>也就是说，叶文洁的「零」不是暂时的，而是终局的</strong>。★ <strong>这就是「公理」为什么能由她说出</strong>：<strong>一个「读数已归零」的人，不会对「人类」抱有幻想</strong>（<code>## 10</code> 第①条）。★★ <strong>请注意这个比喻的「职业性」</strong>：<strong>它出自一个物理学家的女儿之笔，而不是一个诗人的口中</strong>——<strong>这是叶文洁这个人物「被写成什么样」的一个标记：她的痛苦，用仪器的语言表达</strong>（<span class="tag t-inf">推断</span>）。</p>
+  <p>★ <strong>同章还有一处更冷的细节</strong>：文洁离开前回头，发现老师<strong>化了妆</strong>——<strong>涂了一层薄口红，穿了一双高跟鞋</strong>（<span class="tag t-src">原书</span>，同章，实测通过）。★★ <strong>这个细节的功能，是「把一位科学家的死，写成一个女人的选择」</strong>。<strong>它同时也埋下了本报告 <code>## 5</code> 第一条的争议</strong>：<strong>批评方（Nan Z. Da）所说的「被历史创伤塑造的女性」，正是从这类细节里读出来的</strong>——<strong>支持方则可以说，这恰恰是「一个具体的人」，而不是「一个符号」</strong>。★ <strong>两方都能在这一段里找到自己的证据。</strong></p>
+  <h3>本部的一道核心题：绝望如何变成行动</h3>
+  <p>★ 第一部表面上是「外星人入侵」的起点，<strong>但它真正处理的问题只有一个</strong>：<strong>一个人的绝望，怎么能变成一个文明的灾难？</strong> ★ 这条因果链可以被拆成四步，<strong>每一步都有文本依据</strong>：</p>
+  <table>
+    <thead><tr><th>步</th><th>发生了什么</th><th>依据</th></tr></thead>
+    <tbody>
+      <tr><td><strong>① 一个人的破碎</strong></td><td>父亲之死、被诬陷、荒野劳改；「读数归零」</td><td><span class="tag t-src">原书</span>，英译第 1–2 章</td></tr>
+      <tr><td><strong>② 一次「不再相信人类」的判断</strong></td><td>她不再把「人类」当作值得托付的对象</td><td><span class="tag t-src">原书</span>，英译第 1 章（盖革计数器）</td></tr>
+      <tr><td><strong>③ 一次技术性的动作</strong></td><td>进入红岸基地，<strong>向宇宙发出信号</strong></td><td><span class="tag t-src">原书</span>，英译第 3 章起</td></tr>
+      <tr><td><strong>④ 一个文明的回应</strong></td><td>三体世界接收信号，决定远征</td><td><span class="tag t-rep">转述</span>，公开资料</td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>请注意这条链的形状</strong>：<strong>它从「心理」出发，经过「一次按钮式的动作」，抵达「文明级后果」</strong>。★ <strong>这正是全书最容易被质疑、也最容易被误读的一段</strong>（<code>## 5</code> 第一条、<code>## 11</code> 第二条）。★★ <strong>本报告想强调的是一件事</strong>：<strong>作者不是在论证「被伤害的人会毁灭世界」，而是在演示「当一个文明把个人的绝望当作自己的理由时，会发生什么」</strong>（<span class="tag t-inf">推断</span>，本报告的分析）。★ <strong>这个差别很重要</strong>：<strong>前者是一种偏见，后者是一种寓言。</strong></p>
+  <p>★★ <strong>与本书目其他的连线</strong>：★ 这条链的「集体后果由个人动作触发」结构，与 <strong>《乌合之众》</strong> 关注的问题相邻（<strong>个体的判断如何在群体中被放大</strong>），★ 也与 <strong>《物种起源》</strong> 的「<strong>微小变异累积成大变化</strong>」形成一种对照：<strong>叶文洁那一次按钮，就是整个三部曲的「变异」</strong>（<span class="tag t-inf">推断</span>）。</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>第二部《黑暗森林》：序章 ＋ 三部</span><span class="caret">▾</span></h2>
+  <h3>这一部在讲什么</h3>
+  <p>★★ <strong>如果只读一部，读这一部。</strong> ★ 第二部是<strong>整套宇宙社会学的论证正场</strong>：它把第一部埋下的「动机」，转化成一套可推演的<strong>理论</strong>，并让它<strong>经受一次实战检验</strong>。★ 结构上是<strong>「序章 ＋ 上部 面壁者 ＋ 中部 咒语 ＋ 下部 黑暗森林」</strong>（<span class="tag t-rep">转述</span>，中文目录）。</p>
+  <ul>
+    <li><strong>序章</strong>：叶文洁在女儿墓前，<strong>向罗辑提出「宇宙社会学」的两条公理</strong>（<span class="tag t-src">原书</span>，实测通过，见下）。
+    </li>
+    <li><strong>上部「面壁者」（1–5）</strong>：人类选出<strong>四位面壁者</strong>，赋予极大资源去设计<strong>对抗三体人的秘密战略</strong>；<strong>因为智子能获取人类的一切信息，只有「心思」是秘密</strong>（<span class="tag t-src">原书</span>，第二部官方简介，实测通过）。
+    </li>
+    <li><strong>中部「咒语」（1–4）</strong>：罗辑在多年无所作为后，<strong>悟出并验证了黑暗森林法则</strong>，向宇宙<strong>广播了一颗恒星的坐标</strong>作为「咒语」。
+    </li>
+    <li><strong>下部「黑暗森林」（1–3）</strong>：★ <strong>那颗恒星被摧毁</strong>——<strong>黑暗森林法则被证实</strong>；罗辑以此建立<strong>威慑</strong>（<span class="tag t-rep">转述</span>，中文目录与公开资料）。
+    </li>
+  </ul>
+  <p>★★ <strong>序章的两条公理是全书推理链的起点，务必照原文记住。</strong>★ 下面这段是<strong>实测通过的官方节选原文</strong>（<span class="tag t-src">原书</span>，<strong>第二部 Prologue，实测通过</strong>）：</p>
+  <blockquote>
+    <p>“First: Survival is the primary need of civilization. Second: Civilization continuously grows and expands, but the total matter in the universe remains constant.”</p>
+    <p>（「第一：生存是文明的第一需要。第二：文明不断增长和扩张，但宇宙中的物质总量保持不变。」——笔者自译）</p>
+  </blockquote>
+  <p>★ 紧接着，叶文洁给出这套理论<strong>为什么长这样</strong>：</p>
+  <blockquote>
+    <p>“That means your ultimate result will be purely theoretical. Like Euclidean geometry, you’ll set up a few simple axioms at first, then derive an overall theoretic system using those axioms as a foundation.”</p>
+    <p>（「这意味着你的最终结果将是纯理论的。像欧几里得几何一样，你先立下几条简单的公理，再以它们为基础推演出一个完整的理论体系。」——笔者自译）</p>
+  </blockquote>
+  <p>★★★ <strong>这是全书最重要的一段文字，理由有四</strong>：① 它<strong>交代了整部三部曲的方法论</strong>（公理化—演绎）；② 它把<strong>宇宙社会学与欧几里得几何并列</strong>，等于宣称<strong>「社会」也能像「几何」一样被公理化</strong>；③ 它解释了为什么后面几百页是<strong>推演而非情节</strong>；④ 它替读者<strong>预先承认了这套理论的「纯理论」性质</strong>——<strong>「你不可能做实验，所以结论只能是理论的」</strong>。★ <strong>与本书目《几何原本》的连线正在这里</strong>：<strong>三体问题本身正是「公理化方法在不可积系统上的边界」</strong>——三体引力系统<strong>没有解析解</strong>，而宇宙社会学却试图用两条公理推出「解」，<strong>这两件事的张力，是全书最深的伏笔</strong>（<span class="tag t-inf">推断</span>，本报告的分析）。</p>
+  <p>★ <strong>序章还有一个精彩的技术动作值得单独说</strong>：它把这段讨论<strong>放在一只蚂蚁的视角旁边</strong>展开。★ 蚂蚁爬过墓碑，把凹槽读成「1」「9」「7」等字形，最后读出<strong>「墓」「之」「冬」「阳」</strong>——<strong>墓碑上的名字是「杨冬」</strong>（<span class="tag t-src">原书</span>，第二部 Prologue，实测通过；★ 中文「杨冬」二字与书中人物「杨冬」对应，<span class="tag t-rep">转述</span>）。★★ <strong>这是「尺度」的第一次亮相</strong>：同一块石头，<strong>蚂蚁读出的是形状，人读出的是名字，宇宙读出的是坐标</strong>——<strong>三种读法，三种尺度，贯穿全书</strong>（<code>## 10</code>「降维打击」一节会接着它讲）。★★ <strong>从叙事技术上看，这一段还解决了一个难题</strong>：<strong>怎么把「两个人在墓前聊理论」写得不像论文？</strong> ★ 答案是<strong>并行一只蚂蚁的旅行</strong>——<strong>读者在读理论时，眼睛余光在看一只虫子爬字</strong>，于是理论段落有了<strong>身体感</strong>。</p>
+  <p>★ <strong>实测可引的上部开篇</strong>（<span class="tag t-src">原书</span>，<strong>第二部「Part One: The Wallfacers」，实测通过</strong>）：标题页标「<strong>Part One: The Wallfacers / Year 3, Crisis Era</strong>」，开篇是<strong>一位破壁人</strong>的自杀场面——他正要把枪口对准太阳穴时，眼前出现了<strong>智子的文字</strong>：</p>
+  <blockquote>
+    <p><em>Just then, a sophon text appeared before his eyes. Don’t do that. We need you.</em></p>
+    <p>（就在那时，一行智子文字出现在他眼前：「别这么做。我们需要你。」——笔者自译）</p>
+  </blockquote>
+  <p>★ 紧接着是一段关于<strong>身份确认</strong>的对话——破壁人不信，智子便报出<strong>只有他自己才知道的事</strong>（他养的金鱼被烟头毒死了），并给出<strong>一段加密信件的口令</strong>（<span class="tag t-src">原书</span>，同段，实测通过）。★★ <strong>这一段的功能，是「设定说明书」的高效写法</strong>：它<strong>用一场戏同时交代了四件事</strong>——① 智子能实时显示文字（＝三体人的监控能力）；② 智子<strong>知道个人生活的细节</strong>（＝监控的深度）；③ 人类内部有「<strong>破壁人</strong>」这一角色（＝面壁者的对手）；④ 三体人<strong>需要</strong>人类合作者（＝他们对人性的依赖）。★ <strong>这四件事后面全都要用到</strong>（<code>## 10</code>）。</p>
+  <p>★★ <strong>另一处值得注意的，是这段对话里的一个「核心命题」</strong>：智子与破壁人谈的，是<strong>「思想与言语的区别」</strong>——<strong>人类的思考不透明，这对三体人是「无法理解的能力」</strong>（<span class="tag t-src">原书</span>，第二部官方简介，实测通过；<span class="tag t-rep">转述</span>，第二部上部该段）。★★ <strong>这一命题是整部第二部的支点</strong>：<strong>黑暗森林之所以可能，正因为「意图」无法被证实</strong>——<strong>如果所有文明的心思都像三体人一样透明，猜疑链就不存在了</strong>（<code>## 10</code> 第②条）。</p>
+  <p>★ <strong>「面壁计划」的机制值得单独说明</strong>（<span class="tag t-src">原书</span>，第二部官方简介，实测通过）：<strong>因为智子能获取人类的一切信息，只有「心思」是秘密</strong>，所以人类选出面壁者，让他们<strong>把真实战略藏在欺骗与误导之下</strong>。★★ <strong>这是一个绝妙的「信息不对称」设定</strong>：<strong>它把「思想」变成唯一无法被窃听的资源</strong>（<code>## 10</code>「面壁计划与破壁人」一节会拆解它的博弈结构）。</p>
+  <h3>结构骨架</h3>
+  <p>★ <strong>第二部结构＝序章 ＋ 上部「面壁者」（1–5）＋ 中部「咒语」（1–4）＋ 下部「黑暗森林」（1–3）</strong>（<span class="tag t-rep">转述</span>，中文目录，未核对原著）。★ <strong>本报告按「推演阶段」重新分组</strong>：</p>
+  <table>
+    <thead><tr><th>阶段</th><th>位置</th><th>做什么</th></tr></thead>
+    <tbody>
+      <tr><td><strong>立公理</strong></td><td>序章</td><td>叶文洁给出两条公理</td></tr>
+      <tr><td><strong>设机制</strong></td><td>上部 面壁者 1–5</td><td>面壁计划／破壁人；★ <strong>人类把希望押在个人的秘密上</strong></td></tr>
+      <tr><td><strong>推结论</strong></td><td>中部 咒语 1–4</td><td>罗辑悟出黑暗森林；★ <strong>用「咒语」做实验</strong></td></tr>
+      <tr><td><strong>验结论</strong></td><td>下部 黑暗森林 1–3</td><td>恒星被毁；★ <strong>威慑建立</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>这张表最重要的价值，是让你看清第二部其实是一部「实验报告」</strong>：★ <strong>序章＝实验假设；上部＝设计实验装置；中部＝执行实验；下部＝读结果。</strong> ★ 这就是为什么第二部读起来<strong>比另两部更「硬」</strong>——<strong>它的骨架是论证，而不是历险</strong>。★ 也正因为如此，<strong>第二部是三卷里评价最稳的一部</strong>（<span class="tag t-rep">转述</span>，多位评论者；<code>## 11</code>）。</p>
+  <p>★ <strong>上半部的「策略展示」是小说的另一半</strong>：★ 四位面壁者各有一套计划，其中有的计划<strong>为了对抗三体人不惜毁灭人类自己</strong>（<span class="tag t-rep">转述</span>，中文目录与公开资料）——★★ <strong>这构成了第二部的「伦理预演」</strong>：<strong>当「整体生存」被放在最高位置，「牺牲一部分」就会被写成「理性」</strong>（<code>## 10</code> 第⑤条、<code>## 11</code> 第二条）。</p>
+  <p>★ <strong>一条值得注意的叙事线（章北海的故事）</strong>：★ 这位军事政治官在书里做了<strong>一件极端的事</strong>——<strong>为了影响未来太空计划的方向，他策划并执行了一场看起来像意外的「在太空中的处决」</strong>（<span class="tag t-rep">转述</span>，据书评转述，Milwaukee Journal Sentinel，2015）。★★ <strong>这条线的功能是「把黑暗森林法则从宇宙尺度搬回人类内部」</strong>：<strong>如果连人类自己都能为了「集体的未来」杀人，那宇宙里的黑暗森林还奇怪吗？</strong>（<span class="tag t-inf">推断</span>，本报告的分析）</p>
+  <h3>可疑之处</h3>
+  <ul>
+    <li><strong>① 「黑暗森林法则」能否被证伪？</strong> ★ 这是批评最集中的点（<span class="tag t-rep">转述</span>，维舟，2024）：<strong>它是否只是一个「自洽的小说规则」而非「可检验的理论」</strong>？★★ <strong>作者本人的态度是「不主张它为真」</strong>——他把它写成「最糟的可能性」（<span class="tag t-talk">作者谈话</span>，2015-02-12）。★ <strong>本报告建议的读法</strong>：把它当作<strong>一个思想实验的边界条件</strong>，而不是<strong>一个宇宙学结论</strong>。★★ <strong>诚实地说</strong>：<strong>「不可证伪」这个指责，对「思想实验」是有效的批评，但对「小说」未必</strong>——<strong>问题在于有多少读者把它当成了理论</strong>（<code>## 11</code> 第二条）。
+    </li>
+    <li><strong>② 面壁者的「秘密」为何如此容易被破？</strong> ★ 四位面壁者中多人被「破壁人」看穿（<span class="tag t-rep">转述</span>，中文目录）。★ <strong>叙事上这是必要的</strong>（否则故事无法推进），但<strong>逻辑上它削弱了「欺骗」这一设定的强度</strong>——<strong>如果连谋划者的思路都能被推出来，那「心思不可窃听」的优势还剩多少？</strong>（<span class="tag t-inf">推断</span>，本报告的分析）
+    </li>
+    <li><strong>③ 罗辑的「顿悟」来得太快。</strong> ★ 从「无所作为」到「悟出法则」，罗辑的转折在一个很短的距离内完成（<span class="tag t-rep">转述</span>，中文目录）。★ <strong>补一句</strong>：这不是《三体》独有的问题——<strong>当一篇小说的核心是「推论」，推论的呈现就必然压缩「过程」</strong>。★ <strong>这也解释了为什么第二部要用「咒语」这个动作来验证：</strong> ★ <strong>如果没有一个可观察的结果（恒星被毁），读者很难相信这条推理是「推」出来的</strong>（<span class="tag t-inf">推断</span>）。
+    </li>
+    <li><strong>④ 「面壁者」制度的权力问题。</strong> ★ 面壁者被赋予「不必解释」的权力（<span class="tag t-src">原书</span>，第二部官方简介，实测通过）。★★ <strong>这条设定在小说里被当成「必要之恶」，但它其实提出了一个尖锐的问题：一个以欺骗为职责的人，如何被问责？</strong> ★ <strong>与本书目《社会契约论》的连线在这里</strong>（<code>## 10</code> 第⑤条）。
+    </li>
+    <li><strong>⑤ 中文目录与英译章号的口径。</strong> ★ 第二部中文结构是「序章 ＋ 3 个部分」，但<strong>各部分内部的小节计数与英译如何对应，各源口径不一</strong>
+    </li>
+  </ul>
+  <h3>一段细读（英译第二部上部：智子的「我们不能没有你」）</h3>
+  <p><strong>英文原句</strong>（<span class="tag t-src">原书</span>，第二部「Part One: The Wallfacers」，实测通过）：</p>
+  <blockquote>
+    <p><em>Just then, a sophon text appeared before his eyes. Don’t do that. We need you.</em></p>
+    <p><em>… You should really take a look. This morning when you were distracted, you flicked away a half-smoked cigarette and it landed in the fishbowl. The nicotine that leached into the water was fatal to your fish.</em></p>
+    <p><em>… “Lord, my Lord, is it really you? Is it really you?” he choked out through his sobs.</em></p>
+  </blockquote>
+  <p><strong>中文全译</strong>（笔者自译）：</p>
+  <blockquote>
+    <p>就在这时，一行智子的文字出现在他眼前：「别这么做。<strong>我们需要你。</strong>」</p>
+    <p>……「你真该去看一看。今天早上你走神的时候，弹飞了半支没抽完的烟，它掉进了鱼缸。<strong>渗进水里的尼古丁对你的鱼是致命的。</strong>」</p>
+    <p>……「主啊，我的主，真的是你吗？真的是你吗？」他抽噎着说。</p>
+  </blockquote>
+  <p><strong>注解</strong>：★★ <strong>这一段是全书写得最「省」、也最有效的设定说明。</strong> 它没有一句解释「智子是什么」，但<strong>读者从三条信息里就全懂了</strong>：① 它<strong>能实时在眼前显示文字</strong>；② 它<strong>知道你私人生活里最细的细节</strong>（<strong>半支烟与鱼</strong>）；③ 它<strong>有求于人类个体</strong>（<strong>「我们需要你」</strong>）。★★ <strong>注意那个「信物」的巧妙</strong>：<strong>证明身份靠的不是密码，而是「一件只有你自己才知道的私事」</strong>——<strong>这正是全书的母题：「意图无法被证明，但私事可以」</strong>（<code>## 10</code> 第②条）。★ <strong>更值得琢磨的是「我们需要你」这句话</strong>：★★ <strong>它暴露了黑暗森林里最深的破绽——一个真正无敌的文明，不需要任何人类。</strong> <strong>三体人之所以需要「破壁人」，恰恰因为他们并非全知全能</strong>（<span class="tag t-inf">推断</span>，本报告的分析）。★ <strong>这一段还是「开场即设定」的范例</strong>：<strong>用一场自杀，同时交代了监控、监控的深度、内部对手、以及敌人的依赖</strong>——<strong>四件事，一段戏。</strong>（<span class="tag t-rep">转述</span>，未核对原著）。★ 列入附录 D。</p>
+  <h3>本部的一道核心题：威慑是「和平」还是「冻结的战争」？</h3>
+  <p>★ 第二部给出的答案，是把「和平」重新定义了一遍。★★ <strong>在黑暗森林的框架里，「和平」不是「不打」，而是「谁都不敢先打」</strong>——★ 这是一种<strong>被恐惧维持的稳定</strong>。★ 作者用「执剑人」这个装置<strong>把这种稳定的本质暴露出来</strong>：</p>
+  <ul>
+    <li><strong>它不是共识</strong>：两个文明<strong>从未达成任何协议</strong>；
+    </li>
+    <li><strong>它不是信任</strong>：双方<strong>都假定对方会背叛</strong>；
+    </li>
+    <li><strong>它只是一根绷紧的弦</strong>：<strong>谁来剪断，谁就赢，但他也会一起死</strong>。
+    </li>
+  </ul>
+  <p>★★ <strong>于是第二部真正的问题不是「人类能不能赢」，而是「人类能不能长期忍受这种和平」</strong>。★ 小说给出的答案是<strong>不能</strong>——★ 因为<strong>要维持它，就得一直让一个「愿意同归于尽的人」站在按钮旁边</strong>；★★ <strong>而人类迟早会受不了这个人，换上一个「更像自己」的人</strong>（<code>## 10</code> 第⑦条）。★★ <strong>这就是第二部留给第三部的最大伏笔</strong>：<strong>威慑的失败不是因为敌人太强，而是因为人性太正常</strong>（<span class="tag t-inf">推断</span>，本报告的分析）。</p>
+  <p>★★ <strong>与本书目《战争论》《孙子兵法》的对照</strong>：★ <strong>孙子的「不战而屈人之兵」是一种理想</strong>；★★ <strong>而《三体》把它的代价摊开了</strong>：<strong>「不战」是要有人一直握着刀的</strong>（<code>## 10</code> 第④条）。★ <strong>克劳塞维茨说战争是政治的延续</strong>；<strong>这部小说接着问</strong>：<strong>当政治选出一个不愿战争的人，战争还延续得下去吗？</strong></p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>第三部《死神永生》：六部</span><span class="caret">▾</span></h2>
+  <h3>这一部在讲什么</h3>
+  <p>★★ <strong>第三部是三部曲里尺度最大、争议也最大的一部</strong>：它把视角拉到<strong>宇宙尺度</strong>，用<strong>六个部分</strong>把故事推到<strong>宇宙热寂</strong>。★ 结构上是<strong>六部 ＋ 跋《这些无限空间的永恒沉默》</strong>（<span class="tag t-rep">转述</span>，据国家出版发行信息公共服务平台目录）。</p>
+  <table>
+    <thead><tr><th>部</th><th>主要内容</th><th>这一部要检验的问题</th></tr></thead>
+    <tbody>
+      <tr><td><strong>一</strong></td><td><strong>公元 1453 年</strong>（拜占庭的魔法师之死）→ <strong>危机纪元</strong>（云天明、程心、阶梯计划）</td><td><strong>「牺牲少数」与「救人」哪个对</strong></td></tr>
+      <tr><td><strong>二</strong></td><td><strong>威慑纪元的建立与崩溃</strong>（「青铜时代号」「审判」「执剑人」「万有引力号」）</td><td><strong>威慑能否被继承</strong></td></tr>
+      <tr><td><strong>三</strong></td><td><strong>广播纪元</strong>（程心、智子、<strong>云天明与他的童话</strong>）</td><td><strong>情报能否被藏进故事</strong></td></tr>
+      <tr><td><strong>四</strong></td><td><strong>掩体纪元</strong>（掩体世界、光速飞船、「星环城」）</td><td><strong>求生方案的代价是什么</strong></td></tr>
+      <tr><td><strong>五</strong></td><td><strong>太阳系之死</strong>（银河系猎户旋臂、「星环号」、冥王星、<strong>二维太阳系</strong>）</td><td><strong>宇宙能否被当成武器</strong></td></tr>
+      <tr><td><strong>六</strong></td><td><strong>宇宙之死</strong>（银河纪元 409 年、时间开始后约 170 亿年、<strong>时间之外，我们的宇宙</strong>）</td><td><strong>是否有人愿意归还</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>实测可引的两段</strong>（均 <span class="tag t-src">原书</span>，<strong>实测通过</strong>）：</p>
+  <p><strong>① 开篇（第三部第一部「The Death of the Magician」，May 1453, C.E.）</strong>：</p>
+  <blockquote>
+    <p><em>Pausing to collect himself, Constantine XI pushed away the pile of city-defense maps in front of him, pulled his purple robe tighter, and waited.</em></p>
+    <p>（君士坦丁十一世定了定神，推开面前那一叠城防地图，紧了紧紫袍，等待着。——笔者自译）</p>
+  </blockquote>
+  <p>★★ <strong>请注意作者为什么这样开场</strong>：他不是从未来开始，而是从<strong>一个文明即将灭亡的历史时刻</strong>开始——<strong>1453 年的君士坦丁堡</strong>。★★ <strong>这段历史戏与全书的关系是隐喻性的</strong>：一个<strong>曾经辉煌的文明在城墙上目睹自己的结束</strong>，正是后面「<strong>太阳系之死</strong>」的预演。★ <strong>作者自述</strong>：末日题材在中文文学里长期缺席，他写「从当下开始、经过太阳系毁灭、到宇宙终结」这样的故事，感到一种<strong>西方作家未必会有的激动</strong>（<span class="tag t-talk">作者谈话</span>，Reactor 2016-09-20）。</p>
+  <p>★ <strong>这一段的写法也值得注意</strong>：★ 文中用<strong>「每三小时一次」的炮击</strong>来标记时间，把这个频率称为「<strong>另一个世界的时间、异教徒的时间</strong>」，并与宫中代表「<strong>基督教世界的时间</strong>」的一座铜钟作对照（<span class="tag t-src">原书</span>，同段，实测通过）。★★ <strong>「两种时间」的对照，是全书的核心意象之一</strong>：<strong>谁的历法，就是谁的世界</strong>——★ 这也正是第三部自创「纪元纪年」的深层动机（<code>## 1</code> 纪年注解）。</p>
+  <p><strong>② 云天明（第三部「Yun Tianming」段，Crisis Era, Year 4）</strong>：这一段的开头就是<strong>一条新闻</strong>——</p>
+  <blockquote>
+    <p><em>The Special Session of the Third Standing Committee of the National People’s Congress Passes Euthanasia Law</em></p>
+    <p>（全国人大常委会第三次会议特别会议通过安乐死法——笔者自译）</p>
+  </blockquote>
+  <p>★★ <strong>这一段的技术价值在于：它把「未来设定」写成了「一则旧报纸上的新闻」</strong>。★ 作者借角色之口点出<strong>为什么人类会关心眼前而不关心四百年后</strong>（<span class="tag t-src">原书</span>，实测通过）：书中把四百年比作「<strong>明朝的人担心四百年后</strong>」——<strong>用历史的尺度来校准未来的尺度</strong>。★★ <strong>这正是「纪元跳时」这一机制的具体写法</strong>（<code>## 2</code>）。★ <strong>这一段还埋了一个「人物装置」</strong>：书中写云天明在病房里<strong>做了一场「坐在一只纸船上漂在水上」的梦</strong>，水面平滑如镜、没有地平线（<span class="tag t-src">原书</span>，同段，实测通过）——★★ <strong>这个梦后面要变成「星星」与「童话」，是全书最长的一条伏线的起点</strong>（<code>## 10</code> 第⑩条）。</p>
+  <p>★ <strong>第三部最独特的叙事装置是「云天明的童话」</strong>：★ 云天明用<strong>三个童话</strong>把关键情报藏起来，传给人类（<span class="tag t-rep">转述</span>，第三部目录「广播纪元 7 年，云天明的童话」）。★★ <strong>这是「嵌套叙事」的顶点</strong>：<strong>情报包在故事里，故事包在小说里</strong>。★ 有评论者认为<strong>这三个童话即使单独读也很出色</strong>（<span class="tag t-rep">转述</span>，NDTV 书评，2016）。★★ <strong>与第一部的「三体游戏」对照看</strong>：<strong>第一部用游戏讲设定，第三部用童话藏情报</strong>——<strong>同一个手法，两代用途</strong>（<code>## 2</code> 机制三）。</p>
+  <h3>结构骨架</h3>
+  <p>★ <strong>第三部共六部，各章标题为「时间，事件」格式</strong>（<span class="tag t-rep">转述</span>，据国家出版发行信息公共服务平台目录，<strong>未核对原著</strong>；★ 完整章目见 <code>## 1</code>）。★★ <strong>第三部的结构骨架本身有三个必须点明的问题</strong>：</p>
+  <ul>
+    <li><strong>① 各部的「部名」不是原书目录。</strong> ★ 网络流传的「时间之外的往事／威慑纪元／广播纪元／掩体纪元／太阳系之死／宇宙之死」是<strong>二手概括命名</strong>（<span class="tag t-rep">转述</span>）。★ 本报告一律用<strong>原文标题</strong>（<code>## 1</code> 的表）。
+    </li>
+    <li><strong>② 六部之间的时间跨度极不均匀。</strong> ★ 第二部（威慑纪元）<strong>只写了几十年</strong>，而第六部（宇宙之死）<strong>一下跳到 170 亿年</strong>。★★ <strong>这种极不均匀的跳跃，是「纪元跳时」机制的代价</strong>：它让「宇宙终局」显得急促，也让第六部<strong>几乎完全变成概念展示</strong>（<code>## 11</code> 会讨论）。
+    </li>
+    <li><strong>③ 第五部与第六部之间有一道「叙事断崖」。</strong> ★ 第五部还在地球（冥王星、二维太阳系），第六部已经到「时间之外」。★ <strong>衔接的桥梁是「小宇宙」</strong>（<code>## 10</code> 第⑩条）。
+    </li>
+  </ul>
+  <p>★ <strong>一个结构上的亮点</strong>：★ <strong>第三部是三部曲里唯一「由一位女性角色贯穿全程」的一部</strong>（程心）。★★ <strong>而这位角色恰恰是全书争议的中心</strong>——<strong>她既被写成「当代共识的道德代表」，又被大量读者视为「灾星」</strong>（<code>## 5</code> 第四条）。★ <strong>这个矛盾的张力，正是第三部的叙事核心</strong>（<code>## 10</code>「归零者与小宇宙」一节会给出一种解读）。★★ <strong>注意一个事实性的细节</strong>：<strong>第三部的叙述者最终是程心——她为下一个宇宙留下了「时间之外的纪事」</strong>（<span class="tag t-rep">转述</span>，第六部最后一章「时间之外，我们的宇宙」；<span class="tag t-rep">转述</span>，宋明炜访谈，2023）。★ <strong>这一点在 <code>## 11</code> 第五条会被重新提起</strong>：<strong>一部被批评「女性角色单薄」的小说，最后却把「记录者」的角色交给了一位女性。</strong></p>
+  <h3>可疑之处</h3>
+  <ul>
+    <li><strong>① 程心的「一再犯错」是否有说服力？</strong> ★ 批评方：<strong>Niall Alexander（2016）</strong> 称其「<strong>有锚的性格，也就是……没有性格</strong>」；<strong>张悦（2021）</strong> 指出「<strong>同样的错误，她一错再错，这是真正触怒读者的地方</strong>」。★★ <strong>辩护方（作者本人）</strong>：<strong>她代表的正是「当代共识的正确道德」，「身披光明与正义走向末日」</strong>（<span class="tag t-talk">作者谈话</span>，2016-09-20）。★★ <strong>本报告的判断（<span class="tag t-inf">推断</span>）</strong>：<strong>这不是「人物失败」，而是「命题的写法决定了人物的写法」</strong>——<strong>如果一部小说的命题是「道德在生存压力下值不值钱」，那么主角就注定要被写成「道德的载体」而不是「一个有缺点的人」</strong>。★ <strong>读者可以不同意这个取舍，但要看到这是取舍。</strong>
+    </li>
+    <li><strong>② 「二向箔」等设定「像魔法」。</strong> ★ 批评方（<span class="tag t-rep">转述</span>，维舟，2024）认为二向箔「犹如魔法一般的技术」，缺乏科学设想的探求。★ 反方（<span class="tag t-rep">转述</span>，timeteam，2016）认为物理学理论被「以全然可信的方式织进故事」。★ <strong>本报告并陈两方，判定留给读者。</strong>
+    </li>
+    <li><strong>③ 第六部的「宇宙归零」是否过于概念化？</strong> ★ 第六部几章几乎全在讨论<strong>宇宙的归宿与小宇宙</strong>（<span class="tag t-rep">转述</span>，第三部目录）。★ <strong>这是「概念型」作品的经典风险</strong>：<strong>当尺度大到一定程度，「人」就不见了</strong>。★ 作者本人也承认第三部「<strong>不是一部完美的作品</strong>」（<span class="tag t-talk">作者谈话</span>，2016-09-20）。
+    </li>
+    <li><strong>④ 六部的「部名」与原书目录的混淆仍在传播。</strong> ★ 本报告已在 <code>## 1</code> 与 <code>## 4b</code> 点明；★ <strong>引用第三部结构时请务必用原文标题。</strong>
+    </li>
+    <li><strong>⑤ 「纪元纪年」带来的一个副作用。</strong> ★ 因为时代以「纪元」命名，<strong>读者容易把「纪元」当成「章节」，而忽略它其实是「几十年到几百年」</strong>。★★ <strong>这是「纪元跳时」的代价之一</strong>：<strong>它让时间既好记、又容易失真</strong>（<span class="tag t-inf">推断</span>）。
+    </li>
+  </ul>
+  <h3>一段细读（英译第三部：安乐死仪式）</h3>
+  <p><strong>英文原句</strong>（<span class="tag t-src">原书</span>，第三部「Yun Tianming」段，实测通过）：</p>
+  <blockquote>
+    <p><em>Whoever was responsible for decorating this room had made quite an effort: There were new, pretty curtains on the windows, fresh flowers in vases, and numerous pink paper hearts on the walls. But their well-intentioned attempt to humanize the situation had achieved the exact opposite: The frightful pall cast by death was mixed with an eerie cheerfulness, as though they were trying to turn a tomb into a nuptial chamber.</em></p>
+  </blockquote>
+  <p><strong>中文全译</strong>（笔者自译）：</p>
+  <blockquote>
+    <p>负责布置这个房间的人着实费了些心思：窗上挂着崭新的漂亮窗帘，花瓶里插着鲜花，墙上贴着许多粉色的纸心。但他们想把场面「人性化」的这番好意，收到的效果却恰恰相反：<strong>死亡投下的可怕阴影，与一种诡异的欢快混在一起，仿佛他们是在努力把一座坟墓变成洞房。</strong></p>
+  </blockquote>
+  <p><strong>注解</strong>：★★★ <strong>这是第三部最锋利的一处讽刺，也是「硬科幻」与「伦理」在同一个句子里的接缝。</strong> 作者把「安乐死」写成一场<strong>被精心装饰的仪式</strong>：<strong>窗帘、鲜花、粉纸心——这些「温情符号」不是安慰，而是反差</strong>。★★ <strong>请注意那个比喻的准确：「把坟墓变成洞房」</strong>——<strong>它同时点出了「死亡」与「仪式」的错位，也点出了「制度化的善意」的荒诞</strong>。★★ <strong>这一段的结构位置极重要</strong>：它出现在<strong>第三部的早期</strong>（Crisis Era, Year 4），<strong>远早于「二向箔」那些宇宙级事件</strong>；★★ <strong>也就是说，在人类还没有面对宇宙之前，作者先让读者看到了：人类如何体面地处理「个体的死亡」</strong>——<strong>这正是后面「牺牲少数」问题的最小预演</strong>（<code>## 10</code> 第①条、<code>## 11</code>）。★ <strong>同段的另一个细节同样值得记</strong>：<strong>那位患者一生没有用过电脑，为了这台机器，他第一次学会了用鼠标</strong>（<span class="tag t-src">原书</span>，同段，实测通过）——<strong>一个关于「技术门槛」的黑色幽默。</strong></p>
+  <h3>本部的一道核心题：道德在生存压力下值不值钱？</h3>
+  <p>★ 第三部把问题推到了极限：★★ <strong>如果「生存」与「道德」只能选一个，你选哪个？</strong> ★ 全书给出的是<strong>三种答案</strong>，<strong>分别由三位角色承担</strong>：</p>
+  <table>
+    <thead><tr><th>角色</th><th>立场</th><th>结果</th></tr></thead>
+    <tbody>
+      <tr><td><strong>罗辑／章北海式</strong></td><td>★ <strong>为了生存，先动手</strong></td><td>换来一段稳定，也背上孤独</td></tr>
+      <tr><td><strong>程心式</strong></td><td>★ <strong>为了道德，不动手</strong></td><td>换来良心，也背上灾难</td></tr>
+      <tr><td><strong>维德式（第三部）</strong></td><td>★ <strong>为了目标，不择手段</strong></td><td>被写成「危险的人」，也被写成「可能唯一有效的人」</td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>注意：小说没有让任何一方「赢」</strong>——<strong>罗辑的威慑最终被替换，程心的善良最终被指责，而「不择手段」也被写成不可接受</strong>。★★ <strong>这种「三方皆输」的结构，正是第三部最容易被误读的地方</strong>：<strong>它不是「鼓吹冷酷」，也不是「否定道德」</strong>；★ <strong>它做的是把三个选项都演一遍，然后让你自己算代价</strong>（<span class="tag t-inf">推断</span>，本报告的分析）。</p>
+  <p>★★ <strong>作者本人的说法最清楚</strong>：★ <strong>程心是「当代共识所认为的、人类正确道德与价值观的代表」，「身披光明与正义，她大步走向末日」</strong>（<span class="tag t-talk">作者谈话</span>，2016-09-20）。★★ <strong>请注意「走向末日」这个动词</strong>：<strong>作者不是在嘲笑她，而是在指出一个结构性的困境——她的美德，正是她的败因</strong>（<code>## 12</code> 第三条）。★ 这正是本书 <code>## 10</code> 第⑩条所说的「一次反问」：<strong>当「生存第一」被当作公理时，「道德」就只剩下被牺牲的位置</strong>——<strong>而全书的最后一章，偏偏让「让渡」这个动作，重新把道德放回了台面。</strong></p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">10</span><span>核心概念深挖</span><span class="caret">▾</span></h2>
+  <p>★★ <strong>本节是全书页最重的一节。</strong>★ <strong>要求：每条写清「它解决什么问题、代价是什么、对应现实中哪个概念」——不做名词解释。</strong>★ 共十条。</p>
+  <h3>① 宇宙社会学两条公理</h3>
+  <ul>
+    <li><strong>它解决什么问题</strong>：给「文明之间的关系」<strong>找一个可以推演的起点</strong>。★ 公理一「<strong>生存是文明的第一需要</strong>」，公理二「<strong>文明不断增长和扩张，而宇宙的物质总量不变</strong>」——两条一合，就得到「<strong>资源有限 ＋ 都想活下去 ＝ 冲突是结构性的</strong>」（<span class="tag t-src">原书</span>，第二部 Prologue，实测通过）。★ 说这段话的是叶文洁，听的人是罗辑；<strong>地点在杨冬墓前</strong>。
+    </li>
+    <li><strong>它为什么「够用」</strong>：★★ <strong>因为它把「社会」变成了「几何」</strong>——作者借叶文洁之口说，「<strong>像欧几里得几何一样，你先立下几条简单的公理，再以它们为基础推演</strong>」（<span class="tag t-src">原书</span>，同处）。★★ <strong>这是全书最重要的一次「方法宣告」</strong>：<strong>宇宙社会学不是一个「观察—归纳」的学科，而是一个「公理—演绎」的系统</strong>；<strong>它的结论必然是「纯理论的」，因为「不可能做实验」</strong>（<span class="tag t-src">原书</span>，同处）。
+    </li>
+    <li><strong>代价是什么</strong>：★ 这两条公理<strong>把「文明」简化成了一个只追求生存与扩张的单一变量</strong>——<strong>道德、艺术、宗教、个体差异全部被抽象掉了</strong>。★★ <strong>这正是全书后来一切「伦理困境」的来源，也是 <code>## 11</code> 争议的靶心。</strong> ★ 另一层代价是：<strong>公理一旦被当作信念，就会变成一种政治预言</strong>——<strong>而作者本人恰恰反对这种读法</strong>（<code>## 4b</code> 第③条）。
+    </li>
+    <li><strong>对应现实中的什么</strong>：★★ <strong>对应「生存空间／资源有限」这一经典地缘政治预设</strong>；也对应本书目里 <strong>《物种起源》的达尔文式底色</strong>（「生存是第一需要」＝自然选择的压力）。★ 与 <strong>《孙子兵法》《战争论》</strong> 的连线也在这里：<strong>当双方都把「生存」放在第一位，博弈就会滑向「先动手者占优」</strong>。★ 与 <strong>《几何原本》</strong> 的连线是方法论层面的：<strong>公理化是这本书的「形状」</strong>。
+    </li>
+    <li><strong>一个可追问的点（<span class="tag t-inf">推断</span>）</strong>：★ 公理二说「物质总量不变」——<strong>但「文明增长」与「物质守恒」之间，并没有逻辑上的必然冲突</strong>（<strong>增长可以被效率提升吸收</strong>）。★ 所以两条公理<strong>更像「前提设定」，而不是「推导结果」</strong>；★ <strong>作者自己也承认这是「纯理论的」设定</strong>（<span class="tag t-src">原书</span>）。
+    </li>
+  </ul>
+  <h3>② 猜疑链</h3>
+  <ul>
+    <li><strong>它解决什么问题</strong>：解释<strong>为什么「善意」在宇宙里不解决问题</strong>。★★ 核心是：<strong>两个文明即使都想和平，也无法确认对方想和平</strong>；而对方也无法确认「我确认它想和平」——<strong>这个「我对你的判断的判断的判断……」的链条无限延伸</strong>，永远无法收敛（<span class="tag t-rep">转述</span>，公开资料；<span class="tag t-src">原书</span> 序章与官方简介均提到「只有心思是秘密」的设定，实测通过）。
+    </li>
+    <li><strong>它为什么「绕不开」</strong>：★★ <strong>因为「意图」无法被证明，只能被推断；而推断永远依赖对对方「会怎么推断我」的猜测</strong>。★ 书中把这一层与<strong>「思想与言语的区别」</strong>绑在一起：<strong>人类的思考不透明，所以无法自证清白</strong>（<span class="tag t-src">原书</span>，第二部官方简介，实测通过）。
+    </li>
+    <li><strong>代价是什么</strong>：★ <strong>任何单方面的克制都变成「自杀」</strong>。★ 善意在结构上<strong>无法被表达</strong>——因为它一旦表达就可能被利用。★★ <strong>这一条把「道德」放到了一个尴尬位置：在一个连「证明自己不想打」都做不到的体系里，道德没有表达渠道。</strong>
+    </li>
+    <li><strong>对应现实中的什么</strong>：★★ <strong>对应国际关系里的「安全困境」（security dilemma）</strong>：<strong>一国的自卫行为会被对方视为威胁，从而引发军备升级，最终双方都更不安全。</strong> ★ 这是全书最扎实、最「可移植到现实」的一个概念。★ 与本书目 <strong>《战争论》</strong> 的连线：<strong>克劳塞维茨说战争是政治的延续，而猜疑链说的正是「政治沟通失败后的必然」</strong>。
+    </li>
+    <li><strong>一个可追问的点（<span class="tag t-inf">推断</span>）</strong>：★ 猜疑链<strong>要求「距离足够远、沟通成本足够高」</strong>；★★ <strong>如果两个文明能够低成本、可验证地通信，猜疑链就会被削弱</strong>——★ <strong>这正好是 <code>## 5</code> 第三条（黑暗森林的可证伪性）批评的落点</strong>。
+    </li>
+  </ul>
+  <h3>③ 技术爆炸</h3>
+  <ul>
+    <li><strong>它解决什么问题</strong>：解释<strong>为什么「弱小文明」也必须被消灭</strong>。★ 逻辑是：<strong>技术不是线性增长，而是可能突然跃升</strong>；<strong>今天的「虫子」，可能在短时间内变成威胁</strong>（<span class="tag t-rep">转述</span>，公开资料）。
+    </li>
+    <li><strong>它为什么「必要」</strong>：★★ <strong>如果没有技术爆炸，黑暗森林就不成立</strong>——<strong>因为强者可以「慢慢来」，弱者可以「慢慢追」</strong>。★ 正是「<strong>技术可能突然跃迁</strong>」这一点，<strong>把「时间」从保护者变成了危险源</strong>。
+    </li>
+    <li><strong>代价是什么</strong>：★ <strong>「时间」不再是保护</strong>。★ 一个暂时落后的文明<strong>不能指望「慢慢来」</strong>——<strong>它可能随时爆发</strong>。★★ <strong>这也意味着，「现在弱小」不构成任何安全保证</strong>。
+    </li>
+    <li><strong>对应现实中的什么</strong>：★★ 对应<strong>技术扩散与技术奇点</strong>的担忧。★ 与本书目 <strong>《失控》</strong> 的连线正在这里：<strong>「技术」一旦具备自我演进的能力，领先者的优势窗口就会急剧缩短</strong>。★ 与 <strong>《AI 3.0》</strong> 的连线：<strong>「能力跃迁」是 AI 治理讨论的核心焦虑之一</strong>。
+    </li>
+    <li><strong>一个可追问的点（<span class="tag t-inf">推断</span>）</strong>：★ 「技术爆炸」在书中<strong>没有给出机制</strong>——<strong>为什么技术一定会「爆炸」而不是「渐进」</strong>？★ <strong>这一点至今是科学史与创新研究里争论未休的问题</strong>；★ <strong>把它写成公理，是「小说设定」，不是「历史规律」</strong>。
+    </li>
+  </ul>
+  <h3>④ 黑暗森林法则与威慑</h3>
+  <ul>
+    <li><strong>它解决什么问题</strong>：<strong>把公理 ＋ 猜疑链 ＋ 技术爆炸三样合起来，就得到「黑暗森林」</strong>——<strong>宇宙是一片黑暗森林，每个文明都是带枪的猎人；发现即消灭</strong>（<span class="tag t-src">原书</span>，第二部「Prologue」的对话与官方简介，实测通过；★ 中文的「黑暗森林」段落本身<strong>未核对原著</strong>，<span class="tag t-rep">转述</span>）。★ <strong>威慑</strong>则是<strong>弱者唯一可行的办法</strong>：<strong>告诉对方「你敢动我，我就广播你的坐标，让更强的猎人来找你」</strong>——<strong>同归于尽</strong>。
+    </li>
+    <li><strong>它为什么「成立」</strong>：★★ <strong>因为「坐标」是最便宜、最有效的一种武器</strong>。★ 弱者不需要打赢强者，<strong>只需要让强者相信「第三个更强的存在会来处理」</strong>。★★ <strong>这就是威慑的本质：把「胜负」改成「同死」。</strong>
+    </li>
+    <li><strong>代价是什么</strong>：★★ <strong>威慑要求一个「执剑人」</strong>——<strong>一个人握着同归于尽的按钮，几十年不睡觉地站岗</strong>。★★ <strong>这是全书最贵的一个代价：它把「全人类的安全」押在「一个人永不犯错的意志」上</strong>（本节第⑦条）。★ 第二层代价是：<strong>威慑一旦建立，双方都被钉住</strong>——<strong>和平是「冻结的战争」，而不是「和解」</strong>。
+    </li>
+    <li><strong>对应现实中的什么</strong>：★★ <strong>对应核威慑（MAD，相互确保摧毁）</strong>：<strong>和平不是靠善意，而是靠「同归于尽」的可信度</strong>。★ <strong>与本书目《战争论》《孙子兵法》直接接得上</strong>：<strong>威慑的本质是「不战而屈人之兵」，而它的前提是「让对方相信你真的会战」</strong>。★ 与 <strong>《社会契约论》</strong> 的连线：<strong>为了安全，人们愿意让渡多少自由？</strong>
+    </li>
+    <li><strong>一个可追问的点（<span class="tag t-inf">推断</span>）</strong>：★★ <strong>真正的威慑不需要「真的打」，只需要「对方相信你会打」</strong>；★★ <strong>而「相信」是最脆弱的东西</strong>——<strong>第三部里，威慑正是死在「相信」上</strong>（本节第⑦条）。
+    </li>
+  </ul>
+  <h3>⑤ 面壁计划与破壁人</h3>
+  <ul>
+    <li><strong>它解决什么问题</strong>：<strong>在「一切信息都被监视」的条件下，如何藏住一个战略？</strong> ★ 答案：<strong>把战略藏在「心思」里</strong>——<strong>智子能读一切，只有人的思想不能读</strong>（<span class="tag t-src">原书</span>，第二部官方简介与上部开篇，实测通过）。★ 于是人类选出<strong>面壁者</strong>，让他们<strong>公开地行骗</strong>；三体人则派出<strong>破壁人</strong>去识破他们。
+    </li>
+    <li><strong>它为什么「聪明」</strong>：★★ <strong>它把「劣势」变成了「武器」</strong>：<strong>既然你看得见一切，那我就把「不可见的东西（心思）」当作唯一的战场</strong>。★ 这是一次典型的<strong>「限制条件下的最优解」</strong>。
+    </li>
+    <li><strong>代价是什么</strong>：★★ <strong>面壁者获得了「不需要解释」的权力</strong>——<strong>一个以欺骗为职责的人，无法被问责</strong>。★★ <strong>这是全书对「战时权力」最锋利的一刀：为了对抗敌人，你必须先让渡一部分「被监督的权利」。</strong> ★ 第二层代价是：<strong>面壁者的计划里有「牺牲一部分人类」的内容</strong>（<span class="tag t-rep">转述</span>，公开资料）——<strong>而他们不必解释</strong>。
+    </li>
+    <li><strong>对应现实中的什么</strong>：★★ <strong>对应「信息不对称下的战略欺骗」与「紧急状态下的权力集中」</strong>。★ 与本书目 <strong>《社会契约论》</strong> 的连线：<strong>什么条件下，公民可以授权一个人「不必解释」？</strong> ★ 与 <strong>《战争论》</strong> 的连线：<strong>战争中的「欺骗」与「诡道」是《孙子兵法》的核心，这里把它写成了制度。</strong>
+    </li>
+    <li><strong>一个可追问的点（<span class="tag t-inf">推断</span>）</strong>：★★ <strong>如果连「面壁者的思路」都能被推出来，那「心思不可窃听」这个设定就自相矛盾</strong>（<code>## 8</code> 可疑之处②）。★ <strong>一种自洽的解释是</strong>：<strong>破壁人靠的是「逻辑推理」而非「读心」</strong>——<strong>他们是从公开行为反推意图，而不是直接读取思想</strong>（<span class="tag t-inf">推断</span>，本报告的分析）。
+    </li>
+  </ul>
+  <h3>⑥ 智子（技术锁死）与水滴</h3>
+  <ul>
+    <li><strong>它解决什么问题</strong>：<strong>怎样在不摧毁对手的前提下，让对手永远赶不上自己？</strong> ★ 答案：<strong>锁死基础物理</strong>——<strong>「智子」能干扰高能物理实验，使人类无法突破基础理论</strong>（<span class="tag t-rep">转述</span>，公开资料；<span class="tag t-src">原书</span> 上部开篇的智子文字，实测通过）。★ <strong>「水滴」</strong>是用强互作用力材料做的探测器，<strong>以近乎无敌的物理强度摧毁人类引以为傲的舰队</strong>（<span class="tag t-rep">转述</span>，公开资料）。
+    </li>
+    <li><strong>它为什么「狠」</strong>：★★ <strong>「锁死」是一种比毁灭更彻底的控制</strong>——<strong>它让对手「活着，但永远无力」</strong>。★ 与之相对，<strong>水滴的毁灭则是「展示」</strong>：<strong>让你亲眼看到差距</strong>。★★ <strong>两者配合，构成一种「杀而不绝、示而不语」的支配</strong>。
+    </li>
+    <li><strong>代价是什么</strong>：★ <strong>锁死留下了一个安全隐患</strong>：<strong>它锁住的是「人类的基础科学」，却锁不住「人类的心思」</strong>——★★ <strong>而面壁计划正是钻了这个空子</strong>（本节第⑤条）。★ 第二层代价是：<strong>水滴的「展示」反而暴露了「三体人也怕」</strong>——<strong>一个真正无敌的文明，不需要展示</strong>（<span class="tag t-inf">推断</span>）。
+    </li>
+    <li><strong>对应现实中的什么</strong>：★★ <strong>对应技术封锁与「卡脖子」</strong>：<strong>不让你买到关键设备，比直接打败你更有效</strong>。★ 与本书目 <strong>《AI 3.0》</strong> 的连线在这里：<strong>「锁死」的是「能力」，而不是「存在」</strong>——<strong>这也正是 AI 治理讨论中「能力边界」问题的科幻写法</strong>。★ 与 <strong>《失控》</strong> 的连线：<strong>技术可以被限制，但「限制」本身会催生新的路径</strong>。
+    </li>
+    <li><strong>一个可追问的点（<span class="tag t-inf">推断</span>）</strong>：★ <strong>「智子」这个设定把「监控」与「锁死」合在一颗粒子（或一对粒子）上</strong>，<strong>技术上属于小说的自创规则</strong>；★ 批评方（<span class="tag t-rep">转述</span>，维舟，2024）正是从这里切入「科学硬伤」的（<code>## 5</code> 第三条）。
+    </li>
+  </ul>
+  <h3>⑦ 执剑人与威慑博弈</h3>
+  <ul>
+    <li><strong>它解决什么问题</strong>：<strong>威慑建立后，由谁来看守？</strong> ★ 答案：<strong>执剑人</strong>——<strong>一个人，握着广播坐标的按钮，对抗着三体人的入侵</strong>（<span class="tag t-rep">转述</span>，第三部目录「威慑纪元 61 年，执剑人」）。★★ <strong>罗辑做了几十年执剑人，然后被替换</strong>——<strong>而替换他的人，恰恰是代表「当代共识道德」的程心</strong>（本节第⑩条）。
+    </li>
+    <li><strong>它为什么「致命」</strong>：★★★ <strong>这是全书最核心的伦理问题</strong>：<strong>威慑的可信度，取决于执剑人「真的会按下去」的概率</strong>；<strong>而一个「道德高尚、热爱生命」的人，恰恰最不可能按下去</strong>。★★ <strong>于是悖论出现了：人类为了活命，必须选一个「愿意毁灭世界的人」来保护自己；而选出一个「善良的人」，就等于缴械。</strong>
+    </li>
+    <li><strong>代价是什么</strong>：★★ <strong>代价由「选人的人」承担</strong>——<strong>人类忍受不了一个「愿意毁灭世界」的守护者</strong>，于是<strong>用「道德」换掉了「安全」</strong>。★★ <strong>这一结构把「民主选择的道德偏好」与「生存所需的冷酷」摆在了正对面</strong>；★ <strong>它不是对现实的评价，而是小说内部的一次逻辑演示</strong>（<code>## 11</code> 第六条、<span class="tag t-inf">推断</span>）。
+    </li>
+    <li><strong>对应现实中的什么</strong>：★★ <strong>对应博弈论里的「可信承诺」（credible commitment）问题</strong>：<strong>你说你会报复，但对方算准你不会，威慑就失效了</strong>。★ <strong>与《战争论》的连线</strong>：<strong>克劳塞维茨谈「战争是政治的延续」，而这里的问题是「当政治选出一个不会打仗的人，战争还延续得下去吗」</strong>。★ 与 <strong>《乌合之众》</strong> 的连线：<strong>群体倾向于选择「让自己舒服的选项」，而不是「让自己安全的选项」</strong>。
+    </li>
+    <li><strong>一个可追问的点（<span class="tag t-inf">推断</span>）</strong>：★★ <strong>现实中是否存在「替代方案」？</strong> ★ 例如：<strong>把威慑交给一个「制度」而不是一个人</strong>（<strong>多主体、可轮换、可验证</strong>）。★★ <strong>小说选择「一个人」，是为了把伦理问题推到最极端的形态</strong>——<strong>这是文学选择，不是制度设计建议</strong>。
+    </li>
+  </ul>
+  <h3>⑧ 掩体计划、黑域与曲率驱动</h3>
+  <ul>
+    <li><strong>它解决什么问题</strong>：<strong>威慑失效后，人类如何求生？</strong> ★ 三套方案：<strong>① 掩体计划</strong>（躲到巨行星背后，规避太阳被炸时的冲击）；<strong>② 黑域</strong>（把太阳系的光速降低，制造一个「安全声明」，让外界「无法进入、也无兴趣进入」）；<strong>③ 曲率驱动</strong>（用扭曲空间的方式航行，接近光速逃离）（<span class="tag t-rep">转述</span>，第三部目录与公开资料，<strong>未核对原著</strong>）。
+    </li>
+    <li><strong>它为什么「三选一都难受」</strong>：★★ <strong>因为每一条路都不是「逃出」，而是「变成别的样子」</strong>：<strong>掩体＝住到行星背后当地底人；黑域＝把文明封成无威胁的琥珀；曲率驱动＝把自己变成逃亡舰队</strong>。
+    </li>
+    <li><strong>代价是什么</strong>：★★ <strong>每一条求生路都要付出「文明形态的改变」</strong>：<strong>掩体把人变成地底生物；黑域把文明冻成琥珀；曲率驱动则把人变成逃亡者</strong>。★★ <strong>这是全书对「技术方案」最清醒的一点：没有哪条路是「免费的逃生」。</strong> ★ <strong>而三者的取舍，本质上是在回答「一个文明愿意变成什么，才能活下去」</strong>。
+    </li>
+    <li><strong>对应现实中的什么</strong>：★★ <strong>对应「生存策略的不可逆代价」</strong>：<strong>封闭自保（黑域）＝脱钩；技术跃迁（曲率驱动）＝豪赌；分散风险（掩体）＝牺牲生活质量</strong>。★ 与本书目 <strong>《物种起源》</strong> 的连线：<strong>「适应」从来不是「保持原样地活下来」，而是「变成别的东西」</strong>。★ 与 <strong>《社会契约论》</strong>：<strong>安全与自由的交换，在这里被推到极限</strong>。
+    </li>
+    <li><strong>一个可追问的点（<span class="tag t-inf">推断</span>）</strong>：★★ <strong>「黑域」是最耐人寻味的一条</strong>：★ <strong>它通过「自我削弱」来换取安全</strong>（<strong>把光速降低，让自己变成一个「不值得打的穷地方」</strong>）。★★ <strong>这是全书对「安全」的一次反直觉定义</strong>：<strong>最安全的状态，可能是「最没有价值的状态」</strong>。
+    </li>
+  </ul>
+  <h3>⑨ 降维打击与二向箔（宇宙作为战争废墟）</h3>
+  <ul>
+    <li><strong>它解决什么问题</strong>：<strong>当技术差距大到无法弥补，强者怎么「打扫」弱者？</strong> ★ 答案：<strong>降维</strong>——<strong>用「二向箔」把三维空间塌缩成二维，太阳系被「画」进一幅画里</strong>（<span class="tag t-src">原书</span>，第二部 Prologue 旁白「dimension-reduction attack on the Solar System」实测通过；<span class="tag t-rep">转述</span>，第三部目录「二维太阳系」）。
+    </li>
+    <li><strong>它为什么「可怕」</strong>：★★ <strong>因为它不是「杀死敌人」，而是「改变敌人所在的宇宙」</strong>。★ 前面所有武器都作用于「物体」，<strong>二向箔作用于「空间本身」</strong>。★★ <strong>这就是「降维打击」这个词后来进入日常语言的原因：它形容的不是一次攻击，而是一次「规则层面的碾压」</strong>。
+    </li>
+    <li><strong>代价是什么</strong>：★★★ <strong>代价由整个宇宙承担</strong>：<strong>宇宙本来可能有更多维度，是历次降维战争把空间「用掉」了</strong>——<strong>所以今天的宇宙，是「一场神祇盛宴后的残羹冷炙」</strong>（<span class="tag t-talk">作者谈话</span>，Reactor 2016-09-20：<code>the universe and its laws are seen as the leftover mess from a feast of the gods</code>）。★★ <strong>这是全书最宏大的一个隐喻：我们看到的「自然法则」，可能只是战争留下的废墟。</strong>
+    </li>
+    <li><strong>对应现实中的什么</strong>：★★ <strong>对应「不可逆的环境破坏」与「战争的长期外部性」</strong>：<strong>打赢的人也要住在被打坏的房子里</strong>。★ <strong>这也是作者把「改变宇宙自然法则」当作武器这一设定的妙处</strong>（<span class="tag t-talk">作者谈话</span>，2016-09-20）——<strong>武器不只杀伤人，它改写了「物理」</strong>。★ 与本书目 <strong>《物种起源》</strong> 的连线：<strong>「环境」不是背景，而是被前一代「改造过的结果」</strong>。
+    </li>
+    <li><strong>一个可追问的点（<span class="tag t-inf">推断</span>）</strong>：★ <strong>「降维」在物理上属于小说自创规则</strong>（批评方的意见见 <code>## 5</code> 第三条）；★★ <strong>但它在「隐喻层面」极其精确</strong>：<strong>任何一次「以绝对优势解决问题」的选择，都会把成本推给后来的人</strong>。
+    </li>
+  </ul>
+  <h3>⑩ 归零者与小宇宙</h3>
+  <ul>
+    <li><strong>它解决什么问题</strong>：<strong>宇宙被战争掏空之后，还有没有出路？</strong> ★ 答案：<strong>「归零者」呼吁各部文明归还质量，让宇宙重启</strong>；<strong>「小宇宙」则是把质量藏进一个独立空间的「私宅」</strong>（<span class="tag t-rep">转述</span>，第三部第六部目录与公开资料，<strong>未核对原著</strong>）。★★ <strong>而程心与关一帆在最后的抉择，正是「归还质量、让宇宙重启」还是「留下私宅」</strong>（<span class="tag t-inf">推断</span>，本报告对第六部结构的解读）。★ <strong>与云天明当年的「纸船之梦」形成呼应</strong>——<strong>那只没有岸、没有地平线的船，最终变成了「我们的星星」与「我们的宇宙」</strong>（<span class="tag t-inf">推断</span>，基于 <span class="tag t-src">原书</span>「Yun Tianming」段的梦与第三部第六部章题）。
+    </li>
+    <li><strong>它为什么「收得住」</strong>：★★ <strong>因为它把全书从「生存」拉回「让渡」</strong>。★ 从「生存是第一需要」的公理出发，走了几百万字，<strong>最后一个动作是「把自己的那份交出去」</strong>——<strong>这是对开场公理的一次反问</strong>。
+    </li>
+    <li><strong>代价是什么</strong>：★★ <strong>回到「道德」</strong>：<strong>宇宙的存续，取决于是否有人愿意交出自己那一份</strong>。★★ <strong>于是全书绕了一大圈，最后落回一个「让渡」的动作</strong>——<strong>这既是全书的收束，也是对开场公理的一次反问</strong>（<span class="tag t-inf">推断</span>）。★ <strong>注意其中的反讽</strong>：<strong>这一次，「道德选择」终于有了正面结果</strong>——<strong>而做出这个选择的，正是那个被骂了一整部书的程心</strong>（<span class="tag t-inf">推断</span>，本报告的分析）。
+    </li>
+    <li><strong>对应现实中的什么</strong>：★★ <strong>对应「公地悲剧」与「自愿让渡」</strong>：<strong>当所有人都多拿一点，公共资源就崩了；当有人愿意少拿一点，集体才可能存续</strong>。★ 与本书目 <strong>《物种起源》《社会契约论》</strong> 的连线在这里收束：<strong>「生存」来自自然，「让渡」来自文明</strong>——<strong>三部曲的最后一个动作，是文明对自然的最后一次回答</strong>。
+    </li>
+    <li><strong>一个可追问的点（<span class="tag t-inf">推断</span>）</strong>：★★ <strong>第六部的篇幅与前五部极其不成比例</strong>（只有三章）。★ <strong>这既是缺憾，也可能是「设计」</strong>：<strong>一个宇宙的结束，本来就不该有太多情节</strong>。
+    </li>
+  </ul>
+  <p>★★ <strong>把上面十条穿起来看</strong>，就是一条<strong>完整的推理链</strong>：</p>
+  <table>
+    <thead><tr><th>层</th><th>概念</th><th>推出下一层的钥匙</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><strong>两条公理</strong></td><td>生存 ＋ 资源有限</td></tr>
+      <tr><td>2</td><td><strong>猜疑链 ＋ 技术爆炸</strong></td><td>无法确认 ＋ 无法拖延</td></tr>
+      <tr><td>3</td><td><strong>黑暗森林</strong></td><td>发现即消灭</td></tr>
+      <tr><td>4</td><td><strong>威慑 ＋ 执剑人</strong></td><td>同归于尽换和平</td></tr>
+      <tr><td>5</td><td><strong>掩体／黑域／曲率驱动</strong></td><td>威慑失效后的三条路</td></tr>
+      <tr><td>6</td><td><strong>降维打击</strong></td><td>战争改写物理</td></tr>
+      <tr><td>7</td><td><strong>归零者与小宇宙</strong></td><td>最后的让渡</td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>这张表就是「概念型」作品与「点子集」的分界——它有推理链，不是点子的堆叠。</strong> ★ <strong>而且请注意链条的走向</strong>：<strong>它从「生存」开始，到「让渡」结束</strong>——★★ <strong>也就是说，整部三部曲的论证方向，是从「自然」走向「文明」。</strong> ★ 这一点，与很多人对《三体》「冷酷」的印象，恰好相反（<code>## 11</code>、<code>## 12</code>）。</p>
+  <h3>小结：这条推理链的三个薄弱环节</h3>
+  <p>★★ <strong>本报告把 <code>## 10</code> 的推理链摊开之后，必须诚实指出它的三个薄弱环节</strong>——<strong>它们的共同点是：都不是「错」，而是「被省略」。</strong></p>
+  <ul>
+    <li><strong>环节一：公理一（生存第一）被当作「所有文明的共同属性」。</strong> ★ 但小说自己就写过<strong>不同的立场</strong>（如「零道德者」「和平主义者」等被提及的群体，<span class="tag t-rep">转述</span>，第三部批评转引）。★★ <strong>一旦承认文明有「不把生存排第一」的类型，链条的起点就不再唯一</strong>（<span class="tag t-inf">推断</span>）。★ <strong>这是整条链最需要「设定」而不是「推导」的地方</strong>。
+    </li>
+    <li><strong>环节二：猜疑链要求「沟通成本极高」。</strong> ★ 但小说里<strong>人类恰恰能与三体人沟通</strong>（<strong>智子就是一条实时的通信通道</strong>）。★★ <strong>如果沟通可行，为什么猜疑链不会被削弱？</strong> ★ 一种自洽的解释是：<strong>沟通≠信任</strong>——<strong>智子能传文字，但传不了「意图」</strong>（<span class="tag t-inf">推断</span>）。★ <strong>这个解释成立，但小说没有明说</strong>。
+    </li>
+    <li><strong>环节三：技术爆炸的「必然性」没有机制。</strong> ★ 为什么技术<strong>一定</strong>会跃迁，而不是<strong>渐进</strong>？★★ <strong>小说把它当作前提，而不是结论</strong>（<code>## 10</code> 第③条）。
+    </li>
+  </ul>
+  <p>★ <strong>为什么这三个环节重要？</strong> ★★ <strong>因为它们决定了你怎么评价《三体》</strong>：★ <strong>如果你要求它是一条「逻辑严密的论证」，这三个环节就是裂缝</strong>；★ <strong>如果你把它当作一个「思想实验」，这三个环节就是「设定的边界」</strong>——<strong>设定可以不真，但必须清晰</strong>。★★ <strong>本报告的判断（<span class="tag t-inf">推断</span>）</strong>：<strong>《三体》的力量恰恰来自它把「边界」画得很清楚</strong>——<strong>它从不假装自己的公理是「发现」，而是明说它们是「假设」</strong>（<span class="tag t-src">原书</span>，第二部序章：「你的最终结果将是纯理论的」）。</p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">11</span><span>争议与批评</span><span class="caret">▾</span></h2>
+  <p>★★ <strong>本节是本形态的重头，按 <code>## 5</code> 的六条展开，并补充接受史层面的争论。</strong>★ <strong>每条给具名出处。</strong></p>
+  <p><strong>（一）性别表征的争论，与其背后的文学问题。</strong> ★ 详见 <code>## 5</code> 第一条与第四条。★★ <strong>这里要补一层分析</strong>：<strong>这场争论的实质，不是「作者厌不厌女」，而是「当一部作品把人写成功能件，最先被牺牲的往往是哪一种人」</strong>。★ 本书目里 <strong>《乌合之众》</strong> 处理的是「群体如何被简化」，而《三体》处理的是「<strong>个体如何被简化</strong>」——<strong>当叙事需要一个「道德的载体」时，历史上这类角色往往被分配给女性</strong>（<span class="tag t-inf">推断</span>，本报告的分析）。★ <strong>作者本人的回应是他「根本没有想过性别问题」，且程心「最初设定是男性」</strong>（<span class="tag t-talk">作者谈话</span>，《新京报》，2018-11-11）——★ <strong>这条回应本身也值得讨论</strong>：<strong>它说明作者把「性别」当作可替换的变量，而批评方恰恰认为「性别不是可替换的变量」。</strong> ★ 两方都摆在这里。 ★★ <strong>也要把另一方的声音摆出来</strong>：★ <strong>中文批评界内部并非一致</strong>。★ 有评论者认为《三体》「<strong>塑造了或许是中国科幻文学史上最为复杂立体的女性角色——叶文洁与程心</strong>」（<span class="tag t-rep">转述</span>，陈楸帆，《光明日报》，2018-09-26）；★ 也有学者主张<strong>把刘慈欣的文本「作为一个非二项性的文本来阅读」</strong>，并指出「<strong>《三体》中最终活下来的都是女性</strong>」，且<strong>整部小说的叙述者其实是程心</strong>（<span class="tag t-rep">转述</span>，宋明炜访谈，2023）。★★ <strong>本报告的立场</strong>：<strong>这是一个尚未定论的争论</strong>——<strong>它取决于你把「小说里女性角色的功能」当成「作者的态度」，还是当成「叙事的结构」。</strong></p>
+  <p><strong>（二）社会达尔文主义的指控与作者的反驳。</strong> ★ 详见 <code>## 5</code> 第二条。★★ <strong>本报告要补的一点</strong>：<strong>作者的反驳有明确的文本依据</strong>——他在两篇长文与一篇访谈里<strong>反复</strong>说这是「<strong>最糟的可能性</strong>」（<span class="tag t-talk">作者谈话</span>，2014-05-07／2016-09-20／2015-02-12）。★ <strong>但反对方的观点也不能被这句话消解</strong>：<strong>一部影响巨大的作品，其「被读者接受的方式」和「作者的本意」未必一致</strong>——<strong>当大量读者把「黑暗森林」当成现实世界观时，「我只是写一种可能性」并不能阻止这种读法。</strong> ★ <strong>这是一个「文本接受」问题，不是「作者动机」问题</strong>（<span class="tag t-inf">推断</span>）。★★ <strong>一个旁证</strong>：作者在 2014 年长文里就注意到，<strong>「中国的 IT 企业家们会在论坛上讨论『黑暗森林理论』，并把它当作中国互联网公司残酷竞争的隐喻」</strong>（<span class="tag t-talk">作者谈话</span>，2014-05-07）——<strong>作者记录这种「挪用」，本身就是一种温和的提醒。</strong></p>
+  <p><strong>（三）科学硬伤与「它到底算不算硬科幻」。</strong> ★ 详见 <code>## 5</code> 第三条。★★ <strong>本报告要补的一点</strong>：<strong>这场争论的双方常常在争两件不同的事</strong>——批评方说的是「<strong>它不符合现有物理</strong>」（<strong>关于「科学真实性」</strong>）；辩护方说的是「<strong>它的设定内部自洽</strong>」（<strong>关于「叙事有效性」</strong>）。★ <strong>这两个标准并不冲突</strong>：<strong>一部小说可以「不真实」但「自洽」，也可以「真实」但「无趣」</strong>。★★ <strong>作者本人对「硬科幻」的态度是自豪的</strong>（他曾自称「<strong>最顽固的科幻迷</strong>」，见 <code>## 12</code>），<strong>但他从未主张这些设定是真的</strong>——★ <strong>恰恰相反，他自述写作第三部时的困惑是：「我质疑那个传统的科幻理想是否已经失去了吸引力」</strong>（<span class="tag t-talk">作者谈话</span>，2016-09-20）。</p>
+  <p><strong>（四）人物扁平化：是缺点还是方法？</strong> ★ 详见 <code>## 5</code> 第四条。★★ <strong>本报告的判断（<span class="tag t-inf">推断</span>）</strong>：★ <strong>在传统小说里，人物扁平是缺点；在「概念型」作品里，它可能是一种方法</strong>——<strong>因为篇幅是有限的，深度给了概念，人物就只能给功能</strong>。★★ <strong>但这个「方法」有明确的代价</strong>：<strong>它让「情感投入」变得困难</strong>（Michael A. Morrison 2017 称程心「太过单薄，撑不起这部小说」），<strong>也让整部书在「文学性」这一项上始终被质疑</strong>。★ <strong>这就是「概念型」作品的宿命性缺陷。</strong> ★ 一个可对照的事实是：<strong>作者自述他本想把第三部写成「科幻版《战争与和平》」，最后发现做不到</strong>（<span class="tag t-talk">作者谈话</span>，2016-09-20）——<strong>这句话本身，就是对「人物扁平」最诚实的解释。</strong></p>
+  <p><strong>（五）中英版结构差异带来的解读分歧。</strong> ★ 详见 <code>## 5</code> 第五条。★★ <strong>这里要补一层</strong>：★ <strong>因为中英两版的开篇结构不同，英文读者与中文读者「第一次遇到这本书」的方式是不同的</strong>——<strong>英文读者从「那段历史」开始，中文读者从「一场科学家的自杀」开始</strong>（<span class="tag t-talk">作者谈话</span>，2015-02-12；<span class="tag t-src">原书</span> 英译第 1–3 章）。★★ <strong>这直接影响了两种读者对「这本书在讲什么」的第一印象</strong>：<strong>一个先看到「历史创伤」，一个先看到「科学悬疑」</strong>。★ <strong>这是翻译研究里「结构改写如何影响接受」的一个干净案例。</strong> ★ <strong>并可指出</strong>：作者自述曾<strong>担心西方读者看不懂</strong>，结果是<strong>他「反而强化了」这部分</strong>（<span class="tag t-talk">作者谈话</span>，2015-02-12）——<strong>这说明这一改动是「主动选择」，不是「被动妥协」。</strong></p>
+  <p><strong>（六）奖项史与接受语境。</strong> ★ 详见 <code>## 5</code> 第六条。★★ <strong>本报告只写文学与奖项史事实</strong>：<strong>2015-08-23 雨果奖最佳长篇</strong>、<strong>2017 轨迹奖</strong>、<strong>入选「新中国 70 年 70 部长篇小说典藏」（2019-09-23）</strong>、<strong>北美销量逾 100 万套</strong>（<span class="tag t-rep">转述</span>，出版与新闻来源）。★ <strong>翻译在其中的角色</strong>：<strong>英文版是西方读者接触本作的第一步</strong>（译者 Ken Liu／Martinsen）。★ <strong>不涉及任何现实政治评价。</strong></p>
+  <p>★ <strong>补充一条：作者自己承认第三部「不是一部完美的作品」</strong> ★ 原文：<code>Death's End is not a perfect work, but it is the kind of science fiction I most wanted to write.</code>（<strong>《死神永生》不是一部完美的作品，但它是我最想写的那种科幻小说</strong>——笔者自译）<span class="tag t-talk">作者谈话</span>（Reactor，2016-09-20）。★★ <strong>把这句话和 <code>## 11</code> 的所有批评放在一起看，会发现一个有趣的事实：作者对第三部的自我评价，和批评者的许多意见方向一致——他只是「选择了仍然要写」。</strong></p>
+  <p><strong>（七）接受史的两种「第一印象」。</strong> ★ 详见 <code>## 5</code> 第五条与本节第五条。★★ <strong>这里补一层可观察的对照</strong>：因为<strong>中英两版的开篇不同</strong>，<strong>两类读者对「《三体》是一本什么样的书」的第一印象也不一样</strong>——</p>
+  <ul>
+    <li><strong>中文读者的第一印象更偏「科学悬疑」</strong>：<strong>从「科学家接连自杀」与「一款神秘游戏」进入</strong>（<span class="tag t-rep">转述</span>，中文目录）。
+    </li>
+    <li><strong>英文读者的第一印象更偏「历史启示录」</strong>：<strong>从「1967 年的一段历史」与「大兴安岭的伐木」进入</strong>（<span class="tag t-src">原书</span>，英译第 1–2 章）。
+    </li>
+  </ul>
+  <p>★★ <strong>这不是「哪一版更好」的问题，而是「同一部书有两种入口」的问题。</strong> <strong>一个旁证</strong>：作者自述英文版出版后<strong>收到大量西方读者反馈，「几乎都是正面的评价」，且「没有发现一条指责故事描写过于黑暗的」</strong>（<span class="tag t-talk">作者谈话</span>，2015-02-12）——★★ <strong>作者自己的解释是：西方科幻读者对「黑暗的未来」更习惯</strong>（同上）。★ <strong>这条自述与本节的接受史讨论直接相关</strong>：<strong>同一部书，在不同读者群里的「舒适度」是不同的。</strong></p>
+  <p><strong>（八）「科幻原教旨主义」：第三部的两极化评价。</strong> ★ 第三部在中文科幻批评界有一个专门的说法：<strong>有批评家把它当成「科幻原教旨主义」（science fictional fundamentalism）的代表</strong>——<strong>即「为满足科幻迷对科幻的狭义定义而写」</strong>（<span class="tag t-talk">作者谈话</span>，2016-09-20，作者引述）。★★ <strong>请注意：这个说法是作者自己引用出来的</strong>，<strong>他并不回避</strong>——<strong>他甚至自嘲地承认，这本书原本就是「只为硬核迷而写」</strong>（同上）。★ <strong>另一方面</strong>，第三部也是<strong>把整个系列推向大众的一部</strong>（<span class="tag t-talk">作者谈话</span>，2014-05-07）——★★ <strong>于是出现了《三体》接受史上最有趣的一幕：「最纯粹的科幻」反而成了「最大众的畅销书」。</strong> 本报告在 <code>## 12</code> 第一条已完整给出作者的「第三部悖论」自述。</p>
+  <p><strong>（九）中文科幻批评界内部的三种读法。</strong> ★ 与英语世界的批评不同，<strong>中文批评界对《三体》的关注点更集中在「它在中文文学里的位置」</strong>。可辨认的读法至少有三种：</p>
+  <ul>
+    <li><strong>① 「里程碑」读法</strong>：★ 认为它<strong>把中文科幻推上了世界高度</strong>，是<strong>中文科幻的里程碑</strong>（<span class="tag t-rep">转述</span>，多家出版与新闻来源；如「中国科幻赢得世界目光」，中国经济网，2019-09-04）。
+    </li>
+    <li><strong>② 「现实寓言」读法</strong>：★ 认为它<strong>以「科幻现实主义」的方式矗立在现实情境之上</strong>——<strong>其想象力不是虚空高蹈的</strong>（<span class="tag t-rep">转述</span>，中国作家网「从大海见一滴水」，2019-11-15）。
+    </li>
+    <li><strong>③ 「批评其内核」读法</strong>：★ 认为它的内核<strong>不是科学设想，而是一种心理补偿机制</strong>——<strong>「当再次面临外敌或巨大外部挑战时，『我们』能赢」</strong>（<span class="tag t-rep">转述</span>，维舟，2024，<strong>未核对原始发表</strong>）。
+    </li>
+  </ul>
+  <p>★★ <strong>本报告把三种读法并列，不替任何一种背书</strong>。★ <strong>但可以指出一个事实</strong>：<strong>②与③其实在争「科幻是否应当承担现实隐喻」，这不是《三体》独有的争论，而是中文科幻百年史里的老问题</strong>——★ <strong>作者本人在其科幻小史里正好写到过 1980 年代那场「科幻更重科学还是更重文学」的争论</strong>（<code>## 12</code> 第十条）。</p>
+  <p><strong>（十）英语世界批评界的关注点（与中文不同）。</strong> ★ 从可及的英文书评看，<strong>英语批评界对《三体》的关注点集中在三处</strong>：</p>
+  <ul>
+    <li><strong>① 「概念」是否压倒了「人物」</strong>：★ 这是最一致的批评。<strong>Niall Alexander（2016）</strong> 称程心「<strong>有锚的性格，也就是……没有性格</strong>」；<strong>Michael A. Morrison（2017）</strong> 称她「<strong>太过单薄，撑不起这部小说</strong>」。
+    </li>
+    <li><strong>② 「尺度」的力量</strong>：★ 多位评论者承认其<strong>野心与尺度</strong>是最大优点（<span class="tag t-rep">转述</span>，NDTV 书评 2016；World Literature Today 2017）。
+    </li>
+    <li><strong>③ 「科学设想」的成色</strong>：★ 有人视其为<strong>「当代物理被织进故事」的成功</strong>（<span class="tag t-rep">转述</span>，timeteam 2016）；★ 也有人认为它的解释性段落过于繁重——★ <strong>World Literature Today 的书评（2017）即认为，作者不停歇的观点与信息洪流，有把这本书变成「非虚构」之虞</strong>（<span class="tag t-rep">转述</span>，Michael A. Morrison，2017，<strong>该处为转述其大意，非逐字引文</strong>）。
+    </li>
+  </ul>
+  <p>★★ <strong>一句话概括两者的差别</strong>：<strong>中文批评更关心「它在文学史里的位置」，英语批评更关心「它作为小说成不成立」</strong>。★ <strong>这两组问题都有道理，而它们恰恰分别对应本书 <code>## 12</code> 与 <code>## 11</code> 两节</strong>（<span class="tag t-inf">推断</span>）。</p>
+  <p>★★ <strong>本节最后要说清一件事</strong>：★ <strong>上面绝大多数争议，本质上都通向同一个问题</strong>——<strong>「一部小说把『人物』和『科学设定』都当作工具去服务一个命题，这算不算文学？」</strong> ★ <strong>本报告不给结论</strong>；★ <strong>但可以指出：这个问题在中文科幻批评界已有专门的名字</strong>——★ <strong>批评家曾用「科幻原教旨主义」（science fictional fundamentalism）来指称第三部那种「为满足科幻迷对科幻的狭义定义」的写法</strong>（<span class="tag t-talk">作者谈话</span>，2016-09-20，作者引述中国科幻批评家的说法）。★★ <strong>换言之：第三部的「硬」，从一开始就有人叫好、也有人叫它「原教旨」。</strong></p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">12</span><span>作者谈话</span><span class="caret">▾</span></h2>
+  <p>★★ <strong>本节是「概念型」形态的独家强项</strong>：<strong>作者在世，公开访谈与自述极多。</strong>★ <strong>本节每条给入口。</strong>★ <strong>本档位在本书是第一次正式大量启用——前 54 本的作者多已逝世，本档通常「宣告不用」。</strong></p>
+  <p><strong>（一）★★ 「第三部悖论」——最不看好的一部，成了最成功的一部。</strong> ★ <strong>这是本节的重头戏。</strong> ★ 作者原文（<span class="tag t-talk">作者谈话</span>，Reactor，2014-05-07）：</p>
+  <blockquote>
+    <p><em>As a result, both my publisher and myself had little faith in the third volume prior to its publication. As the story continued to develop, it was impossible to root the third volume in present realities, and I had to describe distant futures and distant corners of the cosmos—and by consensus, Chinese readers were not interested in such things.</em></p>
+    <p>（结果，在第三部出版前，<strong>我的出版商和我都对它没什么信心</strong>。随着故事发展，第三部已无法扎根于当下现实，我不得不描写遥远的未来与宇宙的遥远角落——而按共识，中文读者对这类东西不感兴趣。——笔者自译）</p>
+  </blockquote>
+  <blockquote>
+    <p><em>And so, I wrote the third volume for myself and filled it with multi-dimensional and two-dimensional universes, artificial black holes and mini-universes, and I extended the time line to the heat death of the universe.</em></p>
+    <p>（于是，<strong>我为自己写了第三部</strong>，往里面填满多维与二维宇宙、人造黑洞与小宇宙，并把时间线延伸到宇宙热寂。——笔者自译）</p>
+  </blockquote>
+  <blockquote>
+    <p><em>And, to our utter surprise, it was this third volume, written only for science fiction fans, which led to the popularity of the series as a whole.</em></p>
+    <p>（而<strong>让我们万万没想到的是，正是这第三部——这部只为科幻迷而写的书——让整个系列火了起来</strong>。——笔者自译）</p>
+  </blockquote>
+  <p>★★ <strong>作者在第二篇长文里再次确认了同一件事</strong>（<span class="tag t-talk">作者谈话</span>，Reactor，2016-09-20）：「<strong>《死神永生》成了一部重大成功，它比前两部造成了更大的影响，成为畅销书。</strong>」★ <strong>一个作家「为自己写」的作品，反而最受欢迎</strong>——<strong>这是本报告认为关于《三体》最值得记住的一个生产史事实。</strong> ★★ <strong>作者还把这层「意外」上升为一个判断</strong>：<strong>「古典意义上的、为硬核迷而写的科幻，仍然有生命力」</strong>——他引用一句哲学格言：<strong>「一个原则，无论多么不合时宜，都不能被认为已经死去。」</strong>（<span class="tag t-talk">作者谈话</span>，2016-09-20）</p>
+  <p><strong>（二）★★ 「我不相信黑暗森林法则下的宇宙是真实的宇宙」。</strong> ★ 作者原文（<span class="tag t-talk">作者谈话</span>，中国作家网／《北京晚报》，2015-02-12）：</p>
+  <blockquote>
+    <p>科幻文学是一种可能性的文学……科幻小说是负责把未来的各种可能性排列出来，什么样的可能性都有，而<strong>《三体》所排列出来的可能性恰恰是最糟糕的一种</strong>。</p>
+    <p>《三体》所描写的是<strong>最糟糕的宇宙，不等于我真的认为宇宙就是这样</strong>，可能我下一篇小说会把宇宙中最美好的一面写出来。</p>
+  </blockquote>
+  <p>★★ <strong>这直接推翻了「黑暗森林＝作者宇宙观」这一最流行的误读</strong>（<code>## 4b</code> 第③条）。★ <strong>作者 2014 年长文的末句更是把这一点说透</strong>（<span class="tag t-talk">作者谈话</span>，Reactor，2014-05-07）：</p>
+  <blockquote>
+    <p><em>I wrote about the worst of all possible universes in Three Body out of hope that we can strive for the best of all possible Earths.</em></p>
+    <p>（<strong>我在《三体》里写那个最糟糕的宇宙，是出于一种希望：我们能努力去争取一个最好的地球。</strong>——笔者自译）</p>
+  </blockquote>
+  <p>★ <strong>作者还明确不同意加拿大作家 Robert Sawyer 的归因</strong>：Sawyer 把「最糟宇宙」的选择<strong>归因于中国人的历史经验</strong>，作者回应「<strong>I don't agree with this analysis.</strong>」（<strong>我不同意这种分析</strong>——笔者自译），并反举<strong>加拿大原住民与欧洲殖民者接触的历史</strong>作对照（<span class="tag t-talk">作者谈话</span>，2014-05-07）。★★ <strong>作者还指出</strong>：<strong>上个世纪的中国科幻里，宇宙是「善良的」</strong>——<strong>外星人多数是朋友或导师，带着近乎神一样的耐心与宽容，为迷途的羊群指点道路</strong>（<span class="tag t-talk">作者谈话</span>，2014-05-07，并列举了若干中文本例）。★ <strong>也就是说：「最糟的宇宙」不是中国科幻的传统，而是对那个传统的一次反转。</strong></p>
+  <p><strong>（三）★★ 「程心是当代共识道德的代表」。</strong> ★ 作者原文（<span class="tag t-talk">作者谈话</span>，Reactor，2016-09-20）：</p>
+  <blockquote>
+    <p><em>For instance, Cheng Xin, the protagonist, is a representative of what are, by contemporary consensus, the correct morals and values of humanity. Bathed in light and justice, she strides into the apocalypse.</em></p>
+    <p>（比如，主人公程心，是<strong>当代共识所认为的、人类正确道德与价值观的代表</strong>。<strong>身披光明与正义，她大步走向末日。</strong>——笔者自译）</p>
+  </blockquote>
+  <p>★ <strong>他还解释了为什么这样写</strong>：<strong>通过改变虚构世界的前提，「现实世界中光明与崇高的东西可以变成黑暗与邪恶的，反之亦然」</strong>；末日题材提供了「<strong>一座宏大的思想实验实验室</strong>」（<span class="tag t-talk">作者谈话</span>，2016-09-20）。★★ <strong>作者另有一次更直白的口述</strong>（<span class="tag t-talk">作者谈话</span>，《新京报》，2018-11-11）：<strong>「人物在小说只是符号，比如程心只是一个象征着正义的符号而已。」</strong> ★ <strong>同一次访谈里，他还点出自己不喜欢／害怕的角色</strong>：<strong>「林云就是我不喜欢的角色，因为她的侵略性太强了；章北海也是一个令我恐怖的角色，因为章北海会为了达到目的而不择手段。」</strong>（同上）★★ <strong>这条自述很重要</strong>：<strong>它说明作者对「为了目的不择手段」的角色是持警惕态度的</strong>——<strong>这和「作者推崇黑暗森林」的流行印象，正好相反。</strong></p>
+  <p><strong>（四）★★ 「我反而是强化了」——中英结构差异的自述。</strong> ★ 作者原文（<span class="tag t-talk">作者谈话</span>，中国作家网／《北京晚报》，2015-02-12）：</p>
+  <blockquote>
+    <p>恰恰相反，我反而是强化了。我当时出版中文小说的时候，为了顺利出版，将很多社会问题的描写移到了小说的中央，做了很大的改动，而我的原稿中其实它们是在一开头就用了不小的篇幅交代的，国内的英文出版代理也说想把这部分弱化，但<strong>我和刘宇昆都坚持把它们放到最前面</strong>。除了这个，其他的内容都是百分之百照着原文翻译的，没有一点儿的改动。</p>
+  </blockquote>
+  <p>★ <strong>实测印证</strong>：英译第 1–3 章＝「The Madness Years」（China, 1967）／「Silent Spring」／「Red Coast I」，对应中文第 7–9 章（<span class="tag t-src">原书</span>＋<span class="tag t-rep">转述</span>；<code>## 4</code>）。</p>
+  <p><strong>（五）★ 作者的文学谱系与语言观。</strong> ★ 作者自述其语言特色是「<strong>特别平实</strong>」，不注重华丽，「一切的表达都是为了把故事表达清楚，尽量使语言透明，能够让读者忽略我语言的存在而直接看到我想阐释的东西」（<span class="tag t-talk">作者谈话</span>，2015-02-12）。★ 他自述<strong>文学影响最深的是托尔斯泰《战争与和平》</strong>，其次是克拉克，再次是奥威尔；<strong>并明确说「自己不是因为热爱文学才写作的，而是因为热爱科学幻想才写作的」</strong>（<span class="tag t-talk">作者谈话</span>，《新京报》，2018-11-11）。★★ 另一句常被引用的话：「<strong>物理学本身就是一部科幻小说，只不过物理学的想象力是通过方程式表达的。</strong>」（<span class="tag t-talk">作者谈话</span>，同上）★ <strong>他还自述写作的第一步是「先想象未来科学技术的样态，之后才能产生故事，最后才产生人物」</strong>（同上）——<strong>这解释了他为什么把人物排在最后。</strong></p>
+  <p><strong>（六）★ 英译后记：童年的那颗卫星。</strong> ★ 作者为英译本写的后记里有全书最有名的一段自述（<span class="tag t-talk">作者谈话</span>，中译转载，搜狐，2023-04-19）：<strong>1970 年 4 月 25 日，河南罗山县的一个村庄，7 岁的他看见中国第一颗人造卫星「东方红一号」划过夜空</strong>，以为它是在星星之间飞行，还担心它会撞上去。★ <strong>他说，当时身边大多数小伙伴都赤着脚，有些小脚因为前一年冬天的严寒被冻伤了</strong>；<strong>身后的茅草房墙缝里透出煤油灯的微光，那个村庄直到 80 年代才通电</strong>（同上）。★ <strong>后记的落点是一句请求</strong>：</p>
+  <blockquote>
+    <p>应该把对待星空的善意转向地球上的人类成员；对于组成人类的不同民族和不同文明，应当建立起信任和理解。但是，对于太阳系以外的宇宙，我们应该时刻保持警觉，以最坏的恶意来揣测任何可能存在于宇宙空间中的异类。</p>
+  </blockquote>
+  <p>★ <strong>作者还提示：这些童年经验（人造卫星、饥饿、煤油灯、银河、光年、洪水）「混在一起，形成了我的早期生活，同样也塑造了我今日写的科幻小说」</strong>（同上）。★★ <strong>这是理解「现实主义底色」的关键</strong>：<strong>三部曲里的「宏大」，根子在一颗划过村庄夜空的小星星上。</strong> ★ <strong>作者还写道</strong>：「我无法逃避现实，就好像我不能不顾自己的影子一样。……在科幻小说中，人类经常作为一种整体来被描写。而在这本书中，一个名为『人类』的人遭遇了一场灾难。<strong>面对存在和湮灭，他表露的一切毫无疑问都可以在我经历过的现实中找到根源。</strong>」（同上）</p>
+  <p><strong>（七）★ 作者谈「第三部为什么难写」。</strong> ★ 作者自述（<span class="tag t-talk">作者谈话</span>，2016-09-20）：他本来想画一幅「<strong>面对末日的社会的全景图</strong>」，<strong>写一部「科幻版《战争与和平》或路遥《平凡的世界》」</strong>，但发现<strong>一部长篇装不下</strong>，只好<strong>退回到科幻的传奇笔法</strong>——「<strong>未来被写成一部传奇史，由少数几个像传说人物一样的角色创造</strong>」；★ 他自评这种写法「<strong>在理性上是不真实的</strong>」，是「<strong>别无他法</strong>」。★★ <strong>这段话是理解第三部一切缺点的钥匙</strong>（<code>## 9</code>、<code>## 11</code>）。</p>
+  <p><strong>（八）★ 作者的「末日缺席」观察。</strong> ★ 作者指出（<span class="tag t-talk">作者谈话</span>，2016-09-20）：<strong>中国科幻百年史里，末日题材长期缺席</strong>——「<strong>从二十世纪初到 1990 年代，我想不起有哪一篇中国小说写的是末日</strong>」；原因是<strong>中国文化几乎没有「终点」的观念</strong>（盘古开天有开始、女娲造人有起源，<strong>但没有终局</strong>）。★ 因此，写「<strong>从当下开始、经过太阳系毁灭、到宇宙终结</strong>」这样的故事，对他有「<strong>一种西方作家未必会有的激动</strong>」。★★ <strong>这一段还提供了一个重要背景</strong>：<strong>「20 世纪的绝大部分时间里，中国科幻是孤立的，独自发展」</strong>（同上）——<strong>这解释了为什么「最糟的宇宙」在中国的科幻传统里是一个新东西。</strong></p>
+  <p><strong>（九）★ 作者谈「这部书是怎么被读的」。</strong> ★ 作者 2014 年长文里记录了《三体》在中国引发的<strong>一系列接受现象</strong>（<span class="tag t-talk">作者谈话</span>，Reactor，2014-05-07）：<strong>物理学家李淼写了《三体中的物理学》</strong>；<strong>许多航天工程师成了读者，中国的航天机构甚至请他去做咨询</strong>；<strong>网上有大量粉丝自制的《三体》歌曲</strong>；<strong>有人用别的电影片段剪出「假预告片」</strong>；<strong>微博上有大量以《三体》角色为名的账号，长期「在角色里」评论时事</strong>；<strong>当 CCTV 想做一档科幻访谈节目时，一百多名现场观众齐声喊出小说里的口号「消灭人类暴政！世界属于三体！」，两位主持人一时不知所措</strong>（同上）。★ <strong>作者也自述</strong>：<strong>科幻在中国长期不受重视，「批评家被劝阻不要关注这个门类，它被当成儿童文学的一个分支」</strong>（同上）。★★ <strong>这些记录的价值在于</strong>：<strong>它把「一部小说如何进入一个社会的日常语言」写得非常具体</strong>——<strong>而这，正是「概念型」作品值得研究的另一半。</strong></p>
+  <p><strong>（十）★ 作者的科幻小史（自述）。</strong> ★ 作者在中篇长文里给了一段<strong>中国科幻简史</strong>（<span class="tag t-talk">作者谈话</span>，Reactor，2014-05-07）：★ <strong>中国科幻诞生于 20 世纪初</strong>，当时中国知识分子着迷于西方科技，把它当作救国的希望；★ <strong>梁启超写过一篇科幻小说《新中国未来记》</strong>，其中想象了上海世博会（<strong>这个想象直到 2010 年才成真</strong>）；★ <strong>1949 年后</strong>，科幻成为普及科学知识的工具，主要读者是儿童；★ <strong>1980 年代</strong>，中国科幻作家与批评家争论科幻究竟更重「<strong>科学</strong>」还是更重「<strong>文学</strong>」，<strong>最终文学一派胜出</strong>，这场争论可视为<strong>中国对西方「新浪潮」运动的一次延迟回应</strong>；★ <strong>1990 年代中期以来</strong>，中国科幻经历了一次复兴，<strong>当代中文科幻对技术进步充满怀疑与焦虑</strong>（同上）。★★ <strong>这段自述之所以重要</strong>：<strong>它说明《三体》不是凭空出现的，它站在一条一百年的传统上</strong>——<strong>而这条传统里，恰恰「几乎没有末日」。</strong></p>
+  <p><strong>（十一）★ 作者谈「科幻在中国的位置」。</strong> ★ 作者在 2014 年长文里指出（<span class="tag t-talk">作者谈话</span>，Reactor，2014-05-07）：<strong>「科幻在中国不是一个受尊重的类型」</strong>——<strong>批评家长期被劝阻不要关注这一门类，它被当成「儿童文学的一个分支」</strong>；★ 他还指出，<strong>《三体》出版时，中国科幻市场是「焦虑而压抑的」</strong>：<strong>读者小而成圈，粉丝把自己看作「岛上的部落」，觉得被外界误解</strong>；<strong>作家难以吸引圈外读者，感到「不得不放弃坎贝尔式的『科幻原教旨主义』，去提高文学性与现实感」</strong>（同上）。★★ <strong>这段自述提供了一个关键背景</strong>：<strong>《三体》正是在「对科幻最不友好」的环境里，用「最科幻」的方式成功了</strong>——<strong>这与 <code>## 12</code> 第一条的「第三部悖论」是同一件事的两面。</strong></p>
+  <p><strong>（十二）★ 作者谈「影视与 IP」。</strong> ★ 作者在 2015 年访谈里谈到改编（<span class="tag t-talk">作者谈话</span>，中国作家网／《北京晚报》，2015-02-12）：<strong>当时电影处于剧本策划阶段，参与的编剧「已经有 60 多人」</strong>，他称之为「<strong>很可能是有史以来最大的编剧创作团队</strong>」；★ 他还说了一句很能代表他态度的话：<strong>「对于电影，拍比不拍强。」</strong>（同上）★★ <strong>他给出的理由是「时间窗口」</strong>：他判断，随着中国观众见多识广，「奇观」会贬值——<strong>「这个创意一旦被使用了，哪怕你下一次展现得更好，对于观众来说也难以引起震撼」</strong>（同上）。★ <strong>这段话值得单独记下来</strong>，因为<strong>它解释了作者对改编的一种「现实主义」立场</strong>：<strong>不是艺术判断，而是时机判断</strong>（<span class="tag t-inf">推断</span>，本报告的分析）。</p>
+  <p><strong>（十三）★ 作者谈「语言的透明」。</strong> ★ 作者自述其语言观（<span class="tag t-talk">作者谈话</span>，2015-02-12）：<strong>「特别平实」，不注重文字的华丽</strong>，「<strong>一切的表达都是为了把故事表达清楚，尽量使语言透明，能够让读者忽略我语言的存在而直接看到我想阐释的东西</strong>」。★ <strong>他还谈到与译者的关系</strong>：他读完 Ken Liu 的译本后评价「<strong>把原作翻译得很到位，很流畅</strong>」，并特别强调「<strong>最可贵的一点是，刘宇昆本身也是位科幻小说作家，但是他翻译我的小说完全没有他自己的语言风格，特别像我的语言风格</strong>」（同上）。★★ <strong>把这两段放在一起看，就得到作者对「文风」的完整立场</strong>：<strong>他要的不是「好的句子」，而是「透明的玻璃」</strong>——<strong>这既解释了 <code>## 11</code> 第四条对「人物扁平」的批评为什么会出现，也解释了作者为什么根本不把它当成问题。</strong></p>
+  <p><strong>（十四）★ 作者谈「科学的故事比文学更壮丽」。</strong> ★ 作者在英译本后记里写下了他最完整的一次「为什么写科幻」的自述（<span class="tag t-talk">作者谈话</span>，中译转载，搜狐，2023-04-19）：★ <strong>「我向来认为，人类社会最伟大、最美丽的故事并非由游吟诗人所吟唱，亦非由剧作家和小说家所撰写，而是由科学讲述。」</strong>（同上）★ 他接着解释：<strong>「比起文学故事，科学的故事要远远来得更壮丽、更宏大、更复杂、更深远、更引人入胜、更奇特、更骇人、更神秘，甚至也更富情感。只是，这些美妙的故事被禁锢在冰冷的方程式中，大多数人不知如何去阅读。」</strong>（同上）★★ <strong>这段话几乎可以当作 <code>## 2</code>「机制三（思想实验嵌套）」的注脚</strong>：<strong>作者的全部工作，就是把「方程式里的故事」翻译成「小说」。</strong> ★ 他还写道：<strong>「我只是用自己的想象力，通过科幻小说这一媒介来创造自己的世界，告诉大家蕴含在这些世界中大自然的诗意，讲述人和宇宙间展开的罗曼传奇。」</strong>（同上）</p>
+  <p><strong>（十五）★ 作者谈「人类整体」——三部曲的一个隐含前提。</strong> ★ 作者在英译本后记里点出了这本书的一个结构性选择（<span class="tag t-talk">作者谈话</span>，搜狐，2023-04-19）：<strong>「在科幻小说中，人类经常作为一种整体来被描写。而在这本书中，一个名为『人类』的人遭遇了一场灾难。」</strong> ★ 他并把这句话与自己的经历连起来：<strong>「面对存在和湮灭，他表露的一切毫无疑问都可以在我经历过的现实中找到根源。」</strong>（同上）★★ <strong>这条自述解释了本书最大的一个技术选择</strong>：<strong>为什么三部曲里「人类」总是以整体出现</strong>——<strong>因为这部小说要写的，就是「作为一个整体的人」</strong>（<code>## 2</code> 机制二）。★ <strong>它的代价也正在这里</strong>：<strong>当「人类」是主角，个体就只能是零件</strong>（<code>## 11</code> 第四条）。★★ <strong>作者自己在后记结尾仍留了一句信念</strong>：<strong>「科幻小说经常描写这么一种时刻：全人类形成了一个和谐的整体。而我相信，不必等到外星人出现，这个时刻就会来临。」</strong>（同上）——★ <strong>把它与「最糟的宇宙」那句放在一起，才是完整的作者立场。</strong></p>
+  <p><strong>（十六）★ 作者谈「科幻的门槛与翻译」。</strong> ★ 作者在 2015 年访谈里对「科幻好不好翻译」有一句很实用的判断（<span class="tag t-talk">作者谈话</span>，中国作家网／《北京晚报》，2015-02-12）：★ <strong>「科幻小说相对于其他类型的文学来说很好翻译，尽管有很多专业的名词，但这些词都是科技名词，本来就是从英语来的。」</strong> ★ 他并以此对比：<strong>「不像比如莫言的作品，有些文字是纯粹本土化的东西，很难用英文表达。」</strong>（同上）★★ <strong>这段话解释了《三体》为什么能较快进入英语世界</strong>：<strong>科幻术语天然是国际性的</strong>；★ <strong>但它也提示了一个反面的问题</strong>：<strong>正因为术语好译，那些「真正本土的、无法直接翻译的东西」（如社会语境、话语习惯）就更容易在翻译中被压平</strong>——<strong>而这恰恰是 <code>## 5</code> 第五条（中英结构差异）所涉及的领域</strong>（<span class="tag t-inf">推断</span>，本报告的分析）。★ <strong>作者还说过一句更直接的话</strong>：<strong>「《三体》就是一部比较标准的科幻小说，不是一本很有中国特色的书，它所描述的问题是全人类所要面对的危机」</strong>（同上）——★★ <strong>这句话与本报告 <code>## 2</code> 的「人类整体」机制完全一致</strong>：<strong>作者自己就把这部小说定位成「关于全人类，而不是关于某个民族」</strong>。</p>
+  <p>★ <strong>本节与前 54 本的区别</strong>：★ <strong>前 54 本的作者多已逝世，「作者谈话」档通常不用，或改用于译者／校勘者自述</strong>；★★ <strong>本书情况相反——作者在世，公开自述极多，本档因此成为全页信息量最大的一节。</strong> ★ <strong>但须严守边界</strong>：<strong>译者刘宇昆／Martinsen 的自述是「译者自述」，不是作者谈话</strong>（本报告已在 <code>## 4</code>、<code>## 5</code> 单列，并在来源清单中与「作者谈话」分开列出）。★ <strong>书评人的话（如 Niall Alexander、Michael A. Morrison、维舟、Nan Z. Da）同样不是作者谈话</strong>，一律归 <span class="tag t-rep">转述</span>。</p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">13</span><span>版本、译本与跨媒介</span><span class="caret">▾</span></h2>
+  <p><strong>（一）中文版次链条。</strong> ★ <strong>《三体》</strong>：<strong>2006 年 5–12 月《科幻世界》连载</strong>（34 章）→ <strong>2008 年 1 月重庆出版社单行本</strong>（36 章 ＋ 后记，<strong>调整了章节顺序</strong>）→ 后续各社再版／典藏版／纪念版（<span class="tag t-rep">转述</span>，公开资料；★ 各版差异多在装帧与附录，<strong>主体文本的差异本报告未能逐版核对</strong>）。★ <strong>《黑暗森林》</strong>：<strong>2008 年 5 月</strong>；<strong>《死神永生》</strong>：<strong>2010 年 11 月</strong>（<span class="tag t-rep">转述</span>，公开资料）。★★ <strong>中文版次里最值得记的一件事</strong>：<strong>连载版 34 章 → 单行本 36 章</strong>，<strong>章节顺序被调整</strong>——<strong>这说明「《三体》的文本」从一开始就不是一个固定不变的东西</strong>（<code>## 4</code>）。</p>
+  <p><strong>（二）英译三册与两位译者。</strong> ★ 见 <code>## 1</code> 与 <code>## 4</code>。★★ <strong>要记住的两件事</strong>：① <strong>译者是两位</strong>（Ken Liu 译一、三；Joel Martinsen 译二），<strong>路线不同</strong>；② <strong>英译把第一部开篇结构做了调整</strong>（<span class="tag t-talk">作者谈话</span>，2015-02-12）。★ <strong>两版译者还有一个共同点</strong>：<strong>都加了脚注</strong>，<strong>但密度不同</strong>（<span class="tag t-rep">转述</span>，刘宇昆自述 2014-11-27；书评，WesternSFA，2015）。</p>
+  <p><strong>（三）中英结构差异（本报告的核心事实，再强调一次）。</strong> ★ <strong>中文单行本把社会问题描写移到中部；英译时作者与译者坚持挪回最前面</strong>（<span class="tag t-talk">作者谈话</span>，2015-02-12）。★ <strong>实测印证</strong>：英译第 1 章以「China, 1967」开篇（<span class="tag t-src">原书</span>，英译第 1 章）。</p>
+  <p><strong>（四）跨媒介改编。</strong> ★ <strong>Netflix 剧集《三体》（2024）</strong>，改编自<strong>第一部</strong>（<span class="tag t-rep">转述</span>，Reactor 新闻页 2024 年前后的多条报道，含选角、开播等消息）。★ 另有<strong>广播剧、动画、舞台剧</strong>等改编（<span class="tag t-rep">转述</span>）。★ 中文电影项目方面，作者曾透露过<strong>游族影业</strong>的改编计划，并称当时处于剧本策划阶段、参与的编剧「已有 60 多人」（<span class="tag t-talk">作者谈话</span>，中国作家网／《北京晚报》，2015-02-12；★ 该项目后续动向本报告未核实，列入附录 D）。★★ <strong>须注意</strong>：<strong>这些改编都建立在「设定」之上，人物与情节的改动幅度通常很大</strong>——<strong>读者不要把改编当成原著来引用</strong>（<span class="tag t-inf">推断</span>）。</p>
+  <p><strong>（五）接受史。</strong> ★ <strong>2015-08-23 雨果奖最佳长篇</strong>（第一部；★ <strong>亚洲小说首获</strong>）→ 海外热度上升 → <strong>2017 轨迹奖</strong>（第三部）→ <strong>2019-09-23 入选「新中国 70 年 70 部长篇小说典藏」</strong> → <strong>北美销量逾 100 万套</strong>（<span class="tag t-rep">转述</span>，出版与新闻来源）。★★ <strong>本报告只写文学与奖项史事实，不涉及任何现实政治评价。</strong> ★ <strong>补充一个作者自述的接受细节</strong>：<strong>英文版出版后，作者收到不少欧美当代科幻作家的反馈，「几乎都是正面的评价」</strong>（<span class="tag t-talk">作者谈话</span>，中国作家网／《北京晚报》，2015-02-12）。</p>
+  <p><strong>（五·补）跨媒介改编的一条通用规律。</strong> ★ 从已公开的信息看，<strong>《三体》的三类改编（剧集／广播剧／动画）都不约而同地选择了「回到第一部」或「强化人物情感」</strong>（<span class="tag t-rep">转述</span>，Reactor 新闻页 2024 年前后多条报道）。★★ <strong>这不是偶然</strong>：<strong>第一部有最强的「人物动机」（叶文洁）与最清晰的空间（地球）</strong>，<strong>天然更适合影视</strong>；★ 而<strong>第三部的核心是「概念」，几乎无法直接视觉化</strong>。★★ <strong>一条判断（<span class="tag t-inf">推断</span>）</strong>：<strong>《三体》的「难改编」不在于特效，而在于它的高潮大多是「推演」而不是「事件」</strong>——<strong>这一点，恰好也是它作为小说的独特之处。</strong></p>
+  <p><strong>（五·补二）英译三册的出版节奏，本身也是一个「阅读建议」。</strong> ★ 从出版信息看，英译三册是<strong>分三年陆续出版的</strong>：<strong>第一部 2014-11 → 第二部 2015-07 → 第三部 2016-09</strong>（<span class="tag t-rep">转述</span>，Tor 出版信息；<span class="tag t-talk">作者谈话</span>，2015-02-12：作者说出版社「希望每年推出一本」）。★★ <strong>这带来一个容易被忽略的后果</strong>：<strong>西方读者不是「一口气读完三部曲」，而是「一年等一本」</strong>——★ 而<strong>官方节选也是分批发布的</strong>（2014 年三篇、2015 年两篇、2016 年三篇，见 <code>## A</code>）。★★ <strong>所以英文读者的「《三体》经验」与中文读者的很不一样</strong>：<strong>中文读者面对的是一个「已经完成的三部曲」，英文读者面对的是一条「逐年展开的连载」</strong>（<span class="tag t-inf">推断</span>）。★ <strong>这一点也解释了为什么「第三部悖论」在英文语境里格外明显</strong>——<strong>等到第三部上市时，前两部的读者已经等了一年</strong>（<code>## 12</code> 第一条）。</p>
+  <p><strong>（五·补三）为什么「第二部最适合第一次读」？</strong> ★ 本报告在 <code>## 3</code> 给过这个建议，这里补上理由。★ <strong>第二部具备三个「第一次读」最需要的条件</strong>：</p>
+  <ul>
+    <li><strong>① 它有最完整的论证骨架</strong>：★ <strong>立公理 → 试验 → 验证</strong>，<strong>读完就能带走一套东西</strong>（<code>## 8</code>）。
+    </li>
+    <li><strong>② 它的两条主人公线都指向同一个命题</strong>：★ <strong>罗辑（要用欺骗换生存）与章北海（要先动手换生存）</strong>，<strong>两条线互为镜像</strong>（<span class="tag t-rep">转述</span>，公开资料）。
+    </li>
+    <li><strong>③ 它的「设定」负担最轻</strong>：★ <strong>第一部要交代世界观，第三部要交代宇宙史</strong>，<strong>只有第二部可以把力气全花在「推演」上</strong>（<span class="tag t-inf">推断</span>）。
+    </li>
+  </ul>
+  <p>★★ <strong>与一处「对称」的观察</strong>：★ <strong>三部曲在结构上有一处很讲究的对称</strong>——<strong>第一部从「一个人的绝望」开始，第三部以「一个人的归还」结束</strong>；★ <strong>而中间的第二部，正好是「一个人的坚持」</strong>（罗辑数十年守着威慑）。★★ <strong>三个「一个人」，三次「个人决定文明命运」</strong>（<span class="tag t-inf">推断</span>，本报告的分析）。★ <strong>这处对称解释了本书 <code>## 11</code> 第五条的争议</strong>：<strong>它既是一部「人类整体」的小说，又是一部「一个人说了算」的小说</strong>——<strong>这两种性质同时存在于三部曲里，也正是它既被读成宏大、又被读成可疑的原因</strong>。 <strong>（五·补四）一条给读者的最终建议。</strong> ★ 如果你只想带走一句关于「版本」的话，请带走这句：★★ <strong>读《三体》时，请始终保留「我读的是哪一版」这个意识。</strong> ★ 因为这部作品至少有<strong>三重版本差异</strong>同时存在：<strong>① 连载版与单行本的章节差异</strong>；<strong>② 中文版与英译版的开篇结构差异</strong>；<strong>③ 英译三册之间两位译者的处理差异</strong>。★★ <strong>这三重差异叠加在一起，意味着「《三体》」这个词，其实指向好几个不完全相同的文本</strong>（<code>## 4</code>、<code>## 5</code> 第五条）。★ <strong>本报告之所以反复强调这一点，不是要制造复杂，而是因为</strong>：<strong>当一部作品的影响足够大时，「它是哪一版」这个问题，会直接影响「人们以为它讲了什么」</strong>——<strong>而《三体》正是这种现象最典型的例子</strong>（<code>## 11</code> 第五条）。</p>
+  <p><strong>（六）一个必须写明的边界。</strong> ★★ <strong>本报告未逐章核对任何中文原著，也未持有中文全本</strong>；★ <strong>英文引文只来自出版方授权的官方节选</strong>（辖区见头部与来源清单）。★ <strong>凡本报告未标 <span class="tag t-src">原书</span> 的引文，一律不得被当作原文。</strong></p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">A</span><span>三部曲总目与章目索引</span><span class="caret">▾</span></h2>
+  <p>★ <strong>A1 三部总目</strong></p>
+  <table>
+    <thead><tr><th>部</th><th>中文书名</th><th>首次发表</th><th>结构</th><th>英译／译者</th></tr></thead>
+    <tbody>
+      <tr><td>一</td><td>《三体》</td><td>2006 连载／2008-01 单行本</td><td>36 章 ＋ 后记</td><td><em>The Three-Body Problem</em>／Ken Liu</td></tr>
+      <tr><td>二</td><td>《三体Ⅱ·黑暗森林》</td><td>2008-05</td><td>序章 ＋ 上部 1–5 ＋ 中部 1–4 ＋ 下部 1–3</td><td><em>The Dark Forest</em>／Joel Martinsen</td></tr>
+      <tr><td>三</td><td>《三体Ⅲ·死神永生》</td><td>2010-11</td><td>六部 ＋ 跋</td><td><em>Death's End</em>／Ken Liu</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>A2 本报告实测通过的官方节选清单</strong>（★ 用于 <span class="tag t-src">原书</span> 定级）</p>
+  <table>
+    <thead><tr><th>部</th><th>节选</th><th>实测状态</th><th>覆盖</th></tr></thead>
+    <tbody>
+      <tr><td>一</td><td><em>The Three-Body Problem</em>: “Silent Spring”（Chapters 1-3，2014-09-30）</td><td><strong>200</strong></td><td>英译第 1–3 章</td></tr>
+      <tr><td>一</td><td><em>The Three-Body Problem</em>: “The Universe Flickers”（2014-09-23）</td><td><strong>200</strong></td><td>「宇宙闪烁」段</td></tr>
+      <tr><td>一</td><td><em>The Three-Body Problem</em>: “Three Body: King Wen of Zhou and the Long Night”（2014-09-16）</td><td><strong>200</strong></td><td>「周文王与长夜」段</td></tr>
+      <tr><td>二</td><td><em>The Dark Forest</em>: Prologue（2015-07-14）</td><td><strong>200</strong></td><td>序章（两条公理）</td></tr>
+      <tr><td>二</td><td><em>The Dark Forest</em>: Part One “The Wallfacers”（2015-07-28）</td><td><strong>200</strong></td><td>上部开篇</td></tr>
+      <tr><td>三</td><td><em>Death's End</em>: “The Death of the Magician”（2016-07-25）</td><td><strong>200</strong></td><td>第三部第一部开篇</td></tr>
+      <tr><td>三</td><td><em>Death's End</em>: “Yun Tianming”（2016-08-01）</td><td><strong>200</strong></td><td>云天明段</td></tr>
+      <tr><td>三</td><td><em>Death's End</em>: “Cheng Xin”（2016-08-08）</td><td><strong>200</strong></td><td>程心段</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>A3 第一部 36 章清单</strong>：见 <code>## 1</code>。★ <strong>A4 第三部六部章目</strong>：见 <code>## 1</code>。</p>
+</section>
+
+<section id="s16">
+  <h2><span class="num">B</span><span>术语对照表（中英）</span><span class="caret">▾</span></h2>
+  <p>★ 术语的中文写法来自中文目录与公开资料（<span class="tag t-rep">转述</span>，<strong>未核对原著</strong>）；英文写法来自实测通过的官方节选（<span class="tag t-src">原书</span>）。</p>
+  <table>
+    <thead><tr><th>中文（<span class="tag t-rep">转述</span>）</th><th>英文（<span class="tag t-src">原书</span>，实测见到的写法）</th><th>备注</th></tr></thead>
+    <tbody>
+      <tr><td>智子</td><td><strong>sophon</strong>（复数 sophons）</td><td>第二部官方简介与上部开篇均作 sophon</td></tr>
+      <tr><td>面壁者</td><td><strong>Wallfacer</strong></td><td>第二部标题「Part One: The Wallfacers」</td></tr>
+      <tr><td>破壁人</td><td><strong>Wallbreaker</strong></td><td>第二部上部的英译用法</td></tr>
+      <tr><td>危机纪元</td><td><strong>Crisis Era</strong></td><td>第二部、第三部节选标题中多次出现</td></tr>
+      <tr><td>威慑纪元</td><td><strong>Deterrence Era</strong></td><td>第三部官方简介</td></tr>
+      <tr><td>广播纪元／掩体纪元</td><td>Broadcast Era／Bunker Era</td><td>批评文章转引，<span class="tag t-rep">转述</span></td></tr>
+      <tr><td>宇宙社会学</td><td><strong>cosmic sociology</strong></td><td>第二部序章原句</td></tr>
+      <tr><td>古筝行动</td><td><strong>（英译写法未实测）</strong></td><td>未纳入 <span class="tag t-src">原书</span></td></tr>
+      <tr><td>水滴</td><td><strong>（英译写法未实测）</strong></td><td>未纳入 <span class="tag t-src">原书</span></td></tr>
+      <tr><td>二向箔</td><td><strong>（英译写法未实测）</strong></td><td>未纳入 <span class="tag t-src">原书</span></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>本表的诚实说明</strong>：★ 只有<strong>实测节选里真的出现过的英文写法</strong>才列入「英文」列；★ 其余标注「未实测」，<strong>不用猜想填补</strong>。</p>
+</section>
+
+<section id="s17">
+  <h2><span class="num">C</span><span>关键年表</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>时间</th><th>事件</th></tr></thead>
+    <tbody>
+      <tr><td>1963</td><td>刘慈欣生于北京，在山西阳泉长大（<span class="tag t-rep">转述</span>）</td></tr>
+      <tr><td>1970-04-25</td><td>中国第一颗人造卫星「东方红一号」发射；作者 7 岁，在河南罗山县村庄看见它（<span class="tag t-talk">作者谈话</span>，英译后记）</td></tr>
+      <tr><td>1985</td><td>作者毕业于华北水利水电学院，其后任娘子关电厂计算机工程师（<span class="tag t-rep">转述</span>）</td></tr>
+      <tr><td>2006-05～12</td><td>《三体》在《科幻世界》连载（34 章）</td></tr>
+      <tr><td>2008-01</td><td>《三体》重庆出版社单行本（36 章 ＋ 后记）</td></tr>
+      <tr><td>2008-05</td><td>《黑暗森林》出版</td></tr>
+      <tr><td>2010-11</td><td>《死神永生》出版</td></tr>
+      <tr><td>2014-05-07</td><td>作者长文《最糟的宇宙，最好的地球》发布于 Tor.com（<span class="tag t-talk">作者谈话</span>）</td></tr>
+      <tr><td>2014-09-16～09-30</td><td>Reactor／Tor.com 发布第一部三篇官方节选（<span class="tag t-src">原书</span>）</td></tr>
+      <tr><td>2014-11-11</td><td>英译第一部出版（Ken Liu 译）</td></tr>
+      <tr><td>2014-11-27</td><td>刘宇昆《谈翻译三体》中译发布（<span class="tag t-rep">转述</span>，译者自述）</td></tr>
+      <tr><td>2015-02-12</td><td>作者接受中国作家网／《北京晚报》专访，自述中英结构差异（<span class="tag t-talk">作者谈话</span>）</td></tr>
+      <tr><td>2015-07-14～07-15</td><td>第二部官方节选发布；英译第二部出版（Martinsen 译）</td></tr>
+      <tr><td>2015-08-23</td><td>《三体》第一部获雨果奖最佳长篇（亚洲小说首获）</td></tr>
+      <tr><td>2016-07-25～08-08</td><td>第三部三篇官方节选发布（<span class="tag t-src">原书</span>）</td></tr>
+      <tr><td>2016-09-20</td><td>英译第三部出版（Ken Liu 译）；作者长文同日发布</td></tr>
+      <tr><td>2017</td><td>《死神永生》获轨迹奖</td></tr>
+      <tr><td>2018-11-11</td><td>作者在华盛顿对谈（《新京报》报道），谈性别与人物（<span class="tag t-talk">作者谈话</span>）</td></tr>
+      <tr><td>2019-09-23</td><td>入选「新中国 70 年 70 部长篇小说典藏」</td></tr>
+      <tr><td>2024</td><td>Netflix 剧集《三体》开播（改编自第一部，<span class="tag t-rep">转述</span>）</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s18">
+  <h2><span class="num">D</span><span>待核实项（≥5 条）</span><span class="caret">▾</span></h2>
+  <p>★ <strong>以下各项本报告未能核实，如实列出并写明原因。</strong></p>
+  <ol>
+    <li><strong>英译版的总章数与中文 36 章的对应关系。</strong> ★ 中文单行本 36 章；<strong>英译各源所述章数口径不一</strong>，且<strong>节选标题里出现的「Chapters 1-3」到底对应英译全书的哪三章</strong>，<strong>除第 1–3 章（我实测的「The Madness Years／Silent Spring／Red Coast I」）外，其余无法确证</strong>。原因：<strong>无合法全文，只能实测节选</strong>。
+    </li>
+    <li><strong>第二、三部各官方节选的确切覆盖范围。</strong> ★ 我实测到了第二部序章与上部开篇、第三部三篇节选，<strong>但每篇节选「在原书中止于何处」无法确知</strong>（节选页只给一个开头）。原因：<strong>节选本身不标注止点</strong>。
+    </li>
+    <li><strong>中文原著的具体用词。</strong> ★ 本报告所有中文原句（章节名、术语）<strong>均为二手转引</strong>，<strong>未能与原著逐字校对</strong>。原因：<strong>无合法全文</strong>。
+    </li>
+    <li><strong>《三体》中文各再版／典藏版之间的正文差异。</strong> ★ 通行说法是主体文本一致，<strong>但我未逐版核对版权页与目录</strong>。原因：<strong>各版无合法电子文本可交叉验证</strong>。
+    </li>
+    <li><strong>维舟《〈三体〉的逻辑漏洞》的原始发表出处与日期。</strong> ★ 该文在多个站点转载（含 2024-04 前后的论坛转载），<strong>我未能确认首发媒体与原始日期</strong>。原因：<strong>转载站未标注首发信息，且部分转载已不可达</strong>。
+    </li>
+    <li><strong>游族影业《三体》电影项目的最终状态。</strong> ★ 作者 2015 年访谈中提到该项目处于剧本策划阶段，<strong>后续动向我未核实</strong>。原因：<strong>项目信息零散，未见权威收束性来源</strong>。
+    </li>
+    <li><strong>中文目录中第三部六部「部名」是否在纸质书上有正式标题。</strong> ★ 我依据的六部标题来自<strong>国家出版发行信息公共服务平台的目录</strong>，<strong>但该平台目录是否逐字等于纸书目录，我未能核对纸书</strong>。原因：<strong>无纸书在手</strong>。
+    </li>
+    <li><strong>第一部连载版（34 章）与单行本（36 章）的具体增删内容。</strong> ★ 只知「章节顺序被调整」，<strong>具体增删无法确证</strong>。原因：<strong>连载版无合法电子文本</strong>。
+    </li>
+    <li><strong>「面壁者」内部小节的标题与顺序。</strong> ★ 第二部上部 1–5、中部 1–4、下部 1–3 的<strong>小节标题</strong>本报告未列。原因：<strong>未查到可靠的官方小节目录，且无合法全文可核</strong>。
+    </li>
+    <li><strong>Netflix 剧集《三体》（2024）与原著第一部的具体改编差异。</strong> ★ 本报告只交代「改编自第一部」这一事实，<strong>未逐集比对</strong>。原因：<strong>本报告不把改编当原著处理</strong>。
+    </li>
+  </ol>
+</section>
+
+<section id="s19">
+  <h2><span class="num"></span><span>E 官方节选精读（全译 ＋ 注解）</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本附录把几段实测通过的官方节选，逐段给出英文原句、中文全译与注解。</strong>★★ <strong>这是本报告「<span class="tag t-src">原书</span> 到哪一步」的最直接演示</strong>——<strong>英文原句全部来自出版方授权的官方节选，中文为笔者自译；中文原著依旧未核对。</strong></p>
+  <h3>E1 第二部序章：蚂蚁的旅行（隐喻的第一次亮相）</h3>
+  <p><strong>英文原句</strong>（<span class="tag t-src">原书</span>，第二部 Prologue，实测通过）：</p>
+  <blockquote>
+    <p><em>The brown ant had already forgotten its home. To the twilight Earth and the stars that were just coming out, the span of time may have been negligible, but, for the ant, it was eons. In days now forgotten, its world had been overturned. Soil had taken flight, leaving a broad and deep chasm, and then soil had come crashing down to fill it back in. At one end of the disturbed earth stood a lone black formation.</em></p>
+  </blockquote>
+  <p><strong>中文全译</strong>（笔者自译）：</p>
+  <blockquote>
+    <p>那只褐色的蚂蚁早已忘了自己的家。对暮色中的大地和刚刚浮现的星星而言，这段时间的跨度或许微不足道；但对这只蚂蚁来说，那已是亿万年。在早已被遗忘的日子里，它的世界被彻底翻覆：泥土飞起，留下一道又宽又深的沟壑；接着泥土又轰然塌落，把沟壑重新填平。在被翻动过的土地一端，立着一座孤零零的黑色构造。</p>
+  </blockquote>
+  <p><strong>注解</strong>：★★ <strong>这是全书最重要的一次「尺度宣告」</strong>。★ 同一段开头，<strong>作者就把「人／文明／宇宙」的时间感与「蚂蚁」的时间感并置</strong>——<strong>对星星来说可以忽略的一段，对蚂蚁是亿万年</strong>。★ 「被翻动过的土地」与「孤零零的黑色构造」，<strong>读者后来才知道那是新掘的墓与墓碑</strong>（<span class="tag t-src">原书</span>，同段后文，实测通过）。★★ <strong>这就是「尺度」这一母题的第一次出现</strong>：<strong>同一件事，因观察者的不同而完全不同</strong>——<strong>这正是后面「黑暗森林」「降维打击」共同依赖的那件事。</strong></p>
+  <h3>E2 第二部序章：两条公理与「欧几里得几何」</h3>
+  <p><strong>英文原句</strong>（<span class="tag t-src">原书</span>，第二部 Prologue，实测通过）：</p>
+  <blockquote>
+    <p><em>“See how the stars are points? The factors of chaos and randomness in the complex makeups of every civilized society in the universe get filtered out by the distance, so those civilizations can act as reference points that are relatively easy to manipulate mathematically.”</em></p>
+    <p><em>“That means your ultimate result will be purely theoretical. Like Euclidean geometry, you’ll set up a few simple axioms at first, then derive an overall theoretic system using those axioms as a foundation.”</em></p>
+    <p><em>“First: Survival is the primary need of civilization. Second: Civilization continuously grows and expands, but the total matter in the universe remains constant.”</em></p>
+  </blockquote>
+  <p><strong>中文全译</strong>（笔者自译）：</p>
+  <blockquote>
+    <p>「看见星星是一个个点了吗？宇宙中每一个文明社会之复杂构成里的那些混沌与随机的因素，都被距离过滤掉了，于是这些文明可以作为<strong>相对容易被数学处理的参照点</strong>。」</p>
+    <p>「这意味着你的最终结果将是<strong>纯理论的</strong>。像欧几里得几何一样，你先立下几条简单的公理，再以它们为基础推演出一个完整的理论体系。」</p>
+    <p>「<strong>第一：生存是文明的第一需要。第二：文明不断增长和扩张，但宇宙中的物质总量保持不变。</strong>」</p>
+  </blockquote>
+  <p><strong>注解</strong>：★★★ <strong>这三句话是整部三部曲的「方法说明书」，值得逐句拆</strong>：★ 第一句讲<strong>观察条件</strong>——<strong>「距离」把复杂过滤成「点」，于是复杂系统可以被数学化</strong>；★ 第二句讲<strong>方法</strong>——<strong>「公理—演绎」，并点名「欧几里得几何」</strong>；★ 第三句给出<strong>公理本身</strong>。★★ <strong>请注意第一句里那个词：「参照点（reference points）」</strong>——<strong>这是把「文明」当成「天体」来处理的宣言</strong>：<strong>天文学用点来算轨道，宇宙社会学用文明来算命运</strong>。★ <strong>与本书目《几何原本》的连线在这里被作者自己写了出来</strong>（<code>## 10</code> 第①条）。★★ <strong>另请注意第二句的诚实</strong>：<strong>「你的最终结果将是纯理论的」</strong>——<strong>作者在一开始就承认这套体系无法验证</strong>。</p>
+  <h3>E3 第一部「周文王与长夜」：乱纪元、沙漏与脱水</h3>
+  <p><strong>英文原句</strong>（<span class="tag t-src">原书</span>，「Three Body: King Wen of Zhou and the Long Night」段，实测通过）：</p>
+  <blockquote>
+    <p><em>“A type of sandglass. Every eight hours all the sand flows to the bottom. Flip it three times and you can measure a day. But often I forget to flip it, and I need Follower here to remind me.”</em></p>
+    <p><em>“The sun? How can the sun tell us the time? We’re in the midst of a Chaotic Era.”</em></p>
+    <p><em>… The water coalesced into a few small rivulets in the mud. His body turned soft and lost its shape like a melting candle. … “He’ll recover soon enough, when we soak him in water. It’s just like soaking dried mushrooms.”</em></p>
+  </blockquote>
+  <p><strong>中文全译</strong>（笔者自译）：</p>
+  <blockquote>
+    <p>「一种沙漏。每八小时，所有的沙子都会流到底部。翻三次，就能量出一天。但我常常忘记去翻它，需要这位『追随者』提醒我。」</p>
+    <p>「太阳？太阳怎么能告诉我们时间？我们正处在<strong>乱纪元</strong>中。」</p>
+    <p>……体内的水聚成几道细小的溪流，渗进泥里。他的身体变软，像一支正在融化的蜡烛，失去了形状。……「<strong>很快他就会恢复的，只要把他泡进水里。就像泡干蘑菇一样。</strong>」</p>
+  </blockquote>
+  <p><strong>注解</strong>：★★ <strong>这三处细节构成了一堂「文明形态课」</strong>：★ <strong>沙漏</strong>＝一个连「时间」都要靠人力守住的文明；★ <strong>「太阳不能报时」</strong>＝规律本身不可信赖；★ <strong>「像泡干蘑菇一样」</strong>＝生命可以被干燥、卷起、携带、复原。★★ <strong>合起来，它们解释了一件事</strong>：<strong>在这样的世界里，「个体」必然是「可牺牲的耗材」</strong>——<strong>因为连身体都可以被卷起来带走，那么「为集体脱水」就不是残忍，而是常识</strong>。★★ <strong>这就是第一部替三体人建立的「伦理环境」</strong>：<strong>不是他们天生冷酷，而是他们的世界不允许温柔</strong>（<code>## 10</code> 第①条）。★ <strong>注意那段比喻的口气</strong>：<strong>它甚至是轻快的（「就像泡干蘑菇」）</strong>——<strong>这种轻快，比残酷更让人不适，也更准确地写出了「习惯」</strong>。</p>
+  <h3>E4 第三部「魔法师之死」：1453 年的君士坦丁堡</h3>
+  <p><strong>英文原句</strong>（<span class="tag t-src">原书</span>，第三部第一部「The Death of the Magician」，实测通过）：</p>
+  <blockquote>
+    <p><em>Every three hours—the time it took the Ottomans to reload one of the monstrous bombards designed by the engineer Orban—twelve-hundred-pound stone balls battered the walls of Constantinople. These were the world’s strongest walls: first built by Theodosius II during the fifth century, they had been continually reinforced and expanded, and were the main reason that the Byzantine court had survived so many powerful enemies. But the giant stone balls now gouged openings into the walls with each strike, like the bite of an invisible giant.</em></p>
+  </blockquote>
+  <p><strong>中文全译</strong>（笔者自译）：</p>
+  <blockquote>
+    <p>每三个小时——那是奥斯曼人给工程师乌尔班设计的巨炮重新装填所需的时间——就有一千二百磅重的石弹轰击君士坦丁堡的城墙。这是世界上最坚固的城墙：最早由狄奥多西二世在五世纪修建，此后不断加固和扩展，是拜占庭宫廷能够抵御那么多强敌的主要原因。但如今，每一击都在城墙上凿开缺口，<strong>像一头看不见的巨人在啃咬</strong>。</p>
+  </blockquote>
+  <p><strong>注解</strong>：★★ <strong>这就是第三部的开场，也是全书的「预演」</strong>。★ 作者选了一个<strong>「一个文明在城墙上目睹自己结束」</strong>的时刻，<strong>把「太阳系之死」提前排演了一遍</strong>。★★ <strong>请注意那个比喻：「像一头看不见的巨人在啃咬」</strong>——<strong>这正是后面「二向箔」的写法</strong>：<strong>一种来自更高尺度、看不见的力量，对「世界」本身啃咬</strong>。★ <strong>换句话说</strong>：<strong>第五部（二维太阳系）与第一部（1453 年）是同一件事的两次排练</strong>（<span class="tag t-inf">推断</span>，本报告的分析）。</p>
+  <h3>E5 第三部「程心」：核脉冲推进与「阶梯计划」</h3>
+  <p><strong>英文原句</strong>（<span class="tag t-src">原书</span>，「Cheng Xin」段，实测通过）：</p>
+  <blockquote>
+    <p><em>“We can use traditional chemical rockets to launch the nuclear bombs in advance, and distribute them along the first segment of the probe’s route.” She took a pencil and moved its tip along the line, from one cup to the next. “As the probe passes each bomb, we detonate it right behind the sail, accelerating it faster and faster.”</em></p>
+    <p><em>“It’s based on an old idea in aerospace circles. Stanislaw Ulam first proposed something like it back in 1946. It’s called nuclear pulse propulsion.”</em></p>
+  </blockquote>
+  <p><strong>中文全译</strong>（笔者自译）：</p>
+  <blockquote>
+    <p>「我们可以用传统的化学火箭把核弹预先发射出去，把它们沿探测器航线的第一段布下。」她拿起一支铅笔，笔尖沿着一排纸杯，从这一个移到下一个。「当探测器经过每一颗核弹时，我们就在帆的正后方引爆它，让它加速得越来越快。」</p>
+    <p>「这基于航天界一个很老的构想。斯坦尼斯拉夫·乌拉姆在 1946 年就首先提出过类似的东西。它叫<strong>核脉冲推进</strong>。」</p>
+  </blockquote>
+  <p><strong>注解</strong>：★★ <strong>这一段最能说明「硬科幻」这个词在《三体》里是什么意思</strong>：★ 作者<strong>引用了真实的科学史人物与年份</strong>（乌拉姆，1946），<strong>并让角色用「一排纸杯」把方案讲清楚</strong>——<strong>这是「用具体实物演示抽象方案」的教科书式写法</strong>。★ <strong>同一段里，会议室的人还在误猜缩写「MD」的意思</strong>（<span class="tag t-src">原书</span>，同段，实测通过）——<strong>这种「先讲笑话、再讲硬核」的节奏，是作者让说明书变得可读的常用手段</strong>。★★ <strong>请注意这一段的伦理位置</strong>：<strong>核脉冲推进的核心是「在帆后面不断引爆核弹」</strong>——<strong>它既是人类最壮丽的工程，也是最恐怖的武器</strong>。★ <strong>这正是全书的一个缩影</strong>：<strong>同一个技术，既是飞船，也是炸弹</strong>（<code>## 10</code> 第⑧条）。</p>
+  <h3>E6 第二部序章：墓碑上的字</h3>
+  <p><strong>英文原句</strong>（<span class="tag t-src">原书</span>，第二部 Prologue，实测通过）：</p>
+  <blockquote>
+    <p><em>Having cleared its memory, the ant entered the maze. … it established another pattern in its simple consciousness: the Chinese character</em> mu, <em>meaning “grave,” although the character and its meaning were not known to the ant. … Then it entered a wonderful line-trough …</em> zhi, <em>the Chinese possessive modifier. … the character</em> dong, <em>meaning “winter.” The top one was split into two parts, which together formed the character</em> yang.</p>
+  </blockquote>
+  <p><strong>中文全译</strong>（笔者自译）：</p>
+  <blockquote>
+    <p>清空了记忆之后，蚂蚁进入了这座迷宫。……它的简单意识里又建立起一个图案：汉字「<strong>墓</strong>」——尽管这只蚂蚁既不知道这个字，也不知道它的意思。……接着它进入了一道奇妙的线形凹槽……汉字「<strong>之</strong>」，中文里的所有格助词。……汉字「<strong>冬</strong>」，意思是冬天。最上面那一个字被分成两部分，合起来是「<strong>阳</strong>」。</p>
+  </blockquote>
+  <p><strong>注解</strong>：★★ <strong>这是全书最精巧的一处「结构演示」，也是「尺度」母题的第二次亮相</strong>（第一次见 E1）。★ 蚂蚁<strong>逐字读出</strong>墓碑上的四个字：<strong>墓／之／冬／阳</strong>，合起来是「<strong>杨冬之墓</strong>」（<span class="tag t-rep">转述</span>，中文姓名）；★★ <strong>但蚂蚁「既不知道这个字，也不知道它的意思」</strong>（<span class="tag t-src">原书</span>，同段）——<strong>它只是把凹槽认成形状</strong>。★★ <strong>请把这个场景与后面「降维打击」放在一起看</strong>：<strong>蚂蚁在三维世界里读二维符号，高等文明在更高维度上读我们这个宇宙</strong>——<strong>同一块「石头」，因为观察者不同，可以是「形状」「名字」或「坐标」</strong>（<code>## 10</code> 第⑨条）。<strong>这就是作者用一只虫子完成的一次「维度预告」</strong>：<strong>不要以为你看到的就是全部，你只是在用你的维度读它。</strong></p>
+  <h3>E7 第一部「宇宙闪烁」：一根快烧坏的荧光灯管</h3>
+  <p><strong>英文原句</strong>（<span class="tag t-src">原书</span>，「The Universe Flickers」段，实测通过）：</p>
+  <blockquote>
+    <p><em>“But you want to see a five percent fluctuation tonight? Do you realize what that would mean? The universe would flicker like a fluorescent tube that’s about to burn out!”</em></p>
+  </blockquote>
+  <p><strong>中文全译</strong>（笔者自译）：</p>
+  <blockquote>
+    <p>「可你想在今晚看到百分之五的波动？你意识到那意味着什么吗？<strong>整个宇宙会像一根快要烧坏的荧光灯管一样闪烁！</strong>」</p>
+  </blockquote>
+  <p><strong>注解</strong>：★★ <strong>这一句是第一部「悬疑线」的顶点比喻</strong>。★ 汪淼请人去看「<strong>宇宙整体的微波背景波动</strong>」，而专家给出的反应是<strong>用一个日常物件来解释一个宇宙级异常</strong>：<strong>一根快烧坏的灯管</strong>。★★ <strong>注意这个比喻的双重功能</strong>：① <strong>它让读者立刻懂了「不该发生的事发生了」</strong>；② <strong>它把「宇宙」写成了一个「会坏的东西」</strong>——<strong>这正是全书后面所有宇宙级灾难的基调：宇宙不是永恒的背景，而是一件会损坏的器物</strong>（<code>## 10</code> 第⑨条）。★ <strong>这一点与第三部的「宇宙是战争废墟」遥相呼应</strong>（<span class="tag t-talk">作者谈话</span>，2016-09-20）。</p>
+  <h3>E8 第三部「魔法师之死」：两种时间的对照</h3>
+  <p><strong>英文原句</strong>（<span class="tag t-src">原书</span>，第三部第一部「The Death of the Magician」，实测通过）：</p>
+  <blockquote>
+    <p><em>During the five weeks the city had been under siege, these tremors had come seven times a day, spaced as regularly as the strokes of some colossal clock. This was the time and rhythm of another world, the time of heathens. Compared to these tremors, the ringing of the double-headed eagle copper clock in the corner that represented the time of Christendom seemed feeble.</em></p>
+  </blockquote>
+  <p><strong>中文全译</strong>（笔者自译）：</p>
+  <blockquote>
+    <p>在被围困的五个星期里，这种震动每天来七次，间隔规律得像某座巨钟的敲击。<strong>这是另一个世界的时间与节律，是异教徒的时间。</strong> 与这些震动相比，角落里那座代表基督教世界时间的双头鹰铜钟的鸣响，显得软弱无力。</p>
+  </blockquote>
+  <p><strong>注解</strong>：★★★ <strong>这是「历法即世界」这一母题的第一次明确出现，也是第三部自创「纪元纪年」的先声。</strong> ★ 作者在同一个房间里安放了<strong>两套时间</strong>：<strong>外面的炮击（异教徒的时间）</strong>与<strong>屋里的铜钟（基督教世界的时间）</strong>；★★ <strong>而叙述直接判定：后者「软弱无力」</strong>——<strong>在这一刻，谁的时间在计时，谁就掌握着这个世界的现实</strong>。★★ <strong>请把这个场面与第三部的整体结构连起来</strong>：<strong>危机纪元、威慑纪元、广播纪元、掩体纪元</strong>——<strong>每一次更名，都是一次「谁在计时」的交接</strong>（<code>## 1</code> 纪年注解、<code>## 9</code>）。★ <strong>这就是为什么本报告说「第三部用历史开场」不是偶然</strong>：<strong>它先用一座城的灭亡，教会读者如何阅读「纪元」。</strong></p>
+  <h3>E9 第一部「周文王与长夜」：阴阳、六十四卦与一部历法</h3>
+  <p><strong>英文原句</strong>（<span class="tag t-src">原书</span>，「Three Body: King Wen of Zhou and the Long Night」段，实测通过）：</p>
+  <blockquote>
+    <p><em>“The sun is not a god. The sun is yang, and the night is yin. The world proceeds on the balance between yin and yang. Though we cannot control the process, we can predict it.” King Wen took out his bronze sword and drew a yin-yang symbol on the floor … Then, he carved the sixty-four hexagrams of the I Ching around the symbol, the whole composition resembling a calendar wheel. “My king, this is the code of the universe. With it, I can present your dynasty with an accurate calendar.”</em></p>
+  </blockquote>
+  <p><strong>中文全译</strong>（笔者自译）：</p>
+  <blockquote>
+    <p>「太阳不是神。太阳是阳，夜晚是阴。世界在阴阳的平衡中运行。我们无法控制这个过程，但我们可以预测它。」周文王取出青铜剑，在地上画下一个阴阳符号……接着，他围绕符号刻下《易经》的六十四卦，整体看上去像一个历法轮。「我的王，这就是宇宙的密码。有了它，我就能为你的王朝献上一部精确的历法。」</p>
+  </blockquote>
+  <p><strong>注解</strong>：★★ <strong>这一段是全书的「文化对话」做得最漂亮的地方</strong>。★ 三体世界里的科学家<strong>用「阴阳」与「六十四卦」去给一个完全不规律的太阳系建模</strong>——★★ <strong>这既是一次「中国古代宇宙观的科幻化」，也是一次对「公理化」的呼应</strong>：<strong>《易经》本就是一个「用有限的符号去推演万物」的系统</strong>，<strong>与后面「两条公理推出宇宙社会学」在方法上同构</strong>（<code>## 10</code> 第①条）。★★ <strong>更妙的是叙述的判定</strong>：<strong>「周文王」在小说里是一个被证明「错」了的人</strong>——<strong>他给出的历法终究无法真正解决乱纪元</strong>（<span class="tag t-rep">转述</span>，游戏线后续）——★★ <strong>这等于说：用有限符号去捕捉无限变化，本身就是一场注定失败的尝试</strong>。★ <strong>这句话，也可以原封不动地拿去评价「黑暗森林法则」</strong>（<code>## 11</code> 第三条）——<strong>作者把它藏在了第一部的一场游戏里。</strong></p>
+  <h3>E10 第三部「程心」：韦德的眼睛</h3>
+  <p><strong>英文原句</strong>（<span class="tag t-src">原书</span>，第三部「Cheng Xin」段，实测通过）：</p>
+  <blockquote>
+    <p><em>Cheng Xin thought she saw exhaustion and laziness in those eyes, but there was also something deeper, something sharp that made her uncomfortable. A smile appeared on Wade’s face, like water seeping out of a crack in the frozen surface of a river; there was no real warmth, and it didn’t relax her.</em></p>
+  </blockquote>
+  <p><strong>中文全译</strong>（笔者自译）：</p>
+  <blockquote>
+    <p>程心觉得在那双眼睛里看到了疲惫和慵懒，但底下还有别的东西，某种尖利的东西，让她不舒服。<strong>一个微笑出现在韦德的脸上，像水从一条河冰面的裂缝里渗出来</strong>；那笑里没有真正的暖意，也没有让她放松下来。</p>
+  </blockquote>
+  <p><strong>注解</strong>：★★ <strong>这是全书写「危险人物」写得最准的一句，也是第三部「三方皆输」结构的第一个注脚</strong>（<code>## 9</code>、<code>## 11</code>）。★ 作者没有写「韦德很冷」，而是写<strong>「像水从河冰的裂缝里渗出来」</strong>——★★ <strong>这是一个「活的东西从一个冻死的东西里钻出来」的意象</strong>：<strong>它说明了韦德的性质——他是一整套体面秩序里的那道裂缝</strong>。★ <strong>而程心的反应更重要</strong>：<strong>她「不舒服」，但她也「没有被安抚」</strong>——<strong>这为后面她与韦德那场决定人类命运的争执埋了伏笔</strong>（<span class="tag t-inf">推断</span>，本报告的分析；<code>## 10</code> 第⑦条）。★★ <strong>请注意作者用什么方式让读者对韦德保持警惕</strong>：<strong>他没有让韦德说一句狠话，只写了一个笑</strong>——<strong>这就是「把语言透明化」的另一面：把判断交给细节</strong>（<span class="tag t-talk">作者谈话</span>，2015-02-12）。</p>
+</section>
+
+<section id="s20">
+  <h2><span class="num"></span><span>F 概念问答（速查）</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本附录把 <code>## 10</code> 的十个概念改成问答形式，供速查。★ 每条给最短答案。</strong></p>
+  <table>
+    <thead><tr><th>#</th><th>问题</th><th>最短答案</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>宇宙社会学的两条公理是什么？</td><td>★ <strong>生存是文明第一需要；文明增长而宇宙物质总量不变</strong>（<span class="tag t-src">原书</span>，第二部序章）</td></tr>
+      <tr><td>2</td><td>为什么两条公理能推出「冲突」？</td><td>★ 资源有限 ＋ 都想活下去 ＝ <strong>冲突是结构性的</strong></td></tr>
+      <tr><td>3</td><td>猜疑链为什么无法收敛？</td><td>★ 因为「你对我的判断的判断……」<strong>无限递归</strong>；<strong>意图无法被证明</strong></td></tr>
+      <tr><td>4</td><td>技术爆炸为什么可怕？</td><td>★ 它让「时间」不再是保护——<strong>今天的虫子可能明天成为威胁</strong></td></tr>
+      <tr><td>5</td><td>黑暗森林法则一句话是什么？</td><td>★ <strong>宇宙是一片黑暗森林，发现即消灭</strong></td></tr>
+      <tr><td>6</td><td>威慑为什么能成立？</td><td>★ 因为<strong>弱者可以用「广播坐标」把胜负改成同死</strong></td></tr>
+      <tr><td>7</td><td>威慑最贵的代价是什么？</td><td>★ <strong>它把全人类的安全押在一个人永不犯错的意志上</strong></td></tr>
+      <tr><td>8</td><td>执剑人的悖论是什么？</td><td>★ <strong>要活命，得选一个愿意毁灭世界的人；选出善良的人，就等于缴械</strong></td></tr>
+      <tr><td>9</td><td>面壁计划为什么可行？</td><td>★ 因为<strong>智子能读一切，只有「心思」读不到</strong></td></tr>
+      <tr><td>10</td><td>面壁计划最大的代价是什么？</td><td>★ <strong>它以欺骗为职责，因此无法被问责</strong></td></tr>
+      <tr><td>11</td><td>「智子」做的最狠的一件事是什么？</td><td>★ <strong>锁死基础物理</strong>——让对手活着但永远无力</td></tr>
+      <tr><td>12</td><td>「水滴」的作用是什么？</td><td>★ <strong>展示差距</strong>——杀而不语</td></tr>
+      <tr><td>13</td><td>掩体、黑域、曲率驱动各自的代价？</td><td>★ 掩体＝住地底；黑域＝冻成琥珀；曲率驱动＝变成逃亡者</td></tr>
+      <tr><td>14</td><td>「黑域」为什么是反直觉的安全？</td><td>★ 它靠<strong>自我削弱</strong>换安全——<strong>最没价值，才最安全</strong></td></tr>
+      <tr><td>15</td><td>降维打击可怕在哪？</td><td>★ 它<strong>不杀物体，改写空间</strong>——<strong>武器作用在「物理」上</strong></td></tr>
+      <tr><td>16</td><td>「宇宙是战争废墟」这句话的意思？</td><td>★ 我们看到的自然法则，<strong>可能只是历次战争留下的残局</strong>（<span class="tag t-talk">作者谈话</span>）</td></tr>
+      <tr><td>17</td><td>归零者要做什么？</td><td>★ <strong>呼吁归还质量，让宇宙重启</strong></td></tr>
+      <tr><td>18</td><td>小宇宙是什么？</td><td>★ <strong>把质量藏进独立空间的「私宅」</strong></td></tr>
+      <tr><td>19</td><td>全书最后一个动作是什么？</td><td>★ <strong>让渡</strong>——<strong>从「生存第一」走到「交出自己那份」</strong>（<span class="tag t-inf">推断</span>）</td></tr>
+      <tr><td>20</td><td>作者怎么评价自己的宇宙观？</td><td>★ <strong>「《三体》所描写的是最糟糕的宇宙，不等于我真的认为宇宙就是这样。」</strong>（<span class="tag t-talk">作者谈话</span>，2015-02-12）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>本表的价值</strong>：★★ <strong>它把这套体系压缩成可以随手核对的二十问</strong>——<strong>但请务必记住第 20 条的免责声明</strong>：<strong>这二十条是「小说内部的规则」，不是「作者的信念」。</strong></p>
+</section>
+
+<section id="s21">
+  <h2><span class="num"></span><span>G 三部曲关键场景一览</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本附录按叙事推进顺序，列出三部曲里最关键的二十余个场面，每条一句。</strong>★ <strong>定位一律用「部／章／节」，不用页码。</strong>★ <strong>凡标 <span class="tag t-src">原书</span> 者，为实测通过的官方节选；其余为公开资料转述（<span class="tag t-rep">转述</span>，未核对原著）。</strong></p>
+  <p><strong>第一部《三体》</strong></p>
+  <ol>
+    <li><strong>1967 年的派系冲突</strong>：叙事以「China, 1967」开篇，一个孩子目睹大人们互相攻击——<strong>全书「对人类失望」的起点</strong>（<span class="tag t-src">原书</span>，英译第 1 章）。
+    </li>
+    <li><strong>叶文洁目睹父亲之死</strong>：她后来在殡仪馆清理父亲遗体，尘埃与旧伤在树皮上重现——<strong>创伤与「砍树」被并置</strong>（<span class="tag t-src">原书</span>，英译第 1–2 章）。
+    </li>
+    <li><strong>阮老师之死</strong>：老师服安眠药，桌上是空瓶；叶文洁「像一台被照射过量的盖革计数器，读数归零」——<strong>她的「零」是不可逆的</strong>（<span class="tag t-src">原书</span>，英译第 1 章）。
+    </li>
+    <li><strong>大兴安岭的伐木</strong>：一棵「粗如帕特农石柱」的落叶松倒下，叶文洁把树想象成父亲的尸体——<strong>环境之痛与丧父之痛被写成同一种痛</strong>（<span class="tag t-src">原书</span>，英译第 2 章）。
+    </li>
+    <li><strong>红岸基地</strong>：她在昏迷中醒来，听到直升机的声音，得知自己身处一个秘密基地——<strong>前史线正式展开</strong>（<span class="tag t-src">原书</span>，英译第 3 章）。
+    </li>
+    <li><strong>「宇宙闪烁」</strong>：汪淼请人观测「宇宙整体的微波背景波动」，专家说那会「像一根快烧坏的荧光灯管」——<strong>宇宙被写成「会坏的器物」</strong>（<span class="tag t-src">原书</span>，英译「The Universe Flickers」段）。
+    </li>
+    <li><strong>《三体》游戏第一幕</strong>：虚空中升起两个字「三体」；玩家以「Hairen」登录——<strong>设定说明书开始运转</strong>（<span class="tag t-src">原书</span>，「King Wen」段）。
+    </li>
+    <li><strong>周文王与长夜</strong>：沙漏、乱纪元、「太阳不能报时」、集体脱水——<strong>一堂「文明形态课」</strong>（<span class="tag t-src">原书</span>，「King Wen」段）。
+    </li>
+    <li><strong>牛顿与秦始皇</strong>：游戏用「人列计算机」演算三体问题——<strong>把「计算」写成一场仪式</strong>（<span class="tag t-rep">转述</span>，中文目录第 18 章；<span class="tag t-rep">转述</span>，Nan Z. Da，2015 亦记此场）。
+    </li>
+    <li><strong>古筝行动</strong>：用纳米丝切碎巨轮——<strong>第一部最著名的「视觉场面」</strong>（<span class="tag t-rep">转述</span>，中文目录第 32 章）。
+    </li>
+    <li><strong>智子现身</strong>：三体人用智子锁死人类基础物理，远征舰队已在途中——<strong>现实线与游戏线在此合流</strong>（<span class="tag t-rep">转述</span>，中文目录第 34 章）。
+    </li>
+  </ol>
+  <p><strong>第二部《黑暗森林》</strong></p>
+  <ol>
+    <li><strong>蚂蚁与墓碑</strong>：一只蚂蚁在暮色里爬过墓碑，逐字读出「墓／之／冬／阳」——<strong>「尺度」母题的第一次亮相</strong>（<span class="tag t-src">原书</span>，第二部 Prologue）。
+    </li>
+    <li><strong>叶文洁的最后一次谈话</strong>：她在杨冬墓前，把「宇宙社会学」的两条公理交给罗辑——<strong>全书推理链的起点</strong>（<span class="tag t-src">原书</span>，第二部 Prologue）。
+    </li>
+    <li><strong>破壁人的自杀</strong>：枪口对准太阳穴时，智子文字出现：「别这么做。我们需要你。」——<strong>四件事，一段戏</strong>（<span class="tag t-src">原书</span>，第二部上部）。
+    </li>
+    <li><strong>面壁计划的宣告</strong>：因为智子能读一切，「心思」成为唯一的秘密——<strong>把劣势变成武器</strong>（<span class="tag t-src">原书</span>，第二部官方简介）。
+    </li>
+    <li><strong>章北海的「意外」</strong>：他策划并执行了一场看起来像意外的太空处决——<strong>黑暗森林法则在人类内部的预演</strong>（<span class="tag t-rep">转述</span>，书评转述，Milwaukee Journal Sentinel，2015）。
+    </li>
+    <li><strong>咒语与验证</strong>：罗辑向宇宙广播一颗恒星的坐标；多年后那颗恒星被摧毁——<strong>法则被证实</strong>（<span class="tag t-rep">转述</span>，中文目录与公开资料）。
+    </li>
+    <li><strong>威慑建立</strong>：罗辑成为执剑人——<strong>全人类的安全押在一个人永不犯错的意志上</strong>（<span class="tag t-rep">转述</span>，公开资料）。
+    </li>
+  </ol>
+  <p><strong>第三部《死神永生》</strong></p>
+  <ol>
+    <li><strong>1453 年的君士坦丁堡</strong>：炮击「像一头看不见的巨人在啃咬」城墙；两种时间在同一个房间里对照——<strong>太阳系之死的预演</strong>（<span class="tag t-src">原书</span>，第三部「The Death of the Magician」）。
+    </li>
+    <li><strong>安乐死法</strong>：一条报纸新闻；被装饰成「洞房」的死亡房间——<strong>「牺牲少数」问题的最小预演</strong>（<span class="tag t-src">原书</span>，第三部「Yun Tianming」段）。
+    </li>
+    <li><strong>核脉冲推进</strong>：程心用「一排纸杯」演示方案，并点出乌拉姆 1946 年的旧构想——<strong>「同一个技术，既是飞船，也是炸弹」</strong>（<span class="tag t-src">原书</span>，第三部「Cheng Xin」段）。
+    </li>
+    <li><strong>执剑人更替</strong>：代表「当代共识道德」的程心接替罗辑——<strong>威慑死在「相信」上</strong>（<span class="tag t-rep">转述</span>，第三部目录「威慑纪元 61 年，执剑人」）。
+    </li>
+    <li><strong>云天明的童话</strong>：关键情报藏进三个童话——<strong>嵌套叙事的顶点</strong>（<span class="tag t-rep">转述</span>，第三部目录「广播纪元 7 年，云天明的童话」）。
+    </li>
+    <li><strong>二维太阳系</strong>：二向箔把太阳系「画」进一幅画——<strong>武器改写了「物理」</strong>（<span class="tag t-rep">转述</span>，第三部目录「掩体纪元 67 年，二维太阳系」）。
+    </li>
+    <li><strong>时间之外，我们的宇宙</strong>：全书收束于「小宇宙」与「归还」——<strong>从「生存」走到「让渡」</strong>（<span class="tag t-rep">转述</span>，第三部第六部目录）。
+    </li>
+  </ol>
+  <p>★ <strong>这张表的价值</strong>：★★ <strong>把二十五个场景连起来读，你会发现三部曲其实是「同一件事的二十五次排练」</strong>——<strong>每一次都在问同一个问题：当生存压过来，什么会先碎</strong>（<code>## 2</code>、<code>## 10</code>）。</p>
+</section>
+
+<section id="s22">
+  <h2><span class="num"></span><span>H 常见误读速查（十二条）</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本附录是 <code>## 4b</code> 的扩展版，专供读完后自查。</strong></p>
+  <table>
+    <thead><tr><th>#</th><th>常见误读</th><th>正确理解</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>总书名是《三体》</td><td>★★ 总题是<strong>《地球往事》</strong>；「三体」是俗名（<span class="tag t-talk">作者谈话</span>，2014-05-07）</td></tr>
+      <tr><td>2</td><td>刘慈欣凭整部三部曲获雨果奖</td><td>★ 是<strong>第一部</strong>获 2015 雨果奖最佳长篇（<span class="tag t-rep">转述</span>）</td></tr>
+      <tr><td>3</td><td>黑暗森林是作者的宇宙观</td><td>★★ 作者<strong>明确否认</strong>：那是「最糟的可能性」（<span class="tag t-talk">作者谈话</span>，2015-02-12）</td></tr>
+      <tr><td>4</td><td>英译删掉了中国历史背景</td><td>★★ <strong>相反</strong>：他与译者<strong>坚持把它提到最前面</strong>（<span class="tag t-talk">作者谈话</span>，2015-02-12）</td></tr>
+      <tr><td>5</td><td>作者很在意人物塑造</td><td>★ 他自述<strong>人物「只是讲故事的一个工具」/「只是符号」</strong>（<span class="tag t-rep">转述</span>，《新京报》2018-11-11）</td></tr>
+      <tr><td>6</td><td>第三部不被重视</td><td>★ 作者<strong>确实不看好</strong>，<strong>但它恰恰让系列火起来</strong>（<span class="tag t-talk">作者谈话</span>，2014-05-07）</td></tr>
+      <tr><td>7</td><td>第三部六部有正式部名</td><td>★ 那些是<strong>二手概括名</strong>，非原书目录（<code>## 1</code>、<code>## 4b</code> 第⑦条）</td></tr>
+      <tr><td>8</td><td>二向箔、水滴是「硬科学」</td><td>★ 批评方指其<strong>「像魔法」</strong>；作者自己也只称其为<strong>设定</strong>（<span class="tag t-rep">转述</span>，维舟，2024）</td></tr>
+      <tr><td>9</td><td>程心是「作者讨厌的角色」</td><td>★ 作者说她是<strong>「当代共识道德的代表」</strong>，并为她写了辩护（<span class="tag t-talk">作者谈话</span>，2016-09-20）</td></tr>
+      <tr><td>10</td><td>罗辑是唯一的「救世主」</td><td>★ 书中<strong>还有章北海、云天明等</strong>多条并行线；作者自己还说<strong>章北海令他「恐怖」</strong>（<span class="tag t-talk">作者谈话</span>，2018-11-11）</td></tr>
+      <tr><td>11</td><td>三部曲是「三部独立小说」</td><td>★★ 它是<strong>同一条时间线的三次放大</strong>，「合页」读法见 <code>## 6</code></td></tr>
+      <tr><td>12</td><td>小说在预测未来</td><td>★ 作者把它写成<strong>「可能性的文学」</strong>，而非预测（<span class="tag t-talk">作者谈话</span>，2015-02-12）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>自查方法</strong>：<strong>每当你听到一句关于《三体》的「金句」，先问一句——那是角色说的、批评家说的，还是作者说的？</strong> ★ <strong>这三者在本书里经常互相冲突，而这正是它值得细读的原因。</strong></p>
+</section>
+
+<footer>
+  生成于 2026-10-09 · 来源清单与交叉验证记录见同目录 <code>三体-来源清单.md</code><br>
+  ★ 核验级别：<b>原文（英译节选）A</b>（辖区见上）／<b>原文（中文原著）C</b>／<b>作者谈话 A</b>。★ 全部中文引句均为<b>二手转引，未核对原著</b>，且不给页码；英文引文出自出版方授权节选（Tor.com／Reactor）。★ 作者谈话材料全部为作者本人的文字与口述，与译者自述、书评人意见严格分开。★ 来源、实测记录、主动排除清单与交叉验证，见同目录《三体-来源清单.md》。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>
