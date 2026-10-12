@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《淹没的世界》· 索引碎片</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+
+/* ===== 索引碎片页的版式覆盖（无侧栏，单列）===== */
+main{margin:0 auto;max-width:840px;padding:0 22px 90px}
+.hero{padding:40px 0 20px}
+.hero .kick{font-size:11.5px;letter-spacing:.08em;color:var(--ink3);font-weight:600;margin-bottom:6px}
+.frag{margin:20px 0 0;padding:20px 22px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.frag .row{margin:0 0 11px;font-size:14px;color:var(--ink2);line-height:1.75}
+.frag .row>b{color:var(--ink);font-weight:600;margin-right:2px}
+.frag ol.sub{margin:6px 0 0 0;padding-left:22px;font-size:13.5px;color:var(--ink2)}
+.frag ol.sub li{margin:4px 0}
+.frag code{background:var(--hover);padding:1px 5px;border-radius:4px;font-size:.92em}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+.chip{font-size:11.5px;padding:2px 9px;border-radius:5px;background:var(--hover);color:var(--ink2)}
+.cfoot{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
+.cfoot a{font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;text-decoration:none;
+  background:var(--accent-bg);color:var(--accent);border:1px solid var(--linkline)}
+.cfoot a:hover{background:var(--linkhover)}
+.cfoot a.ghost{background:var(--panel);color:var(--ink2);border-color:var(--line2)}
+ol.dir{list-style:none;margin:18px 0 0;padding:0}
+ol.dir li{padding:10px 14px;border:1px solid var(--line);border-radius:9px;background:var(--panel);margin:8px 0}
+ol.dir a{font-weight:600;color:var(--accent);text-decoration:none;font-size:14.5px}
+ol.dir a:hover{text-decoration:underline}
+ol.dir .m{font-size:12.5px;color:var(--ink3);margin-top:3px}
+</style>
+</head>
+<body>
+<div id="ctl"><button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button></div>
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+<header class="hero">
+  <div class="kick">索引碎片 · 淹没的世界</div>
+  <h1>《淹没的世界》</h1>
+<div class="chips"><span class="chip">状态：未标注已读／想读</span><span class="chip">收录：2026-10-12</span><span class="chip">形态：概念型 —— 本批第三次使用（前两种为叙事型／教材型）</span><span class="chip">核验级别：两档分开写、不合并</span></div>
+</header>
+<div class="frag">
+    <div class="row"><b>作者</b>J. G. 巴拉德（James Graham Ballard，<strong>1930-11-15 – 2009-04-19</strong>），生于上海；1943–1945 年被关押于龙华集中营（Lunghua Civilian Assembly Centre）——这段经历是他全部创作的心理底片，后来写入《太阳帝国》（1984）</div>
+    <div class="row"><b>原名</b><em>The Drowned World</em>（1962）；★ <strong>无中译本</strong>（在已检索范围内未见；中文媒体上出现的「被淹没的世界」是描写性译法，不是出版物书名）</div>
+    <div class="row"><b>初版</b>中篇版 <strong>1962-01</strong>，英国《Science Fiction Adventures》第 4 卷第 24 期（Nova Publications，主编 John Carnell）；成书版 <strong>1962 年伦敦 Victor Gollancz</strong>（★ ISFDB 记为 1963-01，各源冲突，见待核实 D1）→ 同年 8 月纽约 Berkley Medallion（158 页）</div>
+    <div class="row"><b>报告底本</b>★★ <strong>无任何合法全文、也无出版方官方节选</strong>；本页依据＝① 出版方页面（W. W. Norton／Liveright）② ISFDB 题录与译本清单 ③ 图书馆编目（Whittier College 等）④ 公开目录与情节摘要 ⑤ 署名可查的批评与接受史文献</div>
+    <div class="row"><b>状态</b>未标注已读／想读</div>
+    <div class="row"><b>收录</b>2026-10-12</div>
+    <div class="row"><b>形态</b><strong>概念型</strong> —— 本批第三次使用（前两种为叙事型／教材型）。★★ 触发条件就是「<strong>无合法全文</strong>」：下部不做逐章原文深挖，改做 <strong>① 结构骨架（依官方目录，明写非逐章原文核验）② 核心概念深挖 ③ 争议与批评（重头） ④ 作者谈话 ⑤ 版本／译本／跨媒介</strong></div>
+    <div class="row"><b>产出</b><code>淹没的世界/</code> — <code>淹没的世界.md</code>（106,976 B，<strong>26,225 汉字</strong>）＋ <code>淹没的世界-来源清单.md</code>（19,238 B）＋ <code>淹没的世界-build.json</code></div>
+    <div class="row"><b>结构</b>上部 <code>## 0</code>–<code>## 5</code>（含 <code>## 4b</code> 流行说法 vs 原文）＋ 下部 <code>## 6</code>–<code>## 10</code>（<strong>5 节</strong>：15 章骨架与「三重下沉」／核心概念深挖〔inner space·退化与古心理过去·太阳灾变·潟湖作为时间机器·Strangman 与打捞·熵·结尾的向南〕／争议与批评／作者谈话「创作考古」／版本·接受与气候小说谱系）＋ 附录 <strong>A–D</strong></div>
+    <div class="row"><b>核验级别</b>★★ <strong>两档分开写、不合并</strong>。<strong>① 原文（含中文）：C 级</strong> —— 本书在版权期内，<strong>无合法全文、也无官方节选</strong>，一切引句均为二手转引、<strong>未核对原著、不给页码</strong>。<strong>② 作者谈话：A 级</strong> —— 作者生前发表的访谈与自传 <em>Miracles of Life</em>（2008）。★ <strong>辖区＝作者生前公开发表的自述材料</strong>；★ 作者<strong>已逝 17 年（2009 年卒）⇒ 本档每一处都写明「档案材料，不是新访谈」</strong>。★ 全书 <span class="tag t-src">原书</span> 计数为 <strong>0</strong>（刻意为之，遵「无全文不得作原书引」纪律）</div>
+    <div class="row"><b>备注</b></div>
+    <ol class="sub">
+      <li>★★ <strong>无合法全文的直接后果</strong>：正文 <span class="tag t-src">原书</span> 计数 <strong>0</strong>；15 章章题由图书馆编目与出版社目录<strong>互证</strong>取得，<strong>只作目录骨架使用，不作原文引文</strong></li>
+      <li>★ <strong>抓取坑（两处，均判定无效）</strong>：<code>sfgateway.com/product/the-drowned-world/</code> 返回 200 但<strong>重定向到 Gollancz 首页</strong>（全页 "Drowned" 命中 <strong>0</strong>）；<code>wwnorton.com/books/9780871403315</code> 返回 200 但<strong>页内无节选入口</strong>；两个猜测 ISBN URL 直接 404</li>
+      <li>★★ <strong>「作者谈话」档在本书的形态</strong>：作者已逝 ⇒ 只用生前访谈与自传，<strong>逐处标明性质</strong>；★ 这与同批《盲视》（作者在世）情形相反，<strong>两本的该档写法不得互相套用</strong></li>
+      <li>★ <strong>「2145 年」不是原文事实</strong>：出版方简介与流行介绍普遍写 2145 年，Black Gate 2023 年专文主张小说本身未给年份 ⇒ 本报告<strong>不采用</strong>该数字</li>
+      <li>★ <strong>叙事人称回避</strong>：无全文可核 ⇒ 正文统一表述为「<strong>视点人物</strong>」，不主张第一或第三人称</li>
+      <li>★ <strong>「无中译」的证据边界</strong>：ISFDB 译本清单含法／西／葡／荷／德／塞／意／匈／保，<strong>独无中文</strong>；★ 未查国家出版发行信息公共服务平台完整在版书目 ⇒ 结论表述为「<strong>在已检索范围内未见</strong>」，不是「绝对不存在」</li>
+      <li>★ <strong>本书的类别位置</strong>：它不是「早期科幻里的一本好小说」，而是<strong>气候小说（cli-fi）</strong>四十多年后被追认的起点之一，也是作者「内部空间」写作主张的第一个大型示范</li>
+      <li>★ <strong>内容纪律</strong>：涉现实历史背景（上海、龙华集中营）处<strong>只作文学与生平关联</strong>，不做现实政治评价</li>
+    </ol>
+    <div class="row"><b>待核实</b>★ <strong>D1</strong> Gollancz 初版是 1962 还是 1963（各源冲突）；★ <strong>D2</strong> 中篇版与成书版的增改范围（无全文）；★ <strong>D3</strong> 是否真的没有中译（未查在版书目全量）；★ <strong>D4</strong> 作者本人对该书的自评原刊出处（只核到二手转引）；★ <strong>D5</strong> 全书叙事人称（未核，已回避表述）；★ <strong>D6</strong> 龙华集中营拘押时长（各源「两年」vs「四年」）；★ <strong>D7</strong>《时代》周刊 2010 年榜单原页（域名不可解析／404）；★ <strong>D8</strong> 故事是否发生在 2145 年（各源冲突）；★ <strong>D9</strong> Peter Rønnov-Jessen〈Against Entropy〉(1984) 访谈原文（书目有目无文）；★ <strong>D10</strong> Beatrice 的称谓与身份细节；★ <strong>D11</strong> 1962 年「一次签下四本书」的原始出处；★ <strong>D12</strong>「十大后末世小说」榜单的准确名目与完整名单；★ <strong>D13</strong> 中篇版是否等于全书的前若干章；★ <strong>D14</strong> 各外译本的译者译名与内容差异（仅登记条目）</div>
+</div>
+<div class="cfoot">
+  <a href="../淹没的世界/淹没的世界.html">打开阅读页</a>
+  <a class="ghost" href="../淹没的世界/淹没的世界.md">内容正本</a>
+  <a class="ghost" href="../淹没的世界/淹没的世界-来源清单.md">来源清单</a>
+  <a class="ghost" href="淹没的世界.md">本页 Markdown</a>
+</div>
+</main>
+<script>/* 主题切换（本页自用的小脚本，不依赖书页主脚本） */
+(function(){var b=document.getElementById('themebtn');if(!b)return;
+function sync(){b.textContent=(document.documentElement.getAttribute('data-theme')==='dark')?'◐ 浅色':'◐ 深色';}
+b.addEventListener('click',function(){
+  var d=document.documentElement.getAttribute('data-theme')==='dark';
+  var n=d?'light':'dark';
+  document.documentElement.setAttribute('data-theme',n);
+  try{localStorage.setItem('ra-theme',n)}catch(e){}
+  sync();});
+sync();})();</script>
+</body>
+</html>

@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《淹没的世界》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《淹没的世界》<small>阅读指引与精华解析 · 2026-10-12</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 核心主题与结构机制</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 版本与译本怎么选</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 深度解析</div>
+    <a href="#s7">6 小说骨架：15 章与「三重下沉」</a>
+    <a href="#s8">7 核心概念深挖</a>
+    <a href="#s9">8 争议与批评</a>
+    <a href="#s10">9 作者谈话：一份「创作考古」</a>
+    <a href="#s11">10 版本、接受与气候小说谱系</a>
+    <div class="grp">附录</div>
+    <a href="#s12"> 附录 A 版本与出版记录一览</a>
+    <a href="#s13"> 附录 B 人物与专名对照</a>
+    <a href="#s14"> 附录 C 主要批评与接受史文献一览</a>
+    <a href="#s15"> 附录 D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《淹没的世界》阅读指引与精华解析</h1>
+  <div class="sub">一场不是人类造成的洪水，和一群自愿往回走的人</div>
+  <div class="meta">
+    <div><b>作者</b>J. G. 巴拉德（James Graham Ballard，1930-11-15 – 2009-04-19）。生于上海，1943–1945 年被关押于龙华集中营（Lunghua Civilian Assembly Centre）——这是他全部创作的心理底片，后写入《太阳帝国》（1984）。</div>
+    <div><b>首次发表</b>中篇版 1962 年 1 月，英国《Science Fiction Adventures》第 4 卷第 24 期（Nova Publications，主编 John Carnell）；成书版 1962 年由伦敦 Victor Gollancz 出版，同年 8 月由纽约 Berkley Medallion 出版美国版（158 页）。</div>
+    <div><b>依据版本</b>本报告<b>不依据任何全文</b>。版本信息以出版方页面（W. W. Norton／Liveright）、ISFDB 题录、图书馆书目记录与公开目录为准。★ 全书 15 章的章题取自公开目录，只作目录骨架，不作原文引文。</div>
+    <div><b>核验级别</b>原文：C —— 本书在版权期内，无任何可用的合法全文、也无出版方官方节选，一切引句均为二手转引、未核对原著、不给页码（含中文，因本书无中文译本）；作者谈话：A —— 作者生前发表的访谈与自述（档案材料，非新访谈）。</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>四档可信度标注怎么读</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> ★ <b>本档在结构上被禁用</b>：本书在版权期内，<b>无任何可用的合法全文，也无出版方官方节选</b>（本轮实测：Norton／Liveright 商品页可达但<b>无节选入口</b>；Gollancz／HarperCollins 的相关 URL 均返回 404）。因此本报告<b>不含任何原文引句</b>。唯一例外是 15 条公开章题——按施工图要求它们<b>只作目录骨架、不作引文</b>，故亦不以本档标注。</li>
+    <li><span class="tag t-talk">作者谈话</span> 本书作者已于 <b>2009 年去世</b> ⇒ <b>本档全部为档案材料，不是新访谈</b>。所用材料＝作者生前发表的文章与自述，核心是〈Time, Memory and Inner Space〉（1963，本轮取得全文），另有若干仅核到书目条目的作者文稿与已刊访谈条目。三条禁区：① 不得虚构任何访谈；② 不得把书评人、译者、评传作者的话写成作者的话（Kingsley Amis、Algis Budrys 等一律归入 转述 档）；③ 不得把百科词条当作者原话。</li>
+    <li><span class="tag t-rep">转述</span> 本档＝一切二手转引。<b>本书的 15 条章题、全部情节、全部版本信息与全部批评史信息都在此档</b>，一律<b>未核对原著、不给页码</b>。★ 本档与 原书 档的边界是：本报告<b>没有任何一处</b>暗示核过原书或核过页码。</li>
+    <li><span class="tag t-inf">推断</span> 本报告自己的分析框架与显式标注的存疑判断。例如「三重下沉」这一结构说明、六条批评的横向比较、以及对第 4／10／12 章内容的推断（这三章本报告未核到对应的公开情节摘要）。</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    边界复述：① 本书<b>无合法全文</b>，原书 档在结构上被禁用，一切引句（含章题）均为<b>二手转引</b>；② 作者谈话 档只收巴拉德本人的文字，且已写明是<b>档案材料、非新访谈</b>，书评人与研究者的判断一律在 转述 档；③ 全部二手转引均<b>未核对原著、不暗示核过页码</b>。凡属「书里具体怎么写的」，都只以 转述 档出现。
+  </p>
+  本轮合法入口实测（curl 带浏览器 UA，记录 URL／HTTP 状态／字节数／拿到了什么）：<b>用到的合法入口约 22 个</b>——含 jgballard.ca 上巴拉德 1963 年文章全文（200／11,536 B）、SF Encyclopedia 三个条目（200）、ISFDB 长篇与中篇题录（200／95,048 B、10,663 B）、《卫报》重刊的 Amis 1963 年书评全文（200／306,028 B）、Whittier College 图书馆书目记录（200／44,917 B，15 条章题的独立来源）、Black Gate 长文书评（200／170,824 B）等。<b>不可达或被拒的入口约 22 个</b>——含 TIME 原页（域名不可达 000）、WorldCat／Powell's／eNotes（403）、Telegraph（402 付费墙）、Gollancz／HarperCollins／Liveright 猜测 URL（404）。★ 侵权全文站（epdf.pub／silo.pub／unife.it 课程 PDF／uk.welib.org）、AI 生成百科（grokipedia 一类）与商业订阅平台一律排除，逐条原因见来源清单。
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p>1962 年，一本<strong>不是</strong>关于人类排放的书，成了气候小说（climate fiction）的开山文本之一：太阳辐射与范艾伦带的变化把地球推回三叠纪，伦敦变成一片热带潟湖，而故事的主角不是去救人的人，是第一个想留下的人。</p>
+  <p>它的真正赌注不在环境，而在<strong>环境改变人这件事本身是否可逆</strong>。巴拉德给出的答案是否定的，而且他并不为此悲伤——这正是这本书至今仍让人不适的原因。</p>
+  <p><strong>三条第一印象，供你快速校准。</strong><span class="tag t-inf">推断</span></p>
+  <ul>
+    <li><strong>它比你以为的更安静。</strong>书里最大的响声是鳄鱼、暴雨与一艘明轮的船。没有核爆、没有战争、没有街道混战。<strong>灾难已经过去了，现在只是热。</strong>
+    </li>
+    <li><strong>它比你以为的更冷。</strong>主角最后炸掉的是别人辛苦建起来的堤坝——而且他不是为了正义，是为了让水回来。这是全书最需要读者自己想清楚的一步。
+    </li>
+    <li><strong>它比你以为的更重要。</strong>它不是「早期科幻里的一本好小说」，它是一整套写作主张（内部空间）的第一个大型示范，也是「气候小说」这一类别四十年后才追认回来的起点之一。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p><strong>★ 本章表格的依据＝公开目录（出版社目录、图书馆书目记录、ISFDB 题录）与公开情节摘要，非原文核验。</strong>章题在所有版本中一致，本报告不做「原文引文」处理，只作目录骨架使用。<span class="tag t-rep">转述</span></p>
+  <h3>15 章一览</h3>
+  <table>
+    <thead><tr><th>章</th><th>公开章题（原题）</th><th>中文试译</th><th>这一章在做什么（依据＝公开情节摘要）</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>On the Beach at the Ritz</td><td>丽兹酒店的海滩</td><td>开篇。Kerans 在淹水的伦敦醒来，看太阳已变成一个「扩大的椭圆」；他故意拖到 Riggs 的巡逻艇经过，以此逃避去考察站。全书用一章交代物理温度与叙述温度。<span class="tag t-rep">转述</span></td></tr>
+      <tr><td>2</td><td>The Coming of the Iguanas</td><td>鬣蜥的到来</td><td>考察站与潟湖日常；鬣蜥夜间袭击直升机；军官 Hardman 弃队南逃，搜索队失败。第一次有人用脚投票，方向是南。<span class="tag t-rep">转述</span></td></tr>
+      <tr><td>3</td><td>Towards a New Psychology</td><td>走向一种新心理学</td><td>Bodkin 提出核心假说：新气候正在唤醒沉睡的生物记忆，人类被拉回更早的进化阶段；共同的梦开始出现。<span class="tag t-rep">转述</span></td></tr>
+      <tr><td>4</td><td>The Causeways of the Sun</td><td>太阳的堤道</td><td>北撤与留下的分岔：Kerans、Bodkin、Beatrice 拒绝随队北返。★ 本章确切内容本报告未核到，「太阳的堤道」这一意象与后半部的排水工程呼应，属推断。<span class="tag t-inf">推断</span></td></tr>
+      <tr><td>5</td><td>Descent into Deep Time</td><td>坠入深时</td><td>三人进入孤立生活；Kerans 越来越沉入梦境与「深时」。书名里的「下沉」在这一章从地理变成心理。<span class="tag t-rep">转述</span></td></tr>
+      <tr><td>6</td><td>The Drowned Ark</td><td>被淹的方舟</td><td>Strangman 乘一艘白色明轮船抵达伦敦，带着武装船员、补给与打捞设备；他不是科学家，是拾荒者。<span class="tag t-rep">转述</span></td></tr>
+      <tr><td>7</td><td>Carnival of Alligators</td><td>鳄鱼嘉年华</td><td>打捞作业登场；先疏浚潟湖，后来升级为筑堤抽水的更大工程。掠夺被组织成一场节日。<span class="tag t-rep">转述</span></td></tr>
+      <tr><td>8</td><td>The Man with the White Smile</td><td>白牙微笑的男人</td><td>Strangman 的人物章；他对 Kerans 在「假客气」与「公开残忍」之间来回切换，试图逼他承认那座被抽干的城市的价值。<span class="tag t-rep">转述</span></td></tr>
+      <tr><td>9</td><td>The Pool of Thanatos</td><td>塔纳托斯之池</td><td>伦敦中部的街道、广场与建筑从泥里重新露出；Kerans 与 Bodkin 对这片「被恢复」的景观感到厌恶。Bodkin 破坏堤坝失败，被 Strangman 的人杀死。章题里的 Thanatos 是弗洛伊德的「死欲」。<span class="tag t-rep">转述</span></td></tr>
+      <tr><td>10</td><td>Surprise Party</td><td>惊喜派对</td><td>★ 本章确切内容本报告未核到公开摘要中的对应段落。从位置推断，它处理 Bodkin 死后的权力重排。<span class="tag t-inf">推断</span></td></tr>
+      <tr><td>11</td><td>"The Ballad of Mistah Bones"</td><td>「骨头先生之歌」</td><td>章题借用 19 世纪美国游艺秀（minstrel show）中「Bones（骨头先生）」这一脸谱化角色的名字；Kerans 被形容为 Strangman 的主要对象，遭囚禁、曝晒与折磨。★ 该题名与全书种族化形象的关系，是本报告在第八章只作文学分析、不作现实评价的一处。<span class="tag t-rep">转述</span></td></tr>
+      <tr><td>12</td><td>The Feast of Skulls</td><td>颅骨之宴</td><td>★ 本章确切内容本报告未核到公开摘要中的对应段落；从位置推断，与 Strangman 一伙的仪式性暴力场面及 Beatrice 落入其控制有关。<span class="tag t-inf">推断</span></td></tr>
+      <tr><td>13</td><td>Too Soon, Too Late</td><td>太早，太晚</td><td>Riggs 巡逻返回伦敦，介入并救出 Kerans，恢复有限的秩序，迫使 Strangman 放手。但这次介入没有解决「人与已经变了的环境」之间那个更大的冲突。<span class="tag t-rep">转述</span></td></tr>
+      <tr><td>14</td><td>Grand Slam</td><td>大满贯</td><td>Kerans 炸掉堤坝，让潟湖水重新灌回城市，把 Strangman 的工程全部抹掉——他完成了 Bodkin 没做成的事。<span class="tag t-rep">转述</span></td></tr>
+      <tr><td>15</td><td>The Paradises of the Sun</td><td>太阳的天堂</td><td>Kerans 拒绝随 Riggs 北上，独自南行；途中遇到近乎失明、身体已毁的 Hardman，短暂相助后继续前进。收尾句把他称作「第二个亚当，寻找重生之日被遗忘的天堂」。<span class="tag t-rep">转述</span></td></tr>
+    </tbody>
+  </table>
+  <h3>人物表</h3>
+  <table>
+    <thead><tr><th>人物</th><th>身份</th><th>在故事里承担什么</th></tr></thead>
+    <tbody>
+      <tr><td>Robert Kerans</td><td>生物学家；全书的视点人物</td><td>全书以他的位置来测量「下沉」的深度：他先是工作效率下降，然后把无线电埋进书堆，最后把城市交还给水。</td></tr>
+      <tr><td>Colonel Riggs</td><td>考察队军事负责人</td><td>秩序与北撤的代表。他不是反派，但他是唯一还相信「可以恢复」的人，因此他的胜利是无意义的胜利。</td></tr>
+      <tr><td>Alan Bodkin</td><td>队里的医生，假说的提出者</td><td>把私人梦境翻译成一套关于「古心理过去」的理论；他的行动（炸堤）失败，他的判断（水应该回来）胜利。</td></tr>
+      <tr><td>Beatrice Dahl</td><td>拒绝撤离的富裕女性</td><td>住在半淹的公寓里，房间与私人泳池构成对越来越原始的世界的对照；★ 她在全书中的处境，见第八章第三条的女性形象讨论。</td></tr>
+      <tr><td>Lieutenant Hardman</td><td>考察队另一名军官</td><td>第一个南逃者，全书第一个用身体投票的人；结尾再现时近乎失明，仍在往南走。</td></tr>
+      <tr><td>Strangman</td><td>拾荒者／打捞者头目</td><td>把被淹没的世界重新捞出来的人。他是一次<strong>反向的考古</strong>：不是发掘过去，是把过去从水里拽回地面。</td></tr>
+    </tbody>
+  </table>
+  <h3>「三重下沉」结构说明</h3>
+  <p>这本书的骨架可以用三层「下沉」来描述，它们是同一件事的三个刻度。<span class="tag t-inf">推断</span></p>
+  <ol>
+    <li><strong>地理下沉</strong>——冰盖融化、海平面上升，伦敦变成潟湖。这是可视的、可以在第一章就看到的一层。
+    </li>
+    <li><strong>心理下沉</strong>——同一批人的梦境、集体记忆、对秩序的耐心同步下沉。这一层从第三章开始，由 Bodkin 用一套理论命名。
+    </li>
+    <li><strong>时间下沉</strong>——第三层最狠：故事不是在空间里移动，而是在地质时间里往回滑动。「深时」不是背景，是目的地。
+    </li>
+  </ol>
+  <p>三层不是先后发生的，而是同时发生、互为例证。这也是本书为什么不写成灾难题材就说不通：灾难片要有人对抗下沉，而这本书里的人在下沉里找到了位置。</p>
+  <h3>篇幅、难度与阅读方式</h3>
+  <p><strong>篇幅。</strong>本书是一部中篇体量的长篇：最早的美国版 158 页，后来的常见版本 175–176 页，2012 年 Liveright 纪念版 198 页（多出的部分主要是 Martin Amis 的序与版式调整）。<strong>这是一个下午到两个晚上就能读完的长度</strong>，但它的难度不在长度上。<span class="tag t-rep">转述</span></p>
+  <p><strong>难度。</strong><span class="tag t-inf">推断</span></p>
+  <ul>
+    <li><strong>语言难度：中等偏上。</strong>原文的描写密度很高，比喻密集（Kingsley Amis 就专门提过「比喻有时堆得太密」）。对非母语读者来说，主要障碍不是生词，是长句里的意象叠加——一句话里可能同时出现水色、光、植物与心情四层信息。
+    </li>
+    <li><strong>结构难度：中等。</strong>15 章线性推进，没有时间跳跃，没有多线叙事。<strong>结构本身不难，难的是它不给读者任何「接下来该紧张什么」的提示。</strong>
+    </li>
+    <li><strong>接受难度：偏高。</strong>这是最需要提前做好心理准备的一项。习惯了「问题—行动—解决」的读者会持续感到失焦：主角不做决定、不出手、不表态，直到第 14 章突然炸堤。<span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+  <p><strong>建议的阅读节奏。</strong><span class="tag t-inf">推断</span></p>
+  <p>如果你读得进去，<strong>不要一次读完</strong>。理由是它的三层下沉各有自己的舒适节奏：第 1–5 章适合在白天读（地理下沉，画面感最强），第 6–12 章适合在晚上读（心理下沉，梦与折磨的段落密集），第 13–15 章最好单独留一个完整时段（时间下沉与南行，是全书的落点）。一次读完最容易产生「中间怎么突然乏力了」的印象——而那个「乏力」其实是第 9 章前后 Strangman 排水造成的结构性停滞，不是你的注意力问题。</p>
+  <p><strong>关于本报告这 15 条「中文试译」。</strong><span class="tag t-inf">推断</span></p>
+  <p>第 1 节表格里的中文译名（「丽兹酒店的海滩」「鳄鱼嘉年华」「塔纳托斯之池」等）<strong>是本报告为方便对照而拟的试译，不是任何出版物的译者译名</strong>——因为本书没有中译本（见第 4 节）。请勿把它们当作既有译名引用。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>核心主题与结构机制</span><span class="caret">▾</span></h2>
+  <p><strong>一句话：环境即心理——外部空间的退化与内部空间的同步。</strong><span class="tag t-inf">推断</span></p>
+  <p>这不是情节复述，而是这本书赖以运转的装置。巴拉德做的不是「描写一个被淹的世界」，而是<strong>让读者在读完之前先接受一个前提：人对环境的适应，是以放弃自我为代价的</strong>。他完成这件事靠四个手段：</p>
+  <p><strong>第一，把物理描述当成心理描述来写。</strong>第一章从头到尾没有一行心理分析，但 Kerans 拖到 Riggs 的艇过去才起身、把无线电埋进书堆、日记写满六页——这些细节全部是「一个人正在把社会线索一根根剪断」的可视化记录。<span class="tag t-rep">转述</span></p>
+  <p><strong>第二，让理论先于体验出现，再由体验来证实它。</strong>第三章 Bodkin 先给出「新的心理学」，此后每一个人的梦都成了这套理论的实验数据。这是科幻的惯用手法，但巴拉德把它的因果关系倒装：理论不是用来解释世界的，理论是被世界逼出来的症状。<span class="tag t-inf">推断</span></p>
+  <p><strong>第三，把「反派」设成唯一还相信旧世界的人。</strong>Strangman 抽干伦敦的水，把街道、广场、建筑从泥里捞回来——他做的正是二十世纪所有考古与博物馆工程做的事：<strong>把过去固定下来</strong>。Kerans 最后的炸堤之所以是全书的高潮，不是因为他在反抗暴政，而是因为他在<strong>拒绝一次抢救</strong>。这一点让这本书彻底离开了灾难叙事的轨道。<span class="tag t-rep">转述</span></p>
+  <p><strong>第四，把结尾交给方向而不是结论。</strong>最后一章不闭幕，只改方向：南。南不是安全的方向，南是更热、更深处、更接近那个「第二个亚当」的位置。全书用一个方位词代替了道德判断。<span class="tag t-rep">转述</span></p>
+  <p><strong>第五，让「科学」成为一台测量仪，而不是一个答案。</strong>这是本书最容易被读错的地方。书里有考察队、有记录、有生物学、有分类学，但<strong>这些活动从来没有产出过任何对故事的走向有影响的结果</strong>。科学在书中的功能是提供一种<strong>距离感</strong>：它让人可以站在岸边观察世界如何变化，却不下水干预。当这个距离最终被 Kerans 自己放弃（他不去考察站了、他把无线电埋了、他炸了堤），小说的真正转折才发生。<strong>换句话说，这本书不是关于科学能不能解决问题，而是关于一个用科学武装自己的人怎样一步步卸下武装。</strong><span class="tag t-inf">推断</span></p>
+  <p><strong>第六，把「结局」交给一个不是主角的人来代表。</strong>Hardman 这个人物在全书里的功能非常特别：他在第二章就离开了，中间消失大半本书，最后以近乎失明、身体被毁的姿态重新出现，而且<strong>仍然在往南走</strong>。他不是反派，也不是同伴，他是<strong>这条路线的证据</strong>——证明 Kerans 现在选择的方向不是一时冲动，而是有人先走过了，而且是这么一个下场。有了 Hardman，第 15 章的南行就从「主角的任性」变成了「一个已经有人验证过的方向」。<span class="tag t-inf">推断</span></p>
+  <p><strong>这六个手段合起来，构成一个反灾难叙事的技术方案。</strong>灾难叙事的标准零件是四项：威胁、倒计时、抵抗者、恢复。这本书把四项全部拆掉了——威胁没有责任人，时间没有刻度，抵抗者的胜利被写成毫无意义（Riggs 的营救什么也没解决），恢复则被主角亲手炸掉。<strong>它不是「写得不够灾难」，而是「故意拒绝灾难叙事的四个零件」。</strong>理解这一点，就能理解为什么它既能被当成科幻经典，又能被当成主流文学的心理小说。<span class="tag t-inf">推断</span></p>
+  <p><strong>最后一点：标题本身就是一个判断，而不是一个描述。</strong>「被淹没的世界」听起来像一个地理事实，但如果整本书的立场真是「世界被淹了很糟糕」，那么主角最后的动作应该是不让水回来。他做了相反的事。所以这个书名真正指的是<strong>一个已经被接受的世界</strong>——不是「被淹」，而是「已淹」。中文若译作《已淹的世界》或许更贴近，但通行译法（无论在英语读者还是在中文报道中）都停在「被淹没」这个更像灾情的词上，这本身就是一个误读的入口。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <p><strong>先读第一章，只读它的时间感。</strong>第一章没有事件，只有一个早晨。但就在这个早晨里，作者把「已经是几代人之后」的世界观装进来了：无线电的电池是空的，巡逻艇是日常的，太阳是一个椭圆而不是一个圆。如果你读完第一章觉得闷，那是故意的。<span class="tag t-inf">推断</span></p>
+  <p><strong>别把它当灾难小说读，把它当心理小说读。</strong>灾难小说的默认动作是「恢复」，这本书的默认动作是「接受」。带着「他们什么时候重建文明」的问题去读，你会一路找不到答案；带着「他们什么时候不再想重建」的问题去读，你会一路都在答案里。<span class="tag t-inf">推断</span></p>
+  <p><strong>注意三样东西的三次出现：水、梦、时间。</strong>水从背景变成地形再变成终点；梦从打扰变成证据再变成向导；时间从钟表变成日历再变成地层。三样都是同一条曲线。<span class="tag t-inf">推断</span></p>
+  <p><strong>准备好接受一个不是结局的结局。</strong>第十五章没有解围、没有反转、没有道德总结。主角独自走进热带，带着一个近乎失明的同伴的记忆继续往南。这是一本把「之后就结束了」写成优点的书。<span class="tag t-rep">转述</span></p>
+  <p><strong>如果你只读一本巴拉德，先读这本；如果你读得进去，再读《旱灾》和《水晶世界》。</strong>评论界常把这三本一起归为他的「含糊的启示录」（ambiguous apocalypse）序列，三者共享同一套把灾变当作变形来写的方法。<span class="tag t-rep">转述</span></p>
+  <p><strong>给不同类型读者的具体建议。</strong><span class="tag t-inf">推断</span></p>
+  <ul>
+    <li><strong>如果你是科幻读者</strong>：请把注意力从「设定是否自洽」移到「设定如何被使用」。本书的物理设定（太阳、范艾伦带、气候）只承担一件事：让灾难无法被追责。你一旦开始追究它「科不科学」，就会像 1962 年那批摸不着头脑的类型读者一样，从头到尾找不到着力点。
+    </li>
+    <li><strong>如果你是文学读者</strong>：请把注意力从「人物是否丰满」移到「意象如何组织」。研究员 Gregory Stephenson 的评语值得先记住：这本书「最终是透过它的意象而不是透过它的行动被理解的」（转引自 McCarthy 1997）。带着这句话读，你会发现每一章的标题都是图像而不只是标签：鬣蜥、鳄鱼嘉年华、白色微笑的男人、颅骨之宴、太阳的天堂。<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>如果你是写作的人</strong>：请专门看第 1 章怎么处理「无事发生」。全书前五章几乎没有事件，但读者不会停下来——因为作者用「一个人在逐步剪断自己与社会之间那几根线」的细节替换了情节功能：拖时间、埋无线电、写六页日记。这是一份关于<strong>怎样用行为细节承担情节职责</strong>的示范。<span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>如果你是为了理解气候小说而来</strong>：请务必把「成因设定」与「被追认的类别」分开（见第 5 节第一条）。否则你会得到一个错误的印象，以为气候小说从 1962 年就在谈人为排放。<span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+  <p><strong>三个容易踩的阅读坑。</strong><span class="tag t-inf">推断</span></p>
+  <ol>
+    <li><strong>把它读成「末日求生」</strong>。书里没有任何一次求生行动成功，也没有人在为生存资源争斗。这里没有配给、没有暴动、没有粮食危机——<strong>该有的灾难零件它全都没有</strong>。这不是作者的疏漏，是他的选择。
+    </li>
+    <li><strong>把 Strangman 简单读成反派</strong>。他其实是全书里<strong>唯一还在执行旧世界价值标准的人</strong>：他在抢救文物、在恢复城市、在建水利工程，被炸掉堤坝时他是受害者。把他当纯反派读，会让本书最重要的那个对照（抢救 vs. 放弃）失效。
+    </li>
+    <li><strong>把结尾读成自杀</strong>。第 15 章确实充满死亡气息，但作者的表述更接近「完成」而不是「放弃」。 McCarthy 1997 转引的那句作者回应尤其值得记住：「不，天啊，这是一个快乐的故事。」★ 这一句属二手转引，未核对原著，仅作参考。<span class="tag t-rep">转述</span>
+    </li>
+  </ol>
+  <p><strong>关于阅读顺序的一个务实的建议。</strong>若你手上有 Liveright 五十周年纪念版或 Fourth Estate 版，<strong>先读正文，最后再读巴拉德 1963 年的〈Time, Memory and Inner Space〉</strong>。理由：那篇文章会把书中所有核心意象（半淹的城市、鳄鱼、子宫之海、三叠纪）一次性译成作者自己的私人象征语言。它是一把万能钥匙，但先把锁走一遍，钥匙才有意义。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>版本与译本怎么选</span><span class="caret">▾</span></h2>
+  <p><strong>★ 首先一句实话：本书目前没有中文译本。</strong>本节改答「英文版怎么选」。<span class="tag t-rep">转述</span></p>
+  <p>本报告的检索范围与结论：ISFDB 题录的译本清单（本轮实测，见来源清单）列出了法语（1964、2008）、西班牙语（1964、1966）、葡萄牙语（1966）、荷兰语（1968）、德语（1970、1972、2008、2023）、塞尔维亚语（1976）、意大利语（1977、1981、1998）、匈牙利语（1990）、保加利亚语（2021），<strong>没有中文</strong>；中文网络的检索中，本书出现过「被淹没的世界」这一非正式译名（见中文媒体 2016 年的一篇气候小说综述），但那是行文中的描写性译法，不是任何出版物的书名。<span class="tag t-rep">转述</span></p>
+  <p><strong>英文版怎么选（按需求分）：</strong></p>
+  <table>
+    <thead><tr><th>需求</th><th>选哪一版</th><th>理由</th></tr></thead>
+    <tbody>
+      <tr><td>想读「当年那一本」</td><td>1962 年 Berkley Medallion 美国版（158 页）或 1962／1963 年 Gollancz 英国版（175 页）</td><td>两版是本书最早的出版物形态；封面美术（Berkley 版为 Richard Powers）本身是科幻出版史材料。<span class="tag t-rep">转述</span></td></tr>
+      <tr><td>想读一个当代装帧、有导读、最好买得到的本子</td><td><strong>2012 年 Liveright 五十周年纪念版</strong>（198 页，Martin Amis 作序；精装 ISBN 9780871404060，2013 年平装 ISBN 9780871403629，Kindle ISBN 9780871403315）</td><td>这是目前唯一以「五十周年」名义重版的权威本，序言是 Martin Amis 写的，且是他哥哥 Kingsley Amis 在 1963 年给过这本书最高评价之后的家族接力。<span class="tag t-rep">转述</span></td></tr>
+      <tr><td>想看作者的自我说明</td><td><strong>Fourth Estate（HarperCollins）2010／2014 版</strong></td><td>该版正文之外另收三篇：Martin Amis 的导读、Travis Elborough 的〈Reality Is a Stage Set〉（2006），以及<strong>巴拉德本人 1963 年的文章〈Time, Memory and Inner Space〉</strong>。★ 这是普通读者最容易拿到的「作者自己怎么谈这本书」的文本。<span class="tag t-rep">转述</span></td></tr>
+      <tr><td>想要英国科幻经典系列的阅读感</td><td>Gollancz／SF Masterworks 1999 年平装（176 页，Chris Moore 封面）</td><td>属于这套经典系列的标准品相。<span class="tag t-rep">转述</span></td></tr>
+    </tbody>
+  </table>
+  <p><strong>一个必须提醒的坑：不要用页数判断内容。</strong>同一部小说在公开记录里出现过 158、170、171、175、176、194、198、208、209 等页数，差异来自开本、字号、是否收入导言与附录，<strong>不代表有删节或增补</strong>。也正因如此，本报告从头到尾<strong>不引用任何页码</strong>。<span class="tag t-inf">推断</span></p>
+  <p><strong>为什么没有中译这件事值得单独说一句。</strong><span class="tag t-inf">推断</span></p>
+  <p>一部被《时代》周刊列入「十大后末世小说」、被公认为气候小说开山文本之一、作者本人又是《太阳帝国》这种在中国读者中知名度不低的作品——却没有中译，这本身是一个值得记录的版本学事实。可能的原因有若干（版权归属分散在 Gollancz／HarperCollins／Liveright 几条线、题材在中国市场未被归入清晰的畅销类型、以及它不像《太阳帝国》那样有电影带来的读者入口），但本报告<strong>没有找到任何可核的解释</strong>，因此不给出原因判断，只登记这个事实与检索范围（见附录 D 第 D3 条）。</p>
+  <p><strong>如果你只能用英文读，选哪一版最省事？</strong><span class="tag t-inf">推断</span></p>
+  <ul>
+    <li><strong>只想要正文</strong>：Liveright 五十周年纪念版 2013 年平装（ISBN 9780871403629），198 页，最容易买到，含 Martin Amis 序。
+    </li>
+    <li><strong>想要正文 ＋ 作者自述</strong>：Fourth Estate（HarperCollins）2010／2014 版。它多收了巴拉德 1963 年的〈Time, Memory and Inner Space〉，这是唯一一份<strong>作者本人专门谈这本书</strong>的公开文本，价值远超一般导读。
+    </li>
+    <li><strong>想要最接近「当年那本书」的形态</strong>：1962 年 Berkley Medallion 平装（158 页）或 1963 年 Gollancz 精装（175 页）。★ 注意这两版都只在二手市场流通，且本报告无法核对它们与后续版本的字句差异（无合法全文）。
+    </li>
+  </ul>
+  <p><strong>关于中译名的一点提示。</strong><span class="tag t-rep">转述</span></p>
+  <p>中文语境里出现过至少两种叫法：「被淹没的世界」（见于中文媒体综述的行文）与「淹没的世界」（本项目采用的命名）。★ 本报告<strong>不主张其中任何一种已成为正式书名</strong>，因为没有任何中译本存在。如果将来出现中译本，这个书名很可能不会再叫这两个名字中的任何一个。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <p>★ 定位一律用<strong>章号 ＋ 公开章题</strong>，不使用页码。所有条目均为二手转引，<strong>未核对原著</strong>。<span class="tag t-rep">转述</span></p>
+  <table>
+    <thead><tr><th>流行说法</th><th>实际的文本情况</th><th>定位</th></tr></thead>
+    <tbody>
+      <tr><td>① 「这是一本关于全球变暖的预言书」</td><td>灾变的成因在书中写得明确：<strong>太阳活动与范艾伦带／电离层的变化</strong>，不是人类排放。《科幻百科全书》「气候变迁」条的原话是：把升温、海平面上升与伦敦被淹归因于「持续的太阳耀斑」（persistent solar flares）。它之所以仍被列为气候小说的开山文本，是因为它<strong>在 1962 年就把「气候灾变之后，文明会怎样自洽」这件事写对了</strong>——而不是因为它预测了人为暖化。</td><td>第 1–2 章的设定交代；《科幻百科全书》「气候变迁」条</td></tr>
+      <tr><td>② 「书名叫《淹没的世界》，所以整个世界都淹了」</td><td>被淹的是<strong>伦敦与赤道带</strong>；人类退居南北极。公开情节摘要提到书中唯一被点名的城市是格陵兰的 Camp Byrd（约一万人），并给出极地人口约五百万的推算。书名指的是<strong>适应</strong>这个世界，不是这个世界不存在了。</td><td>第 1–2 章；公开情节摘要</td></tr>
+      <tr><td>③ 「Kerans 是英雄，他会拯救城市／人类」</td><td>恰恰相反：他在第 14 章<strong>亲手炸掉堤坝</strong>，把城市重新交给水，抹掉一切「恢复」的成果；第 15 章他拒绝随队北上，独自往更热、更深的南方走。他不是救世主，他是<strong>第一个不再想救的人</strong>。</td><td>第 13–15 章</td></tr>
+      <tr><td>④ 「这是硬科幻，核心是科学设定」</td><td>作者本人的说法恰恰相反。他在 1963 年的文章里说，书里那座「巨大的半淹城市」是他<strong>童年上海记忆与在伦敦十年记忆的融合</strong>，并把这类写作归到自己称为「inner space（内部空间）」的领域。设定在这本书里是通道，不是主题。</td><td>作者〈Time, Memory and Inner Space〉（1963）</td></tr>
+      <tr><td>⑤ 「这本书是在 2009 年巴拉德去世后才被重新发现的」</td><td>不对。1962 年出版当年，Kingsley Amis 就在《The Observer》（1963 年 1 月 27 日）给出极高评价；2010 年《时代》周刊把它列入「十大后末世小说」；它是与蕾切尔·卡逊《寂静的春天》<strong>同年</strong>出版的书。</td><td>1963-01-27《The Observer》书评；2010 年《时代》周刊榜单</td></tr>
+      <tr><td>⑥ 「应该有中译本吧」</td><td>检索未见任何中译本（范围见第 4 节）。中文媒体上出现过「被淹没的世界」的描写性译法，但那不是书名。</td><td>第 4 节的检索范围说明</td></tr>
+      <tr><td>⑦ 「故事明确发生在 2145 年」</td><td>不少出版方简介与流行介绍写「2145 年」。但 Black Gate 2023 年的一篇专文（作者 John O'Neill）明确指出：<strong>小说本身没有给出年份，这个 2145 年是 2000 年以后才流行起来的说法</strong>，并认为书中的线索指向二十一世纪一二十年代到三十年代。本报告据此<strong>不采用 2145 年</strong>作为既定事实。</td><td>出版方简介 vs. Black Gate（2023）专文</td></tr>
+    </tbody>
+  </table>
+  <p><strong>这七条误读是怎么形成的：一个机制上的解释。</strong><span class="tag t-inf">推断</span></p>
+  <p>把这七条放在一起，可以看出它们不是散落的错误，而是<strong>三类系统性错位</strong>：</p>
+  <ul>
+    <li><strong>第一类：把成因现代化（①）</strong>。读者与营销材料都用今天的框架（人为暖化）去理解一本 1962 年的书，于是「太阳耀斑」被悄悄替换成「全球变暖」，甚至连出版方的简介都这么写。<strong>这类错位来自时代默认值，不来自误读文本本身。</strong>
+    </li>
+    <li><strong>第二类：把「记录」当成「主张」（④）</strong>。书中写了退化、放弃了重建、拒绝了抢救——这些都是<strong>被记录下来的行为</strong>，而不是被推荐的价值。但读者习惯把小说里的走向当成作者的立场。★ 这条误读在本报告所属书目里是常见病，也是「作者与角色必须区分」这条纪律的由来。
+    </li>
+    <li><strong>第三类：信息在转述链上被替换（②③⑦）</strong>。「世界被淹」被替换成「世界全淹了」，「主角最后往南走」被替换成「主角是英雄」，「没有年份」被替换成「2145 年」。这些替换都发生在一手文本到二手概述之间的环节里，然后被反复复制。
+    </li>
+  </ul>
+  <p><strong>一个实用的读法建议</strong>：遇到关于本书的任何事实性说法，先问一句「这条是谁第一个说的」——如果答案是一份简介、一个条目或一段概述。★ 本报告对本条目的处理方式是：<strong>凡不能回一手文本的，一律标为二手转引并写明未核对原著</strong>。</p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>以下六条，每条给出具名出处与年份。</p>
+  <p><strong>一、把「全球变暖小说」这顶帽子戴在它头上，是双重误解。</strong> <span class="tag t-rep">转述</span></p>
+  <p>正确说法是：书中灾变来自<strong>太阳辐射与范艾伦带变化</strong>（《科幻百科全书》「气候变迁」条，条目更新于 2026 年 6 月，把成因写作 persistent solar flares）。那么为什么它仍然被算作气候小说的源头？因为 Jim Clarke 在 2013 年的论文中论证，巴拉德这批早期气候反乌托邦被后来的综述研究认定为气候小说的奠基文本，理由是<strong>它对气候灾变的处理是心理的与本体的，同时也是气候学的</strong>（Jim Clarke, "Reading Climate Change in J. G. Ballard", <em>Critical Survey</em>, 25:2, 2013, pp. 7–21）。也就是说：它赢在<strong>写对了人怎么反应</strong>，不在写对了天为什么热。</p>
+  <p><strong>二、种族与殖民想象：这是巴拉德研究里的实质议题，不是可以绕过的细节。</strong> <span class="tag t-rep">转述</span></p>
+  <p>这不是后人的过度解读。1963 年 Kingsley Amis 的书评在描述 Strangman 出场时写下的句子是：「一个恶魔般的掠夺者，在一个人人肤色变深的世界里通体惨白」，其随从「由一群黑人（a band of negroes）和一群鳄鱼组成」（《The Observer》1963-01-27，2019 年由《卫报》在其 Observer 档案栏目重刊）。《科幻百科全书》的巴拉德条也直言，书中「野蛮的反英雄 Strangman 及其丛林中的帮伙」与康拉德《黑暗之心》里的 Kurtz 先生存在清晰的对应关系。学术侧，David Ian Paddy 把这本书称为一场「反讽的殖民罗曼司」（ironic colonial romance），Sean Matharoo 主张书中的生态崩溃与种族化、殖民暴力不可分割，称之为「生态-种族灾难」（eco-racial disaster），Nicole Devarenne 则主张巴拉德这批早期灾变小说必须放在种族、殖民性与去殖民化的脉络里读。</p>
+  <p>★ 本报告对这些材料<strong>只做文学批评分析</strong>（凝视结构、帝国冒险叙事的残留、作者本人的上海殖民城市背景如何进入意象），<strong>不作任何现实评价，不采用任何现实政治影射式解读</strong>。凡是把小说读成对某个现实国家或民族的映射者，本报告一律登记为「已知而主动不采用」。</p>
+  <p><strong>三、Beatrice Dahl：全书唯一的女性角色，被处理成一幅静物。</strong> <span class="tag t-rep">转述</span></p>
+  <p>只做文学分析：Patrick A. McCarthy 在 1997 年的论文里指出，Beatrice 这个名字与但丁《神曲》中引领诗人上天堂的贝雅特丽齐构成反讽性对应，而书中对她的第一次描写——「她长长的、涂了油的身体在阴影里闪着光，像一条沉睡的蟒蛇」——与但丁笔下空灵的理想之爱相距极远。McCarthy 同时指出，故事最后是 Kerans 抛下她和所有人独自消失在丛林里。另一位评论者 Gregory Stephenson 对该书的总评是：这本书「最终是透过它的意象而不是透过它的行动被理解的」（Stephenson, 转引自 McCarthy, 1997）。这句话恰好解释了 Beatrice 为什么不像一个人物：她是一个意象。</p>
+  <p><strong>四、「硬科幻」还是不「硬科幻」：两边都有话说，而且两边都不是在说同一件事。</strong> <span class="tag t-rep">转述</span></p>
+  <p>反方（把它读作心理寓言、而非科学预测）：作者本人 1963 年的文章把书中核心意象直接归为「童年上海记忆」与「伦敦十年记忆」的融合，并把写作目标写成「inner space」；Lorenz J. Firsching 在 1985 年的论文中进一步论证，本书的死亡主题是巴拉德全部灾变小说里最含混的一部，因为它「没有提供一个有吸引力的替代价值系统……巴拉德的世界不是新意义的世界，而是无意义的世界」（<em>Science Fiction Studies</em>, 12:3, November 1985, pp. 297–310）。</p>
+  <p>正方（它在 1962 年就写对了「气候灾变后文明的自洽方式」）：《科幻百科全书》「气候变迁」条把它称为「对后来科幻气候变迁图景的一个重要影响」（a significant influence on the iconography of later sf climate-change scenarios），并称其是「被频繁引用的例子」；Jim Clarke（2013）与 2010 年《时代》周刊榜单提供接受史的支撑。</p>
+  <p>本报告的判断：两方其实不冲突。它作为科学预测是可疑的（成因设定如今看来相当粗），作为<strong>关于人会怎样回应不可逆变化</strong>的推演则是准确的。用错了尺子去量，才会得出「它是硬科幻」或「它不是硬科幻」的争论。<span class="tag t-inf">推断</span></p>
+  <p><strong>五、人物是布景、情节是借口——这是它收到过的最集中、最有名的批评。</strong> <span class="tag t-rep">转述</span></p>
+  <p>★ 具名出处三处：<strong>Algis Budrys</strong> 在《Galaxy Science Fiction》1966 年 12 月号的书评栏里把它讥为「一本跑、躲、滑、摸、死的书」（据 Galaxy Bookshelf 栏，1966）；<strong>Kirkus Reviews</strong> 赞赏其史前景观与意象之力，但认为全书结构不均；<strong>Leslie Flood</strong> 在《New Worlds》上说它是多年来最好的科幻小说之一，同时批评它的冗长以及动机和细节上的问题。连最热情的 Kingsley Amis 也留了一句：书中「也许有繁茂过度的毛病，比喻虽然常常贴切得惊人，有时也堆得太密」（《The Observer》1963-01-27）。此外，Gregory Stephenson 的评语（见上条）等于从正面承认了这一点：这本书是靠意象而不是靠行动被理解的。</p>
+  <p><strong>六、巴拉德自己怎么评价这本书？能核到的只有一句半。</strong> <span class="tag t-rep">转述</span></p>
+  <p><strong>能核到的</strong>：① 1963 年他本人写的〈Time, Memory and Inner Space〉全文谈的就是这本书，语气体贴而投入，显然不视为少作敷衍（见第九章）。② McCarthy 1997 年论文转引了一个更有意思的说法：当有人要求巴拉德给这部小说一个「好结局」时，他回答：「不，天啊，这是一个快乐的故事。」（转引自 Wagar, <em>Terminal Visions</em>, p. 84，经 McCarthy 1997 转引）。<strong>这一句本报告未能回到原书核实，标为二手转引。</strong></p>
+  <p><strong>未能核到的</strong>：他在后期访谈里是否更明确地贬低过这部早期作品。本报告的多次检索只找到转述、未找到可核的原刊全文（详见附录 D）。★ 因此本章<strong>不写「巴拉德晚年否定此书」这类看起来合理、但没有出处的说法</strong>。</p>
+  <p><strong>这六条的相对分量。</strong><span class="tag t-inf">推断</span></p>
+  <p>如果要给这六条排一个「对阅读影响最大」的顺序，本报告的建议是：<strong>④ &gt; ⑤ &gt; ① &gt; ② &gt; ③ &gt; ⑥</strong>。</p>
+  <ul>
+    <li><strong>④ 与 ⑤ 排在最前</strong>，因为它们决定你能不能读进去。这两个问题（不够硬科幻、人物薄弱）几乎必然会在阅读过程中浮现；如果事先不知道它们是设计的一部分，你很可能在第三章就放弃。
+    </li>
+    <li><strong>① 排第三</strong>，因为它决定你会不会带错期待（以为自己在读一本关于排放的小说）。
+    </li>
+    <li><strong>② 与 ③ 排其后</strong>，因为它们是<strong>读完之后的讨论题</strong>，而不是阅读过程中的障碍——但要郑重对待，它们是这本书现代批评的主要战场。
+    </li>
+    <li><strong>⑥ 排在最后</strong>，因为它是一个研究性问题（作者自评），不影响阅读，只影响你评价这本书时援引的依据。
+    </li>
+  </ul>
+  <p><strong>一个提醒：不要用「作者本人的态度」来当最终判决。</strong><span class="tag t-inf">推断</span></p>
+  <p>关于第 ⑥ 条，本报告想多说一句：即便将来有人找到巴拉德晚年贬低这本书的确凿原话，那也<strong>不构成对这本书的评价</strong>。作者的自我判断是历史材料，不是文学判决；同理，作者 1963 年对这本书的投入也不构成它的价值证明。<strong>这本书好不好，取决于你读完第 15 章之后是否愿意再想一遍，而不取决于作者怎么想。</strong></p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>小说骨架：15 章与「三重下沉」</span><span class="caret">▾</span></h2>
+  <p><strong>★ 本节全部依据＝公开目录（出版社目录、图书馆书目记录、ISFDB 题录）与公开情节摘要，非原文核验。</strong>本报告没有也不主张任何形式的原文核对；本节的章题只作目录骨架使用，不作引文。<span class="tag t-rep">转述</span></p>
+  <h3>这部小说在讲什么</h3>
+  <p>在太阳辐射持续增强、冰盖融尽之后，地球大部分地区变成炎热潮湿的热带，伦敦沉在潟湖、淤泥与茂密植被之下。一支科学考察队留在伦敦，记录变化中的动植物，等待北撤的命令。队里的生物学家 Robert Kerans 逐渐从工作中脱落：他不再在乎记录，不再回复无线电，开始做一种反复出现的梦。</p>
+  <p>队里的医生 Alan Bodkin 给这些梦提出了一套解释：新的气候正在唤醒人类细胞深处的古老记忆，把人拉回更早的进化状态。附近的 Beatrice Dahl 拒绝撤离，继续住在半淹的公寓楼里，用空调与私人泳池维持一小片旧世界的秩序。</p>
+  <p>军官 Hardman 忽然离开营地，独自往南方的酷热里走，搜索队没能找回他。</p>
+  <p>当其余人终于北撤时，Kerans、Bodkin 与 Beatrice 留了下来。这份孤立被一艘白色的明轮船打破：Strangman 带着船员、补给与打捞设备抵达伦敦。他不是科学家，是拾荒者。他先疏浚潟湖，随后筑堤抽水，把伦敦中部的街道、广场与建筑从泥里重新挖出来，然后当作一座可以搬空的仓库来对待。Kerans 与 Bodkin 看着这片被抽干的景观，感到的不是欣慰，而是厌恶。</p>
+  <p>Bodkin 决定炸掉堤坝，让水回来；他被 Strangman 的人抓住并杀死。此后 Kerans 成了 Strangman 的主要目标，在假客气与公开残忍之间被反复折磨：囚禁、曝晒、羞辱，目的只有一个——逼他承认那座被恢复的城市的价值。Kerans 拒绝合作。Beatrice 也落入 Strangman 的掌控，与其说是盟友，不如说是他占有的那个世界的一部分。<span class="tag t-rep">转述</span></p>
+  <p>最后 Riggs 巡逻返回伦敦，介入，救出 Kerans，恢复有限的秩序，迫使 Strangman 收手。但这次干预没有解决那个更大的冲突：Kerans 仍然厌恶被抽干的城市，也厌恶把旧的人类秩序重新加在它身上的企图。Strangman 离开之后，Kerans 炸掉堤坝，让潟湖水重新灌回城市。</p>
+  <p>他没有随 Riggs 北上，而是选择了南——沿着 Hardman 走过的同一条路。Beatrice 没有跟去。他独自走进被淹的丛林，走进越来越严酷的高温，途中遇到已经近乎失明、身体被毁却仍在往南走的 Hardman，短暂相助之后继续前进。</p>
+  <h3>结构骨架</h3>
+  <p><strong>（1）15 章表</strong>：见第 1 节。为避免重复，此处只强调一件事——<strong>章题本身就构成一条线索</strong>。「鬣蜥」「鳄鱼」「深时」「塔纳托斯」「颅骨」「第二个亚当式的太阳天堂」这些词，把全书的重心从第 1 章开始就放在<strong>生物与神话</strong>而非<strong>科技与救援</strong>上。<span class="tag t-inf">推断</span></p>
+  <p><strong>（2）「三重下沉」</strong>：</p>
+  <table>
+    <thead><tr><th>层</th><th>内容</th><th>在文本中如何显形</th><th>起于</th></tr></thead>
+    <tbody>
+      <tr><td>第一重：地理下沉</td><td>冰盖融尽、海平面上升、伦敦变潟湖</td><td>第一章的太阳、水面、植被与废弃百货大楼；第 9 章被抽干又复归的城市</td><td>第 1 章</td></tr>
+      <tr><td>第二重：心理下沉</td><td>共同的梦、集体记忆的苏醒、对社会线索的放弃</td><td>Kerans 把无线电埋进书堆、日记不再更新；Bodkin 的理论；第 11–12 章的折磨与屈服问题</td><td>第 2–3 章</td></tr>
+      <tr><td>第三重：时间下沉</td><td>不是空间移动，而是从二十世纪退回三叠纪</td><td>「深时」；第 5 章章题；第 15 章南行方向的不可逆</td><td>第 3–5 章起意，第 15 章完成</td></tr>
+    </tbody>
+  </table>
+  <p>三层的关系是<strong>同一个过程的三种读数</strong>，不是三个阶段。任何试图把它读成「先闹灾、再心理变态、最后穿越回古代」的线性读法，都会把这本书读小。<span class="tag t-inf">推断</span></p>
+  <p><strong>（3）三层各自的可核证据与不可核部分。</strong><span class="tag t-inf">推断</span></p>
+  <ul>
+    <li><strong>地理下沉是可核的</strong>：成因而机制在《科幻百科全书》「气候变迁」条中有明确表述（太阳能耀斑导致升温、海平面上升、伦敦被淹）；公开情节摘要也给出了被淹没的范围与极地人口。这一层不依赖任何文本细读。
+    </li>
+    <li><strong>心理下沉是可核的</strong>：共同的梦、Bodkin 的假说、Kerans 逐步脱离考察队的工作，这些都在公开情节摘要中有对应段落。它的<strong>不可核部分</strong>是这套假说的具体措辞与它被陈述的方式——本报告无法引用原文中任何一句理论表述。
+    </li>
+    <li><strong>时间下沉是最不可核的一层</strong>：「深时」这个词只出现在第 5 章的章题里，本报告无法核实它在正文里究竟被如何使用、出现几次、由谁说出。<strong>这一层基本上是本报告从章题与学术评论反推出来的</strong>，读者应把它当作一个阅读假设而不是文本事实。
+    </li>
+  </ul>
+  <p><strong>（4）为什么用「下沉」而不是「退化」。</strong><span class="tag t-inf">推断</span></p>
+  <p>「退化」（devolution）是评论界与本书目关键词表里的标准用词（ISFDB 给它挂了 "devolution" 标签），但它有一个隐含的价值判断：往下＝更坏。而这本书通篇拒绝这个判断。用「下沉」更中性：它只描述运动方向（向下、向里、向过去），不裁定好坏。<strong>这正是这本书最麻烦的地方</strong>——它把一个通常需要道德评价的过程，写成了一个不需要评价的过程。</p>
+  <h3>可疑之处</h3>
+  <p><strong>其一，章题可靠，逐章内容不可靠。</strong>15 章的章题在多个独立来源（出版社目录、两家以上图书馆书目记录、电子书目录页）中完全一致，本报告对章题有较高信心；但<strong>逐章的情节分配</strong>只能依据公开情节摘要反推，第 4、10、12 章本报告明确未核到对应内容，已在表中标为推断。<strong>不要让本报告的逐章描述被当成对原书的核对结果。</strong><span class="tag t-inf">推断</span></p>
+  <p><strong>其二，「三重下沉」是本报告的分析框架，不是作者的自述。</strong>它是从公开材料的共识读法里提炼出来的，出口在别处、说法不同。请把它当一个阅读手柄，而不是一个结论。<span class="tag t-inf">推断</span></p>
+  <p><strong>其三，情节摘要本身有内部矛盾。</strong>例如 Beatrice 究竟是「Dr Beatrice Dahl」（一处公开摘要如此写）还是单纯的富裕幸存者，不同来源不一致；Strangman 一伙究竟是被「当作海盗」还是「被称作拾荒者」，措辞在各来源间漂移。这类细节本报告不在正文里断言。<span class="tag t-inf">推断</span></p>
+  <p><strong>其四，「谁在叙述」这个问题本报告无法回答。</strong><span class="tag t-inf">推断</span></p>
+  <p>施工图把 Kerans 记为「生物学家／叙述者」，但本报告没有合法全文，无法核实全书究竟采用第一人称还是第三人称限定视角。公开情节摘要的表述（「小说跟随生物学家 Robert Kerans……」）更像是第三人称限定的描述方式，但这不足以作为结论。★ 本报告的处理方式是：<strong>正文统一使用「视点人物」这一中性表述</strong>，不主张任何一种人称，并将其列入附录 D（第 D5 条）。</p>
+  <p>这个看似琐碎的问题其实并不小：<strong>如果全书是第三人称限定，那么第 3 章那套「古心理过去」的理论就是被外部叙述出来的一套主张；如果它是第一人称，那这套理论就更接近主角自己的推演</strong>——两种情况的可靠性等级完全不同。在不能确定的情况下，本报告<strong>不把任何理论表述当成文本已确认的内容</strong>。</p>
+  <p><strong>其五，本报告对「三重下沉」的时间分配是反推的，可能与阅读体验不符。</strong><span class="tag t-inf">推断</span></p>
+  <p>第 6.2 节给出「地理下沉起于第 1 章、心理下沉起于第 2–3 章、时间下沉起于第 3–5 章」这一分配，依据是章题顺序与公开情节摘要的对应关系。但<strong>真实的阅读体验很可能是三层同时扑面而来、无从分期</strong>。本报告保留这一分配只是为了给读者一个抓手，<strong>不主张它对应文本里的任何明确标记</strong>。</p>
+  <p><strong>其六，一个必须承认的方法论局限。</strong><span class="tag t-inf">推断</span></p>
+  <p>本书是本批三本中唯一没有合法全文的。这意味着本报告<strong>在结构上无法做本批另两本所做的那种事</strong>——逐章核对、逐句引证、把某一段原文与某一条批评并置。本报告中所有关于「章内发生了什么」的陈述，都是<strong>从公开情节摘要反推</strong>的；所有引文都是<strong>转引</strong>。请读者在阅读本章时始终带着这个前提。★ 这不是本报告的取巧，而是本书的版权状态决定的：<strong>在版权期内且无出版方官方节选的情况下，任何声称逐字核对了原文的报告都值得怀疑。</strong></p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>核心概念深挖</span><span class="caret">▾</span></h2>
+  <p>以下七个概念，每个都按「它解决什么问题／它的代价是什么／它与现实中的哪个概念对应」来写。凡属本报告的分析，均标 <span class="tag t-inf">推断</span>；凡有具名出处，均标 <span class="tag t-rep">转述</span>。</p>
+  <p><strong>读这一章前的一个提醒。</strong><span class="tag t-inf">推断</span></p>
+  <p>这七个概念不是独立的七个知识点，而是<strong>一个装置上的七颗螺丝</strong>：内部空间是目标，退化与古心理过去是机制，太阳灾变是前提，水与潟湖是交通工具，Strangman 与打捞是反面动作，熵与时间尺度是背景条件，向南与第二个亚当是落点。<strong>抽掉其中任何一颗，其余六颗都会松。</strong>这也是为什么这本书很难被改编：你没法只保留设定、丢掉心理；或者只保留心理、丢掉那艘白船。</p>
+  <p><strong>另外请记住一个纪律</strong>：本章涉及的所有理论与设定，都只在<strong>文学装置</strong>的层面上被讨论。凡涉及科学主张（尤其是「古心理过去」），本报告都在该条内明确说明其不可成立，并说明它在此处的身份只是小说结构的一部分。<span class="tag t-inf">推断</span></p>
+  <h3>inner space（内部空间）</h3>
+  <p><strong>它解决什么问题。</strong>1960 年代初，巴拉德需要把自己正在写的东西与当时科幻的两大主流区分开：一种是向外的太空开拓叙事，一种是「灾难题材 + 英雄重启文明」的套路。他的办法是把方向掉过来——<strong>不再写外部空间，写内部空间</strong>。<span class="tag t-rep">转述</span></p>
+  <p><strong>作者本人的纲领性主张。</strong>1963 年，他在〈Time, Memory and Inner Space〉里给出了这个提法最直接的一次定义：「我把这个区域理解为『内部空间』，即明日之内心景观，它是一个被转化了的过去影像，也是对富有想象力的写作者最有成果的领域之一。」同一篇文章里他把这类写作与超现实主义绘画并列，点名 de Chirico、Dali、Max Ernst 是「内部空间的图像志作者」，并说「黑同时变成白」这种「不容否认的逻辑」正是这类作品的特征。<span class="tag t-talk">作者谈话</span></p>
+  <p><strong>代价是什么。</strong>把赌注押在内部空间上，等于放弃了科幻最可靠的那部分读者契约——「我会给你一个经得起推敲的外部世界」。这就是为什么《淹没的世界》会让一部分当时的类型读者完全摸不着头脑（见第八章第五条引用的评论）。<span class="tag t-inf">推断</span></p>
+  <p><strong>与现实中哪个概念对应。</strong>它对应的是「<strong>心理地理学式的阅读</strong>」：文本的表面内容（manifest content，梦境外观）与潜在内容（latent content，作者私人的象征词汇）被明确要求分开读。巴拉德在 1963 年那篇文章里就是用弗洛伊德式的这一对术语来说明的。<span class="tag t-talk">作者谈话</span></p>
+  <p><strong>这个提法后来变成了什么。</strong><span class="tag t-rep">转述</span></p>
+  <p>「内部空间」在巴拉德的写作生涯里没有停在一次命名上。按 jgballard.ca 的非虚构索引，他在 1963 至 1971 年间陆续写过若干篇「社论式」文章来解释自己的「内部空间」立场；《科幻百科全书》另设有 "Inner Space" 条目，说明这个词在科幻史上已经成为一个独立的主题条目。他也常被写成「推广了内部空间这一相关概念与类型」的人。也就是说：<strong>这本小说既是这个纲领的第一个大型实例，也是它的说明书</strong>。</p>
+  <p><strong>对读者意味着什么。</strong><span class="tag t-inf">推断</span></p>
+  <p>如果你接受「内部空间」这个框架，那么本书里所有看起来「不够科幻」的部分——拖沓的开头、漫无目的的日常、没有胜负的冲突、消失的中间章节——都会立刻变得有意义：<strong>它们不是在讲外面发生了什么事，而是在记录里面发生了变化</strong>。反之，如果你拒绝这个框架，这本书就只是一部设定粗糙、人物乏力、结局含糊的灾难题材小说。<strong>本书的评价分裂，很大程度上就发生在这条分界线上。</strong></p>
+  <h3>退化与「古心理过去」（archeopsychic past）</h3>
+  <p><strong>它解决什么问题。</strong>它给全书提供了一个<strong>不靠外部事件推动的内在因果</strong>：如果没人在打仗、没人在抢资源，故事靠什么往前走？答案是天热了，基因里更古老的一层醒过来了。<span class="tag t-inf">推断</span></p>
+  <p><strong>代价是什么。</strong>这个设定在科学上站不住：它假定了个体心理可以「重演」物种进化史（更早版本的「复演论」思路），并假定这种重演可以被气候直接触发。放到今天看，这是一套文学装置，不是心理学主张（关于它与《亚当之前》里「祖先记忆」的区别，见本页末尾）。<span class="tag t-rep">转述</span></p>
+  <p><strong>与现实中哪个概念对应。</strong>最接近的思想亲戚是荣格式的「集体无意识」与二十世纪早期心理学中的「种族记忆」类观念；发表情节摘要与学术综述的多个来源都把这一层读作荣格式的原型浮现，而非适应性的生存策略。此外，作者本人 1963 年的文章把这一运动描述为「从二十世纪返回第二次三叠纪的阳光天堂」，并说书中人物逐渐意识到「他们周围的子宫之海、海母的黑暗子宫，既是他们个体性的坟墓，也是他们生命的来源」——这句话给这个设定定了一个<strong>死亡驱动</strong>的调子。<span class="tag t-talk">作者谈话</span></p>
+  <p><strong>这个设定在三十年后被怎么读。</strong><span class="tag t-rep">转述</span></p>
+  <p>现代学术几乎一致地把这一层从「心理学主张」降格为「文学装置」。2024 年的论文把它读作一种<strong>决定论</strong>：书中人物的退化并不反映现代意义上的生态焦虑，而是一种朝向系统发育记忆的确定性拉力——气温升高加速的退化冲动，独立于任何道德或社会批评。另一些读法则强调，这套理论与情节之间的缝隙本身就是文本的意图：正因为「古心理过去」无法被证明，它才只能以<strong>梦</strong>的形式出现，而梦是不可验证的。<span class="tag t-rep">转述</span></p>
+  <p><strong>一个必须写清的边界。</strong><span class="tag t-inf">推断</span></p>
+  <p>★ 本报告在此明确声明：<strong>这套「古心理过去」设定在科学上不成立</strong>，它依赖的是一种更早的复演论式思路（个体心理重演物种进化史），既没有遗传学基础，也没有因果证据。它在本报告中被讨论的唯一身份是<strong>一部小说的思想装置</strong>，而不是任何形式的心理学或生物学说。关于它与本项目另一本书（杰克·伦敦《亚当之前》）中「祖先记忆」设定的关系，见本节末尾的对照说明——两者<strong>可以对照，绝不能互相解释</strong>。</p>
+  <h3>太阳灾变与「新的三叠纪」</h3>
+  <p><strong>它解决什么问题。</strong>它让整本书的灾难<strong>无法被归咎于任何人</strong>。没有工厂、没有排放、没有决议、没有责任人。<span class="tag t-inf">推断</span></p>
+  <p><strong>代价是什么。</strong>代价是它一旦被塞进今天的「气候小说」框架里，就会产生一个尴尬的错位：读者期待的是关于责任的讨论，书里给的是一场太阳的自然史事件。这既是它被误读的第一原因，也是它至今仍有特殊价值的原因——<strong>它提前写了一个没有责任人的灾难里，人怎么活</strong>。<span class="tag t-inf">推断</span></p>
+  <p><strong>与现实中哪个概念对应。</strong>《科幻百科全书》把它归入「科幻中的气候变迁」谱系，并明确其机制是「持续的太阳耀斑」导致升温、海平面上升与伦敦被淹。★ 请务必区分：<strong>这不是人类造成的全球变暖</strong>。这也是它与今天绝大多数气候小说最大的差别。<span class="tag t-rep">转述</span></p>
+  <p><strong>为什么作者选了一个「没有责任人」的灾变。</strong><span class="tag t-inf">推断</span></p>
+  <p>有三种读法，本报告都列出，不替读者裁决：</p>
+  <ol>
+    <li><strong>时代条件说</strong>：1962 年，人为暖化的科学共识尚未成形，把灾变归于太阳是当时最自然、也最少争议的选择。
+    </li>
+    <li><strong>叙事需要说</strong>：这本小说要写的是<strong>适应</strong>，而不是<strong>抗争</strong>。一旦灾难有了责任人，故事就必须处理追责与补救，主角也就必须选边站。太阳灾变把这个选项直接删掉了。
+    </li>
+    <li><strong>主题内在一说</strong>：如果退化是真的，那么<strong>退化本身就不该被归咎于任何人</strong>——这正是本书那个不舒服的结论所需要的前提。
+    </li>
+  </ol>
+  <p><strong>「新的三叠纪」这个词的分量。</strong><span class="tag t-rep">转述</span></p>
+  <p>三叠纪是地质年代里的一个真实分期，其标志之一就是爬行动物（包括鳄类与早期的恐龙类）成为陆地优势类群。作者在 1963 年的文章里把书中人物的运动称为「从二十世纪返回第二次三叠纪的阳光天堂」，并在同一篇文章里专门写到三叠纪的两栖类动物——鳄鱼与短吻鳄：「对于小说的主人公来说，它们象征着这场探索中潜藏在水下的危险」，随后他提到上海动物园爬虫馆里那条被关在窄小混凝土坑中的巨型老鳄鱼，「仿佛是被不情愿地向前拽了数千万年，拽进二十世纪」。★ 这段材料是本报告全篇唯一一处能够直接引用的、作者本人对本书核心意象的自述。<span class="tag t-talk">作者谈话</span></p>
+  <h3>水与潟湖作为时间机器</h3>
+  <p><strong>它解决什么问题。</strong>它把「时间倒流」这件抽象的哲学事，变成了一个可摸的东西：水。往水里走，就是往过去走。<span class="tag t-inf">推断</span></p>
+  <p><strong>代价是什么。</strong>代价是空间与时间被强行绑定后，地理上的「往下」承担了太多重量，容易让读者以为这本书在讲一个简单的地理寓言。<span class="tag t-inf">推断</span></p>
+  <p><strong>与现实中哪个概念对应。</strong>学术侧有两条明确的读法。一条是「深时」：Peter Sands（2021）论证巴拉德的气候启示录写作把主体性接在<strong>地质时间与化石时间</strong>上，用化石这一形象消解了生物与非生物之间的稳定区别。另一条是「异托邦」：2024 年 Ljubica Matek 的论文把潟湖读成一个<strong>异托邦（heterotopia）空间</strong>，这个空间容纳的正是人类灭绝过程中的过渡阶段（Ljubica Matek, "J. G. Ballard's <em>The Drowned World</em>: A Nonhuman Utopia", <em>Caietele Echinox</em> 46, 2024, pp. 365–380）。<span class="tag t-rep">转述</span></p>
+  <p><strong>为什么「水＝时间」这个等式是这本书最有效的一处设计。</strong><span class="tag t-inf">推断</span></p>
+  <p>它把三个本来互相独立的东西合并成了一个动作：</p>
+  <ul>
+    <li><strong>地理动作</strong>：往下走（水位上升、地面淹没）；
+    </li>
+    <li><strong>时间动作</strong>：往回走（三叠纪、深时）；
+    </li>
+    <li><strong>心理动作</strong>：往里走（inner space、梦）。
+    </li>
+  </ul>
+  <p>在别的写法里，这三件事需要三套不同的描写。在这里，只要让一个角色往水里走，三件事同时发生。<strong>这就是为什么本书的场景那么少、事件那么少，却仍然有推进感</strong>：它把推进的任务交给了空间本身。</p>
+  <p><strong>它也有代价：一旦水被抽干，书就停下来了。</strong><span class="tag t-inf">推断</span></p>
+  <p>Strangman 的排水工程之所以在结构上是全书最有效的段落，是因为<strong>它同时是情节转折和隐喻逆转</strong>：水退掉以后，时间不再倒流，人物失去方向，故事立刻陷入僵局——直到 Kerans 把水放回来。全书最漂亮的一处结构对称就在这里：<strong>Bodkin 炸堤失败，Kerans 炸堤成功；水退过一次，水回来一次。</strong>作者没有用一句话解释这个对称，但它是本书能被反复重读的主要原因之一。</p>
+  <h3>Strangman 与「打捞」</h3>
+  <p><strong>它解决什么问题。</strong>它给全书提供了一个<strong>反面动作</strong>：不是向前适应，而是向后抢救。没有 Strangman，这本书只有一种方向；有了他，才有了选择。<span class="tag t-inf">推断</span></p>
+  <p><strong>代价是什么。</strong>代价是他同时把全书的殖民冒险叙事残留全部集中到一个人身上——白色船、白色微笑、武装船员、打捞、"打捞出来的祭坛画与骑马雕像"。这让这本书在被阅读时无法摆脱帝国冒险小说的影子，也正是现代批评集中火力的地方。<span class="tag t-rep">转述</span></p>
+  <p><strong>与现实中哪个概念对应。</strong>两点必须分开说。① 文学传统上，这对应的是<strong>帝国冒险叙事里的白色猎人／掠夺者形象</strong>，其直接原型是康拉德《黑暗之心》里的 Kurtz——这一点由《科幻百科全书》的巴拉德条明说，连出版方（Liveright）自己的简介也把本书写成「一次对《黑暗之心》的精彩重述——配上一个疯狂的白色猎人和他成群的土著士兵」。② 现实批评层面，本报告按施工图要求<strong>只做文学分析，不做现实评价，不引入任何现实政治影射式解读</strong>。<span class="tag t-rep">转述</span></p>
+  <p><strong>「打捞」这个动作在结构上做了什么。</strong><span class="tag t-inf">推断</span></p>
+  <p>把 Strangman 的行为拆开看，它有三层：</p>
+  <ol>
+    <li><strong>物理层</strong>：疏浚潟湖、筑堤、抽水，把伦敦挖出来。
+    </li>
+    <li><strong>经济层</strong>：把挖出来的东西当货物，装船运走（公开简介提到他的船上堆满打捞出的祭坛画与骑马雕像）。
+    </li>
+    <li><strong>象征层</strong>：他在<strong>拒绝接受不可逆</strong>。整本书的其他人都在适应（北上、留下、往南），只有他在抢救。
+    </li>
+  </ol>
+  <p>第 3 层是本书最尖锐的地方：<strong>抢救在道德上看起来是好事，在书中却被写成需要被摧毁的行为</strong>。作者没有让 Kerans 通过辩论赢过 Strangman，而是让他用一次爆破赢过。这是一个非常暴力的表达方式，也是本书最难被「读懂为正能量」的地方。<span class="tag t-inf">推断</span></p>
+  <p><strong>为什么他必须是一艘白船、一张白脸。</strong><span class="tag t-rep">转述</span></p>
+  <p>1963 年《The Observer》的书评把这一点写得很直白：Strangman 是「一个恶魔般的掠夺者，在一个人人肤色变深的世界里通体惨白」。★ 本报告对这一层的处理严格限定在文学分析：<strong>「白」在这里是一个视觉编码（与全球性的肤色变深构成反差），作者用它来标记「拒绝适应的人」</strong>。至于这个编码在文学史上继承了哪些帝国冒险叙事的模板、以及它为什么会被现代批评集中火力，见第八章第二条。本报告不从此推出任何关于现实世界的主张。</p>
+  <h3>熵与时间尺度的崩解</h3>
+  <p><strong>它解决什么问题。</strong>它回答了「为什么这本书读起来一点也不慌」。城市不是在战斗中陷落，是在熵里散开：钢筋混凝土、图书馆、无线电、告示牌，一样一样地失去与人的关系。<span class="tag t-inf">推断</span></p>
+  <p><strong>代价是什么。</strong>代价是它拿走了读者的紧张感来源。没有倒计时，没有最后一分钟营救，甚至第 13 章 Riggs 的「营救」也被明确写成不解决任何根本问题。<span class="tag t-rep">转述</span></p>
+  <p><strong>与现实中哪个概念对应。</strong>① 术语层面，「熵」是巴拉德研究的关键词之一——1984 年 Peter Rønnov-Jessen 对巴拉德的访谈标题就叫〈Against Entropy〉（<em>Literary Review</em>, no. 74, August 1984, pp. 28–31），ISFDB 也给本书挂了 "anomie"（失范）标签。② 概念层面，2024 年的论文把城市的解体读成「城市熵」——人类发明的城市在古生代与中生代的自然形态面前作为时代错置之物自行瓦解。<span class="tag t-rep">转述</span></p>
+  <p><strong>时间尺度崩解这件事，具体是怎么被执行的。</strong><span class="tag t-inf">推断</span></p>
+  <p>本书有一个不容易被注意的结构选择：<strong>它几乎不给出任何精确的时间标记</strong>。没有年份，没有日期，没有「第几天」。读者能用来定位时间的东西只有三样，而且三样都在退化：</p>
+  <ul>
+    <li><strong>生理时间</strong>（饿、困、热）→ 变成唯一可靠的时间刻度；
+    </li>
+    <li><strong>社会时间</strong>（巡逻、签到、北撤通知）→ 逐步失效，最后靠无线电维持，而 Kerans 把无线电埋了；
+    </li>
+    <li><strong>地质时间</strong>（三叠纪、深时）→ 逐渐取代以上两者，成为人物唯一还在意的时间单位。
+    </li>
+  </ul>
+  <p>这三者此消彼长的过程，就是「时间下沉」在文本层面的执行方式。也正因为没有年份，第 4b 表第 ⑦ 条那个「2145 年」的流行说法才格外可疑——<strong>这本书在结构上就不愿意给你一个年份</strong>。<span class="tag t-inf">推断</span></p>
+  <p><strong>熵的代价：它拿走了紧张感的来源。</strong><span class="tag t-rep">转述</span></p>
+  <p>ISFDB 给本书挂的另一组标签值得一读：「后末世」「舒适灾变」（cosy catastrophe）、「失范」「海平面上升」「气候变化」。其中「舒适灾变」是英国灾变小说的一个传统门类（通常指那种灾后反而生活更惬意的小说），而 Christopher Daley 在 2014 年的论文里专门论证：<strong>本书是对这一传统的改写，而不是继承——它拒绝「舒适灾变」所附带的那种更新与重生</strong>（Christopher Daley, 〈The Not So Cozy Catastrophe〉, in <em>Apocalyptic Discourse in Contemporary Culture</em>, Routledge, 2014, pp. 133–147）。Roger Luckhurst 的说法更直接：巴拉德的灾变小说发生在「灾变之间」（between catastrophes），处在一个开放而含混的后灾变空间里（Luckhurst, <em>The Angle Between Two Walls</em>, 1997, pp. 38, 45–46）。<strong>没有灾变前，也没有灾变后，只有一个无限延长的灾变中。</strong></p>
+  <h3>结尾的向南与「第二个亚当」</h3>
+  <p><strong>它解决什么问题。</strong>它给全书一个方向，而不是一个结论。<span class="tag t-inf">推断</span></p>
+  <p><strong>代价是什么。</strong>代价是它把结局的责任交给读者：Kerans 是疯了、是开悟了、还是仅仅在服从一个生理冲动？书不回答。<span class="tag t-inf">推断</span></p>
+  <p><strong>与现实中哪个概念对应。</strong>收尾句把 Kerans 描述为「第二个亚当，寻找重生之日被遗忘的天堂」（转引自 2024 年学术论文所引文本，<strong>未核对原著，不给页码</strong>）。学术侧对这句话的读法分成两支：一支认为它是一个「非人类的乌托邦」入口（Matek 2024）；另一支提醒这是<strong>反讽</strong>——McCarthy 1997 指出书中对亚当夏娃与圣杯传说各有直接指涉，但这些指涉「根本上是反讽的」，因为全书的核心视象与基督教的救赎追求完全不同；McCarthy 还指出全书最后 Kerans 抛下 Beatrice 独自消失在丛林里，与他之前那句「也许终会走到一个点，第二个亚当与夏娃发现自己独自待在一座新的伊甸园里」构成一种冷酷的兑现。<span class="tag t-rep">转述</span></p>
+  <p>★ <strong>与《亚当之前》的对照（只作对照，不作互相解释）</strong>：本报告所属书目另收有杰克·伦敦《亚当之前》（1906 连载／1907 成书），那本书的设定是<strong>叙述者在梦中经历自己的史前祖先一生</strong>，靠的是「祖先记忆／遗传记忆」。两者在字面上都用「（第二个）亚当」，但<strong>这是两套完全不同的观念</strong>：伦敦关心的是个体记忆能否遗传（一个 1906 年尚无遗传学基础的问题），巴拉德关心的是<strong>行为与欲望层面的退化是否会被环境重新激活</strong>（一个 1962 年的心理-生态问题）。<strong>可以对照，绝不可以互相解释。</strong></p>
+  <p><strong>「南」这个方向的三个属性。</strong><span class="tag t-inf">推断</span></p>
+  <ul>
+    <li><strong>它是错的</strong>。全文没有任何一处暗示南边有出路。热、雨、鳄鱼、巨蝠，都是南边的。
+    </li>
+    <li><strong>它是有人走过的</strong>。Hardman 先走了，而且失败了（近乎失明的结局就是失败的定义）。所以南行不是冲动，是一次<strong>复现</strong>。
+    </li>
+    <li><strong>它是唯一还剩下的方向</strong>。北边是旧世界、是秩序、是 Riggs；东与西在书里没有被赋予意义；只有南是「还没被走完的方向」。
+    </li>
+  </ul>
+  <p><strong>为什么这个结局让读者不舒服，却不容易反驳。</strong><span class="tag t-inf">推断</span></p>
+  <p>因为作者在最后一章做了一件事：<strong>他把「意义」的位置空了出来</strong>。收尾句给的是一个人物描述（「第二个亚当，寻找重生之日被遗忘的天堂」），不是一个评价。读者要么接受这是一个反讽（引用 McCarthy 1997 的判断：书中对亚当夏娃与圣杯传说的指涉「根本上是反讽的」），要么接受这是一个真正的许诺（Matek 2024 的「非人类乌托邦」读法）。<strong>两种读法都能从文本里找到支点，而作者没有出面裁决——这就是为什么这本书至今仍有争议，也是它至今仍值得读的原因。</strong></p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>争议与批评</span><span class="caret">▾</span></h2>
+  <p>本章是第 5 节的展开版，六条一一对应，增加出处细节。</p>
+  <p><strong>第一条｜成因：不是人为暖化，但仍然是气候小说的源头。</strong></p>
+  <p>已在本报告第 5 节第一条给出具名依据。此处补充一条接受史的旁证：2016 年中文媒体一篇关于气候科幻的综述（中国新闻网转载，作者陈杜梨，2016-01-22）把本书列为「标志着气候反乌托邦流派诞生」的作品，并把 cli-fi 一词的创制归给美国作家兼环保活动者 Dan Bloom（约 2007 年）。这提醒我们：<strong>「气候小说」是一个晚出的、由批评与媒体共同建构的类别，本书是被追认进去的，不是自己宣称的。</strong><span class="tag t-rep">转述</span></p>
+  <p><strong>第二条｜种族与殖民想象：一个必须在文本层面处理、而不是绕开的议题。</strong></p>
+  <p>事实层面（可核）：</p>
+  <ul>
+    <li>1963 年 Kingsley Amis 的书评在描述 Strangman 出场时写到了「通体惨白」与「一群黑人」的随从构成。这是<strong>同代人的记录</strong>，不是后来者的追溯。<span class="tag t-rep">转述</span>
+    </li>
+    <li>第 11 章的章题〈"The Ballad of Mistah Bones"〉里的 "Mistah Bones"（骨头先生），借用的是 19 世纪美国游艺秀中那个脸谱化的角色名。这是一个可核的文学史事实。<span class="tag t-rep">转述</span>
+    </li>
+    <li>《科幻百科全书》把 Strangman 及其丛林帮伙与康拉德《黑暗之心》的 Kurtz 明确对应。<span class="tag t-rep">转述</span>
+    </li>
+    <li>出版方 Liveright 的简介本身就把本书描述为对《黑暗之心》的重述，「配上一个疯狂的白色猎人和他成群的土著士兵」。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <p>批评层面（具名）：</p>
+  <ul>
+    <li>David Ian Paddy：称本书为「反讽的殖民罗曼司」（ironic colonial romance），认为它被帝国冒险叙事的残余所纠缠，而不是简单地表达帝国衰败。<span class="tag t-rep">转述</span>
+    </li>
+    <li>Sean Matharoo：主张本书里的生态崩溃与种族化、殖民暴力不可分割，把意识与景观的共同转化称为「生态-种族灾难」（eco-racial disaster）。<span class="tag t-rep">转述</span>
+    </li>
+    <li>Nicole Devarenne：主张巴拉德这批早期灾变小说必须更注意种族、殖民性与去殖民化，而不是沿用把这段历史留在背景里的批评模型。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <p>★ <strong>本报告的处理边界（施工图要求，不可逾越）</strong>：以上材料<strong>只用于文学批评分析</strong>——凝视结构如何组织、帝国冒险叙事的模板如何被继承与被反讽、作者本人的上海（一个殖民城市）成长背景如何进入意象。<strong>不做任何现实评价，不采用任何现实政治影射式解读。</strong> 需要特别声明：本报告<strong>不主张</strong>书中任何形象对应任何现实民族或国家，也<strong>不引用</strong>任何把这本小说读成现实影射的解读；这类解读在检索中确实存在，本报告将其登记为「已知而主动不采用」。</p>
+  <p><strong>第三条｜女性形象：全书只有一个女性角色。</strong></p>
+  <p>只做文学分析。Beatrice Dahl 在书中的功能从一开始就被设定为<strong>对照物</strong>：她的公寓、她的空调、她的私人泳池，是旧世界在热带里剩下的最后一个胶囊；她的名字与但丁笔下引领诗人上天堂的贝雅特丽齐形成反讽对应；而她被第一次描写的方式（「长长的、涂了油的身体……像一条沉睡的蟒蛇」）与那种空灵的理想之爱相距极远——以上三点均出自 Patrick A. McCarthy 1997 年的论文。<span class="tag t-rep">转述</span></p>
+  <p>McCarthy 进一步指出，故事的收尾是 Kerans 抛下她，独自消失在丛林。配合 Gregory Stephenson 的总评（这本书「最终是透过它的意象而不是透过它的行动被理解的」），可以得出一个不含道德判断的文学结论：<strong>她不是被写坏的人物，她是被写成意象的人物。</strong>这个选择的代价是，全书没有任何一个女性视角，也没有任何一次对这个世界的情感回应来自女性。这个代价本身，就是这一条争议的内容。<span class="tag t-inf">推断</span></p>
+  <p><strong>第四条｜「硬科幻」程度的争论：正方与反方说的其实不是同一件事。</strong></p>
+  <p>反方（心理寓言而非科学预测）的完整依据：作者 1963 年自陈本书核心意象是童年上海记忆与伦敦记忆的融合；Lorenz J. Firsching（1985）论证本书的含混性在于它拒绝提供替代价值，其世界「不是新意义的世界，而是无意义的世界」。<span class="tag t-rep">转述</span></p>
+  <p>正方（它在 1962 年就写对了「气候灾变后文明的自洽方式」）的完整依据：《科幻百科全书》「气候变迁」条称它是「对后来科幻气候变迁图景的一个重要影响」并把它列为被频繁引用的例子；Jim Clarke（2013）论证对它的处理是心理的与本体的同时也是气候学的；2010 年《时代》周刊把它列入「十大后末世小说」。<span class="tag t-rep">转述</span></p>
+  <p>本报告的判断：请把「科学预测的准确性」与「对人类反应模式的推演」分开评价。<strong>用前一把尺子，它不合格；用后一把尺子，它相当准确。</strong>争论之所以长期不决，是因为双方默认了同一把尺子。<span class="tag t-inf">推断</span></p>
+  <p><strong>第五条｜人物是布景、情节是借口：这条批评有名有姓，且相当集中。</strong></p>
+  <ul>
+    <li><strong>Algis Budrys</strong>，1966 年 12 月《Galaxy Science Fiction》书评栏：讥讽这本书是「一本跑、躲、滑、摸、死的书」，并批评其中被动的主角、拒斥其非理性主义姿态。<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>Kirkus Reviews</strong>：赞赏史前景观的强度与意象的力量，但认为全书结构不均。<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>Leslie Flood</strong>，1962 年 6 月《New Worlds》：称它是多年来最好的科幻小说之一，同时批评其冗长以及动机与细节上的问题。<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>Kingsley Amis</strong>，1963-01-27《The Observer》：给出当时的最高级赞美，但也留下「也许有繁茂过度的毛病，比喻……有时也堆得太密」以及「作者此处彼处非要告诉我们某事很怪，而其实已经把这种怪充分展示出来了」。<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>Gregory Stephenson</strong>（转引自 McCarthy 1997）：这本书「最终是透过它的意象而不是透过它的行动被理解的」。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <p>★ 反驳可以提，但不能拿它当挡箭牌：《盲视》那类小说里的人物扁平是叙事设计（叙述者被切除了一半心智）；本书的人物扁平<strong>更多是优先级问题</strong>——作者把几乎全部注意力给了景观与意象。这就是为什么它到现在仍然常见「人物记不住、场景一辈子忘不掉」的两极评价。<span class="tag t-inf">推断</span></p>
+  <p><strong>第六条｜巴拉德本人对这本书的自评：只核到一句半，其余如实留白。</strong></p>
+  <p>① <strong>可核的</strong>：1963 年的〈Time, Memory and Inner Space〉整篇以这本书为中心展开，语气投入，把书中核心意象当作自己童年与成年经验的融合来谈（全文引文见第九章）。一个把某本书当成「少作敷衍」的作者，通常不会专门写一篇文章来自我说明。<span class="tag t-talk">作者谈话</span></p>
+  <p>② <strong>二手转引的</strong>：McCarthy 1997 转引 Wagar 的 <em>Terminal Visions</em>（第 84 页）记载，当有人要求巴拉德给这部小说一个「好结局」时，他回答：「不，天啊，这是一个快乐的故事。」★ <strong>本报告未能回到 Wagar 原书或更早出处核实这句话，标为二手转引，不作论断。</strong><span class="tag t-rep">转述</span></p>
+  <p>③ <strong>未能核实的</strong>：他在后期访谈中是否更明确地贬低过这部早期作品。本报告在 jgballard.ca 的访谈书目（150 条以上）、非虚构著作索引与公开网络检索中都只找到转述性说法，未找到可核的原刊全文（见附录 D）。★ 因此<strong>不写</strong>「巴拉德晚年对本书评价不高」这类看起来合理但无出处的说法。</p>
+  <p><strong>六条批评的横向比较：它们其实指向同一件事。</strong><span class="tag t-inf">推断</span></p>
+  <p>把六条摆在一起看，会发现一个清楚的模式：</p>
+  <table>
+    <thead><tr><th>批评</th><th>表面在说什么</th><th>深层指向</th></tr></thead>
+    <tbody>
+      <tr><td>① 成因不是人为暖化</td><td>科学设定不合当代期待</td><td>它拒绝把灾难变成责任问题</td></tr>
+      <tr><td>② 种族与殖民想象</td><td>人物编码有问题</td><td>它继承了帝国冒险叙事的模板</td></tr>
+      <tr><td>③ 女性形象</td><td>唯一的女性角色是意象</td><td>它优先选择意象而非人物</td></tr>
+      <tr><td>④ 不够硬科幻</td><td>科学预测力可疑</td><td>它把「科学」降级为测量仪</td></tr>
+      <tr><td>⑤ 人物与情节薄弱</td><td>记不住人、记不住事</td><td>同上，这是同一枚硬币</td></tr>
+      <tr><td>⑥ 自评难核</td><td>作者的态度不清楚</td><td>它没有为自己提供辩护词</td></tr>
+    </tbody>
+  </table>
+  <p><strong>六条里有四条（②③④⑤）其实都是同一个选择的后果：作者把几乎全部注意力给了意象，只给了人物与情节最低限度的配额。</strong>这不是六处独立的缺陷，而是<strong>一个设计决定在六个方向上的可见投影</strong>。反过来说，任何试图「修好」其中一条的建议，都会同时破坏其他几条，甚至破坏全书的核心装置。这就是这本书为什么一直是两极评价——<strong>它的缺点和它的成就来自同一个决定，无法分离。</strong><span class="tag t-inf">推断</span></p>
+  <p><strong>一个必须写明的边界声明。</strong><span class="tag t-rep">转述</span></p>
+  <p>本报告在涉及第 ② 条（种族与殖民想象）时，全部处理方式限定为文学批评分析：文本的视觉编码如何被组织、帝国冒险叙事的模板如何被继承与被反讽、作者本人的上海（一个殖民城市）成长背景如何进入意象结构、以及现代学术如何讨论这些问题。★ <strong>本报告不作任何现实评价，不引用任何把这本小说读成对现实国家或民族之影射的解读；这类解读在检索中确实存在，本报告将其登记为「已知而主动不采用」。</strong> 这是施工图对本书的硬性要求，本报告严格执行。</p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>作者谈话：一份「创作考古」</span><span class="caret">▾</span></h2>
+  <p><strong>★ 本节的定位</strong>：把创作史本身当研究对象，看这部小说是从什么材料里长出来的。 <strong>★ 重要声明</strong>：巴拉德于 2009 年去世，本节的作者材料全部是<strong>档案材料</strong>——他生前发表的文章、自述、以及已刊访谈的书目记录。<strong>这不是新访谈，本报告没有、也不会虚构任何访谈。</strong> 书评人（Kingsley Amis 等）与研究者的话<strong>不进入本档</strong>，一律以 <span class="tag t-rep">转述</span> 标注；本节第 ④ 条虽按施工图列入「创作考古」的六个观察点，但其性质是接受史事实，故同样标 <span class="tag t-rep">转述</span>，<strong>不是作者的话</strong>。</p>
+  <p><strong>① 上海与龙华集中营：这本书的地层。</strong><span class="tag t-rep">转述</span></p>
+  <p>巴拉德 1930 年生于上海（出生地点公开记载为上海国际居留地），1943–1945 年被关押于龙华集中营（Lunghua Civilian Assembly Centre，他本人在其中就读的学校被记为 Lunghua Academy），1946 年随家人返回英国。他 1984 年的《太阳帝国》即以这段经历为基础。</p>
+  <p>★ 一处需要留意的分歧：同代人的记述与他后来的作者简介在拘押时长上并不一致——1963 年《The Observer》的编者说明写的是「两年」，而 Liveright 版作者简介写的是「四年」。本报告采用施工图 §2.1 的记法（1943–1945），并把时长分歧列入附录 D。</p>
+  <p><strong>② 1962 年一次签下四本书。</strong><span class="tag t-rep">转述</span></p>
+  <p>1962 年，Berkley Books 的顾问 <strong>Damon Knight</strong> 促成签下巴拉德四本书：长篇小说《The Wind from Nowhere》与《The Drowned World》，短篇集《The Voices of Time》与《Billennium》——<strong>四本都在 1962 年出版</strong>。</p>
+  <p>这件事对理解本书为什么长成这个样子很关键：《The Wind from Nowhere》是他在两星期假期里写完的（《科幻百科全书》亦记此说），而《The Drowned World》是从一个一月发表的中篇扩写出来的。也就是说，<strong>这两本灾变小说不是长期经营的成果，而是一次批量签约为一个刚辞掉编辑工作的人提供的产能压力下产生的</strong>。这解释了它为什么在结构上有些地方（如第五章）像被拉长的中篇。</p>
+  <p><strong>③ 与《寂静的春天》同年：1962 年的两次警报，一次来自科学，一次来自小说。</strong><span class="tag t-rep">转述</span></p>
+  <p>蕾切尔·卡逊《寂静的春天》与《淹没的世界》同于 1962 年出版。前者讲人类用化学物质改变环境，后者讲环境改变人。两者的并读之所以常被提起，是因为它们从相反方向指向了同一件事：<strong>地球对人的宽容不是无限的</strong>。但必须指出差异：卡逊有因果链、有责任方、有可以采取的行动；巴拉德全都拿掉了。这也正是为什么这本书在当代环保语境里有时被批评为「宿命论」。<span class="tag t-inf">推断</span></p>
+  <p><strong>④ Kingsley Amis 在《The Observer》的赞扬（★ 接受史事实，不是作者的话）。</strong><span class="tag t-rep">转述</span></p>
+  <p>1963 年 1 月 27 日，Kingsley Amis 在《The Observer》上发表书评，其中写道：「在 J. G. 巴拉德的这本新书里，我们看到了这个国家前所未见的东西——一部可以被用最高标准来评判的科幻作者的小说。」他还说巴拉德「也许是 [H. G.] 威尔斯之后最富想象力的继承人，尽管他明确否认威尔斯是自己的影响来源」，并称许他「成功实现了他探索『inner space』的目标：他的标志是一套隐喻的潜水服，而不是他大多数同行那种字面意义上的太空服」。该文于 2019 年 1 月 20 日由《卫报》在其《The Observer》档案栏目重刊。</p>
+  <p>★ 这一条之所以必须放进「创作考古」，是因为它解释了本书的一个奇特地位：<strong>它是在出版当年就被文学界当作严肃小说接受的科幻小说</strong>——而这恰好与巴拉德后来反复被问「你是不是科幻作家」的处境形成对照（见第 ⑥ 条）。</p>
+  <p><strong>⑤ 「inner space」这个提法本身的来龙去脉。</strong><span class="tag t-talk">作者谈话</span></p>
+  <p>按巴拉德本人 1963 年的文章，这个提法有一条清晰的来路：<strong>从童年地理到心理区域</strong>。他先写上海的年度洪水——「街道有两三英尺深的浑水」，周边「几乎是一面连续不断的、映着被淹稻田与灌渠的镜子」；再写「一座巨大的、半淹的、被热带植被覆盖的城市」这个形象，并明确说这个中心意象「在某种意义上是我的童年上海记忆与我在伦敦最后十年记忆的融合」。随后他把这个区域命名为「inner space」，并说明它「是明日之内心景观，是一个被转化了的过去的影像」。</p>
+  <p>同一年代他还写过若干篇「社论式」文字解释「内部空间」的立场（jgballard.ca 的非虚构索引记为 1963–1971 年间的多篇），说明这不是一次即兴命名，而是一个持续维护的写作纲领。<span class="tag t-talk">作者谈话</span></p>
+  <p><strong>⑤-附：这份「创作考古」里唯一能直接引用的一手文本。</strong><span class="tag t-talk">作者谈话</span></p>
+  <p>本报告对〈Time, Memory and Inner Space〉（1963）做了完整抓取（实测记录见来源清单）。以下四段是本书作者<strong>唯一</strong>在本报告中被直接引用的文字——它们是「作者谈话」档在本页的全部实体证据：</p>
+  <ul>
+    <li><strong>关于本书中心意象的来源</strong>：「反思之下，我似乎觉得，那个构成《淹没的世界》核心影像的『巨大的、半淹的、被热带植被覆盖的城市』，在某种意义上是我的童年上海记忆与我在伦敦最后十年记忆的融合。」
+    </li>
+    <li><strong>关于书中人物在做什么</strong>：「小说的主题之一，是主要人物从二十世纪返回第二次三叠纪那个天堂般的、充满阳光的世界的那趟回归之旅，以及他们对自己被推动着进入那个正在浮现的过去这件事的种种矛盾动机逐渐加深的觉察。」
+    </li>
+    <li><strong>关于这个世界的性质（本报告认为这是全书最关键的一句作者自述）</strong>：「他们意识到，他们周围的子宫之海、海母的黑暗子宫，既是他们自己个体性的坟墓，也是他们生命的来源；而他们也许有的恐惧，反映的正是我自己在重演童年经验、试图探索如此危险的地面时的不安。」
+    </li>
+    <li><strong>关于「内部空间」的定义</strong>：「我把这个区域理解为『inner space』，即明日之内心景观，它是一幅被转化了的过去的影像，也是对富有想象力的写作者最有成果的领域之一。」
+    </li>
+  </ul>
+  <p>★ 这三四段话解释了这本书里最难解释的一件事：<strong>为什么它的结局明明是往南走向死亡，作者却把它写成一次回归。</strong>在作者自己的表述里，往南不是走向终结，是走向来源——「既是坟墓，也是来源」。这个双重性不是评论者加上去的，是作者本人写下来的。</p>
+  <p>★ 一处必须声明的证据边界：该文全文抓取自 <code>jgballard.ca</code>（一个由收藏者维护的档案站，非作者或权利方官网），页内标注原刊为《The Woman Journalist Magazine》1963 年；其 1963 年的年份与内容另由 Fourth Estate 2010／2014 版书内目录页（"Time, Memory and Inner Space" © J. G. Ballard 1963）交叉印证。<strong>本报告未与任何纸本原刊逐字核对，故上述引文仍属档案转录，不标为 A 级原文核对。</strong></p>
+  <p><strong>⑥ 他对自己被称作「科幻作家」的态度。</strong><span class="tag t-talk">作者谈话</span></p>
+  <p>这是理解这本书读法的一个关键，而且有作者本人的原话可用：</p>
+  <ul>
+    <li>1963 年，他说「我更愿意把科幻中较严肃的那一翼称为<strong>思辨性幻想（speculative fantasy）</strong>」。
+    </li>
+    <li>1973 年，他说：「我自己有时认同新浪潮而不是旧浪潮。我想我被认同为所谓的新浪潮，因此人们把某种敌意归到我身上……我有时被看作某种反基督。事实上，我是科幻传统美德最大的捍卫者。」
+    </li>
+    <li>1981 年，他为金斯利·阿米斯的《科幻的黄金时代》写书评时，开头是反问：「我们做了什么，才招来他的敌意？」
+    </li>
+  </ul>
+  <p>把这三次放在一起看，可以看出他的位置是<strong>既在外、又在内</strong>：他坚持自己写的是某种科幻（并且自认是「传统美德最大的捍卫者」），同时坚持要求用另一个名字称呼其中最严肃的那部分。<strong>这就是为什么《淹没的世界》在类型文学与主流文学之间一直两边站得住、也两边不完全属于任何一边。</strong><span class="tag t-inf">推断</span></p>
+  <p>★ <strong>本章的素材入口</strong>（全部为巴拉德的著作或已刊访谈，不含书评人与研究者）：作者本人文章〈Time, Memory and Inner Space〉（1963，收于 Fourth Estate 2010／2014 版）、〈Images of the Future〉（1966，Fusion 小杂志，生前未刊）、〈Fictions of Every Kind〉（1971，Books &amp; Bookmen）、〈A New Metaphor for the Future〉（1973）、1981 年评阿米斯《科幻的黄金时代》、〈JGB remembers Vermilion Sands〉（1992）；自传《Miracles of Life: Shanghai to Shepperton》（2008）；已刊访谈书目：Peter Rønnov-Jessen，〈Against Entropy〉（<em>Literary Review</em>, no. 74, 1984-08, pp. 28–31）、Thomas Frick（<em>The Paris Review</em>, no. 94, Winter 1984/1985）等，完整书目见 jgballard.ca 的访谈索引。★ 上述文章与访谈的<strong>全文</strong>本报告只实际取到〈Time, Memory and Inner Space〉一篇（实测记录见来源清单），其余仅核到书目条目。</p>
+  <p><strong>这份「创作考古」告诉我们什么。</strong><span class="tag t-inf">推断</span></p>
+  <p>把这六条串起来看，会发现这本书不是「一次灵感」，而是<strong>三种压力交汇的产物</strong>：</p>
+  <ol>
+    <li><strong>心理压力</strong>：一个在上海经历过洪水与集中营的孩子，成年后在伦敦写作，把两座城市的记忆叠在同一张底片上。这是它的意象来源。
+    </li>
+    <li><strong>经济压力</strong>：1962 年一次签下四本书，其中一本书是两星期写完的，另一本是从中篇扩写的。这是它的体量与节奏来源。
+    </li>
+    <li><strong>论战压力</strong>：一个不愿被称为「科幻作家」、却坚持捍卫科幻传统美德的人，需要一部作品来证明「内部空间」这条路的可行性。这是它的形式来源。
+    </li>
+  </ol>
+  <p>三者缺一，这本书都不会长成今天这个样子。<strong>尤其第三点值得强调</strong>：如果只把它读成「童年的心理投影」，就会漏掉它同时是一次<strong>自觉的类型论战</strong>——作者用这本书在向当时的科幻界示范：不写太空、写内部空间，也成立。<span class="tag t-inf">推断</span></p>
+  <p><strong>关于「作者谈话」档的一个纪律提醒。</strong><span class="tag t-rep">转述</span></p>
+  <p>本页所用的作者材料全部是巴拉德本人写下的文字（文章、自述、访谈），并且<strong>每次使用都已标明这是档案材料、不是新访谈</strong>。以下三类材料在原则上一律不进入本档：</p>
+  <ul>
+    <li><strong>书评人的话</strong>（如 Kingsley Amis、Algis Budrys、Will Self）——它们属于接受史，本报告以 <span class="tag t-rep">转述</span> 标注并单独列在附录 C；
+    </li>
+    <li><strong>译者的说法</strong>——本书无中译，暂不涉及；
+    </li>
+    <li><strong>研究者的判断</strong>（如 McCarthy、Firsching、Matek）——它们属于批评史，同样以 <span class="tag t-rep">转述</span> 标注。
+    </li>
+  </ul>
+  <p>★ 一个诚实的边界：本报告<strong>没有虚构任何访谈</strong>，也<strong>没有把任何转述包装成作者原话</strong>。凡是转引、二手、未核的，全部在句中写明。这既是纪律，也是本书在这种版权状态下唯一诚实的做法。</p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">10</span><span>版本、接受与气候小说谱系</span><span class="caret">▾</span></h2>
+  <p><strong>版本谱系</strong>（依 ISFDB 题录与出版方页面整理；★ 一处年份冲突见附录 D）：<span class="tag t-rep">转述</span></p>
+  <table>
+    <thead><tr><th>年份</th><th>版本</th><th>形态／页数</th></tr></thead>
+    <tbody>
+      <tr><td>1962-01</td><td>中篇版，《Science Fiction Adventures》No. 24（Vol. 4, No. 24），Nova Publications，主编 John Carnell，封面 Brian Lewis</td><td>杂志，116 页</td></tr>
+      <tr><td>1962-08</td><td>Berkley Medallion（美国首版），F655，$0.50，封面 Richard Powers</td><td>平装，158 页</td></tr>
+      <tr><td>1963-01</td><td>Victor Gollancz（Gollancz SF Series (2)），15/-</td><td>精装，175 页 ★ 另有 1963-02 一条同社记录</td></tr>
+      <tr><td>1964-02</td><td>The Science Fiction Book Club (UK)，No. 82，封面 John Griffiths</td><td>精装，175 页</td></tr>
+      <tr><td>1965-01</td><td>Penguin Books，No. 2229，封面 Yves Tanguy</td><td>平装，170+ 页</td></tr>
+      <tr><td>1965</td><td>Doubleday，《The Drowned World and The Wind from Nowhere》合集</td><td>精装，316 页</td></tr>
+      <tr><td>1966-07</td><td>Berkley Medallion 再版，F1266，封面 Richard Powers</td><td>平装，158 页</td></tr>
+      <tr><td>1973-05</td><td>Gollancz 重版，ISBN 0-575-00278-6</td><td>精装</td></tr>
+      <tr><td>1974-04</td><td>Penguin 重版，ISBN 0-14-002229-5，封面 David Pelham</td><td>平装，171 页</td></tr>
+      <tr><td>1987</td><td>Carroll &amp; Graf（美国重版）</td><td>—</td></tr>
+      <tr><td>1999-09</td><td>Gollancz／SF Masterworks，封面 Chris Moore</td><td>平装，176 页</td></tr>
+      <tr><td>2008-04</td><td>Harper Perennial</td><td>平装，176 页</td></tr>
+      <tr><td>2010／2014</td><td>Fourth Estate（HarperCollins）eBook／平装，ISBN 9780007221837，另收 Elborough〈Reality Is a Stage Set〉与巴拉德〈Time, Memory and Inner Space〉</td><td>平装，176 页</td></tr>
+      <tr><td>2012-07／2013-05</td><td><strong>Liveright 五十周年纪念版</strong>，Martin Amis 作序；精装 ISBN 9780871404060，平装 ISBN 9780871403629，Kindle ISBN 9780871403315</td><td>精装／平装，198 页</td></tr>
+    </tbody>
+  </table>
+  <p><strong>接受史的三级跳。</strong><span class="tag t-rep">转述</span></p>
+  <p>第一跳是<strong>同代人的即时承认</strong>：1963 年 1 月 27 日《The Observer》上 Kingsley Amis 的书评（2019 年由《卫报》重刊），把他称为「也许是威尔斯之后最富想象力的继承人」，并说他「成功地实现了探索 inner space 的目标」。同期的《New Worlds》（Leslie Flood）给了高度评价，《Galaxy》（Algis Budrys，1966）则给了最尖刻的否定——<strong>这本小说从第一天起就是两极的</strong>。</p>
+  <p>第二跳是<strong>去世后的重新定位</strong>：2009 年巴拉德去世后，Lev Grossman 在《时代》的 Techland 栏目把本书归入他最强的早期后末世作品之列，并强调他的主角对灾变怀有<strong>奇怪的吸引</strong>，而不是简单的抗争；Will Self 在《每日电讯报》上（2013）称本书「惊人地原创」，并把它视为确立巴拉德战后英国小说地位的那批成就之一。2010 年，《时代》周刊把它列入「十大后末世小说」。</p>
+  <p>第三跳是<strong>被追认为气候小说的源头</strong>：见第 5 节第一条与《科幻百科全书》的相关条目。</p>
+  <p><strong>它在气候小说谱系里的位置。</strong><span class="tag t-rep">转述</span></p>
+  <p>需要说清楚两件事。<strong>第一，cli-fi 这个词是后出的</strong>：中文媒体 2016 年的综述把该词的创制归于美国作家兼环保活动者 Dan Bloom（约 2007 年），因此这个类别本身比本书晚四十多年。<strong>第二，本书是被追认的，不是自我宣称的</strong>——它的成因设定是太阳活动，它的主题是心理退化。它进入这个谱系靠的是「写对了人怎么回应不可逆的气候变化」这一件事，而不是靠成因设定的现代性。</p>
+  <p>这也是一个很好的提醒：<strong>当一个类别出现时，它往往会往前认领一批并不属于它的作品。</strong>本书是这种认领里最成功、也最值得警惕的一例。</p>
+  <p><strong>★ 与本书目已收各本的连线（只作对照，不作互相解释）。</strong><span class="tag t-inf">推断</span></p>
+  <ul>
+    <li><strong>与《三体》</strong>：尺度相反。《三体》的赌注在<strong>宇宙尺度</strong>——文明之间的黑暗森林、宇宙社会学的推演；《淹没的世界》的赌注在<strong>地球尺度</strong>，而且它关心的不是文明之间的冲突，是<strong>一个人在文明退场后怎么与自己相处</strong>。两者都写「人类不是中心」，但一个靠外部威胁论证，一个靠内部退化论证。
+    </li>
+    <li><strong>与《乌合之众》</strong>：人群相反。《乌合之众》研究的是<strong>人聚在一起时会发生什么</strong>；《淹没的世界》几乎全程在写<strong>人散开之后会发生什么</strong>——一支七零八落的考察队、一个拒绝撤离的女人、一个离开的人、一个独自往南的人。它甚至把「一群人」直接交给了Strangman 那伙掠夺者，并让主角对此感到厌恶。
+    </li>
+    <li><strong>与《亚当之前》</strong>：★ 字面最近，观念最远。两本书都有「（第二个）亚当」，都触碰「人是否会退回更早的状态」。但《亚当之前》的机制是<strong>个体记忆的遗传</strong>（并且这一设定在科学上不成立，属于 1906 年的思想想象），《淹没的世界》的机制是<strong>环境对行为与欲望层面的重新激活</strong>。<strong>可以对照，绝不可以互相解释。</strong>
+    </li>
+  </ul>
+  <p><strong>接受史里一个常被忽略的事实：这本书的「经典化」是三段时间的叠加。</strong><span class="tag t-inf">推断</span></p>
+  <ul>
+    <li><strong>1962–1966：类型内部的争议期。</strong>它同时收获了「多年来最好」与「跑、躲、滑、摸、死」两种极端评价。这一阶段它被当作一次有争议的类型实验。
+    </li>
+    <li><strong>1984–2009：作者的文学地位上升期。</strong>《太阳帝国》（1984）让他获得主流文学承认，随后《太阳帝国》被斯皮尔伯格改编成电影。本书作为他的「早期杰作」被一并重新阅读。Will Self 后来总结说，直到巴拉德 2009 年去世之后，共识才逐渐形成「他是二十世纪后半叶最重要的英国作家」。<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>2010 年至今：类别追认期。</strong>2010 年《时代》周刊把它列入「十大后末世小说」；随后气候小说（cli-fi）作为一个类别成形（中文媒体 2016 年的综述把 cli-fi 一词的创制归于 Dan Bloom，约 2007 年），本书被追认为这一流派最常被引用的源头文本之一。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <p><strong>三段时间叠加的结果，是一本书同时挂着三个不同的身份</strong>：一部 1962 年的新浪潮科幻、一部 1980 年代被追认的文学杰作、一部 2010 年代的气候小说源头。★ 本报告的建议是：<strong>读的时候请只挑一个身份，读完之后再换另一个。</strong>同时挂着三个身份读，一定会读乱。</p>
+  <p><strong>最后：这本书今天为什么还值得读。</strong><span class="tag t-inf">推断</span></p>
+  <p>因为它提供了一种今天的作品普遍不愿意提供的东西：<strong>一个不需要坏人、不需要倒计时、不需要胜利，也仍然成立的故事</strong>。今天的绝大多数灾变叙事仍然需要一个对手——无论是排放、是政府、是资本、是人性，总得有人可指。这本书把这一项直接删掉了。</p>
+  <p>你可以不同意它，你可以认为它危险（因为它把失败写成了完成），你也可以认为它残酷（因为它让主角主动炸掉别人辛苦恢复的城市）。但你很难说它浅。<strong>1962 年就有人愿意把「人类可能不适合被拯救」这件事正正经经地写成一部小说，这本身就是一个值得被记录的事实。</strong></p>
+</section>
+
+<section id="s12">
+  <h2><span class="num"></span><span>附录 A 版本与出版记录一览</span><span class="caret">▾</span></h2>
+  <p>见第 10 节版本谱系表。补充三点：</p>
+  <ol>
+    <li><strong>1962 年是一个产能之年</strong>：同一年巴拉德通过 Berkley Books 顾问 Damon Knight 一次签下四本书（《The Wind from Nowhere》《The Drowned World》《The Voices of Time》《Billennium》），四本均在 1962 年出版。<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>中篇版与成书版的材料差异</strong>：ISFDB 在长篇小说条目下注明「扩展自 1962 年的短篇」，在短篇条目下注明「扩展为同年晚些时候出版的同名长篇」；<strong>具体增改了哪些段落，本报告未核到</strong>（见附录 D）。<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>译本的情况</strong>：ISFDB 译本清单所列语种为法语、西班牙语、葡萄牙语、荷兰语、德语、塞尔维亚语、意大利语、匈牙利语、保加利亚语，<strong>不含中文</strong>。<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>封面美术本身构成一条副线</strong>：1962 年美国 Berkley Medallion 首版封面为 Richard Powers；1964 年英国 SFBC 版为 John Griffiths；1965 年 Penguin 版与同年 Doubleday 合集均为 Yves Tanguy；1966 年 Berkley 再版仍为 Richard Powers；1974 年 Penguin 版为 David Pelham；1999 年 Gollancz／SF Masterworks 版为 Chris Moore；2012 年 Liveright 版封面出自 Philippe Bourseiller 的摄影。<span class="tag t-rep">转述</span> 这条副线值得留意，因为它显示：<strong>这本书在不同年代被卖成完全不同的东西</strong>——1960 年代卖的是「超现实主义画家的画」（Powers、Tanguy 都是超现实主义谱系的艺术家），1990 至 2010 年代卖的是「经典科幻的标志性图像」与「气候灾变的纪实摄影」。
+    </li>
+    <li><strong>1965 年 Doubleday 合集值得单独记一笔</strong>：《The Drowned World and The Wind from Nowhere》（316 页）把同一年签约的两本灾变小说合在一册出版，等于把「批量签约」这件事本身留在了版本史上。<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>一处需注意的著录歧异</strong>：部分公开书目把一次 1965 年 Doubleday 版与一次「1965 Doubleday / SFBC」版分别著录，价格不同（$4.50 与 $1.20），同页同量。这属于书目著录层面的重复记录问题，不影响内容。<span class="tag t-inf">推断</span>
+    </li>
+  </ol>
+</section>
+
+<section id="s13">
+  <h2><span class="num"></span><span>附录 B 人物与专名对照</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>专名</th><th>中文</th><th>一句话说明</th></tr></thead>
+    <tbody>
+      <tr><td>Robert Kerans</td><td>罗伯特·凯兰斯</td><td>生物学家，全书的视点人物</td></tr>
+      <tr><td>Colonel Riggs</td><td>里格斯上校</td><td>考察队军事负责人，秩序与北撤的代表</td></tr>
+      <tr><td>Alan Bodkin</td><td>艾伦·博德金</td><td>队里的医生，「古老生物记忆」假说的提出者</td></tr>
+      <tr><td>Beatrice Dahl</td><td>比阿特丽斯·达尔</td><td>拒绝撤离的女性；名字与但丁的贝雅特丽齐构成反讽对应</td></tr>
+      <tr><td>Lieutenant Hardman</td><td>哈德曼中尉</td><td>第一个南逃者，结尾时近乎失明</td></tr>
+      <tr><td>Strangman</td><td>斯特兰曼</td><td>打捞者头目，白色明轮船、白色微笑</td></tr>
+      <tr><td>Camp Byrd</td><td>伯德营</td><td>书中被点名的格陵兰据点（公开情节摘要记载约一万人）</td></tr>
+      <tr><td>inner space</td><td>内部空间</td><td>巴拉德本人 1963 年给出的纲领性提法</td></tr>
+      <tr><td>archeopsychic past</td><td>古心理过去</td><td>Bodkin 假说所指的、被新气候唤醒的生物记忆层</td></tr>
+      <tr><td>Triassic</td><td>三叠纪</td><td>全书反复指向的、人类正在退回的地质时代</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s14">
+  <h2><span class="num"></span><span>附录 C 主要批评与接受史文献一览</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>文献</th><th>年份</th><th>本报告用它做什么</th></tr></thead>
+    <tbody>
+      <tr><td>Kingsley Amis，《The Observer》书评（2019 年由《卫报》Observer 档案栏目重刊）</td><td>1963／2019</td><td>同代接受；Strangman 形象的种族化描写之同代记录；「inner space 的潜水服」评语</td></tr>
+      <tr><td>Leslie Flood，《New Worlds》</td><td>1962</td><td>同代评价（褒中带批）</td></tr>
+      <tr><td>Algis Budrys，《Galaxy Science Fiction》书评栏</td><td>1966</td><td>最著名的负面批评（人物被动、非理性主义）</td></tr>
+      <tr><td>Lorenz J. Firsching, "J.G. Ballard's Ambiguous Apocalypse", <em>Science Fiction Studies</em> 12:3</td><td>1985</td><td>「含糊的启示录」概念；「无意义的世界」判断</td></tr>
+      <tr><td>Roger Luckhurst, <em>The Angle Between Two Walls</em></td><td>1997</td><td>灾变小说发生在「灾变之间」的读法</td></tr>
+      <tr><td>Patrick A. McCarthy，〈Allusions in Ballard's The Drowned World〉</td><td>1997</td><td>亚当夏娃／圣杯／贝雅特丽齐的反讽性指涉；转引巴拉德「这是一个快乐的故事」</td></tr>
+      <tr><td>Peter Rønnov-Jessen，〈Against Entropy〉访谈，<em>Literary Review</em> no. 74</td><td>1984</td><td>「熵」作为巴拉德关键词；访谈书目条目</td></tr>
+      <tr><td>Jim Clarke, "Reading Climate Change in J. G. Ballard", <em>Critical Survey</em> 25:2</td><td>2013</td><td>气候小说奠基文本的论证</td></tr>
+      <tr><td>Christopher Daley，〈The Not So Cozy Catastrophe〉</td><td>2014</td><td>本书如何拒绝「舒适灾变」的更新叙事</td></tr>
+      <tr><td>Peter Sands，〈J. G. Ballard's Fossil Imaginaries〉</td><td>2021</td><td>「深时」与化石意象</td></tr>
+      <tr><td>Sean Matharoo；Nicole Devarenne；David Ian Paddy</td><td>近年</td><td>种族、殖民性与反讽殖民罗曼司的批评线（★ 只作文学分析）</td></tr>
+      <tr><td>Ljubica Matek, "J. G. Ballard's <em>The Drowned World</em>: A Nonhuman Utopia", <em>Caietele Echinox</em> 46</td><td>2024</td><td>「非人类乌托邦」与异托邦空间读法</td></tr>
+      <tr><td>《科幻百科全书》「Ballard, J. G.」条、「Climate Change」条</td><td>条目更新至 2026</td><td>成因机制（太阳能耀斑）；与《黑暗之心》的对应；气候变迁谱系位置</td></tr>
+      <tr><td>《时代》周刊「十大后末世小说」榜单</td><td>2010</td><td>流行接受（★ 原页本轮不可达，只能靠多来源转述）</td></tr>
+    </tbody>
+  </table>
+  <p><strong>几点关于这份文献表的说明。</strong><span class="tag t-inf">推断</span></p>
+  <p><strong>第一，批评史有一条明显的时间断层。</strong>1962–1966 年是密集的同代书评（Flood、Amis、Budrys、Kirkus），此后到 1985 年只有 Firsching 一篇重要的学术论文，然后从 1997 年（Luckhurst、McCarthy）起重新变密，2013 年之后进入一个以生态批评、后殖民批评与「人类世」框架为主的高产期。<strong>这条断层不是偶然的</strong>：它对应的是巴拉德研究本身的起伏——他在 1984 年靠《太阳帝国》获得主流承认之后，早期作品才被系统地重读。</p>
+  <p><strong>第二，本报告能引用的批评几乎全部是二手转引。</strong>除《科幻百科全书》的两个条目与 1963 年那篇书评（《卫报》重刊全文）外，本报告对上述文献的了解基本来自摘要、条目与转述，<strong>没有任何一篇是通过合法全文逐字核对的</strong>（《科幻百科全书》条目本身是可全文读取的网页，但它对小说原文的引用仍是转引）。这一点直接决定了本书的整体定级为 C。</p>
+  <p><strong>第三，这份表里没有一条来自盗版全文站或 AI 生成百科。</strong>本报告在检索过程中确实遇到过多处此类来源（含他人托管的整本书 PDF、以及一个 AI 生成的百科条目），已全部列入来源清单的「主动排除清单」，并逐条写明原因。★ 特别说明：那类 AI 生成百科条目对本书记载详尽、行文自信，但本报告未采用其中任何一条事实陈述。</p>
+</section>
+
+<section id="s15">
+  <h2><span class="num"></span><span>附录 D 待核实项</span><span class="caret">▾</span></h2>
+  <p>以下为本报告<strong>没能核实到</strong>的项，逐条写明原因。</p>
+  <p><strong>D1｜Gollancz 初版是 1962 年还是 1963 年。</strong> 原因：各源冲突。ISFDB 题录把 Gollancz 版记为 <strong>1963-01</strong>（另有 1963-02 一条），而《维基百科》信息框与部分书目把 Gollancz 初版记为 <strong>1962</strong>。本报告的正文因此采用「1962 年由伦敦 Victor Gollancz 出版」这一较宽泛的表述，并在版本表中标出 ISFDB 的具体月份。<strong>结论：未能定案。</strong></p>
+  <p><strong>D2｜中篇版与成书版的增改范围。</strong> 原因：无合法全文，两个版本都读不到。ISFDB 只注明「扩展」，未说明增改幅度。<strong>结论：未能核实。</strong></p>
+  <p><strong>D3｜是否真的没有中译。</strong> 原因：本报告的检索范围是——ISFDB 译本清单（本轮实测，见来源清单）、OpenLibrary 检索（本轮实测）、中文网络检索（含书名与作者名的多种组合）。范围内均未见中译本。★ <strong>本报告未查询国家出版发行信息公共服务平台的完整在版书目</strong>，因此这一结论应表述为「在已检索范围内未见」，而不是「绝对不存在」。中文媒体上出现过的「被淹没的世界」是描写性译法，非出版物书名。<strong>结论：在已检索范围内未见中译。</strong></p>
+  <p><strong>D4｜巴拉德本人对该书的自评（原刊出处）。</strong> 原因：只核到一句经二手转引的话（「不，天啊，这是一个快乐的故事」，转引自 Wagar, <em>Terminal Visions</em>, p. 84，经 McCarthy 1997 转引），未回到 Wagar 原书或更早出处。他在后期访谈中是否有更明确的自我评价，本报告在 jgballard.ca 的 150 条以上访谈书目与公开检索中均未找到可核的原文。<strong>结论：部分未核实。</strong></p>
+  <p><strong>D5｜全书的叙事人称。</strong> 原因：无合法全文，未能回原文核实。施工图 §2.1 将 Kerans 记为「生物学家／叙述者」；本报告为稳妥起见，在正文中统一表述为「<strong>视点人物</strong>」，不主张第一人称或第三人称。<strong>结论：未能核实，已回避表述。</strong></p>
+  <p><strong>D6｜龙华集中营的拘押时长。</strong> 原因：各源冲突。同代人的编者说明（1963 年《The Observer》）写「两年」，Liveright 版作者简介写「四年」，施工图 §2.1 记为 1943–1945（约两年余）。本报告采用施工图的纪年，并披露这项分歧。<strong>结论：未能定案。</strong></p>
+  <p><strong>D7｜《时代》周刊 2010 年榜单的原页。</strong> 原因：本轮实测中 <code>entertainment.time.com</code> 域名无法解析（curl 返回 000），<code>content.time.com</code> 的对应条目返回 404。榜单条目只能靠多个独立来源的一致转述（包括《维基百科》与 Black Gate 2023 年专文）。<strong>结论：原页不可达，条目内容靠二手转述。</strong></p>
+  <p><strong>D8｜故事是否发生在 2145 年。</strong> 原因：出版方简介与流行介绍普遍写「2145 年」，但 Black Gate 2023 年专文（John O'Neill）主张小说本身未给出年份，这个数字是 2000 年以后才流行起来的，并认为书中线索指向二十一世纪一二十至三十年代。本报告<strong>不采用</strong> 2145 年这一说法作为既定事实。<strong>结论：各源冲突，未能定案。</strong></p>
+  <p><strong>D9｜Peter Rønnov-Jessen〈Against Entropy〉（1984）访谈原文。</strong> 原因：jgballard.ca 的访谈书目只列出条目（<em>Literary Review</em>, no. 74, August 1984, pp. 28–31），未提供全文链接。本报告对这次访谈的全部了解来自《维基百科》的转述（他自述在卖掉《The Wind from Nowhere》之后开始写本书、先以较短形式构思、后扩为长篇）。<strong>结论：未获原文。</strong></p>
+  <p><strong>D10｜Beatrice 的称谓与身份细节。</strong> 原因：不同公开情节摘要分别写「Dr Beatrice Dahl」与「富裕幸存者」，两种说法本报告均未见可核的一手依据。<strong>结论：存疑，正文不作断言。</strong></p>
+  <p><strong>D11｜1962 年「一次签下四本书」的原始出处。</strong> 原因：本报告按施工图 §2.1 直接采用这一记载（顾问 Damon Knight 促成，四本书为《The Wind from Nowhere》《The Drowned World》《The Voices of Time》《Billennium》，均于 1962 年出版），但<strong>未能找到该说法的原始出处</strong>（未找到当时的合同记录、出版方公告或 Knight 本人的文字）。<strong>结论：按施工图采用，但原始出处未能核实。</strong></p>
+  <p><strong>D12｜「第四个身份」：本书是否真的被《时代》周刊评为「十大后末世小说」之一，以及榜单的准确名目。</strong> 原因：榜单原页不可达（见 D7），本报告只能依赖多来源一致转述。《维基百科》与 Black Gate 均写作「十大后末世小说」（ten best post-apocalyptic books／top 10 best post-apocalyptic books）。★ 但该榜单的<strong>准确标题、发布时间与完整名单</strong>本报告均未核到。<strong>结论：条目内容靠转述，名目未能核实。</strong></p>
+  <p><strong>D13｜中篇版《The Drowned World》与全书的关系是否存在实质差异（是否等于全书的前几章）。</strong> 原因：无合法全文，且中篇所载杂志（《Science Fiction Adventures》No. 24）亦无合法在线全文。各源只说「扩展」（expanded），未说明是否为前若干章的原始形态。<strong>结论：未能核实。</strong></p>
+  <p><strong>D14｜法语、西班牙语、德语等译本的译者译名与内容差异。</strong> 原因：本报告只核到 ISFDB 的译本条目（含译者姓名与年份），未核任何译本的实际内容。★ 这对本书有实际影响：<strong>若将来有中译，从哪个语种转译、依据哪个英文版本，会直接决定「三叠纪」「内部空间」「古心理过去」这几个核心词的译法走向。</strong> <strong>结论：未核，仅登记条目。</strong></p>
+  <p><strong>以上十四条的共同原因：一本没有合法全文的书，能核实的东西天然比有全文的书少一个数量级。</strong><span class="tag t-inf">推断</span></p>
+  <p>本报告所属批次的另两本书（同批的《盲视》与《亚当之前》）都有可逐字核对的合法全文，因此它们的待核实项主要集中在「出版史细节」与「译本差异」上；而本书的待核实项里，有相当一部分是<strong>关于文本本身</strong>的（叙事人称、逐章内容、章题的正文用法、中篇与长篇的差异）。这不是本报告不够努力，而是<strong>版权状态直接决定了可核实的上限</strong>。</p>
+  <p><strong>一个正面结论也要写下来</strong>：尽管有这十四条待核实项，本报告对本书的<strong>版本谱系、接受史、批评史与作者自述</strong>四项仍然达到了较高的可靠度——它们依赖的是出版方页面、ISFDB 题录、图书馆书目记录、《科幻百科全书》条目、重刊的同代书评与作者本人的存世文章，这些都不需要小说全文。<strong>读者的风险区只集中在一处：任何关于「书里具体怎么写的」的说法。</strong>凡属这一类，本报告已逐条标明为二手转引。</p>
+</section>
+
+<footer>
+  生成于 2026-10-12 · 来源清单与交叉验证记录见同目录 <code>淹没的世界-来源清单.md</code><br>
+  本报告为「读书精华整理」项目批 13 产出。配套文件：<b>淹没的世界-来源清单.md</b>（五路来源、合法入口实测记录、主动排除清单、交叉验证记录、引文声明、档位计数）与 <b>淹没的世界-build.json</b>。★ 本书目前<b>没有中文译本</b>；正文中出现的 15 条中文章题试译均为本报告所拟，<b>不是任何出版物的译者译名</b>。★ 涉及原作中的殖民与种族化形象处，本报告只作文学批评分析，不作现实评价，不引用任何现实政治影射式解读。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

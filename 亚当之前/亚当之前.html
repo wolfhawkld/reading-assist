@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《亚当之前》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《亚当之前》<small>阅读指引与精华解析 · 2026-10-12</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 核心主题与结构机制</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 版本与译本怎么选</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 逐章精读</div>
+    <a href="#s7">6 全书骨架与叙事机制：一部「祖先记忆」小说</a>
+    <a href="#s8">7 第一章 · 梦魇中的古世界</a>
+    <a href="#s9">8 第二章 · 种族记忆与「另一个我」</a>
+    <a href="#s10">9 第三章 · 树巢里的婴孩与野猪</a>
+    <a href="#s11">10 第四章 · 只有三四十个声音的语言</a>
+    <a href="#s12">11 第五章 · 「红眼」与「耷耳」</a>
+    <a href="#s13">12 第六章 · 窄口岩洞、剑齿虎与笑声</a>
+    <a href="#s14">13 第七章 · 断牙之死，与那支箭</a>
+    <a href="#s15">14 第八章 · 第一个冬天与那只小狗</a>
+    <a href="#s16">15 第九章 · 与「返祖者」的对峙</a>
+    <a href="#s17">16 第十章 · 妹妹、树屋与河汊上的木筏</a>
+    <a href="#s18">17 第十一章 · 双重人格的自白</a>
+    <a href="#s19">18 第十二章 · 河之北岸</a>
+    <a href="#s20">19 第十三章 · 火民之地</a>
+    <a href="#s21">20 第十四章 · 「嘻嘻」议会</a>
+    <a href="#s22">21 第十五章 · 妹妹之死与逼近的火民</a>
+    <a href="#s23">22 第十六章 · 「敏捷者」与那棵被雷劈的树</a>
+    <a href="#s24">23 第十七章 · 烟攻</a>
+    <a href="#s25">24 第十八章 · 大沼泽与海</a>
+    <a href="#s26">25 主题与思想史：退化、记忆与「社会达尔文主义」</a>
+    <a href="#s27">26 作者谈话</a>
+    <a href="#s28">27 版本与中译</a>
+    <div class="grp">附录</div>
+    <a href="#s29"> 附录 A · 18 章章号、本报告所拟章题与原文首句</a>
+    <a href="#s30"> 附录 B · 专名与中译对照</a>
+    <a href="#s31"> 附录 C · 与本书相关的伦敦年表（只列与本书有关的条目）</a>
+    <a href="#s32"> 附录 D · 待核实项（★ 本轮查不到／各源冲突，如实列出）</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《亚当之前》阅读指引与精华解析</h1>
+  <div class="sub">Before Adam（1906 年连载 / 1907 年成书）—— 一部把「进化」写进梦里的史前小说</div>
+  <div class="meta">
+    <div><b>作者</b>杰克·伦敦（Jack London，本名 John Griffith Chaney，1876-01-12 – 1916-11-22，美国）</div>
+    <div><b>首次发表</b>《Everybody's Magazine》1906 年 10 月 – 1907 年 2 月连载；1907 年由 The Macmillan Company（纽约）出版成书（★ 起止月／期数与初版月份各源彼此冲突，详见附录 D）</div>
+    <div><b>依据版本</b>Project Gutenberg #310，<b>全 18 章</b>（本轮实测 200 / 234,667 B；另经 PGLAF 官方镜像与本地只读副本 <b>逐字节一致</b>三方核验）</div>
+    <div><b>核验级别</b>原文 A（PG #310 全 18 章）／ 中文引文 C（三个中译本均未逐字核对）／ 作者谈话 A（作者本人文字，★ 这不是访谈）</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 辖区＝<b>Project Gutenberg #310，全 18 章</b>（公版全文，本轮实测 200 / 234,667 B）。本报告全部英文引句均出自该文本，按「<b>CHAPTER 编号 ＋ 段落定位</b>」标注，<b>不使用页码</b>（PG 电子文本无出版页码），可逐处回原文核验。★ 原著章节只有编号、没有章题。</li>
+    <li><span class="tag t-talk">作者谈话</span> 杰克·伦敦已于 <b>1916-11-22 逝世</b>，本档<b>不含任何访谈，也不可能有新访谈</b>；所用材料全是他生前自己写下的非虚构文字（《The Human Drift》《John Barleycorn》《The People of the Abyss》《The Other Animals》）与一份经记录的书面回应。<b>三条禁区</b>：① 不得虚构任何访谈；② 不得把书评人／译者／评传作者的话写成作者的话；③ 不得把百科词条当作者原话。</li>
+    <li><span class="tag t-rep">转述</span> 二手概括。<b>本书全部中文引句一律在此档</b>——据公开资料转引、<b>未核对原著、不给页码</b>；三个中译本（外文出版社 2011／中国台湾 国家出版社 2015／河北教育出版社 2000）均未逐字核对。</li>
+    <li><span class="tag t-inf">推断</span> 本报告的推理与判断，既非原书文字，也非作者文字。</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    ★★ 三条边界一次说清：① <b>原书</b>档只覆盖 PG #310 的全 18 章英文原文（A 级）——<b>不得因为原文是 A，就把它的中文引文也写成 A</b>；中文引句一律进<b>转述</b>档（C 级）。② <b>作者谈话</b>档材料本身是 A 级（作者本人文字），但<b>没有访谈、也不可能有访谈</b>；且不得把他人（书评人、译者、评传作者、其妻 Charmian London）的话写成本人的话。③ 处理批评时一律＝<b>转述批评者的判断 ＋ 该作者的原话</b>，让读者自己看；对优生学／社会达尔文主义只作文学分析与思想史分析，不作现实政治评价。
+  </p>
+  <h3>本书的一条特别说明</h3><p style="margin:6px 0 0">原著的章节<b>只有编号、没有章题</b>（目录区仅列 <code>CHAPTER I.</code> 至 <code>CHAPTER XVIII.</code>）。正文下部 <code>## 7</code>–<code>## 24</code> 各节标题「第 N 章 · 〈所拟题〉」中的章题，<b>均为本报告所拟</b>，仅用于指路，不是原著的标题——这一点在 <code>## 6</code> 已一次说清。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p>《亚当之前》是一部<strong>用第一人称「梦」把进化史写成一个童年创伤故事</strong>的小说：二十世纪的「我」从会记事起就夜夜做同一个系列的噩梦，梦里的他是「大牙」（Big-Tooth）——更新世中期（Mid-Pleistocene）一个半树上半地面的族群里的一员；成年后「我」在大学学到进化论，才把这场终身的噩梦诊断为「种族记忆」的过量继承。全书正文是这套梦的整理稿，讲的是一个族群（the Folk，穴居民）如何在剑齿虎、邻族与更先进的「火民」（Fire People）之间被逐步逼到海边、又被逼进大沼泽、最后消失在记忆尽头的过程。它今天读起来更像一部<strong>思想史文献</strong>：读者能看见 1906 年一个读过斯宾塞、海克尔与魏斯曼的作家，是怎样把「进化」想象成一具可以回忆的肉身的。</p>
+  <p>如果只用一句话给本书的当代读者定位：<strong>它是一部「设定已被证伪、但写法仍然有效」的小说。</strong> 它的核心设定（祖先记忆可以遗传）在科学上不成立（见 <code>## 25</code>），但正因为它把整套论证过程<strong>完整地摆在了正文里</strong>（第二章整整一章都在讲这个论证），今天读它反而像是在读一份 1906 年的思想样本：你会看见一个聪明人如何用当时的全部可用工具，把一场个人的噩梦、一堆解剖学细节、和一套流行的社会理论，严丝合缝地拼成一台「解释机器」。<strong>看这台机器怎样运转，比看它的结论对不对更有意思。</strong></p>
+  <p>最后，请记住这本书的<strong>双重署名</strong>：它有一个「我」，也有一个「大牙」；前者是 20 世纪的城市孩子，后者是更新世的半兽。<strong>书中每一处「解释」都出自前者，每一处「事件」都出自后者</strong>——而全书的趣味，正落在两者之间那道缝里。本报告在 <code>## 6</code> 会把这道缝摊开来看。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <h3>18 章一览（★ 章题为本报告所拟，原著仅有章号）</h3>
+  <table>
+    <thead><tr><th>章号</th><th>本报告所拟章题</th><th>一句话内容</th></tr></thead>
+    <tbody>
+      <tr><td>第一章</td><td>梦魇中的古世界</td><td>「我」从童年起就被「图景！图景！图景！」式的噩梦统治；恐惧来自更新世中期，第一次看马戏团的狮子与蛇时立刻认出「老朋友」。</td></tr>
+      <tr><td>第二章</td><td>种族记忆与「另一个我」</td><td>长篇独白：为什么「我」的梦违反了做梦的第一定律；引出「人格解离」（disassociation of personality）、种族记忆、魏斯曼的「种质」（germplasm）与「返祖」（atavism）——他把自己称作「遗传的怪物」（a freak of heredity）。</td></tr>
+      <tr><td>第三章</td><td>树巢里的婴孩与野猪</td><td>最早的梦：树巢中的婴孩、逼近的野猪、扑上来的母亲、从树上跃来的父亲——以及母亲踩断树枝后二人的坠落。「我」从此做了终身的「坠落梦」。</td></tr>
+      <tr><td>第四章</td><td>只有三四十个声音的语言</td><td>交代时间感的模糊、语言的贫乏（「民」只有三四十个声音、没有名字、没有时态），并讲「我」如何被继父「饶舌者」（the Chatterer）从树上颠落，从此离家。</td></tr>
+      <tr><td>第五章</td><td>「红眼」与「耷耳」</td><td>「我」闯入岩洞群落；族人为「有猛兽追来」而集体躲洞；「红眼」（Red-Eye）出场——一个 170 磅的「返祖者」；「我」被打倒，随后与「耷耳」（Lop-Ear）打了一架，打成了终身的朋友。</td></tr>
+      <tr><td>第六章</td><td>窄口岩洞、剑齿虎与笑声</td><td>为什么「民」只睡窄口岩洞；剑齿虎（Saber-Tooth）清晨闯入，被全体用石头击退；「民」虽活在恐惧里，却是极会大笑的动物；他们怕的是<strong>东北方</strong>，而东北方的征兆是「烟」。</td></tr>
+      <tr><td>第七章</td><td>断牙之死，与那支箭</td><td>被母亲赶出门的「断牙」（Broken-Tooth）加入他们；三人在树上玩「树捉人」时第一次看见「火民」（Fire-Man）——一个跛脚的老人用弓箭射穿了「断牙」；「我」也中箭，「耷耳」咬断箭杆把他救下。</td></tr>
+      <tr><td>第八章</td><td>第一个冬天与那只小狗</td><td>第一个结冰的冬天；「民」没有火、没有武器、没有容器；老人「髓骨」（Marrow-Bone）发明用葫芦（gourd）储水；「我」抓回一只野狗崽子想养，「耷耳」把它杀了吃掉——人类最早一次驯狗的尝试就这样结束。</td></tr>
+      <tr><td>第九章</td><td>与「返祖者」的对峙</td><td>「红眼」的定性长段：他打妻、为夺妻杀人，是群体里「不合时宜的返祖」；第六个冬天「我」与「耷耳」长大，扩洞口时碎石砸到「红眼」，被他用长棍戳刺，「我」扔石头打中他的喉咙，二人逃走大笑。</td></tr>
+      <tr><td>第十章</td><td>妹妹、树屋与河汊上的木筏</td><td>回到蓝莓沼泽的旧家树，见到母亲与妹妹；打了妹妹；被继父追赶，当晚在树上过夜，于是动手搭了一间树屋；在河汊里玩浮木，无意间发明了<strong>最原始的筏子</strong>（catamaran）；发现「敏捷者」（the Swift One）。</td></tr>
+      <tr><td>第十一章</td><td>双重人格的自白</td><td>叙述者插话：现在看到的一切，是「现代的我」透过「大牙」的眼在看；「大牙」自己也有「另一个我」，梦见翼龙、恐龙、啮齿类，乃至原始海洋的黏液——「不是从猿到人，而是从虫到人」。随后故事继续：「红眼」用卵石把他俩逼进河里，漂向北岸。</td></tr>
+      <tr><td>第十二章</td><td>河之北岸</td><td>二人在河北岸漫游：树民（Tree People）、一座「远湖」、一头小牛、成群的鲑鱼；最后走回河边，却认不出这是自己的河；「耷耳」想出了渡河的主意。</td></tr>
+      <tr><td>第十三章</td><td>火民之地</td><td>第一次近距离看火民的营地与火；模仿他们生火，引发一场森林大火；误入火民的半岛据点，看到火民的女人与孩子；偷走一条真正绑好的筏子渡河，绕半岛一圈，回到自己的族群。</td></tr>
+      <tr><td>第十四章</td><td>「嘻嘻」议会</td><td>数月无事；「红眼」脖子上留着「我」砸出的肿块；他杀了「歪腿」（Crooked-Leg）、夺走「爱唱者」（the Singing One）；族群愤怒却因<strong>没有词汇</strong>而无法协同，最终被一段节奏带走——「这是艺术的雏形」（art nascent）。</td></tr>
+      <tr><td>第十五章</td><td>妹妹之死与逼近的火民</td><td>「耷耳」娶了「我」的妹妹，把「我」挤出洞穴；「我」睡在双洞通道里，一夜被野狗咬住，徒手掐死一条狗；妹妹与「无毛者」在胡萝卜地遭火民伏箭射死；火民出现得越来越频繁。</td></tr>
+      <tr><td>第十六章</td><td>「敏捷者」与雷击之树</td><td>三四年后重逢「敏捷者」；一场疯狂的追逐，她把他引到自己的树屋；树被雷劈毁，二人搬回岩洞；「红眼」开始迫害「敏捷者」，「我」与「大脸」（Big-Face）上前搏斗，一只剑齿虎突然扑下咬死「大脸」，反而救了他们。</td></tr>
+      <tr><td>第十七章</td><td>烟攻</td><td>次年早秋，火民大举来袭；僵持之后，他们用干草与柴堆在洞口放火熏洞；「髓骨」第一个被熏出，被打死；「长唇」（Long-Lip）中箭；火民认出「敏捷者」而不射她；「红眼」杀一名火民后突围；幸存者逃入大沼泽。</td></tr>
+      <tr><td>第十八章</td><td>大沼泽与海</td><td>大沼泽中的漫长流亡；到达海边（沙岩洞）时只剩三十人，靠鱼贝为生，人口递减；「耷耳」被鲍鱼夹住手指、涨潮溺死；火民划独木舟出现，「敏捷者」带他再次南逃，最后在一处俯瞰大河的崖顶定居——「我的记忆到此为止」。</td></tr>
+    </tbody>
+  </table>
+  <h3>三个人群（★ 原著中的三个类别，不是三个物种）</h3>
+  <table>
+    <thead><tr><th>类别</th><th>原著称呼</th><th>特征（据原文）</th><th>与「我」的关系</th></tr></thead>
+    <tbody>
+      <tr><td>穴居民</td><td>the Folk（Cave People）</td><td>半树上半地面；会用石头、会玩、会大笑；<strong>没有火、没有武器、没有容器</strong>、语言只有三四十个声音</td><td>「大牙」就是其中一员，「我」的祖先</td></tr>
+      <tr><td>火民</td><td>the Fire People</td><td>更先进：会用火、弓箭、独木舟；有语言与合作；体毛更少、鼻梁更挺、腿更直</td><td>恐惧的对象；最终摧毁了穴居民</td></tr>
+      <tr><td>树民</td><td>the Tree People</td><td>更接近猿类：更矮壮、更兽性；有类似的语言</td><td>亲缘最近的「异类」；「我」折磨过老树民，也被树民追杀；「红眼」最后加入了他们</td></tr>
+    </tbody>
+  </table>
+  <h3>人物表（★ 名字全部是叙述者「为了方便」自己起的，原著明写「那时我们没有名字」）</h3>
+  <table>
+    <thead><tr><th>名字</th><th>原名</th><th>身份与结局</th></tr></thead>
+    <tbody>
+      <tr><td>「大牙」</td><td>Big-Tooth</td><td>叙述者的史前祖先；因犬齿特别大而得名；受伤的肩是「红眼」留下的终身印记</td></tr>
+      <tr><td>「耷耳」</td><td>Lop-Ear</td><td>儿时死敌，后成终身挚友；一只耳朵永远耷拉；娶了「我」的妹妹；最后被鲍鱼夹住溺死</td></tr>
+      <tr><td>「敏捷者」</td><td>the Swift One</td><td>温和、羞涩、攀爬第一的女伴；疑与火民有血缘；「我」的伴侣</td></tr>
+      <tr><td>「红眼」</td><td>Red-Eye</td><td>「返祖者」（atavism）；170 磅，头顶有「我」砸出的肿块；杀妻、夺妻；最后活下来，走进了树民</td></tr>
+      <tr><td>「饶舌者」</td><td>the Chatterer</td><td>「我」的继父；把「我」从树上颠落，促成他离家；被火民射死</td></tr>
+      <tr><td>母亲</td><td>—</td><td>「老派」的树上居民，拒绝搬到岩洞；救过「我」两次</td></tr>
+      <tr><td>父亲</td><td>—</td><td>半人半猿；在野猪事件后不久死去，「我」不知其死法</td></tr>
+      <tr><td>「断牙」</td><td>Broken-Tooth</td><td>被母亲赶出门的少年；被火民的箭射死，成为全书的转折点</td></tr>
+      <tr><td>「髓骨」</td><td>Marrow-Bone</td><td>群落里唯一的老人；发明用葫芦储水；被火民熏出后打死</td></tr>
+      <tr><td>「无毛者」</td><td>the Hairless One</td><td>「髓骨」之子；与「我」的妹妹一同被箭射死</td></tr>
+      <tr><td>「长唇」</td><td>Long-Lip</td><td>「无毛者」之子；在烟攻中中箭而死</td></tr>
+      <tr><td>「大脸」</td><td>Big-Face</td><td>唯一敢上前帮「我」的人；被剑齿虎吃掉</td></tr>
+      <tr><td>「歪腿」</td><td>Crooked-Leg</td><td>「爱唱者」的丈夫，被「红眼」杀死</td></tr>
+      <tr><td>「爱唱者」</td><td>the Singing One</td><td>被「红眼」夺走</td></tr>
+      <tr><td>跛脚老猎人</td><td>the old Fire-Man</td><td>射死「断牙」的人；也是烟攻的指挥者；全书唯一贯穿始终的「文明」面孔</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>怎么用这三张表。</strong> 18 章表用来查「哪一章发生什么」；三个人群表用来查「谁和谁是什么关系」；人物表用来查「这个绰号对应原著里的哪个词」。三张表合起来，可以替代一次速读——但请注意它们<strong>不构成情节</strong>：本书最重要的一点恰恰在情节之外，即<strong>所有解释都是事后加上去的</strong>（见 <code>## 2</code> 与 <code>## 6</code>）。★ 另需提醒：三个人群表的「与『我』的关系」一列，是本报告根据原文归纳的<strong>关系描述</strong>，不是原著的分类；原著从不给任何群体下定义，只用叙事让读者自己去感觉高低。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>核心主题与结构机制</span><span class="caret">▾</span></h2>
+  <p>这部作品真正在做的，是<strong>「双重时间的第一人称 + 梦作为通道 + 三种人群的进化阶梯」</strong>这三件事的叠加。</p>
+  <p><strong>第一，双层的「我」。</strong> 全书有一个从不出现在故事里、却始终在场的声音：二十世纪的「现代的我」。「大牙」在梦里跑，他在梦外写。这个结构在第十一章被明说出来：</p>
+  <blockquote>
+    <p>It is I, the modern, who look back across the centuries and weigh and analyze the emotions and motives of Big-Tooth, my other self. He did not bother to weigh and analyze. He was simplicity itself. 〔是「我」，现代的那个，回望千年、去掂量和分析「大牙」——我的另一个我——的情绪与动机。他自己从不掂量。他就是简单本身。〕<span class="tag t-src">原书</span>（第十一章）</p>
+  </blockquote>
+  <p>这句话是理解全书的钥匙：<strong>所有关于「进化」的解释，都是事后加上去的</strong>。梦里只有事件，没有理论；理论是醒来的人（和读者）补的。所以本书的「科学性」其实从来不在梦里，而在解释框架里——而那个框架，恰恰是我们要在 <code>## 25</code> 里拆的东西。</p>
+  <p><strong>第二，「梦」不是修辞，是承重结构。</strong> 一旦接受「梦可以通往祖先」，作者就可以合法地跳过大段因果：第十八章「我的记忆到此为止」、第四章「我只记得我亲眼所见」，都是用梦的逻辑给叙事打补丁。更妙的是，梦还提供了一种<strong>廉价而有效的恐惧</strong>：全书反复使用「坠落」——树巢、断枝、被颠落、被逼落树枝。第二章解释过为什么坠落梦永远落不到底（落到地面的祖先已经死了，没有后代），于是「落不到底」这个细节反过来成了「我真的是他们的后代」的证明。这是本书结构上最精巧的一处自洽。</p>
+  <p><strong>第三，三种人群＝一条被压缩的进化阶梯。</strong> 树民—穴居民—火民，在书里不是三个时期，而是<strong>同时存在的三个等级</strong>，而且彼此的界线是可以跨越的（「我」见过族群成员叛逃去当树民；「红眼」最后加入了树民；「敏捷者」疑有火民血统）。这条阶梯的作用是双重的：它既是叙事上的三类对手，也是 1906 年读者被训练去<strong>在心里排序</strong>的一张表。书中那句反复出现的自我定位——「我们正处在变成人的过程中」（in the process of becoming men）——就是这张表的核心刻度。</p>
+  <p><strong>第四，恐惧是唯一的普遍情感。</strong> 穴居民的统治性情绪不是欲望而是恐惧：怕暗、怕猛兽、怕火民的箭、怕东北方的烟。第六章有一句总结：</p>
+  <blockquote>
+    <p>We were not fighters like them; we were cunning and cowardly, and it was because of our cunning and cowardice, and our inordinate capacity for fear, that we survived in that frightfully hostile environment of the Younger World. 〔我们不像它们那样善斗；我们狡诈而胆怯；正是靠着这狡诈、这胆怯、以及我们对恐惧那过量的容量，我们才在那个可怖敌对的「较年轻的世界」里活了下来。〕<span class="tag t-src">原书</span>（第六章）</p>
+  </blockquote>
+  <p>把「恐惧」写成生存优势，是这部小说的一个真正有趣的地方：它比同时代大多数「适者生存」的写法更细，也更阴郁。</p>
+  <p><strong>第五，命名的手续——全书最容易被忽略的一层装置。</strong> 第四章明写「那时我们没有名字」，而全书每一节都在使用「耷耳」「红眼」「髓骨」这样的名字，并且这些名字<strong>不是随意的绰号，而是身体特征的直译</strong>（耷拉的一只耳朵、发炎变红的眼睛、老到只剩骨头）。也就是说：<strong>叙述者用一个「现代人」的分类癖，替换了梦中世界原本的无名状态</strong>。这一层装置的效果是双向的——它使故事可读（没有名字就没人读得下去），同时它<strong>悄悄地把整部小说变成了「后世对史前的翻译」</strong>，而不是「史前本身」。这与第二章那句「我是按自己的用法使用『人格解离』这个词，因为没有更好的词」是同一件事的两个面：<strong>本书在方法论上一直承认自己是翻译，只是从不提醒读者。</strong></p>
+  <p><strong>第六，时间的悬置。</strong> 全书对时间做了两次主动放弃：一次在第四章（「我往往不知道事件的先后……只能说某两件事之间隔了一两年或四五年」），一次在第十八章（大沼泽里的时间感彻底崩坏，「在我记忆里，发生的一切总是以噩梦的形态出现」）。放弃时间感不是偷懒，而是一种<strong>取值策略</strong>：正因为读者无法把事件排进年表，他们也就不可能追问「这么短的时间怎么可能进化出这些」。<strong>时间感的模糊，替进化论挡掉了它最容易被攻击的那一面。</strong></p>
+  <h3>一条贯穿全书的「恐惧经济学」</h3>
+  <p>把上面这些机制合起来看，会发现本书其实一直在算一笔账：<strong>恐惧是这个世界里唯一的通货</strong>。它能解释为什么「民」睡窄口岩洞（怕猛兽）、为什么他们只在白天外出（怕黑夜）、为什么他们会集体逃进洞里（怕突然冲出来的东西）、为什么他们怕一个说不清内容的「东北方」（怕火）。而全书对「人之所以成为人」给了两个互不兼容却并置的答案：<strong>第六章说靠恐惧活下来</strong>，<strong>第七章说靠同伴之谊最终称霸</strong>。第十四章的「嘻嘻」议会是第三个答案：<strong>靠节奏、靠一起喊出同一段声音</strong>。</p>
+  <p>这三个答案之间没有任何调和——作者也从不试图调和。这正是《亚当之前》作为小说比作为论文更可信的原因：论文必须选一个，小说可以把三个都摆在那里。</p>
+  <p><strong>最后补一句关于「本书该不该被当成科幻」的观察。</strong> 今天几乎所有的书目系统（Project Gutenberg 的元数据、ISFDB、各种科幻数据库）都把它收在科幻类，中文出版方也是按「幻想小说」介绍它的。★ 但如果按本书自己的内部逻辑来读，它<strong>不是「设想未来」的小说，也不是「设想未知世界」的小说</strong>——它设想的是一个<strong>已经被科学描述过的过去</strong>。它真正在做的事，是把一份 1906 年的科学图景<strong>翻译成一个人的切身经验</strong>。用今天的话说，它更接近「科学史小说」，而不是「科幻小说」。这个定位上的区别很重要：只有承认它是一次「翻译」，读者才会愿意去看<strong>译得准不准</strong>，而不是只惊叹它「居然想得到」。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <p><strong>第一遍，当冒险小说读，别看注释。</strong> 本书的骨架是一个极其朴素的故事：两个少年、一个恶霸、一次远征、一场灭族。它最初的读者就是这么读的——它先在《Everybody's Magazine》这种大众刊物上连载了四个月，然后才出书。把第十八章读完再回头看第二章，会发现自己本来就已经把「种族记忆」当成设定接受了，这正是作者想要的。</p>
+  <p><strong>第二遍，读「章与章之间的缝」。</strong> 本书有大量事后补写的解释段（第二、四、十一、十四章最集中），这些地方才是作者暴露立场的位置。特别是第十四章「嘻嘻」议会那一段：族群愤怒到极点，却因为「没有词汇」而无法协同，最后被一段节奏化解——这段是全书对「文明为什么是必要的」给出的最直接的论断。</p>
+  <p><strong>第三遍，把它放回 1906—1907 年。</strong> 那时孟德尔的工作刚被重新发现（1900），遗传学还没有名字；「获性遗传」（拉马克主义）在科学界仍有支持者；而「种族记忆」还是一个可以严肃谈论的假说。全书的理论装置（魏斯曼的种质、种族记忆、返祖）在当时的语境里是<strong>前沿术语</strong>，不是胡话——这正是它作为思想史文献的价值所在，也正因为如此，必须与它后来被证伪这件事分开来看。</p>
+  <p><strong>不建议的读法</strong>：把它当成「人类起源的科普」。书中「穴居民」不对应任何已知古人类，书中的时间刻度（更新世中期）与书中的生物（能把一只 170 磅的「民」写得像猿、又把火民写得几近现代人）彼此不合。作者自己也从没声称这是科学报告——他在结尾说的是「我，现代的那个，确凿是一个人；而我，大牙，那个原始人，不是人」，这是一个修辞上的收束，不是分类学陈述。</p>
+  <p><strong>两种最常见的误读，值得单独点出。</strong> 其一，是<strong>把「红眼」当作反派</strong>。他不是反派，他是本书的<strong>命题</strong>：一个族群之所以失败，最要紧的原因不是外敌，而是<strong>它无法处理自己内部的不可同化者</strong>。他打妻、杀人，全族都恨他，却由于没有词汇去表达「合作」，始终动不了他（第十四章）。读到最后「他坐在树民中间」那一幕（第十八章），读者应当明白：<strong>他从未被解决，只是被换了一个地方。</strong> 其二，是<strong>把「火民」当作纯粹的入侵者</strong>。文本给了火民的孩子、火民的爱唱者、火民对「敏捷者」的温柔，也给了他们扩张的动机（「正是他们的繁荣，导致了后来那场灾祸」）。<strong>灭绝在这里被写成一个有原因的后果，而不是一个恶行的结果</strong>——这正是本书需要「小心阅读」的地方。</p>
+  <p><strong>这本书适合谁读。</strong> 适合三类人：想看清「进化」这个词在 1906 年长什么样的人；想研究「科幻/史前小说的写法谱系」的人（它是「祖先记忆」这一母题在英语长篇里最早、也最完整的样本之一）；以及喜欢《野性的呼唤》那种<strong>冷静到近乎冷血、却始终同情被淘汰者</strong>的笔法的人。<strong>不适合</strong>拿它当古人类学入门，也不适合拿它当儿童读物（理由见 <code>## 4b</code>）。</p>
+  <p><strong>三种读法，建议按这个次序。</strong> 第一种是<strong>当冒险小说读</strong>：只看「大牙」与「红眼」的冲突、火民的步步逼近、被雷劈的树与被焚的巢穴、最后那条通往大海的沼泽路。作为冒险小说它是及格的——18 章几乎没有闲笔，节奏干净，每一章都以一次伤害或一次迁移收尾。第二种是<strong>当思想史文献读</strong>：把第二章那整章的理论、以及全书那套「种族记忆 → 返祖 → 三民阶梯」的装置，当作 1906 年的思想样本来解剖；<strong>这是本报告推荐的主读法</strong>，也是 <code>## 25</code> 与 <code>## 26</code> 的写法。第三种是<strong>当反面教材读</strong>：逐一指出它的科学错误与身体描写的暗流——这种读法有效，但<strong>容易把书读成一张缺点清单</strong>，反而错过它作为叙事为什么当年能说服人。</p>
+  <p>★ 建议的实际次序是：<strong>先按第一种读一遍</strong>（两个晚上足够，不必查任何资料），<strong>再按第二种带着 <code>## 25</code> 读第二遍</strong>，第三种留给读完之后——那时你已经知道它在哪些地方「说的是当时的话」，也就能分清哪些是作者的选择、哪些是他时代的默认值。</p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>版本与译本怎么选</span><span class="caret">▾</span></h2>
+  <p><strong>中译（三个）</strong></p>
+  <ol>
+    <li><strong>《在亚当之前》，廖美珍 译，外文出版社，2011 年 11 月，ISBN 978-7-119-07326-2，35 元。</strong> 体例特殊：<strong>译者简介 / 译者序言 /（一）英文原著 /（二）中文译文 /（三）译文评论</strong>——是<strong>英汉对照 + 译评</strong>的教学型版本，适合想看两种语言对读、且想看一种译法如何被讨论的读者。出版方简介里把它写成「《在亚当之前》(1905)」，年份是错的（见 <code>## 4b</code>）。
+    </li>
+    <li><strong>《亚当之前》，施智璋 译，中国台湾 国家出版社，2015 年 2 月（三版），197 面，ISBN 9789573614470。</strong> 目前可见的繁体版本。
+    </li>
+    <li><strong>《杰克·伦敦文集》第八卷，河北教育出版社，2000 年，427 页，ISBN 7543432633</strong>，该卷收《在亚当之前 / 太阳之子 / 斯莫克·贝洛》三种。★ 本卷译者姓名存在<strong>「廖美珍 vs 缪美珍」的著录冲突</strong>（中文科幻数据库与部分页面作「廖美珍」，Google Books 的书目著录作「缪美珍」，见附录 D）。若只想读一个中译，本卷的性价比最高，因为它同时收了另外两个中篇。
+    </li>
+  </ol>
+  <p><strong>英文版怎么选</strong></p>
+  <ul>
+    <li><strong>免费、可靠、可核验</strong>：<strong>Project Gutenberg #310</strong>。这是本报告的底本（见来源清单的实测记录）。它<strong>没有插图</strong>，正文按 1907 年 Macmillan 版录校。
+    </li>
+    <li><strong>想要原版插图</strong>：<strong>University of Nebraska Press，2000 年</strong>的 Bison Frontiers of Imagination 丛书版（Dennis L. Dunn 作序，256 页），<strong>收录 Charles Livingston Bull 的原插图，并附加一幅史前地图</strong>。
+    </li>
+    <li><strong>想要 20 世纪中期的另一种图解</strong>：<strong>The Macmillan Company，1962 年</strong>的插图重排本——由 <strong>Leonard Everett Fisher</strong> 绘制全页黑白插图，<strong>Willy Ley 作传略性导言、Loren Eiseley 作跋《Jack London, Evolutionist》</strong>，正文 xviii + 172 页。
+    </li>
+    <li><strong>★ 不要用 PG #9113</strong>：那是<strong>同一本书的有声书版</strong>（目录里只有 readme 与 mp3），<strong>不能作文字底本</strong>（来源清单中已明文声明）。
+    </li>
+  </ul>
+  <p>★ <strong>选版本时最容易被忽略的一件事：本书的「章」在原著里没有标题。</strong> 因此，任何声称「原著第 X 章题为《某某》」的版本或导读，都要多打一个问号——<strong>这些章题通常有两种来源</strong>：一是译者为方便读者而自拟的（这是正当的做法，中文译本与教学版很常见），二是后人从别处抄来的、张冠李戴的。本报告自己给 18 章各拟了一个章题（见 <code>## 7</code>–<code>## 24</code> 与附录 A），<strong>并在此声明它们全部是本报告所拟、不是原著标题</strong>。★ 一个实用的检验办法：拿到任意一个中译本，看它的目录页是否对章题作了说明——<strong>说明了的可以采信，没说明就当作译者所拟</strong>。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>流行说法</th><th>原文/事实</th><th>定位</th></tr></thead>
+    <tbody>
+      <tr><td><strong>「这是 1905 年的作品」</strong></td><td>错的。<strong>1906 年 10 月起在《Everybody's Magazine》连载，1907 年成书</strong>（The Macmillan Company，纽约）。中文出版方简介（外文出版社／百度百科／豆瓣的同一段文案）与中文科幻数据库均写「《在亚当之前》(1905)」——这是流传最广的一处硬错。</td><td>全书；对照 <code>## 27</code>、附录 D</td></tr>
+      <tr><td><strong>「它是科幻小说」</strong></td><td>当时的定位是<strong>史前小说／进化小说</strong>（prehistoric romance）。「科幻」是 20 世纪后半叶加的标签——PG 元数据与 ISFDB 都把它收在科幻类，但 1906 年的伦敦与评论者谈的是「进化」「人类学」。</td><td>全书；对照 <code>## 25</code></td></tr>
+      <tr><td><strong>「祖先记忆有科学依据」</strong></td><td>没有。<strong>它早于遗传学（1900 年后才重建）的发现，其「遗传记忆」设定在科学上不成立</strong>——魏斯曼的「种质」并不携带个体的记忆，分子生物学也没有「获得性记忆遗传」这一机制。书里第二章已把话说在科学的外衣里，但那是 1906 年的外衣。</td><td>第二章 <span class="tag t-src">原书</span>段</td></tr>
+      <tr><td><strong>「它写的是猿」</strong></td><td>不完全。写的是<strong>介乎猿与人之间的「民」（the Folk）</strong>——「半是人，半是猿，却又不是猿，也还不是人」。作者在正文里明说「这样的东西今天在地球上没有、地下没有、土里也没有」。它<strong>不对应任何已知的古人类</strong>。</td><td>第三章 父亲出场段</td></tr>
+      <tr><td><strong>「它是儿童读物」</strong></td><td>不是。全书有<strong>大量暴力与性的暗流</strong>：杀妻、夺妻、灭族、熏洞、婴儿被掷死，以及「发情期的疯狂追逐」（第十六章）。★ 本报告只做文学分析，不展开。</td><td>第九、十四、十六、十七章</td></tr>
+      <tr><td><strong>「这是《野性的呼唤》之后的余兴之作」</strong></td><td>恰恰相反。伦敦<strong>相当重视它</strong>：当时的书目材料记载他曾为写作此书从英国订购一大批书，其中包括 Stanley Waterloo 的《The Story of Ab》(1897) 并「倚重」了它；被指控剽窃后，他承认借鉴、但主张「原始人属于公共领域」，并称自己的书是<strong>对《Ab》的一个回应</strong>。Charmian London 在回忆录中还称此书「进了美国多所大学、被当作人类学教科书」。</td><td>见 <code>## 25</code>、<code>## 26</code>、附录 D</td></tr>
+      <tr><td><strong>「它写的是非洲」</strong></td><td>书中没有点名大陆；有的现代导读把大牙的家安在「更新世的非洲」，那是导读者的补注，不是原文陈述。原文只给出一个地理：一条河、一片蓝莓沼泽、一座「远湖」、一片大沼泽、一处海边的沙岩洞。</td><td>第五、十二、十八 章</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p><strong>一、优生学与社会达尔文主义（★ 这是学界公认的实质议题）。</strong> <strong>John R. Hensley</strong> 在《Studies in Popular Culture》第 25 卷第 1 期（<strong>2002 年</strong>，pp. 23–37，JSTOR 23415006）发表的《Eugenics and Social Darwinism in Stanley Waterloo's "The Story of Ab" and Jack London's "Before Adam"》一文，是把这个议题正式提出的代表性研究。<strong>该文的判断我可以负责地转述为一句：这两部小说里都存在明显的优生学关切。</strong> 相应地，我的处理方式是：<strong>转述批评者的判断，并给出伦敦自己的原话</strong>，让读者自己看。伦敦的原话见 <code>## 26</code>：他在《The Human Drift》里确实写过「<strong>控制生育将成为人最重要的问题之一、国家最重要的职能之一。人将干脆不被允许被生出来</strong>」（<span class="tag t-talk">作者谈话</span>，PG #1669）。★ 本报告只做文学与思想史分析，<strong>不做任何现实政治评价，也不展开现实的种族与优生议题</strong>。</p>
+  <p><strong>二、「祖先记忆」的科学性。</strong> 全书的理论中枢（第二章）在<strong>科学上不成立</strong>：个体一生的经历不会以「记忆」的形式进入生殖细胞并遗传给后代。这一点必须明写。需要区分的是：书中那套「种质／原生质可以携带记忆」的说法，来源之一是<strong>奥古斯特·魏斯曼（August Weismann）在《种质论》（Das Keimplasma，1892）里提出的「种质连续说」</strong>——但那套学说<strong>只否定了「获得性遗传」，并没有说「记忆可以遗传」</strong>；<strong>「种质携带种族记忆」是作者对该学说的一次文学化推演</strong>。遗传的物质基础要到 <strong>Watson 与 Crick 在《自然》（Nature）上发表 DNA 双螺旋结构（1953）</strong>之后才被确立。伦敦写的是小说，不是论文，但读者不该把小说的设定当科学。</p>
+  <p><strong>三、与《The Story of Ab》的关系——是「同母题」还是「抄袭」。</strong> 有<strong>明确的抄袭指控</strong>，也有<strong>明确的反驳</strong>，两边的原始材料都在：1906 年 11 月（一说更早），<strong>Stanley Waterloo</strong> 公开指控伦敦的《Before Adam》剽窃其 1897 年的《The Story of Ab》；<strong>《纽约时报》</strong>当时的报道标题即《CHARGES JACK LONDON WITH PLAGIARISM; Stanley Waterloo Says "Before Adam" Was Filched from "Ab."》，并同时刊出伦敦的回应——他「<strong>反唇相讥地说，自己的书是对「Ab」的一个回应</strong>」（Mr. London Replies Tartly That His Work Is a Reply to "Ab"）。书目材料（Letters of Jack London, pp. 623–625）记载的伦敦立场是：<strong>承认对《Ab》的借鉴，但主张原始人题材属于公共领域</strong>。★ 本报告不替任何一方裁决，只把两边的话摆出（详见 <code>## 25</code>）。</p>
+  <p><strong>四、史前图景的准确性。</strong> 以今天的古人类学看，书中的分类是站不住的：<strong>南方古猿属（Australopithecus）要到雷蒙德·达特（Raymond Dart）1925 年在《自然》（Nature）上命名「非洲南猿」之后才进入学术视野</strong>，而「人属起源于非洲」更要等到 <strong>1959 年利基夫妇（Louis &amp; Mary Leakey）在奥杜威峡谷的发现</strong>之后才成为共识——<strong>两者都远在本书 1907 年出版之后</strong>。书中的「民」「火民」「树民」三分法是<strong>进化阶梯式的想象</strong>，<strong>不对应任何真实物种</strong>；书中把「现在」这一档（火民用弓、木筏）与「更新世中期」放在同一个舞台，年代也自相矛盾。这是文本的时代局限，不是疏漏——但对今天的读者，必须说清。</p>
+  <p><strong>五、「火民」的种族化暗流（★ 只做文学分析）。</strong> 书中用体毛、鼻梁、腿的直曲、嘴唇与犬齿来给三个群体排高低，并且把「更好、更美、更接近人」挂靠在火民身上——这套身体描写本身承载了 1900 年前后流行的种族化人体学语汇（这一时期的种族化人体测量学，在 <strong>Stephen Jay Gould《The Mismeasure of Man》（1981）</strong>一书里有系统的学术梳理；★ 本报告<strong>未核对该书</strong>，此处<strong>仅作背景标注</strong>）。<strong>本报告只把它当作文学与思想史材料处理</strong>：指出这套描写在文本里承担的「阶梯刻度」功能，不把它读成对现实人群的论断，也不引任何现实政治解读。</p>
+  <p><strong>六、中译与改编。</strong> 三个中译（见 <code>## 4</code>），其中<strong>「廖美珍 vs 缪美珍」的姓名冲突</strong>必须如实写进待核实项（附录 D）。至于改编：本书从来没有得到过与《野性的呼唤》相称的影视待遇，公开可查的主要是各种<strong>插图重排版</strong>（1907 Bull / 1962 Fisher）与有声书（PG #9113、LibriVox）。★ 我没有找到任何有分量的影视改编记录，如实说明。</p>
+  <p><strong>七、一条容易被忽略的局限：这本书几乎没有「女人」。</strong> 全书女性角色屈指可数——母亲、妹妹、「敏捷者」、「爱唱者」、以及「红眼」那些活不长的妻子——而她们几乎全部以<strong>被伤害者、被争夺者或被追逐者</strong>的身份出现；唯一有行动能力的「敏捷者」，其功能也是「被追逐的目标」与「引导逃亡的人」。★ 这是 1906 年冒险小说里极常见的性别结构，本报告把它作为<strong>文本事实</strong>指出，只做文学分析。它对今天的阅读造成的实际困难是：<strong>读者很难从书中得到任何关于「民」的社会组织的信息</strong>——因为叙事几乎只覆盖了「雄性之间的竞争」这一层。</p>
+  <p><strong>八、叙事的另一个局限：没有「非暴力」的时间。</strong> 全书 18 章里，几乎找不到一段纯粹平静的生活描写（最接近的是第八章的玩闹与第十章的划水，而它们每一段都以一次伤害收尾）。这带来一个阅读上的副作用：<strong>读者会以为「民」的一生只有危险</strong>，从而更难判断书中的哪些描写是「观察」，哪些是为了推进紧张感而选的场景。★ 这不是缺点（它是一本冒险小说），但它解释了为什么这本书<strong>不能当作史前生活的参考</strong>——它是一份经过强选择的切片。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>全书骨架与叙事机制：一部「祖先记忆」小说</span><span class="caret">▾</span></h2>
+  <h3>关于章题的一句必须说的话</h3>
+  <p>Project Gutenberg #310 的目录区只有 <code>CHAPTER I.</code> 至 <code>CHAPTER XVIII.</code>（正文里的章头也只写 <code>CHAPTER I</code>），<strong>原著没有章题</strong>。因此<strong>本报告从 <code>## 7</code> 到 <code>## 24</code> 每一节的章题全部是本报告所拟</strong>，用途是让读者在目录里认得出哪一节讲什么，<strong>它们不是原著标题，也不能当作原文引文引用</strong>。凡在别处见到「《亚当之前》第 X 章《某题》」的说法，都是后人所加。</p>
+  <h3>骨架：一条单向的溃败线</h3>
+  <p>18 章并非平均分布的「史前生活百科」，而是一条<strong>相当清晰的溃败线</strong>，可以分成四段：</p>
+  <table>
+    <thead><tr><th>段落</th><th>章</th><th>事件主轴</th><th>空间</th></tr></thead>
+    <tbody>
+      <tr><td>一 · 童年与入门</td><td>第一至四章</td><td>噩梦的起源、理论交代、树巢童年、离家</td><td>树巢、蓝莓沼泽</td></tr>
+      <tr><td>二 · 族群生活</td><td>第五至九章</td><td>进入岩洞群落、剑齿虎、火民首次杀人（断牙之死）、第一次冬天、与「红眼」对峙</td><td>岩洞村落、兔子岗</td></tr>
+      <tr><td>三 · 远征</td><td>第十至十三章</td><td>河汊筏子、漂向北岸、远湖、误入火民之地、火、渡河归来</td><td>河北岸、远湖、火民半岛</td></tr>
+      <tr><td>四 · 消亡</td><td>第十四至十八章</td><td>「嘻嘻」议会、妹妹之死、火民围猎、重逢「敏捷者」、烟攻灭族、大沼泽与海</td><td>岩洞村落、大沼泽、海边</td></tr>
+    </tbody>
+  </table>
+  <p>这张表本身就说明本书不是「一本史前生活志」：<strong>从第五章起，每三到四章就出现一次不可逆的损失</strong>（断牙、家树、妹妹、族群、朋友、记忆）。「祖先记忆」只是这架机器的传送带。</p>
+  <h3>机制：四种「让叙事成立」的手法</h3>
+  <ol>
+    <li><strong>梦的跳跃。</strong> 叙事可以在任意两点之间瞬移（第四章「我只记得我亲眼所见」、第十八章「我的记忆到此为止」），代价是时间感被作者主动放弃——第四章开头就明说「我往往不知道事件的先后」。
+    </li>
+    <li><strong>命名的手续。</strong> 原著明写「那时我们都没有名字」，叙述者于是给每个角色起了一个描述性的绰号（「耷耳」「红眼」「髓骨」）。<strong>这些名字是二十世纪叙述者的产物，不是「民」的名字</strong>——这一点是全书的元叙事装置，也是它最容易被读者忽略的一处自觉。
+    </li>
+    <li><strong>术语的外壳。</strong> 魏斯曼的「种质」、种族记忆、人格解离、返祖——这些词为一场噩梦提供了「可解释性」，让读者愿意跟着走。★ 这些术语的科学效力，见 <code>## 25</code>。
+    </li>
+    <li><strong>笑与艺术作为泄压阀。</strong> 全书反复用「大笑」和第十四章的「嘻嘻」议会来打断紧张：前者是穴居民的群体性格，后者是他们唯一一种「一起做成一件事」的经验。
+    </li>
+  </ol>
+  <h3>一段必须点出的自我说明</h3>
+  <p>第十四章对「为什么这个族群会输」给了全书最直接的解释：他们愤怒到极点、也想一起动手，却<strong>没有词汇去表达「合作」这个念头</strong>：</p>
+  <blockquote>
+    <p>But when he tried to express the cooperative impulse that stirred within him, his noises became gibberish. 〔但当他试图表达胸中那股合作的冲动时，他发出的声音就变成了胡言乱语。〕<span class="tag t-src">原书</span>（第十四章）</p>
+  </blockquote>
+  <p>紧接着作者写下结论句：<strong>「我们无法全体动手去杀死红眼，因为我们缺少词汇。」</strong>（第十三章的口径相同：「他们缺乏我们是有的那种东西——有秩序的语言与合作。」）这等于说：<strong>文明的胜负手是语词，而不是拳头。</strong> 对一部写「进化」的小说，这是一个不太常见、也相当值得注意的落点。</p>
+  <h3>可疑之处</h3>
+  <ul>
+    <li><strong>年份与舞台自相矛盾。</strong> 第一章说恐惧源自「更新世中期」，但书中同时出现剑齿虎、野牛、犀牛与「能把木头绑成筏子、会用弓箭」的火民——把这些放在同一个时点，是 1906 年的想象，不是地层证据。
+    </li>
+    <li><strong>叙述者有时比古人类「更聪明」。</strong> 「我」会做半纳尔逊锁（half-Nelson，第五章）、会用「二叠纪／蠕虫」这样的词（第十一章），这些都不是「大牙」的能力，而是「现代的我」越界进了叙事。
+    </li>
+    <li><strong>「三民」的边界比想象中松。</strong> 文本反复强调「民」「火民」「树民」可以互相流动（叛逃、混血、返祖），却在描写上坚持按体毛和鼻梁排行——这套描写的思想史来源，见 <code>## 25</code>。
+    </li>
+  </ul>
+  <h3>叙事视角：「我」其实是三个人</h3>
+  <p>本书的第一人称并不简单，它至少有<strong>三个互相嵌套的层次</strong>，而这三层在阅读时很容易被压成一层：</p>
+  <table>
+    <thead><tr><th>层次</th><th>是谁</th><th>他知道什么</th><th>在文本里的位置</th></tr></thead>
+    <tbody>
+      <tr><td>第一层</td><td>「大牙」（Big-Tooth）</td><td>只知道眼前的事件；不会分析、不掂量动机</td><td>全部动作与对话</td></tr>
+      <tr><td>第二层</td><td>「现代的我」（叙述者）</td><td>懂进化论、懂心理学，会给一切加解释</td><td>第二、四、十一、十四章的大量说明段</td></tr>
+      <tr><td>第三层</td><td>「大牙」的「另一个我」</td><td>梦见更古的生命（翼龙、啮齿类、原始海洋）</td><td>第十一章一笔带过</td></tr>
+    </tbody>
+  </table>
+  <p><strong>这三层的关系是不对称的</strong>：第一层提供经验，第二层提供意义，第三层提供「一切都还能再往下推」的暗示。全书的趣味就在于——<strong>读者通常以为自己在读第一层，其实一直在被第二层牵着走</strong>。一个直接的检验方法：把所有「解释性」的段落（第二章全章、第四章的语言学段、第十一章、第十四章）抽掉，剩下的故事仍然完整，但<strong>它就不再是一部「关于进化的」小说了</strong>，而只是一段史前冒险。<strong>解释段才是这本书的主干。</strong></p>
+  <h3>这本书在 1906 年的位置</h3>
+  <p>把它放回它出生的那一年，有三件事同时发生：《Before Adam》在《Everybody's Magazine》连载（1906 年 10 月起）；斯坦利·滑铁卢公开指控它剽窃自己的《The Story of Ab》（1897）；伦敦同年还出了《White Fang》。也就是说，<strong>「史前」和「动物」这两个题材在 1906 年同时被伦敦用上了</strong>，而且两部作品共享同一套语法（把本能、遗传与生存竞争写成一具可以描写的身体）。这不是巧合，而是伦敦这一时期写作方法的核心：</p>
+  <blockquote>
+    <p>他自认在写「与进化的事实相符」的故事，并且「照着科学研究划下的刻线去凿它们」（见 <code>## 26</code> 第二则）。</p>
+  </blockquote>
+  <p>因此，《亚当之前》在 1906 年的真实位置不是「一部异想天开的小说」，而是<strong>一次把当时的科学共识文学化的尝试</strong>——正因为如此，当那些「共识」后来被推翻，这部小说才显得格外裸露。★ 关于这套「共识」里哪些是真的、哪些不是，见 <code>## 25</code>。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>第一章 · 梦魇中的古世界</span><span class="caret">▾</span></h2>
+  <h3>这一章发生了什么</h3>
+  <p>叙述者「我」交代终身的病：从会记事的年纪起，睡眠就是恐怖。「我」一开始把原因归给童年——马戏团的狮吼、蛇、无花果一样的野果——但很快就发现反常：<strong>梦里的世界从来不在醒着的生活里出现过，而醒着的生活也从不进入梦里</strong>。第一次去马戏团，「我」在狮笼前失控（先是吓得逃，后来气得朝狮子做鬼脸、尖叫），父母以为他病了；「我」从此再不向人提这件事，只在八岁时向一个玩伴说过一次，被嘲笑后彻底闭嘴。本章末，「我」把这套恐惧定义为「我很有理由称之为『人格的半解离』的东西」。</p>
+  <h3>关键内容（含原文引文）</h3>
+  <p>开篇三连叹是全书的定音鼓：</p>
+  <blockquote>
+    <p>Pictures! Pictures! Pictures! Often, before I learned, did I wonder whence came the multitudes of pictures that thronged my dreams; for they were pictures the like of which I had never seen in real wake-a-day life. 〔图景！图景！图景！在我明白之前，我常琢磨：那些挤满我梦里的图景，究竟是从哪里来的？因为那是我在真实的白日生活里从未见过的图景。〕<span class="tag t-src">原书</span>（第一章，开篇第 1 段）</p>
+  </blockquote>
+  <p>真正的病因在第三段落定：</p>
+  <blockquote>
+    <p>For my fear is the fear of long ago, the fear that was rampant in the Younger World, and in the youth of the Younger World. In short, the fear that reigned supreme in that period known as the Mid-Pleistocene. 〔因为我的恐惧是久远之前的恐惧，是在「较年轻的世界」里、在「较年轻的世界」的青春年代里横行的恐惧。简言之，是在那个被称作「更新世中期」的时期里至高无上的恐惧。〕<span class="tag t-src">原书</span>（第一章，第 3 段）</p>
+  </blockquote>
+  <p>「<strong>the Younger World</strong>」（较年轻的世界）是本书的关键词之一，它将在这里和第十四章反复出现。<strong>它也正是伦敦本人非虚构《The Human Drift》里的用语</strong>——「In the misty younger world we catch glimpses of phantom races…」（见 <code>## 26</code>）。两个文本共享同一个词，这不是巧合。</p>
+  <p>本章还埋下了三个贯穿全书的人物代号（Lop-Ear、the Swift One、Red-Eye），用的是「<strong>你们不懂他们是什么，所以我才需要解释</strong>」的口吻，把读者预先放在「外来者」的位置上。</p>
+  <h3>可疑之处</h3>
+  <ul>
+    <li><strong>叙述者在第一章就把结论说完了。</strong> 「我的恐惧来自更新世中期」这句是<strong>诊断</strong>，不是发现；后文全部的解释都建立在这个未经论证的诊断上。这既是本书的写法（先给谜面再给谜底，谜底其实是谜面），也是它最大的一处逻辑悬空。
+    </li>
+    <li><strong>「违反做梦第一定律」的说法。</strong> 「梦里只出现醒时见过的东西或其组合」——这被作者当成铁律引用，但它在 1906 年也只是流行说法，不是实验结论；用它来反证「所以我的梦来自祖先」，是<strong>把常识当公理</strong>。
+    </li>
+    <li><strong>马戏团段落的取材</strong>：狮吼、野牛的回忆、蛇、攀树逃命，全是「祖先旧事」，但这些画面是否来自伦敦自己的生活素材，本章没有任何交代——它更像是在为后文提供一个「认亲」的仪式，而非回忆。
+    </li>
+  </ul>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>第二章 · 种族记忆与「另一个我」</span><span class="caret">▾</span></h2>
+  <h3>这一章发生了什么</h3>
+  <p>这是全书<strong>唯一一章不叙事、只讲理论</strong>的章节，也是全书最常被单独引用的部分。逻辑链条是这样的：① 最常见的梦是「<strong>坠落梦</strong>」（falling-through-space）——「我」的教授说这是<strong>种族记忆</strong>，来自生活在树上的远祖，坠落致死的那些没有后代，所以我们做梦永不落到底；② 既然醒着的「我」从没经历过坠落，那么做梦的必然是<strong>另一个不同的人格</strong>——由此引出「<strong>人格解离</strong>」（disassociation of personality）；③ 这个「另一个我」在久远的「较年轻的世界」里真实活过，他就是「我」的某位祖先；④ 记忆靠什么代代相传？靠魏斯曼所谓的「<strong>种质</strong>」（germplasm）；⑤ 「我」的种质运气极差，携带了<strong>过量</strong>的记忆，所以「我」是「遗传的怪物」（a freak of heredity），甚至是一个「返祖的噩梦」（an atavistic nightmare）。章末，「我」预先驳斥心理学上的「多马的怀疑者」：他不是用功的学生，大学之前根本不懂进化论，所以梦里那些细节不可能来自「死读书」。</p>
+  <h3>关键内容（含原文引文）</h3>
+  <p>理论的三根支柱各有原句：</p>
+  <blockquote>
+    <p>This, my professor told me, was a racial memory. 〔这个，我的教授告诉我，是一种种族记忆。〕<span class="tag t-src">原书</span>（第二章，第 6 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>Therefore there must be a medium whereby these memories are transmitted from generation to generation. This medium is what Weismann terms the "germplasm." 〔因此必定有一种媒介，把这些记忆代代相传。这媒介就是魏斯曼所称的「种质」。〕<span class="tag t-src">原书</span>（第二章，第 20 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>I am a freak of heredity, an atavistic nightmare—call me what you will; but here I am, real and alive, eating three hearty meals a day, and what are you going to do about it? 〔我是一个遗传的怪物，一个返祖的噩梦——随你怎么叫我；可我就在这儿，真实、活着，一天吃三顿好饭，你打算拿我怎么办？〕<span class="tag t-src">原书</span>（第二章，第 20 段末）</p>
+  </blockquote>
+  <p>这一章还有一个<strong>从文本内部提出的方法论说明</strong>，对本报告尤其重要——叙述者自己先替读者提出了那个致命的质疑：</p>
+  <blockquote>
+    <p>And now, before I take up my tale, I want to anticipate the doubting Thomases of psychology, who are prone to scoff, and who would otherwise surely say that the coherence of my dreams is due to overstudy and the subconscious projection of my knowledge of evolution into my dreams. 〔现在，在我开始讲故事前，我想先堵住心理学里那些多马式的怀疑者的嘴——他们爱讥笑，否则一定会说：我梦里的连贯性，是因为我读得太多、把已知的进化论下意识投射进了梦里。〕<span class="tag t-src">原书</span>（第二章，第 22 段）</p>
+  </blockquote>
+  <p>★ 这正是<strong>今天读者会提出的反驳</strong>（梦是知识的投射），而文本在 1906 年就自己提出来了，并给出了它的防线（「我大学之前不懂进化论」）。这段自辩说明：<strong>《亚当之前》不是一本不懂认识论的书，而是一本把认识论问题写进悬念里的书。</strong></p>
+  <h3>可疑之处</h3>
+  <ul>
+    <li><strong>★ 科学上不成立。</strong> 「种质携带种族记忆」是全书的承重梁，而它在科学上不成立——<strong>这一章写于遗传学重建之前</strong>，孟德尔的工作 1900 年才被重新发现，基因、DNA 与「记忆的分子载体」全都还在未来。个体经历不会以「记忆」形式写入生殖细胞；「坠落梦来自树上祖先」是一种<strong>拉马克式的想象</strong>，无法成立。本报告必须把这一点写明，且不因为它是「小说设定」而含糊。
+    </li>
+    <li><strong>术语的使用是有意为之，也是自我警觉的。</strong> 叙述者明说心理学家会反对他用「人格解离」这个短语，并坦言「我是按自己的用法使用它，因为没有更好的词，只好躲在英语的贫弱后面」。这说明<strong>作者知道自己在挪用临床词汇</strong>——这是一种自觉，不是无知。
+    </li>
+    <li><strong>「本能＝种族记忆」的等式。</strong> 「本能只不过是烙进我们遗传质料里的习惯」——这句话在 1906 年是流行写法的典型，但把「本能」和「记忆」直接画等号，在今天的动物行为学里是两回事。
+    </li>
+  </ul>
+  <p>★ <strong>一章之内，本书做了两次性质完全不同的举证。</strong> 第一次是<strong>公共的</strong>：坠落梦是所有读者都有的经验，所以「坠落梦＝种族记忆」这个推论至少有一个共同的起点。第二次是<strong>私人的</strong>：只有「我」一个人的梦里有完整的更新世生活，而这个主张<strong>没有任何第三方可以验证</strong>。本章却在两处用同一种语气写它们，于是读者很容易把「我们都有的坠落梦」的说服力，<strong>顺带借给</strong>「只有我有的完整记忆」。<strong>这是全书最有效的一次论证偷渡</strong>——它比任何一个具体细节都更值得警惕。识别它的办法很简单：把「我」换成任何一位自称记得前世的人，本章的论证结构可以原封不动地支持「转世」；事实上，本书第二章自己就讨论并否定了那种解释（「他们没有认识到自己是双重的」）。★ 也就是说，<strong>这套论证的效力并不取决于证据，而取决于它选择排除哪一种解释。</strong></p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>第三章 · 树巢里的婴孩与野猪</span><span class="caret">▾</span></h2>
+  <h3>这一章发生了什么</h3>
+  <p>书里最早的「梦」：一个极小的婴儿蜷在树枝做成的巢里，怕的是巢下方看不见的深渊。随后画面切到一次真实的危险——「我」躺在干叶子上玩耍，一头<strong>野猪</strong>逼近，「我」按本能一声不响，直到最后发出一声尖叫；<strong>母亲</strong>像一头大猩猩一样扑到，一手把「我」捞到怀里、纵身跃上悬枝，野猪群在树下咆哮；<strong>父亲</strong>从树梢一路跳跃而来，在半空里用断枝抽打野猪（「这是一场游戏」）。安静的收场是：母亲抱「我」在树间穿行时踩断树枝，二人坠落——<strong>梦在此刻断掉</strong>。「我」醒来在床上的被单里，于是推断：<strong>我们没被野猪吃掉，也从没坠到底</strong>，否则「我」不可能在一千个世纪后记得这件事。</p>
+  <h3>关键内容（含原文引文）</h3>
+  <p>母亲的出场带着全书最著名的「像又不像」的笔法：</p>
+  <blockquote>
+    <p>She was like a large orangutan, my mother, or like a chimpanzee, and yet, in sharp and definite ways, quite different. 〔她像一只大猩猩，我的母亲，或者像一只黑猩猩，可在一些尖锐而确切的地方，又完全不同。〕<span class="tag t-src">原书</span>（第三章，第 8 段）</p>
+  </blockquote>
+  <p>父亲则是全书最直接的一次<strong>形体素描</strong>，也是理解「民」这一物种定位的关键：</p>
+  <blockquote>
+    <p>He seemed half man, and half ape, and yet not ape, and not yet man. I fail to describe him. There is nothing like him to-day on the earth, under the earth, nor in the earth. 〔他看上去半是人、半是猿，却又不是猿、也还不是人。我描写不出来。今天在地球上没有、地下没有、土里也没有像他的东西。〕<span class="tag t-src">原书</span>（第三章，第 16 段）</p>
+  </blockquote>
+  <p>接着是一段异常详细的解剖描写：宽平的额头、眉骨压眼、几乎没有鼻梁、鼻孔朝外开、前额向后斜、头「荒谬地小」、脖子又粗又短、脚是<strong>能抓握的</strong>（大脚趾与其他脚趾相对，像拇指）、走路时不能平脚落地。★ 这段描写是全书风格的一个样本：<strong>它把「进化」写成了一系列几乎可以测量的身体零件</strong>——这正是 <code>## 25</code> 要讨论的那种「阶梯」语汇的源头。</p>
+  <p>章末是本书最有效的一次结构闭环：</p>
+  <blockquote>
+    <p>And because of this I take it that the wild pigs did not get us, that we never fetched bottom; else I should not be here now, a thousand centuries after, to remember the event. 〔正因如此，我断定野猪没抓住我们、我们也没坠到底；否则我就不可能在这儿了——在一千个世纪之后，还记得这件事。〕<span class="tag t-src">原书</span>（第三章，末段前）</p>
+  </blockquote>
+  <h3>可疑之处</h3>
+  <ul>
+    <li><strong>整章由一个「不可能」的事支撑。</strong> 一个从未见过野猪、连家猪都没见过的城市孩子，为什么会梦到完整的野猪围猎？本章给出的只是「我就是这样梦的」，没有别的证据。这正是第一章那个「诊断先于证据」的延续。
+    </li>
+    <li><strong>母亲与父亲的能力远超「民」的设定。</strong> 母亲能抱着婴儿纵跃上枝、父亲能在树冠间追打獠牙兽——这些动作在第五章之后会被反复强调为「民」的特长（他们是树上动物），所以并不算矛盾；但<strong>父亲「跃十英尺到十五英尺的空档」</strong>这样的数字，仍带着 1906 年的想象痕迹。
+    </li>
+    <li><strong>本章对「恐惧」的处理值得注意</strong>：婴儿「不该哭、不能出声」被写成<strong>本能</strong>（「这是本能的要求」），而不是训练。这是本书把「行为」直接归因于「遗传」的一处典型，也属于 <code>## 25</code> 要讨论的问题。
+    </li>
+  </ul>
+  <p>★ <strong>一处值得单独留意的写法：本章把「母亲」写成了全书唯一一次无条件的救援。</strong> 她扑向野猪、跃上悬枝、把婴儿捞走——这一整段没有任何计算、没有交换、没有恐惧的讨价。在全书其余部分，「民」的每一次互助都要打折扣（第十二章折磨老树民时没有；第十五章老「髓骨」落后时没有人回头；第十七章全族各自逃命），<strong>只有第三章这一次例外</strong>。作者没有为这次例外做任何解释，也没有让「我」对母亲表达感激（母亲此后再没得到任何正面描写，甚至在她另嫁后「我」就离开了她）。★ 这个落差本身是本书的一处真实：<strong>它记录了一次利他，却不认为利他需要理由。</strong></p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">10</span><span>第四章 · 只有三四十个声音的语言</span><span class="caret">▾</span></h2>
+  <h3>这一章发生了什么</h3>
+  <p><strong>时间感的自我交代</strong>：「我」常常分不清事件的先后，也不能判断某两件事之间隔了一两年还是四五年，只能靠族人外貌与营生的变化粗估。随后是一段非常重要的<strong>语言学速写</strong>：「民」的语言只有<strong>三四十个声音</strong>，没有固定的词义、没有形容词与副词、没有变位；意思靠音高、长短、快慢的<strong>语调</strong>来区分；他们靠比划补足，抽象念头几乎无法传达。接着，「我」讲了自己离开母亲的过程：母亲在父亲去世后另嫁（「饶舌者」），继父恨他、掐他、咬他，某日趁他独自在巢中，爬上树<strong>在枝头上下颠跳</strong>，直到枝条折断，把他从二十英尺高处颠落。<strong>梦没有在这里醒来</strong>（与别的坠落梦不同），而是继续下去；「我」在灌木里爬起来，决心不回去了，独自在森林里游荡了约一个星期。</p>
+  <h3>关键内容（含原文引文）</h3>
+  <p>语言学的核心段落是全书最常被引用的一处非叙事内容：</p>
+  <blockquote>
+    <p>Perhaps, all told, the Folk in that day had a vocabulary of thirty or forty sounds. 〔也许，全部加起来，那时「民」的词汇是三四十个声音。〕<span class="tag t-src">原书</span>（第四章，第 5 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>We had no conjugation. One judged the tense by the context. We talked only concrete things because we thought only concrete things. 〔我们没有变位。时态靠上下文判断。我们只说具体的东西，因为我们只思考具体的东西。〕<span class="tag t-src">原书</span>（第四章，第 7 段）</p>
+  </blockquote>
+  <p>关于躯体能力的自信陈述也很有意思，它把「进化」写成了<strong>可以做的动作</strong>：</p>
+  <blockquote>
+    <p>But we did know a lot that is not known to-day. We could twitch our ears, prick them up and flatten them down at will. And we could scratch between our shoulders with ease. We could throw stones with our feet. 〔可我们懂得许多今天已无人懂的。我们能抽动耳朵，随心把它们竖起、压平；能轻松抓挠两肩之间的背；能用脚扔石头。〕<span class="tag t-src">原书</span>（第四章，第 9 段）</p>
+  </blockquote>
+  <p>离家一幕的收束是「我」之后<strong>反复做到同一个梦却从不惊醒</strong>：</p>
+  <blockquote>
+    <p>Usually, my falls destroy my dreams… But this dream of my leaving home I have had many times, and never yet have I been awakened by it. 〔通常，我的坠落会毁掉我的梦……但离开家这个梦我做过许多次，却从未被它惊醒。〕<span class="tag t-src">原书</span>（第四章，第 14 段后）</p>
+  </blockquote>
+  <h3>可疑之处</h3>
+  <ul>
+    <li><strong>「没有名字」与「命名的手续」是同一个装置。</strong> 本章说「那时我们没有名字」，可全书又用「耷耳」「红眼」这些精炼的绰号来称呼——作者在第四章把这件事挑明，等于承认<strong>叙事语言本身就是一次翻译</strong>。这是优点（自觉），也是陷阱（读者容易忘掉）。
+    </li>
+    <li><strong>「三四十个声音」这一数字没有来源。</strong> 它是一个 1906 年的估数，不是调查结果；把它当作「早期人类语言的规模」会误导。
+    </li>
+    <li><strong>「只用具体思维」这个论断</strong>带着很强的时代印记：它预设了一条「具体→抽象」的单线进化阶梯，而语言人类学后来并不这么看。★ 与 <code>## 25</code> 的「阶梯」讨论同源。
+    </li>
+  </ul>
+  <p>★ <strong>这一章其实回答了全书最要紧的一个技术问题：为什么「民」的悲剧是必然的。</strong> 答案是<strong>「他们能看见的思想，和能说出的词，是同一批东西」</strong>。他们不是不聪明——本章明写他们会发明（葫芦、篮子、绑扎，都在「只差几十代」的地方停住）；他们的困境是：<strong>一个念头如果不是用已有的三四十个声音就能说出的，它就传不出去</strong>。★ 于是全书的核心命题可以精确地表述为：<strong>「民」缺的不是智力，而是可共享的抽象。</strong> 有了这句话，第六章的「本可以织布」、第十二章的「渡河的念头说不出来」、第十四章的「想合作却说不出合作」，就全都变成同一个命题的三种演示——<strong>这是本书最经得起今天阅读的一处论证。</strong></p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">11</span><span>第五章 · 「红眼」与「耷耳」</span><span class="caret">▾</span></h2>
+  <h3>这一章发生了什么</h3>
+  <p>「我」走出森林，第一次看见<strong>岩洞群落</strong>：一边是悬崖，一边是河，几条通向饮水处的斜坡道——「这可以说就是村庄」。他一跑出去，全族就<strong>集体逃进洞里</strong>（以为他被猛兽追赶）。僵持一阵后，一个巨大的身影先出来探路：<strong>「红眼」</strong>——170 磅、全身是毛、弯腰走路时指节拄地、能坐着平地跳出二十英尺。他来回侦察，确认没有危险，路过「我」身边时<strong>没有任何征兆地一巴掌把「我」打飞出十几英尺</strong>，洞里爆发出全族的哄笑——这就是「我」的入族礼。随后一群孩子围着「我」戳弄，「我」扑向最放肆的那个，那就是<strong>「耷耳」</strong>（一只耳朵永远耷拉）。两人从打架打到捉迷藏，最后搂着睡在一处：<strong>「耷耳」把「我」带进了岩洞里一间谁也不知道的小石室</strong>（两个洞穴由一道裂缝连通），二人从此同住。</p>
+  <h3>关键内容（含原文引文）</h3>
+  <p>「红眼」的定性在章末给出，是全书反复回响的一句：</p>
+  <blockquote>
+    <p>That is what he was—an atavism. 〔他就是这个——一个返祖者。〕<span class="tag t-src">原书</span>（第五章，第 12 段）</p>
+  </blockquote>
+  <p>作者同时给出了这个「返祖」的判据，<strong>判据本身就是身体</strong>：</p>
+  <blockquote>
+    <p>Furthermore, it was a rare individual among us who balanced himself with his knuckles when walking. Such an individual was an atavism, and Red-Eye was an even greater atavism. 〔而且，我们之中走路时用指节撑地来保持平衡的，是极少数的个体。这样的个体就是返祖者，而「红眼」是更彻底的返祖。〕<span class="tag t-src">原书</span>（第五章，第 11 段）</p>
+  </blockquote>
+  <p>「村庄」的描写给全书的舞台定下格局：<strong>岩洞在悬崖上、河在下面、饮水道在中间</strong>。之后所有的围攻、烟熏、逃亡，都发生在这三个元素构成的空间里——这是本书结构上最结实的一处设计。</p>
+  <h3>可疑之处</h3>
+  <ul>
+    <li><strong>「返祖」的判定完全靠外观。</strong> 「红眼」被定性为返祖，理由是他更毛、走路用指节——这是一套<strong>形态学的直观判断</strong>，不是遗传学判断；而「返祖」这个词本身在 1906 年已被优生学话语大量征用（见 <code>## 25</code>）。
+    </li>
+    <li><strong>「一巴掌打飞十几英尺」的量级。</strong> 全书多次给「红眼」夸张的数值（170 磅、坐地跳出二十英尺、一拳能砸碎头骨），这些数字服务于「他是一种更古老的兽」的形象，但同时把他写成了一个<strong>非人的超常个体</strong>，与「同一族群」的设定略微冲突。
+    </li>
+    <li><strong>入族礼的「打完就成朋友」。</strong> 从「互相撕咬」到「搂着睡觉」只隔一段捉迷藏，速度极快；这既是少年友谊的写法，也说明<strong>本章的驱动力是情节需要，不是性格发展</strong>。
+    </li>
+  </ul>
+</section>
+
+<section id="s13">
+  <h2><span class="num">12</span><span>第六章 · 窄口岩洞、剑齿虎与笑声</span><span class="caret">▾</span></h2>
+  <h3>这一章发生了什么</h3>
+  <p>本章先讲<strong>洞口的规矩</strong>：宽口的岩洞没人睡，只有窄口（越窄越好）的岩洞才被使用——因为猛兽进不来。随即来了一次大考：清晨，<strong>剑齿虎</strong>（old Saber-Tooth）走进空地，两个「民」冲进双洞，靠连通裂缝躲过它；全族在崖上<strong>用石头砸它</strong>，把它逼退；它不甘心回头，全族——包括「我」——就一起嘲笑它，被嘲笑激怒的它又冲上来，又被砸退，最后眼睛被砸肿、带着一身狼狈退回森林。作者点出关键：<strong>这正是「民」的取胜方式</strong>——不是斗，而是<strong>诡诈、胆怯与惊人的恐惧容量</strong>。接着讲一夫一妻制的萌芽（有儿对夫妇离群独居）、以及全族的普遍焦虑：<strong>他们怕的是东北方</strong>，而东北方有一个「烟」的征兆。「我」第一次看见烟，以为是一条立起来的大蛇。</p>
+  <h3>关键内容（含原文引文）</h3>
+  <p>本章对「为什么这个族群能活下来」给了一个反直觉的答案：</p>
+  <blockquote>
+    <p>We were not fighters like them; we were cunning and cowardly, and it was because of our cunning and cowardice, and our inordinate capacity for fear, that we survived in that frightfully hostile environment of the Younger World. 〔我们不像它们那样善斗；我们诡诈而胆怯，正因为这诡诈、这胆怯，以及我们对恐惧那过量的容量，我们才在那个可怖敌对的「较年轻的世界」里活了下来。〕<span class="tag t-src">原书</span>（第六章，第 9 段前）</p>
+  </blockquote>
+  <p>「笑」被单独抽出来，作为这个族群的性格标签：</p>
+  <blockquote>
+    <p>In spite of the reign of fear under which we lived, the Folk were always great laughers. We had the sense of humor. Our merriment was Gargantuan. It was never restrained. 〔虽说我们活在恐惧的统治之下，「民」却总是极会大笑的。我们有幽默感。我们的欢闹是巨人式的，从不加节制。〕<span class="tag t-src">原书</span>（第六章，第 7 段）</p>
+  </blockquote>
+  <p>「怕东北方」这一段是全书最有效的悬念设置之一：族人的怕<strong>没有内容</strong>，因为他们说不出怕的是什么——「他的语言太贫乏，说不清那可怕的危险究竟是什么」。当「我」越过那条无形的界线去采胡萝卜时，「我」没能看见任何危险。<strong>东北方的烟，要到第七章才会露出它的脸。</strong></p>
+  <h3>可疑之处</h3>
+  <ul>
+    <li><strong>剑齿虎段落几乎是喜剧。</strong> 「我」一石头砸中它鼻尖、它四脚朝天、「民」全体大笑——这段的笔调非常轻，与后文火民的屠杀形成剧烈落差。它服务的是「民」的性格（会笑），但也确实削弱了剑齿虎作为威胁的分量。
+    </li>
+    <li><strong>「怕东北方」缺少个体经验来源。</strong> 全族一致恐惧一个方向，却没人能说出原因——这个设定在叙事上极有效，但按文本自己的逻辑（「我们只怕真实的、具体的东西」，第十四章）解释不充分：一个「无形的恐惧」是本章的例外。
+    </li>
+    <li><strong>一夫一妻制的「萌芽」被写成了进步的方向。</strong> 「我们背叛了一夫一妻制那微弱的先兆，而正是它后来给了那些部族力量与强大」——这句话把婚姻制度直接接进了「适者生存」的论说，属于 <code>## 25</code> 要处理的语汇。
+    </li>
+  </ul>
+  <p>★ <strong>这一章真正的叙事功能，是为全书建立一条「成本—收益」的曲线。</strong> 剑齿虎之战结束时，「民」没有损失任何人；此后每一次胜利的代价都会更高：第七章死一个少年，第九章「我」挨一顿棍子，第十五章死两人（妹妹与「无毛者」），第十七章死整族。<strong>而每一次取胜的方式却没有改变</strong>——始终是「扔石头、尖叫、嘲笑、然后跑」。★ 也就是说，本书用一条<strong>手段不变、结果恶化</strong>的曲线，解释了为什么这个族群最终会输：<strong>他们不是变弱了，而是环境换成了石头打不到的东西（箭、火、独木舟）。</strong></p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">13</span><span>第七章 · 断牙之死，与那支箭</span><span class="caret">▾</span></h2>
+  <h3>这一章发生了什么</h3>
+  <p>被母亲赶出家门的少年<strong>「断牙」</strong>加入「我」与「耷耳」。三人在大树上玩「树捉人」，「断牙」有一手绝技（在枝头上下颠跳，借力后翻到另一棵树的枝上）。就在他表演这一手时，树下的灌木里出现了<strong>全书第一个「火民」</strong>：一个干瘪、跛脚的老人，裹着熊皮，手里拿着<strong>「我」从未见过的东西——弓和箭</strong>。老人先射「耷耳」不中，再射「断牙」：一箭穿胸，「断牙」从七十英尺高处坠落，老人的石头砸下——<strong>梦在这里断掉</strong>。下一段梦是「我」与「耷耳」在树上逃命，「我」的腿里插着一支箭；「耷耳」咬断箭杆，把箭抽出，用绿叶堵住伤口，把「我」救了回去。</p>
+  <h3>关键内容（含原文引文）</h3>
+  <p>火民第一次露面的描写，关键在于<strong>「他看起来并不可怕」</strong>：</p>
+  <blockquote>
+    <p>Certainly he was nothing of which to be afraid… He was old, too, wizened with age, and the hair on his face was gray. Also, he limped badly with one leg. There was no doubt at all that we could out-run him and out-climb him. 〔他当然不是那种该怕的东西……他也老了，被年纪耗得干瘪，脸上的毛是灰白的。而且他一条腿跛得厉害。毫无疑问，我们能跑得比他快、爬得比他快。〕<span class="tag t-src">原书</span>（第七章，第 4 段后）</p>
+  </blockquote>
+  <p>而「我」当时对弓与箭<strong>完全没有概念</strong>：</p>
+  <blockquote>
+    <p>But at that time a bow and arrow had no meaning for me. How was I to know that death lurked in that bent piece of wood? 〔可那时弓和箭对我来说毫无意义。我怎么会知道，死亡就藏在那根弯木里？〕<span class="tag t-src">原书</span>（第七章，第 5 段）</p>
+  </blockquote>
+  <p>本章还有一段被反复引用的<strong>伦理预告</strong>，作者在其中把「利他」直接接到「民」的身上——从「耷耳」一路数到「基督本人」：</p>
+  <blockquote>
+    <p>I take as a foreshadowing of the altruism and comradeship that have helped make man the mightiest of the animals. 〔我把这看作那种利他与同伴之谊的先兆——正是它帮助人成为了动物中最强大者。〕<span class="tag t-src">原书</span>（第七章，第 11 段后）</p>
+  </blockquote>
+  <p>以及那句将全书提到神话高度的排比：<strong>「我看见达蒙与皮西厄斯的幻影，看见救生艇队与红十字护士，看见殉道者与绝望事业的领袖，看见达米盎神父，以及基督本人……」</strong>。<span class="tag t-src">原书</span>（第七章）</p>
+  <h3>可疑之处</h3>
+  <ul>
+    <li><strong>「断牙」之死是全书叙事的转轴，但它发生得极其突然。</strong> 前六章营造的威胁（剑齿虎、野猪、红眼）都败在这个族群手上，而一个<strong>跛脚老头</strong>一箭就结束了三条命里的一条。这个反差是作者有意为之，也是全书最有效的一次「恐怖的技术化」——<strong>技术（弓）压倒了身体</strong>。
+    </li>
+    <li><strong>「耷耳」用牙咬断箭杆的细节</strong>在生理上颇为勉强（箭杆多为硬木），但它是本书少见的、能表现出「互助」的动作，作者显然宁可牺牲一点物理可信度。
+    </li>
+    <li><strong>本章把「利他」直接追溯为人的优势</strong>，与第六章「靠胆怯与诡诈活下来」并列，构成全书对「人之为人」的两种答案——<strong>恐惧</strong>与<strong>同伴之谊</strong>。这两者之间的张力，本书从未调和，也不必调和（它是一部小说）。
+    </li>
+  </ul>
+  <p>★ <strong>注意作者在这里做了一件很特别的事：他把「弓」写成了「进化」。</strong> 弓与箭让火民「可以在百英尺外跳跃并击杀」——也就是说，<strong>武器被描写成身体的延伸</strong>，而不是身体的替代。这是本书对「技术」给出的最清楚的一次定义，也解释了为什么此后的战争全是单方面的：<strong>当对手的身体可以延伸到一百英尺之外时，「民」所有的石头、爪牙、速度与攀爬能力，都还在三英尺之内。</strong> ★ 顺带说一句效果：这一处使全书避免了「史前小说常犯的一个岔子」——它没有把「民」写成愚蠢的（他们聪明、会笑、会发明），只是<strong>把他们的聪明用在了够不着的地方</strong>。</p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">14</span><span>第八章 · 第一个冬天与那只小狗</span><span class="caret">▾</span></h2>
+  <h3>这一章发生了什么</h3>
+  <p><strong>「我」离家后的第一个冬天</strong>，是全书最冷的一次：冰出现在饮水处的静水上，全族大惊（「髓骨」这个最老的成员这辈子没见过冰）。作者借此交代这个族群的技术水平：<strong>没有武器、没有火、语言刚刚起步</strong>。随后是本书的「发明史」片段：葫芦（gourd）被「髓骨」用来储水，随后全族模仿；女人用葫芦装浆果，又用两片大叶对折、用细枝别住接缝，装更多浆果——<strong>「发明」在这里被写成模仿与偶然，而不是智慧</strong>。本章的后半段是一件更著名的事：「我」和「耷耳」去南边石岗玩，抓回两只野狗崽子想养；「耷耳」的崽子半路掉给鬣狗吃了，「我」的崽子养了一个多星期，被「耷耳」<strong>杀了吃掉</strong>；两人为此打了一架，然后<strong>把狗吃掉了</strong>——「人类最早一次驯狗的尝试，就这样在一场打架里结束了」。</p>
+  <h3>关键内容（含原文引文）</h3>
+  <p>技术水平的定位对理解全书至关重要：</p>
+  <blockquote>
+    <p>We were without weapons, without fire, and in the raw beginnings of speech. 〔我们没有武器，没有火，处在语言最粗陋的开端。〕<span class="tag t-src">原书</span>（第八章，第 17 段）</p>
+  </blockquote>
+  <p>「发明」的机制被写得很刻薄，也很真实：</p>
+  <blockquote>
+    <p>Progress was slow with us. We played through life, even the adults, much in the same way that children play, and we played as none of the other animals played. What little we learned, was usually in the course of play, and was due to our curiosity and keenness of appreciation. 〔我们的进展缓慢。我们一辈子都在玩，连成年人也一样，玩的方式和小孩没两样，而其他动物都不这么玩。我们学到的那一点点，通常是在玩当中学到的，靠的是好奇心与敏锐的感受力。〕<span class="tag t-src">原书</span>（第八章，第 16 段）</p>
+  </blockquote>
+  <p>作者还替读者算了一笔<strong>「本可以但没发生」的账</strong>：如果他们会用柳条编篮子，就一定会织布、就会有衣服、就会有羞耻——「而这两者之间只差几十代人」。（这段是全书对「为什么他们输了」最冷静的一次推演。）驯狗的结局只有一句：</p>
+  <blockquote>
+    <p>And thus, in a fight, ended one of the earliest attempts to domesticate the dog. 〔就这样，在一场打架里，人类最早几次驯养狗的尝试之一结束了。〕<span class="tag t-src">原书</span>（第八章，末段）</p>
+  </blockquote>
+  <h3>可疑之处</h3>
+  <ul>
+    <li><strong>「冰」被写成全族第一次见到。</strong> 这与第一章所说的「更新世中期」并不相合——更新世本就是冰川作用剧烈的时期，一个在更新世中期生活了若干代的族群不该对冰一无所知。这个矛盾是本书年代设定的一处硬伤。
+    </li>
+    <li><strong>「本可以织布」的推演是 1906 年的单线进步观。</strong> 它预设了一条所有人类必经的技术阶梯，且默认「他们差一点就走上去了」。★ 属于 <code>## 25</code> 的语汇问题。
+    </li>
+    <li><strong>驯狗一段的笔调极轻</strong>（「我们拔了对方满头毛，然后和好了。之后我们把狗吃了。生的？是的。我们还没发现火。」）。这种自嘲式的口吻是本书的常态，也提醒读者：<strong>叙述者（现代的我）始终在</strong>，他不是「民」。
+    </li>
+  </ul>
+</section>
+
+<section id="s16">
+  <h2><span class="num">15</span><span>第九章 · 与「返祖者」的对峙</span><span class="caret">▾</span></h2>
+  <h3>这一章发生了什么</h3>
+  <p>本章开篇就把「红眼」的性质钉死：<strong>他是「返祖」</strong>——比族群任何人都更原始，本该属于树民。他打妻子、为夺妻而杀人（「我」亲眼见过两次），而全族<strong>明知却无力合作</strong>（因为「我们还没有发展出任何值得一提的族内治理」）。随后是「我」与「耷耳」的成长仪式：第六个冬天，他们的<strong>洞穴入口已经窄得挤不进去了</strong>，于是动手扩洞；「我」无意间发现<strong>用木片凿石</strong>比用手指快。扩出的碎石被「我」推下崖去，正好砸在「红眼」头上；他冲到洞口却因身体太大进不来，便取来一根长棍朝洞里<strong>反复猛戳</strong>；「我」先扔木片、再扔石块，最后一记两三磅的石头砸中他面部/喉咙，把他打得<strong>咳喘着爬下崖去</strong>；全族随即逃散，「我」与「耷耳」翻过崖顶逃进森林，直到安全处才<strong>放声大笑</strong>。</p>
+  <h3>关键内容（含原文引文）</h3>
+  <p>「红眼」的定性句是全书对「返祖」最完整的一次说明：</p>
+  <blockquote>
+    <p>Red-Eye was an atavism. He was the great discordant element in our horde. He was more primitive than any of us. He did not belong with us, yet we were still so primitive ourselves that we were incapable of a cooperative effort strong enough to kill him or cast him out. 〔「红眼」是一个返祖。他是我们群落里那个巨大的不谐之音。他比我们任何人都更原始。他不属于我们，可我们自己仍太原始，做不出强到足以杀死他或把他逐出的协作。〕<span class="tag t-src">原书</span>（第九章，第 1 段）</p>
+  </blockquote>
+  <p>本章给了全书对「红眼」最重要的一句道德判决——<strong>方向是反的</strong>：</p>
+  <blockquote>
+    <p>I have called him an atavism, but in this he was worse than an atavism, for the males of the lower animals do not maltreat and murder their mates. In this I take it that Red-Eye, in spite of his tremendous atavistic tendencies, foreshadowed the coming of man, for it is the males of the human species only that murder their mates. 〔我称他为返祖，但在这一点上他比返祖更坏，因为较低等动物的雄性并不虐待和杀害自己的配偶。就此我认为，「红眼」尽管有极强的返祖倾向，却预兆了人的到来——因为只有人的雄性才会杀害配偶。〕<span class="tag t-src">原书</span>（第十四章回述时口径相同；本章亦已点出其残暴）</p>
+  </blockquote>
+  <p>★ 这两句合起来，是本书<strong>最需要小心阅读的一段</strong>：它把「暴力」同时判给了<strong>更古老的过去</strong>（返祖）和<strong>人的未来</strong>（预兆）。也就是说，作者并不认为进化是「越来越好」——这一点，是《亚当之前》比它同时代的「进步颂歌」更耐读的地方。</p>
+  <h3>可疑之处</h3>
+  <ul>
+    <li><strong>★ 「只有人的雄性才杀害配偶」是一句事实错误。</strong> 它在 1906 年是道德化的断言，而非动物行为的结论；今天的动物行为学记录了多类动物的杀配行为。这句话的性质是<strong>修辞</strong>，不是观察——引用时必须标明它是伦敦的断言。
+    </li>
+    <li><strong>「红眼」被同时写成「返祖」与「人的预兆」，逻辑上是自相矛盾的</strong>（他既属于更古老的类型，又属于更新的类型）。这不是作者失误，而是一种修辞上的双绑：<strong>暴力既在起源处，也在终点处</strong>。
+    </li>
+    <li><strong>全族的「无力合作」被归因于「没有词汇」。</strong> 这是本书反复的论点，但本章同时给出了反例：他们能集体用石头打退剑齿虎（第六章）——<strong>那次也是协作</strong>，只是没有语言。作者没有处理这个反例。
+    </li>
+  </ul>
+  <p>★ <strong>本章还有一个很容易被读漏的细节：「红眼」是唯一一个被全书写出「能力」的人。</strong> 他体重、臂力、跳跃、撕咬，每一项都被量化；而「我」和「耷耳」的「能力」只有一个——<strong>跑得快、爬得高、笑得响</strong>。★ 这构成了一组鲜明的对照：<strong>这一族的取胜方式从来不是「更强」，而是「更不容易被抓住」。</strong> 本章的扔石头，本质上也不是攻击，而是<strong>一次成功的拒止</strong>——他们从未杀死过任何一头猛兽。看清这一点，第十七章的烟攻就会显得更加残酷：<strong>火民带来的，恰恰是「无法拒止」的东西。</strong></p>
+</section>
+
+<section id="s17">
+  <h2><span class="num">16</span><span>第十章 · 妹妹、树屋与河汊上的木筏</span><span class="caret">▾</span></h2>
+  <h3>这一章发生了什么</h3>
+  <p>「我」与「耷耳」绕回蓝莓沼泽——那是「我」童年随母亲第一次出走的地方。他们找到旧家树：母亲又生了一个孩子，还有一个<strong>半大的妹妹</strong>。妹妹与「我」玩了一下午，随即翻脸抓咬他；「我」<strong>把她结结实实打了一顿屁股</strong>，招来继父「饶舌者」的追杀，二人逃进森林，当晚只能在树上过夜（因为「红眼」让他们回不去岩洞）。冷雨一夜之后，他们动手<strong>搭了一间树屋</strong>——搭了将近一个月，搭好后<strong>再也没用过</strong>。接着是全书的「航海史」：在一条淡水河汊的浮木上，他们<strong>玩着玩着学会了划水</strong>，还发现两条细木头并排、各用一手一脚揽住对方的木头就能稳——<strong>「我们发明了最原始的筏子，却笨得不知道自己发明了什么」</strong>。最后他们「发现」了<strong>「敏捷者」</strong>：一个极其胆怯、极其温和的女孩。</p>
+  <h3>关键内容（含原文引文）</h3>
+  <p>「敏捷者」的描写是全书中信息量最大的一段外貌描写，请特别注意它<strong>怎么做比较</strong>：</p>
+  <blockquote>
+    <p>She was very mild. Her eyes were the mildest I had ever seen… Her eyes were larger than most of her kind, and they were not so deep-set… Nor was her nose so thick and squat. It had quite a bridge, and the nostrils opened downward. Her incisors were not large, nor was her upper lip long and down-hanging, nor her lower lip protruding. 〔她非常温和。她的眼睛是我见过最温和的……她的眼睛比同族多数成员更大、更不深陷……她的鼻子也没那么厚那么扁，有相当的鼻梁，鼻孔朝下开。她的门齿不大，上唇不长也不下垂，下唇也不前突。〕<span class="tag t-src">原书</span>（第十章，第 21 段）</p>
+  </blockquote>
+  <p>紧接着，叙述者立刻<strong>为这具身体给出了解释</strong>：</p>
+  <blockquote>
+    <p>I have often wondered… it has always occurred to me that possibly she may have been related to the Fire People. Her father, or mother, might well have come from that higher stock. 〔我常想……我总觉得她可能与火民有关。她的父亲或母亲，很可能来自那支更高的血统。〕<span class="tag t-src">原书</span>（第十章，第 22 段）</p>
+  </blockquote>
+  <p>★ 这段是本报告要求「只做文学分析」的最典型案例：<strong>「美」在这里不是审美判断，而是等级判断</strong>——她「美」的方式，恰恰是「不像本族、更像火民」的方式。读者应当看到这套逻辑，而不是接受它。</p>
+  <p>筏子的段落则把「发明」写成了纯粹的偶然：</p>
+  <blockquote>
+    <p>We had invented the most primitive catamaran, and we did not have sense enough to know it. It never entered our heads to lash the logs together with tough vines or stringy roots. 〔我们发明了最原始的筏子，却笨得都不知道自己发明了什么。我们脑袋里从没出现过用坚韧的藤或根系把木头绑在一起的念头。〕<span class="tag t-src">原书</span>（第十章，第 19 段）</p>
+  </blockquote>
+  <h3>可疑之处</h3>
+  <ul>
+    <li><strong>★ 外貌描写＝等级刻度。</strong> 本章把「鼻梁、鼻孔朝向、门齿、唇」写成衡量「高／低」的标尺，并把「更高」直接等同「火民」。这是 1900 年前后流行的种族化人体学语汇，本报告只作文学与思想史材料处理，不展开现实议题。
+    </li>
+    <li><strong>妹妹被打一顿的情节。</strong> 它写得相当具体（「无疑是她到那时为止挨过的最结实的一顿屁股」），承担的功能是让「我」与原生家庭彻底断开。★ 这是本书暴力与性的暗流的一处，只作文学分析。
+    </li>
+    <li><strong>树屋「搭好就废弃」的桥段</strong>明显是为「民」的性格（无恒心、无计划）服务的，作者也明说了这一点（「那些日子里的生活就是这样没有连续性」）——但它同时削弱了「他们本可以进步」的论说。
+    </li>
+  </ul>
+</section>
+
+<section id="s18">
+  <h2><span class="num">17</span><span>第十一章 · 双重人格的自白</span><span class="caret">▾</span></h2>
+  <h3>这一章发生了什么</h3>
+  <p>这是全书第二次、也是最重要的一次<strong>叙事者插话</strong>（第一次是第二章的理论）。「我」提醒读者：前文（乃至全文）对「敏捷者」的判断，<strong>不是「大牙」的判断，而是「现代的我」透过梦的眼睛看到的判断</strong>。「大牙」从不去掂量、分析情绪与动机——「他就是简单本身」。接着是对「双重人格」体验的解释：一个人可以在梦里知道自己正在做梦，「我」就是在这种状态下<strong>既是演员又是观众</strong>。更进一步，「大牙」自己也有「另一个我」：他睡着时，那个「我」会梦见<strong>更早的过去</strong>——翼龙、龙类的厮杀、小小哺乳动物的鼠类生活，乃至<strong>原始海洋的黏液</strong>。这一段之后，故事回到进程：「耷耳」开始频繁往「我」母亲那棵树跑（他喜欢上了「我」的妹妹），「敏捷者」始终不肯加入；某日「红眼」在河汊边用<strong>水磨的圆石子</strong>当投石砸他们，把他们逼进主河道，漂向<strong>北岸</strong>。</p>
+  <h3>关键内容（含原文引文）</h3>
+  <p>本章最著名的一句，就是那个「不是从猿到人，而是从虫到人」的视野：</p>
+  <blockquote>
+    <p>I can only hint of those vast and terrific vistas through which I have peered hazily at the progression of life, not upward from the ape to man, but upward from the worm. 〔我只能略提那些浩大而可怖的景象——我曾透过它们朦胧地窥见生命的进程：那不是从猿向上到人，而是从虫向上到人。〕<span class="tag t-src">原书</span>（第十一章，第 10 段）</p>
+  </blockquote>
+  <p>关于「双重人格」的体验，作者写下了本书对「梦」最精细的一句自省：</p>
+  <blockquote>
+    <p>And right often have I, the modern, been perturbed and vexed by the foolishness, illogic, obtuseness, and general all-round stupendous stupidity of myself, the primitive. 〔而「我」，现代的那个，常常被「我」自己——那个原始人——的愚笨、不合逻辑、迟钝、以及总体上惊人的愚蠢，弄得烦扰又气恼。〕<span class="tag t-src">原书</span>（第十一章，第 6 段）</p>
+  </blockquote>
+  <p>这句的价值在于：它把「进化」从一部壮丽史变成了一次<strong>羞耻体验</strong>。全书对「民」的描写都不体面，而这里作者给出了原因：<strong>叙述者觉得自己的祖先丢人。</strong></p>
+  <h3>可疑之处</h3>
+  <ul>
+    <li><strong>「大牙也有另一个我」这一层，把套层推到了近乎无法收束的地步。</strong> 现代的「我」梦见「大牙」，「大牙」又梦见更早的物种，而这个更早的物种按理也该有它的「另一个我」——作者自己承认：「我不能再多说了。这一切太朦胧、太复杂、太可怕。」这是一个<strong>主动放弃解释</strong>的收尾，读者应把它读成修辞，而非理论。
+    </li>
+    <li><strong>本章把「翼龙／恐龙」与「原始海洋的黏液」放进同一段</strong>，时间跨度大到没有意义；这是文学化的「进化全景」，不是地层顺序。
+    </li>
+    <li><strong>「既是演员又是观众」的说法</strong>在今天很常见（清明梦），在 1906 年则是对「梦的自我意识」的一次相当精细的描述——但它被用来支撑「种族记忆」，仍是把个人体验当成遗传证据。
+    </li>
+  </ul>
+  <p>★ <strong>本章的结构价值高于它的理论价值。</strong> 它是全书唯一一次<strong>公开亮出「叙述者」这个人</strong>（第二章亮出的是「理论」），而它出现的位置很讲究：<strong>正好在「我」与「敏捷者」开始产生感情、Lop-Ear 开始疏远「我」之后</strong>。也就是说，作者是在<strong>人物关系第一次变复杂的那一刻</strong>，提醒读者「你们看到的一切都是转述」。★ 一个可以实测的效应：本章之后的章节（第十三至十八章），「解释性插话」明显变少、事件密度明显变高——<strong>叙述者从此退到幕后，让灾难自己推进</strong>。这不是作者忘了他的装置，而是他把装置<strong>用在了最需要它的地方</strong>。</p>
+</section>
+
+<section id="s19">
+  <h2><span class="num">18</span><span>第十二章 · 河之北岸</span><span class="caret">▾</span></h2>
+  <h3>这一章发生了什么</h3>
+  <p>「我」与「耷耳」在北岸漫游了数周乃至数月（原文明说时间无法重建）。他们先向西方到了一片沼泽间的小溪，再向北到一座「<strong>长湖</strong>」；在长湖与山之间的森林里撞上<strong>树民</strong>——一群「凶猛的猿，仅此而已」，但「与我们并没有那么不同」。他们<strong>折磨了一个又老又病的树民</strong>（捏他、拔他头发、用细枝戳他），老人发出惨叫引来整族——一场横贯森林的追逐，追得他们翻过山脊、越过「<strong>远湖</strong>」，在湖边抓到一头小牛。之后他们沿一条来鲑鱼的河往北，再折向东南，穿过大森林，最后<strong>走回一条河边——却认不出那就是自己的河</strong>。正是在这里，「耷耳」产生了「渡河」的念头。</p>
+  <h3>关键内容（含原文引文）</h3>
+  <p>「认不出自己的河」这一段，是本书把「偶然」当成命运的地方：</p>
+  <blockquote>
+    <p>We came out upon the river, but we did not know it for our river. We had been lost so long that we had come to accept the condition of being lost as habitual. 〔我们走到了那条河边，却不知道它就是我们的河。我们迷失得太久，久到已把「迷失」当作常态接受下来。〕<span class="tag t-src">原书</span>（第十二章，第 12 段）</p>
+  </blockquote>
+  <p>紧接着是一句被反复引用的「偶然论」：</p>
+  <blockquote>
+    <p>As I look back I see clearly how our lives and destinies are shaped by the merest chance. We did not know it was our river—there was no way of telling; and if we had never crossed it we would most probably have never returned to the horde; and I, the modern, the thousand centuries yet to be born, would never have been born. 〔回望过去，我清楚地看到，我们的生命与命运是如何被最微小的偶然塑造的。我们不知道那是我们的河——也无从知道；而我们若从未渡过它，最可能就再没回到群落；而我——现代的那个，一千年后才会出生的我——也就永远不会出生。〕<span class="tag t-src">原书</span>（第十二章，第 12 段后）</p>
+  </blockquote>
+  <p>树民与「民」的比较也被写得很干脆：「<strong>说到底，树民和『民』并没有那么不同。</strong>」——这句话在全书里承担着重要功能：它把「三民」的阶梯<strong>在语言层面拉平过一次</strong>，尽管在其他章节又不断把它拉开。</p>
+  <h3>可疑之处</h3>
+  <ul>
+    <li><strong>折磨老树民这一段，是全书最不体面的一次「幽默」。</strong> 二人把老人当玩物，笑到流泪，直到引来族群才逃走；作者在此处没有为「我」做任何辩解。值得注意的是：<strong>第十七章会有一个几乎一模一样的场景</strong>（火民把「红眼」的妻儿当玩物），而那时叙述者的口吻是愤怒的。这个<strong>对称</strong>是本书有意安排的——它让读者自己去比较「我们」与「他们」。
+    </li>
+    <li><strong>地理无法复原。</strong> 长湖、远湖、山脉、入海的大河——这些地名全部是叙述者自拟的定位，无法与真实地理对应，作者也承认「难以逐日重建」。
+    </li>
+    <li><strong>「渡河」的念头被写成一连串失败。</strong> 「耷耳」第一次想到主意时，念头来得模糊、没词可说、被「我」一笑就打散了（两人还打了一架）；第二天念头才重新聚起。这段是本书对「思想需要语词」的又一次演示，和第十四章口径一致。
+    </li>
+  </ul>
+</section>
+
+<section id="s20">
+  <h2><span class="num">19</span><span>第十三章 · 火民之地</span><span class="caret">▾</span></h2>
+  <h3>这一章发生了什么</h3>
+  <p>渡到南岸的<strong>第一夜</strong>，他们就撞见了火民：一小队游猎者在河边扎营、生火。「我」认出了那个<strong>跛脚的老猎人</strong>——射死「断牙」的人。二人观察了整夜（火民围火而睡，耳朵抽动、睡不踏实；圈子外的黑暗里，狮、鬣狗、野狗来回走动）。天亮后火民走了，二人跑到火边，模仿火民：蹲着低头假睡、学他们说话、<strong>用棍子拨火</strong>；接着开始<strong>添柴</strong>——最初是小块木头，然后越来越大，直到<strong>点燃了整片森林</strong>。他们惊恐地逃开，翻过一道山，却误入火民的<strong>半岛据点</strong>（三面环河的天然要塞），第一次看到火民的女人与孩子。他们偷来一条<strong>真正绑好的筏子</strong>（用韧根与横木扎成），渡河绕行半岛一圈，回到自家饮水处，全族的取水女人们<strong>丢下葫芦夺路而逃</strong>——他们到家了。</p>
+  <h3>关键内容（含原文引文）</h3>
+  <p>模仿生火的段落把「灾难」写成了一次<strong>儿童的骄傲</strong>：</p>
+  <blockquote>
+    <p>It was the most monumental work we had ever effected with our hands, and we were proud of it. We, too, were Fire-Men, we thought, as we danced there, white gnomes in the conflagration. 〔这是我们双手做出过的最宏伟的工程，我们为此骄傲。我们想，我们也是火民了——我们在那里跳着舞，白色的小鬼，在烈焰里。〕<span class="tag t-src">原书</span>（第十三章，第 10 段）</p>
+  </blockquote>
+  <p>半岛据点的段落则给出了火民<strong>为什么会来灭掉「民」</strong>的解释：</p>
+  <blockquote>
+    <p>In fact, I think it was their prosperity that was responsible for the subsequent migration that worked such calamity upon the Folk. The Fire People must have increased in numbers until they pressed uncomfortably against the bounds of their habitat. 〔事实上，我认为正是他们的繁荣，导致了后来那场给「民」带来灾祸的迁徙。火民必定是繁衍到数量压迫了他们栖地的边界。〕<span class="tag t-src">原书</span>（第十三章，第 13 段）</p>
+  </blockquote>
+  <p>「我们回家」的处理极有戏剧性：全族<strong>取水的女人丢下葫芦四散逃命</strong>——「民」对「突然从森林里冲出来的东西」有一种代代相传的集体反应（第五章的入族礼是同一个机制），这里的喜剧与开头的悲剧遥相呼应。</p>
+  <h3>可疑之处</h3>
+  <ul>
+    <li><strong>火民拥有「用韧性根与横木绑成的筏子」而有「民」没有。</strong> 本书用这一条差异（绑扎技术）作为分界，与第十章「民」发明筏子却不懂绑扎形成<strong>明确对照</strong>——这是全书最干净的一处「技术阶梯」论证，反而比那些身体比较更站得住。
+    </li>
+    <li><strong>「因为繁荣所以扩张所以灭掉我们」是本章最直白的因果</strong>，它是本书对一个族群消失给出的最冷静的答案；但它同时暴露了 1906 年「种族／族群的兴衰如同生物演化」的思维框架，★ 属于 <code>## 25</code> 的讨论范围。
+    </li>
+    <li><strong>火是本书的转折装置。</strong> 在此之前，「民」与环境的冲突都是生物性的（猛兽）；此后，冲突全部变成<strong>技术性的</strong>（火、箭、独木舟）。这个转折点在文本结构上被处理得相当清楚。
+    </li>
+  </ul>
+  <p>★ <strong>本章与第十章构成全书最干净的一处「对照组实验」。</strong> 第十章：「我」与「耷耳」<strong>发明</strong>了筏子，却<strong>不知道</strong>自己发明了什么（没有绑扎）；本章：他们<strong>认出</strong>火民那条「用韧根与横木扎成」的筏子，并<strong>用它</strong>渡河。<strong>同一件器物，两种命运</strong>——差别不在身体，也不在智力，而在<strong>有没有把两个物件绑在一起的习惯</strong>。★ 如果要用一句话概括本书对「文明」的理解，这大概是最接近的一句：<strong>文明是「绑扎」的能力，而不是「想到」的能力。</strong> 这比书里任何一次身体比较都更有说服力，也正是本报告愿意把「史前图景不准确」与「这处观察站得住」分开来说的原因。</p>
+</section>
+
+<section id="s21">
+  <h2><span class="num">20</span><span>第十四章 · 「嘻嘻」议会</span><span class="caret">▾</span></h2>
+  <h3>这一章发生了什么</h3>
+  <p>数月过去。这一年坚果丰收。「我」四处寻找「敏捷者」，却一无所获。「红眼」脖子上从此留下「我」砸出的<strong>肿块</strong>（本书最有效的一个实体标记），他再没敢冲进二人的洞穴。「红眼」又打死/打没了这一任妻子，转而盯上<strong>「爱唱者」</strong>（老人「髓骨」的孙女、「无毛者」的女儿），而她已经嫁给了<strong>「歪腿」</strong>——一个安静、不争斗、瘦弱的男人。「红眼」在傍晚<strong>当众扭断「歪腿」的脖子</strong>，拽着「爱唱者」的头发拖回洞穴。全族愤怒到极点，聚在空地上捶胸、龇牙、嘶叫——<strong>他们想一起动手，却不知道该怎么表达</strong>：<code>the Hairless One</code> 能喊出「恨」，但一喊到「合作」就变成胡言乱语；最后有人拿棍子敲木头敲出<strong>节奏</strong>，全族的嚎叫不知不觉被节奏带走，愤怒被遗忘，一场「<strong>嘻嘻议会</strong>」（hee-hee council）开始了。作者称之为<strong>「艺术雏形」</strong>。</p>
+  <h3>关键内容（含原文引文）</h3>
+  <p>反协作的关键句，本报告在 <code>## 6</code> 已引，此处补其上下文与结论：</p>
+  <blockquote>
+    <p>We tried to freight sound with the vague thoughts that flitted like shadows through our consciousness… But when he tried to express the cooperative impulse that stirred within him, his noises became gibberish. 〔我们试图用声音装满那些像影子一样掠过意识的思想……但当他试图表达胸中那股合作的冲动时，他发出的声音就变成了胡言乱语。〕<span class="tag t-src">原书</span>（第十四章，第 15 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>We did not turn to, all of us, and destroy Red-Eye, because we lacked a vocabulary. We were vaguely thinking thoughts for which there were no thought-symbols. 〔我们没有全体动手去灭掉「红眼」，因为我们缺少词汇。我们正模糊地想着一些还没有思想符号的思想。〕<span class="tag t-src">原书</span>（第十四章，第 15 段）</p>
+  </blockquote>
+  <p>「艺术雏形」的判定句，是全书对「艺术从何而来」给出的唯一答案：</p>
+  <blockquote>
+    <p>It was art nascent. 〔这是艺术的雏形。〕<span class="tag t-src">原书</span>（第十四章，第 18 段）</p>
+  </blockquote>
+  <p>而「节奏为何能安抚愤怒」这一层，作者写得很不客气：<strong>它使他们忘了愤怒</strong>——艺术在这里首先是<strong>泄压</strong>，然后才是别的。紧接其后，全书对宗教的起源也给了明白的唯物解释：他们只怕真实的东西，「我们没有宗教的胚芽，没有关于不可见世界的概念」；对死亡的恐惧后来才被投射进黑暗、才有了鬼魂——<strong>「我想火民已经开始以这种方式害怕黑暗了，而我们『民』，打破嘻嘻议会、逃回洞里的理由，是老剑齿虎、狮子和胡狼、野狗和狼。」</strong></p>
+  <h3>可疑之处</h3>
+  <ul>
+    <li><strong>「因为缺少词汇所以无法协作」把一切归给语言。</strong> 这与第六章「靠胆怯与诡诈活下来」（那次他们确实协作打退了剑齿虎）冲突；与第五章「全族集体逃进岩洞」（这也有协调）冲突。<strong>本书对「协作」的看法前后不一</strong>，本章是最强硬的一次断言。
+    </li>
+    <li><strong>「哭喊→节奏→遗忘」的过程写得过于顺滑</strong>，读者容易把它当成一个人类学结论。它更像一个寓言：<strong>表达受阻时，艺术来接管</strong>。这是《亚当之前》里少见的、可以独立成篇的洞见。
+    </li>
+    <li><strong>「只有人的雄性才杀害配偶」在本章再次出现</strong>（见 <code>## 15</code> 的引用与说明）。它是作者的道德断言，不是动物学结论，引用时必须标明。
+    </li>
+  </ul>
+</section>
+
+<section id="s22">
+  <h2><span class="num">21</span><span>第十五章 · 妹妹之死与逼近的火民</span><span class="caret">▾</span></h2>
+  <h3>这一章发生了什么</h3>
+  <p><strong>「耷耳」结婚了</strong>——娶的是「我」的妹妹（「饶舌者」的女儿），并且把「我」挤出了共住的洞穴。「我」此后长期睡在<strong>双洞之间的连通裂缝</strong>里，一夜被<strong>野狗</strong>堵住，逃出时腿被咬住，「我」爬到崖壁上一手掐住狗的喉咙、<strong>慢慢把它掐死</strong>，第二天和「耷耳」夫妇分吃（「好几天里我们三个既不算素食者、也不算果食者」）。「耷耳」的婚姻不幸福（妹妹像她父亲一样难缠），但很快就结束了：一个意料之外的<strong>第二茬胡萝卜</strong>长出来，全族到胡萝卜地吃早饭，火民从森林里<strong>伏箭齐发</strong>——「无毛者」与「我」的妹妹当场被射穿，「我」帮「耷耳」拔掉腿上的箭；老「髓骨」掉在后面，火民懒得理他。此后火民出现得越来越频繁，<strong>「民」终于明白树不再是靠得住的庇护所</strong>。</p>
+  <h3>关键内容（含原文引文）</h3>
+  <p>本章对「死亡的性质」写了一整段，是全书最冷的一段：</p>
+  <blockquote>
+    <p>Natural death? To die violently was the natural way of dying in those days. No one died of old age among the Folk. I never knew of a case. 〔自然死亡？在那些日子里，暴死才是自然的死法。「民」之中没有人老死。我从未见过一例。〕<span class="tag t-src">原书</span>（第十五章，第 11 段后）</p>
+  </blockquote>
+  <p>对火民武器的一次评价，把「技术」明确写成进化的分水岭：</p>
+  <blockquote>
+    <p>The bow and arrow was like an enormous extension of their leaping and striking muscles, so that, virtually, they could leap and kill at a hundred feet and more. This made them far more terrible than Saber-Tooth himself. 〔弓和箭就像他们跳跃与击打的肌肉的极大延伸，可以说，他们能在百英尺开外跳跃并击杀。这使他们远比剑齿虎本人更可怕。〕<span class="tag t-src">原书</span>（第十五章，第 13 段）</p>
+  </blockquote>
+  <p>本章还留下了一段很动人的对照：<strong>「我」看着落后的老「髓骨」，老人一次次跌倒又爬起——「年龄沉重地压着他，可他不想死。」</strong>——这是全书对「民」的尊严少有的一次正面书写。</p>
+  <h3>可疑之处</h3>
+  <ul>
+    <li><strong>老「髓骨」在本书里的功能是「唯一活到老的人」。</strong> 作者明说他是例外，且用了很长一段去解释「为什么他没有老死」——这说明作者知道自己在打一个补丁：<strong>一个「人人暴死」的族群，如何解释里面有老人？</strong> 答案是：他是例外，而且是唯一一个有机会的人。这个补丁打得诚实。
+    </li>
+    <li><strong>「火民懒得杀老人」的细节</strong>（他们更想要「无毛者」和妹妹的头）写得相当写实，但也把火民从「抽象的恐怖」拉成了「有选择的猎人」。
+    </li>
+    <li><strong>本章对「耷耳婚姻不幸」的调侃</strong>（与「红眼」这个蓝胡子对照：「我猜红眼精明得从没觊觎过耷耳的妻子」）是本书一次很轻的幽默，但它出现在灭族的前夜，笔调的反差是刻意的。
+    </li>
+  </ul>
+  <p>★ <strong>本章是「火民」从背景变成主角的那一章，作者用的手法是「频率」。</strong> 在此之前，火民只出现过三次（第七章射死「断牙」、第十三章被偷看营地、第十五章前半的伏击）；本章之后，他们<strong>每一章都出现</strong>（第十七章围猎、第十八章划独木舟）。★ 也就是说，<strong>读者对火民的恐惧，是被「出现次数」而不是被「描写强度」建立起来的</strong>——这比任何一次描写都更像真实的威胁感：一个更强的族群不会一次灭掉你，它会<strong>先变成你日常生活的一部分</strong>。本书对「缓慢的灾难」这一点的把握，比它对史前生物的想象要准确得多。</p>
+</section>
+
+<section id="s23">
+  <h2><span class="num">22</span><span>第十六章 · 「敏捷者」与那棵被雷劈的树</span><span class="caret">▾</span></h2>
+  <h3>这一章发生了什么</h3>
+  <p>「我」在旧家树一带找到了<strong>消失了三四年</strong>（也可能是四年）的「敏捷者」。她已经长大。一场<strong>跨树的疯狂追逐</strong>开始了：她有意让他追不上，一路把他引向她想去的地方；「我」在这一天里穿过蛇群、遇到过巨蟒与鬣狗、被野猪群追进两棵不同的树，全不在乎——<strong>「这就是爱情的疯狂」</strong>。天黑时她把他带进一丛密灌里的一棵大橡树，在枝桠间的树屋上，他<strong>终于抓住了她</strong>。之后<strong>那棵树被雷劈毁</strong>，「敏捷者」极怕雷，不肯重建，二人于是搬回岩洞住——「我」把「耷耳」挤去睡连通裂缝。回到群落，新的迫害开始了：<strong>「红眼」的每一任妻子都活不长，这一任还没死他就已经看上了「敏捷者」</strong>。一次「敏捷者」生病迟钝，「红眼」把她逼到南边野狗窝附近，<strong>长时间围追</strong>，直到把她从高枝上甩落。她落地时「我」冲上去抱住「红眼」，「大脸」也扑上来咬他；但<strong>「大脸」被突然扑下的老剑齿虎咬死</strong>——「我们就这样得救了。纯粹是偶然，最彻底的偶然。」</p>
+  <h3>关键内容（含原文引文）</h3>
+  <p>追逐与交配的一段，作者写得毫不含糊，也毫不遮掩其「动物性」：</p>
+  <blockquote>
+    <p>Such was the madness of love...with me. With the Swift One it was different. She was very wise. 〔这就是爱情的疯狂……在我身上。而「敏捷者」不同，她非常聪明。〕<span class="tag t-src">原书</span>（第十六章，第 22 段后）</p>
+  </blockquote>
+  <p>而本书对「自我保护」的代价，也在本章留下了一个终身的记号：</p>
+  <blockquote>
+    <p>I could not help her. He was so powerful a monster that he could have torn me limb from limb. As it was, to my death I carried an injured shoulder that ached and went lame in rainy weather and that was a mark of his handiwork. 〔我帮不了她。他是那么强大的一个怪物，能把我撕成碎片。结果就是：我终身带着一只受伤的肩膀，一到雨天就酸痛、发僵——那是他留下的记号。〕<span class="tag t-src">原书</span>（第十六章，第 31 段）</p>
+  </blockquote>
+  <p>「得救」的方式值得特别注意：<strong>不是英雄主义，而是一只更大的猛兽偶然扑下</strong>。作者自己把这件事点破了（「这是一次纯粹的偶然」）。这是本书一贯的反英雄写法，也是它与同期「史前冒险小说」最大的分别。</p>
+  <h3>可疑之处</h3>
+  <ul>
+    <li><strong>★ 本章（连同第十、十七章）的性描写与暴力描写是「它不是儿童读物」的直接证据</strong>（见 <code>## 4b</code>）。本报告只作文学分析：值得注意的是，作者笔下的「爱」几乎不含浪漫，而更像<strong>驱动装置</strong>——「我」在这一天的鲁莽是一种本能的疯狂，作者自己也是这么写的。
+    </li>
+    <li><strong>「敏捷者」的「火民血统」在本章之后被反复暗示</strong>（第十七章火民不射她），但<strong>全书从未给出答案</strong>：她究竟是火民还是混血，是「失落时太小不记得」，还是「从没属于他们」——作者把这几个可能并列摆出，然后说「谁知道呢？」。这既是本书的悬念，也是它的一个<strong>未完成的设定</strong>。
+    </li>
+    <li><strong>「雷劈树」作为「她怕雷」的解释</strong>：作者没有解释她为什么怕雷（全书唯一一处「非理性的恐惧」属于她），只说「我后来才知道，她极怕闪电」。这个细节在她的「更像火民」的设定里没有被回收。
+    </li>
+  </ul>
+  <p>★ <strong>本章还埋着全书唯一一次「爱情」的完整呈现，值得单独看它被写成了什么。</strong> 答案是：<strong>一场追逐，其中一方始终掌握方向。</strong> 原文写得很清楚——「她一直朝她想去的方向退却」（she directed her retreat before me, going always in the direction she wanted to go）。也就是说，这一章的「爱」不是「我」赢来的，而是<strong>「敏捷者」把「我」带到了她选定的地方</strong>。★ 明白这一点，第十六章的整段就不再是「史前爱情」的猎奇，而是一处相当现代的写法：<strong>欲望属于追逐者，选择属于被追逐者。</strong> 这也让第十七章「火民不射她」的悬念变得更重——因为全书唯一一个「会选地方、会定方向」的角色，恰恰是唯一一个身世不明的人。</p>
+</section>
+
+<section id="s24">
+  <h2><span class="num">23</span><span>第十七章 · 烟攻</span><span class="caret">▾</span></h2>
+  <h3>这一章发生了什么</h3>
+  <p>次年初秋，是「<strong>黄金般的一年</strong>」（食物丰足；连「红眼」都有了第一个活下来的孩子）。然后变故来了：<strong>火民在清早大举攻村</strong>。最初「民」用滚石打退了第一波，甚至砸死了三个火民；但火民改用<strong>齐射的箭</strong>，压住了崖壁。僵局中，火民去森林里搬回干柴干草，堆在<strong>底层岩洞的洞口</strong>，点火——<strong>「他们变出了我们害怕的那个怪物——火」</strong>。「髓骨」第一个被熏出，一身是箭，从崖上坠落，又被火民用棍打死；随后层层岩洞被依次熏出，「长唇」胸口中箭倒在「我」的岩台边。上层岩洞几乎同时自发冲出，死了很多，也逃出了一些。「我」与「敏捷者」趁乱冲上崖顶——火民<strong>认出她、不肯射她</strong>，只是温柔地唤她，她害怕地催「我」快走。这一天，火民在森林里逐家族围杀；「我」亲眼看见「饶舌者」被射死，「我」说自己在那一刻「做了点幸灾乐祸的颠跳」。书中还用一大段写了「红眼」的末段抵抗：他把树洞里爬上去的火民摔死，随后跳入火民群里，撕下一个人的脸、咬穿另一个人的脖子，最后突围逃走——<strong>他没有死在这里</strong>。</p>
+  <h3>关键内容（含原文引文）</h3>
+  <p>对「火民为什么能赢」的总结，是全书对文明优势最直白的一次陈述：</p>
+  <blockquote>
+    <p>Their cries and yells were added to the clamor, but they had order and plan, while we Folk had none. Each one of us fought and acted for himself, and no one of us knew the extent of the calamity that was befalling us. 〔他们的呼喊与吼叫加入了那片喧嚷，但他们有秩序、有计画，而我们「民」什么都没有。我们每一个都只为自己打、为自己行动，也没有一个人知道落到我们头上的灾祸有多大。〕<span class="tag t-src">原书</span>（第十七章，第 1 段后）</p>
+  </blockquote>
+  <p>熏洞这一段是全书最接近「战争记述」的段落，作者用克制的笔法写完了整场：</p>
+  <blockquote>
+    <p>Out of these heaps they conjured the monster we feared—_FIRE_. 〔从那些柴堆里，他们变出了我们害怕的那个怪物——火。〕<span class="tag t-src">原书</span>（第十七章，第 6 段）</p>
+  </blockquote>
+  <p>以及关于「灭绝」的那句冷话：</p>
+  <blockquote>
+    <p>It was slaughter, indiscriminate slaughter, for they spared none, killing old and young, effectively ridding the land of our presence. 〔那是一场屠杀，不加区分的屠杀：他们一个也不留，老的小的都杀，有效地把我们从这片土地上清除了。〕<span class="tag t-src">原书</span>（第十七章，第 16 段）</p>
+  </blockquote>
+  <p>★ 需要专门指出：本章写「火民把『红眼』的妻儿当玩物、用弓梢戳她、嘲笑她」，与第十二章「我」和「耷耳」折磨老树民<strong>是同一个场景的镜像</strong>。作者用这一处对称，把「我们」与「他们」放进了同一面镜子里——这是《亚当之前》里少见的、真正带有反省意味的一笔。</p>
+  <h3>可疑之处</h3>
+  <ul>
+    <li><strong>火民的「不射『敏捷者』」是全书最大的未解之谜。</strong> 它被写得极清楚（<strong>「他们并没有试图射她。一支箭都没放。」</strong>），却始终没有解答；它同时强化了「她有火民血统」的暗示，也把「族群」与「血缘」的边界变成了一个悬念。
+    </li>
+    <li><strong>「火民有秩序、我们什么都没有」与第六章「靠诡诈与胆怯活下来」相对照</strong>——这是本书第二次、也是最严厉的一次说「穴居民不行」。作者在第十八章还会给出它的后果。
+    </li>
+    <li><strong>「我」的「幸灾乐祸的颠跳」</strong>（看见继父被射死时）——这是叙述者难得的一次自我暴露，也是他这个角色最不体面、最真实的一刻。作者没有为它辩解，也没有为它加注。
+    </li>
+  </ul>
+  <p>★ <strong>本章是全书的写作技术高点，值得单独说一句。</strong> 它要在同一段里同时处理三件很难的事：<strong>（一）</strong>一场有战术细节的军事行动（滚石—齐射—纵火熏洞的推进次序）；<strong>（二）</strong>一次全体灭绝（老、幼、男女，逐个写）；<strong>（三）</strong>「红眼」这个角色的最后一次登场。作者的解法是<strong>把视角死钉在「我」那座最高的岩洞上</strong>：他因为位置高、看不到底层洞里的细节，于是<strong>读者也看不到</strong>——屠杀被处理成「从远处看见的、断续的、不完整的画面」，而「我」的「好奇心」正是这台摄影机的动力。★ 一个直接的证据是：本章最残忍的画面全部是通过「我」的<strong>观看欲望</strong>带进来的（「而且，我还想看」）。<strong>这不是作者的冷漠，而是作者选择的、让读者无法移开视线的位置。</strong></p>
+</section>
+
+<section id="s25">
+  <h2><span class="num">24</span><span>第十八章 · 大沼泽与海</span><span class="caret">▾</span></h2>
+  <h3>这一章发生了什么</h3>
+  <p>「我」与「敏捷者」、随后与「耷耳」、「毛脸」夫妇一起，逃进<strong>大沼泽</strong>——那里从来没人进去过。数周的流亡之后，他们从沼泽里出来，找到一条河（就是他们的河，从沼泽里流出）、河滩上的<strong>沙岩洞</strong>，以及西边入海处的海。陆续从沼泽里爬出来的幸存者<strong>一共三十人</strong>，没有孩子。海边的日子并不好过：空气湿冷、食物只剩鱼贝，人口持续减少。<strong>「耷耳」死了</strong>——他被一只大鲍鱼夹住手指，涨潮时溺死。随后，火民<strong>划着独木舟</strong>（不是筏子）顺流而下，那<strong>跛脚的老猎人</strong>上岸查看了他们的洞穴。「敏捷者」极度惊恐，第二天一早抱着孩子、用喊声和手势把「我」带上了<strong>第二次长途逃亡</strong>。他们南行、跨山、再回沼泽边缘，最后到了一条「敏捷者」熟悉的大河——她失踪那四年大概来过这里——渡河后在一处<strong>难以接近、从下面看不见的高崖</strong>上定居。「我的记忆到此为止。」本章最后是一个反复做的梦：「我」在森林东边遇上一群<strong>树民</strong>，他们正欢闹地开着议会；忽然安静下来、畏缩后退——<strong>「红眼」走进圈子里</strong>，他不再伤害他们，因为<strong>他也是他们中的一个</strong>；跟在他脚边的，是树民里的一个老雌性，他的最新一任妻子。</p>
+  <h3>关键内容（含原文引文）</h3>
+  <p>「大沼泽」一段的写法是全书的定调句：</p>
+  <blockquote>
+    <p>It is like the meeting of the handful of survivors after the day of the end of the world. 〔那就像世界末日之后，一小撮幸存者的聚会。〕<span class="tag t-src">原书</span>（第十八章，第 3 段）</p>
+  </blockquote>
+  <p>「记忆到此为止」是本书最漂亮的一次收束，它同时完成了叙事与理论两件事：</p>
+  <blockquote>
+    <p>There is little more of my tale to tell. Here the Swift One and I lived and reared our family. And here my memories end. We never made another migration. I never dream beyond our high, inaccessible cave. 〔我的故事没什么可讲的了。就在这里，「敏捷者」和我住了下来、养育了家庭。而我的记忆到此结束。我们再没迁徙过。我从不梦见我们那座高而难以接近的岩洞之外的地方。〕<span class="tag t-src">原书</span>（第十八章，末段前）</p>
+  </blockquote>
+  <p><strong>为什么记忆到此为止？</strong> 作者自己给出了答案，而且答案同时是「遗传」的答案：因为<strong>那个继承了这一切印象的孩子，就诞生在这里</strong>——</p>
+  <blockquote>
+    <p>And here must have been born the child that inherited the stuff of my dreams… 〔而那个继承了这整套梦的质料的孩子，必定就诞生在这里……〕<span class="tag t-src">原书</span>（第十八章）</p>
+  </blockquote>
+  <p>★ 也就是说，「大牙」的梦为什么传到了现代的「我」，本书的收束是：<strong>传下去的起点，被定在了这一刻</strong>。这是一个<strong>循环</strong>：叙事因为「要传给后代」而结束在此处。</p>
+  <p>最后，「红眼」的归宿给了全书一个极其阴冷的闭环。他在岩洞灭族、沼泽流亡、海边迁徙里<strong>全部活了下来</strong>，最后走进树民、坐在他们中间：</p>
+  <blockquote>
+    <p>But he made no attempt to hurt them. He was one of them… He is Red-Eye, the atavism. 〔但他没有试图伤害他们。他就是他们中的一个……他就是「红眼」，那个返祖者。〕<span class="tag t-src">原书</span>（第十八章，末段）</p>
+  </blockquote>
+  <h3>可疑之处</h3>
+  <ul>
+    <li><strong>「复活」的悖论，作者自己先提了一次。</strong> 在第十一章的预言式交代里，「我」曾说过：如果「民」真的在河边全部灭亡，「那么我该如何交代自己的存在？」——这是全书最诚实的一处自我设难。第十八章的解法（<strong>记忆在那座崖顶被「盖印」进某个后代</strong>）在情节上说得通，但在遗传学上，它与第二章的理论同样不成立（见 <code>## 25</code>）。
+    </li>
+    <li><strong>「不再迁徙」与「记忆终止」互为因果</strong>，这是一个漂亮的结构安排，但它也让本书的结尾<strong>没有真正的解决</strong>：族群消亡了，火民赢了，「红眼」这种类型活了下来，而「我」带着一只伤肩和一套噩梦活到二十世纪。这不是失败，也不是胜利，而是作者刻意选择的<strong>悬置</strong>。
+    </li>
+    <li><strong>本章是全书的道德重心，而它没有说教。</strong> 「民」没有被写成高贵的野蛮人（他们折磨老人、见死不救、幸灾乐祸），火民也没有被写成纯粹的恶（他们哺育孩子、平等地玩闹、对「敏捷者」温柔）。★ 需要强调：本报告只做文学分析，不把书中的「族群兴亡」读成对任何现实人群的论断。
+    </li>
+  </ul>
+</section>
+
+<section id="s26">
+  <h2><span class="num">25</span><span>主题与思想史：退化、记忆与「社会达尔文主义」</span><span class="caret">▾</span></h2>
+  <p>本节处理《亚当之前》的三个理论装置（祖先记忆、返祖、优生学），以及它和另一部小说的关系。<strong>本节只做文学与思想史分析。</strong></p>
+  <h3>一、祖先记忆／遗传记忆：它是什么，以及它为什么在科学上不成立</h3>
+  <p>书中称之为 <strong>racial memory</strong>（种族记忆）与 <strong>the other-personality</strong>（另一个我），提出的机制是：个体的经历造成脑细胞的分子改变，这种改变通过魏斯曼的「<strong>种质</strong>」（germplasm）传给后代，于是「记忆」成为可遗传的东西。第二章把这条链条完整写了一遍（见 <code>## 8</code> 的引文）。</p>
+  <p>★ <strong>必须明写的三点：</strong></p>
+  <ol>
+    <li><strong>它早于遗传学的建立。</strong> 孟德尔 1866 年的论文直到 <strong>1900 年</strong>才被三位学者分别重新发现；「基因」一词 1909 年才被提出，DNA 的双螺旋要等到 1953 年。<strong>《亚当之前》写于 1906 年，正好落在这段空白里</strong>——这是理解它为什么会写成这样的关键背景。
+    </li>
+    <li><strong>「遗传记忆」在科学上不成立。</strong> 个体一生的经历不会以「记忆」的形式写入生殖细胞并传给后代。魏斯曼本人恰恰以<strong>反对</strong>「获得性遗传」著称（他的「种质连续性」理论正是为了切断体细胞与生殖细胞之间的联系），因此<strong>用魏斯曼的种质来支撑「祖先把记忆传给我」，在学说内部也是自我矛盾的</strong>。这是本书理论装置最要紧的一处硬伤，必须写明。
+    </li>
+    <li><strong>它在 1906 年是一个可以严肃谈论的假说。</strong> 在孟德尔被重新发现之前，「种族记忆」（当时也流行于心理学写作）并不是边缘怪谈；本书把它当作术语使用，是<strong>时代使然，不是作者的独创</strong>。因此它今天读起来像「科幻设定」，在当时恐怕更像「科普风格」。
+    </li>
+  </ol>
+  <p>★ 一句话总结：<strong>把《亚当之前》当小说读，它成立；把它当人类学或遗传学读物读，它不成立。</strong></p>
+  <h3>二、退化与「返祖」（atavism）：为什么本书的关键词是这个词</h3>
+  <p>「返祖者」（an atavism）在全书出现得极集中，且<strong>几乎全部指向「红眼」</strong>。第五章给出的判据是形态学的（他更毛、走路用指节撑地）；第九章给出的是行为学的（残暴、杀妻、无法融入群体）；第十八章给出的是<strong>结局</strong>的（他走进树民，坐进了圆圈）。</p>
+  <p>这三层放在一起，构成了本书对「退化」最完整的表述：<strong>返祖＝退回到更早期的类型，而它看起来像「倒退」，实际却可能是更适应环境的一支</strong>。整理成三点更能看清它的功能：</p>
+  <ul>
+    <li><strong>它是「进化」这个词的阴影。</strong> 如果进化可以向上（树民→民→火民），它就可以向下（民→树民）。「红眼」把这条反向路径人格化了。
+    </li>
+    <li><strong>它是叙事上的「不可同化者」。</strong> 「红眼」打不死、劝不动、逐不出，因为群体的协作能力太低（第十四章）。他之所以可怕，<strong>不是因为强，而是因为群体无法对付他</strong>。
+    </li>
+    <li><strong>★ 它是本书最难读的一处。</strong> 因为 1906 年前后，「退化／返祖」这个词已经被<strong>优生学话语</strong>大量征用，并常常被用在阶层与「种族」身上。★ 本报告只做文学与思想史分析，不展开现实议题；只指出：<strong>书中的「返祖」是一个形态与行为的评断，不是一个遗传学结论。</strong>
+    </li>
+  </ul>
+  <h3>三、★ 优生学与社会达尔文主义（Hensley 2002 具名）</h3>
+  <p><strong>John R. Hensley</strong> 的论文《Eugenics and Social Darwinism in Stanley Waterloo's "The Story of Ab" and Jack London's "Before Adam"》发表于 <strong>《Studies in Popular Culture》第 25 卷第 1 期（2002 年），pp. 23–37（JSTOR 23415006）</strong>。它的题名本身就把结论写清楚了：<strong>这两部小说里都存在显着的优生学与社会达尔文主义成分</strong>。★ 这是学界对这个议题的代表性研究，本报告必须具名引用。</p>
+  <p><strong>★ 处理方式（依本项目的纪律）：转述批评者的判断 ＋ 给出作者自己的原话，让读者自己看。</strong> 以下两段都是<strong>伦敦本人</strong>写的（他的非虚构，不是访谈）：</p>
+  <blockquote>
+    <p>The control of progeny will be one of the most important problems of man and one of the most important functions of the state. Men will simply be not permitted to be born. 〔控制生育将成为人最重要的问题之一，并将成为国家最重要的职能之一。人将干脆不被允许被生出来。〕<span class="tag t-talk">作者谈话</span>（伦敦《The Human Drift》随笔集中的同名主文，Project Gutenberg #1669）</p>
+  </blockquote>
+  <blockquote>
+    <p>Retreating before stronger breeds, hungry and voracious, the Eskimo has drifted to the inhospitable polar regions, the Pigmy to the fever-rotten jungles of Africa. 〔在更强、更饿、更贪婪的族类面前退却，爱斯基摩人漂到了不宜居的极地，俾格米人漂到了非洲热病烂熟的丛林。〕<span class="tag t-talk">作者谈话</span>（同上）</p>
+  </blockquote>
+  <p><strong>★ 这两段放在这里只做文本与思想史的记录，本报告不对其作任何现实政治评价，也不展开现实的种族与优生议题。</strong> 需要补充的是一句文学上的观察：<strong>《亚当之前》里并没有出现这两段的任何对应段落</strong>——小说里没有「绝育」「优生」这类情节，它呈现的是<strong>筛选的结果</strong>（谁活下来、谁没有），不是<strong>筛选的操作</strong>。所以 Hensley 的论证更适合被理解为：「这部小说用进化论的语言安排了族群的兴衰，而当时的优生学正是同一套语言的极端形式。」这是本报告对「小说的文本」与「论文的判断」之间的接缝所做的说明。</p>
+  <p><strong>「社会达尔文主义」的标记点在小说里是这样的</strong>：第六章的「靠胆怯与诡诈活下来」、第八章的「本可以织布却没织」、第十四章的「因为缺少词汇所以无法协作」、第十七章的「他们有序、我们有」——这四句话合起来，把「弱者被淘汰」写成了一个<strong>解释</strong>而不是<strong>悲剧</strong>。这是小说最容易被视为「社会达尔文主义」的地方，也是批评者的主要着力点。</p>
+  <h3>四、与 Stanley Waterloo《The Story of Ab》(1897) 的关系</h3>
+  <p><strong>先给事实。</strong> 斯坦利·滑铁卢（Stanley Waterloo, 1846–1913）的《The Story of Ab: A Tale of the Time of the Cave Man》<strong>1897 年</strong>由芝加哥 Way and Williams 出版（1904 年在伦敦以《A Tale of the Time of the Cave Men: Being the Story of Ab》重印）。它讲一个名叫 <strong>Ab</strong> 的洞穴人从少年成长为「文化英雄」：发明了石器与用火、打倒对手、确立一夫一妻——科幻工具书《The Encyclopedia of Science Fiction》的条目直接写道：<strong>「杰克·伦敦的《Before Adam》(1906) 显然受到了该书对人之起源的思辨叙述的影响。」</strong></p>
+  <p><strong>再给指控。</strong> 1906 年 11 月（一说更早），滑铁卢读了《Everybody's Magazine》上《Before Adam》的连载，随即公开指控伦敦剽窃。《纽约时报》的报道标题即：</p>
+  <blockquote>
+    <p>CHARGES JACK LONDON WITH PLAGIARISM; Stanley Waterloo Says "Before Adam" Was Filched from "Ab."… Mr. London Replies Tartly That His Work Is a Reply to "Ab" 〔指控杰克·伦敦剽窃；斯坦利·滑铁卢称《Before Adam》窃自《Ab》……伦敦先生尖锐地回应说，他的作品是对《Ab》的一个回应〕<span class="tag t-rep">转述</span>（《纽约时报》1906 年报道，检索摘要；原页要求 JS、本轮 403）</p>
+  </blockquote>
+  <p>滑铁卢在信中列出的对比点是可核对的：<strong>「洞中的孩子、一头野兽的出现、母亲的猛冲、跃上悬垂的树枝、父亲穿过树冠而来，乃至事后挑逗那头野兽」</strong>——他并指出女主（<strong>The Swift One</strong> 对应他的 <strong>Lightfoot</strong>）、挚友与「火民」都被搬用了。★ 对照本报告的逐章笔记（<code>## 9</code>、<code>## 11</code>、<code>## 13</code>）：<strong>这些情节在《亚当之前》里确实存在，且位置相近</strong>。</p>
+  <p><strong>再给伦敦的立场。</strong> 当时的书目材料记载：伦敦承认对《Ab》的借鉴（还留下过他从英国订购此书「并倚重之」的记录），但主张<strong>原始人题材属于公共领域</strong>。Goodreads 上转引的一封公函里，伦敦的类比是：<strong>如果照这种指控，「当一个人描写过日落，别人就再也不许描写日落了」</strong>——★ 这一句的<strong>原始出处未能核实</strong>（见附录 D），只能作二手转引。</p>
+  <p><strong>★ 结论（本报告不替任何一方裁决）</strong>：这是<strong>一起真实的、有原始材料支撑的抄袭指控</strong>，不是「同母题」三个字可以含混过去的；但「借鉴」与「抄袭」之间的界线，应由读者对着两本书自己判断。本报告能负责提供的是：<strong>指控的原话、伦敦回应的要点、《纽约时报》的标题、以及两条文本的可核对相似点。</strong></p>
+  <h3>五、伦敦的「社会主义达尔文主义」立场，与其小说之间的张力</h3>
+  <p>学界常用「<strong>socialistic social Darwinism</strong>（社会主义的社会达尔文主义）」来描述伦敦。这不是一个自相矛盾的标签，而是对他身上两套话语并存的描述：<strong>一方面他自认社会主义者，为穷人写作；另一方面他用生物竞争的语言解释社会</strong>。这两套话语在《亚当之前》的周边文本里都能找到原话：</p>
+  <ul>
+    <li><strong>达尔文主义的半边</strong>：《The Human Drift》写「文明史就是持剑流浪觅食的历史」，「靠杀戮、无休止的杀戮、把行星变成屠场，那些类猿生物才演化成了你和我」（<span class="tag t-talk">作者谈话</span>，PG #1669）。
+    </li>
+    <li><strong>社会主义的半边</strong>：《The People of the Abyss》（1903，写伦敦东区的贫困）里写「<strong>如果政治经济学与『适者生存』这样说，那就随它们去</strong>」（Political economy and the survival of the fittest can go hang if they say otherwise）——他紧接着坚持的是「己所不欲、勿施于人的黄金律」先于任何经济法则（<span class="tag t-talk">作者谈话</span>，PG #1688）。
+    </li>
+  </ul>
+  <p>★ 这两段并排放在一起，就是所谓「张力」：<strong>他借用社会达尔文主义的词汇来解释世界，却用社会主义的伦理来要求世界。</strong> 在《亚当之前》这部小说里，这个张力表现为一种很特别的双重姿态——<strong>叙述既精于按「淘汰」解释一切，又在字里行间反复对那些被淘汰者（老「髓骨」、「歪腿」、「敏捷者」）表达同情。</strong> 这就是为什么本书比一部单纯的「进步论」史前小说更难读：它的解释框架是冷血的，叙事的声音却不是。</p>
+  <p>★ 需要说明的是：<strong>本节只处理文本与思想史</strong>；伦敦政治立场的历史评价不在本报告范围之内。</p>
+  <h3>六、那套「三民阶梯」的思想史来源</h3>
+  <p>本书最重要的思想装置，不是「记忆能遗传」，而是<strong>三民阶梯</strong>：树民 → 民 → 火民，按体毛、鼻梁、腿的直曲、嘴唇与犬齿排列高低。把这一装置拆开，可以看到它是由三种当时流行的东西拼成的：</p>
+  <table>
+    <thead><tr><th>装置成分</th><th>在书中的表现</th><th>当时的思想来源</th></tr></thead>
+    <tbody>
+      <tr><td><strong>单线的进步阶梯</strong></td><td>树民最「低」、火民最「高」，三个群体同时存在却可以互相流动</td><td>19 世纪的单线进化论；斯宾塞式的「进步即分化」</td></tr>
+      <tr><td><strong>身体＝等级的刻度</strong></td><td>用鼻梁高低、鼻孔朝向、体毛多少、腿的直曲来排行</td><td>19 世纪末流行的体质人类学测量法与「人种等级」语汇</td></tr>
+      <tr><td><strong>用一个词概括「不合时宜者」</strong></td><td>「红眼」被反复称作 an atavism（返祖者）</td><td>退化论（degeneration theory）；该词在此期同时被优生学话语大量征用</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>本报告的处理边界（务必看清）</strong>：上表只做<strong>文本与思想史的溯源</strong>，目的是让读者知道「这些描写在 1906 年的话术环境里是什么意思」。<strong>本报告不把书中对三个虚构群体的排序，读成对任何现实人群的论断；也不展开现实中的种族与优生议题。</strong> 与 <code>## 5</code> 第一条、<code>## 4b</code> 第 4 条同属一个纪律。</p>
+  <p>值得一提的是，本书其实<strong>自己把这个阶梯拉平过一次</strong>：第十二章写树民时，叙述者说的是「<strong>说到底，树民和『民』并没有那么不同</strong>」；第十七章的火民也有了孩子、有了会唱歌的人、有了对「敏捷者」的温柔。<strong>阶梯是它借来的框架，而撕裂这个框架的，是它自己的叙事细节。</strong> 这是《亚当之前》留给今天读者最值得注意的一处内部张力。</p>
+  <p>★ 另需补一句关于<strong>孟德尔与遗传学时间线</strong>的事实，以便读者把这本书放到正确的位置上：《Before Adam》出版于 1906 年；孟德尔的工作要等到 <strong>1900 年</strong>才被重新发现，「基因」一词 1909 年才出现，DNA 双螺旋 1953 年才被阐明。<strong>这本书写于遗传学诞生的前夜</strong>，这不是它的借口，但是理解它的必要条件。</p>
+  <h3>七、把它放在「史前小说」的谱系里看</h3>
+  <p>★ 说明：下表中除《Before Adam》以外的书目信息（作者、年份）为公开可查的出版事实（<span class="tag t-rep">转述</span>）；<strong>对它们与《Before Adam》之间的「影响关系」，只有《The Story of Ab》一项有原始材料支撑</strong>（见本节第四节），其余只作<strong>并列对照</strong>，不作影响关系的论断。</p>
+  <table>
+    <thead><tr><th>作品</th><th>年份</th><th>与本书对照的要点</th></tr></thead>
+    <tbody>
+      <tr><td>Stanley Waterloo, <em>The Story of Ab</em></td><td>1897</td><td>★ <strong>唯一有原始材料支撑的关系</strong>：作者公开指控伦敦剽窃；伦敦承认借鉴但主张题材属公共领域（见本节第四节）</td></tr>
+      <tr><td>H. G. 威尔斯, <em>The Time Machine</em></td><td>1895</td><td>同样用时间旅行写「退化」；但威尔斯写到的是<strong>未来</strong>，伦敦写的是<strong>过去</strong>——两者都把「进化」写成了可以有方向、也可以倒转的东西</td></tr>
+      <tr><td>Jack London, <em>The Call of the Wild</em></td><td>1903</td><td>伦敦自己的「返祖」样本：家犬 Buck 被荒野唤起祖先本能；与《Before Adam》共享「遗传深处的兽」这一母题</td></tr>
+      <tr><td>Jack London, <em>The Iron Heel</em></td><td>1908</td><td>伦敦自己的「未来」样本；★ 他曾把自己宣扬的社会主义称作「洞穴人的社会主义」（"the socialism of the caveman"）——这个说法与《Before Adam》的题材在词汇上直接相接</td></tr>
+      <tr><td>Jack London, <em>The Scarlet Plague</em></td><td>1912</td><td>伦敦又一次写「文明崩塌后的人」；可与本书第十八章的「世界末日之后的一小撮幸存者」并读</td></tr>
+    </tbody>
+  </table>
+  <p>★ 上表只做<strong>并列对照</strong>。本报告不主张《Before Adam》影响了表中任何一部（除《The Story of Ab》这一项有原始指控材料），也不主张任何一部影响了它。★ 更重要的是：<strong>不要把《Before Adam》的「退化／返祖」，与同一项目里另两本书的概念混为一谈</strong>——那是三套不同的观念。</p>
+  <h3>八、一个必须点出的区分：小说里的设定 ≠ 作者的主张</h3>
+  <p>上面几节都涉及「这本书里有一套令今天读者不适的东西」，所以这里必须把一条区分摆明，而且要说清它<strong>不能</strong>用来做什么。</p>
+  <p><strong>第一种误读：把「大牙」的眼睛当成伦敦的眼睛。</strong> 书中的叙述者是二十世纪的「我」，但事件的现场观察者是「大牙」；全书里一切评价性的话——谁「更好、更美、更接近人」，谁「低等」，谁「该被淘汰」——都出自这个更新世观察者的位置。这层偏狭<strong>是被文本呈现出来的</strong>，而不是被作者悄悄接受的：第二章明写「我」在学校里学到的东西与梦里的经验是两套东西，全书的结构本身就是「一个现代人整理一份他不完全同意的证词」。</p>
+  <p><strong>第二种误读：把第二章的理论当成伦敦的学术主张。</strong> 第二章那一整章的论证，在文本内的身份是<strong>人物的说理</strong>——是「我」把大学课堂上的通俗进化论（斯宾塞、海克尔、魏斯曼的通俗版）与自己的梦境经验拼成的一台解释机器。伦敦在这里用的是「人物立论」的写法，不是「作者立论」的写法。</p>
+  <p>★ <strong>但这条区分是双向的，不能只朝一个方向用。</strong> 它<strong>不能</strong>替伦敦免责：他在随笔与非虚构作品里<strong>确实公开表达过</strong>社会达尔文主义与优生学立场（原话见 <code>## 26</code> 与来源清单 §1 第②组），那些是他的公开主张，不是人物的。所以正确的用法是：<strong>既不要把小说的偏狭直接算作作者的政治纲领，也不要因为他有公开立场，就把小说里的每一句人物台词都读成纲领。</strong> 本报告全程守住的就是这条线——<strong>分析文本，转述批评，给作者原话，不替他做现实政治表态。</strong></p>
+</section>
+
+<section id="s27">
+  <h2><span class="num">26</span><span>作者谈话</span><span class="caret">▾</span></h2>
+  <p>★★ <strong>本档使用的一切材料，都出自杰克·伦敦本人写的非虚构著作（随笔、纪实、自传）与他留下的书信记录。伦敦 1916 年 11 月 22 日去世，因此本档不可能包含任何新访谈——下面的每一条引文都不是访谈，都是他生前公开发表的文字或经记录的书面回应。</strong></p>
+  <h3>一、他为什么用「较年轻的世界」这个说法——这不是访谈，是他 1917 年随笔集里的主文</h3>
+  <p>《The Human Drift》（随笔集；同名主文，Project Gutenberg #1669）开篇两段：</p>
+  <blockquote>
+    <p>The history of civilisation is a history of wandering, sword in hand, in search of food. In the misty younger world we catch glimpses of phantom races, rising, slaying, finding food, building rude civilisations, decaying, falling under the swords of stronger hands, and passing utterly away. 〔文明史就是一部持剑流浪、觅食的历史。在那个雾蒙蒙的「较年轻的世界」里，我们瞥见一些幽灵般的种族：兴起、杀戮、找到食物、建起粗陋的文明、衰败、倒在更强者的剑下、彻底消失。〕<span class="tag t-talk">作者谈话</span>（《The Human Drift》，PG #1669）</p>
+  </blockquote>
+  <p>★ <strong>「the misty younger world」正是小说里那个反复出现的「the Younger World」（较年轻的世界）</strong>——这不是巧合，而是同一个作者在虚构与非虚构里共用同一套词汇的实证。<strong>这不是访谈，是随笔。</strong></p>
+  <blockquote>
+    <p>And by killing, incessant killing, by making a shambles of the planet, those ape-like creatures have developed even into you and me. 〔靠着杀戮、无休止的杀戮，靠着把行星变成屠场，那些类猿生物才一路演化成了你和我。〕<span class="tag t-talk">作者谈话</span>（同上）</p>
+  </blockquote>
+  <h3>二、他自认写的是「与进化的事实相符」的故事——这不是访谈，是他 1908 年的回应文章</h3>
+  <p>1907 年，美国总统西奥多·罗斯福与博物学家 John Burroughs 指责一批写动物故事的作家为「<strong>nature-fakers</strong>（伪造自然者）」，伦敦名列其中。伦敦在 1908 年 3 月写于大溪地帕皮提的《<strong>The Other Animals</strong>》一文中回应（原载于伦敦的官方档案站 london.sonoma.edu；本轮该站 <strong>403</strong>，引文经两个独立学术／教学来源核对，见来源清单）：</p>
+  <blockquote>
+    <p>I have been guilty of writing two animal—two books about dogs. The writing of these two stories, on my part, was in truth a protest against the "humanizing" of animals… 〔我犯过写两本动物的书——两本关于狗的书。就我而言，写这两个故事实在是对「把动物拟人化」的一种抗议……〕<span class="tag t-talk">作者谈话</span>（《The Other Animals》，1908）</p>
+  </blockquote>
+  <blockquote>
+    <p>Also, I endeavored to make my stories in line with the facts of evolution; I hewed them to the mark set by scientific research, and awoke, one day, to find myself bundled neck and crop into the camp of the nature-fakers. 〔而且，我努力让我的故事与进化的事实相符；我照着科学研究划下的刻线去凿它们，结果有一天醒来，发现自己被连脖子带脚跟塞进了「伪造自然者」的营垒。〕<span class="tag t-talk">作者谈话</span>（同上）</p>
+  </blockquote>
+  <p>★ 这两句是理解《亚当之前》最直接的自述：<strong>伦敦是自觉地「照着科学划下的线」去写动物（和人）的</strong>。他自认在写「与进化的事实相符」的故事——这既解释了他为什么在小说里塞进魏斯曼的种质，也解释了当 1906 年的科学后来被推翻时，这部小说为什么会显得那么「裸露」。<strong>这不是访谈，是他生前发表的回应文章。</strong></p>
+  <h3>三、他自己的「返祖」体验——这不是访谈，是他 1913 年的自传体作品</h3>
+  <p>《John Barleycorn》（1913，Project Gutenberg #318）里，伦敦写酒精如何在一次宴会里压过他读过的所有书：</p>
+  <blockquote>
+    <p>And all my austere nights of midnight oil, all the books I had read, all the wisdom I had gathered, went glimmering before the ape and tiger in me that crawled up from the abysm of my heredity, atavistic, competitive and brutal, lustful with strength and desire to outswine the swine. 〔我那些清苦的熬夜、我读过的所有的书、我积攒的所有智慧，都在我体内那只猿与那只虎面前黯然退去——它从我遗传的深渊里爬上来，返祖的、好胜而粗野的、贪着力量、渴望比猪更猪。〕<span class="tag t-talk">作者谈话</span>（《John Barleycorn》，PG #318）</p>
+  </blockquote>
+  <p>同书里还有一句，把「现代人的聚会场所」直接接到「民」的火堆上：</p>
+  <blockquote>
+    <p>Men gathered to it as primitive men gathered about the fire of the squatting place or the fire at the mouth of the cave. 〔人们聚拢到它那里，就像原始人聚到蹲居地的火边、或洞口的那堆火旁。〕<span class="tag t-talk">作者谈话</span>（同上）</p>
+  </blockquote>
+  <p>★ 这两句的重要性在于：<strong>「返祖」不只是他用在小说里的词，也是他用来解释自己的词。</strong>《亚当之前》里那个「从遗传的深渊里爬上来」的兽，在伦敦自己的世界观里是<strong>真的存在</strong>的——小说只是给了它一个更新世的舞台。<strong>这不是访谈，是自传体作品。</strong></p>
+  <h3>四、他的伦理与他的进化论并不同调——这不是访谈，是他 1903 年的纪实作品</h3>
+  <p>《The People of the Abyss》（1903，Project Gutenberg #1688，写伦敦东区的贫困）里，伦敦写下一句把「适者生存」顶回去的话：</p>
+  <blockquote>
+    <p>Political economy and the survival of the fittest can go hang if they say otherwise. What is not good enough for you is not good enough for other men, and there's no more to be said. 〔如果政治经济学与「适者生存」说要另讲，那就随它们去。对你不算好的东西，对别人也不算好，再没有别的话可说。〕<span class="tag t-talk">作者谈话</span>（《The People of the Abyss》，PG #1688）</p>
+  </blockquote>
+  <p>★ 这一条与 <code>## 25</code> 第五节互为印证：<strong>伦敦用进化论的词汇描述世界，却用「黄金律」的伦理要求世界。</strong> 本报告引用它，只为了说明这部小说里那个「冷血的框架 + 温热的声音」的双重结构，<strong>不涉及任何现实政治评价</strong>。<strong>这不是访谈，是纪实作品。</strong></p>
+  <h3>五、他关于「借鉴《Ab》」的回应——这不是访谈，是他的书面回应</h3>
+  <p>★ 这一条的<strong>档案形态</strong>需要说清：伦敦 1916 年去世，<strong>不存在「他后来接受采访谈这件事」的材料</strong>；能核到的是<strong>1906 年他向报界／朋友的书面回应</strong>：他承认对《The Story of Ab》的借鉴，同时主张<strong>原始人题材属于公共领域</strong>，并尖锐地表示自己的书是<strong>对《Ab》的一个回应</strong>而非抄袭（《纽约时报》1906 年报道标题；书目材料 Letters of Jack London, pp. 623–625）。★ 上述向 London 书信集页码的引用来自一份公开的书目摘录（二手），本报告未核对原书页码。<strong>这不是访谈，是 1906 年的书面回应，以及书信集里的记录。</strong></p>
+  <h3>★ 本档的三条禁区（本项目规定，已在来源清单中复述）</h3>
+  <ol>
+    <li><strong>不得虚构任何访谈</strong>——本档所有材料都注明作者、篇名、年份；凡属「不是访谈」的，均已在文中写明。
+    </li>
+    <li><strong>不得把书评人、译者、评传作者的话写成作者的话</strong>——例如 Charmian London（他的妻子、传记作者）说此书「进了美国多所大学、被当作人类学教科书」，那是<strong>她的</strong>话（The Book of Jack London, II, 121），本报告已标明是她而非伦敦本人，因而不收进本档。
+    </li>
+    <li><strong>不得把百科词条当作者原话</strong>——本档所有引用都回到原篇；不带任何百科转述。
+    </li>
+  </ol>
+  <h3>六、他对「原始祖先」的想象，和他的小说完全同源——这不是访谈，是他 1917 年随笔集里的主文</h3>
+  <p>在《The Human Drift》的同名主文里，伦敦用一段话描述他心目中的早期人类，而这段话与《亚当之前》第六章那句「靠胆怯与诡诈活下来」几乎是同一段论证的两个版本——<strong>只不过一个写在小说里，一个写在随笔里</strong>：</p>
+  <blockquote>
+    <p>Dominated by fear, and by their very fear accelerating their development, these early ancestors of ours, suffering hunger-pangs very like the ones we experience to-day, drifted on, hunting and being hunted, eating and being eaten, wandering through thousand-year-long odysseys of screaming primordial savagery, until they left their skeletons in glacial gravels, some of them, and their bone-scratchings in cave-men's lairs. 〔被恐惧支配着——而正是这恐惧加速了他们的发展——我们这些早期祖先，忍受着与今天的我们几乎相同的饥饿之苦，一路漂流：猎与被猎、吃与被吃，在延续千年的、尖叫的原始野蛮的漂泊中游荡，直到他们中有一些把骸骨留在了冰川砾石层里、把骨头上的刻痕留在了穴居人的巢穴中。〕<span class="tag t-talk">作者谈话</span>（《The Human Drift》，PG #1669）</p>
+  </blockquote>
+  <p>同段还有一句<strong>直接呼应小说里父亲那只能抓握的脚</strong>的说明——他说早期直立行走的「野兽」是「从四足灵长类的某一支来的，因为长出了<strong>『一对由两个对生拇指变来的大脚趾』</strong>」。★ 也就是说：<strong>小说第三章花整段描写的那只 prehensile foot（能抓握的脚），在伦敦的非虚构里是一条被当作科学事实引用的脚注。</strong> 这再次说明：《亚当之前》里的身体描写不是随手的想象，而是<strong>当时的「科学」在一个作家脑中的落地形态</strong>。<strong>这不是访谈，是随笔。</strong></p>
+  <h3>★★ 本档一句话小结（写给读者）</h3>
+  <p>★ <strong>伦敦死于 1916 年，从未就《亚当之前》接受过任何访谈，本档也从未使用任何访谈材料。</strong> 上面六则全部出自他生前<strong>自己写下的文字</strong>（随笔集两则、回应文章一则、自传体作品一则、纪实作品一则、书面回应一则）。它们的价值恰好在于：<strong>它们证明小说里的那套观念——返祖、种质、恐惧作为驱动力、原始人属于公共领域——不是一时兴起的设定，而是伦敦本人世界观里长期、公开、反复出现的东西。</strong></p>
+</section>
+
+<section id="s28">
+  <h2><span class="num">27</span><span>版本与中译</span><span class="caret">▾</span></h2>
+  <h3>一、文本版本</h3>
+  <table>
+    <thead><tr><th>版本</th><th>年份</th><th>要点</th></tr></thead>
+    <tbody>
+      <tr><td>连载</td><td>1906–1907</td><td>《Everybody's Magazine》；★ 起止月与期数各源冲突，见附录 D</td></tr>
+      <tr><td>初版成书</td><td>1907</td><td>The Macmillan Company（纽约）／Macmillan &amp; Co.（伦敦）；<strong>241 或 242 页，定价 $1.50</strong>；插图 <strong>Charles Livingston Bull</strong>；★ 插图数量与出版月份各源冲突，见附录 D</td></tr>
+      <tr><td>Project Gutenberg #310</td><td>2008 首发，2021 更新</td><td><strong>本报告的底本</strong>；正文 18 章；Credits: John Hamm and David Widger</td></tr>
+      <tr><td>Univ. of Nebraska Press（Bison Frontiers of Imagination）</td><td>2000</td><td><strong>Dennis L. Dunn 作序</strong>，256 页，<strong>收 Bull 原插图 ＋ 一幅史前地图</strong></td></tr>
+      <tr><td>Macmillan 重排本</td><td>1962</td><td><strong>Leonard Everett Fisher</strong> 全页插图；<strong>Willy Ley 导言 ＋ Loren Eiseley 跋《Jack London, Evolutionist》</strong>；xviii + 172 页；定价 $3.95；LCCN 62-17336</td></tr>
+    </tbody>
+  </table>
+  <h3>二、★ 两个必须写明的声明</h3>
+  <ol>
+    <li><strong>PG #9113 是同一本书的有声书版</strong>（目录里只有 <code>9113-readme.txt</code> 与 <code>mp3/</code>），<strong>不能作文字底本</strong>。本轮实测：<code>gutenberg.org/ebooks/9113</code> 与主站同遭 503/504，PGLAF 镜像上 <code>cache/epub/9113/pg9113.txt</code> 返回 <strong>404</strong>（该书在 PG 上只有音频条目，没有纯文本），这与「它是有声书」的性质相符。
+    </li>
+    <li><strong>本报告的所有英文引文都出自 PG #310</strong>，按「CHAPTER 编号 ＋ 段落定位」标注；中文引句全部为二手转引、未核对原著、不给页码。<strong>A 与 C 不合并</strong>。
+    </li>
+  </ol>
+  <h3>三、插图史（Bull 1907 → Fisher 1962）</h3>
+  <ul>
+    <li><strong>Charles Livingston Bull（1874–1932）</strong>：1907 年初版插图的绘者，也是《野性的呼唤》等伦敦作品的常用绘者。★ <strong>数量各源冲突</strong>：<strong>图书馆编目</strong>（The Morgan Library &amp; Museum，馆藏号 PML 186077；Utah State University）著录为 <strong>「7 幅整页插图（含于页序中）＋ 一幅印在双页上的地图」</strong>；<strong>书商著录</strong>（The Book Collector／boydbooks／Buddenbrooks，均引 <strong>BAL 11903</strong>）作 <strong>「8 幅彩色图版（含卷首图）＋ 文中线条插图」</strong>。<strong>两者不必然矛盾</strong>（「含卷首图的 8 张彩图」与「7 张整页插图 + 1 张双页地图」可能是同一批图的不同计法），但本报告未能确定哪一种是初版的准确清单——<strong>列入附录 D</strong>。
+    </li>
+    <li><strong>Leonard Everett Fisher（1924– ）</strong>：<strong>1962 年 Macmillan 重排本</strong>的绘者，同时也设计了该版的书衣。这一版的价值在于它把一部 1907 年的插图小说<strong>重新安装进了 20 世纪中期的「进化」阅读框架</strong>——因为与插图同时换上的，还有 Willy Ley 的导读与 Loren Eiseley 的跋《Jack London, Evolutionist》。★ 这一版的归属（是「Macmillan 的重排本」还是「另一次独立编辑」）已核实为前者：ISFDB 出版记录 #604674 明载其 Publisher 为 The Macmillan Company、Date 1962、封面绘者 Leonard Everett Fisher。
+    </li>
+    <li>★ <strong>1962 年之后，Fisher 版并非唯一的插图路线</strong>；此后大量公共领域重印本（含 Mint Editions 2021 之类）往往<strong>不附插图</strong>。想在电子版里看到插图，目前最可靠的仍是 Nebraska 2000 学术版（收 Bull 图）。
+    </li>
+  </ul>
+  <h3>四、中译</h3>
+  <p>三个中译（另见 <code>## 4</code>）：</p>
+  <table>
+    <thead><tr><th>译本</th><th>译者</th><th>出版</th><th>备注</th></tr></thead>
+    <tbody>
+      <tr><td>《在亚当之前》</td><td><strong>廖美珍</strong></td><td>外文出版社，2011 年 11 月，ISBN 978-7-119-07326-2，35 元</td><td><strong>英汉对照 ＋ 译文评论</strong>的教学型体例（译者简介／译者序言／(一) 英文原著 /(二) 中文译文 /(三) 译文评论）</td></tr>
+      <tr><td>《亚当之前》</td><td><strong>施智璋</strong></td><td><strong>中国台湾</strong> 国家出版社，2015 年 2 月（三版），197 面，ISBN 9789573614470</td><td>目前可见的繁体版本</td></tr>
+      <tr><td>《杰克·伦敦文集》第八卷（收《在亚当之前》）</td><td>★ <strong>「廖美珍」／「缪美珍」冲突</strong></td><td>河北教育出版社，2000 年，427 页，ISBN 7543432633</td><td>该卷实收三种中篇：《在亚当之前 / 太阳之子 / 斯莫克·贝洛》</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>姓名冲突必须如实保留</strong>：<strong>中文科幻数据库（csfdb）</strong>对它收录的两个简体条目（河北教育 2000 与外文 2011）<strong>都著录为「廖美珍 译」</strong>；而 <strong>Google Books</strong> 对该卷（河北教育出版社 2000，ISBN 7543432633）的<strong>书目著录为「在亚当之前／缪美珍 译」</strong>（同卷另收崔新娟、王晓英等人的译作）。★ 本报告未核对纸质原著，<strong>无法裁决</strong>，列入附录 D。</p>
+  <p>★ 另需指出：<strong>中文出版方对该书的介绍里写「《在亚当之前》(1905)」是错的</strong>（实际 1906 年连载／1907 年成书）。这段文案被百度百科、豆瓣、中文百科与中文科幻数据库<strong>同一套字句地沿用</strong>，因此这个错误在中文网络上流传极广。本报告已在 <code>## 4b</code> 第 1 条列出。</p>
+  <h3>五、给不同读者的版本组合建议</h3>
+  <table>
+    <thead><tr><th>你的目的</th><th>建议的版本组合</th></tr></thead>
+    <tbody>
+      <tr><td>只想把它读完，不在意插图</td><td><strong>PG #310</strong>（免费、可靠、可逐处核验；本报告的底本）。★ 主站本轮不可达，可用 PGLAF 镜像或其他官方镜像</td></tr>
+      <tr><td>想看 1907 年的原版插图与那张史前地图</td><td><strong>University of Nebraska Press 2000 年版</strong>（Bison Frontiers of Imagination，Dennis L. Dunn 作序）</td></tr>
+      <tr><td>想看 20 世纪中期怎么重讲这个故事</td><td><strong>Macmillan 1962 年版</strong>（Leonard Everett Fisher 插图；Willy Ley 导言 ＋ Loren Eiseley 跋《Jack London, Evolutionist》）——★ 这一版的<strong>导言与跋</strong>本身就是接受史的原始材料</td></tr>
+      <tr><td>想中英对读、并看一种译法如何被讨论</td><td><strong>外文出版社 2011 年「廖美珍 译」本</strong>（英汉对照 ＋ 译文评论）</td></tr>
+      <tr><td>只想要一个顺手的简体全本</td><td><strong>《杰克·伦敦文集》第八卷</strong>（河北教育出版社 2000；★ 译者姓名存在「廖美珍／缪美珍」著录冲突，见附录 D4）</td></tr>
+      <tr><td>想读繁体</td><td><strong>中国台湾 国家出版社 2015 年「施智璋 译」本</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一个提醒</strong>：本书在公共领域，因此网络上存在大量<strong>无版权的重印本与自制电子书</strong>（含封面与内文品质不一的自出版版本）。选版本时，最可靠的两个判据是：<strong>是否说明所据的底本</strong>，以及<strong>是否保留（或明确说明是否保留）插图</strong>。★ 需要说明：本报告<strong>没有</strong>采用任何一处<strong>他人托管的整本书盗版 PDF</strong>（本项目红线）；本报告的一切英文引文都出自 PG #310 或其官方镜像。</p>
+  <h3>六、一个常见的版本误区：不要把 PG #9113 当底本</h3>
+  <p>在 Project Gutenberg 上检索《Before Adam》，会同时碰到<strong>两个编号</strong>：#310 与 #9113。<strong>#9113 是同一本书的「有声书（audiobook）」条目</strong>——它的下载区只有 readme 与 mp3 文件，<strong>没有可供引用、检索与逐处核对的纯文本正文</strong>。本轮实测 <code>gutenberg.pglaf.org/cache/epub/9113/pg9113.txt</code> 返回 <strong>404</strong>，正是这一点的旁证。</p>
+  <p>⇒ 结论很简单：<strong>一切英文引文必须出自 #310</strong>。拿 #9113 当底本，会得到一个「哪里都搜不到原句」的空壳；同理，<strong>LibriVox 一类的有声书也不构成文本依据</strong>（有声书可以用来听，但不能用来引）。</p>
+</section>
+
+<section id="s29">
+  <h2><span class="num"></span><span>附录 A · 18 章章号、本报告所拟章题与原文首句</span><span class="caret">▾</span></h2>
+  <p>★ 原著<strong>只有章号、没有章题</strong>；下表「所拟章题」全部是本报告所拟。「原文首句」出自 PG #310，可用于逐章定位。</p>
+  <table>
+    <thead><tr><th>章</th><th>本报告所拟章题</th><th>原文首句（PG #310）</th></tr></thead>
+    <tbody>
+      <tr><td>第一章</td><td>梦魇中的古世界</td><td>Pictures! Pictures! Pictures! Often, before I learned, did I wonder whence came the multitudes of pictures that thronged my dreams…</td></tr>
+      <tr><td>第二章</td><td>种族记忆与「另一个我」</td><td>I have said that in my dreams I never saw a human being.</td></tr>
+      <tr><td>第三章</td><td>树巢里的婴孩与野猪</td><td>The commonest dream of my early childhood was something like this: It seemed that I was very small and that I lay curled up in a sort of nest of twigs and boughs.</td></tr>
+      <tr><td>第四章</td><td>只有三四十个声音的语言</td><td>There is one puzzling thing about these prehistoric memories of mine. It is the vagueness of the time element.</td></tr>
+      <tr><td>第五章</td><td>「红眼」与「耷耳」</td><td>My vision of the scene came abruptly, as I emerged from the forest.</td></tr>
+      <tr><td>第六章</td><td>窄口岩洞、剑齿虎与笑声</td><td>While the more courageous of the youngsters played in and out of the large-mouthed caves, I early learned that such caves were unoccupied.</td></tr>
+      <tr><td>第七章</td><td>断牙之死，与那支箭</td><td>Broken-Tooth was another youngster who lived by himself.</td></tr>
+      <tr><td>第八章</td><td>第一个冬天与那只小狗</td><td>Well do I remember that first winter after I left home.</td></tr>
+      <tr><td>第九章</td><td>与「返祖者」的对峙</td><td>Red-Eye was an atavism. He was the great discordant element in our horde.</td></tr>
+      <tr><td>第十章</td><td>妹妹、树屋与河汊上的木筏</td><td>After we had had out our laugh, Lop-Ear and I curved back in our flight and got breakfast in the blueberry swamp.</td></tr>
+      <tr><td>第十一章</td><td>双重人格的自白</td><td>It must be remembered that the description I have just given of the Swift One is not the description that would have been given by Big-Tooth…</td></tr>
+      <tr><td>第十二章</td><td>河之北岸</td><td>I have no idea how long Lop-Ear and I wandered in the land north of the river.</td></tr>
+      <tr><td>第十三章</td><td>火民之地</td><td>It was not until the night of our first day on the south bank of the river that we discovered the Fire People.</td></tr>
+      <tr><td>第十四章</td><td>「嘻嘻」议会</td><td>The months came and went.</td></tr>
+      <tr><td>第十五章</td><td>妹妹之死与逼近的火民</td><td>Lop-Ear got married.</td></tr>
+      <tr><td>第十六章</td><td>「敏捷者」与雷击之树</td><td>I found her down in the old neighborhood near the blueberry swamp, where my mother lived…</td></tr>
+      <tr><td>第十七章</td><td>烟攻</td><td>It was in the early fall of the following year that it happened.</td></tr>
+      <tr><td>第十八章</td><td>大沼泽与海</td><td>Of our wanderings in the great swamp I have no clear knowledge.</td></tr>
+    </tbody>
+  </table>
+  <p>★ 需要说明：原著<strong>卷首有题词</strong>（epigraph），PG #310 录在正文之前——「These are our ancestors, and their history is our history. Remember that as surely as we one day swung down out of the trees and walked upright, just as surely, on a far earlier day, did we crawl up out of the sea and achieve our first adventure on land.」（<span class="tag t-src">原书</span>，卷首题词）。★ 需要注意：<strong>PG #310 的题名页把年份印作「1906」</strong>（而初版成书是 1907 年）——把这一现象视为「PG 转录的题名页沿用了连载年份」是一种<strong>推断</strong> <span class="tag t-inf">推断</span>，本报告未能核实其来源。</p>
+</section>
+
+<section id="s30">
+  <h2><span class="num"></span><span>附录 B · 专名与中译对照</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>原文</th><th>本报告用的中译</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>Before Adam</td><td>亚当之前</td><td>书名；★ 中译另有《在亚当之前》</td></tr>
+      <tr><td>Big-Tooth</td><td>大牙</td><td>叙述者的史前「另一个我」；因犬齿大而得名</td></tr>
+      <tr><td>Lop-Ear</td><td>耷耳</td><td>一只耳朵永远耷拉</td></tr>
+      <tr><td>the Swift One</td><td>敏捷者</td><td>温和、善攀爬；★ 滑铁卢指控中对应其女主 Lightfoot</td></tr>
+      <tr><td>Red-Eye</td><td>红眼</td><td>全书唯一的「返祖者」</td></tr>
+      <tr><td>the Chatterer</td><td>饶舌者</td><td>「我」的继父</td></tr>
+      <tr><td>Broken-Tooth</td><td>断牙</td><td>被火民射死的少年</td></tr>
+      <tr><td>Marrow-Bone</td><td>髓骨</td><td>全族唯一的老人；葫芦储水的发明者</td></tr>
+      <tr><td>the Hairless One</td><td>无毛者</td><td>髓骨之子</td></tr>
+      <tr><td>Long-Lip</td><td>长唇</td><td>无毛者之子</td></tr>
+      <tr><td>Big-Face</td><td>大脸</td><td>唯一帮手；被剑齿虎吃掉</td></tr>
+      <tr><td>Crooked-Leg</td><td>歪腿</td><td>「爱唱者」的丈夫</td></tr>
+      <tr><td>the Singing One</td><td>爱唱者</td><td>被「红眼」夺走</td></tr>
+      <tr><td>Hair-Face</td><td>毛脸</td><td>最后逃入大沼泽者之一</td></tr>
+      <tr><td>the Folk / Cave People</td><td>民／穴居民</td><td>半树上半地面的族群</td></tr>
+      <tr><td>the Fire People</td><td>火民</td><td>会用火、弓、独木舟</td></tr>
+      <tr><td>the Tree People</td><td>树民</td><td>更近猿类</td></tr>
+      <tr><td>Saber-Tooth</td><td>剑齿虎</td><td>「老剑齿虎」</td></tr>
+      <tr><td>Mid-Pleistocene</td><td>更新世中期</td><td>书中自称的时代</td></tr>
+      <tr><td>the Younger World</td><td>较年轻的世界</td><td>★ 与伦敦《The Human Drift》共用同一用语</td></tr>
+      <tr><td>atavism</td><td>返祖／返祖者</td><td>★ 全书核心词</td></tr>
+      <tr><td>racial memory</td><td>种族记忆</td><td>★ 本书理论装置</td></tr>
+      <tr><td>disassociation of personality</td><td>人格解离</td><td>叙述者自称的用法</td></tr>
+      <tr><td>germplasm</td><td>种质</td><td>魏斯曼的术语</td></tr>
+      <tr><td>hee-hee council</td><td>「嘻嘻」议会</td><td>第十四章；作者称之为艺术雏形</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s31">
+  <h2><span class="num"></span><span>附录 C · 与本书相关的伦敦年表（只列与本书有关的条目）</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>年份</th><th>事件</th></tr></thead>
+    <tbody>
+      <tr><td>1876</td><td>1 月 12 日生于旧金山；本名 John Griffith Chaney</td></tr>
+      <tr><td>1897–1898</td><td>克朗代克（Klondike）淘金，一年左右；此后成为其「原始本能」主题的经验底本</td></tr>
+      <tr><td>1900</td><td>孟德尔的工作被重新发现（与本书理论装置的时间背景有关）</td></tr>
+      <tr><td>1903</td><td>《The Call of the Wild》；《The People of the Abyss》</td></tr>
+      <tr><td>1906</td><td>《Before Adam》在《Everybody's Magazine》开始连载（10 月）；★ 同年 11 月 Stanley Waterloo 公开指控剽窃；同年《White Fang》出版</td></tr>
+      <tr><td>1907</td><td>《Before Adam》成书（Macmillan，纽约）；伦敦开始建造「Snark」号帆船</td></tr>
+      <tr><td>1908</td><td>3 月发表《The Other Animals》，回应「nature-fakers」之争；《The Iron Heel》出版</td></tr>
+      <tr><td>1911</td><td>《The Cruise of the Snark》出版（★ 施工图记为 1907，实为 1911；1907 年起在杂志连载）</td></tr>
+      <tr><td>1913</td><td>《John Barleycorn》出版</td></tr>
+      <tr><td>1916</td><td>11 月 22 日去世</td></tr>
+      <tr><td>1917</td><td>《The Human Drift》随笔集出版（含同名主文）</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s32">
+  <h2><span class="num"></span><span>附录 D · 待核实项（★ 本轮查不到／各源冲突，如实列出）</span><span class="caret">▾</span></h2>
+  <p><strong>D1. 连载的起止月与期数。</strong> ★ <strong>各源冲突</strong>：</p>
+  <ul>
+    <li>一说 <strong>1906 年 10 月 – 1907 年 2 月</strong>（共 5 期？或 4 期？）。持此说者：Amereon House 版图书的图书馆编目注记（「First published in Everybody's magazine, October 1906-February 1907」）；一份公开的书目摘录（「Serialized in Everybody's Magazine, October, 1906-February 1907」）；以及一个专收史前题材的民间书目页，它给出了更细的分期：<strong>Volume XV，1906 年 10、11、12 月：第 1–12 章；Volume XVI，1907 年 1、2 月：第 13–18 章</strong>（这个划分本身是很强的证据，但它来自一个非学术的个人站点）。
+    </li>
+    <li>一说 <strong>1906 年 12 月 – 1907 年 2 月</strong>（Grokipedia）。
+    </li>
+    <li>★★ <strong>本报告为什么没核到</strong>：① <strong>Project Gutenberg 主站本轮不可达</strong>（<code>gutenberg.org</code> 返回 503/504），无法取 PG 元数据页；② 《Everybody's Magazine》1906–1907 年的卷期目次在公开网络上<strong>没有可全文核对的免费数字化来源</strong>（该刊的数字化本需通过订阅型报纸／期刊库）。⇒ <strong>本报告倾向采信「1906 年 10 月 – 1907 年 2 月（5 期）」，因为两个彼此独立的来源一致，并有一个来源给出了分章分期；但由于原始卷期目次未能核对，仍列为待核实。</strong> 另需指出：<strong>Grokipedia 一类 AI 生成百科在本轮实测中对该书的出版史细节自相矛盾</strong>（同一页内先写「October 1906 to February 1907 across four issues」、后写「December 1906 to February 1907」；先写「eight color plates」、后写「six full-page illustrations」），<strong>本报告一律不采信其数据</strong>。
+    </li>
+  </ul>
+  <p><strong>D2. 初版的出版月份。</strong> ★ 一说 <strong>2 月</strong>：书商 boydbooks 的条文明写「'Published February, 1907' on copyright page」（版权页原字）。★ 一说 <strong>3 月</strong>：Utah State University 藏品页给出的日期为 <strong>1907-03-12</strong>（这个日期可能是入藏或赠阅日，不必然是出版日）；Grokipedia 亦称 3 月。★ <strong>两说各有其据，本报告未能裁决</strong>；可核到的中间事实是：<strong>版权页印的是「Published February, 1907」</strong>。</p>
+  <p><strong>D3. 初版插图的数量（6 幅？7 幅？8 幅？）。</strong> ★ 三方冲突：</p>
+  <ul>
+    <li><strong>图书馆编目</strong>：The Morgan Library &amp; Museum（馆藏号 PML 186077）著录为 <strong>「7 幅整页插图（含于页序中）＋ 一幅印在双页上的地图」</strong>，开本 20 cm，vii, 242 页；Utah State University 藏品页亦作 <strong>「7 幅彩色图版 ＋ 1 幅地图」</strong>。
+    </li>
+    <li><strong>书商著录（均引 BAL 11903）</strong>：The Book Collector 作「<strong>8 幅彩色图版（含卷首图）</strong>，另有文中插图」，印数 20,080 册；boydbooks 作「<strong>Eight color plates (including frontispiece) and numerous in-text illustrations</strong>」；Buddenbrooks 作「彩色图版 ＋ 文中线条插图」，242 页 + 4 页广告。
+    </li>
+    <li><strong>AI 生成百科（不采用）</strong>：Grokipedia 同一页内既写「八幅彩色图版」，又写「六幅整页插图」——<strong>「6 幅」这一说法的来源就是这处自相矛盾，本报告判定其不可采信</strong>。
+    </li>
+    <li>★ <strong>本报告为什么没核到</strong>：1907 年初版的可核对全本在公开网络上没有免费的图书馆级编目（Morgan 与 USU 的编目页本轮分别返回 403／连接失败，只能依赖检索结果中已呈现的编目文字）。⇒ <strong>倾向采信「7 幅整页图 ＋ 1 幅双页地图」，但未能排除「8 幅彩图（含卷首图）」的计法。</strong>
+    </li>
+  </ul>
+  <p><strong>D4. 中译者姓名：「廖美珍」还是「缪美珍」。</strong> ★ 中文科幻数据库（csfdb）对它收录的两个简体条目（外文出版社 2011 与河北教育出版社 2000）<strong>都著录为「廖美珍」</strong>；<strong>Google Books</strong> 对河北教育出版社 2000 年该卷（ISBN 7543432633）的著录为「<strong>在亚当之前／缪美珍 译</strong>」。★ <strong>本报告未核对任何纸质原著</strong>，无法裁决；<strong>两人是否其实是同一人（异体字／误植）亦未能确认</strong>。</p>
+  <p><strong>D5. 1962 年 Macmillan 版本中 Leonard Everett Fisher 的插图归属。</strong> ★ <strong>已核到的部分</strong>：ISFDB 出版记录 <strong>#604674</strong> 明载：Date 1962-00-00、Publisher The Macmillan Company、Pages xviii+172、Cover 署名 <strong>Leonard Everett Fisher</strong>、定价 $3.95、LCCN <strong>62-17336</strong>，并载 Willy Ley 的导言与 Loren Eiseley 的跋；多个二手书商条目（biblio.ie／iberlibro／betweenthecovers）一致称该版为「<strong>First edition thus</strong>」，插图绘者为 Leonard Everett Fisher，页面 172 页。★ <strong>未能核到的部分</strong>：<strong>该版是否把 Bull 的原插图一并保留</strong>（有的书商只说「全页黑白插图 by Fisher」，未说明 Bull 图是否还在）；<strong>封面绘者是否与内页插图为同一人</strong>（ISFDB 把封面归给 Fisher，但内页归属需要看实物）。⇒ 列为待核实。</p>
+  <p><strong>D6. 伦敦回应剽窃指控的一封「公函」原文。</strong> ★ 二手转引中有这样一句被归给伦敦：「如果照这种指控，当一个人描写过日落，别人就再也不许描写日落了」（Goodreads 的一则读者评论转引，称出自「an open letter」）。★ <strong>原始出处未能核实</strong>：既没有找到该公函的原文，也无法确认它是一封给报刊的公开信还是一封私人信札的转述。<strong>本报告只把它当作二手转引处理，不作为伦敦原话使用</strong>（<code>## 25</code> 已标明）。</p>
+  <p><strong>D7. Project Gutenberg 主站本轮不可达。</strong> ★ 实测：<code>https://www.gutenberg.org/cache/epub/310/pg310.txt</code>、<code>https://www.gutenberg.org/ebooks/310</code>、<code>https://www.gutenberg.org/ebooks/9113</code> <strong>三次重试分别返回 503／504</strong>（返回体只有 92–107 字节，为网关错误页）。★ <strong>本报告改用 PGLAF 官方镜像</strong> <code>https://gutenberg.pglaf.org/cache/epub/310/pg310.txt</code>，实测 <strong>200 / 234,667 B</strong>，与本地副本<strong>逐字节一致</strong>；因此 A 级定级的底本未受影响，但<strong>主站可达性这一项如实记为「本轮不可达」</strong>。</p>
+  <p><strong>D8. Sonoma State University 的伦敦档案站（london.sonoma.edu）。</strong> ★ 实测：<code>https://london.sonoma.edu/</code>、<code>https://london.sonoma.edu/Writings/BeforeAdam/</code> 均返回 <strong>403</strong>（站点拦截了非浏览器的直接请求）。★ 该站是《The Other Animals》等伦敦原作的公开托管处，本报告对该篇的引文因而改为<strong>经两个独立的学术／教学来源交叉核对</strong>（见来源清单），<strong>未能直接取回站点原文</strong>。</p>
+</section>
+
+<footer>
+  生成于 2026-10-12 · 来源清单与交叉验证记录见同目录 <code>亚当之前-来源清单.md</code><br>
+  本页英文引文出自 Project Gutenberg #310（美国版权已过期，公版），按「CHAPTER 编号 ＋ 段落定位」可逐处回原文核验；中文引句为公开资料转引、<b>未核对原著</b>。★ 本书的「作者谈话」档全部取自作者生前自己写下的文字，<b>不是访谈，也不可能有访谈</b>。★ 原著各章只有编号、没有章题，《亚当之前.md》中的节标题均为本报告所拟。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>
