@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《君主论》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《君主论》<small>阅读指引与精华解析 · 2026-10-13</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 核心主题与结构机制</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 版本与译本怎么选</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 逐章精读</div>
+    <a href="#s7">6 全书骨架与写作机制：一部「求职信」？</a>
+    <a href="#s8">7 第一章 · 君主国有多少种（HOW MANY KINDS OF PRINCIPALITIES THERE ARE）</a>
+    <a href="#s9">8 第二章 · 论世袭君主国（CONCERNING HEREDITARY PRINCIPALITIES）</a>
+    <a href="#s10">9 第三章 · 论混合君主国（CONCERNING MIXED PRINCIPALITIES）</a>
+    <a href="#s11">10 第四章 · 为什么亚历山大大帝所征服的大流士王国没有背叛其后继者（WHY THE KINGDOM OF DARIUS...）</a>
+    <a href="#s12">11 第五章 · 对于占领前在各自法律下生活的城市或君主国应当怎样统治（CONCERNING THE WAY TO GOVERN CITIES...）</a>
+    <a href="#s13">12 第六章 · 论依靠自己的武力和能力获得的新君主国（BY ONE'S OWN ARMS AND ABILITY）</a>
+    <a href="#s14">13 第七章 · 论依靠他人的武力或由于幸运而取得的新君主国（BY THE ARMS OF OTHERS OR BY GOOD FORTUNE）</a>
+    <a href="#s15">14 第八章 · 论以邪恶之道获得君权的人们（THOSE WHO HAVE OBTAINED A PRINCIPALITY BY WICKEDNESS）</a>
+    <a href="#s16">15 第九章 · 论市民的君主国（CONCERNING A CIVIL PRINCIPALITY）</a>
+    <a href="#s17">16 第十章 · 应该怎样衡量一切君主国的力量（HOW THE STRENGTH OF ALL PRINCIPALITIES OUGHT TO BE MEASURED）</a>
+    <a href="#s18">17 第十一章 · 论教会的君主国（CONCERNING ECCLESIASTICAL PRINCIPALITIES）</a>
+    <a href="#s19">18 第十二章 · 论军队的种类与雇佣军（HOW MANY KINDS OF SOLDIERY THERE ARE...）</a>
+    <a href="#s20">19 第十三章 · 论援军、混合军和自己的军队（CONCERNING AUXILIARIES, MIXED SOLDIERY, AND ONE'S OWN）</a>
+    <a href="#s21">20 第十四章 · 君主关于军事方面的责任（THAT WHICH CONCERNS A PRINCE ON THE SUBJECT OF WAR）</a>
+    <a href="#s22">21 第十五章 · 论世人特别是君主受到赞扬或责难的原因（CONCERNING THINGS FOR WHICH MEN, AND ESPECIALLY PRINCES, ARE PRAISED OR BLAMED）</a>
+    <a href="#s23">22 第十六章 · 论慷慨与吝啬（CONCERNING LIBERALITY AND MEANNESS）</a>
+    <a href="#s24">23 第十七章 · 论残酷与仁慈，被人爱戴是否比被人畏惧来得好些（CONCERNING CRUELTY AND CLEMENCY...）</a>
+    <a href="#s25">24 第十八章 · 论君主应当怎样守信（CONCERNING THE WAY IN WHICH PRINCES SHOULD KEEP FAITH）</a>
+    <a href="#s26">25 第十九章 · 论应该避免受到蔑视与憎恨（THAT ONE SHOULD AVOID BEING DESPISED AND HATED）</a>
+    <a href="#s27">26 第二十章 · 堡垒以及君主们常做的其他许多事情有益还是无益（ARE FORTRESSES... ADVANTAGEOUS OR HURTFUL?）</a>
+    <a href="#s28">27 第二十一章 · 君主为了受人尊敬应当怎样为人（HOW A PRINCE SHOULD CONDUCT HIMSELF SO AS TO GAIN RENOWN）</a>
+    <a href="#s29">28 第二十二章 · 论君主的大臣（CONCERNING THE SECRETARIES OF PRINCES）</a>
+    <a href="#s30">29 第二十三章 · 应该怎样避开谄媚者（HOW FLATTERERS SHOULD BE AVOIDED）</a>
+    <a href="#s31">30 第二十四章 · 意大利的君主们为什么丧失了他们的国家（WHY THE PRINCES OF ITALY HAVE LOST THEIR STATES）</a>
+    <a href="#s32">31 第二十五章 · 命运在人世事务上有多大力量与怎样对抗她（WHAT FORTUNE CAN EFFECT IN HUMAN AFFAIRS...）</a>
+    <a href="#s33">32 第二十六章 · 奉劝将意大利从蛮族手中解放出来（AN EXHORTATION TO LIBERATE ITALY FROM THE BARBARIANS）</a>
+    <a href="#s34">33 主题与思想史：从「马基雅维利主义」到共和主义转向</a>
+    <a href="#s35">34 译者与编者：Marriott 的导论怎么说</a>
+    <a href="#s36">35 版本、流传与接受史</a>
+    <a href="#s37"> 附录 A 两译本对照表</a>
+    <a href="#s38"> 附录 B 人名与地名对照表</a>
+    <a href="#s39"> 附录 C 关键概念小辞典</a>
+    <a href="#s40"> 附录 D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《君主论》阅读指引与精华解析</h1>
+  <div class="sub">Il Principe（约 1513 年成书 / 1532 年初版）—— 一本写给「新君主」的君主生存手册，也是现代政治思想的起点之一</div>
+  <div class="meta">
+    <div><b>作者</b>尼科洛·马基雅维利（Niccolò Machiavelli，1469-05-03 – 1527-06-22，佛罗伦萨）—— 佛罗伦萨共和国第二国务厅秘书（1498–1512）、外交使节、军事组织者与史家；<b>1512 年美第奇复辟后失位免职，曾遭刑讯，晚年退居乡间写作</b>。另著有《论李维》（<i>Discorsi sopra la prima deca di Tito Livio</i>）、《战争的艺术》、《佛罗伦萨史》</div>
+    <div><b>首次发表</b><b>1532 年，罗马</b>（作者身后五年，且非其本人授权）；<b>约 1513 年成书</b>，此后约 19 年以抄本流传。★ 本报告不给出版页码以外的版本年份，凡未一手核实者登记于附录 D</div>
+    <div><b>依据版本</b>Project Gutenberg 两份公版英译 —— <b>#1232</b>（W. K. Marriott 译，含译者导论与注释，本轮实测 HTTP 200 / 308,019 B）与 <b>#57037</b>（Luigi Ricci 译，1909 年牛津版正文，无导论，本轮实测 HTTP 200 / 195,691 B）；另以意大利原文公版（it.wikisource 的 <i>Il Principe</i>）作术语原词旁证，不作叙事依据</div>
+    <div><b>核验级别</b>原文：<b>A</b> —— 辖区 ＝ Project Gutenberg 两份公版英译（#1232 Marriott ／ #57037 Ricci），引文一律双底本对照，定位用章号＋段内位置。中文引文：<b>C</b> —— 通行中译本（潘汉典译等）在版权期内，本报告未逐字核对，不给页码。作者谈话：<b>本档禁用</b> —— 作者已逝 499 年，无访谈材料；其功能改由译者导论承担，并每处注明「这是译者的话，不是作者的话」。</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 辖区 ＝ <b>Project Gutenberg #1232</b>（W. K. Marriott 译，含译者导论与注释）＋ <b>#57037</b>（Luigi Ricci 译，1909 年牛津版）双底本对照；意大利原文用 <b>it.wikisource</b> 的 <i>Il Principe</i> 核术语原词（不作叙事依据）。英文引文逐字取自上述两份文本，可逐处回原文核验；定位用「章号（罗马数字）＋章内段落位置」，不用页码。★ <b>Marriott 的译者导论也归入本档辖区</b>（它是 PG #1232 文本的一部分），但每一处都注明「这是译者的话，不是作者的话」。</li>
+    <li><span class="tag t-talk">作者谈话</span> ★ <b>本档在本书结构上被禁用</b>：作者马基雅维利已逝 <b>499 年</b>（1469–1527），无任何访谈、演讲或可直接引用的口头材料。其原本可能承担的功能改由 <b>Marriott 的译者导论</b>承担 —— 但导论属 <b>原书</b> 辖区，且每处注明是译者的判断，不是作者的话。凡正文出现本档名，即为错误。</li>
+    <li><span class="tag t-rep">转述</span> 二手转引、学术书评与研究者言论。<b>通行中文引句一律在本档</b>（未核对原著、不给页码）；翻译史与流传史、禁书目录年份、后世学者的论断（如 Gentillet 1576、Rousseau 1762、Pocock 1975、Skinner 1978、Berlin 1953／1971、Strauss 1958 等）也在此档。</li>
+    <li><span class="tag t-inf">推断</span> <b>本报告的推论与判断</b>，无直接来源支撑，不与原文引文混同。凡涉读法取舍、结构动机、章节功能的推测，均标此档，以便读者一眼分辨「书上写的」与「我推的」。</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    ★ 四条边界复述：<b>①</b> <b>原书</b> ＝ PG #1232 与 #57037 双底本对照下的英文直引 ＋ 意文术语旁证（含 Marriott 导论，但注明是译者的话）；<b>②</b> <b>作者谈话</b> ＝ 本书<b>结构上禁用</b>（作者已逝 499 年、无访谈），正文计数必须为 0；<b>③</b> <b>转述</b> ＝ 通行中文引句与一切研究者／书评人言论，未核对原著、不给页码；<b>④</b> <b>推断</b> ＝ 本报告自己的推论。★ 全书的档位名一律以反引号形式出现，且不作复合写法（如「原书·中译本」），以免混淆辖区。
+  </p>
+  <h3>引文核验级别（2026-10-13 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)"><b>① 原文部分：A 级</b> —— 英文依据 <b>Project Gutenberg #1232</b>（https://www.gutenberg.org/ebooks/1232 ；W. K. Marriott 译，含译者导论与注释）与 <b>#57037</b>（https://www.gutenberg.org/ebooks/57037 ；Luigi Ricci 译，1909 年牛津版），覆盖 <b>《君主论》全 26 章正文 ＋ 卷首献词</b>，另读 Marriott 的译者导论四节。<b>第一至第二十六章逐章取可定位原文，无降级章</b>；意大利原文依据 <b>it.wikisource</b> 的 <i>Il Principe</i>，仅用于核对术语原词（<i>virtù</i>／<i>fortuna</i>／<i>stato</i>／<i>principe</i>／<i>ragione di stato</i>／<i>milizia</i>），不作叙事依据。</p>
+  <p style="margin:6px 0 0;font-size:12.5px;color:var(--ink3)"><b>② 中文引文部分：C 级</b> —— 通行中译本（以<b>潘汉典译</b>（商务印书馆「汉译世界学术名著」）为代表）<b>均在版权期内</b>，<b>本报告未逐字核对中文页面</b>，只作版本信息与术语对照；所有中文引句一律为二手转引、标「未核对原著」、不给页码。</p>
+  <p style="margin:6px 0 0;font-size:12.5px;color:var(--ink3)">★ 双底本对照：<b>主底本＝Marriott（#1232）</b>（带译者导论与注释，便于理解背景），<b>对照底本＝Ricci（#57037）</b>（只有正文，目录页有编号排印错误）。两译本措辞分歧处已在正文并列或说明，实测发现（Ricci 目录两个「16.」、第二十章题名三处不一致、第十四章题名不一致）见附录 A。</p>
+  <p style="margin:6px 0 0;font-size:12.5px;color:var(--ink3)">★ 另标：<b>Marriott 导论引文属译者的话</b>，虽按「原书」辖区标注，均加注「这是译者的话，不是作者的话」；<b>「马基雅维利主义」的污名化史、禁书目录年份、后世接受史为「转述」</b>（未核一手档，部分入附录 D）。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p>《君主论》是一部<strong>为「新获得权力的君主」写的生存手册</strong>：它不讲君主制好不好，只讲一个人刚拿到权力之后，怎样才能把权力保住。全书 26 章，前半（第 1–11 章）按「君主国的种类」分类，后半（第 12–26 章）按「君主该怎么做」逐条展开，第 15 章是全书的转轴——马基雅维利在这里宣布，他要写「事情的真相」（the real truth of the matter），而不是「事情的想象」（the imagination of it）。</p>
+  <p>如果只用一句话给本书的当代读者定位：<strong>它是一本把「政治应该怎样」换成「政治实际怎样」的书。</strong> 它最有名的那几章（第 17 章畏惧比爱戴可靠、第 18 章君主该如何守信、第 25 章命运与<code>virtù</code>的对峙），今天几乎都以「半句话」的形式流传；本报告的主要工作之一，就是把那被删掉的另半句放回原位（见 <code>## 4b</code>）。</p>
+  <p>最后请记住两点：第一，它不是写给「所有君主」的，而是写给一个具体的政治局面——15 世纪末 16 世纪初<strong>四分五裂、被外国军队反复蹂躏的意大利</strong>（见 <code>## 6</code>、<code>## 33</code>）；第二，它的作者在同一时期还写了一部<strong>主张共和制</strong>的《论李维》（<em>Discorsi</em>），两部书的关系就是思想史上著名的「马基雅维利问题」（见 <code>## 5</code>、<code>## 33</code>）。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>全书结构 ＝ <strong>卷首献词（Dedication）＋ 26 章</strong>。两部分合起来是一条「先分类、再给规则」的直线：第 1–2 章先把君主国分成几大类，第 3–11 章逐类解析「难在哪、怎么保」，第 12–14 章转入军事（雇佣军问题），第 15–23 章转入君主个人的品质与用人之道，第 24–26 章收束到意大利的现实与呼吁。</p>
+  <h3>卷首献词（Dedication）：献给谁，为什么</h3>
+  <p>献词题献给<strong>洛伦佐·德·美第奇（Lorenzo de' Medici）</strong>，即 <strong>Urbino 公爵（Duke of Urbino，1492–1519）</strong>。★ <strong>这里有一个流传极广的混淆</strong>：这位洛伦佐<strong>不是</strong>那位被称为「豪华者洛伦佐」（Lorenzo il Magnifico，1449–1492）的佛罗伦萨统治者，而是他的<strong>孙子</strong>。Marriott 在其导论里说得明白——马基雅维利把书献给了「洛伦佐的孙子」（Lorenzo's grandson）。献词的文体是文艺复兴常见的「题献—赠书」：作者把「自己最珍贵的东西」（此处是「对伟人行动的知识」）当作礼物献给庇护人，并以「风景画家」的比喻说明自己站得低才能看清君主。★ 这份献词的政治意图是现实而具体的：<strong>求职</strong>（见 <code>## 6</code>）。</p>
+  <h3>26 章一览（★ 英文题名照录 Marriott 版 #1232；中译为本报告所拟，参照通行译法，非逐字核对潘汉典译本）</h3>
+  <table>
+    <thead><tr><th>章号</th><th>英文章题（Marriott 版）</th><th>本报告所拟中译</th><th>一句话内容</th></tr></thead>
+    <tbody>
+      <tr><td>I</td><td>HOW MANY KINDS OF PRINCIPALITIES THERE ARE, AND BY WHAT MEANS THEY ARE ACQUIRED</td><td>君主国有多少种类，是用什么方法获得的</td><td>一切统治要么是共和国，要么是君主国；君主国分世袭的与新的。</td></tr>
+      <tr><td>II</td><td>CONCERNING HEREDITARY PRINCIPALITIES</td><td>论世袭君主国</td><td>世袭国最易守，只需不违背祖制；作者在此声明「共和国留待他书」。</td></tr>
+      <tr><td>III</td><td>CONCERNING MIXED PRINCIPALITIES</td><td>论混合君主国</td><td>「混合国」＝旧国加上新兼并的成员，是最难保的一类；由此引出「毁之、驻之、抚之」的取舍。</td></tr>
+      <tr><td>IV</td><td>WHY THE KINGDOM OF DARIUS, CONQUERED BY ALEXANDER, DID NOT REBEL AGAINST THE SUCCESSORS OF ALEXANDER AT HIS DEATH</td><td>为什么亚历山大大帝所征服的大流士王国在亚历山大死后没有背叛其后继者</td><td>君主国按统治方式分两种：君主＋臣仆（如土耳其），君主＋诸侯（如法国）；后者难取易守。</td></tr>
+      <tr><td>V</td><td>CONCERNING THE WAY TO GOVERN CITIES OR PRINCIPALITIES WHICH LIVED UNDER THEIR OWN LAWS BEFORE THEY WERE ANNEXED</td><td>对于占领前在各自法律下生活的城市或君主国应当怎样统治</td><td>习惯于自由的城市只有三条路：毁掉、驻守、或扶植亲己的寡头。</td></tr>
+      <tr><td>VI</td><td>CONCERNING NEW PRINCIPALITIES WHICH ARE ACQUIRED BY ONE'S OWN ARMS AND ABILITY</td><td>论依靠自己的武力和能力获得的新君主国</td><td>靠自身<code>virtù</code>上位者（摩西、居鲁士、罗慕路斯、忒修斯）最难起步，却最稳。</td></tr>
+      <tr><td>VII</td><td>CONCERNING NEW PRINCIPALITIES WHICH ARE ACQUIRED EITHER BY THE ARMS OF OTHERS OR BY GOOD FORTUNE</td><td>论依靠他人的武力或由于幸运而取得的新君主国</td><td>靠<code>fortuna</code>者易得难守；全章以切萨雷·博尔贾为长篇案例。</td></tr>
+      <tr><td>VIII</td><td>CONCERNING THOSE WHO HAVE OBTAINED A PRINCIPALITY BY WICKEDNESS</td><td>论以邪恶之道获得君权的人们</td><td>阿加托克利斯式的人物：罪行可以夺得权力，但夺不到荣耀；「恶行」有「用好」与「用坏」之分。</td></tr>
+      <tr><td>IX</td><td>CONCERNING A CIVIL PRINCIPALITY</td><td>论市民的君主国</td><td>由同胞拥立（而非暴力或罪恶）而成的「市民君主国」；贵族与人民两派谁扶你上位，决定你的处境。</td></tr>
+      <tr><td>X</td><td>CONCERNING THE WAY IN WHICH THE STRENGTH OF ALL PRINCIPALITIES OUGHT TO BE MEASURED</td><td>应该怎样衡量一切君主国的力量</td><td>看君主能否自给自足：能野战者一种，只能据城死守者另一种；后者应备粮、筑城。</td></tr>
+      <tr><td>XI</td><td>CONCERNING ECCLESIASTICAL PRINCIPALITIES</td><td>论教会的君主国</td><td>教会君主国「有国而不守、有民而不治」，靠古老的宗教制度自保；近代教皇如何以钱与兵坐大。</td></tr>
+      <tr><td>XII</td><td>HOW MANY KINDS OF SOLDIERY THERE ARE AND CONCERNING MERCENARIES</td><td>论军队的种类与雇佣军</td><td>一切国家的基础是「好的法律与好的军队」；雇佣军无用而危险，是意大利衰败的病灶。</td></tr>
+      <tr><td>XIII</td><td>CONCERNING AUXILIARIES, MIXED SOLDIERY, AND ONE'S OWN</td><td>论援军、混合军和自己的军队</td><td>援军同样有害：「输了就完，赢了成俘虏」；必须有自己的军队（<code>armi proprie</code>）。</td></tr>
+      <tr><td>XIV</td><td>THAT WHICH CONCERNS A PRINCE ON THE SUBJECT OF WAR</td><td>君主关于军事方面的责任</td><td>君主唯一致力之事应是战争及其规则；读战史、习地形，是君主的第一功课。</td></tr>
+      <tr><td>XV</td><td>CONCERNING THINGS FOR WHICH MEN, AND ESPECIALLY PRINCES, ARE PRAISED OR BLAMED</td><td>论世人特别是君主受到赞扬或责难的原因</td><td>全书转轴：不从「应该怎样」而从「实际怎样」写；必要时君主须懂得做「坏事」。</td></tr>
+      <tr><td>XVI</td><td>CONCERNING LIBERALITY AND MEANNESS</td><td>论慷慨与吝啬</td><td>「慷慨」若不能赢得名声反而耗空国力，则不如被称作「吝啬」；吝啬是能立国的恶德。</td></tr>
+      <tr><td>XVII</td><td>CONCERNING CRUELTY AND CLEMENCY, AND WHETHER IT IS BETTER TO BE LOVED THAN FEARED</td><td>论残酷与仁慈，被人爱戴是否比被人畏惧来得好些</td><td>两者兼顾最好；若必舍其一，被畏惧比被爱戴可靠——但<strong>绝不可招致憎恨</strong>。</td></tr>
+      <tr><td>XVIII</td><td>CONCERNING THE WAY IN WHICH PRINCES SHOULD KEEP FAITH</td><td>论君主应当怎样守信</td><td>最著名也最常被腰斩的一章：狐狸与狮子；守信「在有损于己时」可以不守。</td></tr>
+      <tr><td>XIX</td><td>THAT ONE SHOULD AVOID BEING DESPISED AND HATED</td><td>论应该避免受到蔑视与憎恨</td><td>被憎恨源于掠夺臣民的财产与妻女；被蔑视源于反复、轻浮、怯懦；通篇以罗马诸帝为镜。</td></tr>
+      <tr><td>XX</td><td>ARE FORTRESSES, AND MANY OTHER THINGS TO WHICH PRINCES OFTEN RESORT, ADVANTAGEOUS OR HURTFUL?</td><td>堡垒以及君主们常做的其他许多事情有益还是无益</td><td>逐一评估筑堡垒、解散武装、扶植派系等「常规手段」的利弊。</td></tr>
+      <tr><td>XXI</td><td>HOW A PRINCE SHOULD CONDUCT HIMSELF SO AS TO GAIN RENOWN</td><td>君主为了受人尊敬应当怎样为人</td><td>靠伟大的事业与表率立名；善用「朋友」与「敌人」，不做骑墙的中立者。</td></tr>
+      <tr><td>XXII</td><td>CONCERNING THE SECRETARIES OF PRINCES</td><td>论君主的大臣</td><td>看君主所用之人即知其智力；臣仆分三等，用第一等、弃第三等。</td></tr>
+      <tr><td>XXIII</td><td>HOW FLATTERERS SHOULD BE AVOIDED</td><td>应该怎样避开谄媚者</td><td>避开谄媚者的唯一办法，是让臣下明白说真话不会冒犯你；但也不能人人可议。</td></tr>
+      <tr><td>XXIV</td><td>WHY THE PRINCES OF ITALY HAVE LOST THEIR STATES</td><td>意大利的君主们为什么丧失了他们的国家</td><td>意大利诸君主失国，不是命不好，而是军队与治理上的错误；新君若得力，反比世袭君更稳。</td></tr>
+      <tr><td>XXV</td><td>WHAT FORTUNE CAN EFFECT IN HUMAN AFFAIRS AND HOW TO WITHSTAND HER</td><td>命运在人世事务上有多大力量与怎样对抗她</td><td><code>fortuna</code>主宰一半，人可支配另一半；命运如洪水、如妇人，怕果敢而不怕迟慎。</td></tr>
+      <tr><td>XXVI</td><td>AN EXHORTATION TO LIBERATE ITALY FROM THE BARBARIANS</td><td>奉劝将意大利从蛮族手中解放出来</td><td>全书从冷峻分析转向热情呼告：时机已至，应有人出来把意大利从「蛮族」手中解放。</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>怎么用这张表。</strong> 它可以替代一次通读：先看第 I–XI 章的「分类」，再看第 XII–XXIII 章的「规则」，最后看第 XXIV–XXVI 章的「收束」。但要注意，<strong>这张表不是原著的目录</strong>——原著正文各章只有章号与章题，没有二级结构；本报告下部 <code>## 7</code>–<code>## 32</code> 的四段格式（说什么／关键原文／位置／可疑之处）同样是本报告所加。</p>
+  <h3>表一 · 本书讨论的君主国类型（按原文的分类）</h3>
+  <table>
+    <thead><tr><th>类型</th><th>原文称呼</th><th>出现在</th><th>要点</th></tr></thead>
+    <tbody>
+      <tr><td>世袭君主国</td><td>hereditary principality</td><td>第 II 章</td><td>最易守，除非遭遇超常外力；「一次变动总是给另一次变动留下榫头」。</td></tr>
+      <tr><td>混合君主国</td><td>mixed principality</td><td>第 III 章</td><td>旧国＋新兼并地，最难保；叛乱多、外援杂。</td></tr>
+      <tr><td>全新的君主国</td><td>entirely new principality</td><td>第 VI–VIII 章</td><td>再分三路：靠自身武力与能力、靠他人武力与幸运、靠邪恶之道。</td></tr>
+      <tr><td>市民的君主国</td><td>civil principality</td><td>第 IX 章</td><td>由同胞拥立，不靠暴力也不靠罪恶。</td></tr>
+      <tr><td>教会的君主国</td><td>ecclesiastical principality</td><td>第 XI 章</td><td>靠宗教制度自保，「有国而不守」。</td></tr>
+    </tbody>
+  </table>
+  <h3>表二 · 核心术语表（★ 保留意大利语原词）</h3>
+  <table>
+    <thead><tr><th>意文原词</th><th>常见中译</th><th>本报告取义与提醒</th></tr></thead>
+    <tbody>
+      <tr><td><code>virtù</code></td><td>「美德」「德行」</td><td>★★ <strong>不等于英文 virtue／中文「美德」</strong>。它指能力、胆略、对自身手段的掌握，<strong>可以包含残酷、欺骗与权谋</strong>。凡出现处本报告一律保留意文原词并加注。</td></tr>
+      <tr><td><code>fortuna</code></td><td>「命运」「幸运」</td><td>指人不能完全掌控的外部变量（机遇、时势、他人的恩宠）。它与<code>virtù</code>构成全书一对核心对置。</td></tr>
+      <tr><td><code>stato</code></td><td>「国家」「政权」</td><td>兼指「政权」「地位」。Skinner 指出，马基雅维利关心的核心动作是 <em>mantenere lo stato</em>（保住政权／地位）。</td></tr>
+      <tr><td><code>principe</code></td><td>「君主」</td><td>不必然是世袭王者，也包括任何<strong>新获得统治权的人</strong>（本报告译「君主」或「新君」）。</td></tr>
+      <tr><td><code>ragione di stato</code></td><td>「国家理由」</td><td>★ <strong>不是马基雅维利本人的用语</strong>，是后世概括其思路的标签（见 <code>## 33</code>）。本报告只在思想史意义上使用。</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>核心主题与结构机制</span><span class="caret">▾</span></h2>
+  <p>这一节回答的是「这本书在做什么、靠什么手段做」，而不是逐章复述。</p>
+  <p><strong>第一，真正的主题是「新君主」，不是「君主制」。</strong> 全书开篇第一句就把范围框死了：一切统治非共和国即君主国（第 I 章），随即声明「共和国留待他书」（第 II 章，指向《论李维》）。于是剩下的问题只有一个——<strong>一个新拿到权力的人，如何把它保住</strong>。世袭君、混合君、教会君，都是围绕这一个问题铺设的对照项。</p>
+  <p><strong>第二，政治与道德的分离：第 15 章是全书枢轴。</strong> 马基雅维利在这里明说，他要写「事情的真相」而非「事情的想象」：</p>
+  <blockquote>
+    <p>it being my intention to write a thing which shall be useful to him who apprehends it, it appears to me more appropriate to follow up the real truth of the matter than the imagination of it 〔我写作的意图，是写对领会它的人有用的东西；因此在我看来，追随事情的真相，比追随事情的想象更恰当。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XV 第 1 段）</p>
+  </blockquote>
+  <p>紧接着他给出全书的后果：<code>“Hence it is necessary for a prince wishing to hold his own to know how to do wrong, and to make use of it or not according to necessity.”</code> <span class="tag t-src">原书</span>（CHAPTER XV）——★ 注意这里的关键限定是「<strong>根据必要</strong>」（according to necessity），这半句在流行转述里几乎总被删掉。第 18 章（守信）则是<strong>最常被引也最常被歪曲</strong>的一章，本报告在 <code>## 4b</code> 逐条处理。</p>
+  <p><strong>第三，<code>virtù</code> 与 <code>fortuna</code> 的对置：第 25 章是理论收束。</strong> 全书把「人能掌控的部分」与「人不能掌控的部分」分开：第 25 章说命运主宰一半，人至少还握着另一半。</p>
+  <blockquote>
+    <p>but that she still leaves us to direct the other half, or perhaps a little less. 〔但她仍把另一半留给我们去指引，或许略少于一半。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XXV 第 1 段）</p>
+  </blockquote>
+  <p>★★ <strong>务必记住：<code>virtù</code> 不是「美德」。</strong> 全书用它指<strong>能力、胆略与对手段的掌握</strong>，它可以与残酷（第 17 章的切萨雷·博尔贾）、欺骗（第 18 章的狐狸）并存。把它理解成道德上的「德」，全书会立刻读不通。</p>
+  <p><strong>第四，军事与政治不可分：第 12–14 章不是附录，是支柱。</strong> 「一切国家（新的、旧的、混合的）的主要基础，是好的法律与好的军队」（第 XII 章）。而马基雅维利的诊断是：<strong>雇佣军与援军是意大利衰亡的病灶</strong>——它们无用而危险，胜则受制于人、败则一无所有。所以第 14 章要求君主「除了战争及其规则，不应有其他目标」。</p>
+  <p><strong>第五，第 26 章的呼吁是理解作者意图的入口。</strong> 全书从冷峻的「实际怎样」，突然转向热情的呼告：时机已至，应有人出来解放意大利。</p>
+  <blockquote>
+    <p>This opportunity, therefore, ought not to be allowed to pass for letting Italy at last see her liberator appear. 〔因此，不该放过这个时机，好让意大利终于看见她的解放者出现。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XXVI 末段）</p>
+  </blockquote>
+  <p>这最后一段为什么重要？因为它把前面所有「冷酷规则」放进了一个<strong>目的</strong>里——保住政权，是为了有人能在分裂的意大利建立秩序。这正是「马基雅维利问题」的入口（见 <code>## 5</code>、<code>## 33</code>）。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <p><strong>三条不同的读法路线，按你的目的选一条。</strong></p>
+  <p><strong>路线一：只想抓核心 → 读第 15、17、18、25、26 章。</strong> 这五章是全书的理论骨架：15（转向）、17（畏惧与爱戴）、18（守信与伪装）、25（命运与能力）、26（呼吁）。五章加起来不到全书的四分之一，却包含了后来被引用最多（也最常被腰斩）的所有段落。读完这五章，再回去看第 1–14 章，你会知道那些分类与军事论述是<strong>为谁服务的</strong>。</p>
+  <p><strong>路线二：想懂政治学论证 → 从第 1 章顺读到第 11 章。</strong> 这是全书的「分类学」部分，逻辑最严密：先分类（世袭／混合／全新／邪恶之道／市民／教会），再逐类问「难点在哪、用什么手段化解」。特别注意第 3 章、第 5 章、第 9 章，它们是分类学的肉——案例最密。</p>
+  <p><strong>路线三：想懂作者的处境 → 从献词与第 26 章反向读。</strong> 先读献词，看到一份「求职信」的修辞（「我把我最珍贵的东西献给您」）；再读第 26 章，看到一位失势的共和国前官员对「解放者」的呼唤；然后回头把第 15–24 章当作<strong>他给出的求职材料</strong>来读。这条路会让你不断追问：这些「冷酷规则」，究竟是说给谁听的？（见 <code>## 6</code>、<code>## 34</code>）</p>
+  <p><strong>为什么本书适合与《利维坦》《社会契约论》《理想国》对读。</strong> 书单里已有这三本，它们与《君主论》刚好构成四种不同的起点：《理想国》问「正义的国家是什么样」，《君主论》问「现实中的君主怎样保住权力」，《利维坦》问「凭什么需要一个主权者」，《社会契约论》问「统治的合法性从哪里来」。把四本并排读，你能看见「政治哲学」这条线如何从「应然」一步步逼近「实然」，又如何从「实然」重新追回「应然」。★ 本报告只做思想史对读，不引申到任何当代国家或政治人物。</p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>版本与译本怎么选</span><span class="caret">▾</span></h2>
+  <p>本书要同时回答两个问题：<strong>中译怎么选</strong>、<strong>英文底本怎么选</strong>。</p>
+  <p><strong>中译怎么选。</strong> 首选通行本：<strong>潘汉典译《君主论》</strong>，商务印书馆「<strong>汉译世界学术名著丛书</strong>」，<strong>1985 年 7 月第 1 版</strong>（本轮检索到多条书目记录可互相印证：中山大学哲学系书目、西北政法大学图书馆书目、以及该丛书的图书在版编目信息，ISBN 7-100-01648-7 / 978-7-100-01648-3，正文 131 页）。★ 本报告<strong>未逐字核对该译本</strong>，凡引中文句一律属 <span class="tag t-rep">转述</span> 档、不给页码。★ <strong>其他中译本</strong>（包括中国台湾地区的译本与其他大陆译本）的<strong>译名、年份、出版社，本报告未能一手核实，一律登记入附录 D，不凭记忆书写</strong>。</p>
+  <p><strong>英文底本怎么选。</strong> 本报告用两部 PG 公版英译<strong>双底本对照</strong>，选择依据是本轮实测：</p>
+  <table>
+    <thead><tr><th>底本</th><th>PG 编号</th><th>译者</th><th>本轮实测</th><th>特点（实测）</th><th>本报告用法</th></tr></thead>
+    <tbody>
+      <tr><td>主底本</td><td>#1232</td><td>W. K. Marriott</td><td>200 / 308,019 B</td><td><strong>含译者导论（四节）与注释</strong>，适合理解背景；正文 26 章</td><td>叙事与引文主依据</td></tr>
+      <tr><td>对照底本</td><td>#57037</td><td>Luigi Ricci</td><td>200 / 195,691 B</td><td><strong>只有正文与献词、无导论</strong>；<strong>目录页有编号排印错误</strong>（详见附录 A）</td><td>措辞分歧时并列对照</td></tr>
+    </tbody>
+  </table>
+  <p><strong>为什么主底本取 Marriott、Ricci 作对照。</strong> 一则 Marriott 版带导论与注释，能提供文本外的背景（他的导论正是本报告 <code>## 34</code> 的素材）；二则两译本措辞分歧时并列写出，本身就是「不同译者如何理解同一句」的实证（详见附录 A 与 <code>## 4b</code>）。★ 两译本<strong>都是 26 章</strong>，本轮逐章核过。</p>
+  <p><strong>意大利原文的用途。</strong> it.wikisource 的 <em>Il Principe</em> 全文用于<strong>核对术语原词</strong>（如<code>virtù</code>／<code>fortuna</code>／<code>stato</code>），<strong>不作叙事依据</strong>，也不给页码。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <p>《君主论》是全项目里<strong>被误读率最高</strong>的一本。下表把最流行的说法与原文逐条对照，每条的定位一律用<strong>章号</strong>（不用页码）。表内英文引文均逐字出自底本，<span class="tag t-src">原书</span> 辖区分付。</p>
+  <table>
+    <thead><tr><th>流行说法</th><th>原文实际怎么说（＋ 章号定位）</th><th>差在哪</th></tr></thead>
+    <tbody>
+      <tr><td>①「为达目的可以不择手段」是《君主论》的名言</td><td>第 18 章的原文是 <strong>“let a prince have the credit of conquering and holding his state, the means will always be considered honest, and he will be praised by everybody”</strong> ——这是在<strong>描述「庸众如何判断」</strong>，不是作者给出的行动规则</td><td>把「对他人判断的描写」读成了「作者本人的主张」；「手段」一词系后世译文所加（见 ①）</td></tr>
+      <tr><td>②「君主应当像狐狸与狮子」＝「好人应该学坏」</td><td>第 18 章原文的前提是 <strong>“A prince, therefore, being compelled knowingly to adopt the beast, ought to choose the fox and the lion”</strong>，语境是「凡斗争有依法与用力两途，而依法常不足」</td><td>原文讲的是<strong>在必要时兼用「人」与「兽」两种方法</strong>，不等于教人变坏；删掉「必要时」就变了味（见 ②）</td></tr>
+      <tr><td>③「被畏惧比被爱戴更好」</td><td>第 17 章的完整条件是：<strong>“it is much safer to be feared than loved, when, of the two, either must be dispensed with.”</strong> 且随即限定「不可招致憎恨」</td><td>被删掉的是前半句「最好两者兼有」与后半句「但须避免被憎恨」（见 ③）</td></tr>
+      <tr><td>④「君主要善于伪装与欺骗」</td><td>第 18 章给出的限定是 <strong>“to appear merciful, faithful, humane, religious, upright”</strong>，且要求「<strong>在必要时</strong>能转而做相反的事」</td><td>原文的重心是<strong>必要时才背信</strong>，不是「永远欺骗」；条件句结构常被截断（见 ④）</td></tr>
+      <tr><td>⑤「马基雅维利主张君主制」</td><td>第 II 章原文：<strong>“I will leave out all discussion on republics, inasmuch as in another place I have written of them at length”</strong></td><td>《君主论》<strong>明说把共和国留给了另一部书</strong>（《论李维》）；把它当「君主制宣言」是脱离了作者的整体写作（见 ⑤）</td></tr>
+      <tr><td>⑥「献词是给『豪华者洛伦佐』的」</td><td>献词抬头原文作 <strong>“To the Magnificent Lorenzo Di Piero De’ Medici”</strong></td><td>此洛伦佐是 <strong>Urbino 公爵（1492–1519）</strong>，是「豪华者洛伦佐」（1449–1492）的<strong>孙子</strong>，不是同一人（见 ⑥）</td></tr>
+      <tr><td>⑦「这本书是教暴君的／是骂君主的」</td><td>第 26 章的结尾原文是 <strong>“This opportunity, therefore, ought not to be allowed to pass for letting Italy at last see her liberator appear.”</strong></td><td>两种相反判断各执一端；原文自身把「冷酷规则」收束到一个<strong>解放意大利的目的</strong>上，单取一句都读不出（见 ⑦）</td></tr>
+    </tbody>
+  </table>
+  <p><strong>逐字原文（按上表编号，<span class="tag t-src">原书</span> 辖区＝PG #1232 Marriott 版）：</strong></p>
+  <blockquote>
+    <p>① let a prince have the credit of conquering and holding his state, the means will always be considered honest, and he will be praised by everybody 〔让君主去赢得并保住他的国家吧，那么手段总会被视为正当，他也会受到众人的称赞。〕<span class="tag t-src">原书</span>（CHAPTER XVIII 第 6 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>② A prince, therefore, being compelled knowingly to adopt the beast, ought to choose the fox and the lion 〔因此，君主既然不得不明知故犯地采用野兽之道，就应当选择狐狸与狮子。〕<span class="tag t-src">原书</span>（CHAPTER XVIII 第 3 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>③ it is much safer to be feared than loved, when, of the two, either must be dispensed with. 〔当二者必舍其一之时，被畏惧远比被爱戴可靠。〕<span class="tag t-src">原书</span>（CHAPTER XVII 第 3 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>④ to appear merciful, faithful, humane, religious, upright 〔要显得仁慈、守信、人道、虔敬、正直。〕<span class="tag t-src">原书</span>（CHAPTER XVIII 第 5 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>⑤ I will leave out all discussion on republics, inasmuch as in another place I have written of them at length 〔我将略去对共和国的一切讨论，因为我在别处已详细写过它们。〕<span class="tag t-src">原书</span>（CHAPTER II 第 1 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>⑥ To the Magnificent Lorenzo Di Piero De’ Medici 〔致尊贵的洛伦佐·迪·皮耶罗·德·美第奇〕<span class="tag t-src">原书</span>（DEDICATION）</p>
+  </blockquote>
+  <blockquote>
+    <p>⑦ This opportunity, therefore, ought not to be allowed to pass for letting Italy at last see her liberator appear. 〔因此，不该放过这个时机，好让意大利终于看见她的解放者出现。〕<span class="tag t-src">原书</span>（CHAPTER XXVI 第 6 段）</p>
+  </blockquote>
+  <p>★ <strong>Ricci 版的对照</strong>：同一处第 18 章末句，Ricci 译作 <code>“in the actions of men, and especially of princes, from which there is no appeal, the end is everything.”</code>〔在人的行为中，尤其是君主的行为中，既然无可申诉，<strong>结果就是一切</strong>。〕<span class="tag t-src">原书</span>（Ricci 版 #57037，CHAPTER XVIII）——★ 注意：Marriott 译「one judges by the result」（人们凭结果来判断），Ricci 译「the end is everything」（结果就是一切）。后者更接近后来那句「目的证明手段」的误读口吻，<strong>这正是「同一句因译文而异」的典型例证</strong>。</p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>本节六条，每条给<strong>姓名＋出处＋年份</strong>；凡本报告未能一手核实者，一律移入附录 D，绝不编造。</p>
+  <p><strong>一、「马基雅维利主义」是历史建构，不是作者自述。</strong> 把马基雅维利与「不择手段」绑在一起，始于反宗教改革阵营论战：法国胡格诺派律师 <strong>Innocent Gentillet（1535–1588）</strong> 在日内瓦刊行的 <strong>《Discours sur les moyens de bien gouverner... contre Nicolas Machiavel》（1576）</strong>，是「machiavellism」这一概念最早的来源之一，此书后来被通称为 <em>Anti-Machiavel</em>。★ 也就是说，那个「不择手段」的马基雅维利，是被<strong>论敌</strong>造出来的。<span class="tag t-rep">转述</span></p>
+  <p><strong>二、《君主论》与《论李维》的内在矛盾（「马基雅维利问题」）。</strong> 同一作者既写「君主怎样保住政权」，又写「共和国何以优越」。共和主义一脉的解读可上溯至 <strong>Spinoza《Tractatus Politicus》（1677）</strong>；<strong>Rousseau《Du contrat social》（1762）</strong> 甚至说《君主论》是「共和主义者的书」（<em>Le Prince</em> de Machiavel est le livre des républicains）。20 世纪「剑桥学派」把这条线系统化：<strong>J. G. A. Pocock《The Machiavellian Moment》（Princeton University Press，1975）</strong> 与 <strong>Quentin Skinner《The Foundations of Modern Political Thought》（Cambridge University Press，1978）</strong>。<span class="tag t-rep">转述</span></p>
+  <p><strong>三、第 18 章的误读史：条件句结构常被截断。</strong> Marriott 版在此章开头就引用了早期校勘者 <strong>Burd《Il Principe》</strong> 的评注，称「本章比马基雅维利著作中任何部分引起的反感都更大」（原文与出处见本章 <span class="tag t-src">原书</span> 引文及脚注 <code>Burd, "Il Principe," p. 297</code>）。20 世纪的系统讨论见 <strong>Isaiah Berlin「The Originality of Machiavelli」（1953 年宣读，1971 年首次刊出，收入 <em>Against the Current</em>, 1980）</strong>，他指出对马基雅维利「中心立场」的解读分歧之大，几乎超过任何其他近代作家。<span class="tag t-rep">转述</span></p>
+  <p><strong>四、第 17 章「被畏惧比被爱戴更安全」的断章。</strong> 原文的完整结构是「两者兼有最好 → 若必舍其一 → 取畏惧 → 但须避免被憎恨 → 具体做法是不夺臣民的财产与妻女」。<strong>Quentin Skinner（1978）</strong> 将「做通常所谓恶事」定位为君主的「最后且最佳」（last best）手段，而非首选。把第 17 章读成「残忍更有效」，恰恰删掉了它自己的禁止条款。<span class="tag t-rep">转述</span></p>
+  <p><strong>五、史实层面的瑕疵：对切萨雷·博尔贾的叙述是否可靠。</strong> 第 7 章把切萨雷·博尔贾（Cesare Borgia）树为「新君」的正面样板，但史学界对此长期质疑。<strong>John M. Najemy，「Machiavelli and Cesare Borgia: A Reconsideration of Chapter 7 of The Prince」，《The Review of Politics》（2013）</strong> 主张：博尔贾对教皇父亲、法国与雇佣军的依赖，恰恰是马基雅维利所批判的「依赖他人武力」，因此他更像「新君」的<strong>反面</strong>样板，而非正面样板。更早的 <strong>Macaulay 与 Lord Acton</strong> 则把马基雅维利对博尔贾的赞赏「历史化」，视为当时普遍腐败的产物。<span class="tag t-rep">转述</span></p>
+  <p><strong>六、方法论的批评：从「历史教训」直接推「行动规则」是否可靠。</strong> <strong>Herbert Butterfield《The Statecraft of Machiavelli》（London: G. Bell &amp; Sons，1940）</strong> 指出：马基雅维利虽被奉为政治思想「归纳法」的开创者，但他实际做的是<strong>用古典古代的尺度去衡量当代</strong>——从史例中直接推出普遍规则，是一种先验（a priori）的做法；同时代的 <strong>Guicciardini</strong> 就已批评他过于教条。这构成对「归纳式政治学」最根本的限度质疑。<span class="tag t-rep">转述</span></p>
+  <p>★ <strong>本节的边界。</strong> 以上只做思想史与文本分析；第 26 章的「呼吁」只作为<strong>文本与意图</strong>问题处理，<strong>不引申到任何现实政治</strong>（见 <code>## 0</code> 的声明与 <code>## 33</code> 末条）。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>全书骨架与写作机制：一部「求职信」？</span><span class="caret">▾</span></h2>
+  <p><strong>写作情境：一个「失去职位的人」在农庄上写书。</strong> 1512 年梅第奇家族在西班牙军队支持下复辟，佛罗伦萨共和国垮台，马基雅维利被免去共和国第二国务厅秘书之职；翌年一度被牵连入狱、受刑，随后退居佛罗伦萨郊外的圣安德里亚（Sant'Andrea in Percussina）农庄，约在 1513 年写成《君主论》。★ 请特别记住这个身份：<strong>他不是在任上写给下属，而是在免职后写给一个可能重新起用他的人。</strong> 这个处境贯穿全书的语气。<span class="tag t-src">原书</span>（PG #1232 导论，★ 译者述，非作者自述）</p>
+  <p><strong>献词的政治意图：求职。</strong> 全书开篇是一份献给洛伦佐·德·美第奇（Urbino 公爵）的题献，而此人正是刚复辟的梅第奇家族成员。Marriott 在导论中记录了一件关键事实：</p>
+  <blockquote>
+    <p>there is no evidence that Lorenzo ever received or even read it: he certainly never gave Machiavelli any employment. 〔没有证据表明洛伦佐收到过、甚至读过这本书；他当然也从未给过马基雅维利任何职位。〕<span class="tag t-src">原书</span>（PG #1232 导论，★ 译者述，不是作者的话）</p>
+  </blockquote>
+  <p>★ 也就是说，这份献词很可能<strong>没有送达</strong>，其现实目的（重新谋得一职）<strong>并未实现</strong>。理解这一点，才能读懂全书那种「冷静到近乎无情、却又在结尾突然热烈」的语调。</p>
+  <p><strong>「题献—赠书」这一文体：一套交换。</strong> 文艺复兴的题献不是礼貌，而是一次交换——作者献上「自己最珍贵的东西」，换取庇护人的恩宠与职位。马基雅维利把这份「礼物」定义为「对伟人行动的知识」，并强调它比金银珠宝更珍贵：</p>
+  <blockquote>
+    <p>I have not found among my possessions anything which I hold more dear than, or value so much as, the knowledge of the actions of great men 〔在我的所有物中，我找不到任何比「对伟人行动的知识」更珍视、更看重的东西〕<span class="tag t-src">原书</span>（DEDICATION）</p>
+  </blockquote>
+  <p>在献词结尾，他用了「风景画家」的比喻：站在低处方能看清高山——以此为自己「地位卑微却敢谈论君主之事」作辩护。★ 这个比喻本身也是有政治含义的：它把「卑微者」的位置说成一种<strong>认识上的优势</strong>。<span class="tag t-inf">推断</span></p>
+  <p><strong>为什么它读起来像一份分析报告而不是政论。</strong> 因为它的写法是<strong>分类—诊断—开方</strong>：先按类型给对象分类（第 1–11 章），再诊断病灶（第 12–14 章：军事依赖与雇佣军），最后给出可操作规则（第 15–23 章）。全书的句式是「如果我处在你的位置，我会怎么做」，而不是「你应该信奉什么」。★ 这也是它长期被当作「手册」的原因——它确实<strong>被写成了手册的形式</strong>：分条、举例、正反对照、给结论。<span class="tag t-inf">推断</span></p>
+  <p><strong>两个必须同时记住的线索。</strong> 一是<strong>求职</strong>：这份「手册」的收件人不是一个抽象的君主，而是<strong>一个能给他职位的具体的人</strong>。二是<strong>《论李维》</strong>：几乎在同一时期，他还写了一部主张共和制的《论共和国》（<em>Discorsi sopra la prima deca di Tito Livio</em>）。要理解《君主论》，不能只看这一本——《君主论》第 II 章那句「共和国留待他书」，说的就是它（见 <code>## 8</code>、<code>## 33</code>）。<span class="tag t-rep">转述</span></p>
+  <p><strong>最后一点方法提醒。</strong> 本书的「冷酷」不是道德立场，而是一种<strong>文体选择</strong>：它把政治从「应当」的领域里拖出来，放进「可行」的领域里讨论。★ 这一点在第 15 章被明说（见 <code>## 21</code>），而第 26 章又把它重新放回「应当」（见 <code>## 32</code>）。首尾的这两次转向，是全书结构上最重要的一对动作。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>第一章 · 君主国有多少种（HOW MANY KINDS OF PRINCIPALITIES THERE ARE）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 开篇一句就把全部政治体二分为「共和国」与「君主国」。君主国再分「世袭的」与「新的」；「新的」又分两种——<strong>全新建立的</strong>（如米兰之于弗朗切斯科·斯福尔扎），或<strong>像肢体一样接在旧国上的</strong>（如那不勒斯王国之于西班牙国王）。最后指出：这些新领地或习惯于君主统治，或习惯于自由；其取得或靠自身武力、或靠他人武力、或靠幸运、或靠能力。★ 这一章只立框架，不给结论，但它的一句「共和国／君主国」，已经把本书的<strong>取舍</strong>说清楚了。</p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>All states, all powers, that have held and hold rule over men have been and are either republics or principalities. 〔一切支配过并仍支配着人的国家与政权，过去和现在要么是共和国，要么是君主国。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER I 第 1 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>Principalities are either hereditary, in which the family has been long established; or they are new. 〔君主国或是世袭的——其家族早已确立；或是新的。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER I 第 2 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> 这一章是全书唯一一张「分类总表」，后面所有章节都在给这张表填空：第 II 章填世袭，第 III 章填混合，第 VI–VIII 章填全新的三种来源，第 IX 章填市民的，第 XI 章填教会的。★ 注意第一句里被藏起来的那个词：<strong>共和国被写在开头，然后整本书就不再谈它了</strong>——这个「开头提到、随即搁置」的动作，正是后来「马基雅维利问题」最早的伏笔（见 <code>## 33</code>）。</p>
+  <p><strong>可疑之处／常见误读。</strong> 常见误读是把「要么共和国，要么君主国」当成马基雅维利的政治学「原创」。实际上这是当时通行的分类方式；他的原创不在分类，而在<strong>分类之后要做的动作</strong>——从分类直接跳到「怎么保住」。★ 另需注意「新的」（new）一词：它<strong>不指时间新近，而指取得方式</strong>新。一个古老家族的新继承人即位，对本章的分类毫无意义；而一个昨天才靠武力拿下城邦的人，才叫「新君」。这一区分是理解全书的关键。<span class="tag t-inf">推断</span></p>
+  <p>★ 还有一处细节值得留意：本章把「取得方式」分为四种（自身武力／他人武力／幸运／能力），但后文实际上反复使用的只是<strong>两分</strong>——「靠<code>virtù</code>」与「靠<code>fortuna</code>」。也就是说，本章列了四栏，全书用的却是两根轴。这种「分类多于所需」的写法说明：第 1 章的功能是<strong>把范围划清楚</strong>，而不是提供分析工具；真正的工具要到第 6、7 两章才拿出来。</p>
+  <p>★ 最后一层：本章的「新」（new）还暗含一个时间悖论——新取得的领地<strong>越新，越需要立刻处理</strong>；越拖，旧秩序就越容易在记忆里复活。这与第 3 章「一次变动留下下一次变动的榫头」正好互为注脚：新，是一种<strong>需要被尽快消耗掉的状态</strong>。</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>第二章 · 论世袭君主国（CONCERNING HEREDITARY PRINCIPALITIES）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 世袭君主国最易守：只要不违背祖制、随机应变得当，一个中等能力的君主即可维持下去，除非遭遇超常而猛烈的外力剥夺；而即便被夺，一旦篡夺者倒霉，他也容易复得。马基雅维利以意大利的费拉拉公爵为例，说他能顶住威尼斯人（'84 年）与教皇尤利乌斯二世（'10 年）的进攻，正因其统治由来已久。★ 他在本章开头还做了一件影响全书的事：<strong>公开声明把共和国排除在讨论之外。</strong></p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>I will leave out all discussion on republics, inasmuch as in another place I have written of them at length, and will address myself only to principalities. 〔我将略去对共和国的一切讨论，因为我在别处已详细写过它们，这里只谈君主国。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER II 第 1 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>and in the antiquity and duration of his rule the memories and motives that make for change are lost, for one change always leaves the toothing for another. 〔而在他统治的古老与长久之中，那些促成变动的记忆与动因都消失了，因为一次变动总是给另一次变动留下榫头。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER II 第 3 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> 本章是全书的「对照基线」：它先建立一个「最容易保住的君主国」样板，好让后面所有「难保」的情形（混合、全新、邪恶之道）都有参照物。那句「一次变动总是给另一次变动留下榫头」（one change always leaves the toothing for another）是全书少数几条<strong>跨章反复使用的一般规律</strong>之一——它把「变革」写成一个有惯性的机械过程。</p>
+  <p><strong>可疑之处／常见误读。</strong> ★ 本章有一句经常被单引出来的断言——世袭君「较少有理由、也较少有必要去冒犯他人，因此更被爱戴」。但这句话<strong>不是道德判断，而是概率判断</strong>：它说的是「冒犯的动机少」，不是「世袭君更好人」。把它读成「马基雅维利偏爱世袭制」会完全读反——他真正的兴趣始终在<strong>新君</strong>，世袭国只是背景板。★ 另需注意：本章开头那句「共和国留待他书」，是本报告判定「马基雅维利问题」的<strong>关键文本证据</strong>（见 <code>## 5</code> 第二条）。<span class="tag t-inf">推断</span></p>
+  <p>★ 另一个常被忽略的层次：本章把「世袭」与「古老」绑在一起——它的稳定不来自制度设计，而来自<strong>时间</strong>。这为第 25 章的「命运」埋了一颗种子：时间既是稳定的来源，也是命运最容易侵蚀的地方。把第 2 章与第 25 章对读，能看到「守成」与「应变」其实是同一个问题的两面。</p>
+  <p>★ 再补一点：本章几乎没有出现具体人物（只有费拉拉公爵一例），这与第 3、7 章案例密布形成强烈反差。这种「少案例、多断言」的写法，恰好对应它作为「基线」的功能——基线越干净，后面的对照越清楚。</p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>第三章 · 论混合君主国（CONCERNING MIXED PRINCIPALITIES）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 「混合君主国」＝旧国加上新兼并的成员，是<strong>最难保</strong>的一类。困难来自两方面：一是人们为了改善处境而换主，结果却常常「从坏走向更坏」；二是新君不得不以驻军与无穷负担加于新领地。随后是全章最长的分析：怎样保住被兼并的地区——<strong>驻军或殖民</strong>（殖民比驻军省钱且可靠）、<strong>扶植弱者、削弱强者</strong>、以及「习惯于自由的城市」为什么必须摧毁。本章还反复以<strong>罗马人</strong>为标尺，说他们做的正是这些事。</p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>for men change their rulers willingly, hoping to better themselves, and this hope induces them to take up arms against him who rules: wherein they are deceived, because they afterwards find by experience they have gone from bad to worse. 〔因为人们是心甘情愿地更换统治者的，指望改善自己的处境；正是这种指望促使他们拿起武器反对当权者——而他们受了骗，因为事后经验会告诉他们：他们是从坏走向了更坏。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER III 第 1 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>So to hold it they were compelled to dismantle many cities in the country, for in truth there is no safe way to retain them otherwise than by ruining them. 〔为了保住它，他们不得不拆毁该国许多城市，因为在事实上，除了毁掉它们，没有别的稳妥办法能保住它们。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER III 第 5 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> 本章是全书篇幅最长的分析章之一，也是「现实主义」这一面最赤裸的地方：它处理的是<strong>实际统治的技术细节</strong>（驻军、殖民、毁城），几乎不涉及正当性问题。第 3 章与第 5 章共同构成「如何处理已被征服者」的完整方案；而本章对「罗马模板」的反复援引，也正是 Butterfield（1940）所说「以古律今」最集中的展示（见 <code>## 5</code> 第六条）。</p>
+  <p><strong>可疑之处／常见误读。</strong> ★ 最常被误读的是「毁掉自由城市」这一条。需要分清：马基雅维利把它列为<strong>三条可选路线之一</strong>（第 5 章会把三条一齐列出），<strong>不是无条件的第一选择</strong>。把它读成「马基雅维利鼓吹屠城」，是把「备选清单」读成了「命令」。★ 第二处易被忽略：本章那句「人们换了主却发现更坏」，其实是对<strong>被征服者的心理</strong>的精准刻画——它解释了为什么新君总会遇到叛乱：不是因为新君更坏，而是因为<strong>期望落差</strong>。<span class="tag t-inf">推断</span></p>
+  <p>★ 第三处值得琢磨：本章推荐「殖民」而非「驻军」，理由是殖民<strong>代价小、报复少、且被损害者是分散的</strong>。这句话常被引来证明马基雅维利的冷酷；但从分析上看，它更像一条<strong>成本—收益的推演</strong>：他把「统治的暴力」当成一项需要精算的开支。理解这一点，才能读准第 3 章的语气——它不是在鼓吹残忍，而是在<strong>核算统治的账</strong>。</p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">10</span><span>第四章 · 为什么亚历山大大帝所征服的大流士王国没有背叛其后继者（WHY THE KINGDOM OF DARIUS...）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 问题：亚历山大几年间征服亚洲、未及坐稳便去世，帝国却未如预料般叛乱，其继承者除彼此倾轧外并未遭遇更大困难，为什么？回答：有记录的君主国按统治方式分两类——一类是<strong>君主加上作为臣仆的官员</strong>（如土耳其苏丹），一类是<strong>君主加上凭血统享有地位的诸侯</strong>（如法国）。前者<strong>难取而极易守</strong>，因为全国只认一个主人，没有中间权力；后者<strong>易取而难守</strong>，因为诸侯各有地盘与人心，随时可以作乱。</p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>I answer that the principalities of which one has record are found to be governed in two different ways; either by a prince, with a body of servants, who assist him to govern the kingdom as ministers by his favour and permission; or by a prince and barons, who hold that dignity by antiquity of blood and not by the grace of the prince. 〔我回答说：有记录的君主国被发现以两种不同方式统治——或由君主与其臣仆统治，这些臣仆作为大臣凭君主的恩宠与许可协助他治国；或由君主与诸侯统治，这些诸侯凭血统的古老、而非凭君主的恩典而保有那种尊位。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER IV 第 2 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> 本章是全书<strong>结构最清晰的分析章</strong>：只用一组对比（「君主的臣仆」对「君主的诸侯」），就把一个历史谜题解开了。它为全书提供了一对「统治结构理想型」——后面第 5、9、19 章都在使用这对概念。★ 它还示范了本书的<strong>推理方式</strong>：先给分类，再用分类解释现象，最后从现象回推规则。</p>
+  <p><strong>可疑之处／常见误读。</strong> ★ 常被忽略的是本章的<strong>方法</strong>：马基雅维利给出的不是「亚历山大为什么伟大」，而是<strong>制度决定抵抗能力</strong>的结构性解释。这恰说明本书的「现实主义」首先是<strong>结构主义</strong>——他问的不是人的品德，而是制度的形状。★ 另需注意：本章对土耳其与法国的概括是<strong>高度简化的类型</strong>，不宜当作对两国历史的准确描述。把「苏丹的臣仆制」当成奥斯曼的完整写照，会失真。<span class="tag t-inf">推断</span></p>
+  <p>★ 第四处：本章的推论最后落在一个反直觉的结论上——<strong>越是「一个人说了算」的国家，越难被征服；越是「诸侯林立」的国家，越容易被征服</strong>。这个结论把「自由」与「易治」写成了一对矛盾，也预示了第 5 章那个更冷的判断：习惯于自由的共同体，是征服者最难消化的对象。</p>
+  <p>★ 最后一点：本章把「难取」与「难守」拆开论述，说明在马基雅维利那里，<strong>「取得」与「保持」是两套不同的能力</strong>。这一区分是全书反复出现的底色：第 6 章（取）与第 7 章（守）、第 22 章（选人）与第 23 章（用人），都是同一个二分法的不同应用场景。</p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">11</span><span>第五章 · 对于占领前在各自法律下生活的城市或君主国应当怎样统治（CONCERNING THE WAY TO GOVERN CITIES...）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 对于那些习惯于在自己法律下自由生活的国家，想保住它们只有三条路：<strong>毁掉它们</strong>、<strong>亲自驻守</strong>、或<strong>让它们保持自己的法律、只收取贡赋、并在其中扶植一个亲己的寡头政权</strong>。马基雅维利以斯巴达人与罗马人为例：斯巴达人扶植寡头，却仍失去雅典与底比斯；罗马人则拆毁了卡普阿、迦太基、努曼提亚，因而守住了。他的结论冷峻：<strong>习惯于自由的城市，除了毁掉，没有稳妥的保法。</strong></p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>there are three courses for those who wish to hold them: the first is to ruin them, the next is to reside there in person, the third is to permit them to live under their own laws, drawing a tribute, and establishing within it an oligarchy which will keep it friendly to you. 〔凡想保住它们的人有三条路：第一条是毁掉它们；其次是亲自驻在那里；第三条是允许它们在自己的法律下生活，收取贡赋，并在其中建立一个会对你友好的寡头政权。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER V 第 1 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>he who would keep a city accustomed to freedom will hold it more easily by the means of its own citizens than in any other way. 〔想保住一座习惯于自由的城市的人，用该城自己的公民来保它，比用任何别的方式都更容易。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER V 第 1 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> 本章是第 3 章「如何统治被兼并者」的续篇，把方案收束为<strong>三条</strong>。它也埋下了一个对照：第 IX 章的「市民的君主国」其实正是第三条路（借重该城内部力量）的理论化。★ 两章合读，可以看到本书「如何处理被征服共同体」的完整思路：<strong>要么消灭它，要么驻在它里面，要么借它的内部人管它。</strong></p>
+  <p><strong>可疑之处／常见误读。</strong> ★ 两译本的第三条译法值得并置：Ricci 把「扶植寡头」译成 <code>“creating there within the country a state composed of a few”</code>（在其中建立一个由少数人组成的政权），比 Marriott 的 <code>“establishing within it an oligarchy”</code> 更模糊。这说明<strong>同一段的「政治含义」会随译词而变</strong>——「寡头」一词在 Marriott 版里是明说，在 Ricci 版里被软化成「少数人」。<span class="tag t-src">原书</span>（Marriott 版，CHAPTER V；Ricci 版 #57037，CHAPTER V）★ 第二点：本章第二条「亲自驻守」与第三条「扶植寡头」，其实是<strong>同一条思路的两端</strong>——都要求君主把自己的存在嵌入被征服地，而非隔空统治。<span class="tag t-inf">推断</span></p>
+  <p>★ 需要提醒的是：本章的「三条路」并不并列等价。马基雅维利对第三条（扶植寡头）设的条件是「该国已习惯于法律与自由」，而第二条（驻守）则更适用于<strong>地理位置</strong>上可以长期占领的要地。因此三条路的背后其实有两套判据——<strong>制度的</strong>与<strong>地理的</strong>。把这三条读成「任选一条」，会漏掉这层条件。</p>
+  <p>★ 归结一句：本章真正的贡献不是「三选一」的清单，而是提出了一个问题——<strong>一个已经习惯了自由的共同体，能不能被治理？</strong> 全书此后所有关于「自由城市」的讨论，都是这个问题的回声。</p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">12</span><span>第六章 · 论依靠自己的武力和能力获得的新君主国（BY ONE'S OWN ARMS AND ABILITY）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 靠自身<code>virtù</code>上位者，例如摩西、居鲁士、罗慕路斯、忒修斯，是最卓越的例子。他们起步最难——因为要引入新制度，而「没有比充当新制度的首创者更危险的事」——但一旦成功，地位最稳。马基雅维利特别提出「模仿」的原则：明智的人应走伟人走过的路；若能力不及，至少会「沾上几分气味」。他还用弓箭手的瞄准法（瞄准得比靶子更高）作比喻，说明「以伟人为目标」的意义。</p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>A wise man ought always to follow the paths beaten by great men, and to imitate those who have been supreme, so that if his ability does not equal theirs, at least it will savour of it. 〔明智的人应当永远走伟人走过的路，模仿那些最卓越的人物；这样，即使他的能力不及他们，至少也会沾上几分气味。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER VI 第 1 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>But to come to those who, by their own ability and not through fortune, have risen to be princes, I say that Moses, Cyrus, Romulus, Theseus, and such like are the most excellent examples. 〔但说到那些凭自己的能力、而非凭幸运上升为君主的人，我认为摩西、居鲁士、罗慕路斯、忒修斯之流是最卓越的例子。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER VI 第 3 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> 本章与第 VII 章是一对：<strong>第 VI 章＝靠自己（<code>virtù</code>），第 VII 章＝靠他人与幸运（<code>fortuna</code>）</strong>。这对概念是全书的两根主轴，第 25 章会对它们作最终的综合。本章也是「<code>virtù</code>」最集中的展示场之一——注意它把摩西、居鲁士、罗慕路斯、忒修斯并列为<strong>「同一类」</strong>，这本身就是一种极大胆的类比：把立法者、征服者、弑兄的建城者放进同一张名单。</p>
+  <p><strong>可疑之处／常见误读。</strong> ★★ 本章最容易误读的是<strong><code>virtù</code> 的含义</strong>：把摩西、罗慕路斯与「美德」挂钩，会立刻读不通——罗慕路斯杀兄、摩西借神意立威，都不是通常意义的「德」。在这里，<code>virtù</code> 指的是<strong>能力、胆略、以及在关键时刻把事做成的本领</strong>，可与暴力、欺骗并存（见附录 C）。★ 另需注意：马基雅维利在此提出「武装的先知成功、无武装的先知失败」的规律（并暗指萨佛纳罗拉），这是他「军事与政治不可分」命题最早的出场——它把第 12–14 章的军事论述提前埋进了第 6 章。<span class="tag t-inf">推断</span></p>
+  <p>★ 还有一处结构上的巧思：本章把「能力」与「幸运」的对置放在开篇的比喻里——「走路」与「模仿」。走路要靠自己的腿（能力），而模仿伟人则是借用他人的成果（一种「借来的幸运」）。这个比喻本身就暗示了全书的结论：<strong>纯粹的<code>virtù</code>与纯粹的<code>fortuna</code>都不存在</strong>，现实总是两者按不同比例的混合。第 25 章的比例之争，在第 6 章就已经被预告了。</p>
+  <p>★ 附带一点：本章把「民众」第一次引入论证——新制度的成败，最终取决于<strong>人民是否愿意相信</strong>。这一线索在第 9 章（市民的君主国）会展开成整章，在第 17–19 章（畏惧、爱戴、憎恨）则会变成一整套操作规则。</p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">13</span><span>第七章 · 论依靠他人的武力或由于幸运而取得的新君主国（BY THE ARMS OF OTHERS OR BY GOOD FORTUNE）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 仅凭幸运从平民成为君主者，上升时轻松（因为他们在「飞」），到顶时却困难重重；他们既不懂统治，也保不住地位。全章的主体是<strong>切萨雷·博尔贾</strong>的长篇案例：马基雅维利叙述他如何借教皇亚历山大六世之力取得罗马涅、如何用残酷手段平定并统一罗马涅（并设下后来处死部将的「西尼加利亚」之局）、又如何在教皇去世、新教皇即位后功败垂成。他的结论是：博尔贾为新君提供了极好的榜样；其失败<strong>不是他的错，而是命运的极端恶意</strong>。</p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>Those who solely by good fortune become princes from being private citizens have little trouble in rising, but much in keeping atop; they have not any difficulties on the way up, because they fly, but they have many when they reach the summit. 〔那些仅凭幸运从平民成为君主的人，上升时少有麻烦，登顶后却困难重重；他们在上升途中毫无难处，因为他们是在飞；可一旦到达顶峰，麻烦就多了。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER VII 第 1 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>he who has not first laid his foundations may be able with great ability to lay them afterwards, but they will be laid with trouble to the architect and danger to the building. 〔没有预先打好地基的人，或许能凭极大能力事后补打；但那样打下去，建筑师要费力，建筑也危险。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER VII 第 5 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>if his dispositions were of no avail, that was not his fault, but the extraordinary and extreme malignity of fortune. 〔如果他的布置未能奏效，那不是他的过错，而是命运的异常而极端的恶意。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER VII 第 5 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> 本章是<strong>全书最长、案例最密</strong>的一章，也是「<code>fortuna</code>」这一极的代表作。它把第 VI 章的「靠自己」翻转为「靠他人」的失败样本，从而完成了全书最核心的一组对照。★ 第 18 章那两处关于博尔贾的引用、以及第 26 章对「解放者」的召唤，都要放在本章建立的这个「未竟的样板」上读。</p>
+  <p><strong>可疑之处／常见误读。</strong> ★★ 最有争议的一点：<strong>博尔贾到底是正面样板还是反面样板？</strong> 流行读法（也是本报告在 <code>## 5</code> 第五条引述的批评对象）认为马基雅维利把他当作理想新君；但 John M. Najemy（2013）指出，博尔贾对教皇、法国与雇佣军的依赖，恰恰是马基雅维利所批判的「依赖他人武力」，因此他更可能是<strong>反面</strong>样板。★ 本报告的建议是：先照原文读「马基雅维利确实在为博尔贾辩护」，再并列史学界的质疑，让读者自己判断。★ 另一点：本章那句「不是他的错，而是命运的恶意」，是全书把「<code>fortuna</code>」人格化的典型笔法——<strong>把失败归给命运，本身也是一种修辞策略</strong>。<span class="tag t-rep">转述</span></p>
+  <p>★ 另有一点常被忽略：本章用「飞」来形容靠幸运上位者的上升。这不是赞美——「飞」意味着<strong>没有根基</strong>，也就意味着下落时无从借力。这个意象与本章后半的「地基」比喻构成一组呼应：<strong>上升的速度与根基的深度成反比</strong>。把它与第 6 章「走伟人走过的路」对读，会发现全书对「快」始终抱有戒心。</p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">14</span><span>第八章 · 论以邪恶之道获得君权的人们（THOSE WHO HAVE OBTAINED A PRINCIPALITY BY WICKEDNESS）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 从平民上升为君主有两条路：一条靠邪恶与卑劣手段，一条靠同胞拥立。本章处理第一条，以两个例子说明——古代的<strong>阿加托克利斯</strong>（叙拉古人，陶工之子，以残暴手段称王）与近代的<strong>奥利韦罗托·达·费尔莫</strong>。马基雅维利的关键区分是：罪行<strong>可以</strong>夺得权力，但<strong>夺不到荣耀</strong>；并且「恶行」分「用好」与「用坏」——所谓「用好」，是指<strong>一次性做尽必要之恶</strong>，此后不再重复、转而施恩。</p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>This man, the son of a potter, through all the changes in his fortunes always led an infamous life. 〔此人乃陶工之子，在他命运的种种变化之中，始终过着声名狼藉的生活。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER VIII 第 1 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>Hence it is to be remarked that, in seizing a state, the usurper ought to examine closely into all those injuries which it is necessary for him to inflict, and to do them all at one stroke so as not to have to repeat them daily; and thus by not unsettling men he will be able to reassure them, and win them to himself by benefits. 〔因此须指出：篡夺者在夺取国家时，应当仔细盘算他必须施加的一切伤害，并一举把它们做完，以免天天重复；这样，不使人心浮动，他才能安抚他们，并用恩惠把他们争取过来。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER VIII 第 3 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> 本章是「<code>virtù</code> 可否与罪行并存」这一问题的正面处理：阿加托克利斯有<code>virtù</code>（能力、胆略），却因罪恶而被排除在「荣耀」之外。这一区分在第 15–18 章会被反复使用——它正是「政治与道德的分离」在<strong>结果层面的成本核算</strong>：不是「能不能做」，而是「做了之后能得到什么、得不到什么」。</p>
+  <p><strong>可疑之处／常见误读。</strong> ★ 常见误读是把它当作「马基雅维利为暴君辩护」。原文的重点恰恰相反：<strong>它把「恶行」分成两类并给出了代价</strong>——「一次性做尽」的恶可以保住权力，但换不来荣耀；「天天重复」的恶则连权力都保不住。★ 需要留意的第二个误读：本章与第 9 章在原文里是<strong>同一句里并列的两种「上升途径」</strong>，「邪恶之道」与「同胞拥立」是互斥的对照项，不能混为一谈。★ 第三点：「荣耀」在此是一个<strong>政治评价概念</strong>（他人的承认），不是道德评价概念——它决定了本章的分界线落在「被承认」而非「被宽恕」。<span class="tag t-inf">推断</span></p>
+  <p>★ 最后一点：本章也给出了「一次性之恶」与「持续性之恶」的<strong>分界线</strong>——前者可以被称为「用好」（well used），后者只能叫「用坏」。这条分界线的判据不是恶的<strong>程度</strong>，而是恶的<strong>时间分布</strong>：集中在夺取阶段、之后再施恩，就能稳住；分散到日常治理里，就会不断制造新的敌人。这一点会在第 17 章（残酷）与第 19 章（避免憎恨）里被反复引用。</p>
+  <p>★ 附带一点：本章的两个案例一古一今（阿加托克利斯与奥利韦罗托），结构上是<strong>对称的</strong>——一个靠长期积累的残暴，一个靠一次性的屠杀。这种「对称案例」的排布，是全书把历史当作<strong>实验对照</strong>来用的典型手法。</p>
+</section>
+
+<section id="s16">
+  <h2><span class="num">15</span><span>第九章 · 论市民的君主国（CONCERNING A CIVIL PRINCIPALITY）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 若一个平民不是靠罪恶或暴力，而是靠<strong>同胞的拥立</strong>成为本国君主，这叫作「市民的君主国」；它不需要天才或幸运，倒需要一种「幸运的机敏」。城市里总有贵族与人民两派：贵族想统治与压迫人民，人民不愿被统治与压迫；两股相反欲求的结果有三种——君主国、自治、或无政府。君主国因此或由人民立、或由贵族立。★ <strong>谁扶你上位，决定你日后必须防谁、必须依靠谁。</strong></p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>But coming to the other point—where a leading citizen becomes the prince of his country, not by wickedness or any intolerable violence, but by the favour of his fellow citizens—this may be called a civil principality: nor is genius or fortune altogether necessary to attain to it, but rather a happy shrewdness. 〔但说到另一点——一位主要公民不是靠罪恶或任何不可容忍的暴力，而是靠同胞的拥立成为本国君主——这可称为市民的君主国；要得到它，天才或幸运并非全然必需，倒需要一种幸运的机敏。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER IX 第 1 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>I say then that such a principality is obtained either by the favour of the people or by the favour of the nobles. 〔我说，这样的君主国或由人民的拥立、或由贵族的拥立而获得。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER IX 第 1 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> 本章是全书唯一正面处理<strong>「内部政治」</strong>（城邦内部的派系）的一章，也是第 V 章「三条路」里第三条的理论化。它与第 19 章（避免被憎恨与蔑视）合读，能看出马基雅维利对「人民」的一贯判断：人民虽不主动，却是最可靠的依托——「一个人若由人民拥立，就该与人民保持友好」。</p>
+  <p><strong>可疑之处／常见误读。</strong> ★ 常被误读的是「市民的君主国不需要能力」这一说法。原文说的是「不需天才或幸运」，但需要有「幸运的机敏」（a happy shrewdness）——这是<strong>在强调技巧，而非贬低要求</strong>。★ 第二点：本章对贵族与人民两派的描述，常被拿来与《论李维》的共和主义论说对照；这处对照正是「马基雅维利问题」的核心现场之一（见 <code>## 33</code>）。★ 第三点容易被忽略：本章给「市民的君主国」的处境判断是<strong>不对称</strong>的——由贵族拥立者必须防人民，由人民拥立者只需防少数贵族；这一不对称是全书对「人民」最有利的一次陈述。<span class="tag t-inf">推断</span></p>
+  <p>★ 再补一层：本章把「市民的君主国」的合法性来源写成<strong>拥立者</strong>，而非血统或神意。这一处理的后果很大——它意味着君主的首要义务对象是<strong>扶他上位的那一派</strong>，而不是抽象的「全体」。这既是全书的现实主义，也是它与后来的「社会契约」传统最根本的分歧点：一个问「谁拥立你」，一个问「你凭什么统治」。</p>
+  <p>★ 附带一点：本章对「贵族」的描述相当负面（想压迫人民），对「人民」则相对中性（不愿被压迫）。这一不对称的用词，是全书对「人民」判断的底色，也为第 19 章「多数人只要财产与名誉不受侵犯便安分」提供了前因。</p>
+</section>
+
+<section id="s17">
+  <h2><span class="num">16</span><span>第十章 · 应该怎样衡量一切君主国的力量（HOW THE STRENGTH OF ALL PRINCIPALITIES OUGHT TO BE MEASURED）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 衡量君主国，要看君主能否<strong>自给自足</strong>：能靠自身的人力或财力拉起一支足以野战的军队者，属第一种；只能据城死守、必须仰赖他人者，属第二种。对第二种君主的建议是：备足粮食、加固城防，不要出城野战。马基雅维利并补充一条：防御得当的城，敌人不会轻易来攻，因为「人们对看得见困难的事业总是退缩」。</p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>It is necessary to consider another point in examining the character of these principalities: that is, whether a prince has such power that, in case of need, he can support himself with his own resources, or whether he has always need of the assistance of others. 〔在考察这些君主国的性质时，还须考虑另一点：即这位君主是否有这样的力量——在需要时能靠自己的资源自给自足，还是始终需要他人的援助。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER X 第 1 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> 本章是第 12–14 章「军事」主题的<strong>前哨</strong>：它把「自给自足」确立为衡量君主国强度的标准，而这个标准正是后面批判雇佣军与援军的依据。「有没有自己的军队」这一问题，在此第一次被明确提出——第 12 章会把这个问题展开成整章。</p>
+  <p><strong>可疑之处／常见误读。</strong> 本章常被简化为「要筑城」的实用建议，但它真正的论证是<strong>结构性的</strong>：能否自给自足，决定了君主国是「强者」还是「弱者」，而强弱决定了策略（野战还是守城）。★ 另外，本章的许多建议与第 20 章（论堡垒）互相呼应，两章应当并读，否则容易把「筑城」误解为马基雅维利的无条件主张。★ 值得注意的还有一条隐含判断：<strong>能野战的君主国，其自由度高得多</strong>——这正是全书反复强调「自己的军队」的深层理由。<span class="tag t-inf">推断</span></p>
+  <p>★ 还有一点值得补充：本章把「能不能野战」写成强弱的分水岭，实际上是在区分两种<strong>不同的政治存在方式</strong>——一种是主动的（能出击、能结盟、能改变局势），一种是被动的（只能等敌人来攻）。马基雅维利显然偏好前者，但他并不因此谴责后者；他只是如实指出：被动的君主国，其命运更多掌握在<strong>别人</strong>手里。</p>
+  <p>★ 第三点：本章也把「资源」与「意志」区分开来——能否自给自足是<strong>资源问题</strong>，是否愿意迎战是<strong>意志问题</strong>。马基雅维利对后者的建议是：不要指望「看得见的困难」会自动吓退敌人，而要把防御变成一种常态、一种习惯。这正是第 14 章「和平时期更须勤于武备」的伏笔。</p>
+  <p>★ 归结一句：本章把「强弱」从一个笼统的形容词，变成了一个可检验的标准——<strong>你能否不靠别人就打一仗？</strong> 全书此后凡讲「稳固」，都以此为准尺。</p>
+</section>
+
+<section id="s18">
+  <h2><span class="num">17</span><span>第十一章 · 论教会的君主国（CONCERNING ECCLESIASTICAL PRINCIPALITIES）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 教会君主国的一切困难都在<strong>取得之前</strong>：它们或靠能力、或靠幸运获得，却可以「两者都不靠」地保有——因为维系它们的是古老的宗教制度。这类君主「有国而不守、有民而不治」，却不会被夺走。马基雅维利说，这些由上帝维系的国家，他不愿多谈，「讨论它们会是僭妄而鲁莽之举」；但随即又解释了教会何以在世俗权力上坐大：靠金钱与武力，并在近代教皇（亚历山大六世、尤利乌斯二世）手中扩张。</p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>These princes alone have states and do not defend them; and they have subjects and do not rule them; and the states, although unguarded, are not taken from them, and the subjects, although not ruled, do not care, and they have neither the desire nor the ability to alienate themselves. 〔唯独这些君主有国而不守，有民而不治；这些国家虽无人设防，却不会被人夺走；这些臣民虽无人治理，却毫不在意，既没有脱离的意愿，也没有脱离的能力。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XI 第 1 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>they are acquired either by capacity or good fortune, and they can be held without either 〔它们或靠能力、或靠幸运获得，却可以两者都不靠地保有〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XI 第 1 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> 本章是「分类学」的最后一类，也是唯一一类马基雅维利<strong>明确表示不愿深谈</strong>的君主国。这个「不愿深谈」本身极有意味：它把「世俗政治分析的边界」划在了宗教制度之外。同时，本章后半段对教皇以金钱与军队扩张的叙述，又把教会拉回了政治分析——<strong>一边说「不谈」，一边照样分析</strong>，这正是本书的方法特点：它从不真的把任何东西排除在因果解释之外。</p>
+  <p><strong>可疑之处／常见误读。</strong> ★ 常见误读是把本章读成「马基雅维利敬畏教会」。原文的措辞是<strong>功能性的</strong>：他说教会君主国「靠古老的宗教制度自保」，这是解释它为何稳固，而非称颂它。★ 需注意：本章对「教会如何坐大」的分析，恰恰与第 26 章「把意大利从蛮族手中解放」形成张力——因为教会对世俗权力的经营，正是意大利分裂的原因之一（见 <code>## 33</code>）。★ 第三点：本章那句「讨论它们会是僭妄之举」，与其说出于敬虔，不如说出于<strong>方法上的划界</strong>——他承认有一类现象不是他的分析工具能处理的。<span class="tag t-inf">推断</span></p>
+  <p>★ 还需注意：本章对教会的分析，实际上给出了一个<strong>未被展开的命题</strong>——<strong>制度可以替代军事</strong>。教会君主国没有自己的军队却能自保，靠的是「古老的宗教制度」带来的合法性。这与第 12–14 章「必须有自己的军队」形成对照：前者是例外，后者是常规。★ 马基雅维利没有把「合法性」理论化，但他把这个问题摆上了桌面——这正是后世「国家理由」与「主权」理论接手的地方。</p>
+</section>
+
+<section id="s19">
+  <h2><span class="num">18</span><span>第十二章 · 论军队的种类与雇佣军（HOW MANY KINDS OF SOLDIERY THERE ARE...）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 一切国家（新的、旧的、混合的）的<strong>主要基础</strong>是好的法律与好的军队；有好的军队才会有好的法律。君主用以自卫的武力，或属于自己的，或是雇佣军、援军、混合军。马基雅维利随即给出全书最有力的判断：<strong>雇佣军与援军无用而危险</strong>——他们不团结、有野心、无纪律、不忠诚；平时被他们掠夺，战时被敌人掠夺。本章后半以意大利的教训说明：雇佣军的兴起，正是意大利衰亡的病灶。</p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>The chief foundations of all states, new as well as old or composite, are good laws and good arms; and as there cannot be good laws where the state is not well armed, it follows that where they are well armed they have good laws. 〔一切国家——新的、旧的或混合的——的主要基础，是好的法律与好的军队；既然一个国家若不善战就不可能有好的法律，那么可以推知：凡善战者就有好的法律。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XII 第 1 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>Mercenaries and auxiliaries are useless and dangerous; and if one holds his state based on these arms, he will stand neither firm nor safe; for they are disunited, ambitious, and without discipline, unfaithful, valiant before friends, cowardly before enemies; they have neither the fear of God nor fidelity to men, and destruction is deferred only so long as the attack is; for in peace one is robbed by them, and in war by the enemy. 〔雇佣军与援军无用而危险；若有人把国家建立在这样的武力之上，他既不会稳固也不会安全；因为他们不团结、有野心、无纪律、不忠诚，在朋友面前勇敢，在敌人面前怯懦；他们既不敬畏上帝，也不守信于人；破坏只是被推迟到进攻来临那一刻——因为在和平时你被他们掠夺，在战争时你被敌人掠夺。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XII 第 2 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> 本章是全书<strong>论证上的支柱</strong>之一（见 <code>## 2</code> 第四条）。它与第 13、14 章构成「军事三连章」，直接支撑第 26 章「必须有自己的军队」的呼吁。★ 若把第 12–14 章当作「附录」，全书会立刻断裂——因为「依赖他人武力」正是全书反复出现的失败模式，从第 7 章的博尔贾到第 24 章的意大利诸君主，都是同一病症。</p>
+  <p><strong>可疑之处／常见误读。</strong> ★★ 值得并列两译本：Marriott 作 <code>“Mercenaries and auxiliaries are useless and dangerous”</code>，而 Ricci 作 <code>“The mercenaries and auxiliaries are useless and dangerous, and if any one keeps his state based on the arms of mercenaries, he will never stand firm or sure, as they are disunited, ambitious, without discipline, faithless, bold amongst friends, cowardly amongst enemies, they have no fear of God, and keep no faith with men.”</code> <span class="tag t-src">原书</span>（Ricci 版 #57037，CHAPTER XII）——两者判断一致，但 Ricci 的并列句式更短促，语气更斩截。★ 另需注意：「有好的法律才会有好的军队」这一因果链，在马基雅维利这里是<strong>反常识</strong>的：他把军事置于法律之先。★ 第三点：本章的「诊断」是全书唯一一处<strong>用当代意大利的现实</strong>（而非古代罗马）来立论的段落群，这使它的批判格外具体。<span class="tag t-inf">推断</span></p>
+  <p>★ 第三点：本章的顺序也值得注意——它先把「法律与军队」并列为国家的两大基础，随即声明「我把法律放在一边，只谈军队」。这个<strong>主动的省略</strong>很关键：它说明马基雅维利清楚「法律」重要，却选择不谈。第 15 章那个「只谈实然、不谈应然」的转向，其实在第 12 章就已经以「只谈军队」的形式演练过一次。</p>
+</section>
+
+<section id="s20">
+  <h2><span class="num">19</span><span>第十三章 · 论援军、混合军和自己的军队（CONCERNING AUXILIARIES, MIXED SOLDIERY, AND ONE'S OWN）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 援军是「另一种无用的武力」：当一位君主请另一强国带兵来援助与防守时，用的就是援军。这类武力本身或许好，对使用者却总是有害——<strong>输了就完，赢了反成俘虏</strong>。马基雅维利以教皇尤利乌斯二世请西班牙的斐迪南助战为例，说明他侥幸未受其害。结论：君主必须拥有自己的军队（<code>armi proprie</code>），否则谈不上稳固——「没有比这更稳的根基了」。</p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>Auxiliaries, which are the other useless arm, are employed when a prince is called in with his forces to aid and defend 〔援军是另一种无用的武力；当一位君主被请来带兵援助与防守时，用的就是援军。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XIII 第 1 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>These arms may be useful and good in themselves, but for him who calls them in they are always disadvantageous; for losing, one is undone, and winning, one is their captive. 〔这种武力本身或许有用且优良，但对请它来的人却总是有害：因为输了你就完了，赢了你就成了他们的俘虏。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XIII 第 1 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> 本章与第 12 章、第 14 章共同确立「自己的军队」这一命题，是第 26 章「为自己提供武力」呼吁的直接依据。它也解释了为什么第 7 章的切萨雷·博尔贾会失败：他依赖的正是他人的武力（见 <code>## 13</code>、<code>## 5</code> 第五条）。★ 本章还包含一个耐人寻味的细节：同一位教皇尤利乌斯二世，在第 12 章里是雇佣军的教训，在本章里是援军的教训——<strong>同一个历史人物被反复调用，正好说明全书「素材服务于论证」的写法</strong>。</p>
+  <p><strong>可疑之处／常见误读。</strong> ★ 常见误读是「援军比雇佣军好」（因为援军来自盟国、看似可靠）。原文恰恰说两者<strong>都</strong>不可靠，只是坏的<strong>方式不同</strong>：雇佣军为钱而战，援军则让你受制于其主。★ 第二点：本章的结论「必须有自己的军队」，是全书少数几条<strong>贯穿始终、几乎不设条件</strong>的规则之一——这与第 17、18 章处处设条件的写法形成鲜明对比，值得注意。★ 第三点：「赢了反成俘虏」这一措辞，把「胜利」也写成了某种代价，是全书把政治看作<strong>权衡</strong>而非<strong>胜负</strong>的一个缩影。<span class="tag t-inf">推断</span></p>
+  <p>★ 另有一点：本章对「援军」的批评，落点并不在战斗力，而在<strong>依附关系</strong>——即便是精兵强将，只要他们的忠诚属于别人，你就随时可能被兑现成筹码。这与第 17、18 章对「忠诚」的讨论走的是同一条线：马基雅维利关心的不是「谁更强」，而是<strong>控制权在谁手上</strong>。</p>
+  <p>★ 第三点：本章对「混合军」的处理很简短，但它保留了全书论证的完整性——武力一共四类（自有、雇佣、援军、混合），本章把最后一类也归入「不可靠」。四类排查完毕，结论自然落到「只能是自有」，这就是第 14 章的起点。</p>
+</section>
+
+<section id="s21">
+  <h2><span class="num">20</span><span>第十四章 · 君主关于军事方面的责任（THAT WHICH CONCERNS A PRINCE ON THE SUBJECT OF WAR）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 君主除了<strong>战争及其规则与纪律</strong>之外，不应有其他目标或思虑；这是唯一属于统治者的技艺。它不仅能支撑生而为君者，还常使平民上升至此。反之，君主一旦贪图安逸而疏于武备，就会失去国家。马基雅维利以弗朗切斯科·斯福尔扎（因武功而从平民成为米兰公爵）与其子（因避武而公爵沦为平民）为例，并指出：解除武装会招致蔑视。本章后半还谈「和平时期也要勤习武备」——读战史、研究地形。</p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>A prince ought to have no other aim or thought, nor select anything else for his study, than war and its rules and discipline; for this is the sole art that belongs to him who rules, and it is of such force that it not only upholds those who are born princes, but it often enables men to rise from a private station to that rank. 〔君主除了战争及其规则与纪律之外，不应有其他目标或思虑，也不应选择别的东西作为他的钻研对象；因为这是唯一属于统治者的技艺，它力量之大，不仅能支撑生而为君者，还常使出身卑微的人上升至此等地位。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XIV 第 1 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>And, on the contrary, it is seen that when princes have thought more of ease than of arms they have lost their states. 〔反之，可以看到：当君主思虑安逸多于武备时，他们就丧失了自己的国家。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XIV 第 1 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> 本章是「军事三连章」的收束，把第 12、13 章的批判转化为<strong>正面主张</strong>：君主的第一功课是战争。它同时埋下一条贯穿全书的逻辑——<strong>解除武装会带来蔑视，而蔑视（连同憎恨）是第 19 章要君主极力避免的两件事之一</strong>。★ 三章连读，可看出本书的结构：先诊断（雇佣军／援军之害），再开方（要有自己的军队），最后定责（君主本人必须懂军事）。</p>
+  <p><strong>可疑之处／常见误读。</strong> ★ 常见误读是把它当作「军国主义宣言」。原文的落点是<strong>统治能力</strong>：「战争」在此不是目的，而是保住政权（<code>mantenere lo stato</code>）的手段。★ 另需注意本章标题在两译本间的差异：Marriott 正文作 <code>“THAT WHICH CONCERNS A PRINCE ON THE SUBJECT OF THE ART OF WAR”</code>，而其目录页作 <code>“...ON THE SUBJECT OF WAR”</code>；Ricci 则作 <code>“WHAT THE DUTIES OF A PRINCE ARE WITH REGARD TO THE MILITIA”</code>（附录 A 有记录）。<strong>同一章的不同译名，反映出译者对「战争」与「兵役」两个概念的不同理解。</strong><span class="tag t-src">原书</span>（Marriott 版，CHAPTER XIV；Ricci 版，CHAPTER XIV）★ 第三点：本章要求君主「在和平时期比战时更勤于武备」，这是一种<strong>反直觉的训练观</strong>——它把「备战」当作日常，而非危机反应。<span class="tag t-inf">推断</span></p>
+  <p>★ 再补一点：本章与第 12–13 章合起来，构成了一个完整的论证闭环——<strong>先诊断病症（依赖他人武力）→ 再开出药方（自己的军队）→ 最后落到责任（君主本人必须是军事的主持者）</strong>。军事三章是全书里唯一一组「提出问题—给出方案—指定责任人」都写全了的论证，这正是本报告在 <code>## 2</code> 把它称为「支柱」而非「附录」的理由。</p>
+</section>
+
+<section id="s22">
+  <h2><span class="num">21</span><span>第十五章 · 论世人特别是君主受到赞扬或责难的原因（CONCERNING THINGS FOR WHICH MEN, AND ESPECIALLY PRINCES, ARE PRAISED OR BLAMED）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 全书转轴。马基雅维利先承认自己「重提此题、且将背离他人的方法」，然后给出全书的宣言：他要写的是<strong>事情的真相</strong>，而非<strong>事情的想象</strong>。因为「应然」与「实然」相距甚远，一个想在恶人环伺中全然按善的标准行事的人，只会毁掉自己。因此，一个想自保的君主<strong>必须懂得做恶事</strong>，并按必要来使用它。随后他列出一张「被称颂或被责难的品质」清单，说明君主不可能全备，只能择重而从。</p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>it appears to me more appropriate to follow up the real truth of the matter than the imagination of it; for many have pictured republics and principalities which in fact have never been known or seen, because how one lives is so far distant from how one ought to live, that he who neglects what is done for what ought to be done, sooner effects his ruin than his preservation; for a man who wishes to act entirely up to his professions of virtue soon meets with what destroys him among so much that is evil. 〔在我看来，追随事情的真相，比追随事情的想象更恰当；因为许多人凭空描绘过从未被人认识或看见过的共和国与君主国，原因在于「人实际怎样生活」与「人应当怎样生活」相距如此之远，以致一个人若撇开实际所为、只按应当所为行事，他招致毁灭要多于保全自身；因为一个想全然按其德行表白行事的人，在如此多的恶人之中，很快就会遇到使他毁灭的东西。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XV 第 1 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>Hence it is necessary for a prince wishing to hold his own to know how to do wrong, and to make use of it or not according to necessity. 〔因此，一个想保住自身的君主，必须懂得如何做恶事，并按必要来决定用不用它。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XV 第 1 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> ★★ 本章是<strong>全书枢轴</strong>（见 <code>## 2</code> 第二条）。它之前的所有分类与军事论述，都是「实然的政治学」的准备工作；它之后的所有品质与用人之论，则都建立在这条「实然优先」的原则上。可以说，<strong>读不懂第 15 章，就读不懂这本书为什么这样写。</strong> ★ 本章那句「许多人凭空描绘过从未被人认识或看见过的共和国与君主国」，也是全书对「乌托邦式政治写作」唯一一次直接的、带讥讽的评点。</p>
+  <p><strong>可疑之处／常见误读。</strong> ★★ 本章最常被删掉的就是末句的<strong>限定</strong>：「按必要来决定用不用它」（<em>according to necessity</em>）。把这句读成「君主应该做恶事」，是把「<strong>懂得</strong>做恶事」和「<strong>根据必要</strong>使用」压缩成了「做恶事」。★ 另需注意：本章是「应然／实然」这一对照在全书里说得最清楚的地方，但它并未宣称「道德无意义」——它说的是，<strong>在恶人环伺的条件下</strong>，全然按应然行事会招致毁灭。★ 第三点：本章末尾那份「品质清单」（慷慨／吝啬、残酷／仁慈、守信／失信……）为第 16–18 章提供了目录——它是全书下半部的<strong>提纲</strong>。<span class="tag t-inf">推断</span></p>
+  <p>★ 补充一点关于<strong>方法</strong>的观察：本章开头那段「背离他人方法」的自白，其实是在为自己的写法<strong>请求许可</strong>。他预感到会被指责为「僭妄」，于是先自陈动机（写有用的东西），再宣布转向（实然优先）。这种「先承认冒犯、再照做」的姿态，是全书后半部反复出现的修辞动作——第 17、18 章的「我知道这听起来不好，但……」也是同一套。</p>
+</section>
+
+<section id="s23">
+  <h2><span class="num">22</span><span>第十六章 · 论慷慨与吝啬（CONCERNING LIBERALITY AND MEANNESS）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 有「慷慨」之名固然好，但若以正当方式行慷慨、使其不为人知，就逃不掉「吝啬」的指责；反之，为了维持慷慨之名而耗尽财力，最终只能苛敛于民，反而招人憎恨。因此，一个不愿自伤、不愿被憎恨的君主，<strong>不该介意「吝啬」之名</strong>；它是一项能让君主治理国家的「恶德」。马基雅维利并区分「已被承认为主的君主」与「正在争取的君主」，指出前者可以表现得慷慨，后者则必须节制。</p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>A prince, therefore, provided that he has not to rob his subjects, that he can defend himself, that he does not become poor and abject, that he is not forced to become rapacious, ought to hold of little account a reputation for being mean, for it is one of those vices which will enable him to govern. 〔因此，只要一位君主不必掠夺臣民、能够自卫、不至于贫穷与卑贱、不被迫变得贪婪，他就应当不把那「吝啬」的名声看得太重；因为它是那些能让他治理国家的恶德之一。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XVI 第 4 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> 本章是第 15 章「实然优先」原则的<strong>第一个具体应用</strong>：它示范了这套方法怎么运作——把一项「美德」（慷慨）放进现实后果里称重，发现它可能是负债。第 17 章（残酷与仁慈）、第 18 章（守信）都是同一套做法的续篇。★ 换一种说法：第 15 章宣布了方法，第 16 章是<strong>第一次演示</strong>。</p>
+  <p><strong>可疑之处／常见误读。</strong> ★ 常被误读的是「慷慨」的定性。原文并没有说慷慨本身不好，而是说<strong>「不以适当方式行使的慷慨」</strong>会带来反效果：既耗尽国力，又因苛敛而招憎恨。★ 另需注意本章的<strong>条件结构</strong>：马基雅维利给「不介意吝啬之名」设了四个前提（不掠夺、能自卫、不贫贱、不被迫贪婪）——这四项一破，「吝啬」就不再是美德。这正是「条件句被删」这一误读模式的又一例。★ 第三点：本章区分「已在位者」与「争取中者」，说明全书对同一品质的判断<strong>随处境而变</strong>——这也是「没有普适规则」这条方法论的又一次示范。<span class="tag t-inf">推断</span></p>
+  <p>★ 第三点：本章所处理的，其实是<strong>声誉与实质的错位</strong>。慷慨的<strong>实质</strong>（少征税、不敛财）与慷慨的<strong>名声</strong>（被看见的施予）会互相冲突；要名声就要花钱，要实质就要背骂名。马基雅维利的选择很清楚：<strong>实质优先，名声其次</strong>。这一取舍与第 15 章「实然优先」是同一条原则在财政领域的具体化。</p>
+  <p>★ 第四点：本章还区分了「正在争取的君主」与「已经坐稳的君主」，并给两者<strong>不同的财政建议</strong>——前者必须节制（因为根基未稳），后者才有余裕示人以慷慨。这条区分说明：全书对同一品质的判断<strong>随处境而变</strong>，不存在放之四海而皆准的德目表。</p>
+</section>
+
+<section id="s24">
+  <h2><span class="num">23</span><span>第十七章 · 论残酷与仁慈，被人爱戴是否比被人畏惧来得好些（CONCERNING CRUELTY AND CLEMENCY...）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 君主当然愿被看作仁慈而非残酷，但不可滥用仁慈。切萨雷·博尔贾被看作残酷，他的残酷却使罗马涅复归统一与和平；而佛罗伦萨人为避免残酷之名，竟坐视皮斯托亚被毁。因此，只要能使臣民团结忠诚，君主就不必介意残酷之名。随后是全章的核心问题：<strong>被爱戴与被畏惧，哪个更好？</strong> 答案是两者兼有最好，若不可兼得，被畏惧更可靠——<strong>但绝不可招致憎恨</strong>。</p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>Upon this a question arises: whether it be better to be loved than feared or feared than loved? It may be answered that one should wish to be both, but, because it is difficult to unite them in one person, it is much safer to be feared than loved, when, of the two, either must be dispensed with. 〔由此产生一个问题：被爱戴比被畏惧好，还是被畏惧比被爱戴好？可以这样回答：人应当希望两者兼有；但由于在一个身上很难把它们结合起来，当二者必舍其一时，被畏惧就远比被爱戴可靠。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XVII 第 3 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>Cesare Borgia was considered cruel; notwithstanding, his cruelty reconciled the Romagna, unified it, and restored it to peace and loyalty. 〔切萨雷·博尔贾被认为是残酷的；然而正是他的残酷使罗马涅重新和睦、归于统一，并恢复了和平与忠诚。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XVII 第 1 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> 本章是第 15 章原则在「刑罚与恩威」上的应用，与第 16 章（慷慨／吝啬）、第 18 章（守信）并列，构成「君主品质三连章」。它也是第 19 章（避免被憎恨与蔑视）的直接前导——第 17 章说「被畏惧可以，被憎恨不行」，第 19 章就说清「怎样才会招致憎恨」。★ 另需注意本章开头的逻辑：它先从「残酷是否有用」讲起，再转到「爱戴与畏惧」，最后落到「避免憎恨」——<strong>问题是一层层收窄的</strong>。</p>
+  <p><strong>可疑之处／常见误读。</strong> ★★ 这是全书<strong>断章最严重</strong>的一章。原文的完整链条是：<strong>两者兼有最好 → 若必舍其一 → 取畏惧 → 但须避免被憎恨 → 具体做法：不夺臣民的财产与妻女</strong>。流行转述只留中间那半句「被畏惧比被爱戴好」，删掉了它的<strong>前提</strong>（最好兼有）与它的<strong>禁令</strong>（不可招致憎恨）。★ 两译本对照亦有意味：Ricci 作 <code>“one ought to be both feared and loved, but as it is difficult for the two to go together, it is much safer to be feared than loved, if one of the two has to be wanting.”</code> <span class="tag t-src">原书</span>（Ricci 版 #57037，CHAPTER XVII）——两译本此处意思一致，说明<strong>误读不是译者的错，而是引用者的删减</strong>。★ 第三点：本章把「畏惧」与「憎恨」严格分开，是一个<strong>分析性的区分</strong>（前者源于对惩罚的预期，后者源于被剥夺感），不是道德修辞。<span class="tag t-rep">转述</span></p>
+  <p>★ 第三点：本章对「残酷」的处理有一个容易被忽略的时间维度——他区分<strong>必要的、一次性的</strong>严酷与<strong>持续的、失控的</strong>严酷。前者使博尔贾「比佛罗伦萨人更仁慈」，后者则会把君主推向他最怕的结局（被憎恨）。这正与第 8 章「恶行用好与用坏」的分界线同源：<strong>决定性质的，是暴力的时机与总量，而不是暴力本身。</strong></p>
+</section>
+
+<section id="s25">
+  <h2><span class="num">24</span><span>第十八章 · 论君主应当怎样守信（CONCERNING THE WAY IN WHICH PRINCES SHOULD KEEP FAITH）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 全书最著名（也最被腰斩）的一章。人皆称许君主守信，但经验表明，那些成就大事的君主往往不看重信义，而懂得用机巧去周旋。斗争有两种方式：依法（属人）与用力（属兽）；依法常不足，故须诉诸兽道。⇒ 君主须懂得兼用「人」与「兽」两种方法：<strong>狐狸识陷阱，狮子吓豺狼</strong>。因此，明智的君主<strong>当守信的作法会反噬于己、或当初许诺的缘由已不复存在时，可以不守</strong>——前提是「必要时」。此外还须善于伪装：<strong>众人都看到你显得怎样，很少有人知道你实际怎样</strong>；人们凭结果判断，故君主<strong>赢得并保有国家，其手段总会被视为正当</strong>。</p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>A prince, therefore, being compelled knowingly to adopt the beast, ought to choose the fox and the lion; because the lion cannot defend himself against snares and the fox cannot defend himself against wolves. 〔因此，君主既然不得不明知故犯地采用野兽之道，就应当选择狐狸与狮子；因为狮子不能防备陷阱，狐狸不能抵御豺狼。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XVIII 第 3 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>Therefore a wise lord cannot, nor ought he to, keep faith when such observance may be turned against him, and when the reasons that caused him to pledge it exist no longer. 〔因此，一位明智的君主，当守信会反噬于己、或当初促使他许诺的缘由已不复存在时，就不能也不该守信。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XVIII 第 3 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>Every one sees what you appear to be, few really know what you are 〔人人都看到你显得怎样，很少有人真正知道你是什么。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XVIII 第 6 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>let a prince have the credit of conquering and holding his state, the means will always be considered honest, and he will be praised by everybody 〔就让君主去赢得并保住他的国家吧，其手段总会被视为正当，他也会受到众人的称赞。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XVIII 第 6 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> ★★ 本章是第 15 章之后<strong>最常被引用、也最常被歪曲</strong>的一章（见 <code>## 4b</code>）。它把第 15 章的「实然优先」推到极限：如果连「守信」都可以有条件地放弃，那么政治的「底线」究竟在哪里？这就是「马基雅维利问题」在文本层面的爆发点。★ 第 26 章的呼吁，正是要在这条底线之外为全书找回一个目的。★ 本章也是全书唯一一处借用<strong>古代神话材料</strong>（半人半马的喀戎养育阿喀琉斯）来论证的地方——这个比喻把「人兽兼具」说成一种<strong>教育传统</strong>，而非临时权宜。</p>
+  <p><strong>可疑之处／常见误读。</strong> ★★ 本报告在 <code>## 4b</code> 已逐条处理四项相关误读，此处只补三点。其一，原文关于「手段总被视为正当」的那句，说的<strong>不是道德判断，而是对庸众心理的描写</strong>——「因为庸众总是被事情的表相与结果带着走」。其二，Ricci 把此句译作 <code>“the end is everything”</code>（结果就是一切），比 Marriott 的 <code>“one judges by the result”</code>（人们凭结果来判断）更像一句「主张」，这正是<strong>译文口吻会影响误读</strong>的实证。★ 其三，Marriott 版在本章开头引校勘者 Burd 的话说明本章的「冒犯性」——「本章比马基雅维利著作中任何部分引起的反感更大」（原文见本章脚注 <code>Burd, "Il Principe," p. 297</code>）。<span class="tag t-rep">转述</span></p>
+  <p>★ 第三点：本章也揭示了一个<strong>反直觉的判断</strong>——人们「凭结果」判断君主，因此<strong>坏手段若带来好结果，也会被接受</strong>。但请注意原句的重心：马基雅维利说的是「<strong>庸众</strong>（the vulgar）总是被表相与结果带着走」，紧接着还说「世上尽是庸众」。这是一种<strong>对民众判断力的评价</strong>，而不是对「手段」的辩护——这两者极易被混为一谈。</p>
+</section>
+
+<section id="s26">
+  <h2><span class="num">25</span><span>第十九章 · 论应该避免受到蔑视与憎恨（THAT ONE SHOULD AVOID BEING DESPISED AND HATED）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 君主须避免两件事：<strong>被憎恨</strong>与<strong>被蔑视</strong>。招致憎恨的首要原因是<strong>掠夺臣民的财产与妻女</strong>；只要不动这两样，多数人便安分，君主只需对付少数有野心者。招致蔑视的原因则是<strong>反复、轻浮、软弱、怯懦、优柔寡断</strong>；君主应在行动中显现伟大、勇气、庄重与坚毅。本章后半是全章最长的部分：以<strong>罗马诸帝</strong>为镜，逐一分析哪些皇帝因何被杀、哪些得以善终——例如马可·奥勒留与塞维鲁为何能善终，而佩尔蒂纳克斯与亚历山大为何被杀。</p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>It makes him hated above all things, as I have said, to be rapacious, and to be a violator of the property and women of his subjects, from both of which he must abstain. 〔如我所说，最使他被憎恨的，是贪婪，是侵犯臣民的财产与妻女——这两样他都必须戒绝。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XIX 第 1 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>And when neither their property nor their honor is touched, the majority of men live content, and he has only to contend with the ambition of a few, whom he can curb with ease in many ways. 〔当人们的财产与名誉都未受触及时，多数人便安分地生活，君主只需应付少数人的野心，而他有的是办法轻易约束他们。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XIX 第 1 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> 本章是第 17 章（不可招致憎恨）的展开与细化，也是第 20、21 章的过渡。★ 它把「被畏惧」与「被憎恨」的界线<strong>具体化为两条禁令</strong>（财产、妻女），从而让第 17 章那句抽象的原则落地。罗马诸帝的案例分析，则是全书把「历史教训」直接转化为「行动规则」的示范——也正因如此，它是 Butterfield（1940）式方法论批评的好靶子（见 <code>## 5</code> 第六条）。</p>
+  <p><strong>可疑之处／常见误读。</strong> ★ 常见误读是把它读成「只要不禁忌那两条，随便残酷都行」。原文的重点是<strong>两条禁令共同构成「安全区」的边界</strong>，而不是给出许可。★ 第二点：本章的罗马诸帝分析，是全书<strong>最长的一段连续历史叙事</strong>，也最能体现作者的「以古律今」——他直接拿罗马皇帝的命运来推导 16 世纪意大利君主的行动规则。★ 第三点：本章把「被憎恨」与「被蔑视」并列为两个不同的危险，前者来自<strong>剥夺</strong>，后者来自<strong>形象</strong>；这一区分说明马基雅维利对「统治」的理解既包括实质，也包括感知。<span class="tag t-inf">推断</span></p>
+  <p>★ 第三点：本章还给出了一条重要的<strong>时间偏好</strong>判断——「人受当下的吸引甚于过去」（第 24 章）与「人们忘记父亲的死比忘记遗产的丧失更快」（第 17 章）是同一心理规律；而这条规律正是「憎恨」的燃料：<strong>只要不动财产，多数不满都会随时间衰减。</strong> 这条推论把第 17、19 章的两条禁令（财产、妻女）提升到了全书最稳固的一条操作规则。</p>
+</section>
+
+<section id="s27">
+  <h2><span class="num">26</span><span>第二十章 · 堡垒以及君主们常做的其他许多事情有益还是无益（ARE FORTRESSES... ADVANTAGEOUS OR HURTFUL?）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 逐一评估君主常用的几套手段：为求稳固而<strong>解除臣民武装</strong>、<strong>用派系分散城市</strong>、<strong>培植对自己的敌意</strong>、<strong>笼络起初不信任的人</strong>、<strong>修筑堡垒</strong>、<strong>拆毁堡垒</strong>。马基雅维利给出的总判断是：不能一概而论，须依各邦的具体情况而定。但对「解除臣民武装」，他态度鲜明：<strong>从来没有新君解除过臣民的武装；相反，他总是在发现他们无武装时把他们武装起来。</strong></p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>Some princes, so as to hold securely the state, have disarmed their subjects; others have kept their subject towns distracted by factions; others have fostered enmities against themselves; others have laid themselves out to gain over those whom they distrusted in the beginning of their governments; some have built fortresses; some have overthrown and destroyed them. 〔有些君主为求稳固地保住国家，解除了臣民的武装；有些则让属下的城市陷入派系纷争；有些培植对自己的敌意；有些则着力笼络那些在治理之初他所不信任的人；有些人修筑堡垒；有些人则把堡垒推倒毁掉。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XX 第 1 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> 本章是第 14 章「解除武装招致蔑视」的延伸，也是全书「具体问题具体分析」最集中的一章。它把第 15 章的原则落实为一条方法论：<strong>没有普适的规则，只有对具体情形的权衡</strong>。★ 这也是本书常被当作「手册」的原因——它读起来像一份清单式评估，六项手段、每项给利弊。</p>
+  <p><strong>可疑之处／常见误读。</strong> ★ 常见误读是把本章读成「马基雅维利列出六条建议」。原文的措辞是<strong>列举他人所用过的做法</strong>，然后逐一权衡，而非推荐全部。★ 另一处易被误读的是「用派系分散城市」这条：马基雅维利对它的评价是<strong>有条件的</strong>（在某些共和国里有用，在某些君主国里有害），不能读成一般主张。★ 本章与第 10 章（衡量力量）在「筑城」问题上互相解释，宜并读。★ 第三点：本章对「筑堡垒」的最终判断其实相当谨慎——它说堡垒是否有用，取决于君主<strong>是否更怕自己的人民还是更怕外敌</strong>。<span class="tag t-inf">推断</span></p>
+  <p>★ 第三点：本章也示范了全书「清单式权衡」的边界——对「解除武装」等两三项，作者给的是明确的判断；对「筑堡垒」等其余项，他给的是<strong>条件式</strong>的回答（「取决于你更怕人民还是更怕外敌」）。读这一章的正确方式，不是记下六条建议，而是看清<strong>哪些项他敢下断语、哪些项他留给情境</strong>——这条分界线本身，就是本书方法论的样本。</p>
+  <p>★ 第四点：本章的「六项清单」也回答了本书开头的问题——第 1 章分类，是为了此刻能<strong>逐项核对</strong>。也就是说，第 20 章是「分类学」在操作层面的兑现：它把前十九章的分析，压缩成一张可以逐条打勾的表。</p>
+</section>
+
+<section id="s28">
+  <h2><span class="num">27</span><span>第二十一章 · 君主为了受人尊敬应当怎样为人（HOW A PRINCE SHOULD CONDUCT HIMSELF SO AS TO GAIN RENOWN）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 最能使君主受尊敬者，是<strong>伟大的事业与卓越的表率</strong>。全章以<strong>西班牙的斐迪南</strong>为例：他几乎可算一位「新君」，凭声望与光荣从一位不重要的国王跃为基督教世界首屈一指的君主；他攻打格拉纳达、借宗教为名扩展势力、以教会与人民的钱维持军队。马基雅维利由此推出两条：君主应善用<strong>朋友与敌人</strong>的对照，并<strong>不做骑墙的中立者</strong>——明确的敌友立场反而赢得尊重。此外，君主还应善于奖掖人才、举办节庆，以显示国家的活力。</p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>Nothing makes a prince so much esteemed as great enterprises and setting a fine example. 〔最能令君主受到尊敬的，莫过于伟大的事业与卓越的表率。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XXI 第 1 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>We have in our time Ferdinand of Aragon, the present King of Spain. He can almost be called a new prince, because he has risen, by fame and glory, from being an insignificant king to be the foremost king in Christendom 〔在我们的时代有阿拉贡的斐迪南，当今的西班牙国王。他几乎可被称为一位新君，因为他凭声望与光荣，从一位无足轻重的国王跃为基督教世界首屈一指的国王。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XXI 第 1 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> 本章与第 19 章（避免蔑视）是同一问题的两面：第 19 章讲<strong>如何不失分</strong>，第 21 章讲<strong>如何得分</strong>（建立声望）。★ 斐迪南这个例子耐人寻味：马基雅维利在此处称赞他的「声望」，在第 18 章却把他写成「口称和平与信义、实则最敌视两者」的人（Marriott 注明那位「不宜点名」的君主即斐迪南）。同一个人物，两章两种面孔——这不是矛盾，而是全书「按不同目的调用同一素材」的写法。</p>
+  <p><strong>可疑之处／常见误读。</strong> ★ 常见误读是把本章读成「君主应当好战」。原文的重心是<strong>声望的建立机制</strong>（伟大事业、明确立场），而非好战本身。★ 第二点：本章与第 18 章对斐迪南的两种描写，是理解本书「素材服务于论证」这一写法的最佳例证；把它当作「作者自相矛盾」，会漏掉这一层。★ 第三点：本章「不做中立者」这条，是全书对<strong>「模糊立场」最明确的一次否定</strong>——它的理由是现实的：中立者往往两头不讨好。<span class="tag t-inf">推断</span></p>
+  <p>★ 第三点：本章把「声望」拆成了两个来源——<strong>伟大的事业</strong>与<strong>明确的立场</strong>。前者靠行动，后者靠取舍；而两者都要求君主<strong>可被辨识</strong>。这正与第 18 章「人人都看到你显得怎样」形成对照：第 18 章讲的是「形象可以被制造」，本章讲的是「形象也可以靠真实的作为赢得」。两章合读，可看到全书对「声誉」的完整理解——它既是<strong>表演</strong>，也是<strong>积累</strong>。</p>
+</section>
+
+<section id="s29">
+  <h2><span class="num">28</span><span>第二十二章 · 论君主的大臣（CONCERNING THE SECRETARIES OF PRINCES）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 用人的选择对君主极为重要：一个人对君主的第一个评价，往往来自观察他身边之人。臣仆若有能力又忠诚，君主便可被视为明智；反之则不能。全章的核心是一句智力三分法：<strong>第一种自己就能理解；第二种能领会他人所理解的；第三种既不能自己理解、也不能靠他人展示而理解</strong>。第一种最优，第二种好，第三种无用。君主必须能识别这三类人——并以潘多尔福·彼得鲁奇识用韦纳弗罗为例。</p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>The choice of servants is of no little importance to a prince, and they are good or not according to the discrimination of the prince. 〔臣仆的挑选对君主绝非小事，其好坏取决于君主的鉴别力。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XXII 第 1 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>Because there are three classes of intellects: one which comprehends by itself; another which appreciates what others comprehended; and a third which neither comprehends by itself nor by the showing of others; the first is the most excellent, the second is good, the third is useless. 〔因为智力分三类：一类自己能理解；一类能赏识他人所理解的东西；第三类既不能自己理解，也不能靠他人展示而理解。第一类最优，第二类好，第三类无用。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XXII 第 1 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> 本章与第 23 章（避开谄媚者）构成「用人之道」的一对：第 22 章讲<strong>怎样选对人</strong>，第 23 章讲<strong>怎样让选对的人敢说真话</strong>。两章合读，就是全书关于「君主如何获取可靠信息」的完整方案。★ 这也说明本书不只是「怎么对待敌人」，同样关心「怎么对待自己人」——一个只懂斗争、不懂用人的君主，在本书的框架里同样保不住国家。</p>
+  <p><strong>可疑之处／常见误读。</strong> ★ 常见误读是把它读成「君主必须比臣下聪明」。原文恰恰相反：君主只需能<strong>识别</strong>臣下的能力即可——他甚至可以是「第二类智力」，但要善用「第一类」的臣仆。★ 另需注意本章以彼得鲁奇与其臣韦纳弗罗为例，说明「能识人」本身就是明智的证据——<strong>用对人，是智力的一种外在显示</strong>。★ 第三点：本章还给出「怎样识别不忠之臣」的判据——看臣下是否把自己的利益置于君主利益之上。<span class="tag t-inf">推断</span></p>
+  <p>★ 第三点：本章与第 23 章之间有一个隐含的分工——第 22 章解决「<strong>选谁</strong>」，第 23 章解决「<strong>怎么让他说真话</strong>」。但两章合起来还差一环：马基雅维利始终没有讨论「臣下为什么会忠诚」。他只是把「是否忠诚」当作需要<strong>识别</strong>的事实，而非需要<strong>培育</strong>的关系。这一空缺，恰好是后来政治学关于「制度与激励」的讨论接手的地方。</p>
+  <p>★ 第四点：本章还给出了一条现实判据——若臣下<strong>把君主的利益当作自己的利益</strong>，便可托付；若不然，则必不忠。这条判据的落脚点是「利益一致性」，而非「道德品质」，与全书「制度与结构优先于品德」的一贯思路完全一致。</p>
+</section>
+
+<section id="s30">
+  <h2><span class="num">29</span><span>第二十三章 · 应该怎样避开谄媚者（HOW FLATTERERS SHOULD BE AVOIDED）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 谄媚者是君主难以摆脱的危险，因为人往往自满自欺。若君主想防它而加强戒备，又会落入被轻视的另一极端。<strong>唯一的办法，是让臣下明白：说真话不会冒犯你</strong>；但若人人都能对你直言，尊重又会减少。因此明智的君主取「第三条路」：选出少数智者，只许他们对自己所问之事说真话；他要广泛地询问他们，听取意见，然后自作决断。★ 本章并批评那些「自己拿主意、又要人附和」的君主。</p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>Because there is no other way of guarding oneself from flatterers except letting men understand that to tell you the truth does not offend you; but when every one may tell you the truth, respect for you abates. 〔因为要防备谄媚者，别无他法，唯有让众人明白：对你说真话不会冒犯你；但若人人皆可对你说真话，对你的尊重又会减少。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XXIII 第 1 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>Therefore a wise prince ought to hold a third course by choosing the wise men in his state, and giving to them only the liberty of speaking the truth to him, and then only of those things of which he inquires, and of none others; but he ought to question them upon everything, and listen to their opinions, and afterwards form his own conclusions. 〔因此，明智的君主应当采取第三条路：在本国选出资智之士，只给他们向自己说真话的自由，且只限他所询问之事，其余一概不许；但他应当就一切事情询问他们，听取他们的意见，然后自己作出结论。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XXIII 第 1 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> 本章是第 22 章的续篇，也是全书唯一正面讨论<strong>「君主如何获取信息」</strong>的一章。它的方案有一个内在张力：既要让臣下敢说真话，又不许人人可议。这一张力，恰恰是「君主制下的言论空间」这一问题的雏形。★ 本章与第 6 章（求职）也构成一种反讽式的呼应：一个写书劝君主广开言路的人，自己却始终没等到那位君主来读他的书（见 <code>## 6</code>）。</p>
+  <p><strong>可疑之处／常见误读。</strong> ★ 常见误读是把本章读成「君主应广开言路」。原文的方案是<strong>高度受限的</strong>：只许少数人对<strong>被问到的事</strong>说真话。★ 另一点：本章那句「若人人可说真话，尊重就会减少」，常被略去，但它正是本章「第三条路」的根据——它揭示了马基雅维利对「权威」的一种直觉：权威需要<strong>距离</strong>。★ 第三点：本章把「谄媚」与「被轻视」写成一对<strong>相反的危险</strong>，说明君主面临的不是单一威胁，而是两个方向的夹击——这正是全书「权衡」思维的典型。<span class="tag t-inf">推断</span></p>
+  <p>★ 第三点：本章也给出了一条与全书基调略有张力的建议——君主<strong>应当就一切事情询问</strong>，并「听取意见，然后自己作出结论」。这是全书少见的、把君主写成<strong>信息整合者</strong>而非单纯决断者的地方。它暗示：真正的统治能力，不只在于压制与奖惩，也在于<strong>让真相能够抵达自己</strong>。这一层，与第 22 章的「智力三分法」正好接上。</p>
+</section>
+
+<section id="s31">
+  <h2><span class="num">30</span><span>第二十四章 · 意大利的君主们为什么丧失了他们的国家（WHY THE PRINCES OF ITALY HAVE LOST THEIR STATES）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 若新君能善用前述建议，其地位甚至比世袭君更稳固——因为新君的行动更被观察，一旦显露才干，便赢得更多追随。因此，建立并巩固一个新君主国是「双重的光荣」，而世袭者失国则是「双重的耻辱」。★ 意大利诸君主（那不勒斯国王、米兰公爵等）失国，<strong>不是命运不济，而是自己的错误</strong>：或者是军队基础不好、或者是人民的怨恨、或者是统治上的失当。他并讥讽那些指望「一旦有变，人民会来救他们」的君主。</p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>when they are seen to be able they gain more men and bind far tighter than ancient blood; because men are attracted more by the present than by the past, and when they find the present good they enjoy it and seek no further 〔当人们见到他们能干时，他们赢得的拥护者比世代相承的血统更多、联结也更紧密；因为人受当下的吸引甚于过去，当他们发现当下是好的，便安享其中，不再他求〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XXIV 第 1 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> 本章是全书的<strong>第一次总收束</strong>：它把前二十三章的规则，倒过来变成一份「失国的诊断报告」。★ 它的判断（失国源于自身错误，而非命运）直接预告了第 25 章的命题——命运只主宰一半，另一半在人自己手里。<strong>第 24 章是「诊断」，第 25 章是「原理」，第 26 章是「处方」</strong>：三章连读，就是全书从批判到自省、再到呼吁的完整弧线。</p>
+  <p><strong>可疑之处／常见误读。</strong> ★ 常见误读是把本章读成「马基雅维利在责难意大利君主」。原文的落点更像是<strong>给新君打气</strong>：既然失国是「自己的错」，那么能纠错的人就有机会。★ 另需注意本章用「双重光荣／双重耻辱」这一对称修辞，把「新君」的处境说成是<strong>机会而非负担</strong>——这是全书由批判转向鼓励的转折点。★ 第三点：本章那句「人受当下的吸引甚于过去」，是全书对<strong>人性时间偏好</strong>的一次明确陈述，它与第 3 章「人们换主指望改善处境」是同一条心理规律的两面。<span class="tag t-inf">推断</span></p>
+  <p>★ 第三点：本章也包含全书最直接的一句「自我评价」——它把「新君建立并巩固国家」称为<strong>双重的光荣</strong>。这句话可以作为理解作者处境的钥匙：写这本书的人，正是一个希望看到「新的秩序被建立起来」的人。第 24 章因此不只是诊断，它也是全书从「分析」走向「呼吁」的<strong>第一级台阶</strong>（第二级是第 25 章的能动性，第三级是第 26 章的呼告）。</p>
+  <p>★ 第四点：本章也给出了一个关于「人心流向」的判断——人的注意力朝向<strong>当下</strong>而非过去，因此新君若能让人在当下受益，就能对冲「血统古老」的优势。这条判断把第 3 章「人们换主指望改善处境」的心理规律，反过来用在了新君自己身上。</p>
+</section>
+
+<section id="s32">
+  <h2><span class="num">31</span><span>第二十五章 · 命运在人世事务上有多大力量与怎样对抗她（WHAT FORTUNE CAN EFFECT IN HUMAN AFFAIRS...）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 全书的<strong>理论收束</strong>。有人相信世事全由命运与上帝主宰，人的智慧无能为力；这种看法在动荡年代尤为流行，甚至连作者自己也「有些倾向」于此。但为了不消灭人的自由意志，马基雅维利断言：<strong>命运主宰我们一半的行动，另一半（或许还不到一半）留给我们自己指引</strong>。命运如同泛滥的河流：平时可以修堤筑坝，否则一旦成灾便无法抵御；又如妇人，<strong>宁可倒在果敢者脚下，也不向迟慎者低头</strong>。★ 他还举了两位教皇（尤利乌斯二世与对立面）为例，说明果敢如何奏效。</p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>Nevertheless, not to extinguish our free will, I hold it to be true that Fortune is the arbiter of one-half of our actions 〔然而，为了不消灭我们的自由意志，我认为命运确实主宰着我们行动的一半〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XXV 第 1 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>but that she still leaves us to direct the other half, or perhaps a little less. 〔但她仍把另一半留给我们去指引，或许略少于一半。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XXV 第 1 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>I compare her to one of those raging rivers, which when in flood overflows the plains, sweeping away trees and buildings, bearing away the soil from place to place; everything flies before it, all yield to its violence, without being able in any way to withstand it 〔我把她比作那种狂暴的河流：一旦泛滥便淹没平原，卷走树木与房屋，把泥土从一处携带到另一处；一切都在它面前飞逃，一切都向它的暴力屈服，丝毫无法抵挡。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XXV 第 2 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>For my part I consider that it is better to be adventurous than cautious, because fortune is a woman, and if you wish to keep her under it is necessary to beat and ill-use her 〔就我而言，我认为果敢比谨慎更好；因为命运是个妇人，你若想把她制服，就必须打她、虐待她。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XXV 第 6 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> ★★ 本章是全书两根主轴（<code>virtù</code> 与 <code>fortuna</code>）的最终综合：第 VI 章讲「靠自己」，第 VII 章讲「靠幸运」，第 25 章则回答「两者各占多少」——一半对一半。它把「现实主义」从经验观察上升为一个<strong>关于能动性的命题</strong>：命运不是宿命，而是<strong>可以设防的对象</strong>。★ 全书的论证至此闭合：前二十四章讲「怎么做」，本章讲「做与不做各占多大分量」。</p>
+  <p><strong>可疑之处／常见误读。</strong> ★★ 本章最后那句「命运是个妇人，要打她、虐待她」，是全书<strong>最受争议的比喻</strong>。两译本都要看：Marriott 作 <code>“if you wish to keep her under it is necessary to beat and ill-use her”</code>，Ricci 作 <code>“it is necessary, if you wish to master her, to conquer her by force”</code> <span class="tag t-src">原书</span>（Ricci 版 #57037，CHAPTER XXV）——Ricci 把「打并虐待」软化为「以武力征服」。★ 本报告只作文本记录与译文对照，<strong>不作任何现实引申</strong>；读者须知：这句比喻的语境是 16 世纪对「命运」的拟人化传统，不是关于性别的论述。★ 第三点：本章「命运主宰一半」这一比例，本身是一个<strong>修辞性的估量</strong>（作者并未给出论证），不宜当作严格的学说。<span class="tag t-rep">转述</span></p>
+  <p>★ 第三点：本章为「能动性」给出的论据，其实是一个<strong>类比</strong>（河流与堤坝），而不是一个证明。★ 需要注意：马基雅维利在结尾把「果敢」抬得很高，但他并没有说「果敢总能成功」——他说的是「在只能二选一时，果敢更常奏效」。这个限定（更多是概率而非必然）与全书「条件优先」的写法是一致的。把它读成「果敢必胜」，又落入了断章的老路。</p>
+</section>
+
+<section id="s33">
+  <h2><span class="num">32</span><span>第二十六章 · 奉劝将意大利从蛮族手中解放出来（AN EXHORTATION TO LIBERATE ITALY FROM THE BARBARIANS）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 全书的<strong>终章与呼告</strong>。马基雅维利自问：当下时机对于一位新君是否有利？结论是——从未有比现在更合适的时机。「要使以色列人受掳，才显出摩西的能力；波斯人受米底人压迫，才显出居鲁士的伟大；雅典人离散，才显出忒修斯的才能」；同样，意大利须先被贬到今日这般境地，才能显出一位意大利精神的<code>virtù</code>。他呼吁梅第奇家族担起这一使命，把自己的军队作为一切事业的基础，把意大利从外国军队（「蛮族」）手中解放出来。★ 全章并给出具体的军事建议：以本国步兵对抗瑞士与西班牙步兵。</p>
+  <p><strong>关键原文。</strong></p>
+  <blockquote>
+    <p>it was necessary that Italy should be reduced to the extremity that she is now in, that she should be more enslaved than the Hebrews, more oppressed than the Persians, more scattered than the Athenians 〔意大利必须被贬到今日这等绝境：她比希伯来人更受奴役，比波斯人更受压迫，比雅典人更被离散〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XXVI 第 1 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>This opportunity, therefore, ought not to be allowed to pass for letting Italy at last see her liberator appear. 〔因此，不该放过这个时机，好让意大利终于看见她的解放者出现。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XXVI 第 6 段）</p>
+  </blockquote>
+  <blockquote>
+    <p>To all of us this barbarous dominion stinks. 〔对我们所有人来说，这蛮族的统治都臭不可闻。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XXVI 第 7 段）</p>
+  </blockquote>
+  <p><strong>它在全书里的位置。</strong> ★★ 本章是理解作者意图的<strong>入口</strong>（见 <code>## 2</code> 第五条）。前面二十五章的冷酷规则，到此处突然转向热烈的呼告——这个「转调」是全书最大的修辞动作。它也是「马基雅维利问题」的现场：一位共和主义者，却在这里呼唤一位「解放者」式的君主。★ 两译本对照：Marriott 作 <code>“ought not to be allowed to pass”</code>，Ricci 作 <code>“must not, therefore, be allowed to pass, for letting Italy at length see her liberator.”</code> <span class="tag t-src">原书</span>（Ricci 版 #57037，CHAPTER XXVI）——措辞几乎相同，说明这一层「呼吁」在两译者的理解中都没有歧义。</p>
+  <p><strong>可疑之处／常见误读。</strong> ★★ 关于本章，学界有两种相反的读法：一是<strong>字面读法</strong>（马基雅维利真诚呼唤一位强有力的君主统一意大利），二是<strong>反讽读法</strong>。<strong>Mary G. Dietz，「Trapping the Prince: Machiavelli and the Politics of Deception」，《American Political Science Review》（1986）</strong> 主张：马基雅维利给洛伦佐的建议其实是<strong>误导性的</strong>，目的是促使梅第奇家族垮台、让共和国复辟——即把《君主论》读成一次「政治欺骗」。这一读法本身也受到质疑，本报告只作并列，不作裁断。★ 另需注意：本章的「解放」对象是 16 世纪被外国军队侵占的意大利，<strong>与任何现实政治无关</strong>；本报告严格不作引申。★ 第三点：本章是全书中唯一大量使用<strong>排比与感叹句</strong>的一章，文体与前二十五章判然有别——这一文体断裂本身就是重要的文本证据。<span class="tag t-rep">转述</span></p>
+  <p>★ 第三点：本章的文风转折本身，常被视为判定「作者真实意图」的重要线索——支持字面读法的人说，这样的热情与排比不可能出自反讽；支持反讽读法的人则说，正因为前面二十五章如此冷静，这里的热情才显得<strong>刻意</strong>。★ 本报告的处理是：<strong>把两种读法并列，并明确指出文本本身不足以裁断</strong>（附录 D 亦记录了这一未决问题）。</p>
+</section>
+
+<section id="s34">
+  <h2><span class="num">33</span><span>主题与思想史：从「马基雅维利主义」到共和主义转向</span><span class="caret">▾</span></h2>
+  <p>★ 本节只做思想史与文本分析（见 <code>## 0</code> 的声明）；<strong>不作任何现实政治引申</strong>。</p>
+  <p><strong>一、「马基雅维利主义」的诞生与污名化史。</strong> 这是一条可以按年份排列的线索：</p>
+  <ul>
+    <li><strong>1532 年</strong>，《君主论》在作者身后首次印行（非其本人授权；见 <code>## 35</code>）。
+    </li>
+    <li><strong>1559 年</strong>，教皇<strong>保罗四世（Paul IV）</strong>颁行的第一份罗马《禁书目录》（<em>Index Librorum Prohibitorum</em>，史称 <em>Indice Paolino</em>）把<strong>马基雅维利的全部著作（opera omnia）</strong>列入绝对禁止的第一类；该禁令于 <strong>1564 年</strong>被<strong>特利腾大公会议</strong>后的目录（<em>Index Tridentinus</em>，庇护四世时期）再度确认。<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>1576 年</strong>，法国胡格诺派律师 <strong>Innocent Gentillet（1535–1588）</strong> 在日内瓦刊行 <strong>《Discours sur les moyens de bien gouverner... contre Nicolas Machiavel》</strong>（后通称 <em>Anti-Machiavel</em>），系统指控马基雅维利「教人无神与不德」。★ 这是「machiavellism」一词最早的来源之一，也是「不择手段的马基雅维利」这一<strong>黑传说</strong>的定型之作。<span class="tag t-rep">转述</span>
+    </li>
+    <li>★ 值得注意的对照：<strong>1564 年「特利腾目录」之前的版本校勘中，「contro alla fede」（违背信义）等词曾在校订版里被删</strong>。Marriott 版的脚注恰好记录了这一点：
+    </li>
+  </ul>
+  <blockquote>
+    <p>It is noteworthy that these two phrases, “contro alla fede” and “tutto fede,” were omitted in the Testina edition, which was published with the sanction of the papal authorities. 〔值得注意：这两个短语——「contro alla fede」（违背信义）与「tutto fede」（完全守信）——在经教廷当局认可而刊行的 Testina 版中被删去了。〕<span class="tag t-src">原书</span>（Marriott 版，CHAPTER XVIII 脚注；★ 编者／译者注，非作者的话）</p>
+  </blockquote>
+  <p>★ 这段引文说明一件重要的事：<strong>禁书与删改在文本层面留下了痕迹</strong>——政治审查不只针对书，也针对句子。</p>
+  <p><strong>二、「马基雅维利问题」：君主主义与共和主义如何并存。</strong> 这是本书在思想史上最核心的谜题：《君主论》教君主如何保住政权，而《论李维》却赞颂共和制。两者如何调和？</p>
+  <ul>
+    <li><strong>17 世纪</strong>：<strong>Spinoza《Tractatus Politicus》（1677）</strong>把马基雅维利解读为「共和自由的明智捍卫者」，认为他揭露君主手段是为了警示自由的人民。<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>18 世纪</strong>：<strong>Rousseau《Du contrat social》（1762）</strong>说：「马基雅维利装作给国王上课，其实给人民上了大课——他的《君主论》是共和主义者的书。」（<em>Le Prince</em> de Machiavel est le livre des républicains.）<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>20 世纪（剑桥学派）</strong>：<strong>J. G. A. Pocock《The Machiavellian Moment》（Princeton University Press，1975）</strong>把马基雅维利（连同其佛罗伦萨前辈）定位为「复兴的古典共和公民理想」的阐发者，并追踪这一理想如何经 17 世纪英格兰、18 世纪英美而延续；<strong>Quentin Skinner《The Foundations of Modern Political Thought》（Cambridge University Press，1978）</strong>则把马基雅维利读作「共和的、罗马式的自由」的理论家。★ 两人的共同点是：<strong>把《君主论》放回马基雅维利的整体著作去读</strong>，而不是孤立地读它。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <p>★ 「马基雅维利问题」为什么重要？因为它决定了一个基本判断：<strong>《君主论》究竟是一份「君主制方案」，还是一封「写给君主、读给人民」的密信。</strong> 本报告不裁断，只把两条路径的证据都摆出来（第 II 章「共和国留待他书」、第 26 章的呼告，对 Rousseau 的正解；第 15–18 章的规则，对「君主手册」的正解）。<span class="tag t-inf">推断</span></p>
+  <p><strong>三、与《利维坦》《社会契约论》的思想史位置对比。</strong> 书单里已有这两本，三条线索值得比对：</p>
+  <table>
+    <thead><tr><th>对照项</th><th>《君主论》（约 1513）</th><th>《利维坦》（1651）</th><th>《社会契约论》（1762）</th></tr></thead>
+    <tbody>
+      <tr><td>核心问题</td><td>新君如何保住权力</td><td>为何需要主权者</td><td>统治的正当性从何而来</td></tr>
+      <tr><td>出发点</td><td>实然的人（恶人环伺）</td><td>自然状态与恐惧</td><td>自然自由与约定</td></tr>
+      <tr><td>与道德的关系</td><td>政治与道德分离（第 15、18 章）</td><td>以自然法约束主权</td><td>以公意奠定正当性</td></tr>
+      <tr><td>与本书的关系</td><td>★ 起点：把「应然」换成「实然」</td><td>继承其「国家理由」却又试图重建规范</td><td>明确回应马基雅维利（见上引 1762 语）</td></tr>
+    </tbody>
+  </table>
+  <p>★ 三本并读，可以看到一条清晰的线索：<strong>「实然」被从「应然」中剥离出来之后，思想史如何一次次试图把它重新接回去。</strong>《利维坦》接回的方式是「主权」，《社会契约论》接回的方式是「公意」。★ 而《君主论》本身<strong>没有接回去</strong>——它停在「实然」这一侧，直到第 26 章才用「解放意大利」这一目的把两端勉强系上。这正是它反复被诟病、又反复被重读的原因。<span class="tag t-inf">推断</span></p>
+  <p><strong>四、「国家理由」（ragione di stato）这一标签的后世史。</strong> ★ 需要说清：<strong><code>ragione di stato</code> 不是马基雅维利本人的用语</strong>，而是后世（尤其 16 世纪末以降）用来概括其思路的标签；<strong>Giovanni Botero《Della ragion di Stato》（1589）</strong>等著作即以此为题，把马基雅维利的经验观察吸收进天主教正统框架。★ 因此，「马基雅维利＝国家理由之父」这一说法本身就是一个<strong>接受史的产物</strong>，不是文本事实。<span class="tag t-rep">转述</span></p>
+  <p><strong>五、现代政治科学的「现实主义」传统如何回看它。</strong> 20 世纪以来，《君主论》常被当作「现实主义」的源头：无论是国际关系中的现实主义，还是政治学中以「权力」为核心的分析，都习惯性地追溯到它。★ 本报告对这一传统只作<strong>思想史定位</strong>，不作评价、不作引申。需要提醒的是：把 16 世纪佛罗伦萨的具体处境直接搬来解释当代政治，恰恰是本报告在 <code>## 0</code> 明令避免的做法。<span class="tag t-inf">推断</span></p>
+  <p><strong>六、「现实主义」标签的双重风险。</strong> ★ 把《君主论》称作「现实主义的开端」，是 20 世纪政治学的常见说法。但这一标签有两重风险。</p>
+  <ul>
+    <li><strong>第一重：把「描述」读成「主张」。</strong> 马基雅维利大量使用「实际怎样」（第 15 章）、「人们如何判断」（第 18 章）这类句式；这些是<strong>观察</strong>，不是<strong>命令</strong>。把它们一律读成「他主张如此」，就会得出一个比文本更冷酷的马基雅维利。
+    </li>
+    <li><strong>第二重：把「16 世纪意大利」当成「任何时代」。</strong> 本书的问题意识来自一个具体的局面——<strong>分裂的半岛被外国军队反复蹂躏</strong>。把它抽空时代直接搬到别处，既不符合文本，也违反了本报告在 <code>## 0</code> 声明的方法边界。
+    </li>
+  </ul>
+  <p>★ 因此本报告的处理是：<strong>凡遇「现实主义」标签，先问它指的是哪一层</strong>——是「以实然为分析起点」（这一层成立），还是「以权力为唯一价值」（这一层是后世的建构）。</p>
+  <p><strong>七、《君主论》为什么始终不被当作「政治哲学」。</strong> ★ 一个耐人寻味的现象：它与《理想国》《利维坦》《社会契约论》并列在书单里，却常常被排除在「政治哲学」之外。原因有三：<strong>它不问正当性</strong>（只问如何保有）、<strong>它不给普适规则</strong>（第 20 章明说须依情形而定）、<strong>它不建构体系</strong>（26 章各自独立成篇）。★ 也正因如此，它更适合被当作<strong>政治分析的样本</strong>来读——看一位深谙实务的人，如何把经验整理成可传递的知识。这恰好是本报告把它与那三本对读的理由：<strong>三本问「应该怎样」，一本问「实际怎样」。</strong><span class="tag t-inf">推断</span></p>
+  <p>★ <strong>本节边界再申明一次。</strong> 以上全部为思想史与文本分析。第 26 章的「解放」呼吁、教会与世俗权力的关系，都是 16 世纪意大利的具体历史问题，<strong>不引申到任何当代国家、政治制度或政治人物</strong>。</p>
+</section>
+
+<section id="s35">
+  <h2><span class="num">34</span><span>译者与编者：Marriott 的导论怎么说</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本节全部引文出自 PG #1232 的译者导论（INTRODUCTION），属 <span class="tag t-src">原书</span> 辖区，但每一处都必须记住：这是 19 世纪译者 W. K. Marriott 的话，不是马基雅维利的话。</strong>（Marriott 的导论分四节：YOUTH／OFFICE／LITERATURE AND DEATH／THE MAN AND HIS WORKS。）本节的重点不在作者传记，而在<strong>「译者怎么读这本书」</strong>。</p>
+  <p><strong>译者的分期框架：一生三阶段。</strong> Marriott 用一段话把马基雅维利的一生与佛罗伦萨的三个时代对齐：</p>
+  <blockquote>
+    <p>His life falls naturally into three periods, each of which singularly enough constitutes a distinct and important era in the history of Florence. 〔他的一生自然地分为三个时期，而每一个时期都恰好构成佛罗伦萨历史上一个独特而重要的时代。〕<span class="tag t-src">原书</span>（PG #1232 导论，★ 译者述，不是作者的话）</p>
+  </blockquote>
+  <p><strong>译者对献词对象的判断。</strong> 在讲「YOUTH」一节时，Marriott 明确指出献词对象是「豪华者洛伦佐」的孙子：</p>
+  <blockquote>
+    <p>it is to Lorenzo’s grandson that he dedicates _The Prince_. 〔他正是把《君主论》献给了洛伦佐的孙子。〕<span class="tag t-src">原书</span>（PG #1232 导论，译者述）</p>
+  </blockquote>
+  <p>★ 这句话直接支持本报告在 <code>## 1</code> 与 <code>## 4b</code> ⑥ 的处理：<strong>献词的对象不是「豪华者洛伦佐」，而是他的孙子、Urbino 公爵。</strong> 这也是本报告选 Marriott 作主底本的一个附带理由——他的导论本身就在<strong>纠正这一常见混淆</strong>。</p>
+  <p><strong>译者眼中的马基雅维利：一个「被后世误读」的人。</strong> Marriott 在为全书作结的「THE MAN AND HIS WORKS」一节里，把「污名」与「学术翻案」并置：</p>
+  <blockquote>
+    <p>Whilst it is idle to protest against the world-wide and evil signification of his name, it may be pointed out that the harsh construction of his doctrine which this sinister reputation implies was unknown to his own day, and that the researches of recent times have enabled us to interpret him more reasonably. 〔虽然对这个名字遍及世界的邪恶含义加以抗议是徒劳的，但可以指出：他的学说所背负的、这恶名所暗含的严苛解释，在他自己的时代并不存在；而近代的研究已使我们能够更合理地解读他。〕<span class="tag t-src">原书</span>（PG #1232 导论，译者述）</p>
+  </blockquote>
+  <blockquote>
+    <p>It is due to these inquiries that the shape of an “unholy necromancer,” which so long haunted men’s vision, has begun to fade. 〔正是由于这些研究，那个长久萦绕在人们视野中的「不祥的巫术师」形象，才开始消退。〕<span class="tag t-src">原书</span>（PG #1232 导论，译者述）</p>
+  </blockquote>
+  <p><strong>译者眼中的这本书：一部「永恒问题」之书。</strong> Marriott 用一句话概括《君主论》为何历久不衰：</p>
+  <blockquote>
+    <p>Although the light of almost four centuries has been focused on _The Prince_, its problems are still debatable and interesting, because they are the eternal problems between the ruled and their rulers. 〔尽管近四百年的光照一直聚焦于《君主论》，它的问题至今仍可争辩、仍有趣味，因为它们是被统治者与统治者之间的永恒问题。〕<span class="tag t-src">原书</span>（PG #1232 导论，译者述）</p>
+  </blockquote>
+  <p><strong>译者怎么看作者其人。</strong> Marriott 并不把马基雅维利写成完人；他直言其人「在自身事务上怯懦而趋时」，并列举了他外交与军事上的多次失败：</p>
+  <blockquote>
+    <p>He was misled by Catherina Sforza, ignored by Louis XII, overawed by Cesare Borgia; several of his embassies were quite barren of results; his attempts to fortify Florence failed, and the soldiery that he raised astonished everybody by their cowardice. 〔他被卡泰丽娜·斯福尔扎误导，被路易十二忽视，被切萨雷·博尔贾震慑；他的多次出使毫无成果；他为佛罗伦萨设防的努力失败；他招募的士兵则以其怯懦令所有人吃惊。〕<span class="tag t-src">原书</span>（PG #1232 导论，译者述）</p>
+  </blockquote>
+  <p>★ 这段话值得单独留意：它把《君主论》的作者写成一个<strong>外交与军事上屡屡失手的人</strong>。这并非贬低，而是提醒读者：《君主论》的「全能视角」是一种<strong>写作姿态</strong>，未必等于作者的实战成绩。<span class="tag t-inf">推断</span></p>
+  <p><strong>译者自述其翻译原则（★ 这一段对我们尤其重要）。</strong> Marriott 说明他的方针是<strong>逐字直译</strong>：</p>
+  <blockquote>
+    <p>In translating _The Prince_ my aim has been to achieve at all costs an exact literal rendering of the original, rather than a fluent paraphrase adapted to the modern notions of style and expression. 〔在翻译《君主论》时，我的目标是尽可能做到对原文的精确直译，而不是改写为迎合现代文体与表达观念的流畅意译。〕<span class="tag t-src">原书</span>（PG #1232 导论，译者述）</p>
+  </blockquote>
+  <blockquote>
+    <p>In _The Prince_, it may be truly said, there is reason assignable, not only for every word, but for the position of every word. 〔在《君主论》中，可以毫不夸张地说，不仅每个词都有其道理，连每个词的位置都有其道理。〕<span class="tag t-src">原书</span>（PG #1232 导论，译者述）</p>
+  </blockquote>
+  <p><strong>译者怎么处理「无武装的先知」。</strong> 在「YOUTH」一节里，Marriott 提到了佛罗伦萨修士萨佛纳罗拉，并把《君主论》对此人的处理点出来：</p>
+  <blockquote>
+    <p>Savonarola’s influence upon the young Machiavelli must have been slight, for although at one time he wielded immense power over the fortunes of Florence, he only furnished Machiavelli with a subject of a gibe in _The Prince_, where he is cited as an example of an unarmed prophet who came to a bad end. 〔萨佛纳罗拉对年轻马基雅维利的影响想必很小；尽管他曾一度手握左右佛罗伦萨命运的巨大权力，他却只是给马基雅维利提供了一个《君主论》中的嘲讽对象——书中把他举为一个下场不佳的无武装先知。〕<span class="tag t-src">原书</span>（PG #1232 导论，★ 译者述，不是作者的话）</p>
+  </blockquote>
+  <p>★ 这段话帮我们对上了原文：第 6 章那句「武装的先知成功、无武装的先知失败」，影射的正是萨佛纳罗拉。<strong>译者的导论在此充当了「索引」</strong>——它把正文里那个没点名的人指了出来。</p>
+  <p><strong>译者对全书的一句总评。</strong> 在导论结尾，Marriott 解释《君主论》为何值得逐字直译：</p>
+  <blockquote>
+    <p>Machiavelli was no facile phrasemonger; the conditions under which he wrote obliged him to weigh every word; his themes were lofty, his substance grave, his manner nobly plain and serious. 〔马基雅维利不是一个信口堆砌辞藻的人；他写作时所处的境况迫使他字字掂量；他的主题崇高，内容庄重，文风高贵、朴素而严肃。〕<span class="tag t-src">原书</span>（PG #1232 导论，★ 译者述）</p>
+  </blockquote>
+  <p>★ <strong>为什么本节重要。</strong> 三点。第一，Marriott 的导论替我们完成了一部分「接受史」的工作：他明确记录了「恶名」与「翻案」的张力，正与 <code>## 33</code>、<code>## 35</code> 呼应。第二，他自述「逐字直译」的方针，<strong>正好解释了为什么本报告选他作主底本</strong>——因为我们要的正是「可逐字回原文核验」的文本（见 <code>## 4</code>）。第三，他对献词对象的判断，直接服务于本报告的一处纠错（见上）。★ 再次提醒：以上全是<strong>译者的话</strong>。</p>
+</section>
+
+<section id="s36">
+  <h2><span class="num">35</span><span>版本、流传与接受史</span><span class="caret">▾</span></h2>
+  <p><strong>一、从成书到初版：19 年的抄本流传。</strong> 约 <strong>1513 年</strong>成书，<strong>1532 年</strong>首次印行。★ 这中间约 <strong>19 年</strong>，本书以<strong>抄本</strong>形式流传；<strong>初版并非作者本人授权</strong>。Marriott 的导论对此有明确记录：</p>
+  <blockquote>
+    <p>Although it was plagiarized during Machiavelli’s lifetime, _The Prince_ was never published by him, and its text is still disputable. 〔尽管《君主论》在马基雅维利生前就已被人剽窃，但他本人从未出版过它，其文本至今仍有争议。〕<span class="tag t-src">原书</span>（PG #1232 导论，译者述）</p>
+  </blockquote>
+  <p>★ 由此可以理解本报告反复强调的一点：<strong>《君主论》是一部「文本本身就有争议」的书。</strong> 它成书与初版相隔 19 年、初版未经作者授权、以抄本流传——这些事实决定了它的文本史从一开始就不稳定。★ 初版的书目细节（印行者等）本报告未一手核实，已登记入附录 D。</p>
+  <p><strong>二、16 世纪：禁书与地下流传。</strong> <strong>1559 年</strong>教皇保罗四世的《禁书目录》把马基雅维利全部著作列入绝对禁止；<strong>1564 年</strong>特利腾目录再度确认（见 <code>## 33</code>）。★ 但禁令反而催生了地下印行：16 世纪后期在巴塞尔、日内瓦、伦敦等地出现托名或伪造出版地的版本。★ 这些版本细节本报告未一手核实，登记入附录 D。<span class="tag t-rep">转述</span></p>
+  <p><strong>三、17–18 世纪：被「重新发现」为共和主义者。</strong> Spinoza（1677）、Rousseau（1762）的解读（见 <code>## 33</code>），以及 17 世纪英格兰的共和主义思潮，把《君主论》放回了「共和自由」的脉络。★ 值得注意的是：这一阶段出现了一个<strong>方向相反</strong>的用法——普鲁士的腓特烈大帝（Frederick the Great）以《反马基雅维利》（<em>Anti-Machiavel</em>，1740）为题撰文反驳《君主论》；而 Gentillet 1576 年的著作后来也被通称为 <em>Anti-Machiavel</em>。<strong>同一个书名，被敌对的双方先后使用。</strong> <span class="tag t-rep">转述</span></p>
+  <p><strong>四、19 世纪：民族复兴（Risorgimento）语境。</strong> 在意大利统一运动中，马基雅维利被重新评价为<strong>爱国者与民族意识的先驱</strong>——第 26 章那句「把意大利从蛮族手中解放」，被读作对意大利民族统一的预兆。★ 这一转向的代表性学者包括 <strong>Pasquale Villari</strong> 与文学批评家 <strong>Francesco De Sanctis</strong>（★ 具体著作与年份本报告未一手核实，登记入附录 D）。<span class="tag t-rep">转述</span></p>
+  <p><strong>五、20 世纪：四本关键著作，四种读法。</strong></p>
+  <table>
+    <thead><tr><th>学者</th><th>著作</th><th>年份</th><th>读法</th></tr></thead>
+    <tbody>
+      <tr><td>Antonio Gramsci</td><td>《狱中札记》（<em>Quaderni del carcere</em>；其中论「现代君主」的笔记多写于 <strong>1932 年</strong>，全书笔记写于 <strong>1929–1935</strong>，<strong>1947 年</strong>才首度出版）</td><td>1929–1935 / 1947</td><td>把「现代君主」读作<strong>集体意志的政党</strong>，而非个人君主</td></tr>
+      <tr><td>Leo Strauss</td><td>《Thoughts on Machiavelli》</td><td><strong>1958</strong></td><td>把马基雅维利读作「邪恶的教师」，认为他有意与古典自然法决裂</td></tr>
+      <tr><td>J. G. A. Pocock</td><td>《The Machiavellian Moment》</td><td><strong>1975</strong></td><td>共和主义转向（见 <code>## 33</code>）</td></tr>
+      <tr><td>Quentin Skinner</td><td>《The Foundations of Modern Political Thought》</td><td><strong>1978</strong></td><td>共和主义转向（见 <code>## 33</code>）</td></tr>
+    </tbody>
+  </table>
+  <p>★ 此外，<strong>Isaiah Berlin「The Originality of Machiavelli」</strong>（1953 年宣读，1971 年刊出，收入 <em>Against the Current</em>, 1980）主张：马基雅维利的「原创性」在于揭示了<strong>多种价值体系之间可能无法调和</strong>。<span class="tag t-rep">转述</span></p>
+  <p><strong>六、文本流传的一个特殊之处：它比作者的其他著作流传得更广。</strong> 马基雅维利还写了《论李维》《战争的艺术》《佛罗伦萨史》与喜剧《曼陀罗》等，但<strong>被翻译、被引用、被争论得最多的，始终是这本最小的册子</strong>。★ 这一点也有反讽：Marriott 的导论提到，马基雅维利本人曾希望被雇用去整理佛罗伦萨的事务，结果得到的却是一个「写《佛罗伦萨史》」的委任——他真正被后世记住的《君主论》，在他生前从未正式出版（见下）。★ 由此可以理解为什么「接受史」对这本书格外重要：<strong>它的名声，几乎全部是在它离开作者之手以后形成的。</strong><span class="tag t-rep">转述</span></p>
+  <p><strong>七、接受史的启示。</strong> 同一本书，在 400 多年里被读成过：魔鬼的教科书（Gentillet 1576）、共和主义的密信（Rousseau 1762）、民族统一的预言（19 世纪意大利）、政治科学的开端（20 世纪）、批判对象（Strauss 1958）、共和主义转向的枢纽（Pocock 1975／Skinner 1978）。★ 这个「读法清单」本身就是本报告在 <code>## 4b</code>、<code>## 5</code> 反复强调的一件事的证明——<strong>《君主论》的争议，一半来自它写了什么，另一半来自人们想让它是什么。</strong><span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s37">
+  <h2><span class="num"></span><span>附录 A 两译本对照表</span><span class="caret">▾</span></h2>
+  <p>★ 本表英文题名<strong>逐字取自两份底本的文本</strong>（Marriott 取 #1232 目录页，Ricci 取 #57037 目录页），与 <code>## 1</code> 的章题表互证。</p>
+  <table>
+    <thead><tr><th>#</th><th>Marriott 版（#1232）章题</th><th>Ricci 版（#57037）章题</th></tr></thead>
+    <tbody>
+      <tr><td>I</td><td>HOW MANY KINDS OF PRINCIPALITIES THERE ARE, AND BY WHAT MEANS THEY ARE ACQUIRED</td><td>The various kinds of Government and the ways by which they are established.</td></tr>
+      <tr><td>II</td><td>CONCERNING HEREDITARY PRINCIPALITIES</td><td>Of Hereditary Monarchies.</td></tr>
+      <tr><td>III</td><td>CONCERNING MIXED PRINCIPALITIES</td><td>Of Mixed Monarchies.</td></tr>
+      <tr><td>IV</td><td>WHY THE KINGDOM OF DARIUS, CONQUERED BY ALEXANDER, DID NOT REBEL AGAINST THE SUCCESSORS OF ALEXANDER AT HIS DEATH</td><td>Why the Kingdom of Darius, occupied by Alexander, did not rebel against the successors of the latter after his death.</td></tr>
+      <tr><td>V</td><td>CONCERNING THE WAY TO GOVERN CITIES OR PRINCIPALITIES WHICH LIVED UNDER THEIR OWN LAWS BEFORE THEY WERE ANNEXED</td><td>The way to govern Cities or Dominions that, previous to being occupied, lived under their own Laws.</td></tr>
+      <tr><td>VI</td><td>CONCERNING NEW PRINCIPALITIES WHICH ARE ACQUIRED BY ONE'S OWN ARMS AND ABILITY</td><td>Of New Dominions which have been acquired by one's own Arms and Powers.</td></tr>
+      <tr><td>VII</td><td>CONCERNING NEW PRINCIPALITIES WHICH ARE ACQUIRED EITHER BY THE ARMS OF OTHERS OR BY GOOD FORTUNE</td><td>Of New Dominions acquired by the Power of others or by Fortune.</td></tr>
+      <tr><td>VIII</td><td>CONCERNING THOSE WHO HAVE OBTAINED A PRINCIPALITY BY WICKEDNESS</td><td>Of those who have attained the position of Prince by villainy.</td></tr>
+      <tr><td>IX</td><td>CONCERNING A CIVIL PRINCIPALITY</td><td>Of the Civic Principality.</td></tr>
+      <tr><td>X</td><td>CONCERNING THE WAY IN WHICH THE STRENGTH OF ALL PRINCIPALITIES OUGHT TO BE MEASURED</td><td>How the strength of all States should be measured.</td></tr>
+      <tr><td>XI</td><td>CONCERNING ECCLESIASTICAL PRINCIPALITIES</td><td>Of Ecclesiastical Principalities.</td></tr>
+      <tr><td>XII</td><td>HOW MANY KINDS OF SOLDIERY THERE ARE AND CONCERNING MERCENARIES</td><td>The different kinds of Militia and Mercenary Soldiers.</td></tr>
+      <tr><td>XIII</td><td>CONCERNING AUXILIARIES, MIXED SOLDIERY, AND ONE'S OWN</td><td>Of Auxiliary, Mixed, and Native Troops</td></tr>
+      <tr><td>XIV</td><td>THAT WHICH CONCERNS A PRINCE ON THE SUBJECT OF WAR</td><td>What the duties of a Prince are with regard to the Militia.</td></tr>
+      <tr><td>XV</td><td>CONCERNING THINGS FOR WHICH MEN, AND ESPECIALLY PRINCES, ARE PRAISED OR BLAMED</td><td>Of the things for which Men, and especially Princes, are praised or blamed.</td></tr>
+      <tr><td>XVI</td><td>CONCERNING LIBERALITY AND MEANNESS</td><td>Of Liberality and Niggardliness.</td></tr>
+      <tr><td>XVII</td><td>CONCERNING CRUELTY AND CLEMENCY, AND WHETHER IT IS BETTER TO BE LOVED THAN FEARED</td><td>Of Cruelty and Clemency, and whether it is better to be loved or feared.</td></tr>
+      <tr><td>XVIII</td><td>CONCERNING THE WAY IN WHICH PRINCES SHOULD KEEP FAITH</td><td>In what way Princes must keep faith.</td></tr>
+      <tr><td>XIX</td><td>THAT ONE SHOULD AVOID BEING DESPISED AND HATED</td><td>That we must avoid being despised and hated.</td></tr>
+      <tr><td>XX</td><td>ARE FORTRESSES, AND MANY OTHER THINGS TO WHICH PRINCES OFTEN RESORT, ADVANTAGEOUS OR HURTFUL?</td><td>Whether Fortresses and other things which Princes often make are useful or injurious.</td></tr>
+      <tr><td>XXI</td><td>HOW A PRINCE SHOULD CONDUCT HIMSELF SO AS TO GAIN RENOWN</td><td>How a Prince must act in order to gain reputation.</td></tr>
+      <tr><td>XXII</td><td>CONCERNING THE SECRETARIES OF PRINCES</td><td>Of the Secretaries of Princes.</td></tr>
+      <tr><td>XXIII</td><td>HOW FLATTERERS SHOULD BE AVOIDED</td><td>How Flatterers must be shunned.</td></tr>
+      <tr><td>XXIV</td><td>WHY THE PRINCES OF ITALY HAVE LOST THEIR STATES</td><td>Why the Princes of Italy have lost their States.</td></tr>
+      <tr><td>XXV</td><td>WHAT FORTUNE CAN EFFECT IN HUMAN AFFAIRS AND HOW TO WITHSTAND HER</td><td>How much Fortune can do in human affairs, and how it may be opposed.</td></tr>
+      <tr><td>XXVI</td><td>AN EXHORTATION TO LIBERATE ITALY FROM THE BARBARIANS</td><td>Exhortation to liberate Italy from the Barbarians.</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>怎么用这张表。</strong> 左列是查找用的章号（罗马数字）；中列与右列并排，可以一眼看出<strong>两译者对同一章的理解差异</strong>——例如第 VI 章，Marriott 用 <code>ABILITY</code>（能力），Ricci 用 <code>Powers</code>（权力）；第 XV 章，Marriott 用 <code>BLAMED</code>，Ricci 用 <code>blamed</code>（仅大小写不同）；第 XX 章，Marriott 用 <code>ADVANTAGEOUS OR HURTFUL?</code>，Ricci 用 <code>useful or injurious</code>（见下文第 2 条）。<strong>这些差异不是对错，而是两种译法的取舍</strong>——Marriott 更贴近意大利语的修辞，Ricci 更贴近英语的常用表达。★ 需要提醒：本表只列题名，<strong>不构成两译本全文的对照</strong>；正文的措辞差异，见 <code>## 4b</code>、<code>## 11</code>、<code>## 18</code>、<code>## 20</code>、<code>## 23</code>、<code>## 31</code>、<code>## 32</code> 各处的临时对照。</p>
+  <p>★ <strong>本轮实测的三个发现（务必记录）。</strong></p>
+  <ol>
+    <li><strong>Ricci 版目录页有编号排印错误</strong>：#57037 的目录里出现<strong>两个「16.」</strong>——实际应为 <strong>15 与 16</strong>（两条分别是「Of the things for which Men... praised or blamed」（实为第 15 章）与「Of Liberality and Niggardliness.」（实为第 16 章））。★ 其<strong>正文的 <code>CHAPTER XV</code> 与 <code>CHAPTER XVI</code> 均正确</strong>（本轮逐章核过），故这<strong>是 PG 转录本目录页所见</strong>，本报告不轻易断言是原书之误。
+    </li>
+    <li><strong>第 XX 章题名的处理</strong>：Marriott 版<strong>目录页与正文</strong>均作 <code>ADVANTAGEOUS OR HURTFUL?</code>；Ricci 版两张清单均作 <code>useful or injurious</code>。★ <strong>初稿曾据施工图（§2.2）误作 <code>USEFUL OR NOT?</code> —— 该写法在两份底本中均不存在，属施工图凭印象补全所致的错误；本轮已按底本实录改正</strong>，<code>## 1</code> 章题表、第二十章正文标题、附录 A 三处现已完全一致。
+    </li>
+    <li><strong>第 XIV 章题名内部不一致</strong>：Marriott 版<strong>目录页</strong>作 <code>THAT WHICH CONCERNS A PRINCE ON THE SUBJECT OF WAR</code>，而<strong>正文标题行</strong>作 <code>...ON THE SUBJECT OF THE ART OF WAR</code>（多出 “ART OF”）。★ 同一底本内目录与正文的差异，本报告如实并列。
+    </li>
+  </ol>
+</section>
+
+<section id="s38">
+  <h2><span class="num"></span><span>附录 B 人名与地名对照表</span><span class="caret">▾</span></h2>
+  <p>★ 本表英文名一律取自两底本原文；中文译名为本报告所拟，<strong>非逐字核对潘汉典译本</strong>。</p>
+  <table>
+    <thead><tr><th>英文名（原文）</th><th>中文</th><th>身份与在本书中的角色</th></tr></thead>
+    <tbody>
+      <tr><td>Niccolò Machiavelli</td><td>尼科洛·马基雅维利</td><td>作者；1469–1527；佛罗伦萨共和国前国务厅秘书</td></tr>
+      <tr><td>Lorenzo de' Medici（son of Piero）</td><td>洛伦佐·德·美第奇（皮耶罗之子）</td><td><strong>Urbino 公爵，1492–1519</strong>；献词的对象；★ 是「豪华者洛伦佐」的<strong>孙子</strong></td></tr>
+      <tr><td>Lorenzo de' Medici, Il Magnifico</td><td>「豪华者洛伦佐」</td><td>1449–1492；其孙即上一位；<strong>不是</strong>献词对象</td></tr>
+      <tr><td>Cesare Borgia（Duke Valentino）</td><td>切萨雷·博尔贾（瓦伦蒂诺公爵）</td><td>第 7 章的长篇案例；教皇亚历山大六世之子</td></tr>
+      <tr><td>Alexander VI</td><td>亚历山大六世</td><td>教皇；切萨雷之父，助其扩张</td></tr>
+      <tr><td>Julius II</td><td>尤利乌斯二世</td><td>教皇；第 12、13 章的雇佣军与援军双重案例</td></tr>
+      <tr><td>Louis XII</td><td>路易十二</td><td>法国国王；多次干涉意大利</td></tr>
+      <tr><td>Ferdinand of Aragon</td><td>阿拉贡的斐迪南</td><td>西班牙国王；第 21 章「新君」案例；第 18 章那位「不宜点名」者</td></tr>
+      <tr><td>Francesco Sforza</td><td>弗朗切斯科·斯福尔扎</td><td>第 1、14 章案例：因武功由平民成米兰公爵</td></tr>
+      <tr><td>Agathocles</td><td>阿加托克利斯</td><td>第 8 章案例：以邪恶之道称王</td></tr>
+      <tr><td>Oliverotto da Fermo</td><td>奥利韦罗托·达·费尔莫</td><td>第 8 章近代案例；西尼加利亚之局中被杀</td></tr>
+      <tr><td>Savonarola</td><td>萨佛纳罗拉</td><td>佛罗伦萨修士；被暗指为「无武装的先知」</td></tr>
+      <tr><td>Moses / Cyrus / Romulus / Theseus</td><td>摩西／居鲁士／罗慕路斯／忒修斯</td><td>第 6、26 章的「靠自身能力」范例</td></tr>
+      <tr><td>Pandolfo Petrucci</td><td>潘多尔福·彼得鲁奇</td><td>锡耶纳君主；第 22 章的用人之例</td></tr>
+      <tr><td>Messer Antonio da Venafro</td><td>安东尼奥·达·韦纳弗罗</td><td>彼得鲁奇之臣；「第二类智力」的例子</td></tr>
+      <tr><td>Florence</td><td>佛罗伦萨</td><td>作者的故乡与全部政治经验的现场</td></tr>
+      <tr><td>Romagna</td><td>罗马涅</td><td>切萨雷·博尔贾征服并平定的地区（第 7、17 章）</td></tr>
+      <tr><td>Milan</td><td>米兰</td><td>斯福尔扎家族的领地（第 1、14 章）</td></tr>
+      <tr><td>Naples</td><td>那不勒斯</td><td>阿拉贡系王国（第 1、24 章）</td></tr>
+      <tr><td>Ferrara</td><td>费拉拉</td><td>第 2、13 章案例；教皇尤利乌斯二世的进攻目标</td></tr>
+      <tr><td>Urbino</td><td>乌尔比诺</td><td>献词对象的公爵领；第 7 章中被反复易手</td></tr>
+      <tr><td>Siena</td><td>锡耶纳</td><td>彼得鲁奇的城邦（第 22 章）</td></tr>
+      <tr><td>Syracuse</td><td>叙拉古</td><td>阿加托克利斯的城邦（第 8 章）</td></tr>
+      <tr><td>Tuscany</td><td>托斯卡纳</td><td>佛罗伦萨所在的区域（第 7、26 章）</td></tr>
+      <tr><td>Pisa</td><td>比萨</td><td>第 5 章案例（长期受佛罗伦萨统治后仍记着自由）</td></tr>
+      <tr><td>Pistoia</td><td>皮斯托亚</td><td>第 17 章案例（佛罗伦萨人坐视其被毁）</td></tr>
+      <tr><td>Venice</td><td>威尼斯</td><td>第 2、3 章的外来威胁；第 7 章中与教皇结盟</td></tr>
+      <tr><td>Turkey</td><td>土耳其</td><td>第 4 章「君主＋臣仆」类型的代表</td></tr>
+      <tr><td>France</td><td>法国</td><td>第 4 章「君主＋诸侯」类型的代表；多次干涉意大利</td></tr>
+      <tr><td>Spain</td><td>西班牙</td><td>斐迪南的王国（第 13、18、21 章）</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s39">
+  <h2><span class="num"></span><span>附录 C 关键概念小辞典</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>意文原词</th><th>常见中译</th><th>本报告取义</th><th>提醒</th></tr></thead>
+    <tbody>
+      <tr><td><code>virtù</code></td><td>「美德」「德行」</td><td>能力、胆略、对自身手段的掌握</td><td>★★ <strong>不等于英文 virtue</strong>；可与残酷、欺骗并存（见 <code>## 12</code>、<code>## 31</code>）</td></tr>
+      <tr><td><code>fortuna</code></td><td>「命运」「幸运」</td><td>人不能完全掌控的外部变量</td><td>与<code>virtù</code>构成全书核心对置</td></tr>
+      <tr><td><code>stato</code></td><td>「国家」「政权」</td><td>兼指政权与地位</td><td>核心动作是 <em>mantenere lo stato</em>（保住政权）</td></tr>
+      <tr><td><code>principe</code></td><td>「君主」</td><td>任何新获得统治权的人</td><td>不限于世袭王者</td></tr>
+      <tr><td><code>ragione di stato</code></td><td>「国家理由」</td><td>后世对其实用思路的概括标签</td><td>★ <strong>非作者本人用语</strong>；只用其思想史意义（见 <code>## 33</code>）</td></tr>
+      <tr><td><code>milizia</code>／<code>armi proprie</code></td><td>「民兵」／「自己的军队」</td><td>君主自有的武力</td><td>第 12–14 章的核心命题（见附录 A 第 XIV 章题）</td></tr>
+      <tr><td><code>popolo</code>／<code>grandi</code></td><td>「人民」／「贵族」</td><td>城邦内部对立的两派</td><td>第 9 章的核心（见 <code>## 15</code>）</td></tr>
+      <tr><td><code>principe nuovo</code></td><td>「新君主」</td><td>新获得统治权者</td><td>全书的真正主角；不是「继承者」</td></tr>
+      <tr><td><code>sudditi</code></td><td>「臣民」</td><td>被统治者</td><td>第 19 章「两条禁令」（财产、妻女）所保护的对象</td></tr>
+      <tr><td><code>fortezze</code></td><td>「堡垒」</td><td>防御工事</td><td>第 20 章专题；其利弊取决于君主更怕人民还是外敌</td></tr>
+      <tr><td><code>fede</code></td><td>「信义」「信用」</td><td>守信与否</td><td>第 18 章核心词；Marriott 版脚注讨论过它在校订版中的删改</td></tr>
+      <tr><td><code>provvedimenti</code></td><td>「措施」「防备」</td><td>预先的准备</td><td>与<code>fortuna</code>对置的能动一面（第 25 章「修堤筑坝」）</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s40">
+  <h2><span class="num"></span><span>附录 D 待核实项</span><span class="caret">▾</span></h2>
+  <p>以下各项本报告<strong>未能一手核实</strong>，一律不作定稿式陈述，登记于此备查（★ 共 8 条，≥5 条）。</p>
+  <ol>
+    <li><strong>《君主论》1532 年初版的印行者（传为罗马的 Antonio Blado）与具体书志信息。</strong> 待核：初版的印刷者、开本、存世情况。核不了的原因：本报告的一手辖区是 PG 两份英译与意大利原文公版，均不含初版书志。可核处：各国国家图书馆善本书目、意大利 OPAC（SBN）书目。
+    </li>
+    <li><strong>16 世纪后期地下／伪造版本的具体清单</strong>（巴塞尔、日内瓦、伦敦，以及「托名 1550 Yverdon」的版本群）。待核：出版地、印行者、年份。核不了的原因：本报告未查一手书目。可核处：<em>Edit16</em>（意大利 16 世纪印本数据库）、大英图书馆书目。
+    </li>
+    <li><strong>除潘汉典译本之外的中译本信息</strong>（其他大陆译本、中国台湾地区译本的译名、译者、出版社、年份）。待核：完整译本清单。核不了的原因：本报告未一手核校各译本版权页。可核处：各出版社官方书目、国家图书馆联合目录。★ 本报告<strong>不凭记忆书写任何译名与年份</strong>。
+    </li>
+    <li><strong>19 世纪意大利复兴语境中 Villari 与 De Sanctis 评述马基雅维利的具名著作与年份。</strong> 待核：书名、初版年。核不了的原因：本报告仅见于二手概述。可核处：意大利国家图书馆书目、<em>Risorgimento</em> 研究文献。
+    </li>
+    <li><strong>Marriott 译本（#1232）所据原版的具体出版信息</strong>（出版社与初版年份）。待核：该译本首次印行的年份与出版社。核不了的原因：PG #1232 的转录未包含译本的版权页。可核处：PG #1232 的 <em>bibrec</em> 页、大英图书馆书目。
+    </li>
+    <li><strong>Ricci 译本（#57037）所据牛津版的版本沿革。</strong> 已核实者：该文本的题名页载「OXFORD UNIVERSITY PRESS」「LUIGI RICCI 译」「<strong>1909</strong>」（本轮实测所见）。可补核：该版的丛书名与重印情况。
+    </li>
+    <li><strong>第 25 章「命运是个妇人，须打她、虐待她」这一比喻的接受史与解读分歧。</strong> 待核：历代译本与研究者对这句的处理方式与评价。核不了的原因：本报告只做了两译本（Marriott／Ricci）的措辞对照，未系统查阅解读史。可核处：马基雅维利研究的专书与期刊文献（如各语种的研究综述）。
+    </li>
+    <li><strong>《君主论》正文各章「章内段落位置」的计数标准。</strong> 待核：本报告定位使用的「第 N 段」是按<strong>空白归一后的自然段</strong>计数的；由于 PG 转录把长段按行折行，<strong>不同读者用不同工具回查时，段号可能相差一两段</strong>。核不了的原因：公版电子文本无统一的分段编号。可核处：以本报告所用的两份 PG 文本为基准，按章号＋句首词语回查最为稳妥。
+    </li>
+  </ol>
+</section>
+
+<footer>
+  生成于 2026-10-13 · 来源清单与交叉验证记录见同目录 <code>君主论-来源清单.md</code><br>
+  本页引文按两级处理：<b>原文为 A 级</b>（英文据 Project Gutenberg #1232 的 Marriott 译与 #57037 的 Ricci 译双底本对照，覆盖《君主论》全 26 章正文与卷首献词；意文术语据 it.wikisource 旁证）；<b>中文引文为 C 级</b>（以潘汉典译本为代表的通行中译本均在版权期内，本报告未逐字核对中文页面，只作术语与版本对照）。★ 本书的特殊之处在于：<b>它最有名的几章（第 17、18、25 章）几乎都以「半句话」的形式在流传</b> —— 「为达目的不择手段」「君主当如狐狸与狮子」「被人畏惧比被人爱戴更安全」，都是删掉了前提与限定之后的产物；本报告的主要工作之一就是<b>把那被删掉的另半句放回原位</b>（见 `## 4b` 与第 17／18 章）。★ 另一处必须记牢：<b>`virtù` 不等于英文 virtue、更不等于中文「美德」</b> —— 它指能力、胆略、对自己手段的掌握，<b>常与残酷、欺骗并存</b>，故全书凡出现处一律保留意文原词并加注。★ 本书写的是 <b>15–16 世纪意大利的分裂与外国入侵</b>，本报告只做文本与思想史分析，<b>不作任何现实政治引申</b>。★ 请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>
