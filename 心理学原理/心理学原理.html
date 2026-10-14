@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《心理学原理》读书精华</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《心理学原理》<small>读书精华 · 2026-10-14</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 核心概念与论证链</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 版本与译本怎么选</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 逐章精读</div>
+    <a href="#s7">6 全书骨架与写作机制：一部迟到了十二年的教科书</a>
+    <a href="#s8">7 第一章  THE SCOPE OF PSYCHOLOGY</a>
+    <a href="#s9">8 第二章  THE FUNCTIONS OF THE BRAIN</a>
+    <a href="#s10">9 第三章  ON SOME GENERAL CONDITIONS OF BRAIN-ACTIVITY</a>
+    <a href="#s11">10 第四章  HABIT</a>
+    <a href="#s12">11 第五章  THE AUTOMATON-THEORY</a>
+    <a href="#s13">12 第六章  THE MIND-STUFF THEORY</a>
+    <a href="#s14">13 第七章  THE METHODS AND SNARES OF PSYCHOLOGY</a>
+    <a href="#s15">14 第八章  THE RELATIONS OF MINDS TO OTHER THINGS</a>
+    <a href="#s16">15 第九章  THE STREAM OF THOUGHT</a>
+    <a href="#s17">16 第十章  THE CONSCIOUSNESS OF SELF</a>
+    <a href="#s18">17 第十一章  ATTENTION</a>
+    <a href="#s19">18 第十二章  CONCEPTION</a>
+    <a href="#s20">19 第十三章  DISCRIMINATION AND COMPARISON</a>
+    <a href="#s21">20 第十四章  ASSOCIATION</a>
+    <a href="#s22">21 第十五章  THE PERCEPTION OF TIME</a>
+    <a href="#s23">22 第十六章  MEMORY</a>
+    <a href="#s24">23 第十七章  SENSATION</a>
+    <a href="#s25">24 第十八章  IMAGINATION</a>
+    <a href="#s26">25 第十九章  THE PERCEPTION OF 'THINGS'</a>
+    <a href="#s27">26 第二十章  THE PERCEPTION OF SPACE</a>
+    <a href="#s28">27 第二十一章  THE PERCEPTION OF REALITY</a>
+    <a href="#s29">28 第二十二章  REASONING</a>
+    <a href="#s30">29 第二十三章  THE PRODUCTION OF MOVEMENT</a>
+    <a href="#s31">30 第二十四章  INSTINCT</a>
+    <a href="#s32">31 第二十五章  THE EMOTIONS</a>
+    <a href="#s33">32 第二十六章  WILL</a>
+    <a href="#s34">33 第二十七章  HYPNOTISM</a>
+    <a href="#s35">34 第二十八章  NECESSARY TRUTHS AND THE EFFECTS OF EXPERIENCE</a>
+    <a href="#s36">35 主题与思想史：机能主义、意识流与「詹姆斯式问题」</a>
+    <a href="#s37">36 版本、译本与接受史</a>
+    <div class="grp">附录</div>
+    <a href="#s38">A 关键概念与人物速查</a>
+    <a href="#s39">B 延伸阅读</a>
+    <a href="#s40">C 来源清单</a>
+    <a href="#s41">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《心理学原理》读书精华</h1>
+  <div class="sub">阅读指引与精华解析</div>
+  <div class="meta">
+    <div><b>作者</b>William James（威廉·詹姆斯，1842–1910）</div>
+    <div><b>原题</b>The Principles of Psychology</div>
+    <div><b>初版</b>Henry Holt and Company（纽约），1890 年；两卷 28 章（Vol.1 第 I–XVI 章，Vol.2 第 XVII–XXVIII 章）</div>
+    <div><b>核验级别</b>英文原文 A 级（PG #57628／#57634 公版全文）；中文引句 C 级（未核对原著、不给页码）</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度说明</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 逐字取自 Project Gutenberg 公版全文 PG #57628（Vol.1）与 PG #57634（Vol.2），含作者自序；每条均已 grep 命中完整句子后照抄</li>
+    <li><span class="tag t-talk">作者谈话</span> 取自詹姆斯另一部书《Talks to Teachers on Psychology》(1899, PG #16287)——不是为本书做的访谈，也不是它的序，两者相隔九年</li>
+    <li><span class="tag t-rep">转述</span> 中文与二手引句，来自公开资料转引；未核对原著，不给页码</li>
+    <li><span class="tag t-inf">推断</span> 本报告自己的判断，写法如「本报告认为」</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本报告的档位边界：`【原书】` 只放詹姆斯自己写的字——两卷公版全文（PG #57628／#57634）及其自序（署名 HARVARD UNIVERSITY, August 1890）。1892 年的简编本《Psychology: Briefer Course》是另一本书，不作原书引用。「作者谈话」档取自 1899 年的教师讲演集，与本书相隔九年，不是访谈也不是序。中文引句一律标 `【转述】`，不作原文使用。凡涉及「后来被证实或证伪」的内容，均单独成段并写明年代与人名。
+  </p>
+  <h3>引文核验级别（2026-10-02 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书落在 <b>B 级（带页码引文）</b>：无公开全文，但上海译文 2016 修订版的<b>逐章页码已由独立来源核实成立</b>，另有带页码引文（<b>p.14／p.19／p.25</b>）。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p>这是一部 <strong>1890 年</strong>出版的、写给课堂的<strong>两卷本心理学教科书兼长篇论著</strong>：詹姆斯把当时能拿到的生理学、临床观察与自己的内省描写编成一个开放的体系，用「思想之流」（<code>stream of thought</code>）、「意识的选择性」（selective attention）、「习惯」（habit）、「自我」（the self）等概念，去描述<strong>心灵在做什么、在哪里卡住</strong>。它不是实验手册，也不是心灵鸡汤；用詹姆斯自己的话说，读者在书里<strong>找不到任何封闭的体系</strong>，它「主要是一堆描写性的细节」。读懂它的关键是：<strong>把它当 1890 年的书读</strong>——其中关于大脑的相当一部分内容在当时就是推测，今天大多已被取代。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>全书 28 章，分两卷。詹姆斯在自序里把它分成三大块，并给初学者开了一张「跳读清单」。</p>
+  <p><strong>第一块：生理学预备（第 I–VIII 章）。</strong> 从「心理学是心理生活的科学」说起（第 I 章），接着讲大脑的功能（第 II 章）、脑活动的一般条件（第 III 章）、习惯（第 IV 章），再转入两个形而上学色彩最重的章节——自动机理论（第 V 章）与心质理论（第 VI 章）；第 VII 章是全书的「方法章」，著名的 <code>the psychologist's fallacy</code> 与内省法都出自这里；第 VIII 章讨论心灵与其他事物的关系，处理「我们是否曾经完全无意识」这类问题。</p>
+  <p><strong>第二块：心灵本身（第 IX–XVI 章，仍属 Vol. 1）。</strong> 第 IX 章 The Stream of Thought 是全书的枢纽，提出「思想之流」；第 X 章 The Consciousness of Self 提出「经验自我」（<code>the empirical self</code>）；第 XI 章 Attention 讲注意的「聚焦与边际」；第 XII–XIV 章是认识操作三连——概念、辨别与比较、联想；第 XV 章讲时间知觉与「似是而非的现在」；第 XVI 章讲记忆。</p>
+  <p><strong>第三块：从感觉到行动（第 XVII–XXVIII 章，Vol. 2）。</strong> 第 XVII 章感觉、第 XVIII 章想象、第 XIX 章「物」的知觉、第 XX 章空间知觉（詹姆斯自称 Space-perception 是「一件可怕的东西」）、第 XXI 章实在性的知觉、第 XXII 章推理，然后转入行动一侧：第 XXIII 章运动的产生、第 XXIV 章本能、第 XXV 章情绪、第 XXVI 章意志，最后是第 XXVII 章催眠术与第 XXVIII 章必然真理与经验的效果。</p>
+  <p><strong>28 章一览（英文原题照抄底本）。</strong></p>
+  <table>
+    <thead><tr><th>卷·章</th><th>英文原题</th><th>一句话</th></tr></thead>
+    <tbody>
+      <tr><td>Vol.1 I</td><td>THE SCOPE OF PSYCHOLOGY</td><td>心理学是「心理生活的科学」，兼谈方法与身心关系</td></tr>
+      <tr><td>Vol.1 II</td><td>THE FUNCTIONS OF THE BRAIN</td><td>脑的构造与功能；颅相学的构想及其破产</td></tr>
+      <tr><td>Vol.1 III</td><td>ON SOME GENERAL CONDITIONS OF BRAIN-ACTIVITY</td><td>神经组织的属性：刺激的累积、抑制、疲劳</td></tr>
+      <tr><td>Vol.1 IV</td><td>HABIT</td><td>生物是「一束习惯」；习惯是「社会的巨大飞轮」</td></tr>
+      <tr><td>Vol.1 V</td><td>THE AUTOMATON-THEORY</td><td>若神经系统自动运转，意识还有什么用</td></tr>
+      <tr><td>Vol.1 VI</td><td>THE MIND-STUFF THEORY</td><td>纯形而上学：意识能否由「心质」拼成</td></tr>
+      <tr><td>Vol.1 VII</td><td>THE METHODS AND SNARES OF PSYCHOLOGY</td><td>内省法与「心理学家的谬误」</td></tr>
+      <tr><td>Vol.1 VIII</td><td>THE RELATIONS OF MINDS TO OTHER THINGS</td><td>心灵与时间、空间、他心的关系</td></tr>
+      <tr><td>Vol.1 IX</td><td>THE STREAM OF THOUGHT</td><td>全书枢纽：思想之流及其五个特征</td></tr>
+      <tr><td>Vol.1 X</td><td>THE CONSCIOUSNESS OF SELF</td><td>经验自我（物质我、社会我、精神我）与纯粹自我</td></tr>
+      <tr><td>Vol.1 XI</td><td>ATTENTION</td><td>注意即选择；聚焦与边际</td></tr>
+      <tr><td>Vol.1 XII</td><td>CONCEPTION</td><td>「同一感」是思维的龙骨</td></tr>
+      <tr><td>Vol.1 XIII</td><td>DISCRIMINATION AND COMPARISON</td><td>辨别与比较：差异如何被觉知</td></tr>
+      <tr><td>Vol.1 XIV</td><td>ASSOCIATION</td><td>观念的联想：邻近律与相似律</td></tr>
+      <tr><td>Vol.1 XV</td><td>THE PERCEPTION OF TIME</td><td>时间知觉与「似是而非的现在」</td></tr>
+      <tr><td>Vol.1 XVI</td><td>MEMORY</td><td>记忆的机制、保持力与回忆的条件</td></tr>
+      <tr><td>Vol.2 XVII</td><td>SENSATION</td><td>感觉与知觉的区分</td></tr>
+      <tr><td>Vol.2 XVIII</td><td>IMAGINATION</td><td>想象：感觉的复本如何再生</td></tr>
+      <tr><td>Vol.2 XIX</td><td>THE PERCEPTION OF 'THINGS'</td><td>我们如何知觉「物」</td></tr>
+      <tr><td>Vol.2 XX</td><td>THE PERCEPTION OF SPACE</td><td>空间知觉（詹姆斯自称最难的一章）</td></tr>
+      <tr><td>Vol.2 XXI</td><td>THE PERCEPTION OF REALITY</td><td>相信与实在感；信念的情感底色</td></tr>
+      <tr><td>Vol.2 XXII</td><td>REASONING</td><td>推理与「聪敏」（sagacity）</td></tr>
+      <tr><td>Vol.2 XXIII</td><td>THE PRODUCTION OF MOVEMENT</td><td>任何感受都倾向产生运动</td></tr>
+      <tr><td>Vol.2 XXIV</td><td>INSTINCT</td><td>本能的定义、清单与「人比兽本能更多」</td></tr>
+      <tr><td>Vol.2 XXV</td><td>THE EMOTIONS</td><td>情绪是对身体变化的感受</td></tr>
+      <tr><td>Vol.2 XXVI</td><td>WILL</td><td>意动动作；意志的努力即注意的努力</td></tr>
+      <tr><td>Vol.2 XXVII</td><td>HYPNOTISM</td><td>催眠的诱导方式与易感性</td></tr>
+      <tr><td>Vol.2 XXVIII</td><td>NECESSARY TRUTHS AND THE EFFECTS OF EXPERIENCE</td><td>必然真理与经验的效果</td></tr>
+    </tbody>
+  </table>
+  <p>★ 第 IX 章与第 XV 章的<strong>目录页</strong>行末挂着页码（<code>, 224</code>、<code>, 605</code>），那是排版残留，题名分别止于 THOUGHT／TIME；正文标题行里<strong>没有</strong>这些数字。本报告一律采用<strong>正文标题行</strong>的逐字形式。</p>
+  <p><strong>为什么这样分。</strong> 若把三块看成一条流水线，它的走向是：<strong>先立规矩（I–VIII）→ 再讲心灵怎么运作（IX–XVI）→ 最后把它接到世界里去（XVII–XXVIII）</strong>。这也解释了詹姆斯为什么把「空间知觉」这类看起来最「生理」的内容放在第二卷——因为在全书的结构里，「物」与「空间」是心灵<strong>向外接上世界</strong>的第一步，而不是预备知识。★ 顺带说明一个读法上的便利：第一卷后半（IX–XVI）自成一个小循环——意识是什么（IX）、属于谁（X）、怎么选（XI）、怎么定型（XII–XIV）、怎么定位在过去（XV–XVI）；第二卷（XVII–XXVIII）则是另一个循环——外物如何进来（XVII–XXI）、如何被处理成知识（XXII）、又如何变回动作（XXIII–XXVI）。能看出这两个循环，全书的骨架就算读通了。</p>
+  <p><strong>两卷的分界为什么落在第 XVI 与第 XVII 章之间。</strong> 一个容易被忽略的细节：两卷的切分<strong>不在</strong>「生理／心理」之间，而在<strong>「意识的内部结构」与「心灵同世界的接口」</strong>之间。第一卷（I–XVI）处理的是心灵<strong>自身</strong>——它的器官（脑）、它的形态（流）、它的归属（自我）、它的操作（注意、概念、辨别、联想、时间、记忆）；第二卷（XVII–XXVIII）则几乎全在处理心灵<strong>与外界的关系</strong>——感觉如何进来、物与空间如何被构成、信念如何贴附于实在、观念如何泄为运动。★ 换句话说，若只读到第十六章，读者会以为心理学是一门研究「内部舞台」的学问；读完全书才会发现，詹姆斯的真正关切是<strong>心灵怎样嵌进一个它并不创造的世界里</strong>。本报告的读法（<span class="tag t-inf">推断</span>）是：第一卷回答「意识是什么样」，第二卷回答「意识做什么用」。★ 另需提醒：<strong>各章长短极不平均</strong>——第 XX 章（空间知觉）是全书中篇幅最长的一章，而第 XXIII 至 XXVI 章（运动、本能、情绪、意志）四章合起来才抵得上前者。这种不平均不是疏忽，而是材料难易的真实反映。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>核心概念与论证链</span><span class="caret">▾</span></h2>
+  <p>全书的论证链可以概括成一句话：<strong>先把心灵当成一个整体来描写，再从「它和身体、和外界怎么互动」去问它能做什么。</strong> 四个关键概念构成骨架。</p>
+  <p><strong>其一，<code>stream of thought</code>（思想之流）。</strong> 这是全书的枢纽隐喻。詹姆斯反对把意识看成「链」或「串」（chain／train）——那是一节节拼起来的；意识的本来面目是流动的、连续的。第 IX 章第 43 段给出最著名的表述：意识「并不把自己显现为被切成碎片的样子」，它不是接榫的，「它流动」，比喻是「河」或「流」。★ 必须注意：<strong>同一句话里詹姆斯也写了 consciousness 一词</strong>，他说「此后让我们把它叫做思想之流、意识之流，或主观生活之流」（the stream of thought, of consciousness, or of subjective life）。所以把 <code>stream of thought</code> 与 <code>stream of consciousness</code> 截然对立、说「詹姆斯只用了前一个」并不准确（详见 <code>## 4b</code>）。</p>
+  <p><strong>其二，选择性注意。</strong> 如果说「流」是意识的形态，那么「注意」就是意识的动作。第 XI 章开篇把注意定义为「心灵对一个对象的清晰而鲜明的占有」，其本质是<strong>聚焦（focalization）与集中（concentration）</strong>，代价是<strong>从其他事物上抽身</strong>。这条线把知觉（第 XIX–XXI 章）、意志（第 XXVI 章）串在一起：意志的努力，在詹姆斯看来主要就是<strong>注意的努力</strong>。</p>
+  <p><strong>其三，习惯。</strong> 第 IV 章把生物定义为「一束习惯」（bundles of habits），并提出那句最常被引用的话：习惯是「社会巨大的飞轮」（the enormous fly-wheel of society）。习惯把行为自动化，从而把注意力省下来给别处。</p>
+  <p><strong>其四，行动与情绪。</strong> 第 XXIII 章主张「任何感受都倾向于产生运动」；第 XXVI 章把那些「想到就做、无需额外意志指令」的动作命名为 <code>ideo-motor action</code>（观念运动动作）；第 XXV 章则提出<strong>情绪是对身体变化的感受</strong>——常被简化为「先哭后悲伤」，原话与限定条件见 <code>## 4b</code> 与 <code>## 32</code>。</p>
+  <p><strong>这条链是怎么走的。</strong> 把四者串起来看：意识是<strong>流</strong>（形态），流里被选中的部分靠<strong>注意</strong>（动作），反复的注意―行为耦合固化为<strong>习惯</strong>（沉淀），而<strong>情绪与意志</strong>则是这条链在两端的出口——一端是身体状态回灌给心灵，另一端是观念直接泄为动作。詹姆斯的思路始终是<strong>从功能出发</strong>：不问「意识由什么元素组成」，而问「意识在有机体的适应里做什么」。这就是他与当时构造主义（把意识拆成元素）最根本的分野，也是后世把本书看成<strong>机能主义</strong>兴起里程碑的原因（★ 这是<strong>后人</strong>的历史定位，不是詹姆斯的自我标签）。</p>
+  <p><strong>第 IX 章自报的「五个特征」</strong>，是全章提纲，也是理解后文的钥匙：思想（1）倾向于个人形式（personal form）；（2）永远在变化（always changing）；（3）是连续的（continuous）；（4）被认为是对独立于它的对象的认识（deals with objects independent of itself）；（5）总是在选择（always interested in some parts and rejecting others）。第 IX 章随后逐条展开这五点，「思想之流」那句名言的语境正是第（3）条「连续」。★ 顺带记住一个易被忽略的半成品概念：詹姆斯把思维里那些<strong>环绕实体的、模糊的、关系性的部分</strong>称为 <strong>fringe</strong>（边际／边缘），认为我们「对事物关系的觉知」大多发生在这种模糊带里，而非清晰意象里——这是全书被引用得最多、也最常被后人（如 20 世纪的格式塔与现象学心理学）拿去使用的说法之一。</p>
+  <p><strong>为什么以情绪与意志收尾。</strong> 一个常被忽略的结构问题：如果全书的主题是「意识如何流动」，为什么最后一章正题落在情绪（第 XXV 章）和意志（第 XXVI 章）上？本报告的读法（<span class="tag t-inf">推断</span>）是——因为詹姆斯要从<strong>两个方向</strong>回答同一个问题：<strong>心灵如何与身体、与行动接通</strong>。情绪是<strong>由身体回到心灵</strong>的那一路（身体变化先行，感受随后），意志是<strong>由心灵走向身体</strong>的那一路（观念直接泄为动作）。两头合起来，正好把第一卷开头那条「一切心理变化都伴随身体变化」的通则补全了。★ 第 XXVII 章（催眠）与第 XXVIII 章（必然真理）因此可以看作两个「附录性」的收尾：一个处理异常的暗示通路，一个处理「这些结构从哪来」。</p>
+  <p><strong>为什么「选择」是整本书的总开关。</strong> 把上面四者再收束一下，会看到一条更底层的线索：<strong>心灵从根子上是一个选择装置</strong>。第 IX 章说思想「总是在选择——总是对某些部分感兴趣而排斥另一些」；第 XI 章把这条落实为注意的聚焦与边际；第 XIV 章则说明所谓「联想」不是被动地把观念粘起来，而是<strong>在被注意选中的材料上</strong>建立联系。詹姆斯由此得出一个反构造主义的结论（<span class="tag t-inf">推断</span>）：如果意识<strong>总是</strong>在挑拣，那么就不可能存在一种「未经挑选的、纯粹给予的」意识内容——「纯粹的知觉」是一个从未被观察到的假设物。★ 这也解释了本书为什么对「心理元素」这么不耐烦：他要描写的不是被切碎的元素，而是<strong>一个始终在做取舍、始终有偏向的活的过程</strong>。读者若只记住一句话，记住这一句：在詹姆斯这里，<strong>注意不是心灵的若干功能之一，而是心灵的运作方式本身</strong>。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>按詹姆斯的自序读。</strong> 他在自序里明确建议初学者<strong>首读时跳过第 6、7、8、10（第 10 章只跳其中一部分）、12、13、15、17、20、21、28 章</strong>，并说「明智的顺序」也许是<strong>从第 4 章直接跳到第 23、24、25、26 章</strong>，再回到第一卷。这条建议本身就是一份最好的导读。
+    </li>
+    <li><strong>先读「散文」再读「生理」。</strong> 第 IX、X、XI、XXV、XXVI 五章最能代表詹姆斯的笔法（描写＋判断），也最少依赖 1890 年的脑解剖细节。把第 II、III 章当作<strong>历史材料</strong>读，而不是当作今天的神经科学。
+    </li>
+    <li><strong>准备两套标签。</strong> 读到涉及「脑区」「反射弧」的段落，提醒自己那是<strong>当时的推测</strong>；读到涉及「意识」「注意」「习惯」的段落，才把詹姆斯当作可对话的作者。
+    </li>
+    <li><strong>不要把它读成自我提升指南。</strong> 第 IV 章（习惯）与第 XI 章（注意）常被提炼成「如何养成好习惯／如何专注」，但詹姆斯写的是<strong>描述</strong>：习惯为什么是「飞轮」，注意为什么必然是「选择」——不是操作手册。
+    </li>
+    <li><strong>对照着读。</strong> 想验证詹姆斯的说法，最省事的办法是回到 PG #57628／#57634 的两卷全文（合法免费），或读 1892 年的简编本（见下节）。
+    </li>
+    <li><strong>别跳过自序。</strong> 那篇署名 1890 年 8 月的《PREFACE》只有五六段，却交代了三件要紧的事：本书从课堂讲义长出来、它自认是「自然科学」而非形而上学、以及那张「初学者跳读清单」。读序言比读任何二手导论都划算。
+    </li>
+    <li><strong>把术语当路标。</strong> 全书的几个核心词最好记住<strong>英文原形</strong>，因为中文译法不统一、容易被后世的用法带偏：<code>stream of thought</code>（思想之流，<strong>不是</strong>文学界的「意识流技法」）、<code>the psychologist's fallacy</code>（心理学家的谬误）、<code>the empirical self</code>（经验自我）、<code>ideo-motor action</code>（观念运动动作）、<code>the automaton-theory</code>（自动机理论）、<code>the mind-stuff theory</code>（心质理论）。附录 A 有逐条对照。
+    </li>
+    <li><strong>给它一个「年代护栏」。</strong> 每当读到关于脑、神经、本能的断言，先问一句：<strong>这是 1890 年的知识状态吗？</strong> 是，就放回历史语境；凡本报告指出「后来如何」，一定写明年代与人名，并单独成段。
+    </li>
+  </ol>
+  <ol>
+    <li><strong>把本报告当「对照表」用，不要当「替代品」。</strong> 它给的是<strong>定位</strong>（哪一章、第几段）与<strong>边界</strong>（哪些是 1890 年的推测）；真正的阅读仍需回到原文。本报告刻意<strong>不复述</strong>每一章的细节，只标出可对话的论点与可核的出处。
+    </li>
+    <li><strong>对「金句」保持警惕。</strong> 本书最出名的几句话（意识像河流、先哭后悲伤、习惯是飞轮）都出现在<strong>长段落</strong>里，且都带着限定条件。本报告在 <code>## 4b</code> 与各章的「可疑之处」里逐一标出，建议读者在引用之前先回到该段的上下文。
+    </li>
+    <li><strong>先读自序列出的「跳读清单」，再决定读法。</strong> 詹姆斯不是让所有人都跳读——他是给<strong>初学者</strong>开的单子。若已有一点心理学背景，第二卷的知觉三章（第 XIX–XXI）反而最值得细读，因为它们最能显示「从零散的感料到『一个物』」这段构成过程是怎么被描写出来的。
+    </li>
+    <li><strong>两卷分开买、分开读也行。</strong> 两卷在内容上各有重心（见 <code>## 1</code> 末尾），不必强求一口气读完；第一卷后半与第二卷可以分别当作「意识的结构」与「心灵与世界」两本书来读。★ 唯一不建议的读法是<strong>只读第一卷</strong>——那样会把一个开放的、面向行动的体系，误读成一套封闭的内部心理描写。
+    </li>
+  </ol>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>版本与译本怎么选</span><span class="caret">▾</span></h2>
+  <p><strong>先记住一件事：中文没有全译本。</strong> 目前通行的两个中文本<strong>都是选译</strong>，而且<strong>选目不同</strong>：</p>
+  <ul>
+    <li><strong>唐钺《心理学原理》（选译）</strong>，商务印书馆，<strong>1963 年 9 月</strong>初版，425 页，<strong>选译 7 章</strong>：第 1 册的第 <strong>4、7、8、9、10</strong> 章 ＋ 第 2 册的第 <strong>25、26</strong> 章（即「习惯／心理学的方法与陷阱／心灵与其他事物的关系／思想之流／自我意识／情绪／意志」）。其中「习惯」「思想流」「情绪」三章<strong>解放前</strong>已单独印行。
+    </li>
+    <li><strong>田平 译</strong>（中国城市出版社，「了如指掌·西学正典」系列）：<strong>选译本</strong>，据译者后记，重译的是<strong>第一章至第九章</strong>。
+    </li>
+  </ul>
+  <p>★ 这两条来自公开书目与公开评述（孔夫子旧书网书目页、搜狗百科词条、中国社会科学网评述文章、译者后记转述），<strong>均未逐册核对</strong>，写法上按 <span class="tag t-rep">转述</span> 处理。</p>
+  <p><strong>推论（本报告自己的判断，标记为 <span class="tag t-inf">推断</span>）：</strong></p>
+  <ol>
+    <li>想读<strong>全部 28 章</strong>，只能读英文。PG #57628（Vol. 1）＋ #57634（Vol. 2）是合法免费的全文，也是本报告的底本。
+    </li>
+    <li>两个中文选本<strong>不可互相替代</strong>：唐钺的重点在「习惯—方法—自我—情绪—意志」，田平的重点在<strong>前九章</strong>。要拼出接近全貌的中文阅读面，需要两本合看，但仍会缺第 XI–XXIV、XXVII、XXVIII 章。
+    </li>
+  </ol>
+  <p><strong>关于 1892 年简编本（这也是另一本书）。</strong> 1890 年两卷本出版后，出版商请詹姆斯做一本更小的课堂用书，于是有了 1892 年的《Psychology: Briefer Course》（英国版题为 <em>Text-Book of Psychology</em>）。据哈佛版编者说明与当年的书评，其删改幅度可概括为：<strong>「大约五分之二的内容是新写或重写的，其余是『剪刀加浆糊』」</strong>；他删掉了全部论战性、历史性与形而上学的段落，删掉了「实在性的知觉」（The Perception of Reality）整整一章，另<strong>新增了几章讲各种感觉的生理</strong>；<strong>章题也从「The Stream of Thought」改成了「The Stream of Consciousness」</strong>。★ 这本简编本在 1902 年前的销量是原著的好几倍，是当时美国课堂真正用的书（<span class="tag t-rep">转述</span>，来源见《来源清单》）。<strong>但它不是《心理学原理》</strong>，引用时不能当原书文字用。</p>
+  <p><strong>为什么中文全译本长期缺位。</strong>（<span class="tag t-inf">推断</span>）有三重原因可以想见：其一，<strong>体量与密度</strong>——两卷近一千四百页，且夹着大量 19 世纪的生理学与形而上学论证，翻译成本极高；其二，<strong>术语与文体的双重难题</strong>——詹姆斯的句子口语化、比喻多，又随手切换德、法文献，既要译准术语，又要保住他那种「边写边想」的语气，很难两全；其三，<strong>学术需求的分流</strong>——国内心理学界更常直接读英文或读二手教材，中文全译本的刚需因此不强。★ 由此产生的一个实际后果：中文读者接触到的「詹姆斯」，往往是<strong>金句版的詹姆斯</strong>（几句被反复转引的名言），而不是被完整逻辑包裹的詹姆斯。这正是本报告在 <code>## 4b</code> 逐条标出「流行说法 vs 原文」的原因。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>流行说法</th><th>原文／实际情形</th><th>定位</th></tr></thead>
+    <tbody>
+      <tr><td>「詹姆斯创造并只使用『意识流』（stream of consciousness）一词」</td><td>他的章题是 <code>THE STREAM OF THOUGHT</code>；但<strong>同一句</strong>里他也写了 consciousness：「此后让我们把它叫做思想之流、意识之流，或主观生活之流」（…let us call it the stream of thought, of consciousness, or of subjective life）。此外，本卷全文里 <code>stream of consciousness</code> 短语另出现 8 次（含一幅插图题名 FIG. 29.--The Stream of Consciousness）。★ 另有公开资料称该短语更早见于 Alexander Bain（1855），此点列为待核实（附录 D）。</td><td>第 IX 章，第 43 段</td></tr>
+      <tr><td>「詹姆斯主张情绪就是身体反应，即『先哭后悲伤』」</td><td>原文确有此句，但他把它限定在 <strong>the coarser emotions（较粗的情绪）</strong>，且强调「若不这样设想，那些身体状态就不会跟随」，并提示「就这样粗率地说出来，这个假设几乎肯定会立刻遭到不信」。这不是一句口号，而是一个带条件的假设。</td><td>第 XXV 章，第 19 段</td></tr>
+      <tr><td>「《心理学原理》是一本实验心理学手册」</td><td>实为<strong>教科书兼论著</strong>。詹姆斯自序说全书因课堂讲义而生，却因「排除快乐与痛苦、道德与审美情感与判断」之后仍膨胀到约一千四百页；他明说「读者在本书里找不到任何封闭的体系」。</td><td>《PREFACE》，自序第 1–5 段</td></tr>
+      <tr><td>「詹姆斯预见了现代神经科学」</td><td>本书 1890 年写就，其中脑区定位、反射弧等当时即推测，今天大多被取代。凡涉及「后来被证实／证伪」，本报告一律写在独立段落并标明年代与人名（见 <code>## 5</code> 与各章）。</td><td>全书；例见第 II 章</td></tr>
+      <tr><td>「『意识流』是詹姆斯发明的心理学术语」</td><td>本报告不能证实。公开资料两说并存：一说是詹姆斯普及了它，另一说更早的出处是 Alexander Bain《The Senses and the Intellect》（1855）。本书<strong>章题</strong>用的是 <code>stream of thought</code>。</td><td>第 IX 章题；详见附录 D</td></tr>
+      <tr><td>「詹姆斯的书是实用主义宣言」</td><td>实用主义（<em>Pragmatism</em>，1907）是<strong>本书之后</strong>的另一本书、另一个主题。本书自序自称立场是严格的实证的（strictly positivistic），并说「心理学……作为自然科学不能再往前走了」。</td><td>《PREFACE》自序第 6 段</td></tr>
+      <tr><td>「读这本书要从头到尾按顺序读」</td><td>詹姆斯本人在自序里建议初学者<strong>首读时跳过 11 章</strong>（6、7、8、10、12、13、15、17、20、21、28），并说也许「明智的顺序」是从第 4 章跳到第 23–26 章再回头。</td><td>《PREFACE》自序第 1 段</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p><strong>一、脑定位之争：詹姆斯对颅相学与「脑区定位」的态度，以及其后的评价。</strong> 第 II 章有一节专论「颅相学的构想」（THE PHRENOLOGICAL CONCEPTION），詹姆斯的写法是<strong>把它当作已被推翻的旧说</strong>来处理，同时认真对待「功能是否定位于脑」的问题。★ 后来的评价（本报告据 Wikiwand「The Principles of Psychology」词条转引哲学家 Helmut R. Wagner 的意见）指出：本书<strong>具体</strong>的假设与观察「现在都已十分过时」，但<strong>最宽泛的结论</strong>——越往下走的脑中心越专门化、越往上（大脑）越灵活、越少定位——「仍然有效」（<span class="tag t-rep">转述</span>，Wagner 年份未标，待核实）。</p>
+  <p><strong>二、「詹姆斯—兰格情绪理论」与 Cannon 的批评。</strong> 詹姆斯本人的说法见第 XXV 章第 19 段；丹麦医生 <strong>Carl Georg Lange</strong>（卡尔·朗格，1834–1900，哥本哈根大学病理解剖学教授）<strong>1885 年</strong>在丹麦文著作《Om Sindsbevægelser》（《论情绪》）中<strong>独立</strong>提出相近论断（詹姆斯则于 <strong>1884 年</strong>在期刊 <em>Mind</em> 发表〈What is an Emotion?〉）。★ <strong>这是本书之后的进展</strong>：美国生理学家 <strong>Walter B. Cannon</strong> 于 <strong>1927 年</strong>在 <em>The American Journal of Psychology</em> 第 39 卷发表〈The James-Lange Theory of Emotions: A Critical Examination and an Alternative Theory〉，提出五条反驳（生理反应太慢、太不分型、切断内脏反馈后情绪仍在、注射肾上腺素不足以产生情绪等），并与其学生 Philip Bard 提出「坎农—巴德理论」。本报告据此把这一节的争议写成「<strong>后世如何质疑</strong>」，而非「詹姆斯早已预见」。</p>
+  <p><strong>三、「意识流」被文学界借用的过程与术语偏移。</strong> ★ <strong>这是本书之后的进展</strong>：<strong>1918 年 4 月</strong>，英国评论家 <strong>May Sinclair</strong> 在文学杂志 <em>The Egoist</em> 上评论 <strong>Dorothy Richardson</strong> 的小说系列《Pilgrimage》时，<strong>第一次</strong>把 psychological 语汇里的「stream of consciousness」用于<strong>文学</strong>（「It is Miriam Henderson's stream of consciousness going on and on」）。此后该短语成为现代主义小说技法的标签，并波及 James Joyce、Virginia Woolf 等。有趣的是，Richardson 本人拒绝这个词，称它是「一个糊涂的短语」。本报告因此区分：<strong>心理学里的 <code>stream of thought</code>／意识连续性</strong> 与 <strong>文学批评里的「意识流技法」</strong>是两回事。</p>
+  <p><strong>四、本书的种族、性别与退化论话语。</strong> 作为 19 世纪晚期的著作，《心理学原理》里夹带着当时常见的预设：它把「野蛮人、婴儿、疯人、白痴、聋盲人」（savages, infants, madmen, idiots, the deaf and blind）并置为「比较方法」的对照材料（第 VII 章，第 39 段），并在本能等章节反复以「种族」与「文明程度」作类比。本报告<strong>如实指出而不掩饰</strong>：这些是 <strong>19 世纪的常见预设</strong>，不是可沿用的结论；阅读时应把它们与可检验的心理描写分开。（★ 具体的、可点名的当代批评文献，本报告未核到，列为附录 D 待核实项。）</p>
+  <p><strong>五、「心理学是否该做实验」的方法论之争。</strong> 詹姆斯对<strong>实验心理学</strong>的态度常被两极化。事实是：他在哈佛也做演示实验（第 II 章等章大量引用实验数据），但同时对他所称的「铜制仪器心理学」（brass instrument psychology）抱有保留；而 Wundt 的莱比锡实验室则以<strong>严格控制的实验</strong>为纲领。★ 史学上的一个重要更正来自 <strong>Kurt Danziger（1980）</strong>：他检索 Wundt 主办的 <em>Philosophische Studien</em>（1883–1903）全部约 180 篇实验室报告，发现<strong>只有 4 篇</strong>含内省报告，说明后世把 Wundt 简单打成「内省主义之父」是一种误读（出处：<em>Points of View in the Modern History of Psychology</em> 一书所收 Danziger 研究）。<strong>James 与 Wundt 的分歧，不在「要不要实验」，而在把实验放在什么位置。</strong></p>
+  <p><strong>六、简编本（1892）与原著的关系：教学史上的「到底该读哪本」。</strong> 1892 年的《Briefer Course》删去五分之三以上的原文、另加感觉生理内容，却在课堂里比原著更流行（被学生昵称为「Jimmy」，原著被叫作「James」）。★ 当年的书评（<em>The Philosophical Review</em> 第 1 卷，<strong>1892 年</strong>）特别惋惜它<strong>删掉了「实在性的知觉」这一整章</strong>。争点至今未定：是把简编本当入门、原著当进阶，还是直接读原著。本报告的立场（<span class="tag t-inf">推断</span>）是：<strong>要讨论詹姆斯的思想，只能用 1890 年原著；简编本只能用来讨论「版本与接受史」。</strong></p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>全书骨架与写作机制：一部迟到了十二年的教科书</span><span class="caret">▾</span></h2>
+  <p><strong>写作机制：讲义长成了巨著。</strong> 詹姆斯的自序开篇就把这部书的身世交代清楚了：它「主要是围绕作者在课堂上的心理学教学长出来的」（The treatise which follows has in the main grown up in connection with the author's class-room instruction in Psychology，<span class="tag t-src">原书</span>，《PREFACE》，第 1 段）。有些章节「更偏形而上学」，有些则「细节更多」，都不适合初学的学生；结果它长成了一千四百页的两卷本。他自己调侃：「在这个拥挤的时代，一个作者若指望有人读他一连一千四百页的稿子，那这人想必真是乐观」（The man must indeed be sanguine who, in this crowded age, can hope to have many readers for fourteen hundred continuous pages from his pen，同段）。他还坦承，全书「完成得如此之慢」，以致有若干章曾先后在刊物上发表过。</p>
+  <p><strong>「十二年」这个数字从哪来。</strong> 公开的出版史叙述一致地给出这样一条时间线：<strong>1878 年</strong>詹姆斯与出版商 <strong>Henry Holt</strong> 签约写一部心理学教科书（同年 7 月他与 Alice Gibbens 结婚），此后写了<strong>约十二年</strong>，到 <strong>1890 年</strong>才出版。★ 本报告据此把「十二年」理解为 <strong>1878 年签约 → 1890 年出版</strong> 的间隔；<strong>这条时间线不在《心理学原理》正文里，不属于 <span class="tag t-src">原书</span> 辖区</strong>，来源为公开出版史叙述（见《来源清单》）。书内可核的只有自序末尾的署名：<strong>HARVARD UNIVERSITY, August 1890</strong>。</p>
+  <p><strong>出版背景的时间点。</strong> 据公开出版史叙述，书稿在 1890 年 5 月交到 Holt 手中，Holt 于 <strong>1890 年 9 月 25 日</strong>开始发行这套两卷本（每套 6 美元，批发折后 5 美元）（<span class="tag t-rep">转述</span>）。★ 另有一处公开叙述写作「1890 年 10 月出版」，与 9 月说冲突，本报告<strong>两说并列</strong>，并把「确切出版月份」登记进附录 D。可核的锚点是自序的 <strong>1890 年 8 月</strong>与实际发行的 <strong>9 月</strong>。</p>
+  <p><strong>它不是封闭体系。</strong> 自序里最要紧的一句是：「读者在本书里将徒然地寻找任何封闭的体系。它主要是一堆描写性的细节，延伸出许多问题，而这些问题只有一种对自身任务之分量有清醒意识的形而上学才有望成功处理」（It is mainly a mass of descriptive details, running out into queries which only a metaphysics alive to the weight of her task can hope successfully to deal with，<span class="tag t-src">原书</span>，《PREFACE》，第 3 段）。★ 这句话是全书的<strong>读法说明书</strong>：詹姆斯不打算给你一个完成品，他给的是<strong>一堆被认真描述过的现象</strong>加上<strong>诚实标出的边界</strong>。自序还给出那条最实用的建议：初学者首读时可以跳过第 6、7、8、10（第 10 章只跳其中一部分）、12、13、15、17、20、21、28 章。</p>
+  <p><strong>结构上的两卷与三块。</strong> 见 <code>## 1</code>。此处只补一句机制上的观察（<span class="tag t-inf">推断</span>）：第一卷后半（第 IX–XVI 章）与第二卷（第 XVII–XXVIII 章）共享同一套语汇——「选择」「连续」「习惯」「身体状态」。詹姆斯把<strong>认识</strong>与<strong>行动</strong>放在同一条链上：从感觉进来，经注意与联想，到观念泄为动作（第 XXIII、XXVI 章），中间用情绪（第 XXV 章）把身体状态回灌给心灵。</p>
+  <p><strong>「讲义长成巨著」带来的一处文体后果。</strong>（<span class="tag t-inf">推断</span>）正因为本书是从课堂上长出来的，它保留了一种<strong>口语的、边想边说的语气</strong>——詹姆斯会在一个段落里先给出一个漂亮的概括，随即自己补上限制条件，甚至当场反驳自己。这既是它好读的原因，也是它常被断章取义的原因：单独摘出一句，往往就丢掉了紧随其后的那一句限定。★ 本报告因此反复强调「回到该段上下文」，并不是谨慎过头，而是<strong>针对这种文体的必要操作</strong>。读者若把本书当作一份需要逐句读下去的讲稿，反而最贴近它本来的形态。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>第一章  THE SCOPE OF PSYCHOLOGY</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 詹姆斯先给心理学下定义，把它限定为一门<strong>自然科学</strong>：它研究「心理生活」的现象及其条件，但<strong>不</strong>去追问灵魂、先验自我、观念单元这些「更深层的实体」；凡是那样追问的，他把它们归到形而上学里去。本章还顺手摆出两条工作假设：心理学研究<strong>有限个体的心灵</strong>，并且假定<strong>思想与情感、物质世界</strong>是它不加批判而接受的材料。最后，他交代心理学与神经生理学的关系。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> Psychology is the Science of Mental Life, both of its phenomena and of their conditions. ——心理学是<strong>心理生活</strong>的科学，既研究其现象，也研究其条件。（PG #57628，第 I 章，第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span> …it will be safe to lay down the general law that _no mental modification ever occurs which is not accompanied or followed by a bodily change_. ——可以放心立下这条通则：<strong>没有任何心理变化不是伴随或跟随着某种身体变化的</strong>。（PG #57628，第 I 章，第 8 段）
+    </li>
+    <li><span class="tag t-src">原书</span> All attempts to _explain_ our phenomenally given thoughts as products of deeper-lying entities (whether the latter be named 'Soul,' 'Transcendental Ego,' 'Ideas,' or 'Elementary Units of Consciousness') are metaphysical. ——一切把呈现给我们的思想<strong>解释</strong>为更深层实体之产物的尝试，都是形而上学。（PG #57628，《PREFACE》，第 2 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 这一章是全书的<strong>定界石</strong>：它决定了后面 27 章<strong>什么算问题、什么不算</strong>。第 VII 章的「心理学是一门自然科学」是它的回声；第 II–III 章的生理学预备也全靠这里给的边界才站得住。★ 注意第 1 段定义里的措辞是 Science of Mental Life（心理<strong>生活</strong>的科学），不是「意识的科学」——这个用词把「无意识」「边缘意识」这些问题都留在了门内，正是第 VIII 章要处理的题材。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见的误读是把「心理学是自然科学」读成「詹姆斯主张心理现象可以还原为生理现象」。原文恰恰相反：他承认身心相伴（一切心理变化都伴随身体变化），但<strong>明确拒绝</strong>把心理现象「解释」成更深实体的产物，并说那种解释属于本书之外的领域。对今天的读者，最须留意的是：<strong>第一条定义是 1890 年的定义</strong>；此后一百多年心理学的研究对象几经迁移（行为主义、认知科学），这里给出的是<strong>历史的起点</strong>，不是当代的定义。</p>
+  <p><strong>延伸对照。</strong> 本章与第 VII 章合读最有味：第 I 章说「心理学是心理生活的科学」，第 VII 章紧接着问「那么心理学家的立足点究竟是什么」，并给出那个四宫格图式。两章连起来，就是詹姆斯方法论的骨架。另外，本章第 8 段那条通则——一切心理变化都伴随身体变化——在后文被反复当作前提使用：第 XXIII 章「任何感受都倾向于产生运动」、第 XXV 章「身体变化先于情绪」都建立在它之上，读者不妨把这条通则当作贯穿全书的一条暗线。★ 一个常被忽略的细节是：定义里说的是「现象<strong>及其条件</strong>」，而「条件」既包括脑，也包括外界对象与历史；詹姆斯并不把「条件」等同于「脑」。最后值得记一笔的是他的分类：本章把心理学的材料拆成「思想与情感」和「物质世界」两块，正对应第 VII 章那个「不可约的四项」。</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>第二章  THE FUNCTIONS OF THE BRAIN</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 这是全书的生理学第一章：讲神经系统的构造与功能——从脊髓、延髓、小脑一直到大脑半球，并区分「反射」「自动动作」「半自动动作」。詹姆斯用「砍树」与「砍人脚」的对照，说明为什么只有具有神经系统的东西才会<strong>整体性地</strong>回应局部的刺激，随后逐层讨论脑各部分的功能、以及脑活动与意识的关系。本章还专设一节讨论颅相学。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> If I begin chopping the foot of a tree, its branches are unmoved by my act, and its leaves murmur as peacefully as ever in the wind. If, on the contrary, I do violence to the foot of a fellow-man, the rest of his body instantly responds to the aggression by movements of alarm or defence. ——砍树，枝叶不动；砍人的脚，全身立刻以警戒或防御的动作回应。（PG #57628，第 II 章，第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span> …the function of the nervous system is to bring each part into harmonious co-operation with every other.（PG #57628，第 II 章，第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span> In a certain sense Gall was the first to seek to explain in detail how the brain could subserve our mental operations. ——从某种意义上说，<strong>Gall</strong> 是第一个试图详细解释脑如何服务于心理活动的人。（PG #57628，第 II 章，第 46 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章是第 III 章（脑活动的一般条件）的直接前提，也为第 IV 章（习惯）、第 V 章（自动机理论）铺路——因为「习惯」被说成是神经组织的可塑性，「自动机理论」问的正是这些自动运转的神经机制与意识的关系。可以说，没有第 II 章的生理学铺垫，后面两章的追问都无从提起。</p>
+  <p><strong>可疑之处或常见误读。</strong> ★ <strong>这是本书最需要「年代护栏」的地方。</strong> 本章关于脑区功能的整套图景写于 1890 年，<strong>当时就是推测</strong>，今天大多已被取代。<strong>这是本书之后的进展</strong>：现代脑功能定位的图景主要建立在 <strong>20 世纪</strong>的大量工作上（如 Penfield 与 Rasmussen 在 1950 年代的电刺激脑图谱等），与詹姆斯所引材料已相距很远。★ 另一个常见误读是把詹姆斯当成「反定位论者」。他并不否认功能与脑有对应，只是<strong>反对过细的颅相学式对应</strong>；他处理 <strong>Gall</strong> 的方式（「第一个试图详细解释」）既不崇拜也不抹杀——这一平衡态度需要读者自己体会，不能简化成站队。</p>
+  <p><strong>延伸对照。</strong> 本章的生理学内容与第 III 章是连体的：第 II 章给「地图」（哪一部分管什么），第 III 章给「脾气」（组织如何累积、抑制、疲劳）。★ 阅读时建议做一次<strong>分层</strong>：把本章里解剖与临床观察的部分（脑各部位损伤后的表现）与功能推断的部分（某处「负责」什么）分开——前者在 1890 年是相对可靠的材料，后者则大量依赖类比。詹姆斯的文风也可能误导：他叙述得极为自信，读者容易忘记这是他<strong>整理当时材料</strong>后的复述，而非他亲手做过的实验。★ 另外，他对颅相学的处理方式值得学：先交代 Gall 的历史功劳，再指出颅相学的方法（从「官能心理学」出发、不做进一步心理分析）哪里站不住。这套「先给它应得的、再指出它的毛病」的写法，是全书评断旧说时的常态。</p>
+  <p><strong>补注。</strong> 阅读本章时有一处细节值得记下：詹姆斯讨论「脑各部分的相对大小与智能的关系」时，用的是当时可得的解剖与病理材料，而非受控实验；他反复使用「我们大概可以说」「似乎」这类措辞，正说明他清楚这些推断的软处。★ 另一个可对照的点是：本章对「反射」的处理与第 XXIII 章（运动的产生）构成呼应——反射是「无意识也能完成的动作」，而第 XXIII 章要说明的是「有意识的感受同样倾向于转为动作」。两章的差别，正是「自动」与「观念运动」的差别。</p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>第三章  ON SOME GENERAL CONDITIONS OF BRAIN-ACTIVITY</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 本章不列脑的「地图」，而讲<strong>神经组织自己的脾气</strong>：刺激的<strong>累积（summation）</strong>、抑制作用、疲劳与恢复、兴奋沿脑内扩散的规律。詹姆斯自己说，这些内容「太偏生理学」，不便在本书里详引证据，于是把材料压成一条简明法则——弱刺激叠加可以引发单独无法引发的放电。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> The elementary properties of nerve-tissue on which the brain-functions depend are far from being satisfactorily made out. ——脑功能所依赖的神经组织的那些基本属性，远未被令人满意地弄清楚。（PG #57628，第 III 章，第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span> The law is this, that _a stimulus which would be inadequate by itself to excite a nerve-centre to effective discharge may, by acting with one or more other stimuli (equally ineffectual by themselves alone) bring the discharge about_. ——法则如下：单独不足以引发神经中枢有效放电的刺激，与其他同样无效的刺激共同作用时，可以引发放电。（PG #57628，第 III 章，第 4 段）
+    </li>
+    <li><span class="tag t-src">原书</span> The subject belongs too much to physiology for the evidence to be cited in detail in these pages.（PG #57628，第 III 章，第 5 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章与第 II 章合起来构成「生理学预备」的主体；它给第 IV 章「习惯」提供了机制语言（可塑性、疲劳、恢复），也给第 XI 章「注意」的「抑制」概念埋下伏笔。后来第 XI 章讲「注意的唤醒」时，用的正是「一个主要对象进入意识焦点，其他被暂时压制」这套说法。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把它当作「神经科学的早期综述」。更准确的读法是（<span class="tag t-inf">推断</span>）：詹姆斯在这里建立的是<strong>类比性的机制语汇</strong>，而不是实验结论。★ 他第 1 段开头就承认「这些基本属性远未被满意地弄清楚」——这是全书对神经学最诚实的表态。它提醒读者：后面凡是借用这套语汇的论证，其<strong>生理学部分应视为当时的假设</strong>，只有<strong>现象描述部分</strong>才可能今天仍然成立。</p>
+  <p><strong>延伸对照。</strong> 本章与第 XI 章之间有一条隐线：第 III 章讲神经兴奋的<strong>扩散与抑制</strong>，第 XI 章讲注意时把它翻译成心理语——「一个主要对象进入意识的焦点，其他被暂时压制」。读者若对照这两章，会看清詹姆斯如何把生理语汇「翻译」成心理描述，又如何始终不肯把后者等同于前者。★ 本章还有一个值得注意的方法论姿态：他把证据推给注释与生理学专著，正文只留结论。这不是偷懒，而是他反复声明的分界——本书是心理学的书，不是生理学的书。★ 对今天的读者，最稳的读法是：<strong>把机制部分当历史，把「刺激可以叠加」「兴奋会扩散也会被抑制」这类一般倾向当可对话的描述</strong>，而不要追究其分子层面的真伪。</p>
+  <p><strong>补注。</strong> 本章有一条容易被漏掉的观察：兴奋在脑内扩散时，既可能<strong>增强</strong>某些过程，也可能<strong>抑制</strong>另一些过程；詹姆斯说，一般情形下刺激性的效应压过抑制性的效应，「所以我们大致可以照开头那样说，兴奋波会使全身活动起来」。★ 这句话的措辞（「大致」「压过」）又一次显示他给结论留了余地。★ 还有一点与全书结构有关：本章大量依赖当时欧洲生理学实验室的报告，詹姆斯把它们压缩成结论、把引文放进注释；若想看他如何处理「一手材料与二手结论」的分寸，本章是很好的样本。</p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">10</span><span>第四章  HABIT</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 本章把「习惯」抬到全书最显眼的位置：生物是「一束习惯」，物理世界有自己的习惯（自然律），神经系统则因<strong>可塑性（plasticity）</strong>把重复的行为刻进组织里。詹姆斯随后给出几条操作性的「形成习惯」准则，并收在一句名言上——习惯是社会巨大的飞轮，是最宝贵的保守力量。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> When we look at living creatures from an outward point of view, one of the first things that strike us is that they are bundles of habits. ——从外部看生物，最先打动我们的事情之一，就是它们<strong>是一束习惯</strong>。（PG #57628，第 IV 章，第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span> The moment one tries to define what habit is, one is led to the fundamental properties of matter. ——一试着去定义习惯是什么，人就被引向<strong>物质的基本属性</strong>。（PG #57628，第 IV 章，第 2 段）
+    </li>
+    <li><span class="tag t-src">原书</span> Habit is thus the enormous fly-wheel of society, its most precious conservative agent. ——习惯于是成了社会巨大的飞轮，最宝贵的保守力量。（PG #57628，第 IV 章，第 49 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 习惯是全书贯穿性的概念：第 I 章的方法、第 VII 章的「心理学家的谬误」、第 XVI 章的记忆保持，都依赖「可塑性」这条原理。它也是 <span class="tag t-talk">作者谈话</span>档里被詹姆斯<strong>当面讲给教师听</strong>的主题之一（见 <code>## 36</code> 与 <code>## 36</code> 所引的第 VIII 讲）。</p>
+  <p><strong>可疑之处或常见误读。</strong> 最流行的误读，是把这一章读成「如何养成好习惯」的自助指南（<code>## 4b</code> 已处理此类说法）。事实上詹姆斯的<strong>重心在描述</strong>：习惯为什么是「飞轮」——因为它把行为自动化、把注意力省下来。★ 他自己也把「习惯」的根<strong>追溯到物理与生理</strong>（「一谈及习惯是什么，人就被引向物质的基本属性」），这是 19 世纪的物理化倾向。读者把它当作心理学命题时，须区分<strong>现象层的洞见</strong>（自动化、省力、不易更张）与<strong>机制层的假设</strong>（分子的可塑性）——后者属于当时的推测。</p>
+  <p><strong>延伸对照。</strong> 本章与第 XVI 章（记忆）、第 XXIV 章（本能）、第 XXVI 章（意志）构成一组「沉淀—冲动—抉择」的三角：习惯把重复行为沉下去，本能把先天冲动浮上来，意志在两者之间做选择。★ 詹姆斯在本章给的几条「形成习惯」准则（果断开头、不破例、抓住第一个机会行动、每天做一点无需理由的努力）常被单独摘出来当励志格言，但请注意它们的<strong>位置</strong>：它们出现在一段关于「可塑性」的机制讨论之后，是<strong>从机制推出来的应用</strong>，不是本章的骨架。★ 还有一处须提醒：本章第 49 段那段「飞轮」文字是全书最雄辩的段落之一，雄辩本身可能让读者以为詹姆斯在<strong>主张</strong>保守；其实他描述的是习惯的<strong>功能</strong>（维持秩序、省下注意力），同时也承认它可能<strong>锁死</strong>一个人（他举了狱中老犯人获释后请求回监狱的例子）。</p>
+  <p><strong>补注。</strong> 还有一处结构上的呼应值得指出：本章把「习惯」说成<strong>神经组织的可塑性</strong>，而第 XVI 章把「记忆」也说成同一种可塑性——两者在机制层是同一件事，区别只在「重复的是动作」还是「重复的是内容」。★ 这一「机制共享」正是詹姆斯全书惯用的写法：他不为每个心理现象另配一套机制，而是尽量<strong>用同一批语汇</strong>去串不同的现象。★ 这也提醒读者：读某一章时遇到「似曾相识」的机制表述，往往不是重复，而是他在做<strong>跨现象的收束</strong>。</p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">11</span><span>第五章  THE AUTOMATON-THEORY</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 本章问一个尖锐的问题：如果神经系统可以像机器一样自动运转、把看似「聪明」的动作全部解释掉，那么<strong>意识还有什么用</strong>？詹姆斯梳理了从 Descartes 到 Huxley、Clifford、Spalding 的「自动机」路线，承认这条路线在生理学视角下「既简单又迷人」，然后指出它的代价：意识在此图景里没有机械功能。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> In describing the functions of the hemispheres a short way back, we used language derived from both the bodily and the mental life, saying now that the animal made indeterminate and unforeseeable reactions, and anon that he was swayed by considerations of future good and evil…（PG #57628，第 V 章，第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span> To Descartes belongs the credit of having first been bold enough to conceive of a completely self-sufficing nervous mechanism which should be able to perform complicated and apparently intelligent acts. ——<strong>Descartes</strong> 的功劳在于第一个有胆量设想出一种完全自足的神经机制，能完成复杂而看似聪明的动作。（PG #57628，第 V 章，第 6 段）
+    </li>
+    <li><span class="tag t-src">原书</span> But what on this view could be the function of the consciousness itself? _Mechanical_ function it would have none. ——可是在这个看法下，意识本身会有什么功能呢？<strong>机械的</strong>功能它一点也没有。（PG #57628，第 V 章，第 4 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章是第 II 章（脑的功能）与第 VI 章（心质理论）之间的桥：它把「神经机能是否自足」的追问推到极致，为下一章转入纯形而上学的讨论做铺垫。它也是理解詹姆斯自我定位的关键——<strong>他既不做还原论者，也不退回灵魂实体</strong>。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把它当作「詹姆斯驳倒了机械论」。更准确的说法（<span class="tag t-inf">推断</span>）：詹姆斯指出<strong>纯粹的自动机图景会把意识挤成无用之物</strong>，因此要么承认意识有功能，要么承认它是「副现象」；他倾向前者，但<strong>没有</strong>在这章里给出定论式论证。★ 因此读者应把本章当作<strong>一场公开的思辨演练</strong>来读，而不是当作神经科学结论；把它当成「詹姆斯预言了认知科学的无意识加工」更是时代错置。</p>
+  <p><strong>延伸对照。</strong> 本章与第 VI 章是一对「双问」：第 V 章问「神经若自足，意识还有无机械功能」，第 VI 章问「意识若由更小的单元拼成，还剩什么」。两章的答案方向相反却互相支撑：詹姆斯既不肯让意识变成多余，也不肯让它变成可拆装的积木。★ 建议读者把 Descartes 一路与 Huxley 一路分开看：前者是<strong>形而上学</strong>的设想（一个自足的机械），后者是<strong>生理学</strong>的推广（把「意识」当「伴随现象」）。詹姆斯对两路都报以同情式理解，然后在结尾处收网——这正是他惯用的写法。★ 最后提醒：本章出现的人名（Descartes、Huxley、Clifford、Spalding）都属 <strong>17–19 世纪</strong>的思想脉络，不是当代认知科学的直接前身。</p>
+  <p><strong>补注。</strong> 本章还有一个常被忽略的层次：詹姆斯并不把「自动机」当成一个纯粹错误的东西。他承认，神经系统确实<strong>大量地</strong>自动运转，问题只在于<strong>若一切都自动</strong>，意识就无处安放。★ 因此本章的结论其实是一个<strong>二难</strong>：要么承认自动机图景不完整，要么承认意识只是「伴随现象」。詹姆斯选了前者，但他没有在本章内完成论证——论证要到第 IX 章（思想之流）和第 XXVI 章（意志）才补上。★ 读者若想知道詹姆斯的「意识有用论」到底怎么论证，应把第 V、IX、XXVI 三章连读。</p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">12</span><span>第六章  THE MIND-STUFF THEORY</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 詹姆斯自己开门见山：刚在上章被形而上学淹过一次的读者，<strong>这一章会更难受</strong>，「因为它完全是形而上学的」。本章处理的问题是：意识能否由更小的「心质」（mind-stuff）单元拼成？——无论这些单元叫「心尘」（mind-dust）还是别的什么。他花了整章功夫，最后给出的答案是否定的：意识不是由更小的心理原子「粘」出来的。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> Metaphysics means nothing but an unusually obstinate effort to think clearly. ——形而上学无非是一种<strong>格外固执的、想把事情想清楚的努力</strong>。（PG #57628，第 VI 章，第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span> The reader who found himself swamped with too much metaphysics in the last chapter will have a still worse time of it in this one, which is exclusively metaphysical.（PG #57628，第 VI 章，第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span> But with the dawn of consciousness an entirely new nature seems to slip in, something whereof the potency was _not_ given in the mere outward atoms of the original chaos. ——随意识之破晓，一种<strong>全新的性质</strong>似乎溜了进来，它的潜能并不在原始混沌的那些外在原子之中。（PG #57628，第 VI 章，第 4 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章是第 V 章的姊妹篇：第 V 章处理「神经是否自足」，本章处理「意识是否可拼」。两章合起来划出全书的<strong>形而上学边界</strong>——越过这条线的讨论，詹姆斯就把它们排除在心理学之外（第 VII 章）。同时，本章对「单元拼装」的否定，正是第 IX 章「思想之流」的前奏。</p>
+  <p><strong>可疑之处或常见误读。</strong> 最大的误读是<strong>跳过它</strong>。它读起来确实艰涩，但它是全书立场的根。★ 本报告把它压缩成一句可操作的话（<span class="tag t-inf">推断</span>）：<strong>在詹姆斯这里，「意识由什么组成」这个问法本身就是错的，该问的是「意识如何流动」。</strong> ★ 提醒：这里讨论的是 <strong>1890 年</strong>的形而上学论题；不要把它读成后来的「心脑同一论」或「涌现论」的预演——那是它之后的哲学史话题。</p>
+  <p><strong>延伸对照。</strong> 本章的读法与第 V 章相反：第 V 章可以当思辨演练快读，本章则<strong>必须慢读那段关于「关系能否由元素构成」的论证</strong>，因为它是第 IX 章「思想之流」在逻辑上的准备。★ 本报告的建议（<span class="tag t-inf">推断</span>）是：本章真正的对手并不是「灵魂学说」，而是<strong>联想主义</strong>——那个想用「观念的粘合」解释一切的方案；詹姆斯在这里拆掉的就是它的底座。★ 对普通读者，本章可以只读前三段与结论；对想弄清詹姆斯立场的人，本章不可跳。它长、它绕，却是全书<strong>最少被引用、却最能解释全书为何写成这样</strong>的一章。</p>
+  <p><strong>补注。</strong> 本章的论证结构值得单独标出：詹姆斯先摆出「进化论心理学要求一种『心尘』」的设想（即：若意识由小的心理单元组成，进化就能像解释身体那样解释它），然后逐条反驳，最后回到「意识是一种全新的性质」这一立场。★ 请注意他的<strong>方法论</strong>：他不是说「心尘论错了」，而是说这个<strong>问法</strong>把心理学推进了它不该去的领域。★ 这与第 VII 章的自我约束完全一致：詹姆斯可以<strong>指出</strong>某个问题是形而上学，然后<strong>拒绝</strong>在心理学里回答它。★ 对今天的读者，本章的价值不在结论，而在它示范了一种<strong>界内工作</strong>的自觉。</p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">13</span><span>第七章  THE METHODS AND SNARES OF PSYCHOLOGY</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 这是全书唯一的方法论专章，也是<strong>被引用最多的一章</strong>。詹姆斯先申明心理学是一门自然科学，界定了「心理学家的立场」与「被研究的心灵事实」之间的四个不可约项，然后逐一处理三种方法：<strong>内省（introspection）、实验（experiment）、比较（comparative method）</strong>，最后给出那个著名的词——「心理学家的谬误」（<code>the psychologist's fallacy</code>）。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> _Introspective Observation is what we have to rely on first and foremost and always._ ——<strong>内省观察是我们首先、并且始终要依靠的东西。</strong>（PG #57628，第 VII 章，第 11 段）
+    </li>
+    <li><span class="tag t-src">原书</span> '_The Psychologist's Fallacy._' The _great_ snare of the psychologist is the _confusion of his own standpoint with that of the mental fact_ about which he is making his report. ——心理学家的<strong>大陷阱</strong>，是<strong>把他自己的立场与他所报告的心理事实的立场混为一谈</strong>。（PG #57628，第 VII 章，第 44 段）
+    </li>
+    <li><span class="tag t-src">原书</span> The _comparative method_, finally, supplements the introspective and experimental methods.（PG #57628，第 VII 章，第 39 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章是全书的<strong>方法论枢纽</strong>：它上承第 I 章的「自然科学定界」，下启所有具体章节——因为「心理学家的谬误」这条戒律，贯穿此后詹姆斯对情绪、自我、知觉的每一处分析。<strong>读者若只精读一章，应读这一章。</strong></p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读有二。① 把「内省」读成「主观玄想」：詹姆斯的内省是<strong>有规程的观察与报告</strong>（「向我们的内心去看，报告在那里发现了什么」），并按材料的可靠程度分等级；他还专门讨论「内省的不准确」被当借口的情况。② 把「心理学家的谬误」当成一句俏皮话：它的实质是<strong>方法论警告</strong>——不要把<strong>研究者自己的立场</strong>混同于<strong>被研究的心灵事实</strong>的立场，例如不能因为「我们成人知道这个字是印刷体」就假定「看到这个字的婴儿也知道」。★ 顺带指出：本报告在第 VII 章第 39 段引到的「比较方法」一段，正是把「野蛮人、婴儿、疯人、白痴、聋盲人」并置为对照材料的地方，这一 19 世纪的表述方式已在 <code>## 5</code> 第四条如实标出。</p>
+  <p><strong>延伸对照。</strong> 本章的方法三件套与第 II–III 章（生理学证据的来源）、第 IX 章（内省素材的来源）互相咬合：詹姆斯在方法章里说明「材料从哪来、要防什么错」，随后各章就是这些材料的实际使用。★ 「心理学家的谬误」这个名字后来被反复借用；理解它最省事的办法是记住一个反例：儿童最初听到「警察」这个词，想到的可能是他某次见到的<strong>那个具体警察</strong>，而不是这个词的抽象含义——若研究者用成人的理解去替儿童答话，就犯了这条谬误。★ 还有一处值得注意：本章第 39 段的「比较方法」把动物、儿童、疯人、聋盲人当作辅助材料，这一编排本身反映了 19 世纪的等级化人类观，本报告已在 <code>## 5</code> 第四条如实指出。</p>
+  <p><strong>补注。</strong> 一个技术性的提醒：本章讨论的「差异觉知」问题，在 1890 年只能靠内省与简单的比较实验；詹姆斯本人的落点是<strong>反驳</strong>「差异是可分解的关系」这一路数，而不是提出一套测量方法。★ 读者若把它与第 XIV 章（联想）合读，会看到他一贯的<strong>双线处理</strong>：既要能分析（辨别），又不肯把分析的结果当成最终实在。★ 另需注意：本章批评的对象里含「把整体还原为部分」的倾向，这与第 VI 章（心质理论）同调。</p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">14</span><span>第八章  THE RELATIONS OF MINDS TO OTHER THINGS</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 本章把心灵放回它的<strong>处境</strong>里：心灵与时间的关系、与空间的关系，以及它与其他心灵的关系。核心争议是<strong>「我们是否曾经完全无意识」</strong>——睡眠、昏厥、麻醉、癫痫期间，心灵是否<strong>中断</strong>了？詹姆斯把 Descartes 派（灵魂的本质是思维）与 Locke 派（灵魂可以短暂无思）摆在一起，并坦承自己给不出「严格的答案」。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> Since, for psychology, a mind is an object in a world of other objects, its relation to those other objects must next be surveyed. ——既然对心理学而言，心灵是<strong>一个由其他对象构成的世界中的一个对象</strong>，那么它与那些对象的关系就得接着考察。（PG #57628，第 VIII 章，第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span> We often take ether and have operations performed without a suspicion that our consciousness has suffered a breach. The two ends join each other smoothly over the gap… ——我们常吸着以太做手术，却丝毫不觉得自己的意识断了档；两端的意识在断口上平滑地接合起来。（PG #57628，第 VIII 章，第 6 段）
+    </li>
+    <li><span class="tag t-src">原书</span> It must be confessed that we can give no rigorous answer to this question.（PG #57628，第 VIII 章，第 7 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章是第 IX 章的直接引子：正因为「意识是否连续」悬而未决，詹姆斯才在下一章提出「思想之流」的<strong>连续性原理</strong>——连续性不是无缝的实体，而是<strong>当下思想对某些过去思想的「承认」与接纳</strong>。这一点，第 VIII 章末尾的「两端的意识平滑接合」已经预告了。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把它当成边角料。实际上它的价值在于<strong>示范承认边界</strong>：詹姆斯在这里把可讨论的（意识的间隙能不能被察觉）与不可定的（灵魂是否思维）分开处理。★ 另有一点要小心：本章把「心灵与其他心灵」也列入讨论，涉及他心与唯我论的边缘问题，但詹姆斯的处理是<strong>心理学式的</strong>（当作一个要描写的现象），不是认识论证明；不要把它读成哲学论文。</p>
+  <p><strong>延伸对照。</strong> 本章与第 IX 章的接续，是全书最漂亮的一处「问题—回答」衔接：第 VIII 章把「意识是否有间断」留成悬案，第 IX 章用「思想之流的连续性」给出一个<strong>心理学的</strong>（而非形而上学的）答法。★ 若想看清詹姆斯的写作节奏，可以对照这两章的布局：第 VIII 章短而克制（每提出一个难题就声明「无法严格回答」），第 IX 章长而舒展（一口气铺开五个特征）。这种「先留白、后着色」的安排，是全书结构感的一个样本。★ 另需提醒：本章涉及的「睡眠、麻醉期间的意识」问题，在 1890 年只能靠内省与临床轶事来谈，今天已属于睡眠科学与麻醉学的实证领域——<strong>这就是「本书之后的进展」</strong>，不宜用詹姆斯的说法去覆盖它。</p>
+  <p><strong>补注。</strong> 有一处细节值得记下：詹姆斯说，我们<strong>可以追溯</strong>思想的来路（为什么它会走到这里），却<strong>难以预知</strong>它下一步会走向哪里。★ 这个「可回溯而不可预告」的观察，是全书最实用的判断之一：它既解释了为什么回忆需要线索（第 XVI 章），也解释了为什么联想律不能当成预测工具。★ 换言之，联想律是<strong>描述规律</strong>，不是<strong>因果引擎</strong>——这也是詹姆斯对「用联想解释一切」的最大保留。</p>
+</section>
+
+<section id="s16">
+  <h2><span class="num">15</span><span>第九章  THE STREAM OF THOUGHT</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 全书枢纽。詹姆斯主张：心理学的第一事实是<strong>「某种思考在发生」</strong>，而它不呈现为教科书常说的「简单感觉」的合成品，而呈现为一条<strong>流</strong>。他随即列出思想的<strong>五个特征</strong>——（1）每个思想都倾向于属于某个个人的意识；（2）在同一个人的意识里，思想永远在变化；（3）在同一个人的意识里，思想是可感地连续的；（4）它总是显得在处理<strong>独立于它自身</strong>的对象；（5）它总是对对象的一部分更有兴趣、欢迎一些、排斥另一些，即<strong>始终在选择</strong>。全书的术语 <code>stream of thought</code> 就出自这里。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> _The first fact for us, then, as psychologists, is that thinking of some sort goes on._ ——对我们心理学家来说，第一个事实就是：<strong>某种思考在进行着。</strong>（PG #57628，第 IX 章，第 2 段）
+    </li>
+    <li><span class="tag t-src">原书</span> Consciousness, then, does not appear to itself chopped up in bits. Such words as 'chain' or 'train' do not describe it fitly as it presents itself in the first instance. It is nothing jointed; it flows.（PG #57628，第 IX 章，第 43 段）
+    </li>
+    <li><span class="tag t-src">原书</span> _In talking of it hereafter, let us call it the stream of thought, of consciousness, or of subjective life._ ——此后谈到它，就让我们把它叫作<strong>思想之流、意识之流，或主观生活之流</strong>。（PG #57628，第 IX 章，第 43 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章是<strong>全书的心脏</strong>：第 X 章的自我（意识的「归属」）、第 XI 章的注意（意识里「被选中」的部分）、第 XII–XIV 章的概念与联想、第 XV–XVI 章的时间与记忆，全部建立在「思想之流」之上。第 IX 章还把「关系觉知」交给一个模糊的 <strong>fringe</strong>（边际／边缘）——詹姆斯说，我们关于「关系」的知识大多发生在对象的这种模糊边缘里，而不是在清晰的意象里。</p>
+  <p><strong>可疑之处或常见误读。</strong> ★ 头号误读就是「詹姆斯只用了 stream of thought，一提意识流就是用错了」。事实相反：<strong>第 43 段同一句里，他给了三个名字</strong>——思想之流、意识之流、主观生活之流。且经 grep 核对，<code>stream of consciousness</code> 短语在本卷全文另出现 8 次，其中一次是一幅插图的题名（FIG. 29.--The Stream of Consciousness）。★ 因此正确的说法是：「<strong>章题是 the stream of thought，但詹姆斯本人也使用 stream of consciousness；把两者截然对立是后人的区分</strong>」（另见 <code>## 4b</code> 第 1 条）。第二个误读是「连续＝无缝」。詹姆斯第 IX 章下半段恰恰讨论「意识的断口」（爆炸声、突变）如何与「连续」共存：他的答案是，被切断的只是<strong>质料</strong>，而<strong>属于同一个自我的归属感</strong>把断裂的两段重新接上——这是全章最费解处，不宜简化。</p>
+  <p><strong>延伸对照。</strong> 本章五个特征中的第（3）条「连续」是全书被讨论最多的命题，它直接支撑第 XV 章（时间知觉）与第 XVI 章（记忆）：没有连续性，就谈不到「刚刚过去」，也谈不到「记住」。★ 建议把第 IX 章与第 X 章<strong>连着读</strong>：两章合起来回答「意识是什么样」与「意识属于谁」。★ 关于 <code>stream of thought</code> 这个术语，本报告的处理原则是<strong>以原文打底</strong>：正文出现 <code>stream of thought</code> 就照写，出现 <code>stream of consciousness</code> 也照写并注明，不替詹姆斯「统一用法」——因为「统一」恰是后人做的事。★ 最后提醒：本章关于「关系觉知」与 <code>fringe</code> 的段落，后来被格式塔心理学与现象学取向的心理学家大量援引，但<strong>那是后来的挪用</strong>，不要写成「詹姆斯预见了格式塔」。</p>
+  <p><strong>补注。</strong> 本章与第 IX 章合起来，给「连续性」提供了一个时间维度的落点：思想之流之所以是「流」，正因为当下的经验总带着一小段过去与一小段将来。★ 读者若把两章并读，会更清楚地看到詹姆斯所谓「连续」不是「无缝」，而是「当下总在接纳刚刚过去的东西」。</p>
+</section>
+
+<section id="s17">
+  <h2><span class="num">16</span><span>第十章  THE CONSCIOUSNESS OF SELF</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 从「思想之流」转到「<strong>这条流属于谁</strong>」。詹姆斯把自我分成两半：作为<strong>被知道的对象</strong>的「经验自我／客我」（<code>the empirical self</code>／the Me），与作为<strong>认知者</strong>的「纯粹自我」（the pure Ego／the I）。经验自我又分三重：<strong>物质我</strong>（身体、衣物、财产、家人）、<strong>社会我</strong>（他人心中的我，一个人可以有多个社会我）、<strong>精神我</strong>（心理能力与倾向的总和）。他还讨论「自我感受」（self-feelings）与「自求」（self-seeking），最后转入纯粹自我与个人同一性。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> The Empirical Self of each of us is all that he is tempted to call by the name of _me_. ——我们每个人的<strong>经验自我</strong>，就是他有冲动称之为「我」的一切。（PG #57628，第 X 章，第 3 段）
+    </li>
+    <li><span class="tag t-src">原书</span> _In its widest possible sense_, however, _a man's Self is the sum total of all that he_ CAN _call his_, not only his body and his psychic powers, but his clothes and his house, his wife and children, his ancestors and friends, his reputation and works, his lands and horses, and yacht and bank-account. ——在最宽的意义上，一个人的自我，是<strong>他能称之为「他的」的一切之总和</strong>：不只是身体与心理能力，还有衣物、房屋、妻子儿女、祖先朋友、名声与作品、土地马匹、游艇与银行存款。（PG #57628，第 X 章，第 4 段）
+    </li>
+    <li><span class="tag t-src">原书</span> Let us begin with the Self in its widest acceptation, and follow it up to its most delicate and subtle form, advancing from the study of the empirical, as the Germans call it, to that of the pure, Ego.（PG #57628，第 X 章，第 1 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章紧接第 IX 章：「思想之流」讲连续性，本章讲<strong>归属</strong>——为什么每一条思想都带着「我的」这一温度。第 XI 章的注意、第 XXVI 章的意志（「意志的努力就是注意的努力」）都以这里的「自我」为轴。第 XXV 章（情绪）里的「自我感受」也与本章相连。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把「社会我」读成现代社交媒体意义上的「人设」。詹姆斯的原义更硬：<strong>一个人有多少认识他的人，就有多少个社会我</strong>——这不只是比喻，而是他关于「被承认」的一个分析；他甚至说，最残酷的惩罚不是肉体的，而是<strong>被所有人彻底无视</strong>。★ 另一处要留意<strong>术语</strong>：他笔下的 <code>the empirical self</code> 指<strong>被认知的客我</strong>，不要与后世心理学的「自我概念」混同；本报告一律保留英文原词并给中文对照。★ 还有一点必须标出：本章末尾关于「纯粹自我」的议论，是<strong>1890 年的立场</strong>，与作者日后《宗教经验之种种》（1902）是<strong>两本书</strong>，不可倒灌。</p>
+  <p><strong>延伸对照。</strong> 本章的经验自我三分法（物质我／社会我／精神我）是全书对后世影响最直接的部分之一，但读者须注意它的<strong>位置</strong>：它出现在<strong>第一卷</strong>，属于詹姆斯对「自我的结构」的描述；而他对「自我的同一性如何可能」的解决（依靠第 IX 章的「思想之流」与第 XII 章的「同一感」）散布在数章之中，并未在本章一次讲完。★ 一个常见的技术性误读，是把 <code>the empirical self</code>（被认知的客我）与 <code>the pure Ego</code>（认知的主体）的区分，读成「身体的我」与「心灵的我」——其实两半都是<strong>心理的</strong>，区别只在「被知道」还是「在知道」。★ 还有一处需登记：本章末尾对纯粹自我的处理，是全书最接近形而上学边界的地方，它与方法章（第 VII 章）的自我约束之间存在张力，这一点在 <code>## 35</code> 会再谈。</p>
+  <p><strong>补注。</strong> 一个方法上的提醒：本章关于「物质我」的清单（身体、衣物、房屋、妻子儿女、土地马匹、游艇与银行存款）读来带年代感，但它背后的分析题是<strong>一般</strong>的：哪些东西一旦失去，人会像「失去自己的一部分」那样痛。詹姆斯把它当作经验自我的<strong>边界问题</strong>来处理。★ 这一清单里也藏着 1890 年的社会预设，读者可把它与 <code>## 5</code> 第四条对照阅读。</p>
+</section>
+
+<section id="s18">
+  <h2><span class="num">17</span><span>第十一章  ATTENTION</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 詹姆斯先抱怨一句：像「选择性注意」这样明显的事实，英国经验学派的心理学家们「几乎从未注意过」。随后他把注意定义为心灵对<strong>一个</strong>对象的清晰而鲜明的占有，指出其本质是<strong>聚焦（focalization）与集中（concentration）</strong>，代价是从别处<strong>抽身</strong>。本章还讨论注意的类型（感觉性／理智性、被动／主动）、注意的「拍子」（波动）、以及「能同时注意多少件事」这个实验性问题。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> Strange to say, so patent a fact as the perpetual presence of selective attention has received hardly any notice from psychologists of the English empiricist school.（PG #57628，第 XI 章，第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span> _My experience is what I agree to attend to._ ——<strong>我的经验，就是我同意去注意的东西。</strong>（PG #57628，第 XI 章，第 2 段）
+    </li>
+    <li><span class="tag t-src">原书</span> Every one knows what attention is. It is the taking possession by the mind, in clear and vivid form, of one out of what seem several simultaneously possible objects or trains of thought. Focalization, concentration, of consciousness are of its essence.（PG #57628，第 XI 章，第 4 段）
+    </li>
+    <li><span class="tag t-src">原书</span> The abolition of this condition is what we call the awakening of the attention.（PG #57628，第 XI 章，第 7 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章把第 IX 章「思想之流」的第五个特征（<strong>选择</strong>）单独放大：流不是均匀的，它总在<strong>挑</strong>。这条线一路通到第 XXVI 章——詹姆斯那里说「意志的努力，主要就是<strong>注意的努力</strong>」，源头就在这里。本章还给第 XXIII 章（运动的产生）留了接口：注意的「唤醒」被描述为一个对象进入焦点、其余被压下的过程。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见的误读是把 <code>My experience is what I agree to attend to</code> 提出来当「专注力决定人生」的励志语。原文的语境是<strong>认识论</strong>的：詹姆斯在解释为什么「摆在我感官前的东西」可以<strong>不进入我的经验</strong>——原因是没有<strong>兴趣（interest）</strong>。他甚至说：「没有选择性的兴趣，经验就是彻底的混乱。」这不是劝人努力，而是指出<strong>经验本身就是被选择过的</strong>。★ 另一处要提醒：本章关于「注意的生理过程」与「注意能否同时管几件事」的材料，属于 1890 年的实验水平，其中的具体数字不宜当今天的结论。</p>
+  <p><strong>延伸对照。</strong> 本章与第 XIX–XXI 章（知觉）是一体的：詹姆斯反复说「<strong>知觉就是被注意</strong>」，因为在被他称为「物」的知觉里，起决定作用的是我们<strong>挑出了哪些属性</strong>。★ 建议对照阅读第 XI 章第 4 段（「人人都知道什么是注意」）与第 XIX 章第 3 段（「知觉与感觉之别，在于对与感觉对象相关联的<strong>进一步事实</strong>的意识」）：两段合起来说明，注意既是<strong>选择</strong>又是<strong>补全</strong>——它把感觉里没有的东西「添」上去。★ 最后提醒：本章的 <code>interest</code> 一词在后世的心理学里演变成「动机」研究的一个源头，但<strong>那是后来的发展</strong>；1890 年的詹姆斯用它时，含义更接近「对生存或行动有用性的一种感受」。</p>
+  <p><strong>补注。</strong> 本章还有一处值得记住的观察：詹姆斯把注意的「波动」（我们无法长时间把一个对象稳稳地按在焦点上）当作<strong>常态</strong>而非缺陷；他说，注意本来是<strong>脉冲式</strong>的（in beats），而不是持续均匀的。★ 这个观察与第 IX 章（流）、第 XXVIII 章（必然真理）在气质上一致：詹姆斯总是先承认<strong>现象的不规则</strong>，再谈理论。★ 另有一处提示：本章讨论「能同时注意多少件事」时，给出的是<strong>实验性</strong>的而非结论性的回答，读者不宜当作定论。</p>
+</section>
+
+<section id="s19">
+  <h2><span class="num">18</span><span>第十二章  CONCEPTION</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 本章处理「概念」是怎么一回事。詹姆斯先立一个支柱性的观察：我们对<strong>同一性（sameness）</strong>的感觉，是思维的龙骨与脊梁；接着给出概念的定义——那个把「一个在数目上不同却恒久的谈论对象」<strong>识别出来</strong>的功能，就叫 CONCEPTION，它的载体叫概念。本章还区分<strong>熟悉之知（acquaintance）</strong>与<strong>关于之知（knowledge about）</strong>，并讨论概念的作用与危险。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> This _sense of sameness_ is the very keel and backbone of our thinking. ——这种<strong>同一感</strong>，是我们思维的龙骨与脊梁。（PG #57628，第 XII 章，第 3 段）
+    </li>
+    <li><span class="tag t-src">原书</span> _The function by which we thus identify a numerically distinct and permanent subject of discourse is called_ CONCEPTION; and the thoughts which are its vehicles are called _concepts_.（PG #57628，第 XII 章，第 7 段）
+    </li>
+    <li><span class="tag t-src">原书</span> Not all psychic life need be assumed to have the sense of sameness developed in this way.（PG #57628，第 XII 章，第 5 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章是把第 IX 章的「流」转为<strong>可重复、可识别</strong>的一环：正因为「同一感」，思想才不只是流过，而能<strong>认出</strong>。它下接第 XIII 章（辨别与比较）与第 XIV 章（联想）——因为要识别就得先能分辨，要稳定就得靠联想。第 X 章讲个人同一性时，詹姆斯说它「也建立在同一感之上」，本章正是那句的展开。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把「概念」读成柏拉图式的抽象实体。詹姆斯的定义是<strong>功能</strong>性的：概念不是某个漂浮的一般对象，而是<strong>一种识别活动及其载体</strong>。★ 另有一处今天读来特别要紧：他提醒概念的<strong>危险</strong>——概念让我们<strong>对事物做出断言而不必再面对事物本身</strong>，于是「一知半解」得以冒充知识。★ 还有一点须标出：本章第 4 段明确说「我们是在做心理学，不是做哲学」（We are psychologizing, not philosophizing），这是理解全书处理「一般对象」问题的钥匙——他把形而上学的问题<strong>悬置</strong>，只问心理上发生了什么。</p>
+  <p><strong>延伸对照。</strong> 本章与第 XIV 章（联想）共享一个对手：<strong>联想主义</strong>。联想主义想把「我们如何得到一般观念」全用「相似观念的粘合」讲完；詹姆斯在这一点上不完全反对相似律，但坚持「同一感」是一种<strong>原初的心理事实</strong>，不能由更小的单元拼出——这与他第 VI 章反对「心质拼装」的立场一脉相承。★ 建议读者把「熟悉之知／关于之知」这组区分记住，它在第 XIX 章（知觉）与第 XXII 章（推理）里会被反复用到：<strong>熟悉</strong>是「认得」，<strong>关于</strong>是「说得出」。★ 提醒：本章的概念论属于 1890 年的心理学语汇，与 20 世纪认知科学里的「概念表征」争论不是同一个问题域。</p>
+  <p><strong>补注。</strong> 本章的「同一感」与第 X 章（自我）之间有直接的呼应：詹姆斯说，个人同一性的意识「建立在同一感之上」——当我知道我是「同一个我」，靠的正是那种能认出「这就是它」的感受。★ 这一处理很有他的特色：他把一个通常交给形而上学的问题（同一性），改写成<strong>一个可以被描述的心理事实</strong>（同一感）。★ 读者若想体会詹姆斯的「改问法」，本章是最好的入口之一。</p>
+  <p>★ 再补一句：詹姆斯还注意到，同一感并非天生完备——在水螅、蠕虫这类低等意识的水平上，同一个实在虽反复出现，同一感却可能「很少升起」。这说明在他那里，「同一感」是一条<strong>可以被分级</strong>的心理事实，而不是全有全无的能力。</p>
+</section>
+
+<section id="s20">
+  <h2><span class="num">19</span><span>第十三章  DISCRIMINATION AND COMPARISON</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 本章讲<strong>辨别与比较</strong>：我们如何觉知「差异」。詹姆斯开篇引 Locke 关于「分辨力」的长段原文，指出洛克之后他的继承者们反而不去研究辨别；接着处理一组技术问题——差异要多明显才能被觉察、差异的<strong>方向</strong>问题、以及「差异本身是不是可分解的关系」。他最后说，与其堕入<strong>先验的过度思辨</strong>，不如守住<strong>自然的显现</strong>，把「不相似」当作事物之间一种<strong>不可分解的关系</strong>。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> It is matter of popular observation that some men have sharper senses than others, and that some have acuter minds and are able to 'split hairs' and see two shades of meaning where the majority see but one.（PG #57628，第 XIII 章，第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span> The truth is that Experience is trained by _both_ association and dissociation, and that psychology must be writ _both_ in synthetic and in analytic terms.（PG #57628，第 XIII 章，第 10 段）
+    </li>
+    <li><span class="tag t-src">原书</span> To me it seems much wiser to turn away from such transcendental extravagances of speculation, and to abide by the natural appearances.（PG #57628，第 XIII 章，第 21 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章是第 XII 章（同一感）的<strong>反面</strong>：能识别同一，就意味着能分辨不同；两者是一枚硬币的两面。它同时把第 XIV 章（联想）引出来——詹姆斯说，任何知识的推进都<strong>必须</strong>由「辨别」与「联想」两种操作共同完成。第 XIX 章的「物之知觉」也依赖本章：把「一个物」从背景里辨出来，本身就是一次辨别。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把它当成「感觉阈限」的实验章节。本章确实涉及那个时代关于差异觉察的测量，但詹姆斯的落点更偏<strong>方法论</strong>：他反对把「差异」当作可以由「元素＋关系」拼出来的东西，认为那样会陷入无穷回溯。★ 另有一处值得注意：第 10 段那句「经验同时由联想<strong>与</strong>分解训练，心理学必须以综合的<strong>和</strong>分析的两种方式书写」，是詹姆斯对<strong>单一方法论</strong>的又一次拒绝——它和第 VII 章拒绝把心理学做成纯形而上学或纯实验是同一种姿态。</p>
+  <p><strong>延伸对照。</strong> 建议把本章与第 XIV 章<strong>当作一组</strong>读：第 XIII 章说「我们能把整体拆成部分（辨别）」，第 XIV 章说「我们又能把部分连成整体（联想）」，两章合起来，就是詹姆斯对「心理生活如何既分析又综合」的完整回答。★ 一个常被忽视的细节：本章批评的对象之一是<strong>联想主义把整体还原为部分</strong>的倾向，与第 VI 章（心质理论）的批评方向一致——可见詹姆斯的「反还原」立场是贯穿全书的，不是某一章的即兴发挥。★ 提醒：本章关于「差异的觉知」的讨论在 1890 年主要依赖内省与简单的心理物理实验；20 世纪的信号检测论（如 Green 与 Swets，1966）重新处理了「觉察阈值」问题，<strong>那是本书之后的进展</strong>，不应用来给本章「加分」。</p>
+  <p><strong>补注。</strong> 一个必要的提醒：本章大量引用 Locke（第 1–4 段几乎整段转抄），读者须分清<strong>哪段是洛克、哪段是詹姆斯的评断</strong>——詹姆斯习惯先给一段前人文，再在下面加以批评或吸收。★ 本章还留下一个对后续有用的区分：<strong>「差异」既可以是性质上的（质的差异），也可以是数量上的（多与少）</strong>；詹姆斯说，后者不能只靠前者的觉知来消化。这一区分在第 XXII 章（推理）里会再出现。</p>
+</section>
+
+<section id="s21">
+  <h2><span class="num">20</span><span>第十四章  ASSOCIATION</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 本章讲<strong>观念的联想</strong>：思想为什么从这里滑到那里。詹姆斯先承认思维确实受「机械条件」的支配——这些条件决定了<strong>材料出现的顺序</strong>；然后区分「被想到的联系」与「思想之间的联系」，最后给出那两条老牌规律——<strong>邻近律（contiguity）</strong>与<strong>相似律（similarity）</strong>——并对传统的联想主义（把思想拆成不变的「简单观念」再粘起来）提出批评。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> After discrimination, association!（PG #57628，第 XIV 章，第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span> The truth must be admitted that thought works under conditions imposed _ab extra_.（PG #57628，第 XIV 章，第 5 段）
+    </li>
+    <li><span class="tag t-src">原书</span> But the whole historic doctrine of psychological association is tainted with one huge error--that of the construction of our thoughts out of the confounding of themselves together of immutable and incessantly recurring 'simple ideas'…（PG #57628，第 XIV 章，第 8 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章紧承第 XIII 章（辨别），并给第 XV–XVI 章（时间知觉与记忆）提供机制：<strong>记忆就是联想的结果</strong>，没有联想，就没有「由 A 唤起 B」。它也是第 XXII 章（推理）的底子——詹姆斯说，推理无非是<strong>被引导的联想</strong>加上选择。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把本章当作「联想律综述」。更准确的读法（<span class="tag t-inf">推断</span>）：詹姆斯在这里做的是<strong>双向工作</strong>——他<strong>承认</strong>联想律的经验价值（思维确实被机械条件约束），同时<strong>拆掉</strong>联想主义的形而上学（思想不是由不变的简单观念拼出来的）。★ 另一处要提醒：他说的「思维在<strong>外加条件</strong>下工作」，意思是联想机制决定了「下一步浮出什么」，但不决定「我们<strong>选</strong>哪个」；选择仍归第 XI 章（注意）与第 XXVI 章（意志）管。把这两层混起来，就会把詹姆斯读成一个决定论者。</p>
+  <p><strong>延伸对照。</strong> 本章与第 XVI 章（记忆）几乎是同一台机器的两面：本章讲「观念如何互相唤起」，第 XVI 章讲「过去如何被唤回」。建议对照两章看詹姆斯如何用<strong>同一套联想语汇</strong>解释两件事。★ 还有一处值得记：他反复强调，联想的<strong>方向</strong>可以追溯，却难以<strong>预告</strong>——「我们可以回溯思想如何走到这里，却不能预知它下一步走向哪里」。这一点在第 XVI 章被用来解释「为什么回忆需要线索（cue）」。★ 提醒：本章的联想律属于 1890 年的心理学框架；20 世纪的行为主义（如 Thorndike 的效果律，1898／1911）与后来的认知心理学对「联想」做了完全不同的处理，<strong>那是本书之后的进展</strong>。</p>
+  <p><strong>补注。</strong> 本章有一个常被引用的技术区分：<strong>「被想到的联系」与「思想之间的联系」</strong>——前者是内容里的关联（我记得「A 与 B 有关系」），后者是两段心理状态之间的实际衔接（我想到 A 之后<strong>实际</strong>想到 B）。詹姆斯说，只有后者才可能找出「规律」。★ 另需提醒：本章的「联想律」是 1890 年的提法；20 世纪对联想的研究（无论是行为主义的条件作用，还是认知科学的联结主义）都是在<strong>不同的理论框架</strong>里重做的，不可直接对接。</p>
+  <p>★ 再补一句：詹姆斯把「联想」与「习惯」看成同一层机制的两面——联想是<strong>观念层面</strong>的习惯，习惯是<strong>行为层面</strong>的联想；两者都靠脑的可塑性。</p>
+</section>
+
+<section id="s22">
+  <h2><span class="num">21</span><span>第十五章  THE PERCEPTION OF TIME</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 本章讨论「内知觉」中的<strong>时间</strong>：我们如何知觉一段延续、如何把事件放进「先后」里。詹姆斯提出一个著名的概念——<strong>「似是而非的现在」（the specious present）</strong>：被我们当作「现在」的那一小段，其实是有<strong>宽度</strong>的，它包含刚刚过去的一点与即将来的一点。他还讨论「现在的时刻」为何抓不住、以及时间知觉的上限（大概是几十秒以内）。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> In the next two chapters I shall deal with what is sometimes called internal perception, or the perception of _time_, and of events as occupying a date therein…（PG #57628，第 XV 章，第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span> Our feelings are not thus contracted, and our consciousness never shrinks to the dimensions of a glow-worm spark.（PG #57628，第 XV 章，第 5 段）
+    </li>
+    <li><span class="tag t-src">原书</span> Let any one try, I will not say to arrest, but to notice or attend to, the _present_ moment of time. One of the most baffling experiences occurs. Where is it, this present?（PG #57628，第 XV 章，第 8 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章与第 XVI 章（记忆）是姊妹章：本章管「直觉到的时间」（几十秒内），第 XVI 章管「被构想的时间」（过去与未来，靠回忆与预期）。它同时把第 IX 章的「连续性」具体化了——所谓「流」，在时间上就表现为「似是而非的现在」这种有宽度的当下。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把「似是而非的现在」当作<strong>客观</strong>的时间单位。★ 它的准确定义是<strong>心理的</strong>：它是「被我们当作现在来对待的那一段」，其长度因人、因情境而变，詹姆斯说它的「核」大概是十几秒或更短，边缘则模糊地向外消散（vaguely vanishing fringe）。★ 第二个误读是把「现在的时刻抓不住」读成「时间是幻觉」。詹姆斯的原意只是：<strong>被严格限定的「此刻」不是一个可被内省捕捉的对象</strong>；这与否认时间的实在性是两回事。</p>
+  <p><strong>延伸对照。</strong> 建议把本章与第 IX 章第 43 段（思想之流）放在一起读：一个讲<strong>内容</strong>如何流动，一个讲<strong>时间</strong>如何被知觉，两者共同构成詹姆斯对「连续性」的处理。★ 一个实用的读法是记住本章的两个层次：<strong>直接直觉</strong>（可直接感到的时间，约几十秒以内）与<strong>构想的时间</strong>（靠记忆与预期的地图）。第 XVI 章会从第二个层次接手。★ 提醒：「似是而非的现在」在 1890 年主要靠内省界定，20 世纪的时间心理学（如 Fraisse 的研究）与神经科学对「主观现在」做了大量实验，<strong>那是本书之后的进展</strong>；本报告只把本章的说法当<strong>描述</strong>，不当<strong>测量结论</strong>。</p>
+  <p><strong>补注。</strong> 本章还有一处与第 IX 章呼应的细节：詹姆斯说，意识的「现在」之所以抓不住，是因为一旦我们想<strong>盯住</strong>它，它就已经变成了「刚刚过去」。★ 这个观察与第 IX 章关于「时间中的断裂如何被接上」的讨论是同一题材的两面。★ 另需提醒读者注意本章的<strong>篇幅分布</strong>：詹姆斯把大量篇幅用在辨析前人学说上，他自己的正面主张（似是而非的现在）只占其中一小部分；读时不妨先跳到结论，再回头看他如何反驳。</p>
+  <p>★ 再补一句：本章还讨论了一个反直觉的现象——我们对<strong>一段间隔</strong>长短的判断，往往取决于这段时间里<strong>发生了多少事</strong>、以及注意力如何分布；这使「时间感」带有强烈的<strong>情境依赖</strong>，而不是一把客观的尺。</p>
+</section>
+
+<section id="s23">
+  <h2><span class="num">22</span><span>第十六章  MEMORY</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 本章讲记忆。詹姆斯先回忆上一章的结论（直接的时间直觉有限），接着说：思想之流的大部分「段落」都落进了<strong>遗忘的无底深渊</strong>；然后他把记忆分成<strong>初级记忆（primary memory）</strong>与<strong>次级记忆（memory proper）</strong>，给出后者的定义，并讨论保持力（retentiveness）、联想线索、以及「记忆能否被训练」这个当时的热点问题。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> In the last chapter what concerned us was the direct _intuition_ of time.（PG #57628，第 XVI 章，第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span> The stream of thought flows on; but most of its segments fall into the bottomless abyss of oblivion.（PG #57628，第 XVI 章，第 2 段）
+    </li>
+    <li><span class="tag t-src">原书</span> Memory proper, or secondary memory as it might be styled, is the knowledge of a former state of mind after it has already once dropped from consciousness…（PG #57628，第 XVI 章，第 15 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章与第 XV 章是一组；它给第 XXII 章（推理）预留材料（联想线索的运用），也是第 IV 章（习惯）的回忆版——保持力被解释为大脑的<strong>可塑性</strong>。★ 詹姆斯在这里鲜明地站在<strong>联想</strong>一侧：没有线索（cue），回忆就无法启动。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把它读成「记忆术指南」。本章的落点恰恰相反：詹姆斯对「记忆可以像肌肉一样练强」这一流行信念表示怀疑，并把「记忆」与「记忆力」分开——<strong>记住内容</strong>与<strong>改善一般保持力</strong>不是一回事（<span class="tag t-rep">转述</span>：学界常引他为「练习不能无限提升记忆」这一结论的早期支持者）。★ 另一处须提醒：本章关于「记忆的生理基础是脑的可塑性」的说法，属于 1890 年的推断；20 世纪神经科学（如突触可塑性的研究）给出了完全不同的机制图景，<strong>那是本书之后的进展</strong>。</p>
+  <p><strong>延伸对照。</strong> 本章与第 XVII 章（感觉）在结构上接得紧：第 XVI 章讲「过去如何回到心中」，第 XVII 章讲「外界如何进入心中」——一出一进。★ 建议读者注意詹姆斯的一个习惯：他总把<strong>描述性事实</strong>（我们会忘、需要线索、回忆带温度）与<strong>机制性假设</strong>（脑的分子变化）分开，并在后者上用「可能」「大概」这类词。本报告据此把本章的内容分成两层，读者也宜照此读。★ 最后，「初级记忆／次级记忆」这组术语在今日心理学里有不同的用法（如工作记忆），阅读时不要直接对接。</p>
+  <p><strong>补注。</strong> 本章有一个与第 IV 章（习惯）共享的机制要点：詹姆斯说，记忆的生理基础是<strong>脑的可塑性</strong>——与习惯同源。区别在于：习惯让<strong>动作</strong>更容易发生，记忆让<strong>内容</strong>更容易回来。★ 这一「机制共享、功能分工」的写法，是理解全书结构的一把钥匙。★ 还有一处值得记的观察：他指出回忆需要<strong>线索（cue）</strong>，而线索往往来自<strong>当下情境</strong>——同一件事，在不同场合会被想起不同的侧面。后世在完全不同的实验传统里重新研究了「线索依赖的回忆」——<strong>这是本书之后的进展</strong>。</p>
+  <p>★ 再补一句：詹姆斯还区分了「留下（retention）」与「取回（recollection）」——前者是内容留在脑中，后者是把它重新取出；他真正关心的是后者，因为只有取出才需要线索。★ 另一点也值得记下：詹姆斯说，初级记忆与次级记忆的分界，在于「有没有一段间隙」——有间隙而后回来，才叫记忆。</p>
+</section>
+
+<section id="s24">
+  <h2><span class="num">23</span><span>第十七章  SENSATION</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 进入第二卷，詹姆斯先处理<strong>感觉</strong>。他说，「内知觉之后，是外知觉」——接下来三章要讲我们如何认识眼前这个空间与物质的世界。本章区分<strong>感觉与知觉</strong>（两者在流行语与心理学里都界限模糊），指出纯粹的感觉其实是<strong>一种抽象</strong>，成人生活里并不存在；并把感觉的功能定义为<strong>对事实的单纯熟悉（acquaintance）</strong>。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> After inner perception, outer perception!（PG #57634，第 XVII 章，第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span> _The words Sensation and Perception_ do not carry very definitely discriminated meanings in popular speech, and in Psychology also their meanings run into each other.（PG #57634，第 XVII 章，第 3 段）
+    </li>
+    <li><span class="tag t-src">原书</span> _A pure sensation is an abstraction;_（PG #57634，第 XVII 章，第 7 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章是第二卷「外知觉」三章（第 XVII–XX 章）的开头，也是第 XIX 章（物之知觉）的直接前提——因为只有先分清感觉与知觉，才能谈「添加了什么」。它同时承接第一卷：第 IX 章已说过「没有人曾有过一个单独存在的简单感觉」，本章就是那句的展开。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把「纯感觉是一种抽象」读成「感觉不存在」。詹姆斯的原意是：<strong>独立呈现的纯粹感觉</strong>在成人身上从不出现，它只作为分析的产物存在；真实的情形是感觉总和知觉混在一起。★ 另一处须提醒：本章把感觉定义为「对事实的熟悉」，这与第 XII 章「熟悉之知／关于之知」的区分呼应——<strong>感觉给的是熟悉，知觉给的是关于</strong>。读者若把这两组区分混同，就会看不清后面三章的结构。</p>
+  <p><strong>延伸对照。</strong> 建议把第 XVII–XX 章看成一条链：<strong>感觉（XVII）→ 想象（XVIII）→ 物之知觉（XIX）→ 空间知觉（XX）</strong>。这条链的逻辑是：外界先刺激出感觉，感觉留下可再生的复本（想象），复本与感觉合起来构成「物」，而「物」又必须被安置在空间里。★ 一个常被忽略的背景：詹姆斯写这一卷时，关于「感觉」的实验心理学（如 Wundt 学派的心理物理学）已经相当活跃，但他在本章<strong>有意绕开</strong>各感觉的「分类与自然史」（「我将完全略过这些」），把笔墨留给<strong>认识论式的问题</strong>。这是他「不写手册、写论著」的一个具体证据。</p>
+  <p><strong>补注。</strong> 本章有一处与第 XIX 章直接咬合的要点：詹姆斯说，感觉的功能是<strong>单纯熟悉</strong>（acquaintance），而知觉的功能是<strong>关于</strong>（knowledge about）。★ 这意味着感觉并不提供「这是什么」的答案，「是什么」永远来自补充——这正是第 XIX 章的主题。★ 他还提醒，感觉与知觉的界线在流行语与心理学里都模糊；这不是缺陷，而是因为二者在真实经验里本就缠绕。★ 最后，本章开头那句「内知觉之后，是外知觉」是全书唯一一处明示「第二卷从哪接上第一卷」的句子，读者不妨把它当作第二卷的目录。</p>
+  <p>★ 再补一句：本章还明确声明，各种感官的「分类与自然史」细节他在这章<strong>完全略过</strong>，留给专门的著作去讲。这又是一个「不写手册、只写论著」的直接证据。</p>
+</section>
+
+<section id="s25">
+  <h2><span class="num">24</span><span>第十八章  IMAGINATION</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 本章讲<strong>想象</strong>（观念的再生）。詹姆斯先给定一个基本命题：感觉一旦被经验过，就会<strong>改变神经组织</strong>，使它们的<strong>复本</strong>在原刺激消失后仍能在心中升起；但任何从未由外界直接激起过的感觉，都不可能有心理复本。他随即讨论这种复本的种种性质：天生盲者与天生聋者的界限、后像与想象的区别、想象的<strong>模糊性（vagueness）</strong>，以及想象与记忆、幻想的界线。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> _Sensations, once experienced, modify the nervous organism, so that copies of them arise again in the mind after the original outward stimulus is gone._（PG #57634，第 XVIII 章，第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span> …but the man _born_ deaf can never be made to imagine what sound is like, nor can the man _born_ blind ever have a mental vision.（PG #57634，第 XVIII 章，第 2 段）
+    </li>
+    <li><span class="tag t-src">原书</span> Hume was the hero of the atomistic theory.（PG #57634，第 XVIII 章，第 7 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章是第 XVII 章（感觉）与第 XIX 章（物之知觉）之间的<strong>中转站</strong>：感觉要参与知觉，必须先能<strong>再生</strong>；而「再生」正是想象。它也是第 XVI 章（记忆）的另一面——同样的复本，加上<strong>日期感</strong>就成了回忆，加上<strong>自由组合</strong>就成了幻想。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把本章读成「想象力可以训练到无所不能」。詹姆斯的立场恰好相反：<strong>想象的原料受经验的限制</strong>——天生聋者想象不出声音的内容，天生盲者想象不出视觉。★ 另一处要提醒：本章对 Hume 与「原子论式」联想心理学的批评（「Hume 是原子论理论的英雄」这句带着反讽），与第 VI、XIII 章的批评同调；把这三处放一起，能看清詹姆斯对「心理生活由简单元素拼成」这一路数的系统反对。★ 还有一点：本章把「想象的模糊」列为常态而非缺陷，这在当时与后来的「意象清晰度」研究（如 Galton 的意象调查）处在同一条问题线上，但<strong>詹姆斯的处理是描述的，不是统计的</strong>。</p>
+  <p><strong>延伸对照。</strong> 建议与第 XIX 章连着读：第 XVIII 章讲<strong>复本从哪来</strong>，第 XIX 章讲<strong>复本怎么和当下的感觉合起来变成「物」</strong>。这两章共同构成詹姆斯对「经验如何积累」的回答。★ 一个实用的记忆点：本章标题用 IMAGINATION，但内容更接近今日所说的「<strong>心理意象（mental imagery）</strong>」，而非「创造性想象」——读者若按后者去读，会处处错位。</p>
+  <p><strong>补注。</strong> 本章的「复本」概念与章题（IMAGINATION）之间存在一个术语落差：詹姆斯讲的其实更接近今日所称的<strong>心理意象</strong>，而非「创造性想象」。★ 他还特别讨论了后像（after-images）与想象的区别，指出后像属于<strong>感觉</strong>而非想象——这条界线在方法上很重要：它划定了「刺激还在起作用」与「刺激已撤去、复本自行出现」的分野。★ 一个与全书呼应的点：本章对「想象的模糊」的宽容，与第 IX 章对 <code>fringe</code> 的重视同出一辙——詹姆斯都把「不清晰的边缘」当作正常且重要的心理事实。</p>
+  <p>★ 再补一句：本章还讨论到「想象力的强度」——同一事物的复本在不同人身上清晰程度差异极大；詹姆斯把这种差异归入<strong>个体差异</strong>，而不当作病症。</p>
+</section>
+
+<section id="s26">
+  <h2><span class="num">25</span><span>第十九章  THE PERCEPTION OF 'THINGS'</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 本章讲我们如何知觉<strong>「物」（things）</strong>。詹姆斯先比较知觉与感觉：纯粹的感觉在成人身上是抽象，任何作用于感官的性质都会在脑半球里激起<strong>由经验组织而成的过程</strong>；因此，知觉的本质是<strong>对与感觉对象相关联的「进一步事实」的意识</strong>——换句话说，知觉总是「带着补充」的。他随后讨论这种补充如何由「再生的脑过程」与当下的感觉合并而成。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> This passage from James Mill[84] gives a clear statement of the doctrine which Berkeley in his Theory of Vision made for the first time an integral part of Psychology.（PG #57634，第 XIX 章，第 5 段）
+    </li>
+    <li><span class="tag t-src">原书</span> _Perception thus differs from sensation by the consciousness of farther facts associated with the object of the sensation:_（PG #57634，第 XIX 章，第 3 段）
+    </li>
+    <li><span class="tag t-src">原书</span> _Sensational and reproductive brain-processes combined, then, are what give us the content of our perceptions._（PG #57634，第 XIX 章，第 6 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章是第二卷「外知觉」的中心：它把第 XVII 章（感觉）与第 XVIII 章（想象）的成果合起来，产出「物」；又给第 XX 章（空间知觉）留位——因为「物」必然占据空间。它也与第 XXII 章（推理）相通：詹姆斯的「知觉＝补充」与「推理＝从符号推事实」是同一种心理操作的两种强度。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把「知觉是补充」读成「知觉是幻觉」。詹姆斯的补充是<strong>由经验担保</strong>的：它之所以有效，是因为过去的经验在这类场合反复成立。★ 另一处要提醒：本章引用了 James Mill 与 Berkeley 的材料，读者须分清<strong>哪些是詹姆斯的判断、哪些是他转述的前人观点</strong>——他习惯先给一段前人文，再加以评断。★ 还有一点今日读来特别要紧：本章的「再生脑过程」概念属于 1890 年的生理推断，与后来「自上而下的加工」这类认知科学的说法<strong>形式相似而基础不同</strong>；把它当「先知」是本报告明确避免的写法。</p>
+  <p><strong>延伸对照。</strong> 建议把本章与第 XXV 章（在 <code>## 31</code> 讨论的「情绪」侧）分开看，却也可以对照：詹姆斯的「知觉＝当下的感觉＋再生的补充」与他的「情绪＝对外部事实的感知＋身体变化的感受」共享同一个结构——<strong>都要有一个「加上去的部分」</strong>。★ 一个实用的读法：遇到「我们看见了什么」，就追问一次「哪部分是被感觉到的、哪部分是被补充的」。这个追问会把读者直接带进第 XIX 章的核心。</p>
+  <p><strong>补注。</strong> 本章的技巧在于：詹姆斯并不满足于说「知觉会补充」，他还要说明<strong>补充从哪来</strong>——答案是<strong>再生的脑过程</strong>与当下的感觉<strong>合并</strong>。★ 用今天的说法（本报告自己的转述，不是詹姆斯的原话）：知觉约等于当下输入加上过去经验的自动调取。★ 但请注意，詹姆斯给出的机制（「脑过程」）属于 1890 年的推断；今天讨论「自上而下加工」用的是完全不同的实验与模型。★ 本章还留下一个对第 XXII 章有用的论断：<strong>知觉与推理是同一种操作的强弱两端</strong>——知觉是「自动完成的推理」。</p>
+  <p>★ 再补一句：本章还强调，知觉里的那次「补充」大多是<strong>无意识</strong>完成的——我们以为「看见」的就是眼前的全部，其实其中很大一部分内容来自过去经验的自动调取。</p>
+</section>
+
+<section id="s27">
+  <h2><span class="num">26</span><span>第二十章  THE PERCEPTION OF SPACE</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 这是全书最长、也最难的一章，詹姆斯自己都说它「是一件可怕的东西」（自序语）。他处理的是<strong>空间知觉</strong>：空间感从哪来？是天生就有的、还是由触觉与视觉经验拼出来的？他提出自己的核心论题——每一种感觉里都可辨出一个<strong>「粗疏广延」（crude extensity）</strong>的要素，它是<strong>原始的空间感觉</strong>，后来的精确空间知识都建立在它之上。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> _In the sensations of hearing, touch, sight, and pain we are accustomed to distinguish from among the other elements the element of voluminousness._（PG #57634，第 XX 章，第 2 段）
+    </li>
+    <li><span class="tag t-src">原书</span> _Now my first thesis is that this element, discernible in each and every sensation, though more developed in some than in others, is the original sensation of space_…（PG #57634，第 XX 章，第 6 段）
+    </li>
+    <li><span class="tag t-src">原书</span> _If a number of sensible extents are to be perceived alongside of each other and in definite order they must appear as parts in a vaster sensible extent which can enter the mind simply and all at once_.（PG #57634，第 XX 章，第 31 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章是第二卷「知觉」块的重心，也是全书与当时<strong>实验心理学</strong>（视觉空间知觉、眼动、触觉定位）关系最密的一章。它上承第 XIX 章（物之知觉），下启第 XXI 章（实在性的知觉）——因为「物」要成为<strong>实在</strong>，先得被安置在空间里。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读有二。① 以为本章是「空间知觉的实验综述」——其实詹姆斯在这里的主要工作是<strong>论辩性的</strong>：他要驳倒「空间是后起的、由经验拼装的」这一路（即当时经验主义的空间发生说）。② 把「粗疏广延是原始的空间感觉」读成「空间是先天的」——詹姆斯的意思更窄：<strong>感觉里本来就带一点「体积感」</strong>，精确的空间秩序仍要靠辨别与联想（第 XIII、XIV 章）建构。★ 另外，本报告的定位提醒（来自自序）：詹姆斯说这一章「除非写得如此详细，根本没法公平处理」，读者若怕长，可先读他的《The Spatial Quale》一文（《思辨哲学杂志》所载）作替代——<strong>这是他本人在自序里推荐的读法</strong>。</p>
+  <p><strong>延伸对照。</strong> 本章与第 XV 章（时间知觉）构成一组「对偶」：一个讲空间如何被知觉，一个讲时间如何被知觉；詹姆斯对两者用了同一套「原始要素＋经验建构」的框架。★ 建议读者读本章时随时回到第 XIX 章第 3 段那句定义（知觉＝对<strong>进一步事实</strong>的意识），因为空间知觉在本章的论证里正是「补充」得最多的一类。★ 提醒：本章篇幅在全书居首，且包含大量 1890 年的实验材料与论战；本报告只取其中三条可核的论点，未逐节复述——这是<strong>有意的取舍</strong>，不是遗漏。</p>
+  <p><strong>补注。</strong> 本章有一个容易读错的地方：詹姆斯并不主张「空间感完全是天生的」。他的论题很窄——每一种感觉里都能辨出一点<strong>「体积感」（voluminousness）</strong>，这构成<strong>原始的</strong>空间感觉；至于精确的空间秩序（「在上／在下」「远／近」），仍要靠辨别与联想建构。★ 因此本章实际上是<strong>两面作战</strong>：既反对「空间全靠经验拼出」，也不主张「空间全在天生」。★ 另外，自序里说本章「是一件可怕的东西」，并建议用他的《The Spatial Quale》一文作替代读法——这是作者亲自开的「跳读许可」。</p>
+  <p>★ 再补一句：本章还提出一个方法论要求——讨论空间知觉时，必须先把「客观空间」与「被知觉的空间」<strong>分开</strong>，否则一切论证都会含糊不清。</p>
+</section>
+
+<section id="s28">
+  <h2><span class="num">27</span><span>第二十一章  THE PERCEPTION OF REALITY</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 本章讲<strong>「实在感」</strong>——人怎么会<strong>相信</strong>某样东西是真的、是存在的。詹姆斯先区分「想象一件事」与「相信它存在」，指出在相信的状态里，对象不只是被理解，还被<strong>牢牢握持</strong>；随后他给出一个反直觉的论断：从内在性质看，<strong>信念是一种更接近情绪的「感受」</strong>，而不是纯粹的理智判断。他还处理信念的种种「相反物」——怀疑、探究、以及<strong>情感与行动的冲动如何影响信念</strong>。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> Everyone knows the difference between imagining a thing and believing in its existence, between supposing a proposition and acquiescing in its truth.（PG #57634，第 XXI 章，第 2 段）
+    </li>
+    <li><span class="tag t-src">原书</span> _In its inner nature, belief, or the sense of reality, is a sort of feeling more allied to the emotions than to anything else._（PG #57634，第 XXI 章，第 4 段）
+    </li>
+    <li><span class="tag t-src">原书</span> _The true opposites of belief,_ psychologically considered, _are doubt and inquiry, not disbelief._（PG #57634，第 XXI 章，第 6 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章把第二卷从「知觉」推向「行动」的门口：如果「实在感」一半是情绪、一半是行动冲动的结果，那么信念就不是静观的，而<strong>天然地要走向作为</strong>。这为第 XXV 章（情绪）与第 XXVI 章（意志）铺了路；也解释了詹姆斯为什么在自序里说本书<strong>不讨论</strong>快乐与痛苦。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把「信念接近情绪」读成「信念是非理性的」。詹姆斯的原话有范围：他说的是<strong>从内在性质看</strong>，实在感「更像一种情绪」——这不否认信念有对象、有真假，而是说<strong>它有感受的温度</strong>。★ 另一处须提醒：本章属于 <span class="tag t-src">原书</span> 辖区中<strong>最常被后来的实用主义援引</strong>的部分；但实用主义（1907）是<strong>本书之后</strong>的著作，把本章的「信念」直接等同于实用主义的「真理观」是时代错置（见 <code>## 35</code>）。</p>
+  <p><strong>延伸对照。</strong> 建议把本章与第 XIX 章（物之知觉）合读：一个讲「我们如何看见物」，一个讲「我们何以觉得它是真的」——詹姆斯把「实在」当作知觉的一个<strong>质量</strong>，而非外部保证。★ 一个实用的读法：遇到「谁相信什么」的问题，先问「他的<strong>身体状态与行动冲动</strong>处于什么位置」——这是詹姆斯式的分析入口。</p>
+  <p><strong>补注。</strong> 本章的一个技术区分值得记下：詹姆斯说，<strong>信念的真正对立面，在心理上，是怀疑与探究，而不是「不相信」</strong>（第 6 段）。★ 这个区分的含义是：不相信仍是信念的一种（相信其反面），而怀疑则是<strong>未定</strong>的状态——那才是信念的心理反面。★ 他还指出，情感与行动的冲动会<strong>影响</strong>信念：在行动压力下，人更容易相信对自己行动有利的东西。★ 一个结构上的提醒：本章既讲「实在感如何形成」，也就为第 XXVIII 章（必然真理）预留了问题——如果必然判断不只靠经验，那么它们「实在」在什么意义上？★ 20 世纪关于「动机性推理」的研究在完全不同的框架里重做了上面的观察，<strong>那是本书之后的进展</strong>。</p>
+  <p>★ 再补一句：詹姆斯还注意到，我们<strong>无法凭意志直接相信</strong>——信念不像举手那样可以被随意唤起；这一观察后来成了「信念伦理」讨论的一个起点。</p>
+</section>
+
+<section id="s29">
+  <h2><span class="num">28</span><span>第二十二章  REASONING</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 本章讲<strong>推理</strong>。詹姆斯先质疑那个老框架（「人是理性动物、兽类完全无理性」），说「理性」到底指什么其实很难确定；随后他给出推理的要素：<strong>聪敏（sagacity）</strong>——从眼前的整体里<strong>发现相关部分</strong>的能力——与<strong>学习（learning）</strong>的结合。他强调推理不是从零开始，而是站在<strong>联想</strong>与<strong>辨别</strong>已经铺好的轨道上作<strong>选择</strong>。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> We talk of man being the rational animal; and the traditional intellectualist philosophy has always made a great point of treating the brutes as wholly irrational creatures.（PG #57634，第 XXII 章，第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span> First, _sagacity_,[325] or the ability to discover what part, M, lies embedded in the whole S which is before him;（PG #57634，第 XXII 章，第 21 段）
+    </li>
+    <li><span class="tag t-src">原书</span> Much of our thinking consists of trains of images suggested one by another, of a sort of spontaneous revery of which it seems likely enough that the higher brutes should be capable.（PG #57634，第 XXII 章，第 2 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章是第 XIII–XIV 章（辨别、联想）在「高级认识」上的汇合，也是第 XIX 章（知觉＝补充）的延长线——詹姆斯说，<strong>知觉</strong>与<strong>推理</strong>是同一种操作的强弱两端：知觉是「自动完成的推理」，推理是「自觉进行的知觉」。它同时为第 XXVIII 章（必然真理）埋下问题。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把「聪敏」当成天赋才能的赞美。詹姆斯的用法是<strong>技术性的</strong>：它指「从整体 S 中把局部 M 识别出来」这一步，是推理的第一步，而非全部。★ 另一处要提醒：本章关于「兽类也能有联想性思维」的说法，在 1890 年属于挑战人类例外论的边缘主张；20 世纪的动物认知研究（如 Koehler 等）在完全不同的基础上重做了这类问题——<strong>那是本书之后的进展</strong>，不应说是詹姆斯「预见了」动物认知学。</p>
+  <p><strong>延伸对照。</strong> 建议把本章与第 XIX、XXI 章串成一条线：知觉（补充）→ 实在感（信念）→ 推理（自觉的补充）。三章都在处理同一个动作：<strong>我们如何在当下的材料上「加上」不在场的东西</strong>。★ 一个实用的读法：詹姆斯把「理性」从一种<strong>天赋官能</strong>降为一种<strong>操作</strong>，这与第 VI 章反对「官能心理学」的立场同源。</p>
+  <p><strong>补注。</strong> 本章有一处与第 XIX 章直接对应的论断：詹姆斯说，<strong>知觉与推理不是两类活动，而是同一操作的两种强度</strong>——知觉是「自动完成的推理」，推理是「自觉进行的、一步步的知觉」。★ 这个论断在全书里举足轻重：它把「理性」从一个高高在上的官能，拉回到与日常知觉同一个连续体上。★ 他还批评传统把兽类说成「完全无理性」——他指出，既然「理性」的含义本身都不易确定，那么用「有无理性」来划分人与兽，就是一个含混的做法。★ 一个实用读法：本章的「聪敏」概念可用来解释第 XIX 章的「补充」为何常常正确——它把「整体里哪一部分相关」挑了出来。★ 提醒：本章对「动物能否推理」的讨论属 1890 年水平；20 世纪的动物认知研究在完全不同的方法论下重做这类问题，<strong>那是本书之后的进展</strong>。</p>
+  <p>★ 再补一句：本章还指出，推理的力量很大程度上依赖<strong>相似联想</strong>——所谓「聪敏」，往往表现为迅速抓到两个情境之间的相似之处。</p>
+</section>
+
+<section id="s30">
+  <h2><span class="num">29</span><span>第二十三章  THE PRODUCTION OF MOVEMENT</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 进入「行动」一侧的过渡章。詹姆斯提醒读者：前面几章讲的都是纯粹内在的过程与产物，但它们最终的结果<strong>必然是某种身体活动</strong>——中枢的兴奋总要沿传出神经泄出去。他随后提出一条概括性的话：<strong>任何感受都倾向于产生某种运动</strong>，向全身扩散；反之，运动也可能被抑制。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> The reader will not have forgotten, in the jungle of purely inward processes and products through which the last chapters have borne him, that the final result of them all must be some form of bodily activity due to the escape of the central excitement through outgoing nerves.（PG #57634，第 XXIII 章，第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span> Using sweeping terms and ignoring exceptions, _we might say that every possible feeling produces a movement, and that the movement is a movement of the entire organism_…（PG #57634，第 XXIII 章，第 2 段）
+    </li>
+    <li><span class="tag t-src">原书</span> There are probably no exceptions to the diffusion of every impression through the _nerve-centres_.（PG #57634，第 XXIII 章，第 5 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章是第 XXVI 章（意志）的前厅：意志要能成立，必须先有「观念—运动」这条通路。它同时回收第 I 章第 8 段那条通则（一切心理变化都伴随身体变化）——本章正是那条通则的<strong>行动版</strong>。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把「任何感受都产生运动」当成一条严格定律。★ 原文明确用了「用宽泛的说法、忽略例外」（Using sweeping terms and ignoring exceptions）与「恐怕没有例外」这类<strong>留有余地</strong>的措辞；这是一种<strong>倾向性陈述</strong>，不是无例外的规律。詹姆斯紧接着就说，兴奋在脑内扩散<strong>也可能起抑制作用</strong>，只是通常刺激性效应占上风。★ 另一处：本章的「运动」指神经—肌肉层面的放电与紧张，不等于「看得见的动作」——读者若按后者理解，会误解本章与第 XXVI 章的关系。</p>
+  <p><strong>延伸对照。</strong> 建议与第 XXV 章（情绪）连着读：本章说「感受倾向产生运动」，情绪章说「身体变化先于情绪感受」——两句合起来，就是詹姆斯「身体在心理生活里占什么位置」的完整表态。★ 提醒：本章的「运动倾向」在今天的运动控制与具身认知研究里有对应话题，但<strong>那是在不同基础上重建的问题</strong>；本报告不把两者直接对接。</p>
+  <p><strong>补注。</strong> 本章在全书的地位有点像一个<strong>转轴</strong>：前面各章都在处理「心理过程」，本章第一次把它们<strong>推向出口</strong>——推向身体动作。★ 詹姆斯在此给出的图景是：任何刺激进来，都会沿传出神经泄出一点活动，哪怕我们毫无察觉；只不过活动常常被抑制或互相抵消，所以我们看不到明显的动作。★ 这个图景与第 XXV 章（情绪）合起来，构成詹姆斯的「身体观」：身体不是心理的容器，而是心理过程<strong>必须经过</strong>的一条通道。★ 另外，本章的「运动」要读成<strong>神经—肌肉层面的放电与紧张</strong>，而不是「看得见的动作」——读者若按后者理解，就会读不出它与第 XXVI 章（意志）的关系。★ 提醒：其中的生理细节是 1890 年的推断，20 世纪的运动控制研究在完全不同的基础上重建了这些问题，<strong>那是本书之后的进展</strong>。</p>
+  <p>★ 再补一句：本章结尾还指出，运动的效果可能反过来<strong>改变感受</strong>——这为第 XXV 章「身体变化先于情绪」埋下了伏笔。</p>
+</section>
+
+<section id="s31">
+  <h2><span class="num">30</span><span>第二十四章  INSTINCT</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 本章讲<strong>本能</strong>。詹姆斯给出经典定义：本能是<strong>以一种能产生特定结果、却对结果无预见、且无需事先教育</strong>的方式行动的能力；他主张动物界里本能规模巨大，本能是结构的<strong>功能对应物</strong>。随后他列出一张人类本能清单（恐惧、爱、好奇、模仿、竞争、愤怒、骄傲、占有、建设性等），并提出一个挑战性论断：<strong>人类的本能比任何其他哺乳动物都多</strong>，只是它们被经验与习惯改铸了。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> _Instinct is usually defined as the faculty of acting in such a way as to produce certain ends, without foresight of the ends, and without previous education in the performance._（PG #57634，第 XXIV 章，第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span> _Every instinct is an impulse._（PG #57634，第 XXIV 章，第 7 段）
+    </li>
+    <li><span class="tag t-src">原书</span> It will be observed that _no other mammal, not even the monkey, shows so large an array._（PG #57634，第 XXIV 章，第 138 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章是「行动」块的开头（第 XXIII 章为引），下接第 XXV 章（情绪）——詹姆斯开头就说，讲本能时<strong>无法把它与随本能的情绪兴奋分开</strong>。它也给第 IV 章（习惯）提供了另一半：本能是<strong>先天冲动</strong>，习惯是<strong>后天沉淀</strong>，两者共同塑造行为。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把「人本能最多」当作一句赞美人类的乐观话。★ 詹姆斯的上下文是<strong>反「人类无本能论」</strong>的：他要反驳那种「人因几乎没有本能而优越于兽」的陈说，说「差别不在有无，而在别处」——人类多出的冲动，在脱离情境时也可能像最机械的动物本能一样自动。这更像一句<strong>扫兴的话</strong>，不是恭维。★ 另一处提醒：本章的本能清单是 1890 年的<strong>文化预设</strong>：其中不少条目（如对「种族」「野蛮」的类比）带有那个时代的等级化看法，<code>## 5</code> 第四条已如实标出。</p>
+  <p><strong>延伸对照。</strong> 建议把本章与第 XXIII 章（运动的产生）合读：本能是<strong>先天的运动倾向</strong>，习惯是<strong>后天的运动倾向</strong>。★ 一个实用的读法：詹姆斯对本能的态度是<strong>双重的</strong>——他既用它解释行为的先天基础，又警告不要用「本能」当万能词去敷衍一切好奇心式的解释（他批评早期作者「把一切都闷死在模糊的惊叹里」）。</p>
+  <p><strong>补注。</strong> 本章与第 IV 章（习惯）是一对：<strong>本能是先天冲动，习惯是后天沉淀</strong>；詹姆斯说，两者共同塑造了行为，而人区别于兽的地方在于「用经验改铸本能」的余地更大。★ 他还有一个常被忽略的论断：<strong>本能不是一成不变的</strong>——它会随对象的经验而变化，甚至有些本能会在特定年龄「消退」（他称其为本能的可逝性）。★ 这一点与「本能等于固定机制」的通俗印象相反。★ 本章还有一个对全书有用的说法：本能清单是「功能与结构的对应物」——即有什么样的身体，就有什么样的本能。★ 提醒：本章的本能清单与「种族」类比是 1890 年的预设（<code>## 5</code> 第四条），其中不少内容已被后来的行为生物学与比较心理学取代，<strong>那是本书之后的进展</strong>。</p>
+  <p>★ 再补一句：詹姆斯把「本能」与「习惯」的交替称作心理生活的两种节律——先天的冲动与后天的沉淀<strong>轮流接管</strong>行为。</p>
+</section>
+
+<section id="s32">
+  <h2><span class="num">31</span><span>第二十五章  THE EMOTIONS</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 这是全书被引用最多的一章。詹姆斯的论断是：我们通常以为「感知事实 → 产生情绪 → 引起身体表现」，但更合理的顺序是——<strong>身体变化直接跟随对激起性事实的感知，而我们对这些变化本身的感受就是情绪</strong>。他的例子是那句名言：我们<strong>因为哭才难过</strong>、因为打才愤怒、因为发抖才害怕。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> My theory, on the contrary, is that _the bodily changes follow directly the perception of the exciting fact, and that our feeling of the same changes as they occur_ IS _the emotion_.（PG #57634，第 XXV 章，第 19 段）
+    </li>
+    <li><span class="tag t-src">原书</span> …the more rational statement is that we feel sorry because we cry, angry because we strike, afraid because we tremble, and not that we cry, strike, or tremble, because we are sorry, angry, or fearful, as the case may be.（PG #57634，第 XXV 章，第 19 段）
+    </li>
+    <li><span class="tag t-src">原书</span> Stated in this crude way, the hypothesis is pretty sure to meet with immediate disbelief.（PG #57634，第 XXV 章，第 19 段）
+    </li>
+    <li><span class="tag t-talk">作者谈话</span> The reader may possibly have heard of a peculiar theory of the emotions, commonly referred to in psychological literature as the Lange-James theory.（PG #16287，第一讲（对学生的讲演），第 1 段）★ 这是詹姆斯<strong>本人</strong>在 1899 年的另一部书里回顾这一理论时的话；它证明「Lange-James theory」这个名字是<strong>先由别人这样叫、詹姆斯自己沿用</strong>的，而不是他为《心理学原理》起的名字。
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章紧接第 XXIV 章（本能），詹姆斯开头就说两者分不开；它下接第 XXVI 章（意志）——因为身体状态既是情绪的源头，也是行动的发条。它还与第 XIX 章（物之知觉）共享同一结构：都是「外部感知 + 一个加上的部分」。</p>
+  <p><strong>可疑之处或常见误读。</strong> ★ <strong>本章是全书最容易被「口号化」的一章。</strong> 请务必看清限定：① 他说的是 <strong>the coarser emotions</strong>（较粗的情绪）；② 他讨论的是<strong>顺序</strong>问题（身体变化与感受谁先），不是「情绪完全没有认知成分」；③ 他自己紧接着承认「就这样粗率地说出来，几乎肯定会立刻遭到不信」，全章其余篇幅都在<strong>为这个假设收集证据与限定条件</strong>。★ 还有一个必须写清的边界：丹麦医生 <strong>Carl Georg Lange</strong>（1834–1900）<strong>1885 年</strong>独立提出相近理论（出处见 <code>## 5</code> 第二条）；此说后来被 <strong>Walter B. Cannon</strong> 于 <strong>1927 年</strong>在 <em>The American Journal of Psychology</em> 上系统质疑——<strong>这些都是本书之后的进展</strong>，不属于对原文的叙述。</p>
+  <p><strong>延伸对照。</strong> 本章与第 XXIII 章（运动）是一组的：一个讲感受如何泄为动作，一个讲身体变化如何回灌为感受。两章合起来，是詹姆斯对「身体在情绪里扮演什么角色」的正面回答。★ 一个实用的读法：把「先哭后悲伤」当<strong>一个待检验的假设</strong>去读原文，而不是当詹姆斯的<strong>结论</strong>去引用——这是本报告对本章的唯一硬要求。</p>
+  <p><strong>补注。</strong> 本章的结构值得说清：詹姆斯先用第 19 段给出假设，其后<strong>整章的绝大部分篇幅都在为它寻找支持与界定条件</strong>——列举各类情绪的生理表现、讨论「较粗的情绪」与「较细的情绪」的差别、并处理「想象的对象也能引起情绪」这类反例。★ 因此，若只引用第 19 段那三句话，就丢掉了本章的真意：<strong>詹姆斯自己最清楚这个假设需要多少限定</strong>。★ 本章还留下一个对第 XXVI 章有用的接口：情绪既是被动的感受，也是行动的发条；它把「身体状态」与「动作倾向」连在了一起。</p>
+  <p>★ 再补一句：本章也承认，某些「较细的情绪」（例如道德感、审美感）未必适合这条假设——<strong>这个限定常被后来的引用者忽略</strong>，本报告特别标出。</p>
+</section>
+
+<section id="s33">
+  <h2><span class="num">32</span><span>第二十六章  WILL</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 全书最后一章正题（第 XXVIII 章为收尾）。詹姆斯先讲欲望、意愿、意志是什么，指出意志<strong>立刻</strong>能带来的只是<strong>自己身体的动作</strong>；随后他引入<strong>观念运动动作（<code>ideo-motor action</code>）</strong>——那些「想到就做、无需任何额外的意志命令（fiat）」的动作，并说这类动作才是意志生活的<strong>更基本</strong>形态。他还讨论深思熟虑、决断、以及「意志的努力主要是<strong>注意的努力</strong>」这一论断。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> Desire, wish, will, are states of mind which everyone knows, and which no definition can make plainer.（PG #57634，第 XXVI 章，第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span> Wherever movement follows _unhesitatingly and immediately_ the notion of it in the mind, we have ideo-motor action.（PG #57634，第 XXVI 章，第 93 段）
+    </li>
+    <li><span class="tag t-src">原书</span> _A supply of ideas of the various movements that are possible left in the memory by experiences of their involuntary performance is thus the first prerequisite of the voluntary life._（PG #57634，第 XXVI 章，第 5 段）
+    </li>
+    <li><span class="tag t-talk">作者谈话</span> The fact is that there is no sort of consciousness whatever, be it sensation, feeling, or idea, which does not directly and of itself tend to discharge into some motor effect.（PG #16287，第十五讲，第 3 段）★ 这是詹姆斯 <strong>1899 年</strong>在讲给教师的第十五讲里，把「观念运动」用更通俗的话又说了一遍——<strong>不是</strong>为本书做的说明，而是另一部书的重述。
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章是全书的<strong>终点站</strong>：它把第 IX 章（注意）、第 XXIII 章（运动）、第 XXV 章（情绪）三条线收在一起——意志＝注意的努力，而注意的努力就是让一个观念<strong>留在心里并泄为行动</strong>。第 XXVIII 章随后收尾，处理「必然真理」。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把 <code>ideo-motor action</code> 读成「想到就必须做」。★ 原文的限定词是 <strong>unhesitatingly and immediately</strong>（毫不犹豫、立刻）——正因为它<strong>无条件、无中介</strong>，才叫观念运动动作；一旦需要「决断、同意、意志命令（fiat）」介入，就是更复杂的类型。詹姆斯把<strong>无命令</strong>的那种当作更基本、更简单的一类。★ 另一处要提醒：本章关于「自由意志」的段落（他承认自己<strong>肯定自由意志</strong>）属于<strong>詹姆斯的个人立场</strong>，须标明是<strong>作者的</strong>主张，而不是从前面机制里推出来的结论——这也是本报告对「不许代言」的自我约束。</p>
+  <p><strong>延伸对照。</strong> 建议把本章与第 XI 章（注意）合读：第 XI 章说「我的经验就是我同意去注意的东西」，本章说「意志的努力就是注意的努力」——两句连起来，构成詹姆斯对「人如何行动」的回答。★ 一个实用的读法：把全书读到最后，会发现它的真正主题不是「意识由什么构成」，而是「<strong>一个念头如何在身体里变成一件事</strong>」。</p>
+  <p><strong>补注。</strong> 本章与第 XI 章（注意）的接口是全书最要紧的一处：詹姆斯说，<strong>意志的努力，说到底就是注意的努力</strong>——在一堆竞争的对象里，把那个「困难的对象」<strong>留住不放</strong>，就是「意志」的核心动作。★ 他举的例子很朴素：一个人要戒酒，真正要做的不是跟自己「争论」，而是<strong>把注意力从酒杯上移开</strong>。★ 本章末尾，詹姆斯明确表达了他<strong>个人肯定自由意志</strong>的立场；本报告要再强调一次：这是<strong>作者本人的主张</strong>，不是从前面任何机制里推导出来的结论，读者引用时必须标明这一点。</p>
+  <p>★ 再补一句：本章还讨论了「深思熟虑」的机制——当多个冲动互相冲突时，会出现一段「犹豫期」；所谓决断，就是从这段犹疑中让某一个观念取得优势。</p>
+</section>
+
+<section id="s34">
+  <h2><span class="num">33</span><span>第二十七章  HYPNOTISM</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 这是全书最短、也最「现场」的章节之一。詹姆斯讲<strong>催眠</strong>：各种诱导方式（每个施术者都有自己的“拿手方法”）、易感性的个体差异、以及催眠状态的解除（如用唤醒的声音说「好了，醒来吧！」）。他随后梳理当时几种关于催眠状态的理论。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> The 'hypnotic,' 'mesmeric,' or 'magnetic' trance _can be induced in various ways_, each operator having his pet method.（PG #57634，第 XXVII 章，第 2 段）
+    </li>
+    <li><span class="tag t-src">原书</span> The trance may be dispelled instantaneously by saying in a rousing voice, 'All right, wake up!' or words of similar purport.（PG #57634，第 XXVII 章，第 6 段）
+    </li>
+    <li><span class="tag t-src">原书</span> Some operators appear to be more successful than others in getting control of their subjects.（PG #57634，第 XXVII 章，第 4 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章夹在第 XXVI 章（意志）与第 XXVIII 章（必然真理）之间，是一段<strong>旁支</strong>：它考察的是「暗示（suggestion）如何绕过通常的意志通道直接引起动作」。★ 从全书结构看，它与第 XXVI 章的 <code>ideo-motor action</code> 关系密切——催眠现象正是「观念—动作」通路被<strong>放大</strong>后的样本。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把本章读成「詹姆斯的催眠术教程」。★ 事实上詹姆斯本人的态度是<strong>观察者</strong>式的：他记录现象、转述他人报告，并坦率承认「有些施术者比别人更成功」这类<strong>无法用理论解释的差异</strong>。本章的语汇（mesmeric、magnetic）也提醒读者：这是 1890 年，关于催眠的术语尚未定型。★ 另一处须提醒：本章涉及大量<strong>个案与轶事</strong>，其可靠性远低于实验材料，读者不宜据此下结论。</p>
+  <p><strong>延伸对照。</strong> 建议把本章与第 XXVI 章（意志）对照：意志章讲的是<strong>正常的</strong>观念—动作通路，催眠章讲的是这条通路<strong>被放大或被暗示接管</strong>时的样子。两章合起来，能看清詹姆斯为什么对「意识与动作之间的边界」这么感兴趣。★ 提醒：催眠现象在 20 世纪被纳入临床与实验研究（如暗示感受性的量表化），<strong>那是本书之后的进展</strong>；1890 年的材料只能当历史看。</p>
+  <p><strong>补注。</strong> 本章虽短，却与全书两条主线都接得上：一条是第 XXVI 章的 <code>ideo-motor action</code>——催眠现象可以看作「观念—动作」通路被<strong>放大</strong>的样本；另一条是第 XI 章（注意）——催眠里的「暗示」往往通过<strong>转移注意力</strong>起作用。★ 詹姆斯处理本章的方式也很能说明他的性格：他坦率记录自己解释不了的差异（有人更易被催眠、有些施术者更成功），并不急着用一个统一理论去盖住它们。★ 提醒：本章的材料多是<strong>个案与轶事</strong>，可靠性远低于受控实验；20 世纪关于「暗示感受性」的研究是另一回事，<strong>那是本书之后的进展</strong>。★ 另有一个背景值得补：据公开出版史叙述，詹姆斯曾参与创立美国心灵研究学会（1884）——但<strong>这一点不在本书正文里</strong>，本报告只作背景提示。</p>
+  <p>★ 再补一句：詹姆斯还把催眠与「自动书写」等现象并列，作为「意识可以与正常的意志通道脱钩」的旁证；这与他全书对「意识与动作之间的边界」的兴趣完全一致。★ 最后提醒一句：本章篇幅虽短，却提醒我们全书的一个底色——詹姆斯把「不正常」的现象（催眠、自动书写）当作照明正常机制的灯，而不是当作猎奇材料。</p>
+</section>
+
+<section id="s35">
+  <h2><span class="num">34</span><span>第二十八章  NECESSARY TRUTHS AND THE EFFECTS OF EXPERIENCE</span><span class="caret">▾</span></h2>
+  <p><strong>这一章在讲什么。</strong> 全书收尾。詹姆斯说这一章要处理「<strong>心理发生学（psychogenesis）</strong>」：外在环境的联系，能否解释我们为什么<strong>必然</strong>以某种方式思考与反应？他明确要证明三件事：（1）<strong>种族</strong>的经验并不比<strong>个体</strong>的经验更能解释我们的「必然的、先天的判断」；（2）没有好证据支持「本能反应是祖先教育的产物、经遗传而来」；（3）我们有机的心理结构特征，只能理解为<strong>先天的变异</strong>。★ 全章的一个基本立场是：在<strong>事实</strong>层面他站<strong>先验论</strong>一边，但在<strong>原因</strong>层面他要给出一种自然主义的解释。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span> In this final chapter I shall treat of what has sometimes been called _psychogenesis_, and try to ascertain just how far the connections of things in the outward environment can account for our tendency to think of, and to react upon, certain things in certain ways and in no others…（PG #57634，第 XXVIII 章，第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span> 1) That, taking the word experience as it is universally understood, the experience of the race can no more account for our necessary or _a priori_ judgments than the experience of the individual can;（PG #57634，第 XXVIII 章，第 3 段）
+    </li>
+    <li><span class="tag t-src">原书</span> On the whole, then, the account which the apriorists give of the _facts_ is that which I defend; although I should contend (as will hereafter appear) for a naturalistic view of their _cause_.（PG #57634，第 XXVIII 章，第 6 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置。</strong> 本章是全书的<strong>结论章</strong>，把问题从「心理如何运作」抬到「这些运作的<strong>来源</strong>是什么」。★ 它同时回收了序言里的自我定位（本书是自然科学、不作形而上学论证）：在第 XXVIII 章，詹姆斯把「先验与经验之争」按他自己的方式<strong>拆成两层</strong>——事实层与原因层，各给一个答案。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把本章读成「詹姆斯的先天论宣言」。★ 更准确的读法是：他<strong>在事实层接受先验论</strong>（我们的必然判断不能全由经验解释），<strong>在原因层要求自然主义</strong>（这些结构可理解为先天变异），二者并不矛盾，而是他「不越界」方法的一次示范。★ 另一处提醒：本章第 4 段明确<strong>否认</strong>「本能反应是祖先教育遗传下来的」这一当时流行的拉马克式解释；这在 1890 年是一个<strong>反主流</strong>的立场，但它与后来的遗传学是两回事，不要混为一谈。</p>
+  <p><strong>延伸对照。</strong> 建议把本章与《PREFACE》第 2 段（「一切把思想解释为更深层实体之产物的尝试都是形而上学」）对照：序言划界，末章守界，两者构成全书的<strong>首尾呼应</strong>。★ 一个实用的读法：把第 XXVIII 章当<strong>作者的自我交代</strong>来读——它告诉你，詹姆斯在写完 27 章现象描述之后，最终愿意在多大程度上谈论「来源」。</p>
+  <p><strong>补注。</strong> 本章还有一个结构上的作用：它是全书里唯一一次<strong>集中处理「来源」问题</strong>的章节，其余各章都在描述「如何运作」。★ 詹姆斯的处理方式很能代表他的分寸感：在<strong>事实</strong>层面他接受先验论（必然判断不能全由经验解释），在<strong>原因</strong>层面他要求自然主义（这些结构可理解为先天变异）。★ 他还明确<strong>否认</strong>了当时流行的拉马克式解释——「本能反应是祖先在同一环境里受教育后遗传下来的」。这个否认在 1890 年是反主流的。★ 提醒：这一点与后来的遗传学是两个不同的问题域，不能混谈。★ 最后，本章与序言第 2 段（「一切把思想解释为更深层实体之产物的尝试都是形而上学」）构成<strong>首尾呼应</strong>：序言划界，末章守界。</p>
+</section>
+
+<section id="s36">
+  <h2><span class="num">35</span><span>主题与思想史：机能主义、意识流与「詹姆斯式问题」</span><span class="caret">▾</span></h2>
+  <p><strong>这一节不讲新内容，讲「后来的人怎么用它」。</strong> 凡涉及后世影响的句子，本节一律<strong>单独成段</strong>，并写明年代与人名，措辞为「后世如何挪用／引用」，<strong>不写「他预见了」</strong>。</p>
+  <p><strong>一、机能主义：一个后人给的定位。</strong> 《心理学原理》通常被历史叙述称为美国<strong>机能主义（functionalism）</strong>兴起的里程碑，也是「美国心理学从哲学中独立」的一个节点。★ <strong>这是后人的历史评价</strong>，不是詹姆斯的自我标签：他自己在序言里把立场说成「严格实证的」（strictly positivistic），并未自称「机能主义者」。读者引用这句话时，应把它放在「接受史」里，而不是放在对原文的叙述里。</p>
+  <p><strong>二、<code>stream of thought</code> 的术语漂流。</strong> 本书第 IX 章的章题是 <code>THE STREAM OF THOUGHT</code>，但同一段里也出现了 <code>stream of thought, of consciousness, or of subjective life</code>。★ <strong>这是本书之后的进展</strong>：<strong>1918 年 4 月</strong>，英国评论家 <strong>May Sinclair</strong> 在 <em>The Egoist</em> 上评论 <strong>Dorothy Richardson</strong> 的小说《Pilgrimage》时，第一次把这个短语用在<strong>文学</strong>上（「It is Miriam Henderson's stream of consciousness going on and on」）；此后它成为现代主义小说技法的标签，波及 James Joyce、Virginia Woolf 等。★ 有趣的是 Richardson 本人<strong>拒绝</strong>这个标签。此外，公开资料中有一种说法称该短语更早见于 <strong>Alexander Bain</strong>《The Senses and the Intellect》（<strong>1855</strong>），但本报告<strong>未能亲自核实</strong>，已登记进附录 D。★ 本报告的立场（<span class="tag t-inf">推断</span>）：讨论詹姆斯时用 <code>stream of thought</code>，讨论<strong>文学技法</strong>时用「意识流」，两者不要互串。</p>
+  <p><strong>三、<code>the psychologist's fallacy</code> 的流传。</strong> 这个由第 VII 章第 44 段提出的术语，后来被心理学与心理学的哲学大量借用（例如讨论「研究者立场与被研究者立场」时）。★ 它之所以寿命长，恰恰因为它是<strong>方法论的自我节制</strong>，而不是一条实质主张——这与本书「不给封闭体系」的姿态一致。</p>
+  <p><strong>四、「铜制仪器心理学」与 Wundt。</strong> 詹姆斯对德国式的严格实验心理学有一个讥称——<strong>brass instrument psychology</strong>（「铜制仪器心理学」）。★ 需注意：<strong>这个短语不在《心理学原理》的正文里</strong>（本报告已用 grep 在 PG #57628 与 #57634 两卷中检索，<code>brass instrument</code> 出现 0 次），它是詹姆斯在别处的说法，经后人转述而流传。★ 与之相关的一个史学更正在 <code>## 5</code> 第五条：<strong>Kurt Danziger（1980）</strong> 检索 Wundt 主办的 <em>Philosophische Studien</em>（1883–1903）约 180 篇实验室报告，发现<strong>只有 4 篇</strong>含内省报告，说明把 Wundt 简单说成「内省主义之父」是一种误读。因此，James 与 Wundt 的分歧<strong>不在「要不要实验」</strong>，而在实验在心理学里占什么位置。</p>
+  <p><strong>五、一个必须避免的倒灌：实用主义。</strong> 实用主义（<em>Pragmatism</em>，<strong>1907</strong>）是<strong>本书之后</strong>的另一本书。★ 第 XXI 章（实在性的知觉）里关于「信念」的讨论常被后人拿去为实用主义的真理观作注，但本报告<strong>明确拒绝</strong>把 1907 年的立场倒灌进 1890 年的《心理学原理》。詹姆斯在本书序言里给的自我定位是「严格实证的」，与《实用主义》的纲领是两件事。</p>
+  <p><strong>六、所谓「詹姆斯式问题」。</strong> 通读全书，会发现詹姆斯反复把问题从「X 是什么」改写成「X 在做什么／对有机体有什么功能」——对情绪如此（第 XXV 章）、对注意如此（第 XI 章）、对习惯如此（第 IV 章）。★ 这种<strong>改问法</strong>比起任何单条结论，更像他的真正遗产；但请注意，这也是一种<strong>评价</strong>（本报告的 <span class="tag t-inf">推断</span>），不是詹姆斯自己的表述。</p>
+  <p><strong>七、<code>the fringe</code>（边际）被后世的使用。</strong> 第 IX 章提出的这个半成品概念——环绕清晰实体的、模糊的、关系性的「边际」——是本书里被后人<strong>借用得最久</strong>的说法之一。★ 后世的格式塔心理学与一部分现象学取向的心理学，都从「关系性的、非意象的觉知」这一侧发挥过它；把它读成「詹姆斯预见了无意识思维研究」是<strong>倒灌</strong>，本报告不做这种关联。可核的只有一点：詹姆斯本人明确说过，我们对事物之间<strong>关系</strong>的觉知，多半发生在这种模糊带里，而非清晰意象里——这本身就是一条足够具体、可以讨论的主张。</p>
+  <p><strong>八、接受史上的两种读法。</strong> 本书出版后，长期存在两条互相拉扯的读法线（<span class="tag t-rep">转述</span>）：一条把它读成<strong>科学文本</strong>，挑剔其中过时的脑论与生理断言；另一条把它读成<strong>文学文本</strong>，看重它的描写与文笔。★ 本节不替任何一方站台，只指出一个事实：这两条线读的其实是<strong>同一本书的两个层面</strong>——凡是涉及<strong>脑与神经</strong>的段落，应当用第一条线去读（并打上年代护栏）；凡是涉及<strong>意识如何被体验</strong>的段落，则第一条线几乎无从下手，只有描写本身在起作用。★ 本报告的整体建议是：<strong>分层面读，而不是分章节读</strong>——同一章里往往两者并存。</p>
+  <p><strong>九、本书刻意不回答的问题。</strong> 有一条容易读漏的界线值得单独点出：詹姆斯在自序里把自己的立场称为「严格实证的」（strictly positivistic），并说心理学<strong>作为自然科学</strong>「不能再往前走了」（<span class="tag t-src">原书</span>，《PREFACE》）。这意味着他<strong>主动把身心关系这个终极问题挡在门外</strong>——他在第 V 章（自动机理论）与第 VI 章（心质理论）里把相关的形而上学设想<strong>逐一陈述又逐一搁置</strong>，反复说明：这些是「形而上学的」问题，不是心理学<strong>作为一门自然科学</strong>能解决的。★ 因此，把本书读成一部「给出了身心答案」的书，是<strong>误读</strong>；它给出的恰恰相反——一条<strong>诚实划出的边界</strong>。本报告的读法（<span class="tag t-inf">推断</span>）是：与其问「詹姆斯的身心观是什么」，不如问「他为什么把这个问题留空」。这个「留空」本身，才是他最像现代科学家的地方。</p>
+</section>
+
+<section id="s37">
+  <h2><span class="num">36</span><span>版本、译本与接受史</span><span class="caret">▾</span></h2>
+  <p><strong>一、1892 年简编本。</strong> 见 <code>## 4</code>。要点重申：<strong>这是另一本书</strong>。其自述删改幅度为「大约五分之二是新的或重写的，其余是『剪刀加浆糊』」；它<strong>删掉了「实在性的知觉」（第 XXI 章）整整一章</strong>、删掉全部论战性与形而上学段落、另加了几章感觉生理；<strong>章题从 The Stream of Thought 改成 The Stream of Consciousness</strong>。它在课堂里的流行程度超过原著（学生把原著叫「James」，把简编本叫「Jimmy」）。★ 引用时<strong>不得</strong>把简编本的文字当作《心理学原理》原文。</p>
+  <p><strong>二、中文译本：只有选译。</strong> 见 <code>## 4</code> 的两条（唐钺 1963 年选译 7 章；田平选译第一至第九章），此处只补一句结论（<span class="tag t-inf">推断</span>）：<strong>想读全 28 章只能读英文</strong>；中文读者若两本合看，仍会缺第 XI–XXIV、XXVII、XXVIII 章。★ 本报告<strong>未逐册核对</strong>任何中译本的正文，因此全部中文引句按 <span class="tag t-rep">转述</span> 处理、不给页码。</p>
+  <p><strong>三、当时的接受：一句著名的评语。</strong> 关于本书的接受，流传最广的是据说出自 <strong>Wundt</strong> 的一句评语——「它是文学，它很美，但它不是心理学」（<span class="tag t-rep">转述</span>，见《来源清单》所载教育心理学回顾文献）。★ 本报告明说：这句评语<strong>来源与确切措辞未经核实</strong>，属<strong>轶事</strong>，已登记进附录 D。之所以仍然提它，是因为它精确地概括了本书在当时德国实验心理学圈子里引发的<strong>典型反应</strong>：太美、太personal、不够「科学」。</p>
+  <p><strong>四、<span class="tag t-talk">作者谈话</span>档：1899 年的教师讲演。</strong> 依 §3.3，本书的档案材料取詹姆斯的另一部书——<strong>《Talks to Teachers on Psychology; And to Students on Some of Life's Ideals》（1899，PG #16287）</strong>。★ 必须反复声明它的性质：这是詹姆斯为教师讲演所写的<strong>另一部著作</strong>，<strong>不是</strong>为《心理学原理》做的访谈，<strong>也不是</strong>它的序；两者相隔<strong>九年</strong>（1890 → 1899）。它的自序交代：1892 年哈佛校方请他给剑桥的教师讲心理学，讲稿后来成书；在习惯与记忆两章里，他<strong>逐页照抄</strong>了《心理学原理》的段落。</p>
+  <p><strong>五、下面四条是真正来自「作者谈话」档的原文。</strong></p>
+  <ul>
+    <li><span class="tag t-talk">作者谈话</span> In 1892 I was asked by the Harvard Corporation to give a few public lectures on psychology to the Cambridge teachers.（PG #16287，《PREFACE》，第 1 段）★ 说明这本书的来路。
+    </li>
+    <li><span class="tag t-talk">作者谈话</span> …_some kind of consciousness is always going on_. There is a stream, a succession of states, or waves, or fields (or of whatever you please to call them), of knowledge, of feeling, of desire, of deliberation, etc.…（PG #16287，第二讲，第 1 段）★ 詹姆斯在 1899 年用「stream」这个比喻时，措辞比 1890 年<strong>更松</strong>（「一串状态，或波浪，或场，随你怎么叫」）——这可以作为「他并不拘泥于某个固定术语」的直接证据。
+    </li>
+    <li><span class="tag t-talk">作者谈话</span> I say moreover that you make a great, a very great mistake, if you think that psychology, being the science of the mind's laws, is something from which you can deduce definite programmes and schemes and methods of instruction for immediate schoolroom use.（PG #16287，第一讲，第 5 段）★ 这句话与本书 <code>## 4b</code> 第 3 条同一立场：他不认为心理学能直接变成操作手册。
+    </li>
+    <li><span class="tag t-talk">作者谈话</span> Habit is thus a second nature, or rather, as the Duke of Wellington said, it is 'ten times nature,'--at any rate as regards its importance in adult life…（PG #16287，第八讲，第 3 段）★ 这是第 IV 章「习惯」的通俗重述，可用来对照原著与演讲两种语体。
+    </li>
+  </ul>
+  <p><strong>六、接受史的一个更长视角。</strong> 本书出版后，很快成了许多大学的教材，被译成德、法、意、俄等文字（<span class="tag t-rep">转述</span>）。但正如 <code>## 35</code> 所说，把「机能主义里程碑」这个标签贴给它是<strong>后人的历史评价</strong>。★ 本报告的建议是：把《心理学原理》当作<strong>一部 1890 年的、开放的描述性著作</strong>来读——它的价值不在预见了什么，而在<strong>它把当时能看清的现象，诚实而优美地描述到了什么程度</strong>，并把看不清的边界一并标了出来。</p>
+  <p><strong>七、版本谱系的一个粗略脉络。</strong>（<span class="tag t-rep">转述</span>，未逐册核对）若要给本书的版本画一条线，大致是：<strong>1890 年</strong>两卷原著 → <strong>1892 年</strong>《Psychology: Briefer Course》简编本 → 此后多次重印 → 后世进入哈佛版《The Works of William James》的考订本体系。★ 本报告只把<strong>1890 年两卷本</strong>当作《心理学原理》本体；简编本与一切后来的重排、选编，均只能用于讨论「版本与接受史」。</p>
+  <p><strong>八、接受在中国。</strong> 据公开书目与评述（<span class="tag t-rep">转述</span>）：中文世界最早系统介绍本书的，是 <strong>1963 年商务印书馆</strong>的唐钺选译本（选译 7 章）；另有田平的选译本（第一至第九章）。两者选目不同、不可互替（详见 <code>## 4</code>）。★ 一个应当如实说明的落差：由于<strong>没有全译本</strong>，中文读者对本书的印象高度依赖<strong>被转引的名句</strong>与<strong>二手导论</strong>，而不是完整文本——这正是本报告宁可给出「章＋段」的定位、也不肯替读者下结论的原因：<strong>定位可以被核对，结论不能替代阅读</strong>。</p>
+  <p><strong>九、一句收束。</strong> 本书的价值，不在它提供的每一条结论（其中相当一部分已被后来的研究取代），而在它示范了<strong>一种诚实的态度</strong>：把能看清的现象尽量描述清楚，把看不清的地方明白地标出来，并且<strong>拒绝用一个漂亮的体系去遮掩裂缝</strong>。★ 这句话是本报告的评价（<span class="tag t-inf">推断</span>），但它有文本支撑——詹姆斯在自序里自己就说，读者在本书里找不到任何封闭的体系。</p>
+  <p><strong>十、今天为什么还值得读它。</strong> 纯以「知识是否仍然正确」为标准，本书大部分生理内容已经过时；但它仍在被读，原因（<span class="tag t-inf">推断</span>）有三：其一，<strong>描写的分辨率</strong>——它对注意、习惯、情绪、意志这些「日常心灵现象」的刻画，至今很少被超越，后来的研究常常是在给它补机制、而非推翻它的观察；其二，<strong>术语的源头性</strong>——<code>stream of thought</code>、<code>the psychologist's fallacy</code>、<code>the empirical self</code>、<code>ideo-motor action</code> 这些词从这本书流出，成了后来许多讨论的公共货币，读原书等于回到它们<strong>未被转手</strong>的原义；其三，<strong>姿态的可学性</strong>——它示范了如何在一门尚不确定的学科里<strong>诚实地写作</strong>：说清能说的，标出不能说的。★ 本报告给全书的总评只有一句（<span class="tag t-inf">推断</span>）：<strong>它最不像「教科书」的地方，恰恰是它最值得被当教科书读的地方。</strong></p>
+</section>
+
+<section id="s38">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <p><strong>一、本书核心术语。</strong> 下表给「英文原词／常见中译／本报告取义／首次出现的章」四栏。★ 本报告一律<strong>以英文原词打底</strong>：正文凡引中文流行译法，都并排给出英文原词，并写明本报告取义，以免与后世用法混淆。</p>
+  <table>
+    <thead><tr><th>英文原词</th><th>常见中译</th><th>本报告取义</th><th>首次出现的章</th></tr></thead>
+    <tbody>
+      <tr><td>stream of thought</td><td>思想流／意识流</td><td>詹姆斯对意识连续性的<strong>章题用词</strong>；同一段里他也写 stream of consciousness。本报告在讨论詹姆斯时用「思想之流」，在讨论文学技法时用「意识流」</td><td>第 IX 章</td></tr>
+      <tr><td>the psychologist's fallacy</td><td>心理学家的谬误</td><td>研究者<strong>把自己的立场与被研究的心灵事实的立场混为一谈</strong>；是方法论警告，不是俏皮话</td><td>第 VII 章</td></tr>
+      <tr><td>the empirical self</td><td>经验自我／客我</td><td>作为<strong>被认知对象</strong>的自我（物质我／社会我／精神我），与「纯粹自我」（认知者）相对</td><td>第 X 章</td></tr>
+      <tr><td>attention</td><td>注意</td><td>心灵对一个对象的清晰占有，本质是<strong>聚焦与集中</strong>，代价是从别处抽身；「我的经验就是我同意去注意的东西」</td><td>第 XI 章</td></tr>
+      <tr><td>association</td><td>联想</td><td>观念之间的相互唤起；詹姆斯承认其经验价值，同时<strong>反对</strong>把它当作「思想由简单观念拼成」的证明</td><td>第 XIV 章</td></tr>
+      <tr><td>ideo-motor action</td><td>观念运动动作</td><td><strong>毫不犹豫、立刻</strong>随观念而起的动作，其<strong>无需</strong>任何额外的意志命令（fiat）</td><td>第 XXVI 章</td></tr>
+      <tr><td>the automaton-theory</td><td>自动机理论</td><td>「神经系统可完全自足地运转」这一设想；詹姆斯的争点是<strong>意识在此图景里还有无功能</strong></td><td>第 V 章</td></tr>
+      <tr><td>the mind-stuff theory</td><td>心质理论</td><td>「意识由更小的心理单元拼成」的理论；詹姆斯整章予以否定</td><td>第 VI 章</td></tr>
+      <tr><td>the fringe</td><td>边际／边缘</td><td>环绕清晰意象的<strong>模糊关系带</strong>；詹姆斯认为我们关于关系的知识多半发生在此</td><td>第 IX 章</td></tr>
+      <tr><td>the specious present</td><td>似是而非的现在／似现</td><td>被我们当作「现在」来对待的那一段<strong>有宽度</strong>的时间</td><td>第 XV 章</td></tr>
+      <tr><td>consciousness</td><td>意识</td><td>既指「思想之流」这一连续体，也指它「属于某个人」这一事实；詹姆斯否认它可被切成孤立的心理状态</td><td>第 IX 章</td></tr>
+      <tr><td>selective attention</td><td>选择性注意</td><td><code>attention</code> 的本质：聚焦于一物即<strong>以放弃其余为代价</strong>；詹姆斯把它看作意识的常态，而非例外</td><td>第 XI 章</td></tr>
+      <tr><td>belief</td><td>信念／实在感</td><td>「相信」在本书里首先是一种<strong>关于实在的情感态度</strong>（sense of reality），而不是一个命题的真假赋值</td><td>第 XXI 章</td></tr>
+      <tr><td>sagacity</td><td>聪敏／洞察</td><td>推理的第一要素：<strong>发现</strong>事物间关键关系的能力，先于对关系的处理</td><td>第 XXII 章</td></tr>
+    </tbody>
+  </table>
+  <p><strong>二、书中反复出现的人物（按出场先后）。</strong> 下表只列本书正文里被点名讨论的主要人物，身份按 1890 年前后的通行说法给出。</p>
+  <table>
+    <thead><tr><th>人名</th><th>身份</th><th>书中出现处（示例）</th></tr></thead>
+    <tbody>
+      <tr><td>Franz Joseph Gall</td><td>颅相学创立者（德／奥，1758–1828）</td><td>第 II 章，第 45–46 段</td></tr>
+      <tr><td>René Descartes</td><td>哲学家（法，1596–1650）</td><td>第 V 章，第 6 段；第 VIII 章</td></tr>
+      <tr><td>John Locke</td><td>哲学家（英，1632–1704）</td><td>第 XIII 章，第 1–4 段（引其论「分辨力」）</td></tr>
+      <tr><td>David Hume</td><td>哲学家（英，1711–1776）</td><td>第 XVIII 章，第 7 段（「原子论理论的英雄」）</td></tr>
+      <tr><td>Alexander Bain</td><td>哲学家兼心理学家（英，1818–1903）</td><td>第 XXIII 章，第 3 段；第 XXV 章</td></tr>
+      <tr><td>Herbert Spencer</td><td>哲学家（英，1820–1903）</td><td>第 VI 章，第 6 段</td></tr>
+      <tr><td>Carl Georg Lange</td><td>丹麦医生／生理学家（1834–1900），哥本哈根大学病理解剖学教授</td><td>第 XXV 章（詹姆斯引其关于悲伤生理的论述）</td></tr>
+      <tr><td>William James</td><td>本书作者（美，1842–1910）</td><td>全书</td></tr>
+      <tr><td>Charles Darwin</td><td>生物学家（英，1809–1882）</td><td>第 XXIV 章（本能讨论中反复引用）</td></tr>
+      <tr><td>Hermann Lotze</td><td>哲学家兼生理学家（德，1817–1881）</td><td>第 VI、XIII 章等（詹姆斯多次征引其身心关系论述）</td></tr>
+    </tbody>
+  </table>
+  <p>★ 两张表都只收<strong>进入论证主干</strong>的术语与人物，不求全：本书被点名讨论的名字远不止上表，但多数只在某一章的脚注或举例里一闪而过，收进表格反而会稀释重点。凡正文提到、表里没有的人名，一律以正文给出的「章＋段」定位为准。术语一栏的「本报告取义」是<strong>本报告</strong>的取舍（<span class="tag t-inf">推断</span>），不是词典定义；遇到与后世用法冲突之处，正文均已并排给出英文原词，以便读者回到原文自行判断。</p>
+</section>
+
+<section id="s39">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>原文（合法免费）</strong>：Project Gutenberg PG #57628（Vol. 1）、#57634（Vol. 2）——本报告的底本。想读全书 28 章，只能从这里读英文。
+    </li>
+    <li><strong>作者的另一部书</strong>：PG #16287《Talks to Teachers on Psychology; And to Students on Some of Life's Ideals》（1899）——本报告 <span class="tag t-talk">作者谈话</span>档的来源；在「习惯」与「记忆」两讲里，詹姆斯逐页照抄了《心理学原理》的段落，适合用来对照两种语体。
+    </li>
+    <li><strong>1892 年简编本</strong>：《Psychology: Briefer Course》（PG #55262 为可用输入之一）——<strong>另一本书</strong>，可用于讨论「版本与接受史」，不得当原著引用。
+    </li>
+    <li><strong>史学研究（用于 <code>## 5</code>）</strong>：Kurt Danziger 关于 Wundt 实验室报告的检索研究（收于 <em>Points of View in the Modern History of Psychology</em> 一书）；Walter B. Cannon 1927 年在 <em>The American Journal of Psychology</em> 第 39 卷的论文。
+    </li>
+    <li><strong>术语史材料</strong>：May Sinclair 1918 年 4 月在 <em>The Egoist</em> 上评 Dorothy Richardson《Pilgrimage》的评论（「意识流」进入文学批评的起点）。
+    </li>
+    <li><strong>版本史材料</strong>：哈佛版《The Works of William James》的编者说明（用于核对 1892 简编本的删改幅度与出版史细节）。
+    </li>
+    <li><strong>接受史材料</strong>：心理学史教材中关于「机能主义」标签来历的章节（用于 <code>## 35</code> 的「后人定位」说明；本报告未逐册核对具体页码与版本）。
+    </li>
+  </ol>
+</section>
+
+<section id="s40">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>本报告的全部来源、实测记录、排除清单、交叉验证与引文声明，见同目录下的 <strong>《心理学原理-来源清单.md》</strong>。其中第 6 节「实测记录 ＋ 排除清单 ＋ 交叉验证 ＋ 引文声明」含：两卷公版全文的 URL 与字节数、<code>END OF THE PROJECT GUTENBERG</code> 标记核对结果、以「PG 目录页 × 正文标题行」交叉核对 28 章章题的记录，以及「英文 A 与中文 C 分开写」的引文声明。</p>
+</section>
+
+<section id="s41">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <p>以下各项，本报告<strong>未能核实到可引用的确证</strong>，故如实登记；每条写三件事：待核什么／为什么现在核不了／可去哪里核。</p>
+  <ol>
+    <li><strong>「stream of consciousness」短语是否更早见于 Alexander Bain《The Senses and the Intellect》（1855）。</strong> ★ <strong>待核</strong>：该短语的最早书证。<strong>为什么核不了</strong>：本报告只有公开二手叙述（EBSCO 研究入门页等）提到这一说法，未见到 1855 年原书的可核书证；而本报告又不把二手叙述当其依据。<strong>去哪里核</strong>：Bain 原书（1855）的公版全文（Internet Archive／HathiTrust 等公版库），检索该短语。
+    </li>
+    <li><strong>本书出版的确切月份。</strong> ★ <strong>待核</strong>：是 <strong>1890 年 9 月</strong>还是 <strong>10 月</strong>。<strong>为什么核不了</strong>：两说并存——公开叙述一说 Holt 于 1890 年 9 月 25 日开始发行，另一说写作「1890 年 10 月出版」；书内只能核到自序署名 <strong>August 1890</strong>。<strong>去哪里核</strong>：Henry Holt 出版档案、当年的出版社广告与书目（如 <em>Publishers' Weekly</em> 1890 年卷）、哈佛版《The Works of William James》的编者说明。
+    </li>
+    <li><strong>Wundt 那句评语「它是文学，它很美，但它不是心理学」的出处与确切措辞。</strong> ★ <strong>待核</strong>：原话、场合、转述链。<strong>为什么核不了</strong>：本报告只在教育心理学回顾文献中见到转述，未找到原始出处。<strong>去哪里核</strong>：Wundt 的书信与文集、以及记载此语的早期心理学史著作（须找最早书证）。
+    </li>
+    <li><strong>Carl Georg Lange 的职业定名与其 1885 年著作的准确题名、拼写。</strong> ★ <strong>待核</strong>：他应称「内科医生」「生理学家」还是「解剖学家」；著作题名 <em>Om Sindsbevægelser</em> 的准确形式与副题。<strong>为什么核不了</strong>：各来源用词不一，且涉及丹麦文正字。<strong>去哪里核</strong>：丹麦皇家图书馆书目、1885 年原书的公版扫描。
+    </li>
+    <li><strong>本书各章最初发表在哪些刊物的逐章对应关系。</strong> ★ <strong>待核</strong>：自序说「若干章曾先后在 Mind、Journal of Speculative Philosophy、Popular Science Monthly、Scribner's Magazine 上发表」，但<strong>哪一章对应哪个刊物</strong>未核。<strong>为什么核不了</strong>：需要逐刊检索 1878–1890 年的目次，超出本轮范围。<strong>去哪里核</strong>：上述四种刊物的 1878–1890 年卷目次（Internet Archive 等公版库）。
+    </li>
+    <li><strong>中文译本（唐钺 1963 年选译本）的选目与「解放前已单独印行」的具体年份与版本。</strong> ★ <strong>待核</strong>：商务印书馆 1963 年版的实际选目与版本沿革。<strong>为什么核不了</strong>：本报告按 <span class="tag t-rep">转述</span> 处理，未逐册核对纸本。<strong>去哪里核</strong>：国家图书馆／CALIS 书目、商务印书馆馆史资料。
+    </li>
+    <li><strong>第一版的定价与批发折扣细节（每套 6 美元、折后 5 美元）与发行日（9 月 25 日）的来源可靠性。</strong> ★ <strong>待核</strong>：这些数字的原始书证。<strong>为什么核不了</strong>：来自单一回顾文献，未见出版方原始记录。<strong>去哪里核</strong>：Holt 出版档案、当年的书目广告。
+    </li>
+  </ol>
+</section>
+
+<footer>
+  生成于 2026-10-14 · 来源清单与交叉验证记录见同目录 <code>心理学原理-来源清单.md</code><br>
+  本页引文按<b>带页码引文（B 级）</b>处理：标注页码的条目引自有页码的公开书评／论文，<b>我未持原书</b>，页码请以原书复核；未标页码者仍是二手转引。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>
