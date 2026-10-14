@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《人类的由来》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《人类的由来》<small>阅读指引与精华解析 · 2026-10-14</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 核心主题与结构机制</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 版本与译本怎么选</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 逐章精读</div>
+    <a href="#s7">6 全书骨架与写作机制：一份迟到了十二年的补写</a>
+    <a href="#s8">7 第一章 人类从某些低级类型诞降而来的证据</a>
+    <a href="#s9">8 第二章 关于人类是怎样从某种低级类型发展而来的</a>
+    <a href="#s10">9 第三章 人类与低等动物在心理能力上的比较</a>
+    <a href="#s11">10 第四章 人类与低等动物在心理能力上的比较（续）</a>
+    <a href="#s12">11 第五章 原始与文明时代理智与道德能力的发展</a>
+    <a href="#s13">12 第六章 人类的亲缘关系与谱系</a>
+    <a href="#s14">13 第七章 论人的种族</a>
+    <a href="#s15">14 第八章 性选择的若干原理</a>
+    <a href="#s16">15 第九章 动物界较低几个纲的第二性征</a>
+    <a href="#s17">16 第十章 昆虫类的第二性征</a>
+    <a href="#s18">17 第十一章 昆虫类（续）：鳞翅目（蝶与蛾）</a>
+    <a href="#s19">18 第十二章 鱼类、两栖类与爬行类的第二性征</a>
+    <a href="#s20">19 第十三章 鸟类的第二性征</a>
+    <a href="#s21">20 第十四章 鸟类（续）</a>
+    <a href="#s22">21 第十五章 鸟类（续）</a>
+    <a href="#s23">22 第十六章 鸟类（续完）</a>
+    <a href="#s24">23 第十七章 哺乳类的第二性征</a>
+    <a href="#s25">24 第十八章 哺乳类的第二性征（续）</a>
+    <a href="#s26">25 第十九章 人类的第二性征</a>
+    <a href="#s27">26 第二十章 人类的第二性征（续）</a>
+    <a href="#s28">27 第二十一章 全书总述与结论</a>
+    <a href="#s29">28 主题与思想史：性选择之争与「社会达尔文主义」的挪用</a>
+    <a href="#s30">29 版本、译本与接受史</a>
+    <a href="#s31"> 附录 A　21 章章题中英对照与转录存疑</a>
+    <a href="#s32"> 附录 B　人名对照</a>
+    <a href="#s33"> 附录 C　概念小辞典</a>
+    <a href="#s34"> 附录 D　待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《人类的由来》阅读指引与精华解析</h1>
+  <div class="sub">把「人」放回动物界的一次完整论证 —— 从同源结构到性选择</div>
+  <div class="meta">
+    <div><b>作者</b>查尔斯·达尔文（Charles Darwin，1809–1882）</div>
+    <div><b>首次发表</b>1871 年 2 月 24 日，伦敦 John Murray（两卷本）；本报告依据第二版（1874）</div>
+    <div><b>依据版本</b>Project Gutenberg #2300《The Descent of Man, and Selection in Relation to Sex》第二版（1874）全文，含第二版序言、详细目录、三编二十一章与 Huxley 附录</div>
+    <div><b>核验级别</b>原文：A —— 辖区 ＝ PG #2300 第二版全文（本轮实测 200 / 1,909,144 B）；引文定位用章号＋段内位置，不给页码。中文引文：C —— 通行中译本（潘光旦／胡寿文译、叶笃庄译、马君武译）均在版权期内，未核对原著、不给页码。作者谈话：已逝且有档案 —— 作者卒于 1882 年，使用其自传（PG #2010）作为档案材料，每处标明「这是自传材料，不是访谈」</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>四档可信度标注怎么读</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 辖区 ＝ Project Gutenberg #2300《The Descent of Man, and Selection in Relation to Sex》第二版（1874）全文，本轮实测 200 / 1,909,144 B，含第二版序言、详细目录、三编二十一章与 Huxley 附录（★ 该附录为 Huxley 所撰，不是达尔文写的）。★ 全部英文直引均先在本地副本中 grep 到完整句子再照抄，绝不从被截断的输出里补全；定位用「第 X 章，第 N 段」，不给页码。</li>
+    <li><span class="tag t-talk">作者谈话</span> 作者已逝（卒于 1882 年）且有档案：档案来源 ＝ PG #2010《The Autobiography of Charles Darwin》（Francis Darwin 编，约 1876 年写成、1887 年出版）。★ 逐处标明性质 —— 「这是自传材料，不是访谈」；不假装作者能接受访谈，也不把自传内容当作对本书的作者自评或回应。本档条数显著小于原书档。</li>
+    <li><span class="tag t-rep">转述</span> 通行中文引句一律在此档：据公开资料转引，未核对原著、不给页码，不暗示核过原书页码。★ 书评人与研究者的言论（如 Wallace 对性选择的反对、Mivart 对本书方法的批评）也一律在此档，不得进原书档或作者谈话档。</li>
+    <li><span class="tag t-inf">推断</span> 本报告的推论与判断，写法为「本报告认为……」。与原书档〔`【原书】`〕、作者谈话档〔`【作者谈话】`〕、转述档〔`【转述】`〕明确区分，不与之混同；凡属推测性判断而非原文事实，一律入此档。</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    四条边界再复述一遍：〔`【原书】`〕＝英文原文直引，A 级，辖区为 PG #2300（第二版 1874）全文，逐字照抄、定位用章号＋段内位置、不给页码；〔`【作者谈话】`〕＝作者档案材料（PG #2010 自传），作者已逝且有档案，每处标明「这是自传材料，不是访谈」，不假装作者能访谈；〔`【转述】`〕＝通行中文引句与书评人／研究者言论，C 级，据公开资料转引、未核对原著、不给页码；〔`【推断】`〕＝本报告自己的推论与判断。★ 四档名一律以反引号形式出现，不写复合档位名。
+  </p>
+  关于底本与版本边界的两点补充：① 本报告依据的是第二版（1874）而非初版（1871）—— 第二版由作者本人修订增补，并以序言逐条交代；两版的章序有差异（初版把「心智能力的比较」列在第二、三章），故引用「第几章」的二手材料须先确认所据版本，相关存疑见附录 D。② 本底本在第一编之后、第二编之前插有 Huxley 的附录（论人与猿脑的结构与发育异同），该附录不是达尔文所写，引用时必须标明作者是 Huxley。③ 本底本末另附 `SUPPLEMENTAL NOTE. ON SEXUAL SELECTION IN RELATION TO MONKEYS`，正文标题下小注作 `Reprinted from NATURE, November 2, 1876, p. 18.`。
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p>《人类的由来》是达尔文把《物种起源》（1859）里<strong>故意留白的那一页</strong>补上的一本书：它要论证人和其他物种一样，是从某种更古老的、更低级的形态<strong>逐步演化</strong>而来，并为此把<strong>性选择</strong>（sexual selection）作为一种与自然选择并列的机制系统地提了出来。全书三编二十一章，前半（第一编，七章）处理「人从哪来」，后半（第二编与第三编，共十四章）处理「性选择如何塑造了动物与人」——<strong>后半才是篇幅主体，不是附录式的补充</strong>。</p>
+  <p>一句话：这不是一本「人由猿变来」的宣言，而是一份<strong>用当时可得的证据（同源结构、胚胎发育、残余器官、分类学、行为观察）搭起来的、带大量推测成分的论证</strong>；它同时是科学史上<strong>性选择理论的奠基文本</strong>，也是 19 世纪时代预设（尤其在人种与两性问题上的预设）进入科学论证的<strong>第一手样本</strong>。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p><strong>三编结构</strong>：全书由一个 <code>INTRODUCTION</code>（引言）与三编构成。第一编 <code>PART I. THE DESCENT OR ORIGIN OF MAN</code>（第 I–VII 章）论证人的由来；第二编 <code>PART II. SEXUAL SELECTION</code>（第 VIII–XVIII 章）普查动物界的第二性征；第三编 <code>PART III. SEXUAL SELECTION IN RELATION TO MAN, AND CONCLUSION</code>（第 XIX–XXI 章）把性选择用回到人身上并作结。<strong>在第一编之后、第二编之前，还插有一篇由 Huxley 撰写的附录</strong>（论人与猿脑的结构与发育异同），<strong>那篇不是达尔文写的</strong>，引用时必须标明作者是 Huxley。</p>
+  <p><strong>21 章一览</strong>（英文章题逐字取自 PG #2300 的目录；中译为本报告工作译名）：</p>
+  <table>
+    <thead><tr><th>章</th><th>英文章题（PG #2300）</th><th>本报告所拟中译</th><th>一句话内容</th></tr></thead>
+    <tbody>
+      <tr><td>I</td><td>THE EVIDENCE OF THE DESCENT OF MAN FROM SOME LOWER FORM</td><td>人类从某些低级类型诞降而来的证据</td><td>用同源结构、胚胎发育、残余器官三类证据论证人来自某种更低级的类型</td></tr>
+      <tr><td>II</td><td>ON THE MANNER OF DEVELOPMENT OF MAN FROM SOME LOWER FORM</td><td>关于人类是怎样从某种低级类型发展而来的</td><td>论人的身心变异与自然选择，解释直立、犬齿、颅骨、无毛、无尾等性状</td></tr>
+      <tr><td>III</td><td>COMPARISON OF THE MENTAL POWERS OF MAN AND THE LOWER ANIMALS</td><td>人类与低等动物在心理能力上的比较</td><td>主张人与高等动物在心理上只有程度之别，无根本之别</td></tr>
+      <tr><td>IV</td><td>COMPARISON OF THE MENTAL POWERS OF MAN AND THE LOWER ANIMALS, continued</td><td>人类与低等动物在心理能力上的比较（续）</td><td>论道德感（良心）的起源：社会性本能＋自然选择＋同群评判</td></tr>
+      <tr><td>V</td><td>ON THE DEVELOPMENT OF THE INTELLECTUAL AND MORAL FACULTIES DURING PRIMEVAL AND CIVILISED TIMES</td><td>原始与文明时代理智与道德能力的发展</td><td>论理智与道德能力在原始与文明时代的演进，含文明社会中自然选择的作用</td></tr>
+      <tr><td>VI</td><td>ON THE AFFINITIES AND GENEALOGY OF MAN</td><td>人类的亲缘关系与谱系</td><td>论人在自然系统中的位置与谱系；缺化石「缺失环节」不构成反驳</td></tr>
+      <tr><td>VII</td><td>ON THE RACES OF MAN</td><td>论人的种族</td><td>论所谓人种的分类价值、起源及其差异的成因（含性选择）</td></tr>
+      <tr><td>VIII</td><td>PRINCIPLES OF SEXUAL SELECTION</td><td>性选择的若干原理</td><td>给出性选择的定义与原理，并把它与自然选择相区分</td></tr>
+      <tr><td>IX</td><td>SECONDARY SEXUAL CHARACTERS IN THE LOWER CLASSES OF THE ANIMAL KINGDOM</td><td>动物界较低几个纲的第二性征</td><td>软体、环节、甲壳、蜘蛛等低等类群的第二性征</td></tr>
+      <tr><td>X</td><td>SECONDARY SEXUAL CHARACTERS OF INSECTS</td><td>昆虫类的第二性征</td><td>昆虫的攫握构造、鸣器、角与色彩</td></tr>
+      <tr><td>XI</td><td>INSECTS, continued. ORDER LEPIDOPTERA. (BUTTERFLIES AND MOTHS.)</td><td>昆虫类（续）：鳞翅目（蝶与蛾）</td><td>鳞翅目的色彩、拟态与求偶</td></tr>
+      <tr><td>XII</td><td>SECONDARY SEXUAL CHARACTERS OF FISHES, AMPHIBIANS, AND REPTILES</td><td>鱼类、两栖类与爬行类的第二性征</td><td>鱼、两栖、爬行三纲的第二性征</td></tr>
+      <tr><td>XIII</td><td>SECONDARY SEXUAL CHARACTERS OF BIRDS</td><td>鸟类的第二性征</td><td>鸟类总论：争斗、武器、鸣声、装饰与求偶表演</td></tr>
+      <tr><td>XIV</td><td>BIRDS—continued</td><td>鸟类（续）</td><td>雌性的选择、审美与变异（孔雀、大眼斑雉等）</td></tr>
+      <tr><td>XV</td><td>BIRDS—continued</td><td>鸟类（续）</td><td>为何有的只雄性艳丽、有的两性皆艳丽：性限遗传</td></tr>
+      <tr><td>XVI</td><td>BIRDS—concluded</td><td>鸟类（续完）</td><td>幼羽与成羽的关系、六类情形，以及鸟类四章的小结</td></tr>
+      <tr><td>XVII</td><td>SECONDARY SEXUAL CHARACTERS OF MAMMALS</td><td>哺乳类的第二性征</td><td>哺乳类的争斗法则与武器</td></tr>
+      <tr><td>XVIII</td><td>SECONDARY SEXUAL CHARACTERS OF MAMMALS, continued</td><td>哺乳类的第二性征（续）</td><td>声、气味、毛色，以及灵长类的色彩与装饰</td></tr>
+      <tr><td>XIX</td><td>SECONDARY SEXUAL CHARACTERS OF MAN</td><td>人类的第二性征</td><td>两性身体与心智差异、美的标准与择偶</td></tr>
+      <tr><td>XX</td><td>SECONDARY SEXUAL CHARACTERS OF MAN, continued</td><td>人类的第二性征（续）</td><td>各人种对女性美的不同标准、性选择所受阻碍、体毛与肤色</td></tr>
+      <tr><td>XXI</td><td>GENERAL A SUMMARY AND CONCLUSION</td><td>全书总述与结论</td><td>总述主旨：人来自某种低级形态，及谱系、心智道德与性选择</td></tr>
+    </tbody>
+  </table>
+  <p><strong>全书论证链条</strong>：</p>
+  <table>
+    <thead><tr><th>环节</th><th>章</th><th>一句话</th></tr></thead>
+    <tbody>
+      <tr><td>证据</td><td>I–II</td><td>同源结构、胚胎发育、残余器官三类事实指向共同来源</td></tr>
+      <tr><td>机制</td><td>II</td><td>变异＋自然选择，外加用进废退与相关变异</td></tr>
+      <tr><td>心智与道德</td><td>III–V</td><td>心理能力的连续论，道德感的自然史解释</td></tr>
+      <tr><td>谱系</td><td>VI</td><td>人与其他哺乳动物同出某一更古老的祖先</td></tr>
+      <tr><td>种族</td><td>VII</td><td>所谓人种的分类价值与其差异的可能成因</td></tr>
+      <tr><td>性选择原理</td><td>VIII</td><td>性选择是第二种机制，与自然选择并列</td></tr>
+      <tr><td>各类群证据</td><td>IX–XVIII</td><td>从低等类群到哺乳类的第二性征大普查</td></tr>
+      <tr><td>用回人类</td><td>XIX–XX</td><td>性选择在人的身体与两性差异上的作用</td></tr>
+      <tr><td>结论</td><td>XXI</td><td>总述，并给出一个价值判断（人仍会继续向上）</td></tr>
+    </tbody>
+  </table>
+  <p><strong>核心术语</strong>（给英文原词）：</p>
+  <table>
+    <thead><tr><th>英文原词</th><th>常见中译</th><th>本报告取义</th></tr></thead>
+    <tbody>
+      <tr><td>natural selection</td><td>自然选择</td><td>因生存竞争而保留有利变异、淘汰不利变异的过程</td></tr>
+      <tr><td>sexual selection</td><td>性选择</td><td>因繁殖上的优势（争偶或择偶）而保留某些性状的过程，与自然选择并列而非从属</td></tr>
+      <tr><td>secondary sexual characters</td><td>第二性征</td><td>与繁殖无直接关系、但造成两性差异的性状</td></tr>
+      <tr><td>homologous structures</td><td>同源结构</td><td>不同物种按同一构型发展出来的对应结构，是共同来源的证据</td></tr>
+      <tr><td>rudimentary organs</td><td>残余器官</td><td>已失去原有功能、残留于体内的结构</td></tr>
+      <tr><td>struggle for existence</td><td>生存斗争</td><td>达尔文取自 Malthus、用于描述个体与类群间生存竞争的比喻</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>核心主题与结构机制</span><span class="caret">▾</span></h2>
+  <p>这本书在做什么、靠什么手段做的 —— 有五条主线必须抓住：</p>
+  <p><strong>① 它是《物种起源》刻意留白处的补写。</strong> 达尔文在《物种起源》里只写了一句「由此将有光照射到人的起源及其历史上」，并未正面讨论人。本书引言自述：多年搜集关于人的笔记，「本无意出版，反倒决心不出」（PG #2300，引言，第 1 段）；后来因多数自然学家已接受物种可变，才「把笔记整理起来」（同处，第 2 段）。他是<strong>先有大量他人证据、后有本书</strong>（引言里他说「本书关于人的原创事实极少」），这是理解本书性质的关键：<strong>它是综合与论证，不是新事实的发现报告</strong>。</p>
+  <p><strong>② 论证策略是「同源结构＋发育＋残余器官」三重证据。</strong> 第一编并不依赖化石——当时几乎没有连接人与猿的化石——而是靠解剖学上的对应（同源结构）、胚胎发育的重演式相似、以及残余与返祖器官。达尔文在第一编结尾承认「连接环节尚未被发现」，却认为这三类事实「以最明白的方式宣告」人来自某种低级形态（PG #2300，第 VI 章，第 1 段）。</p>
+  <p><strong>③ 性选择是与自然选择并列的第二种机制，且是后半部的主体。</strong> 第二编（第 VIII–XVIII 章，11 章）与第三编（第 XIX–XXI 章，3 章）共 14 章处理性选择；<strong>第 VII 章末尾</strong>（★ 注意：是第 VII 章，不是第 VI 章 —— 本报告在本轮核对中更正了这一常见误植），达尔文说为了把性选择讲透，他「必须把整个动物界巡视一遍」，因而「把本工作的第二编用于它」（第 VII 章，末段）。<strong>说「性选择只是附带」是不符合本书结构的。</strong></p>
+  <p><strong>④ 心智与道德的「连续论」。</strong> 第 III–V 章主张人与高等动物在心理能力上「没有根本性的差异」，只有程度之差；第 IV 章把道德感（良心）解释为社会性本能、同群褒贬与理智活动三者叠加的自然史产物。这是本书在思想史上最有争议、也最持久的一部分。</p>
+  <p><strong>⑤ 第 XXI 章的「人还会继续向上」是价值判断，不是实证结论。</strong> 结论章在重申实证结论之后写道：人「已升至有机界阶梯的最高处……这也许使他有望在遥远未来有更高的命运」（第 XXI 章，第 5 段）。这是<strong>带着维多利亚时代进步观的展望</strong>，本报告在精读时会把它与实证部分<strong>明确分开</strong>。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <p><strong>路线一：先读结论，再读论证。</strong> 先读第 XXI 章（总述与结论），抓住达尔文自认的主结论、以及他自己承认的推测成分；再回头读第一编，看这些结论分别靠什么证据支撑。适合想先看「答案」再看「过程」的读者。</p>
+  <p><strong>路线二：按编拆开读。</strong> 先读第一编（第 I–VII 章，人的由来），把人的问题读完；再读第二编（第 VIII–XVIII 章，动物界性选择普查）；最后读第三编（第 XIX–XXI 章）。第二编很长且大量是物种细节，可按纲「跳读」——读第 VIII 章的原理，再从第 XIII–XVI 章（鸟）和第 XVII–XVIII 章（哺乳类）各取样本。适合时间有限、只想抓主线的读者。</p>
+  <p><strong>路线三：带着「两把尺子」读。</strong> 一把尺子是<strong>证据强度</strong>：哪一句有解剖／观测支撑，哪一句是「我猜想」「很可能」。另一把尺子是<strong>时代预设</strong>：哪些论断（种族、性别）其实是 19 世纪的社会观念被写进了科学论证。两把尺子并用，既不把推测当定论，也不因时代局限而整篇否定。</p>
+  <p><strong>可以对读</strong>：本项目书单已收的<strong>《物种起源》</strong>（本书是它留白处的补写，且性选择的雏形已见于《起源》第一版）与<strong>《自私的基因》</strong>（20 世纪把「个体／基因视角」推到底，正好与达尔文此处「群体与同群褒贬」的表述形成对照）。</p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>版本与译本怎么选</span><span class="caret">▾</span></h2>
+  <p><strong>英文底本</strong>：<strong>优先第二版（1874）</strong>。理由是达尔文自己在第二版序言里交代：初版（1871）连番重印期间他已作了多处重要订正，第二版又吸收了「批评中有道理的部分」，并大量采用通信者提供的新事实（PG #2300，第二版序言，第 1 段）。第二版的另一处增补是 <strong>Huxley 的附录</strong>（论人与猿的脑），达尔文说这是「为第一部分末所加的补篇」（同处）。★ 需注意：本底本 <strong>PG #2300 含 Huxley 附录</strong>，但该附录<strong>不是达尔文所写</strong>。</p>
+  <p><strong>中译怎么选</strong>（据公开书目信息，<strong>未逐册核对</strong>，详见来源清单）：</p>
+  <table>
+    <thead><tr><th>译本</th><th>译者</th><th>出版</th><th>备注</th></tr></thead>
+    <tbody>
+      <tr><td>《人类原始及类择》</td><td>马君武</td><td>商务印书馆 1930</td><td><strong>最早中译</strong>，节译，用旧译名</td></tr>
+      <tr><td>《人类的由来及性选择》</td><td>叶笃庄</td><td>科学出版社 1982</td><td>修订后入《达尔文进化论全集》第六卷（科学出版社 1996）；另有北京大学出版社「科学素养文库·科学元典丛书」2009 版（叶笃庄、杨习之译）</td></tr>
+      <tr><td>《人类的由来》</td><td>潘光旦、胡寿文</td><td>商务印书馆 1983</td><td>「汉译世界学术名著丛书」，<strong>通行首选</strong>，后多次重印</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>中译本的译名／年份／出版社均取自公开书目信息，本报告未逐字核对原书，故不给页码</strong>；若有出入，以入附录 D 的待核实项为准。</p>
+  <p><strong>一个版本学提醒</strong>：坊间与网络常把本书题名与章序讲错。<strong>第 XXI 章题在本底本（PG #2300）目录与正文中均作 <code>GENERAL A SUMMARY AND CONCLUSION</code></strong>，而通行英文本（如 Wikisource 所据第二版）作 <code>GENERAL SUMMARY AND CONCLUSION</code>；「A」疑为<strong>转录衍字</strong>。本报告<strong>只写「PG 转录本所见」，不断言原书如此</strong>，原书究竟如何列入附录 D 待核实（另见附录 A）。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>流行说法</th><th>原文实际怎么说（＋ 章号定位）</th><th>差在哪</th></tr></thead>
+    <tbody>
+      <tr><td>「人是从猴子变来的」</td><td><span class="tag t-src">原书</span>「We thus learn that man is descended from a hairy, tailed quadruped, probably arboreal in its habits, and an inhabitant of the Old World.」（第 XXI 章，第 4 段）；结论处作「man is the co-descendant with other mammals of a common progenitor」（第 XXI 章，第 2 段）</td><td>原文说的是<strong>与现存猿类共出一个更古老的祖先</strong>（共同来源），不是「由今天的猴子／猿直接变来」</td></tr>
+      <tr><td>「适者生存」是达尔文的词</td><td><span class="tag t-src">原书</span>本书正文用 <code>natural selection</code>／<code>struggle for existence</code>；达尔文自述「in the earlier editions of my ‘Origin of Species’ I perhaps attributed too much to the action of natural selection or the survival of the fittest. I have altered the fifth edition of the ‘Origin’」（第 II 章，第 46 段前后）</td><td><code>survival of the fittest</code> <strong>出自 Spencer</strong>，达尔文是<strong>借用</strong>且用于《物种起源》<strong>第五版（1869）</strong>，不是本书原创</td></tr>
+      <tr><td>「性选择就是雌性挑雄性」</td><td><span class="tag t-src">原书</span>第 VIII 章并列两条腿：雄性<strong>争斗</strong>（law of battle）与雌性<strong>选择</strong>；原文「from having gained an advantage over other males, and from having transmitted this advantage to their male offspring alone, sexual selection must here have come into action」（第 VIII 章，第 3 段前后）</td><td>机制含<strong>雄性竞争</strong>与<strong>雌性选择</strong>两条，且达尔文对不同物种给出的权重不同，不能简化为「只看雌性挑选」</td></tr>
+      <tr><td>「达尔文主张种族有高低」</td><td><span class="tag t-src">原书</span>第 VII 章确有等级化语言，如承认欧洲古老人种「lower in the scale than the rudest living savages」（第 VII 章，论种族灭绝节），并称「The grade of their civilisation seems to be a most important element in the success of competing nations.」（同章）</td><td><strong>如实说：书里确有把人群按文明程度分等的表述，那是 19 世纪的时代预设</strong>；但<strong>它不是本书的核心主张</strong>，核心主张是人种差异的<strong>分类价值与成因</strong>（第 VII 章，开篇第 1 段）</td></tr>
+      <tr><td>「本书是《物种起源》的续集／第二部」</td><td><span class="tag t-src">原书</span>引言自述本书「关于人的原创事实极少」，是「把笔记整理起来」看旧结论能在多大程度上适用人（引言，第 2 段）；两书相隔约十二年，方法不同</td><td>相隔 12 年、<strong>方法不同</strong>（本书推测成分更高），宜作<strong>同一体系下的另一本书</strong>读，而非「下半部」</td></tr>
+      <tr><td>「达尔文说道德起源于『群体选择』」</td><td><span class="tag t-src">原书</span>第 V 章讲的是「tribe」之间的竞争使某些社会品质扩散：「When two tribes of primeval man … the one tribe included a great number of courageous, sympathetic and faithful members … this tribe would succeed better and conquer the other.」（第 V 章，第 4 段前后）</td><td>原文用的是<strong>部落／群</strong>层面的竞争与「自然选择」语言；「群体选择」（group selection）是<strong>后人</strong>的术语与争议，须与原文分开</td></tr>
+      <tr><td>「本书讲的是人的由来，性选择只是附带」</td><td><span class="tag t-src">原书</span>第 VII 章末段（★ 曾被误标为第 VI 章末段，本报告已更正）：为讲透性选择「I have found it necessary to pass the whole animal kingdom in review. I have therefore devoted to it the Second Part of this work.」（第 VII 章，末段）</td><td><strong>第二、三编共 14 章都在讲性选择</strong>，篇幅过半，是<strong>主论之一而非附带</strong></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p><strong>① 性选择理论遭 Wallace 反对。</strong> Alfred Russel Wallace（阿尔弗雷德·华莱士）认为性选择是较弱的机制。他先以两篇论文《The colours of animals and plants》（<em>Macmillan's Magazine</em>，1877 年 9–10 月）提出反对，后收进《Tropical Nature and Other Essays》（1878）第五章<code>The colour of animals and sexual selection</code>（论动物的色彩与性选择），主张雄性的鲜明色彩源自其更强的活力与生命力（<span class="tag t-rep">转述</span>其英文原语作「greater vigour and activity and the higher vitality of the male」，<strong>此句出自 Wallace 的著作、不在本书辖区内，本报告未核对 Wallace 原文</strong>），而非雌性的审美选择；他又在《Darwinism》（1889）中重提，并于 1890 年在 <em>Nature</em> 上批评 Poulton 的《The Colours of Animals》。<strong>这是本书出版后最直接的学理反对。</strong></p>
+  <p><strong>② 第 VII 章「论人的种族」的时代局限。</strong> ★ 如实说：这一章把「所谓人种」当作自然学家处理其他动物那样来做分类讨论，并在多处沿用当时流行的等级化语言 —— 例如以文明程度衡量族群竞争的胜负，并引用 Schaaffhausen 的说法把欧洲古老人种说成低于「最粗野的现存野蛮人」（第 VII 章，论种族灭绝节）。<strong>这些表述是 19 世纪的时代预设进入了论证，本报告不加辩护</strong>。同时必须区分：<strong>达尔文本人在书中主张的是人种差异的分类价值与可能成因，后来的「社会达尔文主义」与种族主义是对这套材料的挪用，不是书中已有的结论</strong>。</p>
+  <p><strong>③ 第 XIX–XX 章关于性别差异的论断。</strong> ★ 同样如实说：第 XIX 章专设「两性心智能力的差异」一节，<span class="tag t-src">原书</span>断言男性「attaining to a higher eminence, in whatever he takes up, than can woman」（第 XIX 章，论两性心智能力一节），并据 Galton 的偏差律推断男性平均心智高于女性；达尔文在同处<strong>引用了 J. S. Mill《The Subjection of Women》（1869）</strong>。这些论断把当时的社会预设写进了科学论证，<strong>本报告照实引、照实评</strong>，不为其辩护。后世（含 20 世纪以来的性选择研究）已不采用这类结论。</p>
+  <p><strong>④ 性选择机制的实证弱点。</strong> 达尔文自己在第 XX 章末尾承认：「The views here advanced, on the part which sexual selection has played in the history of man, want scientific precision.」（第 XX 章，末段）当时的困难是<strong>缺乏可检验的量化证据</strong>，尤其「雌性偏好如何起源」这一环无从解释；这一缺口要到 R. A. Fisher<code>The Genetical Theory of Natural Selection</code>（《自然选择之遗传学理论》）（1930）才被补上（「runaway」模型），更晚由 Lande、O'Donald 给出数学证明。<span class="tag t-rep">转述</span>通行中译常把这一自我评价处理为「此处关于性选择在人类历史中作用的论述，尚缺乏科学的精确性」（据公开资料转引的通行中译，<strong>未核对原著、不给页码</strong>）。<span class="tag t-inf">推断</span>本报告认为，这条弱点在书内的表现是<strong>结构性的</strong>：性选择的预言（「更美的雄性能留下更多后代」）当时无法独立测量，于是达尔文只能反复以「若不承认这一点，那些装饰就无从解释」作答，而这正是第 IX 章那条证据门槛被慢慢放开的原因（参见 <code>## 15</code>）。★ 另一个常被忽略的关联是：达尔文把「雌性偏好」当作已给定量，<span class="tag t-inf">推断</span>本报告认为，这使全书后半部的推理呈<strong>「机制清楚、起点不明」</strong>的形态 —— 到 1930 年 Fisher 补上的，恰恰就是这个「起点」。</p>
+  <p><strong>⑤ 「人猿同祖」常被简化为「人由猿变来」。</strong> 达尔文实际主张的是<strong>共同祖先</strong>：人与其他哺乳动物同出「某一未知而更低下的形态」（第 VI 章，第 1 段；第 XXI 章，第 2 段）。把共同来源读成「人＝今天的猿」，是<strong>对结论方向的误读</strong>。</p>
+  <p><strong>⑥ 与《物种起源》的方法论差异。</strong> 《物种起源》以人工选择作类比、证据链较紧；本书大量依赖推测与「很可能」。批评者 St. George Mivart 在《On the Genesis of Species》（1871）中系统攻击自然选择无法解释复杂结构「渐进的最初阶段」（incipient stages），并在 1871 年《Quarterly Review》的书评中批评达尔文在本书中把性选择抬得过高、以至近乎放弃自然选择。<strong>本书推测性成分高于《起源》，是这本著作公认的方法论弱点。</strong></p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>全书骨架与写作机制：一份迟到了十二年的补写</span><span class="caret">▾</span></h2>
+  <p><strong>《物种起源》对人类的刻意沉默。</strong> 1859 年的《物种起源》通篇不谈人。达尔文只在书末留了一句「由此将有光照射到人的起源及其历史上」。本书引言把这件事说得很清楚：他多年搜集关于人的笔记，「本无意出版，反倒决心不出」（PG #2300，引言，第 1 段），因为怕「只会增加对我的观点的偏见」；是等到多数自然学家已接受物种可变之后，才「把笔记整理起来」，看看旧结论「在多大程度上适用于人」（引言，第 2 段）。他特别说明：本书「关于人的原创事实极少」（引言，第 4 段）——<strong>这是理解本书性质的钥匙：它是综合与论证，不是新事实的发现报告</strong>。</p>
+  <p><strong>写作动因：一句「只写一句」不够了。</strong> 引言还有一段常被忽略的话：当他把这些观点「应用到人」时，发现「非把整个题目详加处理不可」（引言，第 6 段），于是性选择部分「扩到了过分的长度」，与第一编相比「长得出格」——<strong>这句话正是本书「后半比前半长」的由来，也是本报告在 <code>## 4b</code> 里纠正「性选择只是附带」的原文依据</strong>。</p>
+  <p><strong>1871 年的出版与销量。</strong> 初版 1871 年 2 月 24 日由伦敦 John Murray 出版，两卷本。★ <strong>销量数字须分级处理</strong>：据剑桥大学出版社刊出的一篇研究（<em>Descent of Darwin: race, sex, and human nature</em>，2021），首印 2,500 套，3 月又加印 2,000 套，定价 1 镑 4 先令；<strong>到当年 9 月底，Murray 寄给达尔文一张 1,470 英镑的支票</strong>，这是达尔文著作第一次带来「可观的出版利润」。英文资料另称，到 1871 年 3 月底「在印 4,500 套」。而中文网络上流传的「第一年卖出 7500 册、进账 1470 英镑」里的<strong>「7500 册」未见可靠英文来源</strong>，其数额与加印记录（2,500＋2,000）也不吻合，<strong>本报告将该数字列入附录 D 待核实</strong>，只采用可溯源的「1,470 英镑」与「3 月底在印 4,500 套」。</p>
+  <p><strong>第二版（1874）改了什么 —— 以序言原文为依据。</strong> 第二版序言逐条交代：① 初版连番重印期间已作多处订正，第二版「又吸收了在我看来有道理的批评」（PG #2300，第二版序言，第 1 段）；② 采纳了大量通信者寄来的新事实与评注，「多到只能用其中较重要者」（同处）；③ 加了新插图，并「用 T.W. Wood 先生依实物所绘的更好图版换掉了四幅旧图」（同处）；④ 补入 Huxley 的附录（论人与猿的脑），置于第一编之后；⑤ 特别澄清：有批评者以为他把身体与心智的一切变化「都只归于自然选择」，但他「在《物种起源》第一版里就已明确说过，用进废退的遗传效果权重很大」（同处，第 2 段）；⑥ 反驳「因为自然选择解释不了人的许多结构细节，我才发明了性选择」这一指责，强调性选择的雏形已见于《物种起源》第一版（同处，第 3 段）。<strong>这六条都可以在序言原文中逐条指认，是本报告选择第二版为底本的直接理由。</strong></p>
+  <p><strong>档案里的自述（<span class="tag t-talk">作者谈话</span>）。</strong> ★ 这是达尔文的<strong>自传材料（约 1876 年写成，Francis Darwin 编，1887 年出版），不是为本书做的访谈</strong>。他在自传中写道：</p>
+  <ul>
+    <li><span class="tag t-talk">作者谈话</span>「My 'Descent of Man' was published in February, 1871. As soon as I had become, in the year 1837 or 1838, convinced that species were mutable productions, I could not avoid the belief that man must come under the same law.」（PG #2010，Darwin 论其著作一节，第 3 段；性质：自传材料，非访谈）
+    </li>
+    <li><span class="tag t-talk">作者谈话</span>「The 'Descent of Man' took me three years to write… A second and largely corrected edition of the 'Descent' appeared in 1874.」（同上，第 4 段；性质：自传材料，非访谈）
+    </li>
+  </ul>
+  <p><strong>可疑之处或常见误读。</strong> ① 不要把本书当作「《起源》的续集」——两者相隔十二年，方法不同（本书推测成分更高）；② 不要用「7500 册」这个流行的数字，它未获可靠来源；③ 不要把 Huxley 附录当成达尔文的文字。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>第一章 人类从某些低级类型诞降而来的证据</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 第 I 章为全书立下「证据类型」的框架。要判断人是不是某种已存在形态的变异后代，达尔文主张应依次追问：人是否变异、变异是否遗传、是否遵循与低等动物同一套规律（相关变异、用进废退、发育受阻、返祖等）；然后才进入三条硬证据 —— 同源结构、胚胎发育、残余器官。他在章内承认「连接环节」尚缺，却认为这三类事实「以最明白的方式」指向同一结论。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span>「He who wishes to decide whether man is the modified descendant of some pre-existing form, would probably first enquire whether man varies, however slightly, in bodily structure and in mental faculties; and if so, whether the variations are transmitted to his offspring in accordance with the laws which prevail with the lower animals.」（第 I 章，开篇第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「The enquirer would next come to the important point, whether man tends to increase at so rapid a rate, as to lead to occasional severe struggles for existence; and consequently to beneficial variations, whether in body or mind, being preserved, and injurious ones eliminated.」（第 I 章，第 2 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「It is notorious that man is constructed on the same general type or model as other mammals. All the bones in his skeleton can be compared with corresponding bones in a monkey, bat, or seal.」（第 I 章，论人体的结构一节）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置／为什么重要。</strong> 本章确立了本书的方法论基调：<strong>先给证据分类，再谈结论</strong>。它避开了当时几乎空白的化石记录，转而依靠解剖学与胚胎学 —— 这正是本书与后来古人类学路线的分野：后者的证据来自地层里的骨骼，本书的证据来自现生生物体内的构造。三条证据的分工也在章内写明：同源结构管「身体构型的对应」，发育管「个体发生重演历史」，残余器官管「失去功能的旧结构」。这套框架会在第 II–VI 章反复出现，第 VI 章最终把它收束成「谱系」；而第 XXI 章回顾主结论时，列举的仍是同一批证据类别（胚胎相似、结构对应、残余器官、返祖、亲缘关系、地理分布、地质层序）。★ 达尔文在章内还给「残余器官」交代了成因：<span class="tag t-src">原书</span>「The chief agents in causing organs to become rudimentary seem to have been disuse at that period of life when the organ is chiefly used (and this is generally during maturity), and also inheritance at a corresponding period of life.」（第 I 章，论残余器官一节）；同一节里他提到，把已无用而缩减的器官作「最终而完全的抑制」解释，「或许可借<strong>泛生说</strong>（pangenesis）之助」（<code>perhaps intelligible by the aid of the hypothesis of pangenesis</code>）—— ★ 这是本底本正文中确实出现 <code>pangenesis</code> 一词的地方（本报告已把此前附录 D 关于「本书是否出现该词」的存疑项据此更正）。<span class="tag t-inf">推断</span>本报告认为，这一「三类证据」的排序本身就有深意：达尔文把<strong>不需要化石</strong>的证据放在前面，把<strong>需要化石</strong>的缺口留给后人补，等于预先承认了本书证据链中最脆弱的一环。★ 另一个容易漏掉的设计是：本章把「人是否也形成亚种与可疑种」列在开篇的追问清单里 —— 这一步直接为第 VII 章「人种是变种还是种」埋下伏笔，第一编的两端由此扣合。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是「第一章就证明了人的起源」。原文用词是「证据」（evidence）与「支持……的原理」，不是「证明」（proof）；达尔文提供的是<strong>当时可得证据的论证</strong>，不是结论性的证明。其次，「同源结构」在此处是解剖学意义的（同一构型），不可与「同功」（功能相似）混为一谈 —— 前者才指向共同来源，后者（如鸟翼与虫翅）只是功能撞车。第三，章内引用的解剖学结论多来自 Bischoff、Gratiolet、Vulpian 等人，<strong>本章是把他人证据汇总后重述，而不是新观察</strong>。<span class="tag t-inf">推断</span>本报告认为，正因如此，本章的说服力取决于读者的解剖学常识，而不是取决于达尔文自己的观察，这也解释了它为何在当时更像一份「文献综述」而非「发现报告」。</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>第二章 关于人类是怎样从某种低级类型发展而来的</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 第 II 章转入机制：人是否像其他动物一样变异？答案是「显然如此 —— 同一人种中没有两个个体完全相同」。随后依次讨论遗传、变异的成因、用进废退、发育受阻、返祖、相关变异、增殖速率与生存斗争，并把自然选择用到人身上。后半章解释直立行走、犬齿变小、颅骨增大、无毛、无尾等在动物界中颇为异常的性状如何可能由选择造成；对直立姿态，他甚至给出了一套「双手解放 → 制造工具 → 脑量增加」的连锁猜想。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span>「It is manifest that man is now subject to much variability. No two individuals of the same race are quite alike.」（第 II 章，开篇第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「Man alone has become a biped; and we can, I think, partly see how he has come to assume his erect attitude, which forms one of his most conspicuous characters.」（第 II 章，论直立姿态一节）
+    </li>
+    <li><span class="tag t-src">原书</span>「in the earlier editions of my ‘Origin of Species’ I perhaps attributed too much to the action of natural selection or the survival of the fittest. I have altered the fifth edition of the ‘Origin’ so as to confine my remarks to adaptive changes of structure」（第 II 章，论自然选择范围一节）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置／为什么重要。</strong> 这是第一编的「机制章」。它把《物种起源》的机制移植到人身上，并顺手交代了达尔文对自身早期过度强调自然选择的一处<strong>公开修正</strong>（第三处引文）——<strong>这段也是本书正文里少数直接提到 <code>survival of the fittest</code> 的地方，且明说该词与《起源》第五版的改动有关</strong>。章内「相关变异」「用进废退」「发育受阻」「返祖」四个概念，是第 I 章所列「同一套规律」的具体展开；到第 III–V 章讨论心智与道德时，用的仍是同一组概念。★ 就结构而言，本章还承担一项「交付清单」的功能：第 I 章开篇列出的那一串追问（人是否变异、是否遗传、是否同受一套规律支配、是否形成亚种、族群是否互相排挤），在本章逐一被回答，于是第一编从「提问」转入「论证」。★ 达尔文在此把<strong>用进废退与相关变异</strong>都列为自然选择的「助手」而非替代，这一点在第 XX 章讨论体毛消失、在附录 C 讨论 <code>pangenesis</code> 时会再次出现。<span class="tag t-rep">转述</span>「人和其他动物一样，具有大量的细微变异，没有两个个体完全相同」—— 这是通行中译对开篇同类句子的常见处理（据公开资料转引的通行中译，<strong>未核对原著、不给页码</strong>，本报告此处只作对照，不作为引证）。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把「人成为两足动物」说成达尔文给出了确定解释。原文用的是「we can, I think, partly see」（我们或许能部分看出），<strong>语气是推测</strong>。另一处误读是把「用进废退」当成拉马克主义的直接接受 —— 达尔文是把它作为<strong>自然选择的补充</strong>使用，并在第二版序言中特意澄清过。★ 第三处引文本身也常被掐头去尾：达尔文说「我曾把过多归给自然选择」，接着限定自己「把话收在结构的适应变化上」，<strong>这是自我限缩，不是推翻自然选择</strong>。第四，本章对「无毛」「无尾」等性状给出的解释在章内就带有试探性，达尔文多处用「perhaps」「probably」，<span class="tag t-inf">推断</span>本报告认为，把这些段落当作定论引用，是对本章语气的系统性高估。</p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>第三章 人类与低等动物在心理能力上的比较</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 第 III 章是全书的转折点之一：既然身体结构指向共同来源，那么「人心」上的巨大差异是否构成反驳？达尔文主张不构成 —— 人与高等动物在心理能力上「没有根本性的差异」，只有程度之别；他逐一比较本能、情绪、好奇心、模仿、注意、记忆、想象、推理，并讨论动物使用工具与武器、抽象与自我意识，最后落在语言、美感与对神明／灵异力量的信仰上。</p>
+  <h3>本章要点分块</h3>
+  <ul>
+    <li><strong>差异是「程度」还是「种类」</strong>：达尔文的核心命题是程度论。他承认「最愚昧的野蛮人」与「最高等的猿」之间差别巨大，但仍认为这道鸿沟「被无数渐变的层级填满」。他甚至举出「最低等的鱼（七鳃鳗、文昌鱼）与高等猿之间的心理差距，比猿与人之间的更大」这一反直觉的类比。
+    </li>
+    <li><strong>语言</strong>：达尔文承认「习惯性地使用分节语言」是人所特有，但认为这并不构成根本界限 —— 因为狗能懂许多词，鹦鹉能发音，婴儿在十到十二个月已能理解却尚不能说出。
+    </li>
+    <li><strong>对反方</strong>：本章要对付的是「人之心智特殊、故人有别于动物界」这一当时主流立场，因而论述带有辩论性。他举火地岛人作证：在「Beagle」号上住过几年、能说一点英语的三名土著，「在性情和大多数心理能力上与我们极为相像」。
+    </li>
+  </ul>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span>「But it can be shewn that there is no fundamental difference of this kind. We must also admit that there is a much wider interval in mental power between one of the lowest fishes, as a lamprey or lancelet, and one of the higher apes, than between an ape and man; yet this interval is filled up by numberless gradations.」（第 III 章，开篇）
+    </li>
+    <li><span class="tag t-src">原书</span>「The habitual use of articulate language is, however, peculiar to man」（第 III 章，论语言一节）
+    </li>
+    <li><span class="tag t-src">原书</span>「My object in this chapter is to shew that there is no fundamental difference between man and the higher mammals in their mental faculties.」（第 III 章，开篇后段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置／为什么重要。</strong> 没有这一章，第 IV–V 章对道德感的自然史解释就无从立足；它也是「进化心理学」这一支最早的文本源头之一。<strong>从论证结构看，本章承担的是「拆墙」工作</strong>：第 I–II 章拆的是身体上的墙（同源结构），本章拆的是心理上的墙，拆完以后第 IV 章才可能把「良心」也放进自然史。<span class="tag t-inf">推断</span>本报告认为，本章真正的论证力量不在「动物也能推理」的轶事，而在那条类比：如果承认最低等的鱼与最高等的猿之间隔着比猿与人更大的心理距离、而前者并不构成「种类之别」，那么「猿与人之间」也就不构成种类之别 —— 这是一个<strong>以连续性为标准、对端点不敏感</strong>的论证。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读有二：① 把「程度之别」读成「人与动物没有差别」——原文承认差别巨大，只是否认<strong>种类</strong>上的断裂；② 把本章读成实验心理学，其实它几乎全靠旅行记、动物园观察与轶事，<strong>证据等级不高</strong>，这是全书反复被批评的一点。★ 第三，本章的「美感」一则与第 XIII–XIV 章的鸟类审美直接连着，是后面「雌性选择」成立与否的前提；把本章与后面割开读，会看不出这条伏笔。<span class="tag t-inf">推断</span>本报告认为，达尔文在此处的困难是双重的：他既要用「程度论」取消人与动物的心理鸿沟，又要在后面（第 VIII、XIV 章）论证动物具备足以「挑选」的审美能力；这两步之间存在张力 —— 越强调连续性，就越需要动物具备较高级的心理，而这恰恰是他证据最薄的地方。</p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">10</span><span>第四章 人类与低等动物在心理能力上的比较（续）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 第 IV 章专论<strong>道德感（moral sense，即良心）</strong>。达尔文开篇就接受了当时一种意见：人与低等动物的所有差异中，道德感「最为重要」。他提出的路径是：道德感并非天赋的独立官能，而是从<strong>社会性本能</strong>（含家族纽带与同情）出发，叠加「对同群褒贬的在意」与「理智活动足以回望过去、比较动机」之后自然生长出来的；其中社会性本能因对群体有利而被自然选择保留。</p>
+  <h3>本章要点分块</h3>
+  <ul>
+    <li><strong>「应当」的来历</strong>：达尔文用社会性本能解释「ought」（应当）这一道德语气词的来源 —— 当一时的冲动过去、恒久的社会本能重新占上风时，人便感到「不满意甚至痛苦」，这就是良心的雏形。
+    </li>
+    <li><strong>同群界限</strong>：早期人类社会的美德「几乎只在对同部落的人的关系中被践行」——对别的部落的人则不然。<strong>这段是理解本书道德论述的关键，也是后世「群体选择」被追溯到的文本。</strong>
+    </li>
+    <li><strong>与哲学传统的关系</strong>：本章大量引用 Kant、Mackintosh、Bain、Mill 等人，是达尔文少见的与伦理学传统正面交接处，他甚至明说自己与 Mill 有分歧。
+    </li>
+  </ul>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span>「of all the differences between man and the lower animals, the moral sense or conscience is by far the most important.」（第 IV 章，开篇）
+    </li>
+    <li><span class="tag t-src">原书</span>「The virtues which must be practised, at least generally, by rude men, so that they may associate in a body, are those which are still recognised as the most important. But they are practised almost exclusively in relation to the men of the same tribe; and their opposites are not regarded as crimes in relation to the men of other tribes.」（第 IV 章，论严格社会性美德一节）
+    </li>
+    <li><span class="tag t-src">原书</span>「any animal whatever, endowed with well-marked social instincts … the parental and filial affections being here included, would inevitably acquire a moral sense or conscience, as soon as its intellectual powers had become as well, or nearly as well developed, as in man.」（第 IV 章，论道德感的基本命题一节；★ 原句在「social instincts」与「the parental」之间夹有一条长脚注，此处以省略号标出断处）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置／为什么重要。</strong> 本章与第 III、V 章共同构成「心智与道德的连续论」。它把伦理学问题<strong>转译成自然史问题</strong>，是本书对后世影响最深、争议也最大的部分之一。在论证链上，它是「人从低级形态来」这一身体结论向「心也如此」的延伸的最后一环：如果道德感也是自然史产物，那么人的全部能力就都能放进同一套演化解释里。★ 值得注意的是，本章提出的「社会性本能 ＋ 同群褒贬 ＋ 理智」三要素，在第 V 章被推到部落层面，<span class="tag t-inf">推断</span>本报告认为，这两章合起来才是本书道德论述的完整形态，单读第 IV 章会低估达尔文对「群体」层面的倚重。</p>
+  <p><strong>可疑之处或常见误读。</strong> ★ 常见误读是「达尔文主张道德来自『群体选择』」。原文的核心语汇是<strong>社会性本能 ＋ 自然选择 ＋ 同群褒贬</strong>，用的是「tribe」而非后来意义上的「群体选择」（group selection）；<strong>把它直接挂到 20 世纪「群体选择」之争上，是把后人的术语前置</strong>。此外，本章所引旅行记材料带有强烈的时代偏见，须连带阅读、不可割取。★ 第三，第三处引文用了省略号，<span class="tag t-inf">推断</span>本报告认为，读者不宜把被脚注隔开的两半当成一句连续的话来理解其语法；达尔文的意思是「任何具备明确社会性本能的动物，一旦理智发展到人的程度，就不可避免地会获得道德感」——这是<strong>条件句</strong>，不是「动物已有道德感」的断言。</p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">11</span><span>第五章 原始与文明时代理智与道德能力的发展</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 第 V 章接着第 IV 章往下走：理智与道德能力在<strong>原始时代与文明时代</strong>分别如何发展。达尔文先转述 Wallace 的主张 —— 人一旦获得理智与道德能力，身体便「很少再受自然选择改造」，因为他能靠工具、衣服、火与社会互助去适应环境。达尔文部分接受这一论证，但坚持：<strong>社会与道德品质仍在同一部落内部、以及部落之间的竞争中被选择</strong>。章末讨论文明社会里自然选择是否仍在起作用，以及「文明民族曾经也是野蛮的」这一证据。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span>「man, after he had partially acquired those intellectual and moral faculties which distinguish him from the lower animals, would have been but little liable to bodily modifications through natural selection or any other means.」（第 V 章，开篇第 1 段，述 Wallace 之说）
+    </li>
+    <li><span class="tag t-src">原书</span>「When two tribes of primeval man, living in the same country, came into competition, if (other circumstances being equal) the one tribe included a great number of courageous, sympathetic and faithful members, who were always ready to warn each other of danger, to aid and defend each other, this tribe would succeed better and conquer the other.」（第 V 章，第 4 段前后）
+    </li>
+    <li><span class="tag t-src">原书</span>「The subjects to be discussed in this chapter are of the highest interest, but are treated by me in an imperfect and fragmentary manner.」（第 V 章，开篇第 1 句）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置／为什么重要。</strong> 本章是「自然选择在文明人身上是否还有作用」这一问题的第一次正面处理，也是整本书里<strong>「部落竞争推动社会品质」这一论证的完整呈现处</strong>（正文里用的是「tribe would succeed better and conquer the other」）。它把第 III、IV 章的连续论推广到历史时间：第 IV 章解释良心「怎么来」，第 V 章解释它「怎么在部落间继续被选择」。★ 本章的节次本身也说明它的范围：从「理智能力经自然选择而进展」「模仿的重要性」「社会与道德能力」「在部落范围内的发展」，一直写到「自然选择对文明民族的作用」与「文明民族曾经野蛮的证据」——<strong>它其实是把第 IV 章的结论推到历史时间与群体层面</strong>。★ 本章还埋着一条与全书后半的接口 —— 一旦承认「身体已较少受自然选择改造」，那么人的体质差异就必须另找机制，这个缺口正是第二、三编的性选择要填的。★ 另一个常被漏掉的接口是<strong>模仿</strong>：达尔文把「模仿」单列一节，认为它是理智进展的关键，而第 III 章讨论动物心理时也把模仿列为与动物共有的能力之一 —— 两处合看，才知道他为什么敢说心智是连续演进的。<span class="tag t-inf">推断</span>本报告认为，本章在全书里的真正位置是<strong>「补缝」</strong>：第 IV 章把良心说成个体层面的产物，若不补上这一章，就无法解释良心如何能以「群体」为单位扩散并稳定下来。</p>
+  <p><strong>可疑之处或常见误读。</strong> ① 常见误读是把这段直接当作「达尔文主张群体选择」——仍应写「达尔文在本书里用的是部落层面的竞争语言」。② 本章自陈「本章题目我处理得既不完备又零碎」（第 V 章，开篇语），<strong>证据薄弱是作者自知的</strong>。③ 引 Wallace 之处须分清「谁在说」：开篇那段是达尔文在<strong>转述</strong> Wallace 的观点。★ ④ 本章末段讨论「文明社会的自然选择是否被削弱」（如文明社会救济弱者、征兵使健壮者出征），<span class="tag t-inf">推断</span>本报告认为，这是全书最容易被后世挪用的一段：<strong>达尔文在这里做的是机制讨论，不是政策主张</strong>。<span class="tag t-rep">转述</span>通行中译常把这一段处理为「文明社会中自然选择的松弛」（据公开资料转引的通行中译，<strong>未核对原著、不给页码</strong>，本报告此处仅作对照，不作引证）。</p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">12</span><span>第六章 人类的亲缘关系与谱系</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 第 VI 章把前五章的结论收束成「谱系」问题：人在动物界处于什么位置？自然的分类系统为何可以读成谱系？人与四手类（Quadrumana）有哪些细微相似？人的诞生地与古老程度如何？达尔文承认<strong>化石「连接环节」尚未发现</strong>，但认为这不构成反驳。他进一步推断人类谱系中更早的阶段（从类似海鞘幼体的动物，经低等鱼类、两栖类、哺乳类，直至猿类），并交代脊椎动物的早期雌雄同体状态。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span>「the facts given in the earlier chapters appear to declare, in the plainest manner, that man is descended from some lower form, notwithstanding that connecting-links have not hitherto been discovered.」（第 VI 章，开篇）
+    </li>
+    <li><span class="tag t-src">原书</span>「these various appearances … are intelligible, at least to a large extent, if man is the co-descendant with other mammals of some unknown and lower form.」（第 VI 章，第 2 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「Thus we have given to man a pedigree of prodigious length, but not, it may be said, of noble quality.」（第 VI 章，末段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置／为什么重要。</strong> 本章是从「证据」到「谱系」的过渡，也是<strong>「共同祖先」这一表述最清楚的地方</strong>（co-descendant）。它同时处理了反对者最常用的一招 ——「没有中间化石」——并给出了达尔文式的回答（化石记录本身极不完整）。★ 就结构而言，本章的节次把「谱系」问题拆成几层：先问人在动物系列中的位置，再论证自然分类系统本质上就是谱系（<code>The natural system genealogical</code>），然后讨论人与四手类的细部相似、人在自然系统中的等级、人的诞生地与古老程度、缺失环节之缺、谱系的更早阶段（从亲缘关系与身体结构两路推），最后以脊椎动物的早期雌雄同体状态收束。★ 第三处引文（「一份长得惊人、却算不得高贵的谱系」）是本章的收束句，紧接着他说「我们无须为此感到羞耻」（<code>we may... approximately recognise our parentage; nor need we feel ashamed of it</code>）——<strong>这句话的口气是论战性的</strong>，针对的是当时以「高贵出身」为前提的人论。★ 另需更正一处常见的归属错误：网上与部分二手材料把「必须巡视整个动物界、故交付第二编」这句话算作第 VI 章末段，<strong>实际上它出现在第 VII 章的末尾</strong>（本底本 PG #2300 第 VII 章末，紧接 Huxley 附录之前），本章的结尾是「谱系」那段。</p>
+  <p><strong>可疑之处或常见误读。</strong> ① 常见误读是把「共同祖先」读成「人是猿的后代」；原文说的是人与其他哺乳动物共出某一未知且更低下的形态。② 本章含一段<strong>应如实记录的等级化表述</strong>：达尔文预言「the civilised races of man will almost certainly exterminate, and replace, the savage races throughout the world」（第 VI 章，论缺失环节一节）——这是 19 世纪预设的典型样本，<strong>本报告照实引、不辩护</strong>；同时须注意这段话出自<strong>第 VI 章而非第 VII 章</strong>，容易张冠李戴。③ 本章对早期谱系的具体路线（海鞘幼体 → 鱼类 → 两栖 → 哺乳 → 猿）在今日已大体失效，<span class="tag t-inf">推断</span>本报告认为，读它时应把它当作<strong>19 世纪用比较解剖学推想谱系的方法标本</strong>，而不是当作结论 —— 达尔文自己用「we may thus ascend」「must have been developed」这类推测语气，也说明他清楚这是推想。★ ④ 第四，本章对「缺失的化石环节」给出的理由，<strong>不是</strong>泛泛的「地层记录残缺」，而是有具体依据的两点：<span class="tag t-src">原书</span>「in all the vertebrate classes the discovery of fossil remains has been a very slow and fortuitous process」（第 VI 章，论缺失化石环节一节，达尔文此处引的是 Lyell 的 <em>Elements of Geology</em> 1865 与 <em>Antiquity of Man</em> 1863），以及「最有可能出土人与某种绝灭猿类之间环节的地区，地质学家迄今尚未搜索」。<span class="tag t-rep">转述</span>通行中译常把这一节概括为「化石的发现是缓慢而偶然的过程，且最可能的地层尚未被搜寻」（据公开资料转引的通行中译，<strong>未核对原著、不给页码</strong>）。<span class="tag t-inf">推断</span>本报告认为，这是本书最经得起时间检验的一段论证：它把「没有证据」与「证据不存在」明确分开，正是后世古生物学继续寻找过渡化石时所用的同一条理由。</p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">13</span><span>第七章 论人的种族</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 第 VII 章处理「所谓人种」。达尔文明确说他不描述各个人种，而是要问：<strong>这些差别在分类上有多大价值（能不能当作「物种」），以及它们是怎么来的</strong>。他借用自然学家判定物种／变种的标准（差异量、差异所涉结构、是否恒定、杂交是否不育、地理分布），逐条套用到人种上，讨论一源说与多源说、特征的趋同、人种在身心上的大量相似点、人最初的分布状态、各人种并非同出一对祖先、人种的灭绝、人种的形成、杂交的影响，以及自然选择与性选择各自的作用。</p>
+  <h3>本章要点分块</h3>
+  <ul>
+    <li><strong>分类学问题</strong>：达尔文倾向于把人种当作<strong>变种／亚种</strong>而非各自独立的物种，理由是差异虽大却处处有中间层级。
+    </li>
+    <li><strong>差异的成因</strong>：他判断自然选择对人种差异的作用「很小或没有」，转而把大部分差异归给<strong>性选择</strong>（不同族群各有自己的审美标准）。这一「把性选择用回到人」的伏笔，会在第三编（第 XIX–XX 章）兑现。★ 他也坦白留下一个「unexplained residuum」（无法解释的残余），承认性选择不能包办全部差异 —— 这是全书少见的<strong>主动认输</strong>处。
+    </li>
+    <li><strong>时代局限（★ 必须如实写）</strong>：本章多处沿用 19 世纪流行的等级化与「文明—野蛮」框架，例如以文明程度解释族群竞争的胜负，并引用 Schaaffhausen 的说法称欧洲古老人种「lower in the scale than the rudest living savages」。<strong>这些是时代预设进入了科学论证，本报告不回避、不辩护。</strong>
+    </li>
+  </ul>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span>「It is not my intention here to describe the several so-called races of men; but I am about to enquire what is the value of the differences between them under a classificatory point of view, and how they have originated.」（第 VII 章，开篇第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「When civilised nations come into contact with barbarians the struggle is short, except where a deadly climate gives its aid to the native race.」（第 VII 章，论种族灭绝一节）
+    </li>
+    <li><span class="tag t-src">原书</span>「The grade of their civilisation seems to be a most important element in the success of competing nations.」（第 VII 章，同上节）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置／为什么重要。</strong> 本章是第一编的终点，把「人从哪来」推进到「人群的差异从哪来」。<strong>它的重要性与它的危险性是同一件事</strong>：它既是达尔文把演化原理用于人群差异的尝试，也是后世「社会达尔文主义」与种族主义最常被援引（且最常被断章取义）的文本之一。★ 另一处必须交代的归属：本章末尾才是那句常被误算到第 VI 章的话 —— <span class="tag t-src">原书</span>「But in order to treat this subject properly, I have found it necessary to pass the whole animal kingdom in review. I have therefore devoted to it the Second Part of this work.」（第 VII 章，末段）。<strong>它位于第一编与第二编的交界处</strong>：达尔文在这里宣布，为了把性选择讲透，他必须把动物界整体巡视一遍，于是把第二编整个交给性选择；随后便是 Huxley 的脑解剖附录，再进入第二编。这句话是 <code>## 4b</code> 纠正「性选择只是附带」的<strong>直接原文依据</strong>。</p>
+  <p><strong>可疑之处或常见误读。</strong> ★ 两点必须分清：① <strong>达尔文写了什么</strong> —— 他确实使用了等级化语言、确实把族群差异放在「文明—野蛮」的框架里比较，并确实预期「文明种族」会取代「野蛮种族」；② <strong>后人拿它做了什么</strong> —— 「社会达尔文主义」这一名号与以生物学为不平等辩护的整套论说，是<strong>后人（如 Spencer 一派及更晚的挪用者）</strong>的产物，<strong>在本书里并不能直接找到作为「核心主张」的表述</strong>。把二者混为一谈，既不公允，也无助于理解文本。<strong>本报告全书不把这里的任何内容引申到当代社会议题。</strong> ★ 第三处细节：本章把「人种是否为独立物种」当作<strong>分类学问题</strong>处理（差异的连续性、杂交的能育性），这与「人群有高下」是两码事，<span class="tag t-inf">推断</span>本报告认为，混淆这两层，是把达尔文的<strong>分类学判断</strong>读成了<strong>价值判断</strong>，也是后世引用最常出错的地方。<span class="tag t-rep">转述</span>通行中译常把本章要旨概括为「论人种的分类价值及其起源」（据公开资料转引的通行中译，<strong>未核对原著、不给页码</strong>）。</p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">14</span><span>第八章 性选择的若干原理</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 第二编开篇。第 VIII 章给出<strong>性选择的定义</strong>并把它与自然选择严格区分：性选择取决于同一性别、同一物种的个体<strong>在繁殖上的相对优势</strong>，而不是在生存上的相对优势。达尔文列出关键要素：第二性征、雄性过剩、多妻、雄性（在多数情况下）是唯一被性选择改造的一方、雄性的急切、雄性的变异性、雌性的选择、性选择与自然选择的比较、按年龄与季节对应的遗传、以及两性比例的补充讨论。</p>
+  <h3>本章要点分块</h3>
+  <ul>
+    <li><strong>定义</strong>：性选择的两条腿 —— <strong>雄性之间的争斗</strong>（law of battle）与<strong>雌性的选择</strong>。达尔文指出：某些结构之所以归于性选择，正因为「unarmed, unornamented, or unattractive males would succeed equally well in the battle for life」，只是敌不过「better endowed males」——<strong>所谓「优势」是在繁殖场上，不是在生存场上</strong>。
+    </li>
+    <li><strong>与自然选择的关系</strong>：达尔文承认在很多情形下<strong>二者难以截然分开</strong>（「it is impossible to distinguish between the effects of natural and sexual selection」），但仍坚持这一区分有独立价值 —— 正是这一区分让他「把这种选择命名为性选择」。
+    </li>
+    <li><strong>审美问题</strong>：雌性能否欣赏「美」，是本章最受争议之处；达尔文以家鸡育种的类比作辩护，并称动物的美感「不与文明人的复杂联想」相比，而更接近「最低等的野蛮人」。
+    </li>
+  </ul>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span>「We are, however, here concerned only with sexual selection. This depends on the advantage which certain individuals have over others of the same sex and species solely in respect of reproduction.」（第 VIII 章，第 3 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「It was the importance of this distinction which led me to designate this form of selection as Sexual Selection.」（第 VIII 章，第 4 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「When we behold two males fighting for the possession of the female, or several male birds displaying their gorgeous plumage, and performing strange antics before an assembled body of females, we cannot doubt that, though led by instinct, they know what they are about, and consciously exert their mental and bodily powers.」（第 VIII 章，第 4 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置／为什么重要。</strong> 本章是整本后半部的<strong>定义章</strong>，其后的第 IX–XVIII 章都是它的实例普查。<strong>说「性选择 ≠ 自然选择」必须回到这一章的原文</strong>，尤其最后一条引文里「选择」与「有意识地施展身心能力」的措辞 —— 达尔文把动物行为描述得相当拟人化，这也正是 Wallace 反对的靶心。★ 本章还给出了<strong>两套权重</strong>的先声：达尔文在这里既讲雄性争斗、又讲雌性选择，但并未在所有类群里平均分配二者，这个「按类群定权重」的做法要到第 XVII 章（哺乳类以争斗为主）与第 XIV 章（鸟类以选择为主）才充分铺开。<span class="tag t-inf">推断</span>本报告认为，把本章读成「性选择＝雌性审美」是对全书结构的误置 —— 本章给的是<strong>一个含两条腿的定义</strong>，权重是后面各章分别交代的。</p>
+  <p><strong>可疑之处或常见误读。</strong> ① 常见误读是把性选择当成自然选择的一个特例；达尔文明确把它并列处理。② 达尔文的拟人化表述（「they know what they are about」）在 20 世纪被批评为把人类心理投射到动物，<strong>这是真实存在的表述问题，本报告如实指出</strong>。③ 本章补论两性比例，常被忽略，却是后来 Fisher 两性比例理论的前身之一。★ ④ 达尔文用家鸡选育作「雌性审美」的类比，<span class="tag t-inf">推断</span>本报告认为，这个类比本身有循环风险：<strong>育种者的「标准」是他自己的，而雌性鸟的「标准」是什么，正是本章要证明的东西</strong>，拿它当证据，是把结论当前提。<span class="tag t-rep">转述</span>通行中译常把「性选择」的定义处理为「同一性别的个体为繁殖优势而进行的竞争」（据公开资料转引的通行中译，<strong>未核对原著、不给页码</strong>）。</p>
+</section>
+
+<section id="s16">
+  <h2><span class="num">15</span><span>第九章 动物界较低几个纲的第二性征</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 第 IX 章开始动物界的实操普查，但先处理一个反例：在最低等的几个类群（原生动物、腔肠、棘皮、蠕虫等）中，<strong>第二性征基本不存在</strong>。达尔文的解释是：这些动物或雌雄同体，或两性固着而无法彼此搜求，或感官与心智「太不完善」而不可能有审美与竞争。随后他依次巡视软体动物、环节动物、甲壳类、蜘蛛与蜈蚣，指出甲壳类的第二性征「发育极强」，并记录蜘蛛的性色彩与雄性的鸣响。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span>「it is almost certain that these animals have too imperfect senses and much too low mental powers to appreciate each other's beauty or other attractions, or to feel rivalry.」（第 IX 章，开篇第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「It should be borne in mind that in no case have we sufficient evidence that colours have been thus acquired, except where one sex is much more brilliantly or conspicuously coloured than the other, and where there is no difference in habits between the sexes sufficient to account for their different colours.」（第 IX 章，第 3 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「How, then, are we to account for the beautiful or even gorgeous colours of many animals in the lowest classes?」（第 IX 章，第 4 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置／为什么重要。</strong> 本章的功能是<strong>边界设定</strong>：用「第二性征为何在此缺席」为性选择划出一条适用范围，反复出现的理由是「感官与心理能力是否足以欣赏美、感受竞争」。这反过来暴露了这套理论的软肋 —— 它把「动物能否审美」当成了机制的前提。★ 按本章节次，它先讲「最低等类群中第二性征缺席」与「艳丽色彩」的一般问题，再依次巡视软体动物、环节动物、甲壳类（其中第二性征「发育极强」、并有两性异形）、蜘蛛（性色彩、雄性鸣响）、蜈蚣 —— <strong>结构是「先立边界，再逐门类验收」</strong>，也就是后面鱼类、鸟类、哺乳类各章共同的写法模板。★ 第二处引文是本章最有方法论价值的一句：<strong>达尔文给自己立了一条证据门槛</strong> —— 只有当两性色彩差异明显、且两性生活习性差异不足以解释它时，才能把色彩归给性选择。<span class="tag t-inf">推断</span>本报告认为，这条门槛在后文并没有被严格贯彻：越往后写（尤其鸟类各章），「没有别的解释」就越多地被当作「性选择解释」成立的旁证，门槛事实上被放低了。★ 本章的另一半（甲壳类、蜘蛛）常被跳过，其实它证明了达尔文<strong>并非只盯着「美的色彩」</strong>：雄性蜘蛛的鸣响、甲壳类的攫握构造，同样进入他的普查清单。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把「第二性征缺席」当成反证。达尔文的论证是<strong>双向</strong>的：缺席被他解释为机制不适用的结果，而非理论的反驳。这种「理论自我保全」式的论证结构，后来被批评为<strong>难以证伪</strong>（见 <code>## 5</code> 第 ④ 条）。★ 第二，本章把「感官不完善」当作排除性选择的理由，<span class="tag t-inf">推断</span>本报告认为，这一步在逻辑上是<strong>把一个经验问题（动物能感知什么）当成了前提判断</strong>，而它恰恰是当时最没有数据支持的一环。★ 第三，章内对「低等动物为何有艳丽色彩」给出的解释是「来自组织的化学性质或细微结构，与任何收益无关」（如血液之红、胆汁之色），<span class="tag t-rep">转述</span>这一解释在中译里常被概括为「色彩可能来自身体构造本身，而非选择的结果」（据公开资料转引的通行中译，<strong>未核对原著、不给页码</strong>）。</p>
+</section>
+
+<section id="s17">
+  <h2><span class="num">16</span><span>第十章 昆虫类的第二性征</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 第 X 章普查昆虫：两性在运动器官与感觉器官上的差异（如雄性羽状触角、大眼）、雄性用于攫握雌性的构造、意义不明的两性差异、两性体型的差异，随后按目列举 —— 缨尾目、双翅目、半翅目、同翅目（雄性的鸣声）、直翅目（雄性的发声器与好斗、色彩）、脉翅目、膜翅目（好斗与气味）、鞘翅目（色彩、大角、战斗、发声器）。★ 达尔文特别指出，昆虫中的「战斗法则」远不如高等动物普遍，因此雄性<strong>通常反而比雌性小</strong>。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span>「But we are chiefly concerned with structures by which one male is enabled to conquer another, either in battle or courtship, through his strength, pugnacity, ornaments, or music.」（第 X 章，开篇第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「As there is so much rivalry between the males, it is probable that the females not only find them by their sounds, but that, like female birds, they are excited or allured by the male with the most attractive voice.」（第 X 章，论同翅目鸣声一节）
+    </li>
+    <li><span class="tag t-src">原书</span>「The males would seize hold of his finger, if held in front of them, but not so the females, although they have stronger jaws.」（第 X 章，论战斗法则一节，记锹形虫）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置／为什么重要。</strong> 本章是「武器与装饰」两大主题在昆虫纲的首次大规模铺开，为后面鱼类、鸟类、哺乳类的同类论证建立了模板 —— <strong>先列结构，再追问其功能，最后归因于性选择</strong>。★ 本章的节次顺序（体型差异 → 缨尾目 → 双翅目 → 半翅目 → 同翅目「唯雄性能鸣」→ 直翅目「雄性的乐器、好斗、色彩」→ 脉翅目 → 膜翅目 → 鞘翅目 → 战斗法则 → 发声器官）本身就是一个「普查清单」，与第 IX 章的「先立边界、再验收」正好接续。★ 章内最有分量的推论是「鸣声不只是召唤、还用以<strong>引动或取悦</strong>雌性」：这把昆虫抬到与鸟类同一论证层级，是第 XIV 章「雌性选择」在昆虫纲的预演。★ 第三处引文（男孩以锹形虫角斗为戏、雄虫敢咬手指而雌虫不敢，虽然雌虫颚更有力）是达尔文常用的<strong>「行为差异与力量差异不对应」</strong>式证据：他借此说明雄性更「好斗」不是身体强弱的附带结果，而是与第二性征绑定的独立现象。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把「雄性攫握器」也当作性选择的产物。★ 达尔文在第 VIII 章曾明确警告：许多此类器官其实由<strong>自然选择</strong>造成（否则雄虫无法与雌虫交配），二者常常难以区分。<strong>把本章所有结构一律归给性选择，是对达尔文的过度延伸。</strong> ★ 第二，「雌性被鸣声取悦」在本章只是<strong>推测</strong>（原文用「it is probable」），<span class="tag t-inf">推断</span>本报告认为，把它读成「达尔文证明了昆虫的雌性审美」是把「可能」抬成了「证实」。★ 第三，第三处引文取自一位「儿时以虫相斗为戏」的友人的回忆，属<strong>轶事证据</strong>，达尔文自己也常用这类材料。<span class="tag t-rep">转述</span>通行中译常把本章要旨概括为「雄虫以角、鸣器与色彩争夺雌虫」（据公开资料转引的通行中译，<strong>未核对原著、不给页码</strong>）。★ 第四，本章与第 XI 章都属于「许多性别差异意义不明」的类群：第 XI 章小结里明写这些差异「the meaning of which is not in the least understood」—— <span class="tag t-inf">推断</span>本报告认为，<strong>这句话是理解整部昆虫诸章的关键</strong>：达尔文并不假装每种结构都已解释清楚，他把「意义不明」单独列成一类，反而是对归纳式论证的一种自律。</p>
+</section>
+
+<section id="s18">
+  <h2><span class="num">17</span><span>第十一章 昆虫类（续）：鳞翅目（蝶与蛾）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 第 XI 章专论鳞翅目。要点是<strong>色彩</strong>：同种雌雄之间、同属不同种之间的色彩差异。达尔文先讲蝶的求偶（多个雄蝶追逐同一雌蝶，求偶可持续很久），再讨论两性共有或雄性更艳丽的色彩、保护色、蛾的色彩、展示行为、鳞翅目的感受能力、变异性、色彩差异的成因、拟态（雌蝶比雄蝶更艳丽的反常例子）、毛虫的鲜艳色彩，最后给出昆虫第二性征的小结，并把鸟与昆虫作比较。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span>「In this great Order the most interesting points for us are the differences in colour between the sexes of the same species, and between the distinct species of the same genus.」（第 XI 章，开篇第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「Several males may often be seen pursuing and crowding round the same female. Their courtship appears to be a prolonged affair」（第 XI 章，开篇第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「The analogy, indeed, in all these respects between birds and insects is curiously close.」（第 XI 章，论鸟与昆虫的比较节）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置／为什么重要。</strong> 本章是「色彩与选择」这一主题在昆虫纲的高潮，也是达尔文与 Wallace 争论最集中的地方 —— <strong>保护色（可归自然选择）与性选择（可归择偶）在同一类群中并存，如何分辨，成为双方分歧的技术核心</strong>。章末「鸟与昆虫相比」一段，直接把第二编领向鸟类诸章：达尔文在那里明确说，鸟与虫在性征上「类比之紧密令人称奇」，因此「适用于一纲的解释，大概也适用于另一纲」。★ 本章节次的推进方式很能说明他的取证办法：从蝶的求偶与打斗写起，写「滴答声」这类声音，再进入两性共有或雄性更艳丽的色彩、保护色、蛾的色彩、<strong>展示（display）</strong>、鳞翅目的感知力与变异性、两性色彩差异的成因、拟态、毛虫的亮色，最后才是小结与「鸟与虫的比较」。★ 章末的「Bird and insects compared」一节其实承担了<strong>整部第二编的枢纽功能</strong>：它把第 X–XI 章的昆虫结论、第 XIII 章的鸟类承接下来，等于一句话宣布「下面四章讲的鸟，就是刚才讲的虫的另一版」。★ 章内的<strong>拟态</strong>一节尤其重要 —— 雌蝶比雄蝶更艳丽的反常例子，说明达尔文并没有把「雌性必然黯淡」当成定律，而是把它当成为保护而生的<strong>次生状况</strong>。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把本章所有艳丽色彩都读成性选择的结果。达尔文自己在章内反复区分<strong>保护色</strong>与<strong>择偶色彩</strong>，并承认有些差异「意义尚不了解」。★ 后世（尤其 Wallace 一派）主张<strong>雌性的黯淡更多来自孵卵期被捕食压力下的自然选择</strong>，这一替代解释在本章尚未被充分处理，须留意。★ 第二，第三处引文的「curiously close」是<strong>类比</strong>，不是同源 —— <span class="tag t-inf">推断</span>本报告认为，达尔文用「鸟与虫的类比」把昆虫章的结论整体搬向鸟类章，这一步的说服力取决于类比本身是否成立，而他在此处并没有为类比提供独立理由。<span class="tag t-inf">推断</span>本报告还认为，把「拟态」纳入性选择讨论，是本章最容易被现代读者误解的地方：拟态（模仿他种）在机制上更常归<strong>自然选择</strong>，达尔文在此只把它当作「色彩可能被非择偶因素塑造」的例证。</p>
+</section>
+
+<section id="s19">
+  <h2><span class="num">18</span><span>第十二章 鱼类、两栖类与爬行类的第二性征</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 第 XII 章进入脊椎动物，从最低等的鱼类开始。对鱼类，他讨论雄性的求偶与争斗、雌性体型较大、雄性鲜艳色彩与装饰附器（有的仅在繁殖季出现）、两性皆艳丽的鱼、保护色、雌鱼色彩较黯淡「无法用保护解释」的疑难、雄鱼筑巢护卵。对两栖类，讨论两性在结构与色彩上的差异、发声器官。对爬行类，依次讨论龟鳖、鳄、蛇（部分色彩为保护色）、蜥蜴（争斗、装饰附器、两性结构差异、色彩），并总结：爬行类的性差异「几乎与鸟类一样大」。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span>「We have now arrived at the great sub-kingdom of the Vertebrata, and will commence with the lowest class, that of fishes.」（第 XII 章，开篇第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「Sexual selection, indeed, seems to have played almost as important a part with reptiles as with birds; and the less conspicuous colours of the females in comparison with the males cannot be accounted for, as Mr. Wallace believes to be the case with birds, by the greater exposure of the females to danger during incubation.」（第 XII 章，论爬行类一节末）
+    </li>
+    <li><span class="tag t-src">原书</span>「in no instance does it appear that the female alone has had her colours or other characters specially modified for this latter purpose.」（第 XII 章，论鱼类小结一节）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置／为什么重要。</strong> 本章是脊椎动物普查的起点，也是全书首次<strong>点名反驳 Wallace 的具体机制主张</strong>：Wallace 认为雌鸟黯淡的羽色来自孵卵期暴露于天敌下的自然选择，达尔文在本章末<strong>直接宣布这条解释在爬行类行不通</strong>，因为爬行类不孵卵或孵卵期暴露情况不同，雌性却照样比雄性黯淡。★ 本章的三纲分节也各有功能：<strong>鱼类</strong>一节确立「雄性的色彩与装饰在繁殖季出现、且可用性选择解释」这一基本模式，并处理 Solenostoma 那样「雌性更靓」的反常例子；<strong>两栖类</strong>一节材料最薄，多数只是发声器官与季节性的色彩变化；<strong>爬行类</strong>（龟鳖、鳄、蛇、蜥蜴）一节反而最强，达尔文据此得出「爬行类的性别差异几乎与鸟类一样大」的判断。★ 第三处引文则是他为鱼类下的总判断：<strong>没有任何一例能说明「只有雌性」的颜色是为了保护而被改的</strong> —— 这是一个<strong>排除法</strong>式的论证。★ 本章对鱼类「雄性筑巢护卵」的记录，也为后来「亲代投资」这一问题留下最早的一批材料。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是「鱼类色彩一律保护色」。本章恰恰用「雌性色彩无法用保护解释」来反将一军；但这一论据本身有争议 —— 雌性色彩也可能来自别的自然选择压力（如孵育期的暴露），<strong>达尔文的论证是「排除法」，并非直接证据</strong>。★ 第二，本章第二处引文里「as Mr. Wallace believes to be the case with birds」是一处<strong>署名论战</strong>，<span class="tag t-inf">推断</span>本报告认为，把它读成「达尔文证明 Wallace 错了」是过度解读 —— 达尔文提供的是一个<strong>反例</strong>，反例能证伪一条普遍命题，但不能独立证实另一条。★ 第三，章内对两栖类、爬行类的材料大量取自通信者（如 Dr. Gunther）。★ 第四，本章把「爬行类的性别差异几乎与鸟类一样大」当作结论写进目录与正文，<span class="tag t-inf">推断</span>本报告认为，这条判断的证据基础其实<strong>集中在蜥蜴一类</strong>（争斗、装饰附器、色彩），把它推广到整个爬行纲，是本书常犯的<strong>以偏概全</strong>式推广 —— 达尔文对鸟类有大量观察者来信支撑，对爬行类则明显单薄。<span class="tag t-rep">转述</span>通行中译常把本章要旨概括为「鱼、两栖、爬行三纲皆有第二性征」（据公开资料转引的通行中译，<strong>未核对原著、不给页码</strong>）。</p>
+</section>
+
+<section id="s20">
+  <h2><span class="num">19</span><span>第十三章 鸟类的第二性征</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 鸟类章的第一篇（第 XIII–XVI 共四章）。第 XIII 章是总论：性差异、争斗法则、特殊武器、发声器官、器乐（如啄木鸟的敲击）、爱情把戏与舞蹈、永久与季节性的装饰、每年一次或两次的换羽、雄性对装饰的展示。达尔文指出，鸟类的第二性征「比任何其他纲都更丰富、更醒目」，并解释为何要用四章来处理它。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span>「Secondary sexual characters are more diversified and conspicuous in birds, though not perhaps entailing more important changes of structure, than in any other class of animals.」（第 XIII 章，开篇第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「On the whole, birds appear to be the most aesthetic of all animals, excepting of course man, and they have nearly the same taste for the beautiful as we have.」（第 XIII 章，开篇第 1 段末）
+    </li>
+    <li><span class="tag t-src">原书</span>「The males sometimes pay their court by dancing, or by fantastic antics performed either on the ground or in the air.」（第 XIII 章，开篇第 1 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置／为什么重要。</strong> 鸟类是性选择理论的<strong>主战场</strong>：装饰（羽毛）、武器（距、爪）、音乐（鸣声、器乐）、舞蹈四类证据在此最全。达尔文把鸟类篇幅写成四章（第 XIII–XVI），本身就说明这是他最看重的证据类别。★ 本章的节次把「武器—音乐—舞蹈—装饰—换羽—展示」依次排开，等于先给后面三章搭好四类证据的架子：第 XIV 章处理「雌性的选择」，第 XV 章处理「为何只雄性艳丽」，第 XVI 章处理「幼羽与成羽、以及鸟类四章小结」。★ 第二处引文是全书最被引用、也最被批评的一句：<strong>「鸟是除人之外最有审美能力的动物，其美的品味几乎与我们相同」</strong> —— 这句话承担了第 XIV 章「雌性选择」的全部前提；如果鸟类不能审美，「雌性选择」这条腿就塌了。<span class="tag t-inf">推断</span>本报告认为，这句话的措辞（「nearly the same taste... as we have」）暴露了达尔文论证中的一个<strong>人类中心式的类比</strong>：他先假定人有一套审美，再把它投射给鸟，而非独立地证明鸟有审美。★ 章内「器乐」一项值得单独留意 —— 达尔文把鸟类的敲击、振羽等发声也纳入「求偶音乐」，这一步的归因比鸣声更弱，是他把「凡装饰与炫耀皆归择偶」这一倾向推得较远的地方。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是「羽毛漂亮只是为了好看」。本章同时列出<strong>武器</strong>与<strong>争斗</strong>，说明在鸟类中雄性竞争仍是重要一腿；此外「器乐」这类现象（如鸟类敲击发声）在当时很难与求偶严格挂钩，<strong>归因带有推测性</strong>。★ 第二，「审美」一词的用法须谨慎：<span class="tag t-inf">推断</span>本报告认为，达尔文此处的「aesthetic」更接近「对鲜艳与被展示之物的偏好」，而不是「有美的概念」；若把它读成后者，就是把现代的审美心理强加给 1871 年的文本。★ 第三，本章把「器乐」（啄木鸟式敲击、振羽发声）也归入求偶手段，<span class="tag t-inf">推断</span>本报告认为，这类归因的<strong>证据强度明显低于鸣声</strong>：敲击声也可能有标记领域等用途，达尔文在此处依赖的仍是「凡雌雄有别即归择偶」的推理习惯。<span class="tag t-rep">转述</span>通行中译常把本章要旨概括为「鸟类的第二性征最丰富夺目」（据公开资料转引的通行中译，<strong>未核对原著、不给页码</strong>）。</p>
+</section>
+
+<section id="s21">
+  <h2><span class="num">20</span><span>第十四章 鸟类（续）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 第 XIV 章专门处理<strong>雌性的选择</strong>。达尔文问：是不是每个同种雄性都能同样地吸引雌性？还是雌性会<strong>主动挑选</strong>？他依据大量观察给出肯定回答（孔雀、大眼斑雉、Urosticte 等），并讨论雌性偏好的来源（「对美的品味」）、求偶的时长、未配对的个体、鸟类的变异性与突变式变异、斑眼（ocelli）的形成、性状的渐变。这一章是「雌性选择」假设最集中的论证处。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span>「But there remains a question which has an all important bearing on sexual selection, namely, does every male of the same species excite and attract the female equally? Or does she exert a choice, and prefer certain males? This latter question can be answered in the affirmative by much direct and indirect evidence.」（第 XIV 章，开篇第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「Hence we may conclude that it is the object of the male to induce the female to pair with him, and for this purpose he tries to excite or charm her in various ways」（第 XIV 章，同上）
+    </li>
+    <li><span class="tag t-src">原书</span>「It is far more difficult to decide what qualities determine the choice of the females; but here again we have some direct and indirect evidence that it is to a large extent the external attractions of the male; though no doubt his vigour, courage, and other mental qualities come into play.」（第 XIV 章，开篇第 1 段末）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置／为什么重要。</strong> 本章是「性选择有两条腿」中<strong>「雌性选择」这一腿的总论证</strong>。它对后世影响深远（20 世纪性选择理论复兴的核心正是「雌性偏好」），也是当年 Wallace 最不接受的论点：他认为把「审美」赋予昆虫与鸟类，是把人类的心理投射到动物身上。★ 本章节次依次覆盖：雌性的选择、求偶的时间之长、未配对的个体、心智品质与「对美的品味」、雌性对特定雄性的偏好或厌恶、鸟类的变异性（含<strong>突变式变异</strong>）、变异的规律、<strong>斑眼（ocelli）的形成</strong>、性状的渐变，最后落到孔雀、大眼斑雉与 Urosticte 三个个案 —— <strong>它把「雌性能选」一路证到「斑眼这样复杂的结构能由逐级渐变而来」</strong>，因为后者正是当时反演化论者最常举的「不可渐成」反例。★ 第三处引文很关键：达尔文在此承认<strong>「是什么品质决定了雌性的选择」很难判定</strong>，但仍把「大体上就是雄性的外在吸引力」当作有证据支持的主线 —— 这是一次<strong>「承认困难、仍下判断」</strong>的写法。★ 章内对「斑眼如何由渐变形成」的处理，<span class="tag t-inf">推断</span>本报告认为，其真正用意<strong>不止于讲性选择</strong>：它同时是对「复杂结构不能渐成」这一整体质疑的回击，因此这一章在全书里兼有<strong>性选择论证</strong>与<strong>演化论防御</strong>两重任务。</p>
+  <p><strong>可疑之处或常见误读。</strong> ★ 常见误读是把「雌性选择」当成已被本书证明。本章的证据几乎全是<strong>观察与轶事</strong>，达尔文自己也承认难以断定「是什么品质决定了雌性的选择」。<strong>「雌性能审美」是本章的假设，不是结论</strong>；这一假设要到 20 世纪才有可检验的量化研究。★ 第二，本章处理「雌性偏好如何起源」这一环时，给出的仍是「对美的品味」这类循环式说法 —— <span class="tag t-inf">推断</span>本报告认为，这正是整个性选择理论在 1871 年最大的缺口：<strong>偏好本身也需要被解释，而达尔文只能把它当作给定的</strong>。★ 第三，章内对「突变式变异」（abrupt variations）的讨论，<span class="tag t-rep">转述</span>通行中译常把本章要旨概括为「雌鸟主动择偶，以其自身标准挑出最悦目者」（据公开资料转引的通行中译，<strong>未核对原著、不给页码</strong>）。</p>
+</section>
+
+<section id="s22">
+  <h2><span class="num">21</span><span>第十五章 鸟类（续）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 第 XV 章讨论一个「为什么」问题：为什么有些鸟类<strong>只有雄性</strong>色彩艳丽，而另一些鸟类<strong>两性都</strong>（几乎）同样艳丽？达尔文在此修正了自己在《物种起源》里提过的旧解释（曾以为雌性黯淡是因为孵卵期易被捕食、故传给雌性后代时被自然选择抑制），转而主张：当两性不同时，<strong>变异在遗传上一开始就被限制在它首先出现的那个性别里</strong>。后半章讨论「性限遗传」如何适用于各种结构与艳丽羽色、营巢与色彩的关系、冬季失去婚羽等。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span>「We have in this chapter to consider why the females of many birds have not acquired the same ornaments as the male; and why, on the other hand, both sexes of many other birds are equally, or almost equally, ornamented?」（第 XV 章，开篇第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「I am now inclined to believe that when the sexes differ, the successive variations have generally been from the first limited in their transmission to the same sex in which they first arose.」（第 XV 章，第 2 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「the subject of sexual coloration has been discussed in some very interesting papers by Mr. Wallace … who believes that in almost all cases the successive variations tended at first to be transmitted equally to both sexes」（第 XV 章，第 2 段；★ 原句在「Mr. Wallace」之后夹有一条文献脚注，此处以省略号标出断处）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置／为什么重要。</strong> 本章引入了<strong>「性限遗传」（sexually-limited inheritance）</strong>这一机制概念，是达尔文在遗传学尚未建立的情况下<strong>为性选择找机制</strong>的尝试。它也是本书记录「作者修改自己旧主张」的又一实例（与第 II 章对自然选择范围的修正相呼应）。★ 章内最著名的论证工具是<strong>养鸽人的思想实验</strong>：假设有人想把一群鸽子的雄鸽养成淡蓝色、雌鸽保留原来的石板色，达尔文一步步推演「这样做会得到什么」——由于鸽子通常把性状同等传给两性，结果多半是杂色斑驳，或干脆丢掉淡蓝；<strong>他借此说明「把两性共有的性状改成只传一性」在操作上有多么困难</strong>，从而论证「性限遗传」更可能一开始就存在，而非后来由选择造成。★ 第三处引文让本章成为<strong>全书最清楚的一处「与 Wallace 的机制分歧」现场</strong>：Wallace 主张变异先同等传给两性、再由自然选择在雌性身上「抹去」；达尔文则主张变异<strong>从一开始就限于出现它的那一性别</strong>。两人用的是同一批事实，分歧全在<strong>遗传方式</strong>上 —— 而这个问题的答案，当时谁也拿不出。★ 本章后半还处理「营巢与色彩的关系」「冬季失去婚羽」，把性限遗传推到季节性的性状上。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把「性限遗传」当成达尔文已解释清楚的机制。事实上它更接近一个<strong>命名</strong>而非解释 —— 当时没有遗传学，达尔文只能说「变异从最初就限于某一性别」，<strong>这是循环味道很重的说法</strong>。<span class="tag t-inf">推断</span>本报告认为，「性限遗传」在本书里的真正作用不是解释现象，而是<strong>把「为什么雌性不漂亮」这个问题从自己的论证里移开</strong>：只要说「变异本来就没传给雌性」，就不必再解释雌性为何不漂亮。★ 第二，本章对《起源》旧说的自我修正（原文坦承「我仍认为这在少数情形下可能发生过，但……」），<span class="tag t-rep">转述</span>通行中译常把本章要旨概括为「性限遗传：变异自始只传给出现它的那一性别」（据公开资料转引的通行中译，<strong>未核对原著、不给页码</strong>）。</p>
+</section>
+
+<section id="s23">
+  <h2><span class="num">22</span><span>第十六章 鸟类（续完）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 第 XVI 章收束鸟类四章。讨论幼羽与成羽的关系（分六类情形）、近缘或代表性物种的雄性之间的性差异、雌性「变成」雄性的例子、幼鸟羽色与成鸟夏／冬羽色的关系、世界鸟类「美丽是否在增加」、保护色、显眼色彩、对「新奇」的欣赏，最后是鸟类四章的总结。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span>「We must now consider the transmission of characters, as limited by age, in reference to sexual selection.」（第 XVI 章，开篇第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「Young lions and pumas are marked with feeble stripes or rows of spots, and as many allied species both young and old are similarly marked, no believer in evolution will doubt that the progenitor of the lion and puma was a striped animal, and that the young have retained vestiges of the stripes, like the kittens of black cats, which are not in the least striped when grown up.」（第 XVI 章，开篇第 2 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「To suppose that the females do not appreciate the beauty of the males, is to admit that their splendid decorations, all their pomp and display, are useless; and this is incredible.」（第 XVI 章，鸟类四章总结节）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置／为什么重要。</strong> 本章把「按年龄对应遗传」与「按性别限制遗传」两条线索合起来，为第二编的动物普查作结。<strong>幼羽／成羽的六类情形</strong>在方法上是本书少有的<strong>分类学式整理</strong>，可视为达尔文对自己推测性论证的一种自我节制。★ 第二处引文出现在鸟类章里，讲的却是<strong>狮、豹的幼崽条纹</strong> —— 达尔文借「幼体保留祖先性状」把鸟类羽色问题接回第一编的残余器官／发育重演逻辑，说明他把「鸟类四章的细节」也放在全书统一的方法论里。★ 本章后半还处理三件常被忽略的事：近缘或代表性物种之间雄性装饰的差异、<strong>雌性「变成」雄性</strong>（雌鸟长成雄鸟羽色）的个例、以及幼鸟羽色与成鸟夏羽／冬羽的关系 —— 这三件都以「遗传的时点与性别」为轴，与第 XV 章的性限遗传恰好互为表里。★ 章末的「鸟类四章总结」是第二编中途的一次<strong>阶段性收口</strong>：达尔文在这里把「雄性好斗、以鸣声与装饰求偶、扮装与展示、幼羽与成羽」几条线归并，再据此宣布「若说雌鸟不欣赏雄鸟之美，就等于承认这一整套排场全无用处」。接著便是第 XVII–XVIII 章的哺乳类。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是跳过本章，认为它只是鸟类细节。其实「幼羽保留了祖先性状」这一观察，与第一编的<strong>残余器官／发育重演</strong>是同一种推理方式，属于全书方法论的一致处，不应视为纯粹的资料堆砌。★ 第二，「世界鸟类是否越来越美」这一节带有<strong>进步论色彩</strong>，<span class="tag t-inf">推断</span>本报告认为，这是达尔文把「美」当作可累积的性状来处理的后果，与他第 XXI 章「人还会继续上升」的展望属于同一类<strong>价值渗入</strong>，须与实证部分分开读。★ 第三，第三处引文是本章总结里的<strong>反证式论证</strong>（「若说雌鸟不欣赏雄鸟之美，就等于承认它们的盛饰全是无用的，而这不可信」）—— <span class="tag t-inf">推断</span>本报告认为，这是<strong>把「装饰存在」当作「雌性欣赏」的证据</strong>，逻辑上是「若无此因则彼果无从解释」的排除法，而非独立证据；它和第 XIX–XX 章把人的审美当作性选择证据的写法属于同一路数。<span class="tag t-rep">转述</span>通行中译常把本章要旨概括为「幼鸟羽色与成鸟羽色之关系的六类情形」（据公开资料转引的通行中译，<strong>未核对原著、不给页码</strong>）。</p>
+</section>
+
+<section id="s24">
+  <h2><span class="num">23</span><span>第十七章 哺乳类的第二性征</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 第 XVII 章转哺乳类。核心命题是：哺乳类中雄性「赢得」雌性，<strong>更多靠争斗（law of battle）而不是靠展示魅力</strong>。他列举野兔、鼹鼠、松鼠、海狸、原驼等的搏斗，讨论专属于雄性的武器、雌性为何通常无武器、两性共有但最初由雄性获得的武器、这些武器的其他用途与其重要性、雄性体型更大、防卫手段，以及四足动物交配时两性的偏好。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span>「With mammals the male appears to win the female much more through the law of battle than through the display of his charms.」（第 XVII 章，开篇第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「All male animals which are furnished with special weapons for fighting, are well known to engage in fierce battles.」（第 XVII 章，第 3 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「The most timid animals, not provided with any special weapons for fighting, engage in desperate conflicts during the season of love.」（第 XVII 章，开篇第 1 段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置／为什么重要。</strong> 本章<strong>明确给出「两条腿」的相对权重</strong>：在哺乳类里，<strong>雄性竞争</strong>比<strong>雌性选择</strong>更突出。<code>## 4b</code> 中「性选择就是雌性挑雄性」这一流行说法，在这里得到最直接的反证 —— 达尔文按类群分别给出权重，而非一刀切。★ 本章的节次依次是：战斗法则、限于雄性的特殊武器、雌性何以无武器、两性共有而本为雄性先得的武器、这类武器的其他用途与重要性、雄性体型更大、防卫手段、四足动物交配时两性所表现的偏好 —— <strong>最后一项才是「雌性选择」在哺乳类中的位置，而且被排在很后面、份量很轻</strong>，这个排序本身就是一种表态。★ 第二处引文点出本章的普遍性论证办法：他先确认「凡有专备武器的雄性都取斗」，再回过头来问「雌性为何通常无武器」——<strong>用「谁有武器」来反推「武器为谁而备」</strong>。★ 第三处引文表明他并未把「战斗」限定在有武器的动物上：连<strong>没有专备武器</strong>的胆小动物（兔、鼹鼠）在繁殖季也会拼死相斗，这是「争斗法则」普遍性的证据。★ 章内还夹有一处达尔文自己的观察：他在巴塔哥尼亚见到的<strong>原驼（guanaco）</strong>相斗到忘我，几头几乎冲到他身边；这类亲历记录在本书的哺乳类章里并不多见。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是「性选择＝雌性选择」；本章原文正好相反，哺乳类以雄性争斗为主。另一处要注意的是，本章反复强调<strong>区分自然选择与性选择很困难</strong>（如武器的其他用途），这使「哪些结构属于性选择」的归属带有不确定性。★ 第二，本章对「雌性为何无武器」给出的理由是「她不需争斗，且有武器反而不利于育幼」，<span class="tag t-inf">推断</span>本报告认为，这类<strong>「雌性无武器是因为不需要」</strong>式的解释，在方法上是<strong>目的论式的</strong>，很难与「武器本来就没在雌性身上被选择」区分开。★ 第三，本章末尾把「四足动物交配时是否表现偏好」单列一节，<strong>承认哺乳类的偏好证据远少于鸟类</strong>（这也为第 XIX 章转入人身时的写法留了余地）。<span class="tag t-rep">转述</span>通行中译常把本章要旨概括为「哺乳类以雄性争斗为主，武器多为雄性专有」（据公开资料转引的通行中译，<strong>未核对原著、不给页码</strong>）。</p>
+</section>
+
+<section id="s25">
+  <h2><span class="num">24</span><span>第十八章 哺乳类的第二性征（续）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 第 XVIII 章续写哺乳类：声音（两性叫声的差异）、海豹的奇特性别特征、气味、毛被的发育、毛与皮肤的颜色、雌性比雄性更华丽的「反常」例子、色彩与装饰归于性选择、为保护而获得的色彩、两性共有但仍可能源于性选择的色彩、成年四足动物身上斑点条纹的消失、四手类（Quadrumana）的色彩与装饰，最后小结。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span>「Quadrupeds use their voices for various purposes … but such uses need not here be considered. We are concerned only with the difference between the voices of the sexes, for instance between that of the lion and lioness, or of the bull and cow.」（第 XVIII 章，开篇第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「It is scarcely conceivable that these crests of hair, and the strongly contrasted colours of the fur and skin, can be the result of mere variability without the aid of selection; and it is inconceivable that they can be of use in any ordinary way to these animals.」（第 XVIII 章，论四手类的色彩与装饰节）
+    </li>
+    <li><span class="tag t-src">原书</span>「with quadrupeds the contest between the individuals of the same sex, whether peaceful or bloody, has, with the rarest exceptions, been confined to the males; so that the latter have been modified through sexual selection, far more commonly than the females, either for fighting with each other or for alluring the opposite sex.」（第 XVIII 章，小结）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置／为什么重要。</strong> 本章的<strong>四手类色彩</strong>一节，是从哺乳类通向「人类」的桥 —— 灵长类的色彩与装饰一旦被归给性选择，第三编把人纳入同一框架就顺理成章。章末「小结」也把全第二编的证据收在一处：达尔文在此给出<strong>第二编的总结论</strong> —— 四足类中「同性别个体间的竞争，除极少数例外，都限于雄性」，因此被性选择改造的主要是雄性。★ 这一句是<strong>第二编向第三编的交接口</strong>：紧接着书中就出现 <code>PART III.</code> 的标题，开始讨论人。★ 本章节次的推进是：声音（两性叫声之差）→ 海豹的奇特性别特征 → 气味 → 毛被的发育 → 毛与皮肤的颜色 → 雌性比雄性更华丽的反常例 → 色彩与装饰归性选择 → 为保护而得的色彩 → 两性共有但仍可能源于性选择的色彩 → 成年四足动物斑点条纹的消失 → 四手类的色彩与装饰 → 小结。★ 其中「斑点条纹在成年后消失」一节，用的正是第 XVI 章「幼体保留祖先性状」的同一逻辑（幼兽有斑纹、成兽没有），说明第二编内部也在反复调用第一编的方法。★ 章内的灵长类部分附有 Gervais 所绘数幅猴头图（说明头顶毛发的奇特排列），<span class="tag t-inf">推断</span>本报告认为，这些插图的作用是把「装饰」直观化，以补文字难以描述之不足 —— 达尔文对「装饰」的论证，很依赖这种看得见的证据。</p>
+  <p><strong>可疑之处或常见误读。</strong> 常见误读是把「色彩源于性选择」当作普遍结论。本章始终并列着<strong>保护色</strong>的解释，并承认许多情形难以判断归属。★ 达尔文在此对灵长类色彩所作的性选择解释，正是后来争议最大、也最容易被误读为「给人类特征贴标签」的部分，须明确：<strong>他谈的是动物的装饰，不构成对人类社会制度的论证。</strong> ★ 第二，章末那句「their absence in this sex can be accounted for only by the form of inheritance which has prevailed」（雌性无武器只能由遗传方式解释）<span class="tag t-inf">推断</span>本报告认为，是全书<strong>「性限遗传」被当作兜底解释</strong>的最清楚一例：凡是找不到功能解释的性别差异，都推给「遗传方式」，而遗传方式本身当时仍无从验证。★ 第三，本章「雌性比雄性更华丽」的反常例子（原文归为 rare anomalous case）在本编里被单独提出并解释为「雄性挑选了更美的雌性」，<span class="tag t-inf">推断</span>本报告认为，这处处理很能说明达尔文的<strong>对称性焦虑</strong>：一旦出现与「雄性更艳丽」相反的例证，他宁可诉诸「角色互换」，也不放弃性选择这一框架。<span class="tag t-rep">转述</span>通行中译常把本章要旨概括为「哺乳类的声音、气味、毛色与灵长类的装饰」（据公开资料转引的通行中译，<strong>未核对原著、不给页码</strong>）。</p>
+</section>
+
+<section id="s26">
+  <h2><span class="num">25</span><span>第十九章 人类的第二性征</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 第 XIX 章是「性选择用回到人」的上半。达尔文先比较两性的身体：男性平均更高、更重、更强壮，肩更方、肌肉更明显，眉骨更突出，体毛更多，嗓音不同而更有力；随后讨论这些差异的成因、两性共有的某些性状、争斗法则、心智能力与嗓音的差异、美在决定人类婚姻中的作用、野蛮人对装饰的重视、他们对女性美的观念，以及「把每个天生的特点加以夸大的倾向」。</p>
+  <h3>本章要点分块</h3>
+  <ul>
+    <li><strong>身体差异</strong>：与四手类的比较，以及体毛、嗓音、肤色等在两性间的分布。
+    </li>
+    <li><strong>心智差异（★ 时代局限集中处）</strong>：达尔文专设「两性心智能力的差异」一节，主张男性在「任何他所从事的领域」都能达到更高的卓越，并据 Galton 的偏差律推断男性平均心智高于女性。他在同处引用了 J. S. Mill《The Subjection of Women》（1869）。<strong>这些论断把 19 世纪的社会预设写进了科学论证，本报告照实引、不辩护。</strong>
+    </li>
+    <li><strong>美与择偶</strong>：野蛮人对装饰的重视、各地对女性美的不同观念，被达尔文视为性选择在人身上起作用的入口。
+    </li>
+  </ul>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span>「With mankind the differences between the sexes are greater than in most of the Quadrumana, but not so great as in some, for instance, the mandrill.」（第 XIX 章，开篇第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「The chief distinction in the intellectual powers of the two sexes is shewn by man's attaining to a higher eminence, in whatever he takes up, than can woman—whether requiring deep thought, reason, or imagination, or merely the use of the senses and hands.」（第 XIX 章，论两性心智能力一节）
+    </li>
+    <li><span class="tag t-src">原书</span>「If two lists were made of the most eminent men and women in poetry, painting, sculpture, music (inclusive both of composition and performance), history, science, and philosophy, with half-a-dozen names under each subject, the two lists would not bear comparison.」（第 XIX 章，论两性心智能力一节）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置／为什么重要。</strong> 本章与第 XX 章构成第三编主体，是全书<strong>「性选择是否塑造了人」这一问题的正面处理</strong>。它同时是本书最需要在历史语境中阅读的一章：<strong>身体差异的描述尚属观察，心智差异的论断则主要是时代预设的产物</strong>。★ 在论证链上，本章是「性选择从动物走向人」的落地处：第 XVII–XVIII 章说哺乳类以雄性争斗为主，本章则主张，到了人这里，<strong>「雄性之间为争夺雌性的历史竞争」塑造了男性的体格与心智</strong>，而「各地不同的女性美标准」则塑造了人群的外貌差异。★ 第三处引文是本章最常被引用的一句，也是本报告在 <code>## 5</code> 第 ③ 条里点名批评的<strong>方法</strong>：以「杰出人物名单」作比较。</p>
+  <p><strong>可疑之处或常见误读。</strong> ★ ① 心智差异一节的论证方式是「以杰出人物名单作比较 ＋ 引用 Galton 的偏差律」，<strong>方法本身不成立</strong>（样本是既有的社会筛选结果），本报告如实指出；② 常见误读是把本章当成「达尔文证明男性优越」——<strong>这是他的论断，不是他的证据</strong>；③ 全章多处使用「savages」等时代词汇，应照实保留、如实评述，<strong>不得引申到当代性别议题</strong>。★ 第四，达尔文在章内<strong>明确排除</strong>了「教育差异」这一解释：他说两性心智的不平等「不可能由他们早年训练的不同所造成」（<code>nor can it have been caused by their dissimilar early training</code>，第 XIX 章，论两性心智能力一节末段）。<span class="tag t-inf">推断</span>本报告认为，<strong>这一排除本身才是本章最经不起检验的一步</strong>：在 19 世纪，男女所受的教育与可从事的职业几乎完全不同，要在这种条件下断定「差异不是训练造成的」，等于<strong>在没有任何对照实验的情况下排除竞争性假说</strong>；把它读成「达尔文已证明差异非由教养所致」，正是本章最常被引出的误读。<span class="tag t-rep">转述</span>通行中译常把本章要旨概括为「人的第二性征：两性在身体与心智上的差异」（据公开资料转引的通行中译，<strong>未核对原著、不给页码</strong>）。</p>
+</section>
+
+<section id="s27">
+  <h2><span class="num">26</span><span>第二十章 人类的第二性征（续）</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 第 XX 章续写人的性选择：按各人种对女性美的<strong>不同标准</strong>长期选择女性会产生什么效果；哪些因素在文明与野蛮民族中<strong>妨碍</strong>性选择；原始时代有利于性选择的条件；性选择在人身上如何起作用；野蛮部落中的女性是否有一定的择夫权；体毛的消失与胡须的发育；皮肤的颜色；最后小结。</p>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span>「We have seen in the last chapter that with all barbarous races ornaments, dress, and external appearance are highly valued; and that the men judge of the beauty of their women by widely different standards.」（第 XX 章，开篇第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「The best kind of evidence that in man the colour of the skin has been modified through sexual selection is scanty; for in most races the sexes do not differ in this respect, and only slightly, as we have seen, in others.」（第 XX 章，论皮肤的颜色节）
+    </li>
+    <li><span class="tag t-src">原书</span>「The views here advanced, on the part which sexual selection has played in the history of man, want scientific precision. He who does not admit this agency in the case of the lower animals, will disregard all that I have written in the later chapters on man.」（第 XX 章，末段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置／为什么重要。</strong> 本章是「性选择用回到人」的下半，与第 XIX 章合成第三编的主体。<strong>它对体毛与肤色的处理，是达尔文把性选择扩张到人类体质差异的关键尝试</strong> —— 也是争议最大之处：把肤色差异解释为择偶审美长期作用的结果，今天已不再被采用。★ 本章的节次很有讲究：先讲「按各人种不同的女性美标准长期选择女性会产生什么效果」，再讲妨碍性选择的因素，随后依次设「杀婴（INFANTICIDE）」「早婚与女性的从属（EARLY BETROTHALS AND SLAVERY OF WOMEN）」「性选择在人身上如何起作用」「体毛的消失与面部／头部毛发的发展」「皮肤的颜色」等小节，最后是「小结」。<span class="tag t-inf">推断</span>本报告认为，<strong>这些小节标题本身就把 19 世纪的社会预设写进了论证框架</strong>：他必须假设「女性被选择、男性在选择」这一不对称，才能推出肤色与体毛可由择偶审美塑造；而这个不对称正是本报告在 <code>## 5</code> 第 ③ 条要指出其时代性的地方。★ 第二处引文值得单独标出：达尔文<strong>自己承认</strong>「肤色经性选择而变的证据是稀少的」（scanty）；他在同一节里仍把肤色归给性选择，靠的是<strong>类比</strong>（哺乳类与灵长类中雄性常更深色）而不是直接证据。★ 承上启下：本章末尾的自我承认（「本处所论缺科学精确性」）之后，就是第 XXI 章的总述与结论。</p>
+  <p><strong>可疑之处或常见误读。</strong> ★ ① 末段那句「want scientific precision」是<strong>达尔文的自我承认</strong>，本报告在 <code>## 5</code> 第 ④ 条引用它，说明性选择机制当时缺乏精确证据。② 本章把肤色、体毛等体质差异归因于择偶审美，<strong>带有明显的时代预设，本报告照实引、不辩护</strong>；③ 引文里的「savages／barbarous」等词应如实保留，不必替换，但也不引申为任何当代判断。★ ④ 注意第二处引文的<strong>措辞分寸</strong>：他说证据「scanty」（稀少），<span class="tag t-inf">推断</span>本报告认为，这正是理解本章（乃至整个第三编）语气的钥匙 —— 达尔文是在<strong>证据不足时仍下判断</strong>，并在同一段里把这个不足写明；把本章读成「达尔文证明了肤色由性选择造成」，既高估了证据，也抹掉了作者本人的保留。<span class="tag t-rep">转述</span>通行中译常把本章要旨概括为「各人种女性美标准不同，及其对体毛、肤色的作用」（据公开资料转引的通行中译，<strong>未核对原著、不给页码</strong>）。</p>
+</section>
+
+<section id="s28">
+  <h2><span class="num">27</span><span>第二十一章 全书总述与结论</span><span class="caret">▾</span></h2>
+  <p><strong>本章说什么。</strong> 结论章。达尔文重申主结论：人来自某种组织较低下的形态；依次回顾发育方式、人的谱系、理智与道德能力、性选择，最后作结。他在开篇就坦白全书「许多观点高度思辨，有些无疑将被证明是错的」。他把主结论的证据归纳为胚胎相似、结构对应、残余器官、异常返祖、亲缘关系、地理分布与地质层序。★ <strong>章末有一段关于「人还将继续上升」的展望 —— 那是价值判断，不是实证结论，本报告将它单独标出。</strong></p>
+  <h3>本章要点分块</h3>
+  <ul>
+    <li><strong>自我限定</strong>：「Many of the views which have been advanced are highly speculative, and some no doubt will prove erroneous」——这是达尔文给本书定的调子。
+    </li>
+    <li><strong>主结论的表述</strong>：共同祖先（co-descendant of a common progenitor）；祖先形象是「a hairy, tailed quadruped, probably arboreal in its habits」。
+    </li>
+    <li><strong>价值判断</strong>（须与实证分开）：人「已升至有机界阶梯的最高处」，可望有「更高的命运」。
+    </li>
+  </ul>
+  <p><strong>关键原文。</strong></p>
+  <ul>
+    <li><span class="tag t-src">原书</span>「Many of the views which have been advanced are highly speculative, and some no doubt will prove erroneous; but I have in every case given the reasons which have led me to one view rather than to another.」（第 XXI 章，开篇第 1 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「all point in the plainest manner to the conclusion that man is the co-descendant with other mammals of a common progenitor.」（第 XXI 章，第 2 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「We thus learn that man is descended from a hairy, tailed quadruped, probably arboreal in its habits, and an inhabitant of the Old World.」（第 XXI 章，第 4 段）
+    </li>
+    <li><span class="tag t-src">原书</span>「Man still bears in his bodily frame the indelible stamp of his lowly origin.」（第 XXI 章，末段）
+    </li>
+  </ul>
+  <p><strong>它在全书里的位置／为什么重要。</strong> 本章是全书唯一把「实证结论」与「价值展望」放在同一处的地方，因此也是<strong>最容易把二者混读的一章</strong>。<strong>「人仍带着其低下起源的不可磨灭的印记」这一句，是本书最常被引用的收束语</strong>，它指向的是身体证据，不是道德评价。★ 本章还有一段常被忽略、却极能说明达尔文论辩姿态的话：他说自己「宁可从那只为救主人而勇斗天敌的勇敢小猴、或从那只把同伴从狗群中救走的老狒狒」那里来，也不愿从一个「以折磨敌人为乐、以人为祭、杀婴而无悔、视妻为奴」的「野蛮人」那里来（第 XXI 章，末段）。<span class="tag t-inf">推断</span>本报告认为，这段话把<strong>「同为人类的道德差别」摆到了与「人兽之别」同一个天平上</strong>，是理解达尔文全书立场的一把钥匙：他并不认为「出身高贵」是价值来源，衡量尺度是品性，而不是物种或族群。</p>
+  <p><strong>可疑之处或常见误读。</strong> ① 常见误读是把「仍会继续向上」当成科学预言；原文此句前后紧跟着「But we are not here concerned with hopes or fears, only with the truth as far as our reason permits us to discover it」，<strong>达尔文自己已把「希望与恐惧」排除在论证之外</strong>。② 章题在本底本作 <code>GENERAL A SUMMARY AND CONCLUSION</code>，多出的「A」疑为转录衍字（见附录 A 与附录 D）。★ ③ 第三处引文（「人是从一条有毛、有尾、多半树栖的四足动物传下来的」）常被单独拿来当作「人由猿变来」的证据，<span class="tag t-inf">推断</span>本报告认为，这是<strong>把章内概述性的一句当作全书的结论句</strong>：它的作用是把第一编的证据收在一个具体形象里，而不是提出新命题；真正的结论表述在同一章的「co-descendant with other mammals of a common progenitor」一句。★ ④ 章末的「god-like intellect」一段辞气高昂，<span class="tag t-rep">转述</span>通行中译常把这个收尾处理为「人仍带着其卑微起源的不可磨灭的印记」（据公开资料转引的通行中译，<strong>未核对原著、不给页码</strong>）。★ ⑤ 本章的「总述」其实是<strong>按第一编的顺序重走一遍</strong>（发育方式 → 谱系 → 理智与道德能力 → 性选择），<span class="tag t-inf">推断</span>本报告认为，这一「回放式」结构说明达尔文把结论章当作<strong>论证链的复述</strong>而非新论证 —— 它是全书唯一不给新证据的一章，也因此最容易被断章取义地当作「达尔文的最终主张」。</p>
+</section>
+
+<section id="s29">
+  <h2><span class="num">28</span><span>主题与思想史：性选择之争与「社会达尔文主义」的挪用</span><span class="caret">▾</span></h2>
+  <h3>28.1 性选择之争：Wallace 为什么反对</h3>
+  <p>本书出版后，最有力的学理反对来自与达尔文共同发现自然选择的 Alfred Russel Wallace。<strong>他反对的不是「性选择存在」，而是「雌性审美选择」这一条腿。</strong> 按其立场，雄性的鲜明色彩与装饰，源自其更强的活力与生命力（<span class="tag t-rep">转述</span>其英文原语作「greater vigour and activity and the higher vitality of the male」，<strong>出自 Wallace 的著作、不在本书辖区内，本报告未核对 Wallace 原文</strong>），女性和雌兽更多是「顺从」最活泼、最持久的雄性，而非在审美上「挑选」；雌性色彩黯淡则多可由孵卵期被捕食的自然选择解释。<strong>其著述与年份可逐条溯源</strong>：</p>
+  <table>
+    <thead><tr><th>时间</th><th>著作／文篇</th><th>与本书的关系</th></tr></thead>
+    <tbody>
+      <tr><td>1877 年 9–10 月</td><td>《The colours of animals and plants》，<em>Macmillan's Magazine</em> 两篇</td><td>其反对性选择的<strong>最早成文表述</strong>，达尔文通信中亦提到</td></tr>
+      <tr><td>1878 年</td><td>《Tropical Nature and Other Essays》第五章 <code>The colour of animals and sexual selection</code>（论动物的色彩与性选择）</td><td>对本书性选择论点的<strong>系统回应</strong></td></tr>
+      <tr><td>1889 年</td><td>《Darwinism》</td><td>再次详细处理同一问题</td></tr>
+      <tr><td>1890 年</td><td><em>Nature</em> 上评 Poulton《The Colours of Animals》</td><td>反对把审美赋予昆虫</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>须分清立场</strong>：达尔文与 Wallace 的分歧是<strong>同一学说内部的机制之争</strong>，不是「谁反对演化」。本报告只做科学史陈述，不引申。</p>
+  <h3>28.2 「社会达尔文主义」：词与思想是两件事</h3>
+  <p>★ 这是本报告全书最需要小心处理的一节。<strong>必须分清「达尔文本人写了什么」与「后人拿它做了什么」。</strong></p>
+  <ul>
+    <li><strong>词与出处</strong>：<code>survival of the fittest</code> <strong>出自 Herbert Spencer</strong>，他首次用于《Principles of Biology》1864 年 10 月的那一册（Spencer 1864–7，第 1 卷 444–445 页），并明说这正是达尔文所称的「自然选择」（其英文原语作 <code>Mr. Darwin has called 'natural selection'</code>；<span class="tag t-rep">转述</span>该英文引语<strong>出自 Spencer 的著作、不在本书辖区内，本报告未核对 Spencer 原文</strong>）。<strong>达尔文是借用者</strong>：他在《物种起源》<strong>第五版（1869 年 2 月 10 日出版）</strong>才把该词加入第四章章题并在正文多处使用，且在这部《人类的由来》第 II 章里复述了这一改动（第 II 章，论自然选择范围一节）。
+    </li>
+    <li><strong>挪用与区别</strong>：把「生存斗争」「适者生存」这类生物学比喻，转用于为某种社会秩序、阶级或族群的不平等做辩护，是<strong>19 世纪末以降若干作者（Spencer 一派及其更晚的援引者）</strong>的作为，构成通常所称的「社会达尔文主义」。<strong>「社会达尔文主义」这个名号与整套论说，并不是本书的论点，本书也没有把它作为结论提出。</strong> 达尔文研究界的一贯做法，是把「达尔文自己的文本」与「以他之名的社会主张」分开处理，本报告遵此。<span class="tag t-rep">转述</span>中文通行的介绍文字常把「社会达尔文主义」直接系于达尔文名下，并引「适者生存」为证；按本报告所核，<strong>该词出自 Spencer、达尔文是借用者</strong>，故这一类介绍属于后人的概括，而非本书原文（据公开资料转引的通行说法，<strong>未核对原著、不给页码</strong>）。<span class="tag t-inf">推断</span>本报告认为，「社会达尔文主义」这一标签之所以缠住本书，原因之一是<strong>书名本身容易误导</strong>：本书七章谈「人的由来」、十四章谈性选择，其中确有以「文明—野蛮」框架比较群体的段落（第 VI、VII 章），后人只需截取这些段落、剥离其「分类学问题」的语境，就能拼出一套本书从未提出的社会纲领。★ 必须同时讲清另一面：<strong>这些段落客观存在，本报告不为其辩解</strong>；区分「作者写了什么」与「后人拿它做了什么」，是为了<strong>准确指认责任</strong>，而不是为了替作者开脱。
+    </li>
+  </ul>
+  <h3>28.3 与《物种起源》《自私的基因》的思想史位置</h3>
+  <ul>
+    <li>《物种起源》（1859）：以人工选择作类比，证据链较紧，但<strong>刻意不谈人</strong>；性选择只在其中一笔带过。
+    </li>
+    <li>《人类的由来》（1871／1874）：<strong>兑现《起源》的留白</strong>，把演化用于人；同时把性选择从「一笔带过」扩成十四章的体系。推测成分显著上升。
+    </li>
+    <li>《自私的基因》（本项目书单已收）：20 世纪把「基因视角」推到底。它与本书第 IV–V 章「社会性本能＋同群褒贬」的表述形成对照 —— <strong>达尔文用的是群与部落的语言，20 世纪的视角用的是基因的语言</strong>，二者不是同一套论证，对照阅读可见思想史的位移。
+    </li>
+  </ul>
+  <h3>28.4 二十世纪以来性选择理论的复兴</h3>
+  <p>达尔文的性选择长期被搁置。复兴的关键节点可溯源如下：</p>
+  <table>
+    <thead><tr><th>时间</th><th>人物</th><th>著作／贡献</th></tr></thead>
+    <tbody>
+      <tr><td>1930</td><td>R. A. Fisher</td><td><code>The Genetical Theory of Natural Selection</code>（《自然选择之遗传学理论》）提出「runaway」（失控）模型，补上达尔文缺失的一环：<strong>雌性偏好本身如何演化</strong></td></tr>
+      <tr><td>1972</td><td>Robert Trivers</td><td>提出「parental investment」（亲代投资）理论，解释两性在择偶与竞争上的不对称</td></tr>
+      <tr><td>20 世纪后期</td><td>Russell Lande、Peter O'Donald</td><td>为「runaway」过程给出详细的数学证明</td></tr>
+    </tbody>
+  </table>
+  <p>★ 本节只陈述科学史事实，<strong>不把任何一位作者的结论与当代社会主张挂钩</strong>。</p>
+</section>
+
+<section id="s30">
+  <h2><span class="num">29</span><span>版本、译本与接受史</span><span class="caret">▾</span></h2>
+  <h3>29.1 版本线</h3>
+  <table>
+    <thead><tr><th>时间</th><th>事件</th><th>依据</th></tr></thead>
+    <tbody>
+      <tr><td>1871 年 2 月 24 日</td><td>初版两卷本，伦敦 John Murray</td><td>本底本正文自述 <code>First Edition February 24, 1871.</code></td></tr>
+      <tr><td>1871 年 3 月</td><td>首次加印</td><td>见来源清单中的出版史来源（2,500＋2,000 套）</td></tr>
+      <tr><td>1874 年</td><td>第二版（作者大幅修订增补），本报告底本</td><td>第二版序言落款 <code>DOWN, BECKENHAM, KENT, September, 1874.</code>；正文自述 <code>Second Edition September, 1874.</code></td></tr>
+      <tr><td>1876 年 11 月 2 日</td><td>本底本末附「SUPPLEMENTAL NOTE. ON SEXUAL SELECTION IN RELATION TO MONKEYS」，注明摘自 <em>NATURE</em></td><td>本底本正文标题下小注 <code>Reprinted from NATURE, November 2, 1876, p. 18.</code></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>关于 1871 年初版与 1874 年第二版的章序差异</strong>：据公开的 1871 年初版影印本目录（Princeton Science Library 影印本，经 Project MUSE 刊布），初版把「心智能力的比较」列在第二、三章，而把「人类的发育方式」放在第四章；第二版调整为本书所用的次序（发育方式提前为第二章，心智比较移为第三、四章）。<strong>该条属二手目录信息，本报告未核对初版原书，列入附录 D 待核实。</strong></p>
+  <h3>29.2 中译本（据公开书目信息，<strong>未逐册核对</strong>）</h3>
+  <table>
+    <thead><tr><th>译本</th><th>译者</th><th>出版</th><th>备注</th></tr></thead>
+    <tbody>
+      <tr><td>《人类原始及类择》</td><td>马君武</td><td>商务印书馆 1930</td><td><strong>最早中译</strong>，节译，用旧译名</td></tr>
+      <tr><td>《人类的由来及性选择》</td><td>叶笃庄</td><td>科学出版社 1982</td><td>修订后入叶笃庄主译《达尔文进化论全集》第六卷（科学出版社 1996）；另有「科学素养文库·科学元典丛书」北京大学出版社 2009 版（叶笃庄、杨习之译）</td></tr>
+      <tr><td>《人类的由来》</td><td>潘光旦、胡寿文</td><td>商务印书馆 1983</td><td>「汉译世界学术名著丛书」，<strong>通行首选</strong>，后多次重印</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>三种译本均据第二版翻译</strong>（此点见公开书目说明）。<strong>中译本的译名／年份／出版社一律取自公开书目信息，本报告未核对原书，不给页码</strong>；存疑项见附录 D。</p>
+  <h3>29.3 二十世纪的接受（简）</h3>
+  <p>本书在 20 世纪的接受呈两极：一方面，<strong>性选择部分长期被冷落</strong>，直到 1930 年代以后才随遗传学与行为研究复兴（见 <code>## 28.4</code>）；另一方面，<strong>「人猿同祖」与心智连续论部分成为通识</strong>，但第 VII 章、第 XIX–XX 章中的时代预设也被持续批评。中文世界的系统整理，以叶笃庄主译《达尔文进化论全集》的编纂为一个节点（1996，见上表）。★ 涉及具体接受史人物与年份的进一步细节，凡本报告未能溯源者，一律列入附录 D，<strong>不作填补</strong>。<span class="tag t-inf">推断</span>本报告认为，本书在 20 世纪的<strong>「分段接受」</strong>很值得注意：<strong>第一编（人的由来）几乎全被吸收为常识</strong>，<strong>第二编（动物性选择）在 1930 年代后被生物学重新拾起</strong>，<strong>第三编（人的性选择）则成为争议最集中的一段</strong>——同一本书的三个部分，在学术史里走的是三条不同的路，这是「一本书的接受史」里少见的形态。★ 另需指出一处<strong>文本层面的版本问题</strong>：本报告所用第二版（1874）与初版（1871）在章序上有调整（见上文与附录 D），因此凡引用「第几章」的二手材料，<strong>须先确认它依据的是哪一版</strong>，否则会张冠李戴 —— 这也是本报告全书坚持写「PG #2300，第二版」的原因。</p>
+</section>
+
+<section id="s31">
+  <h2><span class="num"></span><span>附录 A　21 章章题中英对照与转录存疑</span><span class="caret">▾</span></h2>
+  <p><strong>A.1 章题中英对照表</strong>（英文章题逐字取自 PG #2300 的 <code>DETAILED TABLE OF CONTENTS</code>）：</p>
+  <table>
+    <thead><tr><th>章</th><th>英文章题（PG #2300）</th><th>本报告所拟中译</th></tr></thead>
+    <tbody>
+      <tr><td>I</td><td>THE EVIDENCE OF THE DESCENT OF MAN FROM SOME LOWER FORM</td><td>人类从某些低级类型诞降而来的证据</td></tr>
+      <tr><td>II</td><td>ON THE MANNER OF DEVELOPMENT OF MAN FROM SOME LOWER FORM</td><td>关于人类是怎样从某种低级类型发展而来的</td></tr>
+      <tr><td>III</td><td>COMPARISON OF THE MENTAL POWERS OF MAN AND THE LOWER ANIMALS</td><td>人类与低等动物在心理能力上的比较</td></tr>
+      <tr><td>IV</td><td>COMPARISON OF THE MENTAL POWERS OF MAN AND THE LOWER ANIMALS, continued</td><td>人类与低等动物在心理能力上的比较（续）</td></tr>
+      <tr><td>V</td><td>ON THE DEVELOPMENT OF THE INTELLECTUAL AND MORAL FACULTIES DURING PRIMEVAL AND CIVILISED TIMES</td><td>原始与文明时代理智与道德能力的发展</td></tr>
+      <tr><td>VI</td><td>ON THE AFFINITIES AND GENEALOGY OF MAN</td><td>人类的亲缘关系与谱系</td></tr>
+      <tr><td>VII</td><td>ON THE RACES OF MAN</td><td>论人的种族</td></tr>
+      <tr><td>VIII</td><td>PRINCIPLES OF SEXUAL SELECTION</td><td>性选择的若干原理</td></tr>
+      <tr><td>IX</td><td>SECONDARY SEXUAL CHARACTERS IN THE LOWER CLASSES OF THE ANIMAL KINGDOM</td><td>动物界较低几个纲的第二性征</td></tr>
+      <tr><td>X</td><td>SECONDARY SEXUAL CHARACTERS OF INSECTS</td><td>昆虫类的第二性征</td></tr>
+      <tr><td>XI</td><td>INSECTS, continued. ORDER LEPIDOPTERA. (BUTTERFLIES AND MOTHS.)</td><td>昆虫类（续）：鳞翅目（蝶与蛾）</td></tr>
+      <tr><td>XII</td><td>SECONDARY SEXUAL CHARACTERS OF FISHES, AMPHIBIANS, AND REPTILES</td><td>鱼类、两栖类与爬行类的第二性征</td></tr>
+      <tr><td>XIII</td><td>SECONDARY SEXUAL CHARACTERS OF BIRDS</td><td>鸟类的第二性征</td></tr>
+      <tr><td>XIV</td><td>BIRDS—continued</td><td>鸟类（续）</td></tr>
+      <tr><td>XV</td><td>BIRDS—continued</td><td>鸟类（续）</td></tr>
+      <tr><td>XVI</td><td>BIRDS—concluded</td><td>鸟类（续完）</td></tr>
+      <tr><td>XVII</td><td>SECONDARY SEXUAL CHARACTERS OF MAMMALS</td><td>哺乳类的第二性征</td></tr>
+      <tr><td>XVIII</td><td>SECONDARY SEXUAL CHARACTERS OF MAMMALS, continued</td><td>哺乳类的第二性征（续）</td></tr>
+      <tr><td>XIX</td><td>SECONDARY SEXUAL CHARACTERS OF MAN</td><td>人类的第二性征</td></tr>
+      <tr><td>XX</td><td>SECONDARY SEXUAL CHARACTERS OF MAN, continued</td><td>人类的第二性征（续）</td></tr>
+      <tr><td>XXI</td><td>GENERAL A SUMMARY AND CONCLUSION</td><td>全书总述与结论</td></tr>
+    </tbody>
+  </table>
+  <p><strong>A.2 第 XXI 章题转录存疑说明。</strong> 本底本 PG #2300 的<strong>目录与正文标题</strong>均作 <code>CHAPTER XXI. GENERAL A SUMMARY AND CONCLUSION.</code>（目录见 <code>CONTENTS</code>，正文见第 XXI 章标题行）。而通行英文本（如 Wikisource 所据第二版）作 <code>GENERAL SUMMARY AND CONCLUSION</code>。<strong>本报告只写「PG 转录本所见」，不断言原书如此</strong>；原书究竟如何，列入附录 D 待核实。★ 依施工图，本报告在正式引用章题处一律保留本底本原样 <code>GENERAL A SUMMARY AND CONCLUSION</code>。</p>
+  <p><strong>A.3 目录与正文标点差异说明。</strong> 第 IV 章题在<strong>目录</strong>作 <code>…, continued.</code>、在<strong>正文</strong>作 <code>…—continued.</code>（逗号对破折号）；第 XVIII 章题同样存在此差异。<strong>这属转录层面的标点差异</strong>，不影响章题识别。</p>
+</section>
+
+<section id="s32">
+  <h2><span class="num"></span><span>附录 B　人名对照</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>英文</th><th>中文</th><th>身份（★ 身份须核实；与本报告相关的角色）</th></tr></thead>
+    <tbody>
+      <tr><td>Charles Darwin</td><td>查尔斯·达尔文</td><td>本书作者，1809–1882</td></tr>
+      <tr><td>Alfred Russel Wallace</td><td>阿尔弗雷德·华莱士</td><td>自然选择的共同发现者；性选择的主要批评者（1877／1878／1889）</td></tr>
+      <tr><td>Thomas Henry Huxley</td><td>托马斯·赫胥黎</td><td>生物学家；为本底本第二版撰写论人猿脑的附录</td></tr>
+      <tr><td>Charles Lyell</td><td>查尔斯·莱尔</td><td>地质学家，达尔文引其论人类古老性</td></tr>
+      <tr><td>Thomas Malthus</td><td>托马斯·马尔萨斯</td><td>人口论者；「生存斗争」一语的思想来源</td></tr>
+      <tr><td>Herbert Spencer</td><td>赫伯特·斯宾塞</td><td>社会哲学家；<code>survival of the fittest</code> 的原创者（1864）</td></tr>
+      <tr><td>Ernst Haeckel</td><td>恩斯特·海克尔</td><td>德国博物学家；达尔文称其已论及性选择与人的谱系</td></tr>
+      <tr><td>John Lubbock</td><td>约翰·卢伯克</td><td>博物学家、史前考古学者</td></tr>
+      <tr><td>Carl Vogt</td><td>卡尔·福格特</td><td>博物学家；引言引用其 1869 年讲演</td></tr>
+      <tr><td>Karl Ernst von Baer</td><td>冯·贝尔</td><td>胚胎学家（胚胎发育证据相关）</td></tr>
+      <tr><td>St. George Mivart</td><td>圣乔治·米瓦特</td><td>生物学家；批评自然选择与本书方法（1871）</td></tr>
+      <tr><td>R. A. Fisher</td><td>R. A. 费希尔</td><td>统计学家、遗传学家；1930 年复兴性选择理论</td></tr>
+      <tr><td>Francis Galton</td><td>弗朗西斯·高尔顿</td><td>达尔文的表弟；第 XIX 章引其「偏差律」</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>上表「身份」栏为通识性说明</strong>；凡涉及具体生卒年或职务而本报告未逐一核对的，一律以附录 D 登记，不凭记忆写。</p>
+</section>
+
+<section id="s33">
+  <h2><span class="num"></span><span>附录 C　概念小辞典</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>英文原词</th><th>常见中译</th><th>本报告取义</th></tr></thead>
+    <tbody>
+      <tr><td>natural selection</td><td>自然选择</td><td>因生存斗争而保留有利变异、淘汰不利变异的过程</td></tr>
+      <tr><td>sexual selection</td><td>性选择</td><td>因<strong>繁殖上的相对优势</strong>而保留某些性状的过程；含雄性争斗与雌性选择两途，与自然选择并列</td></tr>
+      <tr><td>secondary sexual characters</td><td>第二性征</td><td>与繁殖无直接关系、但造成两性差异的性状</td></tr>
+      <tr><td>homologous structures</td><td>同源结构</td><td>不同物种按同一构型发展出的对应结构，用作共同来源的证据</td></tr>
+      <tr><td>rudimentary organs</td><td>残余器官</td><td>已失去原有功能而残留于体内的结构</td></tr>
+      <tr><td>struggle for existence</td><td>生存斗争</td><td>达尔文取自 Malthus、用于描述生存竞争的比喻</td></tr>
+      <tr><td>pangenesis</td><td>泛生说</td><td>达尔文在《动物和植物在家养下的变异》里提出的遗传假说；★ 本底本正文中<strong>确实出现</strong>该词：第 I 章论残余器官一节把「已无用而缩减的器官之最终而完全的抑制」说成「perhaps intelligible by the aid of the hypothesis of pangenesis」</td></tr>
+    </tbody>
+  </table>
+  <p>★ 关于 <code>pangenesis</code>：本报告在本轮核对中已<strong>在本底本（PG #2300）第 I 章正文 grep 到该词</strong>，故不再列为待核实项（此前附录 D 第 5 条的存疑已据此更正）。该词在本书中仅作一句话提及，<strong>并未展开讨论</strong>，达尔文在此把它推到《动物和植物在家养下的变异》等前作去处理。</p>
+</section>
+
+<section id="s34">
+  <h2><span class="num"></span><span>附录 D　待核实项</span><span class="caret">▾</span></h2>
+  <ol>
+    <li><strong>1871 年初版的销量「7500 册」</strong>：中文网络流传此说（常与 1470 英镑并列）。<strong>现在核不了</strong>：英文可靠来源给的是「3 月底在印 4,500 套」与「9 月底 Murray 付 1,470 英镑」，与 7500 不符。<strong>可去哪里核</strong>：John Murray 出版档案（伦敦，现藏英国国家档案馆／Murray 档案）、R. B. Freeman 的达尔文书目（<em>The Works of Charles Darwin: An Annotated Bibliographical Handlist</em>）。
+    </li>
+    <li><strong>第 XXI 章题原书究竟作 <code>GENERAL SUMMARY AND CONCLUSION</code> 还是 <code>GENERAL A SUMMARY AND CONCLUSION</code></strong>：本底本作后者，通行英文本作前者。<strong>现在核不了</strong>：本报告只持有 PG 转录本，未见 1874 年初版书影。<strong>可去哪里核</strong>：1874 年第二版原书的影印本（如剑桥／Darwin Online 提供的书影）。
+    </li>
+    <li><strong>1871 年初版与 1874 年第二版的章序差异</strong>：据 Project MUSE 所刊 Princeton 影印本目录，初版第二章为「心智能力的比较」。<strong>现在核不了</strong>：本报告未持有初版目录原书。<strong>可去哪里核</strong>：1871 年初版影印本或 Freeman 书目。
+    </li>
+    <li><strong>潘光旦／胡寿文译《人类的由来》的具体出版细节（印次、丛书号）</strong>：本报告只据公开书目信息写「商务印书馆 1983」与「汉译世界学术名著丛书」。<strong>现在核不了</strong>：未核对原书版权页。<strong>可去哪里核</strong>：中国国家图书馆书目、商务印书馆官方书目。
+    </li>
+    <li><strong>本底本末所附 <code>SUPPLEMENTAL NOTE. ON SEXUAL SELECTION IN RELATION TO MONKEYS</code> 的原刊出处</strong>：本底本正文标题下小注作 <code>Reprinted from NATURE, November 2, 1876, p. 18.</code>，但该篇在 <em>Nature</em> 上的原始篇名与署名方式本报告未见原刊。<strong>现在核不了</strong>：本报告只持有 PG 转录本，无 <em>Nature</em> 1876 年卷的原文。<strong>可去哪里核</strong>：<em>Nature</em> 1876 年第 15 卷（November 2, 1876）目录页，或 Darwin Online 的相关条目。
+    </li>
+    <li><strong>Huxley 附录的写作／纳入时间</strong>：本底本第二版序言提到「为第一部分末所加的补篇」，但未给附录的独立成文时间。<strong>现在核不了</strong>：本报告未查 Huxley 相关书信。<strong>可去哪里核</strong>：Huxley 文集与 Darwin Correspondence Project。
+    </li>
+    <li><strong>马君武《人类原始及类择》（商务印书馆 1930）的完整出版信息与所据底本</strong>：本报告只据公开书目信息写「商务印书馆 1930」，未核对原书版权页，也不确定其所据为初版还是第二版。<strong>现在核不了</strong>：未持有该译本实体或影印信息。<strong>可去哪里核</strong>：中国国家图书馆书目、商务印书馆民国时期书目。
+    </li>
+    <li><strong>叶笃庄译《人类的由来及性选择》（科学出版社 1982）在《达尔文进化论全集》（科学出版社 1996）中的卷次与篇目起止</strong>：本报告只据公开书目信息写「第六卷」，未逐册核对。<strong>现在核不了</strong>：未核对全集实物目录。<strong>可去哪里核</strong>：科学出版社《达尔文进化论全集》总目录、中国国家图书馆馆藏记录。
+    </li>
+    <li><strong>★ 第 I 章正文中 <code>pangenesis</code> 一词的上下文归属</strong>：本报告已在本底本中 grep 到该词（第 I 章论残余器官一节），并据此把原先的「是否出现」存疑项移除；但该处只说「或许可借泛生说之助」，<strong>它是否代表达尔文在本书中对泛生说的完整立场</strong>，本报告未加判断。<strong>现在核不了</strong>：需比对《动物和植物在家养下的变异》第二卷相关章节。<strong>可去哪里核</strong>：Darwin Online 所收《Variation of Animals and Plants under Domestication》第 2 卷（本底本第 I 章引作 vol. ii, pp. 317, 397）。
+    </li>
+  </ol>
+</section>
+
+<footer>
+  生成于 2026-10-14 · 来源清单与交叉验证记录见同目录 <code>人类的由来-来源清单.md</code><br>
+  本报告只做科学史与文本分析。涉及第 VII 章与第 XIX–XX 章的时代预设，一律照原文引、照原文评，既不回避、也不辩护；并严格区分「作者本人写了什么」与「后世如何挪用」（如「社会达尔文主义」），不把书中的任何表述引申到当代社会议题。★ 所有英文引文均在本地全文副本 pg2300.txt 中 grep 复核；所有中文引句均标「未核对原著、不给页码」。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>
