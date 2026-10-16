@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《强化学习》学习路线图与章节地图</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《强化学习》<small>学习路线图与章节地图 · 2026-10-16</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 前置知识与目标读者</a>
+    <a href="#s2">2 全书骨架</a>
+    <a href="#s3">3 学习路线</a>
+    <a href="#s4">4 配套资源</a>
+    <a href="#s5">5 版本与印次：官方免费全文 / 中文版 / 勘误实测</a>
+    <div class="grp">下部 · 章节地图</div>
+    <a href="#s6"> 模块零 · 导论（第 1 章）</a>
+    <a href="#s7"> 模块一 · 表格型求解方法（第 2–8 章）</a>
+    <a href="#s8"> 模块二 · 近似求解方法（第 9–13 章）</a>
+    <a href="#s9"> 模块三 · 往深处看（第 14–17 章）</a>
+    <div class="grp">附录</div>
+    <a href="#s10">A 关键概念与算法速查表</a>
+    <a href="#s11">B 常见卡点与提示</a>
+    <a href="#s12">C 来源清单</a>
+    <a href="#s13">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《强化学习》学习路线图与章节地图</h1>
+  <div class="sub">Reinforcement Learning: An Introduction · Second edition（MIT Press 2018／2020，作者 Sutton &amp; Barto）· 本页锚定作者站点发布的官方全 PDF `RLbook2020.pdf`（548 页，印 p1–480 ＋ References ＋ Index）</div>
+  <div class="meta">
+    <div><b>原名</b>Reinforcement Learning: An Introduction</div>
+    <div><b>作者</b>Richard S. Sutton · Andrew G. Barto</div>
+    <div><b>版次 · ISBN</b><b>Second edition</b>；MIT Press, Cambridge MA；© 2018, 2020；ISBN 9780262039246（hardcover）／LCCN 2018023826／LCC Q325.6.R45 2018；丛书 Adaptive Computation and Machine Learning（Francis Bach, series editor）</div>
+    <div><b>页数</b>548 页（PDF 总页）；正文 <b>印 p1–480</b> ＋ References <b>印 p481–518</b> ＋ Index <b>印 p519–526</b></div>
+    <div><b>结构</b><b>17 章 ＋ 3 个部分</b>（Part I Tabular Solution Methods ／ Part II Approximate Solution Methods ／ Part III Looking Deeper），<b>本书没有任何附录</b></div>
+    <div><b>中译</b>《强化学习（第 2 版）》，俞凯 等译，电子工业出版社 2019-09，ISBN 9787121295164，「智源人工智能丛书」／博文视点出品（<b>只给编目字段，不给页码</b>，理由见附录 D3）</div>
+    <div><b>配套资源</b>官方全 PDF（含去边距版）· 官方代码 · 官方勘误页 · 官方习题解答（自述不完整）· MOOC · 幻灯片与 LaTeX 记号文件 —— 逐项实测见上部 §4</div>
+    <div><b>形态</b><b>教材型</b> —— 本页不是逐章精华，是「学习路线图 ＋ 章节地图」</div>
+    <div><b>原文核验级别</b><b>A（全文核验）</b> —— 作者站点发布的官方全 PDF 可逐页定位，版权页明文 CC BY-NC-ND 2.0；支持材料与「弱在哪」见图例下方两段</div>
+    <div><b>状态</b>未标注已读／想读</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有<b>可定位</b>的文本支撑：官方全 PDF（精确到印刷页码与小节号）、作者前言原文、版权页与目录页。<b>书内的话（前言／正文／习题／历史注记）一律归本档。</b></li>
+    <li><span class="tag t-talk">作者谈话</span> Sutton 本人<b>书外</b>言论（其站点 RL-FAQ ／ 随笔 ／ 读物清单 ／ 公开访谈）—— <b>不是在世作者的访谈套话，请勿当成书内内容</b></li>
+    <li><span class="tag t-rep">转述</span> 二手概括或第三方陈述（如 ACM 图灵奖公告、出版方与图书馆编目），措辞可能与原书有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的整理或判断，<b>无直接原文支撑</b>（模块划分、路线、必读／可跳判断全部属于本档）</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    ★ <b>为什么本书设「作者谈话」档，而《费曼物理学讲义》那本先例不设</b>：理由是<b>材料性质不同</b>，不是标准变了。费曼的书外言论谈的不是「这套讲义该怎么读」；Sutton 则在自己站点上留了一份 <b>RL-FAQ</b>（含「Questions about studying and teaching RL」一节，直接回答该按什么顺序读、该用什么书）、一份亲自开的读物清单与一系列讲他智能观的短文 —— 这些<b>恰恰直接回答「该不该信这本书的路线」</b>。★ 界线：<b>书内的前言与正文一律归「原书」，只有书外的作者言论才归「作者谈话」</b>。
+  </p>
+  <h3>这类书为什么用另一种形态</h3>
+    <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">教材的价值在动手。给一本 548 页、17 章、带习题与代码的 RL 教科书写「逐章要点」，你合上书依然写不出一个 Q-learning 的更新循环。<br>所以本页不替代原书，只回答三个问题：<b>它训练什么能力 / 该按什么顺序读 / 哪些可以跳。</b></p>
+    <h3 style="margin:16px 0 0">支持 A 级的材料与「弱在哪」</h3>
+    <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)"><b>支持</b>：① 作者 Sutton 的个人站点 <b>incompleteideas.net</b> 发布全书 PDF（<code>book/RLbook2020.pdf</code>，实测 HTTP 200、73,129,769 B、<code>Last-Modified: 2022-04-26</code>）；② 该 PDF 的<b>版权页原文明载</b> "This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 2.0 Generic License"；③ 目录页、每章首页与页码偏移已与全文<b>逐页机器核对</b>（印刷页码 ＋ 22 ＝ PDF 页码），故章名、页码、小节号、带 <code>*</code> 标记均可当「原书」用。<br><b>弱在哪</b>：第一，这不是「出版方在线全文」，而是「作者站点发布的 PDF」—— 官方勘误页针对「2020 第二印次」，本地 PDF 只修了其中一部分（116 条里机器可校验 34 条：22 条已修、4 条未修），见 §5 与附录 D1。第二，本 PDF 的<b>文字层有系统性字形错映射</b>（原始抽取里 <code>Off-policy</code> 的两个 "f" 会被抽成无关的制表符号），故本页英文引文一律取自经字形修复后的语料，凡原句含无法复原的数学符号一律改用转述（见附录 D5）。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p><strong>它是「把强化学习当作一个形式化问题、从最简单的情形推到能上大问题的」那一条完整训练路径。</strong></p>
+  <p><span class="tag t-src">原书</span> 作者在第一版前言里把目标说得极简："Our goal in writing this book was to provide a clear and simple account of the key ideas and algorithms of reinforcement learning."（印 p.xviii）★「清晰而简明」修饰的是<strong>叙述方式</strong>，不是<strong>内容范围</strong> —— 同一段紧接着划了边界："We also chose not to produce a rigorous formal treatment of reinforcement learning. We did not reach for the highest possible level of mathematical abstraction and did not rely on a theorem–proof format."（印 p.xviii）</p>
+  <p><span class="tag t-src">原书</span> 它的历史地位有两层：第一版 1998、第二版 2018（"For better or worse, the second edition is about twice as large as the first."，印 p.xiv），此后一直是领域标准参考。<span class="tag t-rep">转述</span> 2025-03-05，ACM 宣布把 <strong>2024 年 A.M. 图灵奖</strong>授予 Barto 与 Sutton，公告正文<strong>直接点名这本教材</strong>："Perhaps equally influential was their textbook, Reinforcement Learning: An Introduction (1998), which is still the standard reference in the field and has been cited over 75,000 times."（★ ACM 点名的是 <strong>1998 第一版</strong>；75,000 次是 ACM 的说法，未独立核实 —— 见 D6）</p>
+  <p><strong>它训练哪两样能力？</strong> ① 把现实问题<strong>形式化成 MDP</strong> —— 状态、动作、奖励、折扣、回合还是持续性，定错后面全白搭；② 把算法<strong>推到收敛／不收敛边界</strong>的判断力（第 11 章把它收成「致命三要素」）。所以它的正确用法是<strong>当工作台用</strong>，不是当读物看。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>前置知识与目标读者</span><span class="caret">▾</span></h2>
+  <p><strong>门槛比「数学教材」低，这是作者刻意设计的。</strong> <span class="tag t-src">原书</span> 第二版前言明写："As in the first edition, we chose not to produce a rigorous formal treatment of reinforcement learning... However, our deeper understanding of some topics since the first edition required a bit more mathematics to explain; we have set off the more mathematical parts in shaded boxes that the non-mathematically-inclined may choose to skip."（印 p.xiii；更数学的部分被放进了<strong>带底纹的方框</strong>，自认数学不行的人<strong>可以跳过</strong>。）★ 这就是本书门槛的刻度：<strong>它给了一条绕开推导的合法通道</strong> —— 但只绕过<strong>方框</strong>，不绕过<strong>更新规则的含义</strong>。</p>
+  <p><span class="tag t-src">原书</span> 目标读者是前言里的 "readers in all the related disciplines"（相关各学科的读者，印 p.xiii），作者并说它可用作 "part of broader courses on machine learning, artificial intelligence, or neural networks"（印 p.xiv）。</p>
+  <ul>
+    <li><strong>需要什么</strong>：微积分（偏导与期望）；线性代数（第 9.4 与 11.4 直接讲<strong>投影</strong>）；基础概率（条件期望、马尔可夫性）；<strong>会写代码</strong>（不是会读伪代码，是能跑起来）。
+    </li>
+    <li><strong>不需要什么</strong>：测度论、凸优化、深度学习框架经验。★ <strong>不要求你读过机器学习</strong>：<span class="tag t-src">原书</span> 第 9.7 节确有人工神经网络介绍（印 p223 起），但按「抽象模型神经元」的历史线索写，为函数逼近服务，不是深度学习教程。
+    </li>
+    <li><strong>心理学与神经科学</strong>：零基础也读得下去 —— 第 14／15 章从动物学习理论与神经科学的基本概念讲起。
+    </li>
+  </ul>
+  <p>★ <strong>一处必须先说清的取舍</strong>：本书<strong>不教你调参</strong>。作者假设「先把算法搞懂，工程细节后面再说」；指望它给出「学习率设多少、网络多深」是找错书了。</p>
+  <p><span class="tag t-talk">作者谈话</span> Sutton 在站点 RL-FAQ 里给的定义是："Reinforcement learning (RL) is learning from interaction with an environment, from the consequences of action, rather than from explicit teaching."（★ 这句话<strong>不在书里</strong>。）★ 同一份 FAQ 里被问「推荐什么入门材料」，他的第一推荐就是<strong>这本书自己</strong>。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p><span class="tag t-src">原书</span> 下表的部分、章号、章标题、起印页均取自官方全 PDF 的目录页与各章章首页，<strong>逐条机器核对过</strong>（印刷页码 ＋ 22 ＝ PDF 页序）；「一句话主题」一列是我的概括。</p>
+  <table>
+    <thead><tr><th>部分</th><th>起印页</th><th>章</th><th>章标题（照录）</th><th>起印页</th><th>一句话主题（我概括）<span class="tag t-inf">推断</span></th></tr></thead>
+    <tbody>
+      <tr><td>—</td><td>—</td><td>1</td><td>Introduction</td><td>1</td><td>RL 是什么、与其它范式的分界、全书地图</td></tr>
+      <tr><td><strong>I</strong> Tabular Solution Methods</td><td>23</td><td>2</td><td>Multi-armed Bandits</td><td>25</td><td>没有状态的 RL：纯探索与利用</td></tr>
+      <tr><td></td><td></td><td>3</td><td>Finite Markov Decision Processes</td><td>47</td><td>把问题写成 MDP：回报、价值、Bellman 方程</td></tr>
+      <tr><td></td><td></td><td>4</td><td>Dynamic Programming</td><td>73</td><td>有完整模型时的精确解法，以及 GPI 主框架</td></tr>
+      <tr><td></td><td></td><td>5</td><td>Monte Carlo Methods</td><td>91</td><td>不要模型，从完整回报学</td></tr>
+      <tr><td></td><td></td><td>6</td><td>Temporal-Difference Learning</td><td>119</td><td><strong>用估计更新估计</strong>：全书最重要的一章</td></tr>
+      <tr><td></td><td></td><td>7</td><td>n-step Bootstrapping</td><td>141</td><td>把 MC 与 TD 连成一条谱</td></tr>
+      <tr><td></td><td></td><td>8</td><td>Planning and Learning with Tabular Methods</td><td>159</td><td>有模型就能规划：Dyna、RTDP、MCTS</td></tr>
+      <tr><td><strong>II</strong> Approximate Solution Methods</td><td>195</td><td>9</td><td>On-policy Prediction with Approximation</td><td>197</td><td>函数逼近：半梯度与特征构造</td></tr>
+      <tr><td></td><td></td><td>10</td><td>On-policy Control with Approximation</td><td>243</td><td>半梯度控制；持续性任务改用平均奖励</td></tr>
+      <tr><td></td><td></td><td>11</td><td>\*Off-policy Methods with Approximation</td><td>257</td><td><strong>整章带 <code>*</code></strong>：离轨 ＋ 逼近为什么会发散</td></tr>
+      <tr><td></td><td></td><td>12</td><td>Eligibility Traces</td><td>287</td><td>后向视角：资格迹与 TD(λ)</td></tr>
+      <tr><td></td><td></td><td>13</td><td>Policy Gradient Methods</td><td>321</td><td>直接对策略求梯度；actor–critic</td></tr>
+      <tr><td><strong>III</strong> Looking Deeper</td><td>339</td><td>14</td><td>Psychology</td><td>341</td><td>算法与动物学习实验的对账</td></tr>
+      <tr><td></td><td></td><td>15</td><td>Neuroscience</td><td>377</td><td>TD 误差与多巴胺放电的对账</td></tr>
+      <tr><td></td><td></td><td>16</td><td>Applications and Case Studies</td><td>421</td><td>八个已落地的案例</td></tr>
+      <tr><td></td><td></td><td>17</td><td>Frontiers</td><td>459</td><td>尚未解决的问题与 RL 与 AI 的未来</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>本书没有任何附录（Appendix）</strong> —— 正文止于 <strong>印 p480</strong>，之后是 References（印 p481–518）与 Index（印 p519–526）；548 页 PDF 里 <code>Appendix</code> 一词出现 0 次。<strong>书里每一处「补充材料」都在正文的带底纹方框里，不在书末。</strong></p>
+  <p><span class="tag t-src">原书</span> 小节总数 <strong>166</strong>，按官方目录页逐条机器统计（第 1 章 7 节、第 7 章 <strong>7 节</strong>、第 9 章 17 节、第 12 章 13 节、第 15 章 13 节，其余见 §2 表）。★ 带 <code><em></code> 的<strong>小节</strong>只有 <strong>5 个</strong>：<strong>5.8、5.9、7.4、7.6、12.6</strong>；带 <code></em></code> 的<strong>整章</strong>只有 <strong>第 11 章</strong>。（施工图记「7 章 6 节 ／ 共 165」，与实测不符，我按实测写 —— 见 D8。）</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>学习路线</span><span class="caret">▾</span></h2>
+  <h3>3.1 作者自己给的路线 <span class="tag t-src">原书</span></h3>
+  <p>以下每一条都是前言原话，位置在 <strong>印 p.xiv–xv</strong>（PDF p14–15）。作者给的是<strong>课程口径</strong>，不是自学者口径。</p>
+  <ul>
+    <li><strong>一学期</strong>："For a one-semester course, the first ten chapters should be covered in order and form a good core"（前 10 章<strong>按顺序</strong>）→ 前 10 章是一条链，跳着读会断。
+    </li>
+    <li><strong>两学期</strong>："A two-semester course can cover all the chapters as well as supplementary material." → <strong>不加时数就别想读全</strong>。
+    </li>
+    <li><strong>窄口径（塞进别的课）</strong>："We recommend covering Chapter 1 for a brief overview, Chapter 2 through Section 2.4, Chapter 3, and then selecting sections from the remaining chapters according to time and interests." → 全书最省的最小集：留 MDP 的形式化，砍赌博机的精细技巧。
+    </li>
+    <li>★ <strong>轴心</strong>："<strong>Chapter 6 is the most important for the subject and for the rest of the book.</strong>" → 作者<strong>亲自点名</strong>的一章。全书路线图是<strong>绕第 6 章建的</strong>：第 5 章为它铺垫（无自举），第 7 章把它拉成一条谱，第 9 章之后搬进函数逼近。
+    </li>
+    <li><strong>按方向补</strong>："A course focusing on machine learning or neural networks should cover Chapters 9 and 10, and a course focusing on artificial intelligence or planning should cover Chapter 8." → 这句话把书劈成两半：<strong>第 8 章是「有模型的世界」，第 9–10 章是「无模型但能泛化」——读哪一半取决于你有没有环境模型。</strong>
+    </li>
+  </ul>
+  <h3>3.2 几种读者各自的路线（我整理）<span class="tag t-inf">推断</span></h3>
+  <p>★ 以下四条<strong>全是我的整理，原书没有给自学者路线</strong>。每条都写清「走哪几章 → 到什么程度为止 → 会牺牲什么」。</p>
+  <p><strong>(i) 只想把 RL 用到自己问题上</strong>：<code>1 → 2 → 3 → 6 → 9 → 10 → 13</code>，其余按需回查。顺序理由是硬的：<strong>第 3 章必须读在第 4–8 章之前</strong>，因为 4–8 章全是同一套 MDP 语言下的解法；第 2 章放最前，是因为它用「没有状态」的最小例子把 ε-greedy、乐观初值、UCB 说清。<strong>到什么程度</strong>：第 6 章读到能<strong>手写</strong> Sarsa 与 Q-learning 的更新循环；第 9–10 章读到能解释「为什么半梯度的目标里带着一个不完整的梯度」。<strong>牺牲</strong>：读不懂论文里的收敛性讨论（第 11 章），也不知道离轨训练的坑在哪。</p>
+  <p><strong>(ii) 做深度 RL ／ 想读懂论文</strong>：<code>1 → 3 → 6 → 7 → 9 → 10 → 11 → 12 → 13</code>；<strong>11.6</strong>（印 p274）尤其关键。★ <span class="tag t-talk">作者谈话</span> 作者在书外说得更狠："For the most part, the theoretical foundation that RL adopts from dynamic programming is no longer valid in the case of function approximation. For example, Q-learning with linear function approximation is known to be unsound."（★ 出自 RL-FAQ，<strong>不是书内文字</strong>。）<strong>牺牲</strong>：跳过第 2、4、5、8 章，会缺「探索机制」与「有模型时怎么做规划」两块。</p>
+  <p><strong>(iii) 研究智能本身（跨学科）</strong>：<code>1 → 6 → 14 → 15 → 17</code>，Part I 其余当背景。<span class="tag t-src">原书</span> 第 14／15 章是作者自己的论证主场：第 15 章 15.3 节标题就是 "The Reward Prediction Error Hypothesis"（印 p381），15.6 节叫 "TD Error/Dopamine Correspondence"（印 p390）。★ <strong>这条路可以晚读第 9–13 章</strong>（Part III 的论证<strong>不依赖函数逼近</strong>）。★ <span class="tag t-talk">作者谈话</span> 作者对「RL 与心理学的关系」给过一个<strong>比书里更保守</strong>的判断："Broadly speaking, RL works as a pretty good model of instrumental learning, though a detailed argument for this has never been publically made."（★ 出自 RL-FAQ，<strong>不在书里</strong> —— 第 14 章的对应关系<strong>有说服力，但不是已完成的证明</strong>。）<strong>牺牲</strong>：完全错过「逼近下的失败模式」——这本书最难、也最独特的那部分工程判断力。</p>
+  <p><strong>(iv) 当教材上一门课</strong>：照 §3.1，前 10 章按序；偏 ML 补 9、10，偏 AI 补 8。★ <strong>带 <code><em></code> 的章／节第一遍可以跳过</strong>，但<strong>必须记得它们存在</strong>。<span class="tag t-src">原书</span> 作者的界定是 "sections and chapters that are more difficult and not essential to the rest of the book are marked with a </em>"，"These can be omitted on first reading without creating problems later on."（印 p.xv）—— <strong>是「更难、且不是后续内容的必要条件」，不是「不重要」</strong>。逐项代价：跳过 <strong>5.8／5.9</strong> → 失去离轨估计的<strong>方差控制</strong>（5.9 把「整条轨迹一个比值」拆成「每步一个比值」，是第 12 章离轨迹的前提）；跳过 <strong>7.4／7.6</strong> → 失去「把 Sarsa 与树回溯写成一个式子」的统一视角，第 12 章的 λ 一族会显得零散；跳过 <strong>12.6</strong> → 失去资格迹的第三种实现，损失最小；跳过<strong>第 11 章</strong> → 失去全书对「发散」的唯一系统性讨论。</p>
+  <h3>3.3 读书时的操作建议 <span class="tag t-inf">推断</span></h3>
+  <ol>
+    <li><strong>先手推一遍第 4 章的「策略评估 → 策略改进 → 策略迭代 → 价值迭代」，再往下看。</strong> 它是后面所有算法的骨架；<span class="tag t-src">原书</span> 4.6 把 GPI 写成全书通用描述："Almost all reinforcement learning methods are well described as GPI."（印 p86）—— 不推一遍，就体会不到「两个过程互相追、停在同一点」是什么意思。
+    </li>
+    <li><strong>第 6 章之后，必须自己实现一次 Sarsa 与 Q-learning</strong>（官方代码可逐章对照）。两者差别只有一行 —— 更新目标用的是<strong>实际采取的下一动作</strong>还是<strong>当前认为最好的下一动作</strong>；这一行决定了 on-policy 与 off-policy 的全部区别。
+    </li>
+    <li><strong>每章末的「Bibliographical and Historical Remarks」值得读，但它不是正文难度的延续。</strong> 那是作者<strong>亲手写的文献地图</strong>：谁先提出、谁改进了什么、哪条线索断在哪儿。
+    </li>
+  </ol>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>配套资源</span><span class="caret">▾</span></h2>
+  <p>★ 本节逐项写「<strong>我实测到的是什么</strong>」。</p>
+  <ul>
+    <li><strong>官方全 PDF（主底本）</strong>：<code>book/RLbook2020.pdf</code>，实测 HTTP 200、73,129,769 B、<code>Last-Modified: 2022-04-26</code>；<strong>版权页明文 CC BY-NC-ND 2.0</strong>。
+    </li>
+    <li><strong>去边距版</strong>：<code>book/RLbook2020trimmed.pdf</code>，HTTP 200、73,228,123 B —— <strong>同内容、版式不同</strong>（页数不同，故页码一律以主底本为准）。
+    </li>
+    <li><strong>官方勘误与注记</strong>：<code>book/errata.html</code>，HTTP 200、28,618 B；标题明写 "Errata for the second printing (2020) of the second edition"，<strong>共 116 条</strong>。★ 逐条比对结果与局限见 §5 与 D1。
+    </li>
+    <li><strong>官方代码</strong>：<code>book/code/code2nd.html</code>，HTTP 200、7,368 B。★ 最推荐先用的配套 —— 第 6 章之后的算法<strong>照着跑一遍再改</strong>，比自己从零写快得多。
+    </li>
+    <li><strong>官方习题解答</strong>：<code>book/solutions.html</code>，HTTP 200 但<strong>只有 1,106 B</strong>，页面自述 <strong>"currently incomplete"</strong>，机制是「投递某章解答，换回官方解答」。★ 即：<strong>它不完整，门槛是「先自己做」</strong> —— 对自学者反倒是合适的顺序。
+    </li>
+    <li><strong>幻灯片与其他教具</strong>：位于书籍主页指向的 Google Drive。<strong>我只确认链接可达，没有逐一下载核对</strong> ⇒ 登记「存在，未取」（D2）。
+    </li>
+    <li><strong>论文原始文献 PDF 合辑</strong>：书籍主页指向 Google Drive（致谢 Daniel Plop）。<strong>存在但未取</strong> ⇒ 不得当作已核（D2）。
+    </li>
+    <li><strong>MOOC</strong>：书籍主页／作者站点指向 Coursera 的 RL 专修（CMPUT 397）。<strong>登记「存在，未取」</strong>（D2）。
+    </li>
+    <li><strong>LaTeX 记号文件</strong>：页面提供 <code>notation.sty</code> 与 <code>notation.tex</code>。★ 全书符号的权威对照表，读到第 9 章之后符号混乱时查它比翻书快。
+    </li>
+    <li><strong>书籍主页</strong>：<code>book/the-book-2nd.html</code>，HTTP 200，明载作者、Second Edition、MIT Press 2018 与全部配套链接。
+    </li>
+  </ul>
+  <p>★ <strong>一句话</strong>：配套<strong>全部免费且由作者自己放出来</strong>，唯一「不完整」的是习题解答 —— 与多数教材相反，这不构成障碍：<strong>代码 ＋ 勘误 ＋ 记号表</strong>三件是齐的。★ <span class="tag t-talk">作者谈话</span> 作者在书外另有两句值得记下：其一，"it is often not obvious how to extend RL methods to continuous, or even large discrete, action spaces."（这解释了你读 13.7 节该带什么预期）；其二，Sutton 2019 年那篇《The Bitter Lesson》开篇即 "The biggest lesson that can be read from 70 years of AI research is that general methods that leverage computation are ultimately the most effective, and by a large margin." ★ 这与书内那句「我们的选择反映了我们长期偏好廉价的、无模型的方法」（印 p.xiv，属 <span class="tag t-src">原书</span>）<strong>是同一立场的两种说法</strong>。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5</span><span>版本与印次：官方免费全文 / 中文版 / 勘误实测</span><span class="caret">▾</span></h2>
+  <p><strong>① 官方免费全文（本页主底本）</strong> —— <span class="tag t-src">原书</span> 版权页原文明载："This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 2.0 Generic License."。实务含义：<strong>可自由地读它、引用它（短句）</strong>，但不能改作、不能商用 —— 本页属非商业的阅读指引与评论，引用限于短句，不复制整章内容（见来源清单末节）。</p>
+  <p><strong>② 中文版</strong> —— <span class="tag t-rep">转述</span>《强化学习（第 2 版）》，<strong>俞凯</strong> 等译，<strong>电子工业出版社</strong> 2019-09，<strong>ISBN 9787121295164</strong>，出版方页面与图书馆编目多源一致（「智源人工智能丛书」／博文视点出品；出版方页面记 548 页、定价 168 元）。★ <strong>本条只给编目字段，一个页码都不给</strong>：中英分页不同（英文版 References 起印 p481；中文编目记「书目 第473–519页」），且<strong>我没有中文版实体可逐页核对</strong>。详见 D3。</p>
+  <p><strong>③ 印次与勘误实测</strong> —— <span class="tag t-src">原书</span> 官方勘误页标题是 <strong>"Errata for the second printing (2020) of the second edition"</strong>，<strong>共 116 条</strong>（按 HTML 的 <code>&lt;li&gt;</code> 计数）；本地 PDF 的 <code>Last-Modified</code> 是 <strong>2022-04-26</strong>。我把这 116 条<strong>逐条与本机全文比对</strong>：<strong>机器可校验 34 条</strong>，其中 <strong>22 条已修正</strong>、<strong>4 条机器判定仍未修正</strong>，其余 <strong>72 条为公式／符号类，无法字符串化核对</strong>。</p>
+  <ul>
+    <li>已修正的例子（勘误页给出「错 → 对」）：<strong>印 p275</strong> 的 "even given even" → "even given"；<strong>印 p350</strong> 的 "Rescoral-Wgner" → "Rescorla-Wagner"；<strong>印 p436</strong> 的 "Tesauro and colleages" → "colleagues"。★ 我反向确认过：这三个<strong>错误串在本机全文里都不存在</strong>，<strong>正确串都在</strong>（"Rescorla-Wagner" 出现 4 次）—— 这正是「已修正」的判据。
+    </li>
+    <li>机器判定仍未修正的 4 条（★ 逐条确认过：错误串<strong>都还在</strong>）：<strong>印 p54</strong> 的 "aining control"（该处原意是 "gaining control"）、<strong>印 p269</strong> 的 "for v"、<strong>印 p469</strong> 的 "plateau problem"、<strong>印 p19</strong> 的 "(Section 16.2)"。
+    </li>
+    <li>★ <strong>方法与其局限</strong>：我用「<strong>该页 ±2 页窗口</strong>」匹配 —— 先试过全文匹配，但会因泛串产生<strong>假阳性</strong>。更要紧的是：<strong>印 p269 那条错误串只有 <code>for v</code> 三个字符</strong>，全文出现次数极多，<strong>无法排除假阳性</strong> ⇒ 标为<strong>待人工核对</strong>，不计入「未修正」。★「22 ／ 4」的分母是 <strong>34</strong>，不是 116。
+    </li>
+  </ul>
+  <p>★ <strong>操作含义</strong>：你手上的官方 PDF <strong>不是与勘误页完全同步的版本</strong>。凡正文与勘误页冲突，<strong>以勘误页为准</strong>；本页引正文时<strong>一律以本机这份 PDF 为据</strong>。</p>
+  <p>★ <strong>模块划分是我的整理，属 <span class="tag t-inf">推断</span></strong>（三部分是官方的，我沿用边界）；<strong>章名、章号、小节号与页码属 <span class="tag t-src">原书</span></strong>，逐条取自官方全 PDF 目录页与各章章首页，已机器核对（印刷页码 ＋ 22 ＝ PDF 页序）。★ <strong>每章「核心机制」一律用文字描述，不给公式。</strong> ★ 各章四栏中<strong>未标 <span class="tag t-src">原书</span> 的文字均为我的整理</strong>。</p>
+</section>
+
+<section id="s6">
+  <h2><span class="num"></span><span>模块零 · 导论（第 1 章）</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答什么</strong>：强化学习到底和别的学习范式差在哪里，以及这本书准备用什么语言谈它。它不是预备知识，是<strong>全书的世界观</strong> —— 后面 16 章都在用第 1 章立的词汇。</p>
+  <p><strong>第 1 章 Introduction（印 p1；7 节）</strong></p>
+  <ul>
+    <li><strong>解决什么问题</strong> <span class="tag t-inf">推断</span>：给出 RL 的最小定义，并把它与监督学习、无监督学习分开；顺带画出全书地图。
+    </li>
+    <li><strong>核心机制</strong> <span class="tag t-src">原书</span>：分界线在<strong>反馈的性质</strong>上。第 1.1 节写成最基础的一句："trial-and-error search and delayed reward—are the two most important distinguishing features of reinforcement learning."（试错搜索与延迟回报，是 RL 最重要的两个区分性特征，印 p1。）两种反馈之别，第 2 章开头说得更细："instructive feedback, on the other hand, indicates the correct action to take, independently of the action actually taken. This kind of feedback is the basis of supervised learning"（指示性反馈指出<strong>应当</strong>采取的正确动作，与实际采取的动作无关；这是监督学习的基础，印 p25。）一句话：<strong>监督学习告诉你「对的是什么」，RL 只告诉你「你得到多少」。</strong>
+    </li>
+    <li><strong>必读小节</strong> <span class="tag t-src">原书</span>：1.1（印 p1，RL 的定义）、1.3（印 p6，四个要素：策略、回报信号、价值函数、模型）、1.5（印 p8，井字棋实例）。
+    </li>
+    <li><strong>可跳与练习建议</strong>：★ <strong>1.7「Early History of Reinforcement Learning」（印 p13）可以后读</strong> —— 它很长，作者写成三条并行线索（控制论、动态规划、时序差分）。<strong>跳过会失去什么</strong>：不损失后续内容的前置知识，但会失去「这本书为什么长成现在这样」的线索。建议<strong>先读 1.1／1.3／1.5，把 1.7 留到读完第 6 章再回来读</strong>。
+    </li>
+  </ul>
+  <p>★ <strong>读完应能</strong>：说清「评估性反馈 vs 指示性反馈」之别，并解释为什么「延迟回报」让监督学习的方法直接用不上。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num"></span><span>模块一 · 表格型求解方法（第 2–8 章）</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答什么</strong>：如果状态与动作少到可以<strong>用一张表全装下</strong>，RL 能不能被<strong>精确地解出来</strong>。作者的答案是能 —— 这正是他坚持先讲表格型的理由。</p>
+  <p><span class="tag t-src">原书</span> 第二版前言给的理由是："Doing the tabular case first, and thoroughly, enables core ideas to be developed in the simplest possible setting."（印 p.xiv）★ 同一段里还有一句<strong>必须在动手前知道的话</strong>："Our choices reflect our long-standing interests in inexpensive model-free methods that should scale well to large applications."（我们的取舍反映了我们<strong>长期以来对廉价的、无模型的方法的偏好</strong>，印 p.xiv。）也就是：<strong>这本书整体偏向 model-free，是作者的取舍，不是领域公论</strong>。</p>
+  <p><strong>第 2 章 Multi-armed Bandits（印 p25；10 节）</strong></p>
+  <ul>
+    <li><strong>解决什么问题</strong> <span class="tag t-inf">推断</span>：它处理「<strong>没有状态</strong>的 RL」—— 只有一个动作选择，反复地选。
+    </li>
+    <li><strong>核心机制</strong> <span class="tag t-src">原书</span>：用一个可调的探索率在「利用已知最好的」与「试试别的」之间切换（ε-greedy），再给出一串更聪明的版本：<strong>乐观初值</strong>、<strong>置信度上界（UCB）</strong>、<strong>梯度赌博机</strong>。★ 2.5 节讲<strong>非平稳</strong>问题（印 p32）：奖励分布本身在变时，简单平均会被过去拖住，要改用带遗忘的步长。
+    </li>
+    <li><strong>必读小节</strong> <span class="tag t-src">原书</span>：2.1（印 p25）、2.2（印 p27）、2.3（印 p28，10 臂测试平台）、2.5（印 p32）、2.9（印 p41，关联搜索／上下文赌博机）。★ <strong>2.9 是通往完整 RL 的桥</strong>：作者说这类任务 "are intermediate between the k-armed bandit problem and the full reinforcement learning problem"（介于两者<strong>之间</strong>，印 p41）—— 它只差一步：让动作<strong>也影响下一个状态</strong>。
+    </li>
+    <li><strong>可跳与练习建议</strong>：本章<strong>无带 <code>*</code> 小节</strong>，原书未标任何可跳项。建议动手做 2.3 的 10 臂测试平台。
+    </li>
+  </ul>
+  <p><strong>第 3 章 Finite Markov Decision Processes（印 p47；8 节）</strong></p>
+  <ul>
+    <li><strong>解决什么问题</strong> <span class="tag t-inf">推断</span>：<strong>把问题写下来</strong> —— 全书的形式化地基。状态、动作、奖励、折扣、回合还是持续性，这几件事定错，后面所有算法都白搭。
+    </li>
+    <li><strong>核心机制</strong> <span class="tag t-src">原书</span>：把交互抽象成「状态、动作、奖励」的最小形式，引入<strong>回报与折扣</strong>，把「一个策略有多好」定义成<strong>价值函数</strong>，再用 <strong>Bellman 方程</strong>写出价值函数间的自洽关系：<strong>期望方程</strong>给「已知策略下的价值」，<strong>最优方程</strong>给「最好能有多好」。
+    </li>
+    <li><strong>必读小节</strong> <span class="tag t-src">原书</span>：3.1（印 p47，智能体-环境接口）、3.3（印 p54，回报与回合）、3.4（印 p57，回合式与持续性任务的统一记号）、3.5（印 p58，策略与价值函数）、3.6（印 p62，最优策略与最优价值函数）。
+    </li>
+    <li>★★ <strong>3.7「Optimality and Approximation」（印 p67）必须读</strong> —— 它回答「为什么必须近似」：<span class="tag t-src">原书</span> "For the kinds of tasks in which we are interested, optimal policies can be generated only with extreme computational cost... it is an ideal that agents can only approximate."（对我们关心的这类任务，最优策略只能以极高的计算代价生成；它是一个智能体<strong>只能逼近</strong>的理想。）★ 作者还补了一句约束："A critical aspect of the problem facing the agent is always the computational power available to it."（印 p67）即：<strong>计算预算本身是问题定义的一部分</strong>。
+    </li>
+    <li><strong>可跳与练习建议</strong>：本章<strong>无带 <code>*</code> 小节</strong>，但 3.7 是<strong>唯一不能跳的</strong>一节。建议<strong>手画一个 3 状态的小 MDP，把期望方程与最优方程各写一遍</strong> —— 不写这一遍，第 4 章会变成背公式。
+    </li>
+  </ul>
+  <p><strong>第 4 章 Dynamic Programming（印 p73；8 节）</strong></p>
+  <ul>
+    <li><strong>解决什么问题</strong> <span class="tag t-inf">推断</span>：<strong>有完整、准确的环境模型时</strong>怎么精确求解。
+    </li>
+    <li><strong>核心机制</strong> <span class="tag t-src">原书</span>：策略评估（给定策略算价值）→ 策略改进（按价值改策略）→ 两者交替就是<strong>策略迭代</strong>；压成一步就是<strong>价值迭代</strong>；连「扫一遍全部状态」都不要求了，就是 4.5 的<strong>异步 DP</strong>（印 p85）。★ 本章真正的收获是 4.6 的<strong>广义策略迭代（GPI）</strong>："Almost all reinforcement learning methods are well described as GPI."（印 p86）—— <strong>几乎所有 RL 方法都是「评估」与「改进」两个过程互相追，停在同一个点上</strong>。
+    </li>
+    <li><strong>必读小节</strong> <span class="tag t-src">原书</span>：4.1（印 p74）、4.2（印 p76）、4.3（印 p80）、4.4（印 p82）、4.5（印 p85）、4.6（印 p86）。
+    </li>
+    <li><strong>可跳与练习建议</strong>：本章<strong>无带 <code>*</code> 小节</strong>。★ 建议<strong>手推一遍 4.1–4.4 四个过程</strong>，用最小的格子世界：这是全书唯一能完全手算的地方，也是后面读到半梯度时唯一的参考系。
+    </li>
+  </ul>
+  <p><strong>第 5 章 Monte Carlo Methods（印 p91；10 节）</strong></p>
+  <ul>
+    <li><strong>解决什么问题</strong> <span class="tag t-inf">推断</span>：<strong>没有模型</strong>怎么学。
+    </li>
+    <li><strong>核心机制</strong> <span class="tag t-src">原书</span>：从<strong>完整回报</strong>直接估计价值，因此不需要模型；代价是必须等回合结束。★ 本章引入两个后面反复回来的东西：<strong>试探性出发</strong>（保证每个状态都被访问到）与<strong>重要度采样</strong>（让「按 A 策略走出的数据」能用来评估「B 策略」）。5.5 节标题即 "Off-policy Prediction via Importance Sampling"（印 p103）—— <strong>离轨策略这条主线从这一节开始</strong>。
+    </li>
+    <li><strong>必读小节</strong> <span class="tag t-src">原书</span>：5.1（印 p92，首次访问 vs 每次访问）、5.3（印 p97）、5.4（印 p100）、5.5（印 p103）。
+    </li>
+    <li>★ <strong>可跳（五个带 <code><em></code> 小节里的前两个）</strong> —— <strong>5.8「\</em>Discounting-aware Importance Sampling」（印 p112）</strong> 与 <strong>5.9「\*Per-decision Importance Sampling」（印 p114）</strong>。<strong>跳过会失去什么</strong>：失去离轨估计的<strong>方差控制</strong>手段 —— 5.9 把「整条轨迹一个比值」拆成「每步一个比值」，这正是第 12 章离轨迹的技术前提。★ 不是「不重要」，是「不在直线上」。
+    </li>
+    <li><strong>可跳与练习建议</strong>：先做 5.1、5.3 的编程题，<strong>不要一上来就做 5.5 的重要度采样</strong> —— 它的正确性依赖「行为策略必须覆盖目标策略」，跑错了很难定位。
+    </li>
+  </ul>
+  <p><strong>第 6 章 Temporal-Difference Learning（印 p119；9 节）—— 全书最重要的一章</strong></p>
+  <p><span class="tag t-src">原书</span> 作者的定位（前言，印 p.xiv）："<strong>Chapter 6 is the most important for the subject and for the rest of the book.</strong>"</p>
+  <ul>
+    <li><strong>解决什么问题</strong> <span class="tag t-inf">推断</span>：能不能<strong>不等一个回合结束</strong>就开始学。
+    </li>
+    <li><strong>核心机制</strong> <span class="tag t-src">原书</span>：用<strong>估计去更新估计</strong>（自举）。TD 预测把「目标」从蒙特卡洛的完整回报，换成「即时回报 ＋ 下一状态的当前估计」；6.4 的 <strong>Sarsa</strong> 与 6.5 的 <strong>Q-learning</strong> 把同一套思路搬到控制上。★ 全书最关键的一处分岔在 6.5：Q-learning 的更新目标<strong>取自当前认为最好的下一动作</strong>，而<strong>不管实际采取了什么</strong> —— 这就是 off-policy 的源头，第 11 章的所有麻烦都从这里长出来。
+    </li>
+    <li><strong>必读小节</strong> <span class="tag t-src">原书</span>：6.1（印 p119，TD 预测）、6.2（印 p124，TD 相对 MC 的优势）、6.4（印 p129，Sarsa）、6.5（印 p131，Q-learning）、6.6（印 p133，Expected Sarsa）、6.7（印 p134，最大化偏差与 Double Learning）、6.8（印 p136，博弈、后状态与其它特例）。★ 6.7 值得单独动手：它给的是<strong>算法自身的系统性缺陷</strong> —— "maximization bias"（印 p134 有专门的 MDP 反例）——全书第一次让你看到「一个正确的算法会稳定地给出错答案」。
+    </li>
+    <li><strong>可跳与练习建议</strong>：本章<strong>没有带 <code>*</code> 的小节</strong>，不建议跳；★ 建议<strong>手写一遍 Sarsa 与 Q-learning 的更新循环，各跑一次</strong> —— 两者差别只有一行，但那一行决定一切。
+    </li>
+  </ul>
+  <p><strong>第 7 章 n-step Bootstrapping（印 p141；7 节）</strong></p>
+  <ul>
+    <li><strong>解决什么问题</strong> <span class="tag t-inf">推断</span>：蒙特卡洛与 TD 之间那条谱。
+    </li>
+    <li><strong>核心机制</strong> <span class="tag t-src">原书</span>：把自举的步数当成一个<strong>可调的 n</strong> —— n ＝ 1 是 TD，n ＝ 整个回合就是蒙特卡洛。★ 7.5 的<strong>树回溯</strong>是一条重要旁路：不需要重要度采样就能做离轨学习（节标题即 "Off-policy Learning Without Importance Sampling"，印 p152），实作上很值钱，因为避开了比值的数值爆炸。
+    </li>
+    <li><strong>必读小节</strong> <span class="tag t-src">原书</span>：7.1（印 p142）、7.2（印 p145）、7.3（印 p148）、7.5（印 p152，树回溯）、7.7（印 p157，小结）。★ 注意：<strong>第 7 章共 7 节</strong>（7.1–7.7）。
+    </li>
+    <li>★ <strong>可跳</strong> —— <strong>7.4「\<em>Per-decision Methods with Control Variates」（印 p150）</strong> 与 <strong>7.6「\</em>A Unifying Algorithm: n-step Q(σ)」（印 p154）</strong>。<strong>跳过会失去什么</strong>：7.6 是「把 Sarsa 与树回溯统一成一个式子」的视角，跳过它之后第 12 章的 λ 一族会显得零散；7.4 的控制变量是降方差技巧，与 12.9 呼应。
+    </li>
+    <li><strong>可跳与练习建议</strong>：<strong>把第 6 章自己写的 Sarsa 改成 n 步</strong>，观察 n 从 1 增到很大时性能怎么变 —— 这是理解「偏差-方差权衡」最快的实验。
+    </li>
+  </ul>
+  <p><strong>第 8 章 Planning and Learning with Tabular Methods（印 p159；13 节）</strong></p>
+  <ul>
+    <li><strong>解决什么问题</strong> <span class="tag t-inf">推断</span>：<strong>有模型时，学习与规划怎么合起来</strong>。
+    </li>
+    <li><strong>核心机制</strong> <span class="tag t-src">原书</span>：<strong>Dyna</strong> 把真实经验与「从模型采样出来的想象经验」放进同一个更新循环（印 p161 起）—— 这是全书唯一把学习与规划统一进一个架构的地方。本章最后落到 <strong>8.11 Monte Carlo Tree Search</strong>（印 p185），也是全书与当代实践连接最紧的一节：AlphaGo 系列的搜索部分就建立在这里（第 16.6.1 节，印 p444）。
+    </li>
+    <li><strong>必读小节</strong> <span class="tag t-src">原书</span>：8.1（印 p159）、8.2（印 p161，Dyna）、8.3（印 p166，模型错了会怎样）、8.5（印 p172，期望更新 vs 采样更新）、8.6（印 p174，轨迹采样）、8.8（印 p180）、8.11（印 p185，MCTS）、8.13（印 p189）。★ <strong>8.13「Summary of Part I: Dimensions」是第一部分的总结</strong> —— 它把前七章的方法摆到同一组坐标轴上比，读它比读任何二手总结都值。
+    </li>
+    <li><strong>可跳与练习建议</strong>：本章<strong>无带 <code>*</code> 小节</strong>，原书未标任何可跳项。★ 8.10 有一条 <span class="tag t-src">原书</span> 的出处：rollout 一词来自 backgammon 里「把局面反复掷骰走到底」的做法（印 p184）。
+    </li>
+  </ul>
+  <p>★ <strong>本模块读完应能</strong>：说清 GPI 为什么是全书主框架；手写出 Sarsa 与 Q-learning 的更新循环并说明差在哪儿；解释「自举」与「采样」各带来什么、失去什么；以及<strong>为什么表格型只是一个可以精确求解的特例</strong>。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num"></span><span>模块二 · 近似求解方法（第 9–13 章）</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答什么</strong>：上一部分的结论都建立在一个前提上 —— <strong>状态数少到能装进一张表</strong>。真实问题的状态数往往大得离谱（<span class="tag t-src">原书</span> 第 1 章的例子：backgammon 约 10 的 20 次方个状态，"With this many states it is impossible ever to experience more than a small fraction of them"，印 p11）。这一部分回答：<strong>把表换成参数化的函数之后，哪些结论还活着，哪些死了。</strong></p>
+  <p><span class="tag t-src">原书</span> 作者对这一部分的定位是「把思想扩展到函数逼近」："The second part of the book (Chapters 9–13) is then devoted to extending the ideas to function approximation."（印 p.xiv）★ 但<strong>扩展的代价极大</strong>：动态规划提供的那套理论基础大多失效 —— <span class="tag t-talk">作者谈话</span> 这一点作者在书外说得比书里更直白（见 §3.2 路线 (ii)：线性函数逼近下的 Q-learning 是已知不可靠的）。</p>
+  <p><strong>第 9 章 On-policy Prediction with Approximation（印 p197；17 节）</strong></p>
+  <ul>
+    <li><strong>解决什么问题</strong> <span class="tag t-inf">推断</span>：把「估价值」从表格搬到函数上 —— 用一组参数<strong>泛化</strong>到没见过的状态。
+    </li>
+    <li><strong>核心机制</strong> <span class="tag t-src">原书</span>：本章的核心裂口是<strong>半梯度</strong>。真正的梯度法要求对「目标」也求导，但 TD 的目标里含<strong>当前的估计</strong>，对它求导会得到不完整甚至错误的方向；作者的处理是<strong>只对估计值求导、把目标当常数</strong>。他对这笔交易的评价是："Although semi-gradient (bootstrapping) methods do not converge as robustly as gradient methods, they do converge reliably in important cases such as the linear case discussed in the next section. Moreover, they offer important advantages that make them often clearly preferred."（印 p202）
+    </li>
+    <li><strong>必读小节</strong> <span class="tag t-src">原书</span>：9.1（印 p198，值函数逼近）、9.2（印 p199，预测目标 VE）、9.3（印 p200，随机梯度与半梯度）、9.4（印 p204，线性方法）、9.5（印 p210，特征构造）、9.7（印 p223，非线性逼近与人工神经网络）、9.11（印 p234，兴趣与强调）。★ 9.5 的五个子节各给一种特征构造法：多项式（印 p210）、傅里叶基（印 p211）、粗编码（印 p215）、<strong>瓦片编码（印 p217）</strong>、径向基函数（印 p221）。<strong>瓦片编码是全章最实用的一节</strong>。
+    </li>
+    <li><strong>可跳与练习建议</strong>：本章<strong>无带 <code>*</code> 小节</strong>，原书未标任何可跳项。★ 建议<strong>先只用线性逼近 ＋ 瓦片编码跑通一个连续状态问题</strong>，再去看 9.7 的神经网络 —— 若跳过线性直接上网络，会分不清哪些现象来自逼近、哪些来自网络。
+    </li>
+  </ul>
+  <p><strong>第 10 章 On-policy Control with Approximation（印 p243；6 节）</strong></p>
+  <ul>
+    <li><strong>解决什么问题</strong> <span class="tag t-inf">推断</span>：把第 9 章的预测搬到<strong>控制</strong>上，并处理「没有回合终点」的持续性问题。
+    </li>
+    <li><strong>核心机制</strong> <span class="tag t-src">原书</span>：本章开头就交代了结构：先把半梯度 TD 扩展到动作价值（<strong>半梯度 Sarsa</strong>），再在持续性情形下<strong>放弃折扣、改用平均奖励</strong>。原话是："Surprisingly, once we have genuine function approximation we have to give up discounting and switch to a new 'average-reward' formulation of the control problem, with new 'differential' value functions."（印 p243）
+    </li>
+    <li><strong>必读小节</strong> <span class="tag t-src">原书</span>：10.1（印 p243，回合式半梯度控制）、10.2（印 p247，半梯度 n 步 Sarsa）、10.3（印 p249，平均奖励）、<strong>10.4（印 p253，Deprecating the Discounted Setting）</strong>、10.5（印 p255）。
+    </li>
+    <li>★ <strong>10.4 是作者少见的一节立场文</strong>：<span class="tag t-src">原书</span> 他论证在持续性设定下折扣率<strong>根本不影响问题的解</strong> —— "The discount rate γ thus has no effect on the problem formulation. It could in fact be zero and the ranking would be unchanged."（印 p253）<strong>它把「折扣因子是不是超参数」这个常见误解从根上答了</strong>：<strong>它要么是问题定义的一部分（回合式），要么什么都不是（持续性 ＋ 逼近）</strong>。
+    </li>
+    <li><strong>可跳与练习建议</strong>：本章<strong>无带 <code>*</code> 小节</strong>；建议<strong>在改成平均奖励之前先跑通 10.1</strong> —— 10.3 之后换了一套价值定义，混着调会很痛苦。
+    </li>
+  </ul>
+  <p><strong>第 11 章 \<em>Off-policy Methods with Approximation（印 p257；10 节）—— 整章带 <code></em></code></strong></p>
+  <ul>
+    <li><strong>解决什么问题</strong> <span class="tag t-inf">推断</span>：<strong>离轨训练 ＋ 函数逼近为什么会让权重发散</strong> —— 全书唯一系统回答这个问题的地方。
+    </li>
+    <li><strong>核心机制</strong> <span class="tag t-src">原书</span>：层层递进。11.2 直接给<strong>反例</strong>（印 p260 起），11.3 把条件收成<strong>致命三要素</strong>（印 p264）："the danger of instability and divergence arises whenever we combine all of the following three elements, making up what we call the deadly triad: Function approximation … Bootstrapping … Off-policy training"。★ 作者还排除了几个常见错误归因：<strong>不是控制</strong>、<strong>不是学习</strong>、<strong>也不是环境未知</strong> —— 他明说即使环境完全已知（例如动态规划），只要三者齐备，不稳定照样出现。11.6 再补一刀：<strong>Bellman 误差不可学</strong>（印 p274，原文 "not learnable"）。
+    </li>
+    <li><strong>必读小节</strong> <span class="tag t-src">原书</span>：11.1（印 p258）、11.2（印 p260）、<strong>11.3（印 p264，致命三要素）</strong>、11.4（印 p266，线性值函数几何）、11.5（印 p269）、<strong>11.6（印 p274，Bellman 误差不可学）</strong>、11.7（印 p278，梯度 TD）、11.8（印 p281，强调 TD）。
+    </li>
+    <li>★ <strong>可跳（整章）与其代价</strong>：<span class="tag t-src">原书</span> 第 11 章章标题原文即带 <code>*</code>，属作者界定的「更难、且不是后续内容的必要条件」（印 p.xv）。<strong>跳过会失去什么</strong>：失去整本书对「发散」的<strong>唯一</strong>系统性讨论 —— 具体是 ① 11.3 那三项条件的判据（诊断深度 RL 训练不稳定的第一工具）；② 11.6 对「Bellman 误差不可学」的论证（它解释了为什么很多看似合理的目标函数不能用）；③ 梯度 TD 与强调 TD 这两条<strong>已知可行的解法方向</strong>。★ 代价最大的一条：跳过它，你会以为「发散」是工程 bug，而不是<strong>方法层面的固有性质</strong>。
+    </li>
+    <li><strong>可跳与练习建议</strong>：若第一遍跳，<strong>至少读 11.3 与 11.6 两节</strong>（合计约 10 页）；★ 建议动手做 11.3 的编程习题：<strong>把同一个半梯度 Q-learning 的权重跑发散一次</strong>，比读十页论证印象深刻。
+    </li>
+  </ul>
+  <p><strong>第 12 章 Eligibility Traces（印 p287；13 节）</strong></p>
+  <ul>
+    <li><strong>解决什么问题</strong> <span class="tag t-inf">推断</span>：第 7 章的 n 步是从<strong>前向</strong>看的（要等未来 n 步）；本章要的是<strong>同一件事的后向视角</strong> —— 每走一步就能更新。
+    </li>
+    <li><strong>核心机制</strong> <span class="tag t-src">原书</span>：用一条<strong>资格迹</strong>记录「哪些状态最近被访问过、访问得多近」，让一步的 TD 误差按这条迹分摊到多个状态上。★ 枢纽是 <strong>λ-回报</strong>（12.1，印 p288）与 <strong>TD(λ)</strong>（12.2，印 p292）：λ ＝ 0 退化为 TD(0)，λ ＝ 1 接近蒙特卡洛 —— 与第 7 章的 n 是<strong>同一条谱的两种参数化</strong>。
+    </li>
+    <li><strong>必读小节</strong> <span class="tag t-src">原书</span>：12.1（印 p288）、12.2（印 p292）、12.3（印 p295）、12.4（印 p297）、12.5（印 p299）、12.7（印 p303，Sarsa(λ)）、12.9（印 p309）、12.10（印 p312）、<strong>12.13（印 p317，结论）</strong>。
+    </li>
+    <li>★ <strong>可跳</strong> —— <strong>12.6「\<em>Dutch Traces in Monte Carlo Learning」（印 p301）</strong>，本书五个带 <code></em></code> 小节里的最后一个。<strong>跳过会失去什么</strong>：失去资格迹的<strong>第三种实现</strong>这一视角。★ 这是五个 <code>*</code> 项里<strong>损失最小</strong>的一个：主题相对孤立，不构成任何后续内容的前置。
+    </li>
+    <li><strong>可跳与练习建议</strong>：★ 建议<strong>先读 12.1 与 12.2，再跳到 12.13</strong>，然后回头补 12.3–12.10 —— 12.4／12.5 讲实现顺序上的细节，先看结论再看细节不容易迷路。
+    </li>
+  </ul>
+  <p><strong>第 13 章 Policy Gradient Methods（印 p321；8 节）</strong></p>
+  <ul>
+    <li><strong>解决什么问题</strong> <span class="tag t-inf">推断</span>：前面所有方法的产物都是<strong>价值函数</strong>（再从中推出策略）；本章直接<strong>参数化策略本身</strong>，对策略求梯度。
+    </li>
+    <li><strong>核心机制</strong> <span class="tag t-src">原书</span>：13.2 给出<strong>策略梯度定理</strong>（印 p324），13.3 把它落成 REINFORCE（印 p326，纯蒙特卡洛的策略梯度），13.4 加上<strong>基线</strong>降方差（印 p329），13.5 把价值函数拿来做「评价者」，形成 <strong>actor–critic</strong>（印 p331）。★ 13.7 处理<strong>连续动作</strong>（印 p335）：把动作分布参数化，就不需要在动作空间上取最大。
+    </li>
+    <li><strong>必读小节</strong> <span class="tag t-src">原书</span>：13.1（印 p322）、13.2（印 p324）、13.3（印 p326）、13.4（印 p329）、13.5（印 p331）、13.6（印 p333）、13.7（印 p335）。
+    </li>
+    <li><strong>可跳与练习建议</strong>：本章<strong>无带 <code>*</code> 小节</strong>；★ 建议<strong>先实现 REINFORCE，再加一个基线，最后加一个 critic</strong> —— 三步之间性能的变化，就是 actor–critic 整套设计的动机。
+    </li>
+  </ul>
+  <p>★ <strong>本模块读完应能</strong>：解释「半梯度」省掉了哪一项、为什么反而更常用；说清致命三要素的判据并用它诊断一次训练不稳定；把 n 与 λ 对应到同一条谱上。</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num"></span><span>模块三 · 往深处看（第 14–17 章）</span><span class="caret">▾</span></h2>
+  <p><strong>这一部分在回答什么</strong>：前面 13 章讲完了算法，但有一个问题一直没答 —— <strong>这些算法凭什么是「对」的？</strong> 第三部分拿三种<strong>外部的</strong>证据来答：动物行为实验（第 14 章）、神经生理数据（第 15 章）、工程落地案例（第 16 章），最后列出未解决的事（第 17 章）。★ <strong>它不是「延伸阅读」，是全书最独特的部分</strong> —— 第 14／15 章把算法与生物证据逐条对上，这种写法在别的 RL 教材里找不到第二个。</p>
+  <p><strong>第 14 章 Psychology（印 p341；11 节）</strong></p>
+  <ul>
+    <li><strong>解决什么问题</strong> <span class="tag t-inf">推断</span>：把「预测」与「控制」这个算法上的区分，拿到<strong>动物学习实验</strong>里去找对应。
+    </li>
+    <li><strong>核心机制</strong> <span class="tag t-src">原书</span>：14.1 立起预测与控制的对应（印 p342），14.2 进入<strong>经典条件作用</strong>（印 p343）。★ 要害在 14.2.2 与 14.2.3 的并列：<strong>Rescorla–Wagner 模型</strong>（印 p346）与 <strong>TD 模型</strong>（印 p349）都能解释一部分实验现象，而在<strong>阻断</strong>与高阶条件作用这类现象上，TD 模型给出了 Rescorla–Wagner 给不出的预测 —— 作者用 14.2.4 的模拟把这件事摊开（印 p350）。14.3 转到工具性条件作用（印 p357），14.4 延迟强化（印 p361），14.5 认知地图（印 p363），14.6 <strong>习惯性与目标导向行为</strong>（印 p364）。
+    </li>
+    <li><strong>必读小节</strong> <span class="tag t-src">原书</span>：14.1（印 p342）、14.2.1（印 p345，阻断与高阶条件作用）、<strong>14.2.2（印 p346）</strong>、<strong>14.2.3（印 p349）</strong>、14.2.4（印 p350）、14.4（印 p361）、14.6（印 p364）。
+    </li>
+    <li><strong>可跳与练习建议</strong>：本章<strong>无带 <code>*</code> 小节</strong>；★ 建议<strong>读 14.2 时把 Rescorla–Wagner 与 TD 两条更新式并排写在纸上</strong>（用文字描述即可）：差别只有一处 —— Rescorla–Wagner 只更新当前刺激的强度，TD 还会把预测往下传；这就是「阻断」现象的来源。
+    </li>
+  </ul>
+  <p><strong>第 15 章 Neuroscience（印 p377；13 节）</strong></p>
+  <ul>
+    <li><strong>解决什么问题</strong> <span class="tag t-inf">推断</span>：把 TD 误差拿到<strong>大脑</strong>里去找对应。
+    </li>
+    <li><strong>核心机制</strong> <span class="tag t-src">原书</span>：15.3 提出<strong>奖励预测误差假说</strong>（印 p381），作者称它是计算 RL 与神经科学结果<strong>汇合</strong>的产物："a hypothesis that resulted from the convergence of computational reinforcement learning and results of neuroscience experiments"（印 p377）。15.4 多巴胺（印 p383），15.5 实验支持（印 p387），<strong>15.6 TD 误差与多巴胺放电的对应</strong>（印 p390）—— 这是全书与生物学咬合最紧的一节；15.7／15.8 给出<strong>神经 actor–critic</strong> 的学习规则（印 p395／p398），15.9 享乐神经元（印 p402），15.10 集体强化学习（印 p404），15.11 脑内的模型式方法（印 p407），15.12 上瘾（印 p409）。
+    </li>
+    <li><strong>必读小节</strong> <span class="tag t-src">原书</span>：15.2（印 p380，奖励信号／强化信号／价值／预测误差四者的区分）、<strong>15.3（印 p381）</strong>、15.4（印 p383）、15.5（印 p387）、<strong>15.6（印 p390）</strong>、15.7（印 p395）、15.12（印 p409）。
+    </li>
+    <li><strong>可跳与练习建议</strong>：本章<strong>无带 <code>*</code> 小节</strong>；★ 15.2 的四个概念极易混（奖励信号 ≠ 强化信号 ≠ 价值 ≠ 预测误差），<strong>建议先做这节的辨析再读 15.3</strong>。
+    </li>
+  </ul>
+  <p><strong>第 16 章 Applications and Case Studies（印 p421；10 节）</strong></p>
+  <ul>
+    <li><strong>解决什么问题</strong> <span class="tag t-inf">推断</span>：这套方法<strong>真的做出过什么</strong>。
+    </li>
+    <li><strong>核心机制</strong> <span class="tag t-src">原书</span>：八个案例逐个拆解，每个都点明用的是本书哪一类方法：<strong>16.1 TD-Gammon</strong>（印 p421）、<strong>16.2 Samuel 的跳棋程序</strong>（印 p426）、<strong>16.3 Watson 的 Daily-Double 下注</strong>（印 p429）、<strong>16.4 内存控制优化</strong>（印 p432）、<strong>16.5 人类水平的视频游戏</strong>（印 p436）、<strong>16.6 掌握围棋</strong>（印 p441；AlphaGo 印 p444、AlphaGo Zero 印 p447）、<strong>16.7 个性化 Web 服务</strong>（印 p450）、<strong>16.8 热气流滑翔</strong>（印 p453）。★ 16.8 最不「AI 味」：用的是<strong>真实滑翔机的热气流</strong>。
+    </li>
+    <li><strong>必读小节</strong> <span class="tag t-src">原书</span>：16.1（印 p421）、16.5（印 p436）、16.6.1（印 p444）、16.6.2（印 p447）、16.8（印 p453）。
+    </li>
+    <li><strong>可跳与练习建议</strong>：本章<strong>无带 <code>*</code> 小节</strong>；八个案例之间没有前后依赖，是全书<strong>最可按兴趣跳着读</strong>的一章。★ 16.6 要与第 8.11 节（MCTS）对读：<span class="tag t-src">原书</span> AlphaGo 把那套搜索与强化学习拼在了一起（印 p442）。
+    </li>
+  </ul>
+  <p><strong>第 17 章 Frontiers（印 p459；6 节）</strong></p>
+  <ul>
+    <li><strong>解决什么问题</strong> <span class="tag t-inf">推断</span>：作者认为<strong>还没解决</strong>的问题有哪些。
+    </li>
+    <li><strong>核心机制</strong> <span class="tag t-src">原书</span>：17.1 通用价值函数与辅助任务（印 p459）—— 从「一个状态一个好」扩展到「一个状态上可以问很多问题」；17.2 用<strong>选项</strong>做时间抽象（印 p461）；17.3 <strong>观测与状态</strong>（印 p464），即部分可观测这个根问题；17.4 <strong>奖励信号设计</strong>（印 p469）；17.5 遗留问题（印 p472）；17.6 <strong>强化学习与人工智能的未来</strong>（印 p475）。
+    </li>
+    <li><strong>必读小节</strong> <span class="tag t-src">原书</span>：17.2（印 p461）、17.3（印 p464）、17.4（印 p469）、17.6（印 p475）。
+    </li>
+    <li><strong>可跳与练习建议</strong>：本章<strong>无带 <code>*</code> 小节</strong>；★ 17.4 有一条 <span class="tag t-src">原书</span> 的出处值得注意：作者提到 Minsky 1961 年所说的 "the plateau problem" —— 奖励信号设计这个「新问题」，六十几年前就被点过名。
+    </li>
+  </ul>
+  <p>★ <strong>本模块读完应能</strong>：说清 TD 模型相对 Rescorla–Wagner 多解释了什么；说明白「多巴胺与 TD 误差对应」对应的是哪个量；以及<strong>为什么奖励信号的设计是问题定义，不是工程细节</strong>。</p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">A</span><span>关键概念与算法速查表</span><span class="caret">▾</span></h2>
+  <p>下表是我的整理（页码为 <span class="tag t-src">原书</span> 可定位的印刷页）；★ 不渲染公式，更新规则一律用文字描述。★ 总纲：<strong>几乎所有方法的更新式都是「旧估计 ＋ 步长 ×（目标 − 旧估计）」，差别只在「目标」怎么算。</strong></p>
+  <table>
+    <thead><tr><th>概念 ／ 算法</th><th>一句话操作含义</th><th>首次出现</th></tr></thead>
+    <tbody>
+      <tr><td>回报</td><td>从当前时刻起的累积奖励；持续性任务用折扣把它压成有限值</td><td>印 p54</td></tr>
+      <tr><td>折扣因子 γ</td><td>未来奖励的折扣权重；<strong>它改变的是问题定义</strong></td><td>印 p54</td></tr>
+      <tr><td>Bellman 期望方程</td><td>价值 ＝ 即时回报 ＋ 折扣 × 后继价值的期望</td><td>印 p59</td></tr>
+      <tr><td>Bellman 最优方程</td><td>上式把「期望」换成「对最好动作取最大」</td><td>印 p62</td></tr>
+      <tr><td>广义策略迭代 GPI</td><td>「评估」与「改进」互相追、停在同一点 —— <strong>全书主框架</strong></td><td>印 p86</td></tr>
+      <tr><td>ε-greedy</td><td>以 ε 的概率随机试别的动作，否则取当前最好</td><td>印 p27</td></tr>
+      <tr><td>重要度采样</td><td>用两策略的动作概率之比，把 A 的数据折算成 B 的估计</td><td>印 p103</td></tr>
+      <tr><td>时序差分 TD(0)</td><td><strong>不等回合结束</strong>：用「即时回报 ＋ 下一状态当前估计」更新</td><td>印 p119</td></tr>
+      <tr><td>Sarsa</td><td>用<strong>实际采取的</strong>下一动作构造 TD 目标（on-policy）</td><td>印 p129</td></tr>
+      <tr><td>Q-learning</td><td>用<strong>当前认为最好的</strong>下一动作构造目标（off-policy）</td><td>印 p131</td></tr>
+      <tr><td>n 步回报</td><td>自举 n 步后再接估计；n＝1 是 TD，n 大则近 MC</td><td>印 p142</td></tr>
+      <tr><td>Dyna</td><td>把真实经验与模型采样出的「想象经验」放进同一更新循环</td><td>印 p161</td></tr>
+      <tr><td>MCTS</td><td>用模拟出来的轨迹构造一棵搜索树再做决策</td><td>印 p185</td></tr>
+      <tr><td>半梯度</td><td>只对估计求导、把目标当常数</td><td>印 p200</td></tr>
+      <tr><td>瓦片编码</td><td>用多组互相错开的网格做特征</td><td>印 p217</td></tr>
+      <tr><td>致命三要素</td><td>函数逼近 ＋ 自举 ＋ 离轨 —— 三者齐备就会发散</td><td>印 p264</td></tr>
+      <tr><td>λ-回报 ／ TD(λ)</td><td>把不同步数的回报按 λ 加权平均</td><td>印 p288</td></tr>
+      <tr><td>策略梯度定理</td><td>性能对策略参数的梯度，可用动作价值表达</td><td>印 p324</td></tr>
+      <tr><td>REINFORCE</td><td>纯蒙特卡洛的策略梯度</td><td>印 p326</td></tr>
+      <tr><td>Actor–Critic</td><td>策略（actor）＋ 价值（critic）两套参数一起学</td><td>印 p331</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s11">
+  <h2><span class="num">B</span><span>常见卡点与提示</span><span class="caret">▾</span></h2>
+  <p>以下 6 条是我的整理，属 <span class="tag t-inf">推断</span>。</p>
+  <ol>
+    <li><strong>卡在：把折扣因子当成超参瞎调。</strong> ★ 它改变的是<strong>问题定义</strong>：换一个 γ 就是在解另一个问题。<span class="tag t-src">原书</span> 10.4 节论证过，持续性 ＋ 逼近的设定下 γ 对问题的解<strong>毫无影响</strong>（印 p253）。<strong>怎么办</strong>：先问「这个任务为什么需要折扣」，答不上来就别动它。
+    </li>
+    <li><strong>卡在：分不清 off-policy 与 on-policy。</strong> <strong>怎么办</strong>：只看更新目标那一项 —— 用的是<strong>行为策略实际产生的下一动作</strong>（on-policy，如 Sarsa），还是<strong>目标策略当前认为最好的下一动作</strong>（off-policy，如 Q-learning）。这条分不清，第 11 章会读不懂。
+    </li>
+    <li><strong>卡在：以为「收敛性条件」是形式主义。</strong> 全书反复把收敛挂在<strong>步长序列的条件</strong>上（勘误页还补记 Sarsa 也需要步长条件）。<strong>怎么办</strong>：把它当<strong>判据</strong>读 —— 条件不满足时不是「收敛慢」，是<strong>不收敛</strong>。
+    </li>
+    <li><strong>卡在：第 9 章之后以为半梯度就是梯度下降。</strong> 半梯度的「目标」里含当前估计，<strong>对它求导得到的方向并不指向任何被优化的目标函数</strong>。<strong>怎么办</strong>：记住作者的取舍（印 p202）—— 换来的是速度与更大的适用面，代价是失去「一定在下降」的保证。
+    </li>
+    <li><strong>卡在：上手就写深度 RL，而不先跑通表格型。</strong> <span class="tag t-src">原书</span> 作者的理由是「最简单设定里把核心思想发展出来」（印 p.xiv）。<strong>怎么办</strong>：先用表格型把 Sarsa／Q-learning 跑出收敛曲线，再加函数逼近，最后才上神经网络 —— 分开调才分得清问题出在哪一层。
+    </li>
+    <li><strong>卡在：把第 14／15 章读成「科普花絮」。</strong> ★ 这两章是作者二十年论点的落点，<span class="tag t-src">原书</span> 15.6 节标题就叫 "TD Error/Dopamine Correspondence"（印 p390）。<strong>怎么办</strong>：当<strong>证据章</strong>读 —— 每读一条生物现象，回头问「它对应哪个算法的哪个量」。
+    </li>
+  </ol>
+</section>
+
+<section id="s12">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>类型</th><th>来源</th><th>用途</th><th>可信度</th></tr></thead>
+    <tbody>
+      <tr><td>一手全文（主底本）</td><td>作者站点 incompleteideas.net 官方 PDF <code>book/RLbook2020.pdf</code>（HTTP 200；73,129,769 B；<code>Last-Modified 2022-04-26</code>；版权页明文 CC BY-NC-ND 2.0）</td><td>章名、小节号、页码、引文</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>一手页面</td><td>书籍主页 <code>book/the-book-2nd.html</code>、第一版主页 <code>book/first/the-book.html</code></td><td>作者、版次、配套</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>一手页面</td><td>官方勘误页 <code>book/errata.html</code>（28,618 B；116 条）</td><td>印次与勘误实测</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>一手页面</td><td>官方代码页（7,368 B）、官方习题解答页（1,106 B，自述 "currently incomplete"）</td><td>配套实测</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>作者书外言论</td><td>站点 <code>RL-FAQ.html</code>（42,066 B）、<code>IncIdeas/BitterLesson.html</code>（7,297 B）、首页 <code>index.html</code>（16,719 B）</td><td>「作者谈话」档全部引文</td><td><span class="tag t-talk">作者谈话</span></td></tr>
+      <tr><td>第三方权威</td><td>ACM 图灵奖 2024 公告（2025-03-05）</td><td>领域定位、教材评价、被引数</td><td><span class="tag t-rep">转述</span></td></tr>
+      <tr><td>出版社编目</td><td>电子工业出版社书目页（ISBN 9787121295164；2019-09；俞凯 等译；548 页；168 元）＋ 国家出版发行信息平台</td><td>中文版编目</td><td><span class="tag t-rep">转述</span></td></tr>
+      <tr><td>机器核对（本机）</td><td><code>RLbook2020.repaired.txt</code>（1,550,133 B）与官方目录页</td><td>页码偏移、小节计数、引文命中、勘误比对</td><td><span class="tag t-src">原书</span>（数据层）</td></tr>
+    </tbody>
+  </table>
+  <p>★ 完整的检索记录、交叉验证与「明确不使用的来源」见同目录 <strong><code>强化学习-来源清单.md</code></strong>。</p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <p>按「<strong>可能影响判断的程度</strong>」排序。</p>
+  <p><strong>D1 · 勘误实测的方法与其局限（影响最大）</strong> 116 条勘误里<strong>只有 34 条可机器校验</strong>（22 条已修 ／ 4 条未修），其余 72 条是公式与符号类，无法字符串化核对。匹配用「该页 ±2 页窗口」（全文匹配会因泛串产生假阳性）。★ <strong>印 p269 那条错误串只有 <code>for v</code> 三个字符</strong>，全文出现次数极多，<strong>无法排除假阳性</strong> ⇒ 标为<strong>待人工核对</strong>，不计入「未修正」。★「22 ／ 4」的分母是 34，不是 116。</p>
+  <p><strong>D2 · 三个「存在但未取」的官方资源（影响中）</strong>：<strong>幻灯片与其他教具</strong>、<strong>论文原始文献 PDF 合辑</strong>、<strong>MOOC（Coursera 的 RL 专修）</strong> —— 只确认书籍主页上<strong>链接可达</strong>，<strong>没有下载或注册核对</strong>，故只写「存在」，不写内容。</p>
+  <p><strong>D3 · 中文版的页码一律没有采用（影响中）</strong> 中英分页不同（英文版 References 起印 p481；中文编目记「书目 第473–519页」），且<strong>我没有中文版实体可逐页核对</strong>，故页码一律用英文版。★ 另一处未采用的读数：出版方页面记中文版 <strong>548 页</strong>，与英文 PDF <strong>总页数相同</strong> —— 这<strong>可能</strong>意味着中文版沿用英文分页，也可能只是巧合；<strong>没有实体书，故不下结论，也不据此给页码。</strong></p>
+  <p><strong>D4 · 本地 PDF 的印次是推定，不是声明（影响中）</strong>：依版权页「© 2018, 2020」＋ 勘误页标题「second printing (2020)」＋ 实测 22 条已修 ／ 4 条未修，<strong>推定</strong>本地 PDF 对应 2020 第二印次。<strong>没有任何出版方书面声明</strong>支持它，故「印次」一律写成<strong>推定</strong>。</p>
+  <p><strong>D5 · PDF 文本层的字形错映射与修复表（影响中）</strong>：修复表是<strong>依上下文实测归纳</strong>的（把被错抽的字符还原为 ff、π、星号、ρ、τ、括号 等），<strong>不是出版方的编码规格</strong>。★ 另有一批码位（<strong>U+F8FF</strong>、<strong>U+00AF</strong>、<strong>U+02C6</strong> 等共 14 类，最多的是 <strong>U+2713</strong> 278 处、<strong>U+02C6</strong> 329 处）<strong>无法判定原字符</strong> —— 凡原句含这些码位，<strong>一律改用转述、不作引文</strong>。★ 边界：<strong>修复表覆盖的字符可信；表外字符一概不引。</strong></p>
+  <p><strong>D6 · 图灵奖细节来自 ACM 公告（影响小）</strong> 2025-03-05 公布、被引「超过 75,000 次」、教材「仍是本领域标准参考」均出自 ACM 官方公告，属 <span class="tag t-rep">转述</span>。★ <strong>没有独立核</strong>引用数。★ 另一处易错：<strong>ACM 点名的是 1998 年第一版</strong>，不是本页锚定的第二版。</p>
+  <p><strong>D7 · 前 10 章的课时判断来自作者前言（影响小）</strong> 「一学期 ＝ 前 10 章按序」「两学期 ＝ 全部章节」出自作者前言（印 p.xiv），但<strong>各校实际安排差异很大</strong>，本页<strong>不据此给「多少小时」</strong>。</p>
+  <p><strong>D8 · 施工图与实测的一处不符（我主动修正）</strong> 施工图记「第 7 章 6 节、全书小节总数 165」。我按官方目录页逐条机器统计：<strong>第 7 章为 7 节</strong>（7.1 n-step TD Prediction、7.2 n-step Sarsa、7.3 n-step Off-policy Learning、7.4 带星号的 Per-decision Methods with Control Variates、7.5 Off-policy Learning Without Importance Sampling: The n-step Tree Backup Algorithm、7.6 带星号的 A Unifying Algorithm: n-step Q(σ)、7.7 Summary），<strong>全书 166 节</strong>。★ 正文按<strong>实测（7 节 ／ 166）</strong>写。</p>
+</section>
+
+<footer>
+  生成于 2026-10-16 · 来源清单与交叉验证记录见同目录 <code>强化学习-来源清单.md</code><br>
+  本页章名、章号、小节号、印刷页码与全部英文引文，取自作者站点发布的官方全 PDF <code>RLbook2020.pdf</code>（版权页明文 CC BY-NC-ND 2.0，可逐页定位），故标<b>原书</b>，落 <b>A 级（全文核验）</b>。但该 PDF <b>不是与官方勘误页完全同步的印次</b>（116 条勘误中机器可校验 34 条，22 条已修 ／ 4 条未修，见 §5 与附录 D1），且论文原始文献合辑、幻灯片与 MOOC <b>存在但未取</b>（附录 D2）；引用一律以本机这份 PDF 为据。模块划分、三条读者路线、逐章「必读／可跳」判断都是我的整理，标<b>推断</b>；中文版页码一个都没采用（附录 D3）。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

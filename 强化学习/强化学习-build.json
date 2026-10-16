@@ -1,0 +1,26 @@
+{
+  "subtitle": "Reinforcement Learning: An Introduction · Second edition（MIT Press 2018／2020，作者 Sutton & Barto）· 本页锚定作者站点发布的官方全 PDF `RLbook2020.pdf`（548 页，印 p1–480 ＋ References ＋ Index）",
+  "title_suffix": "学习路线图与章节地图",
+  "meta": [
+    ["原名", "Reinforcement Learning: An Introduction"],
+    ["作者", "Richard S. Sutton · Andrew G. Barto"],
+    ["版次 · ISBN", "<b>Second edition</b>；MIT Press, Cambridge MA；© 2018, 2020；ISBN 9780262039246（hardcover）／LCCN 2018023826／LCC Q325.6.R45 2018；丛书 Adaptive Computation and Machine Learning（Francis Bach, series editor）"],
+    ["页数", "548 页（PDF 总页）；正文 <b>印 p1–480</b> ＋ References <b>印 p481–518</b> ＋ Index <b>印 p519–526</b>"],
+    ["结构", "<b>17 章 ＋ 3 个部分</b>（Part I Tabular Solution Methods ／ Part II Approximate Solution Methods ／ Part III Looking Deeper），<b>本书没有任何附录</b>"],
+    ["中译", "《强化学习（第 2 版）》，俞凯 等译，电子工业出版社 2019-09，ISBN 9787121295164，「智源人工智能丛书」／博文视点出品（<b>只给编目字段，不给页码</b>，理由见附录 D3）"],
+    ["配套资源", "官方全 PDF（含去边距版）· 官方代码 · 官方勘误页 · 官方习题解答（自述不完整）· MOOC · 幻灯片与 LaTeX 记号文件 —— 逐项实测见上部 §4"],
+    ["形态", "<b>教材型</b> —— 本页不是逐章精华，是「学习路线图 ＋ 章节地图」"],
+    ["原文核验级别", "<b>A（全文核验）</b> —— 作者站点发布的官方全 PDF 可逐页定位，版权页明文 CC BY-NC-ND 2.0；支持材料与「弱在哪」见图例下方两段"],
+    ["状态", "未标注已读／想读"]
+  ],
+  "legend_title": "可信度标注（本书专用四档）",
+  "legend": [
+    ["t-src", "原书", "有<b>可定位</b>的文本支撑：官方全 PDF（精确到印刷页码与小节号）、作者前言原文、版权页与目录页。<b>书内的话（前言／正文／习题／历史注记）一律归本档。</b>"],
+    ["t-talk", "作者谈话", "Sutton 本人<b>书外</b>言论（其站点 RL-FAQ ／ 随笔 ／ 读物清单 ／ 公开访谈）—— <b>不是在世作者的访谈套话，请勿当成书内内容</b>"],
+    ["t-rep", "转述", "二手概括或第三方陈述（如 ACM 图灵奖公告、出版方与图书馆编目），措辞可能与原书有出入"],
+    ["t-inf", "推断", "我的整理或判断，<b>无直接原文支撑</b>（模块划分、路线、必读／可跳判断全部属于本档）"]
+  ],
+  "legend_note": "★ <b>为什么本书设「作者谈话」档，而《费曼物理学讲义》那本先例不设</b>：理由是<b>材料性质不同</b>，不是标准变了。费曼的书外言论谈的不是「这套讲义该怎么读」；Sutton 则在自己站点上留了一份 <b>RL-FAQ</b>（含「Questions about studying and teaching RL」一节，直接回答该按什么顺序读、该用什么书）、一份亲自开的读物清单与一系列讲他智能观的短文 —— 这些<b>恰恰直接回答「该不该信这本书的路线」</b>。★ 界线：<b>书内的前言与正文一律归「原书」，只有书外的作者言论才归「作者谈话」</b>。",
+  "legend_extra": "<h3>这类书为什么用另一种形态</h3>\n    <p style=\"margin:8px 0 0;font-size:12.5px;color:var(--ink3)\">教材的价值在动手。给一本 548 页、17 章、带习题与代码的 RL 教科书写「逐章要点」，你合上书依然写不出一个 Q-learning 的更新循环。<br>所以本页不替代原书，只回答三个问题：<b>它训练什么能力 / 该按什么顺序读 / 哪些可以跳。</b></p>\n    <h3 style=\"margin:16px 0 0\">支持 A 级的材料与「弱在哪」</h3>\n    <p style=\"margin:8px 0 0;font-size:12.5px;color:var(--ink3)\"><b>支持</b>：① 作者 Sutton 的个人站点 <b>incompleteideas.net</b> 发布全书 PDF（<code>book/RLbook2020.pdf</code>，实测 HTTP 200、73,129,769 B、<code>Last-Modified: 2022-04-26</code>）；② 该 PDF 的<b>版权页原文明载</b> \"This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 2.0 Generic License\"；③ 目录页、每章首页与页码偏移已与全文<b>逐页机器核对</b>（印刷页码 ＋ 22 ＝ PDF 页码），故章名、页码、小节号、带 <code>*</code> 标记均可当「原书」用。<br><b>弱在哪</b>：第一，这不是「出版方在线全文」，而是「作者站点发布的 PDF」—— 官方勘误页针对「2020 第二印次」，本地 PDF 只修了其中一部分（116 条里机器可校验 34 条：22 条已修、4 条未修），见 §5 与附录 D1。第二，本 PDF 的<b>文字层有系统性字形错映射</b>（原始抽取里 <code>Off-policy</code> 的两个 \"f\" 会被抽成无关的制表符号），故本页英文引文一律取自经字形修复后的语料，凡原句含无法复原的数学符号一律改用转述（见附录 D5）。</p>",
+  "footer_note": "本页章名、章号、小节号、印刷页码与全部英文引文，取自作者站点发布的官方全 PDF <code>RLbook2020.pdf</code>（版权页明文 CC BY-NC-ND 2.0，可逐页定位），故标<b>原书</b>，落 <b>A 级（全文核验）</b>。但该 PDF <b>不是与官方勘误页完全同步的印次</b>（116 条勘误中机器可校验 34 条，22 条已修 ／ 4 条未修，见 §5 与附录 D1），且论文原始文献合辑、幻灯片与 MOOC <b>存在但未取</b>（附录 D2）；引用一律以本机这份 PDF 为据。模块划分、三条读者路线、逐章「必读／可跳」判断都是我的整理，标<b>推断</b>；中文版页码一个都没采用（附录 D3）。请以原书为准。"
+}
