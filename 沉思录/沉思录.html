@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《沉思录》读书精华</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《沉思录》<small>读书精华 · 2026-10-16</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 核心主题与结构机制</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 中文译本怎么选</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 逐卷深读</div>
+    <a href="#s7">6 全书骨架与写作机制：一本没打算出版的书</a>
+    <a href="#s8">7 第一卷：他从谁那里学到了什么（17 段感恩名单）</a>
+    <a href="#s9">8 第二卷：军营里的开篇训诫</a>
+    <a href="#s10">9 第三卷：关于「不要等」——连理解力也会跟你一起老去</a>
+    <a href="#s11">10 第四卷：「内在堡垒」——退到自己心里去</a>
+    <a href="#s12">11 第五卷：早晨不愿起床，与「宇宙给每个人开的同一张药方」</a>
+    <a href="#s13">12 第六卷：段数最多的一卷 —— 「最好的报复是不变成那样的人」</a>
+    <a href="#s14">13 第七卷：说给自己听的短句集（44 段）</a>
+    <a href="#s15">14 第八卷：堡垒在自己心里（58 段）</a>
+    <a href="#s16">15 第九卷：把「罪」还给犯罪的人（43 段）</a>
+    <a href="#s17">16 第十卷：对灵魂的自问（37 段）</a>
+    <a href="#s18">17 第十一卷：灵魂的自我审视（31 段）</a>
+    <a href="#s19">18 第十二卷：终点与告别（27 段）</a>
+    <a href="#s20">19 主题与思想史：斯多亚的三个核心操作与「内在堡垒」读法</a>
+    <a href="#s21">20 版本、译本与中文接受史</a>
+    <div class="grp">附录</div>
+    <a href="#s22">A 关键概念与人物速查</a>
+    <a href="#s23">B 延伸阅读</a>
+    <a href="#s24">C 来源清单</a>
+    <a href="#s25">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《沉思录》读书精华</h1>
+  <div class="sub">阅读指引与精华解析</div>
+  <div class="meta">
+    <div><b>作者</b>Marcus Aurelius Antoninus（马可·奥勒留，121-04-26 – 180-03-17，罗马皇帝，161–180 在位）</div>
+    <div><b>原题</b>Τὰ εἰς ἑαυτόν（字面意为「写给自己的东西」）；★ 原始标题未知、可能原本无题，今名是后人按内容所起</div>
+    <div><b>体裁</b>私人笔记／自我训诫（无献词、无导论、无背景交代）；用希腊文写成；12 卷共 412 段（段号依 PG #2680 底本）</div>
+    <div><b>写作时间</b>约公元 170–180 年间，多在军营与行省旅次中写成（★ 具体年代为常见说法，无定论；见附录 D）</div>
+    <div><b>底本</b>主底本 Project Gutenberg #2680（George Long 译，12 卷 412 段）＋ 交叉底本 #55317（George W. Chrystal 译）＋ 第三路 #15877（Long 译另一印本，含编者导言）</div>
+    <div><b>核验级别</b>英文原文 A 级（两个独立公版英译：Long 译 #2680 与 Chrystal 译 #55317；第三路 Long 译 #15877 辅助）／中文引句 C 级（未核对原著、不给页码）</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度说明</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 可逐字对到底本的英文引文 —— 本书有<b>两条独立公版底本</b>：Project Gutenberg <b>#2680（George Long 译）</b>与 <b>#55317（George W. Chrystal 译）</b>，另以 #15877（Long 译另一印本）作第三路。每条均先在本地副本里 grep 到完整句子再照抄，定位一律写「第 N 卷第 M 段」，并注明段号依 PG #2680 底本；引 #55317／#15877 时另注其编号体系与主底本不同。不给页码</li>
+    <li><span class="tag t-rep">转述</span> 中文引句与二手说法（如各中译本的书目信息、Rees 1992／Hadot 1998／Rutherford 1989 等后人对本书的解释与评价），来自公开资料转引；<b>未核对原著、不给页码</b>。★ 凡后人对本书的评价一律标明作者与年份，与文本原文严格分开</li>
+    <li><span class="tag t-inf">推断</span> 本报告自己的判断，写法如「本报告认为」</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本报告的档位边界：`【原书】` 指英文直引，均已在本地公版底本里 grep 到完整句子后照抄，定位一律「第 N 卷第 M 段」（段号依 Project Gutenberg #2680 底本，不同译本编号不同），不给页码。中文引句一律标 `【转述】`（未核对原著、不给页码），不作原文使用。★ 本报告<b>不设「作者谈话」档，并宣告不使用</b>，理由四条：其一，马可·奥勒留没有书信集、没有访谈、没有为本书写的序或说明传世；其二，本书本身就是「写给自己的话」，不存在「书外另一类文字」这一层次，若把本书段落当「作者谈话」，等于把唯一材料重复使用两次；其三，后世研究者与批评家论马可的文字属于 `【转述】`，不得塞进本档；其四，中文世界里「某某名人说这是他最爱读的书」一类说法来源多为二手转述、无从核实，本报告一概不采用。★ 一条贯穿全书的纪律：本书是罗马皇帝在军营里写给自己的私人笔记，从没打算出版；把斯多亚读成「忍耐／认命」是误读，它的核心是<b>判断</b>（什么在你控制之内），不是情绪压抑。
+  </p>
+  <h3>引文核验级别（2026-10-02 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书落在 <b>B 级（带页码引文）</b>：无公开全文，但上海译文 2016 修订版的<b>逐章页码已由独立来源核实成立</b>，另有带页码引文（<b>p.14／p.19／p.25</b>）。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p>《沉思录》是<strong>一个罗马皇帝写给自己的私人笔记</strong>：马可·奥勒留在多瑙河前线的军营里，用希腊文反复给自己写同几句话 —— 分清什么在你控制之内、什么不在；把「判断」而不是「事情本身」当作情绪的来源；把自己看成宇宙这个「城邦」里的一个公民；以及，不断地提醒自己会死。它不是一部写给读者的哲学论著，不是格言集，也不是什么「帝王修养手册」；它是一部<strong>没有打算出版、因而保留了重复、残句和自造省略的自我训练记录</strong>。</p>
+  <p>如果只记一句话：<strong>这本书的价值不在「它说了哪些金句」，而在「一个人如何在极不利的处境里，每天重新检查自己脑子里的判断」。</strong></p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>全书 <strong>12 卷、412 段</strong>（★ 这一组数字是本报告最有价值的一条交叉验证事实：<strong>两个独立公版英译的 12 卷结构逐卷对齐</strong>）。各卷段数与本报告对应节如下（★ 行范围与段号均依主底本 <strong>PG #2680</strong>）：</p>
+  <table>
+    <thead><tr><th>卷</th><th>底本行范围</th><th>段数</th><th>首／末段</th><th>底本跳号</th><th>本报告对应节</th></tr></thead>
+    <tbody>
+      <tr><td>I</td><td>579–910</td><td>17</td><td>I／XVII</td><td>无</td><td><code>## 7</code></td></tr>
+      <tr><td>II</td><td>911–1109</td><td>14</td><td>I／XV</td><td>★ 缺 <code>V.</code>（IV 后直接 VI）</td><td><code>## 8</code></td></tr>
+      <tr><td>III</td><td>1110–1402</td><td>17</td><td>I／XVII</td><td>无</td><td><code>## 9</code></td></tr>
+      <tr><td>IV</td><td>1403–1896</td><td>43</td><td>I／XLIII</td><td>无</td><td><code>## 10</code></td></tr>
+      <tr><td>V</td><td>1897–2373</td><td>30</td><td>I／XXX</td><td>无</td><td><code>## 11</code></td></tr>
+      <tr><td>VI</td><td>2374–2889</td><td>51</td><td>I／LIV</td><td>★ 缺 <code>XXIII.</code>／<code>XXXIV.</code>／<code>XXXVIII.</code></td><td><code>## 12</code></td></tr>
+      <tr><td>VII</td><td>2890–3428</td><td>44</td><td>I／XLIV</td><td>无</td><td><code>## 13</code></td></tr>
+      <tr><td>VIII</td><td>3429–3976</td><td>58</td><td>I／LVIII</td><td>无</td><td><code>## 14</code></td></tr>
+      <tr><td>IX</td><td>3977–4459</td><td>43</td><td>I／XLIII</td><td>无</td><td><code>## 15</code></td></tr>
+      <tr><td>X</td><td>4460–4999</td><td>37</td><td>I／XXXVIII</td><td>★ 缺 <code>XXIV.</code></td><td><code>## 16</code></td></tr>
+      <tr><td>XI</td><td>5000–5402</td><td>31</td><td>I／XXXI</td><td>无</td><td><code>## 17</code></td></tr>
+      <tr><td>XII</td><td>5403–5736</td><td>27</td><td>I／XXVII</td><td>无</td><td><code>## 18</code></td></tr>
+      <tr><td><strong>合计</strong></td><td></td><td><strong>412 段</strong></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>三条必须照做的说明</strong>：</p>
+  <p><strong>第一，卷 XII 止于第 5736 行。</strong> 第 5737 行起是 <code>APPENDIX</code>（马可与 Fronto 的通信，<strong>不是正文的一部分</strong>）、<code>NOTES</code>、<code>GLOSSARY</code> —— 这三部分的罗马数字编号是<strong>附录条目编号</strong>，<strong>不能</strong>算进卷 XII 的正文段号。</p>
+  <p><strong>第二，底本自身的跳号照录、不改动。</strong> 卷 II 缺 <code>V.</code>、卷 VI 缺 <code>XXIII.</code>／<code>XXXIV.</code>／<code>XXXVIII.</code>、卷 X 缺 <code>XXIV.</code> —— 这是<strong>PG #2680 这个底本的转录事实</strong>，本报告如实注明，<strong>不补、不猜</strong>。</p>
+  <p><strong>第三，412 段只是 #2680 这个底本的分段。</strong> 它与通行的 Long 译本单行本、或标准希腊文编号（Teubner／Loeb）<strong>可能逐段不同</strong>；引 #55317（Chrystal 译）时更要注明<strong>两边编号体系不同</strong>（例如本报告卷 12 第 21 段「To them that ask thee, Where hast thou seen the Gods」，在 Chrystal 本里是 <strong>Book XII 第 28 段</strong>）。</p>
+  <p>★ <strong>双源对齐的实测结果</strong>：两个独立公版英译（#2680 与 #55317）都是 <strong>12 卷</strong>，卷序与内容逐卷可对齐。两本的关键差异有二：一是<strong>分段粗细不同</strong> —— Chrystal 常把 Long 分为两三段的内容合编为一段，故 Chrystal 本每卷的编号数普遍少于 #2680；二是<strong>编号起点与跳号不同</strong> —— 同一句话在两个底本里的「第几段」经常不一样。这正是本报告「关键句用 #55317 作独立译者交叉对照」的根据，也是「段号只对某一底本成立」这条纪律的由来。</p>
+  <p>★ <strong>一条对读者很实用的对齐细节</strong>：两本虽然段数不同，但<strong>卷的数目与卷序是稳定的</strong>，所以「第几卷」这个坐标<strong>跨译本通用</strong>，「第几段」则<strong>不通用</strong>。★ 因此本报告在每卷节里都用「第 N 卷」定到卷、再用「第 M 段」精确定到段 —— 前者你可以带着去读任何译本，后者只能对着 #2680 使用（引 #55317 时另注）。★ 建议读者做笔记时也照这个办法记：<strong>先记卷，再记段，并注明你用的是哪一版</strong>，这样和别人对读时不会各说各话。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>核心主题与结构机制</span><span class="caret">▾</span></h2>
+  <p>本书的思想机制，可以用六条来抓。★ 这六条<strong>都是从文本内部读出来的</strong>，不是从「斯多亚哲学概论」搬来的。</p>
+  <p><strong>（一）它是私人笔记，不是著作。</strong> 这是读这本书前必须接受的第一件事。全书没有献词、没有导论、没有结论，没有交代背景，没有解释人名 —— 大量段落直接对「你」说话，那个「你」是<strong>作者自己</strong>。这造成两个后果：一是<strong>段落常常需要上下文才能读懂</strong>（有些句子短得只剩半句，有些代称只有他自己知道指谁）；二是<strong>同一件事会被反复写</strong> —— 死、判断、宇宙公民、早晨起床 —— 因为在不同的日子里，他需要用不同的话说服自己同一件事。本报告认为，<strong>把它当语录读，会漏掉这套「重复」本身的功能</strong>（<span class="tag t-inf">推断</span>）。</p>
+  <p><strong>（二）核心操作是「判断」，不是「忍耐」。</strong> 斯多亚在本书里最要紧的一条是：<strong>使人痛苦的不是事情，而是人对事情的判断</strong>。原文把它说得极简：<span class="tag t-src">原书</span> 第四卷第 7 段，原文是：「Let opinion be taken away, and no man will think himself wronged.」再如第八卷第 47 段，他给出一条具体操作 —— 遇到一句话、一件事，先守住它<strong>最初的样子</strong>，不要往里加东西：<span class="tag t-src">原书</span> 原文是：「Keep thyself to the first bare and naked apprehensions of things, as they present themselves unto thee, and add not unto them.」★ 请特别注意：这里要处理的是<strong>判断</strong>，不是把情绪「憋回去」。把斯多亚读成「压抑情绪」「不许有感情」，是把它读反了。</p>
+  <p><strong>（三）控制二分：什么在你控制之内，什么不在。</strong> 全书的实践轴线就是这条分界：属于「我」的，是我的判断、我的意愿、我的行动；不属于「我」的，是身体、财产、名声、他人的想法、以及一切外部事件。★ 第三卷第 4 段把不属于自己的那一类点得很清楚：他在那儿把时间不许花在打听别人身上。而第六卷第 36 段则把这条二分讲成一条因果链：凡不在自己「意愿的权限」之内的东西，一旦被当成「好」或「坏」，人就必然要去埋怨神、去恨人。★ 本报告在附录 A 会专门交代：这条二分在希腊文里是 <code>τὰ ἐφ' ἡμῖν</code>（在我们能力之内的）与 <code>τὰ οὐκ ἐφ' ἡμῖν</code>（在我们能力之外的）—— 而 Long 译英时主要用 <code>in thy power</code>／<code>in our power</code> 这类短语来承接，<strong>并没有</strong>一个固定的术语。</p>
+  <p><strong>（四）顺应自然与「宇宙公民」。</strong> <code>φύσις</code>（physis，自然／本性）是本书的另一个轴。理性和自然是同一件事的两面：人作为「有理性的动物」，其「自然」就是<strong>按理性行动</strong>；人又是宇宙这个大城邦的公民，因此「合于自然」同时意味着「合于社会」。★ 实测：在 #2680 里 <code>nature</code> 出现 <strong>273</strong> 次，是全书第一实词（<code>reason</code> 101 次、<code>death</code> 81 次、<code>the gods</code> 64 次、<code>universe</code> 64 次、<code>opinion</code> 50 次）。这不是巧合 —— 「自然」是他的总纲。</p>
+  <p><strong>（五）死亡与无常，是反复练习，不是消极。</strong> 书中一遍遍写「你会死」「一切都在流失」「最长的寿命与最短的，失去的是同一件东西 —— 现在这一瞬」。这看起来最像「人生无常」的鸡汤。★ 但它在这里的功能是<strong>反过来的</strong>：通过把「死」想清楚，把「当下这一件事」的价值顶上来。第二卷第 12 段说得最直白 —— 就算你活三千年，你失去的也只是当下这一点；★ 第十二卷第 1 段把它接到行动上：若你活着时从不曾「开始按自然而活」，那才是真正该怕的事。<strong>它用死亡来给行动定标，不是用它来取消行动。</strong></p>
+  <p><strong>（六）「主导部分」与「内在堡垒」。</strong> 书中有一个反复出现的意象：人心里有一个「主导的部分」—— 它是意志与判断的所在，别人<strong>动不了</strong>它，只有你自己能动它，或你允许它被动。★ 第八卷第 46 段把它写成一座堡垒：<span class="tag t-src">原书</span> 原文是：「let thy chief fort and place of defence be, a mind free from passions. A stronger place, (whereunto to make his refuge, and so to become impregnable) and better fortified than this, hath no man.」★ 提示（避免混淆）：这里「free from passions」的 passions 不是「热情」，而是希腊文 <code>πάθη</code> 所指的<strong>扰乱性情绪</strong>（恐惧、贪欲、愤怒一类），是「不受情绪扰乱」，<strong>不是「没有感情」</strong>。★ 另需注意：<strong>Long 把这层意思译成的词并不统一</strong> —— 本报告实测，<code>ruling part</code> 在 #2680 里只出现 <strong>2</strong> 次，而 <code>commanding part</code> 3 次、<code>mistress part</code> 2 次、<code>over-ruling part</code> 1 次、<code>the chief commanding part</code> 1 次；<strong>通行现代译法里的 <code>guiding principle</code> 在 #2680 里是 0 次</strong>。所以凡要谈这个概念，本报告一律回到底本的具体用词，不套一个现代术语上去。</p>
+  <p><strong>（七）把六条机制合起来看，它其实是同一台机器的六个零件。</strong> ★ 上面六条不是六个并列的主题，而是<strong>同一套操作的六个面</strong>：判断（第二条）决定你怎么看一件事，主导部分（第六条）是下判断的地方，顺应自然与宇宙公民（第四条）是判断的尺度，死亡练习（第五条）给它一个时间尺度，而「它是私人笔记、重复就是练习」（第一条）则交代了这台机器<strong>为什么反复运转</strong>。★ 因此本书读起来才会「绕」：它不是一个论点接一个论点，而是<strong>同一个动作在一天里的不同时刻反复做</strong>。★ <code>## 19</code> 会把这套操作整理成三个「训练」（判断／欲望／行动），并交代这是谁提出的读法；<code>## 6</code> 之前已经先说清了它的来历。★ 先记住这一条，下部逐卷读时就不容易被「他又在说同一件事」绊住。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <p><strong>（一）第一遍别当语录读，当「一份反复的自我提醒」读。</strong> 这本书最容易被「金句化」。建议第一遍只做两件很朴素的事：<strong>给它编号</strong>（记住你读的是第几卷第几段，方便回头找），以及<strong>在不同卷里找同一件事</strong>（比如「死」和「早晨起床」都反复出现）。等你发现他说来说去是同几件事，你就摸到这本书的性质了。</p>
+  <p><strong>（二）接受它的「不完整」。</strong> 原文里有残句、有跳号、有用人名简称的地方、有语法不完整的句子。这不是翻译的毛病，是这本私人笔记本来就这样。遇到读不通的句子，<strong>先怀疑是原文残损或省略，而不是怀疑自己理解力</strong> —— 底本本身的跳号（卷 II 缺 <code>V.</code> 等）已经如实登记在 <code>## 1</code>。</p>
+  <p><strong>（三）把「判断」当作读每一段的抓手。</strong> 遇到一句看起来像「认命」的话，先问一句：他在这里谈的是<strong>事情本身</strong>，还是<strong>我对事情的判断</strong>？例如「Let opinion be taken away, and no man will think himself wronged」—— 它不是在说「受了冤枉也别生气」，而是在说「没经过你判断的同意，事情伤不到你」。这一问一答，能把全书大半段落读通。</p>
+  <p><strong>（四）读关键段落，建议对照两个独立译本。</strong> 本报告的主底本（#2680）与交叉底本（#55317）是<strong>两个独立译者</strong>。同一段文字，两本的处理往往不同：Long 偏文言、保留更多希腊词音译与古雅措辞（如 <code>dogmata</code>、<code>εὔμοιρος</code>），Chrystal 偏近代散文、把长句拆短。<strong>同一句在两个译本里读起来像不像两句话，本身就是一条信息</strong> —— 它提示你哪里是原文的难点。</p>
+  <p><strong>（五）请把「斯多亚」这条标签放到读完之后再贴。</strong> 本书是斯多亚传统的实践文本，但它不是一个「斯多亚教义问答」。先读文本，再谈它属于哪一派；反过来先拿一套「斯多亚三原则」去套每一段，会把很多具体的、活的东西读丢。</p>
+  <p><strong>（六）对「名人推荐」「枕边书」这类说法保持距离。</strong> 这类说法属于<strong>接受史</strong>，不属于<strong>文本内容</strong>。它们能说明这本书被怎样使用，<strong>不能</strong>说明这本书写了什么。凡在别处看到「某名人说《沉思录》教他……」这类句子，建议回到原文段落核对 —— 你会常常发现，被转述的那句话在原文里的语境完全不是那个意思。</p>
+  <p><strong>（七）如果你只想读一卷。</strong> 建议从<strong>第二卷</strong>起（那是「军营里的开篇训诫」，短、集中、火力全开），再读<strong>第四卷</strong>（「内在堡垒」那一卷的名段最密）。第一卷是 17 段感恩名单，读起来像人名表，<strong>放最后读</strong>反而更懂 —— 因为你要先知道后面那些主张，才知道他感恩的到底是什么品质。</p>
+  <p><strong>（八）与其「翻到哪算哪」，不如按主题串读。</strong> 本书没有情节可循，但有几个<strong>贯穿全书的高频主题</strong>，可以拿来做线索把它们串起来读：<strong>死</strong>（第二、四、六、九、十二卷最密）、<strong>判断与印象</strong>（第四、七、八、九、十二卷）、<strong>宇宙整体与「从高处看」</strong>（第四、七、九、十二卷）、<strong>社会性的行动</strong>（第三、六、九、十一卷）、<strong>早晨与日常的自律</strong>（第二、五、十卷）。★ 按主题串读的好处是：你会亲眼看到<strong>同一个道理在不同日子里被重写成不同的话</strong> —— 这正是这本书区别于「格言集」的地方。</p>
+  <p><strong>（九）把「重复」当路标，不要当冗余。</strong> 遇到一段似乎「前面说过了」，别急着跳过：<strong>先比较它和前面那次的措辞差在哪里</strong>。★ 差别往往就是这天的处境与他的状态。★ 反过来说，如果一段话你完全读不进去（比如那些成串的人名、地名、史例），<strong>跳过也无妨</strong> —— 它们多是「样本」，是给当时的他自己看的，不影响主干。★ 记住这本书是<strong>写给一个人的</strong>，而你不是他；<strong>有些段落对你有用、有些没用，是正常的。</strong></p>
+  <p><strong>（十）最后一条：不要用一次读完来判断这本书。</strong> ★ 它的设计本来就不是让人一次读完的（它甚至不是「设计」出来的）。★ 更贴近它本来用法的方式是：<strong>隔一段时间回来翻一段</strong>，尤其是当你正遇到一件难办的事的时候。★ 这不是「鸡汤式」的用法 —— 恰恰相反，它对应的是文本自己的机制：<code>## 6</code> 说过，重复不是重复，是练习；<code>## 19</code> 会说，练习是要在具体处境里做的。<strong>什么时候翻开它，本身就是读法的一部分。</strong></p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <span class="tag t-rep">转述</span> 本节的中译本书目<strong>全部来自公开书目信息与公开评述</strong>，<strong>未逐册核对</strong>；译者的年份、出版社若有两个说法，本报告<strong>并列</strong>而不择一。<strong>本节不引用任何中译本的正文</strong>（那是版权内容）。</p>
+  <table>
+    <thead><tr><th>译者</th><th>出版社</th><th>所据底本</th><th>备注</th></tr></thead>
+    <tbody>
+      <tr><td>梁实秋</td><td>译林出版社（另有「1959 年首译、2003 年才出版」之说）</td><td><strong>据 C. R. Haines 1916 年 Loeb 英译转译</strong></td><td>据称是<strong>第一个中文全译本</strong></td></tr>
+      <tr><td>何怀宏</td><td>中央编译出版社 2008（另有「1989 年中国社会科学出版社初版」之说）</td><td><strong>据 George Long 英译转译</strong></td><td>国内流传最广</td></tr>
+      <tr><td>王焕生</td><td>2010（据称天津社会科学院出版社）</td><td>★ 据称<strong>直接据希腊原文翻译</strong></td><td>据称「国内第一本直译自希腊原文」</td></tr>
+      <tr><td>朱汝庆</td><td>1998（据称中国社会科学出版社）</td><td><strong>据 Jeremy Collier 英译转译</strong></td><td>与梁、何二本所据底本又不同</td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>三条必须写进本节（也是本报告 §5 的第六条）的警告</strong>：</p>
+  <p><strong>第一，网上「有上百个中译本」的说法不可作事实引用。</strong> 这类说法来自内容农场一类的站点，<strong>本报告未能核实其来源</strong>；本报告只能说「网上流传着『上百个译本』的说法，未能核实」。★ 一个反证是：本书<strong>现存抄本只有两部主要来源</strong>（详见 <code>## 20</code>），而中译本数量再多也<strong>不改变底本只有两个</strong>这件事 —— 「译本多」与「底本多」是两码事，不能混着说。</p>
+  <p><strong>第二，各译本的底本不同，这直接决定文本差异。</strong> 从上表看得很清楚：梁实秋据 <strong>Haines 英译</strong>、何怀宏据 <strong>Long 英译</strong>、朱汝庆据 <strong>Collier 英译</strong>、王焕生据称据<strong>希腊原文</strong>。也就是说，四个中译本里至少有三个是<strong>从英文转译</strong>的，而它们转译的英文又彼此不同。所以谈「译笔不同」是不够的 —— 必须<strong>分别标明每个译本的底本</strong>。★ 顺带说明：何怀宏所据的 George Long 英译，正是本报告主底本 #2680 的译者。</p>
+  <p><strong>第三，初版年份在多个来源间互相矛盾。</strong> 例如梁实秋本有「1959 年首译」与「2003 年出版」两说；何怀宏本有「1989」与「2008」两说。★ 本报告<strong>两说并列</strong>，<strong>不替读者选一个</strong>，并登记进附录 D。</p>
+  <p>★ <strong>为什么「底本层次」这件事比「译笔好坏」重要？</strong> 因为<strong>底本决定你能读到什么，译笔只决定它读起来顺不顺</strong>。★ 举例说明：如果 A 本据 Long 英译转译、B 本据 Collier 英译转译，那么<strong>两本在某些段落上的差别，未必是译者水平的差别，而首先是他所依据的那个英译本本来就不同</strong>。★ 再举一个本报告实测到的例子：同样一句「世界是同一个城邦」，本报告主底本 #2680 作「My city and country as I am Antoninus, is Rome; as a man, the whole world.」，而 #15877（同为 Long 译的另一印本）作「my city and country, so far as I am Antoninus, is Rome; but so far as I am a man, it is the world.」—— <strong>同一位译者、两个印本，句子都不一样</strong>。★ 连英文版之间都如此，中文转译本之间的差异更可想而知。★ 所以本报告给读者的建议不是「挑最好的中译本」，而是 <strong>「先弄清你手里那本据的是哪一层底本，再决定信它到什么程度」</strong>。</p>
+  <p><strong>给读者的一句实操建议</strong>：关心「原文到底怎么写」，最好的办法不是换中译本，而是<strong>同时看两个独立的英译</strong>（#2680 与 #55317 都是公版、免费可得，入口见来源清单）。中文转译本之间比不出原文，只有回到两个独立译者的英文，才能看出哪里是原文的难点。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <p>下表逐条列出常被传播的「说法」与<strong>文本实际情形</strong>的差距。★ 全部定位到「卷／段」，<strong>不给页码</strong>；段号依 PG #2680 底本。</p>
+  <table>
+    <thead><tr><th>流行说法</th><th>原文／实际情形</th><th>定位</th></tr></thead>
+    <tbody>
+      <tr><td>「<code>amor fati</code>（命运之爱）是马可的格言」</td><td>★★ <strong>该短语在《沉思录》原文里根本不存在。</strong> 本报告对 #2680、#55317、#15877 三份底本逐一做<strong>词边界</strong> grep：<code>\bamor fati\b</code> 命中数 <strong>均为 0</strong>。它是<strong>尼采</strong>的用语（《快乐的科学》1882／《瞧，这个人》1888），不是马可的原词。</td><td>三底本 grep 实测，见 <code>## 5</code> 与附录</td></tr>
+      <tr><td>「<code>memento mori</code>（记住你会死）是本书的核心口号」</td><td>★★ <strong>该拉丁短语在原文里不存在。</strong> <code>\bmemento mori\b</code> 在三底本命中数<strong>均为 0</strong>。它源自罗马凯旋式与基督教传统，是<strong>后世附加的标签</strong>。「你会死」这层意思原文当然有，但用的是别的说法，不是这个短语。</td><td>三底本 grep 实测</td></tr>
+      <tr><td>「<code>premeditatio malorum</code>（预想灾祸）出自《沉思录》」</td><td>★★ <strong>该拉丁短语在原文里不存在。</strong> <code>\bpremeditatio</code>（前缀匹配，容许变格）在三底本命中数<strong>均为 0</strong>。它是拉丁斯多亚（尤其塞内卡、爱比克泰德一线）的说法，<strong>非本书原词</strong>。</td><td>三底本 grep 实测</td></tr>
+      <tr><td>「斯多亚＝压抑情绪／不能有感情」</td><td>★ 恰恰相反。原文讲的是<strong>判断</strong>：「Let opinion be taken away, and no man will think himself wronged.」（把「意见」拿掉，就没有人觉得自己受了委屈）—— 要处理的是<strong>判断</strong>，不是把情绪憋住。</td><td>第四卷第 7 段</td></tr>
+      <tr><td>「马可主张认命／躺平」</td><td>★ 原文区分的是<strong>可控与不可控</strong>，不是「什么都别做」。他把行动看得很重：不属于自己权限的东西一旦被当成「好／坏」，人就必然去埋怨神、去恨人 —— 所以这条二分是<strong>行动的前提</strong>，不是行动的对立面。</td><td>第六卷第 36 段</td></tr>
+      <tr><td>「这是写给读者的哲学著作／斯多亚教科书」</td><td>★ 它是<strong>写给自己的私人笔记</strong>，作者极可能从未打算出版。原文里有大量重复、残句、跳号、自造省略。把它当教科书读，会漏掉「重复」本身的功能。</td><td>全书性质，见 <code>## 0</code> 与 <code>## 6</code></td></tr>
+      <tr><td>「马可是基督徒／斯多亚预示了基督教」</td><td>★ 本报告<strong>不做宗教类比引申</strong>。仅陈述一个可查的<strong>文本事实</strong>：「Christians」一词在 #2680 的<strong>正文中只出现 1 次</strong>（卷十一第 3 段，且是拿它作一个<strong>反面</strong>类比，原文用的是「as Christians are wont」）；其余 6 次全部出现在 #2680 的<strong>编者导言</strong>里，那是编者的话，不是作者的话。★ 「斯多亚预示基督教」一类说法若要引用，必须给出具体出处，<strong>核不到就不写</strong>（见 <code>## 5</code>）。</td><td>第十一卷第 3 段；#2680 编者导言</td></tr>
+      <tr><td>「马可是『好皇帝』，本书是统治术手册」</td><td>★ 本书<strong>不做政治引申</strong>。涉及统治的段落，本报告只做<strong>文本内讨论</strong>：原文怎么说的、这句话在斯多亚框架里什么意思。书里确实有「我的城邦，作为安东尼努斯是罗马，作为人是整个世界」这类话，但它谈的是<strong>宇宙公民</strong>，不是治术。</td><td>第六卷第 39 段</td></tr>
+      <tr><td>「第 1 卷是马可的『朋友圈介绍』／人物传记」</td><td>★ 第 1 卷是<strong>「我从谁那里学到了什么」的感恩名单</strong>（17 段），每一条都是<strong>伦理性格的提炼</strong>，不是史实记录。不能据它推断他的亲友关系，也不能把它当履历读。</td><td>第一卷全卷（第 1–17 段）</td></tr>
+      <tr><td>「书中有一段是『拿自己和别人比来比去』的自我安慰」</td><td>★ 有一处最像「自我安慰」的，其实是<strong>反向的</strong>：他在提醒自己，别人怎么看你不重要，因为评判你的人自己也活不长 —— 这句话的功能是把「他人的评价」这一整个类别<strong>判为无关</strong>，而不是用它来安慰。</td><td>第十二卷第 3 段</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ 本节<strong>恰好六条</strong>，每条带<strong>姓名 ＋ 出处 ＋ 年份</strong>。凡本报告未能在合法入口核到原书的，一律写明<strong>转引性质</strong>，并把更细的核实任务登记进附录 D。</p>
+  <p><strong>（一）「它不是一部原创哲学著作」—— D. A. Rees（1992）。</strong> <span class="tag t-rep">转述</span> D. A. Rees 为 Everyman's Library 版（A. S. L. Farquharson 英译）撰写的导言中写道，《沉思录》「不是、也不自称是一部原创哲学著作，也不是对一个思想传统的系统阐述」（"They are not, and do not claim to be, a work of original philosophy, nor yet a systematic exposition of a tradition of thought."）。★ 出处：<em>Meditations</em>, trans. A. S. L. Farquharson, introduction by D. A. Rees, Everyman's Library, 1992（ISBN 9780679412717）。★ <strong>转引性质</strong>：本条经书商页面转引 Rees 导言原句，<strong>本报告未核到原书</strong>。这层意思与文本内证据一致（本书不建构体系、不定义术语、反复重写同一主题）。</p>
+  <p><strong>（二）「马可是哲学家，还是皇帝？」—— A. R. Birley（1966／1987）。</strong> <span class="tag t-rep">转述</span> 传记研究把马可放在「皇帝」的位置上考察其一生（战争、瘟疫、共治、边患），而哲学研究则把《沉思录》放在斯多亚思想史里考察 —— 两条路径对「这本书意味着什么」给出的答案不同。出处：Anthony R. Birley, <em>Marcus Aurelius: A Biography</em>, revised ed., Yale University Press, 1987（另有 Routledge 1993 版；初版 1966）。★ 本报告不替读者裁决，只提示：读这本书时，「他是在什么处境下写的」与「他写下的在思想史里是什么」是两个不同的问题。</p>
+  <p><strong>（三）「零散笔记，还是连贯的哲学练习？」—— Pierre Hadot（1998）与 R. B. Rutherford（1989）的对照。</strong> <span class="tag t-rep">转述</span> Pierre Hadot《The Inner Citadel: The Meditations of Marcus Aurelius》（trans. Michael Chase, Harvard University Press, 1998）主张<strong>逐卷读法</strong>：他认为《沉思录》不是随手记下的格言汇编，而是<strong>按卷推进的一套哲学练习（spiritual exercises）</strong>。而 R. B. Rutherford《The Meditations of Marcus Aurelius: A Study》（Oxford: Clarendon Press, 1989）则从更<strong>文学化</strong>的路径分析这本书的写法与结构。★ 两种读法<strong>并列</strong>，本报告在 <code>## 19</code> 会专门处理，<strong>不替读者裁决</strong>。</p>
+  <p><strong>（四）文本残损：<em>Codex Vaticanus 1950</em> 的缺失。</strong> <span class="tag t-rep">转述</span> 现存的现代文本<strong>几乎完全基于两部抄本</strong>：<em>Codex Palatinus</em>（1558–59 年首次印行后<strong>遗失</strong>）与 <em>Codex Vaticanus 1950</em>（14 世纪，<strong>残缺</strong>，约有 <strong>42 行</strong>因意外脱漏而丢失）。★ 出处：公开百科与版本学转述（Wikipedia "Meditations" 条目及同源书目描述）；本报告<strong>未核到原件</strong>。★ 后果是：<strong>任何现代译本，包括本报告所据的两个底本，都建立在一个「只有一个（且已丢失）完整见证」的文本上</strong> —— 这也是为什么同一段话在不同译本里可能出现字句差异。</p>
+  <p><strong>（五）中译本的可靠性 —— 本报告据公开书目信息的实测。</strong> <span class="tag t-rep">转述</span> <code>## 4</code> 的四条警告（「上百个译本」说法不可信、各译本底本不同、年份互相矛盾、多为转译）本身就是一条局限：<strong>读者手里的中译本，很可能至少隔着一层英文</strong>。★ 出处：本报告 <code>## 4</code>。★ 本报告不评价任何具体中译本的优劣（未逐册对读），只陈述可溯源的事实：<strong>没有收进本报告的中译本，本报告不评价。</strong></p>
+  <p><strong>（六）「名人枕边书」式的接受史 —— 现象而非文本内容。</strong> <span class="tag t-rep">转述</span> 本书在当代被大规模营销为「名人的枕边书」，大量「某人说这本书改变了他」的话在网络流传。★ 这类材料属于<strong>接受史</strong>，<strong>不属于文本内容</strong>；把它读成「书里写了这些」，是把营销话语当成了原文。★ 可核到的一处近代接受史线索是：Matthew Arnold 在 1863 年的评论文章《Marcus Aurelius》（后收入 <em>Essays in Criticism</em>, 1865）里，把马可纳入他所谓「甜美与光明」的传统。★ <strong>对于中文世界里大量「某某名人说这是他最爱读的书」一类具体说法，本报告一概不采用、也不点名</strong>（理由：来源多为二手转述、无从核实，且与文本内容无关；见 <code>## 20（八）</code>）。★ 本报告<strong>不做政治引申、不做任何针对现实人物的评价</strong>。</p>
+  <p>★ 本部下设 <code>## 6</code>–<code>## 20</code> 共十五节：<code>## 6</code> 讲全书的性质与写作机制，<code>## 7</code>–<code>## 18</code> <strong>逐卷深挖 12 卷</strong>（每卷一节），<code>## 19</code> 讲主题与思想史读法，<code>## 20</code> 讲版本、译本与中文接受史。★ 每一卷节内分四段：<strong>这一卷读起来是什么样</strong>（含段数与篇幅的实测数字）／<strong>关键原文</strong>（≥3 条英文直引，逐条在 #2680 里 grep 核对过，并至少 1 条用 #55317 Chrystal 译作对照）／<strong>它在这一卷序列里的位置</strong>／<strong>可疑之处或常见误读</strong>。★ 全部定位写「第 N 卷第 M 段」，段号依 <strong>PG #2680</strong> 底本；引 #55317 时另注其编号体系与本报告主底本不同。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>全书骨架与写作机制：一本没打算出版的书</span><span class="caret">▾</span></h2>
+  <p>本节处理全书最要紧的一件事：<strong>它的性质</strong>。<code>## 1</code> 已经交代了它的「规矩」（卷／段），这里要说清它的「来历」和「写法」—— 这两样决定了这本书该怎么读。</p>
+  <p><strong>（一）文本内部的证据：它不是写给读者的。</strong> 一本书如果是写给读者的，通常会有献词、导论、背景交代、人名说明。本书<strong>一样都没有</strong>。它直接开始写，大量段落用第二人称对「你」说话，而那个「你」是作者自己。第一卷末尾、第二卷、第五卷、第十卷等多处出现「我」的自呼与自问；原文里还有把「他」与「我」混着用的地方（第三卷第 16 段先说「他」，下一句就说「我」）。★ 本报告据 #2680 的编者导言与文本内证据判断：<strong>这是一份自我训诫的记录</strong>，作者极可能从未打算出版。这个判断在学界是共识（参见 <code>## 5</code> 第一条 Rees 1992 的说法），本报告按共识处理，但把它标为<strong>判断</strong>而不是<strong>事实</strong>（<span class="tag t-inf">推断</span>）。</p>
+  <p><strong>（二）原题的意思就是「写给自己的东西」。</strong> 原题 Τὰ εἰς ἑαυτόν 直译是「写给自己的那些东西」。★ 原始标题<strong>未知，可能原本无题</strong> —— 我们现在用的书名是后人根据内容起的。★ 顺带两条可查的传播史事实：晚至 10 世纪的《苏达》辞书才第一次把这本书记为<strong>十二卷</strong>；而今天通行的<strong>分卷与分段编号，要到 1652 年 Thomas Gataker 的拉丁译本才基本定型</strong>，因此这些编号<strong>不能被当作权威</strong>（这一点对读本书极重要，见 <code>## 20</code>）。</p>
+  <p><strong>（三）写作机制：重复不是重复，是练习。</strong> 本书一遍遍写「死」「判断」「宇宙公民」「早晨起床」。★ 为什么重复？因为<strong>每一次重复都是一次劝说</strong>。在不同的日子里，同一个人需要用不同的话说服自己同一件事。这就是为什么同一个主题在不同卷里的措辞各不相同 —— 它不是「作者忘了自己写过」，而是<strong>同一个练习的不同次</strong>。把这套重复当成啰嗦，或当成编者的错误，都会把这本书读轻。</p>
+  <p><strong>（四）底本内的两处「地点批注」。</strong> #2680 的正文里，第一卷第十五段开头有 "In the country of the Quadi at Granua, these."，第二卷末尾有 "Whilst I was at Carnuntum."。这两处是底本正文的一部分，本报告<strong>照录</strong>。★ 但必须说明：<strong>它们是不是作者本人写的旁注、是否真的指写作地点，学界有不同看法</strong>（底本编者导言也把它们当作推定线索）。所以本报告<strong>不</strong>据此断言「第一卷写于某地、第二卷写于某地」，只把它们当<strong>底本事实</strong>登记。</p>
+  <p><strong>（五）底本内的「编者／译者的话」必须与作者的话分开。</strong> 三份底本中：#2680 有一篇<strong>未署名</strong>的 <code>INTRODUCTION</code>；#15877 有 <code>BIOGRAPHICAL SKETCH</code> 与 <code>PHILOSOPHY OF MARCUS AURELIUS ANTONINUS</code> 两篇导论；#55317（Chrystal 译）<strong>没有</strong>任何译者序或导言。★ 本报告把这些导论都当 <span class="tag t-src">原书</span> 辖区的<strong>底本附属材料</strong>，但<strong>每一处都标明「这是编者／译者的话，不是作者的话」</strong>。这一点直接回应「作者谈话」档的问题：<strong>底本里的导论不是「作者谈话」，它不能顶替那一档。</strong></p>
+  <p><strong>（六）后果：这本书不适合当语录读。</strong> 上面五条合起来只有一个结论 —— <strong>它的段落常常需要上下文才能读懂</strong>。有些句子短得只剩半句，有些代称只有他自己知道指谁，有些地方因底本残损而跳号。<strong>把这些句子摘出来，做成「人生格言」，会丢掉它们赖以成立的那个处境。</strong> 本报告在下面的逐卷深读里，会给每一卷都配上它的段数、篇幅和位置，就是为了把这个「处境」还给读者。</p>
+  <p>★ 最后一层机制说明：<strong>段落的长短分布极不均匀，且不成比例。</strong> 第一卷 17 段占 332 行（平均每段约 20 行），第六卷 51 段占 516 行（平均每段约 10 行），第八卷 58 段占 548 行（平均每段约 9 行），第十二卷 27 段占 334 行（平均每段约 12 行）。<strong>段越多、每段越短，说明那一卷越像「便签」；段越少、每段越长，说明那一卷越像「申论」。</strong> 这个疏密本身就在告诉我们：他不是按统一体例写的，而是<strong>想到哪写到哪</strong>。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>第一卷：他从谁那里学到了什么（17 段感恩名单）</span><span class="caret">▾</span></h2>
+  <p><strong>（一）这一卷读起来是什么样。</strong> 第一卷 <strong>17 段</strong>，底本行 <strong>579–910</strong>，共约 <strong>332 行</strong>，是全书<strong>结构最整齐</strong>的一卷：几乎每段都以「Of X...」或「From X...」开头，像一份名单。段长差别极大 —— 最短的第 9 段（讲 Alexander the Platonic）只有三行；最长的第 13 段（讲父亲 Antoninus Pius）从第 719 行一直写到第 793 行，占了约七十五行，几乎是一份小型人物素描。★ 名单的构成很有意思：<strong>家人</strong>（祖父 Verus 第 1 段、父亲第 13 段、母亲、曾祖父）、<strong>老师</strong>（Diognetus 第 3 段、Rusticus 第 4 段、Apollonius 第 5 段、Sextus 第 6 段、Alexander the Grammarian 第 7 段、Fronto 第 8 段、Alexander the Platonic 第 9 段、Catulus 第 10 段）、<strong>兄长</strong>（Severus 第 11 段）、<strong>友人</strong>（Claudius Maximus 第 12 段），最后落到<strong>神</strong>（第 14 段）—— 以「From the gods」收束第一段名单，再以三段（第 15–17 段）作结。★ 一个关键特性：这一卷<strong>几乎不做论断</strong>，全是「品质的提炼」；也就是说，它不给理由，只给<strong>样本</strong>。</p>
+  <p><strong>（二）关键原文。</strong></p>
+  <p><span class="tag t-src">原书</span> 第一卷第 1 段，原文是：「Of my grandfather Verus I have learned to be gentle and meek, and to refrain from all anger and passion.」</p>
+  <p><span class="tag t-src">原书</span> 第一卷第 4 段，原文是：「To Rusticus I am beholding, that I first entered into the conceit that my life wanted some redress and cure.」★ 同段还有一句对本报告很要紧的话 —— 他说自己感谢 Rusticus，因为「whom also I must thank that ever I lighted upon Epictetus his _Hypomnemata_」：<strong>他读到爱比克泰德，是经由 Rusticus 介绍</strong>。这是全书与爱比克泰德之间唯一一处可查的自述关联。</p>
+  <p><span class="tag t-src">原书</span> 第一卷第 6 段，原文是：「Of Sextus, mildness and the pattern of a family governed with paternal affection; and a purpose to live according to nature」★ ★ 请注意：<strong>「live according to nature」这个贯穿全书的短语，在 #2680 里第一次出现，就在这一句</strong>（第一卷，感恩名单里）—— 它一开始不是一条教义，而是<strong>一个人身上的品质</strong>。</p>
+  <p><span class="tag t-src">原书</span> 第一卷第 8 段，原文是：「Of Fronto, to how much envy and fraud and hypocrisy the state of a tyrannous king is subject unto, and how they who are commonly called εὐπατρίδαι, _i.e._ nobly born, are in some sort incapable, or void of natural affection.」★ 注意这里把「王的处境」（嫉妒、欺诈、伪善）写成一条<strong>要避开的东西</strong>，而不是「统治的乐趣」。★ 本报告就此<strong>只做文本内讨论</strong>，不做任何政治引申。</p>
+  <p><span class="tag t-src">原书</span> 第一卷第 14 段的开头，原文是：「From the gods I received that I had good grandfathers, and parents, a good sister, good masters, good domestics, loving kinsmen, almost all that I have」★ 这一段的写法与前十三段不同：他不再说「我从某人那里学到某品质」，而改说「我从神那里<strong>得到</strong>了这些条件」——<strong>品质要靠学，条件要靠赐</strong>，这条区分值得注意。</p>
+  <p><span class="tag t-src">原书</span> 第一卷第 15 段，原文是：「In the country of the Quadi at Granua, these. Betimes in the morning say to thyself, This day I shalt have to do with an idle curious man, with an unthankful man, a railer, a crafty, false, or an envious man; an unsociable uncharitable man.」</p>
+  <p><span class="tag t-src">原书</span> 第一卷第 16 段，原文是：「Whatsoever I am, is either flesh, or life, or that which we commonly call the mistress and overruling part of man; reason.」★ 这一句出现在第一卷末尾，像是把整卷名单「结账」：感恩的具体品质之后，落到人由三部分构成（肉、生命、理性），而理性是「支配的部分」。</p>
+  <p><span class="tag t-src">原书</span> 第一卷第 17 段收尾，原文是：「As for thy thirst after books, away with it with all speed, that thou die not murmuring and complaining, but truly meek and well satisfied, and from thy heart thankful unto the gods.」★ 第一卷以「<strong>把你的读书欲丢掉</strong>」作结 —— 这句话放在一份「我从谁那里学到了什么」的名单末尾，构成了一个不小的反讽。</p>
+  <p>★ <strong>Chrystal 译（#55317）的同段对照。</strong> 据 PG #55317（Chrystal 译），该本的分段体系与本报告主底本不同 —— 它的 Book I 第 1 段作：「I learned from my grandfather, Verus, to use good manners, and to put restraint on anger.」★ 与 Long 的「to be gentle and meek, and to refrain from all anger and passion」比：<strong>Long 用的是文言式并列（gentle and meek／refrain from... passion），Chrystal 则把它现代化为「good manners」与「put restraint on anger」</strong>。一个可见的差别是 Long 的 <code>passion</code>（广义的扰乱性情绪）在 Chrystal 那里被收窄成了 <code>anger</code>（愤怒）。★ 两个译本的分歧点，正好落在本报告全书都要强调的那个词上。</p>
+  <p><strong>（三）它在这一卷序列里的位置。</strong> 第一卷是全书唯一的「清单卷」，它不为后面 11 卷提供<strong>论证</strong>，只提供<strong>标准</strong>。可以说后面 11 卷是这一卷的「实践版」：第一卷说「我该成为什么样的人」，后面说「今天具体该怎么做」。★ 它也埋下了全书后来反复出现的几个关键：第 6 段的 <code>live according to nature</code>（顺应自然）、第 16 段的 <code>reason</code>（理性／主导部分）、第 17 段的「丢掉读书欲」（把行动看得比阅读重）。★ 因此<strong>第一卷适合放最后读</strong>（见 <code>## 3</code>）：先知道后面的主张，才看得懂他感恩的到底是什么品质。</p>
+  <p><strong>（四）可疑之处与常见误读。</strong> 最常见的误读是把它读成<strong>人物传记或「朋友圈介绍」</strong>，并据此推断他的亲友关系与宫廷生活。★ 但如前所述，这 17 段每一条都是<strong>伦理性格的提炼</strong>，不是史实记录；书中甚至把「我从某人那里学到什么」与「某人是谁」分得很疏 —— 有的名字（如 Diognetus、Alexander the Platonic）只有一句品质，没有任何身份说明。★ 第二个误读是把第 15 段的地名批注当作「写作地点」的<strong>作者自述</strong> —— 本报告认为那只是<strong>底本里的一处旁注</strong>（<span class="tag t-inf">推断</span>），可靠性存疑，本报告在 <code>## 6</code> 已作说明。★ 第三个误读是把第 8 段（论「暴君处境」）当作马可对「君主制」的评论；原文说的是「<strong>王的处境里有嫉妒、欺诈、伪善，这些要避开</strong>」，落点在<strong>个人修养</strong>，不在制度。</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>第二卷：军营里的开篇训诫</span><span class="caret">▾</span></h2>
+  <p><strong>（一）这一卷读起来是什么样。</strong> 第二卷 <strong>14 段</strong>（★ 底本缺 <code>V.</code>，第 4 段之后直接是第 6 段），底本行 <strong>911–1109</strong>，共约 <strong>199 行</strong> —— <strong>是全书第二短的一卷</strong>（只比第十二卷略长）。段普通偏短，语气急，几乎没有铺陈：开篇第一句就是「你已经拖了多久」，第二句就要求「把你正在做的事当作最后一件事来做」。★ 这一卷像是<strong>一份应急的开场白</strong>，而不是一份从容的论述。★ 末尾有一处地点批注 "Whilst I was at Carnuntum."，本报告照录并注明其可靠性存疑。</p>
+  <p><strong>（二）关键原文。</strong></p>
+  <p><span class="tag t-src">原书</span> 第二卷第 1 段，原文是：「Remember how long thou hast already put off these things, and how often a certain day and hour as it were, having been set unto thee by the gods, thou hast neglected it.」★ 同段还给出一个很具体的限定：时间若不用来「to calm and allay the many distempers of thy soul」，它就会过去，<strong>连你一起过去，再不回来</strong>。</p>
+  <p><span class="tag t-src">原书</span> 第二卷第 2 段，原文是：「Let it be thy earnest and incessant care as a Roman and a man to perform whatsoever it is that thou art about, with true and unfeigned gravity, natural affection, freedom and justice」★ 一句里同时出现「作为罗马人」与「作为一个人」两重身份 —— 全书「宇宙公民」主题的起点之一。同段还提出一条最实用的检验法：<strong>把每一次行动都当作最后一次行动来做</strong>（"if thou shalt go about every action as thy last action"）。</p>
+  <p><span class="tag t-src">原书</span> 第二卷第 3 段，原文是：「Do, soul, do; abuse and contemn thyself; yet a while and the time for thee to respect thyself, will be at an end.」★ 这是全书最容易被断章取义的一句之一，见下「可疑之处」。</p>
+  <p><span class="tag t-src">原书</span> 第二卷第 7 段，原文是：「Theophrastus, where he compares sin with sin (as after a vulgar sense such things I grant may be compared:) says well and like a philosopher, that those sins are greater which are committed through lust, than those which are committed through anger.」★ 这一段是全书少见的<strong>引他人观点</strong>（Theophrastus，亚里士多德的学生）并加以评断的地方：他认为「因贪欲而犯」比「因愤怒而犯」更该谴责，理由是愤怒的人「似乎在受委屈后被迫如此」，而贪欲之人是<strong>自己选择了那个行为</strong>。</p>
+  <p><span class="tag t-src">原书</span> 第二卷第 8 段，原文是：「as vice and wickedness, such things they have put in a man's own power, that he might avoid them if he would」★ 这一句把「恶」也划进了「可控」的范围 —— 是本报告在 <code>## 2</code> 讲「控制二分」时的另一半根据。</p>
+  <p><span class="tag t-src">原书</span> 第二卷第 6 段，原文是：「These things thou must always have in mind: What is the nature of the universe, and what is mine--in particular」★ 紧接着是第三件事：「what relation it hath」—— 一句里排出「宇宙的本性」「我的本性」「两者的关系」三层，是他每天要过的三道题。</p>
+  <p><span class="tag t-src">原书</span> 第二卷第 10 段，原文是：「It is the part of a man endowed with a good understanding faculty, to consider what they themselves are in very deed, from whose bare conceits and voices, honour and credit do proceed」★ 这一句把「荣誉」的根挖到底：<strong>荣誉来自那些发出声音的人，而那些人的「实际样子」才决定荣誉值多少</strong>。同段接着说，死也不过是「一件自然的工作」（"a work of nature"），怕自然的工作的人是孩子。</p>
+  <p><span class="tag t-src">原书</span> 第二卷第 12 段，原文是：「If thou shouldst live three thousand, or as many as ten thousands of years, yet remember this, that man can part with no life properly, save with that little part of life, which he now lives」★ 全段只推两件事，第一件是：<strong>无论活多久，你失去的永远只是当下这一点</strong>。这是全书「死」这组主题最精密的一次论证。</p>
+  <p><span class="tag t-src">原书</span> 第二卷第 13 段，原文是：「Remember that all is but opinion and conceit, for those things are plain and apparent, which were spoken unto Monimus the Cynic」★ 「一切只是意见与想象」—— 全书「判断」主题最短的表述之一。</p>
+  <p><span class="tag t-src">原书</span> 第二卷第 14 段，原文是：「A man's soul doth wrong and disrespect itself first and especially, when as much as in itself lies it becomes an aposteme, and as it were an excrescency of the world」★ 他把「灵魂」自我伤害的方式列成<strong>五条</strong>（对世界之事不满、背离他人、被苦乐压倒、虚伪、盲目行动），是一条可当清单用的段落。</p>
+  <p><span class="tag t-src">原书</span> 第二卷第 15 段，原文是：「The time of a man's life is as a point; the substance of it ever flowing, the sense obscure; and the whole composition of the body tending to corruption.」★ 这一句在 #2680 里是第二卷的<strong>末段</strong>，末尾紧接着那句地点批注 "Whilst I was at Carnuntum."。</p>
+  <p>★ <strong>Chrystal 译（#55317）的同段对照。</strong> 据 PG #55317（Chrystal 译），该本 Book II 对应段落作：「Go on, go on, O my soul, to affront and dishonour thyself! The time that remains to honour thyself will not be long」★ 与 Long 的「Do, soul, do; abuse and contemn thyself」比：<strong>Long 用三个短促的祈使句（Do, soul, do），Chrystal 用重复推进的「Go on, go on, O my soul」</strong>。两本都把这一句译成<strong>一种带自嘲的催促</strong>；★ 可见的分歧在于 Long 的 <code>abuse and contemn</code> 比 Chrystal 的 <code>affront and dishonour</code> 更冷、更狠。</p>
+  <p><strong>（三）它在这一卷序列里的位置。</strong> 第二卷紧接第一卷的品格清单，像是「清单总结完了，现在开始干活」。★ 它与第五卷第 1 段（早晨不愿起床）并列为全书两处最著名的<strong>「开场训诫」</strong>：一处训「你拖太久了」，一处训「你还不肯起床」。★ 从篇幅上说，第二卷的「短」不是偶然 —— <strong>它是一份要在最短时间里把自己叫醒的文字</strong>，所以几乎没有铺垫。</p>
+  <p><strong>（四）可疑之处与常见误读。</strong> 第二卷第 3 段那句「Do, soul, do; abuse and contemn thyself」，<strong>常被单独摘出来当作「自我贬低」的证据</strong>。★ 但它的下文立刻转弯：「yet a while and the time for thee to respect thyself, will be at an end.」——<strong>这是一个反讽式的警告，不是自我羞辱</strong>（<span class="tag t-inf">推断</span>）：他是在说「你再这么糟蹋自己，很快就没有机会自重了」。★ 另一个常见误读是把第二卷第 1 段读成「时间不多，所以赶紧享受」；原文说的恰恰相反 —— 时间不多，所以<strong>赶紧调理灵魂的毛病</strong>。★ 第三个误读是把第 8 段（「恶也在你自己的权内」）读成「一切都是自己的错」；原文的落点是「<strong>既然恶在你权内，你就有能力避开它</strong>」—— 这是<strong>赋能</strong>，不是归咎。</p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>第三卷：关于「不要等」——连理解力也会跟你一起老去</span><span class="caret">▾</span></h2>
+  <p><strong>（一）这一卷读起来是什么样。</strong> 第三卷 <strong>17 段</strong>，底本行 <strong>1110–1402</strong>，共约 <strong>293 行</strong>，段数中等，但段普遍偏长，论述密度明显高于第二卷。整卷有一个贯穿的紧迫感：<strong>不只时间会耗掉，能理解的时间更会先耗掉。</strong>★ 段落构成本身就有节奏：第 1 段（论理解力衰退）、第 2 段（论自然之物皆可观）、第 3 段（一连串「治愈者本人也会死」）、第 4 段（别管别人）都是长段；而第 5–7 段、第 9–17 段则较短、较急。★ 这一卷还有一段写「烤面包的裂口」「熟透的橄榄」「野猪嘴上的白沫」的描写，是全书少见的、近于审美的段落。</p>
+  <p><strong>（二）关键原文。</strong></p>
+  <p><span class="tag t-src">原书</span> 第三卷第 1 段，原文是：「A man must not only consider how daily his life wasteth and decreaseth, but this also, that if he live long, he cannot be certain, whether his understanding shall continue so able and sufficient」★ 这一句把「紧迫」从「寿命」转到了「能力」上 —— 本书的紧迫感之所以不流于「人生苦短」的老调，就靠这一转。同段还说，一旦开始昏聩，呼吸、营养、想象、欲望这些自然机能<strong>都还在</strong>，但「如何正确使用自己」的能力<strong>先没了</strong>。</p>
+  <p><span class="tag t-src">原书</span> 第三卷第 3 段，原文是：「Hippocrates having cured many sicknesses, fell sick himself and died.」★ 全段的句式是一串「某某治好了别人的病／预言了别人的死，最后自己也没能例外」——赫拉克利特、德谟克利特、苏格拉底都在名单里，落到「你上了船、航行过、靠了岸，那就下船吧」（"Thou hast taken ship, thou hast sailed, thou art come to land, go out"）。</p>
+  <p><span class="tag t-src">原书</span> 第三卷第 4 段，原文是：「Spend not the remnant of thy days in thoughts and fancies concerning other men, when it is not in relation to some common good」★ 同段给出一条很具体的<strong>思考卫生标准</strong>：凡是你脑子里的念头，若有人突然问你「你在想什么」，你能坦然说出来，那就是好的念头。</p>
+  <p><span class="tag t-src">原书</span> 第三卷第 5 段，原文是：「Do nothing against thy will, nor contrary to the community, nor without due examination, nor with reluctancy.」★ 这一句把行动标准压成四条，全部是否定式 —— 是全书「行动准则」最紧凑的一处。</p>
+  <p><span class="tag t-src">原书</span> 第三卷第 7 段，原文是：「If thou shalt find anything in this mortal life better than righteousness, than truth, temperance, fortitude, and in general better than a mind contented both with those things which according to right and reason she doth」★ 这段话像是一份「检验声明」：如果世上还有比正义、真理、节制、勇气更好的东西，那就去追它；如果没有，那就守住这个。</p>
+  <p><span class="tag t-src">原书</span> 第三卷第 16 段，原文是：「The body, the soul, the understanding. As the senses naturally belong to the body, and the desires and affections to the soul, so do the dogmata to the understanding.」★ 这里出现了 <code>dogmata</code> —— 本报告实测，这个词在 #2680 里共出现 <strong>13</strong> 次，是 Long 用来指「信条／道德主张」的关键词。</p>
+  <p>★ <strong>Chrystal 译（#55317）的同段对照。</strong> 据 PG #55317（Chrystal 译），该本 Book III 对应段落作：「Hippocrates, who had healed many diseases, himself fell sick, and died.」★ 与 Long 的「Hippocrates having cured many sicknesses, fell sick himself and died」比，有两处可见差别：<strong>其一是句式</strong> —— Long 用分词结构（having cured... fell sick），Chrystal 用关系从句（who had healed... himself fell sick）；<strong>其二是选词</strong> —— Long 用 <code>cured</code>，Chrystal 用 <code>healed</code>（同一个希腊词的两个译法）。★ Chrystal 的从句让「治愈者本人也会病」这层反讽读起来更清楚；Long 的分词结构则把两件事压成一条紧凑的时间线。</p>
+  <p><strong>（三）它在这一卷序列里的位置。</strong> 第三卷是<strong>第一人称训诫最集中的一卷</strong>。它在序列上把第二卷的「赶紧」推进一层：不是「时间不够」，而是<strong>「能力会先消失」</strong> —— 所以「不要等」不是道德劝勉，而是<strong>认知层面的现实判断</strong>。★ 第三卷也是「顺应自然」主题的准备卷：第 2 段那段「从自然发生之物里看出可取之处」的描写，就是练习「按自然而活」的前置动作。★ 另外，第 16 段的「肉体／灵魂／理解」三分，与第一卷末段的「肉／生命／理性」（I.16）是同一个三分法的两次表述 —— 两处相隔很远的重复，正是本报告在 <code>## 6</code> 说的「重复即练习」。</p>
+  <p><strong>（四）可疑之处与常见误读。</strong> 第 2 段（烤面包、熟橄榄、野猪白沫）<strong>常被当成纯「审美段落」摘出来欣赏</strong>。★ 但它的功能是<strong>练习</strong>：训练自己从「自然发生的东西」里看出可取之处，从而把「被赋予魅力的事物」与「自然本身的美」重新排位。读成「作者很会欣赏生活之美」，就把一个训练动作读成了一个抒情片段（<span class="tag t-inf">推断</span>）。★ 另一个误读是把第 3 段的「下船吧」读成厌世；它整段的落点是「如果你到另一个生命去，那里也有神；如果一切都停了，你也不再受苦」—— 这是<strong>把两种可能都接住</strong>，不是选一种悲观。★ 第三个误读是把第 15 段（「你不会活到去读那些道德札记、罗马希腊人事迹、读书摘录的时候」）读成「不要读书」；原文的落点是<strong>别把该做的事推到「以后有时间再读」上去</strong>，与第一卷末段「丢掉读书欲」是同一个动作。</p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">10</span><span>第四卷：「内在堡垒」——退到自己心里去</span><span class="caret">▾</span></h2>
+  <p><strong>（一）这一卷读起来是什么样。</strong> 第四卷 <strong>43 段</strong>，底本行 <strong>1403–1896</strong>，共约 <strong>494 行</strong>，是前半部最长的卷之一（仅次于第六卷的 51 段、第八卷的 58 段）。名段密集，第 3 段那一大段「退隐」最常被引。★ 这一卷也是全书「短句＋长段」交错得最厉害的一卷：有的段只有一行（如第 2 段「Let nothing be done rashly, and at random, but all things according to the most exact and perfect rules of art.」），有的段长达数十行（第 3 段从第 1423 行一直写到第 1480 行，约 58 行）。</p>
+  <p><strong>（二）关键原文。</strong></p>
+  <p><span class="tag t-src">原书</span> 第四卷第 3 段，原文是：「They seek for themselves private retiring places, as country villages, the sea-shore, mountains; yea thou thyself art wont to long much after such places.」★ 紧接着他给出结论：「At what time soever thou wilt, it is in thy power to retire into thyself, and to be at rest, and free from all businesses. A man cannot any whither retire better than to his own soul」</p>
+  <p><span class="tag t-src">原书</span> 第四卷第 4 段，原文是：「If to understand and to be reasonable be common unto all men, then is that reason, for which we are termed reasonable, common unto all.」★ 这一段是一串连锁推论（理性共有 → 法共有 → 同为公民 → 世界是一座城），落到「the world is as it were a city」——「宇宙公民」的<strong>论证版</strong>。</p>
+  <p><span class="tag t-src">原书</span> 第四卷第 5 段，原文是：「As generation is, so also death, a secret of nature's wisdom」★ 他把「生」与「死」摆成同一件事的两端，都叫「自然智慧的奥秘」—— 是全书对「死」最平静的一次定义。</p>
+  <p><span class="tag t-src">原书</span> 第四卷第 6 段，原文是：「within a very little while, both thou and he shall both be dead, and after a little while more, not so much as your names and memories shall be remaining.」</p>
+  <p><span class="tag t-src">原书</span> 第四卷第 7 段，原文是：「Let opinion be taken away, and no man will think himself wronged. If no man shall think himself wronged, then is there no more any such thing as wrong.」★ 全书「判断」主题最凝练的一句。</p>
+  <p><span class="tag t-src">原书</span> 第四卷第 11 段，原文是：「Hast thou reason? I have. Why then makest thou not use of it?」★ 三句问答，短到只有两行，却是全书对「知行不一」最直接的质问。</p>
+  <p><span class="tag t-src">原书</span> 第四卷第 14 段，原文是：「Not as though thou hadst thousands of years to live. Death hangs over thee: whilst yet thou livest, whilst thou mayest, be good.」★ 全书最短、最不容回避的一句之一。</p>
+  <p><span class="tag t-src">原书</span> 第四卷第 16 段，原文是：「That which is fair and goodly, whatsoever it be, and in what respect soever it be, that it is fair and goodly, it is so of itself, and terminates in itself, not admitting praise as a part or member」★ 这一句把「外在评价」从「美与好」里剔出去 —— 是「内在堡垒」主题的另一种说法。同段还以祖母绿、金子、象牙、紫袍为例：<strong>它们不会因为没人称赞就变坏</strong>。</p>
+  <p><span class="tag t-src">原书</span> 第四卷第 18 段，原文是：「Not to wander out of the way, but upon every motion and desire, to perform that which is just」★ 与第三卷第 5 段的四条否定式标准是同一组「行动准则」的两次表述。</p>
+  <p><span class="tag t-src">原书</span> 第四卷第 19 段，原文是：「Whatsoever is expedient unto thee, O World, is expedient unto me; nothing can either be 'unseasonable unto me, or out of date, which unto thee is seasonable.」★ 这是「顺应宇宙」语气最足的一句，结尾作「Thou lovely city of God?」。★ 本报告只做文本内讨论，不引申到任何当代政制。</p>
+  <p><span class="tag t-src">原书</span> 第四卷第 22 段，原文是：「Either this world is a κόσμος or comely piece, because all disposed and governed by certain order」★ 这一句给出了他接受「秩序」的理由：不是因为有谁保证，而是因为<strong>如果连你身上都有美，整个世界就不可能是纯然的混乱</strong>。</p>
+  <p><span class="tag t-src">原书</span> 第四卷第 21 段，原文是：「Trouble not thyself any more henceforth, reduce thyself unto perfect simplicity.」★ 同段把这条建议说得很具体：对每一个行动暗自问一遍，「What? may not this that now I go about, be of the number of unnecessary actions?」——<strong>连不必要的念头也划掉</strong>。</p>
+  <p><span class="tag t-src">原书</span> 第四卷第 24 段，原文是：「He is a true fugitive, that flies from reason, by which men are sociable.」★ 这一段把几种「逃兵」并列：逃避理性的、看不见的、有求于人的、对世界不满的 —— 用「逃亡」来定义「不按理性活」，是全书最有画面感的比喻之一。</p>
+  <p>★ <strong>Chrystal 译（#55317）的同段对照。</strong> 据 PG #55317（Chrystal 译），该本 Book IV 对应段落作：「Men seek retirement in the country, on the sea-coast, in the mountains; and you too have frequent longings for such distractions.」★ 与 Long 的「They seek for themselves private retiring places, as country villages, the sea-shore, mountains; yea thou thyself art wont to long much after such places」比：<strong>Long 把「他们」与「你」分得清楚（They... thou thyself），Chrystal 则把重心直接放在「你」身上（Men... and you too）</strong>。★ 更值得注意的是最后一词的差别：Long 说他们「渴慕这样的地方」（such places），<strong>Chrystal 说「渴慕这样的分心之物」（such distractions）</strong> —— 同一个希腊词，一个译作「地方」，一个译作「分心」。这一处分歧恰好点破了整段的宗旨：<strong>外出的「退隐」其实是分心，真正的退隐是回到自己。</strong></p>
+  <p><strong>（三）它在这一卷序列里的位置。</strong> 第四卷是<strong>「内在堡垒」读法的文本根据地</strong> —— <code>## 19</code> 会讲的 Pierre Hadot《The Inner Citadel》（1998）书名即取意于此。它在序列上承接第三卷：第三卷说「能力会衰」，第四卷回答「那就别往外跑，回到自己」。★ 第四卷的另一条线是<strong>社会性</strong>：第 4 段刚讲完「世界是一座城」，第 6 段就说「你和伤害你的人都很快会死」—— 这两段并置，正是本书「既要入世、又要抽离」的双重姿态。★ 从这一卷起，「退到自己心里」成为全书后半段一个反复出现的动作。</p>
+  <p><strong>（四）可疑之处与常见误读。</strong> 最要紧的一条：<strong>不要把 "retire into thyself" 读成「逃避现实」或「社交退缩」。</strong> ★ 原文紧接着说，退回去以后要做的是<strong>重新检查判断</strong>（"what is it that thou art offended at?"），然后<strong>再出来</strong>。<strong>退是为了回，不是不回</strong>（<span class="tag t-inf">推断</span>）。 ★ 第二个误读是把第四卷第 3 段当「冥想放松术」用；原文的「静」（tranquillity）被定义为「一种得体的、有秩序的、不受混乱与喧嚣扰动的状态」，<strong>是一个伦理状态，不是一种生理放松</strong>。★ 第三个误读是把第 16 段（祖母绿不因无人称赞而变坏）读成「不在乎别人看法」的社交态度；原文的落点是<strong>在本体论上把「评价」从「事物」里切出去</strong> —— 评价根本不在事物之内，而不是「我选择不听」。</p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">11</span><span>第五卷：早晨不愿起床，与「宇宙给每个人开的同一张药方」</span><span class="caret">▾</span></h2>
+  <p><strong>（一）这一卷读起来是什么样。</strong> 第五卷 <strong>30 段</strong>，底本行 <strong>1897–2373</strong>，共约 <strong>477 行</strong>。开篇第一段是全书最有名的段落之一 —— 早晨赖床时跟自己吵架。★ 这一卷还包含一段把「疾病、残疾、损失」说成「宇宙自然给每个人开的处方」的段落（第 8 段）。★ 段长分布上，第 1 段（赖床）、第 8 段（处方）、第 9 段（别泄气）是最长的三段，其余多为中短段。★ 这一卷的语调比前四卷<strong>更「日常」</strong>：他谈的是起床、吃饭、名誉、别人身上的气味这些琐事。</p>
+  <p><strong>（二）关键原文。</strong></p>
+  <p><span class="tag t-src">原书</span> 第五卷第 1 段，原文是：「In the morning when thou findest thyself unwilling to rise, consider with thyself presently, it is to go about a man's work that I am stirred up.」★ 全段的论证很「朴素」：植物、麻雀、蚂蚁、蜘蛛、蜜蜂都在做自己该做的事，你却被「床上暖和」劝住了。★ 同段还反问他：<strong>你要是连自己的本性都不爱，那你爱的是什么？</strong></p>
+  <p><span class="tag t-src">原书</span> 第五卷第 2 段，原文是：「How easy a thing is it for a man to put off from him all turbulent adventitious imaginations, and presently to be in perfect rest and tranquillity!」★ 这一句把「静」说成一件<strong>极容易</strong>的事 —— 与第八卷第 46 段「堡垒」意象是同一个意思的两种语气。</p>
+  <p><span class="tag t-src">原书</span> 第五卷第 3 段，原文是：「Think thyself fit and worthy to speak, or to do anything that is according to nature, and let not the reproach, or report of some that may ensue upon it, ever deter thee.」★ 一句把「别人会怎么说」直接排除在外，是本卷「行动优先」的定调句。</p>
+  <p><span class="tag t-src">原书</span> 第五卷第 5 段，原文是：「No man can admire thee for thy sharp acute language, such is thy natural disability that way. Be it so: yet there be many other good things, for the want of which thou canst not plead the want or natural ability.」★ 紧接着他点出一串「本来就在你权内」的品质：「sincerity, gravity, laboriousness, contempt of pleasures; be not querulous, be Content with little, be kind, be free」—— 这一句是本书「<strong>归因到可控项</strong>」最实用的清单。</p>
+  <p><span class="tag t-src">原书</span> 第五卷第 8 段，原文是：「As we say commonly, The physician hath prescribed unto this man, riding; unto another, cold baths; unto a third, to go barefoot: so it is alike to say, The nature of the universe hath prescribed unto this man sickness, or blindness, or some loss, or damage or some such thing.」★ 结尾有一句常被漏掉的关键限定：「For them also in themselves shall We find to contain many harsh things, but we nevertheless, in hope of health, and recovery, accept of them.」——<strong>接受处方是为了「健康与康复」</strong>，这说明本段<strong>不是</strong>「生病就别治」。</p>
+  <p><span class="tag t-src">原书</span> 第五卷第 15 段，原文是：「Such as thy thoughts and ordinary cogitations are, such will thy mind be in time. For the soul doth as it were receive its tincture from the fancies, and imaginations.」★ 这一句把「重复」的机制说破了：<strong>灵魂会被反复的念头染色</strong>。它是理解全书「为什么一遍遍重写同一主题」的钥匙。</p>
+  <p><span class="tag t-src">原书</span> 第五卷第 16 段，原文是：「To desire things impossible is the part of a mad man.」★ 上半句之后紧跟下半句：「But it is a thing impossible, that wicked man should not commit some such things.」——<strong>「坏人会做坏事」也是一件「不可能不发生」的事</strong>，所以因它而气恼，本身就不合逻辑。</p>
+  <p><span class="tag t-src">原书</span> 第五卷第 17 段，原文是：「After one consideration, man is nearest unto us; as we are bound to do them good, and to bear with them.」★ 但同段紧接着转：如果这个人阻碍我做真正属于我的事，那么「so man is unto me but as a thing indifferent: even as the sun, or the wind, or some wild beast」—— 「人」同时是<strong>最近的</strong>和<strong>无关的</strong>，这一句把本书的双重态度讲得最直白。</p>
+  <p><span class="tag t-src">原书</span> 第五卷第 19 段，原文是：「That which doth not hurt the city itself; cannot hurt any citizen.」★ 一条把「公共」与「个人」串起来的推理。</p>
+  <p><span class="tag t-src">原书</span> 第五卷第 20 段，原文是：「Let not that chief commanding part of thy soul be ever subject to any variation through any corporal either pain or pleasure」★ 注意这里的 <code>chief commanding part</code> —— 本报告实测，Long 用来指「主导部分」的词并不统一，这正是附录 A 要处理的术语问题。</p>
+  <p><span class="tag t-src">原书</span> 第五卷第 28 段，原文是：「Thou mayest always speed, if thou wilt but make choice of the right way」★ 这一句常被误读成「只要努力就能成功」，见下「可疑之处」。</p>
+  <p>★ <strong>Chrystal 译（#55317）的同段对照。</strong> 据 PG #55317（Chrystal 译），该本 Book V 对应段落作：「In the morning, when you find yourself unwilling to rise, have this thought at hand: I arise to the proper business of man」★ 与 Long 的「it is to go about a man's work that I am stirred up」比：<strong>Long 用被动语感的迂回表达（it is... that I am stirred up），Chrystal 直接说「I arise to the proper business of man」</strong>。Chrystal 的一句更主动、更干脆；Long 的一句更能保留「被唤醒」的被动意味。★ 两本都保留了同一个论证结构：<strong>万物都在做自己该做的事，人为什么不做</strong>。</p>
+  <p><strong>（三）它在这一卷序列里的位置。</strong> 第五卷把前面几卷的「判断」「退隐」<strong>落到最小的事上</strong> —— 落到「早晨起不来」。★ 它是第三、四卷的「日常化」：第三卷说能力会衰，第四卷说退回自己，第五卷说那今天先起床。这是本书把哲学从「高处」拉到「床上」的一卷。★ 从篇幅上说，第五卷（30 段／477 行）比第四卷（43 段／494 行）段少而行多，说明这一段落的<strong>论述性更强</strong>：它不再是便签，而是在<strong>讲道理</strong>。</p>
+  <p><strong>（四）可疑之处与常见误读。</strong> 最大的误读是把第 8 段的「处方」读成「生病是宇宙的安排，所以别治、忍着」。★ 原文恰恰是拿「医生开的骑马、冷浴」来<strong>类比</strong>自然的处方，并说接受它是因为「in hope of health, and recovery」——<strong>「为了健康与康复」</strong>。所以这一段的落点是「接受不可改的那部分」，<strong>不是</strong>「放弃可改的那部分」（<span class="tag t-inf">推断</span>）。★ 第二个误读是把第 1 段读成「成功学鸡汤」；原文的落点不是「你要努力」，而是「<strong>你连自己该做的事都不肯做，说明你不爱自己的本性</strong>」。★ 第三个误读是把第 28 段「你只要选对路就能顺利」读成「方法对了就必成」；原文的限定是——这话只对<strong>「以正确的方式做正确的行动」</strong>成立，而「行动的结果」不在你权内（见 <code>## 2</code> 的控制二分）。</p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">12</span><span>第六卷：段数最多的一卷 —— 「最好的报复是不变成那样的人」</span><span class="caret">▾</span></h2>
+  <p><strong>（一）这一卷读起来是什么样。</strong> 第六卷 <strong>51 段</strong>（★ 底本缺 <code>XXIII.</code>／<code>XXXIV.</code>／<code>XXXVIII.</code>），底本行 <strong>2374–2889</strong>，共约 <strong>516 行</strong>，是全书<strong>段数最多</strong>的一卷，同时段也普遍<strong>最短</strong> —— 很多段只有一两行，像一串便签。★ 平均每段只有约 10 行，是全书「便签化」最明显的一卷。★ 这一卷的「密度」不在于论述，而在于<strong>短提醒的密集</strong>：几乎每隔一行就有一条可以立刻用上的话。★ 它也包含全书最不客气的一段自我规劝（第 27 段：「Keep thyself therefore, truly simple, good, sincere, grave, free from all ostentation」）。</p>
+  <p><strong>（二）关键原文。</strong></p>
+  <p><span class="tag t-src">原书</span> 第六卷第 5 段，原文是：「The best kind of revenge is, not to become like unto them.」</p>
+  <p><span class="tag t-src">原书</span> 第六卷第 6 段，原文是：「Let this be thy only joy, and thy only comfort, from one sociable kind action without intermission to pass unto another, God being ever in thy mind.」</p>
+  <p><span class="tag t-src">原书</span> 第六卷第 11 段，原文是：「How marvellous useful it is for a man to represent unto himself meats, and all such things that are for the mouth, under a right apprehension and imagination!」★ 紧接着他把鱼、鸟、猪都还原成「尸体」，把酒还原成「一串葡萄的汁」，把紫袍还原成「羊的毛，用贝壳的血染的」，最后连性也还原成一句刻薄的描述 —— 这是全书「拆解」练习最狠的一段。</p>
+  <p><span class="tag t-src">原书</span> 第六卷第 9 段，原文是：「Whensoever by some present hard occurrences thou art constrained to be in some sort troubled and vexed, return unto thyself as soon as may be, and be not out of tune longer than thou must needs.」★ 注意它的限定词 <code>longer than thou must needs</code> —— 他并不要求「一秒钟也不许乱」，而是要求<strong>尽快回来</strong>，这条「实务性」的让步是全书少见的。</p>
+  <p><span class="tag t-src">原书</span> 第六卷第 15 段，原文是：「What is it then that should be dear unto us? to hear a clattering noise? if not that, then neither to be applauded by the tongues of men.」★ 把「众人的掌声」与「一片舌头打出来的响声」等同起来 —— 一句话解决了「名声」问题。</p>
+  <p><span class="tag t-src">原书</span> 第六卷第 21 段，原文是：「I for my part will do what belongs unto me; as for other things, whether things unsensible or things irrational」★ 这是「控制二分」最干脆的一次实践表态。</p>
+  <p><span class="tag t-src">原书</span> 第六卷第 26 段，原文是：「Death is a cessation from the impression of the senses, the tyranny of the passions, the errors of the mind, and the servitude of the body.」★ 这一句在 #15877 的导论里被引作对照（该导论标注为 vi. 28，见下「一条底本提示」）。</p>
+  <p><span class="tag t-src">原书</span> 第六卷第 27 段，原文是：「Keep thyself therefore, truly simple, good, sincere, grave, free from all ostentation, a lover of that which is just, religious, kind, tender-hearted, strong and vigorous to undergo anything that becomes thee.」★ 同段有一句极锋利的自警：「lest of a philosopher thou become a mere Cæsar in time, and receive a new tincture from the court」——「<strong>免得你从一个哲学家变成一个凯撒</strong>」。</p>
+  <p><span class="tag t-src">原书</span> 第六卷第 30 段，原文是：「I consist of body and soul. Unto my body all things are indifferent, for of itself it cannot affect one thing more than another with apprehension of any difference」★ 这一句把「无所谓之物」（adiaphora）这套斯多亚概念说成了一句自我陈述 —— 是本报告附录 A 术语表的文本依据之一。</p>
+  <p><span class="tag t-src">原书</span> 第六卷第 35 段，原文是：「Fit and accommodate thyself to that estate and to those occurrences, which by the destinies have been annexed unto thee; and love those men whom thy fate it is to live with; but love them truly.」★ 注意 <code>love them truly</code> 这三个词的分量 —— 它把「接受命运」接到了「爱人」上，而不是只停在「忍受」。</p>
+  <p><span class="tag t-src">原书</span> 第六卷第 39 段，原文是：「My city and country as I am Antoninus, is Rome; as a man, the whole world.」★ 全书「宇宙公民」主题最有名的一句。★ 本报告只做文本内讨论，不做任何政治引申。</p>
+  <p><span class="tag t-src">原书</span> 第六卷第 49 段，原文是：「That which is not good for the bee-hive, cannot be good for the bee.」★ 一句话把「个人之善」与「整体之善」绑在一起。</p>
+  <p>★ <strong>Chrystal 译（#55317）的同段对照。</strong> 据 PG #55317（Chrystal 译），该本 Book VI 对应段落作：「The best revenge is not to copy him that wronged you.」★ 与 Long 的「The best kind of revenge is, not to become like unto them」比：<strong>Long 用的是复数、抽象的「they」（他们），Chrystal 用的是单数、具体的「him that wronged you」（那个冤枉你的人）</strong>。★ 另有一个编号差异值得记录：Long 把这一句编在<strong>第六卷第 5 段</strong>，Chrystal 编在<strong>Book VI 第 6 段</strong> —— 同一句话在两个底本里段号不同，这正是本报告坚持「段号只对某一底本成立」的实例。</p>
+  <p><strong>（三）一条底本提示。</strong> #15877（Long 译，含编者导论）的导论把卷六那句「死」的释义（Death is a cessation from the impression of the senses, the tyranny of the passions, the errors of the mind, and the servitude of the body.）标注为 <strong>vi. 28</strong>，而 #2680 把这个内容编在<strong>第六卷第 26 段</strong>。★ 这说明<strong>即使同是 Long 的译本，不同印本／底本的段号也可能差一位</strong>。本报告一律以 #2680 的段号为准，并在引 #15877 时另注其编号。</p>
+  <p><strong>（四）它在这一卷序列里的位置。</strong> 第六卷是「短句密度」的高峰，它对此前五卷是一个<strong>收束</strong>：不再是长篇劝导，而是随时可用的<strong>短提醒</strong>。★ 便签式的短段在全书里并不平均分布：第六卷（51 段／516 行）与第八卷（58 段／548 行）是密度最高的两卷，而第二卷（14 段／199 行）与第十二卷（27 段／334 行）则项少而段长 —— 这个疏密分布本身提示：这本书不是按统一体例写的。</p>
+  <p><strong>（五）可疑之处与常见误读。</strong> 第六卷第 11 段把「食物」「酒」「紫袍」甚至「性」还原成物质构成的写法，<strong>常被读成「虚无主义／厌世」</strong>。★ 但它的功能是<strong>练习「拆解」</strong>：把被赋予魅力的事物还原为它的物质构成，目的是<strong>降低外界对人的牵引力</strong>，不是否定生活本身。原文同段也明说，这套「拆解」是为了「to make their true nature known and apparent」，是<strong>认识</strong>而不是<strong>贬低</strong>。★ 第二个常见误读是把第 5 段（「最好的报复是不变成他们那样」）读成「不与坏人计较」的宽恕格言；原文的重点是<strong>「不让自己被对方塑形」</strong>，落点在<strong>自己</strong>，不在<strong>对方</strong>。★ 第三个误读是把第 27 段（「别变成凯撒」）读成马可对皇权的自嘲；本报告只做文本内讨论 —— 这句话的功能是<strong>自警</strong>（<span class="tag t-inf">推断</span>）：别让宫廷把他的性格重新染色。</p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">13</span><span>第七卷：说给自己听的短句集（44 段）</span><span class="caret">▾</span></h2>
+  <p><strong>（一）这一卷读起来是什么样。</strong> 第七卷 <strong>44 段</strong>，底本行 <strong>2890–3428</strong>，约 <strong>539 行</strong>，是全书最长的几卷之一，也是<strong>短句化</strong>最明显的一卷：平均每段只有十二行左右，大量段落一到三行就结束（第 9 段、第 22 段、第 23 段皆如此）。★ 它没有像样的开头也没有收束：第一段直接用反问起手（「What is wickedness?」），末段（第 44 段）停在宇宙自然「曾经决定过」的思辨上，不像一个「卷」的结尾。★ 本卷还有一处<strong>特殊的编纂痕迹</strong>：第 23–26 段（「Out of Plato.」「Out of Antisthenes.」「Out of several poets and comics.」「Out of Plato.」）是<strong>抄录题签</strong>，即作者把从别人那里摘来的句子记下来，并在旁边标了出处。★ 这是全书中<strong>唯一明确保留「摘录」体例</strong>的地方：同一卷里既有写给自己的话，也有「抄来备用的句子」，两种东西混在一起，编者没有分开。</p>
+  <p><strong>（二）关键原文。</strong></p>
+  <p><span class="tag t-src">原书</span> 第七卷第 1 段，原文是：「What is wickedness? It is that which many time and often thou hast already seen and known in the world.」★ 同段紧接着一句很要紧：「let this <strong>memento</strong> presently come to thy mind」—— 这是 Long 把「提醒、备忘」译成 <strong>memento</strong> 的地方，是全书仅两处出现该词之一（另一处在第十卷第 34 段）。★ 本报告据此在 <code>## 4b</code> 里说明：<strong>本书里没有 memento mori 这个短语，但 memento 这个英文词确实出现过，而且只是「提醒」的普通意思，不是「记住你终将一死」的固定套语。</strong></p>
+  <p><span class="tag t-src">原书</span> 第七卷第 6 段，原文是：「Let not things future trouble thee.」★ 同段末句：「All things are linked and knitted together, and the knot is sacred」—— 这是全书「宇宙整体论」最凝练的一处表述：万物相联，而这个「相联」本身是<strong>神圣的</strong>。</p>
+  <p><span class="tag t-src">原书</span> 第七卷第 9 段，原文是：「Straight of itself, not made straight.」★ 这是全书最短的段落之一。它说的不是「要变直」，而是「它本身就是直的」—— 即德性不需要外来的「矫正」，它自足。</p>
+  <p><span class="tag t-src">原书</span> 第七卷第 12 段，原文是：「Whatsoever any man either doth or saith, thou must be good; not for any man's sake, but for thine own nature's sake」★ 同段用金、祖母绿、紫袍作比：即使被人说坏话，宝石也仍然保持自己的颜色。<strong>这条比方的重点在「我自己是什么」，不在「别人如何对我」。</strong></p>
+  <p><span class="tag t-src">原书</span> 第七卷第 13 段，原文是：「my understanding, that ruleth over all, will not of itself bring trouble and vexation upon itself.」★ 这是「主导部分自足」的直白表达：能扰动它的只有它自己的判断；别的东西即使想扰动，也「is free for him to use his power」，但除非它自己用虚假的意见去同意，扰动就不成立。</p>
+  <p><span class="tag t-src">原书</span> 第七卷第 33 段，原文是：「The art of true living in this world is more like a wrestler's, than a dancer's practice.」★ 这个比喻全书只出现一次，却极重要：<strong>「摔跤」要随时应付突如其来的对手，「跳舞」是按预定套路动作。</strong> 第七卷第 40 段把同一想法推进到日常：「Then hath a man attained to the estate of perfection in his life and conversation, when he so spends every day, as if it were his last day」—— 注意紧接着说，这不是狂热，也「nor yet so cold and stupid as one that had no sense」，还要「free from all manner of dissimulation」。<strong>「像最后一天那样过」在这里并不等于「燃烧」，而是「不装」。</strong></p>
+  <p><span class="tag t-src">原书</span> 交叉对照：这一卷的 Chrystal 译文（#55317）把 Long 编在<strong>第七卷第 12 段</strong>的那句编在 <strong>Book VII 第 15 段</strong>：「Let any one say or do what he pleases, I must be a good man.」★ 两个译本的差别有两层：其一，<strong>Long 写成第二人称的命令式「thou must be good」，Chrystal 写成第一人称的「I must be a good man」</strong>，从句式上 Chrystal 更像作者在对自己表态；其二，Long 的三个比喻是「gold, or the emerald, or purple」，Chrystal 是「gold, or emeralds, or purple」，且把「should ever be saying to themselves」换成更口语的「might say continually」。★ 编号差异须记：<strong>Long 编在第七卷第 12 段，Chrystal 编在 Book VII 第 15 段</strong>，请勿混用。</p>
+  <p><strong>（三）它在这一卷序列里的位置。</strong> 如果把全书十二卷看成从「感恩名单」（第一卷）到「收束劝勉」（第十二卷）的一条线，第七卷是<strong>中段的转折</strong>：从第六卷的「短提醒」进一步压缩成「可背下来的短句」，同时把「摘录本」的性质显出来。★ 它在主题上把前几卷的核心操作 —— 判断、自足、整体 —— <strong>重申了一遍</strong>，用的却是更短、更适合随时调用的形式。★ 一个可实测的旁证：本卷共 44 段却只占约 539 行，<strong>平均每段十二行</strong>，明显短于第一卷（17 段／332 行，平均近 20 行）与第四卷（43 段／494 行）；也就是说，「越往后越短、越像便签」在这一区间是<strong>可以用数字看出来的</strong>趋势，而不是印象。</p>
+  <p><strong>（四）可疑之处与常见误读。</strong> 第一，把第七卷第 9 段「Straight of itself, not made straight.」读成「善是天生的、不需要努力」—— 这是把「not made straight」（不需要被弄直）读成了「不需要修炼」。★ 但同卷多处（第 21 段「Wipe off all opinion」、第 40 段）都在讲<strong>持续的训练</strong>；所以第 9 段说的不是「不努力」，而是「<strong>德性不需要靠外物来正当化</strong>」，方向仍是自我。第二，把第 23–26 段的抄录题签当成「正文的一部分」，进而以为马可在引经据典地论证；★ 本报告认为它们只是<strong>摘记</strong>（<span class="tag t-inf">推断</span>），编者保留了原样的题名，不应把「作者抄来的话」与「作者自己的话」混为一谈。</p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">14</span><span>第八卷：堡垒在自己心里（58 段）</span><span class="caret">▾</span></h2>
+  <p><strong>（一）这一卷读起来是什么样。</strong> 第八卷是<strong>全书段数最多的一卷：58 段</strong>，底本行 <strong>3429–3976</strong>，约 <strong>548 行</strong>，也是<strong>最长的一卷</strong>。段长参差很大：短到第 4 段、第 22 段只有一两行，长到第 1 段（讲虚荣）、第 34 段可以占到十几行。★ 这一卷<strong>没有跳号</strong>，段号完整从 I 到 LVIII。★ 一个显眼的文类特征：本卷夹杂着<strong>对历史人物一整串的枚举</strong>（第 29 段列出 Augustus 的宫廷：妻、女、子婿、姊、臣、友，然后一句「如今安在」），以及<strong>对城市生活细节的还原</strong>（第 23 段「this bathing which usually takes up so much of our time, what is it?」）。★ 这两类恰好代表了全书两种最常用的力气：<strong>「看时空的总账」</strong>与<strong>「拆解眼前之物」</strong>。</p>
+  <p><strong>（二）关键原文。</strong></p>
+  <p><span class="tag t-src">原书</span> 第八卷第 43 段，原文是：「Take me and throw me where thou wilt: I am indifferent.」★ 这是全书<strong>最难被中文格言化</strong>的一句，因为它的重点不是「随遇而安」，而是<strong>「往哪扔都行」背后的自足</strong>；同段紧接着解释：「For there also I shall have that spirit which is within me propitious」—— 无论在哪，我内在的那部分都会「对我好」。</p>
+  <p><span class="tag t-src">原书</span> 第八卷第 46 段，原文是：「let thy chief fort and place of defence be, a mind free from passions.」★ 这句是「内在堡垒」这个后世读法的<strong>直接文本依据</strong>：原文用 fort（堡垒）作喻，说<strong>最强的防线是一颗不被情动牵动的心</strong>。</p>
+  <p><span class="tag t-src">原书</span> 第八卷第 47 段，原文是：「Keep thyself to the first bare and naked apprehensions of things, as they present themselves unto thee, and add not unto them.」★ 同段给了一个极清楚的操作例子：有人告诉你「某某说你坏话」——「他说你坏话」是事实，「你因此受伤」不是事实，而是<strong>意见的添加</strong>（「that is the addition of opinion, which thou must exclude」）。★ 这是全书<strong>最清楚的一处「判断论」示范</strong>：把「事实」与「加在事实上的判断」分开。</p>
+  <p><span class="tag t-src">原书</span> 第八卷第 48 段，原文是：「Is the cucumber bitter? set it away.」★ 同段接着说「Brambles are in the way? avoid them. Let this suffice.」<strong>这一句是本报告理解全书「斯多亚式冷静」的钥匙</strong>：它不是说「不要有反应」，而是说「<strong>反应要短</strong>」—— 苦瓜苦，挪开就行，不要紧接着追问「它为什么苦」。</p>
+  <p><span class="tag t-src">原书</span> 第八卷第 27 段，原文是：「Wipe off all idle fancies, and say unto thyself incessantly; Now if I will, it is in my power to keep out of this my soul all wickedness, all lust, and concupiscences, all trouble and confusion.」★ 「it is in my power」是全书的<strong>控制二分</strong>在这一卷的直白表达。</p>
+  <p><span class="tag t-src">原书</span> 第八卷第 36 段，原文是：「If thou beest quick-sighted, be so in matter of judgment, and best discretion, saith he.」★ 注意句末的「saith he」—— 这是<strong>转引他人</strong>的标记，说明此卷也含摘录成分。</p>
+  <p><span class="tag t-src">原书</span> 第八卷第 4 段，原文是：「What they have done, they will still do, although thou shouldst hang thyself.」★ 这一句把「指望别人改好」的幻想一次性掐断；同段随即把应对压成两条，第一条原文作「First; let it not trouble thee.」（别让它扰你），第二条（以「Then secondly」引出）则要人把心思放在别的、正当的事上。★ 这里可以清楚看到全书的一种句式习惯：<strong>先泼一盆冷水（现实不会变），再给一条可执行的动作。</strong></p>
+  <p><span class="tag t-src">原书</span> 第八卷第 31 段，原文是：「Receive temporal blessings without ostentation, when they are sent and thou shalt be able to part with them with all readiness and facility when they are taken from thee again.」★ 这一句是全书<strong>对「富贵」态度最完整的一处</strong>：不炫耀地接受，是为了能痛快地放手；<strong>「拿得起」在这里的意义是「放得下」的条件</strong>。★ 本报告就此<strong>只做文本内讨论</strong>，不引申到任何现实身份或处境。</p>
+  <p><span class="tag t-src">原书</span> 交叉对照：第八卷的 Chrystal 译文（#55317）把 Long 编在<strong>第八卷第 46 段</strong>的「堡垒」一句写成：「The soul, thus free from passions, is a strong fort; nor can a man find any stronger to which he can fly and become henceforth invincible.」★ 差别很值得记：<strong>Long 用的是劝告腔（let thy chief fort... be），Chrystal 用的是定义腔（The soul... is a strong fort）</strong>；且 Chrystal 补了一句 Long 没有对译的「become henceforth invincible」（从此不可被征服）。<strong>同一段，一个像在命令自己，一个像在陈述事实。</strong></p>
+  <p><strong>（三）它在这一卷序列里的位置。</strong> 第八卷是「堡垒」意象最集中的一卷，与第七卷的「摔跤手」、第十卷的「蜘蛛」并列，构成全书一组<strong>以外物作比、落点都在内心</strong>的比喻群。它同时把第七卷那批「短句」<strong>重述并扩充</strong>，可以看作全书<strong>中段的高点</strong>。★ 一条可实测的分布事实：本卷 <strong>58 段／约 548 行</strong>，平均每段约 <strong>9.4 行</strong>，是十二卷中<strong>每段最短</strong>的一卷 —— 短句密度在本卷达到全书顶点，这也解释了为什么它读起来最像「一页一页的便签」。</p>
+  <p><strong>（四）可疑之处与常见误读。</strong> 第一，把第 46 段的「a mind free from passions」读成「没有感情、麻木」—— ★ 这是最流行的误读。原文的 <strong>passions（情动）不是「情感」，而是指被错误判断推动的冲动（恐惧、贪欲、愤怒）</strong>；全书从不劝人「不动心」到无情，反而第七卷第 40 段明确反对「so cold and stupid as one that had no sense」。第二，把第 48 段的「挪开」读成「逃避」。★ 原文对<strong>能改变</strong>的事（如第九卷第 9 段「Either teach them better if it be in thy power」）是要去改变的；「挪开」只针对<strong>苦瓜、荆棘</strong>这类既成事实。第三，本卷夹着大量人名（Augustus、Lucilla、Verus 等），容易被当成历史材料去索引；★ <strong>本报告只把它们当作文本内的例子</strong>（<span class="tag t-inf">推断</span>），不做史实考订。</p>
+</section>
+
+<section id="s16">
+  <h2><span class="num">15</span><span>第九卷：把「罪」还给犯罪的人（43 段）</span><span class="caret">▾</span></h2>
+  <p><strong>（一）这一卷读起来是什么样。</strong> 第九卷 <strong>43 段</strong>，底本行 <strong>3977–4459</strong>，约 <strong>483 行</strong>，段号完整无跳号。★ 结构上最特别的是<strong>开头几段的连环立论</strong>：第 1 段「He that is unjust, is also impious.」把「不义」与「不敬神」直接接起来；第 4 段「He that sinneth, sinneth unto himself.」把「罪」的落点收到<strong>犯罪者自己身上</strong>。★ 这一卷有一处<strong>全书最短的哲学提纲</strong>：第 6 段只有一行 ——「To wipe away fancy, to use deliberation, to quench concupiscence, to keep the mind free to herself.」四个动词分别对应<strong>清想象／作判断／息贪欲／还心灵自由</strong>，等于把斯多亚的日常操作浓缩成一行。★ 另一个文类特征：本卷<strong>戏剧与格言的引用明显增多</strong>（第 41 段引 Epicurus 论疾病中的谈话，第 43 段引一句关于「What?」的反问），可见它在「抄录」这条线上与第七卷相连。</p>
+  <p><strong>（二）关键原文。</strong></p>
+  <p><span class="tag t-src">原书</span> 第九卷第 1 段，原文是：「He that is unjust, is also impious.」★ 这一句的论证方式很值得注意：它不是靠神学，而是靠<strong>「宇宙把人造成为彼此有利」这一自然事实</strong>来推出「不义即不敬」。★ 本报告就「诸神」只做<strong>文本内讨论</strong>：这里出现的「impious」是习惯语，不宜直接等同于任何具体宗教的教义。</p>
+  <p><span class="tag t-src">原书</span> 第九卷第 4 段，原文是：「He that sinneth, sinneth unto himself.」★ 同段的解释句更直接：「He that is unjust, hurts himself, in that he makes himself worse than he was before.」—— 这句话是本报告在 <code>## 4b</code> 里要处理的一个流行说法的<strong>真正出处</strong>：所谓「马可说伤害你的人其实在伤害他自己」，在这里是<strong>原文</strong>，而不是后人编的安慰。</p>
+  <p><span class="tag t-src">原书</span> 第九卷第 11 段，原文是：「This day I did come out of all my trouble.」★ 紧接着一句把这句「解脱」的意义讲清楚：麻烦「was not without anywhere that thou shouldest come out of it, but within in thine own opinions, from whence it must be cast out」—— <strong>麻烦不在「某处」，在「我自己的意见里」</strong>，所以要「从那里」把它赶出去。</p>
+  <p><span class="tag t-src">原书</span> 第九卷第 13 段，原文是：「The things themselves that affect us, they stand without doors, neither knowing anything themselves nor able to utter anything unto others concerning themselves. What then is it, that passeth verdict on them? The understanding.」★ 这是全书<strong>关于「外部之物站在门外」最完整的一句</strong>，也是「判断论」的又一次直接表述：物不自评，<strong>作判决的是「理解」（the understanding）</strong>。</p>
+  <p><span class="tag t-src">原书</span> 第九卷第 26 段，原文是：「Up and down, from one age to another, go the ordinary things of the world; being still the same.」★ 这句写的是<strong>历史循环感</strong>：人事翻来覆去，内容始终一样。</p>
+  <p><span class="tag t-src">原书</span> 第九卷第 30 段，原文是：「Many of those things that trouble and straiten thee, it is in thy power to cut off, as wholly depending from mere conceit and opinion; and then thou shalt have room enough.」★ ★ 这一句把「麻烦」重新定性为<strong>「纯粹由臆想与意见构成的东西」</strong>，因此可以由自己「剪掉」；末句「thou shalt have room enough」（你就够地方了）是全书中<strong>用最日常的话说出的「解绑」</strong>。★ 它是第九卷第 4 段、第 11 段、第 13 段那条「麻烦在意见里」线索的<strong>收束句</strong>。</p>
+  <p><span class="tag t-src">原书</span> 第九卷第 22 段，原文是：「Children's anger, mere babels; wretched souls bearing up dead bodies, that they may not have their fall so soon」★ 这一句把「人的愤怒」比作「小孩的吵闹」，把「活着的身体」叫作「勉强撑着的尸体」。★ 这一类的粗粝比喻在全书里<strong>集中出现在第九、十卷</strong>，用途仍是<strong>降格</strong>：把被赋予巨大分量的事物还原到它本来的重量，而不是教人蔑视生命。</p>
+  <p><span class="tag t-src">原书</span> 交叉对照：这一卷的 Chrystal 译文（#55317）把 Long 编在<strong>第九卷第 40 段</strong>的祈祷一段写成：「Either the Gods have power or they have none. If they have no power, why do you pray? If they have power, why do you not choose to pray to them for power neither to fear, nor to desire, nor to be grieved over any of these external things」★ 与 Long 的「Either the Gods can do nothing for us at all, or they can still and allay all the distractions and distempers of thy mind. If they can do nothing, why doest thou pray?」相比：<strong>Long 把对句落在「安抚内心」（allay all the distractions），Chrystal 把它落在一串具体请求（不恐惧、不贪求、不悲伤）</strong>。★ 这一处<strong>两个底本段号相同（都是第 40 段）</strong>，与第七卷的错位不同，说明编号差异是<strong>逐卷不同</strong>的，不能一概而论。</p>
+  <p><strong>（三）它在这一卷序列里的位置。</strong> 第九卷是全书<strong>把「社会关系」往内收</strong>的关键一卷：第 1 段从「对人不义」跳到「对神不敬」，第 4 段把「罪」的后果收回犯罪者自身，第 26 段把「人事翻覆」看成常态。它把第六、七、八卷里的「自足」<strong>扩展到「如何看别人」</strong>：别人犯错，最终是自己受损，而我只要不跟着犯错。★ 一条可实测的分布事实：本卷 <strong>43 段／约 483 行</strong>，平均每段约 <strong>11.2 行</strong>，处在全书的中等位置；但它的<strong>开头几段连续用「立论—反证」的长句</strong>，与后半大量一句一段的短段形成明显反差 —— <strong>同一卷之内，长短节奏并不均匀</strong>，这也是「编者没有按统一体例整理」的一个旁证。</p>
+  <p><strong>（四）可疑之处与常见误读。</strong> 第一，把第 4 段「He that sinneth, sinneth unto himself.」读成「不必去阻止别人作恶」—— ★ 原文第 9 段明确说「Either teach them better if it be in thy power; or if it be not, remember that for this use, to bear with them patiently, was mildness and goodness granted unto thee」，所以<strong>能教就要教</strong>，「忍耐」只是<strong>不能教时</strong>的第二选择。第二，把第 13 段的「物在门外」读成「世界与我无关」的冷感；★ 原文最后一句「What then is it, that passeth verdict on them? The understanding.」把重心放在<strong>「谁在下判断」</strong>，落点是<strong>责任</strong>，不是<strong>疏离</strong>。第三，本卷的「the Gods」一语<strong>在中文里容易被过度宗教化</strong>；★ 本报告一律照字面译作「诸神」（<span class="tag t-inf">推断</span>），并在 <code>## A</code> 里单独说明这个词在底本里的对应写法。</p>
+</section>
+
+<section id="s17">
+  <h2><span class="num">16</span><span>第十卷：对灵魂的自问（37 段）</span><span class="caret">▾</span></h2>
+  <p><strong>（一）这一卷读起来是什么样。</strong> 第十卷 <strong>37 段</strong>，底本行 <strong>4460–4999</strong>，约 <strong>540 行</strong>。★ 它是全书<strong>有跳号的少数几卷之一</strong>：段号从 XXIII 直接跳到 XXV（<strong>缺第 24 段</strong>）。★ 这一卷的开头极有分量：第 1 段以「O my soul」起手，是<strong>全书少见的、直接对「灵魂」发出的长篇自问</strong>；第 2 段紧接着把「按自然生活」拆成<strong>层层递进的检验步骤</strong>（先问「作为一般的自然」要什么，再问「作为有生命有感觉的生灵」要什么），这是全书<strong>最像「方法」的一段</strong>。★ 文类上，本卷既有第 10 段的「蜘蛛」比喻，也有第 28 段「猪被割喉」的粗粝比喻，还有第 15 段<strong>关于「早晨起床时判断最自由」的自我提醒</strong> —— 三种调子并置，说明这一卷同样不是按统一体例写成的。</p>
+  <p><strong>（二）关键原文。</strong></p>
+  <p><span class="tag t-src">原书</span> 第十卷第 1 段，原文是：「O my soul, the time I trust will be, when thou shalt be good, simple, single, more open and visible, than that body by which it is enclosed.」★ 这是全书<strong>唯一一次把「灵魂」直接称呼为「你」并长段劝告</strong>，语气近于祈祷，但对象是自己。</p>
+  <p><span class="tag t-src">原书</span> 第十卷第 2 段，原文是：「As one who is altogether governed by nature, let it be thy care to observe what it is that thy nature in general doth require.」★ 它把「按自然生活」变成一个<strong>两步检验</strong>：先看「人之为人的自然」要什么，再看「作为有感觉的生灵」要什么，然后才决定行动。</p>
+  <p><span class="tag t-src">原书</span> 第十卷第 10 段，原文是：「As the spider, when it hath caught the fly that it hunted after, is not little proud, nor meanly conceited of herself」★ 同段把「捕到野兔」「网到鱼」「猎到野猪」与「打败萨尔马提亚人」并列 —— 这是全书<strong>一次罕见的、对军事胜利的降格比喻</strong>。★ 本报告就这句<strong>只做文本内讨论</strong>：它的功能是<strong>拆掉战功的特殊光环</strong>，把它和蜘蛛捕蝇放进同一栏，<strong>不涉及任何现实政治评价</strong>。</p>
+  <p><span class="tag t-src">原书</span> 第十卷第 14 段，原文是：「What is that that is slow, and yet quick? merry, and yet grave? He that in all things doth follow reason for his guide.」★ 这像是一则<strong>谜语式的自问自答</strong>，也是全书里「以理性为唯一向导」的又一处表达。</p>
+  <p><span class="tag t-src">原书</span> 第十卷第 15 段，原文是：「In the morning as soon as thou art awaked, when thy judgment, before either thy affections, or external objects have wrought upon it, is yet most free and impartial」★ ★ 这一句是全书<strong>唯一明确标出「最佳自我省察时刻」的一处</strong>：清早刚醒、情绪与外物还没来得及作用于判断的时候，判断<strong>最自由、最公正</strong>；所以要紧的问题应当<strong>放在这个时候问自己</strong>。★ 它在操作层面回答了「什么时候做自我训练最有效」，与第 2 段的「两步检验」合起来，构成这一卷的「方法」。</p>
+  <p><span class="tag t-src">原书</span> 第十卷第 28 段，原文是：「As a pig that cries and flings when his throat is cut, fancy to thyself every one to be, that grieves for any worldly thing and takes on.」★ 这一句粗得像乡谚，但后半段立刻转向严格：<strong>只有理性生灵才被允许「自愿地服从天意」，其余一切「绝对服从」都是被迫的</strong>。</p>
+  <p><span class="tag t-src">原书</span> 第十卷第 34 段，原文是：「in whom true knowledge hath made an impression, everything almost that he sees or reads be it never so short or ordinary, doth afford a good <strong>memento</strong>」★ 这是全书<strong>另一处出现 memento 一词</strong>的地方 —— 与第七卷第 1 段一样，它只是「提醒物」的意思。★ 本报告据此在 <code>## 4b</code> 里重申：<strong>本书里 memento 作为单词出现过两次，但都不是 memento mori 这个拉丁套语。</strong></p>
+  <p><span class="tag t-src">原书</span> 交叉对照：第十卷的 Chrystal 译文（#55317）把 Long 编在<strong>第十卷第 1 段</strong>的开头写成：「Wilt thou ever, O my soul, be good and single, and one, and naked, more open to view than the body which surrounds thee?」★ 两个译本的差别在<strong>句式和态度</strong>：<strong>Long 是「I trust will be」—— 带盼望的陈述；Chrystal 则把整段改成一连串以「Wilt thou ever」起手的追问</strong>，而且 Chrystal 把 Long 的「more open and visible」改成更锋利的「naked（赤裸）」。<strong>同一段，Long 读起来像安慰，Chrystal 读起来像质问。</strong></p>
+  <p><strong>（三）它在这一卷序列里的位置。</strong> 第十卷是「方法」一卷：第 2 段的层层检验、第 15 段的「早晨判断最自由」、第 34 段的「像被疯狗咬过一样敏于提醒」，合起来构成一套<strong>可操作的自我训练程序</strong>。它把第九卷的「看别人」<strong>转向「看自己」</strong>，并直接引出第十一卷关于「灵魂的自足」的论述。★ 一条可实测的分布事实：本卷 <strong>37 段／约 540 行</strong>，平均每段约 <strong>14.6 行</strong>，明显长于第七、八卷；这与它「方法性强、需要展开」的性质相符 —— <strong>讲步骤的段落天然要长，讲提醒的段落天然要短。</strong></p>
+  <p><strong>（四）可疑之处与常见误读。</strong> 第一，把第 1 段的「O my soul」当成宗教祷词。★ 它在文本里对象是<strong>自己</strong>，与第十一卷第 3 段对「灵魂离体」的讨论一样，属于<strong>哲学练习</strong>，不能直接读作某个宗教的祈祷。第二，把第 28 段「猪」的比喻读成「蔑视痛苦中的人」；★ 原文的重心在<strong>「只有理性生灵才可能自愿服从」</strong>这一句，落点是人的<strong>可选择性</strong>，不是对人的嘲讽。第三，把第 10 段对军事胜利的比喻<strong>当作对战争的态度</strong>去引申 —— ★ 本报告只指出它是「降格比喻」（<span class="tag t-inf">推断</span>），<strong>不做任何现实政治的引申</strong>。</p>
+</section>
+
+<section id="s18">
+  <h2><span class="num">17</span><span>第十一卷：灵魂的自我审视（31 段）</span><span class="caret">▾</span></h2>
+  <p><strong>（一）这一卷读起来是什么样。</strong> 第十一卷 <strong>31 段</strong>，底本行 <strong>5000–5402</strong>，约 <strong>403 行</strong>，段号完整无跳号。★ 这一卷的<strong>引用密度是全书最高的一卷之一</strong>：Socrates、Epictetus、Empedocles、Pythagoreans、Lacedæmonians、Ephesians 的名字与言论反复出现（第 21–26、30–32 段几乎连成一片「古人言行录」）。★ 另一个显眼特征：本卷<strong>大量出现「某某如何面对生活琐事」的具体场景</strong>（第 22 段斯巴达人把阴凉座位让给外邦人、第 23 段苏格拉底答佩尔狄卡斯、第 26 段苏格拉底之妻拿走他的衣服）—— <strong>这些是本卷的「样本」部分</strong>，与第一卷的感恩名单遥相呼应。★ 就本报告的纪律而言，这一卷最需要小心的一句话在第 3 段（见下）。</p>
+  <p><strong>（二）关键原文。</strong></p>
+  <p><span class="tag t-src">原书</span> 第十一卷第 1 段，原文是：「The natural properties, and privileges of a reasonable soul are: That she seeth herself; that she can order, and compose herself: that she makes herself as she will herself」★ 这是「灵魂自足」最完整的定义：<strong>它看得见自己、能安排自己、能把自己造成它想要的样子。</strong></p>
+  <p><span class="tag t-src">原书</span> 第十一卷第 4 段，原文是：「Have I done anything charitably? then am I benefited by it.」★ 这句把「行善」的回报直接放在<strong>行善者自己身上</strong>，并在同段把「你的职业是什么」回答成一句极短的话：<strong>「to be good」（做个好人）</strong>。★ 这是全书里对第一卷那句「live according to nature」的<strong>最简回答</strong>：它不是「皇帝」，不是「哲学家」，而是「好人」。</p>
+  <p><span class="tag t-src">原书</span> 第十一卷第 22 段是一处「以古人作样本」的典型：原文记斯巴达人「were wont to appoint seats and forms for their strangers in the shadow, they themselves were content to sit anywhere.」★ 这类琐细的轶事正是本卷的特色：<strong>它不靠论证，靠一个具体的人在一个具体的场合怎么做。</strong></p>
+  <p><span class="tag t-src">原书</span> 第十一卷第 3 段，原文是：「That soul which is ever ready, even now presently (if need be) from the body, whether by way of extinction, or dispersion, or continuation in another place and estate to be separated, how blessed and happy is it!」★ ★ 同段紧接着一句非常要紧的话：这种「随时可以离开身体」的从容，<strong>不能来自</strong>「an obstinate and peremptory resolution of the mind, violently and passionately set upon Opposition, <strong>as Christians are wont</strong>」，而要来自「a peculiar judgment」。★ <strong>这是 Long 底本正文里「Christians」一词唯一出现的地方</strong>（本报告全文实测：正文 1 次，其余 6 次都在 #2680 的编者导言里，不属正文）。★ 就这一句，本报告<strong>只做文本内说明</strong>：作者在此把「以激烈对抗的姿态求死」当作<strong>反面</strong>，与他主张的「出于判断的从容」对立。<strong>本报告不去讨论「斯多亚与基督教的关系」这类跨系统命题</strong>（凡涉及，必须另有确凿出处，本报告不写）。</p>
+  <p><span class="tag t-src">原书</span> 第十一卷第 6 段，原文是：「How clearly doth it appear unto thee, that no other course of thy life could fit a true philosopher's practice better, than this very course, that thou art now already in?」★ 这句是全书<strong>「在现有的位置上做哲学」最明白的一处</strong>：不必换一种生活，<strong>现在这种生活</strong>就已经最适合练习。</p>
+  <p><span class="tag t-src">原书</span> 第十一卷第 7 段，原文是：「A branch cut off from the continuity of that which was next unto it, must needs be cut off from the whole tree: so a man that is divided from another man, is divided from the whole society.」★ 同段补了一句更锋利的：<strong>树枝是被别人砍下的，但「憎恨并疏远他人」的人是自己把自己砍下来，而且不知道自己也同时离开了整个身体。</strong></p>
+  <p><span class="tag t-src">原书</span> 第十一卷第 15 段，原文是：「To live happily is an inward power of the soul, when she is affected with indifferency, towards those things that are by their nature indifferent.」★ 这句是「幸福不在外物」的压缩版，且<strong>明确用了 indifferency（对「无所谓之物」的无所谓）</strong>这个词族 —— 正是斯多亚 adiaphora 的用法。</p>
+  <p><span class="tag t-src">原书</span> 第十一卷第 19 段，原文是：「He that hath not one and the self-same general end always as long as he liveth, cannot possibly be one and the self-same man always.」★ 这句从「人生的统一性」下判：<strong>没有一个贯穿始终的目标，就不可能始终是同一个人。</strong></p>
+  <p><span class="tag t-src">原书</span> 交叉对照：第十一卷的 Chrystal 译文（#55317）把 Long 编在<strong>第十一卷第 6 段</strong>的那句写成：「How manifest it is that no other course of life was more adapted to the practice of philosophy than that which now is yours.」★ 两个译本的差别不在意思，而在<strong>人称</strong>：<strong>Long 用第二人称「thou art now already in」，把话对着自己说；Chrystal 用「yours」，把它变成对读者的陈述。</strong> 同一句，Long 是自省，Chrystal 是讲述。</p>
+  <p><strong>（三）它在这一卷序列里的位置。</strong> 第十一卷处在全书<strong>临近收束的位置</strong>，因此它做了两件事：一是<strong>大量回引古人</strong>（苏格拉底、爱比克泰德等），像是把前面各卷的「样本」再清点一次；二是<strong>把「灵魂自足」讲到底</strong>（第 1、3、15 段）。它上承第十卷的「方法」，下接第十二卷的「终结与告别」。</p>
+  <p><strong>（四）可疑之处与常见误读。</strong> 第一，把第 3 段那句「as Christians are wont」<strong>当成全书对基督教的评价</strong>—— ★ 它的语法位置是<strong>反面对比的一个例子</strong>，不是对基督教的系统评论；把它往「斯多亚预示基督教」或「马可反基督教」任一方向引申，都超出了文本（<span class="tag t-inf">推断</span>），本报告不做。第二，把第 7 段的「树枝」比喻读成「要合群」的社交劝告；★ 原文的落点在<strong>「切断」是自己造成的</strong>（「he that hates and is averse, cuts himself off」），仍是<strong>自省</strong>，不是社交术。第三，把第 15 段的「indifferency」读成「冷漠」；★ 它的对象是<strong>「本性上无所谓的东西」</strong>，指对成败、贫富、生死这类非德性之物的不执着，不是对人冷漠。</p>
+</section>
+
+<section id="s19">
+  <h2><span class="num">18</span><span>第十二卷：终点与告别（27 段）</span><span class="caret">▾</span></h2>
+  <p><strong>（一）这一卷读起来是什么样。</strong> 第十二卷是<strong>全书最短的一卷：27 段</strong>，底本行 <strong>5403–5736</strong>，约 <strong>334 行</strong>，段号完整无跳号。★ 它是全书的<strong>收束之卷</strong>，也最像「遗言」：第 6 段写「临死时我们该是什么样」，第 27 段直接写「使人轻视死亡」，第 25 段写「属于我们每个人的，只是无穷时间里极小的一份」。★ 篇幅短、句子密、没有外来的摘录题签 —— 与第七卷那种「抄录本」形成鲜明对照。★ 文类上，本卷把全书最核心的几条主张<strong>几乎全部重述了一遍</strong>：命运（第 11 段）、意见（第 16、19 段）、当下（第 20 段）、死亡（第 27 段）。如果把全书读成一首曲子，这一卷就是<strong>回到主题的尾声</strong>。</p>
+  <p><strong>（二）关键原文。</strong></p>
+  <p><span class="tag t-src">原书</span> 第十二卷第 3 段，原文是：「I have often wondered how it should come to pass, that every man loving himself best, should more regard other men's opinions concerning himself than his own.」★ 这句是全书的<strong>自我诊断</strong>：人人都最爱自己，却把别人的看法看得比自己的看法更重。</p>
+  <p><span class="tag t-src">原书</span> 第十二卷第 10 段，原文是：「How ridiculous and strange is he, that wonders at anything that happens in this life in the ordinary course of nature!」★ 与第七卷第 1 段呼应：<strong>不该对「本就会发生的事」感到惊讶。</strong></p>
+  <p><span class="tag t-src">原书</span> 第十二卷第 11 段，原文是：「Either fate, (and that either an absolute necessity, and unavoidable decree; or a placable and flexible Providence) or all is a mere casual confusion, void of all order and government.」★ 这一句是全书<strong>唯一把「命运／天意／偶然」三种宇宙论并排列出的一处</strong>，而且没有在三种之间强行裁决，只说：若是不可抗的必然，就别抗拒；若是可求的天意，就让自己值得它的帮助；若纯是混乱，那……（原文以反问作结）。★ 这一段对理解全书「命运观」极重要：<strong>它承认了理论上的不确定性，把重点放在「该怎么办」上。</strong></p>
+  <p><span class="tag t-src">原书</span> 第十二卷第 13 段，原文是：「If it be not fitting, do it not. If it be not true, speak it not. Ever maintain thine own purpose and resolution free from all compulsion and necessity.」★ 三句里前两句是<strong>行为的两条硬线</strong>（不妥的不做、不实的不说），第三句把「自由」定义为<strong>不被强制</strong>。</p>
+  <p><span class="tag t-src">原书</span> 第十二卷第 15 段，原文是：「It is high time for thee, to understand that there is somewhat in thee, better and more divine than either thy passions, or thy sensual appetites and affections.」★ 这是全书对「人内有什么」最直接的一句：<strong>总有一部分比情欲与感官冲动更好、更接近神性。</strong></p>
+  <p><span class="tag t-src">原书</span> 第十二卷第 16 段，原文是：「Remember that all is but opinion, and all opinion depends of the mind.」★ 紧接着用「船入港湾」作比：把意见拿掉，<strong>立刻就静了</strong>。</p>
+  <p><span class="tag t-src">原书</span> 第十二卷第 21 段，原文是：「To them that ask thee, Where hast thou seen the Gods, or how knowest thou certainly that there be Gods, that thou art so devout in their worship?」★ 这句是全书<strong>对「你为什么敬神」这个问题的唯一正面回答</strong>，其答法是先承认「对眼而言它们某种程度可见」，再说「我连自己的灵魂都没见过，却仍然敬重它」。★ 本报告照字面处理，<strong>不做任何宗教引申</strong>。</p>
+  <p><span class="tag t-src">原书</span> 第十二卷第 25 段，原文是：「What a small portion of vast and infinite eternity it is, that is allowed unto every one of us, and how soon it vanisheth into the general age of the world」★ 这一句是全书<strong>「用宇宙尺度量一量自己」的标准句式</strong>，与第四卷、第九卷的同型句合看，可以确认：<strong>它不是要人自轻，而是要人获得一个不被当下情绪放大的比例尺。</strong></p>
+  <p><span class="tag t-src">原书</span> 第十二卷第 27 段，原文是：「To stir up a man to the contempt of death this among other things, is of good power and efficacy, that even they who esteemed pleasure to be happiness, and pain misery, did nevertheless many of them contemn death as much as any.」★ 全书以「轻视死亡」收束，且论证很节制：<strong>连那些把快乐当幸福的人，也照样轻视死亡。</strong></p>
+  <p><span class="tag t-src">原书</span> 交叉对照：第十二卷的 Chrystal 译文（#55317）把 Long 编在<strong>第十二卷第 21 段</strong>的敬神一段写成：「To those who ask, "Where have you seen the Gods, and how assured yourself of their existence, that you worship them?"」★ 两个译本的差别在<strong>引号与语气</strong>：<strong>Chrystal 把问题放在引号里，当作「别人问你的原话」，答复也变成「make this reply」；Long 则把问题融进叙述（间接问句）。</strong> <strong>同一段，Chrystal 像一段对话，Long 像一段独白。</strong> ★ 另有一条编号差异：这一句 <strong>Long 编在第十二卷第 21 段，Chrystal 编在 Book XII 第 28 段</strong>，相差七位，请勿混用。</p>
+  <p><strong>（三）它在这一卷序列里的位置。</strong> 第十二卷是全书<strong>收官</strong>：它不再引出新主张，而是把「命运—意见—当下—死亡」四条主线各收一次口。★ 它与第一卷的「感恩名单」形成全书的首尾框架：<strong>第一卷说「我从谁那里学到了什么」，第十二卷说「我最终认定的是什么」。</strong></p>
+  <p><strong>（四）可疑之处与常见误读。</strong> 第一，把第 11 段读成「马可主张决定论」—— ★ 原文恰恰把必然、天意、偶然<strong>三种并列</strong>，并未在理论上选边；它关心的是<strong>「那你该怎么办」</strong>。第二，把第 27 段「轻视死亡」读成「厌世」；★ 全书多卷（第七卷第 40 段的「像最后一天」，第十卷第 1 段对灵魂的期望）都在正面谈「如何活」，<strong>死亡在这里是用来校准「如何活」的尺度，不是目的</strong>（<span class="tag t-inf">推断</span>）。第三，把第 21 段对「诸神」的答复读成一种「论证神存在」的哲学证明 —— ★ 原文自己说「even to the very eye, they are in some manner visible」，靠的是<strong>日常经验与类比</strong>（灵魂看不见却被敬重），不是严格的证明。</p>
+</section>
+
+<section id="s20">
+  <h2><span class="num">19</span><span>主题与思想史：斯多亚的三个核心操作与「内在堡垒」读法</span><span class="caret">▾</span></h2>
+  <p>前十二节把每一卷单独看过一遍。这一节换一个方向：<strong>把这十二卷合起来，看它们到底在反复做哪几件事，以及后人是怎么读这本书的。</strong> ★ 本节的写法与前面不同 —— 逐卷节只讲文本，本节要引入<strong>后世的解释框架</strong>；凡是后人的说法，都会<strong>明确标出是谁、哪一年、依据是什么</strong>，并把互相冲突的读法<strong>并列出来，不替读者裁决</strong>。</p>
+  <p><strong>（一）先看文本自己在重复什么。</strong> 如果把十二卷里出现频率最高的动作列出来，会得到三组，而且这三组在几乎每一卷里都出现过（<code>## 6</code> 至 <code>## 18</code> 的逐卷统计可以佐证）：</p>
+  <ol>
+    <li><strong>对「印象」作处理</strong>：把「某某说了什么」与「我因此受伤」分开。第八卷第 47 段最典型：<span class="tag t-src">原书</span>「Keep thyself to the first bare and naked apprehensions of things, as they present themselves unto thee, and add not unto them.」
+    </li>
+    <li><strong>对「不属于自己的东西」不执着</strong>：把属于自己判断的与不属于自己判断的分开。第八卷第 27 段：<span class="tag t-src">原书</span>「Now if I will, it is in my power to keep out of this my soul all wickedness, all lust, and concupiscences, all trouble and confusion.」
+    </li>
+    <li><strong>对「该做什么」下决心</strong>：把自己看成一个更大整体的一部分。第十一卷第 7 段：<span class="tag t-src">原书</span>「so a man that is divided from another man, is divided from the whole society.」；第六卷第 39 段：<span class="tag t-src">原书</span>「My city and country as I am Antoninus, is Rome; as a man, the whole world.」
+    </li>
+  </ol>
+  <p>★ 这三组，正是<strong>斯多亚哲学的三个操作</strong>。它们不是本书独有的，而是斯多亚学派把哲学分成<strong>逻辑／物理学／伦理学</strong>三部分之后，在<strong>实践层面</strong>上的对应做法。★ 下面三条分别说明它们在本书里长什么样。</p>
+  <p><strong>（二）操作一：判断（assent，对印象的赞同）。</strong> 对应斯多亚的<strong>逻辑</strong>部分。做法是：一个印象来了，先不忙着同意它，先问「它本身是什么」。★ 本书把这一步写得极具体 —— 第九卷第 13 段（<span class="tag t-src">原书</span>「The things themselves that affect us, they stand without doors, neither knowing anything themselves nor able to utter anything unto others concerning themselves. What then is it, that passeth verdict on them? The understanding.」）：<strong>物在门外不表态，表态的是「理解」。</strong> ★ 第十一卷第 15 段给出了这一步的目标状态：<span class="tag t-src">原书</span>「To live happily is an inward power of the soul, when she is affected with indifferency, towards those things that are by their nature indifferent.」——注意「indifferency」在这里的宾语是<strong>「本性上无所谓的东西」</strong>，指的是成败、贫富、生死这类非德性之物，不是「对人冷漠」。</p>
+  <p><strong>（三）操作二：欲望（desire，对「何为可欲」的重新校准）。</strong> 对应斯多亚的<strong>物理学</strong>部分。★ 这一操作的核心是<strong>控制二分</strong>：把「在我能力之内（希腊语 τὰ ἐφ' ἡμῖν）」与「不在我能力之内（τὰ οὐκ ἐφ' ἡμῖν）」分开；欲望只投向第一类，对第二类不执着。★ 本书里这个区分<strong>不是用术语说出来的，而是用场景反复演示</strong>的：第九卷第 40 段问「Either the Gods can do nothing for us at all, or they can still and allay all the distractions and distempers of thy mind.」，把「求外部结果」改成「求内心安定」；第八卷第 31 段（<span class="tag t-src">原书</span>「Receive temporal blessings without ostentation, when they are sent and thou shalt be able to part with them with all readiness and facility when they are taken from thee again.」）把「拿得起」直接定义成「放得下」的条件。★ 这里要特别提醒一个<strong>流行的误读</strong>：现代很多介绍把「控制二分」说成「只能控制自己的态度，别的都别管」—— ★ 这还是把书读薄了。原文的重心不是「别管」，而是<strong>「把欲望投向值得投的地方」</strong>：宇宙整体的运行、他人的行为、我的身体与名声都属于「不由我」的一类，但<strong>我的判断、我的行动、我对同类的善意</strong>属于「由我」的一类，后者才是欲望该落的地方。★ 第七卷第 33 段的「摔跤手」比喻说的正是这一点：不是退出场地，而是<strong>在场地里随时应招。</strong></p>
+  <p><strong>（四）操作三：行动（impulse，对「该做什么」的判断）。</strong> 对应斯多亚的<strong>伦理学</strong>部分。★ 这一操作的方向是<strong>向外</strong>的：不是「我如何不受影响」，而是「我应当做什么」。本书给出的标准很短：第九卷第 1 段（<span class="tag t-src">原书</span>「He that is unjust, is also impious.」）把「对人不义」直接等同于「不敬」；第十一卷第 4 段（<span class="tag t-src">原书</span>「Have I done anything charitably? then am I benefited by it.」）把行善的回报放在行动者自己身上。★ 这三个操作在本书里<strong>常常同时出现在一段之内</strong> —— 例如第八卷第 47 段先处理印象（操作一），再给出「别加戏」的行动准则（操作三）。★ 另有一处把三者压得极短的是第九卷第 6 段：<span class="tag t-src">原书</span>「To wipe away fancy, to use deliberation, to quench concupiscence, to keep the mind free to herself.」——四个动作分别对应<strong>清印象（判断）／作思量（判断）／息贪欲（欲望）／还心灵自由（结果）</strong>。★ 全书的练习，压缩到极致就是这一行；它没有任何修饰，像一句操作口诀。</p>
+  <p><strong>（五）一项贯穿全书的练习：从高处看。★ 及一处必须说明的用词。</strong> 三个操作之外，本书还有一项反复出现的<strong>具体技术</strong>：把眼前的事放进极大的时空里重新看一遍。★ 第九卷第 29 段（<span class="tag t-src">原书</span>「From some high place as it were to look down, and to behold here flocks, and there sacrifices, without number」）是它的标准样本。★ <strong>附带一个必须说明的事实</strong>：本书那句常被概括为「灵魂是一座堡垒」的话，在 <strong>#2680</strong> 这个主底本里用的词其实是 <strong>fort</strong>（要塞），原文作「let thy chief fort and place of defence be, a mind free from passions.」；而 <strong>citadel</strong>（堡垒）这个词出现在<strong>另一版英译 PG #15877</strong>（Long 的另一印本，见 <code>## 20</code>）里，原文作「the mind which is free from passions is a citadel, for man has nothing more secure to which he can fly for refuge and for the future be inexpugnable」。★ 也就是说，<strong>「内在堡垒」这个通行叫法，与译者选词直接相关</strong> —— 这正好说明为什么本报告坚持「引哪一版就注哪一版」。</p>
+  <p><strong>（六）「内在堡垒」读法：Hadot 的主张（★ 明确标为 Hadot 的观点，下面三点均为 <span class="tag t-rep">转述</span>）。</strong> 法国学者 <strong>Pierre Hadot</strong> 在 <strong>《The Inner Citadel: The Meditations of Marcus Aurelius》</strong>（法文原著 <strong>La Citadelle intérieure</strong>，<strong>Paris，1992</strong>；英译 <strong>Michael Chase</strong>，<strong>Harvard University Press，1998</strong>，共 xii+351 页）里提出：<strong>《沉思录》不是一本格言汇编，而是一套按卷推进的「精神练习」（spiritual exercises）。</strong> ★ Hadot 的具体主张有三点：</p>
+  <ol>
+    <li>本书是作者写给自己用的<strong>笔记（hypomnêmata）</strong>，其<strong>重复不是缺陷，而是方法</strong> —— 同一个道理要反复写，是因为它需要被反复「压」进心里。
+    </li>
+    <li>这些练习围绕<strong>三个「训练」（disciplines）</strong>展开：<strong>判断的训练（assent，对应逻辑）／欲望的训练（desire，对应物理学）／行动的训练（impulse，对应伦理学）</strong>；Hadot 认为这三者是<strong>爱比克泰德的学说</strong>，马可把它整套搬进了自己的练习里。
+    </li>
+    <li>「内在堡垒」指的是<strong>主导部分（ἡγεμονικόν）</strong>：外物无法真正攻破它，除非自己把钥匙交出去。
+  <p>★ ★ <strong>本报告必须明确</strong>：以上三点是 <strong>Hadot 的解释框架，不是文本自己写出来的</strong>。文本里既没有「三个训练」这个分节，也没有「citadel」这个词（见上）。<strong>Hadot 是读者，不是作者。</strong></p>
+    </li>
+  </ol>
+  <p><strong>（七）另一种读法：零散笔记（<span class="tag t-rep">转述</span>）。★ 与上一条并列，不裁决。</strong> 与 Hadot 相对的是另一个更朴素的读法：<strong>《沉思录》就是一份前后不连贯的私人笔记，它被读出来的「结构」部分是后人的追加</strong>。这一读法的代表是 <strong>R. B. Rutherford《The Meditations of Marcus Aurelius: A Study》（Clarendon Press, Oxford，1989）</strong>，它更强调本书的<strong>文学与修辞性质</strong>，提醒读者不要把一份「反复起头、突然中断、自己对自己发火」的文本过度系统化。★ 支持这一读法的<strong>文本内证据</strong>在本报告里比比皆是：第七卷第 23–26 段的抄录题签、第十卷的<strong>跳号</strong>（缺第 24 段）、第二卷的<strong>跳号</strong>（缺第 5 段）、同一条主张在不同卷里措辞各异（<code>## 6</code> 的「重复」一节已给出例子）。★ 本报告<strong>不替读者在这两说之间裁决</strong>，只把两边的话都放上来：</p>
+  <ul>
+    <li>若按 <strong>Hadot</strong> 读，本书是一套<strong>完整的自我训练程序</strong>，重复是「刻意练习」，十二卷可以看成同一个训练的不同阶段。
+    </li>
+    <li>若按 <strong>Rutherford</strong> 读，本书是一份<strong>没有定稿的私人笔记</strong>，它的价值恰恰在于<strong>不系统</strong> —— 我们能看见一个人在真实的日子里怎样一次次把自己拉回来。
+  <p>★ 两种读法<strong>并不互相取消</strong>：同一本书，既可以是「练习」（写的时候在做什么），也可以是「笔记」（写下来的东西是什么）。<strong>本报告的建议是（<span class="tag t-inf">推断</span>）：先自己读，读完再决定你更信哪一种。</strong></p>
+    </li>
+  </ul>
+  <p><strong>（八）本书在思想史上的位置（只做文本与文献层面的说明）。</strong> ★ 需要如实说明的是：本书<strong>传世极迟</strong>（抄本谱系见 <code>## 20</code>），而且长期是<strong>「被读」的书，不是「立派」的书</strong>。★ 对它的评价史里，一条最常被重述的判断出自 <strong>D. A. Rees（1992）</strong>为 Everyman's Library 版（Farquharson 英译）所写的导言（<span class="tag t-rep">转述</span>）：本书<strong>不是、也不声称是原创的哲学著作，也不是某个思想传统的系统阐述</strong>。★ 本报告对这类<strong>评价性判断</strong>一律标明出处、标为 <span class="tag t-rep">转述</span>，不与文本原文混同。★ 至于「斯多亚与基督教的关系」「马可是不是某种政治或道德典范」这类跨系统命题，<strong>本报告一概不写</strong> —— 它们需要文本以外的证据，超出本报告的核验范围。</p>
+  <p><strong>（九）把三个操作合起来看：一条「一天的流程」。</strong> ★ 如果非要给本书的练习排一个日常次序，最贴近原文的排法是<strong>从早到晚</strong>：</p>
+  <ul>
+    <li><strong>清早（判断最自由的时刻）</strong>：第十卷第 15 段说，刚醒时「thy judgment, before either thy affections, or external objects have wrought upon it, is yet most free and impartial」——<strong>这个时刻用来问要紧的问题</strong>。
+    </li>
+    <li><strong>白天（处理印象）</strong>：印象来了先按第八卷第 47 段和第九卷第 13 段处理 —— 分清「事实」与「我加上的判断」。
+    </li>
+    <li><strong>待人（行动）</strong>：按第九卷第 9 段「Either teach them better if it be in thy power; or if it be not, remember that for this use, to bear with them patiently, was mildness and goodness granted unto thee」——<strong>能教就教，不能教才忍</strong>。
+    </li>
+    <li><strong>遇挫（欲望）</strong>：回到第九卷第 40 段那句自问 —— <strong>求的不是结果，是心不被搅动</strong>。
+    </li>
+    <li><strong>睡前（总账）</strong>：按第七卷第 40 段 <strong><span class="tag t-src">原书</span>「when he so spends every day, as if it were his last day」</strong> 量一量这一天。
+  <p>★ ★ <strong>本报告必须声明</strong>：这条「一天流程」是<strong>本报告根据文本内部的时间线索整理出来的</strong>（<span class="tag t-inf">推断</span>），<strong>不是原文里的现成清单</strong>；原文并没有排过这样的次序。把它写出来，只是为了说明：<strong>三个操作在本书里是配着一天的时间用的，而不是三条并列的抽象教条。</strong></p>
+    </li>
+  </ul>
+  <p>★ 本节最后一条提醒：<strong>不要把三个操作读成「三步走」</strong>。Hadot 自己也强调它们是<strong>同时发生</strong>的（<span class="tag t-rep">转述</span>）—— 一次处理印象（判断）时，往往同时在做欲望的取舍和行动的决定。若把它读成「先判断、再控制欲望、最后行动」的流水线，就把这套练习读僵了。</p>
+</section>
+
+<section id="s21">
+  <h2><span class="num">20</span><span>版本、译本与中文接受史</span><span class="caret">▾</span></h2>
+  <p><strong>（一）版本谱系：现存文本几乎只靠两部抄本。</strong> ★ 这是理解本书一切版本问题的前提。据本报告核到的公开书目信息：现代文本<strong>几乎完全基于两部抄本</strong> —— <strong><em>Codex Palatinus</strong></em>（<strong>1558–59 年首次印行之后即已遗失</strong>，此后原件不存）与 <strong><em>Codex Vaticanus 1950</strong></em>（<strong>14 世纪</strong>，<strong>残缺</strong>，因意外<strong>丢失约 42 行</strong>）。★ 首个印刷版为 <strong>1558 或 1559 年</strong>（编者 <strong>Wilhelm Xylander</strong>，苏黎世）；首个英译本为 <strong>1634 年</strong>（<strong>Meric Casaubon</strong>）。★ 今天通行的<strong>分卷与分段编号，要到 1652 年 Thomas Gataker 的拉丁译本才基本定型</strong> —— 因此<strong>这些编号不能被当作权威</strong>（这一点对读本书极重要，见 <code>## 6</code>）。★ 一句话结论：<strong>「原本完整」的印象是错的</strong>；我们读到的《沉思录》是一部靠少数抄本传下来的、有缺行的文本。★ 一个常被忽略的事实：本书在<strong>古典时代几乎没有被引用</strong>，直到 16 世纪才重新出现在欧洲的印刷本里。★ 这也解释了为什么它的<strong>文本状态比同期的许多著作更差</strong> —— 它没有经过中世纪抄写者的反复抄写与校勘，也就没有被「磨光」的机会；相反，它带着抄写过程中的错字、跳行与误并一路传下来。「约 42 行的丢失」正是这种传抄状况的后果。★ 因此，读本书时遇到<strong>突然中断的句子、前后不接的段落</strong>，很可能不是作者的问题，也不是译本的问题，而是<strong>文本本身的状态</strong>。</p>
+  <p><strong>（二）英文译本谱系（★ 只列可查的版本，不评优劣）。</strong> 据 #2680 的编者导言与公开书目信息，主要英译如下：</p>
+  <table>
+    <thead><tr><th>年份</th><th>译者</th><th>备注</th></tr></thead>
+    <tbody>
+      <tr><td>1634</td><td>Meric Casaubon</td><td>首个英译本</td></tr>
+      <tr><td>1701</td><td>Jeremy Collier</td><td>后有中译本据其转译（见下）</td></tr>
+      <tr><td>1747</td><td>James Thomson</td><td></td></tr>
+      <tr><td>1792</td><td>R. Graves</td><td></td></tr>
+      <tr><td>1862</td><td><strong>George Long</strong></td><td>★ <strong>#2680 与 #15877 的实际译者</strong>（见下「译者身份」）</td></tr>
+      <tr><td>1898</td><td>G. H. Rendall</td><td></td></tr>
+      <tr><td>1916</td><td><strong>C. R. Haines</strong></td><td><strong>Loeb 古典丛书</strong>，希腊文与英译对照；后有中译本据其转译</td></tr>
+      <tr><td>1944</td><td>A. S. L. Farquharson</td><td>后有 1992 年 Everyman's Library 版（导言作者 D. A. Rees）</td></tr>
+      <tr><td>1964</td><td>Maxwell Staniforth</td><td></td></tr>
+      <tr><td>2002</td><td>Gregory Hays</td><td>现代通行本之一（非公版）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>「译者身份」这一条必须单独说明</strong>：#2680 的 <strong>Project Gutenberg 元数据并未标注译者</strong>。本报告据其首卷首句「Of my grandfather Verus I have learned to be gentle and meek, and to refrain from all anger and passion.」与同类 Long 版本比对，<strong>判定其为 George Long 译本</strong>；★ 但这<strong>是本报告的判断，未获 PG 官方确认</strong>，已登记入附录 D。★ 顺带说明一个容易混淆的点：本报告用的第三路底本 <strong>PG #15877 也是 Long 译本</strong>，但它的<strong>正文编排与 #2680 不同</strong>（例如 #15877 把关于「a little soul bearing about a corpse」的那句编在第八卷第 41 段，并在句末附注「as Epictetus used to say」）。★ <strong>同一位译者、两个不同印本，段号与句子都可能不同</strong> —— 这就是本报告坚持「引哪一版就注哪一版」的又一个理由。</p>
+  <p><strong>（三）中文译本怎么选（★ 本节最要紧的部分，逐条照 §2.4 的三条警告写）。</strong> ★ <strong>再次声明</strong>：下表<strong>来源＝公开书目信息与公开评述，本报告未逐册核对</strong>。</p>
+  <table>
+    <thead><tr><th>译者</th><th>出版社</th><th>底本</th><th>备注</th></tr></thead>
+    <tbody>
+      <tr><td>梁实秋</td><td>译林出版社（另有「1959 年首译、2003 年才出版」之说）</td><td>据 <strong>C. R. Haines 1916 年 Loeb 英译</strong>转译</td><td>据称<strong>第一个中文全译本</strong></td></tr>
+      <tr><td>何怀宏</td><td>中央编译出版社 2008（另有 1989 年中国社会科学出版社初版之说）</td><td>据 <strong>George Long 英译</strong>转译</td><td>国内流传最广</td></tr>
+      <tr><td>王焕生</td><td>2010（据称天津社会科学院出版社）</td><td>★ 据称<strong>国内第一本直接据希腊原文翻译</strong></td><td>底本与上两者不同</td></tr>
+      <tr><td>朱汝庆</td><td>1998（据称中国社会科学出版社）</td><td>据 <strong>Jeremy Collier 英译</strong>转译</td><td></td></tr>
+    </tbody>
+  </table>
+  <p>★★ <strong>三条警告（必须写清，不能含糊）：</strong></p>
+  <ol>
+    <li><strong>「中译本有 100 多个版本」的说法不可作事实。</strong> ★ 网络上这类说法来自<strong>内容农场</strong>（如 <code>kknews.cc</code> 一类），本报告<strong>未能核实其来源</strong>，因此只能写成「网上流传着『上百个译本』的说法，<strong>本报告未能核实其来源</strong>」，<strong>不得</strong>当作事实引用。★ 需一并说明它为什么可疑：本书现存文本只靠两部残缺抄本（见上（一）），一个文本基础如此单薄的古籍，<strong>在中文世界里出现『上百个独立译本』本身就不合常理</strong>。
+    </li>
+    <li><strong>各译本的底本不同，这直接决定文本差异。</strong> ★ 从上表可见：<strong>梁实秋据英译（Haines）转译、何怀宏据英译（Long）转译、朱汝庆据英译（Collier）转译、王焕生据称据希腊文</strong>。★ 也就是说，读者感到的「译笔不同」，很大一部分其实是<strong>「转译的英译本不同」甚至「是否转译」的不同</strong>，<strong>不得笼统说成『译笔不同』</strong>。★ 本报告凡引中文译本，一律标明其<strong>底本</strong>。
+    </li>
+    <li><strong>初版年份在多个来源间互相矛盾，必须两说并列。</strong> ★ 例：梁实秋有「<strong>1959 年首译</strong>」与「<strong>2003 年才出版</strong>」两说；何怀宏有「<strong>1989 年初版</strong>」与「<strong>2008 年</strong>」两说。★ 本报告<strong>不择一断言</strong>，两说并陈，并全部登记入<strong>附录 D</strong>。★ <strong>译本的译者／年份／出版社一律不许凭记忆写</strong>。
+    </li>
+  </ol>
+  <p><strong>（四）中文接受史（只描述可查的社会现象，不引用无法核实的个人说法）。</strong> ★ 中文世界对本书的兴趣，呈现出几个<strong>可描述的层次</strong>：其一，它是<strong>最早被完整译介的西方古典哲学文本之一</strong>（梁实秋译本据称是第一个中文全译本）；其二，它属于<strong>「格言体」接受</strong>最成功的一类书 —— 因为原文本就短句密集、可随手翻开，极适合「摘句」式传播；其三，正因如此，它也是<strong>最容易被「降格式阅读」的一本古典书</strong>（本报告 <code>## 4b</code> 专门处理这类误读）。★ <strong>本报告须声明</strong>：中文世界里流传着大量「某某名人说这是他最爱读的书」「有人在枕边放了它几十年」一类说法，来源多为<strong>二手转述与媒体概述</strong>，★ <strong>本报告不引用任何无法核实的个人化说法</strong>，也不针对任何具体人物作出评价；这类「接受史逸闻」如需使用，<strong>必须另有确凿出处</strong>，否则<strong>不写</strong>。</p>
+  <p><strong>（五）交叉验证：两个独立公版译本，12 卷结构逐卷对齐（★ 本报告实测结果）。</strong> ★ 这是本报告对全书做的一次<strong>结构性交叉验证</strong>：把主底本 <strong>#2680（George Long 译）</strong> 与交叉底本 <strong>#55317（George W. Chrystal 译）</strong> 逐卷对齐。结论如下：</p>
+  <ul>
+    <li><strong>两本都是 12 卷，卷序完全一致</strong>（I–XII 对应 THE FIRST BOOK–THE TWELFTH BOOK）；★ 这说明<strong>十二卷的分卷法在两个独立译本里是稳定的</strong>。
+    </li>
+    <li><strong>段数不同</strong>：#2680 共 <strong>412 段</strong>（第一卷 17 段、第二卷 14 段、第三卷 17 段、第四卷 43 段、第五卷 30 段、第六卷 51 段、第七卷 44 段、第八卷 58 段、第九卷 43 段、第十卷 37 段、第十一卷 31 段、第十二卷 27 段）；#55317 的卷标题格式与 #2680 <strong>不同</strong>，须单独 grep 才能定位。
+    </li>
+    <li><strong>段号逐卷不同（★ 已用实例验证）</strong>：第七卷里，Long 编在第 12 段的那句，在 Chrystal 里编在<strong>第 15 段</strong>；第九卷里，两边<strong>都是第 40 段</strong>；第十二卷里，Long 第 21 段＝Chrystal <strong>第 28 段</strong>。★ 结论：<strong>段号差异是逐卷不同的</strong>，<strong>不能一概而论</strong>，更不能跨底本混用编号。
+  <p>★ 因此本报告所有定位一律写「<strong>第 N 卷第 M 段</strong>」，并注明<strong>段号依 Project Gutenberg #2680 底本</strong>；引 #55317 时<strong>另注其编号体系与本报告主底本不同</strong>。</p>
+    </li>
+  </ul>
+  <p><strong>（六）一个必须先说清的版本陷阱。</strong> ★ 中文世界里「《沉思录》有一百多个中译本」的说法<strong>不可轻信</strong>（见（三）警告 1）。★ 与之配套的另一个陷阱是：<strong>把本书当作「完整传世的名著」来谈版本谱系</strong> —— 事实上它靠<strong>两部残缺抄本</strong>流传，其中 <em>Codex Palatinus</em> 在 1558–59 年印行后<strong>已遗失</strong>，<em>Codex Vaticanus 1950</em> <strong>残缺、丢失约 42 行</strong>。★ 本报告在 <code>## 5</code> 里把「文本残损对现代文本的影响」列为一条<strong>争议与局限</strong>，并在附录 D 登记相关待核项。</p>
+  <p><strong>（七）实操建议：如果你只想选一个中文译本（★ 以下为本报告的 <span class="tag t-inf">推断</span>，不是事实判断）。</strong> ★ 上面（三）已经把「底本不同」说清楚了，据此可以给出一条<strong>可操作的挑选原则</strong>：<strong>先看你想要什么</strong>，再对号入座 ——</p>
+  <ul>
+    <li><strong>想读最接近希腊文语序、术语保守的</strong>：优先考虑<strong>据称直接据希腊文翻译</strong>的译本（如王焕生），但要注意这类译本<strong>同样可能带译者自己的断句与注解</strong>，且本报告<strong>未逐册核对</strong>，只能标为公开书目信息。
+    </li>
+    <li><strong>想读流传最广、容易找、二手讨论最多的</strong>：何怀宏译本（据 Long 英译转译）是中文世界的<strong>公共参照系</strong>；★ 好处是别人的引用多半对得上，坏处是<strong>它的措辞是「英译的英译」，离希腊原文又隔了一层</strong>。
+    </li>
+    <li><strong>想读文学性强、句子短的</strong>：可参考据 Haines（Loeb，希腊文对照英译）转译的译本（如梁实秋），★ 但同样要记住：<strong>它是转译</strong>。
+  <p>★ ★ <strong>本报告不推荐任何单一译本为「最佳」</strong> —— 因为「最佳」取决于你要什么。★ 一条更稳妥的办法是：<strong>同时拿两个底本不同的中译本对读</strong>，遇到两本不一致的地方，回到本报告 <code>## 20（五）</code> 说的编号问题上去查 —— 差异往往不是「谁译错了」，而是<strong>底本与编号本来就不同</strong>。</p>
+    </li>
+  </ul>
+  <p><strong>（八）为什么本报告不列「名人推荐」。</strong> ★ 中文世界里关于本书的传播，很大一部分靠的是<strong>「名人枕边书」式的说法</strong>（谁读过、读了多久、放在床头）。★ <strong>本报告一律不采用</strong>这类材料，理由有三：其一，它们多是<strong>二手转述或媒体概述</strong>，<strong>无法核实</strong>；其二，它们<strong>与文本内容无关</strong> —— 「某人爱读」既不能证明本书讲什么，也不能替代对文本的核验；其三，这类说法会把《沉思录》<strong>降格式</strong>地推成一本「成功人士的心灵鸡汤」，而它实际的质地（见 <code>## 6</code> 与 <code>## 19</code>）要冷峻、也要艰难得多。★ 因此本报告对这个题目<strong>只做一句说明，不举任何例证</strong>；若读者在其他地方看到此类说法，<strong>请当作未核实的传闻处理</strong>。</p>
+</section>
+
+<section id="s22">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <p>★ 本节是术语表。★ <strong>第三栏的数字是本报告自己 grep 出来的实测结果</strong>（方法：对 <code>probe/pg2680.txt</code> 做<strong>不区分大小写的整词匹配</strong>（正则 <code>\b词\b</code>）；★ 因此这些数字<strong>不是「通行译法」，而是 Long 在这个底本里实际用过的英文词</strong>）。★ 凡 Long 没有对应实词的，本报告<strong>不硬填</strong>，改为注明「无固定对应」并给具体表述。</p>
+  <table>
+    <thead><tr><th>希腊原词</th><th>常见拉丁转写</th><th><strong>PG #2680（Long 译）里实际用的英文词（★ 实测）</strong></th><th>常见中译</th><th>本报告取义 ＋ 首次出现的卷／段</th></tr></thead>
+    <tbody>
+      <tr><td>λόγος</td><td>logos</td><td><strong>reason</strong>（<strong>101 次</strong>）／<strong>the common reason</strong>（1 次）；★ <strong><code>logos</code> 一词在 #2680 里 0 次</strong>（在 #15877 里有 10 次）</td><td>逻各斯／理性／道</td><td>贯穿宇宙与人心的理性秩序。★ 本报告<strong>不译作「道」</strong>（避免与道家混同）。首次出现：<strong>第一卷第 5 段</strong>（<code>reason</code>）</td></tr>
+      <tr><td>ἡγεμονικόν</td><td>hegemonikon</td><td>★ <strong>无单一固定译法</strong>：<code>ruling part</code>（2 次）、<code>commanding part</code>（3 次）、<code>chief commanding part</code>（1 次）、<code>mistress part</code>（2 次）、<code>inward mistress part</code>（1 次）、<code>over-ruling part</code>（1 次）、<code>overruling part</code>（1 次）；★ <strong><code>guiding principle</code> 0 次</strong>、<code>ruling faculty</code> 在 #2680 里 <strong>0 次</strong>（在 #15877 里 18 次）</td><td>主导部分／理智部分</td><td>人的「指挥中枢」。★ <strong>正因为 Long 用了七个不同的词，本报告谈这个概念时一律先说明「此处 Long 写作 X」</strong>，不套一个统一现代译法。首次出现：<strong>第一卷第 16 段</strong>（<code>ruling part</code>）</td></tr>
+      <tr><td>τὰ ἐφ' ἡμῖν ／ τὰ οὐκ ἐφ' ἡμῖν</td><td>ta eph' hēmin ／ ta ouk eph' hēmin</td><td><code>in thy power</code>（10 次）、<code>in my power</code>（2 次）、<code>in our power</code>（2 次）、<code>in his own power</code>（2 次）；★ Chrystal（#55317）更常用 <code>in our power</code>（4 次）</td><td>在我们能力之内／不在我们能力之内</td><td>控制二分：哪些「由我」、哪些「不由我」。★ 本报告取义为<strong>「判断与行动的归属」</strong>，不是「情绪控制」。首次出现：<strong>第四卷第 3 段</strong>（<code>in thy power</code>）</td></tr>
+      <tr><td>φύσις</td><td>physis</td><td><strong>nature</strong>（<strong>273 次</strong>）—— 是 #2680 全书的<strong>最高频实词</strong></td><td>自然／本性</td><td>既指「宇宙的自然」，也指「人的本性」；★ 两者在本书里<strong>常在同一句中被并置</strong>。★ <code>physis</code>（希腊转写）本身在 #2680、#55317 里 <strong>0 次</strong>，在 #15877 里 6 次。首次出现：<strong>第一卷第 6 段</strong>（<code>a purpose to live according to nature</code>）</td></tr>
+      <tr><td>προαίρεσις</td><td>prohairesis</td><td>★ <strong>无明显固定对应词</strong>：<code>free-will</code>（2 次）、<code>purpose</code>（19 次）、<code>choice</code>（4 次）；★ <strong><code>prohairesis</code> 一词在三个底本里都 0 次</strong></td><td>选择／意愿／决意</td><td>「经过思考的选择倾向」。★ 本报告取义为<strong>「意愿的方向」</strong>，并注明这是本报告按语境归纳，<strong>不是 Long 的固定译法</strong>。首次出现：<strong>第八卷第 43 段</strong>（<code>free-will</code>）</td></tr>
+      <tr><td>ἀρετή</td><td>aretē</td><td><strong>virtue</strong>（<strong>30 次</strong>）</td><td>德性／美德</td><td>人的优长／完善。★ 全书不作理论定义，而是<strong>用行为举例</strong>（如正义、节制、勇敢）。首次出现：<strong>第一卷第 4 段</strong>（<code>to exhort men unto virtue</code>）</td></tr>
+      <tr><td>εἱμαρμένη</td><td>heimarmenē</td><td>★ <strong>无单一固定词</strong>：<code>destiny</code>（3 次）、<code>the fates</code>（8 次）、<code>fatal</code>（5 次）、<code>necessity</code>（21 次）、<code>Providence</code>（29 次）</td><td>命运／天命</td><td>事件的必然联结。★ 本报告取义为<strong>「因果的必然」</strong>；★ 第十二卷第 11 段把它与「天意／偶然」并列讨论（见 <code>## 18</code>）。首次出现：<strong>第一卷第 16 段</strong>（<code>destiny</code>）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>一张配套的频次对照表</strong>（★ 均为实测，方法同上；列出可在三底本对照的词）：</p>
+  <table>
+    <thead><tr><th>英文词</th><th>#2680（Long）</th><th>#55317（Chrystal）</th><th>#15877（Long 另一版）</th></tr></thead>
+    <tbody>
+      <tr><td>nature</td><td>273</td><td>214</td><td>344</td></tr>
+      <tr><td>reason</td><td>101</td><td>63</td><td>131</td></tr>
+      <tr><td>soul</td><td>80</td><td>90</td><td>110</td></tr>
+      <tr><td>virtue</td><td>30</td><td>17</td><td>44</td></tr>
+      <tr><td>opinion</td><td>50</td><td>28</td><td>58</td></tr>
+      <tr><td>justice</td><td>28</td><td>40</td><td>49</td></tr>
+      <tr><td>providence（含大小写）</td><td>29</td><td>14</td><td>19</td></tr>
+      <tr><td>the gods</td><td>64</td><td>52</td><td>75</td></tr>
+      <tr><td>necessity</td><td>21</td><td>8</td><td>26</td></tr>
+      <tr><td>logos</td><td><strong>0</strong></td><td><strong>0</strong></td><td>19</td></tr>
+      <tr><td>guiding principle</td><td><strong>0</strong></td><td><strong>0</strong></td><td><strong>0</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★ ★ 这张表本身就是一条结论：<strong><code>guiding principle</code> 在三个底本里都是 0 次</strong> —— 它是现代介绍文章里最常见的说法之一，却<strong>不是任何一个公版英译的用词</strong>（关于这类「流行说法 vs 原文」，见 <code>## 4b</code>）。</p>
+  <p><strong>附：人物速查（★ 只列正文里确实出现、且与本书内容直接相关的人名；★ 一律只做文本内说明，不做史实考订）。</strong></p>
+  <ul>
+    <li><strong>Marcus Aurelius（作者本人）</strong>：书中以「我」与「他」两种人称交替出现；第一卷是一份「从谁那里学到什么」的名单。
+    </li>
+    <li><strong>Epictetus（爱比克泰德）</strong>：★ <strong>全书被引最多的哲学家</strong>。第一卷（第 4 段）明说，马可读到爱比克泰德的著作，是经由 Rusticus 介绍；此后第四卷、第七卷、第十一卷等处反复引用。
+    </li>
+    <li><strong>Rusticus（Junius Rusticus）</strong>：第一卷（第 4 段）；★ 他是「马可接触爱比克泰德」这条线在书中的<strong>唯一可查节点</strong>。
+    </li>
+    <li><strong>Fronto（弗龙托）</strong>：第一卷（第 8 段），修辞学老师。
+    </li>
+    <li><strong>Antoninus Pius（父亲，即先皇）</strong>：第一卷（第 13 段），全书最长的一段人物素描。
+    </li>
+    <li><strong>Socrates / Diogenes / Heraclitus</strong>：★ 第八卷（第 3 段）以「what are these to Diogenes, Heraclitus, and Socrates?」并列，作为<strong>与功业对照的样本</strong>。
+    </li>
+    <li><strong>Alexander / Pompeius / Caius Cæsar</strong>：第八卷（第 3 段）等地反复出现，★ 用途固定：<strong>当作「功业终归尘土」的例子</strong>，而不是被评价的历史人物。
+    </li>
+    <li><strong>Chrysippus（克里西波斯）</strong>：第六卷（第 37 段一带）与第七卷被提及为斯多亚论说的来源之一。★ <strong><code>Zeno</code> 在本报告的主底本正文里没有找到明确出现</strong>（仅见于编者材料与注释区），故此处不列。
+    </li>
+  </ul>
+</section>
+
+<section id="s23">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <p>★ 以下书目<strong>只列本报告实际引用或据以判断的</strong>，并标注用途层次（<span class="tag t-src">原书</span>＝文本本身；<span class="tag t-rep">转述</span>＝后人的解释与评价）。</p>
+  <p><strong>一、文本本身（公版全文，本报告已下载核验）</strong></p>
+  <ul>
+    <li>Marcus Aurelius, <em>Meditations</em>, trans. <strong>George Long</strong>. Project Gutenberg <strong>#2680</strong>（本报告主底本，12 卷 412 段）。
+    </li>
+    <li>Marcus Aurelius, <em>The Meditations of the Emperor Marcus Aurelius Antoninus</em>, trans. <strong>George W. Chrystal</strong>. Project Gutenberg <strong>#55317</strong>（本报告交叉底本）。
+    </li>
+    <li>Marcus Aurelius, <em>Thoughts of Marcus Aurelius Antoninus</em>, trans. <strong>George Long</strong>. Project Gutenberg <strong>#15877</strong>（第三路，含长篇编者导言）。
+    </li>
+  </ul>
+  <p><strong>二、解释框架与评价（<span class="tag t-rep">转述</span>）</strong></p>
+  <ul>
+    <li><strong>Hadot, Pierre.</strong> <em>The Inner Citadel: The Meditations of Marcus Aurelius.</em> Trans. <strong>Michael Chase.</strong> Cambridge, Mass.: <strong>Harvard University Press, 1998</strong>（法文原著 <em>La Citadelle intérieure</em>，Paris, 1992）。—— 「三个训练」与「精神练习」的读法（<code>## 19（六）</code>）。
+    </li>
+    <li><strong>Rutherford, R. B.</strong> <em>The Meditations of Marcus Aurelius: A Study.</em> Oxford: <strong>Clarendon Press, 1989</strong>。—— 强调本书的文学与修辞性质、反对过度系统化（<code>## 19（七）</code>）。
+    </li>
+    <li><strong>Rees, D. A.</strong> 导言，载 <em>Marcus Aurelius, Meditations</em>, Everyman's Library（Farquharson 英译），<strong>1992</strong>。—— 「不是原创哲学著作，也不是系统阐述」这条判断的出处（<code>## 19（八）</code>）。
+    </li>
+    <li><strong>Birley, Anthony R.</strong> <em>Marcus Aurelius: A Biography.</em> —— 传记背景（本报告仅作背景，未引其具体内容）。
+    </li>
+    <li><strong>Arnold, Matthew.</strong> "Marcus Aurelius"（1863 年评论，后收入 <em>Essays in Criticism</em>, 1865）。—— 早期英文批评的代表（本报告仅作背景）。
+    </li>
+    <li><strong>Brunt, P. A.</strong> "Marcus Aurelius in His <em>Meditations</em>," <em>Journal of Roman Studies</em> <strong>64 (1974)</strong>: 1–20。—— 学术讨论（本报告仅作背景）。
+    </li>
+  </ul>
+  <p><strong>三、译本谱系（<code>## 20</code> 的对应读物）</strong></p>
+  <ul>
+    <li><strong>Haines, C. R.</strong> <em>Marcus Aurelius</em>, Loeb Classical Library, <strong>1916</strong>（希腊文与英译对照）。—— 中文梁实秋译本据其转译。
+    </li>
+    <li><strong>Farquharson, A. S. L.</strong> 译本（<strong>1944</strong>；1992 年收入 Everyman's Library）。
+    </li>
+    <li><strong>Hays, Gregory.</strong> 译本（<strong>2002</strong>，非公版）。
+    </li>
+  </ul>
+</section>
+
+<section id="s24">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>★ 本报告的全部来源、实测记录、排除清单与引文声明，<strong>另见同目录下的 <code>沉思录-来源清单.md</code></strong>。★ 那份文件按六节编排：原文来源／作者档案／译本与版本／争议与批评文献／原文可得性检索／实测记录与引文声明。</p>
+</section>
+
+<section id="s25">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <p>★ 每一条写三件事：<strong>待核什么</strong> ／ <strong>为什么现在核不了</strong> ／ <strong>可去哪里核</strong>。</p>
+  <ol>
+    <li><strong>#2680 的译者身份。</strong> 待核：Project Gutenberg 是否在图书页标注译者。★ 核不了的原因：本轮所见 #2680 的 PG 元数据<strong>未标译者</strong>，本报告据首句与同类版本比对<strong>判定</strong>为 George Long 译本，属<strong>推断</strong>。★ 可去核：PG #2680 的官方图书页与 Long 1862 年原版（或 #15877）逐句比对。
+    </li>
+    <li><strong>梁实秋译本初版年份。</strong> 待核：到底是 <strong>1959 年首译</strong>还是 <strong>2003 年出版</strong>。★ 核不了的原因：两说在多个来源间互相矛盾，本报告<strong>未逐册核对</strong>。★ 可去核：译林出版社书目页、中国国家图书馆联机编目（OPAC）。
+    </li>
+    <li><strong>何怀宏译本初版年份与出版社。</strong> 待核：<strong>1989 年中国社会科学出版社</strong>与 <strong>2008 年中央编译出版社</strong>两说的关系。★ 核不了的原因：同上。★ 可去核：出版社书目、国家图书馆编目。
+    </li>
+    <li><strong>王焕生译本的出版社与年份（据称 2010、天津社会科学院出版社）。</strong> 待核：出版信息是否属实，以及<strong>是否真的直接据希腊原文翻译</strong>（这决定它的底本层次）。★ 核不了的原因：本报告未持有该书，仅见公开书目信息与评述。★ 可去核：出版社页、图书馆编目、译者前言。
+    </li>
+    <li><strong>朱汝庆译本（据称 1998、中国社会科学出版社）的信息。</strong> 待核：出版信息，以及是否据 Jeremy Collier 英译转译。★ 核不了的原因：同上。★ 可去核：出版社页、图书馆编目。
+    </li>
+    <li><strong>中文「《沉思录》有一百多个中译本」说法的来源。</strong> 待核：这一说法的<strong>最早出处</strong>。★ 核不了的原因：该说法见诸内容农场（如 <code>kknews.cc</code> 一类），<strong>无可信来源</strong>，本报告已按纪律<strong>只写作「网上流传」而不作事实引用</strong>。★ 可去核：CNKI 学术检索、国家图书馆编目统计。
+    </li>
+    <li><strong>Hadot《The Inner Citadel》英译本的具体页码。</strong> 待核：「三个训练」的定义见英译本哪一页。★ 核不了的原因：本报告<strong>未持有该书</strong>，本轮所引为公开的英译本书评与摘要（如 <em>Journal of the History of Philosophy</em> 38(1), 2000 的书评），<strong>只能标为转述</strong>。★ 可去核：Harvard University Press 1998 版原书、图书馆藏本。
+    </li>
+    <li><strong><em>Codex Vaticanus 1950</em> 丢失约 42 行的具体位置。</strong> 待核：这些缺行落在哪些卷段。★ 核不了的原因：本报告所见为<strong>二手概述</strong>，未见校勘本的 <em>apparatus criticus</em>。★ 可去核：古典学校勘本（如 Schenkl、Farquharson 的校勘记）、<em>Codices Vaticani Graeci</em> 目录。
+    </li>
+    <li><strong>C. R. Haines 的 Loeb 版卷次与确切年份。</strong> 待核：是否即 1916 年、单卷还是多卷。★ 核不了的原因：本报告未核对 Loeb 丛书目录。★ 可去核：Loeb Classical Library 官方目录。
+    </li>
+    <li><strong>中文译本与「关键概念」的对应词。</strong> 待核：各中译本把 ἡγεμονικόν、προαίρεσις 等词译成了什么。★ 核不了的原因：中文译本在版权期内，本报告<strong>未逐册核对</strong>，且不作原文比对。★ 可去核：公开的书摘与目录页；★ 更稳妥的办法是<strong>读原书</strong>。
+    </li>
+    <li><strong>本书的确切写作年代。</strong> 待核：十二卷分别写于哪一段时期（是否确如常见说法为 170–180 年间、多在军营与行省旅次中写成）。★ 核不了的原因：本书<strong>内部没有署年</strong>，年代判断靠与传记、行省行程互证，属学术问题，本报告<strong>未持有相关考订专著</strong>。★ 可去核：Birley 的传记、以及带考订的校勘本导论。
+    </li>
+  </ol>
+</section>
+
+<footer>
+  生成于 2026-10-16 · 来源清单与交叉验证记录见同目录 <code>沉思录-来源清单.md</code><br>
+  本页引文按<b>带页码引文（B 级）</b>处理：标注页码的条目引自有页码的公开书评／论文，<b>我未持原书</b>，页码请以原书复核；未标页码者仍是二手转引。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《掌控习惯》读书精华</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《掌控习惯》<small>读书精华 · 2026-10-16</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 核心主题与结构机制</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 版本与译本怎么选</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 结构、概念与批评</div>
+    <a href="#s7">6 结构骨架：四大定律与二十章的路线图</a>
+    <a href="#s8">7 第一定律「让它显而易见」：第 4–7 章</a>
+    <a href="#s9">8 第二定律「让它有吸引力」：第 8–10 章</a>
+    <a href="#s10">9 第三定律「让它简便易行」：第 11–14 章</a>
+    <a href="#s11">10 第四定律「让它令人愉悦」：第 15–17 章</a>
+    <a href="#s12">11 高级战术与结论：第 18–20 章 ＋ 结论</a>
+    <a href="#s13">12 争议与批评</a>
+    <a href="#s14">13 作者谈话：James Clear 在书外怎么说</a>
+    <a href="#s15">14 概念溯源：这本书的知识来源地图</a>
+    <a href="#s16">15 版本、译本与跨媒介</a>
+    <div class="grp">附录</div>
+    <a href="#s17">A 关键概念与人物速查</a>
+    <a href="#s18">B 延伸阅读</a>
+    <a href="#s19">C 来源清单</a>
+    <a href="#s20">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《掌控习惯》读书精华</h1>
+  <div class="sub">阅读指引与精华解析</div>
+  <div class="meta">
+    <div><b>作者</b>James Clear（詹姆斯·克利尔，美国作家与演说者，1980 年代出生；★ 确切生年未核到，登记附录 D1）</div>
+    <div><b>原题</b>Atomic Habits: An Easy &amp;amp; Proven Way to Build Good Habits &amp;amp; Break Bad Ones</div>
+    <div><b>初版</b>英文初版 Avery（Penguin Random House 旗下），2018-10-16；中译（迩东晨 译）北京联合出版公司，2019-07，ISBN 9787559632265；2023-11 出修订纪念版 ISBN 9787559672346（★ 据出版方与图书馆编目转录，未逐册核对）</div>
+    <div><b>结构</b>20 章，分六块：基本原理（1–3）／第一定律（4–7）／第二定律（8–10）／第三定律（11–14）／第四定律（15–17）／高级战术（18–20），另加「前言」「结论」与四项附录。★ 四条定律与章数不对称（4／3／4／3）</div>
+    <div><b>核验级别</b>结构类事实 A（据出版方与图书馆编目转录）＋ 作者谈话 A（作者官网原创文章 45 篇，标题＋URL＋抓取日期）／ 正文内容 C 级（★ 本书在版权期内、无合法全文，本报告未读过任何一章原文）</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度说明</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> ★ 本书<b>在版权期内、无合法全文</b>，故本档<b>仅用于「结构类事实」</b>——20 章的章号、章题、分块归属、附录构成，来源为<b>出版方与图书馆编目转录</b>。★ <b>本档不承载任何「书中具体怎么写」的内容</b>；凡涉章节内容，一律改由「作者谈话」或「转述」承载。★ 这是本报告最硬的一条自我限制，不粉饰</li>
+    <li><span class="tag t-talk">作者谈话</span> 作者官网 <b>jamesclear.com</b> 的<b>原创文章</b>（本报告抓取 <b>45 篇</b>，另有 3 篇预置页）。每一条均给<b>标题 ＋ URL ＋ 抓取日期（2026-10-16）</b>。★ <b>这不是书，也不等于书</b>：45 篇里有 18 篇页脚自注「本文摘自第 N 章」，属章节素材／前身；其余 27 篇属主题相关的概念来源。★ 每条英文直引均已在官网原页 grep 到再照抄</li>
+    <li><span class="tag t-rep">转述</span> 中文引句与二手说法，以及<b>书中对研究的转述</b>（如「自动化所需天数」「习惯占日常行为比例」）。★ 每处均写「据公开资料转引，<b>未核对原著</b>」，<b>不给页码</b>。★ 凡本报告回溯到期刊后<b>在摘要里查不到</b>的数据（如「中位数 66 天」），一律写「未核到」并登记附录 D，<b>不写作研究结论</b></li>
+    <li><span class="tag t-inf">推断</span> 本报告自己的判断，写法如「本报告认为」「本报告提醒」。★ 含本报告对「书中三处不对称」的归纳、对「师承地图」的评述、对「四步螺丝刀」的读法</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本报告的档位边界（★ 三层辖区严格分开）：`【原书】` <b>只到「目录」这一层</b> —— 章号、章题、分块、附录构成，据出版方与图书馆编目转录，属结构类事实；★★ <b>本报告从未逐字读过《掌控习惯》的任何一章，凡涉书中具体内容一律不标 `【原书】`</b>。`【作者谈话】` 取作者官网 45 篇原创文章，每处带标题＋URL＋抓取日期（2026-10-16）；★ 官网文章<b>不等于书</b>，18 篇有页脚自注摘自某章、其余为主题相关。`【转述】` 为中文引句、二手说法与<b>书中对研究的转述</b>，每处未核对原著、不给页码；★ 凡回溯到期刊后<b>摘要里查不到</b>的数字（中位数 66 天、复杂行为约 1.5 倍、习惯占比 40%／43%），本报告一律只承认摘要明确给出的区间（如 Lally 等 2010 的 18–254 天），其余登记附录 D。★ 一条贯穿全书的纪律：本书是<b>整合性的通俗方法论</b>，不是原创性发现 —— 四条定律与四步回路有明确师承（Duhigg、Nir Eyal、BJ Fogg、Wendy Wood、Simon Sinek），作者本人在官网逐一注明了出处，本报告据此如实标注，不替作者「原创化」。★ 本报告<b>不从本书内容向任何健康、医疗、成瘾治疗方向引申</b>，也不写成「自我提升指南」。
+  </p>
+  <h3>引文核验级别（2026-10-02 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书落在 <b>B 级（带页码引文）</b>：无公开全文，但上海译文 2016 修订版的<b>逐章页码已由独立来源核实成立</b>，另有带页码引文（<b>p.14／p.19／p.25</b>）。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p>《掌控习惯》是一部<strong>把行为改变装进一套四步模板、并用大量真实案例把模板讲得让人愿意照做</strong>的通俗方法论：它主张改变的最小单位不是「目标」而是「系统」，不是「结果」而是「身份」，并把这套主张拆成四条可操作的「定律」——<strong>让它显而易见、让它有吸引力、让它简便易行、让它令人愉悦</strong>。</p>
+  <p>如果只记一句话：<strong>这本书真正的产品不是一个理论，而是一副「四步螺丝刀」——它把任意一个想要的行为，拆成提示、渴求、反应、奖赏四个可拧的螺丝，然后告诉你哪一个该拧紧、哪一个该拧松。</strong></p>
+  <p>★ 但请同时记住四件事（本报告全篇都会回头处理）：</p>
+  <ul>
+    <li><strong>第一，它的「四步」有明确的师承。</strong> 习惯回路（提示—渴求—反应—奖赏）这一图像，作者本人在官网文章里点名致谢 <strong>Charles Duhigg（《习惯的力量》）与 Nir Eyal（《上瘾》）</strong>，并明确说自己的四步是<strong>这两者的语言与设计的组合</strong>。★ <span class="tag t-talk">作者谈话</span> 原句见 <code>three-steps-habit-change</code>：「Charles Duhigg and Nir Eyal deserve special recognition for their influence on this image.」（正文出处：<code>https://jamesclear.com/three-steps-habit-change</code>，抓取日期 2026-10-16）
+    </li>
+    <li><strong>第二，作者本人对这套框架的效力是留了余量的。</strong> 同一篇文章里他写：<span class="tag t-talk">作者谈话</span>「It would be irresponsible for me to claim that these four laws are an exhaustive framework for changing any human behavior, but I think they're close.」（我若宣称这四条定律是改变人类一切行为的穷尽式框架，那是不负责任的，但我认为已经很接近了）★ 这句话常被营销话术切掉，本报告把它放回来。
+    </li>
+    <li><strong>第三，它是一本「书」，不是一个「证据库」。</strong> ★ 本书的说服力很大一部分来自<strong>故事讲得好</strong>，而不是<strong>证据链完整</strong>。把「读起来有道理」与「已被证实」分开，是读这本书最重要的一条自保动作。
+    </li>
+    <li><strong>第四，它有一个明确的能力边界。</strong> ★ 本书处理的是<strong>运动、阅读、写作、储蓄</strong>这类<strong>生活方式习惯</strong>；<strong>成瘾、强迫症（OCD）、临床抑郁</strong>不在它的射程之内，本报告<strong>不从本书内容向任何临床、医疗方向引申</strong>。
+    </li>
+  </ul>
+  <p>★ 还要说清本报告<strong>不做</strong>什么：<strong>本报告不是一份「自我提升指南」</strong>，不提供「按这四步做你就能改变人生」的承诺。本报告的立场是<strong>把它当一份可以批判地读的方法论</strong> —— 指出哪一部分有研究支撑、哪一部分只是案例故事、哪一部分其实来自别人（尤其是 <strong>BJ Fogg</strong> 与 <strong>Wendy Wood</strong>）。★ 同理，本报告<strong>不做任何商业鼓吹</strong>：书中大量企业案例（如「英国自行车队」「亚马逊」等）只作<strong>内容描述</strong>，<strong>不构成对任何公司或商业模式的推荐</strong>。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>★ 本节的结构全部来自<strong>出版方与图书馆编目转录</strong>，属 <span class="tag t-src">原书</span> 的「<strong>结构类事实</strong>」辖区；<strong>未逐章核对原书原文</strong>。</p>
+  <p>全书 <strong>20 章</strong>，按「原理＋四定律＋高级战术＋结论」分成六块：</p>
+  <table>
+    <thead><tr><th>块</th><th>章</th><th>中文题名（照抄编目）</th><th>本报告对应节</th></tr></thead>
+    <tbody>
+      <tr><td>基本原理</td><td>1</td><td>微习惯的惊人力量</td><td><code>## 6</code>／<code>## 14</code></td></tr>
+      <tr><td>基本原理</td><td>2</td><td>你的习惯如何塑造你的身份（反之亦然）</td><td><code>## 6</code>／<code>## 7</code></td></tr>
+      <tr><td>基本原理</td><td>3</td><td>培养良好习惯的四步法</td><td><code>## 6</code>／<code>## 7</code></td></tr>
+      <tr><td>第一定律 · 让它显而易见</td><td>4</td><td>看着不对劲的那个人</td><td><code>## 7</code></td></tr>
+      <tr><td>第一定律 · 让它显而易见</td><td>5</td><td>培养新习惯的最佳方式</td><td><code>## 7</code></td></tr>
+      <tr><td>第一定律 · 让它显而易见</td><td>6</td><td>原动力被高估，环境往往更重要</td><td><code>## 7</code></td></tr>
+      <tr><td>第一定律 · 让它显而易见</td><td>7</td><td>自我控制的秘密</td><td><code>## 7</code></td></tr>
+      <tr><td>第二定律 · 让它有吸引力</td><td>8</td><td>怎样使习惯不可抗拒</td><td><code>## 8</code></td></tr>
+      <tr><td>第二定律 · 让它有吸引力</td><td>9</td><td>在习惯形成中亲友所起的作用</td><td><code>## 8</code></td></tr>
+      <tr><td>第二定律 · 让它有吸引力</td><td>10</td><td>如何找到并消除你坏习惯的根源</td><td><code>## 8</code></td></tr>
+      <tr><td>第三定律 · 让它简便易行</td><td>11</td><td>慢步前行，但决不后退</td><td><code>## 9</code></td></tr>
+      <tr><td>第三定律 · 让它简便易行</td><td>12</td><td>最省力法则</td><td><code>## 9</code></td></tr>
+      <tr><td>第三定律 · 让它简便易行</td><td>13</td><td>怎样利用两分钟规则停止拖延</td><td><code>## 9</code></td></tr>
+      <tr><td>第三定律 · 让它简便易行</td><td>14</td><td>怎样让好习惯不可避免，坏习惯难以养成</td><td><code>## 9</code></td></tr>
+      <tr><td>第四定律 · 让它令人愉悦</td><td>15</td><td>行为转变的基本准则</td><td><code>## 10</code></td></tr>
+      <tr><td>第四定律 · 让它令人愉悦</td><td>16</td><td>怎样天天保持好习惯</td><td><code>## 10</code></td></tr>
+      <tr><td>第四定律 · 让它令人愉悦</td><td>17</td><td>问责伙伴何以能改变一切</td><td><code>## 10</code></td></tr>
+      <tr><td>高级战术</td><td>18</td><td>揭秘天才（当基因重要和无关紧要时）</td><td><code>## 11</code></td></tr>
+      <tr><td>高级战术</td><td>19</td><td>金发女孩准则：如何在生活和工作中保持充沛动力</td><td><code>## 11</code></td></tr>
+      <tr><td>高级战术</td><td>20</td><td>培养好习惯的负面影响</td><td><code>## 11</code></td></tr>
+    </tbody>
+  </table>
+  <p><strong>结论</strong>：获得持久成果的秘诀。<strong>附录</strong>：接下来你该读什么；从四大定律中吸取的教训；怎样将这些想法应用于商业；怎样将这些想法应用于养育子女。</p>
+  <p>★ <strong>三点必须交代</strong>：</p>
+  <ol>
+    <li><strong>第 4 章的题名有两个版本。</strong> 编目见「看着不对劲的那个人」，2023 年修订版作「看着不对劲<strong>儿</strong>的那个人」；第 18 章 2023 版作「基因什么时候重要，什么时候无关紧要」。★ 这说明<strong>中译本改过版</strong>，读者手里两版章题可能不同 —— 具体版次差异本报告<strong>未逐册核对</strong>，登记进附录 D。
+    </li>
+    <li><strong>英文题名本报告不写。</strong> ★ 施工规范要求英文题名须在至少两处权威来源见到后才可写入；本报告<strong>未能完成这一核实</strong>，故<strong>只写中文题名</strong>，英文待核项登记进附录 D。★ 这是本报告的一处<strong>主动降级</strong>，不粉饰。
+    </li>
+    <li><strong>四大定律与 20 章的对应不是一一对称。</strong> 「第一定律」覆盖第 4–7 章（四章），「第二定律」覆盖第 8–10 章（三章），「第三定律」覆盖第 11–14 章（四章），「第四定律」覆盖第 15–17 章（三章）。★★ <strong>所以本报告下部有一处结构强制</strong>：施工规范把下部第 7–11 节规定为按定律分节，但<strong>第 1–3 章的「基本原理」与第 2 章的身份议题不属于任何一条「定律」</strong>，本报告把它们放进 <code>## 6</code>（骨架）与 <code>## 14</code>（概念溯源）处理，<strong>不在四定律各节里重复</strong>。
+    </li>
+  </ol>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>核心主题与结构机制</span><span class="caret">▾</span></h2>
+  <p>本书的结构机制，可以用五个词来抓：<strong>复利、身份、四步、环境、系统</strong>。这五个词彼此咬合，构成一个闭环：<strong>身份</strong>决定你想成为谁 → <strong>系统</strong>决定你每天做什么 → <strong>四步</strong>是把行为拧进日常的工具 → <strong>环境</strong>替你把工具摆好 → <strong>复利</strong>让微小差别随时间放大。</p>
+  <p><strong>（一）复利：把「1%」当一个修辞，而不是一个定理。</strong> 本书开篇的核心比喻是「每天进步 1%，一年后你会变强 37 倍」。★ 必须说清：<strong>这是一个算术演示，不是一个研究成果，也不是一条定律</strong>。作者自己在官网另一篇文章里，把「1%」解释成<strong>竞技中的微弱优势</strong>而不是「每天复利 1%」：<span class="tag t-talk">作者谈话</span>「The 1 Percent Rule states that over time the majority of the rewards in a given field will accumulate to the people, teams, and organizations that maintain a 1 percent advantage over the alternatives.」（正文出处：<code>https://jamesclear.com/the-1-percent-rule</code>，抓取日期 2026-10-16）★ 也就是说，<strong>「1% 复利」与「1% 优势」在他自己的文字里是两套不同的说法</strong>：前者是开场修辞，后者才是他会给出机制的版本。本报告认为（<span class="tag t-inf">推断</span>），营销传播把前者当成了本书的「科学结论」，这是 <code>## 4b</code> 要处理的第一类误读。</p>
+  <p><strong>（二）身份：这是本书</strong>最有辨识度<strong>的主张。</strong> <span class="tag t-talk">作者谈话</span>「The key to building lasting habits is focusing on creating a new identity first.」（关键是把建立新身份放在第一位）以及那句被引烂的名句：「Every action you take is a vote for the type of person you wish to become.」（你采取的每一个行动，都是为你想成为的那种人投的一票。）（均见 <code>https://jamesclear.com/identity-votes</code> 与 <code>https://jamesclear.com/identity-based-habits</code>，抓取日期 2026-10-16）★ <strong>但「身份优先」到底有没有研究支撑，是本报告 <code>## 12</code> 要单独拆的一个问题</strong>：它更像一个<strong>动机修辞</strong>（先相信自己是那种人，再去做那种事），而不是一条被反复验证的因果定律。本报告提醒：<strong>把「身份」讲成「先决条件」时，作者其实是在借用 Simon Sinek 的「黄金圈」框架</strong>（作者本人在 <code>identity-based-habits</code> 的脚注里明确致谢 Sinek）。</p>
+  <p><strong>（三）四步：提示—渴求—反应—奖赏。</strong> 这是全书<strong>承重墙</strong>。<span class="tag t-talk">作者谈话</span>「The process of building a habit can be divided into four simple steps: cue, craving, response, and reward.」（出处同前，<code>three-steps-habit-change</code>）。四步再被分成<strong>两个阶段</strong>：提示与渴求是「问题阶段」，反应与奖赏是「解决阶段」。★ 四条定律正是四步的<strong>操作化转写</strong>：显而易见＝管提示，有吸引力＝管渴求，简便易行＝管反应，令人愉悦＝管奖赏。<strong>读本书时只要记住这张对应表，全书就变成一张表。</strong> 本报告把这张对应表在 <code>## 6</code> 里做成表。</p>
+  <p><strong>（四）环境：本书最「反意志力」的一环。</strong> <span class="tag t-talk">作者谈话</span>「Environment is the invisible hand that shapes human behavior.」（环境是塑造人类行为的看不见的手）以及「Motivation (and even talent) is often overvalued. In many cases, the environment matters more.」（动机、甚至天赋常被高估；很多情况下环境更重要。）（<code>https://jamesclear.com/power-of-environment</code>，抓取日期 2026-10-16）★ 这一条<strong>有比较实的研究背景</strong>（Wendy Wood 一系关于「情境触发」的研究），但本书把「环境」推到了几乎解释一切的位置 —— 本报告在 <code>## 12</code> 会指出这个倾斜，并<strong>回到 Wood 本人的表述</strong>看它与书里的说法差在哪里。</p>
+  <p><strong>（五）系统：把「目标」从神坛上拉下来。</strong> <span class="tag t-talk">作者谈话</span>「Goals are good for setting a direction, but systems are best for making progress.」（目标适合定方向，系统才适合推进度）（<code>https://jamesclear.com/goals-systems</code>，抓取日期 2026-10-16）。这一主张的<strong>最强盟友</strong>是「成功者偏差」的论证：所有奥运选手都想拿金牌，所以目标不可能是区分胜负的变量。★ 这个论证本身是<strong>逻辑论证</strong>（同因不同果），不是实验结论 —— 作者在文章里也确实是当逻辑论来讲的。</p>
+  <p><strong>主题层面</strong>，本报告只做<strong>文本内</strong>的归纳，不替作者表态：</p>
+  <ul>
+    <li><strong>「原子习惯」＝最小可重复单元</strong>。书名里的「atomic」取的是「小而构成整体」之意，不是「核能」之意。这一点中文读者最容易误读，<code>## 4b</code> 第一条即为此设。
+    </li>
+    <li><strong>「技术可能必要但不充分」</strong>。作者反复强调「重复」的重要性（<span class="tag t-talk">作者谈话</span> 官网 <code>new-habit</code> 一文把「repeat」列为形成习惯的机制），但<strong>对于「重复多少次才够」，一手研究给的是极宽的区间</strong>（见 <code>## 4b</code> 与 <code>## 12</code>）。
+    </li>
+    <li><strong>边界：这是「生活方式类习惯」的方法论。</strong> ★ 本书针对的是运动、阅读、写作、储蓄这类<strong>生活方式习惯</strong>，<strong>不是</strong>成瘾、强迫症（OCD）、临床抑郁的行为治疗方案。★ 本报告<strong>明写这条边界</strong>：书中并未给出一套用于临床情形的方案，作者在官网文章里谈到「坏习惯」时，举例也是咬指甲、刷手机、冲动消费，而非临床意义上的成瘾。★ <strong>本报告不把本书内容向任何临床、医疗或成瘾治疗方向引申。</strong>
+    </li>
+  </ul>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <p><strong>（一）先读第 3 章，再回头读第 1、2 章。</strong> 第 3 章给出四步骨架（提示—渴求—反应—奖赏）；第 1、2 章是「为什么」与「为了谁」。先拿骨架后装肉，读起来最省力。★ 这是本报告的建议（<span class="tag t-inf">推断</span>），不是作者给的读法。</p>
+  <p><strong>（二）把每条定律读成一个「螺丝刀问题」。</strong> 面对一个想养成的习惯，依次问四句：它的<strong>提示</strong>摆在哪里？它<strong>有没有吸引力</strong>？它<strong>第一步够不够小</strong>？它<strong>做完有没有即时反馈</strong>？—— 这四问就是四条定律的中文操作版。★ 请注意：四问的<strong>顺序不能颠倒</strong>，因为它对应的是「问题阶段→解决阶段」的时序。</p>
+  <p><strong>（三）对「案例」保持清醒。</strong> 书中有大量人物故事（运动员、作家、创业者、企业）。★ 本报告认为（<span class="tag t-inf">推断</span>）：这些故事的功能是<strong>把抽象步骤落地</strong>，<strong>不是证据</strong>。读的时候请把「这是一个好例子」和「这证明这套方法有效」分开 —— 后者需要<strong>对照组</strong>，而故事几乎没有对照组。</p>
+  <p><strong>（四）把「研究引用」当作检索入口，而不是结论。</strong> 本书会提到一些研究（自动化所需天数、习惯占日常行为的比例、环境触发等）。★ <strong>读到这些地方，请翻到本报告的 <code>## 4b</code> 与 <code>## 12</code></strong>：本报告逐条追到了期刊原文，并指出<strong>哪些数字在原著摘要里根本查不到</strong>（这是本书最容易被以讹传讹的地方）。</p>
+  <p><strong>（五）读附录比读正文更能看出作者的边界。</strong> 本书附录里有「怎样应用于商业」「怎样应用于养育子女」。★ 本报告<strong>只做内容描述，不作任何商业或教育推荐</strong>；请把它们读成<strong>作者对自家框架做的外推尝试</strong>，而不是经过验证的迁移结论。</p>
+  <p><strong>（六）遇到「意志力」这个词，停一下。</strong> 本书的立场是<strong>削弱意志力的权重</strong>（靠环境与设计替你做决定）。★ 这是一个<strong>有争议的立场</strong>，不是共识（见 <code>## 5</code> 与 <code>## 12</code>）。把它读成一个「值得一试的偏向」，比读成「已被证明的事实」要安全。</p>
+  <p><strong>（七）读之前先给这本书定一个「身份」。</strong> 它在书店里和「励志」「成功学」摆在一起，但它的<strong>体裁其实是「通俗行为科学＋方法论手册」</strong>：它有一套自洽的框架，却<strong>不是一份研究报告</strong>。★ 用谚语读法（找几句金句）读它，会漏掉它最结实的那部分（四步的操作化）；用教科书读法（逐句要证据）读它，又会不断撞墙（见 <code>## 12</code>）。<strong>建议的读法是「框架照收、证据逐查」</strong>：先把四步记牢，再把书里每一个「研究显示」翻到本报告来对一次。</p>
+  <p><strong>（八）警惕「幸存者叙事」。</strong> 本书的案例几乎全部来自<strong>已经成功的人</strong>（冠军运动员、畅销作家、成功企业）。★ 读的时候请在心里补一句：「还有大量用同样方法但没成功的人，他们不在书里。」★ 作者本人在 <code>goals-systems</code> 一文里<strong>主动讨论过成功者偏差</strong>（<span class="tag t-talk">作者谈话</span>，<code>https://jamesclear.com/goals-systems</code>，抓取日期 2026-10-16），但他在铺陈案例时并不总加这个限定 —— 读者得自己补。</p>
+  <p><strong>（九）给自己一条「核对清单」。</strong> 每读完一章，问三句：这一章的核心主张是<strong>经验结论</strong>还是<strong>操作建议</strong>？它引的研究，<strong>卷期页码</strong>在不在？如果换掉书里的案例，这个主张<strong>还站得住</strong>吗？★ 三问都能答上来，这一章才算读进去了；答不上的部分，正是 <code>## 12</code> 要处理的争议区。</p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>版本与译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ <span class="tag t-src">原书</span> 本节的版本信息<strong>全部来自出版方与图书馆编目转录</strong>，<strong>未逐册核对实物</strong>；年份若有两个说法，本报告<strong>并列</strong>而不择一。</p>
+  <table>
+    <thead><tr><th>版本</th><th>语言</th><th>出版方</th><th>年份</th><th>编号／备注</th></tr></thead>
+    <tbody>
+      <tr><td>英文初版</td><td>英</td><td>Avery（Penguin Random House 旗下）</td><td>2018-10-16</td><td>★ 据出版方与图书馆编目转录</td></tr>
+      <tr><td>中文版</td><td>中</td><td>北京联合出版公司（译者 迩东晨）</td><td>2019-07</td><td>ISBN 9787559632265，269 页</td></tr>
+      <tr><td>中文修订纪念版</td><td>中</td><td>同上</td><td>2023-11</td><td>ISBN 9787559672346；章题有改动（如第 4、18 章）</td></tr>
+      <tr><td>英文有声版</td><td>英</td><td>出版社有声部</td><td>待核</td><td>★ 本报告未核到权威书目，登记进附录 D</td></tr>
+      <tr><td>官方免费第一章</td><td>英</td><td>作者官网</td><td>长期</td><td>★ 需邮箱订阅，本报告<strong>未取</strong></td></tr>
+    </tbody>
+  </table>
+  <p><strong>三点必须交代</strong>：</p>
+  <p><strong>第一，这是一本「活书」。</strong> 作者本人在官网上写：「The book has sold over 30 million copies worldwide and has been translated into more than 60 languages.」（销量逾 3000 万册、译成 60 余种语言。★ 同一句话在 2020 年前后的文章里作「over 25 million」、在书页 <code>https://jamesclear.com/atomic-habits</code> 上作「over 30 million」，说明这个数字<strong>随时间是变化的</strong>，引用时必须带抓取日期）。★ 本报告引用的销售数字<strong>一律标明抓取日期＝2026-10-16</strong>，且<strong>只作为作者自我陈述</strong>，不作独立事实。</p>
+  <p><strong>第二，中译本改过版，且改动不止是排版。</strong> <span class="tag t-src">原书</span> 编目显示 2023-11 有修订纪念版，章题在个别章上与 2019 版不同（第 4 章「看着不对劲的那个人」→「看着不对劲儿的那个人」；第 18 章另拟）。★ 本报告<strong>未能逐章比对两版差异</strong>，登记进附录 D。读者若要引用某章标题，请<strong>以自己手里的版次为准</strong>。</p>
+  <p><strong>第三，跨媒介这件事要谨慎讲。</strong> 本书的跨媒介形态主要有三类：<strong>有声书</strong>、<strong>作者官网的免费文章</strong>、以及<strong>作者围绕本书做的课程与工作坊</strong>。★ 其中<strong>只有「作者官网文章」是本报告用得上的一手材料</strong>；课程与工作坊本报告<strong>未使用、也未据其内容作任何论述</strong>。★ 特别提醒：作者官网文章<strong>不等于</strong>书；本书有相当一部分文章是<strong>从书里摘出来的</strong>（★ <strong>45 篇里有 18 篇</strong>的页脚自注了同一句话，例如 <code>habit-stacking</code> 页脚作「This article is an excerpt from Chapter 4 of my New York Times bestselling book Atomic Habits.」），但<strong>摘出来的那一篇不等于那一整章</strong>。</p>
+  <p><strong>第四，关于「免费第一章」，有一条纪律要写清楚。</strong> ★ 作者官网确实放出过<strong>官方第一章的免费下载</strong>（<code>https://jamesclear.com/habits</code> 页原文实测：「Want to get Chapter 1 of <em>Atomic Habits</em> for free? Just enter your email address below.」）。★★ <strong>本报告不注册、不留邮箱、不取</strong> —— 因此本报告<strong>没有读过任何一章的官方原文</strong>，这也是全书采用「概念型」结构的直接原因。★ 读者如果愿意留邮箱，可以自行取阅；<strong>但本报告的一切引文都不来自它</strong>，来源清单里也会如实登记「该渠道存在，本报告未使用」。</p>
+  <p><strong>第五，关于「盗版」的一句话。</strong> ★ 本书在版权期内，网上存在大量未经授权的整书 PDF 与电子书。<strong>本报告一概未使用</strong>：既未下载，也未据其内容作任何描述。★ 本报告对「书里讲了什么」的判断，<strong>全部</strong>建立在<strong>官方目录（结构）＋ 作者官网文章（作者谈话）＋ 带卷期页码的期刊文献</strong>这三类合法材料上。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <p>★ 本节是本书最重要的一节：<strong>本书是被二次传播扭曲得最厉害的一类书</strong>。下表每条都落到具体来源；<strong>凡涉及研究的，均给出卷期页码</strong>；<strong>凡本报告未能在原著摘要中核到的，一律写明「未能核到」</strong>。</p>
+  <table>
+    <thead><tr><th>流行说法</th><th>实际情形</th></tr></thead>
+    <tbody>
+      <tr><td>「21 天就能养成一个习惯」</td><td>★ <strong>出自 Maxwell Maltz（1960）《Psycho-Cybernetics》</strong>，是<strong>整形外科术后适应期的观察</strong>（患者约 21 天适应新面孔／幻肢感），<strong>不是习惯研究结论</strong>。★ 有意思的是，<strong>本书作者本人就在官网专门辟谣过这条</strong>：<span class="tag t-talk">作者谈话</span>「It takes 21 days to form a new habit」是「the common myth」，并引 Maltz 原话「a minimum of about 21 days」（出处 <code>https://jamesclear.com/new-habit</code>，抓取日期 2026-10-16）</td></tr>
+      <tr><td>「研究表明养成习惯平均 66 天」</td><td>★ 66 天这一数字<strong>被广泛归于 Lally 等（2010）</strong>；<strong>但本报告核对到的该文摘要，只给出「到达自动化渐近线 95% 所用时间为 18 至 254 天」，摘要中并未出现 66 天或「中位数」字样</strong>。★ 本报告<strong>只承认「18–254 天」这个区间</strong>（Lally, P., van Jaarsveld, C. H. M., Potts, H. W. W., &amp; Wardle, J. (2010). <em>European Journal of Social Psychology</em>, 40(6), 998–1009；摘要经 OpenAlex 核验）。★★ <strong>66 天作为「中位数」这一点本报告未能核到原文，登记进附录 D</strong></td></tr>
+      <tr><td>「复杂行为所需时间约为简单行为的 1.5 倍」</td><td>★ 此说在二次传播中常被归给 Lally 等（2010）。★ <strong>本报告在该文摘要中未核到此数据</strong>（摘要只说「it can take a very long time」并给出 18–254 天区间）。<strong>故本报告不把它写作研究结论</strong>，登记进附录 D，作为「书目信息存在、具体内容待核」处理</td></tr>
+      <tr><td>「人一天 40%～50% 的行为是习惯」</td><td><strong>这是作者自己写下的数字，且他归给「Duke University 的研究者」</strong>：<span class="tag t-talk">作者谈话</span>「According to researchers at Duke University, habits account for about 40 percent of our behaviors on any given day.」（<code>https://jamesclear.com/habit-guide</code>，抓取日期 2026-10-16）。★ <strong>本报告核对到的 Wood, Quinn &amp; Kashy (2002) 摘要描述的是「两项日记研究、逐小时报告」，摘要中并未出现 40% 或 43% 字样</strong>（<em>JPSP</em>, 83(6), 1281–1297；摘要经 OpenAlex 核验）。★★ <strong>所以正确的写法是：这是一个来自特定日记研究设计的估计值，不是一个「固定比例定律」；本报告不采用「40%」作为事实断言，只登记「作者这样写」这一事实</strong></td></tr>
+      <tr><td>「四大定律是 Clear 原创的行为科学模型」</td><td>★ 不成立。习惯回路的图像，作者<strong>自己点名致谢</strong> Duhigg（《习惯的力量》）与 Eyal（《上瘾》）；「习惯堆叠」<strong>作者自己点名致谢 BJ Fogg</strong>（<span class="tag t-talk">作者谈话</span>「I use the term habit stacking… For this idea, I give credit to BJ Fogg.」<code>https://jamesclear.com/habit-stacking</code>）；「两分钟规则」的精神来自 Fogg 的 Tiny Habits。★ 与 Fogg 的 <strong>B=MAP</strong>（Behavior = Motivation × Ability × Prompt）对照：<strong>前三条定律大体对应 Prompt／Motivation／Ability，而第四定律「令人愉悦」（奖赏）在 B=MAP 里没有对应项</strong> —— 这是两者真正的差别（Fogg, B. J. (2009), <em>Proceedings of the 4th International Conference on Persuasive Technology</em>, 1–7；书目经 Crossref 核验）</td></tr>
+      <tr><td>「习惯靠意志力就能改」</td><td>★ 本书主张的<strong>恰恰相反</strong>：环境设计、让它简便、降低启动门槛，都是为了<strong>减少对意志力的依赖</strong>。★ 这是<strong>作者的立场</strong>，不是定论；支持它的一手研究是 Wood 一系关于「情境触发」的工作（Wood, W., Tam, L., &amp; Witt, M. G. (2005), <em>JPSP</em>, 88(6), 918–933）。★ <strong>但「意志力不重要」被推到极端也会失真</strong> —— 见 <code>## 5</code> 第 5 条与 <code>## 12</code></td></tr>
+      <tr><td>「这本书的每条建议都有科学证据」</td><td>★ 不成立。书中有大量<strong>人物案例故事</strong>（运动员、作家、企业），这类材料的功能是<strong>说明</strong>而不是<strong>证明</strong>；且案例几乎全是<strong>成功者</strong>，存在<strong>成功者偏差</strong>。★ 作者自己在 <code>goals-systems</code> 一文里<strong>主动讨论过成功者偏差</strong>（<code>https://jamesclear.com/goals-systems</code>），却在用案例时并不总是加这个限定</td></tr>
+      <tr><td>「1% 复利是数学定理」</td><td>★ 不是定理，是<strong>开场修辞</strong>。作者本人在另一篇文章里给「1%」的机制版本是<strong>竞技微弱优势的累积</strong>（The 1 Percent Rule，<code>https://jamesclear.com/the-1-percent-rule</code>）。★ 把「每天进步 1%，一年变强 37 倍」当数学定律套用到习惯上，是把修辞当结论</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p>★ 本节<strong>恰好六条</strong>，每条给出<strong>姓名＋出处＋年份</strong>。★ 凡本报告未能核到全文的，一律写明「未核到全文，只作书目登记」。</p>
+  <p><strong>一、Maxwell Maltz（1960）与「21 天」神话。</strong> 争议点不在「21 天是否准确」（它不准确），而在<strong>这个数字从哪来</strong>：它来自 Maltz 在《Psycho-Cybernetics》（1960）里对整形外科术后适应期的<strong>临床观察</strong>，原话是「a minimum of about 21 days」——<strong>「最少约 21 天」，不是「21 天养成」</strong>。★ 传播中「最少」被删掉，遂成一则伪科学常识。★ 出处：Maltz, M. (1960). <em>Psycho-Cybernetics</em>。★ <strong>本报告未核到该书全文，仅作书目登记</strong>。</p>
+  <p><strong>二、Lally 等（2010）被过度简化。</strong> 争议点是<strong>该研究的结论被压缩成一个数字</strong>。本报告核到的原著摘要是：96 名志愿者、12 周、每日自评自动化程度，<strong>到达自动化渐近线 95% 的时间跨度为 18 至 254 天</strong>。★★ <strong>摘要中并无「中位数 66 天」</strong>，因此「66 天」这一被引最广的数字，<strong>本报告无法回溯到摘要层面</strong>。★ 出处：Lally, P., van Jaarsveld, C. H. M., Potts, H. W. W., &amp; Wardle, J. (2010). <em>European Journal of Social Psychology</em>, 40(6), 998–1009。★ <strong>「中位数 66 天」与「复杂行为约 1.5 倍时长」两点，登记进附录 D</strong>。</p>
+  <p><strong>三、Wood 的语境论 vs「环境决定论」。</strong> 争议点是<strong>「情境触发」被推成了「环境解释一切」</strong>。Wood 一系的实证发现是：习惯由<strong>稳定情境</strong>触发，情境一变（如搬家），习惯容易瓦解 —— 这支持「环境重要」，但<strong>不等于「环境比动机、比个人特质都重要」</strong>。★ 出处：Wood, W., Tam, L., &amp; Witt, M. G. (2005). <em>JPSP</em>, 88(6), 918–933；以及 Wood, W., &amp; Neal, D. T. (2007). <em>Psychological Review</em>, 114(4), 843–863。★ 本报告认为（<span class="tag t-inf">推断</span>）：本书在环境这一环上的<strong>权重给得偏高</strong>，读者应回到 Wood 本人面向大众的著作（Wood, W. (2019). <em>Good Habits, Bad Habits</em>. Farrar, Straus and Giroux；★ 仅作书目登记）看更平衡的表述。</p>
+  <p><strong>四、Fogg 模型的对应与差异。</strong> 争议点是<strong>师承被抹掉</strong>。本书的框架与 BJ Fogg 的 B=MAP 有明确对应，<strong>前三步大体对得上，第四步「奖赏」在 B=MAP 中没有对应项</strong>。★ 出处：Fogg, B. J. (2009). "A behavior model for persuasive design." <em>Proceedings of the 4th International Conference on Persuasive Technology</em>, 1–7（书目经 Crossref 核验）；Fogg 另有 <em>Tiny Habits</em>（2019，仅作书目登记）。★ 本报告提醒：<strong>「习惯堆叠」的原始概念（Fogg 称 anchoring）与两分钟规则的精神，都出自 Fogg。</strong></p>
+  <p><strong>五、情绪调节层被低估。</strong> 争议点是<strong>本书几乎不谈情绪</strong>：四步里虽有「渴求」，但操作化后基本落到「提示」与「反应」两端，<strong>情绪调节的位置很薄</strong>。★ 这是一个<strong>本报告自己提出的观察</strong>（<span class="tag t-inf">推断</span>）：本书对「压力—无聊→坏习惯」这条链条，只在官网散文里出现过（<span class="tag t-talk">作者谈话</span> <code>https://jamesclear.com/how-to-break-a-bad-habit</code> 提到坏习惯常是「a way of dealing with stress and boredom」，抓取日期 2026-10-16），<strong>在四定律的结构里并没有独立位置</strong>。★★ <strong>本报告未能找到一手文献直接批评「Clear 低估情绪调节」这一点，故此处标 <span class="tag t-inf">推断</span> 而非 <span class="tag t-rep">转述</span>。</strong></p>
+  <p><strong>六、临床边界与成功者偏差（两条合并为一条局限）。</strong> 争议点一：<strong>本书不适用于成瘾、强迫症、临床抑郁</strong>这类情形 —— 它处理的是生活方式习惯。★ 出处：<strong>本报告在允许入口内未能核到作者明确承认这条边界的原文</strong>，故此处标 <span class="tag t-inf">推断</span>（本报告认为，从本书的案例域与方法域看，它不构成临床方案）。争议点二：<strong>书中案例几乎都是成功者</strong>（技术可能<strong>必要但不充分</strong>）。★ 这一点作者本人在 <code>goals-systems</code> 一文中主动讨论过成功者偏差（<span class="tag t-talk">作者谈话</span>，<code>https://jamesclear.com/goals-systems</code>，抓取日期 2026-10-16）。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>结构骨架：四大定律与二十章的路线图</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本节依官方目录（多家图书馆编目一致）组织，未逐章核对原书原文；下文对各章内容的描述，凡有来源的都标明来源层次，凡无来源的一律不写。</strong> ★ 依官方目录，非逐章原文核验。</p>
+  <p><strong>（一）一张表看懂全书。</strong> 本书的组织逻辑是「<strong>一个回路 × 两向操作 × 四条定律</strong>」。一个回路＝提示→渴求→反应→奖赏；两向操作＝<strong>养成好习惯</strong>（正向）与<strong>戒除坏习惯</strong>（反向，即把四步反着做）；四条定律＝四步各自的操作化。</p>
+  <table>
+    <thead><tr><th>回路四步</th><th>好习惯：让它……</th><th>坏习惯：让它……（反向）</th><th>章</th></tr></thead>
+    <tbody>
+      <tr><td>提示 Cue</td><td>显而易见</td><td>隐而不见</td><td>4–7</td></tr>
+      <tr><td>渴求 Craving</td><td>有吸引力</td><td>缺乏吸引力</td><td>8–10</td></tr>
+      <tr><td>反应 Response</td><td>简便易行</td><td>难以施行</td><td>11–14</td></tr>
+      <tr><td>奖赏 Reward</td><td>令人愉悦</td><td>令人厌恶</td><td>15–17</td></tr>
+    </tbody>
+  </table>
+  <p>★ 这张「一表两向」是本报告依据官方目录与该书在官网上的公开表述做的<strong>结构性归纳</strong>（<span class="tag t-inf">推断</span>＋<span class="tag t-talk">作者谈话</span>）：<strong>四步的「反向操作」在作者官网文章里被反复以「反转四条定律」的形式表述</strong>，但<strong>具体的章节归属（哪几章对应哪条定律）来自官方目录</strong>。</p>
+  <p><strong>（二）为什么第 1–3 章不在四条定律里。</strong> 依官方目录，第 1–3 章属「基本原理（The Fundamentals）」：第 1 章讲「微小变化的惊人力量」（复利／系统优于目标），第 2 章讲「习惯塑造身份」，第 3 章讲「培养良好习惯的四步法」。★ <strong>这三章是「元层」：它们不教操作，只给世界观。</strong> 本报告把它们放在 <code>## 6</code>（路线图）与 <code>## 14</code>（概念溯源）里，<strong>不在四定律各节重复</strong>。</p>
+  <p><strong>（三）四步的「问题／解决」二分。</strong> <span class="tag t-talk">作者谈话</span> 作者把四步再切成两半：「We can split these four steps into two phases: the problem phase and the solution phase. The problem phase includes the cue and the craving… The solution phase includes the response and the reward…」（提示与渴求是「问题阶段」，反应与奖赏是「解决阶段」；出处 <code>https://jamesclear.com/three-steps-habit-change</code>，抓取日期 2026-10-16）。★ 这个二分极其有用：<strong>四条定律里，前两条管「想要」，后两条管「做到」。</strong> 若一个习惯始终养不成，可以先问「卡在问题阶段还是解决阶段」。</p>
+  <p><strong>（四）「原子」这个词的位置。</strong> 依官方目录，书名的核心词是「atomic（原子）」——取「<strong>极小而构成整体</strong>」之意。★ 本报告提醒：中文世界里「原子习惯」常被误读成「核能式的爆发力」，这与作者原意相反。<span class="tag t-talk">作者谈话</span> 作者在官网反复把「small（微小）」「1 percent（百分之一）」「tiny（极小的）」并举（如 <code>https://jamesclear.com/small-habits</code>，抓取日期 2026-10-16），<strong>方向是「小」，不是「猛」</strong>。</p>
+  <p><strong>（五）路线图的三处「不对称」，读时要知道。</strong> ① 定律所辖章数<strong>不等</strong>（4／3／4／3）；② 第 2 章（身份）<strong>没有自己的定律</strong>，却可能是全书被引用最多的一章；③ 第 18–20 章属「高级战术」，<strong>不挂在任何一条定律下</strong>，讲的是「基因」「保持动力」「好习惯的负面」。★ 本报告把这三处不对称在各节里点明，避免读者以为全书是整齐的四段式。</p>
+  <p><strong>（六）回路的师承：作者自己点的两份「感谢状」。</strong> ★ 这一点很关键，因为它决定了本书的定位是「<strong>整合者</strong>」而不是「<strong>发现者</strong>」。<span class="tag t-talk">作者谈话</span> 作者在 <code>three-steps-habit-change</code> 里写：「Charles Duhigg and Nir Eyal deserve special recognition for their influence on this image… This representation of the habit loop is a combination of language that was popularized by Duhigg's book, <em>The Power of Habit</em>, and a design that was popularized by Eyal's book, <em>Hooked</em>.」（本文这个习惯回路的呈现，是 Duhigg《习惯的力量》普及的<strong>语言</strong>与 Eyal《上瘾》普及的<strong>设计</strong>的结合）（出处 <code>https://jamesclear.com/three-steps-habit-change</code>，抓取日期 2026-10-16）。★ 同一篇里他还有一句更直接的定位：「Readers of <em>The Power of Habits</em> by Charles Duhigg will recognize these terms.」（读过 Duhigg 那本书的人会认出这些术语。）（★ <strong>原文如此，作「Habits」</strong> —— 这是作者官网该文<strong>脚注</strong>里的写法，而 Duhigg 的书名实为 <em>The Power of Habit</em>（无 s）；本报告照录不改。）。★★ <strong>本报告据此判断（<span class="tag t-inf">推断</span>）：本书在「回路」这一层是</strong>继承<strong>而非原创；它真正的原创性主张，是把回路</strong>拆成四条可操作的定律并配上「反向操作」**。</p>
+  <p><strong>（七）与 Fogg 的 B=MAP 并排看，第四定律是「多出来的一条」。</strong> 下表是本报告按两套模型的自有术语对齐的（★ 对齐关系为本报告所做，<span class="tag t-inf">推断</span>；B=MAP 的术语依据 Fogg, B. J. (2009). <em>Proceedings of the 4th International Conference on Persuasive Technology</em>, 1–7，书目经 Crossref 核验）：</p>
+  <table>
+    <thead><tr><th>Clear 的四步／四定律</th><th>Fogg 的 B=MAP</th></tr></thead>
+    <tbody>
+      <tr><td>提示 Cue → 让它显而易见</td><td>Prompt（提示）</td></tr>
+      <tr><td>渴求 Craving → 让它有吸引力</td><td>Motivation（动机）</td></tr>
+      <tr><td>反应 Response → 让它简便易行</td><td>Ability（能力／难易）</td></tr>
+      <tr><td>奖赏 Reward → 让它令人愉悦</td><td>★ <strong>无明确对应项</strong></td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>本报告认为（<span class="tag t-inf">推断</span>）</strong>：这一格空缺，是本书和 Fogg 模型<strong>最实质的差别</strong> —— Clear 把「奖赏」补进了框架，而 Fogg 的行为模型把奖赏放在「行为发生之后的后果」里，不作为一个触发动作的前置因子。<strong>读者若把两者当成同一个模型，就会漏掉这个差别。</strong></p>
+  <p><strong>（九）把四条定律当一张「检查表」用。</strong> ★ 本报告建议（<span class="tag t-inf">推断</span>）的用法是：<strong>不要按书的顺序读，按问题的顺序查。</strong> 一个习惯养不成，就依次过四问——<strong>提示是否可见？渴求是否足够？启动是否够小？做完是否有即时反馈？</strong> 四问中任何一个答「否」，就是这一条定律对应的那一节要解决的问题。★ 这套用法的<strong>依据是作者本人给的「问题／解决」二分</strong>（<span class="tag t-talk">作者谈话</span>，<code>three-steps-habit-change</code>），但<strong>这个「检查表」措辞是本报告的转写，不是书里的原话</strong>。★ 我要特别提醒：<strong>四问不能反过来用</strong> —— 若一个人根本不具备做这件事的能力（如生理限制），前两问答「是」也没用；作者在文章里也承认「a habit can occur only if you are capable of doing it」（只有当你有能力做时，行为才可能发生）。</p>
+  <p><strong>（十）把「基本原理」三章各压成一句话。</strong> 依官方目录（<span class="tag t-src">原书</span>，结构类）＋ 作者官网文章（<span class="tag t-talk">作者谈话</span>）：第 1 章讲的是「<strong>别盯目标，盯系统</strong>」；第 2 章讲的是「<strong>别改结果，改身份</strong>」；第 3 章讲的是「<strong>别问动机，问四步</strong>」。★ 本报告把这三句写成一句话的<strong>记忆锚</strong>（<span class="tag t-inf">推断</span>）：<strong>目标是方向，身份是燃料，四步是发动机。</strong> ★ 请读者注意：<strong>这三句话都不是书里的原句</strong>，是本报告的压缩；书里的表述要长得多，也更谨慎（第 1 章就明确写过「None of this is to say that goals are useless」，目标并非无用）。</p>
+  <p><strong>（十一）关于四条定律的「名字」，有一处翻译要留意。</strong> ★ 中译本把四条定律译作「让它显而易见／有吸引力／简便易行／令人愉悦」（<span class="tag t-src">原书</span>，据官方目录的定律分组名）。★ 本报告提醒（<span class="tag t-inf">推断</span>）：<strong>这四组六个字的中文短语，读起来像口号，容易让人以为它们是四句「箴言」</strong>；但在英文语境里，它们对应的是四条<strong>操作指令</strong>（make it obvious／attractive／easy／satisfying），语法上都是<strong>祈使句</strong>。★ 换句话说，<strong>它们不是四个「状态」，而是四个「动作」</strong> —— 读者若把它当状态去「达到」，会走错方向；把它当动作去「执行」，才对得上作者的意思。★ 这一点在英文题名里更明显：本报告<strong>未能完成英文题名的两处核实</strong>（见 <code>## 1</code>），故此处只对<strong>中文译名的读法</strong>作提醒，不引英文原文。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>第一定律「让它显而易见」：第 4–7 章</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本节内容的来源层次先说清楚</strong>：<strong>章号与章题（第 4–7 章）依官方目录，属 <span class="tag t-src">原书</span> 的结构类事实</strong>；<strong>本节涉及的具体操作（习惯记分卡、实施意图、习惯堆叠、环境设计）与英文措辞，依据作者官网公开文章，标 <span class="tag t-talk">作者谈话</span></strong>；<strong>凡本报告自己的归纳，标 <span class="tag t-inf">推断</span></strong>。★★ <strong>本节未逐章核对原书原文 —— 本报告没有读过第 4–7 章的任何一行原文。</strong></p>
+  <p><strong>（一）这四章在回答什么问题。</strong> 依官方目录，这四章的题名依次是「看着不对劲的那个人」「培养新习惯的最佳方式」「原动力被高估，环境往往更重要」「自我控制的秘密」。★ 把它们连起来读，问的是同一个问题的四个层次：<strong>我怎么看见自己的习惯（第 4 章）→ 我怎么给它安排一个明确的触发点（第 5 章）→ 我怎么让环境替我做这件事（第 6 章）→ 我怎么让坏习惯难以触发（第 7 章）</strong>。</p>
+  <p><strong>（二）这一条定律的核心操作，有四处能拿到作者原话。</strong></p>
+  <p><strong>第一，先「看见」。</strong> <span class="tag t-talk">作者谈话</span> 作者借日本铁路的「指差确认」讲觉察：「This process, known as Pointing-and-Calling, is a safety system designed to reduce mistakes.」（这一做法叫「指差确认」，是一套为减少差错而设计的安全系统）并给出「习惯记分卡」这一工具：「To create your own Habits Scorecard, start by making a list of your daily habits.」（要制作你自己的习惯记分卡，先把你每天的习惯列出来。）（出处 <code>https://jamesclear.com/habits-scorecard</code>，抓取日期 2026-10-16）。★ 这里有一句<strong>值得单独记住</strong>的判断：<span class="tag t-talk">作者谈话</span>「There are no good habits or bad habits. There are only effective habits.」（没有好习惯或坏习惯，只有有效果的习惯）—— 它把「好／坏」相对化了，也顺手把判断标准交给了<strong>目的</strong>。</p>
+  <p><strong>第二，给习惯一个明确的时间与地点。</strong> 这是本书引用研究最集中的一处。<span class="tag t-talk">作者谈话</span> 作者引 2001 年英国的一项运动习惯研究：三组人里，「In the first and second groups, 35 to 38 percent of people exercised at least once per week… But 91 percent of the third group exercised at least once per week—more than double the normal rate.」（第一、二组约 35%–38% 的人每周至少运动一次……但第三组有 91% 的人每周至少运动一次，是通常比率的两倍以上）★ 第三组多做的唯一一件事，就是把「下周我在［某天］［某时］在［某地］至少做 20 分钟剧烈运动」这句话填完整（出处 <code>https://jamesclear.com/implementation-intentions</code>，抓取日期 2026-10-16）。★★ <strong>本报告核对</strong>：该研究为 Milne, S., Orbell, S., &amp; Sheeran, P. (2002). <em>British Journal of Health Psychology</em>, 7, 163–184（★ 卷期页码来自作者文章脚注，<strong>本报告未能核到该刊全文</strong>，只作书目登记）。★ 这句「what researchers refer to as an implementation intention（研究者所称的『实施意图』）」的术语源头是心理学既有的 implementation intention 研究传统，<strong>不是本书原创</strong>。</p>
+  <p><strong>第三，把新习惯「叠」在旧习惯上。</strong> <span class="tag t-talk">作者谈话</span>「Habit stacking is a special form of an implementation intention. Rather than pairing your new habit with a particular time and location, you pair it with a current habit.」（习惯堆叠是实施意图的一种特殊形式：你不把它绑在某个时间地点上，而是绑在你已有的一个习惯上）以及作者<strong>亲自给出师承</strong>的一句：「This method, which was created by BJ Fogg as part of his Tiny Habits program, can be used to design an obvious cue for nearly any habit.」（这个方法由 BJ Fogg 在其 Tiny Habits 计划中提出）（出处 <code>https://jamesclear.com/habit-stacking</code>，抓取日期 2026-10-16）。★ 文中给的标准句式是「After/Before [CURRENT HABIT], I will [NEW HABIT].」（在［现有习惯］之后／之前，我会［新习惯］）。</p>
+  <p><strong>第四，让环境说话。</strong> <span class="tag t-talk">作者谈话</span>「Environment is the invisible hand that shapes human behavior.」（环境是塑造人类行为的那只看不见的手）以及「What often looks like a lack of willpower is actually the result of a poor environment.」（看上去像是缺乏意志力的，其实往往是糟糕环境的结果。）（出处 <code>https://jamesclear.com/power-of-environment</code>，抓取日期 2026-10-16）。★ 同样的思想在 <code>reset-the-room</code>（「重置房间」）与 <code>habit-triggers</code>（把提示分为时间、地点、前置事件、情绪、他人五类）两篇里被展开。</p>
+  <p><strong>（三）本节内容的来源层次声明（显式）</strong>：① 「第 4–7 章讲什么、归第一定律」→ <strong>依官方目录</strong>，<span class="tag t-src">原书</span> 结构类；② 「指差确认、习惯记分卡、实施意图、习惯堆叠、环境设计」→ <strong><span class="tag t-talk">作者谈话</span></strong>，均有官网文章与抓取日期；③ 「2001 年研究的 35%–38% 与 91%」→ 作者文章的<strong>转述</strong>，<strong>本报告回溯到 Milne 等（2002）仅作书目登记，未核全文</strong> ⇒ 本报告标 <span class="tag t-rep">转述</span>；④ 「四步的反向操作」「问题／解决二分」→ <span class="tag t-talk">作者谈话</span>；⑤ 本报告对「三处不对称」等的归纳 → <span class="tag t-inf">推断</span>。</p>
+  <p><strong>（四）可疑之处。</strong> ★ <strong>第一，「环境比动机更重要」这个权重给得偏满。</strong> 支持「环境重要」的一手研究（Wood, Tam &amp; Witt (2005), <em>JPSP</em>, 88(6), 918–933；Wood &amp; Neal (2007), <em>Psychological Review</em>, 114(4), 843–863）讲的是<strong>习惯由稳定情境触发</strong>，并不支持「个人特质被环境完全压倒」。★ <strong>第二，「实施意图」的效力被讲成了「翻倍」。</strong> 「91% vs 35%–38%」是该单次研究的<strong>组间差异</strong>，把它读成「写个计划就能让成功率翻倍」是把一次实验当定律。★ <strong>第三，第 4 章「指差确认」的数据（减少错误 85%、减少事故 30%、纽约地铁差错降 57%）在官网文章里没有给出可核的一手来源</strong>（我核到的 <code>habits-scorecard</code> 只是转述），故本报告<strong>不引这三个数字为事实</strong>。</p>
+  <p><strong>（五）补充一：提示不止一种，作者列了五类。</strong> <span class="tag t-talk">作者谈话</span> 作者在 <code>habit-triggers</code> 里把「能触发一个新习惯的提示」分成五类，并说「There are five primary ways that a new habit can be triggered.」（一个新习惯可以有五种主要触发方式。）：<strong>时间、地点、前置事件、情绪状态、他人</strong>（出处 <code>https://jamesclear.com/habit-triggers</code>，抓取日期 2026-10-16）。★ 本报告把它整理成表，因为它比「让它显而易见」这五个字具体得多：</p>
+  <table>
+    <thead><tr><th>提示类型</th><th>作者给的例子与提醒</th><th>本报告的读法（<span class="tag t-inf">推断</span>）</th></tr></thead>
+    <tbody>
+      <tr><td>时间</td><td>每天固定钟点触发一连串晨间习惯</td><td>最常用，但作者自称最偏爱</td></tr>
+      <tr><td>地点（环境）</td><td>走进厨房看见饼干就吃；作者称地点是「most powerful driver of mindless habits」</td><td>与第 6 章直接对应</td></tr>
+      <tr><td>前置事件</td><td>「当我把咖啡做好，我就冥想一分钟」</td><td>与「习惯堆叠」同一机杼</td></tr>
+      <tr><td>情绪状态</td><td>沮丧时进食、无聊时网购</td><td>作者自陈「harder to control」</td></tr>
+      <tr><td>他人</td><td>朋友的影响；引 Jim Rohn 语录「You are the average of the five people you spend the most time with.」</td><td>与第 9 章社会因素相关</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>本报告提醒</strong>：上表里「他人在场」被作者当作提示之一，而<strong>第 9 章讲的是社会规范与群体</strong>——两者是<strong>同一问题的两个层次</strong>，读者别把它们弄混。★ 另：作者正是在这一篇里给出判断：「Bad habits are replaced, not eliminated.」（坏习惯是被替换的，不是被消灭的）。</p>
+  <p><strong>（六）补充二：环境设计的「铁证」是一次器官捐献研究。</strong> <span class="tag t-talk">作者谈话</span> 作者在 <code>environment-design-organ-donation</code> 里引 Eric Johnson 与 Daniel Goldstein 的研究：<span class="tag t-talk">作者谈话</span>「only 4% of the population in Denmark has chosen to become an organ donor while almost 86% of the population in Sweden has chosen to donate.」（丹麦仅 4% 的人选择成为器官捐献者，而瑞典近 86% 的人选择捐献），并归因于表格类型：「The countries with low rates of organ donors sent out a form that said, 'If you want to be an organ donor, check here.'… the countries with high rates of donation sent out a form that said, 'If you don't want to be an organ donor, check here.'」（前者是「想捐请勾选」，后者是「不想捐请勾选」），并引研究者原话：「In most cases, the majority of people choose the default option to which they were assigned.」（多数情况下，大多数人选择被指定的默认选项。）（出处 <code>https://jamesclear.com/environment-design-organ-donation</code>，抓取日期 2026-10-16）。★★ <strong>本报告核对</strong>：该研究即 Johnson, E. J., &amp; Goldstein, D. (2003). "Do Defaults Save Lives?" <em>Science</em>, <strong>302(5649), 1338–1339</strong>（★ 卷期页码经 Crossref 核验）；★ <strong>但本报告只核到其书目元数据与摘要层面，未读全文</strong>，故此处仍只作 <span class="tag t-rep">转述</span>，不把 4%／86% 写作研究结论。★ 但这确实是「环境设计」一层<strong>最硬的一类证据</strong>（默认项改变群体行为），值得读者记住。</p>
+  <p><strong>（七）补充三：一切从「觉察」开始。</strong> <span class="tag t-talk">作者谈话</span> 作者用一个故事说明觉察的价值：一位学生被要求凭记忆画母校塔楼的屋顶，却发现自己每天路过却从未真正看过（出处 <code>https://jamesclear.com/awareness-start-better-habits</code>，抓取日期 2026-10-16），并总结：「Nothing happens before awareness.」（觉察之前，什么都不会发生。）。★ 这句是第 4 章「指差确认」与「习惯记分卡」的共同底层逻辑：<strong>先看得见，才谈得上改。</strong></p>
+  <p><strong>（八）本报告对这一条定律的一句提醒。</strong> ★ 第一定律的四个操作（记分卡、实施意图、习惯堆叠、环境设计）<strong>都是「前因侧」的干预</strong> —— 它们改变的是<strong>行为发生之前的那一瞬</strong>。★ 这解释了为什么本书把它排在第一：<strong>前因侧最容易被直接改动，也最容易被读者当天就试一遍</strong>；但它同时意味着，<strong>一旦提示已经出现、冲动已经起来，第一定律就交棒给了第二、第三条定律</strong>。★ 读者若只做第一定律（只改环境、只做索引），却不碰第二、第三条，往往会出现「环境干净了、习惯仍没长出来」的落差 —— <strong>这不是定律失效，而是只用了四分之一的工具箱</strong>（<span class="tag t-inf">推断</span>）。</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>第二定律「让它有吸引力」：第 8–10 章</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本节来源层次声明（先说清）</strong>：<strong>第 8–10 章的章号与章题依官方目录，属 <span class="tag t-src">原书</span> 结构类事实</strong>；<strong>本节的操作与引文依据作者官网文章，标 <span class="tag t-talk">作者谈话</span></strong>；<strong>凡涉及一手研究的，给出卷期页码；凡未能核到的，明写「未核到」</strong>；<strong>本报告自己的判断标 <span class="tag t-inf">推断</span></strong>。★★ <strong>本节未逐章核对原书原文。</strong></p>
+  <p><strong>（一）这三章在回答什么问题。</strong> 依官方目录，三章题名是「怎样使习惯不可抗拒」「在习惯形成中亲友所起的作用」「如何找到并消除你坏习惯的根源」。★ 连起来是：<strong>怎么让想做的事变得诱人（第 8 章）→ 怎么用「别人」这一杠杆（第 9 章）→ 怎么处理坏习惯背后真正的渴求（第 10 章）</strong>。★ 这三章对应回路里的「<strong>渴求（craving）</strong>」——前一条定律管「看得见」，这一条管「想不想要」。</p>
+  <p><strong>（二）核心操作，作者原话有三处。</strong></p>
+  <p><strong>第一，诱惑捆绑：把「想要做的」和「需要做的」绑在一起。</strong> <span class="tag t-talk">作者谈话</span>「Temptation bundling works by linking an action you want to do with an action you need do.」（诱惑捆绑的机制是：把你「想做」的动作和你「需要做」的动作绑在一起）（出处 <code>https://jamesclear.com/temptation-bundling</code>，抓取日期 2026-10-16）。★ 作者给出的原理依据是<strong>普雷马克原理（Premack's Principle）</strong>：<span class="tag t-talk">作者谈话</span> 文中引「more probable behaviors will reinforce less probable behaviors.」（发生概率高的行为会强化发生概率低的行为）。★★ <strong>师承要写清</strong>：文章脚注把这一原则归给 David Premack，并把「诱惑捆绑」这一术语的来源归给读者 John Kester III。<strong>这不是本书发明的概念</strong>，只是被本书讲得最流行。</p>
+  <p><strong>第二，用「亲友」当社会杠杆。</strong> 依官方目录，第 9 章讲「亲友所起的作用」。★ <strong>本节能拿到的作者一手材料有限</strong>：本报告抓取的 45 篇官网文章里，<strong>没有一篇是直接展开第 9 章主题（社会规范／群体归属）的完整文章</strong>；最接近的是 <code>life-team-sport</code>（把生活当作团队运动）与 <code>habit-triggers</code> 里关于「他人」作为提示的一段。★ <span class="tag t-talk">作者谈话</span> <code>habit-triggers</code> 引了一项研究：「One study in the New England Journal of Medicine found that if your friend becomes obese, then your risk of obesity increases by 57 percent — even if your friend lives hundreds of miles away.」（出处 <code>https://jamesclear.com/habit-triggers</code>，抓取日期 2026-10-16）。★★ <strong>本报告核对</strong>：这指 Christakis &amp; Fowler 关于肥胖社会网络传播的研究，<strong>本报告未能核到其具体卷期页码，故此处只作 <span class="tag t-rep">转述</span>，不写作研究结论。</strong> ★ 该文还给出一句常被引用的鸡汤：「You are the average of the five people you spend the most time with.」（你是你相处最多的五个人的平均值）—— ★ 这句话被作者明确标为 <strong>Jim Rohn 的语录</strong>，不是研究结论。</p>
+  <p><strong>第三，坏习惯要「替换」，不要「删除」。</strong> <span class="tag t-talk">作者谈话</span>「Bad habits are replaced, not eliminated.」（坏习惯是被替换掉的，不是被消灭掉的。）（出处 <code>https://jamesclear.com/habit-triggers</code>）以及「Instead, you need to replace a bad habit with a new habit that provides a similar benefit.」（你要用能提供类似好处的新习惯去替换它）（出处 <code>https://jamesclear.com/how-to-break-a-bad-habit</code>，抓取日期均 2026-10-16）。★ 这与第 10 章「找到并消除坏习惯的根源」在主题上直接相关：坏习惯之所以顽固，是因为它在<strong>为某种需要服务</strong>（文中列举：减压、消解无聊、获得归属感）。</p>
+  <p><strong>（三）本节内容的来源层次声明（显式）</strong>：① 章号章题 → 官方目录，<span class="tag t-src">原书</span>；② 诱惑捆绑、普雷马克原理、坏习惯替换 → <span class="tag t-talk">作者谈话</span>；③ 「朋友变胖、你的风险升 57%」→ 作者文章的<strong>转述</strong>，<strong>一手出处本报告未核全</strong> ⇒ <span class="tag t-rep">转述</span>；④ 「你是五个人的平均值」→ 作者标为 Jim Rohn 语录 ⇒ 属<strong>引语</strong>，不是研究；⑤ 本报告对第 9 章「一手材料不足」的说明 → <span class="tag t-inf">推断</span>（事实层面的自陈）。</p>
+  <p><strong>（四）可疑之处。</strong> ★ <strong>第一，第 9 章是本报告证据最薄的一章。</strong> 因为本报告<strong>没有抓到直接对应第 9 章主题的官网长文</strong>，本节对该章的描述<strong>只能停在「依官方目录＋相邻文章」的层面，未做内容核验</strong>——这一点本报告主动标明，不假装已核。★ <strong>第二，「诱惑捆绑」的实验支撑偏弱。</strong> 作者给出的依据是普雷马克原理这条<strong>行为主义老原则</strong>，而 Premack（1965 年前后）的原始研究语境是<strong>动物学习实验</strong>；把它平移到「一边在跑步机上看剧一边锻炼」的成人习惯上，<strong>中间缺少直接的人体实验</strong>。★ <strong>第三，「替换而非删除」有临床语境的边界。</strong> 这套做法在<strong>生活方式习惯</strong>上说得通，但<strong>不能外推到成瘾</strong>——替换一个提供「类似好处」的行为，对临床成瘾而言恰恰是最难的部分。★ 本报告据此重申：<strong>本书不适用于成瘾、强迫症与临床抑郁。</strong></p>
+  <p><strong>（五）补充一：作者关于「人」的两处最直白的表述。</strong> ★ 虽然第 9 章缺直接长文，但作者在别处写过两句可引的话。<span class="tag t-talk">作者谈话</span> 其一出自 <code>life-team-sport</code>：「your life is dramatically impacted by the people around you.」（你的人生会被你周围的人深刻影响。）与「Life is a shared experience.」（生活是一种共享的体验。）（出处 <code>https://jamesclear.com/life-team-sport</code>，抓取日期 2026-10-16）。★ 其二出自 <code>how-to-break-a-bad-habit</code>：「Surround yourself with people who live the way you want to live. You don't need to ditch your old friends, but don't underestimate the power of finding some new ones.」（让自己身边是那些按你向往的方式生活的人；你不必抛弃老朋友，但别低估交新朋友的力量。）（出处 <code>https://jamesclear.com/how-to-break-a-bad-habit</code>，抓取日期 2026-10-16）。★★ <strong>本报告提醒</strong>：这两句是<strong>作者的经验建议</strong>，<strong>不是研究结论</strong>；作者把它们写出来时也没有给实验出处。<strong>读者不要把「身边人重要」当成一条已被证明的定律。</strong></p>
+  <p><strong>（六）补充二：坏习惯的「根源」在书里被归到两类需求上。</strong> <span class="tag t-talk">作者谈话</span>「Most of the time, bad habits are simply a way of dealing with stress and boredom.」（多数时候，坏习惯只是应对压力与无聊的方式。）（同上 <code>how-to-break-a-bad-habit</code>）。★ 作者据此给出两条操作：其一，<strong>「Cut out as many triggers as possible.」</strong>（尽可能切断触发源）—— 这与第 7 章「让它隐而不见」是同一动作；其二，<strong>「Right now, your environment makes your bad habit easier and good habits harder. Change your environment and you can change the outcome.」</strong>（此刻你的环境让你的坏习惯更容易、好习惯更困难；改变环境就能改变结果。）。★ 这两条与「环境设计」一节（<code>## 9</code> 补充三）互为表里。</p>
+  <p><strong>（七）补充三：一个关于「失败」的提醒，作者在这里的态度值得记下。</strong> <span class="tag t-talk">作者谈话</span>「Rather than beating yourself up over a mistake, plan for it.（与其为犯错痛骂自己，不如预先为它做计划）… what separates top performers from everyone else is that they get back on track very quickly.」（区分顶尖者与常人的，是他们能很快回到正轨。）（同上 <code>how-to-break-a-bad-habit</code>）。★ 这条在结构上其实属于<strong>第四定律（保持）</strong>的边缘，作者把它提前写在了「坏习惯」的文章里 —— 这说明<strong>官网文章的边界比书的章节更松</strong>，读者不要把文章的主题直接等同于某一章。</p>
+  <p><strong>（八）补充四：把「渴求」这一层讲透一点。</strong> ★ 回路四步里，「渴求（craving）」是最抽象的一步，也是最容易被读者跳过的一步。<span class="tag t-talk">作者谈话</span> 作者在 <code>three-steps-habit-change</code> 里对它下过一个定义：「Cravings are the second step of the habit loop, and they are the motivational force behind every habit.」（渴求是习惯回路的第二步，是每个习惯背后的动机力量。）并紧接着给出一个极关键的限定：「<strong>You do not crave smoking a cigarette, you crave the feeling of relief it provides.</strong>」（你渴求的不是那支烟，而是它带来的那种松弛感）★ 以及「Every craving is linked to a desire to change your internal state.」（每一种渴求都与「想改变自己的内在状态」有关。）（出处同前，抓取日期 2026-10-16）。★★ <strong>本报告认为（<span class="tag t-inf">推断</span>）</strong>：这两句是理解第 8–10 章的钥匙 —— 若「渴求的是内在状态的变化」，那么「让它有吸引力」的关键就不是给行为<strong>加甜头</strong>，而是<strong>让人预期到那种内在状态的变化</strong>；同理，「坏习惯难戒」也就有了机制解释（坏习惯更能即时地改变内在状态）。★ 本报告提醒：<strong>这个推论是本报告做的</strong>，作者的文章里并没有把这一层推到「因此坏习惯天然更难戒」的结论上。</p>
+  <p><strong>（九）第 10 章的题名里藏了一个前提。</strong> 依官方目录，第 10 章题名是「如何找到并消除你坏习惯的根源」（<span class="tag t-src">原书</span>，结构类）。★ 本报告提醒（<span class="tag t-inf">推断</span>）：「<strong>根源</strong>」这个词预设了<strong>坏习惯有一个可被找到、可被消除的原因</strong>。这在本报告的立场上是一个<strong>需要打问号的预设</strong>：官网文章里作者给的原因只有两类（压力、无聊），<strong>并没有一套「追溯根因」的方法论</strong>。★ 因此，把第 10 章理解成「心理分析式的找根因」，是<strong>读高了</strong>；把它理解成「<strong>找出坏习惯在满足什么需要，再用别的方式满足它</strong>」，才与作者的文章对得上。</p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>第三定律「让它简便易行」：第 11–14 章</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本节来源层次声明（先说清）</strong>：<strong>第 11–14 章的章号与章题依官方目录，属 <span class="tag t-src">原书</span> 结构类事实</strong>；<strong>本节的操作与英文引文依据作者官网文章，标 <span class="tag t-talk">作者谈话</span></strong>；<strong>涉及一手研究的给卷期页码，未核到的明写未核到</strong>；<strong>本报告自己的判断标 <span class="tag t-inf">推断</span></strong>。★★ <strong>本节未逐章核对原书原文。</strong></p>
+  <p><strong>（一）这四章在回答什么问题。</strong> 依官方目录，四章题名是「慢步前行，但决不后退」「最省力法则」「怎样利用两分钟规则停止拖延」「怎样让好习惯不可避免，坏习惯难以养成」。★ 连起来是：<strong>先接受「重复比完美重要」（第 11 章）→ 再理解「人天然走阻力最小的路」（第 12 章）→ 然后给出一个把启动成本降到极低的工具（第 13 章）→ 最后用「承诺装置」把好习惯锁死、把坏习惯加锁（第 14 章）</strong>。★ 这一条定律对应回路的「<strong>反应（response）</strong>」，是全书<strong>最可操作</strong>的一段。</p>
+  <p><strong>（二）核心操作，四处可引作者原话。</strong></p>
+  <p><strong>第一，从「小到无法拒绝」开始。</strong> <span class="tag t-talk">作者谈话</span>「You have to start with a version of the habit that is incredibly easy for you. It must be so easy that you can't say no to doing it and so easy that it is not difficult at all in the beginning.」（你要从一个对你来说极其轻松的习惯版本开始：轻松到你说不出「不」字，轻松到开头根本不费力）（出处 <code>https://jamesclear.com/small-habits</code>，抓取日期 2026-10-16）。★ 同一篇里作者还给了一句方法论上的核心：<span class="tag t-talk">作者谈话</span>「I am focusing on actually performing the habit rather than worrying about the outcome.」（我关注的是真的去做这个行为，而不是担心结果。）★ 这句「<strong>做的次数优先于做的质量</strong>」是第三定律的底色。</p>
+  <p><strong>第二，两分钟规则：把启动门槛压到两分钟以内。</strong> <span class="tag t-talk">作者谈话</span>「In Atomic Habits, I recommend using the Two-Minute Rule, which suggests you scale your habits down until they take two minutes or less to perform.」（在《掌控习惯》里，我建议使用『两分钟规则』：把习惯缩小到两分钟以内就能完成）（出处 <code>https://jamesclear.com/habit-tracker</code>，抓取日期 2026-10-16）。★ 作者把两分钟规则与「习惯堆叠」「身份投票」连用：先用两分钟<strong>开始</strong>，再靠重复<strong>累积分票</strong>。</p>
+  <p><strong>第三，只攻一件事。</strong> <span class="tag t-talk">作者谈话</span>「the best way to change your entire life is by not changing your entire life… it is best to focus on one specific habit, work on it until you master it, and make it an automatic part of your daily life.」（改变整个人生的最好办法，是不去同时改变整个人生……最好只专注一个具体习惯，练到掌握它、成为日常的自动部分）（出处 <code>https://jamesclear.com/master-one-thing</code>，抓取日期 2026-10-16）。★ 该文同时给出「实施意图只在你一次只做一件事时才有效」的限定，并<strong>点名</strong> Dalton &amp; Spiller (2012) 的研究（★ 作者脚注给出 <em>Journal of Consumer Research</em>，<strong>本报告未核全文，只作书目登记</strong>）。</p>
+  <p><strong>第四，用环境与承诺装置把好习惯「变成默认」。</strong> <span class="tag t-talk">作者谈话</span> <code>design-default</code> 一篇讲「把好选择设成默认选项」（如把健康食品放在与视线平齐处），<code>choice-architecture</code> 讲「选择架构」，<code>how-to-automate-a-habit</code> 讲「把习惯交给技术自动化」（三篇出处均为 <code>https://jamesclear.com/&lt;slug&gt;</code>，抓取日期 2026-10-16）。★ 这一组工具的实质是<strong>降低好行为的摩擦、提高坏行为的摩擦</strong> —— 也就是第 12 章「最省力法则」的正面与反面。</p>
+  <p><strong>（三）本节内容的来源层次声明（显式）</strong>：① 章号章题 → 官方目录，<span class="tag t-src">原书</span>；② 「小到无法拒绝」「两分钟规则」「只攻一件事」「设计默认／选择架构／自动化」→ <strong><span class="tag t-talk">作者谈话</span></strong>，逐条有 URL 与抓取日期；③ 「Dalton &amp; Spiller (2012)」→ 作者脚注转引，<strong>本报告未核全文</strong>，只作书目登记；④ 本报告对四章分工的归纳 → <span class="tag t-inf">推断</span>。</p>
+  <p><strong>（四）可疑之处。</strong> ★ <strong>第一，「两分钟规则能不能治拖延」被问得最多，但作者没有给出针对拖延的一手实验。</strong> 两分钟规则是<strong>操作口诀</strong>，不是经过验证的疗法。★ <strong>第二，「最省力法则」的表述容易过度。</strong> 作者用「激活能（activation energy）」等物理比喻（见 <code>chemistry-habits</code>），这些是<strong>类比</strong>，不是行为科学结论。★ <strong>第三，第 14 章的「承诺装置」（commitment device）在行为经济学里有更严谨的表述与实验传统</strong>（如自我约束契约）；本书用了这个工具，却<strong>没有在正文里给出相应的实验文献</strong> —— 本报告提醒读者：<strong>这类工具的效力取决于具体设计与情形，不能一概而论。</strong> ★ <strong>第四，本节（连同第 7–10 节）涉及的一切「让它更容易」的策略，都不适用于临床成瘾的戒断</strong>：对成瘾行为，「降低摩擦」远不足以处理生理依赖。</p>
+  <p><strong>（五）补充一：把环境变成「为下一步做好准备」的场。</strong> <span class="tag t-talk">作者谈话</span> 作者讲了一位 IT 开发者 Oswald Nuckols 的习惯（看完电视把遥控器放回、离开车随手扔垃圾），并点出关键区别：「The purpose of resetting each room is not simply to clean up after the last action, but to prepare for the next action.」（重置房间的目的不只是收拾上一次动作的残局，而是为下一个动作做好准备。），并引 Nuckols 的话：「People think I work hard but I'm actually really lazy. I'm just proactively lazy. It gives you so much time back.」（人们以为我很勤快，其实我很懒，只是「主动地懒」——它把大量时间还给了我。）（出处 <code>https://jamesclear.com/reset-the-room</code>，抓取日期 2026-10-16）。★ 这篇文章开头自注「This article is an excerpt from Chapter 12」，因此<strong>它可判定为第 12 章的素材／前身</strong>（关系类型①）。</p>
+  <p><strong>（六）补充二：默认选项与选择架构是「最省力」的另一面。</strong> <span class="tag t-talk">作者谈话</span> 作者在 <code>design-default</code> 里举零售业的例子：「According to data cited by the New York Times, 45 percent of Coca-Cola sales come specifically from end-of-the-aisle racks.」（据《纽约时报》引用的数据，可口可乐 45% 的销量恰好来自货架端头。）（出处 <code>https://jamesclear.com/design-default</code>，抓取日期 2026-10-16）。★ 同主题另有 <code>choice-architecture</code>（选择架构）与 <code>how-to-automate-a-habit</code>（用技术把习惯自动化）两篇。★★ <strong>本报告提醒</strong>：这几篇讲的都是<strong>别人的设计与别人的行为</strong>（商家、机构），作者把它们转译成个人工具；<strong>但把「商家如何设计环境诱导你消费」直接当成「你该如何设计自己的环境」，中间有一次立场转置</strong> —— 读者的目标函数与商家的不是一回事，这一点书里没有明说。★ 本报告也据此重申：<strong>本报告对文中企业案例只作内容描述，不作任何商业推荐。</strong></p>
+  <p><strong>（七）补充三：「慢」是被写进方法论的，不是修辞。</strong> <span class="tag t-talk">作者谈话</span> <code>habit-guide</code> 里作者写：「If you continue adding one percent each day, then you'll find yourself increasing very quickly within two or three months. It is important to keep each habit reasonable…」（若你每天加百分之一，两三个月内就会增长得很快；关键是让每个习惯保持在合理范围内……）以及「You just need to be consistent, not perfect. Focus on building the identity of someone who never misses a habit twice.」（你只需保持一致，不必完美；把注意力放在塑造『一个绝不会连缺两次的人』这个身份上。）（出处 <code>https://jamesclear.com/habit-guide</code>，抓取日期 2026-10-16）。★ 「never miss twice（绝不连缺两次）」是这一条定律与第四定律交接处最常被引用的一句。</p>
+  <p><strong>（八）补充四：一个来自 Duhigg 的概念——「关键习惯」。</strong> <span class="tag t-talk">作者谈话</span> 作者在 <code>keystone-habits</code> 里明确把概念归给 Duhigg：「In Charles Duhigg's book, <em>The Power of Habit</em>, he discusses the idea of keystone habits… certain routines — keystone habits — lead to a cascade of other actions because of them.」（出处 <code>https://jamesclear.com/keystone-habits</code>，抓取日期 2026-10-16）。★ 作者在这里的态度是自陈式的：他写「fitness is the keystone habit the puts the rest of my life in place.」并以自己的训练为例。★★ <strong>本报告核对</strong>：<code>keystone habits</code> 这一术语<strong>属于 Duhigg，不属于 Clear</strong>（作者自己也这么标明）。★ 本报告把它写进附录 A，并标注「研究／他人术语」，以免与本书自有术语混淆。</p>
+  <p><strong>（九）补充五：第 11 章的题名是一句「态度」。</strong> 依官方目录，第 11 章题名是「慢步前行，但决不后退」（<span class="tag t-src">原书</span>，结构类事实）。★ 本报告认为（<span class="tag t-inf">推断</span>）：这句题名概括的是<strong>重复与完美的关系</strong> —— 它把「不能后退」设为底线，把「慢」设为常态。<span class="tag t-talk">作者谈话</span> 与之最贴的表述来自 <code>master-one-thing</code>：「automaticity only occurs as the result of lots of repetition and practice. The more reps you put in, the more automatic a behavior becomes.」（自动化只能来自大量重复与练习；你投入的次数越多，行为就越自动化。）（出处 <code>https://jamesclear.com/master-one-thing</code>，抓取日期 2026-10-16）。★ 同文还给出一句<strong>极重要的限定</strong>：「the range in the study was very wide and the only reasonable conclusion you should make is that it will take months for new habits to become sticky.」（该研究的区间非常宽，你唯一该得出的合理结论是：新习惯要花上几个月才会变得牢固。）</p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">10</span><span>第四定律「让它令人愉悦」：第 15–17 章</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本节来源层次声明（先说清）</strong>：<strong>第 15–17 章的章号与章题依官方目录，属 <span class="tag t-src">原书</span> 结构类事实</strong>；<strong>本节的操作与英文引文依据作者官网文章，标 <span class="tag t-talk">作者谈话</span></strong>；<strong>涉及一手研究的给出卷期页码，未核到的明写未核到</strong>；<strong>本报告自己的判断标 <span class="tag t-inf">推断</span></strong>。★★ <strong>本节未逐章核对原书原文。</strong></p>
+  <p><strong>（一）这三章在回答什么问题。</strong> 依官方目录，三章题名是「行为转变的基本准则」「怎样天天保持好习惯」「问责伙伴何以能改变一切」。★ 连起来是：<strong>让行为立刻有回报（第 15 章）→ 用可见的记录把一致性撑住（第 16 章）→ 用「别人看着」把不能自控的部分外包出去（第 17 章）</strong>。★ 这一条定律对应回路的「<strong>奖赏（reward）</strong>」，是四条定律里<strong>唯一一条在 Fogg 的 B=MAP 中没有对应项</strong>的（见 <code>## 6</code>）。</p>
+  <p><strong>（二）核心操作，三处可引作者原话。</strong></p>
+  <p><strong>第一，用反馈回路让结果即时可见。</strong> <span class="tag t-talk">作者谈话</span> 作者区分了两类反馈回路：<em>balancing</em>（拉回平衡，如恒温器）与 <em>reinforcing</em>（自我强化，如复利）。他给的经典例子是路边的测速显示屏：「On average, 'Your Speed' signs decrease the driving speed by 10 percent.」（平均而言，「你的车速」显示屏会让车速下降 10%。）（出处 <code>https://jamesclear.com/feedback-loops</code>，抓取日期 2026-10-16）。★★ <strong>本报告核对</strong>：该文给出三类构件（measurement／comparison／adjustment）并引 Seth Godin 的话：「The best way to change long-term behavior is with short-term feedback.」（改变长期行为的最佳方式，是用短期反馈。）★ <strong>这句是引语，作者标明出自 Seth Godin，不是研究结论。</strong> ★ 该文脚注还提到 Thomas Goetz 在 <em>WIRED</em> 的文章启发了他。</p>
+  <p><strong>第二，把「记录」当作最便宜的奖赏。</strong> <span class="tag t-talk">作者谈话</span> 作者在 <code>habit-tracker</code> 里给出一句被引用最多的话：「Missing once is an accident. Missing twice is the start of a new habit.」（缺一次是意外，缺两次就是一种新习惯的开始。）（出处 <code>https://jamesclear.com/habit-tracker</code>，抓取日期 2026-10-16）。★ 同文还引了一项追踪研究：「One study of more than sixteen hundred people found that those who kept a daily food log lost twice as much weight as those who did not.」（一项对 1600 多人的研究发现，坚持记每日饮食记录的人减重是不记者的两倍。）★★ <strong>本报告核对</strong>：该研究<strong>本报告未核到具体出处（作者未给卷期页码）</strong>，故此处只作 <span class="tag t-rep">转述</span>，<strong>不写作研究结论</strong>。★ 该文末尾还有一句「金句化」的判断，值得单独记住：<span class="tag t-talk">作者谈话</span>「A habit is a lifestyle to be lived, not a finish line to be crossed.」（习惯是一种要去生活的活法，不是一条要冲过的终点线。）</p>
+  <p><strong>第三，问责伙伴：把「别人」变成奖赏与惩罚。</strong> 依官方目录，第 17 章讲「问责伙伴何以能改变一切」。★ <strong>本节能拿到的作者一手材料有限</strong>：本报告抓到的官网文章里，<strong>最接近的一篇是 <code>how-to-break-a-bad-habit</code></strong>，其中有一条：<span class="tag t-talk">作者谈话</span>「Instead, pair up with someone and quit together. The two of you can hold each other accountable and celebrate your victories together. Knowing that someone else expects you to be better is a powerful motivator.」（和别人结对、一起戒；你们互相问责、一起庆祝胜利；知道有人期待你变好，是强大的动力。）（出处 <code>https://jamesclear.com/how-to-break-a-bad-habit</code>，抓取日期 2026-10-16）。★ 另可参照 <code>life-team-sport</code> 里「把人生当团队运动」的比喻。★★ 再次申明：<strong>这两处是作者的经验建议，不是实验结论。</strong></p>
+  <p><strong>（三）本节内容的来源层次声明（显式）</strong>：① 章号章题 → 官方目录，<span class="tag t-src">原书</span>；② 反馈回路、习惯追踪、问责结对 → <strong><span class="tag t-talk">作者谈话</span></strong>，逐条有 URL 与抓取日期；③ 「测速屏降速 10%」「记饮食日志减重翻倍」→ 作者文章的<strong>转述</strong>，<strong>本报告未核到一手出处</strong> ⇒ <span class="tag t-rep">转述</span>；④ Godin 语录 → <strong>引语</strong>，非研究；⑤ 本报告对三条操作的分工归纳 → <span class="tag t-inf">推断</span>。</p>
+  <p><strong>（四）可疑之处。</strong> ★ <strong>第一，「即时奖赏」与「坏习惯也给人即时奖赏」是同一个机制，本书的处理不对等。</strong> 坏习惯之所以难戒，正因为它自带即时奖赏（第 10 章讲到了这点），而好习惯往往延迟回报；本书给出的解药是「人为制造即时回报」—— ★ 这套做法<strong>在行为经济学里有对应工具（即时激励）</strong>，但<strong>本书正文没有给出相应的实验文献</strong>，本报告不替它补。★ <strong>第二，「绝不连缺两次」是一条好口诀，但它的证据基础是 Lally 等（2010）的「Missing one opportunity to perform the behaviour did not materially affect the habit formation process」</strong>（★ 该句<strong>本报告已在 Lally 摘要中逐字核到</strong>，注意原文用英式拼写 behaviour），<strong>而「缺两次」的门槛是作者的经验外推</strong>，不是原始结论。★ <strong>第三，第 17 章是本报告证据偏薄的一章之一</strong>（与第 9 章同类）：<strong>「问责伙伴」在行为科学里确有研究传统（如承诺机制、社会问责），但本报告未能从作者官网拿到对应的一手长文</strong>，故本节对该章<strong>未做内容核验</strong>。</p>
+  <p><strong>（五）补充一：第 15 章的题名与「即时性」这个关键词。</strong> 依官方目录，第 15 章题名是「行为转变的基本准则」（<span class="tag t-src">原书</span>，结构类事实）。★ 本报告认为（<span class="tag t-inf">推断</span>）：这条「基本准则」指的就是<strong>即时性</strong> —— 好习惯要能<strong>立刻</strong>让人尝到甜头。★ <span class="tag t-talk">作者谈话</span> 作者在 <code>feedback-loops</code> 里把这件事讲成了回路：<strong>测量 → 比较 → 调整</strong>，并强调「Adjustments should be made as quickly as possible. The more rapid the change, the tighter the feedback loop.」（调整应尽快做出；变化越快，回路越紧。）★ 本报告提醒读者：<strong>「即时奖赏」是一把双面的刀</strong> —— 短视频、社交媒体、垃圾食品恰恰是<strong>即时奖赏最强</strong>的一类行为；本书的框架因此<strong>同时解释了坏习惯为何顽固</strong>，这一点是它的优点，但也意味着<strong>单靠「制造即时奖赏」不足以对抗争夺注意力的整个产业</strong>。</p>
+  <p><strong>（六）补充二：习惯追踪的「副作用」，书里提了一句。</strong> <span class="tag t-talk">作者谈话</span> 作者在 <code>habit-tracker</code> 里主动写出追踪的代价：「Many people resist the idea of tracking and measuring. It can feel like a burden because it forces you into two habits: the habit you're trying to build and the habit of tracking it.」（很多人抗拒追踪，因为它逼你养成两个习惯：你想养成的那个，以及追踪它的那个。）（出处同前，抓取日期 2026-10-16）。★ 他还给了两条自制规则：「manual tracking should be limited to your most important habits」（手工追踪只限最重要的习惯）与「record each measurement immediately after the habit occurs」（行为一发生就立刻记录）。★★ <strong>本报告认为（<span class="tag t-inf">推断</span>）</strong>：这一段虽然短，却是本书<strong>少见的「承认方法有成本」</strong>的地方之一，值得读者记住 —— 因为整本书的气质是「每样工具都有好处」，而这里出现了「好处要对价」。</p>
+  <p><strong>（七）补充三：第 16 章题名里的「天天」是怎么被实现的。</strong> 依官方目录，第 16 章题名是「怎样天天保持好习惯」（<span class="tag t-src">原书</span>，结构类事实）。★ 把网页文章里的三件工具拼起来，这个「天天」在操作上靠的是三样东西：<strong>一是习惯追踪</strong>（<code>habit-tracker</code>，给出可见的连续性），<strong>二是「绝不连缺两次」</strong>（<code>second-mistake</code>，把单次失误定性为「意外」而非「失败」），<strong>三是把追踪动作挂在既有习惯后面</strong>（<code>habit-tracker</code> 里给的两个句式：「After I hang up the phone from a sales call, I will mark the 'call 1 potential client' column.」）。★ <span class="tag t-talk">作者谈话</span> 作者在 <code>second-mistake</code> 里把这一条讲成了一句可直接记住的判断：「What separates the elite performers from everyone else? Not perfection, but consistency.」（区分顶尖者与众人的，不是完美，是一致。）（出处 <code>https://jamesclear.com/second-mistake</code>，抓取日期 2026-10-16）。★★ <strong>本报告提醒</strong>：这三件工具的组合<strong>在本书里没有对应的对照实验</strong>（作者未给），读者应把它理解为<strong>一套经过实践检验的经验组合</strong>，而不是<strong>一条被验证的因果链</strong>。</p>
+  <p><strong>（八）本报告对这一条定律的一句提醒。</strong> ★ 第四定律是三件事的组合：<strong>即时回报、可见记录、外部问责</strong>。★★ 三者有一个共同点，也是本书最容易被误读的地方：<strong>它们都不改变行为的「难度」，只改变行为之后的「感受」</strong>。★ 换句话说，前三条定律负责让好习惯<strong>做得成</strong>，第四定律负责让好习惯<strong>愿意做第二次</strong>。★ 读者若发现自己「开始得了、坚持不住」，缺的往往正是这一条；若发现自己「压根开始不了」，那问题通常在前三条，而不是意志力（<span class="tag t-inf">推断</span>）。</p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">11</span><span>高级战术与结论：第 18–20 章 ＋ 结论</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本节来源层次声明（先说清）</strong>：<strong>第 18–20 章与「结论」的章号与章题依官方目录，属 <span class="tag t-src">原书</span> 结构类事实</strong>；<strong>本节的操作与英文引文依据作者官网文章，标 <span class="tag t-talk">作者谈话</span></strong>；<strong>涉及一手研究的给出卷期页码，未核到的明写未核到</strong>；<strong>本报告自己的判断标 <span class="tag t-inf">推断</span></strong>。★★ <strong>本节未逐章核对原书原文。</strong></p>
+  <p><strong>（一）这三章加结论在回答什么问题。</strong> 依官方目录，三章题名是「揭秘天才（当基因重要和无关紧要时）」「金发女孩准则：如何在生活和工作中保持充沛动力」「培养好习惯的负面影响」；其后是「结论：获得持久成果的秘诀」。★ 这一块<strong>不挂在任何一条定律下</strong>，它处理的是四个更高层的问题：<strong>个体差异（基因）→ 动机的可持续（难度）→ 好习惯的暗面（僵化）→ 收束（坚持什么）。</strong></p>
+  <p><strong>（二）核心操作，四处可引作者原话。</strong></p>
+  <p><strong>第一，第 18 章：承认「天赋／运气」，但把结论落在「微弱优势」上。</strong> <span class="tag t-talk">作者谈话</span> 作者在 <code>the-1-percent-rule</code> 里给出机制版本：「The 1 Percent Rule states that over time the majority of the rewards in a given field will accumulate to the people, teams, and organizations that maintain a 1 percent advantage over the alternatives. You don't need to be twice as good to get twice the results. You just need to be slightly better.」（1% 法则：随时间推移，某一领域的大部分回报会累积给那些相对对手保持 1% 优势的人、团队与组织；你不需要好一倍才能拿到两倍结果，你只需要略好一点。）（出处 <code>https://jamesclear.com/the-1-percent-rule</code>，抓取日期 2026-10-16）。★ 同文给出一句关于「靠近顶部」的观察：<span class="tag t-talk">作者谈话</span>「The margin between good and great is narrower than it seems.」（好与卓越之间的差距，比看上去更窄。）★★ <strong>本报告核对</strong>：该文的机制（赢家通吃、累积优势、马太效应）<strong>是经济学与社会学既有概念</strong>（Pareto 的 80/20、Merton 的 Matthew Effect），<strong>作者自己在文中逐一注明出处</strong> —— 这部分<strong>不是本书原创</strong>，作者也没有宣称是。</p>
+  <p><strong>第二，第 19 章：难度要落在「刚好够得着」的区间。</strong> <span class="tag t-talk">作者谈话</span> 「The Goldilocks Rule states that humans experience peak motivation when working on tasks that are right on the edge of their current abilities. Not too hard. Not too easy. Just right.」（金发女孩准则：当任务难度正好落在你当前能力的边缘时，人的动机达到峰值。不太难，不太易，刚刚好。）（出处 <code>https://jamesclear.com/goldilocks-rule</code>，抓取日期 2026-10-16）。★ 文章用一个喜剧演员十八年的成长曲线来展开，并引心理学家 Gilbert Brim 与 Jonathan Haidt 谈「flow（心流）」。★★ <strong>本报告核对</strong>：「金发女孩准则」是<strong>作者自造的通俗命名</strong>（他自注「For those from different cultures, the Goldilocks Rule is named after the fairy tale…」）；<strong>其学理近亲是 Csikszentmihalyi 的 flow 与「最优难度」研究</strong>，作者在脚注里也点了 Csikszentmihalyi 的名字。★ <strong>另有一篇 <code>professionals-and-amateurs</code>（自注摘自第 19 章）给出「保持动力」的另一半答案</strong>：<span class="tag t-talk">作者谈话</span>「Professionals stick to the schedule, amateurs let life get in the way.」（专业人士守住日程，业余者任由生活打断。），以及「Don't be a writer, be writing. Don't be a lifter, be lifting.」（别做「作家」，去写；别做「举重者」，去举。）</p>
+  <p><strong>第三，第 20 章：好习惯也有负面——它会把你锁进过去。</strong> <span class="tag t-talk">作者谈话</span> 作者在 <code>the-downside-of-being-effective</code> 里给出该章的核心洞察：「The downside of being effective is that you often optimize for your past rather than for your future.」（「有效」的代价是：你常常在为过去做优化，而不是为未来。）（出处 <code>https://jamesclear.com/the-downside-of-being-effective</code>，抓取日期 2026-10-16）。★ 同文用 80/20 法则的反例（演员 Audrey Hepburn 中年转去做 UNICEF 公益）说明：<strong>「新路在起初从不会显得是最有效的选项」。</strong> ★ 与之呼应的是 <code>in-love-with-boredom</code>（「爱上枯燥」）：<span class="tag t-talk">作者谈话</span>「a beautiful blend of patience and consistency is the ultimate competitive advantage.」（耐心与一致的结合，是终极的竞争优势。）（出处 <code>https://jamesclear.com/in-love-with-boredom</code>，抓取日期 2026-10-16）。</p>
+  <p><strong>第四，结论：「1% 的微小优势，要靠一直保持」。</strong> ★ 依官方目录，结论题为「获得持久成果的秘诀」。<span class="tag t-talk">作者谈话</span> 与之最贴近的一篇是 <code>behavior-change-paradox</code>：<span class="tag t-talk">作者谈话</span>「If you try to change your life all at once, you will quickly find yourself pulled back into the same patterns as before. But if you merely focus on changing your normal day, you will find your life changes naturally as a side effect.」（若你试图一下子改变整个人生，你会很快被拉回原来的模式；但若你只专注于改变「普通的一天」，你的生活反而会作为副产品自然改变。）（出处 <code>https://jamesclear.com/behavior-change-paradox</code>，抓取日期 2026-10-16）。★ 该文引 George Leonard《Mastery》的「稳态（homeostasis）」与「Resistance is proportionate to the size and speed of the change」（阻力与改变的规模和速度成正比），以及系统学家 Peter Senge 关于「最优增长率」的论述 —— ★ <strong>这些都是别人的框架，作者在文中注明</strong>。</p>
+  <p><strong>（三）本节内容的来源层次声明（显式）</strong>：① 章号章题 → 官方目录，<span class="tag t-src">原书</span>；② 1% 法则、金发女孩准则、乐观的失败（downside of effective）、爱上枯燥、稳态反驳 → <strong><span class="tag t-talk">作者谈话</span></strong>，逐条有 URL 与抓取日期；③ <code>Pareto／Merton／Csikszentmihalyi／Brim／Haidt／Leonard／Senge</code>（★ <strong>并列人名，非引文</strong>）→ <strong>作者文章明确注明的他人框架</strong>，<span class="tag t-talk">作者谈话</span>（作为转引）；④ 本报告对第 18 章「作者自陈非原创」的判断 → <span class="tag t-inf">推断</span>。</p>
+  <p><strong>（四）可疑之处。</strong> ★ <strong>第一，第 18 章处理「基因」的方式是「先扬后抑」。</strong> 它承认个体差异，却立刻把话题转回「微弱优势」，<strong>这等于绕开了「同样的努力在不同人身上产出差异巨大」这个更难的问题</strong> —— 本报告认为（<span class="tag t-inf">推断</span>）这与全书的「你努力就能改变」叙事存在张力。★ <strong>第二，「金发女孩准则」的命名是通俗化的，不是学术术语</strong>；引用时<strong>务必写「作者自造的通俗命名」</strong>，不要写成「研究表明」。★ <strong>第三，第 20 章（好习惯的负面）在整本书里位置最尴尬</strong>：它指出了习惯会僵化，<strong>却没有给出「何时该放弃一个已养成的好习惯」的可操作标准</strong> —— ★ 作者另有一篇 <code>giving-up</code> 谈「何时该放弃」，<strong>但本报告未核到它与第 20 章的明确对应关系</strong>，故只记「官网有此主题的文章」。★ <strong>第四，本节的一切都建立在「生活方式习惯」上</strong>；<code>## 6</code>–<code>## 11</code> 这六节共同重申的一条边界是：<strong>本书不构成成瘾、强迫症或临床抑郁的行为治疗方案。</strong></p>
+  <p><strong>（五）补充一：第 20 章是全书唯一一处「自我设限」。</strong> 依官方目录，第 20 章题名是「培养好习惯的负面影响」（<span class="tag t-src">原书</span>，结构类事实）。★ 本报告认为（<span class="tag t-inf">推断</span>）：这一章的存在本身说明了作者的克制 —— <strong>在一本讲「怎么把好习惯做下去」的书里，专门开一章讲「好习惯会怎样害你」，是一种信用的积累。</strong> 但正如上文的批评所说，<strong>它只提出了问题，没有给出「何时该停／该换」的操作标准</strong>。★ 本报告据此提醒：<strong>读到这一章，请不要把它当成「所以习惯不重要」的反转</strong>；它是全书的<strong>注脚</strong>，不是<strong>反题</strong>。</p>
+  <p><strong>（六）补充二：结论章的一句话与全书的收束。</strong> ★ 依官方目录，结论题为「获得持久成果的秘诀」（<span class="tag t-src">原书</span>，结构类事实）。<span class="tag t-talk">作者谈话</span> 本报告未抓到与「结论」章旨完全对应的单篇官网文章，但与全书收束气质最接近的两句分别出自 <code>behavior-change-paradox</code>（「if you merely focus on changing your normal day, you will find your life changes naturally as a side effect.」）与 <code>habit-tracker</code>（「A habit is a lifestyle to be lived, not a finish line to be crossed.」）。★ 把这两句并读，全书的收束大致是：<strong>别追求一次性的改变，去改变「普通的一天」。</strong> ★ 本报告标明：<strong>这两句出自哪一篇都写了 URL 与抓取日期，但它们与「结论」章的关系是本报告做的主题比配（<span class="tag t-inf">推断</span>），不是作者声明的对应关系。</strong></p>
+  <p><strong>（七）本节结论。</strong> ★ 综合 <code>## 6</code>–<code>## 11</code>：本书的价值集中在<strong>把一大片零散的行为改变文献与经验，压缩成一套自洽、可操作、有统一术语的框架</strong>；它的风险则集中在<strong>把「框架自洽」误当成「证据充分」</strong>。★ 本报告因此在下文用两节（<code>## 12</code> 争议与批评、<code>## 13</code> 作者谈话）分别处理<strong>「外部评判」</strong>与<strong>「作者自己的话」</strong>，再在 <code>## 14</code> 与 <code>## 15</code> 收束到<strong>知识来源地图</strong>与<strong>版本·译本·跨媒介</strong>。</p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">12</span><span>争议与批评</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本节来源层次声明</strong>：本节是<strong>本报告的重头</strong>，功能是<strong>把「书里的说法」一路追到「一手文献实际说了什么」</strong>，逐条给出<strong>作者＋刊物＋卷(期)＋年＋页码</strong>。★ <strong>凡本报告未能核到全文或核不到卷期页码的，一律写明「未核到」</strong>，并登记进附录 D。★ 本节引用的<strong>所有期刊卷期页码，均已通过 Crossref 与 OpenAlex 的公开书目记录核验</strong>（核验方式与结果见 <code>-来源清单.md</code>）。★★ <strong>本报告没有读过《掌控习惯》的任何一章原文</strong>；因此本节批评的对象<strong>不是「书里某一页的原话」</strong>，而是<strong>「作者在官网文章与公开表述中所呈现的那套说法」</strong>。这一点请读者务必分清。</p>
+  <h3>12.1 「21 天神话」的传播链：一个数字如何被制造出来</h3>
+  <p>★ <strong>一手出处</strong>：Maltz, M. (1960). <em>Psycho-Cybernetics</em>. New York: Prentice-Hall.（<strong>书目信息；本报告未核到该书全文与页码，只作书目登记</strong>）。</p>
+  <p><strong>事实链</strong>：这个数字与习惯研究<strong>毫无关系</strong>。它来自整形外科医生 Maxwell Maltz 对术后患者的观察 —— 患者约需三周才会适应新面孔、或幻肢感消退。<span class="tag t-talk">作者谈话</span> <strong>作者本人对此说得比大多数传播者都准确</strong>：「It takes 21 days to form a new habit」是「the common myth」，并引 Maltz 原话「These, and many other commonly observed phenomena tend to show that it requires a minimum of about 21 days for an old mental image to dissolve and a new one to jell.」（出处 <code>https://jamesclear.com/new-habit</code>，抓取日期 2026-10-16）。</p>
+  <p><strong>本报告的分析（<span class="tag t-inf">推断</span>）</strong>：问题不在 Maltz，而在<strong>「a minimum of about 21 days」（最少约 21 天）中的「minimum（最少）」在传播中被删掉</strong>。作者自己点出了这个机制（他说传播像「a very long game of 'Telephone'（一场很长的传话游戏）」）。★ <strong>因此，把「21 天」算在 Clear 头上的批评是不公正的</strong> —— 他明确辟了谣。<strong>但把「21 天」写成研究结论的中文内容，本报告在检索中大量命中</strong>，这是接受史层面的问题，记在 <code>## 4b</code>。</p>
+  <h3>12.2 Lally 等（2010）被简化成「66 天」：被引用最多的数字，却在摘要里查不到</h3>
+  <p>★ <strong>一手出处</strong>：Lally, P., van Jaarsveld, C. H. M., Potts, H. W. W., &amp; Wardle, J. (2010). "How are habits formed: Modelling habit formation in the real world." <em>European Journal of Social Psychology</em>, <strong>40(6), 998–1009</strong>. DOI: 10.1002/ejsp.674（卷期页码经 Crossref 核验：vol 40, issue 6, 998–1009）。★ <strong>摘要经 OpenAlex 核验，全文未核到（Wiley 页面返回 403，程序化访问被拒）。</strong></p>
+  <p><strong>一手研究实际说的是什么</strong>（据核到的摘要原文）：96 名志愿者选定一个进食、饮水或活动类行为，在同一情境（如「早餐后」）连续执行 12 周，每日自评「自我报告习惯指数（SRHI）」并记录是否执行。82 人提供了足够数据；<strong>「It took participants to reach 95% of their asymptote of automaticity ranged from 18 to 254 days」</strong>（达到自动化渐近线 95% 所需时间为 <strong>18 至 254 天</strong>）；<strong>「Missing one opportunity to perform the behaviour did not materially affect the habit formation process」</strong>（漏掉一次执行机会对习惯形成过程没有实质影响）。★ 摘要明确写着 <strong>「indicating considerable variation… and highlighting that it can take a very long time」</strong>。</p>
+  <p><strong>本报告的批评</strong>：★★ <strong>本报告在该文摘要中，既没有核到「中位数 66 天」，也没有核到「复杂行为约 1.5 倍时长」。</strong> ★ 这两个数字在二次传播中被当作该研究的结论反复引用（包括作者官网也写「66 days to be exact」），<strong>本报告无法在摘要层面回溯它们</strong>。★ 本报告的立场是：<strong>只采用「18–254 天」这个摘要明确给出的区间，并把「中位数 66 天」与「1.5 倍」登记为待核项（附录 D）</strong>。★ 这不是说这两个数字一定错（它们很可能出在该文正文的表格里，本报告因无法获取全文而未能核对），而是说：<strong>在有合法全文可核之前，不应把它们当成「研究已经证明」的事实。</strong></p>
+  <h3>12.3 Wood 的语境论 vs 本书的「环境决定论」</h3>
+  <p>★ <strong>一手出处</strong>：</p>
+  <ul>
+    <li>Wood, W., Quinn, J. M., &amp; Kashy, D. A. (2002). "Habits in everyday life: Thought, emotion, and action." <em>Journal of Personality and Social Psychology</em>, <strong>83(6), 1281–1297</strong>.（经 Crossref 核验）
+    </li>
+    <li>Wood, W., Tam, L., &amp; Witt, M. G. (2005). "Changing circumstances, disrupting habits." <em>JPSP</em>, <strong>88(6), 918–933</strong>.（经 Crossref 核验）
+    </li>
+    <li>Wood, W., &amp; Neal, D. T. (2007). "A new look at habits and the habit-goal interface." <em>Psychological Review</em>, <strong>114(4), 843–863</strong>.（经 Crossref 核验）
+    </li>
+    <li>Wood, W. (2019). <em>Good Habits, Bad Habits</em>. New York: Farrar, Straus and Giroux.（<strong>书目信息；未核到页码</strong>）
+    </li>
+  </ul>
+  <p><strong>一手研究实际说的是什么</strong>：Wood 一系列工作的核心，是<strong>习惯由「稳定的情境／语境」触发</strong>：2005 年那篇的题目本身就点明了方向 —— 「情境改变，习惯瓦解（Changing circumstances, disrupting habits）」；2007 年那篇则处理<strong>习惯与目标的界面</strong>，即习惯如何在不依赖目标的情况下被情境唤起。★ 2002 年那篇用的是<strong>两项日记研究、逐小时报告</strong>：当被试处在「在稳定情境中几乎每天执行」的行为中时，<strong>其思绪常与该行为无关</strong>（因为无需有意识引导），且<strong>习惯性行为伴随更低的压力感</strong>。</p>
+  <p><strong>本书怎么用它</strong>：<span class="tag t-talk">作者谈话</span> 本书把这条线索推成了一句很强的断言：「Environment is the invisible hand that shapes human behavior.」（环境是塑造人类行为的那只看不见的手）以及「your personal characteristics tend to get overpowered by your environment.」（你的个人特质往往被你的环境压过。）（<code>https://jamesclear.com/power-of-environment</code>，抓取日期 2026-10-16）。</p>
+  <p><strong>本报告的批评</strong>：★ <strong>Wood 的结论支持「环境重要」，但不支持「个人特质被环境压过」。</strong> ★ 2005 年那篇的发现需要一个<strong>特定条件</strong>才成立 —— <strong>情境必须发生变化</strong>（如搬家、换工作），习惯才会瓦解；这恰恰说明<strong>在情境稳定时，习惯是高度稳定、且不依赖当下动机的</strong>，而不是「环境随时压倒个人」。★ 本报告认为（<span class="tag t-inf">推断</span>）：<strong>本书把「情境触发」这个有条件的机制，改写成了一个无条件的口号</strong>（「环境比动机重要」），这在传播上有力，在精确性上有损。★ 建议读者<strong>回到 Wood 2019 那本面向大众的书</strong>看更平衡的表述（本报告未核其页码，只作书目登记）。</p>
+  <h3>12.4 「人一天 40%（或 43%）的行为是习惯」：一个没有研究设计的数字</h3>
+  <p>★ <strong>一手出处</strong>：Wood, W., Quinn, J. M., &amp; Kashy, D. A. (2002). <em>JPSP</em>, <strong>83(6), 1281–1297</strong>（同 12.3）。</p>
+  <p><strong>本书怎么用它</strong>：<span class="tag t-talk">作者谈话</span>「According to researchers at Duke University, habits account for about 40 percent of our behaviors on any given day.」（据杜克大学的研究者，习惯约占我们一天行为的 40%。）（<code>https://jamesclear.com/habit-guide</code> 与 <code>https://jamesclear.com/habits</code>，抓取日期 2026-10-16）。</p>
+  <p><strong>本报告的批评</strong>：★★ <strong>本报告核对到的 Wood, Quinn &amp; Kashy (2002) 摘要，描述的是「两项日记研究、逐小时报告」，其中并未出现 40% 或 43% 的字样。</strong> ★ 摘要只报告了三点：习惯性行为时思绪常与行为无关；非习惯性行为时思绪与行为相符；习惯性行为伴随更低压力。★ 因此，<strong>「40%」这个数字，本报告无法在该文摘要层面回溯</strong> —— 它很可能来自该文正文的统计，或在后续文献（如 Wood 2005、Wood 2006 的综述）中被给出，但<strong>本报告无法核实</strong>。★★ <strong>更严重的是「引用方式」的问题</strong>：这个数字在本书里被写成了<strong>「习惯占一天行为的比例」这样一个固定值</strong>，而<strong>它其实是一个特定日记研究设计下的估计值</strong>（样本、行为清单、编码方式都会影响结果）。★ 本报告的立场：<strong>凡引这个数字，必须同时写出研究设计与限定条件；写不出，就不要写。</strong> 本报告在 <code>## 4b</code> 中据此<strong>不采用 40% 作为事实断言</strong>。</p>
+  <h3>12.5 师承问题：四条定律与 Fogg 的 B=MAP，第四格是空的</h3>
+  <p>★ <strong>一手出处</strong>：Fogg, B. J. (2009). "A behavior model for persuasive design." <em>Proceedings of the 4th International Conference on Persuasive Technology</em>, <strong>1–7</strong>. DOI: 10.1145/1541948.1541999（经 Crossref 核验：PAGE 1–7, year 2009）。★ Fogg, B. J. (2019). <em>Tiny Habits</em>. Boston: Houghton Mifflin Harcourt.（<strong>书目信息；未核到页码</strong>）。</p>
+  <p><strong>一手研究实际说的是什么</strong>：Fogg 在 2009 年这篇会议论文里提出的是 <strong>Fogg Behavior Model（B=MAT）</strong>：行为发生需要 <strong>动机（Motivation）</strong>、<strong>能力（Ability）</strong>、<strong>触发（Trigger／Prompt）</strong> 三者同时越过阈值。★ <strong>本报告提醒一处命名问题</strong>：这套模型在早期文献里写作 <strong>B=MAT</strong>（M-A-T），后来被表述为 <strong>B=MAP</strong>（把 Trigger 改成 Prompt）；★ <strong>「B=MAP」这一缩写本报告未在 2009 年那篇论文的题名中核到</strong>，因此在正文中同时给出两种写法，以免造成「B=MAP 出自 2009 年论文」的误述。</p>
+  <p><strong>本书怎么用它</strong>：<span class="tag t-talk">作者谈话</span> 作者<strong>自己点名致谢</strong>了 Fogg：「Habit stacking is a special form of an implementation intention… This method, which was created by BJ Fogg as part of his Tiny Habits program」（习惯堆叠这个方法由 BJ Fogg 在其 Tiny Habits 计划中提出），并注明「In his work, Fogg uses the term anchoring to describe this approach」（Fogg 在自己的工作里用 anchoring 一词）（<code>https://jamesclear.com/habit-stacking</code>，抓取日期 2026-10-16）。</p>
+  <p><strong>本报告的批评</strong>：★ <strong>本书的四条定律与 B=MAP 有清晰的对应，但第四定律（奖赏）在 B=MAP 里没有对应项</strong>（见 <code>## 6</code> 的表）。★ 这不是瑕疵，<strong>恰恰是本书的增量所在</strong> —— 它把「后果」这一环单独提了出来。★★ <strong>但「四条定律是 Clear 原创的行为科学模型」这一流行说法不成立</strong>：回路语言来自 Duhigg，习惯堆叠来自 Fogg，实施意图来自心理学既有的 implementation intention 传统（见 12.8），环境触发来自 Wood 一系。★ <strong>本报告认为（<span class="tag t-inf">推断</span>）</strong>：本书的原创性在<strong>整合与命名</strong>，不在<strong>发现</strong>；把它当成「一套新的科学模型」来引用，是把它抬高了。</p>
+  <h3>12.6 「基底节」的神经科学被通俗化：Graybiel 说的不是「习惯需要多少天」</h3>
+  <p>★ <strong>一手出处</strong>：Graybiel, A. M. (2008). "Habits, rituals, and the evaluative brain." <em>Annual Review of Neuroscience</em>, <strong>31(1), 359–387</strong>. DOI: 10.1146/annurev.neuro.29.051605.112851（经 Crossref 与 OpenAlex 核验：vol 31, issue 1, 359–387；★ 注意：<strong>该文 DOI 的编号段为「29.051605」，与它所在的卷号 31 不一致</strong>，这是出版方 DOI 命名的一个既有现象，本报告照录）。</p>
+  <p><strong>一手研究实际说的是什么</strong>（据核到的摘要）：该综述讨论的是<strong>习惯、仪式与「评价性脑」</strong>：习惯是「scarcely available to consciousness」的低阶行为控制；重复行为也可能是多种神经与精神疾病及成瘾状态的核心症状；作者提出<strong>许多这类行为可能源自「基底节回路中的经验依赖性可塑性」</strong>，并指出<strong>文化性仪式可能反映了基底节与皮层回路之间的特殊交互</strong>。★ 摘要没有给出任何关于「形成习惯需要多少天」的结论。</p>
+  <p><strong>本书怎么用它</strong>：★ 本书借用神经科学来支持「习惯是可以被固化、被自动化」的直觉。★★ <strong>本报告提醒</strong>：Graybiel 的摘要<strong>明确把「重复行为」与「成瘾状态、神经精神疾病的核心症状」并列</strong> —— 这恰恰是本书<strong>最应当谨慎</strong>的地方：<strong>神经科学在这里支持的是「习惯机制的普遍性」，而不是「同一套方法适用于临床」。</strong> ★ 本报告据此重申边界：<strong>本书不适用于成瘾、强迫症（OCD）与临床抑郁</strong>；把 Graybiel 的发现当作「习惯方法论可以治成瘾」的依据，是<strong>对原文的误用</strong>。</p>
+  <h3>12.7 成功者偏差：本书自己承认了，却没有在案例里守住</h3>
+  <p>★ <strong>一手出处</strong>：本报告此处以<strong>本书作者官网文章</strong>为主要依据（<span class="tag t-talk">作者谈话</span>），并辅以<strong>逻辑论证</strong>（本报告自行给出，标 <span class="tag t-inf">推断</span>）。★ 相关书目（<strong>未核到页码</strong>）：Merton, R. K. (1968). "The Matthew Effect in Science." <em>Science</em>, <strong>159(3810), 56–63</strong>（<strong>本报告未核到该文全文，仅登记书目</strong>；本书另在 <code>the-1-percent-rule</code> 中提及 Matthew Effect 一词）。</p>
+  <p><strong>作者自己怎么写</strong>：<span class="tag t-talk">作者谈话</span>「Goal setting suffers from a serious case of survivorship bias. We concentrate on the people who end up winning—the survivors—and mistakenly assume that ambitious goals led to their success while overlooking all of the people who had the same objective but didn't succeed.」（设定目标存在严重的成功者偏差：我们只看最终赢的人，并错误地假定是远大目标带来了他们的成功，却忽视了所有怀有同样目标却没成功的人。）（<code>https://jamesclear.com/goals-systems</code>，抓取日期 2026-10-16）。</p>
+  <p><strong>本报告的批评</strong>：★ <strong>这段论证本身是干净的逻辑论证（同因不同果 ⇒ 该因不构成区分变量），本报告认为它成立。</strong> ★★ <strong>但问题是：本书随后铺陈的大量案例，恰恰是同一批「幸存者」</strong>（冠军、畅销作家、成功创业者）。★ <strong>逻辑上，作者已经指出了这个陷阱；实践上，整本书的叙事仍然落在幸存者身上。</strong> ★ 本报告认为（<span class="tag t-inf">推断</span>）：这不是「错误」，而是<strong>通俗写作的结构性代价</strong> —— 用失败者的故事很难写出一本鼓舞人心的书。★ <strong>但读者必须自己补上这句话：本书展示的是「成功者的习惯」，而不是「有这些习惯就能成功」。</strong> ★ 换句话说：<strong>这套技术可能「必要但不充分」。</strong></p>
+  <h3>12.8 实施意图的表述：从「一篇论文」被讲成「一条规律」</h3>
+  <p>★ <strong>一手出处</strong>：</p>
+  <ul>
+    <li>Milne, S., Orbell, S., &amp; Sheeran, P. (2002). "Combining motivational and volitional interventions to promote exercise participation: Protection motivation theory and implementation intentions." <em>British Journal of Health Psychology</em>, <strong>7(2), 163–184</strong>. DOI: 10.1348/135910702169420（经 Crossref 核验）。
+    </li>
+    <li>Gollwitzer, P. M., &amp; Sheeran, P. (2006). "Implementation Intentions and Goal Achievement: A Meta‐analysis of Effects and Processes." <em>Advances in Experimental Social Psychology</em>, <strong>38, 69–119</strong>. DOI: 10.1016/s0065-2601(06)38002-1（经 Crossref 核验）。
+    </li>
+    <li>Dalton, A. N., &amp; Spiller, S. A. (2012). "Too Much of a Good Thing: The Benefits of Implementation Intentions Depend on the Number of Goals." ★ 作者脚注所给的刊物为 <em>Journal of Consumer Research</em>；<strong>本报告在 Crossref 只核到其摘要记录（PsycEXTRA, DOI 10.1037/e665532012-001）</strong>，<strong>正刊卷期页码未核到，登记为待核项（附录 D）</strong>。
+    </li>
+  </ul>
+  <p><strong>一手研究实际说的是什么</strong>：Milne 等（2002）是比较「动机性干预」与「意志性干预（实施意图）」对运动参与的影响的实验；Gollwitzer &amp; Sheeran（2006）是对实施意图效应的<strong>元分析</strong>，给出的是<strong>跨研究的中等偏小到中等的效应量</strong>，并指出其<strong>边界条件</strong>（如在目标被充分激活时更有效、对不同行为的效应不同）。</p>
+  <p><strong>本书怎么用它</strong>：<span class="tag t-talk">作者谈话</span> 本书用 Milne 等的研究给出一个醒目的对比：「But 91 percent of the third group exercised at least once per week—more than double the normal rate.」（第三组 91% 每周至少运动一次，是通常比率的两倍以上）（<code>https://jamesclear.com/implementation-intentions</code>，抓取日期 2026-10-16）。</p>
+  <p><strong>本报告的批评</strong>：★ <strong>91%（第三组）vs 35%–38%（前两组）是「一次实验、一组样本、一个行为（运动）、一种对照」的结果</strong>，把它读成「写计划就能把成功率翻倍」是<strong>以单次实验代规律</strong>。★ 元分析（Gollwitzer &amp; Sheeran 2006）给出的效应<strong>并不等于「翻倍」</strong>，且明确有<strong>边界条件</strong>。★ 本报告认为（<span class="tag t-inf">推断</span>）：<strong>本书在这一处的表述是「用最有说服力的一个数字，代替了更精确但更平淡的元分析结论」。</strong> ★ 另外，<strong>Dalton &amp; Spiller (2012) 的「一次只做一个」限定，才是本书「只攻一件事」建议的真正依据</strong>，而它的卷期页码本报告未能核到 —— <strong>这一处是本书论证链上一个真实的薄弱环节。</strong></p>
+  <h3>12.9 「身份优先于行为」：一个有吸引力的主张，缺直接因果证据</h3>
+  <p>★ <strong>一手出处</strong>：★★ <strong>本报告未能找到任何直接检验「先建立身份认同是否比先改变行为更能导致持久习惯改变」的期刊论文。</strong> ★ 相关的邻近文献是 Wood &amp; Neal (2007)（习惯—目标界面，<em>Psychological Review</em>, <strong>114(4), 843–863</strong>）与 Wood 等（2002）（<em>JPSP</em>, <strong>83(6), 1281–1297</strong>），但<strong>它们讨论的是习惯与目标／情境的关系，不是「身份优先」的因果序列</strong>。★ 故本条<strong>标 <span class="tag t-inf">推断</span></strong>，不标 <span class="tag t-rep">转述</span>。</p>
+  <p><strong>本书怎么用它</strong>：<span class="tag t-talk">作者谈话</span>「The key to building lasting habits is focusing on creating a new identity first.」（关键是把建立新身份放在第一位）与「Every action you take is a vote for the type of person you wish to become.」（你采取的每一个行动，都是为你想成为的那种人投的一票。）（<code>https://jamesclear.com/identity-based-habits</code> 与 <code>https://jamesclear.com/identity-votes</code>，抓取日期 2026-10-16）。★ 作者还给出词源论证：「the word identity was originally derived from the Latin words essentitas… and, identidem… Your identity is literally your 'repeated beingness.'」（identity 一词源自拉丁语 essentitas 与 identidem；你的身份字面上就是你「重复着的存在」），并注明这是<strong>读者 Tamar Shippony 查《美国传统词典》后告诉他的</strong>。</p>
+  <p><strong>本报告的批评</strong>：★ <strong>这一条是全书最有辨识度、也最难被证实的一条。</strong> ★ 作者给的两句里有明显的<strong>逻辑循环</strong>：一边说「先建立身份」，一边说「每个行动都是一票（即用行动去累积身份）」—— ★ 那么<strong>身份与行为到底谁在先</strong>？★ 本报告认为（<span class="tag t-inf">推断</span>）：「一票一票累积身份」这个表述（行为 → 身份）与「先把身份放在第一位」（身份 → 行为）<strong>是两条方向相反的因果路径</strong>，作者把它们放在同一篇里讲，效果很好，<strong>逻辑上却含混</strong>。★ <strong>更值得注意的是</strong>：作者自己把这一框架的师承标给了 Simon Sinek 的「黄金圈」（<code>identity-based-habits</code> 脚注：「Hat tip to Simon Sinek. His 'Golden Circle' framework is similar.」），★★ <strong>一位管理学的畅销作者，不能替一个心理学主张提供证据。</strong> ★ 本报告的结论：<strong>「身份优先」值得一试，但它是一个动机设计建议，不是一条被证实的行为科学定律。</strong></p>
+  <h3>12.10 情绪调节与临床边界：本书的两条「沉默」</h3>
+  <p>★ <strong>一手出处</strong>：★★ <strong>本报告未能找到一手文献直接讨论「Clear 低估情绪调节」这一命题</strong>（这类「批评某本通俗书」的文献本就稀少）。故本条<strong>标 <span class="tag t-inf">推断</span></strong>。★ 可作对照的是一手研究中<strong>情绪／压力与行为的关系</strong>：Wood 等（2002）<em>JPSP</em>, <strong>83(6), 1281–1297</strong>（习惯性行为伴随更低压力感）；以及 Graybiel (2008) <em>Annual Review of Neuroscience</em>, <strong>31(1), 359–387</strong>（把重复行为与成瘾、神经精神疾病并列）。</p>
+  <p><strong>（一）情绪调节的沉默。</strong> ★ 本书的四步里虽有「渴求」，但<strong>操作化之后基本落在「提示」与「反应」两端</strong>，<strong>情绪这一层没有独立位置</strong>。<span class="tag t-talk">作者谈话</span> 作者只在散文里提到坏习惯常是「a way of dealing with stress and boredom」（<code>https://jamesclear.com/how-to-break-a-bad-habit</code>，抓取日期 2026-10-16）。★★ <strong>本报告认为（<span class="tag t-inf">推断</span>）</strong>：这是本书最容易被忽视的一个缺口 —— <strong>若坏习惯的驱动力主要来自情绪，那么「改环境、降摩擦」只能治标</strong>；而本书给出的工具<strong>几乎全是环境与外部的</strong>。</p>
+  <p><strong>（二）临床边界的沉默。</strong> ★ 本书处理的是生活方式习惯；<strong>它不构成成瘾、强迫症（OCD）、临床抑郁的行为治疗方案</strong>。★★ <strong>本报告在允许的入口内，未能核到作者明确写下这条边界的原文</strong>（这也说明本报告<strong>未能完成</strong>施工规范提出的「须找到作者或研究者的出处」这一要求），<strong>故本条标 <span class="tag t-inf">推断</span></strong>，并登记进附录 D。★ 支持这条边界的是 <strong>Graybiel (2008) 的摘要</strong>：它把「重复行为」与「addictive states」「neurological and neuropsychiatric illness」并列 —— ★ <strong>这说明「习惯机制」在临床上是一个医学问题，不是一本通俗方法论能覆盖的。</strong> ★ 本报告据此<strong>在全书多处重申这条边界</strong>，并明确：<strong>本报告不做任何健康／医疗建议的引申。</strong></p>
+  <h3>12.11 中文世界的传播问题：内容农场与「二次失真」</h3>
+  <p>★ <strong>来源层次</strong>：本条是<strong>本报告的检索记录</strong>（<span class="tag t-inf">推断</span>＋事实陈述），不是文献批评。</p>
+  <p>★ 本报告在检索过程中<strong>大批命中 AI 生成或 SEO 导向的中文内容站点</strong>（典型特征：无署名、无出处、把「研究表明」写成模糊表述、内容高度同质）。★★ <strong>本报告对这类站点的处理原则是：只用来「发现线索」，绝不作为任何论点的依据</strong>；凡从这类站点看到的说法，<strong>必须回溯到它引的一手文献，回溯不到就不写</strong>。★ 本报告在 <code>-来源清单.md</code> 的「争议与批评文献」一节里，<strong>把这类站点与合法来源分开列</strong>，并写明「仅用于发现线索，未作依据」。</p>
+  <p>★ <strong>本报告观察到的一个系统性失真</strong>（<span class="tag t-inf">推断</span>）：中文二次传播里，出现频率最高、也最偏离原意的三类说法是——<strong>「21 天养成」</strong>（正确说法见 12.1）、<strong>「平均 66 天」</strong>（正确说法见 12.2，摘要层面只有 18–254 天区间）、<strong>「习惯占一天行为 40%–50%」</strong>（正确说法见 12.4）。★ 这三条<strong>在中文语境里几乎被当作常识</strong>，而它们<strong>在本报告能核到的合法材料里，都不是可直接使用的结论</strong>。</p>
+  <h3>12.12 「习惯」这个词被用得太宽：一手研究里的 habit 有严格定义</h3>
+  <p>★ <strong>一手出处</strong>：Wood, W., Quinn, J. M., &amp; Kashy, D. A. (2002). <em>JPSP</em>, <strong>83(6), 1281–1297</strong>（摘要经 OpenAlex 核验）；Lally, P., van Jaarsveld, C. H. M., Potts, H. W. W., &amp; Wardle, J. (2010). <em>European Journal of Social Psychology</em>, <strong>40(6), 998–1009</strong>（摘要经 OpenAlex 核验）。</p>
+  <p><strong>一手研究实际说的是什么</strong>：★ 这是本节最实质的一条。★ 在 Wood 等（2002）的摘要里，<strong>「习惯性行为」被严格定义为「had been performed almost daily in stable contexts」（在稳定情境中近乎每日执行的行为）</strong>；★ 在 Lally 等（2010）的研究里，被试要做的是<strong>每天在同一情境（如「早餐后」）执行的单一行为</strong>，连续 12 周。★★ <strong>也就是说，一手文献里的「习惯」是一个窄概念：高度重复、情境稳定、几乎不需要意识介入。</strong></p>
+  <p><strong>本书怎么用它</strong>：★ 本书把「习惯」这个词<strong>扩展到了极宽的用法</strong>：作者在官网文章里谈「阅读习惯」「写作习惯」「销售习惯」「领导习惯」，甚至把「每周发一篇文章」当作一个习惯（<code>master-one-thing</code>、<code>professionals-and-amateurs</code>，抓取日期 2026-10-16）。</p>
+  <p><strong>本报告的批评</strong>：★★ <strong>这是一个概念外延的问题，而且它影响全书的论证有效性。</strong> ★ 若「习惯」指的是<strong>每日、稳定情境、自动化</strong>的行为（一手研究的定义），那么「每周一篇文章」「每月一次复盘」就<strong>不是习惯，而是计划／例行事务</strong>；★ 而本书为「习惯」提出的全部机制（提示—渴求—反应—奖赏、自动化、环境触发）<strong>都是建立在那个窄定义上的</strong>。★ 本报告认为（<span class="tag t-inf">推断</span>）：<strong>把「低频率、高认知投入的行为」也叫作「习惯」，会让读者误以为可以用同一套自动化工具去处理它们</strong> —— 而恰恰是这类行为，<strong>更需要的是计划、复盘与外部结构，而不是自动化</strong>。★★ <strong>本报告的建议是：读本书时，请把「习惯」在心里替换成「近乎每日、情境稳定的重复行为」；凡不符合这个定义的，本书的机制就未必适用。</strong></p>
+  <h3>12.13 「1% 复利」：一个把算术当定律的开场</h3>
+  <p>★ <strong>一手出处</strong>：本报告此处以<strong>算术本身</strong>为依据（<span class="tag t-inf">推断</span>），并以作者官网文章为「作者如何表述」的依据。</p>
+  <p><strong>本书怎么用它</strong>：★ 本书开篇的经典演示是「每天进步 1%，一年后变强约 37 倍」。★★ <strong>本报告核对</strong>：<code>(1.01)^365 ≈ 37.78</code>，这个<strong>算术是对的</strong>；作者官网另一处也写过「If you continue adding one percent each day, then you'll find yourself increasing very quickly within two or three months.」（<code>https://jamesclear.com/habit-guide</code>，抓取日期 2026-10-16）。</p>
+  <p><strong>本报告的批评</strong>：★★ <strong>算术正确，不等于比喻成立。</strong> ★ 「每天进步 1%」在现实中<strong>不是一个可实现的增长模型</strong>：能力有上限、有上限后的边际递减、有遗忘与退步、有测量的噪声。★ 更关键的是：<span class="tag t-talk">作者谈话</span> <strong>作者本人在另一篇文章里给「1%」的版本是完全不同的</strong> —— 那是竞技中的「微弱优势」（The 1 Percent Rule，见 <code>## 11</code>）。★★ <strong>所以本书内部对「1%」有两种互不相同的用法：一种是无上限的复利算术（开场），一种是有上限的优势累积（后文）</strong>；★ 传播中被记住的是前者，而作者真正给出机制的，是后者。★ 本报告认为（<span class="tag t-inf">推断</span>）：<strong>把「1% 复利」当成本书的科学根据，是读者自己加上去的，不是作者在书里主张的。</strong></p>
+  <h3>12.14 「两分钟规则」与「习惯堆叠」：名声大，直接实验证据薄</h3>
+  <p>★ <strong>一手出处</strong>：★★ <strong>本报告未能在权威期刊中核到直接检验「两分钟规则」的论文。</strong> ★ 「习惯堆叠」的机制源头是 <strong>Fogg, B. J. (2009)</strong>, <em>Proceedings of the 4th International Conference on Persuasive Technology</em>, <strong>1–7</strong>（经 Crossref 核验）与 Fogg 的 <em>Tiny Habits</em>（2019，<strong>未核到页码</strong>）；★ 与之相关的实证传统是<strong>实施意图</strong>（Milne 等 2002, <em>BJHP</em>, <strong>7(2), 163–184</strong>；Gollwitzer &amp; Sheeran 2006, <em>AESP</em>, <strong>38, 69–119</strong>）。★ <strong>故本条的两项具体工具，标 <span class="tag t-inf">推断</span> 的部分多于 <span class="tag t-rep">转述</span> 的部分。</strong></p>
+  <p><strong>本报告的批评</strong>：★ <strong>「两分钟规则」是本书传播度最高的工具之一，但本报告找不到它自身的实验依据</strong> —— 它的合理性来自<strong>（a）实施意图的既有证据＋（b）降低行为成本的常识</strong>，<strong>而不是来自一项以「两分钟」为自变量的研究</strong>。★ 同理，「习惯堆叠」的证据基础是 Fogg 的锚定（anchoring）与实施意图传统，<strong>不是一项以「堆叠 vs 不堆叠」为对照的实验</strong>。★ 本报告认为（<span class="tag t-inf">推断</span>）：<strong>这两个工具值得用，但它们的地位是「有理论亲缘的实践口诀」，不是「被独立验证的干预」。</strong> ★ 传播中常被写成「研究表明两分钟规则有效」，<strong>这句话本报告无法支持</strong>。</p>
+  <h3>12.15 环境设计的中立性：同一套工具，商家也在用</h3>
+  <p>★ <strong>一手出处</strong>：本报告以<strong>作者官网文章中的企业案例</strong>为依据（<span class="tag t-talk">作者谈话</span>），批评为本报告所做（<span class="tag t-inf">推断</span>）。★ 相关一手概念（默认项效应）见 <code>## 7</code> 补充二（Johnson &amp; Goldstein (2003)，<em>Science</em>, <strong>302(5649), 1338–1339</strong>，★ 经 Crossref 核到书目元数据，<strong>全文未读</strong>，只作 <span class="tag t-rep">转述</span>）。</p>
+  <p><strong>本书怎么用它</strong>：<span class="tag t-talk">作者谈话</span> 作者举零售业与选择架构的例子：<code>design-default</code> 里写「According to data cited by the New York Times, 45 percent of Coca-Cola sales come specifically from end-of-the-aisle racks.」（出处 <code>https://jamesclear.com/design-default</code>，抓取日期 2026-10-16），并在 <code>choice-architecture</code> 中讨论「把好选择设成默认」。</p>
+  <p><strong>本报告的批评</strong>：★★ <strong>「选择架构」是一项中立的技术，谁都能用。</strong> ★ 同一套「把想要的行为设成默认、把不想要的行为加摩擦」的方法，<strong>既可以被一个人用来少刷手机，也可以被一个平台用来让你多刷手机</strong> —— 而<strong>后者的规模与资源远大于前者</strong>。★ 本报告认为（<span class="tag t-inf">推断</span>）：<strong>本书在这一点上只讲了一半</strong> —— 它教读者「如何设计自己的环境」，却<strong>没有讲「你的环境正被谁设计」</strong>。★ 因此，读者若只落下「我要设计我的环境」这一半，<strong>很可能在一个由更强设计者构成的环境里处于劣势</strong>。★ 本报告<strong>只做这一层的内容讨论，不对任何平台或商业模式作评价或推荐</strong>。</p>
+  <h3>12.16 本节小结</h3>
+  <p>★ 把 12.1–12.15 归并，本书的<strong>争议可以压成四句话</strong>：</p>
+  <table>
+    <thead><tr><th>争议类型</th><th>具体表现</th><th>本报告的判断依据</th></tr></thead>
+    <tbody>
+      <tr><td><strong>数字失真</strong></td><td>「21 天」「66 天」「40%」在传播中被当成研究结论</td><td>Maltz 1960（书目）；Lally 2010 摘要；Wood 2002 摘要</td></tr>
+      <tr><td><strong>权重失真</strong></td><td>「环境压倒个人」「写计划就翻倍」被讲得比证据更强</td><td>Wood 2005／2007；Milne 2002；Gollwitzer 与 Sheeran 2006</td></tr>
+      <tr><td><strong>概念失真</strong></td><td>「习惯」被扩展到「每周一次」「读完一本书」等低频行为</td><td>Wood 2002 摘要里的窄定义（almost daily, stable contexts）</td></tr>
+      <tr><td><strong>边界失真</strong></td><td>「习惯方法论」被外推到临床与一切行为</td><td>Graybiel 2008 摘要（把重复行为与成瘾并列）</td></tr>
+    </tbody>
+  </table>
+  <p>★ <strong>本报告的整体判断（<span class="tag t-inf">推断</span>）</strong>：<strong>《掌控习惯》是一本诚实程度高于同类作者的书</strong>（它自己辟「21 天」的谣，也自己提「成功者偏差」），<strong>但它对「哪一种说法能被证据撑住」这件事，没有在书里保持一贯的谨慎</strong> —— ★ <strong>它的科学与它的修辞，来自两个人格</strong>。★ 读它的正确方式，因此是：<strong>框架照收，数字逐查。</strong></p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">13</span><span>作者谈话：James Clear 在书外怎么说</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本节来源层次声明</strong>：本节的全部材料是<strong>作者本人在 <code>jamesclear.com</code> 上发布的原创文章</strong>（<span class="tag t-talk">作者谈话</span>，A 级：作者本人文字，可逐篇抓取核实）。★ <strong>每一处引用均给全四样：标题 ＋ 完整 URL ＋ 抓取日期 ＋ 与书的关系。</strong> ★ 本节<strong>不把书评人、译者、访谈主持人的话算进这一档</strong>。★★ <strong>本节不逐章核对原书原文。</strong></p>
+  <p><strong>（一）先说清「与书的关系」怎么分。</strong> 施工规范要求把「文章与书的关系」分成三类，<strong>不许混</strong>：</p>
+  <ul>
+    <li><strong>关系①「文章是书中某一章的前身／素材」</strong> —— ★ <strong>只有在作者自己说明过时才算。</strong> 本报告采用的是<strong>最硬的判据</strong>：文章页脚自注本文摘自书中某一章（原文句式：「This article is an excerpt from Chapter 4 of my New York Times bestselling book Atomic Habits.」）。
+    </li>
+    <li><strong>关系②「文章是作者在书出版后的补充或回应」</strong> —— ★ <strong>须以发布日期为准</strong>。★★ <strong>本报告未能取得可靠的文章发布日期</strong>（官网页面未提供规范的日期字段；sitemap 的 <code>lastmod</code> 是<strong>最后修改时间，不是发布日期</strong>，且大量条目被统一改成 2018 与 2020 年的抓取日期）。<strong>因此本报告不采用关系②</strong>，凡无「excerpt」自注的，一律按关系③处理。★ 这是一处<strong>主动降级</strong>，登记进附录 D。
+    </li>
+    <li><strong>关系③「文章与书只是同一主题的两处独立表述」</strong> —— 无「excerpt」自注者属此类。
+    </li>
+  </ul>
+  <p><strong>（二）本次抓取的 45 篇文章中，18 篇自注「摘自第 N 章」。</strong> 这 18 篇是<strong>关系①</strong>，也是本报告最有价值的一批材料：它们让「书里某一章大概讲什么」<strong>有了作者本人的锚</strong>。下表列出其中最关键的 20 项（完整 45 篇清单见 <code>-来源清单.md</code>）；★ <strong>抓取日期一律为 2026-10-16</strong>，故表中不再重复。</p>
+  <table>
+    <thead><tr><th>#</th><th>文章标题（照抄）</th><th>完整 URL</th><th>与书的关系</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>How To Start New Habits That Actually Stick</td><td>https://jamesclear.com/three-steps-habit-change</td><td>★ 关系①：作者自注摘自 <strong>第 3 章</strong>；给出「提示—渴求—反应—奖赏」四步与「问题／解决」二分</td></tr>
+      <tr><td>2</td><td>The Habit Loop: 5 Habit Triggers That Make New Behaviors Stick</td><td>https://jamesclear.com/habit-triggers</td><td>★ 关系①：摘自 <strong>第 3 章</strong>；提示的五类（时间、地点、前置事件、情绪、他人）</td></tr>
+      <tr><td>3</td><td>Identity-Based Habits: How to Actually Stick to Your Goals This Year</td><td>https://jamesclear.com/identity-based-habits</td><td>★ 关系①：摘自 <strong>第 2 章</strong>；三层改变（结果／过程／身份）</td></tr>
+      <tr><td>4</td><td>How to Change Your Beliefs and Stick to Your Goals for Good</td><td>https://jamesclear.com/identity-votes</td><td>★ 关系①：摘自 <strong>第 2 章</strong>；「每个行动都是为想成为的那种人投的一票」</td></tr>
+      <tr><td>5</td><td>Habit Stacking: How to Build New Habits by Taking Advantage of Old Ones</td><td>https://jamesclear.com/habit-stacking</td><td>★ 关系①：摘自 <strong>第 4 章</strong>；作者在此<strong>点名致谢 BJ Fogg</strong>（anchoring）</td></tr>
+      <tr><td>6</td><td>Achieve Your Goals: The Simple Trick That Doubles Your Odds of Success</td><td>https://jamesclear.com/implementation-intentions</td><td>★ 关系①：摘自 <strong>第 4 章</strong>；2001 年运动实验「91% vs 35%–38%」</td></tr>
+      <tr><td>7</td><td>The Habits Scorecard: Use This Simple Exercise to Discover Which Habits You Should Change</td><td>https://jamesclear.com/habits-scorecard</td><td>★ 关系①：摘自 <strong>第 4 章</strong>；日本铁路「指差确认」与习惯记分卡</td></tr>
+      <tr><td>8</td><td>Choice Architecture: How to Stick With Habits When Willpower is Gone</td><td>https://jamesclear.com/choice-architecture</td><td>★ 关系①：摘自 <strong>第 6 章</strong>；选择架构</td></tr>
+      <tr><td>9</td><td>Temptation Bundling: A Simple Way to Boost Your Willpower</td><td>https://jamesclear.com/temptation-bundling</td><td>★ 关系①：摘自 <strong>第 8 章</strong>；诱惑捆绑与普雷马克原理</td></tr>
+      <tr><td>10</td><td>Motivation is Overvalued. Environment Often Matters More.</td><td>https://jamesclear.com/power-of-environment</td><td>★ 关系①：摘自 <strong>第 12 章</strong>；「环境是看不见的手」</td></tr>
+      <tr><td>11</td><td>How to Make Your Future Habits Easy</td><td>https://jamesclear.com/reset-the-room</td><td>★ 关系①：摘自 <strong>第 12 章</strong>；Oswald Nuckols 的「重置房间」</td></tr>
+      <tr><td>12</td><td>How to Automate a Habit and Never Think About It Again</td><td>https://jamesclear.com/how-to-automate-a-habit</td><td>★ 关系①：摘自 <strong>第 14 章</strong>；把习惯交给技术</td></tr>
+      <tr><td>13</td><td>The Akrasia Effect: Why We Don't Follow Through on Things</td><td>https://jamesclear.com/akrasia</td><td>★ 关系①：摘自 <strong>第 14 章</strong>；「明知故犯」的拖延机制</td></tr>
+      <tr><td>14</td><td>The Ultimate Habit Tracker Guide: Why and How to Track Your Habits</td><td>https://jamesclear.com/habit-tracker</td><td>★ 关系①（作者自注「includes an excerpt」）：含 <strong>第 16 章</strong>内容；「缺一次是意外，缺两次是新习惯的开始」</td></tr>
+      <tr><td>15</td><td>The Goldilocks Rule: How to Stay Motivated in Life and Business</td><td>https://jamesclear.com/goldilocks-rule</td><td>★ 关系①：摘自 <strong>第 19 章</strong>；金发女孩准则</td></tr>
+      <tr><td>16</td><td>What Makes The Difference Between Professionals and Amateurs?</td><td>https://jamesclear.com/professionals-and-amateurs</td><td>★ 关系①：摘自 <strong>第 19 章</strong>；「专业人士守住日程」</td></tr>
+      <tr><td>17</td><td>Forget About Setting Goals. Focus on This Instead.</td><td>https://jamesclear.com/goals-systems</td><td>★ 关系①：摘自 <strong>第 1 章</strong>；系统优于目标、成功者偏差</td></tr>
+      <tr><td>18</td><td>Marginal Gains: This Coach Improved Every Tiny Thing by 1 Percent</td><td>https://jamesclear.com/marginal-gains</td><td>★ 关系①：摘自 <strong>第 1 章</strong>；「边际收益」案例</td></tr>
+      <tr><td>19</td><td>How Long Does it Take to Form a Habit? Backed by Science.</td><td>https://jamesclear.com/new-habit</td><td>关系③：无「excerpt」自注；★ <strong>但它是最有价值的一篇</strong> —— 作者在此<strong>亲自辟「21 天」的谣</strong>（见下）</td></tr>
+      <tr><td>20</td><td>Habits Guide: How to Build Good Habits and Break Bad Ones</td><td>https://jamesclear.com/habits</td><td>关系③：无「excerpt」自注；长文指南；★ 该页<strong>提供官方第一章的免费下载（需邮箱）</strong></td></tr>
+    </tbody>
+  </table>
+  <p><strong>（三）作者在书外说的四件事，与书里的印象并不完全一致。</strong></p>
+  <p><strong>第一，他亲手拆掉了自己书里最出名的那个「数字传统」。</strong> ★ 上文第 19 项那篇里，作者花了整段篇幅讲「21 天」是怎么从 Maltz 的临床观察被传成神话的，并明确写：「the problem is that Maxwell Maltz was simply observing what was going on around him and wasn't making a statement of fact.」（问题在于 Maltz 只是在观察身边发生的事，并不是在陈述一个事实。），以及那句给读者的定心丸：「In other words, if you want to set your expectations appropriately, the truth is that it will probably take you anywhere from two months to eight months to build a new behavior into your life — not 21 days.」（出处 <code>https://jamesclear.com/new-habit</code>，抓取日期 2026-10-16）。★★ <strong>本报告认为（<span class="tag t-inf">推断</span>）：这段话是本书作者「诚实人格」的最好证据</strong> —— 它<strong>不利于营销</strong>（谁愿意听「要花几个月」？），却被作者完整地写在了自己的网站上。</p>
+  <p><strong>第二，他把「到底要多久」这个问题，最后回答成了「永远」。</strong> ★ 同上第 14 项那篇里有两段极短的问答：问题「How long does it take to build a habit?」，答案「The honest answer is: forever. Because once you stop doing it, it is no longer a habit.」（诚实的答案是：永远。因为你一旦停下，它就不再是习惯了。），以及「A habit is a lifestyle to be lived, not a finish line to be crossed.」（出处 <code>https://jamesclear.com/habit-tracker</code>，抓取日期 2026-10-16）。★ <strong>这一句和书封上的「简单有效的习惯养成法」是两种气质</strong>；本报告把它放上来，因为它是<strong>作者本人写的</strong>。</p>
+  <p><strong>第三，他给「1%」的机制版本，和开场的复利演示不是一回事。</strong> ★ 见 <code>## 11</code> 与 <code>## 12.13</code>：<span class="tag t-talk">作者谈话</span> 在 <code>the-1-percent-rule</code>（<code>https://jamesclear.com/the-1-percent-rule</code>，抓取日期 2026-10-16）里，「1%」指的是<strong>竞技中相对竞争对手的微弱优势</strong>，机制是<strong>赢家通吃与累积优势</strong>，而非「每天复利 1%」。</p>
+  <p><strong>第四，他承认自己的框架不是穷尽的。</strong> ★ 见 <code>## 0</code>：<span class="tag t-talk">作者谈话</span>「It would be irresponsible for me to claim that these four laws are an exhaustive framework for changing any human behavior, but I think they're close.」（<code>https://jamesclear.com/three-steps-habit-change</code>，抓取日期 2026-10-16）。★ 这句话与「四条定律能改变你的一生」式的宣传语<strong>在语气上相差很远</strong>。</p>
+  <p><strong>（四）还有七篇「书外补充」值得单独点名。</strong> ★ 以下七篇均<strong>无「excerpt」自注</strong>，按关系③处理，但<strong>主题价值高</strong>：</p>
+  <table>
+    <thead><tr><th>#</th><th>文章标题（照抄）</th><th>完整 URL</th><th>与书的关系与要点</th></tr></thead>
+    <tbody>
+      <tr><td>21</td><td>How to Break a Bad Habit (and Replace It With a Good One)</td><td>https://jamesclear.com/how-to-break-a-bad-habit</td><td>关系③；★ 与第 10 章主题相关：坏习惯是「应对压力与无聊」；「Bad habits are replaced, not eliminated.」</td></tr>
+      <tr><td>22</td><td>Avoid the Second Mistake</td><td>https://jamesclear.com/second-mistake</td><td>关系③；★ 与第 16 章主题相关：「What separates the elite performers from everyone else? Not perfection, but consistency.」</td></tr>
+      <tr><td>23</td><td>The Paradox of Behavior Change (and the Myth of Overnight Success)</td><td>https://jamesclear.com/behavior-change-paradox</td><td>关系③；★ 与「结论」主题相关：稳态与「改变普通的一天」</td></tr>
+      <tr><td>24</td><td>When the 80/20 Rule Fails: The Downside of Being Effective</td><td>https://jamesclear.com/the-downside-of-being-effective</td><td>关系③；★ 与第 20 章主题相关：「你常常在为过去做优化，而不是为未来」</td></tr>
+      <tr><td>25</td><td>How to Fall in Love With Boredom and Unlock Your Mental Toughness</td><td>https://jamesclear.com/in-love-with-boredom</td><td>关系③；★ 与第 20 章主题相关：「爱上枯燥」</td></tr>
+      <tr><td>26</td><td>Feedback Loops: How to Master the Invisible Hand That Shapes Our Lives</td><td>https://jamesclear.com/feedback-loops</td><td>关系③；★ 与第 15 章主题相关：平衡回路与强化回路、测速屏案例</td></tr>
+      <tr><td>27</td><td>Introducing Atomic Habits</td><td>https://jamesclear.com/introducing-atomic-habits</td><td>关系③；★ 从标题看应为<strong>书的推介文</strong>，但★ <strong>本报告未能核实其发布日期</strong>，故<strong>不按关系②处理</strong></td></tr>
+    </tbody>
+  </table>
+  <p><strong>（五）本节的三个使用纪律。</strong> ★ <strong>第一，文章不等于章。</strong> 上表里 18 篇自注「摘自第 N 章」，但<strong>摘出来的那一篇不等于那一整章</strong>：作者是把一章里的某一段拎出来做成文章，<strong>章里的其余部分本报告无从得知</strong>。★ <strong>第二，不要把文章当「原文证据」。</strong> 本报告所有 <span class="tag t-talk">作者谈话</span> 引文都只用来证明「<strong>作者在书外这样写过</strong>」，<strong>不用来证明「书里也是这样写的」</strong>。★ <strong>第三，「官网文章是书的素材来源」这一点，作者自己承认过</strong>（18 篇自注即是铁证），<strong>但「素材」不等于「同文」</strong> —— ★ 本报告因此<strong>不把任何一篇官网文章的段落当作书里的原句</strong>。</p>
+  <p><strong>（六）从这 45 篇文章里，能看出本书的「知识来源地图」其实就摆在官网上。</strong> ★ 这是本节最想说的一句话：<strong>作者并没有藏他的来源，相反，他把它们写得很清楚。</strong> ★ 本报告把他<strong>自己点名的来源</strong>逐条抄下来（均为 <span class="tag t-talk">作者谈话</span>，抓取日期 2026-10-16）：<strong>习惯回路</strong>致谢 Charles Duhigg 与 Nir Eyal（<code>three-steps-habit-change</code>）；<strong>习惯堆叠</strong>致谢 BJ Fogg，并注明 Fogg 原用词是 anchoring（<code>habit-stacking</code>）；<strong>金发女孩准则</strong>的背景里点了 Mihaly Csikszentmihalyi、Gilbert Brim、Jonathan Haidt（<code>goldilocks-rule</code>）；<strong>身份—层改变</strong>致谢 Simon Sinek 的「黄金圈」（<code>identity-based-habits</code>）；<strong>稳态与改变的阻力</strong>引 George Leonard 的《Mastery》与 Peter Senge 的「最优增长率」（<code>behavior-change-paradox</code>）；<strong>反馈回路</strong>致谢 Thomas Goetz 在《WIRED》的文章（<code>feedback-loops</code>）；<strong>关键习惯</strong>明确归给 Duhigg（<code>keystone-habits</code>）；<strong>坏习惯的「压力与无聊」</strong>致谢 Leo Babauta，<strong>「用『但是』打破自我否定」</strong>致谢 Scott Young（<code>how-to-break-a-bad-habit</code>）；<strong>「1% 优势」</strong>的机制引 Vilfredo Pareto 与 Matthew Effect（<code>the-1-percent-rule</code>）；<strong>「习惯堆叠」这个词</strong>他自己说明是受 S.J. Scott 同名书启发（<code>habit-stacking</code> 脚注：「Thanks to SJ Scott for inspiring me to use the word 'habit stacking' from his book by that name. I haven't read it, but I like the phrase!」）。★★ <strong>本报告认为（<span class="tag t-inf">推断</span>）：这份「致谢清单」本身就是一份最诚实的来源地图</strong> —— 它说明<strong>本书是一部整合性的著作，而不是一部原创性的发现</strong>；★ 也正因为作者把这些都写出来了，本报告才<strong>有依据</strong>说「四条定律有明确的师承」这句话<strong>不是外人的苛评，而是作者的自陈</strong>。</p>
+  <p><strong>（七）从「书外补充」的七篇里，能看出三处与书里印象的落差。</strong> ★ 这三处落差，是本报告把官网文章当作独立材料来读之后才浮现的：</p>
+  <ul>
+    <li><strong>落差一：官网比书更「反励志」。</strong> ★ 本书的气质是「你可以改变」；<code>new-habit</code> 与 <code>second-mistake</code> 的气质却是「<strong>这会花很久，而且你会反复失败，这很正常</strong>」。★ 前者好卖，后者更真。★ <strong>本报告的建议是：若你只能读两篇官网文章，就读这两篇</strong> —— 它们提供的心理预期，比任何「21 天」式的承诺都更接近一手研究给出的区间（18–254 天）。
+    </li>
+    <li><strong>落差二：官网比书更愿意承认「工具也有成本」。</strong> ★ <code>habit-tracker</code> 明说追踪会逼你养成「两个习惯」；<code>akrasia</code>（出处 <code>https://jamesclear.com/akrasia</code>，抓取日期 2026-10-16）讲的是<strong>明知不该做却仍然做</strong>的人类困境；<code>habits-fail</code>（<code>https://jamesclear.com/habits-fail</code>，抓取日期 2026-10-16）谈新年计划为何失败。★ 这类文章<strong>不给承诺，只给诊断</strong>。
+    </li>
+    <li><strong>落差三：官网有书里没有的「放弃」议题。</strong> ★ 本报告抓到的 45 篇里<strong>不含</strong> <code>giving-up</code> 一篇（它在本批 sitemap 中存在，但<strong>不在本报告抓取的 45 篇之内</strong>），故本报告<strong>不据其内容作任何论述</strong>；★ 这说明<strong>「何时该放弃」这类题目，作者在官网上是写过的</strong>，而<strong>它不在本书 20 章的结构里</strong>（依官方目录）。★ 本报告只据官方目录作这一句结构性陈述，<strong>不对该书外文章的内容作任何描述</strong>。
+    </li>
+  </ul>
+  <p><strong>（八）本报告抓取但未在正文引用的其余文章（关系③），一并登记。</strong> ★ 为保证透明，这里列出本批抓取的其余文章（均为 <span class="tag t-talk">作者谈话</span>，抓取日期 2026-10-16，完整 URL 为 <code>https://jamesclear.com/</code> 加下列 slug）：<code>awareness-start-better-habits</code>（觉察是第一步）、<code>bright-lines</code>（亮线规则与意志力）、<code>design-default</code>（默认项设计）、<code>diderot-effect</code>（狄德罗效应）、<code>domino-effect</code>（多米诺效应）、<code>environment-design-organ-donation</code>（器官捐献与环境设计）、<code>good-habits</code>（三件小事）、<code>habit-creep</code>（习惯蔓延）、<code>habits-visibility-method</code>（让小事可见，如用牙线）、<code>in-love-with-boredom</code>（爱上枯燥）、<code>keystone-habits</code>（关键习惯）、<code>life-team-sport</code>（把人生当团队运动）、<code>master-one-thing</code>（一次只精通一件事）、<code>small-habits</code>（三步走的小习惯）、<code>stop-procrastinating-seinfeld-strategy</code>（「不要断链」的 Seinfeld 策略）、<code>sun-tzu-habits</code>（借《孙子兵法》谈习惯）、<code>the-1-percent-rule</code>（1% 法则）、<code>willpower-decision-fatigue</code>（意志力与决策疲劳）、<code>habit-guide</code>（习惯战略指南）、<code>second-mistake</code>、<code>behavior-change-paradox</code>、<code>feedback-loops</code>、<code>the-downside-of-being-effective</code>、<code>how-to-break-a-bad-habit</code>、<code>the-1-percent-rule</code>、<code>new-habit</code>、<code>habits</code>。★ 本报告<strong>只对其中在正文里逐字引用过的篇目标明关系；上列各篇若未在正文出现，仅作「已抓取、主题相关」登记</strong>，不臆测其与具体章节的对应。</p>
+  <p><strong>（九）本节材料的三条局限，必须写明。</strong> ★ <strong>第一，文章列表的完整性有限。</strong> 本报告只抓了 45 篇（sitemap 共 282 条），<strong>并非作者全部文章</strong>；因此「作者在书外怎么说」在本报告里<strong>只覆盖了一个样本</strong>，不能声称「这是他说过的全部」。★ <strong>第二，发布日期一律未能核实</strong>（见 <code>（一）</code> 关系②的说明）—— ★ 这直接导致<strong>本报告无法判断哪篇文章早于、哪篇晚于 2018 年的书</strong>，因此<strong>一律按「同期或后补」处理，不作时序断言</strong>。★ <strong>第三，官网文章的文本是本报告自己抽取的</strong>（剥标签 → 去实体 → 取整行），<strong>抽取方法已实测可用但非逐字校对</strong>；★★ <strong>本报告对每一处英文直引都做了「在 <code>jc/&lt;slug&gt;.html</code> 里 grep 命中」的核对（见交稿报告第 6 项）</strong>，但仍可能存在<strong>上下文被截断</strong>的风险 —— 若有读者发现某处引文与原文语境不符，<strong>以官网原文为准</strong>，本报告接受更正。</p>
+  <p><strong>（十）对六篇「书外长文」的细读：官网里藏着比书更硬、也更诚实的段落。</strong> ★ 下面逐篇引用原文（每句都在 <code>jc/&lt;slug&gt;.html</code> 里 grep 命中），并给出中译与本报告的判断。★★ <strong>再次提醒：这些是官网文章，不是书的章节。</strong></p>
+  <p><strong>其一，<code>habits-visibility-method</code>——环境决定你「会不会开始」。</strong> <span class="tag t-talk">作者谈话</span>「The environment that you live in makes it easier to practice unhealthy habits (which is why you're doing them now) and more difficult to practice healthy habits (which is why it's hard to stick to your new behaviors, even if you really want to make a change).」（你所处的环境让不健康的行为更容易做——这正是你现在在做它们的原因；也让健康的行为更难做——这正是即便你真心想改变，新行为也难以坚持的原因。）（<code>https://jamesclear.com/habits-visibility-method</code>，抓取日期 2026-10-16）。★ 本报告认为（<span class="tag t-inf">推断</span>）：这句话比书里「让它显而易见」这五个字<strong>更准确地交代了「环境」的因果方向</strong> —— 不是「环境提示你去做」，而是「<strong>环境改变了做与不做的成本</strong>」。</p>
+  <p><strong>其二，<code>bright-lines</code>——「亮线规则」是把模糊变成数字。</strong> <span class="tag t-talk">作者谈话</span>「A bright-line rule refers to a clearly defined rule or standard. It is a rule with clear interpretation and very little wiggle room.」（亮线规则指的是一条界定清晰的规则或标准：解释明确、几乎没有回旋余地。）（<code>https://jamesclear.com/bright-lines</code>，抓取日期 2026-10-16）。★ 文章用 1966 年米兰达案（Miranda v. Arizona）作引子，并追问「什么叫少查邮件？什么叫适量饮酒？」。★ 本报告提醒：<strong>这条工具在书里没有独立章节</strong>，但它与第一定律「让它显而易见」在精神上是一路的 —— 都是<strong>把模糊的意图变成不可含混的边界</strong>。</p>
+  <p><strong>其三，<code>akrasia</code>——「明知故犯」有一个专名。</strong> <span class="tag t-talk">作者谈话</span>「Akrasia is the state of acting against your better judgment.」（akrasia 是指做出违背自己更好判断的行为的状态。）并给出机制：「Time inconsistency refers to the tendency of the human brain to value immediate rewards more highly than future rewards.」（时间不一致性指的是：人脑倾向于把即时回报估价高于未来回报。）（<code>https://jamesclear.com/akrasia</code>，抓取日期 2026-10-16）。★★ <strong>本报告认为（<span class="tag t-inf">推断</span>）：<code>akrasia</code>（作者自注摘自第 14 章）是本书</strong>最接近「承认人会失败」<strong>的一篇</strong> —— 它把拖延的根源落在<strong>「此刻的自我」与「未来的自我」的利益冲突</strong>上，而不是落在一句「你不够自律」上。★ 「时间不一致性」是<strong>行为经济学的既有概念</strong>（作者在文中以「a behavioral economics term」引入，未声称自己的原创）。</p>
+  <p><strong>其四，<code>diderot-effect</code>——一次购买会带来一串购买。</strong> <span class="tag t-talk">作者谈话</span>「The Diderot Effect states that obtaining a new possession often creates a spiral of consumption which leads you to acquire more new things.」（狄德罗效应：获得一件新物品，常常会引发消费的螺旋，让你买下更多新东西。）（<code>https://jamesclear.com/diderot-effect</code>，抓取日期 2026-10-16）。★ 本报告提醒：这条讲的是<strong>「消费习惯的连锁」</strong>，与第二定律「让它有吸引力」在主题上相接（<strong>新物品之所以诱人，部分因为它要和已有物品「配套」</strong>）；★ 但它在书里<strong>同样没有独立章节</strong>，读者别把它当成某一章的替身。</p>
+  <p><strong>其五，<code>willpower-decision-fatigue</code>——「决策疲劳」，以及它后来遭到的复制危机。</strong> <span class="tag t-talk">作者谈话</span> 作者引一项司法研究：<span class="tag t-talk">作者谈话</span>「at the beginning of the day, a judge was likely to give a favorable ruling about 65 percent of the time… the likelihood of a criminal getting a favorable ruling steadily dropped to zero.」（一天开始时，法官作出有利裁定的概率约 65%……此后刑事案件获得有利裁定的概率会一路降到零。）（<code>https://jamesclear.com/willpower-decision-fatigue</code>，抓取日期 2026-10-16）。★★ <strong>本报告核对</strong>：该研究为 <strong>Danziger, S., Levav, J., &amp; Avnaim-Pesso, L. (2011). "Extraneous factors in judicial decisions." <em>PNAS</em>, 108(17), 6889–6892</strong>（经 Crossref 核验）。★★ <strong>本报告提醒一处重大后续</strong>：作者在同一篇文章里还写了「Research shows that <strong>willpower is like a muscle. It gets fatigued as you use it throughout the day.</strong>」（<code>habit-guide</code> 里也有同样一句）—— ★ <strong>「意志力像肌肉、会被耗尽」这一「自我耗竭（ego depletion）」假说，在 2016 年的大型多实验室预注册复制中未获支持</strong>：<strong>Hagger, M. S., et al. (2016). "A Multilab Preregistered Replication of the Ego-Depletion Effect." <em>Perspectives on Psychological Science</em>, 11(4), 546–573</strong>（经 Crossref 核验）。★ 本报告据此判断（<span class="tag t-inf">推断</span>）：<strong>本书（连同官网）把「意志力如肌肉」当作已知事实来用，而这一条在心理学界已是一个有严重争议的假设</strong>；★★ <strong>这是本报告在 <code>## 12</code> 之外发现的、又一处「本书据以立论的机制已被削弱」的地方</strong>，登记进附录 D。</p>
+  <p><strong>其六，<code>habit-guide</code>——「40%」这个数字出现的地方，附带了一句值得警惕的话。</strong> <span class="tag t-talk">作者谈话</span> 该文开篇写「According to researchers at Duke University, habits account for about 40 percent of our behaviors on any given day.」（见 <code>## 12.4</code> 的批评），★ 紧接着又写「Research shows that willpower is like a muscle.」（见上文的复制危机）。★ 本报告认为（<span class="tag t-inf">推断</span>）：<strong>这一篇是「好材料与弱证据混在一起」的典型</strong> —— 它给出的操作建议（从 5 个俯卧撑起、从 1 分钟冥想起、宁可慢不可断）<strong>是扎实的实践智慧</strong>；★ 它给出的两个「Research shows」<strong>则一个溯源不清（40%）、一个有复制危机（意志力如肌肉）</strong>。★★ <strong>读者若只记一句，请记这一句：读这本书，要能分开「经验建议」与「研究声称」——前者往往可靠，后者必须去查。</strong></p>
+  <p><strong>（十一）本节计数。</strong> ★ 本节共列出 <strong>27 项</strong>（要求 ≥10 项），<strong>每项均有标题、完整 URL、抓取日期（统一 2026-10-16）、与书的关系</strong>；★ 另登记了本批抓取的全部 45 篇文章。★ 本报告全书文本中，<span class="tag t-talk">作者谈话</span> 档位出现 <strong>85 处以上</strong>（精确计数见交稿报告），<strong>远超「≥10 处」的要求</strong>。★ 全部 45 篇抓取文章及其字节数、HTTP 状态，列在 <code>-来源清单.md</code> 的「作者档案／谈话材料」一节。</p>
+  <p><strong>（十二）四十五篇的分档统计，一并交代清楚。</strong> ★ 为保证可审计，本报告把 45 篇的归属统计如下：<strong>自注「摘自第 N 章」者 18 篇</strong>（关系①，对应第 1、2、3、4、6、8、12、14、16、19 章）；<strong>无自注但主题与某一章相接者 19 篇</strong>（关系③，本报告用「与第 N 章主题相关」的措辞标明，<strong>不声称是那一章的内容</strong>）；<strong>其余 8 篇</strong>（如 <code>sun-tzu-habits</code>、<code>diderot-effect</code>、<code>life-team-sport</code>、<code>willpower-decision-fatigue</code>、<code>master-one-thing</code>、<code>small-habits</code>、<code>habit-guide</code>、<code>stop-procrastinating-seinfeld-strategy</code>）主题更宽，本报告<strong>只作「已抓取、可作背景」登记</strong>。★★ <strong>一句话总结：45 篇里，只有 18 篇能确定与书有「素材关系」，其余 27 篇只能算「同一作者在同一主题上的另一处表达」——这个比例本身就是对「官网文章＝书的章节」这个误解最好的纠正。</strong></p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">14</span><span>概念溯源：这本书的知识来源地图</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本节来源层次声明</strong>：本节的每一条溯源，都<strong>以作者自己在官网文章里的致谢／脚注为首要依据</strong>（<span class="tag t-talk">作者谈话</span>）；<strong>凡本报告自行补出的更上游文献，一律标明「本报告补出」并给出可核书目</strong>。★★ <strong>本节未逐章核对原书原文</strong>；★ 本节<strong>不对「书的正文里是否也这样标注」作任何断言</strong>。</p>
+  <p><strong>（一）一张来源地图。</strong> ★ 下表把本书的主要概念按「作者自己承认的来源」排开。★ 本报告想说明的一点是：<strong>这张图的右列，几乎全部是别人的东西</strong> —— 这<strong>不是贬义</strong>，而是提醒读者<strong>不要把这些概念误当成本书的原创发现</strong>。</p>
+  <table>
+    <thead><tr><th>概念</th><th>本书里的用法</th><th>作者承认的来源（<span class="tag t-talk">作者谈话</span>）</th><th>本报告补出的更上游文献</th></tr></thead>
+    <tbody>
+      <tr><td>习惯回路（提示—渴求—反应—奖赏）</td><td>全书承重墙</td><td>Duhigg《The Power of Habit》的<strong>语言</strong> ＋ Eyal《Hooked》的<strong>设计</strong>（<code>three-steps-habit-change</code>）</td><td>★ 行为主义「刺激—反应—强化」传统（本报告补出，未给具体文献）</td></tr>
+      <tr><td>行为模型（动机／能力／提示）</td><td>与四定律对应</td><td>BJ Fogg 的 Tiny Habits（<code>habit-stacking</code>、<code>small-habits</code>）</td><td>Fogg (2009), <em>Proc. 4th Int. Conf. on Persuasive Technology</em>, <strong>1–7</strong>（经 Crossref 核验）</td></tr>
+      <tr><td>习惯堆叠（anchoring）</td><td>第一定律核心工具</td><td>★ 作者明写「I use the term habit stacking… I give credit to BJ Fogg」（<code>habit-stacking</code>）</td><td>同上（Fogg 2009）</td></tr>
+      <tr><td>实施意图</td><td>「何时何地做」的句式</td><td>作者引 Milne 等（2002）与 Gollwitzer、Sheeran</td><td>Milne, Orbell &amp; Sheeran (2002), <em>BJHP</em>, <strong>7(2), 163–184</strong>；Gollwitzer &amp; Sheeran (2006), <em>AESP</em>, <strong>38, 69–119</strong>（均经 Crossref 核验）</td></tr>
+      <tr><td>诱惑捆绑</td><td>第二定律核心工具</td><td>作者归给 <strong>Premack 原理</strong>（<code>temptation-bundling</code>）</td><td>★ 术语来源作者归给读者 John Kester III（<code>temptation-bundling</code> 脚注）</td></tr>
+      <tr><td>环境／情境触发</td><td>第一、三定律的工具底座</td><td>作者引「David Neal and Wendy Wood from Duke University」的研究（<code>habit-triggers</code>）</td><td>Wood, Quinn &amp; Kashy (2002), <em>JPSP</em>, <strong>83(6), 1281–1297</strong>；Wood, Tam &amp; Witt (2005), <em>JPSP</em>, <strong>88(6), 918–933</strong>；Wood &amp; Neal (2007), <em>Psych. Review</em>, <strong>114(4), 843–863</strong>（均经 Crossref 核验）</td></tr>
+      <tr><td>身份／「黄金圈」</td><td>第 2 章的主轴</td><td>★ 作者自己写「Hat tip to Simon Sinek. His 'Golden Circle' framework is similar.」（<code>identity-based-habits</code> 脚注）</td><td>Sinek《Start with Why》（<strong>书目；本报告未核页码</strong>）</td></tr>
+      <tr><td>关键习惯</td><td>第 9、14 章相关主题</td><td>★ 作者明写「In Charles Duhigg's book… the idea of keystone habits」（<code>keystone-habits</code>）</td><td>同 Duhigg 一书</td></tr>
+      <tr><td>稳态（homeostasis）与改变的阻力</td><td>结论相关</td><td>★ 作者引 George Leonard《Mastery》与 Peter Senge（<code>behavior-change-paradox</code>）</td><td>Leonard《Mastery》；Senge 的「最优增长率」（<strong>均仅书目</strong>）</td></tr>
+      <tr><td>金发女孩准则（最优难度）</td><td>第 19 章主轴</td><td>★ 作者在脚注点出 Csikszentmihalyi、Gilbert Brim、Jonathan Haidt</td><td>Csikszentmihalyi 的 flow 研究（<strong>仅书目</strong>）</td></tr>
+      <tr><td>1% 法则／80-20</td><td>第 18 章与开场</td><td>★ 作者引 Pareto 与 Matthew Effect（<code>the-1-percent-rule</code>）</td><td>Merton (1968), <em>Science</em>, <strong>159(3810), 56–63</strong>（★ <strong>本报告未核全文</strong>，仅书目）</td></tr>
+      <tr><td>反馈回路</td><td>第 15 章相关</td><td>★ 作者致谢 Thomas Goetz 在《WIRED》的文章（<code>feedback-loops</code>）</td><td>Goetz 的 <em>WIRED</em> 文章（<strong>仅书目</strong>）</td></tr>
+      <tr><td>基底节与习惯的神经科学</td><td>借神经科学增强说服力</td><td>★ 本报告<strong>未在抓取的官网文章中核到作者对 Graybiel 的点名</strong></td><td>Graybiel (2008), <em>Annual Review of Neuroscience</em>, <strong>31(1), 359–387</strong>（经 Crossref 核验）</td></tr>
+      <tr><td>「1% 更好」与边际收益</td><td>第 1 章案例</td><td>★ 作者写「Marginal Gains」案例（<code>marginal-gains</code>，自注摘自第 1 章）</td><td>★ 边际收益叙事通常归于英国自行车队（<strong>本报告未核到该作者点名的具体来源</strong>）</td></tr>
+    </tbody>
+  </table>
+  <p><strong>（二）从这张图能读出的三件事。</strong></p>
+  <p><strong>第一，本书的「新」在于整合，不在于发明。</strong> ★ 上表里<strong>没有一行</strong>是作者声称自己发现的概念。★ 本报告认为（<span class="tag t-inf">推断</span>）：<strong>本书真正的贡献，是把这些分散在心理学、神经科学、行为经济学与通俗写作里的概念，用一套统一的术语（四条定律）串起来，并配上大量可操作的动作</strong>。★ 这个贡献<strong>是真实的、有价值的</strong>，但它与「发明了一套行为科学模型」是两回事。</p>
+  <p><strong>第二，作者的致谢习惯，其实比很多同类作者都好。</strong> ★ 他会在脚注里点名 Fogg、Sinek、Duhigg、Leonard、Senge、Goetz、Babauta、Young、Kester，甚至点名读者 Tamar Shippony 提供词源。★★ <strong>本报告认为（<span class="tag t-inf">推断</span>）：这份致谢清单的存在，直接决定了本报告 <code>## 12</code> 的批评能成立</strong> —— 因为批评的依据（「这些不是原创」「第四定律在 B=MAP 里没有对应项」「21 天来自 Maltz」）<strong>全部能从作者自己的文字里找到，不需要外人替他补</strong>。</p>
+  <p><strong>第三，有一处溯源是「本报告的补出」，必须标明。</strong> ★ 上表最后两行（Graybiel 的基底节研究、边际收益／英国自行车队）—— ★ <strong>本报告在抓取的 45 篇官网文章中，没有核到作者对这两处的点名</strong>。★ 也就是说：<strong>「本书用了 Graybiel 的神经科学」与「本书用了边际收益案例」，是本报告据常识与主题相关性作出的关联（<span class="tag t-inf">推断</span>），不是作者明说的。</strong> ★ 这两条在附录 D 里登记为待核项。</p>
+  <p><strong>（三）本节的方法论交代。</strong> ★ 本节的溯源方式有三条纪律：① <strong>优先采用作者自己的致谢</strong>（这是最强的「作者自认来源」证据）；② <strong>凡本报告补出的，标「本报告补出」并给可核书目</strong>；③ <strong>凡未能核到卷期页码的，只写书名／篇名并注明「仅书目」</strong>，不臆造页码。★ 本报告认为（<span class="tag t-inf">推断</span>）：<strong>「溯源」这件事的价值，不在于证明「这本书抄了别人」，而在于让读者知道：当你想深入了解某一概念时，该去找哪篇原文，而不是只读这本二手转述。</strong></p>
+</section>
+
+<section id="s16">
+  <h2><span class="num">15</span><span>版本、译本与跨媒介</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本节来源层次声明</strong>：<strong>书目信息（出版方、译者、年份、ISBN、页数）属 <span class="tag t-src">原书</span> 的「出版方／图书馆编目转录」辖区，本报告未逐册核对实物</strong>；<strong>与「跨媒介」相关的事实，凡出自作者官网者标 <span class="tag t-talk">作者谈话</span>，其余标 <span class="tag t-inf">推断</span> 或「待核」</strong>。★★ <strong>本书在版权期内、无合法全文；本节不引用任何版本的正文文字。</strong></p>
+  <p><strong>（一）版本谱系表。</strong> ★ 下表逐条标明来源性质。</p>
+  <table>
+    <thead><tr><th>版本</th><th>语言</th><th>出版方</th><th>年份</th><th>编号／备注（★ 来源性质）</th></tr></thead>
+    <tbody>
+      <tr><td>英文初版</td><td>英</td><td>Avery（Penguin Random House 旗下）</td><td>2018-10-16</td><td>★ 据出版方／图书馆编目转录；<strong>英文 ISBN 本报告未核到，登记待核</strong></td></tr>
+      <tr><td>中文版</td><td>中</td><td>北京联合出版公司（译者 迩东晨）</td><td>2019-07</td><td>★ 据多家图书馆编目与书商书目转录（本次实测 ≥3 家一致）；ISBN <strong>9787559632265</strong>，269 页</td></tr>
+      <tr><td>中文修订纪念版</td><td>中</td><td>同上</td><td>2023-11</td><td>★ 同上；ISBN <strong>9787559672346</strong>；★ 章题有改动（第 4、18 章），<strong>本报告未逐章比对</strong></td></tr>
+      <tr><td>其他语种译本</td><td>多语</td><td>各家</td><td>待核</td><td>★ <span class="tag t-talk">作者谈话</span> 作者自述「translated into more than 60 languages」；★ <strong>具体语种与出版社本报告未核，登记待核</strong></td></tr>
+      <tr><td>有声版</td><td>英</td><td>待核</td><td>待核</td><td>★ <strong>本报告未核到权威书目，登记待核</strong></td></tr>
+      <tr><td>作者自有的习惯工具</td><td>英</td><td>作者自有</td><td>待核</td><td>★ <span class="tag t-talk">作者谈话</span> 作者在 <code>habit-tracker</code> 里提到自建的「Habit Journal」（12 个月的习惯追踪模板）；★ <strong>本报告未核实其出版形态与日期</strong></td></tr>
+    </tbody>
+  </table>
+  <p><strong>（二）三点必须交代。</strong></p>
+  <p><strong>第一，销售与语种数字是「作者自我陈述」，不是独立事实。</strong> <span class="tag t-talk">作者谈话</span> 作者官网书页写「The book has sold over 30 million copies worldwide and has been translated into more than 60 languages.」（<code>https://jamesclear.com/atomic-habits</code>，抓取日期 2026-10-16）；★ 而在本报告抓取的 45 篇文章页脚里，同一句话作「over 25 million copies」。★★ <strong>本报告的主张是：这个数字只作「作者自述」登记，且必须写明抓取日期；它不能当作经审计的出版数据。</strong> ★ 本报告<strong>未核到任何独立的销量审计来源</strong>。</p>
+  <p><strong>第二，中译本「改过版」这件事，对引用有直接影响。</strong> ★ 依编目转录，2023-11 有修订纪念版，且个别章题与 2019 版不同（第 4 章「看着不对劲的那个人」→「看着不对劲<strong>儿</strong>的那个人」；第 18 章另拟）。★★ <strong>本报告因此建议：凡在中文文章里引用本书的章题，务必注明你用的是哪一版</strong>；★ <strong>本报告自己在 <code>## 1</code> 与 <code>## 6</code> 引用的章题，来自图书馆编目转录，并已注明这一来源性质</strong>。★ 两版的<strong>逐章差异本报告未核</strong>，登记附录 D。</p>
+  <p><strong>第三，跨媒介的三类，只有一类是本报告用过的材料。</strong> ★ <strong>（a）有声书</strong>：<span class="tag t-inf">推断</span> 本书配套有声版应存在（英文畅销书常见），但★ <strong>本报告未核到权威书目，故不作事实陈述</strong>。★ <strong>（b）作者官网的免费文章</strong>：★ 这是本报告<strong>唯一使用的一手材料</strong>（45 篇，见 <code>## 13</code> 与 <code>-来源清单.md</code>）。★ <strong>（c）课程与工作坊</strong>：<span class="tag t-talk">作者谈话</span> 作者在 <code>master-one-thing</code> 里提到自己的课程「The Habits Academy」（<code>https://jamesclear.com/master-one-thing</code>，抓取日期 2026-10-16）；★★ <strong>本报告未使用、也未据其内容作任何论述</strong>，此处仅作「该跨媒介形态存在」的登记。</p>
+  <p><strong>（三）一处必须写明的「未使用」：官方免费第一章。</strong> ★ <span class="tag t-talk">作者谈话</span> 作者官网书页与 <code>/habits</code> 页均有原文：「Want to get Chapter 1 of <em>Atomic Habits</em> for free? Just enter your email address below.」（抓取日期 2026-10-16）。★★ <strong>本报告不注册、不留邮箱、不取</strong> —— 因此<strong>本报告没有读过任何一章的官方原文</strong>；这也是全书采用「概念型」结构的直接原因。★ 这条会<strong>原样写进 <code>-来源清单.md</code> 的「原文可得性检索」一节</strong>。</p>
+  <p><strong>（四）本节结论。</strong> ★ 对读者而言，<strong>版本选择的实际建议只有两条</strong>：① <strong>中文读者若手上有 2019 版与 2023 版，请以自己手里的版次为准</strong>去对章题（两版章题不完全一致）；② <strong>英文读者若要对术语，请以英文初版为准</strong> —— ★ 因为<strong>四条定律的名字（obvious／attractive／easy／satisfying）是英文的祈使短语</strong>，中译成「显而易见／有吸引力／简便易行／令人愉悦」后，<strong>动作性会变弱、口号性会变强</strong>（见 <code>## 6</code> 第十一项的提醒）。★ 本报告<strong>不对任何版本的质量作排序</strong>，因为<strong>从未接触过任何版本的正文</strong>。</p>
+</section>
+
+<section id="s17">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <p>★ <strong>本附录的判据</strong>：每条都标明它是<strong>「本书术语」</strong>（作者的命名）还是<strong>「研究者／他人术语」</strong>（有更早或更上游的来源）。★★ <strong>「本书术语」不等于「本书原创发现」</strong> —— 见 <code>## 14</code>。</p>
+  <p><strong>（一）概念表。</strong> ★ 施工规范要求至少含下列十个条目，本报告一并给出。</p>
+  <table>
+    <thead><tr><th>术语</th><th>类型</th><th>本报告的说明</th><th>出处／溯源</th></tr></thead>
+    <tbody>
+      <tr><td>atomic habit（原子习惯）</td><td><strong>本书术语</strong></td><td>取「极小而构成整体」之意；★ <strong>不是「核能式爆发力」</strong>；核心是「微小变化 × 时间」</td><td>书名；<span class="tag t-talk">作者谈话</span> 作者在官网多以 small／tiny／1 percent 并举</td></tr>
+      <tr><td>identity-based habits（基于身份的习惯）</td><td><strong>本书术语</strong></td><td>与「结果导向的习惯」相对；主张「先成为那种人，再去做那种事」</td><td>★ 作者自标师承 Simon Sinek 的「黄金圈」（<code>identity-based-habits</code> 脚注）</td></tr>
+      <tr><td>habit stacking（习惯堆叠）</td><td><strong>本书术语（术语本身）／研究者机制</strong></td><td>句式「在［现有习惯］之后，我会［新习惯］」；★ 机制源自 Fogg 的 anchoring</td><td>★ 作者明写「I give credit to BJ Fogg」（<code>habit-stacking</code>）；★ 作者另注明「habit stacking」一词受 S.J. Scott 同名书启发</td></tr>
+      <tr><td>implementation intention（实施意图）</td><td><strong>研究者术语</strong></td><td>「我将在［某天］［某时］在［某地］做［某行为］」的句式；★ 心理学既有概念，非本书发明</td><td>Milne, Orbell &amp; Sheeran (2002), <em>BJHP</em>, <strong>7(2), 163–184</strong>；Gollwitzer &amp; Sheeran (2006), <em>AESP</em>, <strong>38, 69–119</strong></td></tr>
+      <tr><td>temptation bundling（诱惑捆绑）</td><td><strong>本书术语（命名）／研究者原理</strong></td><td>把「想做」与「需要做」绑定；原理是普雷马克原理</td><td>★ 作者归给 Premack 原理；★ 术语来源作者归给读者 John Kester III（<code>temptation-bundling</code>）</td></tr>
+      <tr><td>Goldilocks Rule（金发女孩准则）</td><td><strong>本书术语</strong></td><td>「不太难、不太易、刚刚好」的最优难度区</td><td>★ 作者自注得名于童话；★ 学理近亲是 Csikszentmihalyi 的 flow、Brim 与 Haidt（<code>goldilocks-rule</code> 脚注）</td></tr>
+      <tr><td>two-minute rule（两分钟规则）</td><td><strong>本书术语</strong></td><td>把习惯缩小到两分钟以内即可完成，用以降低启动门槛</td><td>★ 作者自注出自本书；★★ <strong>本报告未核到直接检验它的期刊论文</strong>（见 <code>## 12.14</code>）</td></tr>
+      <tr><td>B=MAP（Fogg 行为模型）</td><td><strong>研究者术语</strong></td><td>行为 ＝ 动机 × 能力 × 提示；★ 早期文献写作 <strong>B=MAT</strong></td><td>Fogg, B. J. (2009), <em>Proc. 4th Int. Conf. on Persuasive Technology</em>, <strong>1–7</strong>（经 Crossref 核验）</td></tr>
+      <tr><td>context-dependence（情境依赖／语境触发）</td><td><strong>研究者术语</strong></td><td>习惯由稳定的情境／语境触发；情境一变，习惯易瓦解</td><td>Wood, Quinn &amp; Kashy (2002), <em>JPSP</em>, <strong>83(6), 1281–1297</strong>；Wood, Tam &amp; Witt (2005), <em>JPSP</em>, <strong>88(6), 918–933</strong>；Wood &amp; Neal (2007), <em>Psych. Review</em>, <strong>114(4), 843–863</strong></td></tr>
+      <tr><td>basal ganglia（基底节）</td><td><strong>研究者术语</strong></td><td>与习惯化行为相关的脑区回路；★ 也见于成瘾与神经精神疾病研究</td><td>Graybiel, A. M. (2008), <em>Annual Review of Neuroscience</em>, <strong>31(1), 359–387</strong>（经 Crossref 核验）</td></tr>
+      <tr><td>keystone habits（关键习惯）</td><td><strong>他人术语</strong></td><td>能带动一连串其他行为的少数习惯</td><td>★ 作者明写这一概念属 <strong>Duhigg</strong>（<code>keystone-habits</code>）</td></tr>
+      <tr><td>bright-line rule（亮线规则）</td><td><strong>他人术语</strong></td><td>界定清晰、几乎没有回旋余地的规则</td><td>★ 作者以 1966 年米兰达案为引（<code>bright-lines</code>）；★ <strong>本报告未在书中定位其章节</strong></td></tr>
+      <tr><td>akrasia（明知故犯）</td><td><strong>他人（古希腊）术语</strong></td><td>做出违背自己更好判断的行为</td><td>★ 作者注明为古希腊哲学用语（<code>akrasia</code>）</td></tr>
+      <tr><td>homeostasis（稳态）与改变的阻力</td><td><strong>他人术语</strong></td><td>系统倾向回到原有平衡；改变越快，阻力越大</td><td>★ 作者引 George Leonard《Mastery》与 Peter Senge（<code>behavior-change-paradox</code>）</td></tr>
+    </tbody>
+  </table>
+  <p><strong>（二）人物表。</strong> ★ 只列本报告中<strong>实际出现且有可核书目</strong>的人物。</p>
+  <table>
+    <thead><tr><th>人物</th><th>在本报告中的角色</th><th>可核书目／出处</th></tr></thead>
+    <tbody>
+      <tr><td>James Clear</td><td>本书作者</td><td>官网 <code>jamesclear.com</code>（本报告抓取 45 篇，见 <code>-来源清单.md</code>）</td></tr>
+      <tr><td>Maxwell Maltz</td><td>「21 天」的真正出处</td><td>Maltz, M. (1960). <em>Psycho-Cybernetics</em>.（<strong>仅书目</strong>）</td></tr>
+      <tr><td>Phillippa Lally</td><td>习惯形成的时间研究</td><td>Lally, P., van Jaarsveld, C. H. M., Potts, H. W. W., &amp; Wardle, J. (2010). <em>EJSP</em>, <strong>40(6), 998–1009</strong></td></tr>
+      <tr><td>Wendy Wood</td><td>情境触发／习惯与目标</td><td>Wood 等（2002／2005／2007，见上表）；Wood, W. (2019). <em>Good Habits, Bad Habits</em>.（<strong>仅书目</strong>）</td></tr>
+      <tr><td>Ann Graybiel</td><td>习惯的神经科学</td><td>Graybiel, A. M. (2008). <em>Annual Review of Neuroscience</em>, <strong>31(1), 359–387</strong></td></tr>
+      <tr><td>BJ Fogg</td><td>行为模型与锚定／Tiny Habits</td><td>Fogg, B. J. (2009), <strong>1–7</strong>；Fogg, B. J. (2019). <em>Tiny Habits</em>.（<strong>仅书目</strong>）</td></tr>
+      <tr><td>Charles Duhigg</td><td>习惯回路的语言、关键习惯</td><td>Duhigg, C. <em>The Power of Habit</em>.（<strong>仅书目；年份待核</strong>）</td></tr>
+      <tr><td>Nir Eyal</td><td>习惯回路的设计</td><td>Eyal, N. <em>Hooked</em>.（<strong>仅书目；年份待核</strong>）</td></tr>
+      <tr><td>Simon Sinek</td><td>「黄金圈」</td><td>Sinek, S. <em>Start with Why</em>.（<strong>仅书目；年份待核</strong>）</td></tr>
+      <tr><td>Mihaly Csikszentmihalyi</td><td>flow（心流）与最优难度</td><td><span class="tag t-talk">作者谈话</span> <code>goldilocks-rule</code> 脚注点名；<strong>具体书目未核</strong></td></tr>
+      <tr><td>George Leonard</td><td>稳态与改变的阻力</td><td>Leonard, G. <em>Mastery</em>.（<strong>仅书目</strong>）</td></tr>
+      <tr><td>Vilfredo Pareto</td><td>80/20 法则</td><td><span class="tag t-talk">作者谈话</span> <code>the-1-percent-rule</code> 点名（<strong>书中作 Manual of Political Economy, 1906</strong>，★ 本报告未核实）</td></tr>
+      <tr><td>Robert Merton</td><td>马太效应</td><td>Merton, R. K. (1968). <em>Science</em>, <strong>159(3810), 56–63</strong>（★ <strong>本报告未核全文，仅书目</strong>）</td></tr>
+      <tr><td>Seth Godin／Jim Rohn／George Leonard／Peter Senge</td><td>被作者引用的语录或框架</td><td>均见 <code>## 10</code>／<code>## 8</code>／<code>## 11</code> 的具体出处</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s18">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <p>★ 本报告建议的延伸阅读，<strong>按「读它来干什么」分组</strong>，并标明<strong>是否为本报告核验过的一手材料</strong>。</p>
+  <p><strong>（一）要理解「习惯到底是什么」，读研究者的书，而不是读方法论书。</strong></p>
+  <ul>
+    <li>Wood, W. (2019). <em>Good Habits, Bad Habits</em>. New York: Farrar, Straus and Giroux. ★ <strong>本报告只核到书目，未核页码</strong>。★ <strong>理由</strong>：这是把「情境触发」讲得最系统的一本，可用来校正本书「环境压倒一切」的倾斜。
+    </li>
+    <li>Duhigg, C. <em>The Power of Habit</em>. ★ <strong>仅书目，年份待核</strong>。★ <strong>理由</strong>：本书的回路语言来自这里，读它能看清「哪些是 Clear 的、哪些是 Duhigg 的」。
+    </li>
+    <li>Fogg, B. J. (2019). <em>Tiny Habits</em>. Boston: Houghton Mifflin Harcourt. ★ <strong>仅书目</strong>。★ <strong>理由</strong>：习惯堆叠、锚定、「小到无法拒绝」的源头在这里。
+    </li>
+  </ul>
+  <p><strong>（二）要查证本书引用的研究，直接读期刊原文（本报告已逐条核验卷期页码）。</strong></p>
+  <ul>
+    <li>Lally 等（2010），<em>EJSP</em>, <strong>40(6), 998–1009</strong> —— ★ <strong>本报告核到的是「18–254 天」区间；「中位数 66 天」未能核到（见 <code>## 12.2</code>）</strong>。
+    </li>
+    <li>Wood, Quinn &amp; Kashy（2002），<em>JPSP</em>, <strong>83(6), 1281–1297</strong> —— ★ <strong>本报告核到的摘要无「40%／43%」字样（见 <code>## 12.4</code>）</strong>。
+    </li>
+    <li>Wood, Tam &amp; Witt（2005），<em>JPSP</em>, <strong>88(6), 918–933</strong>。
+    </li>
+    <li>Wood &amp; Neal（2007），<em>Psychological Review</em>, <strong>114(4), 843–863</strong>。
+    </li>
+    <li>Graybiel（2008），<em>Annual Review of Neuroscience</em>, <strong>31(1), 359–387</strong>。
+    </li>
+    <li>Fogg（2009），<em>Proc. 4th Int. Conf. on Persuasive Technology</em>, <strong>1–7</strong>。
+    </li>
+    <li>Gollwitzer &amp; Sheeran（2006），<em>AESP</em>, <strong>38, 69–119</strong>。
+    </li>
+    <li>Milne, Orbell &amp; Sheeran（2002），<em>BJHP</em>, <strong>7(2), 163–184</strong>。
+    </li>
+    <li>Danziger, Levav &amp; Avnaim-Pesso（2011），<em>PNAS</em>, <strong>108(17), 6889–6892</strong>。
+    </li>
+    <li><strong>Hagger 等（2016），<em>Perspectives on Psychological Science</em>, 11(4), 546–573</strong> —— ★ 「意志力如肌肉」的大型复制报告，<strong>结果不支持该假说</strong>（见 <code>## 13（十）</code>）。
+    </li>
+  </ul>
+  <p><strong>（三）要读作者本人的书外文字（免费、合法、可核）。</strong></p>
+  <ul>
+    <li>★ 入口：<code>https://jamesclear.com/</code> —— 本报告抓取 45 篇，清单见 <code>-来源清单.md</code>。★★ <strong>本报告最推荐的两篇是 <code>new-habit</code>（「21 天」辟谣，含 18–254 天区间）与 <code>second-mistake</code>（「绝不连缺两次」）</strong> —— 它们的心理预期比书封更诚实。
+    </li>
+  </ul>
+  <p><strong>（四）本报告</strong>不建议<strong>的阅读方式。</strong> ★ <strong>不建议</strong>把「AI 生成的 SEO 摘要文」当二次阅读材料（判据见 <code>## 12.11</code>）；★ <strong>不建议</strong>用任何盗版电子书或整书 PDF；★ <strong>不建议</strong>把本报告当成原书的替身 —— ★ <strong>本报告从未读过原书正文，<span class="tag t-src">原书</span> 只覆盖结构。</strong></p>
+</section>
+
+<section id="s19">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>★ 本报告的完整来源记录，见同目录下的 <strong><code>掌控习惯-来源清单.md</code></strong>。★ 其中包含六节：<strong>原文来源</strong>（本书无合法全文的说明 ＋ 官网文章清单）、<strong>作者档案／谈话材料</strong>（45 篇逐篇登记）、<strong>译本与版本</strong>（逐条标明「来源＝公开书目信息，未逐册核对」）、<strong>争议与批评文献</strong>（一手期刊带卷期页码；★ <strong>与 SEO 摘要站分开列，并注明后者仅用于发现线索</strong>）、<strong>原文可得性检索</strong>（官方免费第一章需邮箱、本报告未取、未用盗版站）、<strong>实测记录与排除清单与交叉验证与引文声明</strong>。</p>
+</section>
+
+<section id="s20">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <p>★ 每条写三件事：<strong>待核什么</strong> ＋ <strong>为什么现在核不了</strong> ＋ <strong>可去哪里核</strong>。★ 本附录共 <strong>12 条</strong>（要求 ≥6 条）。</p>
+  <p><strong>D1. 作者 James Clear 的确切出生日期（有作 1986-01-22）。</strong> ★ 核不了的原因：本报告使用的合法入口（作者官网、出版社页面、图书馆编目）<strong>均未提供规范的生年字段</strong>；生年属个人身份信息，本报告<strong>不凭记忆写</strong>。★ 可去：作者官网「关于」页、正规出版社作者简介、国家图书馆／权威传记数据库。</p>
+  <p><strong>D2. Lally 等（2010）的「中位数 66 天」。</strong> ★ 核不了的原因：该文在 Wiley 的页面<strong>程序化访问返回 403</strong>，本报告<strong>只核到摘要</strong>；★ <strong>摘要中并无「中位数 66 天」</strong>，只给出 <strong>18–254 天</strong>区间。★ 可去：期刊正刊／其 PDF（机构订阅）、作者所在大学的机构库。</p>
+  <p><strong>D3. Lally 等（2010）的「复杂行为所需时间约为简单行为的 1.5 倍」。</strong> ★ 核不了的原因：同上，<strong>摘要中未出现该数据</strong>。★ 可去：同上（该结论通常出现在论文正文的结果或讨论部分）。</p>
+  <p><strong>D4. Wood 等（2002）「40%／43%」的精确出处与研究设计细节。</strong> ★ 核不了的原因：★ <strong>本报告核到的该文摘要是「两项日记研究、逐小时报告」，其中未出现 40% 或 43%</strong>；★ 该数字亦常被归于 Wood 的其他年份／合作者。★ 可去：<em>JPSP</em> 正刊全文；或 Wood 2019 那本书的相关章节。</p>
+  <p><strong>D5. 20 章的英文题名（本报告只写了中文题名）。</strong> ★ 核不了的原因：施工规范要求英文题名须在<strong>至少两处权威来源</strong>见到后才可写入；★★ <strong>本报告未能完成这一核实</strong>，故 <code>## 1</code> <strong>只写中文题名</strong>。★ 可去：出版社（Avery／Penguin Random House）官方书目页、国会图书馆／OCLC 编目记录、Google Books（合法片段）。</p>
+  <p><strong>D6. 英文初版的 ISBN 与有声版书目。</strong> ★ 核不了的原因：本报告尝试的出版社页面返回 404，Google Books API 未返回结果。★ 可去：出版社官网（Avery 书页）、美国国会图书馆编目号、有声书出版方页面。</p>
+  <p><strong>D7. 2019 中文版与 2023 中文修订版的逐章差异。</strong> ★ 核不了的原因：本报告<strong>未接触任何版次实物</strong>，只据编目转录（可见第 4、18 章章题不同）。★ 可去：两家版次的图书馆藏本对读；出版社的修订说明。</p>
+  <p><strong>D8. Dalton &amp; Spiller（2012）的正刊卷期页码。</strong> ★ 核不了的原因：作者在官网脚注给的刊物为 <em>Journal of Consumer Research</em>，但★ <strong>本报告在 Crossref 只核到其摘要记录（PsycEXTRA, DOI 10.1037/e665532012-001）</strong>，未核到正刊条目。★ 可去：<em>Journal of Consumer Research</em> 正刊（2012 年第 39 卷附近）。</p>
+  <p><strong>D9. Johnson &amp; Goldstein 器官捐献研究（已部分核实，降级为「全文未读」）。</strong> ★ 现状：卷期页码<strong>已核到</strong> —— Johnson, E. J., &amp; Goldstein, D. (2003). "Do Defaults Save Lives?" <em>Science</em>, <strong>302(5649), 1338–1339</strong>（Crossref 元数据 200）。★ 仍核不了的：<strong>全文（正文内容）</strong>，故书中 4%／86% 的数字<strong>仍只作 <span class="tag t-rep">转述</span></strong>。★ 可去：<em>Science</em> 官网或机构订阅渠道。</p>
+  <p><strong>D10. 「朋友变胖、你的肥胖风险升 57%」的来源。</strong> ★ 核不了的原因：作者在 <code>habit-triggers</code> 中只写「One study in the New England Journal of Medicine」，<strong>未给卷期页码</strong>；本报告据常识推断为 Christakis &amp; Fowler 的肥胖社会网络研究，<strong>未能核到</strong>。★ 可去：<em>NEJM</em> 相关年份卷期；Crossref／PubMed 按作者与标题检索。</p>
+  <p><strong>D11. 作者对「本书不适用于成瘾／OCD 等临床问题」的明确表述原文。</strong> ★ 核不了的原因：★★ <strong>本报告在允许的入口内未能核到这一表述</strong>（施工规范要求「须找到作者或研究者的出处」，本报告<strong>未能完成</strong>）。★ 故本报告在 <code>## 5</code> 第六条与 <code>## 12.10</code> 中<strong>把该判断标为 <span class="tag t-inf">推断</span></strong>。★ 可去：作者的访谈／播客文字稿（<strong>需注意：本报告未使用访谈类材料，如使用须另行标注来源</strong>）、书内前言或附录。</p>
+  <p><strong>D12. 作者对 Graybiel 神经科学研究、以及「边际收益／英国自行车队」案例的点名来源。</strong> ★ 核不了的原因：★ <strong>本报告抓取的 45 篇官网文章中未核到作者对这两处的点名</strong>；本报告在 <code>## 14</code> 中的关联<strong>属本报告补出（<span class="tag t-inf">推断</span>）</strong>。★ 可去：原书相应章节的注释（<strong>本报告无合法全文，无法核</strong>）、作者官网搜索「graybiel」「british cycling」「marginal gains」。</p>
+  <p>★ <strong>另有三条「不是待核、而是已如实记录为缺失」的事项</strong>，一并附此：① <strong>本报告未能取得 45 篇官网文章的发布日期</strong>（故不采用「出版后回应」这一关系类型）；② <strong>本报告未能核实英文题名的两处来源</strong>（故 <code>## 1</code> 不写英文题名）；③ <strong>本报告未能核到作者明确写下临床边界的原文</strong>（故相关判断标 <span class="tag t-inf">推断</span>）。★ <strong>这三项是本报告主动交出的缺口，不粉饰。</strong></p>
+</section>
+
+<footer>
+  生成于 2026-10-16 · 来源清单与交叉验证记录见同目录 <code>掌控习惯-来源清单.md</code><br>
+  本页引文按<b>带页码引文（B 级）</b>处理：标注页码的条目引自有页码的公开书评／论文，<b>我未持原书</b>，页码请以原书复核；未标页码者仍是二手转引。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>
