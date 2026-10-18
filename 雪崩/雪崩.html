@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《雪崩》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《雪崩》<small>阅读指引与精华解析 · 2026-10-18</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 核心主题与结构机制</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 争议与局限</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 中文译本怎么选</a>
+    <div class="grp">下部 · 按板块深挖</div>
+    <a href="#s7">6 板块一：披萨快递、Y.T. 与「超元域」的第一次登场</a>
+    <a href="#s8">7 板块二：雪崩病毒、Da5id 倒下、苏美尔语线索</a>
+    <a href="#s9">8 板块三：木筏、Rife 的阴谋与 nam-shub</a>
+    <a href="#s10">9 板块四：结局，以及「元宇宙预言」的再评估</a>
+    <div class="grp">附录</div>
+    <a href="#s11">A 人物与术语速查</a>
+    <a href="#s12">B 延伸阅读</a>
+    <a href="#s13">C 来源清单</a>
+    <a href="#s14">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《雪崩》阅读指引与精华解析</h1>
+  <div class="sub">Snow Crash</div>
+  <div class="meta">
+    <div><b>作者</b>尼尔·斯蒂芬森（Neal Stephenson，1959– ），在世</div>
+    <div><b>初版</b>1992-06 · Bantam Books（Bantam Spectra） · 480 页 · ISBN 0-553-08853-X</div>
+    <div><b>中译</b>郭泽译，四川科学技术出版社 2009 初版／2018 修订精装（ISBN 9787536487543）</div>
+    <div><b>繁体</b>李卓翰、陈夏民译《溃雪》，开元书印 2008（ISBN 9789573057789）</div>
+    <div><b>荣誉</b>1993 年 BSFA 奖提名 · 1994 年阿瑟·克拉克奖提名</div>
+    <div><b>结构</b>正文无编号章节，以空行分节；本报告按四个板块讲解</div>
+    <div><b>定级</b>整体 C（无合法全文）＋ 书目与结构局部 B</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 仅用于书目与结构事实：出版信息、页数、ISBN、奖项、无编号章节。本书无合法全文，正文措辞一律不用此档</li>
+    <li><span class="tag t-talk">作者谈话</span> 仅出自尼尔·斯蒂芬森官网 Snow Crash 页的作者自述；不是访谈，也不含对「预言」的回应</li>
+    <li><span class="tag t-rep">转述</span> 来自公开梗概、书评、学术批评与报道；措辞可能与原书有出入，情节尤其如此</li>
+    <li><span class="tag t-inf">推断</span> 我的判断与推理，无直接来源支撑；可疑之处与解读多属此档</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本报告<b>没有读过任何一段正文原文</b>；所有情节均为转述。【原书】只用于书目与结构事实，不用于任何一句正文措辞。存疑条目见附录 D。
+  </p>
+  <h3>引文核验级别（2026-10-18 补）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书落在 <b>C 级（无合法全文）＋ 书目与结构局部 B</b>：无公开全文，但初版书目、页数、ISBN、两项奖项提名与「正文无编号章节」已核。唯一的英文直引来自作者官网，已逐字节比对通过。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p>《雪崩》把三件互不相干的事焊在一起：后冷战美国的主权碎片化、黑客亚文化对「虚拟空间」的想象、以及一个关于苏美尔语与巴别塔的伪语言学惊悚故事。<span class="tag t-rep">转述</span> 它出版于 1992 年 6 月，是斯蒂芬森早年的长篇之一。<span class="tag t-src">原书</span> 这本书让他从「写工程小说的那个西雅图人」变成「赛博朋克之后最常被引用的名字」。<span class="tag t-rep">转述</span></p>
+  <p>它的价值不在预言，而在把 1990 年代初美国人对技术、语言与治理的三种焦虑，压进一个可以一口气读完的追逐故事里。它既不是未来学报告，也不是赛博朋克的总结算；它更像一场用类型小说的零件搭起来的、关于「谁有权给你编程」的滑稽剧。<span class="tag t-inf">推断</span></p>
+  <p><strong>本报告没有读过任何一段正文原文；所有情节均为转述。</strong></p>
+  <p>这句话不是免责声明，而是阅读方法的前提：下面每一个情节判断，都来自公开梗概、书评与批评文献；凡是我无法用两个以上来源交叉的地方，我会写明「据报道」或直接留白，不替作者补细节。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>先说结构，因为这本书的结构最容易被想当然。<strong>原文没有编号章节</strong>，正文以空行分节；因此任何给出确定章数的说法都需要交代依据。<span class="tag t-src">原书</span> 下面这张表的四个「板块」，是本报告为了讲解方便切的，不是作者的分卷，也不是某个版本的章号。<span class="tag t-inf">推断</span></p>
+  <table>
+    <thead><tr><th>板块</th><th>主要人物</th><th>核心事件</th><th>关键概念</th></tr></thead>
+    <tbody>
+      <tr><td>板块一：披萨、滑板与超元域</td><td>Hiro、Y.T.、Uncle Enzo、Da5id</td><td>Hiro 送披萨失手，Y.T. 救场；Hiro 在超元域与 Da5id 见面；Raven 递来一份名为 Snow Crash 的数据</td><td>超元域、avatar、Kourier、burbclave、FOQNE</td></tr>
+      <tr><td>板块二：病毒与苏美尔语</td><td>Da5id、Hiro、Juanita、Librarian</td><td>Da5id 看了位图后倒下；Juanita 交出 Lagos 的研究；Hiro 向 Librarian 追问古代语言</td><td>Snow Crash、me、nam-shub、glossolalia、Asherah</td></tr>
+      <tr><td>板块三：木筏</td><td>Rife、Raven、Y.T.、Uncle Enzo</td><td>Y.T. 被掳上木筏；Hiro 潜入木筏；Rife 用教会与光纤网络散布病毒</td><td>木筏、Reverend Wayne's Pearly Gates、metavirus</td></tr>
+      <tr><td>板块四：结局</td><td>Hiro、Juanita、Y.T.、Raven、Rife</td><td>朗读 nam-shub、超元域演唱会、机场对决</td><td>反病毒、巴别塔作为「补丁」、控制与解放</td></tr>
+    </tbody>
+  </table>
+  <p>这张表只交代「谁在哪里做了什么」。真正的骨架是两条线的交替：Hiro 的线是认知的——他不断往古代文献里钻，越钻越发现神话是一个技术文档；Y.T. 的线是身体的——她被车拖、被追、被抓、被关，始终在真实城市的地面上。<span class="tag t-rep">转述</span> 两条线在木筏合流，认知线与身体线才第一次共享同一个空间。<span class="tag t-inf">推断</span></p>
+  <p>第三个层次是空间的三级台阶：burbclave（有私人保安的居住飞地）、FOQNE（特许经营准国家实体）、木筏（穷人的海上城）。三者是同一个问题的三种答案——当国家不再提供公共品，谁来提供？书里的回答是：品牌、合同、以及愿意收你钱的黑手党。<span class="tag t-inf">推断</span></p>
+  <p>还有一条隐线：Hiro 是 CIC 的「stringer」，靠出售情报换取信用；CIC 是中央情报局与国会图书馆合并后的公司。<span class="tag t-rep">转述</span> 这条线把「知识」与「情报」写成同一种商品，也为后面 Librarian 的出现埋了伏笔——那是一个把整座图书馆变成可查询数据库的守护程序。</p>
+  <p>这三条线——认知、身体、空间——在结构上互为镜像。Hiro 越往古代钻，越发现自己在查的是一份技术文档；Y.T. 越往城市里跑，越发现自己在送的是同一个系统的零件；而超元域越像公共场所，越暴露出它其实是一条被协议公司维护的私路。三条线在木筏合流时，读者才意识到：神话、劳动与空间，原来是同一件事的三个说法。</p>
+  <p>书名本身也是一个多重隐喻。Snow Crash 在书中至少有三层用法：它是电脑崩溃时的雪花屏，是一种毒品，是一张能让大脑崩溃的位图。同一个词同时指硬件故障、化学物质与信息，这个多义性就是全书的方法论：把不同的系统放在同一个词下面，看它们怎样短路。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>核心主题与结构机制</span><span class="caret">▾</span></h2>
+  <h3>2.1 语言即代码</h3>
+  <p>全书最核心、也最容易被误读的命题是：<strong>语言不只是意义的载体，它还是可执行的指令</strong>。斯蒂芬森把这个想法放在苏美尔人身上：苏美尔语里的 me 被写成一套「社会程序」，祭司通过朗读把它们施用于人；nam-shub 则是「有魔力的言语」，一种能改写听者大脑的咒文。<span class="tag t-rep">转述</span></p>
+  <p>书里的神话链条大致是这样：女神 Asherah 带来一种「元病毒」（metavirus）——它不是直接致病，而是让人变得容易接受别的病毒；Enki 为了对抗它，造出 nam-shub，其效果是让人再也听不懂苏美尔语，于是语言分裂，巴别塔发生。<span class="tag t-rep">转述</span> 换句话说，<strong>巴别塔不是神的惩罚，而是人类的第一枚安全补丁</strong>：把单一可执行通道打碎，让一次攻击无法拿下所有人。<span class="tag t-inf">推断</span></p>
+  <p>这里有一个漂亮的悖论：nam-shub 既是病毒，也是疫苗。Enki 用它破坏语言的统一，从而阻止 Asherah 的元病毒继续扩散；可它本身又是一种「改写大脑」的技术。解药和病用的是同一套机制，区别只在剂量与目标。这让全书的道德判断变得困难：Hiro 最后做的，和 Rife 做的，在技术上是同一件事——都是向人群广播一段能改写大脑的信号。</p>
+  <p>巴别塔之所以适合这本书，是因为它同时提供了三个东西：一个关于语言多样性的起源故事、一个关于人类傲慢的道德教训、以及一个可以被读成「系统故障」的机制。斯蒂芬森要的是第三个，但他把前两个也顺手用了；这也是为什么书的结尾既能读成胜利，也能读成又一次故障。书名不叫「Snow Crash 病毒」而叫「Snow Crash」，也提示了这一点：它写的是一个事件，不是一个东西。</p>
+  <p>这个反转是全书最漂亮的思想设计。它把《创世记》的病因学改写成网络安全寓言，同时给「多样性」提供了一个非道德的理由：多元不是因为更公正，而是因为更抗打。后面结局的反病毒之所以不是「让所有人重新听懂同一种语言」，而是「让病毒失效」，就是因为作者一直守着这个设定。<span class="tag t-inf">推断</span></p>
+  <h3>2.2 病毒的三层同构</h3>
+  <p>书里有三种病毒，共用一套语法：生物病毒（血液、体液传播）、计算机病毒（位图、二进制）、以及宗教（用说方言、用仪式、用恐惧传播）。<span class="tag t-rep">转述</span> 三者被写成同一个东西的不同介质；Rife 的天才之处，是把它们接成一条流水线：教会负责招募与感染，光纤负责广播，木筏负责提供可编程的身体。<span class="tag t-inf">推断</span></p>
+  <p>这套写法有一个思想史背景：把「观念」比作病毒，在 1970 年代后的生物学通俗写作与 meme 理论里很常见；把「语言」比作病毒，也早有人说过。斯蒂芬森的创新不在于提出比喻，而在于把比喻当真：如果语言真是病毒，那么诗人就是接种者，教士就是分销商，审查者就是防火墙。</p>
+  <h3>2.3 主权作为服务</h3>
+  <p>这本书的政治想象常被简化成「无政府资本主义」，但书里写的不是无政府，而是主权的外包。burbclave 把治安、司法、垃圾清运一起打包卖给住户；FOQNE 把国籍做成加盟合同；CosaNostra Pizza 用「三十分钟送达」建立比法院更可靠的信用。<span class="tag t-rep">转述</span> 国家没有消失，它只是变成了众多服务商之一，而且是最不擅长交付的那一个。背景里那场全球性经济崩溃，把国家信用一起带走了；当货币不再由主权担保，它也就成了另一种可以挑选的商品。<span class="tag t-rep">转述</span></p>
+  <p>这套设定与后来的《钻石年代》构成连续：两本书都在问同一个问题——当公共制度退场，人用什么重新组织共同体？《雪崩》的答案是「品牌与黑帮」，《钻石年代》的答案是「部落与教育」。前者是西海岸的、加州的、披萨与滑板的版本；后者是维多利亚式的、书本与礼节的版本。</p>
+  <h3>2.4 结构机制：讲座与追逐的交替</h3>
+  <p>这本书的节奏是「动作场面—讲座—动作场面」。讲座由一个叫 Librarian 的守护程序承担，它在超元域里以参考咨询员的形象出现，背后是国会图书馆的全部内容。<span class="tag t-rep">转述</span> 把 exposition 交给一个角色，而不是交给叙述者，是这本书能同时容纳追逐故事与思想史的原因。</p>
+  <p>代价是：讲座部分的人物关系是静止的，Hiro 只是一个不断提问的学生；而追逐部分的思想密度又会让位给动作。全书因此像两本书交替装订：一本是论文，一本是漫画。这种结构不是缺陷，但确实要求读者调整速度。</p>
+  <h3>2.5 作者自己的说法</h3>
+  <p>作者官网的 Snow Crash 页只有一段自述，全文如下：</p>
+  <blockquote>
+    <p>Written in an attempt to salvage a few elements from an earlier graphic novel project, this book became important, and changed my life. While the number of copies sold still isn't as large as people tend to assume, it made far more of an impact than my earlier works, and launched my career in a number of ways.</p>
+  </blockquote>
+  <p>这段话说了三件事：这本书是从一个更早的漫画小说计划里抢救出来的；<span class="tag t-talk">作者谈话</span> 它对他个人很重要，改变了他的生活；<span class="tag t-talk">作者谈话</span> 它的销量没有外界以为的那么大，但影响远超他此前的作品，并在多个方面开启了他的职业生涯。<span class="tag t-talk">作者谈话</span></p>
+  <p>它没有说这本书要预言什么，也没有提元宇宙、VR 或苏美尔语。<span class="tag t-talk">作者谈话</span> 这一点很关键：当后来的产业话语把这本书供成「元宇宙圣经」时，作者本人的官方表述其实只谈创作起点与职业后果，不谈预言。</p>
+  <p>至于书名从何而来、他受朱利安·杰恩斯影响多深、他如何看待「预言」这个标签，官网这一页都没有答案；书名一事，斯蒂芬森在 1999 年的文章〈In the Beginning... Was the Command Line〉里有说明，但我只有二手引述，没有该文全文；杰恩斯与「预言」两项则只能靠访谈与报道，属于二手转述，我在 §4b 与 §9 会逐条标明。</p>
+  <p>把这段自述与书的实际内容对照，会发现一个有趣的落差：他说的是「抢救」与「改变生活」，读者记住的是「预言」与「元宇宙」。作者谈的是自己的职业史，公众谈的是自己的未来焦虑，两者在同一本书上错开了。<span class="tag t-talk">作者谈话</span></p>
+  <h3>2.6 作为讽刺的赛博朋克</h3>
+  <p>把它放回 1992 年的类型史，会发现它是对赛博朋克的一次<strong>戏仿</strong>，而不是续写。<span class="tag t-rep">转述</span> 吉布森的赛博空间是黑色的、日式的、企业寡头统治的；斯蒂芬森把它搬到洛杉矶的阳光下，换成披萨、滑板、高速公路与品牌加盟。<span class="tag t-rep">转述</span> 同一个「高科技、低生活」的公式，被他写成了「高科技、低租金、高热量」。</p>
+  <p>这种滑稽不是附加的笑料，而是批判的方法。当你用「三十分钟送达」来讨论主权，用「加盟教会」来讨论宗教，用「滑板快递」来讨论劳动，制度的荒谬就不需要论证了——它自己会露出来。这也是为什么这本书比许多严肃的赛博朋克更好笑，也更容易被误读：读者记住了笑话，忘了笑话在骂谁。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <p>第一，不要把它当预言读。把它当成 1992 年洛杉矶的讽刺剧：披萨、滑板、武士刀、品牌名，都是那个城市的土特产，不是未来学参数。你一旦开始核对「哪一年会出现什么技术」，就会错过它真正在讲的东西——治理与语言。</p>
+  <p>第二，前一百页是世界观展示。如果卡住，可以从 Da5id 倒下那一节重新进入；那是全书从「风俗喜剧」切换到「惊悚片」的转折点。到了木筏，节奏会重新变成动作片，读起来快得多。</p>
+  <p>第三，把苏美尔章节当对话读，不要当论文读。Librarian 是苏格拉底，Hiro 是那个一直问「这跟我有什么关系」的学生；讲座的乐趣在于看一个神话如何被拆成协议，而不在于记住年代。如果你只想要故事，可以跳过讲座，仍然能读懂结局；如果你只想要思想，可以只读讲座，把追逐当成插图。</p>
+  <p>第四，注意人名里的笑话。Hiro Protagonist 直译就是「主角主角」；Y.T. 是「Yours Truly」的缩写；Da5id 是 David 的极客写法；CosaNostra 是意大利语「我们的事」。<span class="tag t-rep">转述</span> 这些名字在提醒你：作者知道自己在写类型小说，而且不打算装作不知道。</p>
+  <p>第五，读完接《钻石年代》。两本书相隔三年，问题相同，答案相反；连着读，你会看到斯蒂芬森对「共同体」的态度的摆动。</p>
+  <p>如果你读不下去，还有一个办法：把它当成一本「概念设定集」翻。每读完一个动作场面，就问自己一句「这一段在讽刺哪一项制度」——披萨是交付能力，滑板是零工劳动，教会是分销网络，木筏是债务。答案往往比情节更有意思。</p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <h3>4.1 文学性：聪明的句子，仓促的结尾</h3>
+  <p>对这本书最常见的文学批评有两条：一是文风像「品牌名清单」，靠密集的商标与型号制造速度感，人物心理则相对扁平；二是结尾仓促，前面铺开的政治与经济问题，最后用一个反病毒程序和一场机场枪战收束。这两条我基本同意，但要把它们分开看：文风是自觉的讽刺手法，结尾仓促则更像结构问题。<span class="tag t-inf">推断</span></p>
+  <p>书的前三分之二一直在扩张：世界、神话、病毒、木筏、教会，每一条线都在加码；最后三分之一必须同时收束三条线，于是只能让反派死得快、让感情线回得快、让制度问题留在原地。这不是能力不足，而是这类「观念惊悚片」的通病：观念可以无限展开，动作必须落地。</p>
+  <p>结局之所以让人不满意，不只是因为仓促，而是因为它把政治问题转化成了技术问题。Rife 的权力来自对传输层、宗教网络与债务关系的控制，但打败他的方法是一段反病毒程序；程序一跑，控制链就断了。这在戏剧上很痛快，在政治上却很偷懒：它暗示只要找到正确的代码，制度问题就能被一次性解决。而这本书前半部分最有力的地方，恰恰是说制度问题不能被一次性解决。</p>
+  <h3>4.2 迈克尔斯的批评：如果一切皆代码，理解就消失了</h3>
+  <p>沃尔特·本·迈克尔斯（Walter Benn Michaels）在《The Shape of the Signifier: 1967 to the End of History》（普林斯顿大学出版社，2004）里讨论了这本书。他的论点大意是：小说的核心设定要求抹平「黑客」与「电脑」的界限——看代码对黑客产生的效果，被写得和接收代码对电脑产生的效果一样；可一旦如此，「理解」就不再是必要环节。<span class="tag t-rep">转述</span></p>
+  <p>他有一个很锋利的说法：被病毒感染的身体，不会因为「理解」病毒而免疫；没被感染的身体，也不会因为「误解」病毒而感染。因此，一个把从位图到血液都读成「言语形式」的世界，实际上是一个什么也没有被理解的世界——言语行为的「所做」与「所意」脱了钩。<span class="tag t-rep">转述</span> 这一条我只见到二手转述与英文维基的概括，未核到页码；引用时请以原书为准。<span class="tag t-inf">推断</span></p>
+  <p>这个批评是否成立，取决于你怎样读那个核心设定。我的看法是：迈克尔斯准确地指出了小说的机制，但把机制当成了主张。书里并没有说所有语言都是代码；它说的是大脑深处有一层可以被代码利用的「底层」，而文化、文学、解释都活在这层之上。巴别塔作为「补丁」的设定，恰恰是在保护「理解」的可能性：把可执行层打碎，才有解释的空间。<span class="tag t-inf">推断</span></p>
+  <h3>4.3 罗蒂的评价：问题不是不真实，而是不鼓舞人</h3>
+  <p>理查德·罗蒂（Richard Rorty）在《Achieving Our Country》（哈佛大学出版社，1998）里也提到这本书。据迈克尔斯转述，罗蒂把《雪崩》读作一种「民族希望」丧失的文化症状：这本书的问题不在于它不真实——它毕竟是小说——而在于它不具启发性；它提供的是一种「知悉状态」（knowingness），即对知识而非希望的偏好。<span class="tag t-rep">转述</span> 这一条同样是经迈克尔斯转述，未核到罗蒂原文页码。</p>
+  <p>罗蒂的批评比迈克尔斯的更政治：他不是在问「语言是不是代码」，而是在问「这样的想象能让人做什么」。一本把未来写成品牌割据、把反抗写成个人英雄主义的小说，确实很难给人集体行动的希望；它让人聪明，但不让人振奋。这可能是这本书最真实的局限：它非常擅长诊断，不擅长开方。</p>
+  <h3>4.4 性别、族群与「东方」</h3>
+  <p>书的性别结构是典型的 1990 年代 cyberpunk：Y.T. 是全书最有生命力的角色，但她的能动性主要用在「逃跑」与「送货」上；Juanita 是关键的知情人，却在大部分篇幅里消失，最后以「朗读咒文的人」的身份回到现场。<span class="tag t-rep">转述</span> 换句话说，女性角色推动情节，但很少拥有自己的目标函数。</p>
+  <p>族群书写更值得警惕：burbclave 被写成按族群与阶级自我隔离的飞地，这本身是对洛杉矶的讽刺；但书里对「李先生大香港」「Narcolombia」这类名字的使用，依赖的是现成的族裔标签，讽刺的锋芒有时会滑向布景。这不是要把书判为种族主义，而是说它的讽刺是有时代的：1992 年的洛杉矶，族裔隔离是现实，用类型小说的方式把它夸张化，容易让读者笑完就忘。</p>
+  <h3>4.5 苏美尔学：诗学自由，不是考证</h3>
+  <p>书把 Asherah 放进苏美尔万神殿，这是诗学自由，不是亚述学。Asherah 是西北闪米特（迦南／乌加里特）传统里的女神，不是苏美尔神；苏美尔的神是 Enki、Inanna、Enlil 这一系。书还把苏美尔语写成「人类原语」，可苏美尔语是一个语言孤立（language isolate），不是所有语言的祖先；「原语」是 19 世纪的浪漫想象，不是语言学的结论。</p>
+  <p>这些错误不影响小说的好看，但影响它作为「思想」的可信度。你可以把书里的苏美尔学当成一种科幻设定——就像你不能用《指环王》考证中世纪——但如果有人拿它当语言学入门，那就是另一回事了。</p>
+  <h3>4.6 它为什么在 1992 年没被当成预言书</h3>
+  <p>一个常被忽略的事实：这本书出版时，读者主要把它当讽刺小说看，而不是当未来学。1992 年万维网还没有进入大众生活，智能手机还不存在，VR 头显仍是实验室里的笨重设备；书里的超元域更像对「虚拟现实热」的夸张，而不是对「互联网下一步」的推演。它真正被供成「预言」，是 2021 年产业需要一个祖先之后的事。</p>
+  <p>这也解释了为什么书里的技术细节如此「不对」：它不是从技术路线推出来的，而是从讽刺的需要长出来的。需要一条公共街道，就造一条街；需要一个可被广播的病毒，就造一个位图。设定的目标是「让笑话成立」，不是「让工程可行」。</p>
+  <p>把这一点说清楚，不是为了贬低它，而是为了把它放回正确的位置：它是一本关于「制度如何被外包、语言如何被执行」的讽刺小说，恰好造出了一个后来被资本征用的词。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>流行说法</th><th>更准确的说法</th><th>档位</th></tr></thead>
+    <tbody>
+      <tr><td>《雪崩》预言了元宇宙</td><td>它造了 metaverse 这个词，但书里的超元域是 1992 年对 VR 热潮的讽刺性放大，不是路线图</td><td><span class="tag t-inf">推断</span></td></tr>
+      <tr><td>avatar 是这本书发明的</td><td>不是。1986 年的虚拟环境 Habitat 已把 avatar 用于虚拟身体，词源是梵语；本书让它流行</td><td><span class="tag t-rep">转述</span></td></tr>
+      <tr><td>全书共 N 章</td><td>原文没有编号章节，正文以空行分节；「N 章」多半是导读站自编的章号</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>书名来自书中的病毒</td><td>据斯蒂芬森 1999 年文章〈In the Beginning... Was the Command Line〉的转述，书名来自早期 Mac 崩溃时写进位图的乱码，看起来像坏电视的雪花；病毒设定是围绕书名长出来的</td><td><span class="tag t-rep">转述</span></td></tr>
+      <tr><td>这是一本赛博朋克宣言</td><td>更像对赛博朋克的戏仿与清算：Gibson 的 noir 被换成洛杉矶的品牌讽刺</td><td><span class="tag t-inf">推断</span></td></tr>
+      <tr><td>它预言了平台垄断</td><td>书里没有平台垄断，只有单一协议、特许城市与一家光纤公司；平台封建制是 2000 年代的事</td><td><span class="tag t-inf">推断</span></td></tr>
+      <tr><td>书中的超元域就是今天的 VR 社交</td><td>它是一个单一路径的 3D 街道，靠眼镜进入；今天的是多个封闭平台、手机优先、算法喂养</td><td><span class="tag t-inf">推断</span></td></tr>
+      <tr><td>Rife 是宗教信徒</td><td>他经营宗教，不等于他信；书里把他的动机写成权力与控制，教会只是接口</td><td><span class="tag t-inf">推断</span></td></tr>
+      <tr><td>这本书让斯蒂芬森一夜暴富</td><td>作者自述销量「没有人们以为的那么大」，但影响远超此前作品</td><td><span class="tag t-talk">作者谈话</span></td></tr>
+      <tr><td>苏美尔语是人类的原始语言</td><td>苏美尔语是语言孤立，不是所有语言的祖先；书里的「原语」是设定</td><td><span class="tag t-inf">推断</span></td></tr>
+    </tbody>
+  </table>
+  <p>这张表里最值得记住的是第一行与第三行：一个是「词赢了、事没赢」，一个是「结构被导读站改写」。两者都说明一件事——这本书的接受史，本身就是一个关于「信息如何被复制、简化、再传播」的案例，跟书里的主题形成了奇怪的互文。</p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>简体中文版是郭泽译，四川科学技术出版社 2009 年初版，2018 年出了修订精装，ISBN 9787536487543。<span class="tag t-src">原书</span> 繁体中文版是李卓翰、陈夏民译，书名《溃雪》，开元书印 2008 年，ISBN 9789573057789。<span class="tag t-src">原书</span> 这两个版本之外，坊间还有电子书与自制译本流通，本报告不据以核验。</p>
+  <p>最值得说的是译名。郭泽把 metaverse 译作「超元域」；2021 年之后，「元宇宙」成为中文世界的通用译名。<span class="tag t-rep">转述</span> 两个译名各有得失：「超元域」把 meta 的「超越」与 verse 的「域」都保留下来，听起来像一个空间；「元宇宙」更像一个产业口号，读起来像一个产品，而且「元」字容易跟「元数据」「元语言」里的 meta- 混在一起。这不是谁对谁错的问题，而是同一本书在两个时代的两种命运：一个译名属于科幻读者，一个译名属于风险投资。</p>
+  <p>选版建议：能读英文就读英文，这本书的双关、品牌名与句式节奏在翻译里损失很大；读中文的话，优先 2018 修订版（版次与 ISBN 都变了，但我没有核到具体的修订清单，见附录 D）；想对照译名，可以找繁体版《溃雪》。读的时候遇到 Kourier、burbclave、FOQNE 这类生造词，先看上下文，不要以为是印错——它们多半是作者故意造的。</p>
+  <p>还要提醒一句：中译本对「Hiro Protagonist」这类名字的处理，通常只能音译加注；读中文版时，最好把几个主要人名的英文原名记在手边，否则会错过全书最大的一层笑话。</p>
+  <p>译名的困难不只在 metaverse。Hiro Protagonist、Y.T.、Da5id、CosaNostra 这些名字都带着双关，中文只能音译或加注；Kourier 是 courier 的变体，poon 是一种钩索，burbclave 是 burg 与 enclave 的拼接。这些词一旦译成中文，词源的笑点就没了，只剩下一个陌生的专名。所以读中译本时，最好把英文原名放在手边；这不是不信任译者，而是这本书的笑话有一半长在词源上。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>板块一：披萨快递、Y.T. 与「超元域」的第一次登场</span><span class="caret">▾</span></h2>
+  <p><strong>先说一句：下面的「板块」是本报告的组织方式，不是原书结构。</strong> 原文没有编号章节，正文只用空行分节；我按叙事重心把它切成四块，是为了给一本没有章号的书做路标，不是声称作者这样分卷。<span class="tag t-src">原书</span></p>
+  <h3>发生了什么</h3>
+  <p>小说开场时，Hiro Protagonist 的公开身份是「送披萨的」。他为 CosaNostra Pizza 工作，这家连锁披萨店的幕后是黑手党；他的配送人格叫「Deliverator」，开一辆为速度改装的车，带着刀，脑子里装着超元域的地图。公司对顾客的承诺是三十分钟送达，超时的后果不是扣钱，而是更严重的东西——这套设定用夸张的暴力把「服务等级协议」写成了封建誓约。<span class="tag t-rep">转述</span></p>
+  <p>书里的洛杉矶不是废墟，而是一座被切成无数块的高速公路城市：住宅区外包给私人保安，公路由公司竞价经营，连路灯和垃圾都按街区结算。<span class="tag t-rep">转述</span> 这种写法的高明之处在于，它没有把崩溃写成爆炸，而是写成一份份合同：世界没有结束，只是被重新分包了。</p>
+  <p>一次配送出了岔子，Hiro 没能按时把货送到。少女滑板快递员 Y.T. 出现，用她的「poon」——一种可以吸附在行驶车辆上的钩索——把自己挂在车流后面，替他把这一单送到了。这次偶遇让三个人记住了她：Hiro、她的调度方、以及黑手党首领 Uncle Enzo。</p>
+  <p>Hiro 的另一个身份是黑客。他住在洛杉矶一间由储物仓改成的公寓里，靠给 CIC（中央情报公司）当「stringer」卖情报为生；CIC 是中央情报局与国会图书馆合并后的怪胎。他参与过超元域的早期建设，因此在这个世界里既是原住民，也是失业的贵族。</p>
+  <p>超元域第一次登场时，被写成一条街：一颗黑色球体的赤道上，铺着一条极宽的路，路两边是开发者们自己盖的房子、店铺、俱乐部。用户以 avatar 进入，avatar 的精细程度就是社会阶层；Hiro 在这个世界里有一间自己搭的办公室，在现实里却连房租都成问题。</p>
+  <p>在超元域里，Hiro 去见他的朋友 Da5id。Da5id 是更成功的那一个：同样是黑客，他留在了产业的中心，Hiro 被挤到了边缘。两人在「黑太阳」俱乐部见面——那是超元域里最著名的夜店，也是信息与炫耀的交易所。黑太阳的座位、门禁、谁能带谁进来，构成了一套不写在任何法典里的等级；这套等级与现实中的俱乐部并无不同，只是把保安换成了代码。这是全书对「虚拟空间会带来平等」这一幻想的第一次纠正。</p>
+  <p>然后 Raven 出现。他把一份数据递给 Hiro，说这是新毒品「Snow Crash」。Hiro 没有立刻打开；Da5id 打开了。</p>
+  <h3>关键内容</h3>
+  <p>这个板块的任务不是讲案件，而是把世界的三层地基一次浇完。</p>
+  <p>第一层是主权。美国已经碎成 FOQNE（特许经营准国家实体）与 burbclave（私人保安的居住飞地）；「李先生大香港」「Narcolombia」这类名字把国家写成加盟店。<span class="tag t-rep">转述</span> 这不是「没有政府」，而是「政府变成了众多服务商之一」：你可以选择你的警察、你的法院、你的货币，前提是你付得起。<span class="tag t-inf">推断</span></p>
+  <p>第二层是劳动。Hiro 送披萨，Y.T. 送快递，两人都是按单结算的独立承包人：没有社保，没有最低工资，只有评分与惩罚。<span class="tag t-rep">转述</span> 这一点比书里的 VR 更准：<strong>《雪崩》真正预言的不是头显，而是零工经济</strong>。Y.T. 的 poon 是一个绝妙的隐喻——她把自己挂在别人的车上，借力前进；这正是平台劳工的姿势：用自己的身体，搭载别人的基础设施。<span class="tag t-inf">推断</span></p>
+  <p>第三层是空间。超元域不是天堂，而是另一个房地产项目：地段、门面、装修、avatar 的皮肤，全是钱。<span class="tag t-rep">转述</span> 书里最反乌托邦的一点不是「人沉迷虚拟」，而是「虚拟世界复制了现实世界的阶级，而且复制得更彻底」——在现实里你至少还能走在街上，在超元域里，你连街都进不去，如果你付不起带宽。</p>
+  <p>这里有一个容易被忽略的政治选择：超元域只有一条街。它不是无数个互不相通的 App，而是一条所有人都必须经过的公共道路；开发者可以在路边盖房子，但不能把路封起来。这条设定比「VR 很酷」重要得多——它想象的是一个<strong>有公共通道的虚拟空间</strong>，而不是后来真实的、由各家平台圈起来的花园。今天回看，这可能是全书最乌托邦的一笔，而作者当时大概只觉得这样画地图比较方便。</p>
+  <p>然后是「披萨」这个意象。它把三件事缝在一起：黑手党提供的不是暴力，而是可靠性；品牌提供的不是口味，而是承诺；政府失去的不是权力，而是交付能力。Uncle Enzo 的威严来自「三十分钟内一定到」，而不是来自法典；这是全书对治理最刻薄也最准确的一句笑话。</p>
+  <p>还有一层是记忆的商业化。CIC 把国会图书馆并入情报公司，意味着「全部知识」变成一家可查询、可计费、可封锁的数据库；Hiro 靠给这座库投稿换钱，Librarian 则是这座库的查询界面。这条设定把「公共记忆」写成了「订阅服务」，比书里任何一项技术都更接近后来发生的事。</p>
+  <p>最后是人名。Hiro Protagonist 是「主角主角」，Y.T. 是「Yours Truly」，Da5id 是 David 的极客拼写，CosaNostra 是「我们的事」。这些名字让全书始终保持一种自觉：它知道自己是一个类型故事，并且把「主角光环」当成可以拿来开玩笑的材料。顺便说，Deliverator 这个词本身就是一个产品名：他把自己的劳动变成了一个型号，而这个型号随时可以被替换。</p>
+  <h3>可疑之处</h3>
+  <p>开篇那场配送事故的具体经过，我看到的几个梗概说法不一：有的说车被毁，有的说被人截，有的只说「没能按时送达」。本报告只采用「出了岔子、Y.T. 替他完成」这个最小共同项，不写车型、不写对手、不写对话。<span class="tag t-inf">推断</span></p>
+  <p>「三十分钟送达」是讽刺设定，不是物流史。现实中的披萨保证从来没有以死亡为违约代价；把它当社会契约理论读可以，当商业案例读就错了。</p>
+  <p>Y.T. 的年龄，常见梗概写她十五岁，但我没有核到原文；本报告只写「少女」，不写具体岁数。她的家庭背景我也只见到梗概，未核到细节，因此不展开。</p>
+  <p>Hiro 的族裔、家庭、早年经历，各梗概的写法互相矛盾，我不写。这不是省略，而是拒绝用不可靠的材料给人物补传记。</p>
+  <p>超元域的技术参数（带宽、延迟、渲染精度）属于 1992 年的想象，不应拿今天的 VR 指标去对照；书里没有手机、没有无线网络、没有浏览器，这些「缺失」比它的「预言」更能说明它的时代。</p>
+  <p>还有一个常见的误读：把 burbclave 当成「富人区」。书里的 burbclave 不只是贵，它还是<strong>按族群与生活方式分区的</strong>：你想住在和自己一样的人中间，就付钱买一套自己的法律。这种「用合同实现隔离」的写法，比「贫富差距」四个字更具体，也更难反驳。这也是为什么书里的「多元」看起来像停车场：每个族群一个车位，彼此相邻，但不相往来。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>板块二：雪崩病毒、Da5id 倒下、苏美尔语线索</span><span class="caret">▾</span></h2>
+  <h3>发生了什么</h3>
+  <p>Da5id 打开那份数据之后，超元域里的画面没有爆炸，只是「雪」：一块位图铺满视野，像老式显示器失去信号时的雪花。他的机器崩溃了，他的人在现实里也倒下了；医生给出的说法是脑损伤，接近植物状态。这是全书最重要的转折：病毒第一次证明自己能从屏幕里爬出来，进入肉体。<span class="tag t-rep">转述</span></p>
+  <p>Hiro 开始调查。他的前女友 Juanita Marquez 出现，她研究的是神经语言学与病毒；她给了 Hiro 一个数据库，里面是她的同事 Lagos 多年整理的资料——苏美尔语、古代宗教、病毒、巴别塔。她警告 Hiro 不要再碰这件事，然后从故事里消失了一段时间。<span class="tag t-rep">转述</span></p>
+  <p>Hiro 找到的第二个「人」是 Librarian：一个住在超元域里的守护程序，形象是参考咨询员，背后是国会图书馆的全部藏书与档案。Hiro 可以向它提问，它可以用图像、原文、注释回答；它没有自我意识，但有问必答。</p>
+  <p>调查的方法也值得注意：Hiro 不是在实验室里找答案，而是在图书馆、教会与街头三条线之间来回对照；他把苏美尔泥板、教会录影、毒品交易放在同一张桌子上。这种「情报分析」式的调查，本身就是对 CIC 世界的一种讽刺——真相不是被发现的，是被检索出来的。这也让读者意识到：Hiro 没有实验室、没有仪器，只有检索、比对与推断；他更像一个记者，而不是一个科学家。</p>
+  <p>讲座的内容大致如下：苏美尔人相信语言有执行的力量；me 是一套「社会程序」，从宗教仪式到战争、工艺、王权，都有对应的 me；nam-shub 是「有魔力的言语」，一种能改变听者大脑的咒文。女神 Asherah 带来一种「元病毒」，它不直接杀死人，而是让人变得容易接受别的病毒；Enki 为了对抗它，造出 nam-shub，让人再也听不懂苏美尔语，语言从此分裂——这就是巴别塔。</p>
+  <p>Hiro 由此拼出 Snow Crash 的双重形态：作为毒品，它通过血液与体液传播，感染人的脑干；作为位图，它通过超元域传播，专门攻击那些把信息当可执行物处理的黑客。两者是同一种病毒的不同介质，而分发它们的，是 Rife 旗下的连锁教会「Reverend Wayne's Pearly Gates」。</p>
+  <h3>关键内容</h3>
+  <p>这个板块是全书的思想心脏，值得慢读。</p>
+  <p>第一，<strong>me 不是法律，是操作系统</strong>。书里的 me 被描述成一组可以直接调用、直接执行的「职能」：怎么做祭祀、怎么打仗、怎么统治。<span class="tag t-rep">转述</span> 这个类比很聪明：法律需要解释，程序不需要；法律靠人执行，程序靠机器执行。<span class="tag t-inf">推断</span> 一旦社会规范被写成 me，统治者就不需要说服你，只需要调用你。<span class="tag t-inf">推断</span></p>
+  <p>第二，<strong>nam-shub 不是信息，是动作</strong>。它的效果不取决于你信不信，而取决于你的大脑能不能处理它。<span class="tag t-rep">转述</span> 这解释了一个看似矛盾的地方：为什么一句「咒语」能改变所有人？因为它不是说服，而是利用了一个未修补的漏洞。</p>
+  <p>第三，<strong>Asherah 的「元病毒」是双层结构</strong>。第一层让你容易感染，第二层才是具体的病。<span class="tag t-rep">转述</span> 这个结构比「思想是病毒」的比喻精细得多：它区分了「易感性」与「感染」，也解释了为什么同样的宣传对不同的人效果不同。书里把宗教、广告、教育都写成这种「易感性技术」，这是它最不客气的地方。</p>
+  <p>glossolalia（说方言）是这条线的枢纽。书里把它写成一种神经症状：人在亢奋中发出无意义的音节，教会把它解释为圣灵降临，病毒则把它当成脑干被接管的证据。这条设定让宗教经验、传染病与计算机故障共享同一个解释模型；它很冒犯，但也很有效。</p>
+  <p>第四，<strong>为什么是苏美尔语</strong>。书里的解释是：苏美尔语「字面」，没有后来的语言那么多抽象层，因此更适合直接对接大脑的底层；二进制也一样，因为它没有歧义。这个解释在语言学上站不住，但在小说里很有效：它把「古代」与「数字」放在同一个本体论层级上——两者都是「没有解释空间的代码」。</p>
+  <p>第五，<strong>Da5id 倒下的意义</strong>。他是最懂代码的人，却不是因为「读懂」而中招；病毒不需要他理解，只需要他的视觉皮层把位图当成指令执行。这是全书对「理解」最狠的一刀：在一个一切都可执行的世界里，理解不仅不是护身符，甚至可能是多余的。迈克尔斯后来抓住的正是这一点，我在 §4.2 已经讨论过。</p>
+  <p>这里还有一个设定上的细节：为什么偏偏是黑客中招，普通人看了同一张图却没事？书里的解释是，黑客长期把信息当成可执行的东西，大脑被训练成不经过「解释」就直接「运行」。这个解释把职业习惯写成了生理弱点：你越熟练，越容易被利用。这也是全书对技术精英最不友好的一处——他们不是受害者中的无辜者，而是被自己的训练方式选中的人。</p>
+  <p>第六，<strong>Librarian 是「被私有化的记忆」的人格化</strong>。它能回答一切，但它属于 CIC，也就是一家公司；Hiro 用它，是在用一项付费服务。书里没有把「知识」写成解放的力量，而是写成一种需要订阅的基础设施——这个设定比「AI 很聪明」更冷。</p>
+  <h3>可疑之处</h3>
+  <p>Asherah 是西北闪米特（迦南／乌加里特）传统里的女神，不是苏美尔神；书把她放进苏美尔万神殿，是诗学自由。这一条我在 §4.5 已经说过，这里再强调一次，因为它是全书神话体系最明显的年代错置。<span class="tag t-inf">推断</span></p>
+  <p>苏美尔语是一个语言孤立，不是「人类原语」；「所有语言都从苏美尔语来」是 19 世纪的幻想，不是语言学的结论。书里的「ur-language」是设定，不是考证；读者若把它当语言学入门，会被带偏。</p>
+  <p>nam-shub 在亚述学里确实指一类咒文／咒语，但它与「神经语言病毒」不是一回事；我只在二手资料里见到这个词的翻译与用法，未核到权威辞书。<span class="tag t-rep">转述</span> 书里把它改写为「神经语言病毒」，是借词，不是定义；这一点在读的时候要分清。</p>
+  <p>巴别塔的故事出自《创世记》，不是苏美尔文献；书里把它读成「对一次真实语言事件的记忆」，这是小说的设定，不是历史。</p>
+  <p>朱利安·杰恩斯的「二分心智」假说，是书里「古代人听见神的声音」这一设定的重要思想来源；但该假说在学界争议极大，不能当作已证实的科学。<span class="tag t-rep">转述</span> 我未能核到斯蒂芬森本人谈杰恩斯的原始访谈，因此这里只写「思想来源」，不写「作者原话」。换句话说，书里的「神」是大脑分工的产物；这个设定很迷人，但它属于小说的神话学，不属于神经科学。</p>
+  <p>Da5id 的预后，各梗概的说法不一：有的写「昏迷」，有的写「植物状态」，有的写「脑损伤」。本报告统一写「接近植物状态的脑损伤」，不写他后来是否恢复。这也意味着，任何关于「他后来醒了」的说法都需要原文支持，我不替它补完。</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>板块三：木筏、Rife 的阴谋与 nam-shub</span><span class="caret">▾</span></h2>
+  <h3>发生了什么</h3>
+  <p>Y.T. 被 Rife 的人抓走，带上了木筏。<span class="tag t-rep">转述</span> 木筏不是一艘船，而是一座由无数难民船、货轮、渔船绑在一起的海上城市；它的中心是 Rife 的游艇，据一种梗概，那是一艘退役的核动力航母。<span class="tag t-rep">转述</span> 船上的人来自欧亚各地的战乱与饥荒，他们欠着 Rife 的船票与食宿，只能用劳动偿还。</p>
+  <p>Uncle Enzo 对 Y.T. 的兴趣在这一段变成了实际的保护欲：他几乎把她当成孙女，愿意为她与 Rife 翻脸。黑手党与 Rife 的冲突因此不只是生意，也是两种「父权」的冲突——一个讲家族伦理，一个讲合同与债务。</p>
+  <p>Hiro 这边，调查把他带到了西海岸外海。他设法登上木筏，在船上看到了 Rife 的真正生意：被「me 广播」处理过的人。其中一个受害者脑部被切去大块，却仍在喃喃自语；Hiro 由此确认，Rife 不只卖毒品，他还在向人的脑子里直接播送指令。</p>
+  <p>Rife 的体系由三部分组成：Reverend Wayne's Pearly Gates 连锁教会，负责用说方言与「神迹」招募信徒；被感染的血液与疫苗，负责传播病毒；以及他自己的光纤网络，负责把信号送到每一台电视、每一副眼镜。这三件事合起来，是一套从身体到屏幕的分发系统。</p>
+  <p>Hiro 在超元域里召集了一批黑客盟友，把自己查到的 Snow Crash 机制告诉他们，并开始写一套防护程序。与此同时，Rife 准备把木筏上的人当成一枚巨大的「信号放大器」：让成千上万个被编程的身体同时发声，把病毒送进全球网络。</p>
+  <p>木筏的经济值得单独看。船上的人不是奴隶，他们欠债：船票、伙食、淡水、医疗，每一项都记在账上，只能用劳动偿还；Rife 的公司提供工作、住房、宗教与娱乐，像一个漂在海上的公司镇。<span class="tag t-rep">转述</span> 这种安排比赤裸的奴役更稳固，因为它让被剥削者自己相信「我是在还债」。<span class="tag t-inf">推断</span></p>
+  <h3>关键内容</h3>
+  <p>木筏是这本书政治经济学的另一半。</p>
+  <p>burbclave 是富人的私人城市：你付钱，买到一套自己的法律、警察与邻居。木筏是穷人的私人城市：你没钱，只能用劳动与身体偿还船票，最后连自己的身体都不属于自己。<span class="tag t-rep">转述</span> 两者看起来相反，其实是同一个原则的两端——<strong>公民权被合同取代</strong>。<span class="tag t-inf">推断</span> Rife 同时拥有这两端的入口：他卖安全，也卖债务。<span class="tag t-inf">推断</span></p>
+  <p>教会是这套体系里最关键的接口。Reverend Wayne's Pearly Gates 与 CosaNostra Pizza 在结构上是同一家公司：加盟、统一招牌、标准化服务、总部的抽成。<span class="tag t-rep">转述</span> 披萨卖的是「三十分钟送达」，教会卖的是「说方言的狂喜」；两者都是把一种体验打包成可复制的产品。这是全书最锋利的一处制度讽刺：宗教没有被世俗化，它被<strong>特许经营化</strong>了。</p>
+  <p>nam-shub 在这一段从「古代神话」变成了「广播节目」。它不再是一个需要考古学家解读的文本，而是一段可以在光纤里复制、可以在电视上播放的信号。<span class="tag t-rep">转述</span> 这一步转换很关键：它把「语言的力量」从神秘的、个人的层面，搬到了工业的、可复制的层面。一旦咒语可以批量播放，它就变成了广告；一旦广告可以改写大脑，它就变成了武器。</p>
+  <p>光纤是这套体系的物理基础。Rife 之所以能把教会、毒品与超元域接起来，是因为他拥有传输层；在书里，拥有管道比拥有内容更重要。这个判断在 1992 年相当超前：后来真正赚钱的，往往不是做内容的人，而是做分发的人。</p>
+  <p>Juanita 的位置也在这里变得清楚：她不是等人来救的女主，她是把那段咒文带进终局的人。最后打破 Rife 控制的，不是 Hiro 的刀，而是那段被朗读出来的咒文；这个安排把「语言」重新放回了中心。</p>
+  <p>Rife 的动机，书里写得比较单一：他要的是控制，不是信仰。他收集苏美尔文物、经营教会、建木筏，都是为了把「人」变成可寻址、可编程、可计费的终端。这也让他显得不够立体：他是一个功能性的反派，代表「媒介垄断」这件事本身，而不是一个有内心冲突的人。</p>
+  <p>Raven 则是暴力的外包。据梗概，他的父亲死于核试验，他自己带着一颗与心跳相连的核弹；这让他既是加害者，也是受害者。书没有给他救赎，也没有给他一个「其实他也有苦衷」的煽情段落；他只是被自己的仇恨驱动，最后与 Uncle Enzo 两败俱伤。</p>
+  <p>「木筏」这个名字本身就是一个政治隐喻。筏子不是船，它没有龙骨、没有舵、没有国籍；它只是把一堆漂浮物绑在一起，靠数量和重量维持稳定。Rife 给难民提供的正是这样一座筏：没有公民身份，没有法律，只有彼此绑在一起的生存。你可以在上面活着，但不能靠它航行。</p>
+  <p>这一段也是全书最像动作片的部分：追逐、潜入、爆炸、人质，一样不少。但它的动作场面始终挂在一个政治问题上——谁拥有那座筏？答案是 Rife，因为船是他买的、油是他付的、连通信都要经过他的网络。暴力只是产权关系的延长线；这也解释了为什么 Hiro 的刀在这里不够用：他能杀进船，却杀不掉一张产权证。所以这一段最响的爆炸声，其实是在提醒你：产权比炸药更难拆除。</p>
+  <p>把木筏与 burbclave 并置，会发现一个更冷的对称：富人买的是「退出」，穷人卖的是「进入」。burbclave 的居民用钱把自己从公共世界里退出；木筏上的难民则用身体买一张进入美国势力范围的票。两者都在合同里完成，都不需要公民身份。Rife 的生意，就是同时经营这两个方向的边境。</p>
+  <p>Y.T. 在这条线上的功能也清楚了：她是唯一能在三个世界之间穿行的人——街头（她的滑板）、超元域（通过 Hiro 的眼镜）、木筏（作为俘虏与信使）。她的技能不是战斗，而是移动；她能挂在任何移动的东西上，因此也能挂在任何一个阵营上。最后把情报送出去的，不是英雄的刀，而是快递员的路线。</p>
+  <h3>可疑之处</h3>
+  <p>木筏的规模、位置与中心船只，各梗概说法不一：有的说中心是游艇，有的说是退役航母，有的只写「一艘大船」。<span class="tag t-rep">转述</span> 本报告只采用「以一艘大船为中心、由无数难民船绑成」这个共同项，不写吨位、不写船名。</p>
+  <p>Y.T. 被抓的具体过程，我不写。各梗概在这一段都写得很略，任何具体到「谁在哪个舱室打了谁」的叙述都缺乏可靠来源。</p>
+  <p>Rife 是不是信徒，书里没有明说。<span class="tag t-rep">转述</span> 我按他的行为把他读成「把宗教当接口的人」，这是推断，不是文本结论。</p>
+  <p>「me 广播」的技术解释（音频刺激加病毒改变 DNA）是伪科学，不应作为科普引用；它在小说里是设定，作用是让「语言」与「代码」的类比成立。</p>
+  <p>Ng 的身份与结局，我只见到零散的梗概，未核到原文；本报告不写这个人物的具体行动。这也是为什么这一节里我尽量只写「谁对谁做了什么」，不写「他当时怎么想」——后者的可靠门槛高得多。</p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>板块四：结局，以及「元宇宙预言」的再评估</span><span class="caret">▾</span></h2>
+  <h3>发生了什么</h3>
+  <p>结局在三处同时发生。<span class="tag t-rep">转述</span></p>
+  <p>超元域：据梗概，Raven 试图在一场于黑太阳举行的虚拟演唱会上释放数字版 Snow Crash，把全球黑客精英一网打尽。<span class="tag t-rep">转述</span> Hiro 带着自己写的防护程序赶到，在病毒扩散前把它中和，演唱会没有变成集体脑死亡的现场。<span class="tag t-rep">转述</span></p>
+  <p>木筏：Juanita 已经先一步潜入。Hiro 从 Rife 的收藏里夺回 Enki 的 nam-shub——那块写着咒文的泥板信封——交给她；随后 nam-shub 被朗读出来。<span class="tag t-rep">转述</span> 咒文一响，Rife 用「me」建立的控制链断开，木筏上的人从可编程的劳动力变回一群人。<span class="tag t-rep">转述</span></p>
+  <p>机场：Rife 带着 Y.T. 逃离木筏，想在洛杉矶国际机场乘私人飞机出境；Raven 与追上来的 Uncle Enzo 交手，两人都受了重伤。<span class="tag t-rep">转述</span> Rife 在试图登机时被杀，具体执行者在各梗概里没有统一说法。<span class="tag t-rep">转述</span> Y.T. 趁乱逃脱，回到母亲身边；Hiro 与 Juanita 复合。<span class="tag t-rep">转述</span></p>
+  <p>结尾没有清算制度。FOQNE 还在，burbclave 还在，CIC 还在；死掉的是一个坏人，不是一套结构。这是全书最保守的一笔，也是它最诚实的一笔：它不相信一次英雄行动能修好一个已经外包出去的世界。</p>
+  <p>最后一幕也不是胜利阅兵，而是两个人在废墟边上重新开始生活；这种收束方式更像黑色电影，而不是史诗。<span class="tag t-rep">转述</span> 它把「世界得救了」换成了「这两个人活下来了」，这个降级很重要。<span class="tag t-inf">推断</span></p>
+  <h3>关键内容</h3>
+  <p><strong>第一，巴别塔作为补丁，到底补了什么。</strong></p>
+  <p>Enki 的 nam-shub 不是让人类重新说同一种语言，而是让人再也听不懂苏美尔语——它制造了不可通约的多样性。<span class="tag t-rep">转述</span> 从网络安全的角度看，这是一次「分片」：把单一的攻击面拆成无数互不兼容的小块，任何一次攻击都只能拿下一部分。<span class="tag t-inf">推断</span> 所以结局的反病毒也不是「统一」，而是「失效」：Hiro 和 Juanita 没有让所有人达成共识，他们只是让那段可执行代码跑不起来。<span class="tag t-inf">推断</span></p>
+  <p>这个设定有一个悲观的前提：<strong>说服是不管用的</strong>。<span class="tag t-rep">转述</span> 书里没有人被论证说服；Rife 不是被驳倒的，是被切断的；木筏上的人不是想通了，是病毒被中和了。也就是说，这本书对「语言」的信任是有限的：它相信语言能编程，不相信语言能对话。</p>
+  <p><strong>第二，它到底预言了什么。</strong></p>
+  <p>先给结论：它预言的是<strong>词</strong>与<strong>欲望</strong>，不是<strong>架构</strong>。</p>
+  <p>词这一层，它赢得很彻底：metaverse 成了产业术语，avatar 成了通用词，2021 年一家公司干脆把名字改成了 Meta。<span class="tag t-rep">转述</span> 欲望这一层，它也押中了不少：虚拟地产、avatar 皮肤、在线演唱会、游戏内经济、数字身份、把「空间」当成产品来卖。<span class="tag t-rep">转述</span> 这些在 1992 年是笑话，在 2021 年是商业计划书。</p>
+  <p>架构这一层，它几乎全错。书里的超元域是<strong>单一协议、单一条街</strong>，由一个非政府的协议组织维护；现实中的「元宇宙」是无数个互不互通的平台，每个平台都有自己的账号、商店与审核。书里没有智能手机，没有浏览器，没有推荐算法，没有 Web 2.0 的用户生成内容，也没有「国家通过数据变得更强大」这条线。它想象的是 1980 年代的 VR 加上 1990 年代的赛博空间，而不是 2010 年代的平台资本主义。</p>
+  <p>还有一个常被忽略的差别：书里的超元域是<strong>公共场所</strong>，至少有一条谁都能走的路；现实中的平台是<strong>私人商场</strong>，进门要同意条款，出门带不走你的东西。所以「《雪崩》预言了元宇宙」这句话，准确的说法是：它预言了我们对元宇宙的<strong>渴望</strong>，但没有预言资本实现这个渴望的方式。</p>
+  <p>还有一个更具体的对照：书里的超元域需要眼镜与终端，进入是有门槛的、坐下来的、公共的；今天的入口是手机，是碎片时间的、私人的、算法排序的。前者像广场，后者像自动售货机。</p>
+  <p>如果说这本书真的预言了什么制度，那不是元宇宙，而是「一切皆可外包」：安全、司法、教育、记忆、甚至身体的免疫，都可以被写成服务合同。这个预言不需要头显，它已经在发生。</p>
+  <p>这也是为什么它在 2021 年又被翻出来：产业需要一个祖先，而这本书正好提供了一个足够酷、又足够模糊的祖先。模糊是关键——越模糊，越容易被投影。</p>
+  <p><strong>第三，书的出版与作者自己的说法。</strong></p>
+  <p>这本书初版于 1992 年 6 月，由 Bantam Books 出版，480 页，ISBN 0-553-08853-X。<span class="tag t-src">原书</span> 它获得 1993 年英国科幻小说奖（BSFA）提名，1994 年获阿瑟·克拉克奖提名。<span class="tag t-src">原书</span> 公开资料只记提名、不记获奖；我不据此推断它是否拿过别的奖。<span class="tag t-rep">转述</span> 这些书目信息与「它卖了多少本」是两件事，不能混为一谈。</p>
+  <p>作者官网的自述，是本书唯一一段我逐字核过的一手文字。他说这本书的起点是一个更早的漫画小说计划，写它是为了从那里抢救几个元素。<span class="tag t-talk">作者谈话</span> 他说这本书变得重要，改变了他的生活。<span class="tag t-talk">作者谈话</span> 他说销量没有人们以为的那么大。<span class="tag t-talk">作者谈话</span> 他说它的影响超过了他此前的作品。<span class="tag t-talk">作者谈话</span> 他说它在多个方面开启了他的职业生涯。<span class="tag t-talk">作者谈话</span> 这一页没有提元宇宙，也没有提「预言」。<span class="tag t-talk">作者谈话</span></p>
+  <p>至于「他多次说自己是编的，不是预言」这个流行说法，我没有找到可核的原始访谈，因此只能写成转述，不能写成作者原话。<span class="tag t-rep">转述</span> 这也是本报告在「作者谈话」档上最大的缺口：一段官网自述撑不起一整本访谈集。</p>
+  <h3>可疑之处</h3>
+  <p>Rife 的死法，各来源不一致。英文维基写的是「在试图乘私人飞机逃离机场时被杀」，没有写谁动的手；另一个二手梗概说是 Ng 驾机撞毁了他的飞机。<span class="tag t-rep">转述</span> 我只采用前者，不写后者；后者的戏剧性更强，但只有一个来源，而且那个来源本身的可信度我没有核到。</p>
+  <p>Uncle Enzo 与 Raven 的胜负，英文维基写「打成平手，两人均重伤」；另有梗概写 Enzo 重伤了 Raven。<span class="tag t-rep">转述</span> 本报告统一写「两败俱伤」，不写谁先倒下。</p>
+  <p>「The Dentist」这个反制程序的名字，我只在一个二手梗概里见到，未在第二个来源确认，因此正文不用。</p>
+  <p>Y.T. 最后是否正式加入黑手党，我只在一个梗概里见到「成为正式成员」的说法，英文维基没有；本报告不写。</p>
+  <p>Hiro 与 Juanita 复合，英文维基有明确表述，我按转述采用；但他们复合之后的关系状态，书中着墨不多，我不替它补写。<span class="tag t-rep">转述</span></p>
+  <p>最后，「《雪崩》预言了元宇宙」这个说法本身，没有任何一手文献支持；它是 2021 年之后产业话语的产物。把它当传播史看很有意思，当文学评价看则很危险：它会让读者以为这本书的价值在于「猜对了」，而它真正的价值在于「问对了」。</p>
+  <p>2021 年之后，这本书的接受史变成了一个自我循环：产业引用它，媒体引用产业，读者再引用媒体。结果是，书里最激进的部分——语言作为病毒、主权作为服务、记忆作为订阅——被压缩成一个词：metaverse。这个词越流行，书就越被读薄；等到「元宇宙」变成一个房地产概念，书里对房地产的讽刺反倒没人记得了。</p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">A</span><span>人物与术语速查</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>条目</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>Hiro Protagonist</td><td>自由黑客、剑客、CosaNostra Pizza 的配送员；CIC 的 stringer；名字是「主角」的双关</td></tr>
+      <tr><td>Y.T.</td><td>少女 Kourier，滑板加 poon 挂车送件；Y.T. 即「Yours Truly」</td></tr>
+      <tr><td>Da5id Meier</td><td>Hiro 的朋友与前搭档，超元域里的成功黑客；看了 Snow Crash 位图后脑损伤</td></tr>
+      <tr><td>Juanita Marquez</td><td>Hiro 的前女友，神经语言学研究者；交出 Lagos 的数据库，后来潜入木筏</td></tr>
+      <tr><td>L. Bob Rife</td><td>媒体大亨，控制光纤网络、连锁教会与木筏；全书主要反派</td></tr>
+      <tr><td>Raven</td><td>Rife 的雇佣兵，玻璃刀与核弹；向 Hiro 递出 Snow Crash 文件</td></tr>
+      <tr><td>Uncle Enzo</td><td>CosaNostra Pizza 与黑手党的首领；几乎把 Y.T. 当孙女保护</td></tr>
+      <tr><td>The Librarian</td><td>超元域里的参考咨询守护程序，背后是国会图书馆</td></tr>
+      <tr><td>Metaverse（超元域）</td><td>本书造的词；黑色球体、赤道一条街、avatar 进入</td></tr>
+      <tr><td>avatar（化身）</td><td>虚拟身体；词源梵语，1986 年 Habitat 已用，本书使之流行</td></tr>
+      <tr><td>daemon（守护程序）</td><td>常驻后台的程序；书中指超元域里的 NPC 与代理</td></tr>
+      <tr><td>FOQNE</td><td>特许经营准国家实体；主权被写成加盟合同</td></tr>
+      <tr><td>burbclave</td><td>私人保安、私人法律、按族群与阶级隔离的郊区飞地</td></tr>
+      <tr><td>nam-shub</td><td>苏美尔语「有魔力的言语」；书中指能改写大脑的咒文</td></tr>
+      <tr><td>me</td><td>苏美尔神话里的「神性／职能」；书中读作社会程序</td></tr>
+      <tr><td>Asherah</td><td>书中当作苏美尔女神；实为西北闪米特女神（见 §7）</td></tr>
+      <tr><td>Snow Crash</td><td>毒品、位图、病毒的三位一体</td></tr>
+      <tr><td>The Raft（木筏）</td><td>难民船绑成的海上城市，Rife 的劳工营</td></tr>
+    </tbody>
+  </table>
+  <p>这张表只收在正文里反复出现的条目；CIC、Lagos、Ng 这些次要名字散在正文里，不另列。<span class="tag t-inf">推断</span> 表里的译名以简体版通行译法为主，括号里的英文是原词，方便对照英文版或繁体版。</p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <ol>
+    <li>William Gibson, <em>Neuromancer</em>（1984）——这本书要回应的对象；先读它，才知道《雪崩》在戏仿什么，也才知道「赛博空间」在 1984 年是什么语气。<span class="tag t-rep">转述</span>
+    </li>
+    <li>Neal Stephenson, <em>The Diamond Age</em>（1995）——同一套政治经济学的另一种答案：部落与教育，而不是品牌与黑帮；两本对着读，能看出作者对「共同体」的摇摆。<span class="tag t-rep">转述</span>
+    </li>
+    <li>Julian Jaynes, <em>The Origin of Consciousness in the Breakdown of the Bicameral Mind</em>（1976）——书里「神的声音」设定的思想来源；读它可以分清哪些是科幻，哪些是假说，哪些只是借来的气氛。<span class="tag t-rep">转述</span>
+    </li>
+    <li>Walter Benn Michaels, <em>The Shape of the Signifier: 1967 to the End of History</em>（2004）——对「语言即代码」最系统的批评，本报告 §4.2 的依据；它的论证比大多数书评更值得慢慢读。<span class="tag t-rep">转述</span>
+    </li>
+    <li>Richard Rorty, <em>Achieving Our Country</em>（1998）——把这本书读成「希望丧失」的症状，本报告 §4.3 的依据；注意这条评价是经 Michaels 转述的，不是我直接读到的。<span class="tag t-rep">转述</span>
+    </li>
+    <li>Fredric Jameson, <em>Postmodernism, or, The Cultural Logic of Late Capitalism</em>（1991）——理解赛博朋克与后现代空间关系的背景书，不是专论本书；读它能把「洛杉矶」放回更大的文化逻辑里。<span class="tag t-inf">推断</span>
+    </li>
+    <li>Sherry Turkle, <em>Life on the Screen</em>（1995）——1990 年代对在线身份的民族志；可以和书里的 avatar 对照读，看「虚拟身份」从实验室到日常生活的路径。<span class="tag t-inf">推断</span>
+    </li>
+    <li>Matthew Ball, <em>The Metaverse: And How It Will Revolutionize Everything</em>（2022）——2021 年后产业话语的代表；读它才知道「元宇宙」被说成了什么，也才知道《雪崩》被简化成了什么。<span class="tag t-inf">推断</span>
+    </li>
+  </ol>
+</section>
+
+<section id="s13">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <p>本报告用到的一手材料只有一件：尼尔·斯蒂芬森官网的 Snow Crash 页面（nealstephenson.com，访问日期 2026-10-18）。该页只有一段作者自述，本报告在 §2.5 逐字引用，并在 §9 分段转述。</p>
+  <p>书目与奖项信息：Bantam Books（Bantam Spectra）1992 年 6 月首版，480 页，ISBN 0-553-08853-X；1993 年获英国科幻小说奖（BSFA）提名，1994 年获阿瑟·克拉克奖提名。<span class="tag t-src">原书</span> 这些数字来自出版社与图书馆编目口径，不同来源的页数可能因精装／平装而不同。<span class="tag t-inf">推断</span></p>
+  <p>中文版本：郭泽译《雪崩》，四川科学技术出版社 2009 年初版、2018 年修订精装，ISBN 9787536487543；李卓翰、陈夏民译《溃雪》，开元书印 2008 年，ISBN 9789573057789。<span class="tag t-src">原书</span></p>
+  <p>情节梗概与批评文献的二手来源：英文维基百科 Snow Crash 条目（访问 2026-10-18），用于情节、出版信息、奖项，以及 Michaels 与 Rorty 评论的概括；Shmoop 的 Snow Crash 第 28 章摘要，用于 nam-shub 泥板一段的细节，但该站的章号是它自编的，不能当原书结构；Michaels 的《The Shape of the Signifier》（2004）与 Rorty 的《Achieving Our Country》（1998），本报告只经二手转述引用，未核到原文页码。<span class="tag t-rep">转述</span></p>
+  <p>本报告所有英文书名按原版拼写，中文书名按通行译名；同一本书的不同译本不另列。凡标「未核到」的项目，都在附录 D 里单独列出，不用模糊措辞遮掩。</p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <ol>
+    <li>Michaels 讨论《雪崩》的具体页码：未核到。本报告只写论点，不写页码。
+    </li>
+    <li>Rorty 在《Achieving Our Country》里的原话与页码：未核到；现有表述经 Michaels 转述，可能失真。
+    </li>
+    <li>Rife 之死的执行者：英文维基只说「在试图乘私人飞机逃离机场时被杀」，另一梗概说是 Ng 驾机撞毁；本报告不采用后者。
+    </li>
+    <li>Uncle Enzo 与 Raven 的胜负细节：维基说「打成平手，两人均重伤」，另一梗概说 Enzo 重伤 Raven；本报告只写「两败俱伤」。
+    </li>
+    <li>「The Dentist」这个反制程序的名字：只在一个二手梗概见到，未确认。
+    </li>
+    <li>Y.T. 最后是否正式加入黑手党：只在一个梗概见到，维基未提。
+    </li>
+    <li>繁体版《溃雪》把 metaverse 译成什么：未核到；本报告不比较两岸译名。
+    </li>
+    <li>2018 年简体修订版改了哪些地方：未核到修订清单；只报版次与 ISBN。
+    </li>
+    <li>Y.T. 的准确年龄：未核到原文；本报告只写「少女」。
+    </li>
+    <li>nam-shub 在亚述学中的准确义项：未核到权威辞书；只写「一类咒文／咒语」。
+    </li>
+    <li>书名来自 Mac 崩溃雪花屏这一说法：斯蒂芬森 1999 年文章〈In the Beginning... Was the Command Line〉有说明，但我未取得该文全文，只有二手引述，未逐字核。
+    </li>
+    <li>斯蒂芬森谈朱利安·杰恩斯的原始访谈：未找到；本报告只写「思想来源」，不写「作者原话」。
+    </li>
+    <li>480 页是精装还是平装口径：未核到；ISBN 对应首版精装，页数可能随版本变化。
+    </li>
+    <li>1993 年 BSFA 提名的具体类别：未核到；只写「提名」。
+    </li>
+    <li>Hiro 的族裔、家庭与早年经历：各梗概互相矛盾，本报告不写。
+    </li>
+    <li>Shmoop 的「第 28 章」：是该站自编章号，不是原书结构；原书没有编号章节。<span class="tag t-src">原书</span>
+    </li>
+    <li>木筏中心船只的型号与吨位：未核到；本报告只写「一艘大船」，不写船名。
+    </li>
+    <li>Rife 的教会与真实电视布道之间的关系：书中明显是讽刺映射，但具体原型未核到；本报告不点名任何现实教会。
+    </li>
+    <li>Hiro 在木筏上停留的时长：书中没有明确计时，各梗概也不一致；本报告不写具体天数，只按事件顺序叙述。
+    </li>
+    <li>结尾演唱会的确切地点与规模：各梗概只写「黑太阳」与「全球黑客」，细节不一；本报告不写人数与曲目。
+    </li>
+    <li>原书是否有编号：Google Books 的 2003 年版目录列出「Section 1」到「Section 32」，但这是该版排版的分节编号，还是原书结构，我未能核对 1992 首版；本报告因此不写章数，只说明「板块」是本报告的组织方式。
+    </li>
+  </ol>
+</section>
+
+<footer>
+  生成于 2026-10-18 · 来源清单与交叉验证记录见同目录 <code>雪崩-来源清单.md</code><br>
+  本页引文按<b>C 级（无合法全文）</b>处理：情节全部为二手转述，唯一的英文直引来自作者官网并经逐字节比对；书目与结构事实标 【原书】。请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>
