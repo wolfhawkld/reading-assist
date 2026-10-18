@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《海底两万里》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《海底两万里》<small>阅读指引与精华解析 · 2026-10-18</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 全书骨架</a>
+    <a href="#s2">2 核心主题与结构机制</a>
+    <a href="#s3">3 阅读建议</a>
+    <a href="#s4">4 中文译本怎么选</a>
+    <a href="#s5"> 4b 流行说法 vs 原文</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 逐部深挖</div>
+    <a href="#s7">6 全书骨架与叙事机制：两卷四十七章与「航程即目录」</a>
+    <a href="#s8">7 第一程：追猎海上怪物（第 1–7 章）</a>
+    <a href="#s9">8 第二程：鹦鹉螺号与它的主人（第 8–13 章）</a>
+    <a href="#s10">9 第三程：太平洋、瓦尼科罗与托雷斯海峡（第 14–21 章）</a>
+    <a href="#s11">10 第四程：印度洋、红海与阿拉伯隧道（第 22–29 章）</a>
+    <a href="#s12">11 第五程：地中海、维哥湾与消失的大陆（第 30–35 章）</a>
+    <a href="#s13">12 第六程：南极（第 36–40 章）</a>
+    <a href="#s14">13 第七程：从合恩角到大漩涡（第 41–47 章）</a>
+    <a href="#s15">14 主题与思想史：殖民、复仇与「科学家在船上」</a>
+    <a href="#s16">15 版本、译本与接受史</a>
+    <div class="grp">附录</div>
+    <a href="#s17">A 关键概念与人物速查</a>
+    <a href="#s18">B 延伸阅读</a>
+    <a href="#s19">C 来源清单</a>
+    <a href="#s20">D 待核实项</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《海底两万里》阅读指引与精华解析</h1>
+  <div class="sub">Vingt mille lieues sous les mers</div>
+  <div class="meta">
+    <div><b>作者</b>Jules Verne（儒勒·凡尔纳，1828–1905），法国小说家；本书是「奇异旅行」系列的代表作之一</div>
+    <div><b>原题</b>Vingt mille lieues sous les mers（字面：海下两万里格）；★ 中文通译「两万里」漏掉了单位 lieue（里格，约 4 公里），原文说的是<b>航行距离约八万公里</b>，不是深度</div>
+    <div><b>初版</b>1869-03-20 至 1870-06-20 在《教育与娱乐杂志》连载；Hetzel 出两卷本。★ 单行本首版时间与印次有异说，见附录 D1</div>
+    <div><b>篇幅</b>法文两卷共 <b>47 章</b>（卷一 24 章、卷二 23 章）；本报告法文主底本实测 143,341 词</div>
+    <div><b>底本</b>法文主底本 PG #54873（Distributed Proofreaders 制作）；交叉底本 PG #5097；英译 Walter 1991（PG #2488，足本 147,036 词）与 Mercier 1873（PG #164，107,726 词，PG 未标译者，本报告内部判定）</div>
+    <div><b>核验级别</b>整体 <b>A</b>（法文原著全文可逐字核验）；英译 Walter A、Mercier B；中译与书目 <b>C</b>（无合法全文可核）</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度说明（本书专用三档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> ★ 凡情节、章题、数字、船体参数与法文引文，均以法文主底本 <code>pg54873.txt</code> 为准，并逐条用脚本核对<b>逐字节命中</b>。★ 英文引文另注明来自 Walter 1991 还是 Mercier 1873，<b>不许跨版本拼接</b>。★ 中译不予本档</li>
+    <li><span class="tag t-rep">转述</span> 书目、传记、初版印数、中译情况、研究文献的概述，以及一切本报告<b>未直接核到原文</b>的说法。★ 凡「据研究文献转述」「通行说法」均属本档，不给页码</li>
+    <li><span class="tag t-inf">推断</span> 本报告自己的结构分析、科学估算（船体尺寸与吨位的自洽性、洋流与地理）、译本批评与读法建议。★ 写法如「本报告认为」「本报告提醒」</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    ★ 三档辖区不许互相借用：<b>【原书】只覆盖法文主底本里能逐字节命中的内容</b>，凡「中译本作……」「据传记说……」一律降为【转述】；★ <b>【推断】不承担事实</b>，它只说明本报告怎么判断，读者可以不同意。★ 本书<b>不设「作者谈话」档</b>——凡尔纳的书信与访谈汇编本均在版权期内，Project Gutenberg 的凡尔纳作者页实测 25 个条目全部是小说，没有一部非虚构、访谈或书信，按项目纪律（该档必须有可逐处核对的一手原文）不设。
+  </p>
+  <h3>为什么本书能做到 A 级</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书 1869–1870 年出版，法文原著早已进入公有领域，Project Gutenberg 提供两个独立校对本（#54873 与 #5097）。本报告以 #54873 为主底本逐条核对引文，用 #5097 只做异文比对。★ <b>这与「手边有一本纸书」不同</b>：能核对的是<b>这一份电子文本</b>，PG 转录本身可能有错，凡与纸书不符处，以纸书为准；本报告未核对纸书。★ 两版英译的词数差 <b>26.7%</b>（107,726 对 147,036），这就是「读的是哪一本」的实际差距。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p>《海底两万里》是一部把<strong>旅行指南、工程手册、博物学目录和复仇悲剧</strong>缝在一起的小说。它最像的不是现代科幻，而是 19 世纪的「世界博览会展厅」：每一章换一个展柜，展柜与展柜之间用一条潜水艇的航线串起来。</p>
+  <p>如果只记一句话：<strong>这本书真正的主角不是尼摩，是海；人只是被海允许通过的一段时间。</strong></p>
+  <p>★ 但请同时记住四件事，本报告全篇都会回头处理：</p>
+  <ul>
+    <li><strong>第一，它不是「潜艇预言」。</strong> 书里的技术一半对、一半错，错的地方恰好暴露了 1860 年代的能源与材料边界。把它当预言清单读，会错过它作为「当代技术小说」的价值。<span class="tag t-inf">推断</span>
+    </li>
+    <li><strong>第二，尼摩的身份在本书里是空的。</strong> 他没有姓名，没有国籍，船上不挂可辨认的旗。任何「他是印度达卡王子」的说法，都要等到《神秘岛》才被补全，<strong>不是本书的明文</strong>。<span class="tag t-src">原书</span> 第 46 章〈LES DERNIÈRES PAROLES DU CAPITAINE NEMO〉里，叙述者仍在问「Saurai-je enfin le nom de cet homme?」（我终究会知道这个人的名字吗？）
+    </li>
+    <li><strong>第三，三个人不是功能符号。</strong> 阿罗纳克斯想留下做研究，孔塞伊只关心分类与「先生」，内德·兰德只想走。三种立场互相拆台，才是本书真正的戏剧引擎。
+    </li>
+    <li><strong>第四，政治层不能删，也不能放大。</strong> 1869 年的法国、殖民航海、尼摩对「陆地」的敌意、对军舰的屠杀，都在文本里。但把他直接读成「反殖民斗士」，是《神秘岛》之后的读法，不是本书内的读法。<span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>全书骨架</span><span class="caret">▾</span></h2>
+  <p>★ 计数口径：<strong>只数正文章，不含卷末目录</strong>。法文原著两卷共 <strong>47 章</strong>：卷一 24 章，卷二 23 章（卷二在书内重新从「第一章」编号，全书连续编号时是第 25–47 章）。<span class="tag t-src">原书</span></p>
+  <table>
+    <thead><tr><th>段</th><th>章</th><th>一句话</th><th>读它看什么</th></tr></thead>
+    <tbody>
+      <tr><td>一</td><td>1–7</td><td>海上出现「怪物」，<code>Abraham Lincoln</code> 号远征，三人落水</td><td>传闻如何变成国家议题；内德·兰德的第一次登场</td></tr>
+      <tr><td>二</td><td>8–13</td><td>被关进 <code>Nautilus</code>，见尼摩，参观船体、电力与数字</td><td>封闭空间的规矩；「无限动力」的话术</td></tr>
+      <tr><td>三</td><td>14–21</td><td>太平洋、瓦尼科罗沉船、托雷斯海峡、岸上几日</td><td>博物学清单；殖民目光；一次「搁浅」如何收场</td></tr>
+      <tr><td>四</td><td>22–29</td><td>电击退敌、珊瑚墓地、印度洋采珠、红海与阿拉伯隧道</td><td>尼摩的温柔与冷酷并置；地理魔术</td></tr>
+      <tr><td>五</td><td>30–35</td><td>希腊群岛、四十八小时过地中海、维哥湾沉宝、消失的大陆</td><td>政治行动；亚特兰蒂斯的幻景</td></tr>
+      <tr><td>六</td><td>36–40</td><td>抹香鲸与长须鲸、冰障、南极点、缺氧</td><td>屠杀、极地地理、密闭空间的物理学</td></tr>
+      <tr><td>七</td><td>41–47</td><td>合恩角、章鱼、墨西哥湾流、复仇、大漩涡、结论</td><td>叙述者的共谋；开放式收尾</td></tr>
+    </tbody>
+  </table>
+  <p><strong>四十七章目录（法文章题逐字抄自 <code>pg54873.txt</code>，中译为本报告所加）</strong></p>
+  <table>
+    <thead><tr><th>章</th><th>法文章题</th><th>中译</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>UN ÉCUEIL FUYANT</td><td>逃逸的暗礁</td></tr>
+      <tr><td>2</td><td>LE POUR ET LE CONTRE</td><td>赞成与反对</td></tr>
+      <tr><td>3</td><td>COMME IL PLAIRA A MONSIEUR</td><td>随先生之意</td></tr>
+      <tr><td>4</td><td>NED LAND</td><td>内德·兰德</td></tr>
+      <tr><td>5</td><td>A L'AVENTURE!</td><td>去冒险！</td></tr>
+      <tr><td>6</td><td>A TOUTE VAPEUR</td><td>全速前进</td></tr>
+      <tr><td>7</td><td>UNE BALEINE D'ESPÈCE INCONNUE</td><td>一种未知的鲸</td></tr>
+      <tr><td>8</td><td>MOBILIS IN MOBILE</td><td>动中之动</td></tr>
+      <tr><td>9</td><td>LES COLÈRES DE NED LAND</td><td>内德·兰德的怒火</td></tr>
+      <tr><td>10</td><td>L'HOMME DES EAUX</td><td>水中人</td></tr>
+      <tr><td>11</td><td>LE <em>NAUTILUS</em></td><td>鹦鹉螺号</td></tr>
+      <tr><td>12</td><td>TOUT PAR L'ÉLECTRICITÉ</td><td>一切靠电</td></tr>
+      <tr><td>13</td><td>QUELQUES CHIFFRES</td><td>几个数字</td></tr>
+      <tr><td>14</td><td>LE FLEUVE NOIR</td><td>黑流</td></tr>
+      <tr><td>15</td><td>UNE INVITATION PAR LETTRE</td><td>一封邀请信</td></tr>
+      <tr><td>16</td><td>PROMENADE EN PLAINE</td><td>平原漫步</td></tr>
+      <tr><td>17</td><td>UNE FORÊT SOUS-MARINE</td><td>海底森林</td></tr>
+      <tr><td>18</td><td>QUATRE MILLE LIEUES SOUS LE PACIFIQUE</td><td>太平洋下四千里</td></tr>
+      <tr><td>19</td><td>VANIKORO</td><td>瓦尼科罗</td></tr>
+      <tr><td>20</td><td>LE DÉTROIT DE TORRÈS</td><td>托雷斯海峡</td></tr>
+      <tr><td>21</td><td>QUELQUES JOURS A TERRE</td><td>陆上几日</td></tr>
+      <tr><td>22</td><td>LA FOUDRE DU CAPITAINE NEMO</td><td>尼摩船长的雷电</td></tr>
+      <tr><td>23</td><td>ÆGRI SOMNIA</td><td>病中梦魇</td></tr>
+      <tr><td>24</td><td>LE ROYAUME DU CORAIL</td><td>珊瑚王国</td></tr>
+      <tr><td>25</td><td>L'OCÉAN INDIEN</td><td>印度洋</td></tr>
+      <tr><td>26</td><td>UNE NOUVELLE PROPOSITION DU CAPITAINE NEMO</td><td>尼摩船长的新提议</td></tr>
+      <tr><td>27</td><td>UNE PERLE DE DIX MILLIONS</td><td>价值千万的珍珠</td></tr>
+      <tr><td>28</td><td>LA MER ROUGE</td><td>红海</td></tr>
+      <tr><td>29</td><td>ARABIAN-TUNNEL</td><td>阿拉伯隧道</td></tr>
+      <tr><td>30</td><td>L'ARCHIPEL GREC</td><td>希腊群岛</td></tr>
+      <tr><td>31</td><td>LA MÉDITERRANÉE EN QUARANTE-HUIT HEURES</td><td>四十八小时穿越地中海</td></tr>
+      <tr><td>32</td><td>LA BAIE DE VIGO</td><td>维哥湾</td></tr>
+      <tr><td>33</td><td>UN CONTINENT DISPARU</td><td>消失的大陆</td></tr>
+      <tr><td>34</td><td>LES HOUILLÈRES SOUS-MARINES</td><td>海底煤矿</td></tr>
+      <tr><td>35</td><td>LA MER DE SARGASSES</td><td>马尾藻海</td></tr>
+      <tr><td>36</td><td>CACHALOTS ET BALEINES</td><td>抹香鲸与长须鲸</td></tr>
+      <tr><td>37</td><td>LA BANQUISE</td><td>冰障</td></tr>
+      <tr><td>38</td><td>LE POLE SUD</td><td>南极</td></tr>
+      <tr><td>39</td><td>ACCIDENT OU INCIDENT?</td><td>事故还是事件？</td></tr>
+      <tr><td>40</td><td>FAUTE D'AIR</td><td>缺氧</td></tr>
+      <tr><td>41</td><td>DU CAP HORN A L'AMAZONE</td><td>从合恩角到亚马逊</td></tr>
+      <tr><td>42</td><td>LES POULPES</td><td>章鱼</td></tr>
+      <tr><td>43</td><td>LE GULF-STREAM</td><td>墨西哥湾流</td></tr>
+      <tr><td>44</td><td>PAR 47° 24′ DE LATITUDE ET 17° 28′ DE LONGITUDE</td><td>北纬 47°24′，西经 17°28′</td></tr>
+      <tr><td>45</td><td>UNE HÉCATOMBE</td><td>一场大屠杀</td></tr>
+      <tr><td>46</td><td>LES DERNIÈRES PAROLES DU CAPITAINE NEMO</td><td>尼摩船长的最后遗言</td></tr>
+      <tr><td>47</td><td>CONCLUSION</td><td>结论</td></tr>
+    </tbody>
+  </table>
+  <p>★ 这张表本身就是小说的结构：章题几乎全是<strong>地名或器物</strong>，只有一个「结论」。凡尔纳不靠因果推进，靠位移推进——船到哪里，章就到哪里。<span class="tag t-inf">推断</span> 这也是为什么它读起来像航海日志，而不像三幕剧。</p>
+  <p>★ 还有一处容易忽略的文本事实：第 8 章的章题是 <code>MOBILIS IN MOBILE</code>（法语化的拼法），但船内餐具上的铭文是 <code>MOBILIS IN MOBILI</code>（正确的拉丁语形式）。 同一句格言在同一本书里出现了两个拼法，紧接其下的法译是「Mobile dans l'élément mobile!」（动中之动！）。<span class="tag t-src">原书</span> 这不是印刷错误，而是章题与铭文的体例差异——章题用法语，铭文用拉丁语。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>核心主题与结构机制</span><span class="caret">▾</span></h2>
+  <p>这本书的主题常被压成两个词：<strong>探险</strong>与<strong>海洋</strong>。这两个词都不错，但都不够，因为它们解释不了：为什么一本冒险小说要用整整一章讲电阻、再用一整章讲船体吨位。本报告认为，它的结构机制有六条。</p>
+  <p><strong>（一）航程即目录。</strong> 全书没有一条贯穿始终的冲突线，只有一条航线。<span class="tag t-inf">推断</span> 每一次危机（搁浅、缺氧、章鱼、军舰）都在几章内解决，真正承接下来的是「下一个地点」。这让它更像一部「空间小说」：读者记住的是海区，不是事件。</p>
+  <p>把 47 个章题按顺序念一遍，就是一条完整的航线：第 1 章还在大西洋的传闻里，第 14 章进入「黑流」，第 20 章到托雷斯海峡，第 28 章进红海，第 31 章穿过地中海，第 38 章到南极，第 47 章在挪威外海结束。章节顺序与地理顺序基本重合，没有倒叙，也没有平行的第二条线索。 于是读者在不知不觉中做了一件事：<strong>把目录当地图用</strong>。跳过几章的人不会觉得「情节接不上」，只会觉得「船忽然到了另一个海」。 这也是本书各种缩写本总能成立的深层原因——删掉几站，航线仍然通；但删得越多，「绕地球两圈」的尺度感就越弱，最后只剩下一串奇观。<span class="tag t-inf">推断</span></p>
+  <p><strong>（二）三重视角，互相拆台。</strong> 阿罗纳克斯是<strong>观看者</strong>，他的职业是把一切命名、分类、记录；尼摩是<strong>展示者</strong>，他控制可见与不可见；内德·兰德是<strong>身体</strong>，他关心的是能不能走、有没有肉吃。<span class="tag t-inf">推断</span> 三个人的目标从第 8 章起就不一致，凡尔纳用他们的争吵替代了传统的情节推进。</p>
+  <p><strong>（三）知识的展示，同时是知识的暴力。</strong> 书里每一次「讲解」都伴随着一次捕获、一次解剖、一次射击。<span class="tag t-src">原书</span> 第 27 章〈UNE PERLE DE DIX MILLIONS〉里，尼摩救下被鲨鱼袭击的采珠人，又留下一袋珍珠；同一章里，他也用匕首刺穿鲨鱼。<span class="tag t-inf">推断</span> 博物学的目光把生命变成标本，尼摩的慈悲只对个别生命生效——这是本书最不安的地方，也是它最诚实的地方。</p>
+  <p><strong>（四）封闭系统其实不封闭。</strong> <code>Nautilus</code> 号称自给自足，但它的电来自钠，钠来自煤，煤来自海底矿井；它的人来自陆地，它的暴力也来自陆地。 第 12 章尼摩自己说「j'emploie tout simplement la chaleur du charbon de terre」（我只不过用地上煤的热量），阿罗纳克斯立刻追问「De terre?」（地上的？），尼摩改口「Disons le charbon de mer」（就叫它海煤吧）。<span class="tag t-src">原书</span> 这段对话是全书最关键的自我拆台：所谓「与陆地断绝」，只是把矿井搬到了水下。<span class="tag t-inf">推断</span></p>
+  <p><strong>（五）留白是结构，不是漏洞。</strong> 尼摩的姓名、国籍、过去，全书都没有正面交代。<span class="tag t-src">原书</span> 第 45 章他只在狂怒中说出「patrie, femme, enfants, mon père, ma mère, j'ai vu tout périr!」（祖国、妻子、孩子、我的父亲、我的母亲，我眼看着一切毁灭！）。<span class="tag t-inf">推断</span> 这不是凡尔纳忘了写，而是把「他是谁」换成了「他为什么恨」。读者被迫在没有答案的情况下判断他的行为——这正是本书的道德重量所在。</p>
+  <p><strong>（六）悬念的三次转换。</strong> 第一次转换在第 7 到第 11 章：海上的「东西」究竟是什么。答案分两步给出——先是一块「漂着的铁板」，再是一间有图书室与陈列室的客厅；怪物原来是一艘船。 第 7、11 章。<span class="tag t-src">原书</span> 第二次转换从第 8 章延续到第 45 章：这艘船是谁的，他想做什么。答案不是身份，而是一次不加辩护的冲撞。<span class="tag t-inf">推断</span> 第三次转换发生在第 47 章：尼摩究竟是谁。本书拒绝回答，只用一句「Saurai-je enfin le nom de cet homme?」（我终究会知道这个人的名字吗？）把问题留在半空。 第 47 章。<span class="tag t-src">原书</span></p>
+  <p>这三次转换的解决方式各不相同：第一次用<strong>揭晓</strong>，第二次用<strong>行动</strong>，第三次用<strong>拒绝</strong>。 通俗冒险小说通常只做第一次，做完就收尾；凡尔纳做了三次，而且一次比一次更不肯给答案。 这也是为什么它常被当成「少年读物」又被成年人读出寒意——少年读到的是第一次转换，成年人卡在第三次。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>阅读建议</span><span class="caret">▾</span></h2>
+  <p><strong>第一，先接受它的「慢」。</strong> 前 13 章有一半是说明书：船体、电力、吨位、航速。<span class="tag t-inf">推断</span> 这不是败笔，是体例。19 世纪的「科学旅行」写作本来就把「可信」放在「好看」前面。读不下去时，可以先跳到第 14 章，回头再补。</p>
+  <p><strong>第二，拿一张世界地图。</strong> 书里的经纬度大多是可核的，航线和地名也是真实的（瓦尼科罗、托雷斯海峡、维哥湾、马尾藻海）。<span class="tag t-src">原书</span> 第 44 章的章题直接就是坐标：<code>PAR 47° 24′ DE LATITUDE ET 17° 28′ DE LONGITUDE</code>。<span class="tag t-inf">推断</span> 对着地图读，能看见凡尔纳真正的野心：他要让虚构的航线贴着真实的海图走。</p>
+  <p><strong>第三，把三个人当三种立场，不要当三个角色。</strong> 阿罗纳克斯代表「知识值得付出一切」，孔塞伊代表「秩序让人安心」，内德·兰德代表「自由比知识重要」。<span class="tag t-inf">推断</span> 每到一处新海区，注意他们三个人各自想做什么——分歧比事件更能说明这本书。</p>
+  <p><strong>第四，留意日期与数字，它们是伏笔，也是破绽。</strong> 全书的时间线从 1867 年 11 月 8 日写到次年 6 月 2 日，但结论章却说「en moins de dix mois」（不到十个月）。<span class="tag t-src">原书</span> 这是一处真实的自相矛盾，详见 §6 与附录 D8。<span class="tag t-inf">推断</span></p>
+  <p><strong>第五，分类学清单不必逐字读，但要读两页。</strong> 那些拉丁学名是 19 世纪博物学写作的常规体例，也是本书最常被删节的部分。<span class="tag t-rep">转述</span> 读两页，感受「把海拆成名录」的冲动，就够了；剩下的可以跳。</p>
+  <p><strong>第六，第 45 章之后不要停。</strong> 全书最暴烈的一场戏在第 45 章，最重要的判断在第 47 章。<span class="tag t-inf">推断</span> 很多人读到章鱼就以为故事结束了，其实真正的结尾是叙述者在挪威渔屋里写下的一串问句。</p>
+  <p><strong>第七，技术说明段分三类处理，不要一律跳。</strong> ① <strong>可以跳</strong>：第 13 章〈QUELQUES CHIFFRES〉那组船体参数——它自己就前后矛盾，读结论即可（详见 §8）。<span class="tag t-inf">推断</span> ② <strong>别跳</strong>：第 16 章的潜水服、第 22 章的通电船壳、第 27 章的采珠作业、第 34 章的海底煤矿——这几处写的是 1860 年代真实存在的装置与工艺，跳过去就看不见「凡尔纳究竟从现实里拿了什么」。 第 16、22、27、34 章。<span class="tag t-src">原书</span> ③ <strong>读两页就够</strong>：第 18 章的分类学清单，它是体例，不是情节。<span class="tag t-inf">推断</span></p>
+  <p><strong>第八，三种读法可以并行，但不要混着用。</strong> <strong>少年读法</strong>只看航线与危机：船到了哪里、这次怎么脱险，够了。<strong>成年读法</strong>看政治：尼摩对「陆地」的敌意、文本对岛民与采珠人的称呼、第 45 章那场不加辩护的冲撞。<span class="tag t-inf">推断</span> <strong>研究者读法</strong>看科学史：哪些参数来自 <code>Plongeur</code>（1863）与当时的工业目录，哪些是算错或想当然的。<span class="tag t-rep">转述</span> 三种读法各有各的盲区——只看冒险会漏掉暴力，只看政治会漏掉工程，只看科学史会漏掉它首先是一部小说。<span class="tag t-inf">推断</span></p>
+  <p><strong>第九，地图要查，但要知道查什么。</strong> 书里的经纬度大多可核，地名却常是旧称：<code>Sandwich</code> 是当时的夏威夷，<code>Malouines</code> 是福克兰群岛，<code>Loffoden</code> 是罗弗敦。 第 5、46 章。 洋流名也有时代痕迹：<code>LE FLEUVE NOIR</code>（黑流）就是墨西哥湾流的一段。 第 14 章。<span class="tag t-src">原书</span> 建议对照一张现代海图读，遇到旧名就查一次——这一查，正好能看见 1869 年的世界地图与今天的差多少。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>中文译本怎么选</span><span class="caret">▾</span></h2>
+  <p>★ 本节全部标 <span class="tag t-rep">转述</span>：本报告<strong>没有取得任何中文译本的合法全文</strong>，以下只据公开书目与研究文献的通行说法，未逐册核对版权页。</p>
+  <ul>
+    <li><strong>先分清「全译」与「改写」。</strong> 市面上大量《海底两万里》是少儿改写本，删掉分类学段落、技术章节，甚至把 47 章压成十几个故事。 判断方法很笨但有效：看目录有没有 47 章，看第 13 章〈QUELQUES CHIFFRES〉还在不在。
+    </li>
+    <li><strong>曾觉之译本</strong>是中文世界影响最大的一种，首版年份有 <strong>1947</strong> 与 <strong>1961</strong> 两说（见附录 D7）。 本报告未核到初版版权页，不作年份判定。
+    </li>
+    <li><strong>赵克非、沈国华等、杨松河、陈筱卿</strong>等译本在 1990 年代以后流传较广，出版社与年份本报告未逐一核对。
+    </li>
+    <li><strong>看「里格」怎么处理。</strong> 法文 <code>lieue</code> 约合 4 公里，20,000 里格约 80,000 公里。<span class="tag t-rep">转述</span> 如果译本把书名译成「两万里」又在正文里把 <code>lieue</code> 当作「里」，单位就乱了；好的译本会在脚注里说明「里格」与中文「里」不是一回事。
+    </li>
+    <li><strong>看有没有脚注。</strong> 本书的难点不是生词，是名物：船具、鱼名、地名、历史事件。<span class="tag t-inf">推断</span> 有脚注的译本，阅读成本会低一半。
+    </li>
+  </ul>
+  <p>★ <strong>本报告不给译本排名。</strong> 理由很简单：没有逐册对勘，排名就是猜。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 流行说法 vs 原文</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>流行说法</th><th>原文/事实</th><th>档位</th></tr></thead>
+    <tbody>
+      <tr><td>「两万里」指海底深度</td><td>法文 <code>lieue</code> 是里格，约 4 公里；20,000 里格约 80,000 公里，接近绕地球两圈。它说的是<strong>航程</strong>，不是深度。结论章自述「j'ai franchi vingt mille lieues」（我走过了两万里格）</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>尼摩是印度达卡王子</td><td>本书没有这句话，也没有他的姓名与国籍；完整身世在《神秘岛》才揭开</td><td><span class="tag t-rep">转述</span></td></tr>
+      <tr><td>凡尔纳预言了现代潜艇</td><td>他参考的是 1860 年代的真实技术，书中大量参数是错的；「预言」是后世追认</td><td><span class="tag t-inf">推断</span></td></tr>
+      <tr><td>鹦鹉螺号是核潜艇</td><td>它的动力是钠电池加海底煤，不是核能；「无限动力」是尼摩的话术</td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>这是一本儿童读物</td><td>初版确实进入 Hetzel 的教育丛书，但文本里有殖民暴力、集体屠杀与复仇</td><td><span class="tag t-inf">推断</span></td></tr>
+      <tr><td>Mercier 英译是标准足本</td><td>Mercier 只有 46 章，比原著少一章，词数少约四分之一</td><td><span class="tag t-inf">推断</span></td></tr>
+      <tr><td>阿罗纳克斯就是凡尔纳本人</td><td>叙述者借用了作者的专业知识，但他是虚构人物，且判断经常被尼摩带着走</td><td><span class="tag t-inf">推断</span></td></tr>
+      <tr><td>「凡尔纳预言了核潜艇」</td><td>核动力潜艇是 20 世纪的事；本书的动力是钠电池加海底煤，第 12 章尼摩自己说 <code>j'emploie tout simplement la chaleur du charbon de terre</code>。被「预言」的不是技术路径，而是「潜艇可以长期自持、不必浮出水面」这个愿望——<strong>愿望是准确的，方案不是</strong></td><td><span class="tag t-src">原书</span></td></tr>
+      <tr><td>「尼摩是反殖民英雄」</td><td>本书没有「殖民」这个词，也没有指明敌人是哪个帝国；第 45 章他撞沉的只是一艘 <code>vaisseau de guerre</code>。反殖民读法的主要依据是《神秘岛》补出的印度王子身份，<strong>那是另一本书的证据</strong>，不能倒灌进本书</td><td><span class="tag t-rep">转述</span></td></tr>
+      <tr><td>「书里的海洋生物都是真实尺寸」</td><td>第 6 章阿罗纳克斯估计那头「鲸」长「deux cents cinquante pieds」（两百五十英尺），第 42 章的章鱼能缠死螺旋桨，都经过放大。凡尔纳的分类阶元写得一丝不苟，尺寸与行为却服从戏剧需要</td><td><span class="tag t-src">原书</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p><strong>（一）科学错误不是零星，是成体系。</strong> <span class="tag t-src">原书</span> 第 13 章给出 <code>Nautilus</code> 长 70 米、宽 8 米、排水量 1,500.2 立方米；按圆柱体估算，70 米长、8 米直径的体量应在 3,500 立方米左右，与 1,500 立方米差了一倍多。<span class="tag t-inf">推断</span> 这不是抄错一个数字，而是「先定吨位、再补尺寸」的写作顺序留下的痕迹。详见 §8。</p>
+  <p><strong>（二）叙事在中段松散。</strong> 第 14 到第 35 章，冲突强度长期偏低，很多章靠「又看见一种鱼」收尾。<span class="tag t-inf">推断</span> 这是连载写作的节奏：每期要给读者一个完整的「节目」，而不是一个悬念。</p>
+  <p><strong>（三）殖民目光是文本的一部分，不是可以替它辩护的细节。</strong> <span class="tag t-src">原书</span> 第 21、22 章把岛民写作「sauvages」「cannibales」「Papouas」，并让孔塞伊用分类学式的冷幽默谈论他们。<span class="tag t-inf">推断</span> 今天读，这一层必须被指出来，而不是用「时代局限」四个字抹平。</p>
+  <p><strong>（四）女性几乎不在场。</strong> 全书唯一被提到的女性是尼摩口中「femme, enfants」（妻子、孩子），而且是以「被毁灭」的方式出现。<span class="tag t-src">原书</span> 这不是疏漏，是 19 世纪海洋冒险小说的典型结构：船是男人的世界。<span class="tag t-inf">推断</span></p>
+  <p><strong>（五）「预言」的神话遮蔽了文本。</strong> 把凡尔纳读成「先知」，会让他书中那些<strong>算错</strong>的地方变得不可见；而正是这些错误，记录了 1869 年的人如何想象技术的边界。<span class="tag t-inf">推断</span></p>
+  <p><strong>（六）Hetzel 的删改：今天读到的凡尔纳，是编辑之后的凡尔纳。</strong> 凡尔纳的出版人 Pierre-Jules Hetzel 对连载稿做过系统性干预：删削部分科学说明、削弱政治批评、把结局改得更适合「教育丛书」的读者。 据研究文献转述，本报告未取得一手材料，也没有对照过手稿与刊本。 学界对这件事的性质长期有争论：一种意见认为 Hetzel 把凡尔纳「驯化」成了青少年教育作家；另一种意见认为删改多为技术性润色，凡尔纳本人也深度参与，不能简单说成「被压制」。<span class="tag t-rep">转述</span> 本报告不站队，只提示一点：<strong>凡以「凡尔纳原本想写……」立论的说法，都需要手稿证据</strong>；没有手稿，就只能说「刊本如此」。 这也是本报告全篇只用 <code>pg54873.txt</code> 的刊本、不替作者补写「原意」的原因。<span class="tag t-inf">推断</span></p>
+  <p><strong>（七）科学错误清单（速览）。</strong> 船体尺寸与排水量差一倍多（第 13 章）；5 厘米钢壳撑不住 1,000 米水压（第 13 章）；50 英里/小时的水下航速需要数十兆瓦，1860 年代的电源做不到（第 13 章）；红海—地中海隧道在地质上不存在（第 29 章）；南极被写成有「mer libre」（自由海）（第 38 章）；冰下缺氧只写氧、不写二氧化碳积聚（第 40 章）。 这些不是零散的疏忽，而是「先要奇观、再补参数」的写法必然留下的痕迹。<span class="tag t-inf">推断</span> ★ 反过来说，书里也有<strong>算对</strong>的地方：潜水服取自 <code>Rouquayrol-Denayrouze</code> 的真实装置，海底煤矿的能量链虽然绕，但逻辑是通的，章鱼有三颗心也是对的。<span class="tag t-rep">转述</span> 把「对」与「错」分开列，比笼统地说「凡尔纳很科学」或「凡尔纳全是胡说」都更接近事实。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>全书骨架与叙事机制：两卷四十七章与「航程即目录」</span><span class="caret">▾</span></h2>
+  <p>法文原著分两卷，卷一 24 章，止于珊瑚墓地；卷二 23 章，开头一句是「Ici commence la seconde partie de ce voyage sous les mers.」（海底旅行的第二部从这里开始。） 第 25 章〈L'OCÉAN INDIEN〉开篇。<span class="tag t-src">原书</span></p>
+  <p>这个分卷不只是装订需要。<span class="tag t-inf">推断</span> 卷一的关键词是「进入」：进入船体、进入海底、进入尼摩的规矩；卷二的关键词是「重复与升级」：同样的展示、同样的危机，但一次比一次更接近暴力。第 24 章〈LE ROYAUME DU CORAIL〉把一个人埋进珊瑚里，是卷一最安静的结尾，也是全书第一次让读者看见尼摩的「温柔」。<span class="tag t-src">原书</span></p>
+  <p>四十七章每章大约两三千词，独立成篇，章末常有一个小钩子或一句总结。<span class="tag t-inf">推断</span> 这是连载体的痕迹：读者每期拿到一个完整的「节目」，而不是一个未解的悬念。</p>
+  <p><strong>时间线</strong>：正文日期从 1867 年 11 月 8 日（第 14 章「C'est aujourd'hui 8 novembre, à midi, que commence notre voyage」）写到次年 6 月 2 日（第 45 章）。 但第 47 章〈CONCLUSION〉说「en moins de dix mois, j'ai franchi vingt mille lieues」（不到十个月，我走过了两万里格）。<span class="tag t-src">原书</span> 按正文日期算，只有将近七个月。<span class="tag t-inf">推断</span> 这是全书最清楚的一处内部矛盾，附录 D8 会再列一次。</p>
+  <p><strong>四层结构</strong>：这本书其实叠了四层——① 航程（地点）；② 百科（知识）；③ 囚禁（三个人与船长的规矩）；④ 复仇（尼摩的过去与第 45 章）。<span class="tag t-inf">推断</span> 前两层是「展示」，后两层是「戏剧」；凡尔纳的写法是让后两层长期潜水，偶尔浮出水面。</p>
+  <p><strong>叙述者</strong>：阿罗纳克斯是回忆性叙述，写作地点在挪威渔屋：「Me croira-t-on? Je ne sais.」（人们会相信我吗？我不知道。） 第 47 章。<span class="tag t-src">原书</span> 这句自问很重要：它把整本书变成一份「证词」，而不是全知叙事。<span class="tag t-inf">推断</span> 读者因此永远无法确认尼摩的真相——因为叙述者自己也不知道。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>第一程：追猎海上怪物（第 1–7 章）</span><span class="caret">▾</span></h2>
+  <h3>发生了什么</h3>
+  <p>1866 年，多艘船在海上遇到一个「巨大的东西」：长、纺锤形、偶尔发光，比鲸快得多。 第 1 章〈UN ÉCUEIL FUYANT〉。 1867 年 3 月，「Moravian」号撞上它；4 月 13 日，「Scotia」号的船壳被撕开一个裂口，形状是「en forme de triangle isocèle」（等腰三角形）。 第 1 章。 报界、保险公司、各国海军都被卷了进来。<span class="tag t-src">原书</span></p>
+  <p>阿罗纳克斯（Pierre Aronnax）是巴黎自然史博物馆的<strong>代课教授</strong>（<code>professeur-suppléant</code>），刚从内布拉斯加的考察回来，发表了一套「巨型独角鲸」假说：一种长着象牙质长角的鲸，能刺穿船壳。 第 2 章〈LE POUR ET LE CONTRE〉。 他的仆人孔塞伊（Conseil）随行。 美国派护卫舰「Abraham Lincoln」号追捕怪物，船上有一名加拿大鱼叉手内德·兰德（Ned Land）。 第 4 章〈NED LAND〉。<span class="tag t-src">原书</span></p>
+  <p>第 5 章〈A L'AVENTURE!〉把追击写成一场消耗：军舰从合恩角驶入太平洋，搜了三个月一无所获，船上的情绪从狂热翻成羞恼，法拉古特只争取到「再等三天」；内德·兰德始终不信有怪物，反问是不是「nous ne courons pas à l'aventure」（在冒险乱撞）。第 6 章〈A TOUTE VAPEUR〉是这三天的最后一夜与最后一天：目标夜里发光，绕船一圈又突然熄灭，天亮后在左舷后方重新出现；军舰把压力加满，螺旋桨每分钟四十三转、航速十八点五节，仍只能与它持平。 第 5、6 章。<span class="tag t-src">原书</span></p>
+  <p>追了几个月，11 月 5 日夜里，内德·兰德发现怪物，投出鱼叉；怪物撞向战舰，阿罗纳克斯被抛入海中，孔塞伊跳下去救他，两人抓住一块「漂着的铁板」——那是潜艇的甲板。 第 7 章〈UNE BALEINE D'ESPÈCE INCONNUE〉。 他们被拖进船里。<span class="tag t-src">原书</span></p>
+  <h3>关键内容</h3>
+  <p><strong>第一，开篇的「事件化」。</strong> 凡尔纳不先写海，先写<strong>传闻如何变成公共事件</strong>：商人、船东、船长、海军军官、各国政府依次被卷进来。 「L'année 1866 fut marquée par un événement bizarre」（1866 年被一桩怪事打上了标记）。 第 1 章第一句。<span class="tag t-src">原书</span> 这种写法把「怪物」先变成一条新闻，再变成一条航线，读者是被报纸带下海的。<span class="tag t-inf">推断</span></p>
+  <p><strong>第二，「une chose énorme」。</strong> 目击者的描述始终模糊：长、纺锤形、有时发光、比鲸快。 「une chose énorme」（一个巨大的东西）。 第 1 章。<span class="tag t-src">原书</span> 这个模糊是刻意的：它让读者和阿罗纳克斯一样，只能在「鲸」与「船」之间猜。<span class="tag t-inf">推断</span></p>
+  <p><strong>第三，内德·兰德的登场。</strong> 「Ned Land était un Canadien」（内德·兰德是个加拿大人），「plus de six pieds anglais」（超过六英尺高），四十岁上下，手极稳。 第 4 章。 他不是莽夫：他懂鱼、懂船、懂什么时候该动手。<span class="tag t-src">原书</span> 后面他与尼摩的每一次冲突，都建立在这份专业自信上。<span class="tag t-inf">推断</span></p>
+  <p><strong>第四，孔塞伊的第一次「分类」。</strong> 阿罗纳克斯落水后，孔塞伊跳海救他，嘴里还在按纲目报出周围生物的类别。 第 7 章。<span class="tag t-src">原书</span> 这个细节常被当笑料，但它定下了孔塞伊的全部性格：<strong>他用分类来对抗恐惧</strong>。<span class="tag t-inf">推断</span></p>
+  <p><strong>第五，追捕本身是一场国家表演。</strong> 美国政府悬赏「deux mille dollars」（两千美元）给任何发现怪物的人，报馆连篇累牍，护卫舰带着冲角出海。 第 1、3 章。<span class="tag t-src">原书</span> 凡尔纳把「科学考察」写成了一次<strong>武装巡航</strong>：船上装的是炮、鱼叉和爆炸弹，不是标本箱。 这一点很重要——从第一章起，知识就是带着武器的。<span class="tag t-inf">推断</span></p>
+  <p><strong>第六，章题的讽刺。</strong> 第 7 章题作〈UNE BALEINE D'ESPÈCE INCONNUE〉（一种未知的鲸）。<span class="tag t-src">原书</span> 这一章确实「捕获」了一个未知物种，但它不是鲸，是一艘船。 凡尔纳把「命名」的权力交给了撞击本身：阿罗纳克斯的鲸类学在这里失效，剩下的只有金属。<span class="tag t-inf">推断</span></p>
+  <h3>可疑之处</h3>
+  <p><strong>（一）「独角鲸」假说在生物学上站不住。</strong> 独角鲸的「角」其实是上颌伸出的一枚长牙，长度约两三米，不可能刺穿铁甲船壳；它也不以高速撞击为捕食方式。 阿罗纳克斯是博物学教授，却提出一个连当时的鲸类学都支持不了的假说——这是凡尔纳为了让「怪物等于潜艇」的转折成立而做的降智。<span class="tag t-inf">推断</span></p>
+  <p><strong>（二）目击报告的速度与发光，后来没有完全兑现。</strong> 第 1 章说它「infiniment plus vaste et plus rapide qu'une baleine」（比鲸大得多、快得多），还「parfois phosphorescent」（有时发光）。<span class="tag t-src">原书</span> 但 <code>Nautilus</code> 的发光主要来自舷窗与电灯，航行时并不持续磷光；它的高速也只在水下短时达到。 前期的「怪物」形象与后期的「潜艇」之间有落差，凡尔纳用「传闻夸大」轻轻带过，没有正面解释。<span class="tag t-inf">推断</span></p>
+  <p><strong>（三）撞击的时机太巧。</strong> 内德·兰德刚投出鱼叉，怪物就转向撞船，阿罗纳克斯刚好落水，孔塞伊刚好跳下去，两人刚好抓住潜艇。 第 7 章。<span class="tag t-src">原书</span> 这是典型的连载式「一网打尽」：所有主角必须在同一页聚齐。<span class="tag t-inf">推断</span></p>
+  <p><strong>（四）英译的章题差异，从第一章就开始。</strong> Mercier 作 <code>A SHIFTING REEF</code>（一座移动的暗礁），Walter 作 <code>A Runaway Reef</code>（一座逃走的暗礁）。<span class="tag t-src">原书</span> 两个标题都对，但 Walter 的 <code>runaway</code> 更贴近法文 <code>fuyant</code>（逃逸的、躲开的）。<span class="tag t-inf">推断</span></p>
+  <p><strong>（五）「怪物」的国际政治被一笔带过。</strong> 第 1 章列了一长串被撞的船：英国、美国、德国、法国，各国政府都被卷进来。<span class="tag t-src">原书</span> 但这场「多国危机」很快收束成美国一国派舰，其他国家只留下名字。 对 1869 年的读者，这是熟悉的殖民海军秩序；对今天的读者，这一层恰恰是最该被追问的：谁有资格代表「人类」去追捕一个不明物体？<span class="tag t-inf">推断</span></p>
+  <p><strong>（六）一个称呼的细节。</strong> 阿罗纳克斯的职位是 <code>professeur-suppléant</code>（代课教授），不是正式教席。 第 2 章。<span class="tag t-src">原书</span> 很多中译直接写「教授」，抹掉了这层「候补」的身份。 这个身份很重要：他在巴黎学界并不是权力中心，所以才需要一个「远征」来证明自己。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>第二程：鹦鹉螺号与它的主人（第 8–13 章）</span><span class="caret">▾</span></h2>
+  <h3>发生了什么</h3>
+  <p>三人醒来时在一间铁舱里，床、桌、餐具一应俱全，食物自动出现。 第 8 章〈MOBILIS IN MOBILE〉。 内德·兰德暴怒，反复拍门，骂这是「监狱」；孔塞伊则开始研究餐具上的铭文。 第 9 章〈LES COLÈRES DE NED LAND〉。<span class="tag t-src">原书</span></p>
+  <p>第 10 章〈L'HOMME DES EAUX〉，尼摩出现。他先用几种语言试探，最后用纯正的法语开口；他承认自己就是这艘船的主人，并宣布三人是「战争的俘虏」，但可以在船上自由活动，条件是服从禁闭。 阿罗纳克斯抗议「这不是自由，只是一个囚犯在监狱里散步的自由」，尼摩回答：这是「c'est de la clémence」（这是宽大）。 随后是一顿全来自海洋的晚餐。<span class="tag t-src">原书</span></p>
+  <p>第 11 章〈LE <em>NAUTILUS</em>〉，尼摩带他参观：自己的舱室、图书室、陈列室、客厅、驾驶舱。 第 12 章〈TOUT PAR L'ÉLECTRICITÉ〉讲电力：钠电池、汞齐、海底煤。 第 13 章〈QUELQUES CHIFFRES〉给出一整套船体参数：长 70 米、宽 8 米、排水量 1,500.2 立方米、水面 1,011.45 平方米。<span class="tag t-src">原书</span></p>
+  <h3>关键内容</h3>
+  <p><strong>第一，尼摩的自我介绍是「拒绝自我介绍」。</strong> 阿罗纳克斯问「De quel nom dois-je vous appeler?」（我该怎么称呼您？），尼摩答：对你来说，我只是尼摩船长；你和你的同伴，只是 <code>Nautilus</code> 的乘客。 第 10 章。<span class="tag t-src">原书</span> 一个名字，两个身份，没有国籍，没有来历。 全书的最大留白就在这句回答里。<span class="tag t-inf">推断</span></p>
+  <p><strong>第二，「文明人」的正面冲突。</strong> 阿罗纳克斯说他的做法是「野蛮人的权利」，尼摩回击：「pas ce que vous appelez un homme civilisé!」（不是你们所谓的文明人！）。 第 10 章。 紧接着他说自己「J'ai rompu avec la société toute entière」（与整个社会断绝了关系）。<span class="tag t-src">原书</span> 这句是理解尼摩的钥匙：他不是反文明，他是<strong>被文明除名之后</strong>自己重新立了一套法。<span class="tag t-inf">推断</span></p>
+  <p><strong>第三，图书室与陈列室。</strong> 阿罗纳克斯估计藏书「six ou sept mille volumes」（六七千册），全是科学、道德与文学；陈列室里是珊瑚、贝壳、珍珠和海底标本。 第 11 章。<span class="tag t-src">原书</span> 这不是装饰，是尼摩的<strong>自我辩护</strong>：他用一座私人博物馆证明，离开陆地也能拥有文明的全部成果。<span class="tag t-inf">推断</span></p>
+  <p><strong>第四，电力的真相。</strong> 尼摩说「mon électricité」不是普通的电，来源是海水里的钠；阿罗纳克斯立刻追问：提炼钠要耗能，你会不会入不敷出？尼摩承认：「j'emploie tout simplement la chaleur du charbon de terre」（我只不过用地上煤的热量），随后改口：「Disons le charbon de mer」（就叫它海煤吧）。 第 12 章。<span class="tag t-src">原书</span> 这是全书最精彩的一次「自我拆台」，详见下面的可疑之处。<span class="tag t-inf">推断</span></p>
+  <p><strong>第五，数字的表演。</strong> 尼摩报出 70 米、8 米、1,500 吨，又报出 50 英里/小时的极限航速。 第 13 章。 阿罗纳克斯的反应是「je n'avais rien à objecter」（我无可反驳）。<span class="tag t-src">原书</span> 这句「无可反驳」很妙：它不是被说服，而是被数字的密度压住了。<span class="tag t-inf">推断</span></p>
+  <h3>可疑之处</h3>
+  <p><strong>（一）船体尺寸与排水量对不上，而且差了一倍多。</strong> 按圆柱体粗算：直径 8 米、长 70 米，体积是 π × 4² × 70 ≈ 3,519 立方米；凡尔纳给的是 1,500.2 立方米。<span class="tag t-src">原书</span> 要得到 1,500 立方米，直径只能是约 5.2 米。 表面积同样对不上：侧面积 2π × 4 × 70 ≈ 1,759 平方米，加两端约 100 平方米，合计约 1,860 平方米，而书中写 1,011.45 平方米。 这不是「近似」，是两个互相矛盾的参数表。<span class="tag t-inf">推断</span></p>
+  <p><strong>（二）5 厘米厚的钢壳，撑不到 1,000 米。</strong> 第 13 章说船壳是两层 5 厘米钢板，能下潜到「一千米」并承受 100 个大气压。<span class="tag t-src">原书</span> 按薄壁圆筒的环向应力估算，σ = p·r/t，取 p 为 10 兆帕、r 为 4 米、t 为 0.05 米，应力约 800 兆帕；19 世纪低碳钢的屈服强度大致在 250 到 400 兆帕。 也就是说，<strong>在 1,000 米深度，壳体会先屈服</strong>，更不用说书中后来出现的更深下潜。 双壳与 T 形肋能提高刚度，但改变不了这个数量级。<span class="tag t-inf">推断</span></p>
+  <p><strong>（三）「无限动力」是话术，不是工程。</strong> 尼摩说他的机器「à peu près infini」（几乎无限），但钠的提炼、汞的循环、煤的消耗都要算账。 第 12 章。<span class="tag t-src">原书</span> 用煤炼钠、再用钠发电，能量链条至少损失两次；所谓「海提供一切」，实际是「海底煤矿提供一切」。 这也是为什么第 34 章要专门写「海底煤矿」——凡尔纳自己知道这个漏洞，才补了一座矿。<span class="tag t-inf">推断</span></p>
+  <p><strong>（四）50 英里/小时的水下航速，功率需求在数十兆瓦量级。</strong> 50 英里/小时约合 22.4 米/秒；按 1,000 平方米湿表面积、 streamlined 形状的阻力系数粗算，阻力在兆牛量级，所需功率约几十兆瓦。 1860 年代的蒸汽机与钠电池都做不到这个功率密度。 书中没有给出主机功率，只用「电」一个字带过——这是典型的「用名词代替工程」。<span class="tag t-inf">推断</span></p>
+  <p><strong>（五）尼摩的语言能力是叙事便利。</strong> 他能听懂阿罗纳克斯的法语，却先用多种语言试探；他能读遍欧洲的科学文献，却自称与世隔绝。 第 10、11 章。<span class="tag t-src">原书</span> 这些设定服务于「全知船长」的形象，但经不起「他是怎么保持信息更新」的追问。<span class="tag t-inf">推断</span></p>
+  <p><strong>（六）「乘客」是一个法律修辞。</strong> 尼摩说三人只是「les passagers du <em>Nautilus</em>」（鹦鹉螺号的乘客），但同一段话里他又说「Vous êtes mes prisonniers」（你们是我的囚犯）。 第 10 章。<span class="tag t-src">原书</span> 「乘客」给了他们行动自由，「囚犯」保留了最终处置权——两个词并用，是船长全部统治术的缩影。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>第三程：太平洋、瓦尼科罗与托雷斯海峡（第 14–21 章）</span><span class="caret">▾</span></h2>
+  <h3>发生了什么</h3>
+  <p><code>Nautilus</code> 沿「黑流」（墨西哥湾流）南下，尼摩给阿罗纳克斯一封正式的邀请信，邀他参加海底狩猎。 第 14 章〈LE FLEUVE NOIR〉、第 15 章〈UNE INVITATION PAR LETTRE〉。 三人穿上潜水服，在海底平原行走，进入一片海底森林，看见珊瑚、鱼群与一场蜘蛛与鱼的捕杀。 第 16 章〈PROMENADE EN PLAINE〉、第 17 章〈UNE FORÊT SOUS-MARINE〉。<span class="tag t-src">原书</span></p>
+  <p>随后是第 18 章〈QUATRE MILLE LIEUES SOUS LE PACIFIQUE〉，船在太平洋下长距离航行，阿罗纳克斯开始大规模记录鱼类。 第 19 章〈VANIKORO〉，尼摩带他去看拉彼鲁兹（La Pérouse）两艘沉船的遗物。 第 20 章〈LE DÉTROIT DE TORRÈS〉，船在托雷斯海峡搁浅。 第 21 章〈QUELQUES JOURS A TERRE〉，三人上岸找食物，遇到岛民，内德·兰德想趁机逃走。<span class="tag t-src">原书</span></p>
+  <h3>关键内容</h3>
+  <p><strong>第一，海底狩猎的「非狩猎」。</strong> 尼摩带他们下水，用的不是火药枪，而是压缩空气枪；阿罗纳克斯看见的是一场「没有声音的屠杀」。 第 16 章。<span class="tag t-src">原书</span> 凡尔纳把「狩猎」写成了一种<strong>观看的特权</strong>：能下到海底的人，才有资格开枪。<span class="tag t-inf">推断</span></p>
+  <p><strong>第二，瓦尼科罗的历史层。</strong> 尼摩在拉彼鲁兹的沉船遗物前停留，讲述 1788 年两艘法国船失踪、1827 年迪蒙·迪尔维尔找到残骸的过程。 第 19 章。<span class="tag t-src">原书</span> 这一段是全书少有的「历史叙述」：它让尼摩与法国的航海史发生关系，也让他第一次显出「怀旧」的一面。 但他为什么对法国船如此动情？书里没有回答。<span class="tag t-inf">推断</span></p>
+  <p><strong>第三，搁浅与「不搁浅」。</strong> 阿罗纳克斯担心船被困，尼摩冷冷地说：「Le <em>Nautilus</em> ne s'est pas échoué」（鹦鹉螺号没有搁浅），并预言潮水会把它浮起。 第 20 章。<span class="tag t-src">原书</span> 这句话是尼摩全部性格的缩影：他把物理规律当作自己的意志。<span class="tag t-inf">推断</span></p>
+  <p><strong>第四，孔塞伊的「分类学喜剧」。</strong> 在岸上，孔塞伊把每一种能吃的东西都按纲目分类，内德·兰德则只问「能不能吃」。 第 21 章。<span class="tag t-src">原书</span> 这段常被当喜剧读，但它其实是全书对「知识有什么用」最直接的一次提问。<span class="tag t-inf">推断</span></p>
+  <p><strong>第五，潜水服是真的。</strong> 尼摩给他们穿的是「l'appareil Rouquayrol-Denayrouze」——1864 年法国人鲁凯罗尔与德奈鲁兹发明的压缩空气潜水装置，书中还提到 Ruhmkorff 灯。 第 16 章。<span class="tag t-src">原书</span> 这是全书技术描写中最扎实的一处：它不是凡尔纳的发明，是他从当时的工业目录里拿来的。 凡尔纳的「预言」大多属于这一类——不是预测未来，而是把<strong>已经存在但尚未普及</strong>的技术写进小说。<span class="tag t-inf">推断</span></p>
+  <h3>可疑之处</h3>
+  <p><strong>（一）搁浅的解决太准点。</strong> 尼摩预言「明天下午两点四十分」潮水会把船浮起，结果分秒不差。 第 20 章。<span class="tag t-src">原书</span> 这是典型的「船长即先知」写法：与其说是海洋学，不如说是叙事上的方便。<span class="tag t-inf">推断</span></p>
+  <p><strong>（二）岛民的写法是殖民眼光。</strong> 文本用「sauvages」「cannibales」「Papouas」称呼岛民，孔塞伊还用分类学式的冷幽默谈论他们。 第 21、22 章。 更刺眼的是那句比喻：船员对这些人的担心，「不如装甲堡里的士兵担心在铁甲上爬的蚂蚁」。 第 22 章。<span class="tag t-src">原书</span> 这句话把技术优势写成了理所当然的优越感。 今天读，必须指出这一层，而不是用「时代局限」一笔带过。<span class="tag t-inf">推断</span></p>
+  <p><strong>（三）分类学段落是「可删的阑尾」。</strong> 第 18 章有大段鱼名清单，Mercier 英译大幅删节。<span class="tag t-rep">转述</span> 从叙事上看，这些段落确实不推动情节；从文献上看，它们保存了 19 世纪博物学的分类习惯。 两种判断都对，取决于你把这本书当小说还是当「科学旅行记」。<span class="tag t-inf">推断</span></p>
+  <p><strong>（四）拉彼鲁兹的史实被压缩成一段独白。</strong> 尼摩的讲述把 1788 年的失踪、1827 年的发现、以及「法国船的遗物」串成一条线。 第 19 章。<span class="tag t-src">原书</span> 但真实的海难调查史要复杂得多，迪蒙·迪尔维尔的发现也不是一次完成的。<span class="tag t-rep">转述</span> 凡尔纳要的是「历史的悲壮感」，不是考据。<span class="tag t-inf">推断</span></p>
+  <p><strong>（五）内德·兰德的逃跑计划从这一程开始，却一直拖到第 46 章。</strong> 第 21 章他已经想走，第 46 章才真正行动。<span class="tag t-src">原书</span> 中间二十五章，他的「想走」反复出现又反复被搁置。 这是连载小说的通病：人物的意志必须为「下一期节目」让路。<span class="tag t-inf">推断</span></p>
+  <p><strong>（六）海底森林的颜色是「陆地的颜色」。</strong> 第 17 章写海底森林里红色、粉色、绿色的珊瑚与海藻，色彩鲜明。 第 17 章。<span class="tag t-src">原书</span> 但海水对长波光的吸收最快，十米以下红色就基本消失；要在几十米深处看见「红」，必须有强光照明。 书中没有交代光源，只写电光。 这是把陆地视觉直接搬到海底的典型写法。<span class="tag t-inf">推断</span></p>
+  <p><strong>（七）「历史」在这一程里替代了「情节」。</strong> 第 19 章几乎整章都在讲拉彼鲁兹的沉船史，阿罗纳克斯的当下行动只有「看遗物」一件。 第 19 章。<span class="tag t-src">原书</span> 凡尔纳敢用一整章做历史课，说明他相信读者对「知识」本身的兴趣足以支撑连载。 今天的读者如果觉得这里慢，不妨把它当成一篇嵌在小说里的调查报告。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">10</span><span>第四程：印度洋、红海与阿拉伯隧道（第 22–29 章）</span><span class="caret">▾</span></h2>
+  <h3>发生了什么</h3>
+  <p>第 22 章〈LA FOUDRE DU CAPITAINE NEMO〉，岛民围住潜艇，尼摩把船壳通电，爬上来的岛民被电击退。 第 23 章〈ÆGRI SOMNIA〉，阿罗纳克斯陷入失眠与噩梦，尼摩也显出抑郁。 第 24 章〈LE ROYAUME DU CORAIL〉，尼摩带他去珊瑚墓地，埋葬一名死去的船员。<span class="tag t-src">原书</span></p>
+  <p>第 25 章〈L'OCÉAN INDIEN〉，船进入印度洋；第 26 章〈UNE NOUVELLE PROPOSITION DU CAPITAINE NEMO〉，尼摩提议去锡兰的采珠场；第 27 章〈UNE PERLE DE DIX MILLIONS〉，他们目睹采珠人作业，尼摩从鲨鱼口下救出采珠人，又留下一袋珍珠。 第 28 章〈LA MER ROUGE〉，船穿过红海；第 29 章〈ARABIAN-TUNNEL〉，尼摩带他们穿过一条连接红海与地中海的「阿拉伯隧道」。<span class="tag t-src">原书</span></p>
+  <h3>关键内容</h3>
+  <p><strong>第一，电击退敌：技术的暴力。</strong> 尼摩没有开枪，只是让船壳带电；岛民一碰扶手就被击倒。 第 22 章。 内德·兰德也误触了扶手，骂了一句「Je suis foudroyé!」（我被雷劈了！）。 第 22 章。<span class="tag t-src">原书</span> 这是全书第一次展示「不流血的武器」，但它仍然是武器。<span class="tag t-inf">推断</span></p>
+  <p><strong>第二，珊瑚墓地：尼摩的温柔。</strong> 珊瑚丛中有一块空地，十字架般的珊瑚枝，船员们跪着祈祷；尼摩说：「C'est là notre paisible cimetière」（这是我们的安息之地）。 第 24 章。 紧接着的一句更狠：「les polypes se chargent d'y sceller nos morts pour l'éternité!」（珊瑚虫会替我们把死者永远封在这里！）。 第 24 章。<span class="tag t-src">原书</span> 这是全书最美的段落，也是尼摩唯一一次不谈仇恨。<span class="tag t-inf">推断</span></p>
+  <p><strong>第三，采珠人与鲨鱼：慈悲的边界。</strong> 尼摩看见采珠人被鲨鱼袭击，冲上去用匕首刺中鲨鱼；救下人后，又悄悄把一袋珍珠放进采珠人的口袋。 第 27 章。 阿罗纳克斯的结论是：「n'était pas parvenu encore à tuer son cœur tout entier」（还没有把自己的心完全杀死）——这句话的主语在原文上一句 <code>Quoi qu'il en dît, cet homme étrange</code> 里。 第 27 章末。<span class="tag t-src">原书</span> 这句判断很准，也很危险：它把「杀人」当成了心的常态。<span class="tag t-inf">推断</span></p>
+  <p><strong>第四，阿拉伯隧道：地理的魔术。</strong> 尼摩宣称红海与地中海之间有一条水下通道，船从红海直接穿到地中海。 第 29 章。<span class="tag t-src">原书</span> 这条隧道在现实中不存在（苏伊士运河 1869 年才通航，且是人工运河）。 凡尔纳把「运河」的时事改写成「天然隧道」，既避开了工程细节，又保住了惊奇。<span class="tag t-inf">推断</span></p>
+  <h3>可疑之处</h3>
+  <p><strong>（一）红海与地中海的「隧道」在地质上不成立。</strong> 苏伊士地峡是低矮的沙漠，不是海底山脉；不存在一条贯穿的天然水道。<span class="tag t-inf">推断</span> 凡尔纳写作时，苏伊士运河正在开凿（1869 年通航），他不可能不知道。<span class="tag t-rep">转述</span> 所以这条隧道是<strong>故意的浪漫化</strong>，不是无知。<span class="tag t-inf">推断</span></p>
+  <p><strong>（二）日期开始混乱。</strong> 第 25 章说「21 janvier 1868」，第 28 章开头却是「29 janvier」，第 30 章又跳到「12 février」。 第 25、28、30 章。<span class="tag t-src">原书</span> 单看每一章都通，连起来就有跳跃；这是连载写作留下的接缝。<span class="tag t-inf">推断</span></p>
+  <p><strong>（三）采珠场的经济学被浪漫化。</strong> 尼摩一出手就是一袋珍珠，价值「dix millions」（一千万）。 第 27 章。<span class="tag t-src">原书</span> 但采珠人的收入、潜水病、奴隶劳动，文本几乎没有展开；它把采珠人写成「值得同情的背景」，而不是「被剥削的劳动者」。<span class="tag t-inf">推断</span></p>
+  <p><strong>（四）尼摩的「善」与「恶」被并置得太整齐。</strong> 同一章里，他救一个人，也杀一条鲨鱼；前几章他电击岛民，后几章他埋葬船员。 第 22、24、27 章。<span class="tag t-src">原书</span> 这种并置是凡尔纳的人物塑造法，但它也容易让读者把「他也有温柔」当成「他可以被原谅」。 本报告提醒：温柔与暴力是同一个人的两面，不是互相抵消的账。<span class="tag t-inf">推断</span></p>
+  <p><strong>（五）珊瑚墓地的宗教性被轻轻带过。</strong> 船员们「跪着祈祷」，但尼摩从不说明他信什么。 第 24 章。<span class="tag t-src">原书</span> 这个空白与他的国籍空白是同一件事：凡尔纳只给他「仪式」，不给他「教义」。<span class="tag t-inf">推断</span></p>
+  <p><strong>（六）珍珠的估价经不起推敲。</strong> 第 27 章的巨珠被估为「dix millions」（一千万法郎）。 第 27 章。<span class="tag t-src">原书</span> 19 世纪最大的天然珍珠也远不到这个数；这个数字更像「奇观的价格」，不是市场价。 凡尔纳需要让读者感到「海底有另一个经济体」，于是给了一个夸张的标价。<span class="tag t-inf">推断</span></p>
+  <p><strong>（七）ÆGRI SOMNIA 的标题来自贺拉斯。</strong> 第 23 章的章题 <code>ÆGRI SOMNIA</code> 出自贺拉斯《诗艺》，意为「病人的梦」。<span class="tag t-rep">转述</span> 这一章写阿罗纳克斯的失眠、幻觉与抑郁，是全书最「心理」的一章。 第 23 章。<span class="tag t-src">原书</span> 它说明凡尔纳并非只会写说明书：他也知道长时间封闭会让人发疯。 可惜这一层在后文没有继续展开。<span class="tag t-inf">推断</span></p>
+  <p><strong>（八）红海的「红」没有解释。</strong> 第 28 章把红海写成一片红色的海，但没有解释原因。 第 28 章。<span class="tag t-src">原书</span> 常见的解释是蓝藻大量繁殖，但书中没有提；凡尔纳只需要一个「颜色奇异的海」作为舞台。<span class="tag t-rep">转述</span> 这是「地理奇观化」的写法：颜色是布景，不是研究对象。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">11</span><span>第五程：地中海、维哥湾与消失的大陆（第 30–35 章）</span><span class="caret">▾</span></h2>
+  <h3>发生了什么</h3>
+  <p>第 30 章〈L'ARCHIPEL GREC〉，船在希腊群岛间航行，尼摩向一名潜水员递出一箱黄金（文本暗示是给起义者的资金）。 第 31 章〈LA MÉDITERRANÉE EN QUARANTE-HUIT HEURES〉，船用四十八小时穿过地中海。 第 32 章〈LA BAIE DE VIGO〉，尼摩带他们去维哥湾，打捞 1702 年沉没的西班牙宝船。 第 33 章〈UN CONTINENT DISPARU〉，他们看见亚特兰蒂斯的废墟。 第 34 章〈LES HOUILIÈRES SOUS-MARINES〉，船在海底煤矿补给。 第 35 章〈LA MER DE SARGASSES〉，船穿过马尾藻海。<span class="tag t-src">原书</span></p>
+  <h3>关键内容</h3>
+  <p><strong>第一，黄金与政治。</strong> 尼摩把一箱黄金交给希腊潜水员，阿罗纳克斯猜测这是给「被压迫者」的钱。 第 30 章。<span class="tag t-src">原书</span> 这是全书唯一一次尼摩的钱<strong>直接进入现实政治</strong>：他不是在施舍，是在资助。 但他资助谁、为什么，文本故意不说。<span class="tag t-inf">推断</span></p>
+  <p><strong>第二，维哥湾的沉宝。</strong> 1702 年，西班牙宝船队在维哥湾被英荷舰队击沉，据说大量美洲白银沉入海底。 第 32 章。 尼摩的潜水员在海底搬运金条，阿罗纳克斯看得目瞪口呆。<span class="tag t-src">原书</span> 这一段把「海底」写成了<strong>尚未被国家瓜分的金库</strong>。<span class="tag t-inf">推断</span></p>
+  <p><strong>第三，亚特兰蒂斯：幻景而非考古。</strong> 阿罗纳克斯看见海底的城市废墟、断裂的柱子、倒塌的神庙，喊出「Quel éclair traversa mon esprit! L'Atlantide!」（一道闪电穿过我的脑海！亚特兰蒂斯！）。 第 33 章。<span class="tag t-src">原书</span> 但凡尔纳没有让任何人取样、测绘、验证；这是一场<strong>灯光下的梦</strong>。 它属于「想象的考古学」，不是科学。<span class="tag t-inf">推断</span></p>
+  <p><strong>第四，海底煤矿：封闭系统的漏洞。</strong> 尼摩带他们进入一座海底煤矿，矿工在坑道里采煤。 第 34 章。<span class="tag t-src">原书</span> 阿罗纳克斯这才明白：<code>Nautilus</code> 的「自给自足」是建立在煤上的。 这也是全书对「工业文明」最诚实的一笔：你可以离开陆地，但离不开能源。<span class="tag t-inf">推断</span></p>
+  <h3>可疑之处</h3>
+  <p><strong>（一）维哥湾的宝藏数字被夸大。</strong> 文本说海底有价值「millions」（数百万）的黄金，尼摩的潜水员成箱搬运。 第 32 章。<span class="tag t-src">原书</span> 1702 年的沉船确实载有白银，但具体数量、打捞难度、以及「自由潜水员能搬多少」都被浪漫化了。<span class="tag t-rep">转述</span> 本报告未核到确切吨位，标为待核实。<span class="tag t-inf">推断</span></p>
+  <p><strong>（二）亚特兰蒂斯的「看见」没有证据链。</strong> 阿罗纳克斯看见的是废墟，不是地层、不是化石、不是测年数据。 第 33 章。<span class="tag t-src">原书</span> 从科学上说，这是一次「目击」，不是「发现」。 凡尔纳用文学解决了考古学的问题：只要看见，就算存在。<span class="tag t-inf">推断</span></p>
+  <p><strong>（三）四十八小时穿地中海，速度与功率再次被跳过。</strong> 地中海东西长约 3,700 公里，48 小时走完，平均约 77 公里/小时，接近 42 节。 这对 1869 年的任何船都是天文数字，书中只用「全速」带过。<span class="tag t-inf">推断</span></p>
+  <p><strong>（四）「给起义者的黄金」把政治变成了谜语。</strong> 尼摩给钱，但不说是给谁；阿罗纳克斯猜是「被压迫者」，但没有证据。 第 30 章。<span class="tag t-src">原书</span> 这种写法让尼摩显得高尚，也让他免于被具体立场绑定。 这是凡尔纳的政治策略：<strong>用慷慨代替立场</strong>。<span class="tag t-inf">推断</span></p>
+  <p><strong>（五）马尾藻海被写成「漂浮的草原」，生态被简化。</strong> 第 35 章写船穿过马尾藻，海面像一片草原。 第 35 章。<span class="tag t-src">原书</span> 真实的马尾藻海是一个环流区，藻类聚集但不会形成「可以站人的草原」。<span class="tag t-rep">转述</span> 这是典型的「视觉夸张」。<span class="tag t-inf">推断</span></p>
+  <p><strong>（六）亚特兰蒂斯的来源是柏拉图，不是地质学。</strong> 第 33 章的「亚特兰蒂斯」直接取自柏拉图的《蒂迈欧》与《克里提亚斯》，是一个哲学寓言中的岛屿。<span class="tag t-rep">转述</span> 凡尔纳让它变成海底废墟，等于把寓言当成了地图。 这不是科学错误，而是<strong>文学挪用</strong>：他需要一个「消失的文明」来承载「时间的深度」。<span class="tag t-inf">推断</span></p>
+  <p><strong>（七）海底煤矿的通风与瓦斯被完全忽略。</strong> 第 34 章写矿工在海底坑道采煤，但没有写通风、瓦斯、地下水压。 第 34 章。<span class="tag t-src">原书</span> 真实的煤矿需要强大的通风系统，海底矿井还要面对渗水与甲烷。 凡尔纳只需要「煤」这个能量符号，不需要矿井的工程细节。<span class="tag t-inf">推断</span></p>
+  <p><strong>（八）四十八小时过地中海，压缩的不只是时间。</strong> 第 31 章把整段地中海航程压成两天，沿途的岛屿、城市、历史全部变成舷窗外的掠影。 第 31 章。<span class="tag t-src">原书</span> 这是全书节奏最快的一章，也是「航程即目录」最极端的例子：地理被压缩成一条快速滚动的字幕。<span class="tag t-inf">推断</span></p>
+  <p><strong>（九）海底电缆缺席。</strong> 1860 年代正是跨大西洋电缆的时代（1866 年成功），但全书没有一次提到电缆；<code>Nautilus</code> 在海底穿行，却从不遇见人类的通信线。 这不是史实错误，而是<strong>选择性失明</strong>：凡尔纳要的是「未被人类触及的海底」。 他让尼摩宣称「与陆地断绝」，也让海底从此没有别人的痕迹。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">12</span><span>第六程：南极（第 36–40 章）</span><span class="caret">▾</span></h2>
+  <h3>发生了什么</h3>
+  <p>第 36 章〈CACHALOTS ET BALEINES〉，一群抹香鲸攻击长须鲸，尼摩下令用冲角屠杀抹香鲸。 第 37 章〈LA BANQUISE〉，船驶入南极冰区，被冰障阻挡。 第 38 章〈LE POLE SUD〉，船找到一条水道，到达南极点附近，尼摩在冰上插旗。 第 39 章〈ACCIDENT OU INCIDENT?〉，返程时船被冰山卡住、倾斜。 第 40 章〈FAUTE D'AIR〉，船被困在冰下，氧气将尽，船员轮流凿冰，最终脱困。<span class="tag t-src">原书</span></p>
+  <h3>关键内容</h3>
+  <p><strong>第一，屠杀抹香鲸：尼摩的「生态学」是选择性的。</strong> 尼摩说抹香鲸是「有害的」，长须鲸是「有益的」，于是下令冲角屠杀整群抹香鲸。 第 36 章。 海面被血染红，内德·兰德都看不下去。<span class="tag t-src">原书</span> 这是全书最残酷的段落之一，也是尼摩「以正义之名行使暴力」的第一次预演。<span class="tag t-inf">推断</span></p>
+  <p><strong>第二，南极点的到达。</strong> 尼摩在冰原上展开一面黑旗，「un pavillon noir, portant un N」（一面黑旗，上面一个 N）。 第 38 章。 他宣称自己到了南极点，但同一章他回答阿罗纳克斯「Sommes-nous au pôle?」（我们到极点了吗？）时说「Je l'ignore」（我不知道），要等正午测纬度。 第 38 章。<span class="tag t-src">原书</span> 这个细节很重要：<strong>书中的人并没有确认自己到达极点</strong>。<span class="tag t-inf">推断</span></p>
+  <p><strong>第三，缺氧：全书最紧张的物理段落。</strong> 冰下空气只够几十小时，船员轮流用镐凿冰，阿罗纳克斯几近昏迷；孔塞伊说：「Ah! si je pouvais ne pas respirer pour laisser plus d'air à monsieur!」（啊！要是我不呼吸，好给先生多留一点空气就好了！）。 第 40 章。<span class="tag t-src">原书</span> 这句话是孔塞伊全部性格的顶点：他的忠诚不是口号，是愿意去死。<span class="tag t-inf">推断</span></p>
+  <p><strong>第四，冰的物理学。</strong> 尼摩用热水循环阻止海水结冰，再用船体重量压碎冰层。 第 40 章。<span class="tag t-src">原书</span> 这是全书少有的「用工程解决问题」的段落，比「无限动力」可信得多。<span class="tag t-inf">推断</span></p>
+  <h3>可疑之处</h3>
+  <p><strong>（一）南极点的地理是错的。</strong> 凡尔纳让 <code>Nautilus</code> 在「南极点」找到一片<strong>自由海</strong>，而真实的南极点位于约 2,800 米厚的冰盖之上，海拔约 2,835 米。<span class="tag t-rep">转述</span> 书中第 38 章写的是「mer libre」（自由海）与一片陆地。<span class="tag t-src">原书</span> 这不是小错，是把「极地海洋」的旧假说写成了事实。<span class="tag t-inf">推断</span> 19 世纪确实有人相信南极有「开放极海」，凡尔纳采用了这个假说。<span class="tag t-rep">转述</span></p>
+  <p><strong>（二）坐标与日期对不上。</strong> 第 38 章说他们在「cent soixante septième méridien et par 77° 32′ de latitude」（第 167 条子午线与南纬 77°32′）。 第 38 章。<span class="tag t-src">原书</span> 南纬 77°32′ 离南极点还有约 12 个纬度，不是「极点」。<span class="tag t-inf">推断</span> 文本自己也知道，所以尼摩说「Je l'ignore」（我不知道）——他并不确定自己到了极点。 第 38 章。<span class="tag t-src">原书</span> 这一点常被读者忽略：<strong>书中的人并没有真正到达南极点</strong>，他们只是到了极区。<span class="tag t-inf">推断</span></p>
+  <p><strong>（三）抹香鲸屠杀的「生态理由」站不住。</strong> 抹香鲸捕食大王乌贼，长须鲸吃磷虾；说抹香鲸「有害」、长须鲸「有益」，是把商业捕鲸的偏见写成自然法则。<span class="tag t-inf">推断</span> 更关键的是，尼摩的屠杀没有任何生存必要，纯粹是「清理」。 第 36 章。<span class="tag t-src">原书</span></p>
+  <p><strong>（四）缺氧的时间被拉长。</strong> 第 40 章说储备只够「quarante huit heures」（四十八小时），但实际情节持续了更久，人物还能说话、凿冰、思考。 第 40 章。<span class="tag t-src">原书</span> 这是叙事时间与物理时间的常见矛盾。<span class="tag t-inf">推断</span></p>
+  <p><strong>（五）孔塞伊的「牺牲」被轻轻放过。</strong> 他说愿意不呼吸，把空气留给阿罗纳克斯；阿罗纳克斯感动落泪，但没有任何后续。 第 40 章。<span class="tag t-src">原书</span> 这句话如果当真，孔塞伊应该死；但凡尔纳让他活下来，因为下一章还需要仆人。 这是连载小说对人物的「功能性豁免」。<span class="tag t-inf">推断</span></p>
+  <p><strong>（六）「开放极海」是 19 世纪的旧假说。</strong> 凡尔纳让 <code>Nautilus</code> 在南极找到一片「mer libre」（自由海）。 第 38 章。<span class="tag t-src">原书</span> 这是 19 世纪前期流行的「开放极海」理论：认为极地冰盖之外有一片可航行的海。 到 1869 年，库克与罗斯的航行已经证明南极是一块大陆，凡尔纳采用的是过时的地理假说。<span class="tag t-rep">转述</span></p>
+  <p><strong>（七）冰下缺氧的生理被简化。</strong> 第 40 章只写氧气不足，没有写二氧化碳积聚。 第 40 章。<span class="tag t-src">原书</span> 在密闭空间里，真正先致命的是二氧化碳浓度上升，而不是氧气单纯耗尽；人物的头痛、恶心、判断力下降，其实更像二氧化碳中毒。 凡尔纳写对了症状，写错了机制。<span class="tag t-inf">推断</span></p>
+  <p><strong>（八）抹香鲸与长须鲸的「善恶」是商业捕鲸的分类。</strong> 尼摩把抹香鲸定为「有害」、长须鲸定为「有益」，这套分类来自捕鲸业，不是生态学。 第 36 章。<span class="tag t-src">原书</span> 从生态上看，两者都是顶级或中级消费者，没有「害益」之分。 这段最值得警惕的地方不是杀鲸，而是<strong>用「有用性」给生命分级</strong>。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">13</span><span>第七程：从合恩角到大漩涡（第 41–47 章）</span><span class="caret">▾</span></h2>
+  <h3>发生了什么</h3>
+  <p>第 41 章〈DU CAP HORN A L'AMAZONE〉，船绕过合恩角，沿南美东岸北上。 第 42 章〈LES POULPES〉，一群巨型章鱼缠住螺旋桨，一名船员被拖走，内德·兰德用鱼叉杀死章鱼。 第 43 章〈LE GULF-STREAM〉，船进入墨西哥湾流。 第 44 章〈PAR 47° 24′ DE LATITUDE ET 17° 28′ DE LONGITUDE〉，他们找到 1794 年沉没的法国战舰「Vengeur」号残骸。 第 45 章〈UNE HÉCATOMBE〉，尼摩攻击一艘军舰，把它撞沉，全舰人员死亡。 第 46 章〈LES DERNIÈRES PAROLES DU CAPITAINE NEMO〉，船在北大西洋漂流，三人计划逃跑。 第 47 章〈CONCLUSION〉，小船被卷入大漩涡，三人醒来时已在挪威渔屋。<span class="tag t-src">原书</span></p>
+  <h3>关键内容</h3>
+  <p><strong>第一，章鱼的「魔鬼鱼」问题。</strong> 法文章题是 <code>LES POULPES</code>（章鱼），Mercier 译作 <code>THE POULPS</code>，Walter 译作 <code>The Devilfish</code>。<span class="tag t-src">原书</span> 两个英译都暴露了 19 世纪英语对头足类的陌生：<code>poulp</code> 是生造词，<code>devilfish</code> 是民间对大型海洋怪物的泛称。<span class="tag t-inf">推断</span> 凡尔纳笔下的章鱼有八条腕、三颗心，体长被夸大到能缠住螺旋桨。 第 42 章。<span class="tag t-src">原书</span></p>
+  <p><strong>第二，Vengeur 号：历史与宣传。</strong> 尼摩讲述 1794 年「Vengeur」号宁可沉没也不投降，船员在沉没时高呼「Vive la République!」（共和国万岁！）。 第 44、45 章。<span class="tag t-src">原书</span> 这段故事在法国是著名的爱国传说，但史学研究对「全船高呼口号沉没」的细节有争议。<span class="tag t-rep">转述</span> 凡尔纳让尼摩用这个故事解释自己的仇恨：他不是为私人恩怨杀人，是为「patrie」（祖国）与「opprimé」（被压迫者）杀人。<span class="tag t-inf">推断</span></p>
+  <p><strong>第三，第 45 章：全书的高潮与道德断裂。</strong> 尼摩不问军舰的国籍，也不给对手逃生的机会，直接冲撞；海面出现「fourmilière humaine」（人群的蚁巢）被海水吞没的景象。 第 45 章。 阿罗纳克斯在船舱里听见「bruit de tonnerre」（雷鸣般的响声）。 第 45 章。<span class="tag t-src">原书</span> 这是全书唯一一次<strong>不加辩护的屠杀</strong>。<span class="tag t-inf">推断</span></p>
+  <p><strong>第四，第 46 章的「最后遗言」其实没有遗言。</strong> 章题叫〈LES DERNIÈRES PAROLES DU CAPITAINE NEMO〉，但这一章通篇没有尼摩的台词；他最后一次说话是在第 45 章：「Je suis le droit, je suis la justice!」（我就是权利，我就是正义！）。 第 45 章。 第 46 章里，叙述者只说「Du capitaine Nemo, il n'était plus question」（尼摩船长不再出现）。 第 46 章。<span class="tag t-src">原书</span> 这个错位是全书最值得注意的形式问题：<strong>标题承诺了「遗言」，正文给的却是「消失」</strong>。<span class="tag t-inf">推断</span></p>
+  <p><strong>第五，结尾的开放。</strong> 小船被卷入 Maelstrom（大漩涡），三人失去知觉，醒来在挪威渔屋。 第 47 章。 叙述者最后问：<code>Nautilus</code> 还在吗？尼摩还活着吗？他还会继续复仇吗？「Saurai-je enfin le nom de cet homme?」（我终究会知道这个人的名字吗？）。 第 47 章。 全书以《传道书》的句子收尾：「Qui a jamais pu sonder les profondeurs de l'abîme?」（谁曾探明深渊的深处？）。 第 47 章。<span class="tag t-src">原书</span></p>
+  <h3>可疑之处</h3>
+  <p><strong>（一）章鱼的尺寸与行为被夸大。</strong> 真实的大王乌贼（Architeuthis）体长可达十余米，但不会主动攻击船只，更不可能把整艘潜艇的螺旋桨缠死。<span class="tag t-rep">转述</span> 凡尔纳用的是水手传说，不是动物学。<span class="tag t-inf">推断</span> 第 42 章的「三颗心」是对的（章鱼确有三颗心），但「八条腕」之外的夸张太多。 第 42 章。<span class="tag t-src">原书</span></p>
+  <p><strong>（二）Vengeur 号的故事被当成史实。</strong> 尼摩讲得斩钉截铁，叙述者也没有质疑。 第 44 章。<span class="tag t-src">原书</span> 但原书写的是 <code>Le _Vengeur_</code>，1794 年那艘船的历史全名才是 <code>Vengeur du Peuple</code>——两者要分清：前者是小说里的称呼，后者是史书里的船名。船员是否高呼「共和国万岁」则是后世爱国宣传的加工。<span class="tag t-rep">转述</span> 凡尔纳用这个传说给尼摩的复仇提供「历史合法性」，读者要小心：<strong>传说不是证据</strong>。<span class="tag t-inf">推断</span></p>
+  <p><strong>（三）军舰的国籍被故意隐去。</strong> 第 45 章只写「vaisseau de guerre」（军舰），不写国旗。 第 45 章。<span class="tag t-src">原书</span> 这让尼摩的屠杀变成「对战争机器」的抽象攻击，而不是对某一个国家的攻击。 这是凡尔纳的政治策略：<strong>让暴力保持可辩护的模糊</strong>。<span class="tag t-inf">推断</span></p>
+  <p><strong>（四）第 46 章的标题与内容不符。</strong> 如上所说，这一章没有尼摩的遗言。 第 46 章。<span class="tag t-src">原书</span> 可能有两种解释：一是「最后的话」指第 45 章的那句「我就是正义」；二是凡尔纳在连载时改了内容，忘了改标题。 本报告倾向前者，但无法证实。<span class="tag t-inf">推断</span></p>
+  <p><strong>（五）大漩涡的脱险纯属运气。</strong> 小船被甩出漩涡，三人刚好被挪威渔民救起；没有任何伏笔或准备。 第 47 章。<span class="tag t-src">原书</span> 这是典型的「机械降神」：凡尔纳需要一个结尾，就借用了自然界最戏剧性的现象。<span class="tag t-inf">推断</span></p>
+  <p><strong>（六）大漩涡的位置被写错了。</strong> 第 46 章说漩涡在「les îles Féroë et Loffoden」（法罗群岛与罗弗敦群岛）之间。 第 46 章。<span class="tag t-src">原书</span> 法罗群岛约在北纬 62°，罗弗敦群岛约在北纬 68°，两地相距约七百公里；真正的 Moskstraumen 在罗弗敦附近。<span class="tag t-rep">转述</span> 凡尔纳把两个群岛并置，造出了一个「文学坐标」。<span class="tag t-inf">推断</span></p>
+  <p><strong>（七）墨西哥湾流被写成「海中的河」。</strong> 第 43 章把湾流描述成有边界、有颜色、有温度的「河流」。 第 43 章。<span class="tag t-src">原书</span> 这个比喻来自 19 世纪的海洋学（尤其是 Maury 的洋流图），它在大尺度上成立，在小尺度上过于整齐。<span class="tag t-rep">转述</span> 凡尔纳需要一条「可以航行的河」，于是把洋流写成了河道。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">14</span><span>主题与思想史：殖民、复仇与「科学家在船上」</span><span class="caret">▾</span></h2>
+  <h3>（一）1869 年的法国：一本写给「扩张时代」的书</h3>
+  <p>《海底两万里》连载于 1869 年 3 月至 1870 年 6 月——正是第二帝国末期、普法战争前夕。 这是一个海上扩张、殖民探险、万国博览会并行的年代：1867 年巴黎世博会刚办过，苏伊士运河 1869 年通航，海底电缆正在铺设。<span class="tag t-rep">转述</span> 凡尔纳的「海底旅行」不是凭空的幻想，它踩在三条现实之上：<strong>地理测量、海底工程、殖民航线</strong>。<span class="tag t-inf">推断</span></p>
+  <p>这也解释了书里的一个奇怪结构：它一边让尼摩宣称「与陆地断绝关系」，一边让他精确使用法国的、英国的、西班牙的海图与历史。 第 19、32、44 章。<span class="tag t-src">原书</span> 尼摩的「脱离」是姿态，他的知识、语言、记忆全部来自陆地。<span class="tag t-inf">推断</span></p>
+  <h3>（二）殖民目光：谁在看，谁被看</h3>
+  <p>书里的「看」是有等级的。阿罗纳克斯看鱼，尼摩看海底，船员看仪器；岛民、采珠人、被撞沉的军舰水兵，都是「被看」的对象。<span class="tag t-inf">推断</span> 第 21、22 章把岛民写成「sauvages」（野蛮人），第 27 章把采珠人写成「pauvre diable」（可怜的家伙）。<span class="tag t-src">原书</span> 这些词不是中性描述，它们把被殖民者固定在「未开化」与「值得同情」两个位置上。<span class="tag t-inf">推断</span></p>
+  <p>★ 但也要避免把凡尔纳读成单纯的殖民主义宣传。<span class="tag t-inf">推断</span> 他让尼摩说出「我不是你们所谓的文明人」，让阿罗纳克斯质疑「这不是自由，只是囚犯在监狱里散步的自由」；这些句子本身就在拆「文明」的台。 第 10 章。<span class="tag t-src">原书</span> 文本的立场是<strong>摇摆的</strong>：它既享受技术优势，又怀疑技术持有者的道德。<span class="tag t-inf">推断</span></p>
+  <h3>（三）复仇：尼摩的政治神学</h3>
+  <p>尼摩的复仇不是私人仇杀，而是一套<strong>政治神学</strong>：他把自己当成「le droit」（权利）与「la justice」（正义）的化身，把对手当成「l'oppresseur」（压迫者）。 第 45 章。<span class="tag t-src">原书</span> 这套语言来自 1793 年、1848 年、1871 年的法国革命传统：正义既可以是法律，也可以是屠杀的借口。<span class="tag t-inf">推断</span></p>
+  <p>★ 关键问题是：<strong>书中没有给出他复仇的具体对象</strong>。<span class="tag t-inf">推断</span> 他只说「patrie, femme, enfants, mon père, ma mère」全被毁灭，却不说谁干的。 第 45 章。<span class="tag t-src">原书</span> 这个空白让读者无法判断他的复仇是否「正当」——凡尔纳把判断权交给了读者，也把风险交给了读者。<span class="tag t-inf">推断</span></p>
+  <h3>（四）「科学家在船上」：知识分子的位置</h3>
+  <p>阿罗纳克斯是全书最容易被低估的人物。<span class="tag t-inf">推断</span> 他不是「凡尔纳的代言人」，而是一个<strong>被特权收买的知识分子</strong>：尼摩给他图书室、标本、海底奇观，他就一次次放弃逃跑的念头。 第 11、15、21 章。 第 45 章他看见屠杀，才第一次说「mieux vaut périr avec lui que de se faire les complices」（宁可和他一起死，也不做同谋）。 第 45 章。<span class="tag t-src">原书</span> 这句话来得太晚，也来得正好：它承认了前四十四章的「观看」本身就是共谋。<span class="tag t-inf">推断</span></p>
+  <p>★ 这是本书对今天的读者最有用的一层：<strong>当知识给你一间看得见海底的客厅，你要不要问一句「这艘船是谁的、它撞沉过谁」？</strong> <span class="tag t-inf">推断</span></p>
+  <h3>（五）进步的神话与它的反面</h3>
+  <p>凡尔纳相信科学，但不相信科学家。<span class="tag t-inf">推断</span> 他让电力、潜水、采珠、煤矿全部登场，也让它们全部服务于一个复仇者。 第 12、34、45 章。<span class="tag t-src">原书</span> 这种「技术崇拜 + 道德怀疑」的组合，是 19 世纪科幻最诚实的姿态：<strong>未来不是更干净，只是更大、更快、更难负责</strong>。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s16">
+  <h2><span class="num">15</span><span>版本、译本与接受史</span><span class="caret">▾</span></h2>
+  <h3>（一）法文版本：两卷、四十七章、连载与单行本</h3>
+  <p>法文原著先在《教育与娱乐杂志》连载（1869-03-20 至 1870-06-20），后由 Hetzel 出两卷本。 单行本的首版时间有异说：BnF 目录作 1869 年 10 月一卷、1870 年 6 月二卷；另有 1869-11-28 与 1870-06-13 的说法；1871 年 11 月还有插图本。<span class="tag t-rep">转述</span> 本报告未核对纸书版权页，详见附录 D1。<span class="tag t-inf">推断</span></p>
+  <p>★ 一个常被忽略的事实：<strong>法文原著的章数是 47，不是 46</strong>。 卷一 24 章、卷二 23 章，卷二重新编号。<span class="tag t-src">原书</span></p>
+  <h3>（二）英译：Mercier 与 Walter 的两种「完整」</h3>
+  <p><strong>Mercier（1873，B 级）</strong>：PG #164，书名 <code>Twenty Thousand Leagues under the Sea</code>（单数 <code>Sea</code>）。<span class="tag t-src">原书</span> 本报告判定它是 Mercier 译本，依据三条内部证据：书名单数；<code>scaphandre</code> 一律译作 <code>cork-jacket</code>／<code>cork jacket</code>（共 5 次），<code>diving suit</code> 0 次；词数 107,726，比 Walter 的 147,036 少约 26.7%。 详见来源清单。<span class="tag t-inf">推断</span></p>
+  <p><strong>Walter（1991，A 级）</strong>：PG #2488，书名 <code>Twenty Thousand Leagues Under the Seas: An Underwater Tour of the World</code>（复数 <code>Seas</code>），PG 文件头明标 <code>Translator: Frederick Paul Walter</code>。<span class="tag t-src">原书</span> 这是足本，恢复了被 Mercier 删掉的分类学段落与技术章节。<span class="tag t-rep">转述</span></p>
+  <p>★ 两版的结构差异不止文字：<strong>Mercier 只有 46 章</strong>，因为他把法文第 11 章〈LE <em>NAUTILUS</em>〉与第 12 章〈TOUT PAR L'ÉLECTRICITÉ〉并成了一章 <code>ALL BY ELECTRICITY</code>。<span class="tag t-src">原书</span> 这不是「删几句话」，是<strong>删掉了一整章的船体描述</strong>。 读者如果只读 Mercier，会以为 <code>Nautilus</code> 是「一章之内介绍完的」，其实法文用了两章。<span class="tag t-inf">推断</span></p>
+  <h3>（三）中译：从「两万里」到「里格」</h3>
+  <p>中文世界最通行的书名是《海底两万里》。<span class="tag t-rep">转述</span> 这个译名把法文 <code>lieue</code>（里格，约 4 公里）换成了中文的「里」（约 0.5 公里），再把「两万里格」压成「两万里」。 结果是：<strong>距离缩水了八倍，而且被误读成深度</strong>。<span class="tag t-inf">推断</span></p>
+  <p>★ 法文原文自己给出了答案：第 47 章说「j'ai franchi vingt mille lieues」（我走过了两万里格），第 18 章题作「QUATRE MILLE LIEUES SOUS LE PACIFIQUE」（太平洋下四千里格）。 两处都是<strong>航程</strong>，不是深度。<span class="tag t-src">原书</span> 20,000 里格约 80,000 公里，接近绕地球两圈；这也与书中「近十个月绕地球一圈多」的航线吻合。<span class="tag t-inf">推断</span></p>
+  <h3>（四）接受史：从「科学小说」到「科幻先知」</h3>
+  <p>凡尔纳在世时，被读作「科学冒险小说家」，不是「预言家」。 20 世纪以后，潜艇、潜水服、海底电缆逐一实现，读者开始把 <code>Nautilus</code> 当成「预言」。<span class="tag t-rep">转述</span> 但这种读法有两个问题：一是它忽略了书中大量<strong>错误</strong>的参数；二是它把「文学想象」降格为「技术预测」。<span class="tag t-inf">推断</span></p>
+  <p>★ 更准确的定位是：凡尔纳是「<strong>当代技术的 extrapolator</strong>」（外推者），不是先知。<span class="tag t-inf">推断</span> 他参考 1860 年代的真实潜艇（包括法国 1863 年的 <code>Plongeur</code>）、潜水服、电池与煤矿，把已有技术放大到「能绕地球」的尺度。<span class="tag t-rep">转述</span> 这不是预言，是<strong>工程想象</strong>。<span class="tag t-inf">推断</span></p>
+  <h3>（五）改编与误读</h3>
+  <p>《海底两万里》的影视改编极多，最著名的是 1954 年迪士尼版，它把尼摩改写成「反核武的科学家」，还加了一只海豹和一场大章鱼戏。<span class="tag t-rep">转述</span> 这些改编塑造了大众对「尼摩」的印象，却与原著相去甚远：原著没有海豹，尼摩也不是反核人士（他连核都没有）。 读原著的一个好处，就是能看见<strong>大众记忆与文本之间的裂缝</strong>。<span class="tag t-inf">推断</span></p>
+  <p>★ 一条阅读建议：如果你先看过电影，读原著时请把「尼摩=反核英雄」这个印象暂时放下。 原著里的尼摩更冷、更模糊，也更难被道德归类。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s17">
+  <h2><span class="num">A</span><span>关键概念与人物速查</span><span class="caret">▾</span></h2>
+  <p>★ 章号口径：按全书连续编号（第 25–47 章即卷二书内编号的第 1–23 章）。「首次出现」指该词第一次在正文中被写到、或该地点第一次成为叙述对象的那一章，不是它第一次出现在章题里的位置。<span class="tag t-inf">推断</span></p>
+  <table>
+    <thead><tr><th>人物／器物／地名</th><th>是什么</th><th>首次出现</th></tr></thead>
+    <tbody>
+      <tr><td>阿罗纳克斯（Pierre Aronnax）</td><td>巴黎自然史博物馆代课教授（<code>professeur-suppléant</code>），叙述者，自称来追「巨型独角鲸」</td><td>第 2 章</td></tr>
+      <tr><td>孔塞伊（Conseil）</td><td>阿罗纳克斯的仆人，把一切生物按纲目分类，用分类对抗恐惧</td><td>第 2 章</td></tr>
+      <tr><td>内德·兰德（Ned Land）</td><td>加拿大鱼叉手，六英尺余，只关心「能不能走、有没有肉」</td><td>第 4 章</td></tr>
+      <tr><td>尼摩（Nemo）</td><td><code>Nautilus</code> 的船长，不给姓名、不给国籍、不挂可辨认的旗</td><td>第 10 章</td></tr>
+      <tr><td><code>Nautilus</code></td><td>潜水艇，书中报长 70 米、宽 8 米、排水量 1,500.2 立方米——这三个数字互不自洽</td><td>第 8 章</td></tr>
+      <tr><td><code>Abraham Lincoln</code></td><td>美国护卫舰，装冲角、后膛炮与爆炸弹，悬赏两千美元</td><td>第 3 章</td></tr>
+      <tr><td>瓦尼科罗（Vanikoro）</td><td>拉彼鲁兹 1788 年两艘沉船的遗物所在地</td><td>第 19 章</td></tr>
+      <tr><td>托雷斯海峡</td><td>搁浅地点，尼摩预言潮水会把船浮起</td><td>第 20 章</td></tr>
+      <tr><td>珊瑚墓地</td><td>船员葬地，尼摩唯一一次不谈仇恨的地方</td><td>第 24 章</td></tr>
+      <tr><td>锡兰采珠场</td><td>尼摩从鲨鱼口下救出采珠人、又留下一袋珍珠</td><td>第 27 章</td></tr>
+      <tr><td>阿拉伯隧道</td><td>红海到地中海的虚构通道，现实中不存在</td><td>第 29 章</td></tr>
+      <tr><td>维哥湾</td><td>1702 年西班牙宝船队沉没处，尼摩在此打捞金条</td><td>第 32 章</td></tr>
+      <tr><td>亚特兰蒂斯</td><td>海底废墟幻景，来自柏拉图的寓言而非地质学</td><td>第 33 章</td></tr>
+      <tr><td>海底煤矿</td><td><code>Nautilus</code> 的燃料来源，也是「封闭系统」的漏洞</td><td>第 34 章</td></tr>
+      <tr><td>南极点</td><td>尼摩插黑旗处；书中人并未确认自己到达极点</td><td>第 38 章</td></tr>
+      <tr><td>大漩涡（Maelstrom）</td><td>结尾的脱险地，书中误置于法罗与罗弗敦之间</td><td>第 46 章</td></tr>
+      <tr><td>黑流（LE FLEUVE NOIR）</td><td>墨西哥湾流在书中的旧称，第 14 章章题</td><td>第 14 章</td></tr>
+      <tr><td>马尾藻海（LA MER DE SARGASSES）</td><td>船穿过的漂浮藻海区，第 35 章章题</td><td>第 35 章</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s18">
+  <h2><span class="num">B</span><span>延伸阅读</span><span class="caret">▾</span></h2>
+  <ul>
+    <li><strong>凡尔纳《格兰特船长的儿女》（1867–1868）</strong>：海洋三部曲的第一部，看凡尔纳如何处理「寻找失踪者」这一母题——本书第 19 章瓦尼科罗的拉彼鲁兹遗物，正是同一母题的压缩版。
+    </li>
+    <li><strong>凡尔纳《神秘岛》（1874–1875）</strong>：尼摩的身世在这里被补全。读它才知道本书的留白是设计而不是遗漏；但也正因为它给了答案，读本书时<strong>不要用它的答案回填</strong>。
+    </li>
+    <li><strong>凡尔纳《八十天环游地球》（1872）</strong>：同样是「旅行即结构」，但节奏更快、政治更轻。两本对读，能看清本书为什么显得慢——它的每一站都要停下来讲课。
+    </li>
+    <li><strong>凡尔纳《地心游记》（1864）</strong>：同一种「向下」的想象。一个向地质时间下潜，一个向海洋空间下潜，可作一对读。
+    </li>
+    <li><strong>William Butcher, <em>Jules Verne: The Definitive Biography</em>（2006）</strong>：英语世界最常被引用的凡尔纳传记，Hetzel 的删改与出版关系可由此入门。★ 本报告未取得此书，仅列书目，不作引文依据。
+    </li>
+    <li><strong>Frederick Paul Walter 英译本（Oxford World's Classics, 1991）的译者导言</strong>：译者本人对 Mercier 删节的说明，是「删了什么」最直接的英文二手材料，可与本报告 §15 的三条内部证据对读。
+    </li>
+    <li><strong>Hetzel 版法文插图本</strong>：插图不是装饰，它决定了 19 世纪读者「看见」的尼摩、<code>Nautilus</code> 与章鱼是什么样子。★ 本报告未核对原版插图，只提示这是一条独立的研究线索。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+</section>
+
+<section id="s19">
+  <h2><span class="num">C</span><span>来源清单</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>来源</th><th>类型</th><th>用途</th></tr></thead>
+    <tbody>
+      <tr><td><code>probe/pg54873.txt</code>（PG #54873）</td><td>法文主底本</td><td>全部法文引文、章题、数字</td></tr>
+      <tr><td><code>probe/pg5097.txt</code>（PG #5097）</td><td>法文交叉底本</td><td>异文比对，不作引文</td></tr>
+      <tr><td><code>probe/pg2488.txt</code>（PG #2488）</td><td>Walter 1991 英译</td><td>英译引文、足本对照</td></tr>
+      <tr><td><code>probe/pg164.txt</code>（PG #164）</td><td>Mercier 英译（判定）</td><td>删节对照、旧译特征</td></tr>
+      <tr><td><code>probe/pg_fr.html</code></td><td>PG 法文条目页</td><td>书目信息、版本日期交叉核对</td></tr>
+      <tr><td><code>probe/meta_2488.html</code></td><td>PG 元数据页</td><td>核对 Walter 译本的 <code>Translator:</code> 字段</td></tr>
+      <tr><td><code>probe/verne_author.html</code></td><td>PG 凡尔纳作者页</td><td>实测 25 个条目全为小说，用于「不设作者谈话」档</td></tr>
+      <tr><td><code>海底两万里-来源清单.md</code></td><td>本报告配套</td><td>核验级别、版本差异、待核实项</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s20">
+  <h2><span class="num">D</span><span>待核实项</span><span class="caret">▾</span></h2>
+  <p><strong>D1 单行本首版时间。</strong> BnF 目录作 1869 年 10 月一卷、1870 年 6 月二卷；另有 1869-11-28 与 1870-06-13 两说；1871 年 11 月还有插图本。<span class="tag t-rep">转述</span> 本报告未核对纸书版权页。<span class="tag t-inf">推断</span></p>
+  <p><strong>D2 初版印数「五万册」。</strong> 通行说法称 Hetzel 首印五万册，本报告未核到出版方档案，标为待核实。<span class="tag t-rep">转述</span></p>
+  <p><strong>D3 Mercier 译本首版年份。</strong> 通行作 1872 或 1873，两说并存；本报告未核到首版版权页。<span class="tag t-rep">转述</span></p>
+  <p><strong>D4 <code>pg164.txt</code> 的译者归属。</strong> PG 文件头未标译者；本报告据书名单数、<code>cork-jacket</code> 用词、词数差三条内部证据判定为 Mercier，标 <span class="tag t-inf">推断</span>。若 PG 日后补上译者字段，以补上者为准。<span class="tag t-inf">推断</span></p>
+  <p><strong>D5 尼摩身世在《神秘岛》中的补完。</strong> 本书内没有姓名与国籍；《神秘岛》后来给出「达卡王子」的身份。<span class="tag t-rep">转述</span> 本报告未核《神秘岛》原文。<span class="tag t-inf">推断</span></p>
+  <p><strong>D6 中文「两万里」误译的通行程度。</strong> 本报告未做版本普查，不能断言「所有中译都误」。<span class="tag t-inf">推断</span></p>
+  <p><strong>D7 曾觉之中译本首版年份。</strong> 有 1947 与 1961 两说，本报告未核到初版版权页。<span class="tag t-rep">转述</span></p>
+  <p><strong>D8 全书时间线。</strong> 正文日期从 1867-11-08 到 1868-06-02，约七个月；第 47 章却说「不到十个月」。<span class="tag t-src">原书</span> 两者矛盾，本报告未找到调和证据。<span class="tag t-inf">推断</span></p>
+  <p><strong>D9 船体参数。</strong> 70 米×8 米与 1,500.2 立方米、1,011.45 平方米不自洽；本报告按圆柱体粗算，未做船体型线复原。<span class="tag t-inf">推断</span></p>
+  <p><strong>D10 维哥湾沉宝的吨位。</strong> 文本说「数百万」，本报告未核到 1702 年沉船的确切清单。<span class="tag t-rep">转述</span></p>
+</section>
+
+<footer>
+  生成于 2026-10-18 · 来源清单与交叉验证记录见同目录 <code>海底两万里-来源清单.md</code><br>
+  <b>【原书】＝法文主底本 PG #54873 逐字命中</b>；<b>【转述】＝未核到一手原文</b>；<b>【推断】＝本报告的判断</b>。★ 本书<b>不设「作者谈话」档</b>，理由见图例说明。★ 法文引文按原书标点与大小写照录，未作「通顺化」改动。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>
