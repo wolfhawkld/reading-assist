@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《他们那时候多有趣啊》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《他们那时候多有趣啊》<small>阅读指引与精华解析 · 2026-10-20</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 书目：一份儿童版面的稿子，如何变成课文</a>
+    <a href="#s2">2 骨架：一间儿童房，四个动作</a>
+    <a href="#s3">3 五个关键判断</a>
+    <a href="#s4">4 读法建议</a>
+    <a href="#s5"> 4b 为什么这篇不能读成「怀念旧学校」</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 逐段细读</div>
+    <a href="#s7">6 开端：一本「真正的书」</a>
+    <a href="#s8">7 插叙：机器老师、县视察员与那只苹果</a>
+    <a href="#s9">8 对话：两个孩子对「学校」的考古</a>
+    <a href="#s10">9 收束：二分之一加四分之一</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《他们那时候多有趣啊》阅读指引与精华解析</h1>
+  <div class="sub">The Fun They Had</div>
+  <div class="meta">
+    <div><b>作者</b>艾萨克·阿西莫夫（1920–1992），俄裔美国作家、生物化学博士；写这篇时 31 岁</div>
+    <div><b>首发</b>Boys and Girls Page（NEA 辛迪加儿童版面），1951-12-01；F&amp;SF 1954-02 重印</div>
+    <div><b>篇幅</b>约 1,000 英文词 · 一幕室内对话 · 两个孩子在读一本纸书</div>
+    <div><b>中译</b>人教版语文六年级下册第 17 课（译者高萍，选作课文时有改动）；旧译〈他们那时多有趣〉〈他们有过的快乐〉</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 只用于书目与结构事实：首发版面与日期、F&amp;SF 卷期页码、Doubleday 版次页数、教材课次。本篇无合法全文，故不用于任何情节措辞</li>
+    <li><span class="tag t-talk">作者谈话</span> 阿西莫夫〈独特的学习节拍〉中译（写作缘起、反讽自述、六条学校记忆）与 1973 年《The Best of Isaac Asimov》导言、1980 年自传，全部为二手转引</li>
+    <li><span class="tag t-rep">转述</span> 情节梗概、人教版课文与教参、旧译网络文本、书目数据库；中文引文一律注明是教材版还是旧译，教材版不等于全译</li>
+    <li><span class="tag t-inf">推断</span> 我的解读：反讽为何总被读成怀旧、教材删改的后果、1951 年的「机器老师」与今天自适应学习系统的对应关系</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本书是 <b>C 级</b>：版权期内，无合法全文，<b>没有一句英文直引</b>。「原书」档只保证「哪一天、哪一期、第几页、收进哪个集子」可靠，<b>不保证任何情节措辞</b>。中文引文一律取人教版课文，标<b>教材改编</b>；教材是改编本，不是全译。2155 与 2157 的分歧是<b>版本差异</b>，不是笔误，见附录 D 第 1 条。
+  </p>
+  <h3>引文核验级别（2026-10-20）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书落在 <b>C 级（仅二手转述）</b>：1951 年首发于报纸儿童版面，1957 年结集，仍在版权期内；书目层（首发日、卷期、页码、版次页数、教材课次）经 ISFDB、Open Library 与课文扫描页核对，<b>较硬</b>；文本层（对话、苹果、打孔码、结尾）全部为中文转述，<b>较软</b>。凡引中文，均为<b>教材改编</b>，不是阿西莫夫原话。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p>一个十一岁的女孩在日记里写：「今天，托米发现了一本真正的书。」她生活在 2155 年（英文通行本作 2157 年），学校是卧室隔壁的一间屋，老师是一台会出题、会打分、会把地理部分调快的机器。那本纸书讲的是几百年前的学校：一栋专门的房子，一群同年龄的孩子，一个真人。她听完，羡慕得不行。</p>
+  <p>故事到这里就结束了。没有反转，没有惩罚，没有一个人出来纠正她。阿西莫夫把最后一句留给了她的念头：「他们那时候多有趣啊。」</p>
+  <p><strong>这篇报告的方法</strong>：一千词的故事撑不起八千字的复述，所以我不复述。我把它当成一件<strong>教育技术史的标本</strong>，分四层看：文本层（它怎么写）、意图层（作者说他想写什么）、接受层（教材和课堂把它读成了什么）、技术层（1951 年的「机器老师」对应今天的哪套系统）。四层之间的错位，才是它今天还值得读的原因。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>书目：一份儿童版面的稿子，如何变成课文</span><span class="caret">▾</span></h2>
+  <p>它首发于 1951 年 12 月 1 日，星期六，刊在 NEA（Newspaper Enterprise Association，报业辛迪加）供给各家报纸的儿童版面 <em>Boys and Girls Page</em> 上——不是某一本杂志，而是一块随报纸发行的版面；读者是孩子，版面很小，作者没有空间铺陈。写它的时候阿西莫夫三十一岁，同年《基地》第一本出版。<span class="tag t-src">原书</span></p>
+  <p>第二次露面是 1954 年 2 月号的 <em>The Magazine of Fantasy and Science Fiction</em>，Vol. 6 No. 2，pp. 125–127，全刊 132 页，定价 35 美分，封面 Chesley Bonestell，主编 Anthony Boucher 与 J. Francis McComas。这是它第一次进入成人科幻读者的视野：三页，排在同期 Poul Anderson 之后。<span class="tag t-src">原书</span></p>
+  <p>第三次是 1957 年 10 月 3 日，Doubleday 出的《Earth Is Room Enough》，192 页，收十五个短篇加两首打油诗，封面 Tony Palladino。这本集子的选稿标准很特别：回应评论者说他老在银河里游荡，他专挑发生在地球上的故事。这篇的全部场景只有一间儿童房，正好合格。<span class="tag t-src">原书</span></p>
+  <p>此后它被反复重印。阿西莫夫 1973 年在《The Best of Isaac Asimov》的导言里说，这篇是他「文学生涯中最大的意外之喜」。<span class="tag t-talk">作者谈话</span></p>
+  <p>他报告说，当时它已被重印三十多次；1980 年的自传《In Memory Yet Green》里，他又猜孩子们喜欢它是因为「能尝出其中的反讽」。<span class="tag t-talk">作者谈话</span></p>
+  <p>中文这边，它走的是另一条路。人教版统编教材把它编在六年级下册第五单元，第 17 课，标为略读课文；脚注写明「本文作者是美国的艾萨克·阿西莫夫，译者高萍，选作课文时有改动」。所谓「改动」不是一句客套话，后面 §4b 与附录 A 会逐处对照。<span class="tag t-rep">转述</span></p>
+  <p>三个中文题名对应三种读法。《他们那时候多有趣啊》是教材版，保留了儿童感叹的语气；《他们那时多有趣》是网络可见的旧译，语气平一点；《他们有过的快乐》出自阿西莫夫那篇随笔的中译，把 fun 译成「快乐」，重了一档。<span class="tag t-rep">转述</span></p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>骨架：一间儿童房，四个动作</span><span class="caret">▾</span></h2>
+  <p>全篇没有分节。为了细读，我按叙事动作切成四段；这个切分是我做的，不是原书的结构。整篇也没有场景描写，没有天气，没有家具；除了视察员，没有一个人有外貌。玛琪和托米只有年龄、语气和位置。这是广播剧的写法：一切靠对白推进，叙述者只在必要的时候报一句动作。<span class="tag t-inf">推断</span></p>
+  <table>
+    <thead><tr><th>段</th><th>动作</th><th>在整篇里的功能</th></tr></thead>
+    <tbody>
+      <tr><td>开端</td><td>玛琪写日记，托米在阁楼翻到一本纸书</td><td>把「书」变成异物，把「读」变成考古</td></tr>
+      <tr><td>插叙</td><td>地理测验、视察员拆机、把进度调慢</td><td>把「学校」变成一台需要维修的家电</td></tr>
+      <tr><td>主体</td><td>两个孩子讨论真人老师、专门的地方、一样的功课</td><td>两种学校制度正面对撞</td></tr>
+      <tr><td>收束</td><td>妈妈喊上课，屏幕闪出分数题，玛琪发呆</td><td>把「羡慕」定格在一个可测量的瞬间</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>五个关键判断</span><span class="caret">▾</span></h2>
+  <p><strong>第一，反讽的机关是信息差，不是反转。</strong> 读者知道旧学校是什么样，玛琪不知道；读者还知道一件玛琪不知道的事——她羡慕的那个「一起上课」，我们自己未必喜欢。阿西莫夫不写一句评论，只让一个孩子把我们的学校当成天堂。读者被放在「被羡慕」的位置上，先受用，再不安。<span class="tag t-inf">推断</span></p>
+  <p><strong>第二，机器老师不是「坏」，是「快」。</strong> 全文对机器的唯一指控是「地理部分调得太快了」。视察员把它调慢，问题就解决了；妈妈没有抗议，玛琪也没说机器教得不好，她恨的是那个「槽口」和「一次又一次的测验」。这是一份很现代的教育诊断：不是学生不行，是系统的进度与学生不匹配。<span class="tag t-inf">推断</span></p>
+  <p><strong>第三，玛琪羡慕的不是「真人」，是「同伴」。</strong> 她反复追问的是「所有的孩子都学一样的功课吗」「他们一起上课吗」，最后想象的画面是「在校园里笑呀、闹呀」。真人在她的描述里只是一个功能：会讲课、会留作业、会提问。同伴才是她缺的东西。<span class="tag t-inf">推断</span></p>
+  <p><strong>第四，中文译本删掉的几处，正好是反讽的支点。</strong> 年龄（十一与十三）、「一百万本书」的对话、视察员的外貌与那只苹果、玛琪那句「人不可能比老师知道得多」。删掉之后，未来只剩匮乏，过去只剩丰裕，一场交换被改写成了单方面的堕落。<span class="tag t-rep">转述</span></p>
+  <p><strong>第五，年份 2155 与 2157 不是谁抄错，是版本差异。</strong> 中文教材与旧译都作 2155；英文 1957 年结集以后通行 2157。据 TV Tropes 条目，阿西莫夫在结集时把日期改成距出版恰好二百年，2157 正好是 1957 加二百。<span class="tag t-rep">转述</span></p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>读法建议</span><span class="caret">▾</span></h2>
+  <p><strong>第一遍，当儿童故事读。</strong> 注意它有多短，注意它一句解释都没有：不解释机器老师怎么工作，不解释世界怎么会变成这样，不解释玛琪为什么讨厌学校。所有背景都用「她已经习惯了」的方式带过。</p>
+  <p><strong>第二遍，只读「速度」。</strong> 调快、调慢、十岁水平、一次又一次、几世纪前。全篇的时间感都压在快慢上：机器的快，孩子的慢，历史的远。</p>
+  <p><strong>第三遍，只读「身体」。</strong> 谁有脸，谁有手，谁拍了谁的头，谁给了谁一个苹果。全篇只有一个人有身体，而他是来修机器的。</p>
+  <p><strong>可以跳过什么。</strong> 没有。一千词，慢读十分钟。<strong>不要做什么。</strong> 不要拿它当「AI 教育预言」的证词。它预言的是一种安排，不是一种技术。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 为什么这篇不能读成「怀念旧学校」</span><span class="caret">▾</span></h2>
+  <p>这是本报告最想说清楚的一件事，因为中文世界里关于这篇课文的教案，十篇有八篇把它写成「表达了对老式学校的向往」「对机器取代人的忧虑」。</p>
+  <p><strong>作者自己说了这是反讽。</strong> 阿西莫夫在〈独特的学习节拍〉里回顾：1951 年，一个老朋友在编报业辛迪加的儿童版面，约他写一篇短小的科幻故事；他「正有意要尝试讥讽作品」，而且相信「孩子们对反讽的感受性与成年人一样高」。他还说，这篇「仅仅 1000 字长」。<span class="tag t-talk">作者谈话</span></p>
+  <p><strong>他列了一份「我记住的学校」清单。</strong> 在同一篇文章里，他先承认自己书读得好、十五岁念完高中、学校待他「大约像它对任何人那样好」，然后写下他真正记得的东西：恃强欺弱的小霸王，让你经过操场和走道都苦恼不堪；反应迟钝的同学，让你不得不跟着龟步爬行；无能的教师，能把任何主题变得枯燥；冷酷的教师，磨尖了挖苦的利爪，让孩子痛苦又不许反驳；严厉的教师，把学校变成监狱；分数上的无情竞争，教每个孩子「除非让伙伴面子尽失，否则你什么也不是」。<span class="tag t-talk">作者谈话</span></p>
+  <p>他的结论是一句问句：你指望孩子在那种环境里有乐趣吗？哪个孩子不宁愿要一台自己的电视机，它「无比耐心地只关注于他，并且适应他自己的独特的学习节拍」？<span class="tag t-talk">作者谈话</span></p>
+  <p><strong>所以故事里的「羡慕」是反着写的。</strong> 玛琪羡慕旧学校，是因为她只从一本书里读到旧学校；她不知道操场上的霸王、拖堂的下午、被挖苦的那个同学。读者知道。阿西莫夫把读者放进一个比人物知道得更多的位置，然后让读者看着人物羡慕自己。这不是怀旧，是拿怀旧开玩笑。<span class="tag t-inf">推断</span></p>
+  <p><strong>他自己也承认，很多人没读懂。</strong> 他说，重印三十多次以来，有些编者写的按语、有些读者来信，都表明他们没从反讽的角度读，反而以为作者在推崇旧式学校、害怕机器教育。<span class="tag t-talk">作者谈话</span> 这句话比任何评论都重要：误读不是今天的教材造成的，它从 1950 年代就开始了；教材只是把一次旧的误读，编进了一个更大的框架。<span class="tag t-inf">推断</span></p>
+  <p><strong>但他也不是机器教育的鼓吹者。</strong> 同一篇文章的后半段，他把话说得很清楚：机器教育不是要取代人与人的互动，而是一种补充；体育、自然课考察、戏剧、演讲这些需要群体的领域仍然要留给人；数学、历史这类不需要同伴的学科，反而可以去掉「人为的、不必要的课堂公开竞争」，让每个孩子按自己的步调走，之后再安排研讨会，让学生互相倾听、评论。<span class="tag t-talk">作者谈话</span></p>
+  <p><strong>这就是他的完整立场：分区分工，不是二选一。</strong> 故事讽刺的是「怀旧」，随笔主张的是「混合」。把两半合起来看，他既不是卢德分子，也不是技术乌托邦；他只是认为，可标准化的部分交给机器，需要同伴的部分留给人。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p><strong>它是儿童版面稿，不是精密推演。</strong> 打孔码、县视察员、带表盘和电线的工具箱、电视屏幕——这些是 1951 年的技术词汇，不是 2157 年的。阿西莫夫没打算让未来可信，他只需要让未来可辨认。拿它核对「AI 会不会取代老师」，是拿漫画核对解剖图。<span class="tag t-inf">推断</span></p>
+  <p><strong>它的「未来」其实是把 1950 年代的家庭搬进 22 世纪。</strong> 妈妈在家，孩子在家，学校是一间屋，维修靠上门。今天真实发生的事恰恰相反：孩子还在学校里，数据上了云，参数由供应商设，家长在手机上查看学习报告。空间没有消失，消失的是「谁在看着孩子」的透明度。<span class="tag t-inf">推断</span></p>
+  <p><strong>它回避了政治经济学。</strong> 机器老师是谁买的？课程是谁定的？测验数据归谁？故事里一个字都没有。机器像一台冰箱，坏了就叫县里的人来修。这个设定让讽刺很干净，也让批判很轻。<span class="tag t-inf">推断</span></p>
+  <p><strong>它把「集体」浪漫化了。</strong> 玛琪想象的旧学校是「所有孩子一起笑呀、闹呀」。但真实的集体里也有霸凌、羞辱、排队、被点名。阿西莫夫在随笔里列过这份清单，故事里却一个字没写——因为故事必须让玛琪无知，反讽才能成立。<span class="tag t-inf">推断</span></p>
+  <p><strong>中文教材的接受史是这篇文章最好的注脚。</strong> 教参普遍把它读成「对机器取代人的忧虑」；单元主题是「科学精神」，课前提示要求学生「想象未来的学习生活还有可能是什么样的」，单元习作是「插上科学的翅膀飞」。一篇讽刺怀旧的小说，被用来训练想象未来。<span class="tag t-rep">转述</span> 这个错位不是教材编得差，是教材的功能决定的：它需要一个科幻小说的样本，而讽刺不产出范文。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>开端：一本「真正的书」</span><span class="caret">▾</span></h2>
+  <h3>这一段发生了什么</h3>
+  <p>小说从一句没有前文的话开始：玛琪那天晚上把「这件事」写进了日记，日期是 2155 年 5 月 17 日。接着交代那本书的来历——很旧，纸页发黄、皱皱巴巴，字静止不动，翻回去还在原地。托米在自家顶楼找到它，正全神贯注地看；玛琪问他写的是什么，他答：学校。<span class="tag t-rep">转述</span></p>
+  <h3>关键内容</h3>
+  <p>「真正的书」这个说法本身，是整篇小说的第一层设定。在一个所有故事都在荧光屏上的世界里，「真」的意思不是「内容可信」，是「有物质」。玛琪的判断标准不是写了什么，而是它占不占地方、会不会动。媒介就是真实。阿西莫夫用了三个物理形容词：发黄、皱、字不动。三个词都在说同一件事——这本书有身体，它会旧，会皱，会把字固定在纸上；而屏幕上的书没有身体，所以不会旧，也不会留下痕迹。这一段真正的对照不是「纸 vs 屏幕」，是「会坏的东西 vs 不会坏的东西」。<span class="tag t-inf">推断</span></p>
+  <p>教材版从「这件事」直接切入，读起来像缺了前文；这处接缝不是改编造成的，原文同样以一个没有先行词的代词开头，故意从一场已经发生的对话中间进场。<span class="tag t-rep">转述</span></p>
+  <h3>可疑之处</h3>
+  <p>教材删掉了两人的年龄。年龄在这个故事里不是装饰：机器老师按「十岁水平」调速，年龄是分级的标尺。<span class="tag t-rep">转述</span> 删掉年龄，读者就看不到「她被当作一个十岁的数据点」这件事，只看到一个孩子在发脾气。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>插叙：机器老师、县视察员与那只苹果</span><span class="caret">▾</span></h2>
+  <h3>这一段发生了什么</h3>
+  <p>玛琪讨厌学校，因为机器老师一次又一次给她做地理测验，她一次比一次答得糟。妈妈发愁地摇头，把教学视察员（英文是 County Inspector，县视学）找了来。视察员带着一箱带表盘和电线的工具，笑着拍拍她的头，先给了她一个苹果，然后把机器拆开；一小时后，机器装回去了，又大又黑又丑，屏幕上照样出课文、照样提问。他把地理部分的进度调慢，说这已经适合十岁孩子的水平，还说她总的学习情况令人满意。玛琪很失望——她本来希望他装不回去。托米的老师曾被搬走近一个月，因为历史部分的装置完全显示不出图像。<span class="tag t-rep">转述</span></p>
+  <h3>关键内容</h3>
+  <p>「一次又一次」是全文对机器最具体的指控。不是难度问题，是频次问题：测验在这里不是诊断，是惩罚；不是帮你找到不会的地方，是反复确认你不会。而科目偏偏是地理——事实性知识，最容易标准化、最容易出题、最容易算分。阿西莫夫选科不是随便的：机器接管的是可测量的部分，而玛琪羡慕的「一起上课」发生在讨论、争辩、互相帮助这些不好测量的地方。<span class="tag t-inf">推断</span></p>
+  <p>「调慢到十岁水平」是全篇的技术核心。机器不是不会教，是教得太快；解决办法不是换老师，是改参数。这个诊断在 1951 年是科幻，在今天是最普通的产品逻辑：每一个自适应学习系统都在做同一件事——用答题数据估算学生的水平，然后把进度调快或调慢。区别只在维修方式：故事里是县视察员带着一箱工具上门拆机，今天是后台改一个参数，连门都不用敲。<span class="tag t-inf">推断</span></p>
+  <p>那只苹果是全篇唯一一次成年人对孩子做出的非教学动作。视察员先笑，再给苹果，再拆机器；机器只会出题。人来了，先给一个不需要交作业的东西。这一个动作把「人」和「机器」的差别从「会不会教」挪到了「会不会先给你一个苹果」。而玛琪希望他装不回去、托米的老师被搬走一个月，说明故障是这个世界里唯一合法的假期：孩子对机器的反抗，不是砸掉它，是盼着它坏。<span class="tag t-inf">推断</span></p>
+  <h3>可疑之处</h3>
+  <p>教材删掉了视察员的外貌和那只苹果，只留下「拍拍她的脑袋」；我看到的旧译也没有这个动作，所以这未必是教材独有的删节，可能是中文转译共同的丢失。<span class="tag t-rep">转述</span> 删掉之后，人在这篇课文里就只剩下声音；机器与人的差别，从「会不会给苹果」退化成了「会不会测验」。这不是一字一句的损失，是解读坐标的位移：读者再也看不到「人先给苹果」这个动作，也就更容易把故事读成「机器冷、人暖」的简单对立。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>对话：两个孩子对「学校」的考古</span><span class="caret">▾</span></h2>
+  <h3>这一段发生了什么</h3>
+  <p>玛琪问：怎么会有人写学校？托米高傲地看她一眼，说那不是我们这种学校，是几百年前的老式学校，还一字一顿地补了一句「几世纪前」。玛琪说，那他们总得有个老师吧。托米说，有，可不是我们这样的老师，是一个真人。玛琪不信：真人怎么会是老师？托米说，他只不过给孩子讲讲课、留些作业、提提问题。玛琪说，真人可没那么聪明。托米说，我爸爸就和我的机器老师知道得一样多。玛琪不想争了，说我不想让一个陌生人到家里来教我。托米尖声大笑：老师不住在家里，他们有一个专门的地方，所有孩子都到那儿去上学。玛琪问：所有孩子都学一样的功课吗？托米说，那当然，如果年龄一样的话。玛琪说，可我妈妈说，老师是需要随时调整的，好适合每个孩子的智力，教法也应该不同。托米说，他们那时候不是那么做的；你要是不喜欢，就干脆别读这本书。玛琪急忙说，我没说不喜欢。<span class="tag t-rep">转述</span></p>
+  <h3>关键内容</h3>
+  <p>「真人可没那么聪明」是全文最刺人的一句。玛琪不是被机器洗脑，她是用机器作为标准来衡量人：一台机器什么都知道，人就被重新定义为「知道得少的那种东西」。这句话的语法值得注意——她说的是「没那么聪明」，一个比较级，而不是「人不聪明」。比较级预设了一个统一的刻度，而那个刻度是机器给的。紧接着她唯一一次主动追问制度，是「所有的孩子都学一样的功课吗」。她关心的不是教学法，是「一样」这件事本身：一样意味着可以互相帮助，可以讨论，可以在做作业的时候问旁边的人。她羡慕的不是知识，是知识的可共享性。<span class="tag t-inf">推断</span></p>
+  <p>玛琪妈妈的「因材施教」是全文最容易被忽略的一段引语：老师要随时调整，适合每个孩子的智力，教法也要不同。这套话在 1950 年代是进步主义教育的口号，在今天是个性化学习的营销话术。阿西莫夫让一个十一岁的孩子把它背出来，用来反对「大家一起上课」。反讽在这里翻了一层：玛琪用「个性化」的理由为「孤独」辩护，却羡慕一种「不个性化」的制度。她不知道自己在说什么，读者知道。<span class="tag t-inf">推断</span></p>
+  <p>教材版只留下「真人可没那么聪明」和「我爸爸知道得一样多」两个来回；英文原文在这两句之后还有两个来回——玛琪坚持人不可能比老师知道得多，托米回一句「他差不多知道得一样多，我敢打赌」。我看到的旧译也停在两个来回上，所以这可能是中文转译共同的删节，不一定是教材独有的改动。<span class="tag t-rep">转述</span> 无论责任在谁，中文读者看到的玛琪，怀疑都从「范畴判断」降成了「程度比较」，托米也从「赌气的孩子」变成了「背结论的哥哥」。<span class="tag t-inf">推断</span></p>
+  <h3>可疑之处</h3>
+  <p>托米的知识全部来自那本书，玛琪的知识全部来自妈妈和机器。两种知识在同一个房间里对撞，谁也没有压倒谁——这是故事最诚实的地方：它不是「孩子被机器骗了」，是「两个孩子各自只有一半信息」。但小说没有给玛琪任何翻盘的机会，她到最后也没有读到那本书的后半本。<span class="tag t-inf">推断</span></p>
+  <p>「几世纪前」这个动作很妙：托米一字一顿地说，说明这个词对他来说是需要用力才能说出的外来词。历史在他的世界里已经不是一个可以讲述的故事，而是一个需要发音练习的术语。教材保留了这个动作，是它做得对的地方。<span class="tag t-rep">转述</span></p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>收束：二分之一加四分之一</span><span class="caret">▾</span></h2>
+  <h3>这一段发生了什么</h3>
+  <p>他们还没看完一半，妈妈就喊：玛琪，该上课了。玛琪叹了口气，去上课。她脑子里还在想爷爷的爷爷小时候上的那种学校：附近所有孩子都到一处去，在校园里笑呀、闹呀，一起坐在课堂里，上完一天的课一块儿回家；学的功课都一样，做作业可以互相帮助，有问题可以讨论；老师是真人。机器老师在屏幕上闪出这样一行字：我们把 ½ 和 ¼ 这两个分数加在一起——玛琪想，在过去的日子里，那些孩子一定非常热爱他们的学校。她想，他们那时候多有趣啊。<span class="tag t-rep">转述</span></p>
+  <h3>关键内容</h3>
+  <p>结尾没有回到「书」，回到了「分数」。这是一次精确的切换：从叙事切到算术，从故事切到可测量。玛琪的羡慕恰好发生在分数题闪出的同一秒——她一边想着「那时候多有趣」，一边被要求把两个分数加起来。而 ½ 加 ¼ 是一道有确定答案的题。旧学校的故事没有确定答案，新学校的题目有。这就是机器能教的部分，也是它只能教的部分：机器教的恰好是那门可以被打分的课。<span class="tag t-inf">推断</span></p>
+  <p>最后两句仍是第三人称，但视角完全锁在玛琪身上：叙述者报告她在想什么，却没有替她下判断。标题「他们那时候多有趣啊」落在她的念头里，不落在叙述者的评论里。这正是误读的入口：如果读者把最后一句当成作者的话，整篇小说就变成「今不如昔」的哀叹；如果读者记得这句话属于一个从没上过学的孩子，它就变成「你羡慕的东西，你可能并不了解」。两种读法只差一个归属。<span class="tag t-inf">推断</span></p>
+  <p>教材把它译成「他们那时候多有趣啊」，保住了儿童感叹的语气；旧译《他们那时多有趣》平一点；《他们有过的快乐》把 fun 译成「快乐」，重了一档。三个译名，三种距离：感叹、陈述、追认。<span class="tag t-rep">转述</span></p>
+  <h3>可疑之处</h3>
+  <p>教材在结尾之前删掉了「一百万本书」那段：托米炫耀一块屏幕装得下一百万本书，玛琪回一句「我的也一样」。这是全文唯一一次正面写新技术的好处，也是玛琪唯一一次承认自己的屏幕同样丰裕。<span class="tag t-rep">转述</span> 删掉它，「未来」就只剩匮乏，「过去」就只剩丰裕，一场交换被改写成了单方面的堕落。<span class="tag t-inf">推断</span></p>
+  <h3>A 关键句与版本对照（无直引）</h3>
+  <p>本篇在版权期内，没有合法全文可得。下面表中的中文一律取人教版课文（教材改编），英文通行本的对应处只作中文转述，不给原文。教材版是改编本，不是全译；凡标「教材改编」的句子，都不能当作阿西莫夫的原话。<span class="tag t-rep">转述</span></p>
+  <p>书目层的事实——首发日、F&amp;SF 卷期与页码、Doubleday 版次与页数——见 §1，均有原刊目录页或 ISFDB 记录支持，与文本层分开处理。<span class="tag t-src">原书</span></p>
+  <table>
+    <thead><tr><th>位置</th><th>教材版中文（教材改编）</th><th>为什么关键</th></tr></thead>
+    <tbody>
+      <tr><td>开头</td><td>「今天，托米发现了一本真正的书！」</td><td>「真正的」在这里指有物质，不指内容可信；媒介即真实</td></tr>
+      <tr><td>插叙</td><td>「那个机器老师一次又一次地给她做地理测验」</td><td>频次即惩罚；教材保留了这个细节</td></tr>
+      <tr><td>插叙</td><td>「我把它调慢了，已经适合于十岁孩子的水平了」</td><td>全篇技术核心：不是不会教，是教得太快</td></tr>
+      <tr><td>对话</td><td>「真人可没那么聪明。」</td><td>人用机器的刻度衡量人；比较级预设了统一标准</td></tr>
+      <tr><td>对话</td><td>「所有的孩子都学一样的功课吗？」</td><td>玛琪真正羡慕的是「一样」，即知识的可共享</td></tr>
+      <tr><td>结尾</td><td>「我们把 ½ 和 ¼ 这两个分数加在一起——」</td><td>可测量之物回来了；机器教的正是能被打分的课</td></tr>
+      <tr><td>结尾</td><td>「他们那时候多有趣啊！」</td><td>标题落地；这句属于玛琪，不属于作者</td></tr>
+    </tbody>
+  </table>
+  <p><strong>三个版本的逐项对照</strong>（这一栏是文本比对，不是翻译批评）：</p>
+  <table>
+    <thead><tr><th>项目</th><th>旧译《他们那时多有趣》</th><th>英文通行本（1957 年后）</th><th>人教版课文（教材改编）</th></tr></thead>
+    <tbody>
+      <tr><td>年份</td><td>2155 年 5 月 17 日</td><td>2157 年 5 月 17 日</td><td>2155 年 5 月 17 日</td></tr>
+      <tr><td>两人年龄</td><td>玛琪 11 岁，托米 13 岁</td><td>11 岁与 13 岁</td><td>未出现</td></tr>
+      <tr><td>「一百万本书」的对话</td><td>有</td><td>有</td><td>删</td></tr>
+      <tr><td>视察员的外貌与苹果</td><td>我看到的网络文本中未见</td><td>有</td><td>删</td></tr>
+      <tr><td>「人不可能比老师知道得多」</td><td>我看到的网络文本中未见</td><td>有</td><td>删</td></tr>
+      <tr><td>篇幅</td><td>全文（字数未精确统计）</td><td>约一千英文词</td><td>约一千四百汉字</td></tr>
+    </tbody>
+  </table>
+  <p>「旧译」一列依据的是网络可见的繁体转录本，译者、出版社、是否全译都未查到，只能作旁证，不能当校本。<span class="tag t-rep">转述</span></p>
+  <h3>B 延伸阅读</h3>
+  <h4>直接相关（本书自己的上下游）</h4>
+  <ul>
+    <li>阿西莫夫〈独特的学习节拍〉中译（芥末堆 2018-04-17 转载，原转自 Aha 社会创新学院）：本篇最硬的一手材料，包含写作缘起、反讽自述、六条学校记忆和「学习节拍」那句结论。英文原题与初刊出处未查到，见附录 D 第 4 条。<span class="tag t-talk">作者谈话</span>
+    </li>
+    <li>《Earth Is Room Enough》（Doubleday，1957）：把这篇放回原集子读，会发现它和〈The Dead Past〉〈Franchise〉一样，都是「地球上的制度故事」；区别只是这一篇的主角是两个孩子。<span class="tag t-rep">转述</span>
+    </li>
+    <li>阿西莫夫〈The Last Question〉（1956）与〈Profession〉（1957）：前者写机器的极限，后者写「知识被直接灌进脑子」之后不会灌的人怎么办。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <h4>同一问题的其他路径</h4>
+  <ul>
+    <li>B. F. Skinner〈学习的科学与教学的艺术〉（1954）：程序教学的理论起点；1950 年代中后期出现教学机。故事里的「机器老师」属于这个谱系，不属于大语言模型。<span class="tag t-rep">转述</span>
+    </li>
+    <li>Audrey Watters, <em>Teaching Machines: The History of Personalized Learning</em>（2021）：从 1920 年代的自动教学装置写到自适应学习，是理解「个性化」如何变成一门生意的最好一本。<span class="tag t-rep">转述</span>
+    </li>
+    <li>Ivan Illich, <em>Deschooling Society</em>（1971）：主张把学校制度拆成「学习网络」。伊里奇要拆掉学校，阿西莫夫要给每个孩子配一台机器；两人都不把「一间教室」当作唯一答案，但一个要拆制度，一个要给制度换零件。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <h4>有助于批判性重读</h4>
+  <ul>
+    <li>本批《力量的感觉》（1958）与《银色蛋头》（1961）：前者写算术被外包，后者写写作被外包；这一篇写的是<strong>学习被外包</strong>。三篇连起来，是「能力外包」的三级台阶。<span class="tag t-rep">转述</span>
+    </li>
+    <li>人教版教师用书与本课教案：读它们比读小说更能说明「教材想要什么」。多数教案把课文读成「对机器教育的忧虑」，与本报告 §4b 的读法相反。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <h3>C 来源清单</h3>
+  <p>下表把书目层与文本层分开：前三行是书目（首发、重印、结集），后几行是作者自述、教材与旧译。<span class="tag t-src">原书</span></p>
+  <table>
+    <thead><tr><th>类别</th><th>来源</th><th>提供了什么</th><th>性质</th></tr></thead>
+    <tbody>
+      <tr><td>一手书目</td><td>ISFDB 篇目记录 <em>The Fun They Had</em>（Title Record #58943）</td><td>首发 1951-12-01；F&amp;SF 1954-02；Earth Is Room Enough；各国译本年份</td><td>书目数据库</td></tr>
+      <tr><td>一手书目</td><td>ISFDB 出版物记录 #61077（F&amp;SF 1954-02）</td><td>Vol. 6 No. 2；pp. 125–127；132 页；35 美分；主编 Boucher／McComas；封面 Bonestell</td><td>书目数据库</td></tr>
+      <tr><td>一手书目</td><td>Open Library OL6225287M；Wikipedia <em>Earth Is Room Enough</em></td><td>Doubleday，1957-10-03，192 页；十五篇加两首诗；封面 Palladino</td><td>书目／百科</td></tr>
+      <tr><td>作者自述</td><td>《The Best of Isaac Asimov》导言（1973），p. xi</td><td>「文学生涯中最大的意外之喜」；重印三十多次</td><td>二手转引</td></tr>
+      <tr><td>作者自述</td><td>《In Memory Yet Green》（1980），p. 626</td><td>孩子喜欢它是因为「能尝出其中的反讽」</td><td>二手转引</td></tr>
+      <tr><td>作者自述</td><td>〈独特的学习节拍〉中译（芥末堆，2018）</td><td>写作缘起；1000 词；六条学校记忆；「学习节拍」；接收史；机器教育是补充</td><td>二手转引（中译）</td></tr>
+      <tr><td>教材</td><td>人教版统编语文六年级下册第 17 课（第五单元，略读）</td><td>课文全文、脚注、单元编排、课前提示</td><td>教材（改编本）</td></tr>
+      <tr><td>教材研究</td><td>人教版六下第五单元教材分析与教案（多家教辅网站）</td><td>单元主题「科学精神」；习作「插上科学的翅膀飞」；通行解读</td><td>二手</td></tr>
+      <tr><td>旧译</td><td>网络繁体转录本《他们那时多有趣》</td><td>2155 年；11 岁与 13 岁；「一百万本书」对话</td><td>来源不明，仅作旁证</td></tr>
+      <tr><td>版本差异</td><td>TV Tropes <em>The Fun They Had</em> 条目</td><td>1951／1954 版作 2155，1957 年结集改为 2157</td><td>爱好者维基，待核</td></tr>
+    </tbody>
+  </table>
+  <p>完整版见同目录 <code>他们那时候多有趣啊-来源清单.md</code>。</p>
+  <h3>D 待核实项</h3>
+  <p>按「可能影响判断的程度」排序，不按来源顺序。</p>
+  <ol>
+    <li><strong>2155 与 2157 的版本差异。</strong> 中文教材、旧译与多数中文资料作 2155；英文 1957 年结集以后通行 2157。TV Tropes 说阿西莫夫在结集时把日期改成 2157，使它恰好是出版后二百年。这个解释能同时说明两件事：2157 正好等于 1957 加 200；两种中文译本都作 2155，不像是同一处笔误。但我没有 1951 年报纸原件，无法最终定案。<strong>这是本报告最要紧的一条。</strong>
+    </li>
+    <li><strong>篇幅：1,000 词还是 350 词。</strong> 阿西莫夫自述「仅仅 1000 字长」。另有资料写约 350 词。F&amp;SF 重印占 pp. 125–127 三页，按 digest 版式每页三百多词计，三页约一千词；350 词只够一页。我倾向 350 是「单页容量」被误当成全篇，但没有合法全文，不能逐词统计。
+    </li>
+    <li><strong>教材译者。</strong> 教材脚注署「译者高萍」（据课文扫描页）；网络转录另有「高菜」「裔萍」两种写法，应为 OCR 之误，需以纸本版权页或脚注核对。
+    </li>
+    <li><strong>〈独特的学习节拍〉的英文原题与出处。</strong> 中译标明转自 Aha 社会创新学院；正文说世界人口「如今徘徊于 40 亿」——这是 1970 年代中期的口径——并把 21 世纪当作未来，所以文章大概率写于 1970 年代，而不是 1950 年代。英文原题、初刊刊物与年份均未查到。本报告只把它当作阿西莫夫本人的自述，不当作同时期文献。
+    </li>
+    <li><strong>首发报纸的具体报名。</strong> NEA 是向多家报纸供稿的辛迪加，理论上同一天刊在多家报纸上；Asimov Wiki 写作《纽约时报》儿童版，与其他来源不符，未核实。那位「老朋友」的姓名也未查到。
+    </li>
+    <li><strong>教材课次。</strong> 通行版本是六年级下册第 17 课（第五单元，略读）；有教辅网站把它标为六年级上册第 22 课（2026），可能是新教材的调整，也可能是站点标注错误，需核纸本。
+    </li>
+    <li><strong>报纸版是否配漫画。</strong> TV Tropes 说首发时配有漫画，画中人物穿着 1950 年代想象中的未来服装。未见 1951 年原件，无法证实。
+    </li>
+    <li><strong>「重印三十多次」。</strong> 这是阿西莫夫 1973 年的自述；我只核到十种左右的收录记录，其余无法逐一验证。
+    </li>
+    <li><strong>旧译《他们那时多有趣》的译者与出版信息。</strong> 未查到；该网络文本是否为全译、有无删节，也未核实。本报告只用它作版本旁证，不用它校订文字。
+    </li>
+  </ol>
+</section>
+
+<footer>
+  生成于 2026-10-20 · 来源清单与交叉验证记录见同目录 <code>他们那时候多有趣啊-来源清单.md</code><br>
+  本页<b>不含任何英文原文引语</b>；所有情节与对话均为中文转述，中文引文取人教版课文（教材改编）。书目事实核对自 ISFDB、Open Library 与课文扫描页；作者自述均为二手转引。请以原书复核。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

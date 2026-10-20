@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《Autonomous》· 索引碎片</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+
+/* ===== 索引碎片页的版式覆盖（无侧栏，单列）===== */
+main{margin:0 auto;max-width:840px;padding:0 22px 90px}
+.hero{padding:40px 0 20px}
+.hero .kick{font-size:11.5px;letter-spacing:.08em;color:var(--ink3);font-weight:600;margin-bottom:6px}
+.frag{margin:20px 0 0;padding:20px 22px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.frag .row{margin:0 0 11px;font-size:14px;color:var(--ink2);line-height:1.75}
+.frag .row>b{color:var(--ink);font-weight:600;margin-right:2px}
+.frag ol.sub{margin:6px 0 0 0;padding-left:22px;font-size:13.5px;color:var(--ink2)}
+.frag ol.sub li{margin:4px 0}
+.frag code{background:var(--hover);padding:1px 5px;border-radius:4px;font-size:.92em}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+.chip{font-size:11.5px;padding:2px 9px;border-radius:5px;background:var(--hover);color:var(--ink2)}
+.cfoot{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
+.cfoot a{font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;text-decoration:none;
+  background:var(--accent-bg);color:var(--accent);border:1px solid var(--linkline)}
+.cfoot a:hover{background:var(--linkhover)}
+.cfoot a.ghost{background:var(--panel);color:var(--ink2);border-color:var(--line2)}
+ol.dir{list-style:none;margin:18px 0 0;padding:0}
+ol.dir li{padding:10px 14px;border:1px solid var(--line);border-radius:9px;background:var(--panel);margin:8px 0}
+ol.dir a{font-weight:600;color:var(--accent);text-decoration:none;font-size:14.5px}
+ol.dir a:hover{text-decoration:underline}
+ol.dir .m{font-size:12.5px;color:var(--ink3);margin-top:3px}
+</style>
+</head>
+<body>
+<div id="ctl"><button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button></div>
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+<header class="hero">
+  <div class="kick">索引碎片 · Autonomous</div>
+  <h1>《Autonomous》</h1>
+<div class="chips"><span class="chip">状态：未标注已读／想读</span><span class="chip">收录：2026-10-20</span><span class="chip">形态：文学型（按板块） —— 下部 ## 6–## 9 四个板块（世界／杰克线／帕拉丁线／收束）</span><span class="chip">核验级别：C（二手转引；无合法全文）</span></div>
+</header>
+<div class="frag">
+    <div class="row"><b>原名</b><em>Autonomous</em></div>
+    <div class="row"><b>作者</b>Annalee Newitz（安娜莉·纽维茨，1969-05-06 – ），科技记者，io9 创办人、前 Gizmodo 主编，加州大学伯克利分校英语与美国研究博士；<strong>自 2019 年起公开使用 they/them</strong></div>
+    <div class="row"><b>初版</b>Tor Books，<strong>2017-09-19</strong>，精装 <strong>301 页</strong>，ISBN 978-0-7653-9207-7（部分零售页记 303 页）</div>
+    <div class="row"><b>荣誉</b><strong>2018 Lambda Literary Award（LGBTQ SF/F/Horror）得主</strong>；2017 Nebula 最佳长篇<strong>提名</strong>；2018 Locus <strong>最佳处女作</strong>提名</div>
+    <div class="row"><b>篇幅</b>长篇；★ <strong>原书没有分部</strong>，章节短、POV 交替（Jack／Paladin 等）</div>
+    <div class="row"><b>报告底本</b>★ <strong>无合法全文</strong>（2017 年出版，版权期内）⇒ 本报告<strong>没有读过正文原文</strong>，一句英文直引都没有</div>
+    <div class="row"><b>中译</b>★ 学术文献把书名译作<strong>《自主》</strong>（另有《自治》），但<strong>未查到正式简体中文版</strong> —— 只写「未见出版」，不写「无中文版」</div>
+    <div class="row"><b>状态</b>未标注已读／想读</div>
+    <div class="row"><b>收录</b>2026-10-20</div>
+    <div class="row"><b>形态</b><strong>文学型（按板块）</strong> —— 下部 <code>## 6</code>–<code>## 9</code> 四个板块（世界／杰克线／帕拉丁线／收束），每节固定三问：<code>### 发生了什么</code>／<code>### 关键内容</code>／<code>### 可疑之处</code>。★ 板块划分是本报告的组织方式，<strong>不是原书结构</strong>，正文开头已明写</div>
+    <div class="row"><b>产出</b><code>Autonomous/</code> — <code>.md</code>（<strong>83,049 B，22,445 汉字</strong>）＋ <code>.html</code>（107,541 B）＋ <code>-来源清单.md</code> ＋ <code>-build.json</code></div>
+    <div class="row"><b>结构</b>h1 恰 <strong>4</strong> 个＋ 上部 <code>## 0</code>–<code>## 5</code>（含 <code>## 4b</code>）＋ 下部 <code>## 6</code>–<code>## 9</code> ＋ 附录 <strong>A–D</strong>（A 人物与术语速查／B 延伸阅读／C 来源清单／D 待核实项 14 条）</div>
+    <div class="row"><b>核验级别</b><strong>C（二手转引；无合法全文）</strong>。★ 支持本级的材料：出版信息、页数、ISBN、三项奖项、作者身份与代词，可逐项核对。★ <strong>为什么没到上一级</strong>：没有合法全文，任何一句原文措辞都核不了；<span class="tag t-src">原书</span> 只覆盖书目与可核的结构事实</div>
+    <div class="row"><b>档位计数</b>`<code> <span class="tag t-src">原书</span> </code><code> <strong>8</strong> ／ </code><code> <span class="tag t-talk">作者谈话</span> </code><code> <strong>15</strong> ／ </code><code> <span class="tag t-rep">转述</span> </code><code> <strong>50</strong> ／ </code><code> <span class="tag t-inf">推断</span> </code>` <strong>45</strong>（全文口径）</div>
+    <div class="row"><b>备注</b></div>
+    <ol class="sub">
+      <li>★★★ <strong>书名是法律身份，不是形容词</strong> —— 小说里的机器人要先还清「制造费」，还清之后才叫 <em>autonomous</em>。所以 <em>Autonomous</em> 是一个<strong>身份状态</strong>，中文评介常漏掉这一层</li>
+      <li>★★ <strong>最锋利的设定是专利权与人身权的同构</strong> —— 能拥有药，就能拥有人。IPC 执法的不是刑法，是<strong>专利法</strong></li>
+      <li>★★ <strong>Paladin 与 Eliasz 的关系是伦理困境，不是猎奇</strong> —— 契约机器人<strong>无法给出「同意」</strong>；Paladin 的脑来自一名死去的女兵，性别线索是全书暗线</li>
+      <li>★★ <strong>作者的记者背景是钥匙</strong> —— 她写的是知识产权法，不是反乌托邦套路；<span class="tag t-talk">作者谈话</span> 15 处多数来自她的访谈与非虚构写作</li>
+      <li>★ <strong>拼写</strong>：小说里的解药叫 <strong>RetCon</strong>（不是 ReCon，也不是 Retcon）</li>
+    </ol>
+    <div class="row"><b>待核实</b><strong>D1</strong> 中译（未见出版，学术译名两个）／<strong>D2</strong> 页数 301／303／<strong>D3</strong> 章节编号与章目（未查到可靠章目）／<strong>D4</strong> 帕拉丁契约年限（法定十年，人物说可能二十年，p.35）／<strong>D5</strong> Locus 类别（最佳处女作，不是最佳长篇）／<strong>D6</strong> Lambda 类别的完整名称与届次／<strong>D7</strong> 作者代词的时间线（2017 年访谈多用 she/her）／<strong>D8</strong> RetCon 与 Zacuity 的官方拼写／<strong>D9</strong> 2144 年设定的年表细节／<strong>D10</strong> 结局中 Paladin 的损伤程度／<strong>D11</strong> 书中对加拿大／北极地理的具体描写／<strong>D12</strong> Med 与 Threezed 的结局细节／<strong>D13</strong> 作者非虚构写作与本书的直接关联（她本人如何表述）／<strong>D14</strong> 本书是否被译成日、法、德文及译名</div>
+</div>
+<div class="cfoot">
+  <a href="../Autonomous/Autonomous.html">打开阅读页</a>
+  <a class="ghost" href="../Autonomous/Autonomous.md">内容正本</a>
+  <a class="ghost" href="../Autonomous/Autonomous-来源清单.md">来源清单</a>
+  <a class="ghost" href="Autonomous.md">本页 Markdown</a>
+</div>
+</main>
+<script>/* 主题切换（本页自用的小脚本，不依赖书页主脚本） */
+(function(){var b=document.getElementById('themebtn');if(!b)return;
+function sync(){b.textContent=(document.documentElement.getAttribute('data-theme')==='dark')?'◐ 浅色':'◐ 深色';}
+b.addEventListener('click',function(){
+  var d=document.documentElement.getAttribute('data-theme')==='dark';
+  var n=d?'light':'dark';
+  document.documentElement.setAttribute('data-theme',n);
+  try{localStorage.setItem('ra-theme',n)}catch(e){}
+  sync();});
+sync();})();</script>
+</body>
+</html>

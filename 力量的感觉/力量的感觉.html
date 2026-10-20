@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《力量的感觉》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《力量的感觉》<small>阅读指引与精华解析 · 2026-10-20</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 书目、写作时间与五个中文篇名</a>
+    <a href="#s2">2 全书骨架：三幕，一间空房间</a>
+    <a href="#s3">3 五个关键判断</a>
+    <a href="#s4">4 读法建议</a>
+    <a href="#s5"> 4b 为什么这篇不能读成「反科技」</a>
+    <a href="#s6">5 争议与局限</a>
+    <div class="grp">下部 · 逐段细读</div>
+    <a href="#s7">6 开端：一个不会算数的人</a>
+    <a href="#s8">7 转折：Aub 演示「graphitics」</a>
+    <a href="#s9">8 高潮：军方要人，不要机器</a>
+    <a href="#s10">9 收束：葬礼之后的乘法</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《力量的感觉》阅读指引与精华解析</h1>
+  <div class="sub">The Feeling of Power</div>
+  <div class="meta">
+    <div><b>作者</b>艾萨克·阿西莫夫（1920–1992），俄裔美国作家、生物化学博士</div>
+    <div><b>首发</b>If: Worlds of Science Fiction，1958-02，Vol. 8 No. 2，pp. 4–11</div>
+    <div><b>篇幅</b>约 3,500 英文词 · 三幕 · 有名有姓者不足十人</div>
+    <div><b>中译</b>五个篇名：〈奇特的「人工脑」〉(1981) →〈找回笔算〉(1997) →〈力量的感觉〉(2000) →〈能力的感受〉(2023)</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 只用于书目与结构事实：首发刊期、卷号、页码、定价、收录集与页数、篇幅口径。本篇无合法全文，故不用于任何情节措辞</li>
+    <li><span class="tag t-talk">作者谈话</span> 阿西莫夫本人为各选集所写的小引与序（Opus 100／Robot Visions／某转载版卷首），全部为二手转引，逐处注明出处；不是访谈</li>
+    <li><span class="tag t-rep">转述</span> 来自情节梗概、书目数据库、译名目录与书评的二手概括，措辞可能与原文有出入；中文对话一律为意译</li>
+    <li><span class="tag t-inf">推断</span> 我的解读与猜测，无直接来源支撑；凡涉及「情节漏洞是什么」一类，均标明是猜测</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本书是 <b>C 级</b>：无合法全文可得，<b>没有一句英文直引</b>。「原书」档在此只承担书目功能——它保证「哪一期、第几页、收进哪个集子」可靠，<b>不保证任何情节措辞</b>。1981 年版的篇名与译文是否忠实，另有两个待核实项，见附录 D 第 1–2 条。
+  </p>
+  <h3>引文核验级别（2026-10-20）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书落在 <b>C 级（仅二手转述）</b>：原刊 1958 年 2 月号仍在版权期内，网上流传的全文与中译均不作引用依据；书目层（刊期、页码、收录集）经原刊扫描目录页与 ISFDB 双向核对，<b>较硬</b>；文本层（对话、遗书、结尾措辞）全部为意译，<b>较软</b>。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p>一个低阶技师在业余时间琢磨明白了一件事：数可以在纸上算。他把这件事演示给军方，军方听懂的不是「人真聪明」，而是「人真便宜」。</p>
+  <p>这篇小说写于 1957 年，全文约三千五百词，场景只有三个，人物不到十个，没有外星人露面，没有一台机器说话。阿西莫夫自己说，这是他被选进选集最频繁的几篇之一，也是他少数几篇「预言准了社会后果、而不是准了技术」的作品。<span class="tag t-talk">作者谈话</span>准的那一半是：人会把一项能力交出去，然后忘掉它。不准的那一半是：他以为人忘了算术会恐慌；实际上人只会换一个更小的设备。</p>
+  <p>所以读这篇，不必把它当成科幻。把它当成一份会议纪要：三个有权的人，一个没有头衔的人，一道小学乘法题，一次成本核算。会议结束，那个没有头衔的人死了，账目平衡了。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>书目、写作时间与五个中文篇名</span><span class="caret">▾</span></h2>
+  <p>先把这个故事的物质形态说清楚，因为后面的解读全都建立在「它很短、很便宜、很不重要」这个事实之上。</p>
+  <p>它首发于《If: Worlds of Science Fiction》1958 年 2 月号，Vol. 8 No. 2，pp. 4–11。该期 35 美分，主编 James L. Quinn，副主编 Eve Wulff，双月刊，共 124 页；封面是 Mel Hunter 画的，画的是同期主打小说〈Assassin〉的场景，不是这一篇；这一篇的内页插图另有人作，Internet Archive 依 ISFDB 条目记作 Virgil Finlay。同一期的短篇还有 Arthur C. Clarke 的〈Out from the Sun〉。阿西莫夫被排在目录第一位，是这一期的「领跑」作家，但篇目只有八页。<span class="tag t-src">原书</span></p>
+  <p>它后来被收进《Nine Tomorrows》（Doubleday，1959 年 2 月，236 页，3.50 美元，封面 Richard M. Powers），此后又进了《Opus 100》（1969）与《Robot Dreams》（1986）；此外还见于《The Best Science Fiction of Isaac Asimov》（1986）、《The Complete Stories, Volume 1》（1990）等。阿西莫夫本人在《Robot Visions》的序里把它列为自己的「机器人故事」之一——尽管这篇小说里根本没有机器人。<span class="tag t-src">原书</span></p>
+  <p>写作时间是 1957 年，这一点有作者自己的话作证：他为这篇小说写过一段卷首小引，说这类问题如今人人都在问，但这个故事写在 1957 年，那时候除了少数几个科幻作家，还没人想这些事；他还说，将来科学家的活儿可能不是「发现」，而是「重新发现」。<span class="tag t-talk">作者谈话</span></p>
+  <p>关于写作缘起，阿西莫夫在《Opus 100》里讲过一个段子：他认识一位办计算机杂志的先生，问他能不能转载一篇跟计算机有关的小说，他就把〈The Feeling of Power〉寄了过去；对方原样退回，只附一句评语——他不相信人类有可能忘记怎么做算术。这段自述是二手转引（见来源清单），但它比任何评论都更准确地说明了这篇的处境：它的前提当时就被一位内行当场否定；它后来被认为「预言成真」，靠的不是那个前提，是那个前提背后的人性。<span class="tag t-talk">作者谈话</span></p>
+  <h3>同一个故事，五个名字</h3>
+  <p>中文世界的译名史比小说本身还热闹。同一个三千五百词的故事，四十年里出现过五个篇名、七个版本条目：</p>
+  <table>
+    <thead><tr><th>年份</th><th>出处</th><th>篇名</th><th>译者</th></tr></thead>
+    <tbody>
+      <tr><td>1981-12</td><td>《九个明天》，福建人民出版社，pp. 1–14</td><td>奇特的「人工脑」</td><td>毕东海、蒋小雯、陈俊学</td></tr>
+      <tr><td>1997</td><td>《跨越三维空间：数学科幻故事精选》，上海科技教育出版社</td><td>找回笔算</td><td>孙维梓（编译）</td></tr>
+      <tr><td>1998-01</td><td>《阿西莫夫科幻精品集》，内蒙古文化出版社</td><td>奇特的「人工脑」</td><td>毕东海等</td></tr>
+      <tr><td>2000-10</td><td>《飞·科幻世界少年版》试刊号</td><td>力量的感觉</td><td>未署名</td></tr>
+      <tr><td>2002-03</td><td>《科幻大王》2002 年第 3 期</td><td>感受得到的力量</td><td>戚林</td></tr>
+      <tr><td>2007-12</td><td>《科幻大王》2007 年第 12 期</td><td>找回笔算</td><td>孙维梓</td></tr>
+      <tr><td>2023-12</td><td>《阿西莫夫科幻短篇全集 1：最后的问题》，读客／江苏凤凰文艺出版社</td><td>能力的感受</td><td>老光</td></tr>
+    </tbody>
+  </table>
+  <p>这张表来自中文科幻数据库（CSFDB）的篇目页，另有豆瓣书目与 1981 年版目录页可互证。<span class="tag t-rep">转述</span></p>
+  <p>★ 这里有一处常见的混淆：<strong>1981 年福建人民出版社《九个明天》里，这一篇的篇名是〈奇特的「人工脑」〉，不是〈能力的感受〉</strong>。〈能力的感受〉是老光为 2023 年读客版译的篇名。把《能力的感受》系于 1981 年毕东海译本，是把两个相隔四十二年的版本叠在了一起。<span class="tag t-rep">转述</span></p>
+  <p>《力量的感觉》与《能力的感受》今天同时流通。这不是版本学上的吹毛求疵——它直接决定读者带着什么预设进场：</p>
+  <ul>
+    <li>叫〈奇特的「人工脑」〉，读者会以为这是一篇关于机器的小说；这个译名把 computer 译成了「脑」，主角却是一个人。
+    </li>
+    <li>叫〈找回笔算〉，读者会以为这是一篇关于教育或失传技艺的小说；这个译名最朴素，也最准确，但它把讽刺的锋芒磨掉了。
+    </li>
+    <li>叫〈力量的感觉〉或〈感受得到的力量〉，读者会以为这是一篇关于权力的小说；这正是英文原题最容易掉进去的坑。
+    </li>
+    <li>叫〈能力的感受〉，读者会被提前告知正确答案：feeling of power 里的 power 是「能力」，不是「权力」。
+    </li>
+  </ul>
+  <p>五个名字里，只有最后一个是把歧义解开之后才取的；前面几个都各抓住了一半。这不是译者水平的问题：原文标题本身就是双关，双关不能同时译出两义，你只能选一边，把另一边丢给读者。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>全书骨架：三幕，一间空房间</span><span class="caret">▾</span></h2>
+  <p>这篇小说没有分章，也没有分节，全篇只有三个场景：一间休息室、一间会议室、一场葬礼。<span class="tag t-rep">转述</span> 为了细读方便，我把它们切成三幕；这个切分是我做的，不是原书的结构。<span class="tag t-inf">推断</span></p>
+  <table>
+    <thead><tr><th>幕</th><th>场景</th><th>发生的事</th><th>在整篇里的功能</th></tr></thead>
+    <tbody>
+      <tr><td>第一幕</td><td>新五角大楼的一间专用休息室</td><td>程序员 Shuman 把技师 Aub 带来，让他在将军与议员面前算 9×7 和 17×23</td><td>把读者拉进「见证奇迹」的位置</td></tr>
+      <tr><td>第二幕</td><td>项目会议室（同一类无描写的房间）</td><td>军方把「graphitics」立项，将军算了一笔人比机器便宜的账</td><td>把奇迹换算成预算</td></tr>
+      <tr><td>第三幕</td><td>Aub 的葬礼进行中</td><td>Shuman 独自心算 9×7，感到一种能力带来的快感</td><td>把预算换算成一个人的生理反应</td></tr>
+    </tbody>
+  </table>
+  <p>三幕之间没有过渡段。阿西莫夫不写 Aub 怎么回家、怎么写遗书、怎么按下开关；他只写会议室的对话，然后直接跳到葬礼。这种省略不是懒惰：制度运转的部分写得极细，人死掉的部分一笔带过——因为制度就是这么处理人的。<span class="tag t-inf">推断</span></p>
+  <p>形式上还有一个特点：全篇几乎没有场景描写。休息室是「专用休息室」，会议室是会议室，没有窗、没有家具、没有天气。有外貌的只有两个人——Aub 是「蛋壳一样秃的头」，Shuman 是「高、体面、一等程序员」；将军只分到「被太空晒伤的、嘴缩成零形」，议员只分到「脸刮得干净、眼睛清亮」。其余的人连脸都没有。这不是笔力不够，是寓言的标准做法：把环境抽空，让对话成为唯一的布景。<span class="tag t-rep">转述</span></p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>五个关键判断</span><span class="caret">▾</span></h2>
+  <p><strong>第一，结尾那个 feeling of power 是「能力感」，不是「权力感」。</strong> 这一点必须用文本本身来证，不能靠翻译来证。Shuman 在结尾做的事是心算九乘七。九乘七等于六十三，这个结果不能让他对任何人有任何支配力——他既没有命令谁，也没有占有谁。他感到的是：这件事我自己能做。快感的来源不是结果，是所有权的回归。一个人把能力借出去很久，忽然发现自己还留着备份，那一瞬间的身体反应，就是标题说的东西。<span class="tag t-inf">推断</span></p>
+  <p><strong>第二，这篇讽刺的不是技术，是定价。</strong> 全文最关键的一句话出自将军之口，意思是一个人的价值远不如一台计算机，所以用人可以大大节省开支。请注意这句话的语法：它不是在说人笨，也不是在说机器强，它是在做一次单位换算。人在这里不是主体，是物料。一旦换算成立，Aub 的死活就只是一个采购问题。<span class="tag t-inf">推断</span></p>
+  <p><strong>第三，Aub 的身份是维修工，不是科学家。</strong> 他是「低阶技师」，一辈子没通过那些「把有天赋的人筛出来」的测试，最后落在非技术体力劳动的坑里；他会算数，是因为他有一个爱好：琢磨他修的那些机器是怎么想的。<span class="tag t-rep">转述</span> 这一点极重要——他不是从理论出发重新发明算术的，他是从机器的行为反推人的能力。能力一旦外包出去，回来的路只有一条：考古。<span class="tag t-inf">推断</span></p>
+  <p><strong>第四，这篇小说在结构上是给读者出的一道题。</strong> 从第一句「九乘七」开始，读者就在心里算。议员掏出计算机验算的时候，读者已经算完了；Aub 写出 391 的时候，读者在核对。也就是说，读者在整个第一幕里一直站在「会算」的那一边，俯视着房间里三个最有权的人。小说让读者亲身占有了那个能力，然后才在第三幕把账单递过来。你读得越投入，最后的快感越真实，也就越不堪。<span class="tag t-inf">推断</span></p>
+  <p><strong>第五，「graphitics」这个名字是一个冷笑话。</strong> 它从 graphite（石墨，也就是铅笔芯）来。一门号称划时代的新科学，名字的底座是一截铅笔芯。给它命名的人不是 Aub，名字出自他之上的那一层；命名的同时，占有就开始了。到了 1981 年的中译本，这个词被译成「写字法」——它不是严格的对译，但把「用手在纸上写」这个动作保留了下来，反而比一个学院气的译名更贴这篇小说的意思。<span class="tag t-rep">转述</span></p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>读法建议</span><span class="caret">▾</span></h2>
+  <p><strong>第一遍，当室内喜剧读。</strong> 这篇小说有三个明确的笑点，都建立在「错位」上：将军听见「在纸上算」，第一反应是问「一台纸做的计算机？」——他的想象力只能把「纸」理解成一种机器；议员每次听到答案都要掏出袖珍计算机验算一遍，验完还是问「他是怎么猜出来的」；Aub 刚写下两步竖式，议员就打断他，说题目是十七乘二十三——他把中间步骤当成了另一道题。这三个笑点全部打在有权的人身上，没有一个打在技师身上。阿西莫夫站哪边，这里已经写清楚了。<span class="tag t-rep">转述</span></p>
+  <p><strong>第二遍，只读钱。</strong> 把全篇里跟成本、替换、消耗有关的词圈出来：贵、难替换、便宜、可消耗、节省开支。你会发现这些词几乎全部出现在第二幕，而且全部出自将军之口。第一幕的奇迹，到第二幕才被翻译成制度能听懂的语言；这个翻译过程就是小说的真正情节。</p>
+  <p><strong>第三遍，只读动作。</strong> 谁站着，谁坐着，谁的手指在动。全篇的权力关系不靠形容词，靠这些小动作：Aub 扭手指、从衬衫口袋里摸小本子；Shuman 咬断「Aub」这个音节；议员两次把手伸进口袋。这些动作构成了一张没有台词的权力图谱。</p>
+  <p><strong>可以跳过什么。</strong> 说实话，没有。三千五百词，慢读二十分钟。如果只有十分钟，读第二幕的账和第三幕的乘法；但那样会漏掉第一幕的伏笔，而第三幕的全部力量都来自第一幕那道题。</p>
+  <p><strong>不要做什么。</strong> 不要拿它去核对科技预言。它没有预言平板电脑，也没有预言大语言模型；它预言的是一件更小也更难堪的事：人会把「自己会做」和「自己能做」分开记账。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 为什么这篇不能读成「反科技」</span><span class="caret">▾</span></h2>
+  <p>这是本报告最想说清楚的一件事，因为中文世界里关于这篇的评论，十篇有八篇把它写成「警惕计算机让人变笨」。</p>
+  <p><strong>作者自己说了不是。</strong> 阿西莫夫在 1990 年为《Robot Visions》写序时回顾这篇，说它是当作讽刺（satire）写的，幽默里夹着几段苦涩的反讽；他还说，自己写得比自己所知道的更真实——因为他现在也有了一台袖珍计算机，而从 854 里减去 182 这件事，他也懒得算，他用的就是那台「该死的」计算机。一个真正反科技的人不会在三十年后老实承认这一点。<span class="tag t-talk">作者谈话</span></p>
+  <p><strong>故事里没有一台机器有意志。</strong> 计算机不说话，不反抗，不进化，也没有接管任何东西。它们只是贵，而且坏了不好换。整篇小说的动力来自人的决定：程序员决定展示，将军决定立项，议员决定拨款，Aub 决定去死。机器全程是道具。</p>
+  <p><strong>真正的反派是预算。</strong> 将军的论证可以完整地还原成一张成本表：现有导弹的制导范围小、容易被反导系统拦、命中率低；如果塞一两个会算的人进去，用「写字法」控制飞行，导弹会更轻、更灵活、更难预测；而人比计算机便宜，所以这条路省钱。请注意这个论证的内部逻辑：它没有说人比机器聪明，它说人比机器便宜。把「便宜」当成「优势」，是把人放进了物料栏。这才是小说要咬的地方。</p>
+  <p><strong>与反乌托邦的区别。</strong> 这里没有电幕，没有思想警察，没有老大哥。政府照常开会，议员照常抽烟，将军照常打仗。整个悲剧不需要一个坏人，只需要一个正常的采购流程。这比反乌托邦更难反驳，因为你找不到可以推翻的对象——你只能拒绝签字，而 Aub 拒绝了，方式是死。</p>
+  <p><strong>读错会漏掉什么。</strong> 如果把这篇读成「技术有害」，Aub 的自杀就变成了「科学家良心发现，以身殉道」，很壮烈，也很空。但遗书里写的不是这个。他写的是：当初研究这东西只是爱好，是一种心智的游戏；项目开始以后，他以为别人比他更明智；现在他看清了，这东西被用来加速死亡，他不愿承担发明它的责任，也不愿合作。他反对的不是知识，是知识的用途；他不是怕机器，是怕自己的名字被写进一份杀人清单。<span class="tag t-rep">转述</span></p>
+  <p><strong>还有一层。</strong> 这篇小说并不劝人放弃技术，它甚至没有让人「回到纸笔」。它只是把一个问题摆出来：当一项能力可以被外包，它就会被重新定价；定价一旦完成，拥有这项能力的人就不再是稀缺资源，而是可替换零件。这个问题在 1958 年是关于算术的，在今天是关于判断力的。你不需要反对任何技术，也能感受到它的重量。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>争议与局限</span><span class="caret">▾</span></h2>
+  <p><strong>前提站不站得住，当年就被否过。</strong> 那位办计算机杂志的先生把稿子退回来，说他根本不信人类会忘记怎么做算术。这个否定比它看起来重：不是道德指责，是行业内部的常识判断。阿西莫夫把它写进书里，等于承认这个前提是夸张的。<span class="tag t-talk">作者谈话</span></p>
+  <p><strong>阿西莫夫自己承认有一个大漏洞，但拒绝说是什么。</strong> 他在《Opus 100》的相关小引里说，这篇有一个「张着嘴的情节漏洞」，他不打算指出来，因为小说只是要说明一个道理，读者多半在发现漏洞之前就已经读完了。<span class="tag t-talk">作者谈话</span> 下面两个候选都是我的猜测，不作定论。<span class="tag t-inf">推断</span></p>
+  <ul>
+    <li>其一是工程上的：把一个人塞进导弹当制导计算机，要加速度防护、要生命维持、要重量预算，这几项加起来绝不比一台制导计算机便宜，「人更省钱」在物理上说不过去。
+    </li>
+    <li>其二是社会上的：一个能设计、制造、维护这种计算机的文明，必然养着一大批懂数学的人——写编译器的人、做芯片验证的人、算弹道的人。只要这批人还在，「所有人都忘了算术」就不成立。这个漏洞比第一个致命，因为它动摇的是整篇小说的地基。
+    </li>
+  </ul>
+  <p><strong>它把「计算」这段劳动史抹掉了。</strong> 在 1940 年代以前，英文里的 computer 是一个职业名称，指受雇做计算的人，其中很大一部分是女性；她们在实验室、天文台、风洞里手算数据。机器接管这个名称，是 1940 年代以后的事。这篇小说写「人类忘了怎么算」，但它闭口不谈一个更真实的过程：算的人一直存在，只是她们的工作被机器接管之后，连职业的名字也一并被接管了。于是「失忆」被写成了全民的、无差别的，而实际上它首先是分工的结果，并且不均匀地落在某些人身上。<span class="tag t-rep">转述</span></p>
+  <p>这不是要求一篇 1958 年的短篇承担 2020 年代的批判框架；只是说，如果今天重读，这一层空白值得补上，否则「人忘了算术」会显得像一个自然事实，而不是一个政治事实。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>开端：一个不会算数的人</span><span class="caret">▾</span></h2>
+  <h3>这一段发生了什么</h3>
+  <p>新五角大楼的一间专用休息室里，三个人在等一个人开口。程序员 Shuman 是平民，但他设计的程序模式驱动着地球上最先进的自主战争计算机，所以将军和国会委员会的主席都愿意听他说话。他带来的人叫 Myron Aub，上了年纪，低阶技师，蛋壳一样秃顶，两只手不停地绞着手指——他一辈子没离这么重要的人这么近过。将军 Weider 被太空晒伤过，嘴缩成一个小孔；议员 Brant 脸刮得干净，眼睛清亮，抽着 Deneb 的烟草，那种烟草只有他这种「爱国心无人不知」的人才被允许抽。将军说这种神秘兮兮的气氛很幼稚。Shuman 说马上就不幼稚了，然后咬出那个单音节：「Aub！九乘七是多少？」Aub 迟疑了一下，浅色的眼睛里有一点微弱的惊慌，说：六十三。<span class="tag t-rep">转述</span></p>
+  <p>议员挑起眉毛，问对不对。Shuman 说，你自己验。议员从口袋里掏出袖珍计算机，拨了两下滚花的边，看了一眼，收回去，问：你带我们来就为了看这个？一个魔术师？Shuman 说比魔术多得多，Aub 记住了几种运算，能在纸上算。将军问：一台纸做的计算机？Shuman 耐心地说：不是纸做的计算机，就是一张纸。将军说十七，议员说二十三。Aub 从一边衬衫口袋摸出一个小本子，从另一边摸出一支绘图用的细笔，额头皱起来，一笔一笔地画。将军打断他，要过纸看，说这看着像个十七。议员说，的确像，不过这种十七我也画得出来。Aub 继续，手有点抖，最后低声说：答案是三百九十一。议员第二次掏出计算机，拨了一下，说，真见鬼，还真是。他是怎么猜出来的？Shuman 说：不是猜，是算出来的，就在这张纸上。<span class="tag t-rep">转述</span></p>
+  <h3>关键内容</h3>
+  <p>这一段的任务只有一个：把「一道小学乘法题」变成「一件奇迹」。它用的是最经济的手法——不解释原理，只记录反应。房间里所有人的反应都比题目本身大，读者于是被迫在两种可能之间选一个：要么这世界真的完了，要么这些大人物真的可笑。阿西莫夫两个都要。</p>
+  <p>三个人的位置值得画一张图。Shuman 是程序员，一等，平民身份但有实际权力，他是唯一同时懂两边语言的人——他懂 Aub 会什么，也懂将军想听什么。Weider 是军方，代表需求方。Brant 是国会，代表钱袋。Aub 什么都不是：没有头衔，没有资历，没有谈判位置。他唯一的社会身份是「那个没通过测试的人」。这篇小说的阶级结构，在第一页就摆好了。<span class="tag t-inf">推断</span></p>
+  <p>「九乘七」这个数字的选择是精心算计的。它不是难题，它是乘法表里的最后一格，是每个小学生都会背的。阿西莫夫完全可以让 Aub 算一个六位数乘法，效果会更炫，但他没有。他要的不是难度，是落差：人类文明最基础的技能，在这个未来变成了只有一个人会的绝活。落差越大，讽刺越冷。<span class="tag t-inf">推断</span></p>
+  <p>议员掏出计算机这个动作，是全文最重要的道具调度。请注意阿西莫夫怎么写它：从口袋里拿出来，拨两下带滚花的边，看它躺在掌心里的读数，然后放回去。这是一个 1958 年的读者完全陌生的物件——那时的计算机是占满房间的机柜。阿西莫夫后来自己说，他在这篇里写到了「袖珍计算机」，而它在市场上出现要等到十到十五年之后。也就是说，故事里最不可能的东西不是「人忘了算术」，是那台巴掌大的机器；而后者成了现实，前者没有。<span class="tag t-rep">转述</span></p>
+  <p>「一台纸做的计算机？」这个误听是全篇最好的笑话，也是全篇的主题缩影。将军的脑子里没有「工具」这个类别，只有「机器」；凡是能算的东西，必须是机器；所以「纸」只能被理解为一种材料，用来做机器。他无法想象一种不需要机器的能力。这不是愚蠢，这是分工的完成态：当所有计算都由机器承担，人的脑子里就腾不出「计算」这个抽屉了。<span class="tag t-inf">推断</span></p>
+  <h3>可疑之处</h3>
+  <p><strong>组织设定经不起追问，而算力的分配又暗示了一个没有展开的阶级问题。</strong> 一个低阶技师，在业余时间研究旧型号计算机怎么算数，研究了很久，居然没有任何系统记录到他的异常；在一个所有计算都被机器接管的社会里，一个人反复做心算，应该是最容易被数据抓到的行为。小说需要一个「未被发现的爱好者」，于是让监控恰好失效。与此同时，议员有袖珍计算机，将军没有（他只能让 Aub 算，或者等议员验）——这个小细节指向一个更有意思的世界：算力是身份的象征，拥有机器的人拥有验证权。小说没有往下写，浪费了一个好设定。而「没通过测试」这句话，是全文最狠的一笔，却被轻轻放过了：Aub 当年参加过那些「把有天赋的人筛出来」的测试，全都没过，于是被归入非技术体力劳动。问题在于：那些测试测的是什么？如果测的是「能否操作机器」，那么一个不会用机器、但会思考的人，必然被判定为无天赋。这套测试的效度，就是这篇小说真正的靶子——比「人忘了算术」更真实，也更少被评论提到。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>转折：Aub 演示「graphitics」</span><span class="caret">▾</span></h2>
+  <h3>这一段发生了什么</h3>
+  <p>Aub 开始讲方法。他先把十七写在纸上，再把二十三写在它下面，然后说：先算七乘三。议员温和地打断他：Aub，题目是十七乘二十三。Aub 说，是的，先生，然后继续。他把每一位上的乘积分开算，再相加，最后得到三百九十一。议员第二次验算，确认无误，问他是怎么「猜」出来的；Shuman 再一次纠正：不是猜，是算。<span class="tag t-rep">转述</span></p>
+  <p>接下来的场面换了人。还是这类房间，但听众变多了：将军、国会各委员会的头头、项目里的人。Aub 被要求一遍一遍演示，像一只会取物的动物。有人不耐烦，发出轻声的怨言。这门手艺随后得了个名字：graphitics，从 graphite 来，石墨，铅笔芯。名字不是 Aub 起的。然后军方接手：这东西要立项，要保密，要变成项目。<span class="tag t-rep">转述</span></p>
+  <h3>关键内容</h3>
+  <p><strong>竖式在这里不是数学，是一套身体程序。</strong> 阿西莫夫写得很具体：写下行，写下被乘数，逐位相乘，错位相加。这套动作今天每个小学生都会，但它的本质是「把一次思考拆成一串可以重复的手部动作」。这正是它能被外包的原因——凡是能被拆成步骤的，就能被交给别人，也就能被交给机器。反过来，凡是能被拆成步骤的，也能被重新教会。这篇小说对「能力」的理解是工程式的：能力等于可分解的程序。<span class="tag t-inf">推断</span></p>
+  <p><strong>议员打断的那个瞬间，是全篇最容易被忽略的好戏。</strong> 他听见「七乘三」，立刻说题目是十七乘二十三。他不是在刁难，他是真的听不懂「部分」和「整体」的关系——在他的世界里，一个问题对应一个答案，中间不该有过程。权力的思维方式在这里露了底：它只要结果，不要过程；而 Aub 的全部价值，恰恰在过程里。<span class="tag t-inf">推断</span></p>
+  <p><strong>「graphitics」这个词的笑点，在中文里几乎全部丢失。</strong> graphite 是石墨，铅笔芯的原料。一门号称划时代的新科学，名字的底座是一截铅笔芯；它的设备成本接近于零，它的原料是碳。这个命名同时完成了两件事：把一件日常动作升格为「学科」，又把它的廉价写进了名字里。后来军方看中它，看中的正是这个「廉价」。网上流传的旧译把它译成「写字法」，丢掉了石墨，保住了动作；这个取舍未必忠实，却意外地贴题。<span class="tag t-rep">转述</span></p>
+  <p><strong>命名之后紧接着的就是占有。</strong> Aub 发现了它，上面的人给它取了名字，军方又给了它一个项目号。三步走完，它就不属于发现者了。而听众的那声怨言，是另一个精确的信号：有人不耐烦，不是因为听不懂，是因为过程太长。大人物习惯了「问—答」的即时性，中间那三十秒的沉默对他们是一种冒犯。一个不能忍受过程的社会，最终会把过程外包出去，只保留结果。<span class="tag t-inf">推断</span></p>
+  <h3>可疑之处</h3>
+  <p><strong>演示太顺利了。</strong> Aub 没有算错，没有卡住，没有犹豫第二次。真实的笔算有错误率，而错误率恰恰是「人比机器便宜」这个论证的软肋——便宜的东西往往不可靠，而导弹制导不容许不可靠。小说把可靠性问题整个跳过了，于是将军的账算得比实际上漂亮得多。这不是阿西莫夫不懂工程，是他需要一个干净的论证；但代价是，这篇小说对「人作为零件」的批判，其实回避了「人作为零件」最要命的那一面。<span class="tag t-inf">推断</span></p>
+  <p><strong>命名的政治被简化，Aub 的恐惧也被写成了性格而不是处境。</strong> 没有人质疑 graphitics 这个词，没有人争这个发现该署谁的名，没有人问 Aub 愿不愿意；命名在现实里从来不是一件安静的事，它伴随着优先权、经费与一辈子的恩怨。与此同时，Aub 扭手指、低头、声音低、手抖——这些都是性格描写，不是处境描写。读者看到的是一个天生胆小的人，而不是一个刚刚意识到自己会被榨干的人。这导致他后来的自杀缺乏必然性：你会觉得「他太脆弱了」，而不是「他没有别的路」。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>高潮：军方要人，不要机器</span><span class="caret">▾</span></h2>
+  <h3>这一段发生了什么</h3>
+  <p>项目立起来了，编号就叫「数字计划」。会议室里坐的是将军、国会各委员会的头头、还有项目里的人。将军开始讲他的方案，讲得很清楚，也很耐心，像一个终于找到解决办法的人在向董事会汇报。<span class="tag t-rep">转述</span></p>
+  <p>他说，现有的导弹智力有限，能自己控制的范围太小，很容易撞上敌人的反导装置，所以命中率低，仗打不赢——敌人是这样，我们也是这样。但如果在导弹里放一两个「人工脑」，用「写字法」控制飞行，导弹就会更轻、更灵活，具备人脑那种变化莫测的聪明。然后是最要紧的一句：长期的战争要求我们记住一点，一个人的价值远不如一台计算机，这样一来，我们可以大大地节省开支。<span class="tag t-rep">转述</span></p>
+  <p>Aub 听到这里听不下去了。他明白了：他的「写字法」不是用来提高生产力的，是用来让杀人变得更便宜的。他回了家，在小本子上写下遗书。遗书里说，当初研究这东西只是爱好，是一种心智的游戏；项目开始的时候，他以为别人比他更明智；现在他看清了，这东西被用来加速死亡和毁灭，他不愿承担发明它的责任，也不愿合作。写完，他把一支蛋白质去极化剂对准自己的头，无声无息地死了。人们来给他送一笔数目不小的酬劳时，才发现尸体。<span class="tag t-rep">转述</span></p>
+  <h3>关键内容</h3>
+  <p>将军的这段论证是整篇的枢轴，也最容易被读错。很多人只记得「人比机器便宜」，但完整的三段论是：导弹需要更强的自主判断；计算机判断力不够，而且贵；人有判断力，而且便宜。所以，用人的大脑去做导弹的制导部件。<span class="tag t-rep">转述</span></p>
+  <p><strong>请注意这个论证里「人」出现的位置。</strong> 他不是决策者，不是士兵，不是操作员，他是部件。他坐在导弹里，功能是导航，命运是消耗。将军甚至没有说「牺牲」——他说的是「节省开支」。一个人死了，在这套语言里不叫死，叫省下来了。而这段话的隐藏主语是「可消耗」：计算机贵，而且难以替换；人便宜，而且容易补充。在军事经济学里，这两句话合起来只有一个意思：人可以大量地用掉。这不是残忍，这是会计。残忍是需要动机的，会计不需要。整篇小说最冷的地方就在这里——没有任何一个人表现出恶意，他们只是把两类东西放进了两个价格栏。<span class="tag t-inf">推断</span></p>
+  <p><strong>Aub 的遗书不是控诉，是拒绝签字。</strong> 他没有说「你们会毁灭世界」，他说的是「我不愿承担这个责任，也不愿合作」。这两句的差别很大：前者是预言家，后者是员工。他拒绝的不是知识，是知识的用途；他拒绝的方式不是辩论，是退出。在一个所有通道都被制度占满的世界里，一个人唯一还能行使的权利，是把自己的身体从账本上划掉。<span class="tag t-inf">推断</span></p>
+  <p><strong>还有两个细节不能忽略：那支药剂，和那笔酬劳。</strong> 蛋白质去极化剂能让人无痛、瞬间、干净地死——一个能造星际飞船、能造无痛致死剂的文明，技术上是充裕的；它缺的不是能力，是意愿。而人们来找他，是来送钱的。制度对 Aub 的全部安排，到此为止仍然是一笔交易：你提供了技术，我们付钱。他死了，交易也没有变成别的东西——只是付款对象没了。制度根本没有「理解」这个功能。<span class="tag t-inf">推断</span></p>
+  <h3>可疑之处</h3>
+  <p><strong>这个方案在工程上几乎不可能成立，而更致命的漏洞在社会设定上。</strong> 载人导弹要解决加速度、生命维持、重量、可靠性，任何一项都足以吃掉「人比机器便宜」的那点差价。而一个能维护这种计算机系统的文明，必然有一大批懂数学的人：设计芯片的、写编译器的、做验证的、算弹道的、教下一代的。只要这批人还在，「所有人都忘了算术」就不成立；如果这批人也没了，计算机早就停了。专业化只能解释「多数人不会」，不能解释「没有人会」。阿西莫夫自己承认这篇有一个大漏洞，我猜就是这两个之一。<span class="tag t-inf">推断</span></p>
+  <p><strong>Aub 为什么不去公开？</strong> 小说没有给他这个选项。他可以把手艺教给所有人，让 graphitics 变成公共知识，这样军方就没法独占。这条路径在故事里完全没有被提起，仿佛它不存在。这是叙事上的必然（需要一个殉道者），也是思想上的偷懒（回避了「公开」这个真正的反抗方式）。而将军那句「一个人的价值远不如一台计算机」，在 1958 年是夸张，在今天却接近写实：当年读者会觉得将军冷血得可笑；今天的读者会发现，同样的换算每天都在发生，只是单位从「计算机」换成了「一套系统」「一个外包团队」「一次自动化改造」。讽刺一旦变成写实，它的功能就从批判变成了预警——而预警是会被忽略的。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>收束：葬礼之后的乘法</span><span class="caret">▾</span></h2>
+  <h3>这一段发生了什么</h3>
+  <p>Aub 的葬礼在进行。Shuman 站在那儿，心里想的却是另一件事：即使 Aub 死了，graphitics 也停不下来了。他已经有了钱，有了地位，什么也不缺了。他不需要怀念那个人。<span class="tag t-rep">转述</span></p>
+  <p>然后他在心里问了自己一道题：九乘七是多少。六十三。就这么简单。而他忽然感到，一种奇妙的能力感涌了上来。<span class="tag t-rep">转述</span></p>
+  <p>叙述在这里给了最后几句：Aub 的头再也不会动了，他已经完成了他的历史使命，不再被人需要；他发明的「写字法」不会随他一起被埋掉，它会势不可挡地发展下去，直到由「人工脑」操纵的导弹试验成功。只是可怜的 Aub，永远不会知道了。<span class="tag t-rep">转述</span></p>
+  <h3>关键内容</h3>
+  <p><strong>这是全篇的结构闭环，也是它最刻薄的一笔。</strong> 开头的九乘七是一道考题：Shuman 问，Aub 答，议员验。结尾的九乘七是一次自娱：Shuman 问，Shuman 答，没有人验。同一个动作，从「被检验」变成「被享受」，中间隔着一场葬礼和一条人命。阿西莫夫没有加一句评论，他只让这个动作重复了一遍。重复本身就是评论。<span class="tag t-inf">推断</span> 题面写「葬礼之后」，但按情节概括，乘法发生在葬礼进行当中；这个差别不大，却让场景更冷。</p>
+  <p><strong>「能力感」的三层证据，必须一层一层说。</strong> 第一层是文本证据：九乘七不支配任何人——如果标题指的是权力，Shuman 在这一刻的权力增量就是零，他既没有升职，也没有征服谁，他刚继承的金钱和地位是前面就有的。第二层是生理证据：阿西莫夫用的词是「奇妙的感觉」，是一种涌上来的、身体性的东西，不是判断，不是结论；它更接近一个人久病之后重新抬起手臂，而不是一个国王登基。第三层是时机证据：这件事发生在葬礼进行时——如果快感来自道德满足，它不会在这个时刻出现；它偏偏在这个时刻出现，说明它跟道德无关，它是纯粹的机能反馈。身体不管你在参加谁的葬礼，身体只管自己还能不能动。<span class="tag t-inf">推断</span></p>
+  <p><strong>英文的 power 有四层意思，中文最多保住两层。</strong> 它可以是权力，可以是能力，可以是力量，在数学里还是「幂」。这篇小说的题目同时挂着四把钥匙，而故事的表面动作偏偏是乘法。我不认为阿西莫夫在玩「幂」的双关，那太巧了；但我认为「力量／能力」这一层歧义是他有意留着的：一个刚学会乘法的人，感到自己「有力」，这个「力」到底是哪一种，他故意不说破。中文的五个译名，正好把这层歧义摊开在桌面上：有人译成力量，有人译成能力，有人干脆绕开，译成「找回笔算」。<span class="tag t-inf">推断</span></p>
+  <p><strong>「他什么也不缺了」这句话，是全篇最脏的一句。</strong> 它不是说 Shuman 幸福，是说金钱和地位恰好填补了 Aub 腾出来的位置。一个人死了，另一个人升了，账目平衡，谁也没有欠谁。这句话把「替换」这个动作完成得干干净净——不是通过恶，是通过「不缺」。而最后一句「可怜的 Aub 永远不会知道了」，给这份快感补了一个价签：知识继续，人停止；能力可以传递，拥有能力的人不能。<span class="tag t-inf">推断</span></p>
+  <h3>可疑之处</h3>
+  <p><strong>Shuman 的转变没有铺垫，快感的强度也被写高了。</strong> 第一幕他是伯乐，第二幕他是把它交出去的人，第三幕他成了继承人，中间没有一场戏写他是否内疚、是否犹豫。这片空白可以被读成深刻（制度里的人没有内疚这个器官），也可以被读成省事（作者需要一个冷静的收尾视角）。另一边，一个真的会算乘法的人不会为六十三感动；Shuman 之所以感动，不是因为他算出了六十三，是因为他发现自己「还能算」——这是失而复得的快感，不是计算的快感。两者在文本里没有被区分，而它们的伦理含义完全不同。葬礼本身也是空的：没有悼词，没有宗教，没有同事。一个能造星际飞船的文明，如何处理死亡？文本一个字都没写。这可能是刻意的（制度对死者的处理就是「不再需要」），也可能是舞台剧式的收光（人退场，灯暗，剩一个人说话）。无论哪一种，它都让结尾显得比它本可以做到的更轻。<span class="tag t-inf">推断</span></p>
+  <h3>A 关键句与译名对照（无直引）</h3>
+  <p>本篇没有合法全文可得，因此这一节不给原文引语，只给关键处的中文转述，并标明它为什么关键。表中引号内的对话是意译，不是任何中译本的原文；所有转述都不是逐字翻译。<span class="tag t-rep">转述</span></p>
+  <table>
+    <thead><tr><th>位置</th><th>中文转述</th><th>为什么关键</th></tr></thead>
+    <tbody>
+      <tr><td>第一幕</td><td>「九乘七是多少？」「六十三。」</td><td>全篇的第一道题，也是最后一道题；它必须简单到可笑，落差才成立</td></tr>
+      <tr><td>第一幕</td><td>「一台纸做的计算机？」</td><td>一句话暴露了想象力的边界：凡是能算的，必须是机器</td></tr>
+      <tr><td>第二幕</td><td>「一个人的价值远不如一台计算机，这样可以大大节省开支。」</td><td>全篇的枢轴：不是人比机器聪明，是人比机器便宜</td></tr>
+      <tr><td>第二幕</td><td>遗书：这只是爱好，是一种心智游戏；我不愿为加速死亡负责，也不愿合作</td><td>把自杀从「绝望」改写为「拒绝签字」</td></tr>
+      <tr><td>第三幕</td><td>他在心里算九乘七，感到一种奇妙的能力感</td><td>标题的落点；快感是生理性的，不是道德性的</td></tr>
+    </tbody>
+  </table>
+  <p><strong>标题的四种读法</strong>（这一栏是我的分析，不是作者的自述）：</p>
+  <table>
+    <thead><tr><th>读法</th><th>中文对应</th><th>在故事里成立吗</th></tr></thead>
+    <tbody>
+      <tr><td>power over</td><td>权力</td><td>不成立。九乘七不支配任何人，Shuman 的地位在葬礼前就有了</td></tr>
+      <tr><td>power to</td><td>能力</td><td>成立。这是本报告采用的读法，也是 2023 年译本〈能力的感受〉的读法</td></tr>
+      <tr><td>physical force</td><td>力量</td><td>半成立。它描述的是那种「涌上来」的身体感，但它不是物理之力</td></tr>
+      <tr><td>数学的幂</td><td>幂</td><td>不成立为作者原意，但作为读者联想有效：全篇的动作就是乘法</td></tr>
+    </tbody>
+  </table>
+  <h3>B 延伸阅读</h3>
+  <h4>直接相关（本书自己的上下游）</h4>
+  <ul>
+    <li>Arthur C. Clarke〈Into the Comet〉（1960）：同一母题的另一解。飞船的导航计算机坏了，解决办法不是恢复人脑，是造一批算盘，让船员排成流水线。阿西莫夫让人重新变成计算机，克拉克让人重新变成算盘的使用者——两个人对「人」的默认设定不同。<span class="tag t-rep">转述</span>
+    </li>
+    <li>阿西莫夫〈The Last Question〉（1956）与〈Profession〉（1957）：同收于《Nine Tomorrows》，前者写机器的极限，后者写「知识被直接灌进脑子」之后，不会灌的人怎么办。三篇连读，可以看出 1950 年代阿西莫夫对「能力如何获得」的一组连续思考。<span class="tag t-rep">转述</span>
+    </li>
+    <li>阿西莫夫《Opus 100》（1969）第三部分「数学」：他把这篇放在数学的门类下，前面是一段关于自己数学教育的自述。这个位置本身说明他怎么看这篇小说——它不是机器人故事，是一个数学故事。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <h4>同一问题的其他路径</h4>
+  <ul>
+    <li>Ted Chiang〈The Evolution of Human Science〉（2000）：当科学超出人类理解，人的工作变成翻译与解读。与本书的「能力外包」是同一根轴的两端：一个是能力被交出去，一个是理解被交出去。<span class="tag t-rep">转述</span>
+    </li>
+    <li>Greg Egan《Understudies》（2025）：把「替角」写成教育制度，把能力外包推进到判断力外包。与本批《银色蛋头》并读，一个是判断被替，一个是写作被替。<span class="tag t-rep">转述</span>
+    </li>
+    <li>Fritz Leiber《The Silver Eggheads》（1961）：写作被外包给机器。本批三本连起来，正好是算术（1958）、写作（1961）、判断（2025）三级台阶。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <h4>有助于批判性重读</h4>
+  <ul>
+    <li>Harry Braverman, <em>Labor and Monopoly Capital</em>（1974）：关于「去技能化」（deskilling）的经典论述。它提供了一个比「人变懒了」精确得多的框架：技能不是自然消失的，是被重新组织掉的。<span class="tag t-rep">转述</span>
+    </li>
+    <li>David Alan Grier, <em>When Computers Were Human</em>（2005）：1940 年代以前，computer 是一个职业名称。读完这本再回头看 Aub，你会发现他不是「未来的技师」，他是「过去的计算员」的倒影。<span class="tag t-rep">转述</span>
+    </li>
+    <li>Nicholas Carr, <em>The Shallows</em>（2010）：关于注意力与认知外包的通俗论述。它常被误读成反科技，其实它的问题意识和这篇小说很像：不是工具坏，是人把工具当成了器官。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <h3>C 来源清单</h3>
+  <table>
+    <thead><tr><th>类别</th><th>来源</th><th>提供了什么</th><th>性质</th></tr></thead>
+    <tbody>
+      <tr><td>一手书目</td><td><em>If: Worlds of Science Fiction</em>，1958-02，Vol. 8 No. 2 目录页（Internet Archive 扫描件转录）</td><td>篇名、起始页 p. 4、定价、主编、封面</td><td>原刊扫描</td></tr>
+      <tr><td>一手书目</td><td>ISFDB：<em>Nine Tomorrows</em>（Doubleday，1959-02）</td><td>236 页、3.50 美元、封面 Powers、收录篇目</td><td>书目数据库</td></tr>
+      <tr><td>作者自述</td><td>《Opus 100》（1969）该篇小引，据博客摘录转引</td><td>计算机杂志出版人退稿的段子</td><td>二手转引</td></tr>
+      <tr><td>作者自述</td><td>《Robot Visions》（1990）序第 10 条</td><td>自述「当作讽刺写」、承认自己用计算器</td><td>二手转引（俄译本页面附英文原文）</td></tr>
+      <tr><td>作者自述</td><td>某转载版卷首小引（archive.org PDF）</td><td>写于 1957 年；「重新发现」的说法</td><td>二手转引</td></tr>
+      <tr><td>中译史料</td><td>CSFDB 篇目页「能力的感受」</td><td>五个中文篇名、七个版本条目、1981 年版页码 pp. 1–14</td><td>爱好者数据库</td></tr>
+      <tr><td>中译史料</td><td>豆瓣《九个明天》条目、Z-library 目录页</td><td>270 页、0.63 元、统一书号 10173-260、首篇 pp. 1–14</td><td>书目</td></tr>
+      <tr><td>情节核对</td><td>Wikipedia／Wikiwand、Asimov Wiki、TV Tropes 条目</td><td>情节梗概、书挡结构、遗书要点</td><td>二手概括</td></tr>
+    </tbody>
+  </table>
+  <p>完整版见同目录 <code>力量的感觉-来源清单.md</code>。</p>
+  <h3>D 待核实项</h3>
+  <p>按「可能影响判断的程度」排序，不按来源顺序。</p>
+  <ol>
+    <li><strong>1981 年版的篇名。</strong> 施工图写作〈能力的感受〉，毕东海等译，福建人民出版社 1981-12。实测：CSFDB、豆瓣目录、Z-library 目录页三处一致记为〈奇特的「人工脑」〉，pp. 1–14；〈能力的感受〉是老光为 2023 年读客版译的篇名。<strong>这条会改变读者对全书的第一印象，最要紧。</strong> 需要纸本版权页与目录页核对。
+    </li>
+    <li><strong>1981 年版是否为全译。</strong> 网络流传的〈奇特的「人工脑」〉正文里出现了「总督」「芬沙」（一个计算机集团的人物）等英文原作中不见的设定，Project Number 被译作「数字计划」，叙述框架也不一样。这可能是因为它依据的是另一个改写本，也可能是网络转录本身有问题。<strong>在核对纸本之前，本报告不引它的正文，只把它当作译名史料。</strong>
+    </li>
+    <li><strong>所谓「作者本人重新改写」。</strong> 网络流传的中译前言称「作者发表于 1957 年，后由作者本人重新改写」。英文书目里未见修订版记录；若真有改写本，1958 年首发文本与改写本的关系需要重查。
+    </li>
+    <li><strong>「至少 15 种选集收录」。</strong> 这是阿西莫夫自述的数字，我只核对到六种左右的收录记录，未能独立验证 15 这个数。
+    </li>
+    <li><strong>该期的实际上市日。</strong> 版权页印的是 Copyright 1957，而刊期是 1958 年 2 月；同期广告称下一期（4 月号）2 月 12 日上市，据此倒推，本期约在 1957 年 12 月 12 日上市——这意味着它面世时距斯普特尼克升空只有两个多月。此为推算，未见发行记录直接证实。
+    </li>
+    <li><strong>内页插图作者。</strong> Internet Archive 的条目依 ISFDB 记本篇插图为 Virgil Finlay，封面为 Mel Hunter（画的是〈Assassin〉场景）。中文资料常把封面误记成本篇插图，需以纸本核对。
+    </li>
+    <li><strong>3,500 词这个数字。</strong> 施工图给的口径。我没有合法全文，无法逐词统计；按 pp. 4–11 共八页、每页约四百余词估算，量级吻合，但不是实测。
+    </li>
+    <li><strong>《Opus 100》该篇小引的页码。</strong> 未查到。可查到的是同书第三部分「数学」的引言在 1969 年 Dell 平装本 pp. 89–91、Houghton Mifflin 精装本约 pp. 87–90，但那是另一段文字，不能移作此篇的页码。
+    </li>
+    <li><strong>「朋友当场挑战即兴构思」的说法。</strong> 只见于网络流传的中译前言（自称译自《阿西莫夫科幻作品自选集》），未找到英文原文或可靠转引。本报告未采用。
+    </li>
+    <li><strong>中文首译时间。</strong> CSFDB 记 1981-12 为「首次简体中文发表」。1981 年以前是否有内部发行本或港台译本，未查到。
+    </li>
+  </ol>
+</section>
+
+<footer>
+  生成于 2026-10-20 · 来源清单与交叉验证记录见同目录 <code>力量的感觉-来源清单.md</code><br>
+  本页<b>不含任何英文原文引语</b>；所有情节与对话均为中文转述或意译。书目事实核对自 1958 年 2 月号原刊扫描目录页与 ISFDB；作者自述均为二手转引。请以原书复核。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

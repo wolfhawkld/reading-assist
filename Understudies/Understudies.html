@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《Understudies》逐段细读与解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《Understudies》<small>逐段细读与解析 · 2026-10-20</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 第一页就埋着整篇的题眼</a>
+    <a href="#s1">1 这本书的身份证</a>
+    <a href="#s2">2 故事：一个买不起替身的男孩</a>
+    <a href="#s3">3 四套装置、一条阶梯</a>
+    <a href="#s4">4 标题的两面：Cyrano 在幕后，替角在台前</a>
+    <a href="#s5"> 4b 「作者谈话」这一档为什么几乎是空的</a>
+    <a href="#s6">5 三条读法，以及一个形式观察</a>
+    <div class="grp">下部 · 逐段细读</div>
+    <a href="#s7">6 第一节–第二节：一台会做梦的机器，和一个不装的人</a>
+    <a href="#s8">7 第三节–第五节：两条学习路径，以及一个没有兑现的狠话</a>
+    <a href="#s9">8 第六节–第八节：竞赛，以及「替角」的真相</a>
+    <a href="#s10">9 第九节–第十节：谁在替谁答题</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《Understudies》逐段细读与解析</h1>
+  <div class="sub">Understudies · 替角</div>
+  <div class="meta">
+    <div><b>作者</b>Greg Egan（1961– ），澳大利亚珀斯；数学专业，做过程序员</div>
+    <div><b>初版</b>Clarkesworld Magazine 第 229 期，2025 年 10 月；官网标注 17,220 words, novelette</div>
+    <div><b>篇幅</b>约 1.7 万英文词／10 个编号小节；本报告正文 15,992 汉字</div>
+    <div><b>中译</b>未查到正式中译（检索口径见附录 D）</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 有官网免费全文可核；英文直引一律做归一化子串比对，29 条全部命中</li>
+    <li><span class="tag t-talk">作者谈话</span> Egan 本人的访谈、自述、创作谈。本书此档为 0 条：他几乎不受访、不签售、无公开照片，理由见 §4b</li>
+    <li><span class="tag t-rep">转述</span> 对情节、题目与书目背景的概括，措辞可能与原文有出入；不当作引文</li>
+    <li><span class="tag t-inf">推断</span> 我的解读与推理，无直接文本支撑；凡涉及「Egan 为什么这样写」的判断都归此档</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本书是本批唯一有合法全文的一本，因此<b>原书</b>档可以直引英文并逐条核验；<b>作者谈话</b>档为 0 条，不是漏搜，而是这类材料本身近乎不存在——这一点在 §4b 正面处理。
+  </p>
+  
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>第一页就埋着整篇的题眼</span><span class="caret">▾</span></h2>
+  <p>小说开场不是学校，不是考场，是一间铺着白地毯、吸音的候诊室。文斯的父亲陪他来装一台装置，先说了一句看似开明的话：「It's completely up to you, whether you want to go ahead with this.」<span class="tag t-src">原书</span> 接着父子俩为「要不要告诉孩子测验分数」绕了一个小小的逻辑圈。父亲说，分数太高会让你自满，太低会让你难受——「If it's too high, it could make you complacent, and if it's too low, it could make you feel bad.」<span class="tag t-src">原书</span> 文斯问：那是不是意味着，如果刚刚好，你就可以告诉我？父亲愣了一下，答：「Otherwise, not telling you would tell you that it wasn't.」<span class="tag t-src">原书</span> 不行，否则「不告诉你」本身就变成「考得不好」的通知了。</p>
+  <p>这段话很好笑，但它其实是全篇的方法论。一个被隐去的分数，仍然在传递信息；一个不被说出的评价，仍然在塑造行为。整篇小说接下来要谈的教育、排名、能力认证，全都套在这个小悖论里：<strong>只要存在一个可测量的位次，即使你不公布它，它也会从别的地方渗出来</strong>。文斯后来说自己「不是任何意义上特别的人」，所以他需要一点优势；而他买得起的最诚实的优势，是让大脑别那么急着把辛苦学来的东西重新碾成瓦砾。这句自述把整篇的经济学交代完了：教育在这里不是启蒙，是军备竞赛；装置不是老师，是补给。</p>
+  <p>2025 年读这篇，很容易把它当成一篇「AI 家教小说」。它不是。它写的是：当能力可以被单独购买、单独佩戴、单独计分之后，<strong>人还剩哪一部分是不可替代的</strong>。Egan 的答案不温柔——可能什么都不剩，只剩「谁在签字」。</p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>这本书的身份证</span><span class="caret">▾</span></h2>
+  <p>先把口径摆清楚，因为这篇的每一个数字都容易被转述错。</p>
+  <table>
+    <thead><tr><th>项目</th><th>事实</th><th>口径</th></tr></thead>
+    <tbody>
+      <tr><td>首发表</td><td><em>Clarkesworld Magazine</em>，Issue 229</td><td>该刊 2006 年 10 月创刊、按月连续编号，2025 年 10 月正好是第 229 期</td></tr>
+      <tr><td>官网标注篇幅</td><td>17,220 words，novelette</td><td>杂志页面标注；novelette 指介于短篇与中篇之间的篇幅档</td></tr>
+      <tr><td>有声版</td><td>Kate Baker 朗读</td><td>杂志播客栏目</td></tr>
+      <tr><td>正文结构</td><td>10 个编号小节（1–10）</td><td>实测；小节只有数字，没有标题</td></tr>
+      <tr><td>全文语料</td><td>99,217 字符／17,041 英文词</td><td>我从官网正文抽取后的计数；比官网少 179 词，差额来自小节号、图注与页脚标记，正文本身未见删节</td></tr>
+      <tr><td>中译</td><td>未查到正式中译</td><td>检索了书名、作者名与常见科幻译介渠道，未见；不等于「没有中文版」，只等于「我没查到」</td></tr>
+    </tbody>
+  </table>
+  <p>作者 Greg Egan，1961 年生于澳大利亚珀斯，数学专业出身，做过程序员，以硬科幻著称。他的长篇《Quarantine》《Permutation City》《Diaspora》《Schild's Ladder》长期被当作「数学本体论科幻」的样本；短篇里，《Learning to Be Me》《Oceanic》讨论的都是同一个问题：当意识可以被复制、编辑、迁移，「我」的边界在哪里。这篇《Understudies》表面上离开了他惯常的量子力学与拓扑学，其实没有：它把「意识的可复制性」换成了「能力的可外包性」，问题结构是一样的。<span class="tag t-rep">转述</span></p>
+  <p>需要提醒的是篇幅。17,220 词在科幻刊物里算 novelette，但它的密度不像完整的成长小说，更像十个连缀的考场。Egan 把大量笔墨给了题目本身，人物关系则是速写式的。这不是缺陷，是取舍：他要的是让读者在阅读时<strong>亲自算一遍</strong>，而不是听人转述「这题很难」。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>故事：一个买不起替身的男孩</span><span class="caret">▾</span></h2>
+  <p>文斯十四岁，住在悉尼北郊。母亲原来是历史老师，生下双胞胎卡罗尔和伊桑之后就失了业，花了三年读成一个矿业实验室技术员的资格，仍然没有职位。父亲是水管工，正在被预制件、管道掘进机和清堵机器人一点点挤出行业，后来去读制冷工程师证书，靠给市政清理涂鸦的「以工代赈」撑着。这个家庭不是赤贫，是那种随时会掉下去的中产下半层：还供得起一台装置，但只供得起一台。</p>
+  <p>他去梅多斯医生那里做评估，配了一副看似普通的眼镜。镜架鼻托上有微型超声换能器，能直接刺激嗅觉神经；学习时，装置给每一段材料配一种气味，夜里再戴上一条贴片、床边放一个路由器大小的盒子，睡眠中把白天的内容连气味一起重放。制造商叫 Combray。文斯第一次闻到的是香草，然后是烤面包、某种花、氨水、烧轮胎的橡胶味。<span class="tag t-rep">转述</span> 他管床边那个盒子叫「a gargoyle squatting on his bookshelf」<span class="tag t-src">原书</span>——蹲在书架上的石像鬼，等着他睡着，好拿一支红笔伸进梦里改作业。他忍不住想：如果连闭上眼睛之后脑子都不归自己，那它什么时候才归自己？「If his mind wasn't free when he lay down and closed his eyes, when would it be?」<span class="tag t-src">原书</span></p>
+  <p>他确实需要这个。他成绩上去了，但快感很快过去——他没有攻克任何困难的东西，只是把努力组织得更好了一点。真正让他不安的是：他想要的不只是分数，是在这个世界上活下来的把握；而他能买到的优势里，这一种最「诚实」，因为它只是「shoring up the foundations he was building for himself」<span class="tag t-src">原书</span>，让他自己的地基别那么快塌。<span class="tag t-rep">转述</span></p>
+  <p>学校里另有一条路。他的同学杰米·梅利克，全校最不协调的人，忽然在课间跳了一段踢踏舞，复杂、狂喜、没有一处错。谜底当天就被人翻出来：杰米用一个简陋的外骨骼练了一个暑假。外骨骼不能替你跳，它只是让你先体验「一个完成的动作在肌肉和关节里是什么感觉」，给你一个可以瞄准的内部靶子；剩下的事，仍然要你自己在两条腿上重新找出来。杰米后来在中央车站卖艺，两周挣了三千块。人们不会给一台机器的主人打赏，但愿意为一个真人掏钱。<span class="tag t-rep">转述</span></p>
+  <p>文斯和他的朋友们——扎克、瓦希德、米拉、莱昂——由此吵了一整场。扎克的表亲都装了 Cyrano，一种植入式（或贴身式）的 AI 搭档，Hyperfine Minds 的产品。装了 Cyrano 的私立学校把它当成「人的一部分」，考试不许关，理由是不能要求你关掉心脏起搏器。扎克说，五到十年内，多数雇主也会这么算：你的工作、学位、简历，都归「这一对」，不归人。米拉问，那公司为什么不自己跑 AI，何必雇一堆「活人来对口型」？瓦希德答，有些岗位不能那么干，出于客户观感或法律；还有些岗位明明 AI 没用，公司仍会雇一对，然后宣称 Cyrano 提高了效率。扎克补了一句最冷的：他能看见表亲的未来——上班睡觉、在脑子里打游戏，身体坐在那里，只是为了让别人相信「环路里有人」。<span class="tag t-rep">转述</span></p>
+  <p>文斯不想认命。他提出一个假设：也许所有关于 Cyrano 的宣传都是错的，也许它既不让人更聪明、人也不让 AI 更强；如果那样，就该有人等着它摔下来，好顶上去。扎克问，要是不摔呢？文斯说，那我们就推它一把。</p>
+  <p>他准备的方式不是造一台更好的机器，是把自己练成那个「顶上去的人」。整个假期他自学完一年的课程，方法很怪：一旦觉得闷，就顺着一个点飞出去——学电学学到灵魂熄灭，他就花一整天去看法拉第的直觉、麦克斯韦的方程、相对论、量子版本、弱电统一、希格斯玻色子，回来时发现课本上那些东西在更大的图景里变得显然。开学后他用耳机挡掉课堂上的虚拟教师，用一段「自己在认真听讲」的录像把平板上的家教程序骗进沙盒，自己在底下往前赶。他管这叫「速通高中」；扎克问他图什么，他说：终有一天，和 Cyrano 拉平。<span class="tag t-rep">转述</span></p>
+  <p>竞赛是这么来的。他以「课外活动」的名义去找学校的总监督兰德尔先生，提议办一场校际的 Adversarial Quiz：每队给对方出题，答不出可以质疑，出题人必须能当场用几分钟、从同伴都知道的事实推出答案，否则判题目无效。兰德尔先生担心不公平，文斯说有三个来自其他学校的裁判，而且观众会羞辱偏袒者。八周之后，第一轮开打。<span class="tag t-rep">转述</span></p>
+  <p>第一场对 Denistone，四人对四人，只有纸笔。他们打成平手。第二、三轮赢，第四、五轮平，积分第二，进决赛。决赛对 Epping，一题一题咬下来，最后靠一道「等腰三角形剪成四块拼成正方形」的剖分题，在最后四十秒算出了答案，赢了。<span class="tag t-rep">转述</span></p>
+  <p>然后特伦瑟姆学院来信了。那是一所私立学校，学生从小就装 Cyrano。他们说：恭喜，来打一场表演赛吧。我们出两个人，你们出四个人。</p>
+  <p>表演赛的六道题，是整篇小说的重心。两个「人机对」对人类四人组，题目仍然受同一条规则约束：出题人必须能演示解法。特伦瑟姆赢了一道「矩阵计数」，文斯他们零分；米拉出一道「监狱诗里的密码」，裁判以二比一判定「不给分」；赛比尔出一道「歪掉的门格海绵浮力」，文斯只算出半边，得了半分；最后文斯用一道「英文自指句」把比分翻到一点五比一。西莱德赢了。<span class="tag t-rep">转述</span></p>
+  <p>赛后，赛比尔把文斯叫到一边，说 Hyperfine 愿意给他全额奖学金：一台免费的 AI 搭档，加上特伦瑟姆（或另一所「AI 友好」学校）的学费。文斯拒绝。他说他宁愿让自己的头骨里少一点聒噪。赛比尔说，那不是聒噪；她说他们「从地球的海滩和沙漠里取来沙子，熔成一种真正异类智能的基质」，那种智能「像幼虫吃叶子一样吃掉了我们的文化和历史」。文斯笑了，说这番话像是从某个吸着毒的风险投资人的播客里抄来的，第五手。赛比尔冷冷地说：你可以嘲笑我们，但在你建立过像我这样的联结之前，你永远不会知道那有多荣耀。</p>
+  <p>回程的车上，文斯问米拉，比赛时她到底想跟他说什么。他以为那是一个提示，一个暗号，一句对敌人语义陷阱的刻薄评论。米拉说：我只是想告诉你，别吃太多司康，留点肚子，待会儿大家去吃冰淇淋。</p>
+  <p>文斯忽然想起第一次试用 Combray 时的香草味。那个气味从来没有被分配给任何一段学习材料，那个槽位一直空着，随他怎么用。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>四套装置、一条阶梯</span><span class="caret">▾</span></h2>
+  <p>这篇小说里其实有四套「教育技术」，分属不同的阶层，功能也完全不同。把它们分清，后面的论证才站得住。</p>
+  <p>第一套是公立学校的虚拟教师。它在共享注意屏上讲课，把句子解析成主语和谓语；学生用一段循环播放的「专注听讲」录像就能把它骗进沙盒，自己在底下干别的。它是公共品，因此也是最低配的：它甚至不能分辨屏幕前的人有没有在听。Egan 只用了一小段写它，但这一小段很毒：当监督老师走下过道、想看看学生为什么忽然高兴起来时，那个分享外骨骼视频的 App 检测到她的目光，立刻缩回后台，屏幕上只剩一张干干净净的句子图解。<strong>公共教育系统在这里不是压迫者，是一个可以被轻易糊弄的、失去感知能力的界面。</strong></p>
+  <p>第二套是 Combray。它私有、付费、只作用于使用者自己的大脑。它不提供答案，只提供两样东西：气味标记，和睡眠中的重放。气味是提取线索，重放是巩固。文斯的成绩因此上升。但请注意 Egan 写梦境时的用词：他在梦里「像一个刚学会把羚羊逼进死角的猎人那样凯旋」，他画维恩图时「像一个饥肠辘辘的采种者，在排练通往一棵能供他吃十顿的树的路线」。这些比喻全是觅食与狩猎，是进化层面的奖励。装置做的不是灌知识，是<strong>给知识装上情绪的重量</strong>，让它变得「鲜明、紧迫、擦不掉」。所以文斯后来才会说：他没有征服任何困难的东西。他得到的是征服的感觉。</p>
+  <p>第三套是杰米的外骨骼。它给的是「完成动作时的内部感受」，一个可以瞄准的靶子，然后撤走支架，逼你自己在身体里重建。它和 Combray 是同一类东西：都在制造「我已经会了」的体验，但都把最后一步留给使用者。区别在于，Combray 把「最后一步」放在睡眠里，你甚至不知道自己走了没有；外骨骼把最后一步放在第二天的地板上，你走不出来就是走不出来。</p>
+  <p>第四套是 Cyrano。它不给线索，不给靶子，它给答案。它替你说、替你写、替你算，人类负责在场。赛比尔在赛场上把「人的身体经验」贡献给 AI（她想到远足者的腿会酸），AI 把组合搜索的结果贡献给她；这是这套系统最好的一面，也是它最危险的一面：它确实可以是一加一大于二，但「谁在干活」从此不可观测。</p>
+  <p>这四套东西排成一条阶梯：从「可以被骗过的公共界面」，到「改写你情绪记忆的私人家教」，到「给你身体一个目标的硬件」，再到「替你作答的搭档」。阶梯的每一级都更贵，也都更像是「你自己」。最后一级最贵，因为它买的不只是能力，是<strong>能力的署名权</strong>。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>标题的两面：Cyrano 在幕后，替角在台前</span><span class="caret">▾</span></h2>
+  <p>小说里那台 AI 搭档的正式名字没人叫。Hyperfine 管它叫「AI collaborator」，孩子们叫它 Cyrano。赛比尔听到这个外号时会「因为粗俗的绰号而皱眉」，然后咽下厌恶。文斯在跟扎克争论时说过一句很轻的话：「There's a reason they call them Cyranos.」<span class="tag t-src">原书</span> 这个细节很小，但它是全篇的钥匙：<strong>公司不肯说的那个词，才是真话</strong>。</p>
+  <p>Cyrano 典出罗斯丹 1897 年的五幕韵文剧《西哈诺·德·贝热拉克》。剧中的西哈诺是个诗人、剑客，才华横溢，却因为鼻子丑陋不敢向表妹罗克珊表白；他替英俊但笨拙的克里斯蒂安写情书、写台词，让克里斯蒂安站在阳台下，用他的句子赢得罗克珊的心。罗克珊爱上的其实是那个说话的人，但她看见的是那张脸。直到克里斯蒂安死去，她才在西哈诺临终前明白，那些信是谁写的。这个结构可以一句话概括：<strong>一个人出脑子，一个人出脸；两个人合起来才算一个求爱者。</strong></p>
+  <p>Egan 把这个结构翻了过来，又没完全翻。翻过来的地方是：在剧里，才华藏在丑陋的身体后面；在小说里，身体站在才华前面，而且拿走了全部学分。没翻的地方是：那仍然是一个「两个人合成一个人」的结构，仍然有人在幕后，有人在台前。不同的只是——剧里的罗克珊最终想知道幕布后面是谁；小说里的学校、雇主、大学招生办，全都不想。他们把幕布缝死了，管它叫「人的一部分」。</p>
+  <p>「Understudies」是另一面。understudy 是剧场的替角：学下主角的每一个走位、每一句台词，在主角病倒时上场，平时站在侧幕。这个词在全文中一次都没有出现。我核过：<code>understudy</code> 零次，<code>understudies</code> 零次；唯一相关的是文斯那句「我们得在侧幕等着，随时准备上去顶替他们」。<strong>标题是文本之外的一个词，是作者替人物说出他们还没有的概念。</strong> 人物只会说 pair、partner、collaborator；他们还没有「替角」这个说法，因为他们还没意识到自己已经站在侧幕。</p>
+  <p>那么谁是谁的替角？有三个答案，而且三个都对。</p>
+  <p>第一层，文斯想做 Cyrano 经济的替角。他的计划原话是「We need to be waiting in the wings, ready to step in and take their place」<span class="tag t-src">原书</span>——在侧幕等着，准备上去顶替他们，做他们承诺过却做不到的事。这是最字面的一层：他赌系统会失灵，提前练好本事，等主角倒下就上场。这是一个很古老的策略，也是所有被技术挤出行业的人唯一体面的策略。<span class="tag t-inf">推断</span></p>
+  <p>第二层，装上 Cyrano 的人才是替角。台上站着一个人，台词是别人的；观众看见的是身体，听见的是幕后。扎克的表亲在课堂上「灵魂出窍」，身体坐在那里，是为了让别人安心「环路里有人」。这就是替角的工作：不是演好，是<strong>让戏看起来还在演</strong>。</p>
+  <p>第三层，赛比尔是她的 Cyrano 的替角。她说的那段「沙子和异类智能」的台词，明显不是她自己的语言——它是市场部写的，或者是 Cyrano 生成的。文斯笑场，不是因为他们政见不同，是因为他听出了一个活人在替机器念台词。<strong>替角演到最深的时候，不是替别人演，是替别人说话而以为那是自己的话。</strong></p>
+  <p>所以标题的双关不是「AI 是替角」这么简单。它是：<strong>在一个以输出计分的系统里，替角会变成主角，主角会变成替角，而两个人都不再知道自己是哪一个。</strong> 文斯最后拒绝奖学金，不是拒绝技术（他一直在用 Combray），是拒绝把自己变成那个「站在台上替别人说话」的位置。他要留一个没有被分配的槽位。<span class="tag t-inf">推断</span></p>
+  <p>顺带说一句：真正的西哈诺·德·贝热拉克（1619–1655）写过《月亮上的国家与帝国》，是早期科幻的祖先之一。一个以「替人写情书」出名的名字，被用来命名一台替人答题的机器，这层循环 Egan 未点破，但很难说是无意的。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 「作者谈话」这一档为什么几乎是空的</span><span class="caret">▾</span></h2>
+  <p>按这套报告的体例，每本书都该有一档「作者谈话」：访谈、自序、播客、创作谈。这本书这一档是零。不是我没找，是这一类材料本身就近乎不存在。</p>
+  <p>Egan 1961 年生于珀斯，长期住在珀斯，数学系毕业，做过编程，1990 年代成为全职作家。他极少受访，不参加签售，不在公众场合露面，网上无可确认的公开照片；他的官方网站上更多是物理论文式的附录、Java 小程序和数学推导，而不是「创作谈」。他不写系列前言，很少给选集写导读。你当然可以在书目、获奖记录、出版社简介里找到他的生平条目，但那些是<strong>关于他的事实</strong>，不是<strong>他说的话</strong>。<span class="tag t-rep">转述</span></p>
+  <p>按本报告的档位定义，「作者谈话」只收作者本人；书评人、编辑按语、维基条目都不算。所以我宁可让这一档空着，也不拿二手转述去填。这不是排版上的缺口，这是一个结论：<strong>对这篇小说，不存在「作者自述」这条捷径。</strong> 你只能读文本。</p>
+  <p>这个空缺和小说本身是同构的。Egan 一辈子在写「可复制的心」：意识被扫描、人格被存成文件、自我被迁移到别的基质。他的小说里，人是一个可以被复制、编辑、分岔的进程，不是一张脸或一段履历；他自己的公众形象也是如此——作品在，作者不在。</p>
+  <p>对写报告的人来说，这反而是好事：没有「Egan 曾说」可以引用，也就没有拿作者意图当答案的借口。下面所有解读都来自这十个小节，哪些是文本明说的、哪些是我补的，我分开标。</p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>三条读法，以及一个形式观察</span><span class="caret">▾</span></h2>
+  <p><strong>第一条是度量。</strong> 从开篇那个「不能告诉你的分数」，到 Cyrano 学校把「人机对」当成一个人，到 AQ 的计分与裁判，到最后的奖学金——整篇是一条关于「什么被测量、谁被排序」的链。Egan 的锋利之处在于他不骂考试。他让考试变得<strong>更好</strong>：AQ 的题目必须由出题人当场演示解法，这比标准化测验诚实得多。然后他让你看见，即使是最好的考试，也会挑选出特定的一种聪明。</p>
+  <p><strong>第二条是表征。</strong> 每一道数学题的关键都不是算力，是「换一种写法」。十二边形棱柱的平均高度，换成七条线段的闵可夫斯基和；八位掩码，换成二元域上的矩阵；连那个「十位循环小数」，也要先想到「可以有前导零」，才能把十个九乘上一千。Egan 在用题目反复演示一件事：<strong>解题的分水岭不在计算速度，在你有没有找到那个让问题变简单的同构。</strong> 这也正是他给「人」留下的位置——不是算得更快，是换得更准。</p>
+  <p><strong>第三条是代言。</strong> 谁在说话？开头是父亲在替医生解释，后来是虚拟教师在替课程说话，再后来是 Cyrano 替学生说话，最后是赛比尔替她的 AI 说话。文斯一心想做那个「替机器说话」的人的反面，可他自己的优势也来自一台机器（Combray）和一个有钱的叔叔（本杰明）。这条线不给读者一个干净的位置。</p>
+  <p>形式上，这篇小说有一个很容易被忽略的特征：它是<strong>体育故事</strong>。十个编号小节，等于十场赛段；每道题都有读秒；「buzzer」这个词在全文出现十六次，像节拍器。Egan 把数学竞赛写成了拳击赛：回合、读秒、裁判、争议判罚、赛后握手。这个体裁选择不是装饰，它决定了小说的价值观——在体育故事里，「赢」是有限度的、有规则的、有主场哨的；没有人会从一场一点五比一的比赛里得出「人类优于机器」的结论。Egan 正是用这个体裁，把「谁更聪明」这个大问题，压缩成了「这一场、这套规则、这几道题，谁赢了」。</p>
+  <p>原文十个小节没有标题，只有数字。为了不把读者的位置感打散，我按施工图的口径把十节并成四段：§6 对应 1–2 节，§7 对应 3–5 节，§8 对应 6–8 节，§9 对应 9–10 节。每一段仍然按「发生了什么／关键内容／可疑之处」三问来处理。小节号在文中随文标出，方便对照原文。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>第一节–第二节：一台会做梦的机器，和一个不装的人</span><span class="caret">▾</span></h2>
+  <h3>这一段发生了什么</h3>
+  <p>文斯在父亲陪同下去梅多斯医生的诊所配 Combray：一副带嗅觉换能器的眼镜，加一个夜间重放器。他通过评估，开始每晚「重放」白天的课程。开学后，他用一个棋盘魔术向朋友演示自己的进步，撞见杰米·梅利克在课间跳踢踏舞；谜底是外骨骼。午休时他向朋友坦白装置的原理，几个人由此争论 Cyrano 的是非。<span class="tag t-rep">转述</span></p>
+  <h3>关键内容</h3>
+  <p><strong>第一件小事：诊所把没装装置的人当成记不住话的人。</strong> 梅多斯医生把装置的原理又讲了一遍，文斯得忍着不耐烦——「仿佛他还没开始用，就说明他不可能记得上次讲过什么」。这句话是全篇第一个社会学观察：技术不只是工具，它还重新定义了「未使用者」的形象。你没装，你就是健忘的、需要被再教育的人。这和后面私立学校把 Cyrano 当成「人的一部分」是同一套逻辑的两端：一端是把未使用者幼稚化，一端是把使用者重新定义为人。<span class="tag t-inf">推断</span></p>
+  <p><strong>第二件小事：制造商叫 Combray。</strong> 这不是随便起的名字。普鲁斯特《追忆似水年华》的第一部就是《在斯万家那边》，其中的 Combray 是叙述者童年的小镇；整部巨著的起点，是一块浸了椴花茶的玛德莱娜小蛋糕——气味与味道不请自来，把一整段过去拽回眼前。Egan 把这种「不自愿的记忆」做成了一台可预约、可付费、可定时的家用电器。这个反讽很准：普鲁斯特的命题是真正的过去不能被意志召回，Combray 盒子做的恰恰是用意志召回它，而且按套餐收费。文斯把床边的盒子叫作「石像鬼」，也接得上：石像鬼是教堂屋檐上的排水口，一半是装饰，一半是怪物；而 Combray 小镇的那座教堂，正是普鲁斯特童年世界的地标。<span class="tag t-inf">推断</span></p>
+  <p><strong>第三件小事：装置给的不是知识，是情绪重量。</strong> 这是全段最容易被读漏的地方。文斯第二天醒来，记得梦里解过三角形链条，但 Egan 写的不是「他记得更牢」，而是他在梦里「像一个刚学会把羚羊逼进死角的猎人那样凯旋」，画维恩图时「像一个饥肠辘辘的采种者，在排练通往一棵能供他吃十顿的树的路线」。猎人、采种者——全是觅食与狩猎的比喻，是进化装在人身上的奖励线路。装置做的不是往脑子里灌内容，是给内容装上「鲜明、紧迫、擦不掉」的情绪标签。所以第四节里文斯才会说：他没有征服任何困难的东西，只是把努力组织得更好了一点。<strong>他得到的是征服的感觉，不是征服。</strong> 这句话是整篇小说对「增强」最冷静的一次定价。</p>
+  <p><strong>第四件小事：棋盘魔术是协议，不是心算。</strong> 规则是这样的：朋友们随便在棋盘上摆子，文斯背过身；棋盘自己拿掉一子或添上一子；朋友们再改一格；文斯转身，要指出朋友们改的是哪一格，而他从没见过初始盘面。他的解释只有一句：「once the board's own small intervention had guaranteed the right kind of baseline」<span class="tag t-src">原书</span>。文本没有给出算法，但从规则可以反推：他能用的唯一信息，是「棋盘那一步必定符合某条规则」，于是最终盘面上会有唯一一个无法由该规则生成的方格，那就是朋友们动过的那一格。这不是算得快，这是<strong>设计了一个让信息必然留下的协议</strong>。他最后对米拉说的「这就是规则」，不是耍赖，是提醒：魔术的秘密在规则里，不在手指上。<span class="tag t-inf">推断</span></p>
+  <p>这个区分很重要，因为整篇小说后面所有的「人机对抗」都是同一类问题：不是谁算得快，是谁看懂了规则允许什么。文斯在棋盘上赢的那一次，是他后来在 quine 题上赢的那一次的预演——两次都不是靠计算，是靠重新解释规则。</p>
+  <p><strong>第五件小事：杰米的外骨骼给出了另一种辅助的样板。</strong> 它不是替他跳，是让他先体验「一个完成的动作在肌肉和关节里是什么感觉」：</p>
+  <blockquote>
+    <p>“It let you experience certain aspects of what an accomplished performance would feel like” <span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>然后支架撤走，剩下的必须自己来：</p>
+  <blockquote>
+    <p>“it was still up to you to find your own way to match those internal perceptions once you were standing entirely on your own two feet” <span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>这两句是整篇小说的教育学纲领。好的辅助给你一个<strong>内部靶子</strong>，坏的辅助给你一个<strong>外部答案</strong>。外骨骼属于前者，Cyrano 属于后者，Combray 在中间——它给的是线索和情绪，不是答案，但它在你睡着的时候工作，你无法监督它。</p>
+  <p><strong>第六件小事：午休那场辩论，把整篇的政治经济学讲完了。</strong> 莱昂说得很不客气：这不过是「a different way of cheating, for people who can't afford a Cyrano」<span class="tag t-src">原书</span>——给买不起 Cyrano 的人准备的另一种作弊。米拉反驳说，用气味当线索不算作弊，她给笔记配色，也差不多。扎克说他的表亲都装了 Cyrano，打电话时「有三十秒你分不清对面是人还是机器」。<span class="tag t-rep">转述</span> 然后是最关键的三句：</p>
+  <blockquote>
+    <p>“They go to a private school that treats the Cyranos as part of the person” <span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>所以考试不许关，就像不能要求你关掉心脏起搏器：</p>
+  <blockquote>
+    <p>“any more than they'd ask you to switch off a pacemaker” <span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>扎克接着说，五到十年内多数雇主也会这么算：</p>
+  <blockquote>
+    <p>“Your job, your degree, your CV, will all belong to the pair, not the human alone.” <span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>起搏器恢复的是<strong>正常功能</strong>，Cyrano 提供的是<strong>超出正常的功能</strong>；把前者当成后者的先例，等于把「增强」偷换成「治疗」。而一旦学位与简历归「这一对」，人的个体能力就不可观测——市场分不清哪份成绩是人做的、哪份是机器做的。后果不是大家都变强，是<strong>最便宜的配置赢</strong>。<span class="tag t-inf">推断</span></p>
+  <p>米拉问得更直接：公司为什么不自己跑 AI，何必雇一堆活人来「对口型」？<span class="tag t-rep">转述</span> 瓦希德的回答是本文对就业市场最准确的一句：有些岗位不能那么干，出于客户观感或法律原因；还有些岗位明明 AI 没用，公司仍会雇一对，然后宣称 Cyrano 提高了效率。<span class="tag t-rep">转述</span> 扎克补的那句是结论：他的表亲将来会在上班时睡觉、在脑子里打游戏，「身体坐在那里，只是为了让别人相信环路里有人」。<span class="tag t-rep">转述</span></p>
+  <h3>可疑之处</h3>
+  <p>第一，Combray 的效果被写得太顺。文斯从装上到成绩上升，中间没有一次失败、没有一次副作用、没有一次「我到底有没有真的学会」的怀疑——除了那句「没有征服感」。而瓦希德明明提到「用了 Cyrano 又停掉的人，往往比开始时更差」，这条信息却没有落到文斯身上。小说需要文斯成功，所以它把反面证据交给了背景人物。<span class="tag t-inf">推断</span></p>
+  <p>第二，棋盘魔术的机制被作者刻意藏起来了。作为读者，我只能相信「棋盘那一步的约束足够紧」，但文本没有给出约束是什么，也没有给出一个反例说明朋友们为什么不能伪造。它更像一个用来确立「文斯很聪明」的叙事装置，而不是一个可以被读者验证的谜题。这和后面 AQ 的题目形成了不太公平的对比：AQ 的题都给了足够的信息，棋盘魔术没有。<span class="tag t-inf">推断</span></p>
+  <p>第三，米拉的类比站不住。她说「我给笔记配色，和用气味标记差不多」——差很多。配色是她自己选的编码，她随时可以改、可以解释、可以教给别人；气味是装置强加的、她看不见的、她昏睡时被写入的。这个区别正是整篇小说要谈的「谁在控制编码」，但文本让它滑过去了。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>第三节–第五节：两条学习路径，以及一个没有兑现的狠话</span><span class="caret">▾</span></h2>
+  <h3>这一段发生了什么</h3>
+  <p>文斯的父亲被裁员，决定领补助去读制冷工程师证书；母亲失业更久，做过志愿者，商店也要关了。文斯提出把眼镜让给父亲。学期末，他的成绩上去了，却觉得索然无味；杰米靠卖艺挣了钱。文斯提出「等 Cyrano 摔下来」的计划，并说如果它不摔，「我们也许得推它一把」。假期他自学完一年课程，靠「切线」保持兴趣；开学后用录像骗过课堂家教，自己往前赶。扎克发现他在速通高中，两人在回家路上争论 Cyrano 到底强在哪里。<span class="tag t-rep">转述</span></p>
+  <h3>关键内容</h3>
+  <p><strong>失业不是背景板，是定价机制。</strong> 父亲是水管工，被预制件、管道掘进机、清堵机器人一点点挤掉；他去读制冷证书，同时给市政清理涂鸦换取补助。<span class="tag t-rep">转述</span> 母亲的历史课职位在双胞胎出生后就没了，读三年拿到实验室技术员资格，仍然找不到工作，做志愿者的慈善商店也要关。三条线是同一个方向：<strong>每一个「再培训」的台阶都比上一级低</strong>。文斯说「你可以用我的眼镜」，父亲笑着说「也许我自己买一副」——这句话把装置的自然化写透了：它已经像眼镜一样，是一种人人该有的日用品，而不是奢侈品。买不起，是你自己的问题。</p>
+  <p><strong>反高潮是整篇最诚实的一段。</strong> 文斯的分数上去了，但他回头看这段上升，只觉得泄气：他没有征服任何困难的东西，只是把努力组织得更好了一点，加上 Combray 的帮助，学过的东西「各就各位」。他可能从此一路拿 A，但那又怎样？这段自我怀疑很重要，因为它承认了装置的核心许诺是<strong>感觉</strong>，不是能力。而感觉是可以被制造的。<span class="tag t-rep">转述</span></p>
+  <p><strong>「切线」是文斯真正的优势，而且它不能被外包。</strong> 他学电学学不下去，就花一整天跑去看法拉第的直觉、麦克斯韦的方程、相对论、量子版本、弱电统一、希格斯玻色子，回来发现课本上的东西在更大的图景里变得显然。<span class="tag t-rep">转述</span>注意这段的三个特征：它没有目标、没有考核、没有产出；它发生在他「应该学」的内容之外；它带来的快乐是眩晕式的、亢奋的，近乎生理性的。这是全篇唯一一处学习被写成<strong>不为什么</strong>的快乐。也正因为它不为什么，它无法被计分，无法被外包，也无法被 Cyrano 替代——你不能让一个以「完成任务」为目标的系统去替你闲逛。</p>
+  <p><strong>「速通」的另一面是「在场」的破产。</strong> 开学后他用耳机挡掉虚拟教师的讲课，用一段「自己在认真听讲」的录像把平板上的家教程序骗进沙盒，自己在底下往前赶。<span class="tag t-rep">转述</span>这个细节比任何反乌托邦布景都狠：<strong>出勤可以被录像替代，注意力可以被循环播放替代，而系统检测不出来</strong>。同一套逻辑后来在 Cyrano 身上重演：身体在场，人不在。文斯反对 Cyrano，却先学会了骗过学校；他不是站在技术外面的纯洁者。</p>
+  <p><strong>起重机论证。</strong> 扎克说 Cyrano 一秒钟能查遍所有资料，文斯说没多少工作靠背 1963 年每届奥斯卡得主。扎克说它算得比你快，文斯说，比我和计算器、和数学软件加起来快不了多少：</p>
+  <blockquote>
+    <p>“You might as well say they can pick up a ten-ton weight by interfacing with a crane. Well, so can I, if I have the same access codes. It's the crane that's doing the work.” <span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>这是全篇的认识论核心。<strong>能力</strong>和<strong>可调用的能力</strong>不是一回事。如果两个人都有起重机的访问码，那么起重机就是那个干活的东西；区别只在于谁能在没有起重机的时候把重物挪动。Cyrano 的拥护者把「能调用」说成「有能力」，文斯把这两件事拆开了。这个论证不新鲜，但 Egan 让它落在一个具体的地方：不是「AI 会不会思考」，是「当所有人都能调用同一个东西时，人和人之间还剩下什么差别」。<span class="tag t-inf">推断</span></p>
+  <p><strong>「卸载」是这场争论的学术底牌。</strong> 文斯说他看过的研究显示，不只是扎克表亲那种白嫖的人会退步，<strong>每个人</strong>都会「offloads some competence」<span class="tag t-src">原书</span>，在某些任务上变差。这句台词把小说从「懒学生」的道德故事里拉了出来：卸载不是品德问题，是认知经济学的默认结果。你用 GPS 用久了，地图就不在脑子里了；这不是堕落，是分工。文斯接着说：</p>
+  <blockquote>
+    <p>“But if the map itself is wrong, you don't need to lose the signal to end up in a ditch.” <span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>这句话是他整个计划的逻辑起点，也是整篇小说最容易被忽略的一句：<strong>他不打算让 Cyrano 失灵，他打算让 Cyrano 的地图出错。</strong> 信号一直很好，路是错的——这才是「人机对」真正可能输的地方。</p>
+  <h3>可疑之处</h3>
+  <p>第一，「推它一把」没有兑现。文斯在第四节放了一句狠话，听起来要制造一场崩溃；但后面他做的是办比赛、赢比赛、拒绝奖学金——没有破坏，没有操纵。这个转向本可以是成长（他发现比赛比崩溃有效），但小说没让他意识到自己换了目标，也没让他为那句狠话付出代价。这是一条断掉的线。<span class="tag t-inf">推断</span></p>
+  <p>第二，学习蒙太奇的效率不真实，而这不只是节奏问题。文斯一个假期自学完一年课程，还顺带从法拉第逛到希格斯；如果这主要归功于 Combray，那么小说就在偷偷承认「增强」有效；如果这主要归功于他自己的方法，那么 Combray 就只是个昂贵的安慰剂。整篇的论点建立在「归因」上，却唯独对主角的归因含糊。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>第六节–第八节：竞赛，以及「替角」的真相</span><span class="caret">▾</span></h2>
+  <h3>这一段发生了什么</h3>
+  <p>文斯说服校方办起六校联赛式的 Adversarial Quiz，规则是每队给对方出题、答方可质疑、出题人必须能当场演示解法。第一场西莱德对 Denistone，四人对四人，只有纸笔，打成平手。随后五轮循环，西莱德十三分、Epping 十四分，两队进决赛。决赛中西莱德靠最后一道剖分题以一分之差取胜。<span class="tag t-rep">转述</span></p>
+  <h3>关键内容</h3>
+  <p><strong>先看规则，因为规则才是这篇小说的主张。</strong> 文斯向兰德尔先生解释：如果觉得题目不公平，可以质疑；题目不能依赖秘密知识，也不能依赖大量的前期准备——</p>
+  <blockquote>
+    <p>“It mustn't rely on secret knowledge or some huge prior effort” <span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>出题人必须能证明，从同伴都知道的事实出发，几分钟就能走到答案。这条规则看起来只是为了保证公平，其实是一个很激进的评估设计：<strong>你只能考别人你会做的东西，而且你要当场证明你会做</strong>。标准化考试不是这样运作的——出题人的能力从不需要向考生演示，考生也无法质疑题目的可解性。AQ 把出题人和解题人放在同一个认识论平面上，还给他们敌对的激励。这是整篇小说里唯一一个正面的制度发明，也是 Egan 对「怎么考才不算作弊」的正面回答。<span class="tag t-inf">推断</span></p>
+  <p><strong>第一题：对称性的海市蜃楼。</strong> Imani 出的题是：掷两枚六面骰，再从五十二张牌里不放回抽两张，牌面 1 到 13，黑为正、红为负，问骰子总点数整除牌面总点数的概率。<span class="tag t-rep">转述</span> 文斯一开始想走对称性：把牌面总点数按某种配对分组，每一对合计的抽法一样多，比如 26 和 1、25 和 2、24 和 3……如果这个对称成立，就可以把二十七种总和压成十几种来算。他花了时间，然后发现这条路是假的：</p>
+  <blockquote>
+    <p>“the seventeen ways a throw of the dice could divide a total of twenty-four for the cards bore no relationship to the two ways they could divide a total for the cards of three” <span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>这句话值得拆开。24 和 3 是配对的两个总和（24 + 3 = 27），牌面上的抽法一样多；但骰子要「整除」它们，靠的是 24 和 3 的<strong>约数结构</strong>，而约数结构完全不对称。两枚骰能掷出的点数是 2 到 12；在这个范围里，24 的约数有 2、3、4、6、8、12，对应的掷法数是 1、2、3、5、5、1，加起来正好 17；3 的约数只有 3，掷法数是 2。<strong>牌面的对称性在「求和」这个操作下成立，在「整除」这个操作下不成立。</strong> 文斯把前者的直觉搬到了后者身上，于是浪费了时间。</p>
+  <p>这是全篇第一道真正有分量的题，因为它把「聪明」的相对性写出来了：对称性是一个高级的启发，但高级的启发用错地方，比笨办法更贵。米拉没走这条路，她独立算出了 677/3978，在最后一刻把纸递给文斯。<span class="tag t-inf">推断</span></p>
+  <p><strong>第二题：搜索空间的边界。</strong> 公交题里，Acme 三条线分别每 3、5、6 天一班；Zoetrope 要跑同样的三条线，不能少于每周一班，且不能和 Acme 同一天同一线。文斯算出 2×4×(5+1+2)=64；米拉算出 (2+4)×4×(5+1+2)=192；两人争的是第一条线的间隔能不能从 3 天拉到 6 天（可以，四个相位）。但两人都错了，错在第三条线：他们默认「间隔必须整除 6」，于是只数了 6、3、2 的相位（5+2+1=8）。Kyle 指出，间隔 4 天也行，只要起点选在 Acme 发车后的第 1 天或第 3 天——因为 gcd(4,6)=2，起点差是奇数时永远撞不上。正确答案是 6×4×10=240。<span class="tag t-rep">转述</span></p>
+  <p>这道题的失败模式非常特别：<strong>四个人都没有算错，他们只是没有把「间隔 4」放进搜索空间。</strong> 参数化本身把解排除了。扎克赛后说得很准：</p>
+  <blockquote>
+    <p>“We all thought the pattern was simpler than it was.” <span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>这句话可以当作整篇小说的自我诊断。它说的不是计算能力，是<strong>建模时被你排除掉的那些可能性</strong>。这也是我认为 Egan 对「AI 会不会犯同样的错」最诚实的一次回答：会。这不是硅基或碳基的问题，是任何在时间压力下做模式补全的系统都会有的问题。<span class="tag t-inf">推断</span></p>
+  <p><strong>第三题：硬币。</strong> 决赛里文斯给 Epping 出一道正十二边形棱柱硬币：边长 8 毫米、厚 2 毫米，随机取向，问最高点与最低点高度差的平均值。<span class="tag t-rep">转述</span> Gemma 算出约 15.5 毫米，理由是硬币最长对角线约 31 毫米，「线段在所有取向下的平均高度是它长度的一半」，所以答案应该接近 15.5。文斯说，精确值是 25 毫米。</p>
+  <p>这段推导是整篇小说里最漂亮的一段数学，值得完整复述。把硬币看成七条线段的闵可夫斯基和：一个正十二边形面的六条连续边（每条 8 毫米），加上一条垂直于两面的棱（2 毫米）。所谓闵可夫斯基和，就是「从每条线段上各取一点，全部加起来」得到的点集；这七条线段加起来，正好铺出这个十二棱柱。关键的一步是：<strong>往任意方向投影，是线性运算，所以「先求和再投影」等于「先投影再求和」</strong>。于是硬币在某个方向上的高度，等于七条线段各自在这个方向上的投影长度之和。而一条长度为 L 的线段，在随机取向下的平均投影长度是 L/2（三维空间里 |cos θ| 的平均值就是二分之一）。所以硬币的平均高度是：</p>
+  <blockquote>
+    <p>“six times eight plus two gives fifty, halved gives twenty-five” <span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>即 (6×8+2)/2 = 25 毫米。</p>
+  <p>Gemma 错在哪里？她把「一条线段的平均投影是它的一半」这个一维结论，直接套到了一个有体积的物体上。对线段，平均宽度确实是半长；对三维体，平均宽度可以接近直径的量级。她的答案不是算错，是<strong>范畴错误</strong>：她用一个只对退化体成立的事实，去估计一个非退化体。<span class="tag t-inf">推断</span></p>
+  <p>这段给出了「人凭什么赢」的最好答案：不是算得快，是<strong>找到了正确的分解</strong>。文斯没有硬算十二棱柱在球面上的平均宽度（那是一个可怕的积分），他把物体拆成七条线段，把「平均」和「求和」交换了次序。交换合法，因为投影是线性的；他发现了一个同构，剩下的只是乘法。</p>
+  <p><strong>最后说一句团队。</strong> 米拉在第一场平局后说过一句话：</p>
+  <blockquote>
+    <p>“Better to have two answers to check against each other” <span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>她宁愿慢一点，也要两份独立的答案互相校验。这是一个和 Cyrano 配对完全相反的组织原则：Cyrano 是「一个人类 + 一个超级系统」，没有独立性，只有一致性；四个人是「四个独立系统 + 互相质疑」，慢，但能抓到彼此的盲点。后面特伦瑟姆那道「矩阵计数」题，四个人恰恰是因为时间不够而失败，不是因为没有独立性——Egan 没有把团队写成万灵药。<span class="tag t-inf">推断</span></p>
+  <h3>可疑之处</h3>
+  <p>第一，「几分钟」的规则和题目的实际难度不匹配。硬币题、门格海绵题、quine 题，没有一道是几分钟能做出来的；它们要么需要一个漂亮的想法，要么需要大量的计算。但文斯的知识储备（闵可夫斯基和、二元域上的矩阵、base 62）恰恰是大量前期准备。这条规则实际无法执行，只能靠裁判临场判断——而裁判的判断在「监狱诗」题上就分裂了。<span class="tag t-inf">推断</span></p>
+  <p>第二，主角光环有点重。Egan 给文斯的知识刚好够用：他恰好知道闵可夫斯基和，恰好知道 base 62，恰好读过 1980 年代的家用电脑。换一个同样聪明但兴趣不同的孩子，这些题一道也解不出；小说没有让「恰好」变成问题。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>第九节–第十节：谁在替谁答题</span><span class="caret">▾</span></h2>
+  <h3>这一段发生了什么</h3>
+  <p>文斯找杰米帮忙，让他在直播里提一句 AQ，好激怒 Cyrano 圈的人。网上果然吵了一阵：有人骂杰米虚伪，因为他自己也是靠机器起步的；有人指出他的外骨骼是看了一百万小时人类舞者的录像才学会引导的；也有人嘲笑 AQ 是「尼安德特人的比赛」。热度很快过去，但特伦瑟姆学院来信，邀请西莱德去打一场表演赛：他们出两个「人机对」，西莱德出四个人。比赛六题，西莱德以一点五比一获胜。赛后赛比尔替 Hyperfine 开出奖学金，文斯拒绝。回程车上，米拉告诉他，比赛时她嘴上比划的只是「别吃太多司康」。<span class="tag t-rep">转述</span></p>
+  <h3>关键内容</h3>
+  <p><strong>杰米这条线，先把「纯人类」的幻觉拆了。</strong> 他靠卖艺挣钱，靠的是一台加密签名的摄像机——录下来的东西不能被伪造，所以他卖的不是舞，是「这确实是一个真人跳的」这份证明。<span class="tag t-rep">转述</span>在一个合成影像泛滥的市场里，真实性本身成了奢侈品。但网上第二轮反击指出：他的外骨骼是研究了上百万小时人类舞者的录像，才学会怎么引导他的。<strong>「纯人类」的表演，背后是一百万小时的人类影像和一台机器。</strong> 这条线不是支线，它是主线的镜像：文斯想证明人不需要 Cyrano 也能赢，可他自己戴着 Combray，杰米穿着外骨骼，两个人都不「纯」。<span class="tag t-inf">推断</span></p>
+  <p><strong>「calves」这一题，是全书对「人机对」最有力的一次辩护。</strong> 扎克出的题是一组四乘四的动物目击数据：黄旅鼠与灰石龙子只在低海拔，棕旅鼠与白石龙子只在高海拔；给出两次远足的行和、列和、七条对角线和，问两次远足最大的差别是什么，答案是一个六字母的英文单词。<span class="tag t-rep">转述</span>Cyrano 很快枚举出所有可能的矩阵，但答案是「calves」（小腿肚）——它要求把「海拔变化」翻译成「坡度」，再把「坡度」翻译成「一个三十年走惯平路的人第二天早上会哪里酸」。赛比尔和她的 Cyrano 一起做到了：机器负责组合搜索，人负责身体经验。扎克本来赌他们想不到这一层，结果他们想到了。这是 Egan 最公平的一笔：<strong>配对不是「人偷懒」，在最好的情况下，它确实是一加一大于二。</strong><span class="tag t-rep">转述</span></p>
+  <p><strong>矩阵题，是机器赢的那一次。</strong> 八个八位掩码作用在 0 到 255 上，问多少种选法能让新表只是原表的重新排列。四个人已经摸到了正确的结构——把掩码看成八乘八的零一矩阵，要求行与列在二元域上线性无关；瓦希德甚至算出了三位时的 168。但他们没有时间把它推广成 ∏(2⁸−2ᵏ)。Matthew 写下 5,348,063,769,211,699,200，文斯没有要求解释，因为他知道那只是把瓦希德的模式往后推。<strong>这一题输得没有话说：表征是对的，算力不够。</strong> Egan 没有在这里耍花招，他让机器赢得干干净净。<span class="tag t-rep">转述</span></p>
+  <p><strong>「监狱诗」题，是人赢的那一次，也是全书最可疑的一次胜利。</strong> 米拉出一道题：1980 年代，一位英国记者被关在东德，丈夫寄给她一张计算机打印的诗，诗是十二岁女儿写的，表面上看是一首普通的六行诗，实际上是一个 pangram（包含全部二十六个字母）。丈夫在一封信里按顺序用了「joking、descends、quiet、fades、light」，记者回信里用了「evening、amazed、boy」三次等等。问她在说什么。答案是「okay」：她拿丈夫给的数字当密钥，用点阵打印机每个字母五列的点阵去筛，留下有点的位置，拼出 o 和 k。<span class="tag t-rep">转述</span></p>
+  <p>Matthew 的反应是全场最诚实的一句话：</p>
+  <blockquote>
+    <p>“The problem is severely under-determined” <span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>他说得对。用女儿的诗当共享资源，可以构造出成千上万种映射，每一种都能把双方的字词解成英文；复杂度的排序不同，答案就不同。他给出了「nine」和「egg lignin」这种最低复杂度的解，也给出了「cold」/「not very」这种更自然的对话，但后者在 1980 年代的计算条件下不现实。然后他补了一句：</p>
+  <blockquote>
+    <p>“With respect, could anyone really have guessed that? The question didn't even mention a dot matrix printer.” <span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>米拉的回答是：1980 年代的家用电脑用什么打印？题目说的是计算机打印件，不是打字机打的，也不是手写的。裁判以二比一判定「不给分」。这个判罚是整篇小说最重要的一次制度动作：它没有说米拉错，它说这题<strong>不该得分</strong>，因为它依赖了题目没有明说的历史知识。文斯自己也心虚——他心里问「这题公平吗」，然后回答「他相信公平」，理由是「一个没有增强的人会从一开始就把自己放进记者的处境里，而不是被越来越复杂、越来越不实用的算法带偏」。</p>
+  <p>这段话很有说服力，也是全篇最需要警惕的一段：它把「处境知识」说成智能优势，可米拉能出这道题，是因为她<strong>已经知道答案</strong>；她把答案所需的全部背景（1980 年代、点阵、监狱、夫妻通信）都写进了题面，只差「点阵打印机」五个字。这不是「人类更懂处境」，是「出题人掌握了答案的解释权」。<span class="tag t-inf">推断</span></p>
+  <p><strong>quine 题，是规则赢的那一次。</strong> 文斯最后出题：把英文句子去掉空格和标点、全部大写、按三十六进制读成一个数，问最短的、能描述自己这个数的句子是什么。这其实是计算机里的 quine（输出自己源码的程序），但不能直接打印自己。Cybil 写了五十七个字符：</p>
+  <blockquote>
+    <p>X is “X is . Sub X for dot base 36” Sub X for dot base 36</p>
+  </blockquote>
+  <p>她的解释是：读者被告知 X 是什么，然后做替换，把 X 放进它自己里面的句号位置，得到去掉引号的原文；按规则去掉标点后，两边是同一个数。文斯承认：「It might take a few seconds' thought to interpret, but I don't think the intended audience would find it ambiguous.」<span class="tag t-src">原书</span> 然后他走到白板前，在下面写了一个五十二字符的版本：</p>
+  <blockquote>
+    <p>Base 62 1jVS4ctnXGKY7hMF1zlPCRMi0B2TUvxSshs2aisu0wu0</p>
+  </blockquote>
+  <p>他的理由是：按三十六进制解释时，小写字母会变成大写；但一个被告知这条约定的人，几秒钟后就会想到，也可以把基数提高到六十二，把小写字母当成另外二十六个数字。Cybil 承认第三段按六十二进制读出来的数，和全文按三十六进制读出来的数相同。<span class="tag t-rep">转述</span></p>
+  <p>这一手漂亮，但它不是数学的胜利，是<strong>解释权的胜利</strong>。规则说「按三十六进制解释」，没说「不许同时按六十二进制解释某一段」；文斯找到的不是更短的 quine，是一个规则没有覆盖的读法。他自己也说，这只需要「几秒钟的思考」。一个以「在给定目标下最优」为训练目标的系统，恰恰不擅长这种「目标本身有歧义」的地方；而一个从小在考试规则里找漏洞的人类，恰恰很擅长。<span class="tag t-inf">推断</span></p>
+  <p><strong>比分与判罚。</strong> 最终特伦瑟姆一分，西莱德一点五分。文斯自己立刻想到，这不是「人类赢了机器」：</p>
+  <blockquote>
+    <p>“the real test would come when the roles were reversed” <span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>下一句是：没有人会去限制 Cyrano 找答案的能力。也就是说，这场比赛测的不是「谁更聪明」，是「在出题人必须能解题、题目必须几分钟内可解」这套规则下，谁能赢。规则是人为的，主场是人为的，题目是双方互相出的——<strong>这是一场关于「问题由谁定义」的比赛，不是关于「智能」的比赛</strong>。</p>
+  <p>六道题连起来看，答案不是「人更强」或「机器更强」，而是：<strong>不同的问题需要不同的能力配置</strong>；赢的一方，总是刚好带对了配置。</p>
+  <p><strong>奖学金，是系统对反例的标准处理方式。</strong> Hyperfine 不反驳文斯，它买他：一台免费的 AI 搭档，加上特伦瑟姆的学费。<span class="tag t-rep">转述</span>文斯注意到两件事：这笔钱只给他一个人，不覆盖全队；而「分裂我们」可能才是真正的目的。这个判断很准。一个反例最危险的时候，不是它被驳倒，是它被收编。<span class="tag t-inf">推断</span></p>
+  <p>文斯的拒绝，用的是他仅有的一点傲慢：他宁愿让自己的头骨里少一点聒噪。但更值得读的是赛比尔的那段回应。她说他们从地球的海滩和沙漠里取沙，熔成一种真正异类智能的基质；那种智能像幼虫吃叶子一样吃掉了人类的文化和历史，正在长成一种会超越我们的新形态。文斯笑了，说这话像是从某个吸毒的风险投资人的播客里抄来的，第五手。赛比尔冷冷地说：你可以嘲笑，但在你建立过像我这样的联结之前，你永远不会知道那有多荣耀。</p>
+  <p>这段交锋里，Egan 没有让文斯全对。赛比尔的感情是真的，她的屈辱也是真的；文斯的「泰迪熊」比喻——「from the outside, it's starting to look like your parents gave you a talking teddy bear with an Internet connection」<span class="tag t-src">原书</span>，大意是「从外面看，你父母只是给了你一只会上网的泰迪熊」——刻薄，而且回避了一个事实：赛比尔确实拥有一种文斯没有的经验。文斯赢了比分，但他没有赢这场争论；他只是用一个更俏皮的比喻，把对方的经验降格成了幼稚。<span class="tag t-inf">推断</span></p>
+  <p><strong>结尾的两个动作，一大一小。</strong> 大的是米拉：文斯以为她在场上比划的是某种提示、某种对敌人语义陷阱的讽刺，结果她只是在说「别吃太多司康，留点肚子吃冰淇淋」。<span class="tag t-rep">转述</span>这是一个反高潮，也是一次自我讽刺：文斯被训练成在一切地方找密码，于是把一个朋友的关心读成了战术信号。小的动作是香草：他第一次试用 Combray 时的气味，从来没有被分配给任何一段材料，那个槽位一直空着，「随他怎么用」。</p>
+  <blockquote>
+    <p>“the slot remained free, to be used however he wished” <span class="tag t-src">原书</span></p>
+  </blockquote>
+  <p>这是全书的落点。文斯拒绝了 Cyrano，但他没有拒绝 Combray；他不是回到「纯人」，他是保留了一个没有被课程征用的感官槽位。自由在这里不是「不用工具」，是<strong>还有一格没有被指派</strong>。这个结尾很小，很准，也很不抒情——它把整篇小说的教育问题，收束成了一个关于「谁有权给你的经验分配意义」的问题。</p>
+  <h3>可疑之处</h3>
+  <p>第一，也是最重要的一条：<strong>这场胜利是不可复制的。</strong> 文斯的每一分都依赖于他恰好拥有的知识：闵可夫斯基和、base 62、1980 年代的家用电脑。换一个同样努力但兴趣不同的孩子，一分也拿不到。小说没有让任何人指出这一点。于是「人类赢了」这个读法虽然被文本否定了，但「个人英雄赢了」这个读法没有被否定，反而被结尾的奖学金加固了。<span class="tag t-inf">推断</span></p>
+  <p>第二，阶级问题被提起又被放下。瓦希德在赛后说了一句最要紧的话：「我还是想知道我这辈子能不能被雇用。」这句话没有得到回答。文斯的父母一个在清涂鸦，一个在关门的慈善商店；文斯自己的优势来自一个有钱的叔叔和一台买来的装置。小说的结尾让他拒绝了百万奖学金，显得很有骨气——但拒绝的前提是他已经赢了，已经有人替他付过 Combray 的钱。<strong>这是一场只有买得起门票的人才能参加的「反技术」表演。</strong><span class="tag t-inf">推断</span></p>
+  <p>第三，「教育一旦按可测量指标排序，替角就会变成主角」这个命题，小说其实只证明了一半。它证明了：当分数、学位、简历都归「人机对」时，人类个体能力不可观测，最便宜的配置会赢；它也证明了：一场设计良好的对抗赛可以短暂地把「谁在干活」重新变得可观测。但它没有证明后者可以规模化。AQ 依赖三个裁判、观众羞辱、出题人自律，这些都是小共同体的治理，不是制度。Egan 把答案留在了「一场表演赛」的尺度上，这既是诚实，也是退缩。<span class="tag t-inf">推断</span></p>
+  <p>第四，赛比尔这个人物被浪费了。她是全书唯一可能真正反驳文斯的人：联结是真的，屈辱是真的，对「异类智能」的信仰也是真的。但小说让她在最后关头背了一段市场部文案，然后被文斯笑场。<strong>让对手说蠢话，比让对手说对话容易得多。</strong></p>
+  <h3>A 六句关键句</h3>
+  <p>以下六句是我对原文关键处的压缩转写，不是逐字直译；英文原文均已在正文中标注并核验，这里只做回指与串讲。</p>
+  <ol>
+    <li>「否则，不告诉你本身就等于告诉你：不是刚刚好。」（§0）——全篇的度量问题，从这句话开始。
+    </li>
+    <li>「他得到的是征服的感觉，不是征服。」（§6）——对「增强」最冷静的一次定价。
+    </li>
+    <li>「好的辅助给你一个内部靶子，坏的辅助给你一个外部答案。」（§6）——外骨骼与 Cyrano 的分界线。
+    </li>
+    <li>「是起重机在干活。」（§7）——能力与可调用能力的区分，全篇的认识论核心。
+    </li>
+    <li>「我们所有人都以为模式比它实际的样子简单。」（§8）——对失败原因最准确的一句自述，也是对 AI 同样适用的诊断。
+    </li>
+    <li>「那个槽位一直空着，随他怎么用。」（§9）——自由不是不用工具，是还有一格没有被指派。
+    </li>
+  </ol>
+  <h3>B 延伸阅读</h3>
+  <ul>
+    <li>罗斯丹《西哈诺·德·贝热拉克》（1897）。读的时候留意「谁出脑子、谁出脸」的结构，再看 Egan 怎么把账单反过来开。
+    </li>
+    <li>Egan 自己的《Permutation City》《Diaspora》《Axiomatic》。前两本处理「可复制的心」，短篇集里的《Learning to Be Me》几乎是本片的镜像：一个人每天把意识备份到装置里，最后不知道哪一个才是自己。
+    </li>
+    <li>认知卸载的实证研究：Risko 与 Gilbert 2016 年的综述、Sparrow 等人 2011 年关于「谷歌效应」的实验。它们能支撑文斯那句「每个人都会卸载一点能力」，但不能支撑「卸载一定让人变差」——这一点小说自己也留了余地。
+    </li>
+    <li>教育测量：Goodhart 定律与 Campbell 定律。两者都指向同一个机制：指标一旦成为目标，就不再是好指标。这篇小说是这两条定律的文学版本。
+    </li>
+    <li>数学：闵可夫斯基和与凸体的平均宽度；quine 与自指（Hofstadter《哥德尔、艾舍尔、巴赫》里有通俗入口）。这三样东西在小说里不是装饰，是论证本身。
+    </li>
+    <li>AI 评估：用「对抗性提问 + 可演示解法」来测理解力，在近年的 AI 对齐研究里有类似思路（辩论式评估）。Egan 的 AQ 不是预言，是一个可操作的制度想象。
+    </li>
+  </ul>
+  <h3>C 来源清单</h3>
+  <ul>
+    <li>主文本：Clarkesworld Magazine 官网，Issue 229，2025 年 10 月，https://clarkesworldmagazine.com/egan_10_25/。免费全文，本报告的唯一一手来源。<span class="tag t-rep">转述</span>
+    </li>
+    <li>篇幅：官网标注 17,220 words, novelette；本地抽取 99,217 字符／17,041 词，差额 179 词为小节号与页面标记。<span class="tag t-rep">转述</span>
+    </li>
+    <li>有声版：Kate Baker 朗读，随期刊发布。
+    </li>
+    <li>作者书目与生平：Clarkesworld 作者页、Egan 个人官网、ISFDB 条目。仅用于书目事实，未用于情节解释。
+    </li>
+    <li>中译：检索书名、作者名、常见科幻译介渠道，未查到正式出版的中译；不排除有非正式译本或未来译本。<span class="tag t-rep">转述</span>
+    </li>
+    <li>作者谈话：0 条。这是事实而非疏漏——Egan 几乎没有一手访谈，本报告不拿书评或编辑按语充数。
+    </li>
+    <li>引文：正文共 29 条英文直引，全部做过归一化子串核对（只留 a-z0-9、统一小写），命中率 100%。
+    </li>
+  </ul>
+  <h3>D 待核实项</h3>
+  <ol>
+    <li>词数差 179：官网 17,220 对抽取 17,041。差额我归因于小节号、图注与页脚，但未逐字比对原页面，不能排除抽取时漏掉一两句。
+    </li>
+    <li>中译：只证明「我没查到」，不证明「不存在」；若有中译，译名以译本为准。
+    </li>
+    <li>Egan「不接受采访、无公开照片」：这是长期流传的说法，我未能核到其本人声明；也可能随时间变化。本报告只把它当作「一手材料稀薄」的经验判断。
+    </li>
+    <li>棋盘魔术：文本只说「棋盘那一步保证了基线」，没有给出算法；§6 的解释是我的重构，不是原文。
+    </li>
+    <li>数学答案：677/3978、240、25 毫米、5.348×10¹⁸、0.00028 都按原文数字转述，未逐题验算；其中 240 是我按「间隔 4、两个相位」补出的总数，原文只给到「第三条线有十种选择」。
+    </li>
+    <li>抽取丢上标：原文的 2⁸ 在 txt 里显示为「28」，所以形如 ∏(2⁸−2ᵏ) 的公式不能直接当原文引用。
+    </li>
+    <li>地名：West Ryde、Denistone、Epping、Eastwood、Dundas、Meadowbank 都是悉尼北线真实地名；Trentham College 未核到对应实体，可能是虚构校名。
+    </li>
+  </ol>
+</section>
+
+<footer>
+  生成于 2026-10-20 · 来源清单与交叉验证记录见同目录 <code>Understudies-来源清单.md</code><br>
+  英文引文均已按「只留 a-z0-9、统一小写」归一化后在官网全文语料中比对命中；中文引文除注明版本者外均为本报告自译。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>

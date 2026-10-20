@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《人类科学之演变》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《人类科学之演变》<small>阅读指引与精华解析 · 2026-10-20</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 它是什么：一篇假装成社论的短篇</a>
+    <a href="#s2">2 两个标题：改名是全文第一个论证</a>
+    <a href="#s3">3 论证骨架：十段，四级台阶</a>
+    <a href="#s4">4 三个坐标</a>
+    <a href="#s5"> 4b 与《你一生的故事》的分野</a>
+    <a href="#s6">5 七百词怎么读成六千字</a>
+    <div class="grp">下部 · 逐段细读</div>
+    <a href="#s7">6 开场：一份没有署名的社论</a>
+    <a href="#s8">7 机制：DNT 与「低劣的普及读物」</a>
+    <a href="#s9">8 职业：诠释学的三种手艺与一场反驳</a>
+    <a href="#s10">9 收束：不生的父母、桥梁与最后一句</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《人类科学之演变》阅读指引与精华解析</h1>
+  <div class="sub">The Evolution of Human Science ／ 原题 Catching Crumbs from the Table（Nature, 2000-06-01）</div>
+  <div class="meta">
+    <div><b>作者</b>特德·姜（Ted Chiang，1967– ），美国；本职技术写作，1990 年以〈巴比伦塔〉出道</div>
+    <div><b>初版</b>Nature 405 (6786): 517，2000-06-01，单页，原题 Catching Crumbs from the Table；2002-07 收入 Tor 版集子并改题</div>
+    <div><b>篇幅</b>约 700 英文词（施工图口径）；Nature「Futures」栏当时常规 850–950 词，两说冲突见附录 D</div>
+    <div><b>中译</b>李克勤译，译林出版社 2015-05，pp. 245–250（另有网络于飞译本，附作者后记）</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 只用于书目与结构事实：卷期页码、改题、集子篇目、中译页码。本书无合法全文，此档不含任何情节措辞</li>
+    <li><span class="tag t-talk">作者谈话</span> 姜为 Nature 版写的作品后记，经网络流通的于飞译本转述，未见英文原文；不是访谈</li>
+    <li><span class="tag t-rep">转述</span> 来自维基条目、于飞译本与书目数据库的段落概括，措辞可能与原文有出入</li>
+    <li><span class="tag t-inf">推断</span> 我的解读：论证结构、标题修辞、与科学史及超人类主义的接线，无直接来源支撑</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本书为 <b>C 级</b>：Nature 付费墙后，<b>无合法全文，全文零英文直引</b>；中文引文亦未逐字核对，故一律转述。带 ⚠ 的口径冲突见附录 D。
+  </p>
+  <h3>引文核验级别（本书专用）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">本书落在 <b>C 级（仅转述）</b>：书目事实（卷期、页码、改题、中译页码）可核；<b>情节与措辞均为二手转述</b>，不引原文一句。书名、术语、专名除外。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p>这不是「人类被超级智能淘汰」的末日故事，是一份<strong>职业变更通知</strong>：当科学的前沿越出人类的理解力，剩下的工作不是发现，是读别人的发现。<span class="tag t-inf">推断</span></p>
+  <p>先给三个判断，后文逐一展开。</p>
+  <p>第一，它写的不是智能，是<strong>分工</strong>。全篇没有一句在描写 metahuman 有多聪明；它描写的全是人类这一侧的职业结构怎么改。</p>
+  <p>第二，它写的不是灾难，是<strong>适应</strong>，而且适应得体面：没有人被关押，没有人被剥夺公民权，文明照旧延续，科学照旧增进知识。被拿走的只有一样东西：<strong>做第一手工作的资格</strong>。</p>
+  <p>第三，它最刺人的地方不在结尾，在标题。Nature 上它叫〈从桌上捡面包屑〉；进了集子，改叫〈人类科学之演变〉。前者是一句判词，后者是一份年度报告。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>它是什么：一篇假装成社论的短篇</span><span class="caret">▾</span></h2>
+  <p>先把书目事实钉住。这篇首发于 <em>Nature</em> 2000 年 6 月 1 日那一期，第 405 卷第 6786 期，p. 517，单页；DOI 10.1038/35014679，PMID 10850694；原题 <strong>Catching Crumbs from the Table</strong>。<span class="tag t-src">原书</span> 2002 年 7 月收入 Tor 版 <em>Stories of Your Life and Others</em> 时，改题为 <strong>The Evolution of Human Science</strong>。<span class="tag t-src">原书</span> 中译《人类科学之演变》，李克勤译，译林出版社 2015 年 5 月版，pp. 245–250，全书八篇中排第六。<span class="tag t-src">原书</span></p>
+  <p>它登在什么栏目里，决定了它的体裁。Nature 从 1999 年 11 月起开设短篇科幻栏「Futures」，第一炮是阿瑟·克拉克；这一轮办到 2000 年底，2005–2006 年有第二轮，2007 年 7 月起转为每周。<span class="tag t-rep">转述</span> 姜后来在 2005 年又给这个栏目写过一篇〈前路迢迢〉（What's Expected of Us，<em>Nature</em> 436: 150）。<span class="tag t-src">原书</span> 换句话说，这篇东西的出生地不是科幻杂志，是<strong>一份科学期刊的版面空隙</strong>——它一开始就带着「冒充」的基因。</p>
+  <p>姜在一则作品后记里说明了缘起：这篇是为 <em>Nature</em> 写的，该刊 2000 年决定每周刊载一篇写「未来」的短篇小说。<span class="tag t-talk">作者谈话</span>既然要登在科学刊物上，他决定就写科学刊物本身。<span class="tag t-talk">作者谈话</span>他设想：如果未来真的出现了超级智力，这样一份刊物会变成什么样子。<span class="tag t-talk">作者谈话</span>后记里他还引了威廉·吉布森一句广为人知的话，大意是未来其实早已到来，只是分布得不均匀；并说不管未来发生什么科技革命，这种不均匀仍会出现。<span class="tag t-talk">作者谈话</span>（后记见于网络流通的于飞译本，非译林版；英文原文未取得，此处为句意转述。）</p>
+  <p>形式上也确实是冒充：全文是一个没有署名的「我们编辑部」在说话，没有人物、对白、场景，唯一被点名的是一个叫汉弗莱的破译者，而他从不登场。<span class="tag t-rep">转述</span> 中文版占六页。<span class="tag t-rep">转述</span> 这不是小说，是一篇<strong>用社论格式写成的思想实验</strong>；它被当作小说，只因为登在小说栏目里，后来又被收进小说集。</p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>两个标题：改名是全文第一个论证</span><span class="caret">▾</span></h2>
+  <p>原标题的意思是「从桌上捡面包屑」。英语里这是一个现成的说法，指靠别人吃剩的东西过活，中文最接近的成语是「拾人牙慧」。<span class="tag t-rep">转述</span> 它还有一层更旧的出处：福音书里一位妇人求医治女儿，说狗也吃主人桌上掉下来的碎屑——那里的碎屑是<strong>恩典的边角料</strong>。<span class="tag t-inf">推断</span></p>
+  <p>这个画面里有三样东西，正好是全文的三个论点：<strong>位置</strong>（在桌下，不在桌边）、<strong>时序</strong>（别人先吃，你后吃）、<strong>权利</strong>（这份食物本来不是给你的）。<span class="tag t-inf">推断</span> 一个标题说完了三件事。</p>
+  <p>集子版的标题把这些全收了回去。<strong>The Evolution of Human Science</strong> 是一个中性的、机构化的、看起来像综述文章的名字；它不含判断，不含位置，也不含谁在吃谁剩下的。<span class="tag t-inf">推断</span> 妙处在于方向：改名的动作是「去态度化」，而正文的语气恰恰是「有态度但不说破」——通篇用编辑部的平静口吻，把一件屈辱的事写成一份常规报告。于是两个标题合起来才构成完整的修辞：<strong>一个替你说出结论，一个演示结论怎样被礼貌地藏起来</strong>。</p>
+  <p>这一改名对中文读者有实际后果：译林版沿用集子版，译作《人类科学之演变》，中文读者从一开始就只拿到那份「年度报告」，拿不到那句判词。要还原态度，就得译成《捡桌上的面包屑》或《拾人牙慧》——两个都不好听，而「不好听」正是原标题的功能。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>论证骨架：十段，四级台阶</span><span class="caret">▾</span></h2>
+  <p>全文的段落推进可以压成一张表。原文没有小标题（社论本来就不分节），下面的分段是我按论证单位切的。</p>
+  <table>
+    <thead><tr><th>段</th><th>说了什么</th><th>在论证里干什么</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>距第一份原创研究提交本刊已二十五年，可以重提旧问题：前沿超出人类理解时，人类科学家还有什么角色</td><td>设定时间与说话位置</td></tr>
+      <tr><td>2</td><td>成果只能经 DNT 取得，刊物只能发译成人类语言的二手文章，人类刊物沦为很差的普及读物</td><td>交代技术前提</td></tr>
+      <tr><td>3</td><td>代价是人类也许再不能做原创贡献：有人离开，留下的转向诠释学</td><td>提出核心损失</td></tr>
+      <tr><td>4</td><td>文本诠释学兴起：出版物以 TB 计，译文晦涩但大体不无道理，汉弗莱的破译被实验证实</td><td>第一种替代工作</td></tr>
+      <tr><td>5</td><td>器物诠释学：逆向分析 metahuman 的装置，目的是懂原理，不是仿制</td><td>第二种替代工作</td></tr>
+      <tr><td>6</td><td>远程感应 metahuman 的研究装置：戈壁地下的超级碰撞器，中微子信号有争议</td><td>第三种替代工作</td></tr>
+      <tr><td>7</td><td>质疑：这值得做吗？比作有便宜铁器却去炼青铜。反驳：没有竞争，没有同化与灭绝的危险</td><td>处理最强反对</td></tr>
+      <tr><td>8</td><td>苏吉莫托疗法须在胚胎期施行；父母要么让孩子与自己隔膜，要么限制 DNT 让孩子痛苦；选择者几乎归零</td><td>把制度问题落到伦理</td></tr>
+      <tr><td>9</td><td>诠释学是正当方法，能增进知识；人类还能看见 metahuman 忽略的用途，比如造一座渐进提升的桥</td><td>给出正面理由</td></tr>
+      <tr><td>10</td><td>不必恐惧；使 metahuman 成为可能的技术是人造的，造它的人并不比我们更聪明</td><td>收束修辞</td></tr>
+    </tbody>
+  </table>
+  <p>四级台阶很清楚：<strong>设定 → 损失 → 替代 → 辩护</strong>。<span class="tag t-inf">推断</span> 这不是一篇警告，是一篇<strong>答辩状</strong>：它先承认指控（我们不再原创），再列举替代方案（三种诠释学），再驳倒最重的反对（青铜与铁器），最后给出继续存在的理由（桥梁）。一份机构刊物的社论，本来就应该长这样。</p>
+  <p>有两处结构值得单独指出。</p>
+  <p>第一，<strong>第 7 段的反对意见是全文最强的地方</strong>。它把人类比作有便宜铁器却仍在炼青铜的印第安人——全文唯一一次引入殖民史；而反驳极其冷静：那时候有竞争，现在没有。<span class="tag t-rep">转述</span> 姜拒绝了「超级智能必然殖民人类」的套路，理由不是善意，是经济学：没有稀缺，就没有征服的必要。</p>
+  <p>第二，<strong>第 8 段出现在腰部，不在结尾</strong>。苏吉莫托疗法那一段（父母必须在「孩子与我们隔膜」和「孩子一生痛苦」之间选）是全篇唯一有温度的地方，按小说的写法它该是高潮；但作者把它放在论证中段，当作<strong>证据</strong>使用。<span class="tag t-inf">推断</span> 这个位置说明：在他眼里，鸿沟不是抽象的智能差距，它落在具体的生育决定上——而那个决定的结果是「几乎没人再生」。这不是政策强制的，是自愿的。</p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>三个坐标</span><span class="caret">▾</span></h2>
+  <h3>4.1 科学史：同行评议不是天生的</h3>
+  <p>这篇的说服力，一半来自它把虚构制度接在了真实制度的延长线上。</p>
+  <p>真实的科学里，「谁有资格判断」一直在变。Nature 自己在 1953 年刊出 DNA 双螺旋那篇论文时<strong>没有送同行评议</strong>——主编约翰·马多克斯后来的解释是：那篇的正确性自明，任何懂行的审稿人看了都不可能闭嘴。<span class="tag t-rep">转述</span> 这句话今天读起来像个丑闻，当时却是常规。同行评议成为硬制度，是二十世纪后半叶的事。</p>
+  <p>科普与科学新闻也是历史产物：十九世纪科学职业化之后，「替不懂的人解释科学」才成为独立行当，科学记者作为职业群体是二十世纪的事。<strong>「研究者—传播者」的分工本来就存在</strong>，只是线画在「懂与不懂的公众」之间。姜把这条线往上移，移到研究者内部——于是整个科学界都变成了公众。</p>
+  <h3>4.2 科学社会学：分工、规范与铭写</h3>
+  <p>菲利普·基切尔 1990 年的论文〈认知劳动的分工〉讨论的正是这件事：科学共同体的认识优势，不来自每个人都懂全部，而来自<strong>分工</strong>——不同的人用不同的方法、押不同的注，整体比任何个人更可靠。<span class="tag t-rep">转述</span> 如果基切尔是对的，那么这篇里的情形并不构成认识论的灾难：人类仍然是共同体的一部分，只是被分到了「解释」这个岗位。</p>
+  <p>默顿 1942 年列的科学规范里有一条叫「普遍主义」：成果要接受非个人的检验，不问提出者的身份。<span class="tag t-rep">转述</span> 这篇里失效的正是这一条——不是被政治压垮，是被<strong>能力</strong>压垮。检验者不再有能力检验，于是「非个人的检验」变成了「无人能做的检验」。</p>
+  <p>拉图尔与伍尔加 1979 年的《实验室生活》把实验室称作「铭写装置」：事实是被写下来、被读出来的。<span class="tag t-rep">转述</span> 姜几乎把这个隐喻字面化——科学家真的只剩读文件、拆器件、看仪表。</p>
+  <p>还有「诠释学」这个词本身。它原是解释经文与法条的技艺，十九世纪扩展为人文科学的一般方法论，二十世纪又被伽达默尔变成关于「理解如何发生」的哲学。<span class="tag t-rep">转述</span> 姜把它按在物理学上，等于宣布：<strong>自然科学退化成了语文学</strong>。<span class="tag t-inf">推断</span> 这是全篇最大的智力赌注，也是它最好笑的地方——一个物理学家读到「破译中微子信号」，会先觉得荒谬，再觉得合理。</p>
+  <h3>4.3 超人类主义：它问了一个更平庸也更难的问题</h3>
+  <p>超人类主义的标准问题是「会不会失控」「人类会不会被取代」：I. J. Good 1965 年提出智能爆炸，Vinge 1993 年谈奇点，Bostrom 2014 年系统化超级智能的风险。<span class="tag t-rep">转述</span></p>
+  <p>姜的问题不在这一串里。他假定<strong>没有失控</strong>：metahuman 不恶意，不统治，甚至不关心人类；技术是公开的，翻译是努力的，制度是宽容的。然后他问：在这种最好的情况下，人类科学家还剩下什么？<span class="tag t-inf">推断</span></p>
+  <p>这是个平庸得多、也难回答得多的问题。末日可以靠英雄主义回答，职业降级只能靠<strong>自尊</strong>回答——而这篇最诚实的地方，是它给出的答案里带着明显的自我安慰（见 §9）。<span class="tag t-inf">推断</span></p>
+  <p>再补一个哲学坐标。塞尔 1980 年的「中文屋」问：按规则操作符号的机器算不算理解？<span class="tag t-rep">转述</span> 姜把屋子翻了过来——人在屋外，收到的是从门缝里递出来的、语法正确而语义不明的答案。塞尔问「机器有没有心智」，姜问「<strong>收到答案的人算不算科学家</strong>」。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num"></span><span>4b 与《你一生的故事》的分野</span><span class="caret">▾</span></h2>
+  <p>两篇同收在一个集子里，都写「不可理解」，很容易被当成同一路。它们不是。</p>
+  <table>
+    <thead><tr><th>维度</th><th>你一生的故事</th><th>人类科学之演变</th></tr></thead>
+    <tbody>
+      <tr><td>不可理解的是什么</td><td>一种语言，以及它带来的时间观</td><td>一整套科学，以及它的表达方式</td></tr>
+      <tr><td>能不能跨越</td><td>能。露易丝学会了七肢桶文字</td><td>不能。大脑不改就学不会</td></tr>
+      <tr><td>不可理解的载体</td><td>一个人</td><td>一个学科</td></tr>
+      <tr><td>结局的性质</td><td>伦理的：接受已知的未来</td><td>职业的：接受已变的分工</td></tr>
+      <tr><td>体裁</td><td>小说，有女儿、有婚姻、有死亡</td><td>社论，没有人物</td></tr>
+      <tr><td>读者的位置</td><td>跟着主角一起学会</td><td>被编辑部告知结论</td></tr>
+    </tbody>
+  </table>
+  <p>一句话概括：<strong>前者相信认知的边界可以被语言推开，后者认定边界由生物学焊死，于是人只能改制度，不能改边界。</strong> <span class="tag t-inf">推断</span></p>
+  <p>这个差别决定了写法。〈你一生的故事〉必须有人，因为「理解一种语言」是发生在一个人身上的事；〈人类科学之演变〉必须没有人，因为「一个学科改变功能」不发生在任何一个人身上，它发生在<strong>制度</strong>里。前者用第二人称「你」制造亲密，后者用第一人称复数「我们编辑部」制造距离——两篇的语法，就是两种认识论。</p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">5</span><span>七百词怎么读成六千字</span><span class="caret">▾</span></h2>
+  <p>这里得先答一个问题：一篇七百词的东西，凭什么写六千字？如果不是靠注水，方法只有三条。</p>
+  <p>第一，<strong>逐段拆论证</strong>。社论的每一段都是一个论证单位，段与段之间的连接词就是论证的方向。拆完你会看到它不是「寓言」，是一份结构完整的答辩状：指控、替代方案、反驳、辩护。拆论证不产生新事实，但它产生<strong>结构</strong>——而结构是这篇最容易被读者漏掉的东西。</p>
+  <p>第二，<strong>接科学史与科学社会学</strong>。把每个虚构制度换成真实制度的对应物：同行评议、科普、科学新闻、逆向工程、古文字破译。换完你会发现，这篇的每个设定都有现实原型，只是被推到了极端值。</p>
+  <p>第三，<strong>接争论</strong>。把它放进超人类主义与今天的 AI 可解释性讨论里，看它回答了哪一个问题、回避了哪一个。这一步最危险，最容易变成「姜预言了 ChatGPT」的廉价类比；本报告只在附录 B 点一句，不展开。</p>
+  <p>三条加起来，就是六十字对一词的比值。<strong>这不是把七百词撑大，而是说明这七百词为什么能站住。</strong> 站不住的地方，我在 §6 至 §9 的「可疑之处」里逐段写；其中最要紧的两处是：它假设「理解」是全有或全无（§6），以及它假设「没有竞争」（§8）。<span class="tag t-inf">推断</span></p>
+  <p>分段与 §3 的表一致；段号是我编的，原文没有段号。引述一律是转述，「这一段说」读作「这一段的意思」。</p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">6</span><span>开场：一份没有署名的社论</span><span class="caret">▾</span></h2>
+  <h3>这一段发生了什么</h3>
+  <p>第一段交待时间与立场：距第一份原创研究报告提交到「我们编辑部」已过去二十五年；现在时机成熟，可以重提当年争论过的问题——当科学探索的前沿超出人类理解力，人类科学家究竟扮演什么角色。<span class="tag t-rep">转述</span></p>
+  <p>第二段交代技术前提：过去读者读到的论文，做出结果的人就是作者本人；但 metahuman 主宰实验研究之后，成果只能通过 DNT（数字化神经传送）取得；久而久之，学术刊物只能发表译成人类语言的二手文章；不借助 DNT，人类无法真正领会最重要的成果，也无法有效使用新工具；而 metahuman 还在继续改进 DNT，更加依赖它。人类读的刊物于是沦为普及读物，而且是很差的普及读物，连最杰出的人类精英也觉得最新成果的译本不知所云。<span class="tag t-rep">转述</span></p>
+  <h3>关键内容</h3>
+  <p>「二十五年」是全文的地基。它够一代人读完博士、拿到教职、退休——刚够一件异常变成惯例，又不够它变成远古史。社论用的是完成时，所以它不是预言，是<strong>追认</strong>：事情已经发生完了，现在来总结。</p>
+  <p>说话人是「我们编辑部」，没有署名。这不是省事，是精确：Nature 的社论传统本来就不署名，代表刊物立场而非个人。姜借用了这个现成的权威声音，于是全篇不需要人物——<strong>机构本身就是人物</strong>。</p>
+  <p>「二手文章」是全篇的关键词。科学的一手性被剥夺，剩下的链条是：metahuman 做出结果 → 经 DNT 转出 → 译成人类语言 → 人类读者阅读。每一层都掉信息，而链条的顶端不解释、不回应、不道歉。</p>
+  <p>更值得注意的是它没有说 metahuman 隐瞒。恰恰相反：DNT 公开，翻译尽力，刊物正常出版，问题是<strong>公开也没用</strong>。这比封锁可怕，也更接近我们的处境——今天大多数人读到的科学已是三手、四手。</p>
+  <h3>可疑之处</h3>
+  <p>时间线是第一个空白：要在二十五年内把全人类挤出前沿，metahuman 的出现必须极早、扩散必须极快；文本没有交代，这是社论体裁的特权，也是它的漏洞。</p>
+  <p>更要紧的是这一句：连最杰出的人类精英也觉得译本不知所云。如果连精英都不懂，那么「译文晦涩但大体不无准确」这个判断是谁做出的？第 4 段给出的答案是汉弗莱那类破译者，靠实验验证。于是这里埋了一个循环：<strong>判断译本好坏的标准，本身只能来自译本</strong>。文本用「实验证明破译正确」跳出了这个循环，但只跳出一次，没说明能否普遍成立。</p>
+  <p>我认为全篇最脆弱的一环也在这里：它假设「理解」是全有或全无。真实的科学里，理解是分层的——没有人「懂」全部量子场论，但有人懂其中一段，并能用它做出东西。文本为了让论证干净，把分层抹掉了；抹掉之后，「人类整体出局」才成立。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">7</span><span>机制：DNT 与「低劣的普及读物」</span><span class="caret">▾</span></h2>
+  <h3>这一段发生了什么</h3>
+  <p>第三段讲代价：没有人否认 metahuman 科学带来的好处，但人类研究者付出的代价之一是，他们也许再也不能对科学做出原创贡献；有些人离开了研究领域，留下的人把注意力从独创研究转向诠释学，也就是解释 metahuman 的成果。<span class="tag t-rep">转述</span></p>
+  <p>第四段讲文本诠释学：超人类出版物已有 TB 级体量；译文意义晦涩，但大抵并非完全不准确；破译这些文本与传统古文字学的工作很不一样，但一直在进步；最近的实验证明，汉弗莱对一项面世十年的遗传学理论的破译是正确的。<span class="tag t-rep">转述</span></p>
+  <h3>关键内容</h3>
+  <p>这一段是全篇的转折：从技术描述转到职业描述。注意动词——不是「人类不能理解」，而是「人类<strong>转而</strong>去做另一件事」：前者是能力问题，后者是<strong>劳动力市场问题</strong>。</p>
+  <p>「诠释学」是全篇最大的智力赌注。它原本是解释经文与法条的技艺，十九世纪扩展为人文科学的一般方法论；把它按在物理学上，等于说物理学变成了人文学科。<span class="tag t-rep">转述</span> 这个错位产生两个效果：荒诞感（物理学家改行做训诂），以及精确——他们做的事确实就是训诂：比对异文、推定词义、用旁证校验读法。</p>
+  <p>汉弗莱的验证是全文唯一一次「实验」，而它验证的不是理论，是<strong>读法</strong>。这是很厉害的一步：它把人文学科的真理标准（解释得通）换成了自然科学的真理标准（预测得准）。换句话说，姜悄悄回答了一个本可以回避的问题——诠释学算不算科学？算，只要它的读法能被实验打脸。<span class="tag t-inf">推断</span></p>
+  <h3>可疑之处</h3>
+  <p>TB 级文本加只能读译本，是信息论上的死结：译本的信息量不可能超过原文，读者的先验知识也不足以补足损失。「大抵并非完全不准确」没有机制支撑，更像<strong>制度性的乐观</strong>：总得相信译本还行，否则工作没法做。</p>
+  <p>还有一个空白：离开的人去了哪里？社论不关心。这个不关心很真实——<strong>制度报告只统计留下的人</strong>。</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">8</span><span>职业：诠释学的三种手艺与一场反驳</span><span class="caret">▾</span></h2>
+  <h3>这一段发生了什么</h3>
+  <p>第五段讲器物诠释学：借助 metahuman 科学带来的新手段，反过来分析 metahuman 的成果；目标不是批量仿制可以与之竞争的产品，只是理解成果背后的物理原理；最常用的技术是对毫微器物的晶体学分析，这种分析常常带来对机械的全新理解。<span class="tag t-rep">转述</span></p>
+  <p>第六段讲远程感应：最新也最深思熟虑的模式，是遥感 metahuman 的研究装置；最近的对象是新近安装在戈壁沙漠地下的超级碰撞器，它令人困惑的中微子信号是众多争议的主题；便携式中子探测仪也是 metahuman 的装置，其操作原理至今难以捉摸。<span class="tag t-rep">转述</span></p>
+  <p>第七段是质疑与反驳。质疑：这些项目值得做吗？有人比作——当欧洲制造的便宜铁器唾手可得，美洲印第安人却把精力耗在炼青铜上。反驳：如果人类在同 metahuman 竞争，这个比喻就恰如其分；但如今经济繁荣、物资充裕，没有这种竞争的迹象。更重要的是，与早期低技术文化遭遇高技术文化不同，人类既没有被同化的危险，也没有被灭绝的危险。<span class="tag t-rep">转述</span></p>
+  <p>第八段讲苏吉莫托疗法（Sugimoto 疗法，音译从中文版）：它必须在胚胎神经开始形成之前施行，且没有「同化机制」；于是超人的孩子，其人类父母面临一个艰难选择——要么允许孩子浸入超人文化，眼看着孩子对自己完全隔膜；要么在成长期间限制 DNT，而这对超人孩子是残酷的折磨，等于把他隔绝于世。结果是，近年选择这种疗法的父母几乎降到零。<span class="tag t-rep">转述</span></p>
+  <h3>关键内容</h3>
+  <p>三种手艺对应三种认识方式：<strong>读文本</strong>（解释）、<strong>拆器物</strong>（逆向工程）、<strong>看装置</strong>（远程观测）。清单完整得让人不安——它正好是科学全套动作的降格版：不能提问，只能旁听；不能设计实验，只能捡副产品；不能要求解释，只能从残迹反推。</p>
+  <p>青铜与铁器的比喻是全篇唯一一次引入殖民史，因此这一段要读慢。反驳很冷静：那时候有竞争（铁器是商品，青铜是军备），现在没有；那时候会被同化或灭绝，现在不会。姜在这里拒绝了「超级智能必然殖民人类」的套路，理由不是善意，是<strong>经济学</strong>：没有稀缺，就没有征服的必要。</p>
+  <p>但第八段立刻把这个安慰拆了：没有征服，仍有<strong>同化</strong>，只不过同化不发生在国境线上，发生在摇篮里，通过生育选择完成。全篇最锋利的一刀在这里——鸿沟的代价不是人类灭绝，是父母要在「孩子属于谁」这个问题上签字；而签字的结果是「几乎没人再生」。这不是政策强制，是自愿。<span class="tag t-inf">推断</span></p>
+  <h3>可疑之处</h3>
+  <p>「没有竞争」这个前提很脆。科学不只是理解，还有技术；技术有经济价值，经济价值会制造竞争。文本用「经济繁荣、物资充裕」一句带过，这是全篇最大的省略。如果 metahuman 的成果能造出更快的芯片、更好的药，那么「不竞争」就不是事实，而是<strong>政策选择</strong>；文本没有交代这个政策怎么维持。<span class="tag t-inf">推断</span></p>
+  <p>苏吉莫托疗法把选项压缩成两个：全接入（孩子与我们隔膜）或全不接入（孩子受折磨）。为什么没有第三条路——延迟接入、部分接入、成年后开放？因为文本需要「几乎降到零」这个结果。这正是我读下来最像<strong>思想实验</strong>而不像<strong>社会学</strong>的地方：真实的制度会给父母第三条路，哪怕是黑市、是灰色诊所。</p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">9</span><span>收束：不生的父母、桥梁与最后一句</span><span class="caret">▾</span></h2>
+  <h3>这一段发生了什么</h3>
+  <p>第九段给出正面理由：人类文明可能继续存在，而这一传统把科学当作关键部分；诠释学是科学探索的正当方法，并且像原创研究一样增进人类知识。此外，人类研究者能看见 metahuman 忽略的用途——因为占优势者容易忽视弱势者关心的问题。比如：能否研究出一种不同的智力提升法，允许人们<strong>逐步</strong>把智力提高到接近 metahuman 的程度？这种疗法将架起一座桥，跨越人类这个物种历史上最大的文化鸿沟。这样的问题，metahuman 可能连想都不曾想过；仅此一点，就足以说明人类继续科学事业的合理性。<span class="tag t-rep">转述</span></p>
+  <p>第十段是结尾：不必对 metahuman 的科学成就感到惊恐；应该始终记住，使 metahuman 成为可能的技术本来就是人类创造的，而创造它的人并不比我们更聪明。<span class="tag t-rep">转述</span></p>
+  <h3>关键内容</h3>
+  <p>桥梁论证是全篇唯一的<strong>正面纲领</strong>，也最像科幻：一个渐进提升方案，既不切断血缘，也不放弃 DNT。它在最后一段之前出现，是对全文低沉基调的补偿。</p>
+  <p>这个论证有一个精妙的自指：人类能提出的最好的问题，是「怎样让我们变得不像我们」。这不是反驳鸿沟，是给鸿沟<strong>装一部电梯</strong>。它甚至默认了终点：真正的出路是变成 metahuman，只不过慢一点、带上家人。<span class="tag t-inf">推断</span></p>
+  <p>最后一句是全篇最容易被误读的地方。它听起来像安慰，其实是<strong>归因</strong>：把 metahuman 的成就归到人类的起点上。逻辑成立——技术确实是人造的；情感上是自我安慰——造它的人并不比我们聪明，那我们为什么造不出第二步？我读下来，它的功能不是安慰读者，是给社论一个<strong>体面的结尾</strong>：机构的刊物不能以「我们完了」结稿。代价是把结构性问题写成了一句家谱。</p>
+  <h3>可疑之处</h3>
+  <p>「metahuman 不会想到渐进提升」是全篇对 metahuman 唯一一次心理描写，而它恰恰把 metahuman 降格成一个「有盲点的强者」。这是作者为了给人类留位置而付出的代价：要让人类还有用，就必须让超人粗心。</p>
+  <p>结尾的「不必恐惧」与原标题的「捡面包屑」互相拆台。一个说不必怕，一个说你已经跪在桌下。这也许正是改名的真正代价：<strong>集子版标题让结尾的安慰显得更可疑，而不是更可信</strong>——读者手里没有那句判词了，只剩一份自我安慰的会议纪要。<span class="tag t-inf">推断</span></p>
+  <p>最后一处名实不符：标题里的「演变」指人类科学的演变，从发现变成解释；但读者容易读成 metahuman 的演化——而文中的 metahuman 不是演化出来的，是<strong>基因治疗造出来的</strong>。这不是自然史，是工程史。</p>
+  <h3>A 关键句（无原文，全部为转述）</h3>
+  <p>这一节本该放金句，这本放不了：无合法全文，英文直引一条都不许有，中文转引又会把译者的措辞冒充成作者的措辞。所以改放句意，并注明它在论证里的位置。以下五条都不是引文，是我对原文句意的概括。</p>
+  <ol>
+    <li><strong>二十五年</strong>。第一段用它设定时间：第一份原创研究提交本刊至今。这个词把整篇社论从预言变成了追认。
+    </li>
+    <li><strong>很差的普及读物</strong>。第二段用它给人类刊物定位，全篇的屈辱都压在这个比喻里。<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>转向诠释学</strong>。第三段的动词，也是全篇的职业定义：不是不能做，是改做另一件事。<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>既不同化，也不灭绝</strong>。第七段的反驳，拒绝了殖民比喻，理由是没有稀缺。<span class="tag t-rep">转述</span>
+    </li>
+    <li><strong>造它的人并不比我们更聪明</strong>。末段的归因，也是全篇的自我安慰：逻辑成立，情感上空洞。
+    </li>
+  </ol>
+  <h3>B 延伸阅读</h3>
+  <p>同一集子里的其余七篇（含〈你一生的故事〉〈领悟〉〈除以零〉〈七十二个字母〉）是最近的上下文。<span class="tag t-src">原书</span> 同题可对照 Peter Watts 的〈The Colonel〉；本批 Greg Egan 的《Understudies》也写智能差距，落点在教育而非学术分工。<span class="tag t-rep">转述</span> 理论线：基切尔论认知劳动的分工、默顿论科学规范、拉图尔与伍尔加的《实验室生活》、波斯卓姆论超级智能，分别对应 §4.2 与 §4.3。<span class="tag t-rep">转述</span></p>
+  <h3>C 来源清单</h3>
+  <table>
+    <thead><tr><th>来源</th><th>核对了什么</th><th>用法</th></tr></thead>
+    <tbody>
+      <tr><td>Nature 文章页与 DOI 记录</td><td>卷期、页码、日期、原题</td><td>书目</td></tr>
+      <tr><td>ISFDB 标题记录 #100345</td><td>改题、译本、奖项名次</td><td>书目</td></tr>
+      <tr><td>中文科幻数据库（CSFDB）书目 152</td><td>译者、页码、ISBN、总页数</td><td>书目</td></tr>
+      <tr><td>维基百科条目与于飞译本</td><td>情节梗概、段落顺序</td><td>转述</td></tr>
+      <tr><td>SFE「Nature」条、中国作家网 2015 年报道</td><td>Futures 栏史、栏目长度</td><td>背景</td></tr>
+    </tbody>
+  </table>
+  <p>逐条记录见同目录来源清单。</p>
+  <h3>D 待核实项</h3>
+  <ol>
+    <li><strong>篇幅</strong>：约 700 词是施工图口径；Nature「Futures」栏当时的征稿长度是 850–950 词（据 2015 年一篇中文报道）。两者冲突，原文字数未取得。
+    </li>
+    <li><strong>ISFDB 的年份</strong>：它把变体标题 The Evolution of Human Science 的年份记为 2000，而集子是 2002-07。疑为数据库惯例，未核。
+    </li>
+    <li><strong>2001 年 Locus</strong>：维基说「提名」，ISFDB 记第 27 名。Locus 是读者投票的排名榜，第 27 名不等于提名，两种说法都要带口径。
+    </li>
+    <li><strong>译林版页码</strong>：CSFDB 记 2015-05、289 页、ISBN 9787544752473；施工图另记 2019 精装 322 页。两版页码是否一致，未核。
+    </li>
+    <li><strong>两套中译</strong>：李克勤（译林）与于飞（网络）。作者后记只见于后者，是否收入正式出版物，未查到。
+    </li>
+    <li><strong>后记原文</strong>：英文未见；吉布森那句话经中译转述，措辞不可靠，本报告只取大意。
+    </li>
+    <li><strong>原文全文</strong>：Nature 付费墙，未取得；全部情节为二手转述，未逐句核对。
+    </li>
+  </ol>
+</section>
+
+<footer>
+  生成于 2026-10-20 · 来源清单与交叉验证记录见同目录 <code>人类科学之演变-来源清单.md</code><br>
+  本页不含任何英文原文引文；书目可核，情节为二手转述，请以原书为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>
