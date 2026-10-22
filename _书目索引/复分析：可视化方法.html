@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《复分析：可视化方法》· 索引碎片</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+
+/* ===== 索引碎片页的版式覆盖（无侧栏，单列）===== */
+main{margin:0 auto;max-width:840px;padding:0 22px 90px}
+.hero{padding:40px 0 20px}
+.hero .kick{font-size:11.5px;letter-spacing:.08em;color:var(--ink3);font-weight:600;margin-bottom:6px}
+.frag{margin:20px 0 0;padding:20px 22px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.frag .row{margin:0 0 11px;font-size:14px;color:var(--ink2);line-height:1.75}
+.frag .row>b{color:var(--ink);font-weight:600;margin-right:2px}
+.frag ol.sub{margin:6px 0 0 0;padding-left:22px;font-size:13.5px;color:var(--ink2)}
+.frag ol.sub li{margin:4px 0}
+.frag code{background:var(--hover);padding:1px 5px;border-radius:4px;font-size:.92em}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+.chip{font-size:11.5px;padding:2px 9px;border-radius:5px;background:var(--hover);color:var(--ink2)}
+.cfoot{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
+.cfoot a{font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;text-decoration:none;
+  background:var(--accent-bg);color:var(--accent);border:1px solid var(--linkline)}
+.cfoot a:hover{background:var(--linkhover)}
+.cfoot a.ghost{background:var(--panel);color:var(--ink2);border-color:var(--line2)}
+ol.dir{list-style:none;margin:18px 0 0;padding:0}
+ol.dir li{padding:10px 14px;border:1px solid var(--line);border-radius:9px;background:var(--panel);margin:8px 0}
+ol.dir a{font-weight:600;color:var(--accent);text-decoration:none;font-size:14.5px}
+ol.dir a:hover{text-decoration:underline}
+ol.dir .m{font-size:12.5px;color:var(--ink3);margin-top:3px}
+</style>
+</head>
+<body>
+<div id="ctl"><button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button></div>
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+<header class="hero">
+  <div class="kick">索引碎片 · 复分析：可视化方法</div>
+  <h1>《复分析：可视化方法》</h1>
+<div class="chips"><span class="chip">状态：未标注已读／想读</span><span class="chip">收录：2026-10-22</span><span class="chip">形态：教材型（本项目首次使用） —— 上部 ## 0–## 5（这本书是什么／它在主张什么／与别的教材差在哪／版本…</span><span class="chip">核验级别：C（二手转引；无合法全文）</span></div>
+</header>
+<div class="frag">
+    <div class="row"><b>原名</b><em>Visual Complex Analysis</em></div>
+    <div class="row"><b>作者</b>Tristan Needham（特里斯坦·尼达姆），英国数学家；牛津默顿学院读物理，后转入数学研究所，<strong>师从 Roger Penrose 研究黑洞</strong>，1987 年获 DPhil，1989 年起任旧金山大学数学教授、理学院副院长</div>
+    <div class="row"><b>初版</b>Clarendon Press／Oxford University Press，<strong>1997</strong>，正文 <strong>592 页</strong>（另有前置页 xxiii），<strong>十二章</strong>，图 <strong>501 幅</strong>，参考文献 573–578，索引 579 起。★ 部分渠道与编目记 1998；一处中文百科记 1999（与其余全部记录冲突）</div>
+    <div class="row"><b>第二版</b><strong>25 周年纪念版</strong>，Oxford University Press，<strong>2023-02</strong>，<strong>720 页</strong>，<strong>503 幅图各配全新图注</strong>＋新 Preface＋<strong>Penrose 新序</strong>（ISBN 9780192868916 精／9780192868923 平）</div>
+    <div class="row"><b>中译</b><strong>齐民友</strong>译，《复分析：可视化方法》，<strong>人民邮电出版社 2021-02</strong>，<strong>530 页</strong>（xviii＋530），ISBN 978-7-115-55277-8，图灵数学经典 05。★ 编目注明<strong>「据 1997 年英文版译出」</strong> ⇒ <strong>不含第二版内容</strong></div>
+    <div class="row"><b>其他版本</b>德译 <em>Anschauliche Funktionentheorie</em>（Oldenbourg，2001，ISBN 9783486245783）／中国影印版（人邮 2007，ISBN 9787115155160）／南亚版（2020，<strong>616 页</strong>，ISBN 9780198868590，<strong>不是新版</strong>）</div>
+    <div class="row"><b>报告底本</b>★ <strong>无合法全文</strong>（1997，OUP 在售）⇒ 本报告没有读过正文原文，<strong>一句英文直引都没有</strong>；章题与节级页码据 Google Books 目录抽样＋图书馆编目，页码一律注明「英文第一版」</div>
+    <div class="row"><b>状态</b>未标注已读／想读</div>
+    <div class="row"><b>收录</b>2026-10-22</div>
+    <div class="row"><b>形态</b><strong>教材型（本项目首次使用）</strong> —— 上部 <code>## 0</code>–<code>## 5</code>（这本书是什么／它在主张什么／与别的教材差在哪／版本怎么选／预备知识／三条路线）＋ 下部 <code>## 6</code>–<code>## 17</code> 章节地图（12 章，每章三问：<code>### 这一章在讲什么</code>／<code>### 几何替换了哪种计算</code>／<code>### 读的时候会在哪里卡住</code>）＋ 附录 A–D</div>
+    <div class="row"><b>产出</b><code>复分析：可视化方法/</code> — <code>.md</code>（<strong>22,124 汉字</strong>）＋ <code>.html</code>（107,035 B）＋ <code>-来源清单.md</code> ＋ <code>-build.json</code></div>
+    <div class="row"><b>核验级别</b><strong>C（二手转引；无合法全文）</strong>，★ 分三层：<strong>书目层与结构层 B</strong>（版次／ISBN／页数／图数／节级页码，出版方＋目录抽样＋编目，可逐条复核）；<strong>文字层 C</strong>（一句原文未对照）；<strong>数学层 B</strong>（书中讨论的是标准复分析内容，可脱离本书独立核实 —— 但「这本书怎么讲」与「这个定理的标准讲法」分开处理）</div>
+    <div class="row"><b>档位计数</b>`<code> <span class="tag t-src">原书</span> </code><code> <strong>25</strong> ／ </code><code> <span class="tag t-talk">作者谈话</span> </code><code> <strong>0</strong> ／ </code><code> <span class="tag t-rep">转述</span> </code><code> <strong>70</strong> ／ </code><code> <span class="tag t-inf">推断</span> </code>` <strong>97</strong>（全文口径，共 192，密度 115.2）</div>
+    <div class="row"><b>备注</b></div>
+    <ol class="sub">
+      <li>★★★ <strong>中译本＝第一版，不是第二版</strong> —— 中译 2021-02，第二版 2023-02，编目明确「据 1997 年英文版译出」；四套页码（592／530／616／720）<strong>互不通用</strong>，任何页码引用必须带版本</li>
+      <li>★★★ <strong>获奖的是论文，不是这本书</strong> —— Carl B. Allendoerfer Award（<strong>1995</strong>，<strong>MAA</strong> 不是 AMS）颁给 <em>The Geometry of Harmonic Functions</em>（<em>Mathematics Magazine</em> 67(2), 1994, 92–108）；颁奖词写明该论文「<strong>基于他即将出版的这本书中的一节</strong>」。中文资料普遍写成「因本书获奖」「美国数学会授奖」，两处都错</li>
+      <li>★★ <strong>第二版改动幅度有两种口径</strong> —— OUP 说只加图注与两篇序；MathSciNet 说把牛顿《原理》的几何方法与「<strong>最终相等</strong>」应用到复分析。两者可并存（图注即用牛顿式语言），但无法判定正文是否改写</li>
+      <li>★★ <strong>501 与 503 不是矛盾</strong> —— 前者是原版图数，后者是第二版图数</li>
+      <li>★★ <strong>Armitage 的保留意见是全书最实在的一条批评</strong> —— 《数学评论》：这本书<strong>最能被已经懂一些复分析的人欣赏</strong> ⇒ 「入门」是视角上的，不是难度上的</li>
+      <li>★ <strong><span class="tag t-talk">作者谈话</span> 为 0</strong>，不是漏搜：他是书内的 Preface 属原书档，他人评价属转述档，另一本书开的是几何书单，都不充抵</li>
+    </ol>
+    <div class="row"><b>待核实</b><strong>D1</strong> 第二版是否真有正文改写／<strong>D2</strong> 耶稣会图书奖年份（1996 或 1997）／<strong>D3</strong> 第 11／12 章分界（本报告按 469–505／506–572 推算，依据练习页 505、570 与参考文献 573）／<strong>D4</strong> 第二版三个出版日期（2023-02-07／02-28／06-21）／<strong>D5</strong> 501 与 503 的准确关系／<strong>D6</strong> 波利亚向量场的定义（未取到）／<strong>D7</strong> 若干章的论证方式（按节名与标准内容推定）／<strong>D8</strong> 齐民友译后记全文／<strong>D9</strong> 初版 1997 还是 1998／<strong>D10</strong> 第 7–10 章章末页（均由下一章章首减一推算）</div>
+</div>
+<div class="cfoot">
+  <a href="../复分析：可视化方法/复分析：可视化方法.html">打开阅读页</a>
+  <a class="ghost" href="../复分析：可视化方法/复分析：可视化方法.md">内容正本</a>
+  <a class="ghost" href="../复分析：可视化方法/复分析：可视化方法-来源清单.md">来源清单</a>
+  <a class="ghost" href="复分析：可视化方法.md">本页 Markdown</a>
+</div>
+</main>
+<script>/* 主题切换（本页自用的小脚本，不依赖书页主脚本） */
+(function(){var b=document.getElementById('themebtn');if(!b)return;
+function sync(){b.textContent=(document.documentElement.getAttribute('data-theme')==='dark')?'◐ 浅色':'◐ 深色';}
+b.addEventListener('click',function(){
+  var d=document.documentElement.getAttribute('data-theme')==='dark';
+  var n=d?'light':'dark';
+  document.documentElement.setAttribute('data-theme',n);
+  try{localStorage.setItem('ra-theme',n)}catch(e){}
+  sync();});
+sync();})();</script>
+</body>
+</html>
