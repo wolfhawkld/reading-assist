@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《存在与时间》· 索引碎片</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+
+/* ===== 索引碎片页的版式覆盖（无侧栏，单列）===== */
+main{margin:0 auto;max-width:840px;padding:0 22px 90px}
+.hero{padding:40px 0 20px}
+.hero .kick{font-size:11.5px;letter-spacing:.08em;color:var(--ink3);font-weight:600;margin-bottom:6px}
+.frag{margin:20px 0 0;padding:20px 22px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.frag .row{margin:0 0 11px;font-size:14px;color:var(--ink2);line-height:1.75}
+.frag .row>b{color:var(--ink);font-weight:600;margin-right:2px}
+.frag ol.sub{margin:6px 0 0 0;padding-left:22px;font-size:13.5px;color:var(--ink2)}
+.frag ol.sub li{margin:4px 0}
+.frag code{background:var(--hover);padding:1px 5px;border-radius:4px;font-size:.92em}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+.chip{font-size:11.5px;padding:2px 9px;border-radius:5px;background:var(--hover);color:var(--ink2)}
+.cfoot{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
+.cfoot a{font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;text-decoration:none;
+  background:var(--accent-bg);color:var(--accent);border:1px solid var(--linkline)}
+.cfoot a:hover{background:var(--linkhover)}
+.cfoot a.ghost{background:var(--panel);color:var(--ink2);border-color:var(--line2)}
+ol.dir{list-style:none;margin:18px 0 0;padding:0}
+ol.dir li{padding:10px 14px;border:1px solid var(--line);border-radius:9px;background:var(--panel);margin:8px 0}
+ol.dir a{font-weight:600;color:var(--accent);text-decoration:none;font-size:14.5px}
+ol.dir a:hover{text-decoration:underline}
+ol.dir .m{font-size:12.5px;color:var(--ink3);margin-top:3px}
+</style>
+</head>
+<body>
+<div id="ctl"><button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button></div>
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+<header class="hero">
+  <div class="kick">索引碎片 · 存在与时间</div>
+  <h1>《存在与时间》</h1>
+<div class="chips"><span class="chip">状态：未标注已读／想读</span><span class="chip">收录：2026-10-26</span><span class="chip">形态：叙事型 —— 上部 ## 0–## 5（一句话定位／这本书站在什么位置／全书骨架与那条断掉的线／三个词：此在…</span><span class="chip">核验级别：A（全文核验）</span></div>
+</header>
+<div class="frag">
+    <div class="row"><b>原名</b><em>Sein und Zeit. Erste Hälfte</em></div>
+    <div class="row"><b>作者</b>Martin Heidegger（马丁·海德格尔，<strong>1889-09-26 至 1976-05-26</strong>），德国哲学家；1913 年弗莱堡大学博士，1915 年讲师资格论文，1923 年起马堡大学教授，1928 年回弗莱堡接胡塞尔讲席。★ 1933 年出任弗莱堡大学校长并加入纳粹党，战后被禁止授课，1951 年退休</div>
+    <div class="row"><b>初版</b><strong>1927</strong> 年春，<em>Jahrbuch für Philosophie und phänomenologische Forschung</em> <strong>第八卷</strong>（Achter Band，胡塞尔编），卷内 <strong>pp. 1–438</strong>；同年 Halle: Max Niemeyer 出抽印本，<strong>XI + 438 页</strong>，题献胡塞尔，落款「Todtnauberg，1926-04-08」。★ 封面写明<strong>「第一半」</strong></div>
+    <div class="row"><b>篇幅</b>正文 <strong>438 页</strong>，<strong>83 节</strong>（导论 8 节 ＋ 第一编 36 节 ＋ 第二编 39 节，含过渡性的 §45）。★ 页码 <strong>1–438 此后各版沿用</strong>，学术文献里的「SZ 193」在任何一版都指同一页</div>
+    <div class="row"><b>结构缺口</b>第一部原计划<strong>三编</strong>，只出前两编；第三编原题「时间与存在」<strong>从未写出</strong>；第二部「解构存在论历史」整部未写。★ 正文在 <strong>p.438 以三个问句收尾</strong>，其后<strong>没有</strong>任何「文本在此中断」说明，同一卷紧接 Oskar Becker《数学的实存》（p.441 起）</div>
+    <div class="row"><b>版次</b>第 7 版（<strong>1953</strong>，作者新序）／第 15 版（<strong>1979</strong>，首次收入作者边注）／GA 第 2 卷（<strong>1977</strong>，von Herrmann 编，XIV + 586 页）／第 18 版（<strong>2001</strong>，xiii + 445 页）。★ 第 6→7 版之间改动约 <strong>480 处</strong></div>
+    <div class="row"><b>英译</b>Macquarrie &amp; Robinson（SCM Press，<strong>1962</strong>，<strong>589 页</strong>，据<strong>第 7 版</strong>译出，页边印德文页码 H）／Stambaugh（SUNY，<strong>1996</strong>，收边注；Schmidt 修订本 <strong>2010</strong>）。★ 页数另有 482／512 两说</div>
+    <div class="row"><b>中译</b>陈嘉映、王庆节译，熊伟校。三联 <strong>1987</strong> 初版（译名「烦／烦忙／烦神」）→ 三联「现代西方学术文库」<strong>修订译本 2014-09，518 页，ISBN 9787108050960</strong>（改「操心／操劳／操持」）→ 商务「汉译世界学术名著丛书」<strong>中文修订第二版，ISBN 978-7-100-16354-5</strong>（年份 2016／2018-03／2019-03 三说，页数 556／616 两说）</div>
+    <div class="row"><b>报告底本</b>★★★ <strong>美国法下公有领域全文</strong>（1927 年出版物，2023-01-01 起保护期届满），据 Internet Archive 所藏 1927 年原卷 OCR（identifier <code>jppf8</code>）逐处核验；德国／欧盟仍保护至 2046 年底，中国保护至 2026-12-31</div>
+    <div class="row"><b>状态</b>未标注已读／想读</div>
+    <div class="row"><b>收录</b>2026-10-26</div>
+    <div class="row"><b>形态</b><strong>叙事型</strong> —— 上部 <code>## 0</code>–<code>## 5</code>（一句话定位／这本书站在什么位置／全书骨架与那条断掉的线／三个词：此在·在世·时间性／版本与中译怎么选／读法建议三条路线）＋ 下部 <code>## 6</code>–<code>## 20</code> 逐节深挖（<strong>15 节</strong>：导论 2 章 ＋ 第一编 6 章 ＋ 过渡 §45 ＋ 第二编 6 章；每节三问 <code>### 这一章讲了什么</code>／<code>### 关键内容</code>／<code>### 可疑之处</code>）＋ 附录 A–D</div>
+    <div class="row"><b>产出</b><code>存在与时间/</code> — <code>.md</code>（<strong>23,471 汉字</strong>）＋ <code>.html</code> ＋ <code>-来源清单.md</code> ＋ <code>-build.json</code></div>
+    <div class="row"><b>核验级别</b><strong>A（全文核验）</strong>，★★ <strong>必须分三层</strong>：<strong>德文层 A</strong>（公有领域原版全文，<strong>17 条</strong>德文直引均回页核：精确命中 12，另 5 条 OCR 残损已逐条人工确认）；<strong>中文层 C</strong>（译本受版权保护、无公开全文，<strong>一句中译未引</strong>，中文表述均为报告自译）；<strong>二手层 B</strong>（研究者判断经可署名来源转述）</div>
+    <div class="row"><b>档位计数</b>`<code> <span class="tag t-src">原书</span> </code><code> <strong>39</strong> ／ </code><code> <span class="tag t-talk">作者谈话</span> </code><code> <strong>4</strong> ／ </code><code> <span class="tag t-rep">转述</span> </code><code> <strong>85</strong> ／ </code><code> <span class="tag t-inf">推断</span> </code>` <strong>87</strong>（全文口径，共 215，密度 109.2）</div>
+    <div class="row"><b>备注</b></div>
+    <ol class="sub">
+      <li>★★★ <strong>A 级的来路要说清</strong> —— 不是「网上有全文」，而是<strong>美国 2023 年公有领域到期</strong>；同一本书在德国仍保护到 2046、在中国到 2026-12-31。这是全项目<strong>第一次拿到哲学原著的公有领域全文</strong></li>
+      <li>★★★ <strong>能核德文 ≠ 能核中文</strong> —— 17 条德文直引都有页码与节号，中文全是自译；<strong>没有一句陈嘉映译文</strong>。凡你打算引到别处的话，请回原书页码，别转引本报告</li>
+      <li>★★★ <strong>这本书没有给出答案</strong> —— p.438 最后三句是问句（时间性的时间化如何解释／从源始时间是否有一条路通向存在意义／时间本身是否显示为存在的视野），其后直接是贝克尔文章，<strong>无中断说明</strong></li>
+      <li>★★ <strong>「第一半」是实情</strong> —— 第一部第三编「时间与存在」未写，第二部整部未写；海德格尔 1946 年在《关于人道主义的书信》里自陈：压下第三编是因为思想未能充分说出那个转向、形而上学的语言不够用</li>
+      <li>★★ <strong>中译看「操心」还是「烦」就知道版本</strong> —— 熊伟作「烦／烦心／麻烦」，陈嘉映初版作「烦／烦忙／烦神」，修订译本作「操心／操劳／操持」；这是本书最实际的版本陷阱</li>
+      <li>★★ <strong><span class="tag t-talk">作者谈话</span> 只有 4 条</strong>，不是漏搜：可核的一手文本只有 1946 年书信、1952 年讲稿、边注三种；1953 年第七版序言知道存在但未读到文字，<strong>不拿二手充抵</strong></li>
+    </ol>
+    <div class="row"><b>待核实</b><strong>D1</strong> 卷号（旧书商目录误作第七卷）／<strong>D2</strong> 后来各版末页有无中断说明／<strong>D3</strong> 商务版年份与页数（三说两说）／<strong>D4</strong> Stambaugh 页数（482／512）／<strong>D5</strong> 三联 1987 初版页数与 ISBN／<strong>D6</strong>「480 处改动」口径／<strong>D7</strong> 英译据第 7 版与 1927 原文的差异／<strong>D8</strong>「部」与「编」的层级／<strong>D9</strong> 第 42 节 cura 寓言前半段／<strong>D10</strong> 第 50 节「不可能性的可能性」确切位置／<strong>D11</strong> 第 70 节与 §23–24 的承接／<strong>D12</strong> 第 7 版序言内容／<strong>D13</strong> 六条 OCR 残损引句的清单</div>
+</div>
+<div class="cfoot">
+  <a href="../存在与时间/存在与时间.html">打开阅读页</a>
+  <a class="ghost" href="../存在与时间/存在与时间.md">内容正本</a>
+  <a class="ghost" href="../存在与时间/存在与时间-来源清单.md">来源清单</a>
+  <a class="ghost" href="存在与时间.md">本页 Markdown</a>
+</div>
+</main>
+<script>/* 主题切换（本页自用的小脚本，不依赖书页主脚本） */
+(function(){var b=document.getElementById('themebtn');if(!b)return;
+function sync(){b.textContent=(document.documentElement.getAttribute('data-theme')==='dark')?'◐ 浅色':'◐ 深色';}
+b.addEventListener('click',function(){
+  var d=document.documentElement.getAttribute('data-theme')==='dark';
+  var n=d?'light':'dark';
+  document.documentElement.setAttribute('data-theme',n);
+  try{localStorage.setItem('ra-theme',n)}catch(e){}
+  sync();});
+sync();})();</script>
+</body>
+</html>
