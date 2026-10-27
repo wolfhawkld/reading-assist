@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《论美国的民主》· 索引碎片</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+
+/* ===== 索引碎片页的版式覆盖（无侧栏，单列）===== */
+main{margin:0 auto;max-width:840px;padding:0 22px 90px}
+.hero{padding:40px 0 20px}
+.hero .kick{font-size:11.5px;letter-spacing:.08em;color:var(--ink3);font-weight:600;margin-bottom:6px}
+.frag{margin:20px 0 0;padding:20px 22px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.frag .row{margin:0 0 11px;font-size:14px;color:var(--ink2);line-height:1.75}
+.frag .row>b{color:var(--ink);font-weight:600;margin-right:2px}
+.frag ol.sub{margin:6px 0 0 0;padding-left:22px;font-size:13.5px;color:var(--ink2)}
+.frag ol.sub li{margin:4px 0}
+.frag code{background:var(--hover);padding:1px 5px;border-radius:4px;font-size:.92em}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+.chip{font-size:11.5px;padding:2px 9px;border-radius:5px;background:var(--hover);color:var(--ink2)}
+.cfoot{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
+.cfoot a{font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;text-decoration:none;
+  background:var(--accent-bg);color:var(--accent);border:1px solid var(--linkline)}
+.cfoot a:hover{background:var(--linkhover)}
+.cfoot a.ghost{background:var(--panel);color:var(--ink2);border-color:var(--line2)}
+ol.dir{list-style:none;margin:18px 0 0;padding:0}
+ol.dir li{padding:10px 14px;border:1px solid var(--line);border-radius:9px;background:var(--panel);margin:8px 0}
+ol.dir a{font-weight:600;color:var(--accent);text-decoration:none;font-size:14.5px}
+ol.dir a:hover{text-decoration:underline}
+ol.dir .m{font-size:12.5px;color:var(--ink3);margin-top:3px}
+</style>
+</head>
+<body>
+<div id="ctl"><button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button></div>
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+<header class="hero">
+  <div class="kick">索引碎片 · 论美国的民主</div>
+  <h1>《论美国的民主》</h1>
+<div class="chips"><span class="chip">状态：未标注已读／想读</span><span class="chip">收录：2026-10-27</span><span class="chip">形态：叙事型（部分制） —— 上部 ## 0–## 5（一句话定位／这本书站在什么位置／两卷为什么像两本书／三个词…</span><span class="chip">核验级别：A（全文核验）</span></div>
+</header>
+<div class="frag">
+    <div class="row"><b>原名</b><em>De la démocratie en Amérique</em></div>
+    <div class="row"><b>作者</b>阿列克西·德·托克维尔（Alexis de Tocqueville，<strong>1805-07-29 至 1859-04-16</strong>），法国政治思想家、政治家；诺曼底贵族出身，1827 年任凡尔赛初审法院法官，1831–1832 年赴美考察（名义上是监狱制度调查），1839 年起任众议员，1841 年当选法兰西学院院士，1849 年任第二共和国外交部长，1851 年政变后退出政坛</div>
+    <div class="row"><b>初版</b>上卷 <strong>1835 年 1 月</strong>，巴黎 Charles Gosselin，两卷本（xxiv+367／459 页），<strong>印数不到 500 册</strong>，附手绘彩色折叠地图；下卷 <strong>1840 年 4 月</strong>，同样两卷本（333／363 页），<strong>与上卷第 8 版同时发行</strong>。此后第 12 版（Pagnerre，<strong>1848</strong>）加作者新序与一篇附录，第 13 版（Pagnerre，<strong>1850</strong>）再加一篇众议院发言——作者生前最后一版</div>
+    <div class="row"><b>篇幅</b><strong>2 卷 · 6 部分 · 93 章</strong>（卷一 18 章 ＋ 卷二 75 章），另有导言与卷一结论。卷一卷二相隔五年：卷一重制度与观察，卷二重情感与推论</div>
+    <div class="row"><b>报告底本</b><strong>Project Gutenberg #30513–30516</strong>，即 Pagnerre <strong>1848 年第 12 版</strong>四卷本（据法国国家图书馆 Gallica 图像校对）。★ 四卷版本页前两卷作「第 12 版」、后两卷作「第 5 版」，<strong>不是拼配</strong>——第二卷自 1840 年起单独计版次</div>
+    <div class="row"><b>英译</b>Henry Reeve，1835（卷一）／1840（卷二），London: Saunders and Otley；Bowen 修订 1862；Bradley 编订 1945／1961（Vintage）；Lawrence＋Mayer 1966。★ 托克维尔 1839-10-15 致 Reeve 信里说译本「把违背民主的东西写得很鲜艳，把可能损害贵族制的东西几乎抹掉」</div>
+    <div class="row"><b>中译</b>董果良译，商务印书馆。<strong>1988.12</strong> 首版，2 册 <strong>974 页</strong>，ISBN 7-100-01110-8（平）／7-100-02275-4（精）；<strong>2013.2</strong> 新版，2 册 <strong>16＋1063 页</strong>，ISBN 978-7-100-09678-2。两版均<strong>据伽利玛出版社 1951 年版</strong>（Mayer 主持的《托克维尔全集》第一卷，Laski 作导言）译出</div>
+    <div class="row"><b>状态</b>未标注已读／想读</div>
+    <div class="row"><b>收录</b>2026-10-27</div>
+    <div class="row"><b>形态</b><strong>叙事型（部分制）</strong> —— 上部 <code>## 0</code>–<code>## 5</code>（一句话定位／这本书站在什么位置／两卷为什么像两本书／三个词／版本与中译怎么选／读法三条路线）＋ 下部 <code>## 6</code>–<code>## 20</code> <strong>15 节</strong>（7 节按「导言 ＋ 6 部分」逐一深挖，8 节专题：结社／三个种族／个人主义／温和专制／方法与预言）＋ 附录 A–D</div>
+    <div class="row"><b>产出</b><code>论美国的民主/</code> — <code>.md</code>（<strong>21,973 汉字</strong>）＋ <code>.html</code> ＋ <code>-来源清单.md</code> ＋ <code>-build.json</code></div>
+    <div class="row"><b>核验级别</b><strong>A（全文核验）</strong>，★★ <strong>必须分三层</strong>：<strong>法文层 A</strong>（84 条法文直引逐条回原文比对，<strong>精确命中 84 条</strong>）；<strong>中译层 C</strong>（董果良译本受版权保护、无公开全文，<strong>一句中译未引</strong>，中文表述均为报告自译）；<strong>英译层 B</strong>（Reeve 只作对照，作者本人说它写歪了）</div>
+    <div class="row"><b>档位计数</b>`<code> <span class="tag t-src">原书</span> </code><code> <strong>96</strong> ／</code><code> <span class="tag t-talk">作者谈话</span> </code><code> <strong>2</strong> ／</code><code> <span class="tag t-rep">转述</span> </code><code> <strong>47</strong> ／</code><code> <span class="tag t-inf">推断</span> </code>` <strong>73</strong>（全文口径，共 218，密度 100.8）</div>
+    <div class="row"><b>备注</b></div>
+    <ol class="sub">
+      <li>★★★ <strong>页码不能引</strong> —— 初版两卷、第 12 版四卷、中译 974／1063 页、英译 Bradley 两卷，五套版式互不相通；全书一律「卷·部分·章」。这与《存在与时间》（页码百年不变）正好相反</li>
+      <li>★★★ <strong>「12 版／5 版」不是拼凑</strong> —— 同一套 1848 年 Pagnerre 版；第二卷自 1840 年起单独计版次。看见「版次不一致」先查计版规则</li>
+      <li>★★ <strong>最常传错的一条</strong>：中文资料说「第八章讲多数暴政」，法文实测<strong>第七章才是《多数的全能及其效果》，第八章是《什么在美国缓和了多数的暴政》</strong></li>
+      <li>★★ <strong>「温和专制」不是他的词</strong> —— 他写的是 <code>cette sorte de servitude, réglée, douce et paisible</code>，用 <strong>servitude（奴役）</strong> 而非 despotisme（专制）；英文 soft despotism 是后起的说法</li>
+      <li>★★ <strong><span class="tag t-talk">作者谈话</span> 只有 2 条</strong>，不是漏搜：书信集法文本未在开放渠道取得，PG #13333 多为对方来信；可核的只有《回忆录》英译</li>
+      <li>★ <strong>卷二不是卷一的续篇</strong> —— 他自己在卷二序言里承认「这些其他原因存在，但我的题目不是谈它们」，又说「这个话题显然超出我的力量」</li>
+    </ol>
+    <div class="row"><b>待核实</b><strong>D1</strong> 卷一结论在各版是否都有／<strong>D2</strong> soft despotism 英译首创者／<strong>D3</strong> 中译 1988 与 2013 正文差异／<strong>D4</strong> 第 13 版改动／<strong>D5</strong>《美国与瑞士民主的比较研究》是否收在正文（标题页有、正文未见）／<strong>D6</strong> Reeve 译本是否经作者校订／<strong>D7</strong> 卷二章数（已结：21／20／26／8）／<strong>D8</strong> 司法名句位置（已结：卷一·二部·八章）／<strong>D9</strong> Mansfield 与 Schleifer 两版／<strong>D10</strong> 在美行程日期／<strong>D11</strong> 罗得岛选举权限制／<strong>D12</strong> 1835 年州数／<strong>D13</strong> <code>la constitution de 1789</code> 是否排印误／<strong>D14</strong> 未编号小标题的层级</div>
+</div>
+<div class="cfoot">
+  <a href="../论美国的民主/论美国的民主.html">打开阅读页</a>
+  <a class="ghost" href="../论美国的民主/论美国的民主.md">内容正本</a>
+  <a class="ghost" href="../论美国的民主/论美国的民主-来源清单.md">来源清单</a>
+  <a class="ghost" href="论美国的民主.md">本页 Markdown</a>
+</div>
+</main>
+<script>/* 主题切换（本页自用的小脚本，不依赖书页主脚本） */
+(function(){var b=document.getElementById('themebtn');if(!b)return;
+function sync(){b.textContent=(document.documentElement.getAttribute('data-theme')==='dark')?'◐ 浅色':'◐ 深色';}
+b.addEventListener('click',function(){
+  var d=document.documentElement.getAttribute('data-theme')==='dark';
+  var n=d?'light':'dark';
+  document.documentElement.setAttribute('data-theme',n);
+  try{localStorage.setItem('ra-theme',n)}catch(e){}
+  sync();});
+sync();})();</script>
+</body>
+</html>
