@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《科学与方法》阅读指引与精华解析</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --talk:#8a4b7a; --talk-bg:#f8e9f4;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.t-talk{background:var(--talk-bg);color:var(--talk)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<div id="ctl">
+  <button id="navbtn" type="button" aria-controls="toc" aria-expanded="false">☰ 目录</button>
+  <button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button>
+</div>
+<div id="navscrim"></div>
+
+<aside>
+  <div class="brand">《科学与方法》<small>阅读指引与精华解析 · 2026-11-04</small></div>
+  <div class="tools">
+    <button id="expand-all">全部展开</button>
+    <button id="collapse-all">全部折叠</button>
+  </div>
+  <nav id="toc">
+    <div class="grp">上部 · 速览</div>
+    <a href="#s0">0 一句话定位</a>
+    <a href="#s1">1 这本书站在什么位置</a>
+    <a href="#s2">2 它主张什么</a>
+    <a href="#s3">3 三个词：选择、约定、原理</a>
+    <a href="#s4">4 版本与中译怎么选</a>
+    <a href="#s5">5 读法建议：三条路线</a>
+    <a href="#s6">6 引言：为什么第一句话就是「选择」</a>
+    <a href="#s7">7 第一编·第一章：事实的选择</a>
+    <a href="#s8">8 第一编·第二章：数学的未来</a>
+    <a href="#s9">9 第一编·第三章：数学的创造</a>
+    <a href="#s10">10 第一编·第四章：偶然性</a>
+    <a href="#s11">11 第二编·第一章：空间的相对性</a>
+    <a href="#s12">12 第二编·第二章：数学定义与教学</a>
+    <a href="#s13">13 第二编·第三章：数学与逻辑</a>
+    <a href="#s14">14 第二编·第四章：新逻辑</a>
+    <a href="#s15">15 第二编·第五章：逻辑斯谛派的最新努力</a>
+    <a href="#s16">16 第三编·第一章：力学与镭</a>
+    <a href="#s17">17 第三编·第二章：力学与光学</a>
+    <a href="#s18">18 第三编·第三章：新力学与天文学</a>
+    <a href="#s19">19 第四编·第一章：银河与气体理论</a>
+    <a href="#s20">20 第四编·第二章：法国大地测量学</a>
+    <a href="#s21">21 总结论：方法不是证明，是发明</a>
+    <div class="grp">附录</div>
+    <a href="#s22"> 附录 A 引文怎么核的</a>
+    <a href="#s23"> 附录 B 术语表</a>
+    <a href="#s24"> 附录 C 它和另外三本的关系</a>
+    <a href="#s25"> 附录 D 待核实</a>
+  </nav>
+</aside>
+
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+
+<header class="hero">
+  <h1>《科学与方法》阅读指引与精华解析</h1>
+  <div class="sub">Science et Méthode ／ 昂利·彭加勒（Paris: Ernest Flammarion，1908，「科学哲学文库」）</div>
+  <div class="meta">
+    <div><b>作者</b>Henri Poincaré，1854-04-29 生于南锡，1912-07-17 卒于巴黎。巴黎综合理工（1873）与矿业学校出身，1879 年获博士学位；1881 年起任巴黎大学理学院教授，1887 年当选法兰西学院院士，1893 年起入经度局；1908 年当选法兰西科学院院长。四本科学哲学著作：《科学与假设》（1902）、《科学的价值》（1905）、《科学与方法》（1908）、《最后的沉思》（1913，遗著）</div>
+    <div><b>初版</b>Paris: Ernest Flammarion，1908 年，属该社「科学哲学文库」（Bibliothèque de philosophie scientifique）。单卷本，正文 314 页：引言 1／第一编 7·19·43·64／第二编 95·123·152·172·192／第三编 215·231·255／第四编 273·290／总结论 307</div>
+    <div><b>篇幅</b>引言 ＋ 四编十四章 ＋ 总结论。第一编「学者与科学」4 章、第二编「数学推理」5 章、第三编「新力学」3 章、第四编「天文科学」2 章。本报告正文 20,486 汉字，按「编·章」定位，章起始页取自原书目录页</div>
+    <div><b>中译</b>李醒民译：辽宁教育出版社 2000 年 1 月（vii+206 页）／商务印书馆 2006 年 12 月（xii+219 页）／商务印书馆「汉译世界学术名著丛书」2010 年 10 月（xvi+219 页，ISBN 978-7-100-07184-0）。★ 本报告一句中译未引</div>
+    <div><b>定级</b>A，分两层：法文层 A（1908 年弗拉马里翁版扫描件全文，31 条引句逐条核对）／英译层 B（Halsted 1913 英译，只作对照）／中译层 C（受版权保护，无公开全文，未引一句）</div>
+  </div>
+</header>
+
+<div class="legend">
+  <h3>可信度标注（本书专用四档）</h3>
+  <ul>
+    <li><span class="tag t-src">原书</span> 书自身的结构与版本事实：编次、章号、章题、章数、版式，以及<b>法文原句直引</b>（以 1908 年弗拉马里翁版扫描件为准，OCR 误识处已订正并注明）。★ 不用于评价——凡属判断，一律标转述或推断</li>
+    <li><span class="tag t-talk">作者谈话</span> ★ <b>本报告为 0 条</b>。彭加勒 1912 年去世，无可考的一手访谈；本书引言与总结论是书内文本，已标为「原书」，不充作「作者谈话」</li>
+    <li><span class="tag t-rep">转述</span> 出版信息、版本谱系、图书馆编目、1905 年前后物理学史的通行说法，以及<b>法文原句的报告自译</b>——自译不是李醒民译文，逐处已注明</li>
+    <li><span class="tag t-inf">推断</span> 我的判断：各章为何这样安排、论证哪一步跳过去了、读者会在哪里卡住、以及这本书对「品味与科学」这个问题到底给出了什么</li>
+  </ul>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">
+    本书为 <b>A 级</b>，但要分两层看：<b>法文层 A</b>（1908 年弗拉马里翁版扫描件全文在手，<b>31 条引句逐条回原文定位</b>，26 条完全命中，5 条因 OCR 断词分数偏低、已人工确认）、<b>英译层 B</b>（Halsted 1913 英译以意译过度著称，只作对照）、<b>中译层 C</b>（李醒民译本受版权保护、无公开全文，<b>本报告一句中译都没有引</b>）。★ <b>作者谈话 0 条</b>：作者 1912 年去世，无一手访谈，也没有拿书内序言冒充。
+  </p>
+  <h3>引文核验级别（本书分层）</h3>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)">为什么能到 A 级：彭加勒 1912 年去世，作品在法国（死后七十年）、美国（1929 年前出版）、中国（死后五十年）三地均已进入公有领域，1908 年弗拉马里翁版有 archive.org 的完整扫描件，可作核验底本。</p>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)"><b>但底本是 OCR，不是校勘本。</b>词间常被识别成双空格，行末连字符会切断词（<i>dé-</i>／<i>monstration</i>），个别字母被认错（<i>fcrent</i>＝firent、<i>qudtient</i>＝quotient、<i>técrit o</i>＝l'écrit C）。本报告引文时归一空白并订正这些位置，不能确认的一律改用英译并注明。</p>
+  <p style="margin:8px 0 0;font-size:12.5px;color:var(--ink3)"><b>页码可以给，但只给到章首。</b>1908 年初版是单卷本，版式稳定，原书目录页有各章起始页；章内页码未逐页核，因此正文只用「编·章」定位。</p>
+</div>
+
+<section id="s0">
+  <h2><span class="num">0</span><span>一句话定位</span><span class="caret">▾</span></h2>
+  <p>一句话：这本书要回答的不是「科学用什么方法」，而是<strong>「当方法给不出答案时，科学家凭什么继续选」</strong>。</p>
+  <p>它的答案是一个听起来很不科学的东西：数学美。彭加勒自己也知道这个答案站不住，所以他用了整整一章来讲它，又在后面几编里不断给它加上限度。<span class="tag t-inf">推断</span></p>
+  <p><strong>先说它不是什么。</strong> 它不是方法论教科书。全书没有一套可操作的流程，没有「第一步观察、第二步归纳」这种章节，四编十四章更像四组互不统属的论文：第一编谈科学家怎么工作，第二编谈数学推理的性质，第三编谈 1900 年代物理学的震荡，第四编谈天文与大地测量。<span class="tag t-rep">转述</span></p>
+  <p>它也不是「科学哲学导论」。彭加勒不是哲学教授，他是当时法国最忙的数学家之一：自守函数、三体问题、庞加莱猜想、狭义相对论的先行工作，都出自同一双手。这本书里的判断，多半是从自己的工作里反推出来的，不是从哲学体系里推出来的。<span class="tag t-rep">转述</span></p>
+  <p><strong>它更不是一本赞美科学的书。</strong> 书里对科学的信心是有限的：他承认科学家只能看到极小一部分事实，承认公理只是便利的约定，承认「原理」会一个接一个地失效。他给出的安慰不是「科学终将穷尽真理」，而是「即使原理倒了，科学仍然能接着做下去」。<span class="tag t-inf">推断</span></p>
+  <p>书名本身值得停一下。<em>Science et Méthode</em>——不是「科学方法论」，是「科学与方法」，两个名词并列。法文里这个「与」很轻，但全书的分量恰恰在这个缝里：科学是一回事，方法是另一回事，而连接两者的，是一个人的判断。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s1">
+  <h2><span class="num">1</span><span>这本书站在什么位置</span><span class="caret">▾</span></h2>
+  <p>要给它定位，最省事的办法是看它在四本书里的位置。彭加勒的科学哲学著作有四本：<strong>《科学与假设》（1902）、《科学的价值》（1905）、《科学与方法》（1908）、《最后的沉思》（1913，遗著）</strong>。<span class="tag t-rep">转述</span> 1908 年这本的版权页后面，弗拉马里翁（Flammarion）自己就把这四本列了出来——这是同一家出版社的同一个「科学哲学文库」，不是后人拼的。</p>
+  <p>四本的分工大致是这样：第一本处理<strong>公理与假设的地位</strong>（几何学的公理是经验的、先验的，还是约定的）；第二本处理<strong>科学的价值</strong>（科学是不是只讲方便，不讲真理）；这一本处理<strong>选择与创造</strong>——科学家在无穷事实里挑什么、数学发明在脑子里怎么发生；最后一本处理<strong>物理学的危机与科学的未来</strong>。<span class="tag t-inf">推断</span></p>
+  <p>1908 年的处境值得记住。这一年，镭已经发现十年，电子的存在刚被确认不久，爱因斯坦的狭义相对论发表三年，闵可夫斯基的四维时空刚刚提出。对法国的老一辈来说，牛顿力学的地基在动，而动的地方不止一处。<span class="tag t-rep">转述</span> 彭加勒本人就站在这场震动里：他在 1905 年前后写下的几篇论文，已经含有相对性原理的核心表述，只是没有走到「时空是相对的」这一步。<span class="tag t-rep">转述</span></p>
+  <p>所以这本书的第三编不是书斋里的评论，是一个正在场上的人对场上发生的事的判断。他写「力学与镭」「力学与光学」，语气不是「新物理推翻了旧物理」，而是「新事实逼着我们重写原理，但原理的写法有对错之分」。这个分寸，是全书最有价值的地方之一。<span class="tag t-inf">推断</span></p>
+  <p>它还站在一个更大的争点上：<strong>数学到底是发现的，还是发明的？</strong> 逻辑主义者（罗素一路）说数学可以归约为逻辑；约定主义者说公理只是方便的定义；直觉主义者说数学根植于构造。彭加勒哪一派都不完全站，他的位置有点别扭：<strong>公理是约定的，但约定不是任意的；数学是发明的，但发明受一种「美」的约束。</strong><span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s2">
+  <h2><span class="num">2</span><span>它主张什么</span><span class="caret">▾</span></h2>
+  <p><strong>第一，事实不是给定的，是被选择的。</strong> 这是他全书的第一句话，也是最重要的一句。观察和实验本身不构成科学，因为可观察的东西无穷多；科学家必须先决定看哪里。这个决定不写在任何方法论里。<span class="tag t-src">原书</span></p>
+  <p><strong>第二，选择的标准不能是「有用」。</strong> 有用是事后的判词：一项研究有没有用，要等它被应用之后才知道，而那时选择早已完成。所以「为科学而科学」不是清高，是<strong>时间约束下的必然</strong>——你没有时间把所有东西都看一遍。<span class="tag t-inf">推断</span></p>
+  <p><strong>第三，选择的实际标准是「智性之美」。</strong> 他在第一编第一章里，把美分成两种：感官的美（颜色、形状的悦目）与智性的美（部分与整体的和谐、秩序、统一）。他说科学家被后一种美吸引，而且这种美「说得清部分、说不清全部」。<span class="tag t-src">原书</span></p>
+  <p><strong>第四，但美只是引导，不是保证。</strong> 这一点常被漏掉。彭加勒没有说「美的理论就是真的理论」；他说的是：在还没有证据的时候，美的理论更值得先试。这是一个<strong>搜索策略</strong>的主张，不是一个<strong>真理判据</strong>的主张。<span class="tag t-inf">推断</span> 差别很大：前者承认会失败，后者承诺不会失败。</p>
+  <p><strong>第五，原理的危机不等于科学的危机。</strong> 第三编里他一再重复同一个结构：旧原理（能量守恒、相对性、作用与反作用）不是被证伪了，而是被<strong>重新表述</strong>了；新事实逼我们把原理从「绝对成立的命题」降格为「在某一范围内足够精确的约定」。科学没有崩塌，它换了一层地基。<span class="tag t-inf">推断</span></p>
+  <p>这五条摆在一起，能看出他的立场其实很紧：<strong>他承认科学里有人（选择者），但不承认因此科学就是主观的；他承认约定（公理），但不承认约定可以随便改。</strong> 这个夹缝，是他全部论证的着力点。</p>
+</section>
+
+<section id="s3">
+  <h2><span class="num">3</span><span>三个词：选择、约定、原理</span><span class="caret">▾</span></h2>
+  <p><strong>选择（choix）。</strong> 全书的核心动词。他在引言里就把它立成了第一问题：科学家不是没有时间，是<strong>没有时间看错</strong>——「与其看得糟，不如不看」。所以问题不是「怎么观察」，而是「怎么决定观察什么」。<span class="tag t-src">原书</span></p>
+  <p><strong>约定（convention）。</strong> 他在《科学与假设》里用得更多，这本书里退到背景。要点是：几何公理既不是经验事实（因为经验只能告诉我们「哪一种几何用起来方便」），也不是先验真理，而是<strong>我们选择的定义</strong>。但这个选择不是任意的——它受实验约束，只是约束不唯一。<span class="tag t-rep">转述</span></p>
+  <p><strong>原理（principe）。</strong> 这是他这本书里最特殊的一个词。他说的「原理」不是「公理」，而是<strong>经验上高度成立、但并非不可违反的高位命题</strong>：能量守恒、卡诺原理、相对性原理、作用与反作用相等。<span class="tag t-inf">推断</span> 原理的特点是：它管的面很宽，所以一旦有反例，受损的不是一个结论，而是一整片解释。第三编讨论的正是这种受损。</p>
+  <p>三个词的关系可以这么看：<strong>原理是旧的约定，约定是当下的选择，选择靠的是美。</strong> 一条链，越往后越软。</p>
+</section>
+
+<section id="s4">
+  <h2><span class="num">4</span><span>版本与中译怎么选</span><span class="caret">▾</span></h2>
+  <p><strong>法文底本。</strong> 1908 年巴黎弗拉马里翁书店初版，属「科学哲学文库」。本报告用的是 <strong>archive.org 上 1908 年版的扫描件</strong>（标识 <code>scienceetmthod00poin</code>），OCR 文本约 52.6 万字节、七万三千余词。<span class="tag t-rep">转述</span></p>
+  <p>★ <strong>这份 OCR 有明确的缺陷，必须说明</strong>：词间常被识别成双空格；行末连字符会把词切断（<code>dé-</code> / <code>monstration</code>）；个别字母被认错（<code>fcrent</code> 应为 <code>firent</code>，<code>qudtient</code> 应为 <code>quotient</code>，<code>dlTerses</code> 应为 <code>diverses</code>）。<strong>本报告引法文时一律归一并订正了这些位置，凡不能确定的地方改用英译并注明。</strong><span class="tag t-inf">推断</span></p>
+  <p><strong>英译。</strong> 1913 年 <strong>George Bruce Halsted</strong> 译《The Foundations of Science》（Science Press），把《科学与假设》《科学的价值》《科学与方法》三部合为一册；本报告用的是 <strong>Project Gutenberg #39713</strong>，全书 201,625 词，《科学与方法》部分从第 751,860 个字符起。<span class="tag t-rep">转述</span> Halsted 是数学家出身，译文能读，但他有「意译过度」的名声；本报告凡关键句都回法文核对，不单独依赖英译。<span class="tag t-inf">推断</span></p>
+  <p><strong>中译。</strong> <strong>李醒民译</strong>，同一译者出过三版：辽宁教育出版社 2000 年 1 月（vii+206 页）、商务印书馆 2006 年 12 月（xii+219 页）、商务印书馆「汉译世界学术名著丛书」2010 年 10 月（xvi+219 页，商务官网记 226 页，ISBN 978-7-100-07184-0）。<span class="tag t-rep">转述</span> 三版正文相同，差别在序言与版式；买书选 2010 年汉译名著版即可。</p>
+  <p>★ <strong>中译层不可核</strong>：李醒民译本受版权保护，没有公开全文，本报告<strong>一句中译都没有引</strong>，凡中文表述均为报告自译。<span class="tag t-inf">推断</span> 这一点和本项目的其他书一样：能核的是法文，不能核的是中文。</p>
+  <p><strong>页码。</strong> 不给。1908 年初版与后续重印、英译三书合刊、中译三版，四套页码互不相通。本报告一律用「第几编·第几章」。</p>
+</section>
+
+<section id="s5">
+  <h2><span class="num">5</span><span>读法建议：三条路线</span><span class="caret">▾</span></h2>
+  <p><strong>路线一（只要骨架，约两小时）</strong>：引言 → 第一编第一章「事实的选择」→ 第一编第三章「数学的创造」→ 总结论。这四处合起来就是全书的论证闭环：问题（选择）→ 标准（美）→ 机制（无意识筛选）→ 收束（发明的方法不是证明的方法）。<span class="tag t-inf">推断</span></p>
+  <p><strong>路线二（只关心「美与真」）</strong>：第一编第一、三、四章 → 第二编第三章「数学与逻辑」→ 总结论。第四编和第三编可以跳。这样读的好处是：你能看到他自己在哪里给「美」划界——第一章说美是引导，第三章说美是筛子，到了第二编他开始担心「如果数学只是约定，美还剩下什么」。<span class="tag t-inf">推断</span></p>
+  <p><strong>路线三（科学史现场）</strong>：第三编三章 → 第四编两章 → 回头读第一编第一章。顺序反过来读更有意思：先看他在具体争论里怎么下判断，再看他事后给这些判断找的理由。<strong>理由和判断之间是有缝的</strong>，这条缝值得看。<span class="tag t-inf">推断</span></p>
+  <p>不建议从头到尾顺读。十四章里有一半是应时之作（论教学、论逻辑斯谛派），它们在 1908 年有针对性，今天读来密度低；把它们当背景而不是主干，全书会好看很多。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s6">
+  <h2><span class="num">6</span><span>引言：为什么第一句话就是「选择」</span><span class="caret">▾</span></h2>
+  <p>引言只有两页，但它把全书的题目一次立完了。</p>
+  <blockquote>
+    <p><em>La méthode scientifique consiste à observer et à expérimenter; si le savant disposait d'un temps infini il n'y aurait qu'à lui dire : « Regardez et regardez bien » ; mais, comme il n'a pas le temps de tout regarder et surtout de tout bien regarder, et qu'il vaut mieux ne pas regarder que de mal regarder, il est nécessaire qu'il fasse un choix.</em></p>
+  </blockquote>
+  <p>（引言；报告自译：科学方法就是观察与实验；假如科学家有无限的时间，那只需对他说「看，仔细看」就够了；但他没有时间把一切都看一遍，尤其没有时间把一切都仔细看一遍，而看得糟还不如不看，所以<strong>他必须做出选择</strong>。）<span class="tag t-src">原书</span></p>
+  <p>这段话的分量在最后半句。他把「选择」从一个技术问题抬成了一个<strong>认识论问题</strong>：科学之所以是科学，不是因为它看得多，而是因为它<strong>知道该不看什么</strong>。<span class="tag t-inf">推断</span></p>
+  <p>紧接着他补了一句，把这个问题推广到三个领域：物理学家要选，历史学家要选，数学家也要选，而指导他们的原则「并非没有相似之处」。<span class="tag t-src">原书</span> 这句是全书的结构预告——第一编讲物理学家与数学家的选择，第二编讲数学内部的选择（公理、定义），第三编讲原理层面的选择，第四编讲两种具体科学里的选择。</p>
+  <p>引言还交代了方法：他不打算给规则，打算<strong>观察工作中的科学家</strong>，尤其是数学发明的心理机制。<span class="tag t-src">原书</span> 这个交代很重要，因为它决定了这本书的体裁：它不是规范性的（告诉你该怎么做），而是描述性的（告诉你实际是怎么发生的）。描述性的东西容易被误读成规范性的——后面很多「彭加勒的方法论」其实是他对自己经验的反省，不是给别人开的方子。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s7">
+  <h2><span class="num">7</span><span>第一编·第一章：事实的选择</span><span class="caret">▾</span></h2>
+  <p><strong>（1）这一章讲了什么</strong></p>
+  <p>托尔斯泰说，「为科学而科学」在他眼里是荒谬的构想：事实无穷，无法全知，必须选择；而选择的依据只能是效用，他说的效用是使人变好。彭加勒不接受这种效用，也不接受它背后的道德理想，只说这是口味问题。他要争的是二难：若选择只由任性或眼前效用决定，就没有为科学而科学，也就没有科学；反过来，科学存在，就证明事实有等级。</p>
+  <p>他给等级找标准。先是收益率：值得研究的是能反复出现的事实。再是简单：复杂事实靠一堆巧合凑成，再凑一次的概率极低；看来简单的事实即便内里不简单，也更容易被偶然拼出。再是例外：规则确立后，完全符合规则的事实不再教人新东西，偏离才值钱。最后是隐藏的相似：表面互不相干的规则，往往形式上同构。</p>
+  <p>走到这里，地基换了。他说科学家研究自然不是因为有用，是因为愉悦，而愉悦因为它美。他排除感官之美，只留「部分与整体的和谐秩序」这种智性之美，并说正是它让科学家甘愿承受漫长艰苦的工作。全章收在一个汇合上：求美与求用的选择，最后指向同一批事实。</p>
+  <p><strong>（2）关键内容</strong></p>
+  <p>第一，托尔斯泰的挑战被接住，却没有被正面回答。他承认必须选择，也承认「想把自然装进科学，等于把整体装进部分」，随后用科学的存在反推等级：没有等级就没有科学，而科学存在。这是从成功反推前提，不是证明。</p>
+  <blockquote>
+    <p><em>Tolstoï explique quelque part pourquoi « la Science pour la Science » est à ses yeux une conception absurde.</em></p>
+  </blockquote>
+  <p>（第一编·第一章；报告自译：托尔斯泰在某处解释，为什么「为科学而科学」在他眼里是一个荒谬的构想）<span class="tag t-src">原书</span></p>
+  <p>第二，可重复性是第一标准。反事实：元素不是六十种而是六百亿种且均匀分布，则每块新石头都可能是未知物质，此前知识全无效，我们永远像初生婴儿；这样的世界不会有科学，甚至不会有思想与生命，因为进化来不及养成保守的本能。社会学被他顺手刺了一句：方法最多，成果最少。</p>
+  <blockquote>
+    <p><em>Les faits les plus intéressants sont ceux qui peuvent servir plusieurs fois.</em></p>
+  </blockquote>
+  <p>（第一编·第一章；报告自译：最有趣的事实，是那些能够多次派上用场的事实）<span class="tag t-src">原书</span></p>
+  <p>第三，简单性标准会自我拆解。他问真有简单事实吗，承认无法判断简单底下是否藏着复杂性，补救是一个二分：要么简单为真，要么元素混合得无法分辨，两种都更容易重现。二分漏了第三种，而他自己说了出来：常见的事实显得简单，正因我们习惯了它。</p>
+  <p>第四，智性之美。美分两层：感官的色彩与表象，和由秩序产生的内在美；它不需要观众，也不需要用途。水神庙的女像柱仿佛毫不费力地承重，优雅就是力的经济学。事实要能写进小册子才算科学的事实：一本物理书装着大量已做的实验，还装着千倍于此的可能实验。写进书里靠语言，语言如何造出规律则要到第二章<span class="tag t-inf">推断</span>。</p>
+  <blockquote>
+    <p>"The scientist does not study nature because it is useful; he studies it because he delights in it, and he delights in it because it is beautiful."</p>
+  </blockquote>
+  <p>（第一编·第一章，据 Halsted 1913 英译；报告自译：科学家研究自然不是因为它有用，而是因为他在其中得到愉悦，他愉悦是因为它美）<span class="tag t-src">原书</span></p>
+  <p>马赫说科学的任务是思维经济，彭加勒接过这句，把省力与美焊在一起<span class="tag t-rep">转述</span>。</p>
+  <p><strong>（3）可疑之处</strong></p>
+  <p>最薄的是那个反推。从科学存在推出事实有等级，再从有等级推出选择可以明智，这是拿结论当前提的证据。更麻烦的是，收益率是事后概念：一项研究值不值，要等它真被反复使用才知道。用它指导正在进行的挑选，等于用明天的结果结算今天的账。</p>
+  <p>第二处是简单性标准的滑动。他承认简单可能只是习惯；这句若坐实，标准就从客观特征变成心理事实，而全章论证依赖的正是客观性。第三处是美与用的汇合。他先说效用不能当标准，因为应用要等以后才出现；结尾又说求美与求用指向同一批事实。效用于是从后门回来，改名叫和谐。</p>
+</section>
+
+<section id="s8">
+  <h2><span class="num">8</span><span>第一编·第二章：数学的未来</span><span class="caret">▾</span></h2>
+  <p><strong>（1）这一章讲了什么</strong></p>
+  <p>要预言数学的未来，正确的方法是研究它的历史与现状。彭加勒说这是数学家的职业习惯：我们惯于外推，而且清楚这种外推值多少，所以不至于自欺。</p>
+  <p>先要打掉「问题快做完了」的悲观论。这类预言家历史上反复出现，每次都落空，原因是「解」的含义会扩大。对希腊人，用尺规作出来才算解；后来是开根号；再后来是只含代数函数或对数函数。不可解的问题一旦被重新表述，反而变成最有趣的问题。所以他宣布他们已经死了。</p>
+  <p>真正的问题不是会不会继续长，而是往哪里长。回答「往所有方向」固然对，但只对一半。若全对，那就有点可怕，因为财富会变成累赘，堆积会变成谁也读不懂的杂物。数学家也必须在事实之间选择，而且比物理学家更被迫，因为这些事实很大程度上是他自己造出来的。</p>
+  <p><strong>（2）关键内容</strong></p>
+  <p>第一，解的扩容。这不是修辞，是他对数学史的结构性判断：进展有一部分不表现为新定理，而表现为「什么算答案」被重新规定。不可解性因此不是终点，是换一个问题的信号。</p>
+  <blockquote>
+    <p><em>le sens du mot solution s'est élargi, les problèmes insolubles sont devenus les plus intéressants de tous</em></p>
+  </blockquote>
+  <p>（第一编·第二章；报告自译：「解」这个词的含义扩大了，不可解的问题变成了最有意思的问题）<span class="tag t-src">原书</span></p>
+  <p>第二，收益率与优雅是同一件事。他算过一笔小账：某人用石子算出六乘七等于四十二并记下，此后一亿人不必重算，两分钟替下二十亿分钟。</p>
+  <blockquote>
+    <p><em>L'importance d'un fait se mesure donc à son rendement.</em></p>
+  </blockquote>
+  <p>（第一编·第二章；报告自译：一个事实的重要性，因此要以它的收益率来衡量）<span class="tag t-src">原书</span></p>
+  <p>数学家看重方法与结果的美，不是鉴赏癖。美是各部分的和谐、对称、平衡，让人一眼看清整体又不丢细节。看得越清楚，越容易看出它与邻近对象的类比，越可能猜出可推广的方向。所以美学判断与收益判断在这里重合。</p>
+  <p>第三，层级与越界。算术落后，因为缺少连续性这个向导，每个整数都有自己的个体性，因此它应模仿代数；代数又反过来向算术借模型。几何看似只是代数换了语言，但换语言会提出新问题。他说我们的科学同时毗邻哲学与物理学，数学家因此总朝两个相反方向走，一支审视自身，一支朝自然去，「我们军队的主力应当朝自然那一侧」。越界不是侵占，是各自把对方的征服成果并进自己的疆域。</p>
+  <blockquote>
+    <p><em>c'est du côté opposé, du côté de la nature, qu'il faut diriger le gros de notre armée</em></p>
+  </blockquote>
+  <p>（第一编·第二章；报告自译：应当朝相反的那一侧，朝自然那一侧，投入我们军队的主力）<span class="tag t-src">原书</span></p>
+  <p>第四，不会枯竭。希尔伯特把各理论的公理与假设一条条清点出来，成果极漂亮；看上去这块地盘有限，清点完就没事了<span class="tag t-rep">转述</span>。</p>
+  <p>彭加勒说，清点完之后还有无数种分类方式，好的图书管理员总能找到事做。</p>
+  <blockquote>
+    <p>"a good librarian always finds something to do"</p>
+  </blockquote>
+  <p>（第一编·第二章，据 Halsted 1913 英译；报告自译：一个好的图书管理员总能找到事做）<span class="tag t-src">原书</span></p>
+  <p><strong>（3）可疑之处</strong></p>
+  <p>这个预言几乎不可证伪。「解的含义会扩大」加上「往所有方向」，构成一个能吸收任何反例的框架：将来数学真的停滞，也可以说停滞的只是旧意义上的问题。一个永真的预言，代价是它不再提供信息。他确实给了一个可检验的观察，各分支会互相借用方法，但这是对已发生之事的归纳，不是对未来的约束<span class="tag t-inf">推断</span>。</p>
+  <p>层级图景与他自己的例子也冲突。他先说算术应当模仿代数，随后又说代数要反过来以算术为模型。借用是双向的，「算术、代数、分析」这条阶梯就只是叙述上的方便，不是结构。双向借用恰好取消了他用来解释「数学为何做不完」的逐层推进机制。至于「军队主力朝自然去」，力量来自军事比喻；图书管理员那条说明的是分类活动不会停止，不是数学内容不会枯竭。</p>
+</section>
+
+<section id="s9">
+  <h2><span class="num">9</span><span>第一编·第三章：数学的创造</span><span class="caret">▾</span></h2>
+  <p><strong>（1）这一章讲了什么</strong></p>
+  <p>起点是一个人人见过却不觉得奇怪的事实：为什么有人完全学不懂数学？如果数学只依赖逻辑，而逻辑规则是所有健全心智都接受的，就不该有这么多人被挡在门外。彭加勒说，证明不是一串并列的三段论，而是一串有次序的三段论，次序比元素更重要。有了次序感，人不必靠记忆抓每个环节；没有它就只能死记，一步记错便全盘皆错。他拿自己作证：做加法常出错，下棋也很差。</p>
+  <p>于是他给发明下定义。发明不是用已知对象造新组合，那种组合无穷多，谁都能造，绝大多数毫无价值。发明是不去造无用的组合，只造极少数的有用的。发明就是辨别，就是选择。</p>
+  <p>但「选择」这个词他用得不安：它让人想到一个买主，面前摆着大量样品，一件件看过去。实际不是这样，无用的组合根本不会出现在发明者心里，进入意识的只有有用的那些。他把发明者比作复试的考官。</p>
+  <p><strong>（2）关键内容</strong></p>
+  <p>第一，几段经历本身。为证明某类富克斯函数不存在，他算了十五天，毫无结果。一晚他破例喝黑咖啡，睡不着，念头成堆涌上来，彼此碰撞，直到两个念头勾住，形成稳定的组合；早上他确立了超几何级数导出的那一类函数。后来在库唐斯上公共马车，脚刚踏上踏板，忽然想到定义富克斯函数的变换与非欧几何的变换是同一组。他没有验证，上车就继续谈话，但立刻有了完全的确定。再后来，海边悬崖上散步，同样的突然与确定。共同特征是不请自来、极短、伴随不可动摇的确定感，验证放在最后。</p>
+  <blockquote>
+    <p><em>au moment où je mettais le pied sur le marche-pied, l'idée me vint</em></p>
+  </blockquote>
+  <p>（第一编·第三章；报告自译：就在我把脚踏上踏板的那一刻，念头来了）<span class="tag t-src">原书</span></p>
+  <p>第二，筛子的规则无法形式化。规则极精细、极微妙，几乎无法用精确语言陈述；它们是被感到的，不是被写出的。既然写不出，就造不出一台能执行它的机器。</p>
+  <blockquote>
+    <p><em>les règles qui doivent guider ce choix sont extrêmement fines et délicates</em></p>
+  </blockquote>
+  <p>（第一编·第三章；报告自译：应当引导这一选择的规则，极其精细而微妙）<span class="tag t-src">原书</span></p>
+  <p>第三，审美感就是那张筛子。他承认这听起来奇怪：讨论数学证明，却求助于感性。他的回答是，确实存在一种数学美感，对和谐与优雅的感受，真正的数学家都有。有用的组合恰好就是最美的组合。反证也在：错误的灵感如果成立，往往同样迎合这种优雅感。所以它会误报，但仍是唯一的筛子。</p>
+  <p>第四，意识工作的位置。无意识不能替我们做长计算，指望睡前想一道乘法、醒来得到答案是不行的。灵感只提供起点，验证与推演必须回到意识。他用伊壁鸠鲁的钩状原子作比：意识把原子从墙上摘下、抛入运动，它们碰撞而成新组合。</p>
+  <p>第五，自我限定。他说这只是一个假设，他自己的观察是内省，不是实验。</p>
+  <blockquote>
+    <p>"they are and remain in spite of all very hypothetical"</p>
+  </blockquote>
+  <p>（第一编·第三章，据 Halsted 1913 英译；报告自译：它们无论如何都仍然是很有假设性的）<span class="tag t-src">原书</span></p>
+  <p><strong>（3）可疑之处</strong></p>
+  <p>最硬的困难是循环。筛子被定义为审美感，美又被定义为筛子所选中的东西，「有用的组合正是最美的组合」是同一性陈述，不是因果解释。它没说明审美感为何与数学真值相关。他自己给了反证：错误的念头也会让人觉得优雅。它说明审美感只能解释某些组合为何进入意识，不能解释它们为何为真<span class="tag t-inf">推断</span>。</p>
+  <p>第二个困难是样本。几段经历都在一个极窄的领域，都是成功案例，没有失败清单，也没有分母。至于无意识自我「懂得辨别、比意识自我更会猜」，是把待解释的能力安放在一个代理人身上，然后宣布解释了它。他引《数学教学》杂志的调查作旁证，但同一页承认，文章写完后结果才发表，他几乎没能利用，这句坦白把「多数人证实了我的结论」降格为客套<span class="tag t-rep">转述</span>。</p>
+</section>
+
+<section id="s10">
+  <h2><span class="num">10</span><span>第一编·第四章：偶然性</span><span class="caret">▾</span></h2>
+  <p><strong>（1）这一章讲了什么</strong></p>
+  <p>开篇引贝特朗：怎么敢谈偶然的规律，偶然不正是全部规律的反面吗？概率与确定性相对，似乎关乎我们所不知道的东西。古人的偶然有精确而客观的含义：它是不服从规律的那部分<span class="tag t-rep">转述</span>。</p>
+  <p>彭加勒说这不是我们的观念了。我们是绝对的决定论者，任何现象无论多小都有原因，一个无限知情的心智可从世纪之初预见它。对这样的心智，偶然没有意义。于是有了那句刺人的定义：偶然只是我们无知的程度。</p>
+  <p>他立刻拆掉这个定义。迦勒底的牧人还不懂天文规律，会说星辰随意运行吗？更麻烦的是气体动理论：正是假设分子速度无规则，才推出了马里奥特与盖-吕萨克已知的定律；分子若守纪律，可观测的定律反而不会这么简单。那么「偶然」若只是无知的同义词，这句话该译成什么？译成：幸好我不知道规律，所以能马上答你，而且答对。于是他必须区分：有些是真正的偶然，概率计算的信息在原因查明后依然成立；另一些只是暂时无知。董事不知道每个投保人何时死，但分红不错；医生把每人的寿数告诉他，分红也不会消失。这一章与第一章是一件事的两面：第一章说值得选的事实是可重复的事实，这一章说，重复之所以可能，是因为大量微小或复杂的原因把初始条件的痕迹抹掉了。</p>
+  <p><strong>（2）关键内容</strong></p>
+  <p>第一，微小原因与巨大后果。尖顶上的圆锥，完美对称不会倒，任何一点不对称都会让它倒向那一边，一口气也能定方向。气象学同理：气旋要在某处生成，但差十分之一度，就生成在这里而不是那里。小行星的经度分布也同理：日均运动差千分之一秒，三百万年差一整圈。</p>
+  <blockquote>
+    <p><em>Une cause très petite, qui nous échappe, détermine un effet considérable que nous ne pouvons pas ne pas voir</em></p>
+  </blockquote>
+  <p>（第一编·第四章；报告自译：一个我们察觉不到的极小的原因，决定了一个我们不可能看不见的巨大结果）<span class="tag t-src">原书</span></p>
+  <p>第二，复杂原因也能制造偶然。气体不是小原因，是多原因。一次碰撞把极小的偏差放大成有限偏差，n 次碰撞就放大到 A 的 n 次方。这里的偶然来自数量与纠缠。雨滴、尘粒、洗牌都属同类。它们之所以服从规律，是因为反复混合使分布趋于均匀：牌洗久了，所有排列等概率。</p>
+  <p>第三，概率定义的循环。要算轮盘停在红区的概率，必须先假设初始冲量有一个概率分布。他说不知道分布是什么，但很难不承认它由连续解析函数表示。这一步是偷来的：红黑等概率正是从「分布连续、小间隔内近似常数」推出，假设被接受只因它给出符合直觉的答案。</p>
+  <blockquote>
+    <p><em>je n'en sais rien, mais il m'est difficile de ne pas admettre que cette probabilité est représentée par une fonction analytique continue</em></p>
+  </blockquote>
+  <p>（第一编·第四章；报告自译：对此我一无所知，但我很难不承认，这个概率由一条连续解析函数表示）<span class="tag t-src">原书</span></p>
+  <p>第四，客观性打了折。很小、很复杂都是相对的，但不相对某个人，而相对世界当前的状态与人类感官、仪器的限度。世界越趋均匀，能被称作很小的尺度就越往后移。他承认这只是把相对性从个人挪到了人类。</p>
+  <p><strong>（3）可疑之处</strong></p>
+  <p>他把偶然从「无知」里救出来，却没给出不含认识论成分的定义。最后的标准是世界状态加人类尺度的混合体：小相对于仪器，复杂相对于分辨力。他承认这一点，承认之后仍称之为客观，这一步是命名，不是论证。</p>
+  <p>第二个漏洞在他自己的推导里。他批评「偶然即无知」是同义反复，可算轮盘时用的正是「我不知道分布，但可以假设它连续解析」。结构与被他批评的做法相同：先假定无知均匀，再算出均匀的结果。孔多塞那一段更麻烦。他说概率计算不适用于陪审团，因为人会互相模仿；可气体定律成立，靠的正是分子的独立性。那么「客观的偶然」依赖一个关于独立性的物理事实，这个前提他从未列入定义<span class="tag t-inf">推断</span>。他还提到圆周率小数位的分布，承认无话可说。这个洞正好开在理论最需要普遍性的地方。</p>
+</section>
+
+<section id="s11">
+  <h2><span class="num">11</span><span>第二编·第一章：空间的相对性</span><span class="caret">▾</span></h2>
+  <p><strong>（1）这一章讲了什么</strong></p>
+  <p>彭加勒从一个近乎现象学的观察入手：人无法表象空的空间。把物体的影像逐一抽掉，剩下的不是纯空间，而是一片逐渐褪色的线条，再抽就什么也没有。绝对空间因此不是难以测定，而是没有所指。他在先贤祠广场说"我明天回到这里"，这句话的实际内容是"我明天还会看见这座穹顶"；地球已带着广场走了两百万公里，而话仍然成立。</p>
+  <p>随后是德尔伯夫的设想：一夜之间宇宙所有长度放大千倍，无人察觉；再推一步，若万物连同我们的身体和光线都按同一任意规律形变，同样无从发现。洛伦兹与菲茨杰拉德的收缩只是这个论证的特例。于是"相对"有了确切意思：我们测的从来不是长度，而是长度与仪器的比值。<span class="tag t-rep">转述</span></p>
+  <p>后半章转而追问：既然没有对距离和方向的直接直觉，这种直觉的顽固从何而来。答案是身体——身体是我们不假思索使用的坐标系；空间直觉是一张"警报与招架"的对应表；几何的明证性只是旧习惯不容断除。章末定性：几何不是实验科学，而是因经验而生的科学。他顺带评点了两种流行意见：说经验把空间强加于我们的，和说我们生来就有现成空间的，各握着一半真理。这也就是他与康德的距离：空间不是现成的先验形式，而是身体与世代经验沉积成的图式；可它一旦成形，又反过来规定什么才算明证。</p>
+  <p><strong>（2）关键内容</strong></p>
+  <ul>
+    <li>绝对空间无内容，位置只能用物锚定。★ 本章不靠标语，靠的是「不可分辨」：如果两个世界的差别在任何测量里都不出现，说它们不同就没有内容。<strong>这里要拆掉一句流传极广的引文</strong>——「任何谈论绝对空间的人，用的都是一个没有意义的词」并不在本书里（对 1908 年版全文检索，<code>espace absolu</code> 与 <code>mot vide de sens</code> 均无命中），它出自彭加勒更早的著作；中文网络常把它安在《科学与方法》头上。<span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+  <ul>
+    <li>不可分辨性分三层：整体放大、洛伦兹收缩、任意形变。三层指向同一结论——测量是比值，比值不变就无法归因。他由此设想两个互为影像的世界，各有自洽的几何，彼此看对方都觉得可笑，"谁对"这个问题没有答案。
+    </li>
+  </ul>
+  <ul>
+    <li>空间直觉的生理学解释：危险是 A 系列，招架是 B 系列；同一个点不过是"可用同一招架应付的一束危险"。若对应严格成立，空间将离散；正因容许例外，类别互相侵入，空间才连续。三维则因为这张表恰好是三重入口的。
+    </li>
+  </ul>
+  <ul>
+    <li>全章的哲学定性：
+    </li>
+  </ul>
+  <blockquote>
+    <p><em>Nous avons choisi l'espace le plus commode, mais c'est l'expérience qui a guidé notre choix.</em></p>
+  </blockquote>
+  <p>（第二编·第一章；报告自译：我们选择了最便利的空间，但是经验引导了我们的选择。） <span class="tag t-src">原书</span></p>
+  <p>这一句把"约定"与"经验"各让一半：公理不是经验事实，否则非欧几何不会同样自洽；也不是任意约定，否则选择不会如此稳定。它是便利的定义。</p>
+  <ul>
+    <li>非欧几何取消的正是"哪个几何为真"这一问题。真伪的标准被换成方便与否，而方便由身体、固体、光线这些偶然条件决定。<span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+  <p><strong>（3）可疑之处</strong></p>
+  <p>"招架表"是整章解释的承重墙，却也是最不可检验的部分。他声明这不是神经解剖的描述，只是心理联想的图式；一旦如此，"三维是这张表的性质"就无法被任何观察推翻，任何反例都可被重述为"表在此处有例外"。用一个不可证伪的模型去解释一个人人误认的事实，方法上与他所反对的形而上学同病。<span class="tag t-inf">推断</span></p>
+  <p>另一处紧张在于：他把几何的明证性贬为对旧习惯的眷恋，却仍要解释为什么偏偏是欧氏习惯稳定，于是归因于"自然固体的运动"。这一步已把一项经验事实放回基础，与他"几何不是实验科学"的断言互相拉扯。他没有正面处理，只推给《科学与假设》里更早的论述。</p>
+</section>
+
+<section id="s12">
+  <h2><span class="num">12</span><span>第二编·第二章：数学定义与教学</span><span class="caret">▾</span></h2>
+  <p><strong>（1）这一章讲了什么</strong></p>
+  <p>这一章表面讲教学，实际讲的是定义的本性。彭加勒先给两个标准：对哲学家和科学家，好定义须恰好覆盖被定义的对象而不及其余，符合逻辑规则；在教学中，好定义只有一个标准——学生能懂。他随即追问：一门只诉诸矛盾律的学问，为什么多数人听不懂？因为"懂"有两种。少数人核对完每一步三段论便说懂了；多数人要知道这些步骤为何依此顺序连接，若看不出意图，证明在他们脑中留不下痕迹。</p>
+  <p>于是历史顺序与逻辑顺序冲突。定义在数学史上总是后到的：先有分数、连续、面积这些粗糙表象，几十年后才有无矛盾的逻辑定义。教学若照逻辑顺序，就得从最普遍、最古怪的对象讲起，等于把初学者直接推进畸形学博物馆。</p>
+  <p>他的方案是让教学重演历史，快一些，但不跳过驿站。定义要先被准备、被辩护，然后才陈述；名称的类比也要交代。末了他把这条原则落到算术与几何的具体教法上。</p>
+  <p><strong>（2）关键内容</strong></p>
+  <ul>
+    <li>教学的定义标准：
+    </li>
+  </ul>
+  <blockquote>
+    <p><em>Dans l'enseignement, ce n'est pas cela ; une bonne définition, c'est celle qui est comprise par les élèves.</em></p>
+  </blockquote>
+  <p>（第二编·第二章；报告自译：在教学中不是这样；好定义就是学生能懂的那个定义。） <span class="tag t-src">原书</span></p>
+  <ul>
+    <li>严谨化的账单。十九世纪把数学算术化：连续、极限、不可通约数都化归为整数与不等式的系统。他承认这是收益，也明确记账——"在严格性上赢得的，正是在客观性上失去的"；障碍没有消失，只是被移到边界上，一旦要应用，还得重新攻一遍。
+    </li>
+  </ul>
+  <ul>
+    <li>逻辑与直观的分工，以及他对逻辑主义教法的讽刺：
+    </li>
+  </ul>
+  <blockquote>
+    <p><em>La logique parfois engendre des monstres.</em></p>
+  </blockquote>
+  <p>（第二编·第二章；报告自译：逻辑有时会生出怪物。） <span class="tag t-src">原书</span></p>
+  <p>连续而无导数的函数、处处不可微的曲线，从逻辑观点看反而最一般，规矩函数只是角落里的小例外。若让逻辑独裁，课本第一章就该讲这些。</p>
+  <ul>
+    <li>他并不取消逻辑，公式是分工而非取舍：
+    </li>
+  </ul>
+  <blockquote>
+    <p><em>c'est par la logique qu'on démontre, c'est par l'intuition qu'on invente.</em></p>
+  </blockquote>
+  <p>（第二编·第二章；报告自译：靠逻辑去证明，靠直觉去发明。） <span class="tag t-src">原书</span></p>
+  <p>他也承认数学家分两类，魏尔斯特拉斯式的与黎曼式的，并认为这种差异不该抹平。</p>
+  <ul>
+    <li>具体教法：加法不可定义，只能从若干例子命名；减法、除法取逆运算，但要先举例；分数在小学靠切苹果，在师范靠"两整数以横线相隔"，两者都对，只是对象不同。几何里直线不宜用"两点间最短线"，而应用尺子的旋转与滑动来验证——那才是直线的真定义。讲圆也一样，"到定点等距的点的轨迹"写进笔记，学生记住的是字；黑板上画一个圈，他们才"啊"一声，可是停在"圈"上又什么都不能证。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <p><strong>（3）可疑之处</strong></p>
+  <p>"学生能懂"被当作最高判据，但"懂"在章中始终没有可操作的检验。他给的两种理解——核对三段论、看出意图——都要靠教师内省判断，无法外部复核。于是好定义的标准落在一个心理状态上，而这正是他指责逻辑派的地方：拿不可检验的直觉充当最后依据。<span class="tag t-inf">推断</span></p>
+  <p>更实质的漏洞是"定义总在对象之后"。希尔伯特的公理定义恰恰是先在的：对象由公理隐定义，无所谓先有的对象。他的处理只是"这本好书不必推荐给中学生"，用教学上的不适宜回避了逻辑上的挑战。这个论题需要一个"对象先于语言"的承诺，而全章未加论证。</p>
+</section>
+
+<section id="s13">
+  <h2><span class="num">13</span><span>第二编·第三章：数学与逻辑</span><span class="caret">▾</span></h2>
+  <p><strong>（1）这一章讲了什么</strong></p>
+  <p>问题一句问出：数学能否不借自身特有的原理而化归为逻辑。彭加勒先交代康托尔。以往的无穷是"生成"：一个变量，可以说它能超过任何界限，不能说它已超过。康托尔引进"实无穷"，即已经越过一切界限的量，并比较超限基数、排列超限序数。追随者众，乃至要把有限数的理论建立在超限基数之上，再从中切出一个小小的类叫作整数。</p>
+  <p>这条路他判为违反健全心理，而且已经出事：康托尔悖论。布拉利-福尔蒂的论文成了样板。他由此回到自己的旧答案：完全归纳法既为数学所必需，又不可归约为逻辑。逻辑派回应说，那不过是整数的定义，是伪装的定义。他检查这个回应，指出要成立须证明公理无矛盾，而这一步无论怎么走都要用到归纳法。</p>
+  <p>最后他评论皮亚诺的符号语言：它能证明 1 是数，却解不开一个悖论。</p>
+  <p><strong>（2）关键内容</strong></p>
+  <ul>
+    <li>实无穷改变了"无穷"的语法。"所有"在有限对象上有确定意义，在无穷对象上若要同样的意义，就必须假设一个已完成的总体。这是他后面全部批评的支点。<span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+  <ul>
+    <li>连续统的困难也在这里。康托尔证明实数不可数，这条定理本身他不否认；他反对的是把连续统当成一个"已给定的整体"，再用它去定义其中的元素。先有总体、后有点，这个次序在有限集合里无害，在无穷集合里就种下了循环。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <ul>
+    <li>归纳法原则的地位：
+    </li>
+  </ul>
+  <blockquote>
+    <p><em>Ce mode de raisonnement n'en est pas moins une véritable induction mathématique qui ne diffère de l'induction ordinaire que par sa certitude.</em></p>
+  </blockquote>
+  <p>（第二编·第三章；报告自译：这种推理方式仍然是一种真正的数学归纳，它与普通归纳的区别只在于确定性。） <span class="tag t-src">原书</span></p>
+  <p>他特意澄清：从未说全部数学推理都可归约为这一条，只说它是这一类原理中最简单的样板。</p>
+  <ul>
+    <li>对"伪装的定义"的两项检验。其一，定义须无矛盾，而证明无矛盾不能举例——举例到 0、1、2 就要求 3 仍是整数，永远追不上；只能考察全部推论，推论无穷多，于是又要用归纳法。其二，定义在使用中须保持同一意义，而逻辑派笔下的"数"前后常是两个定义，两者等价却只能靠一个综合判断过渡。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <ul>
+    <li>对符号语言的评价，语气近乎玩笑：
+    </li>
+  </ul>
+  <blockquote>
+    <p><em>Il est difficile d'admettre que le mot si acquiert, quand on l'écrit C, une vertu qu'il n'avait pas quand on l'écrivait si.</em></p>
+  </blockquote>
+  <p>（第二编·第三章；报告自译：很难承认"如果"写成 C 之后就获得了它写作"如果"时所没有的美德。） <span class="tag t-src">原书</span></p>
+  <ul>
+    <li>与阿达马的那段对话是全章少见的现场。他问布拉利-福尔蒂的推理是否无懈可击，阿达马答不能谈论"全部序数"的集合；他反问：既然已经给它取名 Ω，凭什么说它不存在。谁也说服不了谁。结论是：这套符号能证明"1 是一个数"，遇到悖论便无能为力。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <p><strong>（3）可疑之处</strong></p>
+  <p>核心论证是：证明公理系统无矛盾必须用归纳法，故归纳法不可归约。这是从"现有证明都如此"推到"原则上必须如此"，一步跨越没有给理由。后来根岑以超限归纳证明算术的一致性，恰好说明"只能靠归纳法"过强——那虽也不是纯逻辑的归约，却足以显示他封死的门并未封死。<span class="tag t-inf">推断</span></p>
+  <p>另一处更根本：他把数学中的"存在"定义为无矛盾，却又要求公理系统先被证明无矛盾才算合法定义。这就把"无矛盾"换成了"我们能证明它无矛盾"。库图拉抓住的正是这道缝：若存在等同于可证无矛盾，数学的存在便取决于我们的证明能力，而不是事情本身。下一章他没有回答，只重申了要求。</p>
+</section>
+
+<section id="s14">
+  <h2><span class="num">14</span><span>第二编·第四章：新逻辑</span><span class="caret">▾</span></h2>
+  <p><strong>（1）这一章讲了什么</strong></p>
+  <p>为配得上自己的野心，逻辑必须改造。彭加勒认为罗素的新逻辑最有意思：它把类逻辑降为命题逻辑的附庸，用假言三段论取代"苏格拉底是人"，并把"并且""或者"纳入演算，二者分别对应乘与加。他甚至承认这是最幸运的想法之一，也欣赏"假命题蕴涵一切"——做过数学错题的人都知道，一旦写下错的等式，后面什么都能推出来。</p>
+  <p>但他随即指出代价。罗素在命题、类、关系三章开头分别引入一批"不可定义"的新词，又引入一批"不可证明"的原则。这些原则其实就是直觉的诉求、综合判断先天；被编进逻辑教程的章节里，并没有改变性质。</p>
+  <p>后半章拿希尔伯特作对照。罗素从内涵出发，任何对象都可代入；希尔伯特从外延出发，只承认已定义对象的组合，并主张逻辑与算术必须同时发展，否则陷入循环。彭加勒对形式化抱有理解，也指出破绽：1 之后的"两个、三个、若干"已把数偷偷带了进来。</p>
+  <p><strong>（2）关键内容</strong></p>
+  <ul>
+    <li>命题逻辑优先，是他真心赞成的部分。经典三段论容易化归假言三段论，反过来则不容易；这是真正的推广，不是术语更换。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <ul>
+    <li>但"逻辑"一词被扩大了。九个不可定义的概念、二十条不可证明的命题（他说若自己来数，恐怕还不止），每一条都要一次独立的直觉行为。于是：
+    </li>
+  </ul>
+  <blockquote>
+    <p><em>Ils n'ont pas changé de nature ; ils ont seulement changé de place.</em></p>
+  </blockquote>
+  <p>（第二编·第四章；报告自译：它们没有改变性质，只是改变了位置。） <span class="tag t-src">原书</span></p>
+  <ul>
+    <li>形式化的极端表述，他引而推到底：
+    </li>
+  </ul>
+  <blockquote>
+    <p>"Thus, be it understood, to demonstrate a theorem, it is neither necessary nor even advantageous to know what it means."</p>
+  </blockquote>
+  <p>（第二编·第四章，据 Halsted 1913 英译；报告自译：由此可见，证明一条定理，既不需要、甚至也不利于知道它是什么意思。） <span class="tag t-src">原书</span></p>
+  <p>他补一句：照此，几何学家可由杰文斯的"逻辑钢琴"代替，一头放进公理，另一头掉出定理，像芝加哥那台把活猪变成火腿的机器。这不是反驳，是让它自己显形。</p>
+  <ul>
+    <li>罗素与希尔伯特的分歧在内涵与外延。罗素从最普遍的"存在"出发，靠追加性质层层限制；希尔伯特只承认已给对象的组合，宁可让公理随新对象加入而修改。前者需要实无穷，后者不需要。<span class="tag t-inf">推断</span>
+    </li>
+  </ul>
+  <ul>
+    <li>罗素对关系逻辑的开拓，他是服的：关系可以相加、相乘，可以谈逆关系与传递性，这是亚里士多德的主谓逻辑根本装不下的东西。他承认这部分是真正的增益，只是不认为它把数学变成了逻辑。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <ul>
+    <li>三个"伪装的定义"是全章最细的一段。归纳法原则、欧氏公设、磷在四十四度熔化，三者都被说成伪装的定义。他承认第二个，否认另两个：磷的例子跨越数学与物理，"存在"在这里指客观存在而非无矛盾；归纳法的例子则无法证明无矛盾。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <p><strong>（3）可疑之处</strong></p>
+  <p>他对希尔伯特的指责可以反打回来。他用"一张对应表""若干条线""三种入口"描述空间直觉时，同样预设了计数；以自然语言的复数不可回避为由来指控循环，这个标准太强，会连他自己的表述一并否掉。<span class="tag t-inf">推断</span></p>
+  <p>"逻辑钢琴"的比喻有效，却不公平。它把形式化等同于盲目操作，而希尔伯特要求的是在符号层面做有内容的有穷推理，操作者清楚自己在做什么。不过要说明：1908 年的希尔伯特尚未提出后来的证明论纲领，彭加勒面对的文本确实近乎符号游戏，这一反驳对当时那篇论文未必成立。把比喻当论证，仍是本章最松的地方。</p>
+</section>
+
+<section id="s15">
+  <h2><span class="num">15</span><span>第二编·第五章：逻辑斯谛派的最新努力</span><span class="caret">▾</span></h2>
+  <p><strong>（1）这一章讲了什么</strong></p>
+  <p>逻辑派作了回应，罗素也修改了原先若干观点。彭加勒把争论收束为两问：逻辑斯谛是否富有成果，是否可靠；它能否不借直觉证明完全归纳法。</p>
+  <p>第一问他答得刻薄。库图拉说逻辑斯谛给发明装上"高跷与翅膀"，可皮亚诺的《公式汇编》初版已十年，"十年有翅膀，还没飞起来"。他看到的不是翅膀而是牵引带：二十七个方程才证完 1 是一个数，走得更稳，但更慢。既然要求人盲目服从，规则就必须不可错；而逻辑派自己撞上矛盾，还准备改规则，等于自己取消了这份资格。</p>
+  <p>第二问牵出悖论清单：布拉利-福尔蒂、策梅洛-柯尼希、理查德。理查德本人的解释被彭加勒视为真正的诊断：非直谓定义即恶性循环。罗素在三套补救方案间犹疑，最后倾向取消"类"这个词。罗素与怀特海合著的《数学原理》此时尚未出齐，他读到的是两人先期的论文，所以这一章针对的是预告而非那部大书。策梅洛的选择公理则借鞋与袜暴露出困难。判决是：归纳法不可被证明，"数学即逻辑"不成立。</p>
+  <p><strong>（2）关键内容</strong></p>
+  <ul>
+    <li>关于"翅膀"的判词：
+    </li>
+  </ul>
+  <blockquote>
+    <p><em>Ce ne sont pas des ailes que vous nous donnez, ce sont des lisières.</em></p>
+  </blockquote>
+  <p>（第二编·第五章；报告自译：你们给我们的不是翅膀，而是牵引带。） <span class="tag t-src">原书</span></p>
+  <ul>
+    <li>不可错性的两难。他把它写成二选一：要么规则不可错，值得盲目服从；要么可以出错，那就没有理由禁止别人用直觉。逻辑派不能既要求服从又保留修改权。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <ul>
+    <li>悖论的统一诊断。理查德的 E 是"用有限个字可定义的一切数"，而 N 又借 E 定义，所以 N 不属于 E；矛盾源于 E 的定义使用了 E 自身。他由此提炼：非直谓的定义就是含恶性循环的定义。"锯齿说""规模限制说""无类说"都要靠判据决定何谓太复杂、太大，而判据只能求诸直觉。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <ul>
+    <li>怀特海那条"归纳法证明"被他逐句拆掉。办法是定义"递归类"（含零，且含 n 就含 n+1），再定义"归纳数"为属于一切递归类的数。要害在"一切"：若把含归纳数概念的那些类也算进去，定义就绕回自身。怀特海没有设这道防，于是他的推理与产生悖论的那条同型；碰巧得出真结论，也不能算证明。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <ul>
+    <li>布拉利-福尔蒂另给一个证明，却要先立两条公设，其中一条说若干对象的组合数小于对象数。彭加勒的评语是：这条不但不显然，而且假，只要把它译成人话，任何一个新兵都看得出来。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <ul>
+    <li>策梅洛公理与鞋袜。无限双鞋可以选，左右可分；无限双完全相同的袜子则不能，除非允许"任意选"。这条公理被用过千百次而无人声明，一旦声明就起争议，博雷尔断然拒绝。<span class="tag t-rep">转述</span>
+    </li>
+  </ul>
+  <ul>
+    <li>最后的判决：
+    </li>
+  </ul>
+  <blockquote>
+    <p><em>La Logique reste donc stérile, à moins d'être fécondée par l'intuition.</em></p>
+  </blockquote>
+  <p>（第二编·第五章；报告自译：因此，逻辑若不被直觉所孕育，就仍是贫瘠的。） <span class="tag t-src">原书</span></p>
+  <p>他补一层：逻辑斯谛并非贫瘠，它生出的是悖论——因为它用的是不可代换的非直谓定义，不能像普通推理那样化归为同一律。</p>
+  <p><strong>（3）可疑之处</strong></p>
+  <p>"规则可改，故不可错性破产"这个反驳太快。形式系统可以修正，修正不等于失败；欧几里得的公设也被修过，没人因此说几何学死了。他把"逻辑斯谛改过规则"当作致命伤，实际只证明它不像自己描述的那样不可错，没有证明它不能工作。</p>
+  <p>更深的一层是地位对称。他要求对方证明公理系统无矛盾，对方做不到；他自己的出路是宣布归纳法是综合判断先天。这不是证明，是停止追问。他把自己的停止叫作直觉，把对方的同类动作叫作循环，两者在认识论上是同一种手势。这一章火力最猛，也最不肯把枪口转向自己。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s16">
+  <h2><span class="num">16</span><span>第三编·第一章：力学与镭</span><span class="caret">▾</span></h2>
+  <p><strong>（1）这一章讲了什么</strong></p>
+  <p>1903 年，居里夫妇与拉博尔德测得镭盐持续放热，久置不见衰减。一克镭若永远供热而找不到"燃料"，能量守恒便成空话，报章上于是有了"镭推翻物理学"的说法。1904 年圣路易斯的演讲里，彭加勒算过这笔账：把放热速率与镭的寿命并置，可用的储藏必然有限，放射只能是一段暂时的过程。<span class="tag t-rep">转述</span></p>
+  <p>这一章没有重算那笔账。它把争论移到另一侧：镭的 β 射线速度可达十万至二十万公里每秒，若射线真是有质量的微粒，经典力学还站得住吗？他先列出四条原理——惯性、加速度与力的关系、力只依赖相对位置与速度、作用与反作用——再逐条检验。</p>
+  <p>他的态度前后一致：新事实严重，结论却下得太快。他后来把这种局面称作"原理的危机"——不是原理被实验推翻，而是原理需要重新表述。</p>
+  <blockquote>
+    <p><em>s'est-on trop hâté de considérer ces nouveautés comme définitivement établies et de briser nos idoles d'hier</em></p>
+  </blockquote>
+  <p>（第三编·第一章；报告自译：人们太急于把这些新事物当作已经确立，并砸碎昨天的偶像） <span class="tag t-src">原书</span></p>
+  <p><strong>（2）关键内容</strong></p>
+  <ol>
+    <li><strong>速度怎么量。</strong> 阴极射线与 β 射线在电场、磁场中各受一次偏转，两次偏转给出两个方程，解出速度与电荷质量之比。β 射线得十万至二十万公里每秒，是光速的三分之一到三分之二。这是第一次拿有质量的物体去逼近光速，也是旧力学第一次遇到无法回避的边界。
+    </li>
+  </ol>
+  <ol>
+    <li><strong>两种质量。</strong> 电子是带电的抛射体，它的自感就是惯性，于是表观总质量分成两块：真实质量与电磁虚质量。虚质量随速度变化，纵向（力平行于速度）与横向（力垂直于速度）并不相等。Abraham 算出了虚质量随速度变化的定律，Kaufmann 的实验则给出总质量随速度变化的曲线。
+    </li>
+  </ol>
+  <ol>
+    <li><strong>一次减法。</strong> 拿总质量减去虚质量，剩下的"真实质量"是零。若这一步成立，一切惯性都是电磁起源，质量随速度增大，在光速处趋于无穷，原理 B 随之倒台。这条推理链的每一环都写在纸上，读者可以自己复核，但每一环的精度并不相同。
+    </li>
+  </ol>
+  <ol>
+    <li><strong>两条岔路。</strong> 正电子有真实质量、只有负电子没有，力学不必改，只是运动受了自感的干扰；正负电子都没有，"质量"一词要么作废，要么改指虚质量，力学原理被推翻。二者之间，当时的实验无法裁决，他也不替读者裁决。
+    </li>
+  </ol>
+  <ol>
+    <li><strong>作者自己留的口子。</strong> Kaufmann 的新数据支持 Abraham 而非洛伦兹；脚注里他又补一句，Bucherer 用更精细的措施重复，结果反过来支持洛伦兹。一条脚注把正文的判决悬了起来，这是全书少见的坦白。
+    </li>
+  </ol>
+  <p><strong>（3）可疑之处</strong></p>
+  <p>"真实质量为零"是一次减法，减法要求两项都可靠。Kaufmann 曲线的精度、以及"总质量恰为两项之和"的假设，并不比结论更硬。他自己也点出了实验的薄弱处——电容器内的场未必均匀，金属与真空交界处可能有电位陡降；这一问在 1908 年无人能答。<span class="tag t-inf">推断</span></p>
+  <p>另一处是回避。全章只在开头提了一句"镭推翻了教条"，此后再不谈能量，仿佛危机只是一场关于质量名词的争论。放射性热从哪里来、能持续多久，这些让公众不安的问题被留在门外。读者合上这章，会以为物理学的危机只是数学家的危机。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s17">
+  <h2><span class="num">17</span><span>第三编·第二章：力学与光学</span><span class="caret">▾</span></h2>
+  <p><strong>（1）这一章讲了什么</strong></p>
+  <p>光行差是入口。星光穿过望远镜要时间，地球又带着望远镜前进，望远镜必须偏向星的真位置之前，像才落在叉丝上。知道光速，似乎就能算出地球的"绝对"速度；其实不能：我们只知星的视位置，不知真位置，光速也只知大小，不知方向。</p>
+  <p>光行差椭圆只有二阶项才含绝对速度，量级约百万分之一秒，仪器根本达不到。换一个办法，把望远镜先灌满空气再灌满水，看折射是否随地球运动改变，结果仍是否定的。菲佐的干涉实验判决了菲涅耳的部分曳引与赫兹的完全曳引，赫兹被排除。</p>
+  <p>接下来是相对性原理：一切实验只给出相对速度。洛伦兹的"本地时"用两只表对光信号来解释补偿——各自按本地时间走，谁也察觉不到共同平移。迈克耳孙把二阶效应做到可观，结果依然否定，于是有洛伦兹-菲茨杰拉德收缩。收缩对所有物体一样，尺子也缩，用尺子量不出来；但用光走一趟的时间量，就量得出，而补偿恰好严格。</p>
+  <blockquote>
+    <p><em>Quel que soit le moyen qu'on emploie, on ne pourra jamais déceler que des vitesses relatives</em></p>
+  </blockquote>
+  <p>（第三编·第二章；报告自译：无论用什么手段，我们能测出的永远只是相对速度） <span class="tag t-src">原书</span></p>
+  <p><strong>（2）关键内容</strong></p>
+  <ol>
+    <li><strong>绝对速度为何测不到。</strong> 光行差给的是视方向，真方向未知；光速只给大小。椭圆的二阶项理论上含绝对速度，实际小到不可测。这一节把"测不到"从技术困难提升为原理问题。
+    </li>
+  </ol>
+  <ol>
+    <li><strong>菲佐实验的分量。</strong> 流水中的光速介于"完全静止的以太"与"完全被水带走"之间，恰好符合菲涅耳的部分曳引系数。赫兹的整套电动力学因此被排除，而洛伦兹的理论接了下来。
+    </li>
+  </ol>
+  <ol>
+    <li><strong>本地时的操作。</strong> 两位观测者约定时刻互发信号，把往返取平均。若他们共同平移，去程与回程不等，对表就有系统偏差；但偏差随平移而变，双方都看不出来。时间不再是全宇宙共用的一把钟，而是每点一把。
+    </li>
+  </ol>
+  <ol>
+    <li><strong>收缩为何不可见。</strong> 所有物体连同量尺按同一比例缩短，比较两根尺子永远得不出变化。只有改用光的飞行时间作长度标准，收缩才显形。换句话说，测出收缩的前提是换一种定义长度的方式。
+    </li>
+  </ol>
+  <ol>
+    <li><strong>反作用原理的失效。</strong> 电子 A 扰动以太，过一会儿才传到 B，作用与反作用不同时，也不相等。放电器的反冲像开炮，可射出的不是炮弹而是能量；能量没有质量，就找不到与之对等的反作用。彗尾被光压推开、辐射计转动，都是这一族效应。
+    </li>
+  </ol>
+  <p><strong>（3）可疑之处</strong></p>
+  <p>他写本地时：两只表、两次信号、取平均。这已经是同时性的操作定义。可紧接着他说，两只表"指示的时间不相同"，各自显示的是本地时——把协议产生的时间叫"错"，说明他还把绝对同时当作真的时间，只把本地时当作表出了故障。这一步之差，正是 1905 年那条路的入口。<span class="tag t-inf">推断</span></p>
+  <p>另一处不协调：他反复说能量没有质量，所以放电器的反冲找不到对应的反作用；同一章里又用麦克斯韦-巴托利的辐射压解释彗尾。辐射压正是场的动量。他用了场的动量，却不肯让能量记上质量，这两句话在 1908 年还勉强并存，几年后就站不住了。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s18">
+  <h2><span class="num">18</span><span>第三编·第三章：新力学与天文学</span><span class="caret">▾</span></h2>
+  <p><strong>（1）这一章讲了什么</strong></p>
+  <p>质量有两个定义：用力除以加速度，量的是惯性；用牛顿定律吸引另一个物体，量的是引力荷。牛顿说二者严格成比例，可这只在旧力学的速度范围内验过。惯性质量已随速度变，引力质量跟不跟？他直说：没有手段判断。若引力质量也随速度变，两个物体的速度又不同，它该依谁而定？这一串问题没有实验可答，只能先造假设。</p>
+  <p>洛伦兹的方案是把引力还原为电磁力：正负电子的电荷相抵，分子整体中性，可正负电子对异号电荷的场更敏感，残余的这点不对称就是引力。低速时它退化成牛顿定律，高速时按电磁规律修正。反对意见来自拉普拉斯：引力传播至少比光快一千万倍，不可能是电磁起源。他反驳说，拉普拉斯假设引力速度与被吸引物体的速度按光行差的方式合成，这是个很特殊、也未加证明的假设，算出的上限不能用来否定洛伦兹。一个被引用了一百年的计算，很少有人追问它站在什么假设上；这一问本身，比结论更值钱。</p>
+  <blockquote>
+    <p><em>Les théories nouvelles ne sont pas encore démontrées ; il s'en faut de beaucoup</em></p>
+  </blockquote>
+  <p>（第三编·第三章；报告自译：新理论还没有被证明，差得远） <span class="tag t-src">原书</span></p>
+  <p><strong>（2）关键内容</strong></p>
+  <ol>
+    <li><strong>水星近日点的账。</strong> 观测到的多余进动是每世纪 38 秒，无人能解释。Tisserand 早年按韦伯定律算得 14 秒，方向对，数目小。按洛伦兹的电子理论算得 7 秒，按 Abraham 算得 5.6 秒。效应与 n³a² 成正比，除水星外都小到看不见，金星小五倍，月亮小六百倍。
+    </li>
+  </ol>
+  <ol>
+    <li><strong>判决为何做不成。</strong> 新理论只能解释 38 秒里的 7 秒，剩下的 31 秒仍需别的解释。所以它既不能当作支持新动力学的证据，也不能当作反对的证据。天文在这里不是法官，只是一个开不出结论的证人。
+    </li>
+  </ol>
+  <ol>
+    <li><strong>加速度波的耗散。</strong> 行星运动不断以引力波形式损失能量，轨道会缓慢收缩，平均运动加快，像在阻力介质里跑。效应极小，积累几千年才可测，因此可把运动当作准稳态处理。
+    </li>
+  </ol>
+  <ol>
+    <li><strong>莱萨日理论的归谬。</strong> 空间充满高速微粒，物体互相遮挡，遮挡造成推力，看起来就是引力。要得出牛顿定律，微粒必须完全不弹性，于是动能全变成热：地球每秒升温 10²⁶ 度；介质阻力又给出微粒速度下限，至少是光速的 24×10¹⁷ 倍。这个理论在热学上自我毁灭。
+    </li>
+  </ol>
+  <ol>
+    <li><strong>教育学结论。</strong> 新力学是奢侈品，旧力学是必需品。先把旧力学读到骨子里，再告诉学生它只是近似；顺序颠倒，学生两样都学不成。
+    </li>
+  </ol>
+  <p><strong>（3）可疑之处</strong></p>
+  <p>他用水星近日点"方向相同但数值偏小"给新理论留余地。这个论证很弱：一个能解释 38 秒中 7 秒的理论，与一个完全不能解释的理论，证据上的差别接近于零；他把"不反对"说成了"略有支持"。剩余那 31 秒，他归给"另一种未知的解释"，而当时并没有人拿得出。<span class="tag t-inf">推断</span></p>
+  <p>数字也有一处要紧的出入。他写 38 秒，后来通行的多余进动值约为每世纪 43 秒，差别来自岁差常数与观测资料的更新。<span class="tag t-rep">转述</span> 这并不影响他的推论方向，却说明"判决性数据"本身就带着十几秒的不确定度，而他正拿这个量级去比较 7 与 5.6。</p>
+</section>
+
+<section id="s19">
+  <h2><span class="num">19</span><span>第四编·第一章：银河与气体理论</span><span class="caret">▾</span></h2>
+  <p><strong>（1）这一章讲了什么</strong></p>
+  <p>开尔文出过一个主意：把银河看成气体。气体分子数目极大、方向杂乱，单个分子的路径无法追踪，但大数定律会在混乱里重建一种平均秩序，麦克斯韦定律告诉我们多少分子具有多大速度。银河里的恒星也是这样一堆尘埃，只是颗粒换成了太阳。对一位把太阳看作原子的巨人，银河不过是一个气泡。</p>
+  <p>彭加勒接着说，天体力学过去只敢碰太阳系和双星，一遇到银河、星团、可分解星云就退，因为那里看起来只有混沌。可银河并不比气体复杂，概率论的统计方法对两者同样适用。要紧的是看清两者的相同与不同：相同在统计结构，不同在碰撞的频率与时空尺度。</p>
+  <blockquote>
+    <p><em>La Voie Lactée n'est pas plus compliquée qu'un gaz</em></p>
+  </blockquote>
+  <p>（第四编·第一章；报告自译：银河并不比一团气体更复杂） <span class="tag t-src">原书</span></p>
+  <p><strong>（2）关键内容</strong></p>
+  <ol>
+    <li><strong>类比的三根柱子。</strong> 分子对恒星，近距相遇对分子碰撞，麦克斯韦速度分布对恒星自行分布。碰撞不是硬碰，只要接近到互相偏转就算。三条对上，气体的一整套工具才能搬过来。
+    </li>
+  </ol>
+  <ol>
+    <li><strong>用"温度"量银河。</strong> 观测太阳邻域恒星的自行，得其速度分布与平均值，这个平均值相当于气体的温度；温度又由气泡的大小决定，因为自引力气团的压强与温度由表面向中心上升。反过来，知道温度就能定半径。
+    </li>
+  </ol>
+  <ol>
+    <li><strong>粗算的结果。</strong> 设银河为球状、密度均匀，中心速度与半径乘密度平方根成正比。取密度比太阳小 10¹⁸ 倍、速度同量级，半径就要大 10⁹ 倍，约为最近恒星距离的一千倍，恒星总数约十亿。这个数与望远镜计数相合，于是还可反推：暗星即使有，也不比亮星多。
+    </li>
+  </ol>
+  <ol>
+    <li><strong>自由程的检验。</strong> 气体与"辐射物质"的分界，是平均自由程与容器尺寸谁大。以海王星轨道为偏转截面，十亿颗星在天空张开的保护圆只覆盖一万六千分之一，恒星几乎一路无阻。银河更像克鲁克斯的辐射物质，不像气态物质。
+    </li>
+  </ol>
+  <ol>
+    <li><strong>形状与年龄。</strong> 银河是扁盘，不是球。扁平要么来自整体自转，要么来自平行于银道面的运动。第三种可能是旋涡星云：中心转得太快，赤道处甩出物质，外移的角速度变小，臂就落后。年龄则有两头：达到统计平衡要很久，故极老；黏性终会磨掉运动，恒星又会从表面蒸发，故不能永恒。这与太阳只有五千万年的估算直接冲突，他留下一个大问号。
+    </li>
+  </ol>
+  <p><strong>（3）可疑之处</strong></p>
+  <p>整套推算的支点是"我们大致在银河中心"。这只是一句假设，观测到的却是太阳邻域的自行。把本地样本当作中心温度，等于用一个偏心位置的读数去定整个气团的半径。他自己也承认数据不足，可数值还是照算了。<span class="tag t-inf">推断</span></p>
+  <p>自由程那一节更松。偏转截面取海王星轨道半径，理由是"偏转十几度"，他明说这个门槛"必然有点任意"。结论"只覆盖一万六千分之一"对这个门槛极敏感：门槛放大三倍，覆盖率就翻近十倍，气体与辐射物质的界线随之移动。用任意参数算出"银河是辐射物质"，再声明"结论本不精确，所以不必修改"，这一步是循环的。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s20">
+  <h2><span class="num">20</span><span>第四编·第二章：法国大地测量学</span><span class="caret">▾</span></h2>
+  <p><strong>（1）这一章讲了什么</strong></p>
+  <p>为什么要测到那么准？他先替实用派回答：大地测量给地图提供骨架，没有骨架的地图只是一张废纸，没有好地图就没有大工程。接着换成更高的理由：测地学能不能帮我们认识自然界的统一与和谐？一个孤立的山包没有价值，除非追它的成因能打开新的秘密。</p>
+  <p>十八世纪的形状之争就是标本。牛顿派说地球两极扁，卡西尼凭不准的测量说地球拉长，只有直接观测能裁决。巴黎科学院派人去拉普兰与安第斯，测两段子午线弧。地球扁，牛顿就赢，万有引力与整个近代天体力学跟着赢。这不是测一个形状，是测一个世界体系。</p>
+  <p>今天仍有可测的：矿井与钻孔只及一两公里，地下的岩石够不着，却在远处吸引摆锤、扭动大地水准面。测地学于是能"从远处称量"它们，说出地下的密度分布。法伊比较全部测量后得出：海底之下是致密的岩石，大陆之下反而空。这一章的后半是法国测地学的列传，从莫佩尔蒂、拉孔达明，到德朗布尔与梅尚，再到阿拉戈、佩里耶，直到军中地理服务处与基多弧的重测。</p>
+  <p><strong>（2）关键内容</strong></p>
+  <ol>
+    <li><strong>两条理由。</strong> 实用的一条是骨架与地图，认识的一条是地下与引力场。后者才是他真正想说的：测地学把不可见的地下变成可算的异常。
+    </li>
+  </ol>
+  <ol>
+    <li><strong>形状之争的政治。</strong> 莫佩尔蒂在拉普兰，布盖与拉孔达明在安第斯，同一场争论的两端。莫佩尔蒂回国后被伏尔泰捧上天，又被伏尔泰写进《阿卡基亚博士》，捧与骂都过了头。
+    </li>
+  </ol>
+  <ol>
+    <li><strong>革命年间的基线。</strong> 德朗布尔从敦刻尔克往南，教堂尖顶被拆光，只好用木板搭金字塔、蒙白布；白布又犯忌，须镶蓝红三色边。梅尚在西班牙，农民疑心仪器是妖术，他靠主教劝阻才没被杀；后来怕瘟疫，登陆前要把全部纸张用醋浸过。
+    </li>
+  </ol>
+  <ol>
+    <li><strong>米制的来历。</strong> 敦刻尔克到巴塞罗那这段弧，本就是 1790 年代定"米"的根据：米定义为子午线四千万分之一。<span class="tag t-rep">转述</span> 测量一国的土地与定义长度单位，在这件事上是同一件工作。
+    </li>
+  </ol>
+  <ol>
+    <li><strong>二十世纪的续篇。</strong> 佩里耶把西班牙与非洲三角网接起来，视线跨海三百公里；尼斯到科西嘉的来回光程用来测光速；军队的地理服务处保证统一行动；国际测地协会把基多弧的重测交给法国。
+    </li>
+  </ol>
+  <p><strong>（3）可疑之处</strong></p>
+  <p>这一章没有方法，只有颂词。长度的定义、尺子随温度伸缩、基线尺的传递误差、三角形闭合差，全都没写。他把"精确"写成一种品格——耐劳、守纪、勇敢——而不是一套误差分析。读者记住的是白布金字塔与醋，不是尺子的长度怎么传到三百公里之外。<span class="tag t-inf">推断</span></p>
+  <p>彭加勒在别处讲过那个循环：我们用尺量长度，尺子受热会变，于是要问什么才是不变的长度；答案不是经验给的，而是我们选定某根尺或某条谱线作标准，选定之后测量才有对错。<span class="tag t-rep">转述</span> 这个论证若放到这里，本来可以让全章从颂词变成方法论：测地学的约定不是任意，因为标准一旦选定，剩下的全是硬碰硬的经验。他没写，是这一章最大的空缺。</p>
+  <p>有一处译文值得对照：</p>
+  <blockquote>
+    <p><em>Isolées, la théorie serait vide, l'expérience serait myope</em></p>
+  </blockquote>
+  <p>（第四编·第二章；报告自译：孤立起来，理论会是空的，经验会是近视的） <span class="tag t-src">原书</span></p>
+  <p>Halsted 把 myope 译成 blind。<span class="tag t-rep">转述</span> 一个词的差别，显出原意：经验不是瞎，是看得不够远。</p>
+</section>
+
+<section id="s21">
+  <h2><span class="num">21</span><span>总结论：方法不是证明，是发明</span><span class="caret">▾</span></h2>
+  <p>总结论只有三页，但它把全书的题目重新说了一遍，而且说法比开头更硬。</p>
+  <p>他的第一个判断是：<strong>物理学家与数学家的「证明方法」不同，但「发明方法」很像</strong>——两边都是「从事实回到定律，并寻找那些能引出定律的事实」。</p>
+  <blockquote>
+    <p><em>La méthode de démonstration n'est pas la même pour le physicien et pour le mathématicien. Mais les méthodes d'invention se ressemblent beaucoup. Dans un cas comme dans l'autre, elles consistent à remonter du fait à la loi, et à rechercher les faits susceptibles de conduire à une loi.</em></p>
+  </blockquote>
+  <p>（总结论；报告自译：证明的方法，物理学家与数学家并不相同；但发明的方法却十分相似。两种情况都是<strong>从事实回溯到定律，并寻找那些有可能引出定律的事实</strong>。）<span class="tag t-src">原书</span></p>
+  <p>这句话是全书最有用的一句。它把「科学方法」这个大一统的词拆成了两半：<strong>证明</strong>是给结论找依据，<strong>发明</strong>是给依据找结论。前者可以规范化（逻辑、实验设计、统计），后者不能。而二十世纪的方法论著作，绝大多数只讲前者。<span class="tag t-inf">推断</span></p>
+  <p>第二个判断是关于数学家的三种形态。他说自己在书里展示了三种「数学家的心灵」：正在发明的数学家；在我们远祖或童年里无意识地替我们造出空间直觉的「不自觉的几何学家」；以及中学课堂上第一次被揭开基本原理的少年。<span class="tag t-src">原书</span> 三种形态的共同点是<strong>直觉与概括精神</strong>，缺了它，三层人都会一样地无能为力。<span class="tag t-inf">推断</span></p>
+  <p>第三个判断最刺人：<strong>在证明本身里，逻辑也不是全部。</strong></p>
+  <blockquote>
+    <p><em>Et dans la démonstration elle-même, la logique n'est pas tout; le vrai raisonnement mathématique est une véritable induction, différente à bien des égards de l'induction physique, mais procédant comme elle du particulier au général. Tous les efforts qu'on a faits pour renverser cet ordre et pour ramener l'induction mathématique aux règles de la logique n'ont abouti qu'à des insuccès, mal dissimulés par l'emploi d'un langage inaccessible au profane.</em></p>
+  </blockquote>
+  <p>（总结论；报告自译：即便在证明之中，逻辑也不是全部；真正的数学推理是一种<strong>名副其实的归纳</strong>，它在许多方面不同于物理归纳，但同样从个别走向一般。所有试图颠倒这个次序、把数学归纳纳入逻辑规则的努力，只落得失败——只是用一套外行读不懂的语言把失败掩盖了过去。）<span class="tag t-src">原书</span></p>
+  <p>★ 最后半句是他少见的刻薄，而且是对着罗素一路说的。<span class="tag t-inf">推断</span> 这句话在 1908 年说，等于当面否定逻辑主义纲领的核心；今天读，它仍然有效力，只是理由要换：不是「逻辑化会失败」，而是「逻辑化之后，剩下的那部分恰好是数学」。</p>
+  <p>结尾他换了一个比喻，把「选择事实」这件事讲成了地理学：</p>
+  <blockquote>
+    <p><em>Il y a des faits communs à plusieurs sciences, qui semblent la source commune de cours d'eau divergeant dans toutes les directions et qui sont comparables à ce nœud du Saint-Gothard d'où sortent des eaux qui alimentent quatre bassins différents.</em></p>
+  </blockquote>
+  <p>（总结论；报告自译：有些事实是好几个学科共有的，像是朝各个方向分流的诸条河流的共同源头，可以与<strong>圣哥达山口那个结点</strong>相比——从那里流出的水，分别注满四个不同的流域。）<span class="tag t-src">原书</span></p>
+  <p>这个「圣哥达结」是全书最好的一个意象。它把「什么事实值得选」从「哪个更有用」改成了「哪个处在分水岭上」——<strong>处在结点上的事实，一处改动会同时牵动四个领域。</strong><span class="tag t-inf">推断</span> 他也确实举了三个例子：镭的射线（考夫曼的实验）同时震动力学、光学与天文学；气体的定律后来成了银河的模型；大地测量中望远镜偏几秒，能推出地球内部物质的分布。<span class="tag t-src">原书</span></p>
+  <p>如果只能记住一句话，就记这句：<strong>选事实，要选那些站在分水岭上的事实。</strong> 至于怎么认出分水岭——他没有给出规则，因为那正是他说的「说不清的部分」。</p>
+</section>
+
+<section id="s22">
+  <h2><span class="num"></span><span>附录 A 引文怎么核的</span><span class="caret">▾</span></h2>
+  <p>本报告的 <span class="tag t-src">原书</span> 引文全部出自 <strong>archive.org 1908 年弗拉马里翁版扫描件</strong>（<code>scienceetmthod00poin</code>），并与 <strong>Gutenberg #39713</strong> 的 Halsted 英译逐条对照语义。</p>
+  <p>核对流程有三步：① 从 OCR 全文里定位原句；② 归一空白、订正 OCR 明显误识（<code>fcrent</code>→<code>firent</code>、<code>qudtient</code>→<code>quotient</code>、<code>dlTerses</code>→<code>diverses</code>、<code>dëmojitre</code>→<code>démontre</code> 一类），订正一律以英译语义为准；③ 若 OCR 破损到无法确认，改用英译并注明「据英译」。</p>
+  <p>★ <strong>一个必须写明的限度</strong>：OCR 的错字是逐字级的，不是整句级的；本报告能保证「所引句子存在于该书此处」，不能保证「每一个字母都与纸质原本一致」。凡读者要拿去做正式引用，请回 1908 年版纸本或商务印书馆李醒民译本。</p>
+  <p><strong>核对结果</strong>：全书 <span class="tag t-src">原书</span> 引句 <strong>31 条</strong>（法文 27 条、英文 4 条），逐条回原文定位。其中 <strong>26 条</strong>机器比对完全命中；<strong>5 条</strong>分数偏低，原因都是 OCR 断词或误识（<code>com-mode</code>、<code>repré-sentée</code>、<code>técrit o</code>＝<code>l'écrit C</code>、<code>monstres*</code> 带了页注符号），已人工确认原句存在并在引文里做了订正。</p>
+  <p>★ <strong>一条被删掉的引文，值得单独说</strong>：写作过程中曾拟引「任何谈论绝对空间的人，用的都是一个没有意义的词」（<em>Quiconque parle de l'espace absolu, emploie un mot vide de sens</em>）。<strong>对 1908 年版全文检索，<code>espace absolu</code> 与 <code>mot vide de sens</code> 均无命中</strong>——它不在本书里，出自彭加勒更早的著作，却在中文网络上常被安到《科学与方法》头上。该句已从正文删除，改为对这个误引的说明。这是本次核对里唯一一处「引文根本不在本书」的错误。<span class="tag t-inf">推断</span></p>
+  <p>★ <strong>为什么没有「作者谈话」这一档</strong>：彭加勒 1912 年去世，没有任何可考的一手访谈；本书的引言与总结论是书内文本，按契约标 <span class="tag t-src">原书</span>，不充作「作者谈话」。<strong>本报告该档为 0 条</strong>，不是漏做，是没有合法材料。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s23">
+  <h2><span class="num"></span><span>附录 B 术语表</span><span class="caret">▾</span></h2>
+  <table>
+    <thead><tr><th>法文</th><th>报告译</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>choix</td><td>选择</td><td>全书的核心动词，指在无穷事实中决定看哪里</td></tr>
+      <tr><td>convention</td><td>约定</td><td>公理的地位：不是经验事实，也不是先验真理</td></tr>
+      <tr><td>principe</td><td>原理</td><td>经验上高度成立、但可被重写的高位命题（能量守恒、相对性）</td></tr>
+      <tr><td>économie</td><td>经济</td><td>他常说的「思维经济」，指用最少的概念覆盖最多的事实</td></tr>
+      <tr><td>rendement</td><td>产出／收益</td><td>总结论里「事实的产出」——一个事实能牵动多少领域</td></tr>
+      <tr><td>hasard</td><td>偶然</td><td>不是「我们不知道」，而是微小原因被放大后的不可预测</td></tr>
+    </tbody>
+  </table>
+  <p>★ 两处译名要留意：法文第一编标题是 <strong>«Le Savant et la Science»（学者与科学）</strong>，中译本作「科学和科学家」；第三章法文是 <strong>«L'invention mathématique»（数学的发明）</strong>，中译常作「数学的创造」。<span class="tag t-rep">转述</span> 「发明」与「创造」在中文里几乎同义，但彭加勒的用词偏向「找到已经在那里的东西」，与他「数学对象独立于我们」的立场一致。<span class="tag t-inf">推断</span></p>
+</section>
+
+<section id="s24">
+  <h2><span class="num"></span><span>附录 C 它和另外三本的关系</span><span class="caret">▾</span></h2>
+  <ul>
+    <li><strong>《科学与假设》（1902）</strong>：处理公理与假设。核心是几何公理的地位，以及「约定主义」的原始表述。要理解本书第二编，得先读那本。
+    </li>
+    <li><strong>《科学的价值》（1905）</strong>：处理「科学有没有价值」。他反驳的是「科学只是方便的规则」这一读法，也就是别人扣给他的帽子。
+    </li>
+    <li><strong>《科学与方法》（1908，本书）</strong>：处理选择与发明。
+    </li>
+    <li><strong>《最后的沉思》（1913，遗著）</strong>：处理量子论与科学的未来，立场比前三本悲观。
+    </li>
+  </ul>
+  <p>四本的关系不是递进，而是<strong>同一套立场换四个入口</strong>。<span class="tag t-inf">推断</span> 中文世界常把它们当作「科学哲学四部曲」顺读，其实第三本最适合先读——它最少体系气，最多现场感。</p>
+</section>
+
+<section id="s25">
+  <h2><span class="num"></span><span>附录 D 待核实</span><span class="caret">▾</span></h2>
+  <ul>
+    <li><strong>D1</strong> 1908 年初版之后，弗拉马里翁是否有过修订重印（正文有无改动）。<strong>未核</strong>。
+    </li>
+    <li><strong>D2</strong> Halsted 英译的系统性偏移：本报告只做了逐条语义对照，<strong>未做全书统计</strong>；「英译层为 B」这个判断据此而来，强度有限。
+    </li>
+    <li><strong>D3</strong> 「数学的创造／发明」的译名落差（见附录 B），中译本具体怎么译、有无译注，<strong>未核</strong>。
+    </li>
+    <li><strong>D4</strong> 第一编标题中译作「科学和科学家」，法文为「学者与科学」，这一改动是哪一版开始的，<strong>未核</strong>。
+    </li>
+    <li><strong>D5</strong> 第三章自述的三段发现经历（出发前夜、Goutances 上车、海边崖上），属作者自传材料，<strong>无第三方印证</strong>；本报告按「作者自述」处理，未当史实。
+    </li>
+    <li><strong>D6</strong> 第三章「无意识自我」的心理学来源（当时的潜意识研究），他未给出处，<strong>未核</strong>。
+    </li>
+    <li><strong>D7</strong> 第四编大地测量学的具体项目与年份，<strong>未核</strong>。
+    </li>
+    <li><strong>D8</strong> 总结论的「圣哥达结」比喻是否为彭加勒首创，<strong>未核</strong>。
+    </li>
+    <li><strong>D9</strong> 法文「beau／beauté」与英译「beautiful」在本章中的对应用词统计，<strong>未做全书统计</strong>。
+    </li>
+    <li><strong>D10</strong> 1908 年版的章起始页（引言 1、第一编 7·19·43·64、第二编 95·123·152·172·192、第三编 215·231·255、第四编 273·290、总结论 307）取自原书目录页，<strong>章内页码未逐页核</strong>。
+    </li>
+  </ul>
+</section>
+
+<footer>
+  生成于 2026-11-04 · 来源清单与交叉验证记录见同目录 <code>科学与方法-来源清单.md</code><br>
+  本页法文引句均回 1908 年弗拉马里翁版扫描件核对，中文为报告自译，不是李醒民译本。定位用「编·章」，章起始页取自原书目录页，章内页码未核。书中表述请以原书与中译为准。
+</footer>
+</main>
+
+<script>
+(function(){
+  var progress = document.getElementById('progress');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+    progress.style.width = Math.max(0, Math.min(100, pct)) + '%';
+    var cur = sections.length ? sections[0].id : null;
+    for (var i = 0; i < sections.length; i++){
+      if (sections[i].getBoundingClientRect().top <= 130) cur = sections[i].id;
+    }
+    links.forEach(function(a){
+      var on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  document.querySelectorAll('main section > h2').forEach(function(h){
+    h.setAttribute('role','button');
+    h.setAttribute('tabindex','0');
+    h.setAttribute('aria-expanded','true');
+    function toggle(){
+      var sec = h.parentElement;
+      var collapsed = sec.classList.toggle('collapsed');
+      h.setAttribute('aria-expanded', String(!collapsed));
+    }
+    h.addEventListener('click', toggle);
+    h.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', function(){
+    document.querySelectorAll('main section.collapsed').forEach(function(s){
+      s.classList.remove('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','true');
+    });
+  });
+  document.getElementById('collapse-all').addEventListener('click', function(){
+    document.querySelectorAll('main section').forEach(function(s){
+      s.classList.add('collapsed');
+      var h = s.querySelector('h2'); if (h) h.setAttribute('aria-expanded','false');
+    });
+  });
+})();
+
+;/* ===== pad-2026-10-04 · 目录抽屉 + 主题切换 ===== */
+(function(){
+  var root = document.documentElement, KEY = 'ra-theme';
+  function sys(){ return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'; }
+  function saved(){ try{ return localStorage.getItem(KEY); }catch(e){ return null; } }
+  function paint(t){
+    root.setAttribute('data-theme', t);
+    var b = document.getElementById('themebtn');
+    if (b) b.textContent = (t === 'dark') ? '☀ 浅色' : '◐ 深色';
+  }
+  paint(saved() || sys());
+  var tb = document.getElementById('themebtn');
+  if (tb) tb.addEventListener('click', function(){
+    var n = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+    try { localStorage.setItem(KEY, n); } catch(e) {}
+    paint(n);
+  });
+  try {
+    if (window.matchMedia && !saved()) {
+      var mq = matchMedia('(prefers-color-scheme: dark)');
+      var on = function(){ if (!saved()) paint(sys()); };
+      if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on);
+    }
+  } catch(e) {}
+  var bd = document.body, nb = document.getElementById('navbtn'), sc = document.getElementById('navscrim');
+  function set(on){
+    bd.classList.toggle('nav-open', on);
+    if (nb) nb.setAttribute('aria-expanded', on ? 'true' : 'false');
+  }
+  if (nb) nb.addEventListener('click', function(){ set(!bd.classList.contains('nav-open')); });
+  if (sc) sc.addEventListener('click', function(){ set(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+  Array.prototype.forEach.call(document.querySelectorAll('#toc a'), function(a){
+    a.addEventListener('click', function(){ if (window.innerWidth <= 900) set(false); });
+  });
+})();
+</script>
+</body>
+</html>
