@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《射雕三部曲》· 索引碎片</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+
+/* ===== 索引碎片页的版式覆盖（无侧栏，单列）===== */
+main{margin:0 auto;max-width:840px;padding:0 22px 90px}
+.hero{padding:40px 0 20px}
+.hero .kick{font-size:11.5px;letter-spacing:.08em;color:var(--ink3);font-weight:600;margin-bottom:6px}
+.frag{margin:20px 0 0;padding:20px 22px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.frag .row{margin:0 0 11px;font-size:14px;color:var(--ink2);line-height:1.75}
+.frag .row>b{color:var(--ink);font-weight:600;margin-right:2px}
+.frag ol.sub{margin:6px 0 0 0;padding-left:22px;font-size:13.5px;color:var(--ink2)}
+.frag ol.sub li{margin:4px 0}
+.frag code{background:var(--hover);padding:1px 5px;border-radius:4px;font-size:.92em}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+.chip{font-size:11.5px;padding:2px 9px;border-radius:5px;background:var(--hover);color:var(--ink2)}
+.cfoot{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
+.cfoot a{font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;text-decoration:none;
+  background:var(--accent-bg);color:var(--accent);border:1px solid var(--linkline)}
+.cfoot a:hover{background:var(--linkhover)}
+.cfoot a.ghost{background:var(--panel);color:var(--ink2);border-color:var(--line2)}
+ol.dir{list-style:none;margin:18px 0 0;padding:0}
+ol.dir li{padding:10px 14px;border:1px solid var(--line);border-radius:9px;background:var(--panel);margin:8px 0}
+ol.dir a{font-weight:600;color:var(--accent);text-decoration:none;font-size:14.5px}
+ol.dir a:hover{text-decoration:underline}
+ol.dir .m{font-size:12.5px;color:var(--ink3);margin-top:3px}
+</style>
+</head>
+<body>
+<div id="ctl"><button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button></div>
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+<header class="hero">
+  <div class="kick">索引碎片 · 射雕三部曲</div>
+  <h1>《射雕三部曲》</h1>
+<div class="chips"><span class="chip">状态：未标注已读／想读</span><span class="chip">收录：2026-11-09</span><span class="chip">形态：指引型（第八种，首次） —— 上部 ## 0–## 3（怎么用／是什么／四种顺序／版本怎么选）＋ 下部 ##…</span><span class="chip">核验级别：C —— 金庸 2018 年去世</span></div>
+</header>
+<div class="frag">
+    <div class="row"><b>含</b><strong>射雕英雄传</strong>（1957—1959）＋<strong>神雕侠侣</strong>（1959—1961）＋<strong>倚天屠龙记</strong>（1961—1963）。★ <strong>一份报告覆盖三本</strong>，形态为<strong>指引型</strong>，不是三份深读</div>
+    <div class="row"><b>异名</b>射雕英雄传又名《大漠英雄传》（台湾远景版改名）；书剑恩仇录在远景版改《书剑江山》，不属本报告</div>
+    <div class="row"><b>作者</b>金庸（原名查良镛，<strong>1924-03-10 生于浙江海宁，2018-10-30 卒于香港</strong>），1948 年移居香港，1959 年创办《明报》，1955—1972 年创作十五部武侠小说</div>
+    <div class="row"><b>原载</b>射雕 1957-01-01 至 1959-05-19《香港商报》（<strong>862 段</strong>）／神雕 1959-05-20 起《明报》<strong>创刊号</strong>，至 1961-07-08（约三年）／倚天 1961-07-06 至 1963-09-02《明报》。★ <strong>射雕刊完次日《明报》创刊</strong>；倚天开载时神雕<strong>尚未刊完，重叠两天</strong>；倚天刊完次日天龙八部接档</div>
+    <div class="row"><b>篇幅</b><strong>93.04／101.25／105.33 万字</strong>（另一口径 <strong>91.8／97.9／95.6 万</strong>），合计约 <strong>299.6 万</strong>或 <strong>285.3 万</strong>。★ 两说并列，不取平均，引用须写明口径</div>
+    <div class="row"><b>版本</b><strong>三代</strong>——连载版（1955—1972）／修订版（1970—1980 修订；三联 1991 签约、<strong>1994-05</strong> 出 36 册、<strong>2001-11-30</strong> 到期；广州出版社 2002 起、2005 出齐）／新修版（1999 年起，<strong>2005 出版一说／2007 完稿一说</strong>）。港：明河社；台：远景→远流；大陆：三联→广州／花城→朗声</div>
+    <div class="row"><b>状态</b>未标注已读／想读</div>
+    <div class="row"><b>收录</b>2026-11-09</div>
+    <div class="row"><b>形态</b>★ <strong>指引型（第八种，首次）</strong> —— 上部 <code>## 0</code>–<code>## 3</code>（怎么用／是什么／四种顺序／版本怎么选）＋ 下部 <code>## 4</code>–<code>## 10</code>（三本各自怎么读／三本之间的接口／七条误读／版本差异清单／三条路线）＋ 附录 A–C。★ 不逐章复述，每章只讲「进入门槛／该慢读／可以快读／读完该能回答什么」</div>
+    <div class="row"><b>产出</b><code>射雕三部曲/</code> — <code>.md</code>（<strong>20,434 汉字</strong>）＋ <code>.html</code> ＋ <code>-来源清单.md</code> ＋ <code>-build.json</code></div>
+    <div class="row"><b>核验级别</b><strong>C</strong> —— 金庸 2018 年去世，<strong>2069-01-01</strong> 才进入公有领域；无合法全文，<strong>全书一句原文未引</strong></div>
+    <div class="row"><b>档位计数</b>`<code> <span class="tag t-src">原书</span> </code><code> <strong>0</strong> ／</code><code> <span class="tag t-talk">作者谈话</span> </code><code> <strong>12</strong> ／</code><code> <span class="tag t-rep">转述</span> </code><code> <strong>24</strong> ／</code><code> <span class="tag t-inf">推断</span> </code>` <strong>11</strong>（正文口径，共 47）</div>
+    <div class="row"><b>备注</b></div>
+    <ol class="sub">
+      <li>★★★ <strong>「作者谈话」这一档首次不是 0</strong> —— 用的是金庸四篇署名、有确切年月、直接谈这三本书的文字：射雕修订本后记（<strong>1975-12</strong>）、神雕修订本后记（<strong>1976-05</strong>）、倚天修订本后记（<strong>1977-03</strong>）、倚天新修版后记（<strong>2003-07</strong>）。★ 每处标明「不是新访谈」；★ 后记不是正文，说的是「打算写什么」，不是「写成了什么」</li>
+      <li>★★★ <strong>三部曲的结构是「结局外包」</strong> —— 郭靖之死<strong>不在射雕、也不在神雕</strong>，写在<strong>倚天第三十八回</strong>，由灭绝师太转述郭襄遗言，一句话交代（襄阳城破，郭大侠夫妇与郭公破虏同时殉难，屠龙刀不知下落）。⇒ 前两部的结局都写在下一部里；第三部没有下一部，所以<strong>它收不住，于是改了三次，三个结局</strong></li>
+      <li>★★★ <strong>连接件是配角，不是主角</strong> —— 三个主角<strong>互不见面</strong>；串起三本的是<strong>郭襄</strong>（射雕末生→神雕十六岁遇杨过→倚天第一回四十岁出家创峨眉）与<strong>张三丰</strong>（神雕末为少林小徒→倚天百岁祖师）。⇒ <strong>配角的寿命比情节长，所以能把上一代的消息带到下一代</strong></li>
+      <li>★★ <strong>「为国为民，侠之大者」出自神雕，不是射雕</strong> —— 是郭靖在神雕里对杨过说的。这条误传反过来塑造了人们对射雕的读法</li>
+      <li>★★ <strong>跨书改动：杨过的母亲换了人</strong> —— 修订版删秦南琴、并入穆念慈；连载版里杨过生母是秦南琴。⇒ <strong>三部曲必须同版配套买</strong>，混版会出现「杨过的妈对不上」，且对不上的地方在正文里</li>
+      <li>★★ <strong>倚天三个结局，改的方向一致：把「选择」从主角身上拿走</strong> —— 连载版周芷若削发为尼、张无忌接掌峨眉；修订版画眉时周芷若现身；新修版周芷若提「不做夫妻」的条件。作者自述第三次修改「最主要的更动是：张无忌最后没有选定自己的配偶」</li>
+      <li>★ <strong>尹志平是历史真人</strong> —— 金末元初全真道第六代掌教，一生不近女色，活到 83 岁。2003 年华山活动时陕西省道教协会拦阻抗议，此后新修版改为虚构的<strong>甄志丙</strong>。★ <strong>换名不换事</strong>，情节照旧，只换了人承担</li>
+    </ol>
+    <div class="row"><b>待核实</b><strong>D1</strong> 神雕是否另有「天残地缺」之名／<strong>D2</strong> 郭襄出家年份（推算 1283）／<strong>D3</strong> 射雕修订本首版年（1974／1976／1978 三说）／<strong>D4</strong> 新修版完成时间（2005 出版／2007 完稿）／<strong>D5</strong> 尹志平改名年份／<strong>D6</strong> 三联「1991 签约／1994 出版」常被混为一年／<strong>D7</strong> 三部曲总字数两套口径／<strong>D8</strong> 「张无忌同娶四美」是读者概括还是作者原意／<strong>D9</strong> 郭靖殉难一句是否确在第三十八回／<strong>D10</strong> 射雕旧版八十回的全部回目</div>
+</div>
+<div class="cfoot">
+  <a href="../射雕三部曲/射雕三部曲.html">打开阅读页</a>
+  <a class="ghost" href="../射雕三部曲/射雕三部曲.md">内容正本</a>
+  <a class="ghost" href="../射雕三部曲/射雕三部曲-来源清单.md">来源清单</a>
+  <a class="ghost" href="射雕三部曲.md">本页 Markdown</a>
+</div>
+</main>
+<script>/* 主题切换（本页自用的小脚本，不依赖书页主脚本） */
+(function(){var b=document.getElementById('themebtn');if(!b)return;
+function sync(){b.textContent=(document.documentElement.getAttribute('data-theme')==='dark')?'◐ 浅色':'◐ 深色';}
+b.addEventListener('click',function(){
+  var d=document.documentElement.getAttribute('data-theme')==='dark';
+  var n=d?'light':'dark';
+  document.documentElement.setAttribute('data-theme',n);
+  try{localStorage.setItem('ra-theme',n)}catch(e){}
+  sync();});
+sync();})();</script>
+</body>
+</html>
