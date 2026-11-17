@@ -65,18 +65,25 @@
 5. **Votsis, I. (2004)** —— 主张罗素式 ESR 不受 Newman 问题影响（"唯一物理关系与唯一观察关系因果相连且同构"）
 6. **Grover Maxwell (1968)** —— "structural realism" 一词的造出者（据 Wikipedia/HandWiki 综述转述，未核原文）
 7. **Routledge 官网与多家图书馆编目** —— 2023 版信息、目录、Slater 导言的存在
+8. **Feigl, H. (1958). "The 'Mental' and the 'Physical'."** —— "panqualityism" 一词的造出者（据 Chalmers 的组合问题论文与 SEP「Neutral Monism」条目转述，未核 1958 原文）
+9. **Chalmers, D. (1996). *The Conscious Mind*.** —— p.153 直接引罗素 1927a，讲"物理学只给关系"；p.129 提出心物或为同一回事的两个面向（据 SEP「Russellian Monism」条目的引文转述）
+10. **Chalmers, D. "The Combination Problem for Panpsychism"** —— 讨论 panqualityism，称其"似乎是"马赫、詹姆斯、罗素偏好的看法（原文 seems to have been），并列出其绕开主体求和问题的代价（作者自托管 PDF，consc.net）
+11. **Alter, T. & Nagasawa, Y. (2012). "What Is Russellian Monism?"** —— 三命题拆解（结构主义／quiddity 实在论／原现象基础论），pp.70–71（据 SEP 与二手引述转述）
+12. **Kind, A. "Pessimism about Russellian Monism"** —— 指出这批作者"通常避免把他们主张的立场直接归给罗素"（PhilArchive 预印本）
+13. **SEP「Russellian Monism」与「Neutral Monism」两条目** —— 术语归属与"named for Bertrand Russell"的表述来源
+14. **Goff, P. (2017). *Galileo's Error*.** —— 罗素式进路的泛心论版本（据多家综述转述，未核原书）
 
 ## 六、逐项核验记录
 
-正文中 `【原书】` 共 129 处，均经下列方式核对：
+正文中 `【原书】` 共 141 处，均经下列方式核对：
 
 | 核验对象 | 方法 | 结果 |
 | --- | --- | --- |
 | 书名页、丛书名、出版年 | OCR 原文首 20 行 | 逐字核对 |
 | 目录 38 章标题与页码 | OCR 目录区 + 正文 `CHAPTER I–XXXVIII` 标记 | 36 处章标记直接匹配；第 34 章标记 OCR 作 "XXXW"，据标题 "TYPES OF PHYSICAL OCCURRENCES" 定位 |
 | 序言致谢四人 | OCR 序言原文 | 逐字核对 |
-| 引文 129 处 | `grep` 定位 + 上下文比对 | 全部命中原文；OCR 拼写已校正 |
-| 关键页码 | 页眉/页脚数字 | p.180、p.209、p.210、p.249–254、p.270–271、p.355、p.391–402 均可核 |
+| 引文 141 处 | `grep` 定位 + 上下文比对 | 全部命中原文；OCR 拼写已校正 |
+| 关键页码 | 页眉/页脚数字 | p.180、p.209、p.210、p.249–254、p.267、p.270–271、p.341、p.355、p.383–388、p.400–402 均可核 |
 | 索引 "Chuang-Tse: 180" | OCR 索引区 | 命中，且正文 p.180 确为庄子段落 |
 | 中译本页数与 ISBN | 三所高校馆藏 MARC | 一致 |
 
@@ -99,7 +106,7 @@
 | 公版编号实测 | 不适用（非 PG 文本）；改为实测 IA 标识符与文件字节数 |
 | C 级零英文直引 | 不适用（本书 A 级） |
 | 四档穷举、禁自创档名 | 正文只出现 `【原书】`／`【转述】`／`【推断】` 三档；`【作者谈话】` 为 0 并在图例说明理由 |
-| 计数必带口径 | 22,312 汉字（含附录，不含 markdown 标记） |
+| 计数必带口径 | 24,536 汉字（含附录，不含 markdown 标记） |
 | 版本先于「抄错」 | 已列五版英文 + 两版中译；页码统一标 1927 首版 |
 | 施工图不是权威 | 序言 "Tamer" → Tarner、"xgtj" → 1927 等 OCR 错字均按上下文校正，并在本文件说明 |
 
@@ -107,7 +114,7 @@
 
 | 文件 | 说明 |
 | --- | --- |
-| `The Analysis of Matter.md` | 正文，22,312 汉字，19 节（上部 6 + 下部 3 + 专题 5 + 附录 5） |
+| `The Analysis of Matter.md` | 正文，24,536 汉字，20 节（上部 6 + 下部 3 + 专题 6 + 附录 5） |
 | `The Analysis of Matter.html` | 单文件页面，125,745 字节 |
 | `The Analysis of Matter-来源清单.md` | 本文件 |
 | `The Analysis of Matter-build.json` | 渲染配置（标题、副题、meta、图例） |

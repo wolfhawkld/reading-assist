@@ -782,6 +782,113 @@ Newman 先把罗素的立场压成一句话：我们能说的只是——
 
 这也解释了这本书一个表面的矛盾：**它的相对论部分极其自信，量子部分极其谨慎。** 不是他偏心，是两者在 1927 年的成熟度确实差了一代。
 
+## F 泛心论：他发了许可证，没签判决书
+
+**先说一个可以自己复算的事实：这本书从头到尾没有出现过 "panpsychism" 这个词。** 对 1927 年版 OCR 全文（含书末索引）做正则扫描，`pan[- ]?[a-z]{3,}` 只命中六处：化学家 Paneth 的姓氏、p.341 的 pantheism，以及几处 "companies"／"accompanied" 被 OCR 拆开的残片。`【原书】` 换句话说，**"罗素主张泛心论"这句话，在他自己的文本里找不到对应的词。**
+
+他用的词是另外两个。第 1 章讲心物同材时，给这批材料起了名字：
+
+> "...by displaying each as a logical structure composed of what, following Dr H. M. Sheffer, we shall call \"neutral stuff.\""
+>
+> `【原书】` 第 1 章（该章 OCR 无页码，见附录 E）
+
+第 37 章的标题则是 "Physics and Neutral Monism"。**neutral（中立），不是 panpsychic（泛心）。** 这个词的选择是有意的：中立的意思是"尚未被判定为心或物"，泛心论的意思是"已经被判定为心"——方向正好相反。
+
+### 三个句子，一条通向泛心论的路
+
+后人把他读成泛心论者，靠的不是一个词，是三个句子连起来的效果。
+
+第一句在第 24 章，是全书的地基：物理推论只能给出结构，给不出内在性质。`【原书】`
+
+第二句在第 37 章，讲知觉在世界里的位置：
+
+> "Percepts fit into the same causal scheme as physical events, and are not known to have any intrinsic character which physical events cannot have, since we do not know of any intrinsic character which could be incompatible with the logical properties that physics assigns to physical events."
+>
+> `【原书】` 第 37 章，p.384
+
+这句的语法要盯住。它说的不是"知觉没有物理事件不能有的内在性质"，而是"**据我们所知，没有**"（are not known to have）。整句的力量全在 not known 上：这是无知的陈述，不是同一性的陈述。
+
+第三句在第 38 章，是全书的收口处，也是被引最多的一句：
+
+> "As to intrinsic character, we do not know enough about it in the physical world to have any right to say that it is very different from that of percepts; while as to structure we have reason to hold that it is similar in the stimulus and the percept."
+>
+> `【原书】` 第 38 章，p.400
+
+同样要盯语法：**"我们无权说它很不同"**，不是"我们说它相同"。同一页往下几行还有那句关于"物质"的名句——"matter" can be regarded as a system of events, not as part of the stuff of the world`【原书】` 第 38 章，p.400–401。两句连读的效果是：物质被降级成事件的组织方式，而事件的"里面"是什么，他留空。
+
+三句合起来是一个三段论的空位：结构可知（第 24 章）→ 知觉就在物理世界里面，且其内在性质不被物理排除（第 37 章）→ 所以物理世界的内在性质**未必**不同于知觉的内在性质（第 38 章）。**注意最后一步只是"未必"。** 从"未必不同"到"处处都是体验"，中间隔着一次跳跃。
+
+### 门是在哪儿关上的
+
+很多人读到 p.400 就停了。可罗素在前一章的末尾，已经把门关上：
+
+> "On the question of the material out of which the physical world is constructed, the views advocated in this volume have, perhaps, more affinity with idealism than with materialism."
+>
+> `【原书】` 第 37 章，p.387
+
+这句常被单独引来证明他是唯心论者。但它后面紧跟的那段才是结论：
+
+> "It is true that we have not suggested that all reality is mental. The positive arguments in favour of such a view, whether Berkeley or German, appear to me fallacious."
+>
+> `【原书】` 第 37 章，p.388
+
+**"我们没有主张全部实在是心理的"，并且"支持这种主张的正面论证，在我看来是谬误的"。** 这是明确的否证，不是含糊其辞。他承认的只有一件事：就**材料**而言，他的立场离唯心论比离唯物论近一点——因为材料里有知觉，而唯物论把知觉排除在材料之外。
+
+第 26 章还有一句更干脆的，讲照相底片、蜡筒录音机这类"非精神的类似物"：
+
+> "We may suppose, if we choose, that it differs from them in intrinsic quality, and we know that it differs causally, since it gives rise to memories and inferences."
+>
+> `【原书】` 第 26 章，p.267
+
+"if we choose"——**如果我们要这样设想的话**。这是把选择权交出去，不是行使选择权。一个泛心论者在这里会写"它确实有"，罗素写的是"你可以这样设想"。
+
+顺带一个反讽：全书唯一一次出现 pan- 词根，是他在 p.341 说怀特海那种"诸面向既不相同又在数目上为一"的逻辑，若认真对待，"is incompatible with science, and involves a mystic pantheism"`【原书】` p.341。他反对的不是"万物有内在性质"，是"多即一"的逻辑。这两件事经常被混为一谈，而混为一谈的人，往往正是拿这段话来证明他倾向神秘主义的人。
+
+### 该贴什么标签：不是泛心论，是泛性质论
+
+如果一定要在当代术语里给他找个位置，最接近的不是 panpsychism，是 **panqualityism（泛性质论）**：内在性质是"性质"（qualia 一类的东西），但不必是"某人的体验"。
+
+这个词是 Herbert Feigl 1958 年造的 `【转述】`。Chalmers 在讨论组合问题的文章里说，这"似乎曾是"马赫、詹姆斯、罗素偏好的看法——原文用的是 seems to have been，一个不敢坐实的措辞 `【转述】`。同一处他也点出这个立场的两个特点：基本层面没有微观主体，因此绕开了"主体求和"问题；代价是它仍要回答"微观性质如何构成宏观性质"`【转述】`。
+
+差别落在**主体**上。罗素的 percept，第 37 章定义得很清楚：它就是脑中的一个事件，与外部刺激有某种因果关系；他没给它配一个"我"。他的世界由事件和因果线构成，连"人"都是逻辑构造。**泛心论至少要"有体验的微观主体"，罗素这里连宏观主体都不是实体。** 遍布的性质 ＋ 无人体验 ＝ 泛性质论，不是泛心论。`【推断】`
+
+术语史也要说清：「Russellian monism（罗素式一元论）」这个名字是后人给的，斯坦福哲学百科全书的条目明说它是 "named for Bertrand Russell"`【转述】`。Alter 与 Nagasawa 把它拆成三条：物理学只描述结构；结构之下有不可尽述的 quiddity；其中至少一部分与现象性质相关 `【转述】`。而 Amy Kind 在批评这批文献时特别指出：这些作者"通常避免把他们主张的立场直接归给罗素"`【转述】`。**连最愿意收编他的人，也不敢替他签字。**
+
+### Newman 的洞，被当成了门
+
+这本书最讽刺的学术史是：它留的那个空位，是靠一个反驳才变得显眼的。
+
+Newman 1928 指出：若只知道结构，这主张近乎空洞——任何基数足够的集合都能被组织成任意指定的结构 `【转述】`。这个反驳的通常读法是"罗素失败了"。但泛心论者的读法正相反：**既然结构描述不完备，那个不完备的位置就必须有人填；罗素证明了它是空的，我们负责往里放东西。**
+
+这个转向很聪明，但漏洞的形状没变。Newman 说结构定不了对象；翻过来就是：结构也定不了"哪一种"内在性质。所以这条路线能回答"为什么会有内在性质"，回答不了"为什么是这一种"。当代 panprotopsychism 的软肋正在这里：quiddity 的内容说不出来，只能说"我们目前没有概念"。`【推断】`
+
+**一句话概括这个交换：从"我们不知道那里有什么"，变成"我们知道那里有东西，但不知道是什么"。** 后者听起来像一个学说，其实还是同一个无知，只是加了存在量化。`【推断】`
+
+### 组合问题：他没解决，他绕开了
+
+泛心论今天最硬的反对是组合问题：微观体验如何合成一个统一的宏观主体。
+
+罗素不面对这个问题，因为他不设微观主体。代价是他也没有解释统一性。他把"两个知觉同时被我拥有"处理成 compresence（共现）——而共现是时空关系："To say that two events have no spatio-temporal separation is to say that they are compresent"`【原书】` 第 37 章，p.383。于是"为什么这些事件属于同一个视角"这个问题，被回答成"因为它们在同一处"。
+
+**用时空关系解释视角的统一，等于用结构解释结构**——而结构正是他划为"可知"的那一侧，"视角"恰恰是他划为"不可知"的那一侧。这不是循环论证，是**用可说的东西替换了要解释的东西**。`【推断】`
+
+紧接着这句，他自己也知道走不下去了："However, I have no wish to go further into psychology than is necessary, and I will pursue this topic no longer."`【原书】` 第 37 章，p.385。**"我不打算在心理学里走得更远"——这句话在全书里出现的位置，正好是中立一元论最需要往下走的地方。**`【推断】`
+
+### 怎么读这两章
+
+两个替换，读的时候在脑子里做：
+
+- 遇到 **mental**，读成"**有内在性质**"，不要读成"有意识"。
+- 遇到 **neutral**，读成"**尚未被规定为心或物**"，不要读成"既是心又是物"。
+
+不做这两个替换，第 37–38 章一定会读成唯心论，然后你会觉得他前后矛盾——其实矛盾是你替换出来的。
+
+要追当代这条线，顺序是：Chalmers 1996（p.153 直接引罗素 1927a 讲"物理学只给关系"；p.129 提出心与物也许是同一回事的两个面向）`【转述】` → Alter & Nagasawa 2012（三命题）`【转述】` → Goff 2017（泛心论版本）`【转述】`。**但注意他们引的是罗素的问句，不是罗素的答句。**
+
+最后一句，也是这一节唯一值得记住的判断：
+
+**这本书对泛心论的贡献，是证明了它没被排除，不是证明了它成立。** 把前者读成后者，是把许可证当成了判决书。`【推断】`
+
 # 附录
 
 ## A 三十八章标题中英对照
@@ -844,6 +951,8 @@ Newman 先把罗素的立场压成一句话：我们能说的只是——
 | causal line | 因果线 | 物质单元的定义方式，一串由内在微分因果律连接的事件 |
 | biography | 传记 | 第 34 章用词，指一条因果线所对应的"同一个东西"的历程 |
 | neutral stuff | 中立材料 | 借自 H. M. Sheffer，构造心与物的共同材料 |
+| neutral monism | 中立一元论 | 第 37 章标题的立场：材料是同批事件，尚未被判定为心或物 |
+| compresence | 共现 | 两个事件没有时空间隔；第 37 章用它把知觉放进脑中 |
 | steady event | 稳态事件 | 第 34 章三类之一，仿"稳态运动"造词 |
 | rhythm | 节奏 | 周期过程 |
 | transaction | 交易 | 量子变化，能量从一个系统转到另一个系统 |
@@ -908,10 +1017,10 @@ Newman 先把罗素的立场压成一句话：我们能说的只是——
 
 | 档位 | 使用场合 | 本书情况 |
 | --- | --- | --- |
-| 原书 | 直接从 1927 年版 OCR 原文核过的句子 | 全书主体，约一百三十处（本书是逐章引文型，密度远高于论述型先例） |
+| 原书 | 直接从 1927 年版 OCR 原文核过的句子 | 全书主体，141 处（本书是逐章引文型，密度远高于论述型先例） |
 | 作者谈话 | 作者书外言论（访谈、自述、书信），且直接谈这本书怎么读 | **0 处** |
-| 转述 | 二手概括、他人转引，措辞可能与原文有出入 | Newman 1928 的引文、罗素致 Newman 书信、结构实在论术语史、馆藏 MARC 与版本记录 |
-| 推断 | 我的推理，无直接来源支撑 | 论证链条的薄弱处、庄子引文的删节判断、爱丁顿取向的后果、第 33 章的前瞻性 |
+| 转述 | 二手概括、他人转引，措辞可能与原文有出入 | 23 处：Newman 1928 的引文、结构实在论与泛心论术语史、馆藏 MARC 与版本记录 |
+| 推断 | 我的推理，无直接来源支撑 | 20 处：论证链条的薄弱处、庄子引文的删节判断、爱丁顿取向的后果、共现代替统一性的判断 |
 
 **「作者谈话」为什么是 0。** 按 workflow 的判据，这一档要求"作者书外言论直接谈这本书该怎么读"。罗素 1959 年在《My Philosophical Development》里确有回顾，本书只见到二手概括的措辞，没有核到原文；而二手概括不能进这一档——那是 `【转述】` 的位置。宁可为 0，不可贴错档。
 
