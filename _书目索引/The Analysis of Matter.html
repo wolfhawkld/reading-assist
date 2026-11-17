@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* pad-2026-10-04 深色：尽早设置，避免白闪 */try{var _t=localStorage.getItem("ra-theme")||((window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light");document.documentElement.setAttribute("data-theme",_t);}catch(e){}</script>
+<title>《The Analysis of Matter》· 索引碎片</title>
+<style>
+:root{
+  --bg:#fbfaf7; --panel:#ffffff; --ink:#1e1d1a; --ink2:#55534d; --ink3:#8a877e;
+  --line:#e6e2d8; --line2:#d5d1c5; --accent:#2f5d8a; --accent-bg:#eaf1f8;
+  --src:#0f6e56; --src-bg:#e1f5ee;
+  --rep:#8a5209; --rep-bg:#faeeda;
+  --inf:#4b3f9e; --inf-bg:#eeedfe;
+  --warn:#a33;
+  /* pad-2026-10-04 · 原硬编码浅色提为变量，供深色覆盖 */
+  --chipbg:#fff; --onaccent:#fff; --btnhover:#254c73;
+  --hover:#f4f2ec; --thbg:#f6f4ee; --keyink:#1a3a5c; --boxink:#234a6e;
+  --linkline:#cfe0f0; --linkhover:#dbe8f4;
+  --warnbg:#fdf4f4; --warnline:#f0dcdc; --warnink:#6b3232; --cardread:#fcfbf9;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:15px; line-height:1.75; -webkit-font-smoothing:antialiased;
+}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:100;transition:width .1s linear}
+aside{
+  position:fixed;top:0;left:0;bottom:0;width:252px;overflow-y:auto;
+  background:var(--panel);border-right:1px solid var(--line);padding:22px 18px 40px;
+}
+aside .brand{font-size:13px;font-weight:600;color:var(--ink);line-height:1.5;margin-bottom:2px}
+aside .brand small{display:block;font-weight:400;color:var(--ink3);font-size:11.5px;margin-top:4px}
+aside nav{margin-top:18px}
+aside nav a{
+  display:block;padding:5px 10px;margin:1px 0;border-radius:6px;
+  color:var(--ink2);text-decoration:none;font-size:12.5px;line-height:1.5;
+  border-left:2px solid transparent;
+}
+aside nav a:hover{background:var(--hover);color:var(--ink)}
+aside nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+aside nav .grp{font-size:11px;color:var(--ink3);letter-spacing:.06em;margin:16px 0 6px;padding-left:10px;font-weight:600}
+aside .tools{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+aside .tools button{
+  font:inherit;font-size:11.5px;padding:4px 10px;border-radius:6px;cursor:pointer;
+  border:1px solid var(--line2);background:var(--chipbg);color:var(--ink2);
+}
+aside .tools button:hover{border-color:var(--accent);color:var(--accent)}
+main{margin-left:252px;padding:0 40px 120px;max-width:900px}
+.hero{padding:56px 0 26px;border-bottom:1px solid var(--line)}
+.hero h1{font-size:26px;line-height:1.4;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.hero .sub{color:var(--ink2);font-size:15px;font-style:italic;margin-bottom:20px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px 24px;font-size:13px}
+.meta div{color:var(--ink2)}
+.meta b{color:var(--ink);font-weight:600;display:inline-block;min-width:52px}
+.legend{margin:26px 0 8px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.legend h3{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--ink)}
+.legend ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink2)}
+.legend li{margin:3px 0}
+section{padding:34px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+h2{font-size:19px;font-weight:600;margin:0 0 4px;letter-spacing:-.01em;cursor:pointer;display:flex;align-items:flex-start;gap:9px}
+h2 .num{color:var(--ink3);font-weight:500;font-size:15px;flex:0 0 auto;padding-top:2px;min-width:26px}
+h2 .caret{color:var(--ink3);font-size:12px;margin-left:auto;transition:transform .18s;flex:0 0 auto;padding-top:5px}
+section.collapsed h2 .caret{transform:rotate(-90deg)}
+section.collapsed > *:not(h2){display:none}
+h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--ink)}
+h4{font-size:14px;font-weight:600;margin:20px 0 6px;color:var(--ink2)}
+p{margin:10px 0}
+ul,ol{margin:10px 0;padding-left:22px}
+li{margin:5px 0}
+blockquote{
+  margin:14px 0;padding:12px 16px;background:var(--panel);
+  border-left:3px solid var(--line2);border-radius:0 8px 8px 0;color:var(--ink2);font-size:14px;
+}
+blockquote p{margin:4px 0}
+blockquote .gloss{color:var(--ink3);font-size:13px}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--ink);background:var(--thbg);border-bottom:1px solid var(--line2)}
+td{color:var(--ink2)}
+td b,td strong{color:var(--ink)}
+.tag{
+  display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;
+  vertical-align:1px;white-space:nowrap;font-weight:500;
+}
+.t-src{background:var(--src-bg);color:var(--src)}
+.t-rep{background:var(--rep-bg);color:var(--rep)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+.warnbox{
+  margin:14px 0;padding:12px 16px;background:var(--warnbg);border:1px solid var(--warnline);
+  border-left:3px solid var(--warn);border-radius:0 8px 8px 0;font-size:13.5px;color:var(--warnink);
+}
+.keybox{
+  margin:16px 0;padding:14px 18px;background:var(--accent-bg);
+  border-radius:10px;font-size:14px;color:var(--boxink);
+}
+.keybox strong{color:var(--keyink)}
+.quote-cn{color:var(--ink2)}
+footer{padding:40px 0 0;color:var(--ink3);font-size:12.5px}
+@media(max-width:900px){
+  /* pad-2026-10-04 · 目录不再整体消失，改为可滑出的抽屉 */
+  aside{
+    display:block;width:min(86vw,320px);z-index:120;
+    transform:translateX(-102%);transition:transform .22s ease;
+  }
+  body.nav-open aside{transform:none}
+  main{margin-left:0;padding:0 20px 80px}
+  .hero{padding-top:58px}
+}
+
+/* 返回书目总览 */
+.backlink{display:inline-flex;align-items:center;gap:6px;margin:18px 0 0;
+  font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;
+  background:var(--accent-bg);color:var(--accent);text-decoration:none;
+  border:1px solid var(--linkline);line-height:1.5}
+.backlink:hover{background:var(--linkhover);border-color:var(--accent)}
+
+/* ===== pad-2026-10-04 · 深色主题；data-theme 由 <head> 同步脚本设置，避免白闪 ===== */
+:root[data-theme="dark"]{
+  --bg:#15161a; --panel:#1c1e23; --ink:#e7e6e2; --ink2:#b7b5ae; --ink3:#8d8b84;
+  --line:#2c2f35; --line2:#3b3f46; --accent:#8fbde8; --accent-bg:#22303e;
+  --src:#5fd3ac; --src-bg:#16302a;
+  --talk:#e3a7d1; --talk-bg:#332230;
+  --rep:#e3b569; --rep-bg:#33280f;
+  --inf:#b6acf7; --inf-bg:#252344;
+  --warn:#ee8a8a;
+  --chipbg:#24272e; --onaccent:#15161a; --btnhover:#a8caea;
+  --hover:#24272e; --thbg:#212429; --keyink:#bcd7f0; --boxink:#cfe0f2;
+  --linkline:#33465a; --linkhover:#26313d;
+  --warnbg:#2b1f1f; --warnline:#5a3030; --warnink:#f0b4b4; --cardread:#1a1c20;
+}
+:root[data-theme="dark"] .backlink{box-shadow:none}
+:root[data-theme="dark"] aside{box-shadow:0 0 40px rgba(0,0,0,.5)}
+
+/* ===== pad-2026-10-04 · 浮动控件（目录 / 主题）===== */
+#ctl{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;z-index:130;display:flex;gap:8px}
+#ctl button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;
+  display:flex;align-items:center;gap:6px;height:34px;padding:0 12px;border-radius:9px;
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  font-size:12.5px;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+#ctl button:hover{color:var(--ink);border-color:var(--accent)}
+#ctl #navbtn{display:none}
+/* ★ 必须带 #ctl 前缀：`#ctl button{display:flex}` 是 (1,0,1)，裸 `#navbtn` 只有 (1,0,0) 压不过它 */
+@media(max-width:900px){#ctl #navbtn{display:flex}}
+#navscrim{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:110;opacity:0;
+  pointer-events:none;transition:opacity .2s}
+body.nav-open #navscrim{opacity:1;pointer-events:auto}
+
+/* ===== 索引碎片页的版式覆盖（无侧栏，单列）===== */
+main{margin:0 auto;max-width:840px;padding:0 22px 90px}
+.hero{padding:40px 0 20px}
+.hero .kick{font-size:11.5px;letter-spacing:.08em;color:var(--ink3);font-weight:600;margin-bottom:6px}
+.frag{margin:20px 0 0;padding:20px 22px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.frag .row{margin:0 0 11px;font-size:14px;color:var(--ink2);line-height:1.75}
+.frag .row>b{color:var(--ink);font-weight:600;margin-right:2px}
+.frag ol.sub{margin:6px 0 0 0;padding-left:22px;font-size:13.5px;color:var(--ink2)}
+.frag ol.sub li{margin:4px 0}
+.frag code{background:var(--hover);padding:1px 5px;border-radius:4px;font-size:.92em}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+.chip{font-size:11.5px;padding:2px 9px;border-radius:5px;background:var(--hover);color:var(--ink2)}
+.cfoot{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
+.cfoot a{font-size:12.5px;font-weight:600;padding:6px 13px;border-radius:8px;text-decoration:none;
+  background:var(--accent-bg);color:var(--accent);border:1px solid var(--linkline)}
+.cfoot a:hover{background:var(--linkhover)}
+.cfoot a.ghost{background:var(--panel);color:var(--ink2);border-color:var(--line2)}
+ol.dir{list-style:none;margin:18px 0 0;padding:0}
+ol.dir li{padding:10px 14px;border:1px solid var(--line);border-radius:9px;background:var(--panel);margin:8px 0}
+ol.dir a{font-weight:600;color:var(--accent);text-decoration:none;font-size:14.5px}
+ol.dir a:hover{text-decoration:underline}
+ol.dir .m{font-size:12.5px;color:var(--ink3);margin-top:3px}
+h3.dgrp{margin:30px 0 0;font-size:15px;font-weight:600;color:var(--ink);display:flex;align-items:baseline;gap:9px}
+h3.dgrp:first-of-type{margin-top:22px}
+h3.dgrp .gn{font-size:11.5px;font-weight:400;color:var(--ink3);background:var(--hover);border-radius:20px;padding:1px 9px}
+</style>
+</head>
+<body>
+<div id="ctl"><button id="themebtn" type="button" aria-label="切换深色／浅色">◐ 深色</button></div>
+<main>
+<a class="backlink" href="../index.html">← 返回书目总览</a>
+<header class="hero">
+  <div class="kick">索引碎片 · The Analysis of Matter</div>
+  <h1>《The Analysis of Matter》</h1>
+<div class="chips"><span class="chip">状态：未标注已读／想读</span><span class="chip">收录：2026-11-17</span><span class="chip">形态：论著型 —— 上部 ## 0–## 5（一句话／三个坐标／全书骨架／五条命题／与别的书差在哪／版本与版权）＋…</span><span class="chip">核验级别：A（全文核验） —— 依据 Internet Archive in.ernet.dli.2015.22153…</span></div>
+</header>
+<div class="frag">
+    <div class="row"><b>异名</b>中译《物的分析》（贾可春 译，商务印书馆 2016 初版／2021 汉译世界学术名著丛书第 19 辑）；另有《物质的分析》一种说法，非正式书名</div>
+    <div class="row"><b>作者</b>伯特兰·罗素（Bertrand Russell，<strong>1872-05-18 – 1970-02-02</strong>），本书出版时 <strong>55 岁</strong>。此前《数学原理》（1910–13）、《我们关于外间世界的知识》（1914）、《心的分析》（1921）、《相对论 ABC》（1925）</div>
+    <div class="row"><b>出版</b><strong>1927</strong>，Kegan Paul, Trench, Trubner &amp; Co.（伦敦）／Harcourt, Brace &amp; Company（纽约），<strong>viii + 402 页 + 索引</strong>（索引自 p.403 起）</div>
+    <div class="row"><b>丛书</b>International Library of Psychology, Philosophy and Scientific Method</div>
+    <div class="row"><b>结构</b>序言 ＋ <strong>3 部 38 章</strong> ＋ 索引。第一部 The Logical Analysis of Physics（第 2–14 章）／第二部 Physics and Perception（第 15–26 章）／第三部 The Structure of the Physical World（第 27–38 章）。★ 第 1 章为全书导论，<strong>不计部</strong></div>
+    <div class="row"><b>版本链</b>1927 首版 → 1954 Allen &amp; Unwin 重印（408 页） → 1992 Routledge（加 Slater 导言） → 2007 Spokesman → 2023 Routledge Classics（xvi+384 页）</div>
+    <div class="row"><b>中译</b>贾可春 译。<strong>2016</strong> 商务印书馆首版（xiv+425 页，ISBN 978-7-100-12820-9，据 Spokesman 2007 版译出）；<strong>2021</strong> 收入汉译世界学术名著丛书第 19 辑（xxv+425 页，ISBN 978-7-100-19263-7）。★ <strong>两个 ISBN，不是同一版</strong>；网络条目称「2021 年出版」与馆藏 MARC 冲突</div>
+    <div class="row"><b>状态</b>未标注已读／想读</div>
+    <div class="row"><b>收录</b>2026-11-17</div>
+    <div class="row"><b>形态</b>★ <strong>论著型</strong> —— 上部 <code>## 0</code>–<code>## 5</code>（一句话／三个坐标／全书骨架／五条命题／与别的书差在哪／版本与版权）＋ 下部 <code>## 6</code>–<code>## 8</code>（三部 38 章逐章，<strong>第 5–12 章为给非物理学家补的技术课，并成四组</strong>，理由已在正文写明）＋ 专题 <code>## A</code>–<code>## E</code> ＋ 附录 <code>## A</code>–<code>## E</code></div>
+    <div class="row"><b>产出</b><code>The Analysis of Matter/</code> — <code>.md</code>（<strong>22,312 汉字</strong>）＋ <code>.html</code>（125,745 字节）＋ <code>-来源清单.md</code> ＋ <code>-build.json</code></div>
+    <div class="row"><b>核验级别</b><strong>A（全文核验）</strong> —— 依据 Internet Archive <code>in.ernet.dli.2015.221533</code>（Digital Library of India 扫描，1927 年版，djvu.txt <strong>959,256 字节</strong>），逐句比对。★ 版权：中国 <strong>2021-01-01</strong>（终身+50）、美国 <strong>2023-01-01</strong>（1927+95）已入公有领域；英国／欧盟 2041</div>
+    <div class="row"><b>档位计数</b>`<code> <span class="tag t-src">原书</span> </code><code> <strong>129</strong> ／</code><code> <span class="tag t-talk">作者谈话</span> </code><code> <strong>0</strong> ／</code><code> <span class="tag t-rep">转述</span> </code><code> <strong>13</strong> ／</code><code> <span class="tag t-inf">推断</span> </code>` <strong>14</strong>（正文口径）。★ 原书档密度远高于论述型先例，因本书是<strong>逐章引文型</strong>；作者谈话为 0 是刻意的（罗素 1959 年回顾只见二手概括，不能升格）</div>
+    <div class="row"><b>页码口径</b>全部为 <strong>1927 首版</strong>页码。★ 2023 Routledge Classics 为 xvi+384 页不同开本，<strong>页码不通用</strong>。★ 第 1 章（p.1–12）OCR 未识别出任何页码标记，故只标章号</div>
+    <div class="row"><b>备注</b></div>
+    <ol class="sub">
+      <li>★★★ <strong>它拆的是「物质」这个词，不是物质</strong> —— 罗素反复声明电子、质子在某种意义上存在，数值大致可信；他要换掉的是把「物质」当名词的语法习惯。原话：<code>"matter" can be regarded as a system of events, not as part of the stuff of the world</code>（p.400–401）。★ 这是<strong>解释方案</strong>，不是发现</li>
+      <li>★★★ <strong>结构可知、性质不可知</strong> —— 全书唯一的定理式论证在第 24 章：两个关系同构，则<strong>全部逻辑性质相同</strong>（p.251）；由此 <code>no non-mathematical properties of the physical world can be inferred from perception</code>（p.253），故物理知识必然是数学的。★ 三个例子都是媒介不同、结构相同：地图／按音标拼写的书／留声机唱片</li>
+      <li>★★★ <strong>致谢者成了反驳者</strong> —— 序言致谢的 M. H. A. Newman（剑桥圣约翰学院），次年（1928）在《Mind》37: 137–148 上给出最致命反驳：<strong>任何集合只要基数足够，都能被组织成具有任意给定结构 W</strong>（p.140）。⇒ 若只知道结构，则除基数外一无所知，主张近乎 trivial。★ 罗素在致 Newman 信中承认该主张确实琐碎，但指出全书另有一批形而上学假设。★ 这个反驳沉睡到 <strong>Demopoulos &amp; Friedman (1985)</strong> 才被重新挖出</li>
+      <li>★★ <strong>电子不是实体，是一条因果线</strong> —— <code>The conception of one unit of matter — say one electron — as a "substance"... is not one which we are justified in adopting, since we have no evidence whatever as to whether it is false or true</code>（p.401）。替代定义＝<strong>因果线</strong>：一串由内在微分因果律连接的事件，一阶变化由它决定，二阶交给外在因果律。★ 第 34 章用 <strong>biography（传记）</strong> 一词讲透：要说「一块物质移动了」，先得判定两个不同时刻的事件属于同一个传记，<strong>而传记由因果律定义，不由实体持存定义</strong></li>
+      <li>★★ <strong>知觉的非精神类似物</strong> —— 第 26 章核心：知觉是一组相关事件中的一个，这组事件全都结构相似或半相似，物理世界就由这类事件构成。★ 结果：光波→视网膜→神经→知觉不是「突然产生一个性质完全不同的精神事件」，而是同构链条上的不同环节。★ 证据：<strong>录音机与照相底片</strong>（p.209–210、p.400）</li>
+      <li>★★ <strong>庄子在 p.180</strong> —— 第 18 章引濠梁之辩，罗素明确说 <code>My position is that of the second philosopher</code>，即<strong>惠子</strong>（你不是鱼，怎么知道鱼快乐）。★ 但他只引到庄子的回击为止，未引「请循其本……我知之濠上也」。索引里 <code>Chuang-Tse: 180</code> 是全书唯一一处中国思想家条目</li>
+      <li>★★ <strong>美的边界</strong> —— <code>I should concede that the beauty does not result from physics, since beauty depends in part upon intrinsic quality; if it were... solely a matter of form, it would come within the scope of physics, but I think these writers do not realize what an abstract affair form really is</code>（p.392）。★ 一个以结构主义闻名的哲学家，在美的问题上<strong>主动认输</strong></li>
+      <li>★★ <strong>量子：他承认自己不知道</strong> —— <code>the time has not yet come when the philosopher can deal confidently with quantum theory</code>（p.395）。★ 但他留了一个可填充的框架（第 34 章三分法）：<strong>稳态事件／节奏／交易</strong>，量子变化＝节奏的突然替换（p.402）。★ 比喻：<code>a long note on the violin while arpeggios are played on the piano</code></li>
+      <li>★★ <strong>哲学用途上跟随爱丁顿，甚于爱因斯坦或外尔</strong> —— <code>For philosophical purposes, therefore, I have allowed myself to be guided almost entirely by Eddington</code>（p.395–396）。★ 这解释了第一部为何那样写</li>
+      <li>★ <strong>地基是直接假设的</strong> —— 严格演绎下无法反驳唯我论；要逃出去必须靠归纳与因果，而这两样仍在休谟阴影下。罗素直接假设其有效，理由是「辩护不会比凯恩斯《概率论》短多少」（p.398–399）。★ 这笔债 1948 年《人类的知识》才去还</li>
+      <li>★ <strong>「structural realism」不是他造的词</strong> —— 该词由 Grover Maxwell 1968 造出；Worrall 1989 复活并追溯庞加莱；Ladyman 1998 分认识论／本体论。罗素本人没听过这个标签，「Russellian ESR」是追认</li>
+    </ol>
+    <div class="row"><b>待核实</b><strong>D1</strong> 序言落款月份（OCR 作 <code>January, xgtj</code>，未比影印页）／<strong>D2</strong> 1927 首版与 1954 重印页码是否完全一致／<strong>D3</strong> Tarner Lectures 1926 讲次与章节的对应／<strong>D4</strong> 罗素致 Newman 书信的原始文献信息</div>
+</div>
+<div class="cfoot">
+  <a href="../The Analysis of Matter/The Analysis of Matter.html">打开阅读页</a>
+  <a class="ghost" href="../The Analysis of Matter/The Analysis of Matter.md">内容正本</a>
+  <a class="ghost" href="../The Analysis of Matter/The Analysis of Matter-来源清单.md">来源清单</a>
+  <a class="ghost" href="The Analysis of Matter.md">本页 Markdown</a>
+</div>
+</main>
+<script>/* 主题切换（本页自用的小脚本，不依赖书页主脚本） */
+(function(){var b=document.getElementById('themebtn');if(!b)return;
+function sync(){b.textContent=(document.documentElement.getAttribute('data-theme')==='dark')?'◐ 浅色':'◐ 深色';}
+b.addEventListener('click',function(){
+  var d=document.documentElement.getAttribute('data-theme')==='dark';
+  var n=d?'light':'dark';
+  document.documentElement.setAttribute('data-theme',n);
+  try{localStorage.setItem('ra-theme',n)}catch(e){}
+  sync();});
+sync();})();</script>
+</body>
+</html>
